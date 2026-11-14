@@ -16,7 +16,8 @@ export const ml = defineLocale({
       defaultsFailed: 'മോഡൽ ഡിഫോൾട്ടുകൾ സേവ് ചെയ്യാനായില്ല',
       auxiliaryTitle: 'സഹായ മോഡലുകൾ',
       resetAllToMain: 'എല്ലാം പ്രധാന മോഡലിലേക്ക് പുനഃസജ്ജമാക്കുക',
-      auxiliaryDesc: 'സഹായ ജോലികൾ സ്ഥിരസ്ഥിതിയായി പ്രധാന മോഡലിൽ പ്രവർത്തിക്കും. ഓവർറൈഡ് ചെയ്യാൻ ഏതെങ്കിലും ജോലിക്ക് പ്രത്യേക മോഡൽ നൽകുക.',
+      auxiliaryDesc:
+        'സഹായ ജോലികൾ സ്ഥിരസ്ഥിതിയായി പ്രധാന മോഡലിൽ പ്രവർത്തിക്കും. ഓവർറൈഡ് ചെയ്യാൻ ഏതെങ്കിലും ജോലിക്ക് പ്രത്യേക മോഡൽ നൽകുക.',
       setToMain: 'പ്രധാന മോഡലിലേക്ക് സജ്ജമാക്കുക',
       change: 'മാറ്റുക',
       autoUseMain: 'ഓട്ടോ · പ്രധാന മോഡൽ ഉപയോഗിക്കുക',
@@ -27,45 +28,46 @@ export const ml = defineLocale({
       tasks: {
         vision: {
           label: 'വിഷൻ',
-          hint: 'ചിത്ര വിശകലനം',
+          hint: 'ചിത്ര വിശകലനം'
         },
         web_extract: {
           label: 'വെബ് എക്സ്ട്രാക്ട്',
-          hint: 'പേജ് സംഗ്രഹം',
+          hint: 'പേജ് സംഗ്രഹം'
         },
         compression: {
           label: 'കംപ്രഷൻ',
-          hint: 'കോൺടെക്സ്റ്റ് ചുരുക്കൽ',
+          hint: 'കോൺടെക്സ്റ്റ് ചുരുക്കൽ'
         },
         skills_hub: {
           label: 'സ്കിൽ ഹബ്',
-          hint: 'സ്കിൽ തിരയൽ',
+          hint: 'സ്കിൽ തിരയൽ'
         },
         approval: {
           label: 'അനുമതി',
-          hint: 'സ്മാർട്ട് ഓട്ടോ-അനുമതി',
+          hint: 'സ്മാർട്ട് ഓട്ടോ-അനുമതി'
         },
         mcp: {
           hint: 'MCP ടൂൾ റൂട്ടിംഗ്',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'ശീർഷക നിർമ്മാണം',
-          hint: 'സെഷൻ ശീർഷകങ്ങൾ',
+          hint: 'സെഷൻ ശീർഷകങ്ങൾ'
         },
         curator: {
           label: 'ക്യൂറേറ്റർ',
-          hint: 'സ്കിൽ ഉപയോഗ അവലോകനം',
-        },
+          hint: 'സ്കിൽ ഉപയോഗ അവലോകനം'
+        }
       },
       loading: 'Loading model configuration...',
       appliesDesc: 'Applies to new sessions. Use the model picker in the composer to hot-swap the active chat.',
-      provider: 'Provider',
+      provider: 'Provider'
     },
     providers: {
       connectAccount: 'ഒരു അക്കൗണ്ട് ബന്ധിപ്പിക്കുക',
       haveApiKey: 'പകരം API കീ ഉണ്ടോ?',
-      intro: 'സബ്സ്ക്രിപ്ഷൻ ഉപയോഗിച്ച് സൈൻ ഇൻ ചെയ്യുക — പകർത്താൻ API കീ ഇല്ല. OpenAmer നിങ്ങൾക്കായി ബ്രൗസർ സൈൻ-ഇൻ ഇവിടെ ആപ്പിൽത്തന്നെ നടത്തും.',
+      intro:
+        'സബ്സ്ക്രിപ്ഷൻ ഉപയോഗിച്ച് സൈൻ ഇൻ ചെയ്യുക — പകർത്താൻ API കീ ഇല്ല. OpenAmer നിങ്ങൾക്കായി ബ്രൗസർ സൈൻ-ഇൻ ഇവിടെ ആപ്പിൽത്തന്നെ നടത്തും.',
       connected: 'ബന്ധിപ്പിച്ചു',
       collapse: 'ചുരുക്കുക',
       connectAnother: 'മറ്റൊരു പ്രൊവൈഡർ ബന്ധിപ്പിക്കുക',
@@ -78,16 +80,18 @@ export const ml = defineLocale({
       noKeysMatch: 'നിങ്ങളുടെ തിരയലുമായി പൊരുത്തപ്പെടുന്ന പ്രൊവൈഡർമാരില്ല.',
       localEndpoint: {
         title: 'പ്രാദേശിക / ഇഷ്ടാനുസൃത എൻഡ്പോയിന്റ്',
-        description: 'OpenAmer-നെ OpenAI-യുമായി പൊരുത്തപ്പെടുന്ന ഏതെങ്കിലും എൻഡ്പോയിന്റിലേക്ക് ചൂണ്ടിക്കാണിക്കുക (Zyphra, vLLM, llama.cpp, Ollama, മുതലായവ).',
+        description:
+          'OpenAmer-നെ OpenAI-യുമായി പൊരുത്തപ്പെടുന്ന ഏതെങ്കിലും എൻഡ്പോയിന്റിലേക്ക് ചൂണ്ടിക്കാണിക്കുക (Zyphra, vLLM, llama.cpp, Ollama, മുതലായവ).'
       },
       loading: 'പ്രൊവൈഡർമാരെ ലോഡ് ചെയ്യുന്നു...',
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     closeSettings: 'ക്രമീകരണങ്ങൾ അടയ്ക്കുക',
     exportConfig: 'കോൺഫിഗ് എക്സ്പോർട്ട് ചെയ്യുക',
@@ -111,11 +115,12 @@ export const ml = defineLocale({
       billing: 'ബില്ലിംഗ്',
       notifications: 'അറിയിപ്പുകൾ',
       plugins: 'പ്ലഗിനുകൾ',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'ഡെസ്ക്ടോപ്പ് പ്ലഗിനുകൾ',
-      blurb: 'ഈ ആപ്പിൽ ലോഡ് ചെയ്ത UI എക്സ്റ്റൻഷനുകൾ — ബിൽഡിനൊപ്പം ബണ്ടിൽ ചെയ്തതോ, desktop-plugins ഫോൾഡറിലേക്ക് ഇട്ടതോ (OpenAmer എഴുതുന്നവ ഉൾപ്പെടെ). പ്ലഗിൻ പ്രവർത്തനരഹിതമാക്കിയാൽ അത് തത്സമയം അൺലോഡ് ചെയ്യും, പുനരാരംഭങ്ങളിലും നിലനിൽക്കും.',
+      blurb:
+        'ഈ ആപ്പിൽ ലോഡ് ചെയ്ത UI എക്സ്റ്റൻഷനുകൾ — ബിൽഡിനൊപ്പം ബണ്ടിൽ ചെയ്തതോ, desktop-plugins ഫോൾഡറിലേക്ക് ഇട്ടതോ (OpenAmer എഴുതുന്നവ ഉൾപ്പെടെ). പ്ലഗിൻ പ്രവർത്തനരഹിതമാക്കിയാൽ അത് തത്സമയം അൺലോഡ് ചെയ്യും, പുനരാരംഭങ്ങളിലും നിലനിൽക്കും.',
       openFolder: 'പ്ലഗിൻ ഫോൾഡർ തുറക്കുക',
       rescan: 'വീണ്ടും സ്കാൻ ചെയ്യുക',
       reveal: 'ഫയൽ മാനേജറിൽ കാണിക്കുക',
@@ -126,50 +131,53 @@ export const ml = defineLocale({
       kinds: {
         bundled: 'ബണ്ടിൽ ചെയ്തത്',
         disk: 'ഡിസ്കിൽ',
-        runtime: 'റൺടൈം',
+        runtime: 'റൺടൈം'
       },
-      count: n => `${n} installed`,
+      count: n => `${n} installed`
     },
     notifications: {
       title: 'അറിയിപ്പുകൾ',
-      intro: 'ഇൻ-ആപ്പ് ടോസ്റ്റുകളിൽ നിന്ന് വേറിട്ട, നേറ്റീവ് ഡെസ്ക്ടോപ്പ് അറിയിപ്പുകൾ. ഇവ ഉപകരണത്തിന് പ്രാദേശികമാണ് — ഓരോ കമ്പ്യൂട്ടറും അതിന്റെ സ്വന്തം ക്രമീകരണങ്ങൾ സൂക്ഷിക്കുന്നു.',
+      intro:
+        'ഇൻ-ആപ്പ് ടോസ്റ്റുകളിൽ നിന്ന് വേറിട്ട, നേറ്റീവ് ഡെസ്ക്ടോപ്പ് അറിയിപ്പുകൾ. ഇവ ഉപകരണത്തിന് പ്രാദേശികമാണ് — ഓരോ കമ്പ്യൂട്ടറും അതിന്റെ സ്വന്തം ക്രമീകരണങ്ങൾ സൂക്ഷിക്കുന്നു.',
       enableAll: 'അറിയിപ്പുകൾ പ്രവർത്തനക്ഷമമാക്കുക',
       enableAllDesc: 'മാസ്റ്റർ സ്വിച്ച്. ചുവടെയുള്ള എല്ലാ അറിയിപ്പുകളും നിശ്ശബ്ദമാക്കാൻ ഇത് ഓഫ് ചെയ്യുക.',
       focusedHint: 'OpenAmer പിന്നണിയിൽ ഇരിക്കുമ്പോൾ മാത്രമേ പൂർത്തീകരണ അലേർട്ടുകൾ വരുന്നത്.',
       kinds: {
         approval: {
           label: 'അംഗീകാരം ആവശ്യമാണ്',
-          description: 'അംഗീകരിക്കാനോ നിരസിക്കാനോ ഒരു കമാൻഡ് കാത്തിരിക്കുന്നു.',
+          description: 'അംഗീകരിക്കാനോ നിരസിക്കാനോ ഒരു കമാൻഡ് കാത്തിരിക്കുന്നു.'
         },
         input: {
           label: 'ഇൻപുട്ട് ആവശ്യമാണ്',
-          description: 'OpenAmer ഒരു ചോദ്യം ചോദിച്ചു, അല്ലെങ്കിൽ ഒരു പാസ്വേഡോ രഹസ്യമോ ആവശ്യമുണ്ട്.',
+          description: 'OpenAmer ഒരു ചോദ്യം ചോദിച്ചു, അല്ലെങ്കിൽ ഒരു പാസ്വേഡോ രഹസ്യമോ ആവശ്യമുണ്ട്.'
         },
         turnDone: {
           label: 'പ്രതികരണം തയ്യാറാണ്',
-          description: 'OpenAmer പിന്നണിയിൽ ഇരിക്കുമ്പോൾ ഒരു ടേൺ പൂർത്തിയായി.',
+          description: 'OpenAmer പിന്നണിയിൽ ഇരിക്കുമ്പോൾ ഒരു ടേൺ പൂർത്തിയായി.'
         },
         turnError: {
           label: 'ടേൺ പരാജയപ്പെട്ടു',
-          description: 'ഒരു ടേൺ പിശകോടെ അവസാനിച്ചു.',
+          description: 'ഒരു ടേൺ പിശകോടെ അവസാനിച്ചു.'
         },
         backgroundDone: {
           label: 'പിന്നണി ടാസ്ക് പൂർത്തിയായി',
-          description: 'പിന്നണിയിലേക്ക് മാറ്റിയ ഒരു ടെർമിനൽ കമാൻഡ് പൂർത്തിയായി.',
+          description: 'പിന്നണിയിലേക്ക് മാറ്റിയ ഒരു ടെർമിനൽ കമാൻഡ് പൂർത്തിയായി.'
         },
         credits: {
           label: 'ക്രെഡിറ്റ് അലേർട്ടുകൾ',
-          description: 'ക്രെഡിറ്റ് ആക്സസ് താൽക്കാലികമായി നിർത്തി അല്ലെങ്കിൽ പുനഃസ്ഥാപിച്ചു.',
-        },
+          description: 'ക്രെഡിറ്റ് ആക്സസ് താൽക്കാലികമായി നിർത്തി അല്ലെങ്കിൽ പുനഃസ്ഥാപിച്ചു.'
+        }
       },
       test: 'ടെസ്റ്റ് അറിയിപ്പ് അയയ്ക്കുക',
       testTitle: 'OpenAmer',
       testBody: 'അറിയിപ്പുകൾ പ്രവർത്തിക്കുന്നു.',
-      testSent: 'ടെസ്റ്റ് അയച്ചു. ഒന്നും കാണുന്നില്ലെങ്കിൽ, നിങ്ങളുടെ OS അറിയിപ്പ് അനുമതികളും ഫോക്കസ്/ഡു നോട്ട് ഡിസ്റ്റർബും പരിശോധിക്കുക.',
+      testSent:
+        'ടെസ്റ്റ് അയച്ചു. ഒന്നും കാണുന്നില്ലെങ്കിൽ, നിങ്ങളുടെ OS അറിയിപ്പ് അനുമതികളും ഫോക്കസ്/ഡു നോട്ട് ഡിസ്റ്റർബും പരിശോധിക്കുക.',
       testUnsupported: 'ഈ സിസ്റ്റം നേറ്റീവ് അറിയിപ്പുകൾ പിന്തുണയ്ക്കുന്നില്ല.',
       completionSoundTitle: 'പൂർത്തീകരണ ശബ്ദം',
-      completionSoundDesc: 'ഒരു ഏജന്റ് ടേൺ പൂർത്തിയാകുമ്പോൾ കളിക്കും. ഒരു പ്രീസെറ്റ് തിരഞ്ഞെടുത്ത് ഇവിടെ പ്രിവ്യൂ ചെയ്യുക.',
-      completionSoundPreview: 'പ്രിവ്യൂ',
+      completionSoundDesc:
+        'ഒരു ഏജന്റ് ടേൺ പൂർത്തിയാകുമ്പോൾ കളിക്കും. ഒരു പ്രീസെറ്റ് തിരഞ്ഞെടുത്ത് ഇവിടെ പ്രിവ്യൂ ചെയ്യുക.',
+      completionSoundPreview: 'പ്രിവ്യൂ'
     },
     sections: {
       model: 'മോഡൽ',
@@ -179,7 +187,7 @@ export const ml = defineLocale({
       safety: 'സുരക്ഷ',
       memory: 'മെമ്മറിയും സന്ദർഭവും',
       voice: 'ശബ്ദം',
-      advanced: 'വിപുലമായവ',
+      advanced: 'വിപുലമായവ'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop-നെക്കുറിച്ച്',
@@ -187,36 +195,39 @@ export const ml = defineLocale({
       gateway: 'ഗേറ്റ്വേ കണക്ഷൻ...',
       keys: 'API കീകൾ തിരയുക...',
       mcp: 'MCP സെർവറുകൾ തിരയുക...',
-      sessions: 'ആർക്കൈവ് ചെയ്ത സെഷനുകൾ തിരയുക...',
+      sessions: 'ആർക്കൈവ് ചെയ്ത സെഷനുകൾ തിരയുക...'
     },
     modeOptions: {
       light: {
         label: 'ലൈറ്റ്',
-        description: 'തെളിച്ചമുള്ള ഡെസ്ക്ടോപ്പ് പ്രതലങ്ങൾ',
+        description: 'തെളിച്ചമുള്ള ഡെസ്ക്ടോപ്പ് പ്രതലങ്ങൾ'
       },
       dark: {
         label: 'ഡാർക്ക്',
-        description: 'കുറഞ്ഞ തിളക്കമുള്ള വർക്ക്സ്പേസ്',
+        description: 'കുറഞ്ഞ തിളക്കമുള്ള വർക്ക്സ്പേസ്'
       },
       system: {
         label: 'സിസ്റ്റം',
-        description: 'OS രൂപം പിന്തുടരുക',
-      },
+        description: 'OS രൂപം പിന്തുടരുക'
+      }
     },
     appearance: {
       title: 'രൂപം',
-      intro: 'ഇവ ഡെസ്ക്ടോപ്പിന് മാത്രമുള്ള ഡിസ്പ്ലേ മുൻഗണനകളാണ്. മോഡ് തെളിച്ചം നിയന്ത്രിക്കുന്നു; തീം ആക്സന്റ് പാലറ്റും ചാറ്റ് പ്രതല സ്റ്റൈലിംഗും നിയന്ത്രിക്കുന്നു.',
+      intro:
+        'ഇവ ഡെസ്ക്ടോപ്പിന് മാത്രമുള്ള ഡിസ്പ്ലേ മുൻഗണനകളാണ്. മോഡ് തെളിച്ചം നിയന്ത്രിക്കുന്നു; തീം ആക്സന്റ് പാലറ്റും ചാറ്റ് പ്രതല സ്റ്റൈലിംഗും നിയന്ത്രിക്കുന്നു.',
       colorMode: 'നിറ മോഡ്',
       colorModeDesc: 'ഒരു നിശ്ചിത മോഡ് തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ OpenAmer നിങ്ങളുടെ സിസ്റ്റം ക്രമീകരണം പിന്തുടരട്ടെ.',
       toolViewTitle: 'ടൂൾ കോൾ ഡിസ്പ്ലേ',
-      toolViewDesc: 'പ്രൊഡക്ട് അസംസ്കൃത ടൂൾ പേലോഡുകൾ മറയ്ക്കുന്നു; ടെക്നിക്കൽ പൂർണ്ണ ഇൻപുട്ട്/ഔട്ട്പുട്ട് കാണിക്കുന്നു.',
+      toolViewDesc:
+        'പ്രൊഡക്ട് അസംസ്കൃത ടൂൾ പേലോഡുകൾ മറയ്ക്കുന്നു; ടെക്നിക്കൽ പൂർണ്ണ ഇൻപുട്ട്/ഔട്ട്പുട്ട് കാണിക്കുന്നു.',
       uiScaleTitle: 'UI സ്കെയിൽ',
       translucencyTitle: 'വിൻഡോ സുതാര്യത',
       translucencyDesc: 'മുഴുവൻ വിൻഡോയിലൂടെയും നിങ്ങളുടെ ഡെസ്ക്ടോപ്പ് കാണുക. macOS, Windows എന്നിവയിൽ മാത്രം.',
       backdropTitle: 'ചാറ്റ് പശ്ചാത്തലം',
       backdropDesc: 'സംഭാഷണത്തിന് പിന്നിലെ മങ്ങിയ പ്രതിമാ ചിത്രം.',
       embedsTitle: 'ഇൻലൈൻ എംബെഡുകൾ',
-      embedsDesc: 'മൂന്നാംകക്ഷി സൈറ്റുകളിൽ നിന്ന് (YouTube, X, …) സമ്പന്ന പ്രിവ്യൂകൾ ലോഡ് ചെയ്യുന്നു. ചോദിക്കുക ഓരോന്നിനും അനുവദിക്കുന്നതുവരെ പ്ലേസ്ഹോൾഡർ കാണിക്കും; എപ്പോഴും അവ സ്വയമേവ ലോഡ് ചെയ്യും; ഓഫ് സാധാരണ ലിങ്കുകൾ നിലനിർത്തും.',
+      embedsDesc:
+        'മൂന്നാംകക്ഷി സൈറ്റുകളിൽ നിന്ന് (YouTube, X, …) സമ്പന്ന പ്രിവ്യൂകൾ ലോഡ് ചെയ്യുന്നു. ചോദിക്കുക ഓരോന്നിനും അനുവദിക്കുന്നതുവരെ പ്ലേസ്ഹോൾഡർ കാണിക്കും; എപ്പോഴും അവ സ്വയമേവ ലോഡ് ചെയ്യും; ഓഫ് സാധാരണ ലിങ്കുകൾ നിലനിർത്തും.',
       embedsAsk: 'ചോദിക്കുക',
       embedsAlways: 'എപ്പോഴും',
       embedsOff: 'ഓഫ്',
@@ -227,7 +238,8 @@ export const ml = defineLocale({
       themeTitle: 'തീം',
       themeDesc: 'ഡെസ്ക്ടോപ്പ് പാലറ്റുകൾ മാത്രം. തിരഞ്ഞെടുത്ത മോഡ് മുകളിൽ പ്രയോഗിക്കുന്നു.',
       installTitle: 'VS Code-ൽ നിന്ന് ഇൻസ്റ്റാൾ ചെയ്യുക',
-      installDesc: 'അതിന്റെ നിറ തീം ഡെസ്ക്ടോപ്പ് പാലറ്റിലേക്ക് പരിവർത്തനം ചെയ്യാൻ ഒരു Marketplace എക്സ്റ്റൻഷൻ ഐഡി (ഉദാ. dracula-theme.theme-dracula) പേസ്റ്റ് ചെയ്യുക.',
+      installDesc:
+        'അതിന്റെ നിറ തീം ഡെസ്ക്ടോപ്പ് പാലറ്റിലേക്ക് പരിവർത്തനം ചെയ്യാൻ ഒരു Marketplace എക്സ്റ്റൻഷൻ ഐഡി (ഉദാ. dracula-theme.theme-dracula) പേസ്റ്റ് ചെയ്യുക.',
       installButton: 'ഇൻസ്റ്റാൾ ചെയ്യുക',
       installing: 'ഇൻസ്റ്റാൾ ചെയ്യുന്നു…',
       installError: 'ആ തീം ഇൻസ്റ്റാൾ ചെയ്യാനായില്ല.',
@@ -235,8 +247,10 @@ export const ml = defineLocale({
       importedBadge: 'ഇമ്പോർട്ട് ചെയ്തത്',
       pet: {
         title: 'പെറ്റ്',
-        intro: 'Adopt an animated petdex mascot that floats over the app and reacts to what OpenAmer is doing — running while tools execute, celebrating on success, sulking on errors.',
-        restartHint: 'Pets need a quick restart — the running app started before this feature was added. Quit and reopen OpenAmer, then come back here.',
+        intro:
+          'Adopt an animated petdex mascot that floats over the app and reacts to what OpenAmer is doing — running while tools execute, celebrating on success, sulking on errors.',
+        restartHint:
+          'Pets need a quick restart — the running app started before this feature was added. Quit and reopen OpenAmer, then come back here.',
         on: 'On',
         off: 'Off',
         scaleTitle: 'Size',
@@ -268,28 +282,33 @@ export const ml = defineLocale({
         exportFailed: slug => `Could not export ${slug}`,
         noneAvailable: 'No pets available to turn on right now.',
         turnOnFailed: 'Could not turn the pet on.',
-        turnOffFailed: 'Could not turn the pet off.',
+        turnOffFailed: 'Could not turn the pet off.'
       },
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installPlaceholder: 'publisher.extension',
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     gateway: {
       modeTitle: 'കണക്ഷൻ മോഡ്',
       localTitle: 'ലോക്കൽ ഗേറ്റ്‌വേ',
-      localDesc: 'localhost-ൽ ഒരു സ്വകാര്യ OpenAmer ബാക്ക്എൻഡ് ആരംഭിക്കുക. ഇതാണ് സ്വതവേയുള്ളത്, ഓഫ്‌ലൈനായി പ്രവർത്തിക്കും.',
+      localDesc:
+        'localhost-ൽ ഒരു സ്വകാര്യ OpenAmer ബാക്ക്എൻഡ് ആരംഭിക്കുക. ഇതാണ് സ്വതവേയുള്ളത്, ഓഫ്‌ലൈനായി പ്രവർത്തിക്കും.',
       inheritTitle: 'സ്വതവേയുള്ള ഗേറ്റ്‌വേ ഉപയോഗിക്കുക',
       inheritDesc: 'ഈ പ്രൊഫൈലിന്റെ ഓവർറൈഡ് നീക്കം ചെയ്ത് സ്വതവേയുള്ള കണക്ഷൻ ഉപയോഗിക്കുക.',
       remoteTitle: 'റിമോട്ട് ഗേറ്റ്‌വേ',
       remoteDesc: 'ഈ ഡെസ്ക്ടോപ്പ് ഷെൽ ഒരു റിമോട്ട് OpenAmer ബാക്ക്എൻഡുമായി ബന്ധിപ്പിക്കുക.',
-      remoteAuthHint: 'ഹോസ്റ്റ് ചെയ്ത ഗേറ്റ്‌വേകൾ OAuth അല്ലെങ്കിൽ ഉപയോക്തൃനാമവും പാസ്‌വേഡും ഉപയോഗിക്കുന്നു; സ്വയം ഹോസ്റ്റ് ചെയ്തവ സെഷൻ ടോക്കൺ ഉപയോഗിച്ചേക്കാം.',
-      cloudDesc: 'OpenAmer Cloud-ൽ ഒരിക്കൽ സൈൻ ഇൻ ചെയ്ത് നിങ്ങളുടെ അക്കൗണ്ടിലെ ഏജന്റുകളിൽ നിന്ന് തിരഞ്ഞെടുക്കുക — പേസ്റ്റ് ചെയ്യാൻ URL ആവശ്യമില്ല.',
+      remoteAuthHint:
+        'ഹോസ്റ്റ് ചെയ്ത ഗേറ്റ്‌വേകൾ OAuth അല്ലെങ്കിൽ ഉപയോക്തൃനാമവും പാസ്‌വേഡും ഉപയോഗിക്കുന്നു; സ്വയം ഹോസ്റ്റ് ചെയ്തവ സെഷൻ ടോക്കൺ ഉപയോഗിച്ചേക്കാം.',
+      cloudDesc:
+        'OpenAmer Cloud-ൽ ഒരിക്കൽ സൈൻ ഇൻ ചെയ്ത് നിങ്ങളുടെ അക്കൗണ്ടിലെ ഏജന്റുകളിൽ നിന്ന് തിരഞ്ഞെടുക്കുക — പേസ്റ്റ് ചെയ്യാൻ URL ആവശ്യമില്ല.',
       cloudSignIn: 'OpenAmer Cloud-ൽ സൈൻ ഇൻ ചെയ്യുക',
       cloudSignedIn: 'OpenAmer Cloud-ൽ സൈൻ ഇൻ ചെയ്‌തു',
       cloudNeedsSignIn: 'നിങ്ങളുടെ അക്കൗണ്ടിലെ ഏജന്റുകൾ കണ്ടെത്താൻ OpenAmer Cloud-ൽ സൈൻ ഇൻ ചെയ്യുക.',
-      cloudSignedInDesc: 'നിങ്ങൾ സൈൻ ഇൻ ചെയ്‌തിരിക്കുന്നു. താഴെയുള്ള ഒരു ഏജന്റ് തിരഞ്ഞെടുക്കുക; സെഷൻ സ്വയമേവ പുതുക്കും.',
+      cloudSignedInDesc:
+        'നിങ്ങൾ സൈൻ ഇൻ ചെയ്‌തിരിക്കുന്നു. താഴെയുള്ള ഒരു ഏജന്റ് തിരഞ്ഞെടുക്കുക; സെഷൻ സ്വയമേവ പുതുക്കും.',
       cloudAgentsTitle: 'നിങ്ങളുടെ ഏജന്റുകൾ',
       cloudOrgPickerTitle: 'ഒരു ഓർഗനൈസേഷൻ തിരഞ്ഞെടുക്കുക',
       cloudOrgSelect: 'തിരഞ്ഞെടുക്കുക',
@@ -298,7 +317,7 @@ export const ml = defineLocale({
       cloudNoAgents: {
         before: 'ഈ അക്കൗണ്ടിൽ ഏജന്റുകളൊന്നും കണ്ടെത്തിയില്ല. ഇതിൽ ഒന്ന് സൃഷ്ടിക്കുക:',
         linkText: 'OpenAmer പോർട്ടൽ',
-        after: ', തുടർന്ന് പുതുക്കുക.',
+        after: ', തുടർന്ന് പുതുക്കുക.'
       },
       cloudRefresh: 'പുതുക്കുക',
       cloudConnect: 'ബന്ധിപ്പിക്കുക',
@@ -312,7 +331,8 @@ export const ml = defineLocale({
       cloudConnectedPill: 'ബന്ധിപ്പിച്ചു',
       cloudAgentProvisioning: 'പ്രൊവിഷൻ ചെയ്യുന്നു…',
       remoteUrlTitle: 'റിമോട്ട് URL',
-      remoteUrlDesc: 'റിമോട്ട് ഡാഷ്‌ബോർഡ് ബാക്ക്എൻഡിനുള്ള ബേസ് URL. പാത്ത് പ്രിഫിക്സുകൾ പിന്തുണയ്ക്കുന്നു, ഉദാഹരണത്തിന് /openamer.',
+      remoteUrlDesc:
+        'റിമോട്ട് ഡാഷ്‌ബോർഡ് ബാക്ക്എൻഡിനുള്ള ബേസ് URL. പാത്ത് പ്രിഫിക്സുകൾ പിന്തുണയ്ക്കുന്നു, ഉദാഹരണത്തിന് /openamer.',
       probing: 'ഈ ഗേറ്റ്‌വേ എങ്ങനെ ആഥന്റിക്കേറ്റ് ചെയ്യുന്നുവെന്ന് പരിശോധിക്കുന്നു…',
       probeError: 'ഈ ഗേറ്റ്‌വേയിൽ ഇതുവരെ എത്താനായില്ല. URL പരിശോധിക്കുക — അത് പ്രതികരിച്ചാൽ ഓത് മെത്തേഡ് ദൃശ്യമാകും.',
       signedIn: 'സൈൻ ഇൻ ചെയ്‌തു',
@@ -322,13 +342,16 @@ export const ml = defineLocale({
       unavailableDesc: 'ഡെസ്ക്ടോപ്പ് IPC ബ്രിഡ്ജ് ഗേറ്റ്വേ സെറ്റിംഗുകൾ വെളിപ്പെടുത്തുന്നില്ല.',
       title: 'ഗേറ്റ്വേ കണക്ഷൻ',
       envOverride: 'env ഓവർറൈഡ്',
-      intro: 'OpenAmer Desktop സ്വതവേ അതിന്റെ സ്വന്തം ലോക്കൽ ഗേറ്റ്വേ ആരംഭിക്കുന്നു. മറ്റൊരു മെഷീനിൽ അല്ലെങ്കിൽ വിശ്വസ്ത പ്രോക്സിക്ക് പിന്നിൽ ഇതിനകം പ്രവർത്തിക്കുന്ന OpenAmer ബാക്ക്എൻഡ് നിയന്ത്രിക്കാൻ ഈ ആപ്പിനെ വേണമെങ്കിൽ റിമോട്ട് ഗേറ്റ്വേ ഉപയോഗിക്കുക. അതിന് സ്വന്തം റിമോട്ട് ഹോസ്റ്റ് നൽകാൻ താഴെ ഒരു പ്രൊഫൈൽ തിരഞ്ഞെടുക്കുക.',
+      intro:
+        'OpenAmer Desktop സ്വതവേ അതിന്റെ സ്വന്തം ലോക്കൽ ഗേറ്റ്വേ ആരംഭിക്കുന്നു. മറ്റൊരു മെഷീനിൽ അല്ലെങ്കിൽ വിശ്വസ്ത പ്രോക്സിക്ക് പിന്നിൽ ഇതിനകം പ്രവർത്തിക്കുന്ന OpenAmer ബാക്ക്എൻഡ് നിയന്ത്രിക്കാൻ ഈ ആപ്പിനെ വേണമെങ്കിൽ റിമോട്ട് ഗേറ്റ്വേ ഉപയോഗിക്കുക. അതിന് സ്വന്തം റിമോട്ട് ഹോസ്റ്റ് നൽകാൻ താഴെ ഒരു പ്രൊഫൈൽ തിരഞ്ഞെടുക്കുക.',
       appliesTo: 'ബാധകം',
       allProfiles: 'എല്ലാ പ്രൊഫൈലുകളും',
       defaultConnection: 'സ്വന്തം ഓവർറൈഡ് ഇല്ലാത്ത ഓരോ പ്രൊഫൈലിനുമുള്ള സ്വതവേയുള്ള കണക്ഷൻ.',
       envOverrideTitle: 'എൻവയോൺമെന്റ് വേരിയബിളുകൾ ഈ ഡെസ്ക്ടോപ്പ് സെഷൻ നിയന്ത്രിക്കുന്നു.',
-      envOverrideDesc: 'താഴെയുള്ള സേവ് ചെയ്ത ക്രമീകരണം ഉപയോഗിക്കാൻ OPENAMER_DESKTOP_REMOTE_URL, OPENAMER_DESKTOP_REMOTE_TOKEN എന്നിവ അൺസെറ്റ് ചെയ്യുക.',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      envOverrideDesc:
+        'താഴെയുള്ള സേവ് ചെയ്ത ക്രമീകരണം ഉപയോഗിക്കാൻ OPENAMER_DESKTOP_REMOTE_URL, OPENAMER_DESKTOP_REMOTE_TOKEN എന്നിവ അൺസെറ്റ് ചെയ്യുക.',
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudTitle: 'OpenAmer Cloud',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudOrgRole: role => `Role: ${role}`,
@@ -337,7 +360,8 @@ export const ml = defineLocale({
       signOut: 'Sign out',
       signInWith: provider => `Sign in with ${provider}`,
       authTitle: 'Authentication',
-      authSignedInPassword: 'This gateway uses a username and password. You are signed in; the session refreshes automatically.',
+      authSignedInPassword:
+        'This gateway uses a username and password. You are signed in; the session refreshes automatically.',
       authSignedInOauth: 'This gateway uses OAuth. You are signed in; the session refreshes automatically.',
       authNeedsPassword: 'This gateway uses a username and password. Sign in to authorize this desktop app.',
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
@@ -373,7 +397,8 @@ export const ml = defineLocale({
       applyFailed: 'Could not apply gateway settings',
       saveFailed: 'Could not save gateway settings',
       sshTitle: 'Connect via SSH',
-      sshDesc: 'OpenAmer is launched on the remote over SSH and tunneled to this app — nothing to start or expose yourself. Requires working key-based SSH access to the host.',
+      sshDesc:
+        'OpenAmer is launched on the remote over SSH and tunneled to this app — nothing to start or expose yourself. Requires working key-based SSH access to the host.',
       sshTrustHint: 'The first presented host key is trusted and pinned; later changes fail closed.',
       sshHostTitle: 'Host',
       sshHostDesc: 'user@host, or a Host alias from ~/.ssh/config.',
@@ -397,13 +422,17 @@ export const ml = defineLocale({
       sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
       sshIncompleteHost: 'Enter an SSH host before connecting.',
       sshErrUnreachable: 'Could not reach that host over SSH. Check the host, port, and your network.',
-      sshErrAuth: 'SSH authentication failed. Load your key into the ssh-agent (ssh-add) or set an IdentityFile in ~/.ssh/config — OpenAmer runs ssh non-interactively.',
-      sshErrHostKey: 'The host key has CHANGED since you last connected. Verify this is expected, then run ssh-keygen -R <host> and reconnect.',
-      sshErrNotInstalled: 'OpenAmer is not installed on the remote host. Install it there (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) or set the OpenAmer path.',
-      sshErrPlatform: 'Unsupported remote platform. OpenAmer Desktop SSH mode supports Linux, macOS, and Windows remote hosts.',
+      sshErrAuth:
+        'SSH authentication failed. Load your key into the ssh-agent (ssh-add) or set an IdentityFile in ~/.ssh/config — OpenAmer runs ssh non-interactively.',
+      sshErrHostKey:
+        'The host key has CHANGED since you last connected. Verify this is expected, then run ssh-keygen -R <host> and reconnect.',
+      sshErrNotInstalled:
+        'OpenAmer is not installed on the remote host. Install it there (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) or set the OpenAmer path.',
+      sshErrPlatform:
+        'Unsupported remote platform. OpenAmer Desktop SSH mode supports Linux, macOS, and Windows remote hosts.',
       sshErrTimeout: 'SSH connection timed out. The host may be unreachable or asleep.',
       sshErrUpdateRequired: 'Update OpenAmer on the remote host before connecting with Desktop SSH.',
-      sshErrUnknown: 'SSH connection failed.',
+      sshErrUnknown: 'SSH connection failed.'
     },
     config: {
       none: 'ഒന്നുമില്ല',
@@ -419,7 +448,8 @@ export const ml = defineLocale({
       imported: 'കോൺഫിഗ് ഇംപോർട്ട് ചെയ്തു',
       invalidJson: 'അസാധുവായ കോൺഫിഗ് JSON',
       keepAwakeTitle: 'കമ്പ്യൂട്ടർ ഉണർന്നിരിക്കാൻ',
-      keepAwakeDesc: 'ദീർഘനേരം അല്ലെങ്കിൽ രാത്രി മുഴുവൻ റണ്ണുകൾ തുടരാൻ ഈ മെഷീൻ സ്ലീപ്പ് ആകാതിരിക്കാൻ. ഡിസ്പ്ലേ ഇപ്പോഴും മങ്ങാം.',
+      keepAwakeDesc:
+        'ദീർഘനേരം അല്ലെങ്കിൽ രാത്രി മുഴുവൻ റണ്ണുകൾ തുടരാൻ ഈ മെഷീൻ സ്ലീപ്പ് ആകാതിരിക്കാൻ. ഡിസ്പ്ലേ ഇപ്പോഴും മങ്ങാം.'
     },
     credentials: {
       pasteKey: 'കീ പേസ്റ്റ് ചെയ്യുക',
@@ -429,7 +459,7 @@ export const ml = defineLocale({
       remove: 'നീക്കം ചെയ്യുക',
       getKey: 'ഒരു കീ നേടുക',
       saving: 'സേവ് ചെയ്യുന്നു',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     envActions: {
       credentialActions: 'ക്രെഡൻഷ്യൽ പ്രവർത്തനങ്ങൾ',
@@ -440,11 +470,12 @@ export const ml = defineLocale({
       replace: 'മാറ്റിസ്ഥാപിക്കുക',
       set: 'സെറ്റ് ചെയ്യുക',
       clear: 'മായ്ക്കുക',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     toolsets: {
       failedLoad: 'ടൂൾ കോൺഫിഗറേഷൻ ലോഡ് ചെയ്യാനായില്ല',
-      noProviderOptions: 'ഈ ടൂൾസെറ്റിന് പ്രൊവൈഡർ ഓപ്ഷനുകളില്ല — ഇത് പ്രവർത്തനക്ഷമമാക്കിയാൽ നിലവിലെ സെറ്റപ്പിൽ പ്രവർത്തിക്കും.',
+      noProviderOptions:
+        'ഈ ടൂൾസെറ്റിന് പ്രൊവൈഡർ ഓപ്ഷനുകളില്ല — ഇത് പ്രവർത്തനക്ഷമമാക്കിയാൽ നിലവിലെ സെറ്റപ്പിൽ പ്രവർത്തിക്കും.',
       noProviders: 'ഈ ടൂൾസെറ്റിന് ഇപ്പോൾ പ്രൊവൈഡർമാർ ലഭ്യമല്ല.',
       ready: 'തയ്യാർ',
       needsSignIn: 'സൈൻ-ഇൻ ആവശ്യം',
@@ -456,7 +487,8 @@ export const ml = defineLocale({
       openamerAuthDoneMessage: 'നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷൻ ബാക്ക്എൻഡുകൾ ഇപ്പോൾ സജീവമാണ്.',
       openamerAuthFailed: 'OpenAmer Portal സൈൻ-ഇൻ പൂർത്തിയായില്ല',
       noApiKeyRequired: 'API കീ ആവശ്യമില്ല.',
-      postSetupInstalledHint: 'ഇൻസ്റ്റാൾ ചെയ്തു. എന്തെങ്കിലും തകരാറുണ്ടെങ്കിൽ മാത്രം സെറ്റപ്പ് വീണ്ടും പ്രവർത്തിപ്പിക്കുക.',
+      postSetupInstalledHint:
+        'ഇൻസ്റ്റാൾ ചെയ്തു. എന്തെങ്കിലും തകരാറുണ്ടെങ്കിൽ മാത്രം സെറ്റപ്പ് വീണ്ടും പ്രവർത്തിപ്പിക്കുക.',
       postSetupRun: 'സെറ്റപ്പ് പ്രവർത്തിപ്പിക്കുക',
       postSetupRerun: 'സെറ്റപ്പ് വീണ്ടും പ്രവർത്തിപ്പിക്കുക',
       postSetupInstalled: 'ഇൻസ്റ്റാൾ ചെയ്തു',
@@ -486,7 +518,7 @@ export const ml = defineLocale({
         selectedTitle: 'ബാക്ക്എൻഡ് തിരഞ്ഞെടുത്തു',
         needsSetupHint: 'ഈ ബാക്ക്എൻഡ് ഇപ്പോൾ തിരഞ്ഞെടുക്കാം — സെറ്റപ്പ് പൂർത്തിയാകുന്നതുവരെ കമാൻഡുകൾ പരാജയപ്പെടും.',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       loadingConfig: 'കോൺഫിഗറേഷൻ ലോഡ് ചെയ്യുന്നു',
       savedTitle: 'ക്രെഡൻഷ്യൽ സംരക്ഷിച്ചു',
@@ -502,8 +534,10 @@ export const ml = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -513,25 +547,29 @@ export const ml = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     sessions: {
       loading: 'ആർക്കൈവ് ചെയ്ത സെഷനുകൾ ലോഡ് ചെയ്യുന്നു…',
       archivedTitle: 'ആർക്കൈവ് ചെയ്ത സെഷനുകൾ',
-      archivedIntro: 'ആർക്കൈവ് ചെയ്ത ചാറ്റുകൾ സൈഡ്ബാറിൽ മറയ്ക്കപ്പെടുന്നു, പക്ഷേ അവയുടെ എല്ലാ സന്ദേശങ്ങളും നിലനിർത്തുന്നു. ആർക്കൈവ് ചെയ്യാൻ സൈഡ്ബാറിലെ ഒരു ചാറ്റിൽ Ctrl/⌘-click ചെയ്യുക.',
+      archivedIntro:
+        'ആർക്കൈവ് ചെയ്ത ചാറ്റുകൾ സൈഡ്ബാറിൽ മറയ്ക്കപ്പെടുന്നു, പക്ഷേ അവയുടെ എല്ലാ സന്ദേശങ്ങളും നിലനിർത്തുന്നു. ആർക്കൈവ് ചെയ്യാൻ സൈഡ്ബാറിലെ ഒരു ചാറ്റിൽ Ctrl/⌘-click ചെയ്യുക.',
       emptyArchivedTitle: 'ഒന്നും ആർക്കൈവ് ചെയ്തിട്ടില്ല',
       emptyArchivedDesc: 'ഇവിടെ മറയ്ക്കാൻ ഒരു ചാറ്റ് ആർക്കൈവ് ചെയ്യുക.',
       unarchive: 'ആർക്കൈവിൽ നിന്ന് പുറത്തെടുക്കുക',
       deletePermanently: 'ശാശ്വതമായി ഇല്ലാതാക്കുക',
       restored: 'പുനഃസ്ഥാപിച്ചു',
       autoArchiveTitle: 'നിഷ്ക്രിയ ചാറ്റുകൾ സ്വയമേ ആർക്കൈവ് ചെയ്യുക',
-      autoArchiveDesc: 'കുറച്ചുകാലമായി തൊട്ടിട്ടില്ലാത്ത ചാറ്റുകൾ സ്വയമേവ ആർക്കൈവ് ചെയ്യുക. പിൻ ചെയ്ത ചാറ്റുകൾ ഒരിക്കലും ആർക്കൈവ് ചെയ്യപ്പെടുന്നില്ല, ഒന്നും ഇല്ലാതാക്കപ്പെടുന്നുമില്ല — ആർക്കൈവ് ചെയ്ത ചാറ്റുകൾ ഇവിടേക്ക് മാത്രം നീങ്ങുന്നു.',
+      autoArchiveDesc:
+        'കുറച്ചുകാലമായി തൊട്ടിട്ടില്ലാത്ത ചാറ്റുകൾ സ്വയമേവ ആർക്കൈവ് ചെയ്യുക. പിൻ ചെയ്ത ചാറ്റുകൾ ഒരിക്കലും ആർക്കൈവ് ചെയ്യപ്പെടുന്നില്ല, ഒന്നും ഇല്ലാതാക്കപ്പെടുന്നുമില്ല — ആർക്കൈവ് ചെയ്ത ചാറ്റുകൾ ഇവിടേക്ക് മാത്രം നീങ്ങുന്നു.',
       autoArchiveDaysLabel: 'ഇതിനുശേഷം ആർക്കൈവ് ചെയ്യുക',
       autoArchiveDaysUnit: 'നിഷ്ക്രിയതയുടെ ദിവസങ്ങൾ',
       autoArchiveFailed: 'സ്വയമേയുള്ള ആർക്കൈവ് അപ്ഡേറ്റ് ചെയ്യാനായില്ല',
       defaultDirTitle: 'ഡിഫോൾട്ട് പ്രോജക്റ്റ് ഡയറക്ടറി',
-      defaultDirDesc: 'നിങ്ങൾ മറ്റൊന്ന് തിരഞ്ഞെടുക്കുന്നില്ലെങ്കിൽ പുതിയ സെഷനുകൾ ഈ ഫോൾഡറിൽ ആരംഭിക്കും. നിങ്ങളുടെ ഹോം ഡയറക്ടറി ഉപയോഗിക്കാൻ ഇത് സെറ്റ് ചെയ്യാതെ വിടുക.',
-      defaultDirUpdated: 'ഡിഫോൾട്ട് പ്രോജക്റ്റ് ഡയറക്ടറി അപ്ഡേറ്റ് ചെയ്തു — പ്രാബല്യത്തിൽ വരാൻ പുതിയ ചാറ്റ് (Ctrl/⌘+N) ആരംഭിക്കുക',
+      defaultDirDesc:
+        'നിങ്ങൾ മറ്റൊന്ന് തിരഞ്ഞെടുക്കുന്നില്ലെങ്കിൽ പുതിയ സെഷനുകൾ ഈ ഫോൾഡറിൽ ആരംഭിക്കും. നിങ്ങളുടെ ഹോം ഡയറക്ടറി ഉപയോഗിക്കാൻ ഇത് സെറ്റ് ചെയ്യാതെ വിടുക.',
+      defaultDirUpdated:
+        'ഡിഫോൾട്ട് പ്രോജക്റ്റ് ഡയറക്ടറി അപ്ഡേറ്റ് ചെയ്തു — പ്രാബല്യത്തിൽ വരാൻ പുതിയ ചാറ്റ് (Ctrl/⌘+N) ആരംഭിക്കുക',
       change: 'മാറ്റുക',
       choose: 'തിരഞ്ഞെടുക്കുക',
       clear: 'മായ്ക്കുക',
@@ -543,7 +581,7 @@ export const ml = defineLocale({
       clearDirFailed: 'ഡിഫോൾട്ട് ഡയറക്ടറി മായ്ക്കാനായില്ല',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -566,18 +604,19 @@ export const ml = defineLocale({
       lastChecked: age => `Last checked ${age}`,
       justNowSuffix: ' · just now',
       automaticUpdates: 'Automatic updates',
-      automaticUpdatesDesc: 'OpenAmer checks for updates automatically in the background and lets you know when one is ready.',
+      automaticUpdatesDesc:
+        'OpenAmer checks for updates automatically in the background and lets you know when one is ready.',
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       never: 'never',
       justNow: 'just now',
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     keys: {
       loading: 'Loading API keys and credentials...',
       failedLoad: 'API keys failed to load',
-      empty: 'Nothing configured in this category yet.',
+      empty: 'Nothing configured in this category yet.'
     },
     mcp: {
       loading: 'Loading MCP servers...',
@@ -629,7 +668,8 @@ export const ml = defineLocale({
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
       catalogEnvRequired: 'Fill in the required values before installing.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       statusConnecting: 'Connecting…',
       statusNeedsAuth: 'Needs authentication',
       statusError: 'Error',
@@ -642,8 +682,8 @@ export const ml = defineLocale({
       unsavedConnect: 'Unsaved — save mcp.json to connect.',
       enableTool: tool => `Enable ${tool}`,
       disableTool: tool => `Disable ${tool}`,
-      noOutput: 'No output yet.',
-    },
+      noOutput: 'No output yet.'
+    }
   },
   messaging: {
     states: {
@@ -655,7 +695,7 @@ export const ml = defineLocale({
       pending_restart: 'റീസ്റ്റാർട്ട് ആവശ്യം',
       retrying: 'വീണ്ടും ശ്രമിക്കുന്നു',
       startup_failed: 'സ്റ്റാർട്ടപ്പ് പരാജയപ്പെട്ടു',
-      connected: 'Connected',
+      connected: 'Connected'
     },
     unknown: 'അജ്ഞാതം',
     hintPendingRestart: 'ഈ മാറ്റം പ്രയോഗിക്കാൻ സ്റ്റാറ്റസ് ബാറിൽ നിന്ന് ഗേറ്റ്വേ റീസ്റ്റാർട്ട് ചെയ്യുക.',
@@ -667,7 +707,8 @@ export const ml = defineLocale({
     openSetupGuide: 'സെറ്റപ്പ് ഗൈഡ് തുറക്കുക',
     required: 'ആവശ്യമാണ്',
     recommended: 'ശുപാർശ ചെയ്യുന്നു',
-    noTokenNeeded: 'ഈ പ്ലാറ്റ്ഫോമിന് ഇവിടെ ടോക്കൺ ആവശ്യമില്ല. മുകളിലെ സെറ്റപ്പ് ഗൈഡ് ഉപയോഗിച്ച്, താഴെ ഇത് പ്രവർത്തനക്ഷമമാക്കുക.',
+    noTokenNeeded:
+      'ഈ പ്ലാറ്റ്ഫോമിന് ഇവിടെ ടോക്കൺ ആവശ്യമില്ല. മുകളിലെ സെറ്റപ്പ് ഗൈഡ് ഉപയോഗിച്ച്, താഴെ ഇത് പ്രവർത്തനക്ഷമമാക്കുക.',
     enabled: 'പ്രവർത്തനക്ഷമം',
     disabled: 'പ്രവർത്തനരഹിതം',
     unsavedChanges: 'സംരക്ഷിക്കാത്ത മാറ്റങ്ങൾ',
@@ -682,124 +723,124 @@ export const ml = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'ബോട്ട് ടോക്കൺ',
         help: '@BotFather ഉപയോഗിച്ച് ഒരു ബോട്ട് സൃഷ്ടിച്ച്, അത് നൽകുന്ന ടോക്കൺ പേസ്റ്റ് ചെയ്യുക.',
-        placeholder: 'Telegram ബോട്ട് ടോക്കൺ പേസ്റ്റ് ചെയ്യുക',
+        placeholder: 'Telegram ബോട്ട് ടോക്കൺ പേസ്റ്റ് ചെയ്യുക'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'അനുവദിച്ച Telegram ഉപയോക്തൃ ഐഡികൾ',
-        help: 'ശുപാർശ ചെയ്യുന്നു. @userinfobot-ൽ നിന്നുള്ള കോമയാൽ വേർതിരിച്ച സംഖ്യാ ഐഡികൾ. ഇതില്ലാതെ, ആർക്കും നിങ്ങളുടെ ബോട്ടിന് നേരിട്ട് സന്ദേശം അയയ്ക്കാം.',
+        help: 'ശുപാർശ ചെയ്യുന്നു. @userinfobot-ൽ നിന്നുള്ള കോമയാൽ വേർതിരിച്ച സംഖ്യാ ഐഡികൾ. ഇതില്ലാതെ, ആർക്കും നിങ്ങളുടെ ബോട്ടിന് നേരിട്ട് സന്ദേശം അയയ്ക്കാം.'
       },
       TELEGRAM_PROXY: {
         label: 'പ്രോക്സി URL',
-        help: 'Telegram തടഞ്ഞിരിക്കുന്ന നെറ്റ്വർക്കുകളിൽ മാത്രം ആവശ്യമാണ്.',
+        help: 'Telegram തടഞ്ഞിരിക്കുന്ന നെറ്റ്വർക്കുകളിൽ മാത്രം ആവശ്യമാണ്.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'ബോട്ട് ടോക്കൺ',
-        help: 'Discord Developer Portal-ൽ ഒരു ആപ്ലിക്കേഷൻ സൃഷ്ടിച്ച്, ഒരു ബോട്ട് ചേർത്ത്, അതിന്റെ ടോക്കൺ പേസ്റ്റ് ചെയ്യുക.',
+        help: 'Discord Developer Portal-ൽ ഒരു ആപ്ലിക്കേഷൻ സൃഷ്ടിച്ച്, ഒരു ബോട്ട് ചേർത്ത്, അതിന്റെ ടോക്കൺ പേസ്റ്റ് ചെയ്യുക.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'അനുവദിച്ച Discord ഉപയോക്തൃ ഐഡികൾ',
-        help: 'ശുപാർശ ചെയ്യുന്നു. കോമയാൽ വേർതിരിച്ച Discord ഉപയോക്തൃ ഐഡികൾ.',
+        help: 'ശുപാർശ ചെയ്യുന്നു. കോമയാൽ വേർതിരിച്ച Discord ഉപയോക്തൃ ഐഡികൾ.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Reply style',
-        help: 'first, all, or off.',
+        help: 'first, all, or off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Allow all Discord users',
-        help: 'Development only. When true, anyone can DM the bot without an allowlist.',
+        help: 'Development only. When true, anyone can DM the bot without an allowlist.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Home channel ID',
-        help: 'Channel where the bot sends proactive messages (cron output, reminders).',
+        help: 'Channel where the bot sends proactive messages (cron output, reminders).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Home channel name',
-        help: 'Display name for the home channel in logs and status output.',
+        help: 'Display name for the home channel in logs and status output.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Allow all iMessage users',
-        help: 'When true, skip the BlueBubbles allowlist.',
+        help: 'When true, skip the BlueBubbles allowlist.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Allow all Mattermost users',
+        label: 'Allow all Mattermost users'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Home channel',
+        label: 'Home channel'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Allow all QQ users',
+        label: 'Allow all QQ users'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ home channel',
-        help: 'Default channel or group for cron delivery.',
+        help: 'Default channel or group for cron delivery.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ home channel name',
+        label: 'QQ home channel name'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack bot token',
         help: 'Use the bot token from OAuth & Permissions after installing your Slack app.',
-        placeholder: 'Paste Slack bot token',
+        placeholder: 'Paste Slack bot token'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack app token',
         help: 'Use the app-level token required for Socket Mode.',
-        placeholder: 'Paste Slack app token',
+        placeholder: 'Paste Slack app token'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Allowed Slack user IDs',
-        help: 'Recommended. Comma-separated Slack user IDs.',
+        help: 'Recommended. Comma-separated Slack user IDs.'
       },
       MATTERMOST_URL: {
         label: 'Server URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Bot token',
+        label: 'Bot token'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Allowed user IDs',
-        help: 'Recommended. Comma-separated Mattermost user IDs.',
+        help: 'Recommended. Comma-separated Mattermost user IDs.'
       },
       MATRIX_HOMESERVER: {
         label: 'Homeserver URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Access token',
+        label: 'Access token'
       },
       MATRIX_USER_ID: {
         label: 'Bot user ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Allowed Matrix user IDs',
-        help: 'Recommended. Comma-separated user IDs in @user:server format.',
+        help: 'Recommended. Comma-separated user IDs in @user:server format.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal bridge URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL of a running signal-cli REST bridge.',
+        help: 'URL of a running signal-cli REST bridge.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Phone number',
-        help: 'The number registered with your signal-cli bridge.',
+        help: 'The number registered with your signal-cli bridge.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Allowed Signal users',
-        help: 'Recommended. Comma-separated Signal identifiers.',
+        help: 'Recommended. Comma-separated Signal identifiers.'
       },
       WHATSAPP_ENABLED: {
         label: 'Enable WhatsApp bridge',
-        help: 'Set automatically by the toggle below. Leave alone unless you know you need it.',
+        help: 'Set automatically by the toggle below. Leave alone unless you know you need it.'
       },
       WHATSAPP_MODE: {
-        label: 'Bridge mode',
+        label: 'Bridge mode'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Allowed WhatsApp users',
-        help: 'Recommended. Comma-separated phone numbers or WhatsApp IDs.',
-      },
+        help: 'Recommended. Comma-separated phone numbers or WhatsApp IDs.'
+      }
     },
     search: 'Search messaging...',
     loading: 'Loading messaging platforms...',
@@ -816,8 +857,7 @@ export const ml = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   profiles: {
     renameMenu: 'പേരുമാറ്റുക…',
@@ -895,7 +935,7 @@ export const ml = defineLocale({
     defaultBadge: 'Default',
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   sidebar: {
     row: {
@@ -929,19 +969,21 @@ Leave blank to keep the ${mode} default.`,
       sessionActions: 'Session actions',
       handoffOrigin: platform => `Handed off from ${platform}`,
       ownedByProfile: profile => `Profile: ${profile}`,
-      untitledChat: id => `Chat ${id}`,
+      untitledChat: id => `Chat ${id}`
     },
     dateDivider: {
       today: 'ഇന്ന് നേരത്തെ',
       yesterday: 'ഇന്നലെ',
       thisWeek: 'ഈ ആഴ്ച നേരത്തെ',
       lastWeek: 'കഴിഞ്ഞ ആഴ്ച',
-      thisMonth: 'ഈ മാസം നേരത്തെ',
+      thisMonth: 'ഈ മാസം നേരത്തെ'
     },
     projects: {
       createFailed: 'പ്രോജക്ട് സൃഷ്ടിക്കാനായില്ല',
-      staleBackend: 'പ്രോജക്ടുകൾ സൃഷ്ടിക്കാൻ OpenAmer ബാക്കെൻഡ് അപ്ഡേറ്റ് ചെയ്യുക — ഈ ഡെസ്ക്ടോപ്പ് ആപ്പിനേക്കാൾ പഴയതാണ് നിങ്ങളുടെ ബാക്കെൻഡ് (ക്രമീകരണങ്ങൾ → അപ്ഡേറ്റുകൾ → ബാക്കെൻഡ്).',
-      deleteConfirm: 'ഇത് സേവ് ചെയ്ത പ്രോജക്ട് OpenAmer-ൽ നിന്ന് നീക്കം ചെയ്യും. ഫയലുകൾ, git റിപ്പോകൾ, വർക്ക്ട്രീകൾ എന്നിവ മാറ്റമില്ലാതെ തുടരും.',
+      staleBackend:
+        'പ്രോജക്ടുകൾ സൃഷ്ടിക്കാൻ OpenAmer ബാക്കെൻഡ് അപ്ഡേറ്റ് ചെയ്യുക — ഈ ഡെസ്ക്ടോപ്പ് ആപ്പിനേക്കാൾ പഴയതാണ് നിങ്ങളുടെ ബാക്കെൻഡ് (ക്രമീകരണങ്ങൾ → അപ്ഡേറ്റുകൾ → ബാക്കെൻഡ്).',
+      deleteConfirm:
+        'ഇത് സേവ് ചെയ്ത പ്രോജക്ട് OpenAmer-ൽ നിന്ന് നീക്കം ചെയ്യും. ഫയലുകൾ, git റിപ്പോകൾ, വർക്ക്ട്രീകൾ എന്നിവ മാറ്റമില്ലാതെ തുടരും.',
       startWork: 'പുതിയ വർക്ക്ട്രീ',
       newWorktreeTitle: 'പുതിയ വർക്ക്ട്രീ',
       newWorktreeDesc: 'ഈ വർക്ക്ട്രീയുടെ ബ്രാഞ്ചിന് പേര് നൽകുക.',
@@ -951,7 +993,8 @@ Leave blank to keep the ${mode} default.`,
       startWorkFailed: 'വർക്ക്ട്രീ സൃഷ്ടിക്കാനായില്ല',
       convertBranch: 'ഒരു ബ്രാഞ്ച് പരിവർത്തനം ചെയ്യുക…',
       convertBranchTitle: 'ഒരു ബ്രാഞ്ച് പരിവർത്തനം ചെയ്യുക',
-      convertBranchDesc: 'ചെക്കൗട്ട് ചെയ്ത ബ്രാഞ്ചുകൾ തുറക്കുക, അല്ലെങ്കിൽ സ്വതന്ത്ര ബ്രാഞ്ചിനായി ഒരു വർക്ക്ട്രീ സൃഷ്ടിക്കുക.',
+      convertBranchDesc:
+        'ചെക്കൗട്ട് ചെയ്ത ബ്രാഞ്ചുകൾ തുറക്കുക, അല്ലെങ്കിൽ സ്വതന്ത്ര ബ്രാഞ്ചിനായി ഒരു വർക്ക്ട്രീ സൃഷ്ടിക്കുക.',
       convertBranchPlaceholder: 'ബ്രാഞ്ചുകൾ തിരയുക…',
       convertBranchInstead: 'നിലവിലുള്ള ബ്രാഞ്ച് പരിവർത്തനം ചെയ്യുക',
       branchOpenExisting: 'തുറക്കുക',
@@ -961,8 +1004,10 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'ബ്രാഞ്ചുകളൊന്നും കണ്ടെത്തിയില്ല',
       removeWorktree: 'വർക്ക്ട്രീ നീക്കം ചെയ്യുക',
       removeWorktreeFailed: 'വർക്ക്ട്രീ നീക്കം ചെയ്യാനായില്ല (കമ്മിറ്റ് ചെയ്യാത്ത മാറ്റങ്ങൾ?)',
-      removeWorktreeConfirm: 'ഇത് git-ൽ നിന്ന് നീക്കം ചെയ്യുക (വർക്ക്ട്രീ ഡയറക്ടറി ഇല്ലാതാക്കും; ബ്രാഞ്ച് തുടരും), അല്ലെങ്കിൽ സൈഡ്ബാറിൽ നിന്ന് ലെയിൻ മറയ്ക്കുകയും വർക്ക്ട്രീ ഡിസ്കിൽ വിടുകയും ചെയ്യുക.',
-      removeWorktreeDirty: 'ഈ വർക്ക്ട്രീയിൽ കമ്മിറ്റ് ചെയ്യാത്ത മാറ്റങ്ങളുണ്ട്. നിർബന്ധിതമായി നീക്കം ചെയ്യുക (ആ മാറ്റങ്ങൾ ഒഴിവാക്കും), അല്ലെങ്കിൽ ലെയിൻ മറച്ച് ഡിസ്കിൽ നിലനിർത്തുക.',
+      removeWorktreeConfirm:
+        'ഇത് git-ൽ നിന്ന് നീക്കം ചെയ്യുക (വർക്ക്ട്രീ ഡയറക്ടറി ഇല്ലാതാക്കും; ബ്രാഞ്ച് തുടരും), അല്ലെങ്കിൽ സൈഡ്ബാറിൽ നിന്ന് ലെയിൻ മറയ്ക്കുകയും വർക്ക്ട്രീ ഡിസ്കിൽ വിടുകയും ചെയ്യുക.',
+      removeWorktreeDirty:
+        'ഈ വർക്ക്ട്രീയിൽ കമ്മിറ്റ് ചെയ്യാത്ത മാറ്റങ്ങളുണ്ട്. നിർബന്ധിതമായി നീക്കം ചെയ്യുക (ആ മാറ്റങ്ങൾ ഒഴിവാക്കും), അല്ലെങ്കിൽ ലെയിൻ മറച്ച് ഡിസ്കിൽ നിലനിർത്തുക.',
       forceRemove: 'നിർബന്ധിതമായി നീക്കുക',
       back: 'എല്ലാ പ്രോജക്ടുകളും',
       sectionLabel: 'Projects',
@@ -996,7 +1041,7 @@ Leave blank to keep the ${mode} default.`,
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     loading: 'ലോഡ് ചെയ്യുന്നു…',
     loadMore: 'കൂടുതൽ ലോഡ് ചെയ്യുക',
@@ -1004,7 +1049,7 @@ Leave blank to keep the ${mode} default.`,
       'new-session': 'പുതിയ സെഷൻ',
       skills: 'കഴിവുകൾ',
       messaging: 'സന്ദേശമയയ്ക്കൽ',
-      artifacts: 'ആർട്ടിഫാക്ടുകൾ',
+      artifacts: 'ആർട്ടിഫാക്ടുകൾ'
     },
     searchAria: 'സെഷനുകൾ തിരയുക',
     searchPlaceholder: 'സെഷനുകൾ തിരയുക…',
@@ -1028,7 +1073,7 @@ Leave blank to keep the ${mode} default.`,
     noSessions: 'No sessions yet',
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     message: 'സന്ദേശം',
@@ -1054,7 +1099,8 @@ Leave blank to keep the ${mode} default.`,
     stopDictation: 'ഡിക്ടേഷൻ നിർത്തുക',
     queueResumeTip: 'Stop ഉപയോഗിച്ച് താൽക്കാലികമായി നിർത്തി — ക്യൂവിലുള്ള ടേണുകൾ അയയ്ക്കുന്നത് തുടരുക',
     queueStuckTitle: 'ക്യൂവിലുള്ള സന്ദേശം അയച്ചില്ല',
-    queueStuckBody: 'ക്യൂവിലുള്ള ഒരു ടേൺ വീണ്ടും വീണ്ടും അയയ്ക്കാൻ പരാജയപ്പെട്ടു. അത് ഇപ്പോഴും ക്യൂവിലുണ്ട് — വീണ്ടും അയയ്ക്കാൻ ശ്രമിക്കുക.',
+    queueStuckBody:
+      'ക്യൂവിലുള്ള ഒരു ടേൺ വീണ്ടും വീണ്ടും അയയ്ക്കാൻ പരാജയപ്പെട്ടു. അത് ഇപ്പോഴും ക്യൂവിലുണ്ട് — വീണ്ടും അയയ്ക്കാൻ ശ്രമിക്കുക.',
     previewUnavailable: 'പ്രിവ്യൂ ലഭ്യമല്ല',
     dictating: 'ഡിക്ടേറ്റ് ചെയ്യുന്നു',
     preparingAudio: 'ഓഡിയോ തയ്യാറാക്കുന്നു',
@@ -1079,19 +1125,21 @@ Leave blank to keep the ${mode} default.`,
     snippets: {
       codeReview: {
         label: 'കോഡ് അവലോകനം',
-        description: 'നിലവിലെ മാറ്റം റിഗ്രഷനുകൾ, വിട്ടുപോയ എഡ്ജ് കേസുകൾ, കാണാതായ ടെസ്റ്റുകൾ എന്നിവയ്ക്കായി പരിശോധിക്കുക.',
-        text: 'ഇത് ബഗുകൾ, റിഗ്രഷനുകൾ, കാണാതായ ടെസ്റ്റുകൾ എന്നിവയ്ക്കായി അവലോകനം ചെയ്യുക.',
+        description:
+          'നിലവിലെ മാറ്റം റിഗ്രഷനുകൾ, വിട്ടുപോയ എഡ്ജ് കേസുകൾ, കാണാതായ ടെസ്റ്റുകൾ എന്നിവയ്ക്കായി പരിശോധിക്കുക.',
+        text: 'ഇത് ബഗുകൾ, റിഗ്രഷനുകൾ, കാണാതായ ടെസ്റ്റുകൾ എന്നിവയ്ക്കായി അവലോകനം ചെയ്യുക.'
       },
       implementationPlan: {
         label: 'ഇംപ്ലിമെന്റേഷൻ പ്ലാൻ',
         description: 'കോഡ് തൊടുന്നതിന് മുമ്പ് ഒരു സമീപനം രൂപരേഖപ്പെടുത്തുക, അങ്ങനെ ഡിഫ് ഫോക്കസ് ചെയ്ത് നിലനിൽക്കും.',
-        text: 'കോഡ് മാറ്റുന്നതിന് മുമ്പ് സംക്ഷിപ്തമായ ഒരു ഇംപ്ലിമെന്റേഷൻ പ്ലാൻ തയ്യാറാക്കുക.',
+        text: 'കോഡ് മാറ്റുന്നതിന് മുമ്പ് സംക്ഷിപ്തമായ ഒരു ഇംപ്ലിമെന്റേഷൻ പ്ലാൻ തയ്യാറാക്കുക.'
       },
       explainThis: {
         label: 'ഇത് വിശദീകരിക്കുക',
-        description: 'തിരഞ്ഞെടുത്ത കോഡ് എങ്ങനെ പ്രവർത്തിക്കുന്നുവെന്ന് വിശദീകരിച്ച് പ്രധാന ഫയലുകളിലേക്ക് ലിങ്ക് ചെയ്യുക.',
-        text: 'ഇത് എങ്ങനെ പ്രവർത്തിക്കുന്നുവെന്ന് വിശദീകരിച്ച് പ്രധാന ഫയലുകൾ ചൂണ്ടിക്കാണിക്കുക.',
-      },
+        description:
+          'തിരഞ്ഞെടുത്ത കോഡ് എങ്ങനെ പ്രവർത്തിക്കുന്നുവെന്ന് വിശദീകരിച്ച് പ്രധാന ഫയലുകളിലേക്ക് ലിങ്ക് ചെയ്യുക.',
+        text: 'ഇത് എങ്ങനെ പ്രവർത്തിക്കുന്നുവെന്ന് വിശദീകരിച്ച് പ്രധാന ഫയലുകൾ ചൂണ്ടിക്കാണിക്കുക.'
+      }
     },
     wakingProfile: profile => `Waking up ${profile}…`,
     newSessionPlaceholders: [
@@ -1101,7 +1149,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -1110,7 +1158,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     transcribingDictation: 'Transcribing dictation',
     voiceDictation: 'Voice dictation',
@@ -1129,7 +1177,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'resume a prior session',
       '/details': 'control transcript detail level',
       '/copy': 'copy selection or last assistant message',
-      '/quit': 'exit openamer',
+      '/quit': 'exit openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'reference files, folders, urls, git',
@@ -1139,7 +1187,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'send next queued turn',
       'keybinds.openPanel': 'all keyboard shortcuts',
       'composer.cancel': 'close popover · cancel run',
-      'composer.history': 'cycle popover / history',
+      'composer.history': 'cycle popover / history'
     },
     attachUrlTitle: 'Attach a URL',
     attachUrlDesc: 'OpenAmer will fetch the page and include it as context for this turn.',
@@ -1161,7 +1209,7 @@ Leave blank to keep the ${mode} default.`,
     previewLabel: label => `Preview ${label}`,
     couldNotPreview: label => `Could not preview ${label}`,
     removeAttachment: label => `Remove ${label}`,
-    url: 'URL…',
+    url: 'URL…'
   },
   shell: {
     gatewayMenu: {
@@ -1177,7 +1225,7 @@ Leave blank to keep the ${mode} default.`,
       offline: 'ഓഫ്ലൈൻ',
       inferenceReady: 'ഇൻഫറൻസ് തയ്യാറാണ്',
       inferenceNotReady: 'Inference not ready',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'അനുമതി മോഡ്',
@@ -1187,7 +1235,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'പ്രവർത്തനങ്ങൾ സ്വയം വിലയിരുത്തി ആവശ്യമുള്ളപ്പോൾ ചോദിക്കുക',
       off: 'ഓഫ്',
       offDescription: 'അനുമതി പ്രോംപ്റ്റുകളില്ലാതെ പ്രവർത്തിപ്പിക്കുക',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'അജ്ഞാതം',
@@ -1243,13 +1291,13 @@ Leave blank to keep the ${mode} default.`,
           skills: 'Skills',
           subagent_definitions: 'Subagent definitions',
           system_prompt: 'System prompt',
-          tool_definitions: 'Tool definitions',
+          tool_definitions: 'Tool definitions'
         },
         empty: 'No context data yet',
         loading: 'Loading breakdown…',
         percentFull: percent => `${percent}% Full`,
         title: 'Context Usage',
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Open context usage breakdown',
       session: 'Session',
@@ -1262,7 +1310,7 @@ Leave blank to keep the ${mode} default.`,
       openModelPicker: 'Open model picker',
       modelPinned: 'pinned by you; new chats use this instead of the Settings default',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
     },
     windowControls: 'വിൻഡോ നിയന്ത്രണങ്ങൾ',
     paneControls: 'പെയിൻ നിയന്ത്രണങ്ങൾ',
@@ -1272,7 +1320,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'മോഡലുകളൊന്നും കണ്ടെത്തിയില്ല',
       editModels: 'മോഡലുകൾ തിരുത്തുക…',
       refreshModels: 'മോഡലുകൾ പുതുക്കുക',
-      fast: 'വേഗം',
+      fast: 'വേഗം'
     },
     modelOptions: {
       noOptions: 'ഈ മോഡലിന് ഓപ്ഷനുകളില്ല',
@@ -1288,8 +1336,8 @@ Leave blank to keep the ${mode} default.`,
       max: 'പരമാവധി',
       ultra: 'അൾട്രാ',
       updateFailed: 'മോഡൽ ഓപ്ഷൻ അപ്ഡേറ്റ് പരാജയപ്പെട്ടു',
-      fastFailed: 'വേഗ മോഡ് അപ്ഡേറ്റ് പരാജയപ്പെട്ടു',
-    },
+      fastFailed: 'വേഗ മോഡ് അപ്ഡേറ്റ് പരാജയപ്പെട്ടു'
+    }
   },
   assistant: {
     tool: {
@@ -1297,113 +1345,113 @@ Leave blank to keep the ${mode} default.`,
         session_search_recall: {
           done: 'സെഷൻ ചരിത്രം തിരഞ്ഞു',
           pending: 'സെഷൻ ചരിത്രം തിരയുന്നു',
-          pendingAction: 'തിരയുന്നു',
+          pendingAction: 'തിരയുന്നു'
         },
         terminal: {
           done: 'കമാൻഡ് പ്രവർത്തിപ്പിച്ചു',
           pending: 'കമാൻഡ് പ്രവർത്തിപ്പിക്കുന്നു',
-          pendingAction: 'പ്രവർത്തിക്കുന്നു',
+          pendingAction: 'പ്രവർത്തിക്കുന്നു'
         },
         todo: {
           done: 'ടൂഡോകൾ അപ്ഡേറ്റ് ചെയ്തു',
           pending: 'ടൂഡോകൾ അപ്ഡേറ്റ് ചെയ്യുന്നു',
-          pendingAction: 'അപ്ഡേറ്റ് ചെയ്യുന്നു',
+          pendingAction: 'അപ്ഡേറ്റ് ചെയ്യുന്നു'
         },
         vision_analyze: {
           done: 'ചിത്രം വിശകലനം ചെയ്തു',
           pending: 'ചിത്രം വിശകലനം ചെയ്യുന്നു',
-          pendingAction: 'വിശകലനം ചെയ്യുന്നു',
+          pendingAction: 'വിശകലനം ചെയ്യുന്നു'
         },
         web_extract: {
           done: 'വെബ്‌പേജ് വായിച്ചു',
           pending: 'വെബ്‌പേജ് വായിക്കുന്നു',
-          pendingAction: 'വായിക്കുന്നു',
+          pendingAction: 'വായിക്കുന്നു'
         },
         web_search: {
           done: 'വെബ് തിരഞ്ഞു',
           pending: 'വെബ് തിരയുന്നു',
-          pendingAction: 'തിരയുന്നു',
+          pendingAction: 'തിരയുന്നു'
         },
         write_file: {
           done: 'ഫയൽ എഡിറ്റ് ചെയ്തു',
           pending: 'ഫയൽ എഡിറ്റ് ചെയ്യുന്നു',
-          pendingAction: 'എഡിറ്റ് ചെയ്യുന്നു',
+          pendingAction: 'എഡിറ്റ് ചെയ്യുന്നു'
         },
         browser_click: {
           done: 'പേജ് ഘടകം ക്ലിക്കുചെയ്തു',
           pending: 'പേജ് ഘടകം ക്ലിക്കുചെയ്യുന്നു',
-          pendingAction: 'ക്ലിക്കുചെയ്യുന്നു',
+          pendingAction: 'ക്ലിക്കുചെയ്യുന്നു'
         },
         browser_fill: {
           done: 'ഫോം ഫീൽഡ് പൂരിപ്പിച്ചു',
           pending: 'Filling form field',
-          pendingAction: 'Filling',
+          pendingAction: 'Filling'
         },
         search_files: {
           pendingAction: 'തിരയുന്നു',
           done: 'Searched files',
-          pending: 'Searching files',
+          pending: 'Searching files'
         },
         browser_navigate: {
           done: 'Opened page',
           pending: 'Opening page',
-          pendingAction: 'Opening',
+          pendingAction: 'Opening'
         },
         browser_snapshot: {
           done: 'Captured page snapshot',
           pending: 'Capturing page snapshot',
-          pendingAction: 'Capturing',
+          pendingAction: 'Capturing'
         },
         browser_take_screenshot: {
           done: 'Captured screenshot',
           pending: 'Capturing screenshot',
-          pendingAction: 'Capturing',
+          pendingAction: 'Capturing'
         },
         browser_type: {
           done: 'Typed on page',
           pending: 'Typing on page',
-          pendingAction: 'Typing',
+          pendingAction: 'Typing'
         },
         clarify: {
           done: 'Asked a question',
           pending: 'Asking a question',
-          pendingAction: 'Asking',
+          pendingAction: 'Asking'
         },
         cronjob: {
           done: 'Cron job',
           pending: 'Scheduling cron job',
-          pendingAction: 'Scheduling',
+          pendingAction: 'Scheduling'
         },
         edit_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
+          pendingAction: 'Editing'
         },
         execute_code: {
           done: 'Ran code',
           pending: 'Scripting',
-          pendingAction: 'Scripting',
+          pendingAction: 'Scripting'
         },
         image_generate: {
           done: 'Generated image',
           pending: 'Generating image',
-          pendingAction: 'Generating',
+          pendingAction: 'Generating'
         },
         list_files: {
           done: 'Listed files',
           pending: 'Listing files',
-          pendingAction: 'Listing',
+          pendingAction: 'Listing'
         },
         patch: {
           done: 'Patched file',
           pending: 'Patching file',
-          pendingAction: 'Patching',
+          pendingAction: 'Patching'
         },
         read_file: {
           done: 'Read file',
           pending: 'Reading file',
-          pendingAction: 'Reading',
-        },
+          pendingAction: 'Reading'
+        }
       },
       code: 'കോഡ്',
       copyCode: 'കോഡ് പകർത്തുക',
@@ -1436,11 +1484,11 @@ Leave blank to keep the ${mode} default.`,
         ran: 'നടത്തിയിരിക്കുന്നു',
         running: 'നടത്തുന്നു',
         ranCode: 'കോഡ് നടപ്പാക്കി',
-        runningCode: 'സ്ക്രിപ്റ്റിംഗ്',
+        runningCode: 'സ്ക്രിപ്റ്റിംഗ്'
       },
       prefixes: {
         browser: 'ബ്രൗസർ',
-        web: 'വെബ്',
+        web: 'വെബ്'
       },
       recoveredMany: count => `Recovered after ${count} failed steps`,
       failedMany: count => `${count} steps failed`,
@@ -1450,8 +1498,8 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
     },
     clarify: {
       continueLabel: 'തുടരുക',
@@ -1465,13 +1513,14 @@ Leave blank to keep the ${mode} default.`,
       placeholder: 'Type your answer…',
       skip: 'Skip',
       skipped: 'Skipped',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     thread: {
       loadingSession: 'Loading session',
       showEarlier: 'Show earlier messages',
       loadingResponse: 'OpenAmer is loading a response',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Thinking',
@@ -1494,12 +1543,13 @@ Leave blank to keep the ${mode} default.`,
       restoreCheckpoint: 'Restore checkpoint',
       restoreFromHere: 'Restore checkpoint — rerun from this prompt',
       restoreTitle: 'Restore to this checkpoint?',
-      restoreBody: 'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
+      restoreBody:
+        'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
       restoreConfirm: 'Restore & rerun',
       restoreNext: 'Restore next checkpoint',
       goForward: 'Go forward',
       sendEdited: 'Send edited message',
-      attachingFile: 'Attaching…',
+      attachingFile: 'Attaching…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -1512,20 +1562,22 @@ Leave blank to keep the ${mode} default.`,
       jumpToApproval: 'Approval needed',
       reject: 'Reject',
       alwaysTitle: 'Always allow this command?',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
-      alwaysAllow: 'Always allow',
-    },
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysAllow: 'Always allow'
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer ഗേറ്റ്‌വേ കണക്ട് ചെയ്തിട്ടില്ല',
     sudoSendFailed: 'sudo പാസ്‌വേർഡ് അയയ്ക്കാനായില്ല',
     secretSendFailed: 'രഹസ്യം അയയ്ക്കാനായില്ല',
     sudoTitle: 'അഡ്മിനിസ്ട്രേറ്റർ പാസ്‌വേർഡ്',
-    sudoDesc: 'പ്രിവിലേജുള്ള കമാൻഡ് പ്രവർത്തിപ്പിക്കാൻ OpenAmer-ന് നിങ്ങളുടെ sudo പാസ്‌വേർഡ് ആവശ്യമാണ്. അത് നിങ്ങളുടെ ലോക്കൽ ഏജന്റിലേക്ക് മാത്രമാണ് അയയ്ക്കുന്നത്.',
+    sudoDesc:
+      'പ്രിവിലേജുള്ള കമാൻഡ് പ്രവർത്തിപ്പിക്കാൻ OpenAmer-ന് നിങ്ങളുടെ sudo പാസ്‌വേർഡ് ആവശ്യമാണ്. അത് നിങ്ങളുടെ ലോക്കൽ ഏജന്റിലേക്ക് മാത്രമാണ് അയയ്ക്കുന്നത്.',
     sudoPlaceholder: 'sudo പാസ്‌വേർഡ്',
     secretTitle: 'രഹസ്യം ആവശ്യമാണ്',
     secretDesc: 'തുടരാൻ OpenAmer-ന് ഒരു ക്രെഡൻഷ്യൽ ആവശ്യമാണ്.',
-    secretPlaceholder: 'രഹസ്യ മൂല്യം',
+    secretPlaceholder: 'രഹസ്യ മൂല്യം'
   },
   desktop: {
     audioReadFailed: 'റെക്കോർഡ് ചെയ്ത ഓഡിയോ വായിക്കാനായില്ല',
@@ -1546,7 +1598,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'തിരുത്താനായില്ല',
     resumeFailed: 'പുനരാരംഭിക്കാനായില്ല',
     resumeStrandedTitle: 'ഈ സെഷൻ ലോഡ് ചെയ്യാനായില്ല',
-    resumeStrandedBody: 'ഈ സെഷനിലേക്കുള്ള കണക്ഷൻ പരാജയപ്പെട്ടു, സ്വയമേവയുള്ള വീണ്ടും ശ്രമങ്ങൾ അവസാനിച്ചു. ഗേറ്റ്വേ പ്രവർത്തിക്കുന്നുണ്ടെന്ന് പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.',
+    resumeStrandedBody:
+      'ഈ സെഷനിലേക്കുള്ള കണക്ഷൻ പരാജയപ്പെട്ടു, സ്വയമേവയുള്ള വീണ്ടും ശ്രമങ്ങൾ അവസാനിച്ചു. ഗേറ്റ്വേ പ്രവർത്തിക്കുന്നുണ്ടെന്ന് പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.',
     resumeRetry: 'വീണ്ടും ശ്രമിക്കുക',
     nothingToBranch: 'ബ്രാഞ്ച് ചെയ്യാൻ ഒന്നുമില്ല',
     branchNeedsChat: 'ബ്രാഞ്ച് ചെയ്യുന്നതിന് മുമ്പ് ഒരു ചാറ്റ് ആരംഭിക്കുകയോ പുനരാരംഭിക്കുകയോ ചെയ്യുക.',
@@ -1579,7 +1632,8 @@ Leave blank to keep the ${mode} default.`,
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
     branchTitle: n => `Draft: Branch #${n}`,
@@ -1593,8 +1647,8 @@ Leave blank to keep the ${mode} default.`,
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
       failed: error => `Handoff failed: ${error}`,
-      timedOut: 'Timed out waiting for the gateway. Is `openamer gateway` running?',
-    },
+      timedOut: 'Timed out waiting for the gateway. Is `openamer gateway` running?'
+    }
   },
   commandCenter: {
     goToSession: 'സെഷനിലേക്ക് പോകുക',
@@ -1618,7 +1672,7 @@ Leave blank to keep the ${mode} default.`,
       generatedTag: 'സൃഷ്ടിച്ചു',
       adoptFailed: 'ആ മൃഗത്തെ സ്വീകരിക്കാൻ കഴിഞ്ഞില്ല.',
       toggleFailed: 'മൃഗം മാറ്റാൻ കഴിഞ്ഞില്ല.',
-      noneAvailable: 'മൃഗങ്ങൾ ലഭ്യമല്ല — താഴെ ഒന്നിനെ തിരഞ്ഞെടുക്കി ഇൻസ്റ്റാൾ ചെയ്യുക.',
+      noneAvailable: 'മൃഗങ്ങൾ ലഭ്യമല്ല — താഴെ ഒന്നിനെ തിരഞ്ഞെടുക്കി ഇൻസ്റ്റാൾ ചെയ്യുക.'
     },
     generatePet: {
       title: 'മൃഗം സൃഷ്ടിക്കുക',
@@ -1642,26 +1696,27 @@ Leave blank to keep the ${mode} default.`,
       remix: 'റീമിക്സ്',
       hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
       remixConfirmTitle: 'Remix this look?',
-      remixConfirmBody: 'This generates a fresh set of drafts using this one as the starting point. It can take several minutes.',
+      remixConfirmBody:
+        'This generates a fresh set of drafts using this one as the starting point. It can take several minutes.',
       genericError: 'Generation failed — try again or pick a suggestion.',
       referenceImageTooLarge: 'Reference image is too large. Use one under 16 MB.',
       referenceImageInvalid: 'Could not read that reference image. Try a PNG, JPG, WebP, or GIF.',
       adopt: 'Adopt',
-      startOver: 'Start over',
+      startOver: 'Start over'
     },
     sectionEntries: {
       system: {
         detail: 'ഗേറ്റ്‌വേ നില, ലോഗുകൾ, പുനരാരംഭിക്കുക/അപ്ഡേറ്റ്',
-        title: 'System panel',
+        title: 'System panel'
       },
       usage: {
         title: 'ഉപയോഗ പാനൽ',
-        detail: 'ടോക്കൺ, ചെലവ്, കഴിവ് പ്രവർത്തനം',
+        detail: 'ടോക്കൺ, ചെലവ്, കഴിവ് പ്രവർത്തനം'
       },
       sessions: {
         title: 'Sessions panel',
-        detail: 'Search, pin, and manage sessions',
-      },
+        detail: 'Search, pin, and manage sessions'
+      }
     },
     providerNavigate: 'നാവിഗേറ്റ്',
     providerSessions: 'സെഷനുകൾ',
@@ -1716,7 +1771,7 @@ Leave blank to keep the ${mode} default.`,
       install: 'Install',
       installing: 'Installing...',
       installed: 'Installed',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Settings fields',
     mcpServers: 'MCP servers',
@@ -1725,35 +1780,35 @@ Leave blank to keep the ${mode} default.`,
       maintenance: 'Maintenance',
       sessions: 'Sessions',
       system: 'System',
-      usage: 'Usage',
+      usage: 'Usage'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostics, backups, curator, and memory data',
       sessions: 'Search and manage sessions',
       system: 'Status, logs, and system actions',
-      usage: 'Token, cost, and skill activity over time',
+      usage: 'Token, cost, and skill activity over time'
     },
     nav: {
       newChat: {
         title: 'New session',
-        detail: 'Start a fresh session',
+        detail: 'Start a fresh session'
       },
       settings: {
         title: 'Settings',
-        detail: 'Configure OpenAmer desktop',
+        detail: 'Configure OpenAmer desktop'
       },
       skills: {
         title: 'Capabilities',
-        detail: 'Skills, tools, and MCP servers',
+        detail: 'Skills, tools, and MCP servers'
       },
       messaging: {
         title: 'Messaging',
-        detail: 'Set up Telegram, Slack, Discord, and more',
+        detail: 'Set up Telegram, Slack, Discord, and more'
       },
       artifacts: {
         title: 'Artifacts',
-        detail: 'Browse generated outputs',
-      },
+        detail: 'Browse generated outputs'
+      }
     },
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · Active sessions ${count}`,
     days: count => `${count}d`,
@@ -1804,8 +1859,8 @@ Leave blank to keep the ${mode} default.`,
       actionStarted: name => `${name} started — tailing log...`,
       actionFailed: name => `${name} failed to start`,
       running: 'Running...',
-      viewLog: 'Action log',
-    },
+      viewLog: 'Action log'
+    }
   },
   cron: {
     close: 'ക്രോൺ അടയ്ക്കുക',
@@ -1819,14 +1874,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'താൽക്കാലികമായി നിർത്തി',
       disabled: 'നിഷ്ക്രിയം',
       error: 'പിശക്',
-      completed: 'പൂർത്തിയായി',
+      completed: 'പൂർത്തിയായി'
     },
     deliveryLabels: {
       local: 'ഈ ഡെസ്ക്ടോപ്പ്',
       telegram: 'ടെലിഗ്രാം',
       discord: 'ഡിസ്കോർഡ്',
       slack: 'സ്ലാക്ക്',
-      email: 'ഇമെയിൽ',
+      email: 'ഇമെയിൽ'
     },
     scheduleLabels: {
       daily: 'ദൈനംദിനം',
@@ -1835,7 +1890,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'മാസംതോറും',
       hourly: 'മണിക്കൂറിൽ',
       'every-15-minutes': 'ഓരോ 15 മിനിറ്റിലും',
-      custom: 'ഇഷ്ടാനുസൃതം',
+      custom: 'ഇഷ്ടാനുസൃതം'
     },
     scheduleHints: {
       daily: 'ഓരോ ദിവസവും രാവിലെ 9:00',
@@ -1844,7 +1899,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'ഓരോ മാസത്തിന്റെ ആദ്യ ദിവസം രാവിലെ 9:00',
       hourly: 'ഓരോ മണിക്കൂറിന്റെ ആരംഭത്തിൽ',
       'every-15-minutes': 'ഓരോ 15 മിനിറ്റിലും',
-      custom: 'ക്രോൺ സിന്റാക്സ് അല്ലെങ്കിൽ സ്വാഭാവിക ഭാഷ',
+      custom: 'ക്രോൺ സിന്റാക്സ് അല്ലെങ്കിൽ സ്വാഭാവിക ഭാഷ'
     },
     days: {
       '0': 'ഞായർ',
@@ -1854,11 +1909,12 @@ Leave blank to keep the ${mode} default.`,
       '4': 'വ്യാഴം',
       '5': 'വെള്ളി',
       '6': 'ശനി',
-      '7': 'ഞായർ',
+      '7': 'ഞായർ'
     },
     topOfHour: 'ഓരോ മണിക്കൂറിന്റെ മുകളിൽ',
     newCron: 'പുതിയ ക്രോൺ',
-    emptyDescNew: 'ഒരു ക്രോൺ എക്സ്പ്രഷനിൽ പ്രോംപ്‌റ്റ് പ്രവർത്തിപ്പിക്കാൻ ഷെഡ്യൂൾ ചെയ്യുക. OpenAmer അത് പ്രവർത്തിപ്പിക്കുകയും നിങ്ങൾ തിരഞ്ഞെടുക്കുന്ന ലക്ഷ്യസ്ഥാനത്തേക്ക് ഫലങ്ങൾ എത്തിക്കുകയും ചെയ്യും.',
+    emptyDescNew:
+      'ഒരു ക്രോൺ എക്സ്പ്രഷനിൽ പ്രോംപ്‌റ്റ് പ്രവർത്തിപ്പിക്കാൻ ഷെഡ്യൂൾ ചെയ്യുക. OpenAmer അത് പ്രവർത്തിപ്പിക്കുകയും നിങ്ങൾ തിരഞ്ഞെടുക്കുന്ന ലക്ഷ്യസ്ഥാനത്തേക്ക് ഫലങ്ങൾ എത്തിക്കുകയും ചെയ്യും.',
     emptyDescSearch: 'വ്യാപകമായ തിരയൽ ചോദ്യം ശ്രമിക്കുക.',
     emptyTitleNew: 'ഇനിയും ഷെഡ്യൂൾ ചെയ്ത ജോലികൾ ഇല്ല',
     emptyTitleSearch: 'മാച്ചുകൾ ഇല്ല',
@@ -1924,7 +1980,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Create cron',
     tabs: {
       jobs: 'Jobs',
-      blueprints: 'Blueprints',
+      blueprints: 'Blueprints'
     },
     blueprints: {
       tab: 'Blueprints',
@@ -1938,8 +1994,8 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Loading blueprints...',
       failedLoad: 'Failed to load blueprints',
       emptyTitle: 'No blueprints available',
-      emptyDesc: 'No automation blueprints are available on this backend.',
-    },
+      emptyDesc: 'No automation blueprints are available on this backend.'
+    }
   },
   common: {
     apply: 'പ്രയോഗിക്കുക',
@@ -1980,7 +2036,7 @@ Leave blank to keep the ${mode} default.`,
     update: 'അപ്ഡേറ്റ് ചെയ്യുക',
     on: 'ഓൺ',
     off: 'ഓഫ്',
-    tryHint: term => `Try “${term}”`,
+    tryHint: term => `Try “${term}”`
   },
   fileMenu: {
     revealFinder: 'Finder-ൽ കാണിക്കുക',
@@ -1995,7 +2051,7 @@ Leave blank to keep the ${mode} default.`,
     renameLabel: 'പുതിയ പേര്',
     deleteBody: 'ഇത് ട്രാഷിലേക്ക് നീക്കും — അവിടെ നിന്ന് പുനഃസ്ഥാപിക്കാം.',
     pathCopied: 'പാത്ത് പകർത്തി',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop തയ്യാറാണ്',
@@ -2004,7 +2060,7 @@ Leave blank to keep the ${mode} default.`,
       loadingSettings: 'OpenAmer ക്രമീകരണങ്ങൾ ലോഡ് ചെയ്യുന്നു',
       loadingSessions: 'സമീപകാല സെഷനുകൾ ലോഡ് ചെയ്യുന്നു',
       startingDesktopConnection: 'ഡെസ്ക്ടോപ്പ് കണക്ഷൻ ആരംഭിക്കുന്നു',
-      startingOpenAmerDesktop: 'OpenAmer Desktop ആരംഭിക്കുന്നു…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop ആരംഭിക്കുന്നു…'
     },
     errors: {
       backgroundExited: 'OpenAmer പശ്ചാത്തല പ്രക്രിയ അവസാനിച്ചു.',
@@ -2013,22 +2069,26 @@ Leave blank to keep the ${mode} default.`,
       desktopBootFailed: 'ഡെസ്ക്ടോപ്പ് ബൂട്ട് പരാജയപ്പെട്ടു',
       gatewayConnectionLost: 'ഗേറ്റ്വേയിലേക്കുള്ള കണക്ഷൻ നഷ്ടമായി',
       gatewaySignInRequired: 'ഗേറ്റ്വേ സൈൻ-ഇൻ ആവശ്യമാണ്',
-      ipcBridgeUnavailable: 'ഡെസ്ക്ടോപ്പ് IPC ബ്രിഡ്ജ് ലഭ്യമല്ല.',
+      ipcBridgeUnavailable: 'ഡെസ്ക്ടോപ്പ് IPC ബ്രിഡ്ജ് ലഭ്യമല്ല.'
     },
     failure: {
       title: 'OpenAmer ആരംഭിക്കാനായില്ല',
-      description: 'പശ്ചാത്തല ഗേറ്റ്വേ ഉയർന്നുവന്നില്ല. താഴെയുള്ള വീണ്ടെടുക്കൽ ഘട്ടങ്ങളിലൊന്ന് പരീക്ഷിക്കുക. ഇവിടെ ഒന്നും നിങ്ങളുടെ ചാറ്റുകളോ ക്രമീകരണങ്ങളോ ഇല്ലാതാക്കുന്നില്ല.',
+      description:
+        'പശ്ചാത്തല ഗേറ്റ്വേ ഉയർന്നുവന്നില്ല. താഴെയുള്ള വീണ്ടെടുക്കൽ ഘട്ടങ്ങളിലൊന്ന് പരീക്ഷിക്കുക. ഇവിടെ ഒന്നും നിങ്ങളുടെ ചാറ്റുകളോ ക്രമീകരണങ്ങളോ ഇല്ലാതാക്കുന്നില്ല.',
       remoteTitle: 'റിമോട്ട് ഗേറ്റ്വേ സൈൻ-ഇൻ ആവശ്യമാണ്',
-      remoteDescription: 'നിങ്ങളുടെ റിമോട്ട് ഗേറ്റ്വേ സെഷൻ കാലഹരണപ്പെട്ടു. വീണ്ടും കണക്റ്റ് ചെയ്യാൻ വീണ്ടും സൈൻ ഇൻ ചെയ്യുക. ഇവിടെ ഒന്നും നിങ്ങളുടെ ചാറ്റുകളോ ക്രമീകരണങ്ങളോ ഇല്ലാതാക്കുന്നില്ല.',
+      remoteDescription:
+        'നിങ്ങളുടെ റിമോട്ട് ഗേറ്റ്വേ സെഷൻ കാലഹരണപ്പെട്ടു. വീണ്ടും കണക്റ്റ് ചെയ്യാൻ വീണ്ടും സൈൻ ഇൻ ചെയ്യുക. ഇവിടെ ഒന്നും നിങ്ങളുടെ ചാറ്റുകളോ ക്രമീകരണങ്ങളോ ഇല്ലാതാക്കുന്നില്ല.',
       retry: 'വീണ്ടും ശ്രമിക്കുക',
       repairInstall: 'ഇൻസ്റ്റാൾ നന്നാക്കുക',
       useLocalGateway: 'ലോക്കൽ ഗേറ്റ്വേ ഉപയോഗിക്കുക',
       gatewaySettings: 'ഗേറ്റ്വേ ക്രമീകരണങ്ങൾ',
       back: 'പിന്നോട്ട്',
       openLogs: 'ലോഗുകൾ തുറക്കുക',
-      repairHint: 'നന്നാക്കൽ ഇൻസ്റ്റാളർ വീണ്ടും പ്രവർത്തിപ്പിക്കുന്നു, പുതിയ മെഷീനിൽ ഇതിന് കുറച്ച് മിനിറ്റുകൾ എടുത്തേക്കാം.',
+      repairHint:
+        'നന്നാക്കൽ ഇൻസ്റ്റാളർ വീണ്ടും പ്രവർത്തിപ്പിക്കുന്നു, പുതിയ മെഷീനിൽ ഇതിന് കുറച്ച് മിനിറ്റുകൾ എടുത്തേക്കാം.',
       signOutAndSignIn: 'സൈൻ ഔട്ട് & സൈൻ ഇൻ',
-      remoteFailureHint: 'ഗേറ്റ്വേ ക്രമീകരണങ്ങളിൽ ഗേറ്റ്വേ URL-ഉം സൈൻ-ഇന്നും പരിശോധിക്കുക, അല്ലെങ്കിൽ ലോക്കൽ ഗേറ്റ്വേയിലേക്ക് മാറുക.',
+      remoteFailureHint:
+        'ഗേറ്റ്വേ ക്രമീകരണങ്ങളിൽ ഗേറ്റ്വേ URL-ഉം സൈൻ-ഇന്നും പരിശോധിക്കുക, അല്ലെങ്കിൽ ലോക്കൽ ഗേറ്റ്വേയിലേക്ക് മാറുക.',
       hideRecentLogs: 'സമീപകാല ലോഗുകൾ മറയ്ക്കുക',
       showRecentLogs: 'സമീപകാല ലോഗുകൾ കാണിക്കുക',
       signedInTitle: 'സൈൻ ഇൻ ചെയ്തു',
@@ -2038,10 +2098,11 @@ Leave blank to keep the ${mode} default.`,
       signInFailed: 'സൈൻ-ഇൻ പരാജയപ്പെട്ടു',
       signInToRemoteGateway: 'റിമോട്ട് ഗേറ്റ്വേയിൽ സൈൻ ഇൻ ചെയ്യുക',
       identityProvider: 'നിങ്ങളുടെ ഐഡന്റിറ്റി പ്രൊവൈഡർ',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   notifications: {
     voice: {
@@ -2061,7 +2122,7 @@ Leave blank to keep the ${mode} default.`,
       noSpeechDetected: 'സംസാരം കണ്ടെത്തിയില്ല',
       playbackFailed: 'വോയ്സ് പ്ലേബാക്ക് പരാജയപ്പെട്ടു',
       recordingFailed: 'വോയ്സ് റെക്കോർഡിംഗ് പരാജയപ്പെട്ടു',
-      transcriptionFailed: 'വോയ്സ് ട്രാൻസ്ക്രിപ്ഷൻ പരാജയപ്പെട്ടു',
+      transcriptionFailed: 'വോയ്സ് ട്രാൻസ്ക്രിപ്ഷൻ പരാജയപ്പെട്ടു'
     },
     native: {
       approvalTitle: 'അനുമതി ആവശ്യമാണ്',
@@ -2074,7 +2135,7 @@ Leave blank to keep the ${mode} default.`,
       turnErrorTitle: 'ടേൺ പരാജയപ്പെട്ടു',
       backgroundDoneTitle: 'പശ്ചാത്തല ടാസ്ക് പൂർത്തിയായി',
       backgroundFailedTitle: 'പശ്ചാത്തല ടാസ്ക് പരാജയപ്പെട്ടു',
-      creditsTitle: 'ക്രെഡിറ്റുകൾ',
+      creditsTitle: 'ക്രെഡിറ്റുകൾ'
     },
     region: 'അറിയിപ്പുകൾ',
     hide: 'മറയ്ക്കുക',
@@ -2085,7 +2146,8 @@ Leave blank to keep the ${mode} default.`,
     copyDetail: 'വിശദാംശം പകർത്തുക',
     copyDetailFailed: 'അറിയിപ്പ് വിശദാംശം പകർത്താനായില്ല',
     backendOutOfDateTitle: 'ബാക്ക്എൻഡ് കാലഹരണപ്പെട്ടതാണ്',
-    backendOutOfDateMessage: 'നിങ്ങളുടെ OpenAmer ബാക്ക്എൻഡ് ഈ ഡെസ്ക്ടോപ്പ് ബിൽഡിനേക്കാൾ പഴയതാണ്, ശരിയായി പ്രവർത്തിച്ചേക്കില്ല. അവ യോജിപ്പിക്കാൻ അപ്ഡേറ്റ് ചെയ്യുക.',
+    backendOutOfDateMessage:
+      'നിങ്ങളുടെ OpenAmer ബാക്ക്എൻഡ് ഈ ഡെസ്ക്ടോപ്പ് ബിൽഡിനേക്കാൾ പഴയതാണ്, ശരിയായി പ്രവർത്തിച്ചേക്കില്ല. അവ യോജിപ്പിക്കാൻ അപ്ഡേറ്റ് ചെയ്യുക.',
     installMethodUnsupportedTitle: 'പിന്തുണയില്ലാത്ത ഇൻസ്റ്റാൾ രീതി',
     updateOpenAmer: 'OpenAmer അപ്ഡേറ്റ് ചെയ്യുക',
     updateReadyTitle: 'അപ്ഡേറ്റ് തയ്യാറാണ്',
@@ -2094,14 +2156,15 @@ Leave blank to keep the ${mode} default.`,
       elevenLabsNeedsKey: 'ElevenLabs STT-ക്ക് ELEVENLABS_API_KEY ആവശ്യമാണ്.',
       elevenLabsRejectedKey: 'ElevenLabs API കീ നിരസിച്ചു (401).',
       gatewayAuthFailed: 'ഗേറ്റ്വേ പ്രാമാണീകരണം പരാജയപ്പെട്ടു — നിങ്ങളുടെ API_SERVER_KEY പരിശോധിക്കുക.',
-      methodNotAllowed: 'ഡെസ്ക്ടോപ്പ് ബാക്ക്എൻഡ് ആ അഭ്യർത്ഥന നിരസിച്ചു (405 Method Not Allowed). OpenAmer Desktop റീസ്റ്റാർട്ട് ചെയ്ത് നോക്കുക.',
+      methodNotAllowed:
+        'ഡെസ്ക്ടോപ്പ് ബാക്ക്എൻഡ് ആ അഭ്യർത്ഥന നിരസിച്ചു (405 Method Not Allowed). OpenAmer Desktop റീസ്റ്റാർട്ട് ചെയ്ത് നോക്കുക.',
       microphonePermission: 'മൈക്രോഫോൺ അനുമതി നിരസിച്ചു.',
       openaiRejectedApiKey: 'OpenAI API കീ നിരസിച്ചു.',
       openaiTtsNeedsKey: 'OpenAI TTS-ക്ക് VOICE_TOOLS_OPENAI_KEY അല്ലെങ്കിൽ OPENAI_API_KEY ആവശ്യമാണ്.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer ക്രെഡിറ്റുകൾ തീർന്നു',
@@ -2109,7 +2172,7 @@ Leave blank to keep the ${mode} default.`,
     openBilling: 'ബില്ലിംഗ് തുറക്കുക',
     addCredits: 'ക്രെഡിറ്റുകൾ ചേർക്കുക',
     dismiss: 'ഒഴിവാക്കുക',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   titlebar: {
     hideSidebar: 'സൈഡ്ബാർ മറയ്ക്കുക',
@@ -2126,7 +2189,7 @@ Leave blank to keep the ${mode} default.`,
     openStarmap: 'മെമ്മറി ഗ്രാഫ് തുറക്കുക',
     openKeybinds: 'കീബോർഡ് കുറുക്കുവഴികൾ',
     layoutEditor: 'ലേയൗട്ട് എഡിറ്റർ',
-    layoutEditorTitle: 'ലേയൗട്ട് എഡിറ്റർ — ⌘-click ലേയൗട്ട് പുനഃസജ്ജമാക്കുന്നു',
+    layoutEditorTitle: 'ലേയൗട്ട് എഡിറ്റർ — ⌘-click ലേയൗട്ട് പുനഃസജ്ജമാക്കുന്നു'
   },
   keybinds: {
     title: 'കീബോർഡ് കുറുക്കുവഴികൾ',
@@ -2212,7 +2275,7 @@ Leave blank to keep the ${mode} default.`,
       'view.showFiles': 'ഫയൽ ബ്രൗസർ കാണിക്കുക',
       'composer.help': 'വേഗ സഹായം',
       'composer.history': 'പോപ്പോവർ / ചരിത്രം ചാക്രികമാക്കുക',
-      'composer.cancel': 'പോപ്പോവർ അടയ്ക്കുക · റൺ റദ്ദാക്കുക',
+      'composer.cancel': 'പോപ്പോവർ അടയ്ക്കുക · റൺ റദ്ദാക്കുക'
     },
     set: 'സെറ്റ്',
     categories: {
@@ -2220,10 +2283,10 @@ Leave blank to keep the ${mode} default.`,
       profiles: 'പ്രൊഫൈലുകൾ',
       session: 'സെഷൻ',
       navigation: 'നാവിഗേഷൻ',
-      view: 'കാഴ്ച',
+      view: 'കാഴ്ച'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   language: {
     label: 'ഭാഷ',
@@ -2232,7 +2295,7 @@ Leave blank to keep the ${mode} default.`,
     saveError: 'ഭാഷ അപ്ഡേറ്റ് പരാജയപ്പെട്ടു',
     switchTo: 'ഭാഷ മാറ്റുക',
     searchPlaceholder: 'ഭാഷകൾ തിരയുക…',
-    noResults: 'ഭാഷകളൊന്നും കണ്ടെത്തിയില്ല',
+    noResults: 'ഭാഷകളൊന്നും കണ്ടെത്തിയില്ല'
   },
   skills: {
     tabSkills: 'നൈപുണ്യങ്ങൾ',
@@ -2251,7 +2314,8 @@ Leave blank to keep the ${mode} default.`,
     noDescription: 'വിവരണമില്ല.',
     configured: 'കോൺഫിഗർ ചെയ്തു',
     needsKeys: 'കീകൾ ആവശ്യം',
-    visionModelHint: 'വിഷൻ നിങ്ങളുടെ സഹായക മോഡൽ കോൺഫിഗറേഷൻ ഉപയോഗിക്കുന്നു — ചിത്രം കൈകാര്യം ചെയ്യാൻ കഴിയുന്ന മോഡൽ അവിടെയാണ് തിരഞ്ഞെടുക്കുന്നത്, ഇവിടെ ഓരോ പ്രൊവൈഡറിനും അല്ല.',
+    visionModelHint:
+      'വിഷൻ നിങ്ങളുടെ സഹായക മോഡൽ കോൺഫിഗറേഷൻ ഉപയോഗിക്കുന്നു — ചിത്രം കൈകാര്യം ചെയ്യാൻ കഴിയുന്ന മോഡൽ അവിടെയാണ് തിരഞ്ഞെടുക്കുന്നത്, ഇവിടെ ഓരോ പ്രൊവൈഡറിനും അല്ല.',
     visionModelLink: 'ക്രമീകരണങ്ങൾ → മോഡലുകളിൽ വിഷൻ മോഡൽ തിരഞ്ഞെടുക്കുക',
     skillsLoadFailed: 'നൈപുണ്യങ്ങൾ ലോഡ് ചെയ്യാൻ പരാജയപ്പെട്ടു',
     toolsetsRefreshFailed: 'ഉപകരണ സെറ്റുകൾ പുതുക്കാൻ പരാജയപ്പെട്ടു',
@@ -2269,7 +2333,7 @@ Leave blank to keep the ${mode} default.`,
     provenance: {
       agent: 'പഠിച്ചത്',
       bundled: 'അന്തർനിർമ്മിതം',
-      hub: 'ഹബ്',
+      hub: 'ഹബ്'
     },
     changesApplyNewSessions: 'മാറ്റങ്ങൾ പുതിയ സെഷനുകളിൽ പ്രാബല്യത്തിൽ വരും.',
     skillUpdated: 'നൈപുണ്യം അപ്ഡേറ്റ് ചെയ്തു',
@@ -2296,7 +2360,8 @@ Leave blank to keep the ${mode} default.`,
       connectingHubs: 'Connecting to skill hubs...',
       connectedHubs: 'Connected hubs:',
       featured: 'Featured skills',
-      landingHint: 'Search the hub to browse installable skills from the official index, GitHub, and community sources.',
+      landingHint:
+        'Search the hub to browse installable skills from the official index, GitHub, and community sources.',
       noResults: 'No matching skills found in the hub.',
       resultCount: (count, ms) => `${count} result${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Timed out: ${sources}`,
@@ -2316,7 +2381,7 @@ Leave blank to keep the ${mode} default.`,
       trust: {
         builtin: 'builtin',
         trusted: 'trusted',
-        community: 'community',
+        community: 'community'
       },
       verdictSafe: 'Safe',
       verdictCaution: 'Caution',
@@ -2334,8 +2399,8 @@ Leave blank to keep the ${mode} default.`,
       loadFailed: 'Skill hub failed to load',
       previewFailed: 'Skill preview failed',
       scanFailed: 'Security scan failed',
-      searchFailed: 'Hub search failed',
-    },
+      searchFailed: 'Hub search failed'
+    }
   },
   artifacts: {
     refresh: 'ആർട്ടിഫാക്ടുകൾ പുതുക്കുക',
@@ -2369,7 +2434,7 @@ Leave blank to keep the ${mode} default.`,
     copyPath: 'പാത പകർത്തുക',
     search: 'Search artifacts...',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   statusStack: {
     agents: 'ഏജന്റുകൾ',
@@ -2413,17 +2478,18 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'Open PR',
       ghMissing: 'Install the GitHub CLI (gh) and sign in to open PRs',
       agentShip: 'Ask OpenAmer to open PR',
-      agentShipPrompt: 'Review the current changes, commit them with a clear conventional-commit message, push the branch, and open a pull request.',
+      agentShipPrompt:
+        'Review the current changes, commit them with a clear conventional-commit message, push the branch, and open a pull request.',
       newBranch: 'New branch',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
       switchFailed: branch => `Could not switch to ${branch}`,
-      worktrees: 'Worktrees',
+      worktrees: 'Worktrees'
     },
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   modelPicker: {
     addProvider: 'പ്രൊവൈഡർ ചേർക്കുക',
@@ -2439,13 +2505,13 @@ Leave blank to keep the ${mode} default.`,
     current: 'current:',
     unknown: '(unknown)',
     search: 'Filter providers and models...',
-    noModels: 'No models found.',
+    noModels: 'No models found.'
   },
   modelVisibility: {
     title: 'മോഡലുകൾ',
     search: 'മോഡലുകൾ തിരയുക',
     noAuthenticatedProviders: 'ഓതന്റിക്കേറ്റ് ചെയ്ത പ്രൊവൈഡർമാരില്ല.',
-    addProvider: 'പ്രൊവൈഡർ ചേർക്കുക…',
+    addProvider: 'പ്രൊവൈഡർ ചേർക്കുക…'
   },
   rightSidebar: {
     unreadableTitle: 'വായിക്കാൻ കഴിയില്ല',
@@ -2481,7 +2547,7 @@ Leave blank to keep the ${mode} default.`,
     noProjectBody: 'Open a project to browse its files and review changes.',
     noProjectOpen: 'No project open',
     noDiffs: 'No diffs',
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'പ്രിവ്യൂ',
@@ -2515,7 +2581,8 @@ Leave blank to keep the ${mode} default.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
     saveFailed: message => `Couldn't save: ${message}`,
-    diskChangedBody: 'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
+    diskChangedBody:
+      'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
     overwrite: 'Overwrite',
     discardReload: 'Discard & reload',
     console: {
@@ -2536,7 +2603,7 @@ Leave blank to keep the ${mode} default.`,
       empty: 'No console messages yet.',
       promptHeader: 'Preview console:',
       sentTitle: 'Sent to chat',
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Preview app failed to boot',
@@ -2561,20 +2628,23 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'Reloading the preview now.',
       restartFailedTitle: 'Preview restart failed',
       restartFailedMessage: 'OpenAmer could not restart the server.',
-      stillWorking: 'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
+      stillWorking:
+        'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
       workspaceReloading: 'Workspace changed, reloading preview',
       fileChanged: url => `File changed, reloading preview: ${url}`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
-      moduleMimeDescription: 'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
+      moduleMimeDescription:
+        'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'The preview page could not be reached.',
       openTarget: url => `Open ${url}`,
-      fallbackTitle: 'Preview',
-    },
+      fallbackTitle: 'Preview'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
   },
   starmap: {
     title: 'Memory Graph',
@@ -2591,7 +2661,8 @@ Leave blank to keep the ${mode} default.`,
     emptyTitle: 'Nothing learned yet',
     emptyDesc: 'As OpenAmer builds skills and memories for your work, they appear here.',
     share: 'Share map',
-    shareHint: 'Copy the code to share this map, or paste one to load. It only includes the layout, not your memory or skill text.',
+    shareHint:
+      'Copy the code to share this map, or paste one to load. It only includes the layout, not your memory or skill text.',
     shareTitle: 'Import / export map',
     sharePlaceholder: 'Paste a map code…',
     copy: 'Copy map code',
@@ -2601,7 +2672,7 @@ Leave blank to keep the ${mode} default.`,
     importEmpty: 'Paste a map code to load it.',
     importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'imported map',
-    resetToMine: 'Back to my map',
+    resetToMine: 'Back to my map'
   },
   agents: {
     close: 'Close agents',
@@ -2631,7 +2702,7 @@ Leave blank to keep the ${mode} default.`,
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   webhooks: {
     search: 'Search webhooks...',
@@ -2641,7 +2712,8 @@ Leave blank to keep the ${mode} default.`,
     hint: 'Subscription changes hot-reload once the receiver is running. Disabled subscriptions reject incoming events.',
     empty: 'No webhook subscriptions yet.',
     disabledTitle: 'Webhook receiver disabled',
-    disabledBody: 'Webhooks are their own gateway platform. Enable them here to accept incoming HTTP events; chat channels are only needed when a subscription delivers to Telegram, Discord, Slack, or another channel.',
+    disabledBody:
+      'Webhooks are their own gateway platform. Enable them here to accept incoming HTTP events; chat channels are only needed when a subscription delivers to Telegram, Discord, Slack, or another channel.',
     enable: 'Enable webhooks',
     enabling: 'Enabling...',
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -2694,8 +2766,8 @@ Leave blank to keep the ${mode} default.`,
       discord: 'Discord',
       slack: 'Slack',
       email: 'Email',
-      github_comment: 'GitHub comment',
-    },
+      github_comment: 'GitHub comment'
+    }
   },
   updates: {
     stages: {
@@ -2710,7 +2782,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'Update complete',
       manual: 'Update from your terminal',
       guiSkew: 'Update the desktop app',
-      error: 'Update paused',
+      error: 'Update paused'
     },
     checking: 'Looking for updates…',
     checkFailedTitle: 'Couldn’t check for updates',
@@ -2730,15 +2802,19 @@ Leave blank to keep the ${mode} default.`,
     maybeLater: 'Maybe later',
     moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
     manualTitle: 'Update from your terminal',
-    manualBody: 'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
+    manualBody:
+      'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
     manualPickedUp: 'OpenAmer will pick up the new version next time you launch it.',
     guiSkewTitle: 'Update the desktop app',
-    guiSkewBody: 'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
+    guiSkewBody:
+      'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
     copy: 'Copy',
     copied: 'Copied',
     done: 'Done',
-    applyingBody: 'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
-    applyingBodyBackend: 'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
+    applyingBody:
+      'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
+    applyingBodyBackend:
+      'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
     applyingClose: 'This window will close while the update runs, then OpenAmer reopens on its own.',
     errorTitle: 'Update didn’t finish',
     errorBody: 'No worries — nothing was lost. You can try again now.',
@@ -2749,12 +2825,13 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'Backend restarting to load the update…',
       notAvailable: 'Update not available for this backend.',
       failed: 'Backend update failed.',
-      noReturn: 'Backend didn’t come back online. The update may not have completed — check the backend host.',
+      noReturn: 'Backend didn’t come back online. The update may not have completed — check the backend host.'
     },
     appErrors: {
-      updateLocked: 'Update aborted: another OpenAmer window or a terminal running openamer is holding this install open. Close it and retry.',
-      updateFailed: 'The update didn’t complete. No worries — nothing was lost. You can try again now.',
-    },
+      updateLocked:
+        'Update aborted: another OpenAmer window or a terminal running openamer is holding this install open. Close it and retry.',
+      updateFailed: 'The update didn’t complete. No worries — nothing was lost. You can try again now.'
+    }
   },
   install: {
     stageStates: {
@@ -2762,17 +2839,19 @@ Leave blank to keep the ${mode} default.`,
       running: 'Installing',
       succeeded: 'Done',
       skipped: 'Skipped',
-      failed: 'Failed',
+      failed: 'Failed'
     },
     oneTimeTitle: 'OpenAmer needs a one-time install',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     installCommand: 'Install command',
     copyCommand: 'Copy command',
     viewDocs: 'View install docs',
     installTo: 'Will install to',
     retryAfterRun: 'I’ve run it -- retry',
     setupChoiceTitle: 'Set up OpenAmer Desktop',
-    setupChoiceDesc: 'Connect this app to a OpenAmer gateway you already run, or install OpenAmer locally on this computer.',
+    setupChoiceDesc:
+      'Connect this app to a OpenAmer gateway you already run, or install OpenAmer locally on this computer.',
     connectExistingTitle: 'Connect to existing OpenAmer',
     connectExistingShort: 'Connect existing',
     connectExistingDesc: 'Use a remote backend with a session token or browser sign-in. No local install will start.',
@@ -2780,7 +2859,8 @@ Leave blank to keep the ${mode} default.`,
     installLocalDesc: 'Download OpenAmer, create its Python environment, and run the backend on this computer.',
     localStartUnavailable: 'Local installation could not start. Restart OpenAmer Desktop and try again.',
     remoteSetupTitle: 'Connect to existing OpenAmer',
-    remoteSetupDesc: 'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
+    remoteSetupDesc:
+      'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
     remoteUrlTitle: 'Gateway URL',
     remoteUrlDesc: 'Use the base URL of the OpenAmer gateway, including https:// when remote.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2807,8 +2887,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Installation failed',
     settingUpTitle: 'Setting up OpenAmer Agent',
     finishingTitle: 'Finishing up',
-    failedDesc: 'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
-    activeDesc: 'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
+    failedDesc:
+      'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
+    activeDesc:
+      'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
     fetchingManifest: 'Fetching installer manifest...',
@@ -2822,7 +2904,7 @@ Leave blank to keep the ${mode} default.`,
     transcriptSaved: 'Full transcript saved to',
     copiedOutput: 'Copied!',
     copyOutput: 'Copy output',
-    reloadRetry: 'Reload and retry',
+    reloadRetry: 'Reload and retry'
   },
   onboarding: {
     headerTitle: "Let's get you setup with OpenAmer Agent",
@@ -2842,28 +2924,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'direct model API',
-        description: 'Direct access to models hosted by Fireworks AI.',
+        description: 'Direct access to models hosted by Fireworks AI.'
       },
       openrouter: {
         short: 'one key, many models',
-        description: 'Hosts hundreds of models behind a single key. Good default for new installs.',
+        description: 'Hosts hundreds of models behind a single key. Good default for new installs.'
       },
       openai: {
         short: 'GPT-class models',
-        description: 'Direct access to OpenAI models.',
+        description: 'Direct access to OpenAI models.'
       },
       gemini: {
         short: 'Gemini models',
-        description: 'Direct access to Google Gemini models.',
+        description: 'Direct access to Google Gemini models.'
       },
       xai: {
         short: 'Grok models',
-        description: 'Direct access to xAI Grok models.',
+        description: 'Direct access to xAI Grok models.'
       },
       local: {
         short: 'self-hosted',
-        description: 'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).',
-      },
+        description:
+          'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).'
+      }
     },
     backToSignIn: 'Back to sign in',
     getKey: 'Get a key',
@@ -2876,7 +2959,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'Opens your browser to sign in, then continues here',
       device_code: 'Opens a verification page in your browser — OpenAmer connects automatically',
-      external: 'Sign in once in your terminal, then come back to chat',
+      external: 'Sign in once in your terminal, then come back to chat'
     },
     startingSignIn: provider => `Starting sign-in for ${provider}...`,
     verifyingCode: provider => `Verifying your code with ${provider}...`,
@@ -2890,10 +2973,12 @@ Leave blank to keep the ${mode} default.`,
     copyAuthCode: 'Copy the authorization code and paste it below.',
     pasteAuthCode: 'Paste authorization code',
     reopenAuthPage: 'Re-open authorization page',
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
     reopenSignInPage: 'Re-open sign-in page',
     waitingAuthorize: 'Waiting for you to authorize...',
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     signedIn: "I've signed in",
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     reopenVerification: 'Re-open verification page',
@@ -2905,7 +2990,7 @@ Leave blank to keep the ${mode} default.`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
     change: 'Change',
     startChatting: 'Begin',
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   zones: {
     showHeader: 'Show header',
@@ -2913,7 +2998,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Minimize',
     restore: 'Restore',
     closeRunningTitle: 'Close running tab?',
-    closeRunningBody: 'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
+    closeRunningBody:
+      'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
     closeRunningConfirm: 'Close tab',
     closeOthers: 'Close others',
     closeToRight: 'Close to the right',
@@ -2950,30 +3036,30 @@ Leave blank to keep the ${mode} default.`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
     saveApply: 'Save & apply',
     notExpressible: 'this arrangement interlocks (pinwheel) — not expressible as nested splits yet',
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   errors: {
     genericFailure: 'Something went wrong',
     boundaryTitle: 'Something broke in the interface',
     boundaryDesc: 'The view hit an unexpected error. Your chats and settings are safe.',
     reloadWindow: 'Reload window',
-    openLogs: 'Open logs',
+    openLogs: 'Open logs'
   },
   ui: {
     search: {
-      clear: 'Clear search',
+      clear: 'Clear search'
     },
     pagination: {
       label: 'pagination',
       previous: 'Prev',
       previousAria: 'Go to previous page',
       next: 'Next',
-      nextAria: 'Go to next page',
+      nextAria: 'Go to next page'
     },
     sidebar: {
       title: 'Sidebar',
       description: 'Displays the mobile sidebar.',
-      toggle: 'Toggle Sidebar',
-    },
-  },
+      toggle: 'Toggle Sidebar'
+    }
+  }
 })

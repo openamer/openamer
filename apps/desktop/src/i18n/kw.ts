@@ -24,7 +24,7 @@ export const kw = defineLocale({
       noSpeechDetected: 'No speech detected',
       playbackFailed: 'Voice playback failed',
       recordingFailed: 'Voice recording failed',
-      transcriptionFailed: 'Voice transcription failed',
+      transcriptionFailed: 'Voice transcription failed'
     },
     native: {
       approvalTitle: 'Pobl yn hy rak',
@@ -37,7 +37,7 @@ export const kw = defineLocale({
       turnErrorTitle: 'Kaspas an dro',
       backgroundDoneTitle: 'Tasch an arlod a vrys',
       backgroundFailedTitle: 'Tasch an arlod a kaspas',
-      creditsTitle: 'Kredio',
+      creditsTitle: 'Kredio'
     },
     region: 'Notifications',
     hide: 'Hide',
@@ -49,7 +49,8 @@ export const kw = defineLocale({
     copyDetail: 'Copy detail',
     copyDetailFailed: 'Could not copy notification detail',
     backendOutOfDateTitle: 'Backend out of date',
-    backendOutOfDateMessage: 'Your OpenAmer backend is older than this desktop build and may not work correctly. Update to align them.',
+    backendOutOfDateMessage:
+      'Your OpenAmer backend is older than this desktop build and may not work correctly. Update to align them.',
     installMethodUnsupportedTitle: 'Unsupported install method',
     updateOpenAmer: 'Update OpenAmer',
     updateReadyTitle: 'Update ready',
@@ -59,12 +60,13 @@ export const kw = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT needs ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs rejected the API key (401).',
       gatewayAuthFailed: 'Gateway authentication failed — check your API_SERVER_KEY.',
-      methodNotAllowed: 'The desktop backend rejected that request (405 Method Not Allowed). Try restarting OpenAmer Desktop.',
+      methodNotAllowed:
+        'The desktop backend rejected that request (405 Method Not Allowed). Try restarting OpenAmer Desktop.',
       microphonePermission: 'Microphone permission was denied.',
       openaiRejectedApiKey: 'OpenAI rejected the API key.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS needs VOICE_TOOLS_OPENAI_KEY or OPENAI_API_KEY.',
-    },
+      openaiTtsNeedsKey: 'OpenAI TTS needs VOICE_TOOLS_OPENAI_KEY or OPENAI_API_KEY.'
+    }
   },
   billingBlock: {
     titleOpenamer: 'Seyn OpenAmer a veas',
@@ -72,7 +74,7 @@ export const kw = defineLocale({
     openBilling: 'Digor billyn',
     addCredits: 'Merio kredio',
     dismiss: 'Dross',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Kudji an tu-bar',
@@ -89,7 +91,7 @@ export const kw = defineLocale({
     openStarmap: 'Iegas ar y graff kof',
     openKeybinds: 'Gwyasoù byr',
     layoutEditor: 'Editour an tref',
-    layoutEditorTitle: 'Editour an tref — ⌘-click a\'th adlakaat',
+    layoutEditorTitle: "Editour an tref — ⌘-click a'th adlakaat"
   },
   keybinds: {
     title: 'Gwyasoù byr',
@@ -104,7 +106,7 @@ export const kw = defineLocale({
       profiles: 'Profiloù',
       session: 'Sessiwn',
       navigation: 'Navigasyon',
-      view: 'Gwely',
+      view: 'Gwely'
     },
     actions: {
       'keybinds.openPanel': 'Openn agraf klawjyer',
@@ -130,15 +132,15 @@ export const kw = defineLocale({
       'profile.switch.16': 'Kewas dha profil 16',
       'profile.switch.17': 'Kewas dha profil 17',
       'profile.switch.18': 'Kewas dha profil 18',
-      'profile.next': 'Profil a\'n sou',
-      'profile.prev': 'Profil a\'n dewst',
+      'profile.next': "Profil a'n sou",
+      'profile.prev': "Profil a'n dewst",
       'profile.toggleAll': 'Tremas poblyer oll brofiel',
       'profile.create': 'Krewas profil',
       'composer.send': 'Heblys mesaj',
       'composer.newline': 'Asw n skyl',
-      'composer.steer': 'Kewas turn y\'n rug',
+      'composer.steer': "Kewas turn y'n rug",
       'composer.queue': 'Romphas mesaj',
-      'composer.sendQueued': 'Heblys an turn romplas a\'n sou',
+      'composer.sendQueued': "Heblys an turn romplas a'n sou",
       'composer.mention': 'Citeg filow, foldor, URL-ow',
       'composer.slash': 'Palet gommando slash',
       'view.showTerminal': 'Togal terminal',
@@ -146,21 +148,21 @@ export const kw = defineLocale({
       'view.nextTerminal': 'Terminal nes',
       'view.prevTerminal': 'Terminal kent',
       'view.closeTerminal': 'Kloaz terminal',
-      'view.terminalSelection': 'Send dibarth an terminal d\'an composer',
+      'view.terminalSelection': "Send dibarth an terminal d'an composer",
       'view.closeTab': 'Kloaz tab',
       'view.reopenTab': 'Adderg an tab kloazet',
       'view.flipPanes': 'Cemmwel tu-hyw an bar klank',
       'appearance.toggleMode': 'Togal skient / tealval',
-      'profile.default': 'Swit d\'ar profil ddefauld',
-      'profile.switch.1': 'Swit d\'ar profil 1',
-      'profile.switch.2': 'Swit d\'ar profil 2',
-      'profile.switch.3': 'Swit d\'ar profil 3',
-      'profile.switch.4': 'Swit d\'ar profil 4',
-      'profile.switch.5': 'Swit d\'ar profil 5',
-      'profile.switch.6': 'Swit d\'ar profil 6',
-      'profile.switch.7': 'Swit d\'ar profil 7',
-      'profile.switch.8': 'Swit d\'ar profil 8',
-      'profile.switch.9': 'Swit d\'ar profil 9',
+      'profile.default': "Swit d'ar profil ddefauld",
+      'profile.switch.1': "Swit d'ar profil 1",
+      'profile.switch.2': "Swit d'ar profil 2",
+      'profile.switch.3': "Swit d'ar profil 3",
+      'profile.switch.4': "Swit d'ar profil 4",
+      'profile.switch.5': "Swit d'ar profil 5",
+      'profile.switch.6': "Swit d'ar profil 6",
+      'profile.switch.7': "Swit d'ar profil 7",
+      'profile.switch.8': "Swit d'ar profil 8",
+      'profile.switch.9': "Swit d'ar profil 9",
       'session.prev': 'Previous session',
       'session.slot.1': 'Switch to recent session 1',
       'session.slot.2': 'Switch to recent session 2',
@@ -183,52 +185,54 @@ export const kw = defineLocale({
       'view.showFiles': 'Show file browser',
       'composer.help': 'Quick help',
       'composer.history': 'Cycle popover / history',
-      'composer.cancel': 'Close popover · cancel run',
+      'composer.cancel': 'Close popover · cancel run'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   settings: {
     notifications: {
       kinds: {
         credits: {
-          description: 'Mynediad kredyd yn pausedig neu wedi\'i aswys.',
-          label: 'Kowlynti kredyt',
+          description: "Mynediad kredyd yn pausedig neu wedi'i aswys.",
+          label: 'Kowlynti kredyt'
         },
         approval: {
           label: 'Apobasyon eus',
-          description: 'Ur command a c\'hort d\'it dhe apobi pe has anha.',
+          description: "Ur command a c'hort d'it dhe apobi pe has anha."
         },
         input: {
           label: 'Ymplas eus',
-          description: 'OpenAmer a vys a gwestion, pe war an wordhev pe war an secred.',
+          description: 'OpenAmer a vys a gwestion, pe war an wordhev pe war an secred.'
         },
         turnDone: {
           label: 'Dewji a kla',
-          description: 'Ur tro a finish tra OpenAmer a vo a seer.',
+          description: 'Ur tro a finish tra OpenAmer a vo a seer.'
         },
         turnError: {
-          label: 'Tro a c\'hloas',
-          description: 'Ur tro a ghoan endeves gyd an eror.',
+          label: "Tro a c'hloas",
+          description: 'Ur tro a ghoan endeves gyd an eror.'
         },
         backgroundDone: {
           label: 'Tas a seer a finish',
-          description: 'Ur command terminal a seer a ghoan complete.',
-        },
+          description: 'Ur command terminal a seer a ghoan complete.'
+        }
       },
       test: 'Yannat test',
       testTitle: 'OpenAmer',
-      testBody: 'Mae\'r yannatomau yn gweithio.',
-      testSent: 'Test ynys. Os does dim yn ymddangos, gwiriwch beth gyda phersantiynau yannatomau eich system a Fokus/Peal heb Afon.',
-      testUnsupported: 'Nid y\'r system hon yn cynnal yannatomau gwreWTek.',
+      testBody: "Mae'r yannatomau yn gweithio.",
+      testSent:
+        'Test ynys. Os does dim yn ymddangos, gwiriwch beth gyda phersantiynau yannatomau eich system a Fokus/Peal heb Afon.',
+      testUnsupported: "Nid y'r system hon yn cynnal yannatomau gwreWTek.",
       completionSoundTitle: 'Sund gorffen',
-      completionSoundDesc: 'Mae\'n chwarae pan yn diweddu tro yr agent. Dewis rhaglen ac amleth hi yma.',
+      completionSoundDesc: "Mae'n chwarae pan yn diweddu tro yr agent. Dewis rhaglen ac amleth hi yma.",
       completionSoundPreview: 'Amleth',
       title: 'Kowlynti',
-      intro: 'Kowlynti komputer nativ, separate a\'r toasts a app. Ma dhomm leal an divwas — goll bep computer a wugh e y dewilow a\'n eus.',
+      intro:
+        "Kowlynti komputer nativ, separate a'r toasts a app. Ma dhomm leal an divwas — goll bep computer a wugh e y dewilow a'n eus.",
       enableAll: 'Yumlewi kowlynti',
-      enableAllDesc: 'Benk pennek. Troas hemw dhe dewluewi kowlynti a\'n dowl dowl.',
-      focusedHint: 'Kowlynti a gwerth finish a chlew an hepken tra OpenAmer a vo a seer.',
+      enableAllDesc: "Benk pennek. Troas hemw dhe dewluewi kowlynti a'n dowl dowl.",
+      focusedHint: 'Kowlynti a gwerth finish a chlew an hepken tra OpenAmer a vo a seer.'
     },
     sections: {
       chat: 'Siarad',
@@ -238,15 +242,15 @@ export const kw = defineLocale({
       memory: 'Coferio a chyd-destun',
       voice: 'Lais',
       advanced: 'Uwch',
-      model: 'Model',
+      model: 'Model'
     },
     searchPlaceholder: {
       about: 'Am OpenAmer y Ddesktop',
-      config: 'Chwilio\'r gosodiadau...',
+      config: "Chwilio'r gosodiadau...",
       gateway: 'Cysylltiad geoford...',
       keys: 'Hwlha API keys...',
       mcp: 'Hwlha MCP servers...',
-      sessions: 'Hwlha seshion archivio...',
+      sessions: 'Hwlha seshion archivio...'
     },
     nav: {
       providerCustomEndpoints: 'Endevloffa Dewis',
@@ -263,11 +267,12 @@ export const kw = defineLocale({
       providers: 'Providers',
       providerAccounts: 'Accounts',
       providerApiKeys: 'API keys',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'Pluginoy an desk-top',
-      blurb: 'K Extensions UI a charghed yn dew app — gompak ha\'n build, pe daslet yn tas pluginoy an desk-top (a chammas OpenAmer a scrives). Anova an plugin a chargh yn leh hag a survives awr eno adlhog.',
+      blurb:
+        "K Extensions UI a charghed yn dew app — gompak ha'n build, pe daslet yn tas pluginoy an desk-top (a chammas OpenAmer a scrives). Anova an plugin a chargh yn leh hag a survives awr eno adlhog.",
       openFolder: 'Ygol tas pluginoy',
       rescan: 'Scan anew',
       reveal: 'Diskwarva yn renjel tas',
@@ -278,27 +283,28 @@ export const kw = defineLocale({
       kinds: {
         bundled: 'Kempas',
         disk: 'war an disk',
-        runtime: 'amzer red',
+        runtime: 'amzer red'
       },
-      count: n => `${n} installed`,
+      count: n => `${n} installed`
     },
     modeOptions: {
       light: {
         label: 'Lat',
-        description: 'Arvorioù sklaer an desktop',
+        description: 'Arvorioù sklaer an desktop'
       },
       dark: {
         label: 'Tewel',
-        description: 'Kompsha gleb-dar',
+        description: 'Kompsha gleb-dar'
       },
       system: {
         description: 'Heulia semper an OS',
-        label: 'System',
-      },
+        label: 'System'
+      }
     },
     appearance: {
       title: 'Semper',
-      intro: 'Hemmer yn gwellioù displa desktop hepken. An mod a reas brightness; an theme a reas palet lonsek hag ar stiil an iovch chat.',
+      intro:
+        'Hemmer yn gwellioù displa desktop hepken. An mod a reas brightness; an theme a reas palet lonsek hag ar stiil an iovch chat.',
       colorMode: 'Mod Liv',
       colorModeDesc: 'Dibab mod stiur po hiv an OpenAmer heulia setlynget an system.',
       toolViewTitle: 'Diskwel Galw-Teth',
@@ -309,28 +315,30 @@ export const kw = defineLocale({
       backdropTitle: 'Dreva Chat',
       backdropDesc: 'An skeudenn statiw slaw an drem a dervenn a gows.',
       pet: {
-        intro: 'Adopt an petdex mascot animat a flyn war\'n app ha gorth bynya a OpenAmer a wrio — running while tools execute, celebrating on success, sulking on errors.',
-        restartHint: 'Byddhag pets adkegas yn gyflyst — an app a rae erys a rae y\'n nod ma vewi gret. Quit ha re-open OpenAmer, y\'tha dewch y\'ta lec\'h ma.',
+        intro:
+          "Adopt an petdex mascot animat a flyn war'n app ha gorth bynya a OpenAmer a wrio — running while tools execute, celebrating on success, sulking on errors.",
+        restartHint:
+          "Byddhag pets adkegas yn gyflyst — an app a rae erys a rae y'n nod ma vewi gret. Quit ha re-open OpenAmer, y'tha dewch y'ta lec'h ma.",
         on: 'War',
         off: 'Aweg',
         scaleTitle: 'Meyn s',
         scaleDesc: 'Maynya an mascot a flyn. Y applies e duva.',
         roamTitle: 'Ramm',
-        roamDesc: 'Kpermit an pet ramm a brenn yn y\'n difa.',
+        roamDesc: "Kpermit an pet ramm a brenn yn y'n difa.",
         chooseTitle: 'Dewis pet',
         chooseDesc: 'Dewis unn a stelly an (mar eus reer) ha kemm an y aktif.',
         searchPlaceholder: 'Hwery pets…',
-        unreachable: 'Nep on dell dihenn an petdex gallery. Gwiria\' an koneksyon hag aildrop an paj ma.',
+        unreachable: "Nep on dell dihenn an petdex gallery. Gwiria' an koneksyon hag aildrop an paj ma.",
         installedTag: 'Stellys',
         generatedTag: 'Krew',
-        deleteBody: 'An hyn a dyl an pet y\'n oor — n\'eus reinstalled.',
+        deleteBody: "An hyn a dyl an pet y'n oor — n'eus reinstalled.",
         deleteConfirm: 'Dil',
         renameTitle: 'Anv gal pet',
         renamePlaceholder: 'Anv eich pet',
         renameSave: 'Gorth',
         noneAvailable: 'Nep pet a v Available a gellir war an lodma.',
-        turnOnFailed: 'N\'y koud an pet enaou.',
-        turnOffFailed: 'N\'y koud an pet trebuch.',
+        turnOnFailed: "N'y koud an pet enaou.",
+        turnOffFailed: "N'y koud an pet trebuch.",
         title: 'Pet',
         noMatch: query => `No pets match "${query}".`,
         countCapped: (cap, total) => `Showing ${cap} of ${total} — type to narrow it down.`,
@@ -343,11 +351,13 @@ export const kw = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsTitle: 'Inline Embeds',
-      embedsDesc: 'Rich previews load from third-party sites (YouTube, X, …). Ask shows a placeholder until you allow each one; Always loads them automatically; Off keeps plain links.',
+      embedsDesc:
+        'Rich previews load from third-party sites (YouTube, X, …). Ask shows a placeholder until you allow each one; Always loads them automatically; Off keeps plain links.',
       embedsAsk: 'Ask',
       embedsAlways: 'Always',
       embedsOff: 'Off',
@@ -360,14 +370,15 @@ export const kw = defineLocale({
       themeDesc: 'Desktop palettes only. The selected mode is applied on top.',
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installTitle: 'Install from VS Code',
-      installDesc: 'Paste a Marketplace extension id (e.g. dracula-theme.theme-dracula) to convert its color theme into a desktop palette.',
+      installDesc:
+        'Paste a Marketplace extension id (e.g. dracula-theme.theme-dracula) to convert its color theme into a desktop palette.',
       installPlaceholder: 'publisher.extension',
       installButton: 'Install',
       installing: 'Installing…',
       installError: 'Could not install that theme.',
       installed: name => `Installed “${name}”.`,
       removeTheme: 'Remove theme',
-      importedBadge: 'Imported',
+      importedBadge: 'Imported'
     },
     about: {
       heading: 'OpenAmer Kompûter',
@@ -375,17 +386,17 @@ export const kw = defineLocale({
       updates: 'Kevroù',
       checkNow: 'Chek bremañ',
       checking: 'O chek…',
-      seeWhatsNew: 'Gwelet a\'bep nevez',
+      seeWhatsNew: "Gwelet a'bep nevez",
       updateNow: 'Kevra bremañ',
       releaseNotes: 'Notennoù siver',
-      onLatest: 'D\'y ouzh ar stumps diweddh.',
-      installing: 'Kevr e\' o installing bremañ.',
-      cantUpdate: 'N\'allo an stumps-ma gevrañ eh a whek pennas an gamm.',
-      cantReach: 'Ny koud dos d\'ar servijer kevroù.',
+      onLatest: "D'y ouzh ar stumps diweddh.",
+      installing: "Kevr e' o installing bremañ.",
+      cantUpdate: "N'allo an stumps-ma gevrañ eh a whek pennas an gamm.",
+      cantReach: "Ny koud dos d'ar servijer kevroù.",
       tapCheck: 'Tapl "Chek bremañ" d\' hwilas kevroù.',
       justNowSuffix: '· a zo bremañ',
       automaticUpdates: 'Kevroù awtonom',
-      automaticUpdatesDesc: 'OpenAmer a chek kevroù yn awl war ar fon hag a vannou d\'it outa-vo pep un zo prest.',
+      automaticUpdatesDesc: "OpenAmer a chek kevroù yn awl war ar fon hag a vannou d'it outa-vo pep un zo prest.",
       never: 'nebeut',
       justNow: 'a zo bremañ',
       version: value => `Version ${value}`,
@@ -394,7 +405,7 @@ export const kw = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     config: {
       none: 'Kena',
@@ -404,23 +415,24 @@ export const kw = defineLocale({
       commaSeparated: 'Gwerthoù separated gorth komma',
       loading: 'O karg konfigurasyon OpenAmer...',
       emptyTitle: 'Kena y kamm',
-      emptyDesc: 'N\'eus na dozhiañ kemm eus an lodenn-ma.',
-      failedLoad: 'N\'eus kud karg an dozhiañ.',
-      autosaveFailed: 'N\'eus kud save otomatik.',
+      emptyDesc: "N'eus na dozhiañ kemm eus an lodenn-ma.",
+      failedLoad: "N'eus kud karg an dozhiañ.",
+      autosaveFailed: "N'eus kud save otomatik.",
       imported: 'Daz import konfigurasyon.',
       invalidJson: 'JSON konfigurasyon namBath.',
       keepAwakeTitle: 'Lawe an computer yn difret',
-      keepAwakeDesc: 'Stop an computer a ghoes pell ha war an neudha, evit ma redad pell pe war-ves vras a dhiswel. Yn gall an disply c\'hoazh tywelos.',
+      keepAwakeDesc:
+        "Stop an computer a ghoes pell ha war an neudha, evit ma redad pell pe war-ves vras a dhiswel. Yn gall an disply c'hoazh tywelos."
     },
     credentials: {
       pasteKey: 'Stap an afol',
       optional: 'Dizamm',
       enterValueFirst: 'Mercher an gwerth kent.',
-      couldNotSave: 'N\'eus possibl save an kredansial.',
+      couldNotSave: "N'eus possibl save an kredansial.",
       remove: 'Dilamm',
       getKey: 'Pyd an afol',
       saving: 'Owrtys',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     envActions: {
       credentialActions: 'Gweithredoù kredji',
@@ -431,45 +443,48 @@ export const kw = defineLocale({
       replace: 'Atammel',
       set: 'Seth',
       clear: 'Glan',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     gateway: {
       loading: 'O karg ar sett syn geofrynt...',
-      unavailableTitle: 'Ny\'rys ar sett syn geofrynt',
-      unavailableDesc: 'Ny\'rys ar sett syn geofrynt y porth IPC an deesktop.',
+      unavailableTitle: "Ny'rys ar sett syn geofrynt",
+      unavailableDesc: "Ny'rys ar sett syn geofrynt y porth IPC an deesktop.",
       title: 'Kevgeofrynt',
       envOverride: 'Gor-drection amghibyn',
-      intro: 'Yn ddefault, ra eus OpenAmer Desktop y krogi y geofrynt leokal yntau. Defydd geofrynt pell pan vo hwished ag arvor-ma re laval an dil unen OpenAmer a\'gh y krogi war bennak allos pe war-lyth y proxy yn termenig. Dibab profil isth below evit 气us eus host pell yn eyn.',
+      intro:
+        "Yn ddefault, ra eus OpenAmer Desktop y krogi y geofrynt leokal yntau. Defydd geofrynt pell pan vo hwished ag arvor-ma re laval an dil unen OpenAmer a'gh y krogi war bennak allos pe war-lyth y proxy yn termenig. Dibab profil isth below evit 气us eus host pell yn eyn.",
       appliesTo: 'Y splies dho',
       allProfiles: 'An holl profiloù',
-      defaultConnection: 'Kevgeofrynt ddefault an holl profil na veus gor-drection a\'y eus.',
-      envOverrideTitle: 'Lpery variable amghibyn a\'g control an deesktop session-ma.',
-      envOverrideDesc: 'Dibann OPENAMER_DESKTOP_REMOTE_URL hag OPENAMER_DESKTOP_REMOTE_TOKEN evit defydd an sett saves isth.',
+      defaultConnection: "Kevgeofrynt ddefault an holl profil na veus gor-drection a'y eus.",
+      envOverrideTitle: "Lpery variable amghibyn a'g control an deesktop session-ma.",
+      envOverrideDesc:
+        'Dibann OPENAMER_DESKTOP_REMOTE_URL hag OPENAMER_DESKTOP_REMOTE_TOKEN evit defydd an sett saves isth.',
       modeTitle: 'Mod kevreet',
       localTitle: 'Porth leol',
       localDesc: 'Kreata backend prewat OpenAmer war localhost. Honn yw an standard ha gûrd mes an internet.',
-      inheritTitle: 'Useva\'n porth standard',
-      inheritDesc: 'Dilamm ean ar gyfer-owerrid a\'profil ma, hag usya\'n kevreet standard.',
+      inheritTitle: "Useva'n porth standard",
+      inheritDesc: "Dilamm ean ar gyfer-owerrid a'profil ma, hag usya'n kevreet standard.",
       remoteTitle: 'Porth pell',
-      remoteDesc: 'Kevreata an kroen\'n desk ma war backend pell OpenAmer.',
+      remoteDesc: "Kevreata an kroen'n desk ma war backend pell OpenAmer.",
       remoteAuthHint: 'Porthow gwerthydig a wrañ OAuth orth dew ha password; porthow hun-propri a allus tokenn an ses.',
-      cloudDesc: 'Sign ina un weyth d\'OpenAmer Cloud ha selw agentan a\'kont ag hwi — URL blas na vo.',
-      cloudSignIn: 'Sign ina d\'OpenAmer Cloud',
+      cloudDesc: "Sign ina un weyth d'OpenAmer Cloud ha selw agentan a'kont ag hwi — URL blas na vo.",
+      cloudSignIn: "Sign ina d'OpenAmer Cloud",
       cloudSignedIn: 'Kevreet war OpenAmer Cloud',
-      cloudNeedsSignIn: 'Sign ina d\'OpenAmer Cloud ha kavya agentan a\'kont ag hwi.',
-      cloudSignedInDesc: 'Kevreet o vew hwi. Selw agent a\'r dale; an ses a adnewha a-zytaal.',
+      cloudNeedsSignIn: "Sign ina d'OpenAmer Cloud ha kavya agentan a'kont ag hwi.",
+      cloudSignedInDesc: "Kevreet o vew hwi. Selw agent a'r dale; an ses a adnewha a-zytaal.",
       cloudAgentsTitle: 'Ag agentan',
-      cloudOrgPickerTitle: 'Selw sosoc\'h',
+      cloudOrgPickerTitle: "Selw sosoc'h",
       cloudOrgSelect: 'Selw',
-      cloudOrgChange: 'Ditcha sosoc\'h',
-      cloudLoadingAgents: 'O karger a\'ge agentan…',
+      cloudOrgChange: "Ditcha sosoc'h",
+      cloudLoadingAgents: "O karger a'ge agentan…",
       signOut: 'Dremel dre blas',
       authTitle: 'Prendyal',
-      authSignedInPassword: 'An porth a yzur an anvyer hag an password. Keglynns dh\'eoc\'h; adkaves an sessyon awras.',
-      authSignedInOauth: 'An porth a yzur OAuth. Keglynns dh\'eoc\'h; adkaves an sessyon awras.',
+      authSignedInPassword: "An porth a yzur an anvyer hag an password. Keglynns dh'eoc'h; adkaves an sessyon awras.",
+      authSignedInOauth: "An porth a yzur OAuth. Keglynns dh'eoc'h; adkaves an sessyon awras.",
       authNeedsPassword: 'Keglynna evit avel an arvent desktop.',
       tokenTitle: 'Tokon sessyon',
-      tokenDesc: 'An tokon sessyon an desker a yzer dhe iges dre REST ha WebSocket. Dre eus mar folz evit mirout an tokon savet.',
+      tokenDesc:
+        'An tokon sessyon an desker a yzer dhe iges dre REST ha WebSocket. Dre eus mar folz evit mirout an tokon savet.',
       savedToken: 'Savel',
       pasteSessionToken: 'Pebbel an tokon sessyon',
       testRemote: 'Prof pell',
@@ -478,24 +493,27 @@ export const kw = defineLocale({
       diagnostics: 'Diannotia',
       diagnosticsDesc: 'Diskwel `desktop.log` yn reanjer restry azo — servjew pan na vus an porth da dre.',
       openLogs: 'Drema an toulo',
-      incompleteTitle: 'N\'eo porth pell complete',
+      incompleteTitle: "N'eo porth pell complete",
       incompleteSignIn: 'Merkin URL pell ha keglynna a-rao ma teuswypp da beo pell.',
       incompleteToken: 'Merkin URL pell hag an tokon sessyon a-rao ma teuswypp da beo pell.',
       incompleteSignInTest: 'Merkin URL pell ha keglynna a-rao ma test.',
       incompleteTokenTest: 'Merkin URL pell hag an tokon sessyon a-rao ma test.',
-      sshErrNotInstalled: 'N\'eus ket installet OpenAmer war an host pell. Install OpenAmer unnani (`curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh`) pe set the path OpenAmer.',
-      sshErrPlatform: 'N\'eus ket mewn an platfom pell-gorllewin. Mod pell SSH OpenAmer a goll Linux, macOS ha Windows a goll host pell.',
-      sshErrTimeout: 'Kroasiet eo an SSH. Mar genys, n\'eus ket reachabl an host pe y kroasit.',
+      sshErrNotInstalled:
+        "N'eus ket installet OpenAmer war an host pell. Install OpenAmer unnani (`curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh`) pe set the path OpenAmer.",
+      sshErrPlatform:
+        "N'eus ket mewn an platfom pell-gorllewin. Mod pell SSH OpenAmer a goll Linux, macOS ha Windows a goll host pell.",
+      sshErrTimeout: "Kroasiet eo an SSH. Mar genys, n'eus ket reachabl an host pe y kroasit.",
       sshErrUpdateRequired: 'Diupdatek OpenAmer war an host pell a-raok kevreañ gant Desktop SSH.',
-      sshErrUnknown: 'C\'hoas kudleet an kevreañ SSH.',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      sshErrUnknown: "C'hoas kudleet an kevreañ SSH.",
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudTitle: 'OpenAmer Cloud',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudOrgRole: role => `Role: ${role}`,
       cloudNoAgents: {
         before: 'No agents found on this account. Create one in the ',
         linkText: 'OpenAmer portal',
-        after: ', then refresh.',
+        after: ', then refresh.'
       },
       cloudRefresh: 'Refresh',
       cloudConnect: 'Connect',
@@ -535,7 +553,8 @@ export const kw = defineLocale({
       applyFailed: 'Could not apply gateway settings',
       saveFailed: 'Could not save gateway settings',
       sshTitle: 'Connect via SSH',
-      sshDesc: 'OpenAmer is launched on the remote over SSH and tunneled to this app — nothing to start or expose yourself. Requires working key-based SSH access to the host.',
+      sshDesc:
+        'OpenAmer is launched on the remote over SSH and tunneled to this app — nothing to start or expose yourself. Requires working key-based SSH access to the host.',
       sshTrustHint: 'The first presented host key is trusted and pinned; later changes fail closed.',
       sshHostTitle: 'Host',
       sshHostDesc: 'user@host, or a Host alias from ~/.ssh/config.',
@@ -559,24 +578,26 @@ export const kw = defineLocale({
       sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
       sshIncompleteHost: 'Enter an SSH host before connecting.',
       sshErrUnreachable: 'Could not reach that host over SSH. Check the host, port, and your network.',
-      sshErrAuth: 'SSH authentication failed. Load your key into the ssh-agent (ssh-add) or set an IdentityFile in ~/.ssh/config — OpenAmer runs ssh non-interactively.',
-      sshErrHostKey: 'The host key has CHANGED since you last connected. Verify this is expected, then run ssh-keygen -R <host> and reconnect.',
+      sshErrAuth:
+        'SSH authentication failed. Load your key into the ssh-agent (ssh-add) or set an IdentityFile in ~/.ssh/config — OpenAmer runs ssh non-interactively.',
+      sshErrHostKey:
+        'The host key has CHANGED since you last connected. Verify this is expected, then run ssh-keygen -R <host> and reconnect.'
     },
     keys: {
       loading: 'Karger an API keys hag an credentials...',
-      failedLoad: 'C\'hoas kudleet karger an API keys',
-      empty: 'N\'eus ket goulo e\'n gategori-ma.',
+      failedLoad: "C'hoas kudleet karger an API keys",
+      empty: "N'eus ket goulo e'n gategori-ma."
     },
     mcp: {
       loading: 'Karger an servici MCP...',
-      failedLoad: 'C\'hoas kudleet karger konfig MCP',
+      failedLoad: "C'hoas kudleet karger konfig MCP",
       nameRequiredTitle: 'Ret eo anv',
       nameRequiredMessage: 'Ro an servici MCP-ma a chavel konfig.',
       objectRequired: 'Kud e konfig an servici a dhene JSON.',
-      invalidJson: 'JSON MCP n\'eus ket valid',
-      saveFailed: 'C\'hoas kudleet enroll',
-      removeFailed: 'C\'hoas kudleet dibare',
-      gatewayUnavailableTitle: 'N\'eus ket kav an Gateway',
+      invalidJson: "JSON MCP n'eus ket valid",
+      saveFailed: "C'hoas kudleet enroll",
+      removeFailed: "C'hoas kudleet dibare",
+      gatewayUnavailableTitle: "N'eus ket kav an Gateway",
       gatewayUnavailableMessage: 'Adkevre an Gateway a-raok karger MCP en-dro.',
       reloadedTitle: 'Tools MCP a-is karger en-dro',
       reloadedMessage: 'Schemas toolow brevy a lennewek war dtrooù newydh.',
@@ -613,10 +634,10 @@ export const kw = defineLocale({
       statusOff: 'Dius',
       allServers: 'Servriedh oll',
       authenticatedTitle: 'Autentiket',
-      waitingForBrowser: 'O c\'horti\'r porfel…',
+      waitingForBrowser: "O c'horti'r porfel…",
       authenticate: 'Autentik',
       unsavedConnect: 'Anhoysiget — save `mcp.json` evit kevre.',
-      noOutput: 'C\'hoazh nebeut ez out.',
+      noOutput: "C'hoazh nebeut ez out.",
       savedMessage: name => `${name} applies after MCP reload.`,
       testOk: count => `Connected — ${count} tool${count === 1 ? '' : 's'} available`,
       enableServer: name => `Enable ${name}`,
@@ -627,10 +648,11 @@ export const kw = defineLocale({
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       authenticatedMessage: (server, count) => `${server}: ${count} tools`,
       enableTool: tool => `Enable ${tool}`,
-      disableTool: tool => `Disable ${tool}`,
+      disableTool: tool => `Disable ${tool}`
     },
     model: {
       loading: 'O karg konfigurasyon modol...',
@@ -639,36 +661,36 @@ export const kw = defineLocale({
       tasks: {
         compression: {
           label: 'Kompaksion',
-          hint: 'Kompaksion kontekst',
+          hint: 'Kompaksion kontekst'
         },
         skills_hub: {
           label: 'Hub skils',
-          hint: 'Hunt skils',
+          hint: 'Hunt skils'
         },
         approval: {
           label: 'Aotre',
-          hint: 'Aotre awtomatik',
+          hint: 'Aotre awtomatik'
         },
         mcp: {
           hint: 'Kevler MCP',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Kynvav titlo',
-          hint: 'Titlow ses',
+          hint: 'Titlow ses'
         },
         curator: {
           label: 'Kurator',
-          hint: 'Peviat implijout skils',
+          hint: 'Peviat implijout skils'
         },
         vision: {
           label: 'Vision',
-          hint: 'Image analysis',
+          hint: 'Image analysis'
         },
         web_extract: {
           label: 'Web extract',
-          hint: 'Page summarization',
-        },
+          hint: 'Page summarization'
+        }
       },
       model: 'Model',
       applying: 'Applying...',
@@ -685,12 +707,12 @@ export const kw = defineLocale({
       providerDefault: '(provider default)',
       fallbackAdd: 'Add fallback',
       fallbackEmpty: 'No fallback models — the default model is used unless it fails.',
-      notInCatalog: "isn't in this provider's model list — calls may fall back to a backup.",
+      notInCatalog: "isn't in this provider's model list — calls may fall back to a backup."
     },
     providers: {
       connectAccount: 'Konnekt un account',
       haveApiKey: 'Yew API key yn le?',
-      intro: 'Logi dre d subscription — nag API key rag kopio. OpenAmer a\'gtho an logi gester ev, yma omma yn an app.',
+      intro: "Logi dre d subscription — nag API key rag kopio. OpenAmer a'gtho an logi gester ev, yma omma yn an app.",
       connected: 'Konnektet',
       collapse: 'Kuddu',
       connectAnother: 'Konnekt provider arall',
@@ -702,36 +724,39 @@ export const kw = defineLocale({
       noKeysMatch: 'Nus providers hevel d’ your hunt.',
       localEndpoint: {
         title: 'Enboup lokal / personel',
-        description: 'Point OpenAmer at any OpenAI-compatible endpoint (Zyphra, vLLM, llama.cpp, Ollama, etc).',
+        description: 'Point OpenAmer at any OpenAI-compatible endpoint (Zyphra, vLLM, llama.cpp, Ollama, etc).'
       },
       loading: 'O karger providers...',
       disconnectInTerminal: 'Disconnect (runs the removal command in the terminal)',
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     sessions: {
       loading: 'O karger sessions archiv…',
       archivedTitle: 'Sessions archiv',
       emptyArchivedTitle: 'Nuthyng archiv',
-      autoArchiveFailed: 'Nepas yw\' adnevas arhiv kiauto',
+      autoArchiveFailed: "Nepas yw' adnevas arhiv kiauto",
       defaultDirTitle: 'Kellowr defolt y projek',
-      defaultDirDesc: 'Sessyow newydh a grog y\'n folder ma war again y hama. M\'es kerc\'hias un all, hag ebrah yn set evit y duse y gêr.',
+      defaultDirDesc:
+        "Sessyow newydh a grog y'n folder ma war again y hama. M'es kerc'hias un all, hag ebrah yn set evit y duse y gêr.",
       defaultDirUpdated: 'Kellowr defolt y projek a ve adnevased — krog chat newydh (Ctrl/⌘+N) rag effekt',
       change: 'Kewas',
       choose: 'Kercho',
       clear: 'Divoe',
       notSet: 'Nynat set',
-      failedLoad: 'Nepas yw\' karga sessyow arhivet',
+      failedLoad: "Nepas yw' karga sessyow arhivet",
       unarchiveFailed: 'Dadarhiv a fia',
       deleteFailed: 'Dilem a fia',
-      updateDirFailed: 'Nepas yw\' adnevas kellowr defolt',
-      clearDirFailed: 'Nepas yw\' divoe kellowr defolt',
-      archivedIntro: 'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
+      updateDirFailed: "Nepas yw' adnevas kellowr defolt",
+      clearDirFailed: "Nepas yw' divoe kellowr defolt",
+      archivedIntro:
+        'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
       emptyArchivedDesc: 'Archive a chat to hide it here.',
       unarchive: 'Unarchive',
       deletePermanently: 'Delete permanently',
@@ -739,10 +764,11 @@ export const kw = defineLocale({
       restored: 'Restored',
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
       autoArchiveTitle: 'Auto-archive stale chats',
-      autoArchiveDesc: "Automatically archive chats you haven't touched in a while. Pinned chats are never archived, and nothing is deleted — archived chats just move here.",
+      autoArchiveDesc:
+        "Automatically archive chats you haven't touched in a while. Pinned chats are never archived, and nothing is deleted — archived chats just move here.",
       autoArchiveDaysLabel: 'Archive after',
       autoArchiveDaysUnit: 'days of inactivity',
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
       loadingConfig: 'Karga an konfigurasy',
@@ -750,7 +776,7 @@ export const kw = defineLocale({
       removedTitle: 'Tegel-tester tuchet',
       notSet: 'Nynat set',
       selectedTitle: 'Darprov a ve selet',
-      failedLoad: 'Nepas yw\' karga konfigurasy an alwat',
+      failedLoad: "Nepas yw' karga konfigurasy an alwat",
       noProviderOptions: 'Nid eus dewisiow gorth war an reanjek — enaou hi hag hi a gweithio gans an stum kludhog.',
       noProviders: 'Nid eus gorthi kementek evit an reanjek war-g，控制 now.',
       ready: 'Par',
@@ -770,7 +796,7 @@ export const kw = defineLocale({
       postSetupRunning: 'O stum…',
       postSetupStarting: 'O krog…',
       postSetupCompleteTitle: 'Stum a’ van',
-      postSetupErrorTitle: 'Stum a\' gwrth gamm',
+      postSetupErrorTitle: "Stum a' gwrth gamm",
       webCapabilityUnset: 'Nyns yn hy',
       webUseForSearch: 'Usel rag chasse',
       webUseForExtract: 'Usel rag dysky',
@@ -778,9 +804,9 @@ export const kw = defineLocale({
       webUsedForExtract: 'Backend dysky',
       loadingModels: 'Karger kataloog modelloù...',
       modelSectionTitle: 'Modell',
-      modelInUse: 'Y\'n-c\'hwi',
+      modelInUse: "Y'n-c'hwi",
       modelDefault: 'Tepmann',
-      modelInactiveHint: 'Dibab dh\'he backend-ma yn cynta d\'hevoud e modell.',
+      modelInactiveHint: "Dibab dh'he backend-ma yn cynta d'hevoud e modell.",
       modelSelectedTitle: 'Modell dibabet',
       terminalBackend: {
         sectionTitle: 'Backend crugy',
@@ -789,11 +815,11 @@ export const kw = defineLocale({
         ready: 'Par',
         needsSetup: 'Ezhomm setup',
         unavailable: 'Dost nogh',
-        inUse: 'Y\'n-c\'hwi',
+        inUse: "Y'n-c'hwi",
         selectedTitle: 'Backend dibabet',
-        needsSetupHint: 'C\'hallit dibab dh\'he backend-ma anez — commandù a fayl a-bos ma veo setup a vo complet.',
+        needsSetupHint: "C'hallit dibab dh'he backend-ma anez — commandù a fayl a-bos ma veo setup a vo complet.",
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       savedMessage: key => `${key} updated.`,
       removedMessage: key => `${key} removed.`,
@@ -804,8 +830,10 @@ export const kw = defineLocale({
       set: 'Set',
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -815,7 +843,7 @@ export const kw = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     closeSettings: 'Close settings',
     exportConfig: 'Export config',
@@ -825,7 +853,7 @@ export const kw = defineLocale({
     exportFailed: 'Export failed',
     resetFailed: 'Reset failed',
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     tabSkills: 'Skilliow',
@@ -844,7 +872,8 @@ export const kw = defineLocale({
     noDescription: 'Kavaz deskripsiùn.',
     configured: 'Kefigyri',
     needsKeys: 'Meyn dufryow',
-    visionModelHint: 'Y weled yn defnyddi konfigurasjon y model keth — chwysir y model sy’n gallu delwedh yma, nid yn ôl gweddav unig yma.',
+    visionModelHint:
+      'Y weled yn defnyddi konfigurasjon y model keth — chwysir y model sy’n gallu delwedh yma, nid yn ôl gweddav unig yma.',
     visionModelLink: 'Dibab model gweled yn Kefriow → Modelloù',
     skillsLoadFailed: 'Kuddit nij kargadow skillio',
     toolsetsRefreshFailed: 'Kromennoù nîha adlama',
@@ -855,14 +884,14 @@ export const kw = defineLocale({
     sortMostUsed: 'Implaas a vrasa',
     sortMostUsedDesc: '↓ Implaas a vrasa',
     sortLeastUsedAsc: '↑ Implaas a vihya',
-    enableAll: 'Powersa dh\'oall',
-    disableAll: 'Antres dh\'oall',
+    enableAll: "Powersa dh'oall",
+    disableAll: "Antres dh'oall",
     disableUnused: 'Antres an dîr neu',
     bulkNoChange: 'Nîmet y kynnya.',
     provenance: {
       agent: 'Desket',
       bundled: 'Krefft',
-      hub: 'Krefft',
+      hub: 'Krefft'
     },
     changesApplyNewSessions: 'Kevythow a yamus dastokkoy nowydh.',
     skillUpdated: 'Sken adlama',
@@ -877,8 +906,8 @@ export const kw = defineLocale({
       connectingHubs: 'O kevlyn...',
       connectedHubs: 'Hubow kevlyn:',
       featured: 'Sgiliau nawasket',
-      landingHint: 'Hunt yn y hub i dhibennu sgiliau y gellir stelly o\'r indeks swyddogol, GitHub, ha men komuniti.',
-      noResults: 'C\'ev sgiliau oos yn y hub.',
+      landingHint: "Hunt yn y hub i dhibennu sgiliau y gellir stelly o'r indeks swyddogol, GitHub, ha men komuniti.",
+      noResults: "C'ev sgiliau oos yn y hub.",
       installed: 'Stellyet',
       install: 'Stelly',
       installing: 'O stelly...',
@@ -895,7 +924,7 @@ export const kw = defineLocale({
       trust: {
         builtin: 'Parthum',
         trusted: 'Dispus',
-        community: 'Komuniti',
+        community: 'Komuniti'
       },
       verdictSafe: 'Diogel',
       verdictCaution: 'Gwarn',
@@ -915,7 +944,7 @@ export const kw = defineLocale({
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     tabMcp: 'MCP',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} toolsets enabled`,
@@ -928,7 +957,7 @@ export const kw = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     title: 'Graf Memori',
@@ -941,10 +970,11 @@ export const kw = defineLocale({
     viewGraph: 'Graf',
     loadFailed: 'Neyus yn kollos karg graf Memori',
     loading: 'O karg…',
-    emptyTitle: 'Nichts yw desket c\'hoazh',
+    emptyTitle: "Nichts yw desket c'hoazh",
     emptyDesc: 'Mar ta OpenAmer yn krogi skan hag ar gyfer dy weith, ew a yas yma.',
     share: 'Ranna mapp',
-    shareHint: 'Kopio an kod ha ranna an mapp-ma, pe peg ri da karg. N\'eus yndro hi a gomprehenda skeudenn an mapp, ny ket na memori na test skan.',
+    shareHint:
+      "Kopio an kod ha ranna an mapp-ma, pe peg ri da karg. N'eus yndro hi a gomprehenda skeudenn an mapp, ny ket na memori na test skan.",
     shareTitle: 'Dewl / allwargo mapp',
     sharePlaceholder: 'Peg code mapp…',
     copy: 'Kopio code mapp',
@@ -955,14 +985,14 @@ export const kw = defineLocale({
     importedBadge: 'Kartenn a veu importiet',
     resetToMine: 'Dother d my kartenn',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Ser agentoù',
     title: 'Krewi tre',
     subtitle: 'Gweithredoù en_directo agent-anelek evit an lornrez redak.',
     emptyTitle: 'Nqua agent-anelek en_directo',
-    emptyDesc: 'Pan delegh an lornrezober d\'ober, raquir o agent-anelek ag frammo a dreed amañ.',
+    emptyDesc: "Pan delegh an lornrezober d'ober, raquir o agent-anelek ag frammo a dreed amañ.",
     running: 'Rediet',
     failed: 'Cudz',
     done: 'Graet',
@@ -985,7 +1015,7 @@ export const kw = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'Ser komand-kenter',
@@ -1014,7 +1044,7 @@ export const kw = defineLocale({
       generatedTag: 'Krewdhys',
       adoptFailed: 'Nepobed k kemerch an mil.',
       toggleFailed: 'Nepobed k che toggla an mil.',
-      noneAvailable: 'Nep mil byv — choosh un d’a d’do d’stallya.',
+      noneAvailable: 'Nep mil byv — choosh un d’a d’do d’stallya.'
     },
     generatePet: {
       title: 'Kemer un pet',
@@ -1036,62 +1066,62 @@ export const kw = defineLocale({
       slowProviderHint: 'Gall an c’hall g.take niverus munutow',
       remix: 'Remixer',
       remixConfirmTitle: 'Remixer an arva?',
-      remixConfirmBody: 'An hyn kynvys kynetennow fresk, omma an hyn y\'n gstart. Y fedir Several vunut.',
+      remixConfirmBody: "An hyn kynvys kynetennow fresk, omma an hyn y'n gstart. Y fedir Several vunut.",
       genericError: 'Kynvys failed —试.agebudh an haa gyselet.',
       referenceImageTooLarge: 'skeudenn referens too large. Ys',
       placeholder: 'Describe a pet to generate…',
       hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
       referenceImageInvalid: 'Could not read that reference image. Try a PNG, JPG, WebP, or GIF.',
       adopt: 'Adopt',
-      startOver: 'Start over',
+      startOver: 'Start over'
     },
     sections: {
       usage: 'Usyow',
       maintenance: 'Maintenance',
       sessions: 'Sessions',
-      system: 'System',
+      system: 'System'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostikk, gwrachSAVE, kurator ha data memor',
       sessions: 'Hwerya ha rheoli sesyow',
       system: 'Stat, loghow ha gweithredoù sistema',
-      usage: 'Token, kosten ha oberiant skil dros amser',
+      usage: 'Token, kosten ha oberiant skil dros amser'
     },
     nav: {
       newChat: {
         title: 'Sesy new',
-        detail: 'Kroghei sesy newydh',
+        detail: 'Kroghei sesy newydh'
       },
       settings: {
         title: 'Setnya',
-        detail: 'Konfiguri OpenAmer desktop',
+        detail: 'Konfiguri OpenAmer desktop'
       },
       skills: {
         title: 'Galluoù',
-        detail: 'Skilù, tapper ha servow MCP',
+        detail: 'Skilù, tapper ha servow MCP'
       },
       messaging: {
         title: 'Messageri',
-        detail: 'Kurri Telegram, Slack, Discord ha mogh',
+        detail: 'Kurri Telegram, Slack, Discord ha mogh'
       },
       artifacts: {
         title: 'Artefaktow',
-        detail: 'Peurlerr erthyadau kinnet',
-      },
+        detail: 'Peurlerr erthyadau kinnet'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Panel sesyow',
-        detail: 'Hwerya, pinn ha rheoli sesyow',
+        detail: 'Hwerya, pinn ha rheoli sesyow'
       },
       system: {
         title: 'Panel sistema',
-        detail: 'Stat y gateways, loghow, enaou anead hysavli',
+        detail: 'Stat y gateways, loghow, enaou anead hysavli'
       },
       usage: {
         title: 'Panel defnydd',
-        detail: 'Token, kosten ha ober sgìl',
-      },
+        detail: 'Token, kosten ha ober sgìl'
+      }
     },
     providerNavigate: 'Nevi',
     providerSessions: 'Sesiynau',
@@ -1154,12 +1184,12 @@ export const kw = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     actionStartedWaiting: 'Gweithred destri, o waith dha stàtus...',
     loadingStatus: 'O kargi stàtus...',
     recentLogs: 'Coflowyw diwedd',
-    noLogs: 'Nen ys kargia\'n gowlyntow c\'w.',
+    noLogs: "Nen ys kargia'n gowlyntow c'w.",
     statSessions: 'Sessyons',
     statApiCalls: 'Galwydydh API',
     statTokens: 'Tokenys yn/er',
@@ -1167,13 +1197,13 @@ export const kw = defineLocale({
     loadingUsage: 'O kargi anv...',
     retry: 'Trysal arall',
     dailyTokens: 'Tokenys degweth',
-    input: 'y\'n',
+    input: "y'n",
     output: 'y war',
     noDailyActivity: 'Nen ys gweythred degweth.',
     topModels: 'Modelow dreist',
-    noModelUsage: 'Nen ys defnydhyth model c\'w.',
+    noModelUsage: "Nen ys defnydhyth model c'w.",
     topSkills: 'Skillyow dreist',
-    noSkillActivity: 'Nen ys gweythred skilli c\'w.',
+    noSkillActivity: "Nen ys gweythred skilli c'w.",
     logFile: 'Foyl gowlynt',
     startInBranch: branch => `New conversation in ${branch}`,
     installTheme: {
@@ -1186,7 +1216,7 @@ export const kw = defineLocale({
       install: 'Install',
       installing: 'Installing...',
       installed: 'Installed',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Settings fields',
     mcpServers: 'MCP servers',
@@ -1196,7 +1226,7 @@ export const kw = defineLocale({
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
     actions: count => `${count} actions`,
-    logLevel: 'Level',
+    logLevel: 'Level'
   },
   messaging: {
     search: 'Hwetha mesaj...',
@@ -1204,18 +1234,18 @@ export const kw = defineLocale({
     loadFailed: 'Cudfa karga lenj mesaj',
     states: {
       connected: 'Kavet',
-      connecting: 'O c\'hevad',
+      connecting: "O c'hevad",
       disabled: 'Digartas',
       fatal: 'Gwall',
       gateway_stopped: 'Stoppyd geoford mesaj',
       not_configured: 'Yeur re gyhevea',
       pending_restart: 'Ymaur adlauch',
       retrying: 'O adkemer',
-      startup_failed: 'Krog a c\'hwithe',
+      startup_failed: "Krog a c'hwithe"
     },
     unknown: 'Ans',
-    hintPendingRestart: 'Adlauch an geoford \'os bar statos evit kemm an kemm ma.',
-    hintGatewayStopped: 'Krog an geoford \'os bar statos evit kevet.',
+    hintPendingRestart: "Adlauch an geoford 'os bar statos evit kemm an kemm ma.",
+    hintGatewayStopped: "Krog an geoford 'os bar statos evit kevet.",
     credentialsSet: 'Kredanshes kroget',
     needsSetup: 'Yeur re gyhevea',
     gatewayStopped: 'Stoppyd geoford mesaj',
@@ -1223,7 +1253,7 @@ export const kw = defineLocale({
     openSetupGuide: 'Diger an gollos gyhevea',
     required: 'Ezhomm',
     recommended: 'Kervet',
-    noTokenNeeded: 'N\'eus token eus dhe an arvent ma yma. Porth an gollos gyhevea a-bove, hag aktivit yn go dener.',
+    noTokenNeeded: "N'eus token eus dhe an arvent ma yma. Porth an gollos gyhevea a-bove, hag aktivit yn go dener.",
     enabled: 'Aktiv',
     disabled: 'Anvakt',
     unsavedChanges: 'Kemmow diverr',
@@ -1238,124 +1268,124 @@ export const kw = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Token an bot',
         help: 'Krewgh bot gant @BotFather, ha pastow an token a ro dhyw.',
-        placeholder: 'Pastow token bot Telegram',
+        placeholder: 'Pastow token bot Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'ID-dyuser a gael an Telegram',
-        help: 'Rekommandet. ID-dyuser niverel, gwyseryn gant komma, a vew o @userinfobot. Hep this, neus dynn an holl re a allas messaos da\'ny bot.',
+        help: "Rekommandet. ID-dyuser niverel, gwyseryn gant komma, a vew o @userinfobot. Hep this, neus dynn an holl re a allas messaos da'ny bot."
       },
       TELEGRAM_PROXY: {
         label: 'URL an epoksi',
-        help: 'Kommodo bep mar bep en rohiom ma Telegram y.stek.',
+        help: 'Kommodo bep mar bep en rohiom ma Telegram y.stek.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token an bot',
-        help: 'Krewgh an aplikasyon en Discord Developer Portal, adda bot, ha pastow an token.',
+        help: 'Krewgh an aplikasyon en Discord Developer Portal, adda bot, ha pastow an token.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'ID-dyuser a gael Discord',
-        help: 'Rekommandet. ID-dyuser Discord, gwyseryn gant komma.',
+        help: 'Rekommandet. ID-dyuser Discord, gwyseryn gant komma.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Kev styth',
-        help: 'ynt, holl, poff.',
+        help: 'ynt, holl, poff.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Alowgh holl dusers Discord',
-        help: 'Devlopans ynken. When true, anyon a allos DM dhe bot na hep roll a lowgh.',
+        help: 'Devlopans ynken. When true, anyon a allos DM dhe bot na hep roll a lowgh.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID kannel ek',
-        help: 'Kannel a ymlo eus an bot mesk proactive (output cron,不受蹄).',
+        help: 'Kannel a ymlo eus an bot mesk proactive (output cron,不受蹄).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Anv kannel ek',
-        help: 'Anv diskwelly an kannel ek en log-ha hag output stat.',
+        help: 'Anv diskwelly an kannel ek en log-ha hag output stat.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Alowgh holl dusers iMessage',
-        help: 'When true, skipep roll lowgh BlueBubbles.',
+        help: 'When true, skipep roll lowgh BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Alowgh holl dusers Mattermost',
+        label: 'Alowgh holl dusers Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Kannel ek',
+        label: 'Kannel ek'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Alowgh holl dusers QQ',
+        label: 'Alowgh holl dusers QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Kannel ek QQ',
-        help: 'Kannel po krokus da warc da d delivering cron.',
+        help: 'Kannel po krokus da warc da d delivering cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Anv kannel ek QQ',
+        label: 'Anv kannel ek QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token bot Slack',
         help: 'Ushewch an token bot veus OAuth & Permissions war-ler neuzaat app Slack.',
-        placeholder: 'Peg token bot Slack',
+        placeholder: 'Peg token bot Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token app Slack',
         help: 'Use the app-level token required for Socket Mode.',
-        placeholder: 'Paste Slack app token',
+        placeholder: 'Paste Slack app token'
       },
       SIGNAL_ACCOUNT: {
         help: 'An niver a zo registret gans y bridj signal-cli azo.',
-        label: 'Phone number',
+        label: 'Phone number'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Defnydzory Signal aservys',
-        help: 'Rekomandet. Komplasow Signal separat gans kroegen.',
+        help: 'Rekomandet. Komplasow Signal separat gans kroegen.'
       },
       WHATSAPP_ENABLED: {
         label: 'Enaoz an bridj WhatsApp',
-        help: 'Krog yn awtomatik gans an togol a zo dindan. Dre na dhaal ma nym mar na gontus ivel e hene.',
+        help: 'Krog yn awtomatik gans an togol a zo dindan. Dre na dhaal ma nym mar na gontus ivel e hene.'
       },
       WHATSAPP_MODE: {
-        label: 'Doz an bridj',
+        label: 'Doz an bridj'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Defnydzory WhatsApp aservys',
-        help: 'Rekomandet. Nivysow telefon komplasow WhatsApp separat gans kroegen.',
+        help: 'Rekomandet. Nivysow telefon komplasow WhatsApp separat gans kroegen.'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Allowed Slack user IDs',
-        help: 'Recommended. Comma-separated Slack user IDs.',
+        help: 'Recommended. Comma-separated Slack user IDs.'
       },
       MATTERMOST_URL: {
         label: 'Server URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Bot token',
+        label: 'Bot token'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Allowed user IDs',
-        help: 'Recommended. Comma-separated Mattermost user IDs.',
+        help: 'Recommended. Comma-separated Mattermost user IDs.'
       },
       MATRIX_HOMESERVER: {
         label: 'Homeserver URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Access token',
+        label: 'Access token'
       },
       MATRIX_USER_ID: {
         label: 'Bot user ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Allowed Matrix user IDs',
-        help: 'Recommended. Comma-separated user IDs in @user:server format.',
+        help: 'Recommended. Comma-separated user IDs in @user:server format.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal bridge URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL of a running signal-cli REST bridge.',
-      },
+        help: 'URL of a running signal-cli REST bridge.'
+      }
     },
     advanced: count => `Advanced (${count})`,
     clearField: key => `Clear ${key}`,
@@ -1369,8 +1399,7 @@ export const kw = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     fieldDescription: 'Deskripsi',
@@ -1394,15 +1423,16 @@ export const kw = defineLocale({
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      github_comment: 'GitHub comment',
+      github_comment: 'GitHub comment'
     },
     search: 'Hunt webhooks...',
     loading: 'O karg webhooks...',
-    loadFailed: 'C\'hoar karg webhooks',
-    hint: 'Kevennufo a changer hag a zo karg-der hagren hon mar der ar c\'hoar a zo da wel. Kevennufo disaozet a dhy错 digymynnyow a dha dhaal.',
+    loadFailed: "C'hoar karg webhooks",
+    hint: "Kevennufo a changer hag a zo karg-der hagren hon mar der ar c'hoar a zo da wel. Kevennufo disaozet a dhy错 digymynnyow a dha dhaal.",
     empty: 'Nep kevennufo webhooks eto.',
     disabledTitle: 'Gloves webhooks disaozet',
-    disabledBody: 'Webhooks yn platform gateway an oll dheby. Enaoz anez hene war-broas war gymer incoming HTTP events; striwennou chat nomm eus rae ma eur kevennufo a dha dorb dhod Telegram, Discord, Slack, pe strollenn allas.',
+    disabledBody:
+      'Webhooks yn platform gateway an oll dheby. Enaoz anez hene war-broas war gymer incoming HTTP events; striwennou chat nomm eus rae ma eur kevennufo a dha dorb dhod Telegram, Discord, Slack, pe strollenn allas.',
     enable: 'Enaoz webhooks',
     enabling: 'O enaoz...',
     enableRow: 'Enaoz',
@@ -1434,7 +1464,7 @@ export const kw = defineLocale({
     done: 'Done',
     fieldName: 'Name',
     fieldNamePlaceholder: 'e.g. github-push',
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     soulSaved: '`SOUL.md` savas',
@@ -1464,7 +1494,7 @@ export const kw = defineLocale({
     deleteTitle: 'Dilemmel an profil?',
     deleteDescPrefix: 'Hag e dilemmelo',
     deleteDescMid: 'hag e dilemmel e',
-    deleteDescSuffix: 'pellgomz. N\'eus neba ket a dhaal.',
+    deleteDescSuffix: "pellgomz. N'eus neba ket a dhaal.",
     close: 'Close profiles',
     nameHint: 'Lowercase letters, digits, hyphens, and underscores. Must start with a letter or digit.',
     title: 'Profiles',
@@ -1512,7 +1542,7 @@ Leave blank to keep the ${mode} default.`,
     created: 'Profile created',
     renamed: 'Profile renamed',
     deleted: 'Profile deleted',
-    setupCopied: 'Setup command copied',
+    setupCopied: 'Setup command copied'
   },
   cron: {
     close: 'Kloz cron',
@@ -1526,14 +1556,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'ar gyr',
       disabled: 'nep aktiv',
       error: 'kamm',
-      completed: 'holl',
+      completed: 'holl'
     },
     deliveryLabels: {
       local: 'An desk-top ma',
       email: 'E-post',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     scheduleLabels: {
       daily: 'Deily',
@@ -1542,7 +1572,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Misly',
       hourly: 'Horol',
       'every-15-minutes': 'Pub 15 vunut',
-      custom: 'Arbennik',
+      custom: 'Arbennik'
     },
     scheduleHints: {
       daily: 'Pub dydh war 9:00 AM',
@@ -1551,7 +1581,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Dydh kentel an mis war 9:00 AM',
       hourly: 'Wor dervaen pub eur',
       'every-15-minutes': 'Pub 15 vunut',
-      custom: 'Syntaks cron pe y\'n hy natur',
+      custom: "Syntaks cron pe y'n hy natur"
     },
     days: {
       '0': 'Dydh Sul',
@@ -1561,7 +1591,7 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Thursday',
       '5': 'Friday',
       '6': 'Saturday',
-      '7': 'Sunday',
+      '7': 'Sunday'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -1572,7 +1602,8 @@ Leave blank to keep the ${mode} default.`,
     topOfHour: 'At the top of every hour',
     everyHourAt: minute => `Every hour at :${minute}`,
     newCron: 'New cron',
-    emptyDescNew: 'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
+    emptyDescNew:
+      'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
     emptyDescSearch: 'Try a broader search query.',
     emptyTitleNew: 'No scheduled jobs yet',
     emptyTitleSearch: 'No matches',
@@ -1631,7 +1662,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Create cron',
     tabs: {
       jobs: 'Jobs',
-      blueprints: 'Blueprints',
+      blueprints: 'Blueprints'
     },
     blueprints: {
       tab: 'Blueprints',
@@ -1645,8 +1676,8 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Loading blueprints...',
       failedLoad: 'Failed to load blueprints',
       emptyTitle: 'No blueprints available',
-      emptyDesc: 'No automation blueprints are available on this backend.',
-    },
+      emptyDesc: 'No automation blueprints are available on this backend.'
+    }
   },
   artifacts: {
     refreshing: 'Adnewheva artefaktow',
@@ -1655,10 +1686,10 @@ Leave blank to keep the ${mode} default.`,
     tabImages: 'Delweddi',
     tabFiles: 'Restroù',
     tabLinks: 'Kevendmys',
-    noArtifactsTitle: 'N\'eus gwaredh artefaktow',
+    noArtifactsTitle: "N'eus gwaredh artefaktow",
     noArtifactsDesc: 'Lavadow delweddi ha restroù as seinioù a ymheglyn enni avel o vozhioù.',
     failedLoad: 'Cudenn an artefaktow',
-    openFailed: 'Cudenn y\'v ymheglyn',
+    openFailed: "Cudenn y'v ymheglyn",
     itemsImage: 'delweddi',
     itemsLink: 'kevendmys',
     itemsFile: 'restroù',
@@ -1680,13 +1711,15 @@ Leave blank to keep the ${mode} default.`,
     kindLink: 'link',
     chat: 'Chat',
     copyUrl: 'Copy URL',
-    copyPath: 'Copy path',
+    copyPath: 'Copy path'
   },
   sidebar: {
     projects: {
       removeWorktreeFailed: 'Kudji diffeil an gweith-tred (kemmù nekemmet?)',
-      removeWorktreeConfirm: 'Diver eus `git` (tears pellgamm an gweith-tred; an bransk a chom), pe nepp kuzh an lenn a chom an gweith-tred war an disk.',
-      removeWorktreeDirty: 'Kemmù nekemmet a veus er an gweith-tred. Diver redyk (tears an kemmù), pe nepp kuzh an lenn a chom an gweith-tred war an disk.',
+      removeWorktreeConfirm:
+        'Diver eus `git` (tears pellgamm an gweith-tred; an bransk a chom), pe nepp kuzh an lenn a chom an gweith-tred war an disk.',
+      removeWorktreeDirty:
+        'Kemmù nekemmet a veus er an gweith-tred. Diver redyk (tears an kemmù), pe nepp kuzh an lenn a chom an gweith-tred war an disk.',
       forceRemove: 'Diver redyk',
       back: 'Projektoù oll',
       ideaPlaceholder: 'Pha eo an projekt-ma? (soiegiet e’n `IDEA.md`)',
@@ -1718,7 +1751,8 @@ Leave blank to keep the ${mode} default.`,
       namePlaceholder: 'e.g. Skunkworks',
       foldersLabel: 'Folders',
       ideaLabel: 'Idea',
-      staleBackend: 'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
+      staleBackend:
+        'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
       deleteConfirm: 'This removes the saved project from OpenAmer. Files, git repos, and worktrees stay untouched.',
       startWork: 'New worktree',
       newWorktreeTitle: 'New worktree',
@@ -1741,10 +1775,10 @@ Leave blank to keep the ${mode} default.`,
       removeWorktree: 'Remove worktree',
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     loading: 'O karg…',
-    loadMore: 'Karga moc\'h',
+    loadMore: "Karga moc'h",
     row: {
       pin: 'Pinn',
       unpin: 'Diz Pinn',
@@ -1759,15 +1793,15 @@ Leave blank to keep the ${mode} default.`,
       openInSplit: 'Eugh war rohs',
       copyIdFailed: 'Kudji kopia ID an sesion',
       sessionActions: 'Oberoù an sesion',
-      sessionRunning: 'Sesiyn a\'ober',
+      sessionRunning: "Sesiyn a'ober",
       needsInput: 'Goed ag yn dleet gweres',
-      waitingForAnswer: 'O c\'hortos gweres',
+      waitingForAnswer: "O c'hortos gweres",
       finishedUnread: 'Dervenn — nagel',
-      backgroundRunning: 'Tasg gefndir a\'ober',
+      backgroundRunning: "Tasg gefndir a'ober",
       renamed: 'Adelgwyd',
-      renameFailed: 'C\'hwit renam',
+      renameFailed: "C'hwit renam",
       renameTitle: 'Adelg an sesiyn',
-      renameDesc: 'Reit titel memorable d\'an sterg. Pugh mar am gyfer gallu kliañ.',
+      renameDesc: "Reit titel memorable d'an sterg. Pugh mar am gyfer gallu kliañ.",
       untitledPlaceholder: 'Sesiyn hep titel',
       ageNow: 'dawan',
       actionsFor: title => `Actions for ${title}`,
@@ -1776,20 +1810,20 @@ Leave blank to keep the ${mode} default.`,
       untitledChat: id => `Chat ${id}`,
       ageDay: 'd',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Kegontrol hiziv',
       yesterday: 'Dec',
       thisWeek: 'Kegontrol an sennan',
       lastWeek: 'Sennan pass',
-      thisMonth: 'Kegontrol an mis ma',
+      thisMonth: 'Kegontrol an mis ma'
     },
     nav: {
       'new-session': 'New session',
       skills: 'Capabilities',
       messaging: 'Messaging',
-      artifacts: 'Artifacts',
+      artifacts: 'Artifacts'
     },
     searchAria: 'Search sessions',
     searchPlaceholder: 'Search sessions…',
@@ -1813,7 +1847,7 @@ Leave blank to keep the ${mode} default.`,
     noSessions: 'No sessions yet',
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     message: 'Kemm',
@@ -1825,10 +1859,10 @@ Leave blank to keep the ${mode} default.`,
       'composer.history': 'Prenn boblenn / istor',
       'composer.mention': 'reference files, folders, urls, git',
       'composer.slash': 'slash command palette',
-      'composer.help': 'this quick help (delete to dismiss)',
+      'composer.help': 'this quick help (delete to dismiss)'
     },
     attachUrlTitle: 'Keg URL',
-    attachUrlDesc: 'OpenAmer a\' dledo an folsten hag e hev e\'vel kontest an tro hedo.',
+    attachUrlDesc: "OpenAmer a' dledo an folsten hag e hev e'vel kontest an tro hedo.",
     urlPlaceholder: 'https://example.com/post',
     urlHintPre: 'Keg URL bep, e.g.',
     attach: 'Keg',
@@ -1853,7 +1887,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -1862,7 +1896,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     startVoice: 'Start voice conversation',
     queueMessage: 'Queue message',
@@ -1898,7 +1932,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'resume a prior session',
       '/details': 'control transcript detail level',
       '/copy': 'copy selection or last assistant message',
-      '/quit': 'exit openamer',
+      '/quit': 'exit openamer'
     },
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
@@ -1934,19 +1968,19 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'Code review',
         description: 'Audit the current change for regressions, dropped edge cases, and missing tests.',
-        text: 'Please review this for bugs, regressions, and missing tests.',
+        text: 'Please review this for bugs, regressions, and missing tests.'
       },
       implementationPlan: {
         label: 'Implementation plan',
         description: 'Outline an approach before touching code so the diff stays focused.',
-        text: 'Please make a concise implementation plan before changing code.',
+        text: 'Please make a concise implementation plan before changing code.'
       },
       explainThis: {
         label: 'Explain this',
         description: 'Walk through how the selected code works and link to the key files.',
-        text: 'Please explain how this works and point me to the key files.',
-      },
-    },
+        text: 'Please explain how this works and point me to the key files.'
+      }
+    }
   },
   updates: {
     stages: {
@@ -1961,7 +1995,7 @@ Leave blank to keep the ${mode} default.`,
       pull: 'Almost there…',
       pydeps: 'Finishing up…',
       update: 'Updating OpenAmer…',
-      rebuild: 'Rebuilding the desktop app…',
+      rebuild: 'Rebuilding the desktop app…'
     },
     checking: 'O hwlookup diwallio…',
     checkFailedTitle: 'N’os kud diwallio',
@@ -1984,28 +2018,33 @@ Leave blank to keep the ${mode} default.`,
       pulling: 'Backend updating…',
       restarting: 'Backend restarting to load the update…',
       notAvailable: 'Update not available for this backend.',
-      failed: 'Backend update failed.',
+      failed: 'Backend update failed.'
     },
     appErrors: {
-      updateLocked: 'An diwedhlo a’n rugs: lennewer OpenAmer arall, orth termonal o’r skoegell `openamer`, y’nno an stegf yn stryp. Klos anez hi ha geve tried.',
-      updateFailed: 'An diwedhlo n’a vea kurrys. K’eus van — ne losea gwyth. Ynnow kloch hennw.',
+      updateLocked:
+        'An diwedhlo a’n rugs: lennewer OpenAmer arall, orth termonal o’r skoegell `openamer`, y’nno an stegf yn stryp. Klos anez hi ha geve tried.',
+      updateFailed: 'An diwedhlo n’a vea kurrys. K’eus van — ne losea gwyth. Ynnow kloch hennw.'
     },
     maybeLater: 'Maybe later',
     moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
     manualTitle: 'Update from your terminal',
-    manualBody: 'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
+    manualBody:
+      'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
     manualPickedUp: 'OpenAmer will pick up the new version next time you launch it.',
     guiSkewTitle: 'Update the desktop app',
-    guiSkewBody: 'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
+    guiSkewBody:
+      'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
     copy: 'Copy',
     copied: 'Copied',
     done: 'Done',
-    applyingBody: 'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
-    applyingBodyBackend: 'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
+    applyingBody:
+      'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
+    applyingBodyBackend:
+      'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
     applyingClose: 'This window will close while the update runs, then OpenAmer reopens on its own.',
     errorTitle: 'Update didn’t finish',
     errorBody: 'No worries — nothing was lost. You can try again now.',
-    notNow: 'Not now',
+    notNow: 'Not now'
   },
   install: {
     stageStates: {
@@ -2013,7 +2052,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'O stegf',
       succeeded: 'Dewhoys',
       skipped: 'Neusiet',
-      failed: 'Cudh',
+      failed: 'Cudh'
     },
     oneTimeTitle: 'OpenAmer eus un stegf unweyd',
     installCommand: 'Lenh y stegf',
@@ -2022,7 +2061,8 @@ Leave blank to keep the ${mode} default.`,
     installTo: 'Y stegf y',
     retryAfterRun: 'Runnet eo hi — geve tried',
     setupChoiceTitle: 'Kurrys OpenAmer Desktop',
-    setupChoiceDesc: 'Kevell an ar-gouez-ma dha porth OpenAmer a ranno hwi yn jennus, na stegf OpenAmer lec’hma war an computer-ma.',
+    setupChoiceDesc:
+      'Kevell an ar-gouez-ma dha porth OpenAmer a ranno hwi yn jennus, na stegf OpenAmer lec’hma war an computer-ma.',
     connectExistingTitle: 'Kevell dha OpenAmer a vo',
     connectExistingShort: 'Kevell an a vo',
     connectExistingDesc: 'Defnydh teknal pell gant token olevel na war-lev en-dor. N deu vaq an stegf lec’h a ranno.',
@@ -2032,7 +2072,7 @@ Leave blank to keep the ${mode} default.`,
     remoteSetupTitle: 'Kev gyskod an OpenAmer savaz',
     remoteSetupDesc: 'Merker URL an gateway chyou. OpenAmer Desktop a diskwedh megha token pe sign-in pellgrom.',
     remoteUrlTitle: 'URL an gateway',
-    remoteUrlDesc: 'Usel URL bon an OpenAmer gateway, gant https:// ma\'n dia war bell.',
+    remoteUrlDesc: "Usel URL bon an OpenAmer gateway, gant https:// ma'n dia war bell.",
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
     probing: 'Diwarnodhaw an autentheg an gateway...',
     probeError: 'Nepobed dos an OpenAmer gateway hwn.',
@@ -2044,7 +2084,7 @@ Leave blank to keep the ${mode} default.`,
     enterUrlFirst: 'Merker URL an gateway yn kent.',
     signInIncomplete: 'Echuennas an venthan enaou adolf an autentheg.',
     tokenTitle: 'Token an setas',
-    tokenDesc: 'Pegglec token an setas a\'n gateway pell e\'n .env file.',
+    tokenDesc: "Pegglec token an setas a'n gateway pell e'n .env file.",
     pasteSessionToken: 'Pegglec token an setas',
     incompleteSignInTest: 'Kev gyskod kent a-dug gwii an gateway OAuth-gated-ma.',
     incompleteTokenTest: 'Merryl token seshunn a-raok da gerrtesting an porth.',
@@ -2054,8 +2094,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Kuddo stellyans a-dallas',
     settingUpTitle: 'Stumpend OpenAmer Agent',
     finishingTitle: 'Kremp a-rag',
-    failedDesc: 'Kuddo unan an lètho a-dallas. On Windows, ma mar eus OpenAmer CLI na desk all y\'o merowel. Stopp pep OpenAmer y\'o merowel, ha reiter. Check an munudo a-ree na log an desk va rag an trask dhyal.',
-    activeDesc: 'Henn yw stumpend unweyth. Y\'n stelyer OpenAmer y\'n karr an egewisedh ha y\'n stumpep an drim. I\'n prentthoadow a war-leh, yn jumpsow an lètho-ma.',
+    failedDesc:
+      "Kuddo unan an lètho a-dallas. On Windows, ma mar eus OpenAmer CLI na desk all y'o merowel. Stopp pep OpenAmer y'o merowel, ha reiter. Check an munudo a-ree na log an desk va rag an trask dhyal.",
+    activeDesc:
+      "Henn yw stumpend unweyth. Y'n stelyer OpenAmer y'n karr an egewisedh ha y'n stumpep an drim. I'n prentthoadow a war-leh, yn jumpsow an lètho-ma.",
     fetchingManifest: 'Karr manifest an stelyer...',
     error: 'Karr',
     hideOutput: 'Kuzh keth an stelyer',
@@ -2067,53 +2109,54 @@ Leave blank to keep the ${mode} default.`,
     copiedOutput: 'Kopyet!',
     copyOutput: 'Kopyo keth',
     reloadRetry: 'Karg ha reiter',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
     signInWith: provider => `Sign in with ${provider}`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     apiKeyOptions: {
       gemini: {
         short: 'Modello Gemini',
-        description: 'Kev dos yn union dhe modello Gemini a Google.',
+        description: 'Kev dos yn union dhe modello Gemini a Google.'
       },
       xai: {
         short: 'Modello Grok',
-        description: 'Kev dos yn union dhe modello xAI Grok.',
+        description: 'Kev dos yn union dhe modello xAI Grok.'
       },
       local: {
         short: 'Gompys yn gervel',
-        description: 'Kev puent OpenAmer at arbenn lec\'h yn goll an OpenAI (vLLM, llama.cpp, Ollama, etc).',
+        description: "Kev puent OpenAmer at arbenn lec'h yn goll an OpenAI (vLLM, llama.cpp, Ollama, etc)."
       },
       fireworks: {
         short: 'direct model API',
-        description: 'Direct access to models hosted by Fireworks AI.',
+        description: 'Direct access to models hosted by Fireworks AI.'
       },
       openrouter: {
         short: 'one key, many models',
-        description: 'Hosts hundreds of models behind a single key. Good default for new installs.',
+        description: 'Hosts hundreds of models behind a single key. Good default for new installs.'
       },
       openai: {
         short: 'GPT-class models',
-        description: 'Direct access to OpenAI models.',
-      },
+        description: 'Direct access to OpenAI models.'
+      }
     },
     backToSignIn: 'Distro a-dro dhe assou',
     getKey: 'Pymp a k',
     replaceCurrent: 'Damooud hiz werth',
     pasteApiKey: 'Stap a k API',
-    localApiKeyPlaceholder: 'K API (dewisol — hepken mar eus rod e\'f arbenn un)',
+    localApiKeyPlaceholder: "K API (dewisol — hepken mar eus rod e'f arbenn un)",
     couldNotSave: 'Nep ulls gorth an kredial.',
     connecting: 'Kev gomp',
     update: 'Diwedhla',
     flowSubtitles: {
-      pkce: 'Y\'n eus y dheula e\'f browser dhe assou, hag anha kél a-rap',
-      device_code: 'Y\'n eus pajenn hwirya e\'f browser — OpenAmer肯 kend connect y\'n awt',
-      external: 'Assou yn un war e\'f termynel, hag anha kél a-dro dhe g-chat',
+      pkce: "Y'n eus y dheula e'f browser dhe assou, hag anha kél a-rap",
+      device_code: "Y'n eus pajenn hwirya e'f browser — OpenAmer肯 kend connect y'n awt",
+      external: "Assou yn un war e'f termynel, hag anha kél a-dro dhe g-chat"
     },
     signInFailed: 'Cudda an assou. Geffrys art.',
     pickDifferentProvider: 'Pymp kynprovider allwedh',
@@ -2151,12 +2194,14 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     pro: 'Pro',
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'Swaps an modell',
@@ -2172,7 +2217,7 @@ Leave blank to keep the ${mode} default.`,
     free: 'Free',
     freeTier: 'Free tier',
     priceTitle: 'Input / Output price per million tokens',
-    wasPrice: 'was',
+    wasPrice: 'was'
   },
   shell: {
     gatewayMenu: {
@@ -2188,7 +2233,7 @@ Leave blank to keep the ${mode} default.`,
       offline: 'Offline',
       inferenceReady: 'Inference ready',
       inferenceNotReady: 'Inference not ready',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'Modh avouy',
@@ -2198,7 +2243,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'Assessiañ an oberow hag arlooe gant an eus hon',
       off: 'Eoff',
       offDescription: 'Runn hep prompt avouy',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'Anseazh',
@@ -2229,7 +2274,7 @@ Leave blank to keep the ${mode} default.`,
       turnRunning: 'o ober',
       currentTurnElapsed: 'Trevgh an turn redr',
       openModelPicker: 'Dig dewell model',
-      modelPinned: 'Pinnet gans wis; serysow new a yn ynuses an holl holl eus namas an default e\'n Settings.',
+      modelPinned: "Pinnet gans wis; serysow new a yn ynuses an holl holl eus namas an default e'n Settings.",
       commitsBehind: (count, branch) => `${count} commit${count === 1 ? '' : 's'} behind ${branch}`,
       desktopVersion: version => `OpenAmer Desktop v${version}`,
       backendVersion: version => `Backend v${version}`,
@@ -2256,13 +2301,13 @@ Leave blank to keep the ${mode} default.`,
           skills: 'Skills',
           subagent_definitions: 'Subagent definitions',
           system_prompt: 'System prompt',
-          tool_definitions: 'Tool definitions',
+          tool_definitions: 'Tool definitions'
         },
         empty: 'No context data yet',
         loading: 'Loading breakdown…',
         percentFull: percent => `${percent}% Full`,
         title: 'Context Usage',
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Open context usage breakdown',
       session: 'Session',
@@ -2273,7 +2318,7 @@ Leave blank to keep the ${mode} default.`,
       noModel: 'no model',
       switchModel: 'Switch model',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
     },
     windowControls: 'Window controls',
     paneControls: 'Pane controls',
@@ -2283,7 +2328,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'No models found',
       editModels: 'Edit Models…',
       refreshModels: 'Refresh Models',
-      fast: 'Fast',
+      fast: 'Fast'
     },
     modelOptions: {
       noOptions: 'No options for this model',
@@ -2299,8 +2344,8 @@ Leave blank to keep the ${mode} default.`,
       max: 'Max',
       ultra: 'Ultra',
       updateFailed: 'Model option update failed',
-      fastFailed: 'Fast mode update failed',
-    },
+      fastFailed: 'Fast mode update failed'
+    }
   },
   rightSidebar: {
     aria: 'Klos war dtu',
@@ -2322,11 +2367,11 @@ Leave blank to keep the ${mode} default.`,
     noDiffs: 'Nep comparez',
     unreadableTitle: 'Neth yn kreadl',
     emptyTitle: 'Prig',
-    emptyBody: 'N\'eus ket nevel e\'n folder ma.',
+    emptyBody: "N'eus ket nevel e'n folder ma.",
     treeErrorTitle: 'Error tre',
     treeErrorBody: 'Hav error dre dremm an folder ma.',
-    tryAgain: 'Ceall dh\'aght',
-    loadingTree: 'O karr an tre\'f restow',
+    tryAgain: "Ceall dh'aght",
+    loadingTree: "O karr an tre'f restow",
     loadingFiles: 'O karr an restow',
     terminalHide: 'Kuzh an termonal',
     terminalsAria: 'Termonaloù',
@@ -2336,7 +2381,7 @@ Leave blank to keep the ${mode} default.`,
     addToChat: 'Keg dan y chat',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'Prevew',
@@ -2345,7 +2390,7 @@ Leave blank to keep the ${mode} default.`,
     closeAll: 'Kuzh an holl',
     closePane: 'Kuzh banell an prevew',
     loading: 'O karr an prevew',
-    unavailable: 'N\'eus ket prevew',
+    unavailable: "N'eus ket prevew",
     overwrite: 'Amzerio',
     discardReload: 'Raoil & adloda',
     console: {
@@ -2357,8 +2402,8 @@ Leave blank to keep the ${mode} default.`,
       resize: 'Hikmat an konsol previzya',
       title: 'Konsol Previzya',
       sendToChat: 'Herm dhe chat',
-      copySelected: 'Kopia an dibladh dhe\'r clipboard',
-      copyAll: 'Kopia holl dhe\'r clipboard',
+      copySelected: "Kopia an dibladh dhe'r clipboard",
+      copyAll: "Kopia holl dhe'r clipboard",
       copy: 'Kopia',
       clear: 'Kler',
       empty: 'Nyal tebrium konsol eto.',
@@ -2366,7 +2411,7 @@ Leave blank to keep the ${mode} default.`,
       sentTitle: 'Hermet dhe chat',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Previzya an app kudsa war-lergh',
@@ -2391,16 +2436,18 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'Reloading the preview now.',
       restartFailedTitle: 'Preview restart failed',
       restartFailedMessage: 'OpenAmer could not restart the server.',
-      stillWorking: 'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
+      stillWorking:
+        'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
       workspaceReloading: 'Workspace changed, reloading preview',
       fileChanged: url => `File changed, reloading preview: ${url}`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
-      moduleMimeDescription: 'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
+      moduleMimeDescription:
+        'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'The preview page could not be reached.',
       openTarget: url => `Open ${url}`,
-      fallbackTitle: 'Preview',
+      fallbackTitle: 'Preview'
     },
     closeTab: label => `Close ${label}`,
     opening: 'Opening...',
@@ -2426,7 +2473,8 @@ Leave blank to keep the ${mode} default.`,
     unsavedChanges: 'Unsaved changes',
     saveFailed: message => `Couldn't save: ${message}`,
     diskChangedTitle: 'File changed on disk',
-    diskChangedBody: 'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
+    diskChangedBody:
+      'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?'
   },
   zones: {
     custom: 'Kustum',
@@ -2446,7 +2494,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Minimize',
     restore: 'Restore',
     closeRunningTitle: 'Close running tab?',
-    closeRunningBody: 'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
+    closeRunningBody:
+      'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
     closeRunningConfirm: 'Close tab',
     closeOthers: 'Close others',
     closeToRight: 'Close to the right',
@@ -2471,7 +2520,7 @@ Leave blank to keep the ${mode} default.`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
     saveApply: 'Save & apply',
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
@@ -2482,7 +2531,8 @@ Leave blank to keep the ${mode} default.`,
       copy: 'Kopia',
       refresh: 'Adlamaeth',
       moreActions: 'Keviañ mar',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
@@ -2501,15 +2551,16 @@ Leave blank to keep the ${mode} default.`,
       restoreCheckpoint: 'Restore checkpoint',
       restoreFromHere: 'Restore checkpoint — rerun from this prompt',
       restoreTitle: 'Restore to this checkpoint?',
-      restoreBody: 'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
+      restoreBody:
+        'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
       restoreConfirm: 'Restore & rerun',
       restoreNext: 'Restore next checkpoint',
       goForward: 'Go forward',
       sendEdited: 'Send edited message',
-      attachingFile: 'Attaching…',
+      attachingFile: 'Attaching…'
     },
     approval: {
-      gatewayDisconnected: 'Porth OpenAmer n\'eus ketjennet',
+      gatewayDisconnected: "Porth OpenAmer n'eus ketjennet",
       sendFailed: 'Neput kys daproement',
       run: 'Kemer',
       command: 'Kemenn',
@@ -2520,11 +2571,12 @@ Leave blank to keep the ${mode} default.`,
       reject: 'Dihi',
       alwaysTitle: 'Dha gwell kemenn yn pur evit?',
       alwaysAllow: 'Kemer pur evit',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
-      notReady: 'N\'eus klyviet y g/request na disa eis',
-      gatewayDisconnected: 'Porth OpenAmer n\'eus ketjennet',
+      notReady: "N'eus klyviet y g/request na disa eis",
+      gatewayDisconnected: "Porth OpenAmer n'eus ketjennet",
       sendFailed: 'Neput kys dheut daproement',
       loadingQuestion: 'Karr gwern…',
       other: 'Rhyddh (skriv y grefn)',
@@ -2534,7 +2586,7 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'Kenderch',
       lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
       lateAnswerTip: 'Draft this answer as a follow-up message',
-      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.',
+      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.'
     },
     tool: {
       statusRecovered: 'Adlhwythas',
@@ -2550,123 +2602,123 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Runnet',
         running: 'O runnet',
         ranCode: 'Runnet kod',
-        runningCode: 'Skripta',
+        runningCode: 'Skripta'
       },
       prefixes: {
         browser: 'Pellbrowser',
-        web: 'Gorbob',
+        web: 'Gorbob'
       },
       titles: {
         browser_click: {
           done: 'Kliket elwent an duplik',
           pending: 'O klik elwent an duplik',
-          pendingAction: 'O klik',
+          pendingAction: 'O klik'
         },
         browser_fill: {
           done: 'Llanmer maen an low',
           pending: 'O llanmer maen an low',
-          pendingAction: 'Olammer',
+          pendingAction: 'Olammer'
         },
         browser_navigate: {
           done: 'Peba opennet',
           pending: 'Peba o beo',
-          pendingAction: 'Ope',
+          pendingAction: 'Ope'
         },
         browser_snapshot: {
           done: 'Skeudenn skrin a gemer',
           pending: 'O gemer skeudenn skrin',
-          pendingAction: 'O gemer',
+          pendingAction: 'O gemer'
         },
         browser_take_screenshot: {
           done: 'Skeudenn skrin a gemer',
           pending: 'O gemer skeudenn skrin',
-          pendingAction: 'O gemer',
+          pendingAction: 'O gemer'
         },
         browser_type: {
           done: 'Teipet war peba',
           pending: 'Teipya war peba',
-          pendingAction: 'Teipya',
+          pendingAction: 'Teipya'
         },
         clarify: {
           done: 'Hwedhys hynn',
           pending: 'Hwedh hynn',
-          pendingAction: 'Hwedh',
+          pendingAction: 'Hwedh'
         },
         cronjob: {
           pending: 'Amcyn cron job',
           pendingAction: 'Amcyn',
-          done: 'Cron job',
+          done: 'Cron job'
         },
         edit_file: {
           done: 'Kemmethas rest',
           pending: 'O redig restr',
-          pendingAction: 'O redig',
+          pendingAction: 'O redig'
         },
         execute_code: {
           done: 'Kod kevreus',
           pending: 'O skriptia',
-          pendingAction: 'O skriptia',
+          pendingAction: 'O skriptia'
         },
         image_generate: {
           done: 'Skeudenn a breitha',
           pending: 'O breitha skeudenn',
-          pendingAction: 'O breitha',
+          pendingAction: 'O breitha'
         },
         list_files: {
           done: 'Restr a roltis',
           pending: 'O rolti restr',
-          pendingAction: 'O rolti',
+          pendingAction: 'O rolti'
         },
         patch: {
           done: 'Restr pasis',
           pending: 'O pasi restr',
-          pendingAction: 'O pasi',
+          pendingAction: 'O pasi'
         },
         read_file: {
           done: 'Lêa restr',
           pending: 'O lêa restr',
-          pendingAction: 'O lêa',
+          pendingAction: 'O lêa'
         },
         search_files: {
           done: 'Restr a hwilvas',
           pending: 'O hwilva restr',
-          pendingAction: 'O hwilva',
+          pendingAction: 'O hwilva'
         },
         write_file: {
           pendingAction: 'Kemm',
           done: 'Edited file',
-          pending: 'Editing file',
+          pending: 'Editing file'
         },
         session_search_recall: {
           done: 'Searched session history',
           pending: 'Searching session history',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         terminal: {
           done: 'Ran command',
           pending: 'Running command',
-          pendingAction: 'Running',
+          pendingAction: 'Running'
         },
         todo: {
           done: 'Updated todos',
           pending: 'Updating todos',
-          pendingAction: 'Updating',
+          pendingAction: 'Updating'
         },
         vision_analyze: {
           done: 'Analyzed image',
           pending: 'Analyzing image',
-          pendingAction: 'Analyzing',
+          pendingAction: 'Analyzing'
         },
         web_extract: {
           done: 'Read webpage',
           pending: 'Reading webpage',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         web_search: {
           done: 'Searched web',
           pending: 'Searching web',
-          pendingAction: 'Searching',
-        },
+          pendingAction: 'Searching'
+        }
       },
       code: 'Code',
       copyCode: 'Copy code',
@@ -2694,9 +2746,9 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'Nia kevet eus porth OpenAmer',
@@ -2707,7 +2759,7 @@ Leave blank to keep the ${mode} default.`,
     sudoPlaceholder: 'Password sudo',
     secretTitle: 'Gozh ret',
     secretDesc: 'Eus kredans an OpenAmer evit肯續.',
-    secretPlaceholder: 'Niver an gozh',
+    secretPlaceholder: 'Niver an gozh'
   },
   desktop: {
     audioReadFailed: 'Nio bo keles audio rekoret',
@@ -2717,43 +2769,45 @@ Leave blank to keep the ${mode} default.`,
     providerCredentialRequired: 'Kevia kredans a phasder ari ari kent kent anavez.',
     emptySlashCommand: 'Kement slash prennam',
     desktopCommands: 'Kementù an desktop',
-    yoloArmed: 'YOLO laflyn d\'an chat ma',
+    yoloArmed: "YOLO laflyn d'an chat ma",
     noClipboardImage: 'Noy skeudenn a gorf yn an gromm',
     clipboardPasteFailed: 'Cuddaas peustry an gromm',
     dropFiles: 'Teugh files',
     handoff: {
-      pickPlatform: 'Dewis an lec\'h ma dhodh',
+      pickPlatform: "Dewis an lec'h ma dhodh",
       timedOut: 'Kroazh amser yn gortheby an porth. Ha `openamer gateway` yn-taa?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
-    yoloToggleFailed: 'N\'yall k toggel YOLO',
+    yoloToggleFailed: "N'yall k toggel YOLO",
     unknownProfile: 'Profil dydhys',
-    setProfileFailed: 'C\'hwezheas ouzh taoset an profil',
+    setProfileFailed: "C'hwezheas ouzh taoset an profil",
     sttDisabled: 'Differet eo an text war sonn yn an tas.',
-    stopFailed: 'C\'hwezheas ouzh stop',
-    regenerateFailed: 'C\'hwezheas ouzh adkenerere',
-    editFailed: 'C\'hwezheas ouzh kemma',
-    resumeFailed: 'C\'hwezheas ouzh adlaka',
-    resumeStrandedTitle: 'N\'yall k karg an sessiom-ma',
-    resumeStrandedBody: 'C\'hwezheas kevre an sessiom-ma, hag an adkavatañ aetek a zo e goude. Gwiriaat ma re o ober an porth, hag emprenn agev.',
+    stopFailed: "C'hwezheas ouzh stop",
+    regenerateFailed: "C'hwezheas ouzh adkenerere",
+    editFailed: "C'hwezheas ouzh kemma",
+    resumeFailed: "C'hwezheas ouzh adlaka",
+    resumeStrandedTitle: "N'yall k karg an sessiom-ma",
+    resumeStrandedBody:
+      "C'hwezheas kevre an sessiom-ma, hag an adkavatañ aetek a zo e goude. Gwiriaat ma re o ober an porth, hag emprenn agev.",
     resumeRetry: 'Emprenn agev',
     nothingToBranch: 'Ninet da vreñjat',
     branchNeedsChat: 'Krog pe adlaka ar gomek a-raok da vreñjat.',
     sessionBusy: 'Bius eo an sessiom',
     branchStopCurrent: 'Sopio an tro redonnet a-raok da vreñjat an gomek ma.',
-    branchNoText: 'Ditim n\'eus ket test eo an messaj-ma.',
-    branchFailed: 'C\'hwezheas ouzh vreñjat',
-    deleteFailed: 'C\'hwezheas ouzh diloet',
+    branchNoText: "Ditim n'eus ket test eo an messaj-ma.",
+    branchFailed: "C'hwezheas ouzh vreñjat",
+    deleteFailed: "C'hwezheas ouzh diloet",
     archived: 'Pethet',
-    archiveFailed: 'C\'hwezheas ouzh pethet',
+    archiveFailed: "C'hwezheas ouzh pethet",
     skillCommandsAvailable: count => `${count} skill commands available.`,
     warningLine: message => `warning: ${message}`,
     yoloOff: 'YOLO off',
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
     branchTitle: n => `Draft: Branch #${n}`,
@@ -2776,31 +2830,31 @@ Leave blank to keep the ${mode} default.`,
     imageWriteFailed: 'Failed to write image to disk.',
     imageAttachFailed: 'Image attach failed',
     attachImages: 'Attach images',
-    clipboard: 'Clipboard',
+    clipboard: 'Clipboard'
   },
   errors: {
     genericFailure: 'Re hweryd ymhoghyk',
     boundaryTitle: 'Reu da ymhoghyk en interface',
     boundaryDesc: 'An arw a hael gyd kudyn na vudh. Ny ves eich dha chatifon hag an arventy.',
-    reloadWindow: 'Adkarghal an c\'hindow',
-    openLogs: 'Digori an levy',
+    reloadWindow: "Adkarghal an c'hindow",
+    openLogs: 'Digori an levy'
   },
   ui: {
     search: {
-      clear: 'Klerch an hwerv',
+      clear: 'Klerch an hwerv'
     },
     pagination: {
       label: 'Pajinasyon',
       previous: 'Kent',
       previousAria: 'Go dha an follenn kent',
       next: 'Arall',
-      nextAria: 'Go dha an follenn arall',
+      nextAria: 'Go dha an follenn arall'
     },
     sidebar: {
       title: 'Barv-ware',
       description: 'Displeithya an barv-ware movil.',
-      toggle: 'Kewlys an barv-ware',
-    },
+      toggle: 'Kewlys an barv-ware'
+    }
   },
   common: {
     apply: 'Apply',
@@ -2841,7 +2895,7 @@ Leave blank to keep the ${mode} default.`,
     update: 'Update',
     tryHint: term => `Try “${term}”`,
     on: 'On',
-    off: 'Off',
+    off: 'Off'
   },
   fileMenu: {
     revealFinder: 'Reveal in Finder',
@@ -2856,7 +2910,7 @@ Leave blank to keep the ${mode} default.`,
     renameLabel: 'New name',
     deleteTitle: name => `Delete ${name}?`,
     deleteBody: 'It will be moved to the Trash — you can restore it from there.',
-    pathCopied: 'Path copied',
+    pathCopied: 'Path copied'
   },
   boot: {
     ready: 'OpenAmer Desktop is ready',
@@ -2866,7 +2920,7 @@ Leave blank to keep the ${mode} default.`,
       loadingSettings: 'Loading OpenAmer settings',
       loadingSessions: 'Loading recent sessions',
       startingDesktopConnection: 'Starting desktop connection',
-      startingOpenAmerDesktop: 'Starting OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Starting OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'OpenAmer background process exited.',
@@ -2875,13 +2929,15 @@ Leave blank to keep the ${mode} default.`,
       desktopBootFailed: 'Desktop boot failed',
       gatewayConnectionLost: 'Lost connection to the gateway',
       gatewaySignInRequired: 'Gateway sign-in required',
-      ipcBridgeUnavailable: 'Desktop IPC bridge is unavailable.',
+      ipcBridgeUnavailable: 'Desktop IPC bridge is unavailable.'
     },
     failure: {
       title: "OpenAmer couldn't start",
-      description: "The background gateway didn't come up. Try one of the recovery steps below. Nothing here deletes your chats or settings.",
+      description:
+        "The background gateway didn't come up. Try one of the recovery steps below. Nothing here deletes your chats or settings.",
       remoteTitle: 'Remote gateway sign-in required',
-      remoteDescription: 'Your remote gateway session has expired. Sign in again to reconnect. Nothing here deletes your chats or settings.',
+      remoteDescription:
+        'Your remote gateway session has expired. Sign in again to reconnect. Nothing here deletes your chats or settings.',
       retry: 'Retry',
       repairInstall: 'Repair install',
       useLocalGateway: 'Use local gateway',
@@ -2889,7 +2945,8 @@ Leave blank to keep the ${mode} default.`,
       back: 'Back',
       openLogs: 'Open logs',
       repairHint: 'Repair re-runs the installer and can take a few minutes on a fresh machine.',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
       signOutAndSignIn: 'Sign out & sign in',
       remoteFailureHint: 'Check the gateway URL and sign-in under Gateway settings, or switch to the local gateway.',
       hideRecentLogs: 'Hide recent logs',
@@ -2901,11 +2958,12 @@ Leave blank to keep the ${mode} default.`,
       signInFailed: 'Sign-in failed',
       signInToRemoteGateway: 'Sign in to remote gateway',
       signInWithProvider: provider => `Sign in with ${provider}`,
-      identityProvider: 'your identity provider',
-    },
+      identityProvider: 'your identity provider'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
   },
   language: {
     label: 'Language',
@@ -2914,7 +2972,7 @@ Leave blank to keep the ${mode} default.`,
     saveError: 'Language update failed',
     switchTo: 'Switch language',
     searchPlaceholder: 'Search languages…',
-    noResults: 'No languages found',
+    noResults: 'No languages found'
   },
   statusStack: {
     agents: 'Agents',
@@ -2962,18 +3020,19 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'Open PR',
       ghMissing: 'Install the GitHub CLI (gh) and sign in to open PRs',
       agentShip: 'Ask OpenAmer to open PR',
-      agentShipPrompt: 'Review the current changes, commit them with a clear conventional-commit message, push the branch, and open a pull request.',
+      agentShipPrompt:
+        'Review the current changes, commit them with a clear conventional-commit message, push the branch, and open a pull request.',
       newBranch: 'New branch',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
       switchFailed: branch => `Could not switch to ${branch}`,
-      worktrees: 'Worktrees',
-    },
+      worktrees: 'Worktrees'
+    }
   },
   modelVisibility: {
     title: 'Models',
     search: 'Search models',
     noAuthenticatedProviders: 'No authenticated providers.',
-    addProvider: 'Add provider…',
-  },
+    addProvider: 'Add provider…'
+  }
 })

@@ -44,7 +44,7 @@ export const ga = defineLocale({
     update: 'Nuashonraigh',
     tryHint: term => `Bain triail as “${term}”`,
     on: 'Ar',
-    off: 'As',
+    off: 'As'
   },
   fileMenu: {
     revealFinder: 'Taispeáin in Finder',
@@ -59,7 +59,7 @@ export const ga = defineLocale({
     renameLabel: 'Ainm nua',
     deleteTitle: name => `Scrios ${name}?`,
     deleteBody: 'Beidh sé bogtha go dtí an Bosca Bruscar — is féidir é a chur ar ais as sin.',
-    pathCopied: 'Cóipeáladh an conair',
+    pathCopied: 'Cóipeáladh an conair'
   },
   boot: {
     ready: 'Tá OpenAmer Desktop réidh',
@@ -69,7 +69,7 @@ export const ga = defineLocale({
       loadingSettings: 'Socruithe OpenAmer á lódáil',
       loadingSessions: 'Seisiúin le déanaí á lódáil',
       startingDesktopConnection: 'Ag tosú nasc na deisce',
-      startingOpenAmerDesktop: 'Ag tosú OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Ag tosú OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Críoch a bhain leis an bpróiseas cúlbhunaithe OpenAmer.',
@@ -78,21 +78,24 @@ export const ga = defineLocale({
       desktopBootFailed: 'Theip ar thosú na deisce',
       gatewayConnectionLost: 'Cailleadh an nasc leis an ngeata',
       gatewaySignInRequired: 'Teastaíonn síniú isteach sa gheata',
-      ipcBridgeUnavailable: 'Níl droichead IPC na deisce ar fáil.',
+      ipcBridgeUnavailable: 'Níl droichead IPC na deisce ar fáil.'
     },
     failure: {
-      title: "Níorbh fhéidir OpenAmer a thosú",
-      description: "Níor thosaigh an geata cúlbhunaithe. Bain triail as ceann de na céimeanna athshlánúcháin thíos. Ní scriosann aon rud anseo do chomhráite ná do chuid socruithe.",
+      title: 'Níorbh fhéidir OpenAmer a thosú',
+      description:
+        'Níor thosaigh an geata cúlbhunaithe. Bain triail as ceann de na céimeanna athshlánúcháin thíos. Ní scriosann aon rud anseo do chomhráite ná do chuid socruithe.',
       remoteTitle: 'Teastaíonn síniú isteach sa gheata cianda',
-      remoteDescription: 'Chuaigh do sheisiún an gheata cianda in éag. Signáil isteach arís chun athcheangal. Ní scriosann aon rud anseo do chomhráite ná do chuid socruithe.',
+      remoteDescription:
+        'Chuaigh do sheisiún an gheata cianda in éag. Signáil isteach arís chun athcheangal. Ní scriosann aon rud anseo do chomhráite ná do chuid socruithe.',
       retry: 'Bain triail eile as',
       repairInstall: 'Deisiúigh an t-instealladh',
       useLocalGateway: 'Bain úsáid as geata logánta',
       gatewaySettings: 'Socruithe geata',
       back: 'Ar ais',
       openLogs: 'Oscail logs',
-      repairHint: 'Ritheann an deisiú an suiteálaí arís agus d\'fhéadfadh roinnt nóiméad a thógáil ar mheaisín nua.',
-      remoteSignInHint: signInLabel => `Signálann sé amach as an seisiún brabhsálaí cianda sábháilte, agus osclaíonn ${signInLabel} ina dhiaidh sin. Bain úsáid as "Bain úsáid as geata logánta" chun filleadh ar an cúlbhunach comhtháite.`,
+      repairHint: "Ritheann an deisiú an suiteálaí arís agus d'fhéadfadh roinnt nóiméad a thógáil ar mheaisín nua.",
+      remoteSignInHint: signInLabel =>
+        `Signálann sé amach as an seisiún brabhsálaí cianda sábháilte, agus osclaíonn ${signInLabel} ina dhiaidh sin. Bain úsáid as "Bain úsáid as geata logánta" chun filleadh ar an cúlbhunach comhtháite.`,
       signOutAndSignIn: 'Signáil amach agus isteach',
       remoteFailureHint: 'Seiceáil an URL agus an síniú isteach i socruithe na geata, nó athraigh go geata logánta.',
       hideRecentLogs: 'Folaigh logs le déanaí',
@@ -104,8 +107,8 @@ export const ga = defineLocale({
       signInFailed: 'Theip ar an síniú isteach',
       signInToRemoteGateway: 'Sínigh isteach sa gheata cianda',
       signInWithProvider: provider => `Sínigh isteach le ${provider}`,
-      identityProvider: 'do sholáthraí aitheantais',
-    },
+      identityProvider: 'do sholáthraí aitheantais'
+    }
   },
   notifications: {
     region: 'Fógraí',
@@ -118,21 +121,23 @@ export const ga = defineLocale({
     copyDetail: 'Cóipeáil mionsonraí',
     copyDetailFailed: 'Níorbh fhéidir mionsonraí an fhógra a chóipeáil',
     backendOutOfDateTitle: 'Tá an cúlbhunach as dáta',
-    backendOutOfDateMessage: 'Tá do cúlbhunach OpenAmer níos sine ná an leagan deisce seo agus b\'fhéidir nach oibreoidh sé i gceart. Nuashonraigh chun iad a ailíniú.',
+    backendOutOfDateMessage:
+      "Tá do cúlbhunach OpenAmer níos sine ná an leagan deisce seo agus b'fhéidir nach oibreoidh sé i gceart. Nuashonraigh chun iad a ailíniú.",
     installMethodUnsupportedTitle: 'Modh suiteála gan tacaíocht',
     updateOpenAmer: 'Nuashonraigh OpenAmer',
     updateReadyTitle: 'Nuashonrú réidh',
     updateReadyMessage: count => `${count} athrú nua ${count === 1 ? 'athrú' : 'athruithe'} ar fáil.`,
-    seeWhatsNew: "Féach cad atá nua",
+    seeWhatsNew: 'Féach cad atá nua',
     errors: {
       elevenLabsNeedsKey: 'Teastaíonn ELEVENLABS_API_KEY ó ElevenLabs STT.',
       elevenLabsRejectedKey: 'Dhiúltaigh ElevenLabs an eochair API (401).',
       gatewayAuthFailed: 'Theip ar fhíordheimhniú an gheata — seiceáil do API_SERVER_KEY.',
-      methodNotAllowed: 'Dhiúltaigh cúlbhunach na deisce an t-iarratas sin (405 Method Not Allowed). Bain triail as OpenAmer Desktop a atosú.',
+      methodNotAllowed:
+        'Dhiúltaigh cúlbhunach na deisce an t-iarratas sin (405 Method Not Allowed). Bain triail as OpenAmer Desktop a atosú.',
       microphonePermission: 'Diúltaíodh cead an mhicreafóin.',
       openaiRejectedApiKey: 'Dhiúltaigh OpenAI an eochair API.',
       openaiRejectedApiKeyWithStatus: status => `Dhiúltaigh OpenAI an eochair API (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'Teastaíonn VOICE_TOOLS_OPENAI_KEY nó OPENAI_API_KEY ó OpenAI TTS.',
+      openaiTtsNeedsKey: 'Teastaíonn VOICE_TOOLS_OPENAI_KEY nó OPENAI_API_KEY ó OpenAI TTS.'
     },
     voice: {
       configureSpeechToText: 'Cumraigh caint go téacs chun an modh gutha a úsáid.',
@@ -151,7 +156,7 @@ export const ga = defineLocale({
       transcriptionFailed: 'Theip ar aistriú gutha',
       transcriptionUnavailable: 'Níl aistriú gutha ar fáil fós.',
       tryRecordingAgain: 'Bain triail as taifeadadh arís.',
-      unavailable: 'Níl an ghuth ar fáil',
+      unavailable: 'Níl an ghuth ar fáil'
     },
     native: {
       approvalTitle: 'Teastaíonn ceadúnas',
@@ -164,11 +169,12 @@ export const ga = defineLocale({
       turnErrorTitle: 'Theip ar an timthriall',
       backgroundDoneTitle: 'Críochnaíodh an tasc cúlbhunaithe',
       backgroundFailedTitle: 'Theip ar an tasc cúlbhunaithe',
-      creditsTitle: 'Credíonta',
-    },
+      creditsTitle: 'Credíonta'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Tá rindreáil bhogearraí gníomhach — braitheadh taispeáint chianda (${reason}). Tá luasghéarú GPU díchumasaithe chun splancadh a chosc.`,
+    message: reason =>
+      `Tá rindreáil bhogearraí gníomhach — braitheadh taispeáint chianda (${reason}). Tá luasghéarú GPU díchumasaithe chun splancadh a chosc.`
   },
   billingBlock: {
     titleOpenamer: 'Credíonta OpenAmer caillte',
@@ -176,7 +182,7 @@ export const ga = defineLocale({
     fallbackMessage: 'Níl aon credíontas fágtha ar do chuntas. Cuir credíontas leis chun leanúint ar aghaidh.',
     openBilling: 'Oscail billiúint',
     addCredits: 'Cuir credíonta leis',
-    dismiss: 'Diúltaigh',
+    dismiss: 'Diúltaigh'
   },
   titlebar: {
     hideSidebar: 'Folaigh an barra taobh',
@@ -193,7 +199,7 @@ export const ga = defineLocale({
     openStarmap: 'Oscail an ghraf cuimhne',
     openKeybinds: 'Aisceanna méarchláir',
     layoutEditor: 'Eagarthóir leagan amach',
-    layoutEditorTitle: 'Eagarthóir leagan amach — Cmd/Ctrl+cliceáil aiseoidh an leagan amach',
+    layoutEditorTitle: 'Eagarthóir leagan amach — Cmd/Ctrl+cliceáil aiseoidh an leagan amach'
   },
   keybinds: {
     title: 'Aicearraí méarchláir',
@@ -210,7 +216,7 @@ export const ga = defineLocale({
       profiles: 'Próifílí',
       session: 'Seisiún',
       navigation: 'Nascleanúint',
-      view: 'Amharc',
+      view: 'Amharc'
     },
     actions: {
       'keybinds.openPanel': 'Oscail aicearraí méarchláir',
@@ -289,8 +295,8 @@ export const ga = defineLocale({
       'composer.slash': 'Pailéad orduithe slais',
       'composer.help': 'Cabhair thapa',
       'composer.history': 'Rothlaigh preabfhuinneog / stair',
-      'composer.cancel': 'Dún preabfhuinneog · cealaigh an rith',
-    },
+      'composer.cancel': 'Dún preabfhuinneog · cealaigh an rith'
+    }
   },
   language: {
     label: 'Teanga',
@@ -299,7 +305,7 @@ export const ga = defineLocale({
     saveError: 'Theip ar nuashonrú na teanga',
     switchTo: 'Athraigh teanga',
     searchPlaceholder: 'Cuardaigh teangacha…',
-    noResults: 'Níor aimsíodh teangacha',
+    noResults: 'Níor aimsíodh teangacha'
   },
   settings: {
     closeSettings: 'Dún socruithe',
@@ -324,11 +330,12 @@ export const ga = defineLocale({
       about: 'Maidir leis',
       billing: 'Billiúint',
       notifications: 'Fógraí',
-      plugins: 'Breiseáin',
+      plugins: 'Breiseáin'
     },
     plugins: {
       title: 'Breiseáin deisce',
-      blurb: 'Breiseáin UI atá luchtaithe san aip seo — cuachta leis an tógáil, nó scaoilte isteach sa fillteán desktop-plugins (lena n-áirítear iad siúd a scríobhann OpenAmer). Má dhíchumasaítear breiseán, díluchtaítear é go beo agus maireann sé tar éis atosaithe.',
+      blurb:
+        'Breiseáin UI atá luchtaithe san aip seo — cuachta leis an tógáil, nó scaoilte isteach sa fillteán desktop-plugins (lena n-áirítear iad siúd a scríobhann OpenAmer). Má dhíchumasaítear breiseán, díluchtaítear é go beo agus maireann sé tar éis atosaithe.',
       count: n => `${n} suiteáilte`,
       openFolder: 'Oscail fillteán na mbreiseán',
       rescan: 'Athscanáil',
@@ -340,40 +347,41 @@ export const ga = defineLocale({
       kinds: {
         bundled: 'cuimsithe',
         disk: 'ar diosca',
-        runtime: 'am rite',
-      },
+        runtime: 'am rite'
+      }
     },
     notifications: {
       title: 'Fógraí',
-      intro: 'Fógraí deisce dúchasacha, ar leithligh ó thóstanna san aip. Tá siad seo áitiúil don ghléas — coinníonn gach ríomhaire a shocruithe féin.',
+      intro:
+        'Fógraí deisce dúchasacha, ar leithligh ó thóstanna san aip. Tá siad seo áitiúil don ghléas — coinníonn gach ríomhaire a shocruithe féin.',
       enableAll: 'Cumasaigh fógraí',
       enableAllDesc: 'Príomhlas. Múch é seo chun gach fógra thíos a chiúnú.',
       focusedHint: 'Ní spreagtar folaird chríochnaithe ach amháin nuair a bhíonn OpenAmer sa chúlra.',
       kinds: {
         approval: {
           label: 'Ceadú de dhíth',
-          description: 'Tá ordú ag fanacht leat lena cheadú nó lena dhiúltú.',
+          description: 'Tá ordú ag fanacht leat lena cheadú nó lena dhiúltú.'
         },
         input: {
           label: 'Ionchur de dhíth',
-          description: 'Chuir OpenAmer ceist ort nó tá pasfhocal nó rún de dhíth air.',
+          description: 'Chuir OpenAmer ceist ort nó tá pasfhocal nó rún de dhíth air.'
         },
         turnDone: {
           label: 'Freagra réidh',
-          description: 'Chríochnaigh babhta agus OpenAmer sa chúlra.',
+          description: 'Chríochnaigh babhta agus OpenAmer sa chúlra.'
         },
         turnError: {
           label: 'Theip ar bhabhta',
-          description: 'Chríochnaigh babhta le hearráid.',
+          description: 'Chríochnaigh babhta le hearráid.'
         },
         backgroundDone: {
           label: 'Tasc cúlra críochnaithe',
-          description: 'Críochnaíodh ordú teirminéil a bhí sa chúlra.',
+          description: 'Críochnaíodh ordú teirminéil a bhí sa chúlra.'
         },
         credits: {
           label: 'Folaird creidmheasa',
-          description: 'Tá rochtain ar chreidmheas curtha ar sos nó athchóirithe.',
-        },
+          description: 'Tá rochtain ar chreidmheas curtha ar sos nó athchóirithe.'
+        }
       },
       test: 'Seol fógra tástála',
       testTitle: 'OpenAmer',
@@ -381,8 +389,9 @@ export const ga = defineLocale({
       testSent: 'Tástáil seolta. Mura bhfeictear aon rud, seiceáil ceadanna fógraí do OS agus Fócas/Ná Cuir Isteach.',
       testUnsupported: 'Ní thacaíonn an córas seo le fógraí dúchasacha.',
       completionSoundTitle: 'Fuaim críochnaithe',
-      completionSoundDesc: 'Seintear é nuair a chríochnaíonn seal gníomhaire. Roghnaigh réamhshocrú agus déan réamhamharc air anseo.',
-      completionSoundPreview: 'Réamhamharc',
+      completionSoundDesc:
+        'Seintear é nuair a chríochnaíonn seal gníomhaire. Roghnaigh réamhshocrú agus déan réamhamharc air anseo.',
+      completionSoundPreview: 'Réamhamharc'
     },
     sections: {
       model: 'Samhail',
@@ -392,7 +401,7 @@ export const ga = defineLocale({
       safety: 'Sábháilteacht',
       memory: 'Cuimhne agus comhthéacs',
       voice: 'Guth',
-      advanced: 'Casta',
+      advanced: 'Casta'
     },
     searchPlaceholder: {
       about: 'Maidir le OpenAmer Desktop',
@@ -400,37 +409,40 @@ export const ga = defineLocale({
       gateway: 'Ceangal geata...',
       keys: 'Cuardaigh eochracha API...',
       mcp: 'Cuardaigh freastalaithe MCP...',
-      sessions: 'Cuardaigh seisiúin chartlainnithe...',
+      sessions: 'Cuardaigh seisiúin chartlainnithe...'
     },
     modeOptions: {
       light: {
         label: 'Solas',
-        description: 'Dromchla geala',
+        description: 'Dromchla geala'
       },
       dark: {
         label: 'Dorcha',
-        description: 'Spás oibre le glao méith',
+        description: 'Spás oibre le glao méith'
       },
       system: {
         label: 'Córas',
-        description: 'Lean dealramh an chórais',
-      },
+        description: 'Lean dealramh an chórais'
+      }
     },
     appearance: {
       title: 'Dealramh',
-      intro: 'Is roghanna taispeána deisce iad seo amháin. Rialaíonn an mód an gile; rialaíonn an téama an phailéad aingneach agus stíl an chomhrá.',
+      intro:
+        'Is roghanna taispeána deisce iad seo amháin. Rialaíonn an mód an gile; rialaíonn an téama an phailéad aingneach agus stíl an chomhrá.',
       colorMode: 'Mód dathanna',
       colorModeDesc: 'Roghnaigh mód seasta nó lig do OpenAmer leanúint le do shocrú córais.',
       toolViewTitle: 'Taispeáint glaocha uirlisí',
       toolViewDesc: 'Cuireann an Táirge sonraí amha uirlisí i bhfolach; taispeánann Teicniúil ionchur/aschur iomlán.',
       uiScaleTitle: 'Scála an chomhéadain',
-      uiScaleDesc: (percent: number) => `Scálaíonn sé téacs agus rialuithe ar fud an fheidhmchláir go léir. Oibríonn Cmd/Ctrl le +, - agus 0 freisin. Faoi láthair: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scálaíonn sé téacs agus rialuithe ar fud an fheidhmchláir go léir. Oibríonn Cmd/Ctrl le +, - agus 0 freisin. Faoi láthair: ${percent}%.`,
       translucencyTitle: 'Trédhearcacht na fuinneoige',
       translucencyDesc: 'Féach ar do dheasc trí fhuinneog iomlán. macOS agus Windows amháin.',
       backdropTitle: 'Cúlra an chomhrá',
       backdropDesc: 'An íomhá dealbh lag taobh thiar den chomhrá.',
       embedsTitle: 'Ábhar suaitheadh',
-      embedsDesc: 'Lódáltar réamhamhairc shaibhre ó shuíomhanna tríú páirtí (YouTube, X, …). Taispeánann Cuir ceist ionadóir go dtí go gceadaíonn tú gach ceann; Lódálann An tAmhan iad go huathoibríoch; As coinneoidh sé naisc ghanna.',
+      embedsDesc:
+        'Lódáltar réamhamhairc shaibhre ó shuíomhanna tríú páirtí (YouTube, X, …). Taispeánann Cuir ceist ionadóir go dtí go gceadaíonn tú gach ceann; Lódálann An tAmhan iad go huathoibríoch; As coinneoidh sé naisc ghanna.',
       embedsAsk: 'Cuir ceist',
       embedsAlways: 'An tAmhan',
       embedsOff: 'As',
@@ -443,7 +455,8 @@ export const ga = defineLocale({
       themeDesc: 'Pailéid deisce amháin. Cuirtear an roghnaithe mód os a chionn.',
       themeProfileNote: profile => `Sábháilte don phróifíl ${profile} — coinníonn gach próifíl a théama féin.`,
       installTitle: 'Suiteáil ó VS Code',
-      installDesc: 'Greamaigh aitheantóir iarratais Marketplace (m.sh. dracula-theme.theme-dracula) chun a théama dathanna a thiontú ina phailéad deisce.',
+      installDesc:
+        'Greamaigh aitheantóir iarratais Marketplace (m.sh. dracula-theme.theme-dracula) chun a théama dathanna a thiontú ina phailéad deisce.',
       installPlaceholder: 'foilsitheoir.síneadh',
       installButton: 'Suiteáil',
       installing: 'Á shuiteáil…',
@@ -453,8 +466,10 @@ export const ga = defineLocale({
       importedBadge: 'Iompórtáilte',
       pet: {
         title: 'Peata',
-        intro: 'Uchtaigh mascot beoite petdex a shnámhann thar an aip agus a imoibríonn le gníomhartha OpenAmer — ag rith agus uirlisí á gcur i gcrích, ag ceiliúradh ar rath, agus ag déanamh gruama ar earráidí.',
-        restartHint: 'Teastaíonn atosú tapa ó pheataí — cuireadh tús leis an aip atá ag rith sular cuireadh an ghné seo leis. Scoir OpenAmer agus oscail arís é, ansin tar ar ais anseo.',
+        intro:
+          'Uchtaigh mascot beoite petdex a shnámhann thar an aip agus a imoibríonn le gníomhartha OpenAmer — ag rith agus uirlisí á gcur i gcrích, ag ceiliúradh ar rath, agus ag déanamh gruama ar earráidí.',
+        restartHint:
+          'Teastaíonn atosú tapa ó pheataí — cuireadh tús leis an aip atá ag rith sular cuireadh an ghné seo leis. Scoir OpenAmer agus oscail arís é, ansin tar ar ais anseo.',
         on: 'Ar siúl',
         off: 'Múchta',
         scaleTitle: 'Méid',
@@ -464,7 +479,7 @@ export const ga = defineLocale({
         chooseTitle: 'Roghnaigh peata',
         chooseDesc: 'Roghnaigh ceann chun é a shuiteáil (más gá) agus a chur ag obair.',
         searchPlaceholder: 'Cuardaigh peataí…',
-        unreachable: "Níorbh fhéidir teacht ar ghailearaí petdex. Seiceáil do nasc agus athoscail an leathanach seo.",
+        unreachable: 'Níorbh fhéidir teacht ar ghailearaí petdex. Seiceáil do nasc agus athoscail an leathanach seo.',
         noMatch: query => `Níl aon pheata ag teacht le "${query}".`,
         installedTag: 'suiteáilte',
         generatedTag: 'Ginte',
@@ -473,7 +488,7 @@ export const ga = defineLocale({
         uninstall: name => `Díshuiteáil ${name}`,
         delete: name => `Scrios ${name}`,
         deleteTitle: name => `Scrios ${name}?`,
-        deleteBody: "Scriosfaidh seo an peata go buan — ní féidir é a athshuiteáil.",
+        deleteBody: 'Scriosfaidh seo an peata go buan — ní féidir é a athshuiteáil.',
         deleteConfirm: 'Scrios',
         rename: name => `Athainmnigh ${name}`,
         renameTitle: 'Athainmnigh peata',
@@ -486,8 +501,8 @@ export const ga = defineLocale({
         exportFailed: slug => `Níorbh fhéidir ${slug} a onnmhairiú`,
         noneAvailable: 'Níl aon pheataí ar fáil le casadh air anois.',
         turnOnFailed: 'Níorbh fhéidir an peata a chasadh air.',
-        turnOffFailed: 'Níorbh fhéidir an peata a chasadh as.',
-      },
+        turnOffFailed: 'Níorbh fhéidir an peata a chasadh as.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -498,25 +513,26 @@ export const ga = defineLocale({
       updates: 'Nuashonruithe',
       checkNow: 'Seiceáil anois',
       checking: 'Á sheiceáil…',
-      seeWhatsNew: "Féach cad atá nua",
+      seeWhatsNew: 'Féach cad atá nua',
       updateNow: 'Nuashonraigh anois',
       releaseNotes: 'Nótaí eisiúna',
-      onLatest: "Tá tú ar an leagan is déanaí.",
+      onLatest: 'Tá tú ar an leagan is déanaí.',
       installing: 'Tá nuashonrú á shuiteáil faoi láthair.',
-      cantUpdate: "Ní féidir leis an fhoirgnimh seo é féin a nuashonrú ón bhfeidhmchlár.",
-      cantReach: "Níorbh fhéidir linn an freastalaí nuashonraithe a bhaint amach.",
+      cantUpdate: 'Ní féidir leis an fhoirgnimh seo é féin a nuashonrú ón bhfeidhmchlár.',
+      cantReach: 'Níorbh fhéidir linn an freastalaí nuashonraithe a bhaint amach.',
       tapCheck: 'Tapáil "Seiceáil anois" chun nuashonruithe a chuardach.',
       updateReady: count => `Tá nuashonrú nua réidh (${count} athrú ${count === 1 ? 'athrú' : 'athruithe'} áirithe).`,
       lastChecked: age => `Seiceáil deireanach ${age}`,
       justNowSuffix: ' · anois beag',
       automaticUpdates: 'Nuashonruithe uathoibríocha',
-      automaticUpdatesDesc: 'Seiceálann OpenAmer nuashonruithe go huathoibríoch sa chúlra agus cuireann sé in iúl duit nuair atá ceann réidh.',
+      automaticUpdatesDesc:
+        'Seiceálann OpenAmer nuashonruithe go huathoibríoch sa chúlra agus cuireann sé in iúl duit nuair atá ceann réidh.',
       branchCommit: (branch, commit) => `Brainse ${branch} · Tiomnú ${commit}`,
       never: 'riamh',
       justNow: 'anois beag',
       minAgo: count => `${count} nóiméad ó shin`,
       hoursAgo: count => `${count} uair an chloig ó shin`,
-      daysAgo: count => `${count} lá ó shin`,
+      daysAgo: count => `${count} lá ó shin`
     },
     config: {
       none: 'Dada',
@@ -532,7 +548,8 @@ export const ga = defineLocale({
       imported: 'Iompórtáladh an chumraíocht',
       invalidJson: 'JSON cumraíochta neamhbhailí',
       keepAwakeTitle: 'Coinnigh an ríomhaire ina dhúiseacht',
-      keepAwakeDesc: 'Cuir cosc ar an meaisín seo dul a chodladh ionas go leanfaidh ritheanna fada nó ritheanna thar oíche ar aghaidh. Is féidir leis an taispeáint maolú fós.',
+      keepAwakeDesc:
+        'Cuir cosc ar an meaisín seo dul a chodladh ionas go leanfaidh ritheanna fada nó ritheanna thar oíche ar aghaidh. Is féidir leis an taispeáint maolú fós.'
     },
     credentials: {
       pasteKey: 'Greamaigh eochair',
@@ -542,7 +559,7 @@ export const ga = defineLocale({
       couldNotSave: 'Níorbh fhéidir an dintiúir a shábháil.',
       remove: 'Bain',
       getKey: 'Faigh eochair',
-      saving: 'Á shábháil',
+      saving: 'Á shábháil'
     },
     envActions: {
       actionsFor: label => `Gníomhartha do ${label}`,
@@ -553,7 +570,7 @@ export const ga = defineLocale({
       revealValue: 'Nocht luach',
       replace: 'Cuir ina ionad',
       set: 'Socraigh',
-      clear: 'Glan',
+      clear: 'Glan'
     },
     gateway: {
       loading: 'Teasáiní an gata á luchtú...',
@@ -561,23 +578,28 @@ export const ga = defineLocale({
       unavailableDesc: 'Ní nochtann droichead IPC an ríomhaire tábla an teasáiní an gata.',
       title: 'Ceangal an Gata',
       envOverride: 'Sáruithe comhthimpeallacht',
-      intro: 'Tosaíonn OpenAmer Desktop a réimse áitiúil féin de réir réim. Bain úsáid as an ngeata iomchuí nuair a bhfuil fonn agat leis an feidhmchlár seo rialú ar chúlra OpenAmer atá ar siúl cheana féin ar ríomhaire eile nó taobh thiar de phróisfí iontaofa. Roghnigh próifíl thíos chun teascán iomchuin a chur air.',
+      intro:
+        'Tosaíonn OpenAmer Desktop a réimse áitiúil féin de réir réim. Bain úsáid as an ngeata iomchuí nuair a bhfuil fonn agat leis an feidhmchlár seo rialú ar chúlra OpenAmer atá ar siúl cheana féin ar ríomhaire eile nó taobh thiar de phróisfí iontaofa. Roghnigh próifíl thíos chun teascán iomchuin a chur air.',
       appliesTo: 'Cuirtear i gceist do',
       allProfiles: 'Gach próifíl',
       defaultConnection: 'Ceangal réamhshocraithe do gach próifíl nach bhfuil sáruithe dáici féin aici.',
-      profileConnection: profile => `Ceangal a úsáidtear amháin nuair is é “${profile}” an próifíl gníomhach. Roghnigh Úsáid an geata réamhshocraithe chun a sáruithe a bhaint.`,
+      profileConnection: profile =>
+        `Ceangal a úsáidtear amháin nuair is é “${profile}” an próifíl gníomhach. Roghnigh Úsáid an geata réamhshocraithe chun a sáruithe a bhaint.`,
       envOverrideTitle: 'Tá athruithe comhthimpeallacht á rialú an deisiún deisce seo.',
-      envOverrideDesc: 'Unsetáil OPENAMER_DESKTOP_REMOTE_URL agus OPENAMER_DESKTOP_REMOTE_TOKEN chun an socraithe shábháilte thíos a úsáid.',
+      envOverrideDesc:
+        'Unsetáil OPENAMER_DESKTOP_REMOTE_URL agus OPENAMER_DESKTOP_REMOTE_TOKEN chun an socraithe shábháilte thíos a úsáid.',
       modeTitle: 'Mód ceangail',
       localTitle: 'Geata áitiúil',
       localDesc: 'Tosaigh cúlra príobháideach OpenAmer ar localhost. Seo é an réamhshocrú agus oibríonn sé as líne.',
       inheritTitle: 'Úsáid an geata réamhshocraithe',
-      inheritDesc: "Bain sáruithe na próifíle seo agus úsáid an ceangal réamhshocraithe.",
+      inheritDesc: 'Bain sáruithe na próifíle seo agus úsáid an ceangal réamhshocraithe.',
       remoteTitle: 'Geata iomchuí',
       remoteDesc: 'Ceangail an sliabhán deisce seo le cúlra iomchuí OpenAmer.',
-      remoteAuthHint: 'Úsáidann geataí óstaithe OAuth nó ainm úsáideora agus pasfhocal; d\'fhéadfaidh geataí féin-óstaithe comhartha seisiúin a úsáid.',
+      remoteAuthHint:
+        "Úsáidann geataí óstaithe OAuth nó ainm úsáideora agus pasfhocal; d'fhéadfaidh geataí féin-óstaithe comhartha seisiúin a úsáid.",
       cloudTitle: 'OpenAmer Cloud',
-      cloudDesc: 'Logáil isteach le OpenAmer Cloud aon uair amháin agus roghnaigh ó na gníomhairí ar do chuntas — níl URL le pasteáil.',
+      cloudDesc:
+        'Logáil isteach le OpenAmer Cloud aon uair amháin agus roghnaigh ó na gníomhairí ar do chuntas — níl URL le pasteáil.',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudSignIn: 'Logáil isteach i OpenAmer Cloud',
       cloudSignedIn: 'Logáilte isteach i OpenAmer Cloud',
@@ -592,7 +614,7 @@ export const ga = defineLocale({
       cloudNoAgents: {
         before: 'Níor aimsíodh aon úinéir ar an guntas seo. Cruthaigh ceann i ',
         linkText: 'Tairseach OpenAmer',
-        after: ', ansin athnuigh.',
+        after: ', ansin athnuigh.'
       },
       cloudRefresh: 'Athnuigh',
       cloudConnect: 'Ceangail',
@@ -608,20 +630,27 @@ export const ga = defineLocale({
       cloudAgentProvisioning: 'Á sholáthar…',
       cloudStatusLabel: status => `Stádas: ${status}`,
       remoteUrlTitle: 'URL cianda',
-      remoteUrlDesc: 'Bun-URL do chúlsheirbhís an deais chianda. Tacaítear le réimíreanna cosáin, mar shampla /openamer.',
+      remoteUrlDesc:
+        'Bun-URL do chúlsheirbhís an deais chianda. Tacaítear le réimíreanna cosáin, mar shampla /openamer.',
       probing: 'Ag seiceáil conas a fhíordheimhníonn an geata seo…',
-      probeError: 'Níorbh fhéidir teacht ar an ngeata seo fós. Seiceáil an URL — taispeánfar an modh fíordheimhniúcháin nuair a fhreagraíonn sé.',
+      probeError:
+        'Níorbh fhéidir teacht ar an ngeata seo fós. Seiceáil an URL — taispeánfar an modh fíordheimhniúcháin nuair a fhreagraíonn sé.',
       signedIn: 'Sínithe isteach',
       signIn: 'Sínigh isteach',
       signOut: 'Sínigh amach',
       signInWith: provider => `Sínigh isteach le ${provider}`,
       authTitle: 'Fíordheimhniú',
-      authSignedInPassword: 'Úsáideann an geata seo ainm úsáideora agus focal faire. Tá tú sínithe isteach; athnuachtar an seisiún go huathoibríoch.',
-      authSignedInOauth: 'Úsáideann an geata seo OAuth. Tá tú sínithe isteach; athnuachtar an seisiún go huathoibríoch.',
-      authNeedsPassword: 'Úsáideann an geata seo ainm úsáideora agus focal faire. Sínigh isteach chun an aip deisce seo a údarú.',
-      authNeedsOauth: provider => `Úsáideann an geata seo OAuth. Sínigh isteach le ${provider} chun an aip deisce seo a údarú.`,
+      authSignedInPassword:
+        'Úsáideann an geata seo ainm úsáideora agus focal faire. Tá tú sínithe isteach; athnuachtar an seisiún go huathoibríoch.',
+      authSignedInOauth:
+        'Úsáideann an geata seo OAuth. Tá tú sínithe isteach; athnuachtar an seisiún go huathoibríoch.',
+      authNeedsPassword:
+        'Úsáideann an geata seo ainm úsáideora agus focal faire. Sínigh isteach chun an aip deisce seo a údarú.',
+      authNeedsOauth: provider =>
+        `Úsáideann an geata seo OAuth. Sínigh isteach le ${provider} chun an aip deisce seo a údarú.`,
       tokenTitle: 'Comhartha seisiúin',
-      tokenDesc: 'An comhartha seisiúin deais a úsáidtear le haghaidh rochtain REST agus WebSocket. Fág folamh chun an comhartha sábháilte a choinneáil.',
+      tokenDesc:
+        'An comhartha seisiúin deais a úsáidtear le haghaidh rochtain REST agus WebSocket. Fág folamh chun an comhartha sábháilte a choinneáil.',
       existingToken: value => `Comhartha atá ann cheana ${value}`,
       savedToken: 'sábháilte',
       pasteSessionToken: 'Greamaigh comhartha seisiúin',
@@ -629,7 +658,8 @@ export const ga = defineLocale({
       saveForRestart: 'Sábháil don chéad atosú eile',
       saveAndReconnect: 'Sábháil agus athnasc',
       diagnostics: 'Diagnóisic',
-      diagnosticsDesc: 'Taispeáin desktop.log i do bhainisteoir comhad — úsáideach nuair a theipeann ar an gheata tosú.',
+      diagnosticsDesc:
+        'Taispeáin desktop.log i do bhainisteoir comhad — úsáideach nuair a theipeann ar an gheata tosú.',
       openLogs: 'Oscail logaí',
       incompleteTitle: 'Geata iargúlta neamhchomhlán',
       incompleteSignIn: 'Cuir isteach URL iargúlta agus sínigh isteach sula n-athraíonn tú go iargúlta.',
@@ -639,7 +669,8 @@ export const ga = defineLocale({
       enterUrlFirst: 'Cuir isteach URL iargúlta ar dtús.',
       restartingTitle: 'Nasc geata á atosú',
       savedTitle: 'Socruithe geata sábháilte',
-      restartingMessage: 'Déanfaidh OpenAmer Desktop athnasc ag baint úsáide as na socruithe sábháilte — fanfaidh an bhlaosc oscailte.',
+      restartingMessage:
+        'Déanfaidh OpenAmer Desktop athnasc ag baint úsáide as na socruithe sábháilte — fanfaidh an bhlaosc oscailte.',
       savedMessage: 'Sábháilte don chéad atosú eile.',
       connectedTo: (baseUrl, version) => `Ceangailte le ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       reachableTitle: 'Geata cianda inrochtana',
@@ -652,8 +683,10 @@ export const ga = defineLocale({
       applyFailed: 'Níorbh fhéidir socruithe an gheata a chur i bhfeidhm',
       saveFailed: 'Níorbh fhéidir socruithe an gheata a shábháil',
       sshTitle: 'Ceangail trí SSH',
-      sshDesc: 'Seoltar OpenAmer ar an gcianríomhaire trí SSH agus déantar tollánú chuig an aip seo — níl aon rud le tosú ná le nochtadh agat féin. Teastaíonn rochtain SSH oibre bunaithe ar eochair ar an óstach.',
-      sshTrustHint: 'Cuirtear muinín sa chéad eochair óstaigh a thaispeántar agus pinnítear í; teipeann go dúnta ar athruithe ina dhiaidh sin.',
+      sshDesc:
+        'Seoltar OpenAmer ar an gcianríomhaire trí SSH agus déantar tollánú chuig an aip seo — níl aon rud le tosú ná le nochtadh agat féin. Teastaíonn rochtain SSH oibre bunaithe ar eochair ar an óstach.',
+      sshTrustHint:
+        'Cuirtear muinín sa chéad eochair óstaigh a thaispeántar agus pinnítear í; teipeann go dúnta ar athruithe ina dhiaidh sin.',
       sshHostTitle: 'Óstach',
       sshHostDesc: 'úsáideoir@óstach, nó ailias Óstach ó ~/.ssh/config.',
       sshHostPick: 'Roghnaigh óstach…',
@@ -661,7 +694,7 @@ export const ga = defineLocale({
       sshHostPickDesc: 'Ailias Óstach ó ~/.ssh/config, nó Saincheaptha chun ceann a chlóscríobh.',
       sshHostCustom: 'Saincheaptha (iontráil de láimh)…',
       sshUserTitle: 'Úsáideoir',
-      sshUserDesc: 'Folamh = ~/.ssh/config nó d\'úsáideoir reatha.',
+      sshUserDesc: "Folamh = ~/.ssh/config nó d'úsáideoir reatha.",
       sshUserPlaceholder: 'ó ~/.ssh/config',
       sshPortTitle: 'Port',
       sshPortDesc: 'Folamh = 22 nó an port ~/.ssh/config.',
@@ -675,19 +708,25 @@ export const ga = defineLocale({
       sshButtonsHint: 'Cuirtear Sábháil i bhfeidhm ag an gcéad seoladh eile. Athcheanglaíonn Ceangail anois.',
       sshReachable: (host, platform) => `Inrochtana: ${host} (${platform}) — OpenAmer aimsithe`,
       sshIncompleteHost: 'Iontráil óstach SSH roimh cheangal.',
-      sshErrUnreachable: 'Níorbh fhéidir teacht ar an óstach sin trí SSH. Seiceáil an t-óstach, an port agus do líonra.',
-      sshErrAuth: 'Theip ar fhíordheimhniú SSH. Lódáil d\'eochair isteach sa ssh-agent (ssh-add) nó socraigh IdentityFile in ~/.ssh/config — ritheann OpenAmer ssh go neamh-idirghníomhach.',
-      sshErrHostKey: 'Tá eochair an óstaigh ATHRAITHE ó cheangail tú go deireanach. Fíoraigh go bhfuil súil leis seo, ansin rith ssh-keygen -R <host> agus athcheangail.',
-      sshErrNotInstalled: 'Níl OpenAmer suiteáilte ar an óstach cianda. Suiteáil ann é (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) nó socraigh conair OpenAmer.',
-      sshErrPlatform: 'Ní thacaítear leis an ardán cianda seo. Tacaíonn mód SSH OpenAmer Desktop le hóstaigh chianda Linux, macOS agus Windows.',
-      sshErrTimeout: 'Teorainn ama sáraithe ag an gceangal SSH. Seans nach féidir teacht ar an óstach nó go bhfuil sé ina chodladh.',
+      sshErrUnreachable:
+        'Níorbh fhéidir teacht ar an óstach sin trí SSH. Seiceáil an t-óstach, an port agus do líonra.',
+      sshErrAuth:
+        "Theip ar fhíordheimhniú SSH. Lódáil d'eochair isteach sa ssh-agent (ssh-add) nó socraigh IdentityFile in ~/.ssh/config — ritheann OpenAmer ssh go neamh-idirghníomhach.",
+      sshErrHostKey:
+        'Tá eochair an óstaigh ATHRAITHE ó cheangail tú go deireanach. Fíoraigh go bhfuil súil leis seo, ansin rith ssh-keygen -R <host> agus athcheangail.',
+      sshErrNotInstalled:
+        'Níl OpenAmer suiteáilte ar an óstach cianda. Suiteáil ann é (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) nó socraigh conair OpenAmer.',
+      sshErrPlatform:
+        'Ní thacaítear leis an ardán cianda seo. Tacaíonn mód SSH OpenAmer Desktop le hóstaigh chianda Linux, macOS agus Windows.',
+      sshErrTimeout:
+        'Teorainn ama sáraithe ag an gceangal SSH. Seans nach féidir teacht ar an óstach nó go bhfuil sé ina chodladh.',
       sshErrUpdateRequired: 'Nuashonraigh OpenAmer ar an óstach cianda sula ndéanfaidh tú ceangal le Desktop SSH.',
-      sshErrUnknown: 'Theip ar an gceangal SSH.',
+      sshErrUnknown: 'Theip ar an gceangal SSH.'
     },
     keys: {
       loading: 'Eochracha API agus dintiúir á lódáil...',
       failedLoad: 'Theip ar lódáil eochracha API',
-      empty: 'Níl aon rud cumraithe sa chatagóir seo fós.',
+      empty: 'Níl aon rud cumraithe sa chatagóir seo fós.'
     },
     mcp: {
       loading: 'Freastalaithe MCP á lódáil...',
@@ -735,11 +774,13 @@ export const ga = defineLocale({
       catalogNeedsInstall: 'Teastaíonn tógáil',
       catalogInstall: 'Suiteáil',
       catalogInstalling: 'Á shuiteáil...',
-      catalogInstallStarted: name => `Á shuiteáil ${name}... cuirfear i bhfeidhm ar sheisiúin nua nuair a bheidh sé críochnaithe.`,
+      catalogInstallStarted: name =>
+        `Á shuiteáil ${name}... cuirfear i bhfeidhm ar sheisiúin nua nuair a bheidh sé críochnaithe.`,
       catalogInstallFailed: name => `Theip ar shuiteáil ${name}`,
       catalogEnvPrompt: name => `Teastaíonn dintiúir ó ${name}`,
       catalogEnvRequired: 'Líon isteach na luachanna riachtanacha roimh shuiteáil.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} cumasaithe`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} cumasaithe`,
       statusConnecting: 'Ag nascadh…',
       statusNeedsAuth: 'Teastaíonn fíordheimhniú',
       statusError: 'Earráid',
@@ -752,11 +793,12 @@ export const ga = defineLocale({
       unsavedConnect: 'Gan sábháil — sábháil mcp.json le nascadh.',
       enableTool: tool => `Cumasaigh ${tool}`,
       disableTool: tool => `Díchumasaigh ${tool}`,
-      noOutput: 'Níl aon aschur fós.',
+      noOutput: 'Níl aon aschur fós.'
     },
     model: {
       loading: 'Cumraíocht na samhla á lódáil...',
-      appliesDesc: 'Baineann sé le seisiúin nua. Úsáid an roghnóir samhla sa chomhdhéanóir chun an comhrá gníomhach a mhalartú go beo.',
+      appliesDesc:
+        'Baineann sé le seisiúin nua. Úsáid an roghnóir samhla sa chomhdhéanóir chun an comhrá gníomhach a mhalartú go beo.',
       provider: 'Soláthraí',
       model: 'Samhail',
       applying: 'Á chur i bhfeidhm...',
@@ -766,53 +808,55 @@ export const ga = defineLocale({
       defaultsFailed: 'Theip ar shábháil réamhshocruithe samhla',
       auxiliaryTitle: 'Samhlacha cúnta',
       resetAllToMain: 'Athshocraigh gach rud go príomhshamhail',
-      auxiliaryDesc: 'Ritheann tascanna cúnta ar an bpríomhshamhail de réir réamhshocraithe. Sann samhail thiomnaithe do thasc ar bith chun sárú a dhéanamh.',
+      auxiliaryDesc:
+        'Ritheann tascanna cúnta ar an bpríomhshamhail de réir réamhshocraithe. Sann samhail thiomnaithe do thasc ar bith chun sárú a dhéanamh.',
       setToMain: 'Socraigh go príomhshamhail',
       change: 'Athraigh',
       autoUseMain: 'uathoibríoch · úsáid príomhshamhail',
       providerDefault: '(réamhshocrú an tsoláthraí)',
       fallbackAdd: 'Cuir cúltaca leis',
       fallbackEmpty: 'Níl samhlacha cúltaca ann — úsáidtear an réamhshamhail mura dteipeann uirthi.',
-      notInCatalog: "níl sé ar liosta samhlacha an tsoláthraí seo — féadfaidh glaonna dul chuig cúltaca.",
+      notInCatalog: 'níl sé ar liosta samhlacha an tsoláthraí seo — féadfaidh glaonna dul chuig cúltaca.',
       tasks: {
         vision: {
           label: 'Radharc',
-          hint: 'Anailís íomhá',
+          hint: 'Anailís íomhá'
         },
         web_extract: {
           label: 'Eastóscadh gréasáin',
-          hint: 'Achoimriú leathanaigh',
+          hint: 'Achoimriú leathanaigh'
         },
         compression: {
           label: 'Comhbhrú',
-          hint: 'Dlúthú comhthéacs',
+          hint: 'Dlúthú comhthéacs'
         },
         skills_hub: {
           label: 'Lárionad Scileanna',
-          hint: 'Cuardaigh Scileanna',
+          hint: 'Cuardaigh Scileanna'
         },
         approval: {
           label: 'Ceadú',
-          hint: 'Uatho-cheadú cliste',
+          hint: 'Uatho-cheadú cliste'
         },
         mcp: {
           label: 'MCP',
-          hint: ' Bealtaine uirlisí MCP',
+          hint: ' Bealtaine uirlisí MCP'
         },
         title_generation: {
           label: 'Úsáid teideal',
-          hint: 'Teidil seisiúin',
+          hint: 'Teidil seisiúin'
         },
         curator: {
           label: 'Coimeádóir',
-          hint: 'Athbhreithniú úsáide scileanna',
-        },
-      },
+          hint: 'Athbhreithniú úsáide scileanna'
+        }
+      }
     },
     providers: {
       connectAccount: 'Nascaigh cuntas',
       haveApiKey: 'An bhfuil eochair API agat in ionad sin?',
-      intro: 'Log isteach le subscription — níl gá eochair API a chóipeáil. Ritheann OpenAmer an log isteach an bhraуsear duit, anseo sa hap.',
+      intro:
+        'Log isteach le subscription — níl gá eochair API a chóipeáil. Ritheann OpenAmer an log isteach an bhraуsear duit, anseo sa hap.',
       connected: 'Nascaithe',
       collapse: 'Collap',
       connectAnother: 'Nascaigh soláthraí eile',
@@ -822,7 +866,8 @@ export const ga = defineLocale({
       removeConfirm: provider => `Bain ${provider}?`,
       removeExternalGeneric: provider => `Tá ${provider} bainneáil ag a CLI féin — bain é ansin.`,
       removeKeyManaged: provider => `Tá ${provider} configured ó eochair API. Bain é ó Eochracha API.`,
-      removeTerminalConfirm: (provider, command) => `Dínasc ${provider}? Ritheann sé "${command}" sa terminal chun an creidiúint a ghlanadh.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Dínasc ${provider}? Ritheann sé "${command}" sa terminal chun an creidiúint a ghlanadh.`,
       removeTerminalRunning: provider => `Ag rithe dínasc ${provider} sa terminal…`,
       removedTitle: 'Cuntas bailte',
       removedMessage: provider => `Baineadh ${provider}.`,
@@ -832,14 +877,16 @@ export const ga = defineLocale({
       noKeysMatch: 'Níl aon soláthraí ag teacht le do chuardach.',
       localEndpoint: {
         title: 'Críochphointe áitiúil / saincheaptha',
-        description: 'Dírigh OpenAmer chuig aon chríochphointe atá comhoiriúnach le OpenAI (Zyphra, vLLM, llama.cpp, Ollama, etc).',
+        description:
+          'Dírigh OpenAmer chuig aon chríochphointe atá comhoiriúnach le OpenAI (Zyphra, vLLM, llama.cpp, Ollama, etc).'
       },
-      loading: 'Ag lódáil soláthraithe...',
+      loading: 'Ag lódáil soláthraithe...'
     },
     sessions: {
       loading: 'Ag lódáil seisiúin chartlannaithe…',
       archivedTitle: 'Seisiúin chartlannaithe',
-      archivedIntro: 'Tá comhráite cartlannaithe i bhfolach ón mbarra taoibh ach coinníonn siad a dteachtaireachtaí go léir. Cliceáil Ctrl/⌘ ar chomhrá sa mbarra taoibh chun é a chartlannú.',
+      archivedIntro:
+        'Tá comhráite cartlannaithe i bhfolach ón mbarra taoibh ach coinníonn siad a dteachtaireachtaí go léir. Cliceáil Ctrl/⌘ ar chomhrá sa mbarra taoibh chun é a chartlannú.',
       emptyArchivedTitle: 'Níl aon rud cartlannaithe',
       emptyArchivedDesc: 'Cartlannaigh comhrá chun é a cheilt anseo.',
       unarchive: 'Díchartlannaigh',
@@ -848,13 +895,16 @@ export const ga = defineLocale({
       restored: 'Aisghafa',
       deleteConfirm: title => `Scrios "${title}" go buan? Ní féidir é seo a chealú.`,
       autoArchiveTitle: 'Uathchartlannaigh comhráite atá i léig',
-      autoArchiveDesc: "Cartlannaigh comhráite nach bhfuil tú tar éis teagmháil leo le tamall go huathoibríoch. Ní chartlannaítear comhráite greamaithe riamh, agus ní scriostar aon rud — ní dhéantar ach comhráite cartlannaithe a bhogadh anseo.",
+      autoArchiveDesc:
+        'Cartlannaigh comhráite nach bhfuil tú tar éis teagmháil leo le tamall go huathoibríoch. Ní chartlannaítear comhráite greamaithe riamh, agus ní scriostar aon rud — ní dhéantar ach comhráite cartlannaithe a bhogadh anseo.',
       autoArchiveDaysLabel: 'Cartlannaigh tar éis',
       autoArchiveDaysUnit: 'lá gan ghníomhaíocht',
       autoArchiveFailed: 'Níorbh fhéidir an t-uathchartlannú a nuashonrú',
       defaultDirTitle: 'Comhadlann tionscadail réamhshocraithe',
-      defaultDirDesc: 'Tosaíonn seisiúin nua sa chomhadlann seo mura roghnaíonn tú ceann eile. Fág gan socrú é chun do chomhadlann bhaile a úsáid.',
-      defaultDirUpdated: 'Nuashonraíodh comhadlann tionscadail réamhshocraithe — tosaigh comhrá nua (Ctrl/⌘+N) le go dtiocfaidh sé i bhfeidhm',
+      defaultDirDesc:
+        'Tosaíonn seisiúin nua sa chomhadlann seo mura roghnaíonn tú ceann eile. Fág gan socrú é chun do chomhadlann bhaile a úsáid.',
+      defaultDirUpdated:
+        'Nuashonraíodh comhadlann tionscadail réamhshocraithe — tosaigh comhrá nua (Ctrl/⌘+N) le go dtiocfaidh sé i bhfeidhm',
       defaultsTo: label => `Is é ${label} an réamhshocrú.`,
       change: 'Athraigh',
       choose: 'Roghnaigh',
@@ -864,7 +914,7 @@ export const ga = defineLocale({
       unarchiveFailed: 'Theip ar dhíchartlannú',
       deleteFailed: 'Theip ar scriosadh',
       updateDirFailed: 'Níorbh fhéidir an t-eolaire réamhshocraithe a nuashonrú',
-      clearDirFailed: 'Níorbh fhéidir an t-eolaire réamhshocraithe a ghlanadh',
+      clearDirFailed: 'Níorbh fhéidir an t-eolaire réamhshocraithe a ghlanadh'
     },
     toolsets: {
       loadingConfig: 'Ag lódáil cumraíochta',
@@ -882,20 +932,23 @@ export const ga = defineLocale({
       selectedMessage: provider => `Tá ${provider} gníomhach anois.`,
       failedSelect: provider => `Theip ar ${provider} a roghnú`,
       failedLoad: 'Theip ar chumraíocht uirlise a lódáil',
-      noProviderOptions: 'Níl aon roghanna soláthraí ag an tsraith uirlisí seo — cumasaigh í agus oibreoidh sí le do shocrú reatha.',
+      noProviderOptions:
+        'Níl aon roghanna soláthraí ag an tsraith uirlisí seo — cumasaigh í agus oibreoidh sí le do shocrú reatha.',
       noProviders: 'Níl aon soláthraithe ar fáil don tsraith uirlisí seo faoi láthair.',
       ready: 'Réidh',
       needsSignIn: 'Teastaíonn síniú isteach',
       needsSetup: 'Teastaíonn socrú',
       openamerIncluded: 'Áirítear é le síntiús OpenAmer — sínigh isteach le OpenAmer Portal chun é a ghníomhachtú.',
       openamerAuthNeededTitle: 'Sínigh isteach le OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `Tá ${provider} sábháilte ach ní ghníomhófar é go dtí go síníonn tú isteach le OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `Tá ${provider} sábháilte ach ní ghníomhófar é go dtí go síníonn tú isteach le OpenAmer Portal.`,
       openamerAuthSignIn: 'Sínigh isteach',
       openamerAuthDoneTitle: 'Tá OpenAmer Portal ceangailte',
       openamerAuthDoneMessage: 'Tá innill chúil do shíntiúis gníomhach anois.',
       openamerAuthFailed: 'Níor críochnaíodh síniú isteach OpenAmer Portal',
       noApiKeyRequired: 'Ní teastaíonn eochair API.',
-      postSetupHint: step => `Teastaíonn suiteáil aonuaire (${step}) don inneall cúil seo. Ritheann sé ar an meaisín seo — féadfaidh sé cúpla nóiméad a thógáil.`,
+      postSetupHint: step =>
+        `Teastaíonn suiteáil aonuaire (${step}) don inneall cúil seo. Ritheann sé ar an meaisín seo — féadfaidh sé cúpla nóiméad a thógáil.`,
       postSetupInstalledHint: 'Suiteáilte. Ná rith an socrú arís ach amháin má tá rud éigin briste.',
       postSetupRun: 'Rith socrú',
       postSetupRerun: 'Rith an socrú arís',
@@ -934,11 +987,13 @@ export const ga = defineLocale({
         unavailable: 'Gan bheith ar fáil',
         inUse: 'Á úsáid',
         selectedTitle: 'Inneall roghnaithe',
-        selectedMessage: backend => `Ritheann orduithe críochnála anois trí ${backend}. Braitheann sé ar sheisiúin nua.`,
+        selectedMessage: backend =>
+          `Ritheann orduithe críochnála anois trí ${backend}. Braitheann sé ar sheisiúin nua.`,
         failedSelect: backend => `Theip ar roghnú ${backend}`,
-        needsSetupHint: 'Is féidir leat an inneall seo a roghnú anois — teipfidh ar orduithe go dtí go mbeidh an socraithe críochnaithe.',
-      },
-    },
+        needsSetupHint:
+          'Is féidir leat an inneall seo a roghnú anois — teipfidh ar orduithe go dtí go mbeidh an socraithe críochnaithe.'
+      }
+    }
   },
   skills: {
     tabSkills: 'Scileanna',
@@ -958,7 +1013,8 @@ export const ga = defineLocale({
     noDescription: 'Gan tuairisc.',
     configured: 'Cumraithe',
     needsKeys: 'Teastaíonn eochracha',
-    visionModelHint: 'Úsáideann an fhís do chumraíocht mhúnla chúnta — roghnaítear an múnla atá in ann íomhánna a phróiseáil ansin, ní de réir soláthraí anseo.',
+    visionModelHint:
+      'Úsáideann an fhís do chumraíocht mhúnla chúnta — roghnaítear an múnla atá in ann íomhánna a phróiseáil ansin, ní de réir soláthraí anseo.',
     visionModelLink: 'Roghnaigh múnla físe in Socruithe → Múnlaí',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} huilreála cumasaithe`,
     configureToolset: label => `Cumraigh ${label}`,
@@ -984,7 +1040,7 @@ export const ga = defineLocale({
     provenance: {
       agent: 'Foghlaimte',
       bundled: 'Tógtha isteach',
-      hub: 'Lúb',
+      hub: 'Lúb'
     },
     emptyNoneFound: noun => `Ní aimsíodh ${noun}`,
     emptyNothingMatches: query => `Ní mheaitseálann aon rud “${query}”.`,
@@ -1002,9 +1058,11 @@ export const ga = defineLocale({
       connectingHubs: 'Ag nascadh le moil scileanna...',
       connectedHubs: 'Moil nasctha:',
       featured: 'Scileanna roghnaithe',
-      landingHint: 'Cuardaigh an mol chun scileanna in-suiteála a fhiosrú ón innéacs oifigiúil, GitHub agus ó fhoinsí pobail.',
+      landingHint:
+        'Cuardaigh an mol chun scileanna in-suiteála a fhiosrú ón innéacs oifigiúil, GitHub agus ó fhoinsí pobail.',
       noResults: 'Níor aimsíodh aon scileanna meaitseála sa mhol.',
-      resultCount: (count, ms) => `${count} toradh ${count === 1 ? 'toradh' : 'torthaí'}${ms !== null ? ` in ${ms}ms` : ''}`,
+      resultCount: (count, ms) =>
+        `${count} toradh ${count === 1 ? 'toradh' : 'torthaí'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Teorainn ama sáraithe: ${sources}`,
       installed: 'Suiteáilte',
       install: 'Suiteáil',
@@ -1022,7 +1080,7 @@ export const ga = defineLocale({
       trust: {
         builtin: 'ionsuite',
         trusted: 'iontaofa',
-        community: 'pobail',
+        community: 'pobail'
       },
       verdictSafe: 'Sábháilte',
       verdictCaution: 'Rabhadh',
@@ -1040,8 +1098,8 @@ export const ga = defineLocale({
       loadFailed: 'Theip ar lódáil mhol na scileanna',
       previewFailed: 'Theip ar réamhamharc scile',
       scanFailed: 'Theip ar an scanadh slándála',
-      searchFailed: 'Theip ar chuardach an mhoil',
-    },
+      searchFailed: 'Theip ar chuardach an mhoil'
+    }
   },
   starmap: {
     title: 'Graf Cuimhne',
@@ -1058,7 +1116,8 @@ export const ga = defineLocale({
     emptyTitle: 'Níl aon rud foghlamtha fós',
     emptyDesc: 'De réir mar a chruthaíonn OpenAmer scileanna agus cuimhní do do chuid oibre, taispeántar anseo iad.',
     share: 'Roinn léarscáil',
-    shareHint: 'Cóipeáil an cód chun an léarscáil seo a roinnt, nó greamaigh ceann lena lódáil. Ní chuimsíonn sé ach an leagan amach, ní do chuimhne ná do théacs scile.',
+    shareHint:
+      'Cóipeáil an cód chun an léarscáil seo a roinnt, nó greamaigh ceann lena lódáil. Ní chuimsíonn sé ach an leagan amach, ní do chuimhne ná do théacs scile.',
     shareTitle: 'Iompórtáil / easpórtáil léarscáil',
     sharePlaceholder: 'Greamaigh cód léarscáile…',
     copy: 'Cóipeáil cód léarscáile',
@@ -1068,7 +1127,7 @@ export const ga = defineLocale({
     importEmpty: 'Greamaigh cód léarscáile lena lódáil.',
     importSuccess: nodes => `Díloadadh mapa le ${nodes} ${nodes === 1 ? 'nód' : 'nóid'}.`,
     importedBadge: 'léarscáil iompórtáilte',
-    resetToMine: 'Ar ais go dtí mo léarscáil',
+    resetToMine: 'Ar ais go dtí mo léarscáil'
   },
   agents: {
     close: 'Dún gníomhairí',
@@ -1098,7 +1157,7 @@ export const ga = defineLocale({
     ageDays: days => `${days} lá ó shin`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} comh.`,
+    tokens: value => `${value} comh.`
   },
   commandCenter: {
     close: 'Dún an lárionad orduithe',
@@ -1128,7 +1187,7 @@ export const ga = defineLocale({
       generatedTag: 'Ginte',
       adoptFailed: 'Níorbh fhéidir an peata sin a uchtú.',
       toggleFailed: 'Níorbh fhéidir an peata a scoránú.',
-      noneAvailable: 'Níl aon pheataí ar fáil — roghnaigh ceann thíos le suiteáil.',
+      noneAvailable: 'Níl aon pheataí ar fáil — roghnaigh ceann thíos le suiteáil.'
     },
     generatePet: {
       title: 'Gin peata',
@@ -1152,12 +1211,13 @@ export const ga = defineLocale({
       slowProviderHint: 'Seans go dtógfaidh sé seo roinnt nóiméad.',
       remix: 'Athmheasc',
       remixConfirmTitle: 'Athmheasc an chuma seo?',
-      remixConfirmBody: 'Gineann sé seo sraith nua dréachtaí agus an ceann seo á úsáid mar phointe tosaigh. Seans go dtógfaidh sé roinnt nóiméad.',
+      remixConfirmBody:
+        'Gineann sé seo sraith nua dréachtaí agus an ceann seo á úsáid mar phointe tosaigh. Seans go dtógfaidh sé roinnt nóiméad.',
       genericError: 'Theip ar an nginiúint — bain triail eile as nó roghnaigh moladh.',
       referenceImageTooLarge: 'Tá an íomhá thagartha rómhór. Úsáid ceann faoi 16 MB.',
       referenceImageInvalid: 'Níorbh fhéidir an íomhá thagartha sin a léamh. Bain triail as PNG, JPG, WebP nó GIF.',
       adopt: 'Glac',
-      startOver: 'Tosaigh as an nua',
+      startOver: 'Tosaigh as an nua'
     },
     installTheme: {
       title: 'Suiteáil téama…',
@@ -1169,7 +1229,7 @@ export const ga = defineLocale({
       install: 'Suiteáil',
       installing: 'Ag suiteáil...',
       installed: 'Suiteáilte',
-      installs: count => `${count} suiteanna`,
+      installs: count => `${count} suiteanna`
     },
     settingsFields: 'Réimsí socruithe',
     mcpServers: 'Freastalaithe MCP',
@@ -1178,49 +1238,49 @@ export const ga = defineLocale({
       maintenance: 'Cothabháil',
       sessions: 'Seisiúin',
       system: 'Córas',
-      usage: 'Úsáid',
+      usage: 'Úsáid'
     },
     sectionDescriptions: {
       maintenance: 'Diagnóisic, cúltacaí, coimeádaí agus sonraí cuimhne',
       sessions: 'Cuardaigh agus bainistigh seisiúin',
       system: 'Stádas, logaí agus gníomhartha córais',
-      usage: 'Gníomhaíocht comharthaí, costais agus scileanna thar am',
+      usage: 'Gníomhaíocht comharthaí, costais agus scileanna thar am'
     },
     nav: {
       newChat: {
         title: 'Seisiún nua',
-        detail: 'Tosaigh seisiún úr',
+        detail: 'Tosaigh seisiún úr'
       },
       settings: {
         title: 'Socruithe',
-        detail: 'Cumraigh deasc OpenAmer',
+        detail: 'Cumraigh deasc OpenAmer'
       },
       skills: {
         title: 'Cumais',
-        detail: 'Scileanna, uirlisí agus freastalaithe MCP',
+        detail: 'Scileanna, uirlisí agus freastalaithe MCP'
       },
       messaging: {
         title: 'Teachtaireachtaí',
-        detail: 'Socraigh Telegram, Slack, Discord agus tuilleadh',
+        detail: 'Socraigh Telegram, Slack, Discord agus tuilleadh'
       },
       artifacts: {
         title: 'Déantáin',
-        detail: 'Brabhsáil aschuir ghinte',
-      },
+        detail: 'Brabhsáil aschuir ghinte'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Painéal na seisiún',
-        detail: 'Cuardaigh, pionnáil agus bainistigh seisiúin',
+        detail: 'Cuardaigh, pionnáil agus bainistigh seisiúin'
       },
       system: {
         title: 'Painéal an chórais',
-        detail: 'Stádas an gheata, logaí, atosaigh/nuashonraigh',
+        detail: 'Stádas an gheata, logaí, atosaigh/nuashonraigh'
       },
       usage: {
         title: 'Painéal úsáide',
-        detail: 'Gníomhaíocht tócan, costas agus scileanna',
-      },
+        detail: 'Gníomhaíocht tócan, costas agus scileanna'
+      }
     },
     providerNavigate: 'Nascleanúint',
     providerSessions: 'Seisiúin',
@@ -1308,8 +1368,8 @@ export const ga = defineLocale({
       actionStarted: name => `Thosaigh ${name} — ag leanúint an loga...`,
       actionFailed: name => `Theip ar ${name} tosú`,
       running: 'Ag rith...',
-      viewLog: 'Loga gníomhaíochta',
-    },
+      viewLog: 'Loga gníomhaíochta'
+    }
   },
   messaging: {
     search: 'Cuardaigh teachtaireachtaí...',
@@ -1324,7 +1384,7 @@ export const ga = defineLocale({
       not_configured: 'Socrú ag teastáil',
       pending_restart: 'Atosú de dhíth',
       retrying: 'Ag atriail',
-      startup_failed: 'Theip ar an tosú',
+      startup_failed: 'Theip ar an tosú'
     },
     unknown: 'Anaithne',
     hintPendingRestart: 'Atosaigh an geata ón mbarra stáitis chun an athrú seo a chur i bhfeidhm.',
@@ -1337,7 +1397,8 @@ export const ga = defineLocale({
     required: 'Riachtanach',
     recommended: 'Molta',
     advanced: count => `Ard (${count})`,
-    noTokenNeeded: 'Ní bhraitheann an ardán seo token anseo. Bain úsáid as an treo cumraíochta thuas, ansin éasaigh é thíos.',
+    noTokenNeeded:
+      'Ní bhraitheann an ardán seo token anseo. Bain úsáid as an treo cumraíochta thuas, ansin éasaigh é thíos.',
     enabled: 'Cumasaithe',
     disabled: 'Díchumasaithe',
     unsavedChanges: 'Athruithe neamhsábháilte',
@@ -1363,137 +1424,137 @@ export const ga = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Comhartha róbait',
         help: 'Cruthaigh bot le @BotFather, ansin cuir an token a thugann sé duit anseo.',
-        placeholder: 'Cuir token bot Telegram anseo',
+        placeholder: 'Cuir token bot Telegram anseo'
       },
       TELEGRAM_ALLOWED_USERS: {
-        label: 'ID\'anna úsáideoir Telegram ceadaithe',
-        help: 'Molta. ID\'anna uimhreacha scartha le commas ó @userinfobot. Gan é seo, féachann aon duine DM a sheoladh chuig do bot.',
+        label: "ID'anna úsáideoir Telegram ceadaithe",
+        help: "Molta. ID'anna uimhreacha scartha le commas ó @userinfobot. Gan é seo, féachann aon duine DM a sheoladh chuig do bot."
       },
       TELEGRAM_PROXY: {
         label: 'URL seachfhreastalaí',
-        help: 'Tá sé seo riachtanach amháin ar líonraí ina bhfuil Telegram coscthe',
+        help: 'Tá sé seo riachtanach amháin ar líonraí ina bhfuil Telegram coscthe'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Comhartha róbait',
-        help: 'Cruthaigh iarratas i bPortáil Forbróra Discord, cuir bot leis, ansin cuir an token a bhaineann leis anseo.',
+        help: 'Cruthaigh iarratas i bPortáil Forbróra Discord, cuir bot leis, ansin cuir an token a bhaineann leis anseo.'
       },
       DISCORD_ALLOWED_USERS: {
-        label: 'ID\'anna úsáideoir Discord ceadaithe',
-        help: 'Molta. ID\'anna úsáideoir Discord scartha le commas.',
+        label: "ID'anna úsáideoir Discord ceadaithe",
+        help: "Molta. ID'anna úsáideoir Discord scartha le commas."
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Stíl freagra',
-        help: 'first, all, nó off.',
+        help: 'first, all, nó off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Ceadaigh gach úsáideoir Discord',
-        help: 'Le haghaidh forbartha amháin. Nuair a bhíonn sé seo fíor, féachann aon duine DM a sheoladh chuig an bot gan liosta ceadú.',
+        help: 'Le haghaidh forbartha amháin. Nuair a bhíonn sé seo fíor, féachann aon duine DM a sheoladh chuig an bot gan liosta ceadú.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID cainéal baile',
-        help: 'Cainéal ina sheolann an bot teachtaireachtaí próactacha (tascanna cron, meabhrúcháin).',
+        help: 'Cainéal ina sheolann an bot teachtaireachtaí próactacha (tascanna cron, meabhrúcháin).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Ainm cainéal baile',
-        help: 'Ainm taispeála don chainéal baile i logaí agus torthaí staidise',
+        help: 'Ainm taispeála don chainéal baile i logaí agus torthaí staidise'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Ceadaigh gach úsáideoir iMessage',
-        help: 'Nuair a bhíonn sé seo fíor, léim thar liosta ceadú BlueBubbles.',
+        help: 'Nuair a bhíonn sé seo fíor, léim thar liosta ceadú BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Ceadaigh gach úsáideoir Mattermost',
+        label: 'Ceadaigh gach úsáideoir Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Cainéal baile',
+        label: 'Cainéal baile'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Ceadaigh gach úsáideoir QQ',
+        label: 'Ceadaigh gach úsáideoir QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Cainéal baile QQ',
-        help: 'Cainéal nó grúpa bunriamh le haghaidh seoladh cron.',
+        help: 'Cainéal nó grúpa bunriamh le haghaidh seoladh cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Ainm príomhchainéil QQ',
+        label: 'Ainm príomhchainéil QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Comhartha róbait Slack',
         help: 'Úsáid an token bota ó OAuth & Permissions tar éis d’aip Slack a shuiteáil.',
-        placeholder: 'Greamaigh token bota Slack',
+        placeholder: 'Greamaigh token bota Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token aip Slack',
         help: 'Úsáid an token ar leibhéal an aip atá riachtanach do Socket Mode.',
-        placeholder: 'Greamaigh token aip Slack',
+        placeholder: 'Greamaigh token aip Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'IDanna úsáideora Slack ceadaithe',
-        help: 'Molta. IDanna úsáideora Slack scartha le camóga.',
+        help: 'Molta. IDanna úsáideora Slack scartha le camóga.'
       },
       MATTERMOST_URL: {
         label: 'URL freastalaí',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Comhartha róbait',
+        label: 'Comhartha róbait'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'IDanna úsáideora ceadaithe',
-        help: 'Molta. IDanna úsáideora Mattermost scartha le camóga.',
+        help: 'Molta. IDanna úsáideora Mattermost scartha le camóga.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL freastalaí baile',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token rochtana',
+        label: 'Token rochtana'
       },
       MATRIX_USER_ID: {
         label: 'ID úsáideora bota',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'IDanna úsáideora Matrix ceadaithe',
-        help: 'Molta. IDanna úsáideora scartha le camóga i bhformáid @user:server.',
+        help: 'Molta. IDanna úsáideora scartha le camóga i bhformáid @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL droichid Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL droichid REST signal-cli atá ag rith.',
+        help: 'URL droichid REST signal-cli atá ag rith.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Uimhir ghutháin',
-        help: 'An uimhir atá cláraithe le do dhroichead signal-cli.',
+        help: 'An uimhir atá cláraithe le do dhroichead signal-cli.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Úsáideoirí Signal ceadaithe',
-        help: 'Molta. Aitheantóirí Signal scartha le camóga.',
+        help: 'Molta. Aitheantóirí Signal scartha le camóga.'
       },
       WHATSAPP_ENABLED: {
         label: 'Cumasaigh droichead WhatsApp',
-        help: 'Socraítear go huathoibríoch é leis an lasc thíos. Ná bain leis mura bhfuil a fhios agat go bhfuil sé de dhíth ort.',
+        help: 'Socraítear go huathoibríoch é leis an lasc thíos. Ná bain leis mura bhfuil a fhios agat go bhfuil sé de dhíth ort.'
       },
       WHATSAPP_MODE: {
-        label: 'Mód droichid',
+        label: 'Mód droichid'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Úsáideoirí WhatsApp ceadaithe',
-        help: 'Molta. Uimhreacha gutháin nó IDanna WhatsApp scartha le camóga.',
-      },
+        help: 'Molta. Uimhreacha gutháin nó IDanna WhatsApp scartha le camóga.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Cuardaigh webhooks...',
     loading: 'Ag lódáil webhooks...',
     loadFailed: 'Theip ar lódáil webhooks',
     subscriptions: (count: number) => `Síntiúis (${count})`,
-    hint: 'Athlódáiltear athruithe síntiúis go beo nuair a bhíonn an glacadóir ag rith. Diúltaíonn síntiúis dhíchumasaithe d\'imeachtaí teacht isteach.',
+    hint: "Athlódáiltear athruithe síntiúis go beo nuair a bhíonn an glacadóir ag rith. Diúltaíonn síntiúis dhíchumasaithe d'imeachtaí teacht isteach.",
     empty: 'Níl aon síntiúis webhook ann fós.',
     disabledTitle: 'Glacadóir webhook díchumasaithe',
-    disabledBody: 'Is ardán geata ar leith iad webhooks. Cumasaigh anseo iad chun imeachtaí HTTP teacht isteach a ghlacadh; ní bhíonn cainéil chomhrá de dhíth ach amháin nuair a sheachadann síniú chuig Telegram, Discord, Slack nó cainéal eile.',
+    disabledBody:
+      'Is ardán geata ar leith iad webhooks. Cumasaigh anseo iad chun imeachtaí HTTP teacht isteach a ghlacadh; ní bhíonn cainéil chomhrá de dhíth ach amháin nuair a sheachadann síniú chuig Telegram, Discord, Slack nó cainéal eile.',
     enable: 'Cumasaigh webhooks',
     enabling: 'Ag cumasú...',
     enabled: (name: string) => `Cumasaithe: "${name}"`,
@@ -1510,7 +1571,8 @@ export const ga = defineLocale({
     toggleFailed: (name: string) => `Theip ar nuashonrú "${name}"`,
     newSubscription: 'Síntiús nua',
     restarting: 'Ag atosú an gheata...',
-    restartNeeded: 'Tá na webhooks cumasaithe, ach ní mór an geata a atosú fós sula bhféadfaidh an glacadóir teacht ar líne.',
+    restartNeeded:
+      'Tá na webhooks cumasaithe, ach ní mór an geata a atosú fós sula bhféadfaidh an glacadóir teacht ar líne.',
     restartGateway: 'Atosaigh an geata',
     restartingGateway: 'Ag atosú...',
     restartFailed: (detail: string) => `Theip ar atosú an gheata${detail}`,
@@ -1546,8 +1608,8 @@ export const ga = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'Ríomhphost',
-      github_comment: 'Trácht GitHub',
-    },
+      github_comment: 'Trácht GitHub'
+    }
   },
   profiles: {
     close: 'Dún próifílí',
@@ -1625,7 +1687,7 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     failedLoadSoul: 'Theip ar lódáil SOUL.md',
     failedSaveSoul: 'Theip ar shábháil SOUL.md',
     failedCreate: 'Theip ar chruthú próifíle',
-    failedRename: 'Theip ar athainmniú próifíle',
+    failedRename: 'Theip ar athainmniú próifíle'
   },
   cron: {
     close: 'Dún cron',
@@ -1640,14 +1702,14 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       paused: 'sosaithe',
       disabled: 'díchumasaithe',
       error: 'earráid',
-      completed: 'críochnaithe',
+      completed: 'críochnaithe'
     },
     deliveryLabels: {
       local: 'An deasc seo',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Ríomhphost',
+      email: 'Ríomhphost'
     },
     scheduleLabels: {
       daily: 'Laethúil',
@@ -1656,7 +1718,7 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       monthly: 'Míthúil',
       hourly: 'Uair go chéile',
       'every-15-minutes': 'Gach 15 nóiméad',
-      custom: 'Saincheaptha',
+      custom: 'Saincheaptha'
     },
     scheduleHints: {
       daily: 'Gach lá ag 9:00 AM',
@@ -1665,7 +1727,7 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       monthly: 'An chéad lá de gach mí ag 9:00 AM',
       hourly: 'Ag tús gach uair',
       'every-15-minutes': 'Gach 15 nóiméad',
-      custom: 'Coinseáil Cron nó teanga nádúrtha',
+      custom: 'Coinseáil Cron nó teanga nádúrtha'
     },
     days: {
       '0': 'Domhnach',
@@ -1675,7 +1737,7 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       '4': 'Déardaoin',
       '5': 'Aoine',
       '6': 'Satharn',
-      '7': 'Dé Domhnaigh',
+      '7': 'Dé Domhnaigh'
     },
     dayFallback: value => `lá ${value}`,
     everyDayAt: time => `Gach lá ag ${time}`,
@@ -1685,7 +1747,8 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     topOfHour: 'Ag tús gach uair',
     everyHourAt: minute => `Gach uair ag :${minute}`,
     newCron: 'Cron nua',
-    emptyDescNew: 'Sceidealaigh leid le rith ar shloinneadh cron. Rithfidh OpenAmer é agus seolfaidh sé torthaí chuig an gceann scríbe a roghnaíonn tú.',
+    emptyDescNew:
+      'Sceidealaigh leid le rith ar shloinneadh cron. Rithfidh OpenAmer é agus seolfaidh sé torthaí chuig an gceann scríbe a roghnaíonn tú.',
     emptyDescSearch: 'Bain triail as cuardach níos leithne.',
     emptyTitleNew: 'Níl aon tasc sceidealta fós',
     emptyTitleSearch: 'Níl aon mheaitseáil',
@@ -1721,12 +1784,15 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     failedSave: 'Níorbh fhéidir cron-tasc a shábháil',
     editTitle: 'Cuir cron-tasc in eagar',
     createTitle: 'Job cron nua',
-    editDesc: 'Nuashálaigh an sceideal, an luach, nó an sprioc seolta. Beidh na hathruithe i bhfeidhm an chéad rith eile.',
-    createDesc: 'Sceideal luach chun rith go huathoibríoch. Úsáid sintacs cron nó frása nádúrtha cosúil le "gach 15 nóiméad".',
+    editDesc:
+      'Nuashálaigh an sceideal, an luach, nó an sprioc seolta. Beidh na hathruithe i bhfeidhm an chéad rith eile.',
+    createDesc:
+      'Sceideal luach chun rith go huathoibríoch. Úsáid sintacs cron nó frása nádúrtha cosúil le "gach 15 nóiméad".',
     nameLabel: 'Ainm',
     namePlaceholder: 'Bríseáil na maidine',
     promptLabel: 'Leid',
-    promptPlaceholder: 'Déan achoimre ar mo shnáitheanna neamhléite Slack agus seol chugam trí ríomhphost an 5 is fearr...',
+    promptPlaceholder:
+      'Déan achoimre ar mo shnáitheanna neamhléite Slack agus seol chugam trí ríomhphost an 5 is fearr...',
     frequencyLabel: 'Minéalach',
     deliverLabel: 'Seol chuig',
     deliverNeedsHomeChannel: 'soc channel baile ar dtús',
@@ -1744,7 +1810,7 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     createAction: 'Cruthaigh cron',
     tabs: {
       jobs: 'Tascanna',
-      blueprints: 'Pláinteoirí',
+      blueprints: 'Pláinteoirí'
     },
     blueprints: {
       tab: 'Pláinteoirí',
@@ -1758,8 +1824,8 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       loading: 'Ag luchtú gormchlónna...',
       failedLoad: 'Níorbh fhéidir gormchlónna a lódáil',
       emptyTitle: 'Níl aon ghormchló ar fáil',
-      emptyDesc: 'Níl aon ghormchló uathoibrithe ar fáil ar an gcúlpháirt seo.',
-    },
+      emptyDesc: 'Níl aon ghormchló uathoibrithe ar fáil ar an gcúlpháirt seo.'
+    }
   },
   artifacts: {
     search: 'Cuardaigh déantáin...',
@@ -1793,14 +1859,14 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     kindLink: 'nasc',
     chat: 'Comhrá',
     copyUrl: 'Cóipeáil URL',
-    copyPath: 'Cóipeáil cosán',
+    copyPath: 'Cóipeáil cosán'
   },
   sidebar: {
     nav: {
       'new-session': 'Seisiún nua',
       skills: 'Cumais',
       messaging: 'Teachtaireachtaí',
-      artifacts: 'Déantáin',
+      artifacts: 'Déantáin'
     },
     searchAria: 'Cuardaigh seisiúin',
     searchPlaceholder: 'Cuardaigh seisiúin…',
@@ -1832,7 +1898,7 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       namePlaceholder: 'm.sh. Skunkworks',
       foldersLabel: 'Fillteáin',
       ideaLabel: 'Smaoineamh',
-      ideaPlaceholder: "Cad faoi atá an tionscadal seo? (sábháilte in IDEA.md)",
+      ideaPlaceholder: 'Cad faoi atá an tionscadal seo? (sábháilte in IDEA.md)',
       ideaGenerate: 'Gin smaoineamh',
       ideaGenerating: 'Á ghiniúint…',
       ideaShuffle: 'Suaith teimpléid',
@@ -1852,8 +1918,10 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       copyPath: 'Cóipeáil an chonair',
       removeFromSidebar: 'Folaigh ón tslíbhar',
       createFailed: 'Níorbh fhéidir tionscadal a chruthú',
-      staleBackend: 'Nuashonraigh inneall cúil OpenAmer chun tionscadail a chruthú — tá d’inneall cúil níos sine ná an aip deisce seo (Socruithe → Nuashonruithe → Inneall cúil).',
-      deleteConfirm: 'Baineann sé seo an tionscadal sábháilte ó OpenAmer. Fanann comhaid, stórais git agus crainn oibre gan athrú.',
+      staleBackend:
+        'Nuashonraigh inneall cúil OpenAmer chun tionscadail a chruthú — tá d’inneall cúil níos sine ná an aip deisce seo (Socruithe → Nuashonruithe → Inneall cúil).',
+      deleteConfirm:
+        'Baineann sé seo an tionscadal sábháilte ó OpenAmer. Fanann comhaid, stórais git agus crainn oibre gan athrú.',
       startWork: 'Crann oibre nua',
       newWorktreeTitle: 'Crann oibre nua',
       newWorktreeDesc: 'Ainmnigh an brainse don chrann oibre seo.',
@@ -1874,13 +1942,15 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       noBranches: 'Níor aimsíodh aon chraig',
       removeWorktree: 'Bain crann-obair',
       removeWorktreeFailed: 'Ní féidir crann-obair a bhaint (athruithe gan a bheith curtha in iúl?)',
-      removeWorktreeConfirm: 'Bain é as git (scriosann sé catalog crann-obair; fanann an craig), nó foghnaigh an ráine as an gcónaire agus fág an crann-obair ar anndisc.',
-      removeWorktreeDirty: 'Tá athruithe gan a bheith curtha in iúl sa chrann-obair seo. Bain é go fórsa (scriosann sé na hathruithe sin), nó foghnaigh an ráine agus fág é ar anndisc.',
+      removeWorktreeConfirm:
+        'Bain é as git (scriosann sé catalog crann-obair; fanann an craig), nó foghnaigh an ráine as an gcónaire agus fág an crann-obair ar anndisc.',
+      removeWorktreeDirty:
+        'Tá athruithe gan a bheith curtha in iúl sa chrann-obair seo. Bain é go fórsa (scriosann sé na hathruithe sin), nó foghnaigh an ráine agus fág é ar anndisc.',
       forceRemove: 'Bain go fórsa',
       enter: label => `Oscail ${label}`,
       reorder: label => `Athraigh ord ${label}`,
       toggle: label => `Athraigh seisiúin ${label}`,
-      back: 'Gach tionscadal',
+      back: 'Gach tionscadal'
     },
     newSessionIn: label => `Seisiún nua i ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
@@ -1918,15 +1988,15 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       ageNow: 'anois',
       ageDay: 'l',
       ageHour: 'u',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Níos luaithe inniu',
       yesterday: 'Inné',
       thisWeek: 'Níos luaithe an tseachtain seo',
       lastWeek: 'An tseachtain seo caite',
-      thisMonth: 'Níos luaithe an mhí seo',
-    },
+      thisMonth: 'Níos luaithe an mhí seo'
+    }
   },
   composer: {
     message: 'Teachtaireacht',
@@ -1937,20 +2007,20 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     newSessionPlaceholders: [
       'Cad atá á thógáil againn?',
       'Tabhair tasc do OpenAmer',
-      "Cad atá ar intinn agat?",
+      'Cad atá ar intinn agat?',
       'Déan cur síos ar a bhfuil uait',
       'Cad ba cheart dúinn a dhéanamh?',
       'Fiafraigh aon rud',
-      'Tosaigh le sprioc',
+      'Tosaigh le sprioc'
     ],
     followUpPlaceholders: [
       'Cuir teachtaireacht leanúnaigh',
       'Cuir níos mó comhthéacs',
       'Feabhsaigh an iarratas',
-      "Cad an chéad rud eile?",
+      'Cad an chéad rud eile?',
       'Coimeád dul chun cinn',
       ' pushing níos giorra',
-      'Athrhoplaigh nó lean',
+      'Athrhoplaigh nó lean'
     ],
     startVoice: 'Tosaigh comhrá guth',
     queueMessage: 'Cuir teachtaireacht sa chéile',
@@ -1986,7 +2056,7 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       '/resume': 'atosaigh seisiún roimhe seo',
       '/details': 'rialú leibéal mhionsonraithe an chóistais',
       '/copy': 'copaigh an roghnú nó teachtaireacht deireanach an chúnta',
-      '/quit': 'fág openamer',
+      '/quit': 'fág openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'tagairt comhad, filléad, urls, git',
@@ -1996,7 +2066,7 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       'composer.sendQueued': 'seol an chéad seal eile atá sa scódáil',
       'keybinds.openPanel': 'gach aicealt méarchláir',
       'composer.cancel': 'dún an popover · cealaigh an rith',
-      'composer.history': 'athshúis an popover / stair',
+      'composer.history': 'athshúis an popover / stair'
     },
     attachUrlTitle: 'Nasa URL a nasc',
     attachUrlDesc: 'Beidh OpenAmer ag fáil an leathanach agus é a chur isteach mar chomhthéacs don túr seo.',
@@ -2017,7 +2087,8 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     queueResume: 'Atosaigh',
     queueResumeTip: 'Curtha ar sos ag Stad — atosaigh ag seoladh na mbabhtaí atá sa scuaine',
     queueStuckTitle: 'Níor seoladh teachtaireacht sa scuaine',
-    queueStuckBody: 'Bhí babhta sa scuaine ag teip ar a sheoladh. Tá sé fós sa scuaine — bain triail eile as a sheoladh.',
+    queueStuckBody:
+      'Bhí babhta sa scuaine ag teip ar a sheoladh. Tá sé fós sa scuaine — bain triail eile as a sheoladh.',
     previewUnavailable: 'Níl réamhamharc ar fáil',
     previewLabel: label => `Réamhamharc ${label}`,
     couldNotPreview: label => `Níorbh fhéidir ${label} a réamhamharc`,
@@ -2046,20 +2117,21 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     snippets: {
       codeReview: {
         label: 'Athbhreithniú cóid',
-        description: 'Iniúch an t-athrú reatha le haghaidh aischéimnithe, cásanna imeallacha caillte, agus tástálacha in easnamh.',
-        text: 'Déan athbhreithniú air seo le haghaidh fabhtanna, aischéimnithe, agus tástálacha in easnamh.',
+        description:
+          'Iniúch an t-athrú reatha le haghaidh aischéimnithe, cásanna imeallacha caillte, agus tástálacha in easnamh.',
+        text: 'Déan athbhreithniú air seo le haghaidh fabhtanna, aischéimnithe, agus tástálacha in easnamh.'
       },
       implementationPlan: {
         label: 'Plean cur chun feidhme',
         description: 'Leag amach cur chuige sula dteagmháiltear le cód ionas go bhfanfaidh an difríocht dírithe.',
-        text: 'Déan plean cur chun feidhme gonta sula n-athraítear cód, le do thoil.',
+        text: 'Déan plean cur chun feidhme gonta sula n-athraítear cód, le do thoil.'
       },
       explainThis: {
         label: 'Mínigh seo',
         description: 'Téigh trí conas a oibríonn an cód roghnaithe agus déan nasc chuig na príomhchomhaid.',
-        text: 'Mínigh conas a oibríonn seo agus treoraigh mé chuig na príomhchomhaid, le do thoil.',
-      },
-    },
+        text: 'Mínigh conas a oibríonn seo agus treoraigh mé chuig na príomhchomhaid, le do thoil.'
+      }
+    }
   },
   statusStack: {
     agents: 'Gníomhairí',
@@ -2089,8 +2161,10 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       viewAsList: 'Féach mar liosta',
       revert: 'Síos',
       revertAll: 'Síos gach rud',
-      revertConfirm: 'Cuir athruithe an chomhad seo ar ceal agus filleadh é go dtí an stát comhartha? Ní féidir seo a chur ar ceal.',
-      revertAllConfirm: 'Cuir gach athrú ar ceal agus filleadh na comhaid go dtí an stát comhartha? Ní féidir seo a chur ar ceal.',
+      revertConfirm:
+        'Cuir athruithe an chomhad seo ar ceal agus filleadh é go dtí an stát comhartha? Ní féidir seo a chur ar ceal.',
+      revertAllConfirm:
+        'Cuir gach athrú ar ceal agus filleadh na comhaid go dtí an stát comhartha? Ní féidir seo a chur ar ceal.',
       staged: 'I stád',
       noChanges: 'Gan athruithe',
       notRepo: 'Ní stórasla git é',
@@ -2107,13 +2181,14 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       openPr: 'Oscail PR',
       ghMissing: 'Suiteáil GitHub CLI (gh) agus logáil isteach chun PRanna a oscail',
       agentShip: 'Iarr ar OpenAmer PR a oscail',
-      agentShipPrompt: 'Scrúdaigh na hathruithe reatha, tiomnaigh iad le teachtaireacht shoiléir conventional-commit, brúigh an brainse, agus oscail iarratas tarraingthe.',
+      agentShipPrompt:
+        'Scrúdaigh na hathruithe reatha, tiomnaigh iad le teachtaireacht shoiléir conventional-commit, brúigh an brainse, agus oscail iarratas tarraingthe.',
       newBranch: 'Craobh nua',
       branchOffFrom: base => `Craobh nua ó ${base}`,
       switchTo: branch => `Athraigh go ${branch}`,
       switchFailed: branch => `Níorbh fhéidir athrú go ${branch}`,
-      worktrees: 'Crainn oibre',
-    },
+      worktrees: 'Crainn oibre'
+    }
   },
   updates: {
     stages: {
@@ -2128,7 +2203,7 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       done: 'Nuashonrú críochnaithe',
       manual: 'Nuashonraigh ó do theirminéal',
       guiSkew: 'Nuashonraigh an aip deisce',
-      error: 'Nuashonrú ar sos',
+      error: 'Nuashonrú ar sos'
     },
     checking: 'Ag lorg nuashonruithe…',
     checkFailedTitle: 'Níorbh fhéidir nuashonruithe a sheiceáil',
@@ -2148,15 +2223,19 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     maybeLater: 'B’fhéidir níos déanaí',
     moreChanges: count => `+ ${count} tuilleadh athruithe ${count === 1 ? 'athrú' : 'athruithe'} áirithe.`,
     manualTitle: 'Nuashonraigh ó do theirminéal',
-    manualBody: 'Shuiteáil tú OpenAmer ón líne ordaithe, mar sin ritheann nuashonruithe ansin freisin. Greamaigh seo isteach i do theirminéal:',
+    manualBody:
+      'Shuiteáil tú OpenAmer ón líne ordaithe, mar sin ritheann nuashonruithe ansin freisin. Greamaigh seo isteach i do theirminéal:',
     manualPickedUp: 'Tógfaidh OpenAmer an leagan nua an chéad uair eile a sheolann tú é.',
     guiSkewTitle: 'Nuashonraigh an aip deisce',
-    guiSkewBody: 'Nuashonraíodh an cúlcóras, ach níor athraíodh an pacáiste aipe deisce seo. Nuashonraigh nó athshuiteáil aip deisce OpenAmer (do AppImage / .deb / .rpm) chun teacht leis.',
+    guiSkewBody:
+      'Nuashonraíodh an cúlcóras, ach níor athraíodh an pacáiste aipe deisce seo. Nuashonraigh nó athshuiteáil aip deisce OpenAmer (do AppImage / .deb / .rpm) chun teacht leis.',
     copy: 'Cóipeáil',
     copied: 'Cóipeáilte',
     done: 'Déanta',
-    applyingBody: 'Téann nuashonróir OpenAmer i gceannas ina fhuinneog féin agus athosclaíonn sé OpenAmer go huathoibríoch nuair a bheidh sé déanta. Ná hathoscail OpenAmer leat féin agus é ag nuashonrú.',
-    applyingBodyBackend: 'Tá an cúlcóras cianda ag cur an nuashonraithe i bhfeidhm agus atosóidh sé. Athcheanglaíonn OpenAmer go huathoibríoch nuair a bheidh sé ar ais.',
+    applyingBody:
+      'Téann nuashonróir OpenAmer i gceannas ina fhuinneog féin agus athosclaíonn sé OpenAmer go huathoibríoch nuair a bheidh sé déanta. Ná hathoscail OpenAmer leat féin agus é ag nuashonrú.',
+    applyingBodyBackend:
+      'Tá an cúlcóras cianda ag cur an nuashonraithe i bhfeidhm agus atosóidh sé. Athcheanglaíonn OpenAmer go huathoibríoch nuair a bheidh sé ar ais.',
     applyingClose: 'Dúnfar an fhuinneog seo le linn an nuashonraithe, ansin athosclaíonn OpenAmer é féin.',
     errorTitle: 'Níor chríochnaigh an nuashonrú',
     errorBody: 'Ná bíodh imní ort — níor cailleadh aon rud. Is féidir leat triail eile a bhaint as anois.',
@@ -2167,12 +2246,15 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       restarting: 'Tá an taobh cúil ag atógáil chun an nuashonrú a luchtú…',
       notAvailable: 'Níl nuashonrú ar fáil don taobh cúil seo.',
       failed: 'Éirigh an nuashonrú ar an taobh cúil.',
-      noReturn: 'Ní tháinig an taobh cúil ar ais ar líne. Seactha nach bhfuil an nuashonrú críochnaithe — seiceáil óstáil an taobh cúil.',
+      noReturn:
+        'Ní tháinig an taobh cúil ar ais ar líne. Seactha nach bhfuil an nuashonrú críochnaithe — seiceáil óstáil an taobh cúil.'
     },
     appErrors: {
-      updateLocked: 'Nuashonrú stoptha: tá fuinneog OpenAmer eile nó terminal ag rith openamer ag coinneáil an suiteáil seo oscailte. Dún sí agus déan iarracht arís.',
-      updateFailed: 'Níor chríochnaigh an nuashonrú. Ná bí buartha — níor chailleadh aon rud. Is féidir leat iarracht a dhéanamh arís anois.',
-    },
+      updateLocked:
+        'Nuashonrú stoptha: tá fuinneog OpenAmer eile nó terminal ag rith openamer ag coinneáil an suiteáil seo oscailte. Dún sí agus déan iarracht arís.',
+      updateFailed:
+        'Níor chríochnaigh an nuashonrú. Ná bí buartha — níor chailleadh aon rud. Is féidir leat iarracht a dhéanamh arís anois.'
+    }
   },
   install: {
     stageStates: {
@@ -2180,25 +2262,31 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       running: 'Ag suiteáil',
       succeeded: 'Críochnaithe',
       skipped: 'Sgéipte',
-      failed: 'Éirigh',
+      failed: 'Éirigh'
     },
     oneTimeTitle: 'Tá suiteáil aon uair a chéile ag teastáil ó OpenAmer',
-    unsupportedDesc: platform => `Níl suiteáil uathoibríoch don chéad launch ar fáil ar ${platform} fós. Oscail Terminal agus rith an ordú thíos, ansin atógáil an app seo. Sgéipfear an céim seo i launchanna eile.`,
+    unsupportedDesc: platform =>
+      `Níl suiteáil uathoibríoch don chéad launch ar fáil ar ${platform} fós. Oscail Terminal agus rith an ordú thíos, ansin atógáil an app seo. Sgéipfear an céim seo i launchanna eile.`,
     installCommand: 'Ordú suiteála',
     copyCommand: 'Cóipeáil ordú',
     viewDocs: 'Amharc ar dhoiciméad suiteála',
     installTo: 'Suiteálfaidh sé go',
     retryAfterRun: 'Rith mé é -- déan iarracht arís',
     setupChoiceTitle: 'Socrú OpenAmer Desktop',
-    setupChoiceDesc: 'Nasc an app seo le gateway OpenAmer atá ag rith agat cheana, nó suiteáil OpenAmer go háitiúil ar an ríomhaire seo.',
+    setupChoiceDesc:
+      'Nasc an app seo le gateway OpenAmer atá ag rith agat cheana, nó suiteáil OpenAmer go háitiúil ar an ríomhaire seo.',
     connectExistingTitle: 'Nasc le OpenAmer existing',
     connectExistingShort: 'Nasc existing',
-    connectExistingDesc: 'Úsáid taobh cúil iarbhonnach le token seisiúin nó sign-in brúiseir. Ní thosófar suiteáil áitiúil.',
+    connectExistingDesc:
+      'Úsáid taobh cúil iarbhonnach le token seisiúin nó sign-in brúiseir. Ní thosófar suiteáil áitiúil.',
     installLocalTitle: 'Suiteáil OpenAmer go háitiúil',
-    installLocalDesc: 'Íoslaodáil OpenAmer, cruthaigh timpeallacht Python aige, agus rith an taobh cúil ar an ríomhaire seo.',
-    localStartUnavailable: 'Níorbh fhéidir an tsuiteáil áitiúil a thosú. Atosaigh OpenAmer Desktop agus bain triail eile as.',
+    installLocalDesc:
+      'Íoslaodáil OpenAmer, cruthaigh timpeallacht Python aige, agus rith an taobh cúil ar an ríomhaire seo.',
+    localStartUnavailable:
+      'Níorbh fhéidir an tsuiteáil áitiúil a thosú. Atosaigh OpenAmer Desktop agus bain triail eile as.',
     remoteSetupTitle: 'Ceangail le OpenAmer atá ann cheana',
-    remoteSetupDesc: 'Cuir isteach URL do gheata. Aithneoidh OpenAmer Desktop an dteastaíonn comhartha nó síniú isteach trí bhrabhsálaí uaidh.',
+    remoteSetupDesc:
+      'Cuir isteach URL do gheata. Aithneoidh OpenAmer Desktop an dteastaíonn comhartha nó síniú isteach trí bhrabhsálaí uaidh.',
     remoteUrlTitle: 'URL an gheata',
     remoteUrlDesc: 'Úsáid bun-URL gheata OpenAmer, lena n-áirítear https:// nuair a bhíonn sé cianda.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2225,8 +2313,10 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     failedTitle: 'Theip ar an suiteáil',
     settingUpTitle: 'Ag socrú OpenAmer Agent',
     finishingTitle: 'Ag críochnú',
-    failedDesc: 'Theip ar cheann de na céimeanna suiteála. Ar Windows, is féidir é seo a tharlú má tá ásc eile OpenAmer CLI nó deisce ag rith. Stop aon ásc OpenAmer atá ag rith, ansin triail arís. Féach ar na sonraí thíos nó ar log an deisce don tras-scríbhinn iomlán.',
-    activeDesc: 'Is socrú aonuaire é seo. Tá suiteálaí OpenAmer ag íoslódáil spleáchas agus ag cumrú do mheaisín. Déanfaidh seoltaí ina dhiaidh seo an chéim seo a scipeáil.',
+    failedDesc:
+      'Theip ar cheann de na céimeanna suiteála. Ar Windows, is féidir é seo a tharlú má tá ásc eile OpenAmer CLI nó deisce ag rith. Stop aon ásc OpenAmer atá ag rith, ansin triail arís. Féach ar na sonraí thíos nó ar log an deisce don tras-scríbhinn iomlán.',
+    activeDesc:
+      'Is socrú aonuaire é seo. Tá suiteálaí OpenAmer ag íoslódáil spleáchas agus ag cumrú do mheaisín. Déanfaidh seoltaí ina dhiaidh seo an chéim seo a scipeáil.',
     progress: (completed, total) => `${completed} as ${total} céim críochnaithe`,
     currentStage: stage => ` -- anois: ${stage}`,
     fetchingManifest: 'Ag fáil manifeast an tsuiteálaí...',
@@ -2240,10 +2330,10 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     transcriptSaved: 'Tras-scríbhinn iomlán sábháilte i',
     copiedOutput: 'Cóipeáilte!',
     copyOutput: 'Cóipeáil aschur',
-    reloadRetry: 'Athlódáil agus triail arís',
+    reloadRetry: 'Athlódáil agus triail arís'
   },
   onboarding: {
-    headerTitle: "Déanaimis socrú duit le OpenAmer Agent",
+    headerTitle: 'Déanaimis socrú duit le OpenAmer Agent',
     headerDesc: 'Ceangail soláthraí samhla chun comhrá a thosú. Ní thógann formhór na roghanna ach cliceáil amháin.',
     preparingInstall: 'Tá OpenAmer ag críochnú an tsuiteála. De ghnáth tógann sé níos lú ná nóiméad ar an gcéad rith.',
     starting: 'Ag tosú OpenAmer…',
@@ -2251,7 +2341,7 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     collapse: 'Laghdaigh',
     otherProviders: 'Soláthraithe eile',
     haveApiKey: 'Tá eochair API agam',
-    chooseLater: "Roghnóidh mé soláthraí níos déanaí",
+    chooseLater: 'Roghnóidh mé soláthraí níos déanaí',
     recommended: 'Molta',
     connected: 'Ceangailte',
     featuredPitch: 'Síntiús amháin, 300+ múnla ceannródaíoch — an bealach molta chun OpenAmer a rith',
@@ -2260,28 +2350,29 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     apiKeyOptions: {
       fireworks: {
         short: 'API múnla díreach',
-        description: 'Rochtain dhíreach ar mhúnlaí arna n-óstáil ag Fireworks AI.',
+        description: 'Rochtain dhíreach ar mhúnlaí arna n-óstáil ag Fireworks AI.'
       },
       openrouter: {
         short: 'eochair amháin, múnlaí iomadúla',
-        description: 'Óstálann sé na céadta múnlaí faoi eochair amháin. Réamhshocrú maith do shuiteálacha nua.',
+        description: 'Óstálann sé na céadta múnlaí faoi eochair amháin. Réamhshocrú maith do shuiteálacha nua.'
       },
       openai: {
         short: 'Múnlaí de chineál GPT',
-        description: 'Rochtain dhíreach ar mhúnlaí OpenAI.',
+        description: 'Rochtain dhíreach ar mhúnlaí OpenAI.'
       },
       gemini: {
         short: 'Múnlaí Gemini',
-        description: 'Rochtain dhíreach ar mhúnlaí Google Gemini.',
+        description: 'Rochtain dhíreach ar mhúnlaí Google Gemini.'
       },
       xai: {
         short: 'Múnlaí Grok',
-        description: 'Rochtain dhíreach ar mhúnlaí Grok ó xAI.',
+        description: 'Rochtain dhíreach ar mhúnlaí Grok ó xAI.'
       },
       local: {
         short: 'féinóstáilte',
-        description: 'Treoraigh OpenAmer chuig críochphointe comhoiriúnach le OpenAI atá áitiúil nó féinóstáilte (vLLM, llama.cpp, Ollama, srl.).',
-      },
+        description:
+          'Treoraigh OpenAmer chuig críochphointe comhoiriúnach le OpenAI atá áitiúil nó féinóstáilte (vLLM, llama.cpp, Ollama, srl.).'
+      }
     },
     backToSignIn: 'Ar ais chun síniú isteach',
     getKey: 'Faigh eochair',
@@ -2294,7 +2385,7 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     flowSubtitles: {
       pkce: 'Osclaíonn do bhrabhsálaí chun síniú isteach, ansin leanann sé ar aghaidh anseo',
       device_code: 'Osclaíonn leathanach fíoraithe i do bhrabhsálaí — nascann OpenAmer go huathoibríoch',
-      external: 'Sínigh isteach uair amháin i do theirmineal, ansin fill ar an gcomhrá',
+      external: 'Sínigh isteach uair amháin i do theirmineal, ansin fill ar an gcomhrá'
     },
     startingSignIn: provider => `Ag tosú síniú isteach do ${provider}...`,
     verifyingCode: provider => `Ag fíorú do chóid le ${provider}...`,
@@ -2308,11 +2399,13 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     copyAuthCode: 'Cóipeáil an cód údaraithe agus greamaigh thíos é.',
     pasteAuthCode: 'Greamaigh an cód údaraithe',
     reopenAuthPage: 'Athoscail an leathanach údaraithe',
-    autoBrowser: provider => `D'oscail muid ${provider} i do bhrabhsálaí. Údaraigh OpenAmer ansin agus beidh tú nasctha go huathoibríoch — níl aon rud le cóipeáil ná le greamú.`,
+    autoBrowser: provider =>
+      `D'oscail muid ${provider} i do bhrabhsálaí. Údaraigh OpenAmer ansin agus beidh tú nasctha go huathoibríoch — níl aon rud le cóipeáil ná le greamú.`,
     reopenSignInPage: 'Athoscail an leathanach síniú isteach',
     waitingAuthorize: 'Ag fanacht go n-údaróidh tú...',
-    externalPending: provider => `Síníonn ${provider} isteach trína CLI féin. Rith an t-ordú seo i dteirminéal, ansin tar ar ais agus roghnaigh "Tá mé sínithe isteach":`,
-    signedIn: "Tá mé sínithe isteach",
+    externalPending: provider =>
+      `Síníonn ${provider} isteach trína CLI féin. Rith an t-ordú seo i dteirminéal, ansin tar ar ais agus roghnaigh "Tá mé sínithe isteach":`,
+    signedIn: 'Tá mé sínithe isteach',
     deviceCodeOpened: provider => `D'oscail muid ${provider} i do bhrabhsálaí. Cuir isteach an cód seo ansin:`,
     reopenVerification: 'Athoscail an leathanach fíoraithe',
     copy: 'Cóipeáil',
@@ -2323,7 +2416,7 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     price: (input, output) => `${input} isteach / ${output} amach in aghaidh Mtok`,
     change: 'Athraigh',
     startChatting: 'Tosaigh',
-    docs: provider => `doiciméad ${provider}`,
+    docs: provider => `doiciméad ${provider}`
   },
   modelPicker: {
     title: 'Athraigh samhail',
@@ -2339,13 +2432,13 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     free: 'Saor',
     freeTier: 'Sráth saor',
     priceTitle: 'Praghas Input / Output in millón tokens',
-    wasPrice: 'bhí',
+    wasPrice: 'bhí'
   },
   modelVisibility: {
     title: 'Samhní',
     search: 'Cuardaigh samhní',
     noAuthenticatedProviders: 'Níl aon soláthraithe faighthe.',
-    addProvider: 'Cuir soláthraith leis…',
+    addProvider: 'Cuir soláthraith leis…'
   },
   shell: {
     windowControls: 'Cealraí fuinneoire',
@@ -2356,7 +2449,7 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       noModels: 'Níor aimsíodh aon shamhní',
       editModels: 'Cuir Samhní in áedít…',
       refreshModels: 'Athnuachan Samhní',
-      fast: 'Tapa',
+      fast: 'Tapa'
     },
     modelOptions: {
       noOptions: 'Níl aon roghanna don shamhní seo',
@@ -2372,7 +2465,7 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       max: 'Uasta',
       ultra: 'Osréidir',
       updateFailed: 'Cuireadh rogha an mhodail ar fails',
-      fastFailed: 'Cuireadh mód tapa ar fails',
+      fastFailed: 'Cuireadh mód tapa ar fails'
     },
     gatewayMenu: {
       gateway: 'Geata',
@@ -2387,7 +2480,7 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       connection: label => `Ceangal: ${label}`,
       recentActivity: 'Gníomhaíocht le déanaí',
       viewAllLogs: 'Féach ar gach taifead →',
-      messagingPlatforms: 'Ardáin teachtaireachta',
+      messagingPlatforms: 'Ardáin teachtaireachta'
     },
     approvalMode: {
       title: 'Mód ceadúnaithe',
@@ -2397,14 +2490,15 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       smart: 'Cliste',
       smartDescription: 'Measigh gníomh go huathoibríoch agus iarr nuair is gá',
       off: 'Múchta',
-      offDescription: 'Rith gan broimptí ceadúnaithe',
+      offDescription: 'Rith gan broimptí ceadúnaithe'
     },
     statusbar: {
       unknown: 'anaithnid',
       restart: 'atosail',
       update: 'nuashonraigh',
       updateInProgress: 'Nuashonrú in earnáil',
-      commitsBehind: (count, branch) => `${count} chomhbhrú ${count === 1 ? 'tiomantas' : 'tiomantais'} níos déanaí ná ${branch}`,
+      commitsBehind: (count, branch) =>
+        `${count} chomhbhrú ${count === 1 ? 'tiomantas' : 'tiomantais'} níos déanaí ná ${branch}`,
       desktopVersion: version => `OpenAmer Desktop v${version}`,
       backendVersion: version => `Backend v${version}`,
       clientLabel: version => `client v${version}`,
@@ -2453,27 +2547,29 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
           skills: 'Scileanna',
           subagent_definitions: 'Sainmhíniú an t-ionsaora',
           system_prompt: ' banca anCórais',
-          tool_definitions: 'Sainmhíniú uirlisí',
+          tool_definitions: 'Sainmhíniú uirlisí'
         },
         empty: 'Níl aon shonraí comhthéacs fós',
         loading: 'Ag lódáil briseadh…',
         percentFull: percent => `${percent}% Lán`,
         title: 'Úsáid Comhthéacs',
-        tokenSummary: (used, max) => `${used} / ${max} Comharthaí`,
+        tokenSummary: (used, max) => `${used} / ${max} Comharthaí`
       },
       openContextUsage: 'Oscail miondealú úsáide comhthéacs',
       session: 'Seisiún',
       runtimeSessionElapsed: 'Am seisiúin rite caite',
-      yoloOn: 'YOLO ar siúl — ag formheas orduithe contúirteacha go huathoibríoch. Cliceáil chun é a mhúchadh. Shift+cliceáil chun é a scoránaigh go domhanda.',
-      yoloOff: 'YOLO as — cliceáil chun orduithe contúirteacha a fhormheas go huathoibríoch. Shift+cliceáil chun é a scoránaigh go domhanda.',
+      yoloOn:
+        'YOLO ar siúl — ag formheas orduithe contúirteacha go huathoibríoch. Cliceáil chun é a mhúchadh. Shift+cliceáil chun é a scoránaigh go domhanda.',
+      yoloOff:
+        'YOLO as — cliceáil chun orduithe contúirteacha a fhormheas go huathoibríoch. Shift+cliceáil chun é a scoránaigh go domhanda.',
       modelNone: 'dada',
       noModel: 'gan samhail',
       switchModel: 'Athraigh samhail',
       openModelPicker: 'Oscail roghnóir samhla',
       modelPinned: 'pionnáilte agat; úsáideann comhráite nua é seo seachas réamhshocrú na Socruithe',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Barra taoibh deas',
@@ -2509,7 +2605,7 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     terminalNew: 'Teirminéal nua',
     terminalCloseOthers: 'Dún na cinn eile',
     terminalCloseAll: 'Dún go léir',
-    addToChat: 'Cuir le comhrá',
+    addToChat: 'Cuir le comhrá'
   },
   preview: {
     tab: 'Réamhamharc',
@@ -2543,7 +2639,8 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     unsavedChanges: 'Athruithe gan sábháil',
     saveFailed: message => `Theip ar shábháil: ${message}`,
     diskChangedTitle: 'Athraíodh an comhad ar an diosca',
-    diskChangedBody: 'Athraíodh an comhad seo ó d\'oscail tú é. Forscríobh le do leagan é, nó caith do chuid athruithe amach agus athlódáil?',
+    diskChangedBody:
+      "Athraíodh an comhad seo ó d'oscail tú é. Forscríobh le do leagan é, nó caith do chuid athruithe amach agus athlódáil?",
     overwrite: 'Forscríobh',
     discardReload: 'Caith amach & athlódáil',
     console: {
@@ -2564,7 +2661,7 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       empty: 'Níl aon teachtaireacht chonsóil ann fós.',
       promptHeader: 'Consól réamhamhairc:',
       sentTitle: 'Seoladh chuig an gcomhrá',
-      sentMessage: count => `${count} iontráil logála ${count === 1 ? 'y' : 'ies'} curtha leis an chomhbhaire`,
+      sentMessage: count => `${count} iontráil logála ${count === 1 ? 'y' : 'ies'} curtha leis an chomhbhaire`
     },
     web: {
       appFailedToBoot: 'Theip ar aip réamhamhairc tosú',
@@ -2575,31 +2672,35 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       askRestart: 'Iarr ar OpenAmer an freastalaí a atosú',
       lookingRestart: taskId => `Tá OpenAmer ag cuardach freastalaí réamhamhairc le hatosú (${taskId})`,
       restartingTitle: 'Ag atosú an fhreastalaí réamhamhairc',
-      restartingMessage: 'Tá OpenAmer ag obair sa chúlra. Féach ar chonsól an réamhamhairc le dul chun cinn a fheiceáil.',
+      restartingMessage:
+        'Tá OpenAmer ag obair sa chúlra. Féach ar chonsól an réamhamhairc le dul chun cinn a fheiceáil.',
       startRestartFailed: message => `Níorbh fhéidir atosú an fhreastalaí a thosú: ${message}`,
       restartFailed: 'Theip ar atosú an fhreastalaí',
       hideConsole: 'Folaigh consól an réamhamhairc',
       showConsole: 'Taispeáin consól an réamhamhairc',
       hideDevTools: 'Folaigh DevTools an réamhamhairc',
       openDevTools: 'Oscail DevTools an réamhamhairc',
-      finishedRestarting: message => `Chríochnaigh OpenAmer atosú an fhreastalaí réamhamhairc${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `Chríochnaigh OpenAmer atosú an fhreastalaí réamhamhairc${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Theip ar atosú an fhreastalaí: ${message}`,
       unknownError: 'earráid anaithnid',
       restartedTitle: 'Atosaíodh an freastalaí réamhamhairc',
       reloadingNow: 'Ag athlódáil an réamhamhairc anois.',
       restartFailedTitle: 'Theip ar atosú an réamhamhairc',
       restartFailedMessage: 'Níorbh fhéidir le OpenAmer an freastalaí a atosú.',
-      stillWorking: 'Tá OpenAmer fós ag obair, ach níor tháinig aon toradh atosaigh fós. Seans go bhfuil ordú an fhreastalaí ag rith sa tosach.',
+      stillWorking:
+        'Tá OpenAmer fós ag obair, ach níor tháinig aon toradh atosaigh fós. Seans go bhfuil ordú an fhreastalaí ag rith sa tosach.',
       workspaceReloading: 'Athraíodh an spás oibre, ag athlódáil an réamhamhairc',
       fileChanged: url => `Athraíodh an comhad, ag athlódáil an réamhamhairc: ${url}`,
       filesChanged: (count, url) => `${count} athrú comhaid, ag athlódáil an réamhamhairc: ${url}`,
       watchFailed: message => `Níorbh fhéidir faireachán a dhéanamh ar chomhad an réamhamhairc: ${message}`,
-      moduleMimeDescription: 'Tá scripteanna modúil á seirbheáil le cineál MIME mícheart. De ghnáth ciallaíonn sé seo go bhfuil freastalaí comhad statach ag seirbheáil aip Vite/React in ionad fhreastalaí forbartha an tionscadail.',
+      moduleMimeDescription:
+        'Tá scripteanna modúil á seirbheáil le cineál MIME mícheart. De ghnáth ciallaíonn sé seo go bhfuil freastalaí comhad statach ag seirbheáil aip Vite/React in ionad fhreastalaí forbartha an tionscadail.',
       loadFailedConsole: (code, message) => `Theip ar an lódáil${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Níorbh fhéidir teacht ar leathanach an réamhamhairc.',
       openTarget: url => `Oscail ${url}`,
-      fallbackTitle: 'Réamhamharc',
-    },
+      fallbackTitle: 'Réamhamharc'
+    }
   },
   zones: {
     showHeader: 'Taispeáin an ceanntásc',
@@ -2607,7 +2708,8 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     minimize: 'Íoslaghdaigh',
     restore: 'Athchóirigh',
     closeRunningTitle: 'Dún an cluaisín atá ag rith?',
-    closeRunningBody: 'Tá an comhrá seo fós ag obair (nó ag fanacht le d\'ionchur). Folaíonn dúnadh an chluaisín é — coinníonn an seisiún a dhul chun cinn agus is féidir é a athoscailt ón mbarra taoibh.',
+    closeRunningBody:
+      "Tá an comhrá seo fós ag obair (nó ag fanacht le d'ionchur). Folaíonn dúnadh an chluaisín é — coinníonn an seisiún a dhul chun cinn agus is féidir é a athoscailt ón mbarra taoibh.",
     closeRunningConfirm: 'Dún an cluaisín',
     closeOthers: 'Dún na cluaisíní eile',
     closeToRight: 'Dún na cinn ar dheis',
@@ -2633,7 +2735,8 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     deletePreset: name => `Scrios ${name}`,
     zoneEditorTitle: 'Eagarthóir crios',
     editorHintPre: 'cliceáil le scoilt · ',
-    editorHintPost: ' casann an líne · tarraing trasna na gcriosanna le cumasc · tarraing imill chomhroinnte le hathrú méide',
+    editorHintPost:
+      ' casann an líne · tarraing trasna na gcriosanna le cumasc · tarraing imill chomhroinnte le hathrú méide',
     templateColumns: 'Colúin',
     templateRows: 'Sraitheanna',
     templateGrid: 'Greille',
@@ -2644,27 +2747,16 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     layoutNamePlaceholder: fallback => `Ainm an leagain (${fallback})`,
     saveApply: 'Sábháil & cuir i bhfeidhm',
     notExpressible: 'tá an socrú seo fite fuaite (rothán) — ní féidir é a chur in iúl mar scoiltí neadaithe go fóill',
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
       loadingSession: 'Seisiún á lódáil',
       showEarlier: 'Taispeáin teachtaireachtaí níos luaithe',
       loadingResponse: 'Tá OpenAmer ag lódáil freagra',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Ag smaoineamh',
       today: time => `Inniu, ${time}`,
@@ -2691,7 +2783,7 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       restoreNext: 'Athchuir an chéad checkpoint eile',
       goForward: 'Téigh ar aghaidh',
       sendEdited: 'Cuir teachtaireacht amódáilte',
-      attachingFile: 'Ag nascadh…',
+      attachingFile: 'Ag nascadh…'
     },
     approval: {
       gatewayDisconnected: 'Níl gateway OpenAmer nasctha',
@@ -2704,8 +2796,9 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       jumpToApproval: 'Ceadú ag teastáil',
       reject: 'Diúltaigh',
       alwaysTitle: 'Ceadaigh an úrord seo i gcónaí?',
-      alwaysDescription: pattern => `Cuireann sé seo an patrún “${pattern}” i do liosta ceadaithe buan (~/.openamer/config.yaml). Ní iarróidh OpenAmer cead ar úorda cosúil leis seo arís — sa seisiún seo nó i seisiúin amach an óla.`,
-      alwaysAllow: 'Ceadaigh i gcónaí',
+      alwaysDescription: pattern =>
+        `Cuireann sé seo an patrún “${pattern}” i do liosta ceadaithe buan (~/.openamer/config.yaml). Ní iarróidh OpenAmer cead ar úorda cosúil leis seo arís — sa seisiún seo nó i seisiúin amach an óla.`,
+      alwaysAllow: 'Ceadaigh i gcónaí'
     },
     clarify: {
       notReady: 'Níl an t-iarratas soiléirithe réidh fós',
@@ -2719,7 +2812,8 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       continueLabel: 'Lean ar aghaidh',
       lateAnswer: (question, choice) => `Maidir le: "${question}" — mo fhreagra: ${choice}`,
       lateAnswerTip: 'Dréachtaigh an freagra seo mar theachtaireacht leantach',
-      lateAnswerHint: 'Níl an leid seo ag fanacht a thuilleadh. Roghnaigh rogha chun í a dhréachtú mar theachtaireacht leantach.',
+      lateAnswerHint:
+        'Níl an leid seo ag fanacht a thuilleadh. Roghnaigh rogha chun í a dhréachtú mar theachtaireacht leantach.'
     },
     tool: {
       code: 'Cód',
@@ -2755,11 +2849,11 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
         ran: 'Rith',
         running: 'Ag rith',
         ranCode: 'Rith cód',
-        runningCode: 'Ag scriptiú',
+        runningCode: 'Ag scriptiú'
       },
       prefixes: {
         browser: 'Brabhsálaí',
-        web: 'Gréasán',
+        web: 'Gréasán'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2767,132 +2861,133 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Ag rith ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Ag rith ${action.toLowerCase()}`,
+        runningTool: action => `Ag rith ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Cliceáladh eilimint leathanaigh',
           pending: 'Ag cliceáil eilimint leathanaigh',
-          pendingAction: 'Ag cliceáil',
+          pendingAction: 'Ag cliceáil'
         },
         browser_fill: {
           done: 'Líonadh réimse foirme',
           pending: 'Ag líonadh réimse foirme',
-          pendingAction: 'Ag líonadh',
+          pendingAction: 'Ag líonadh'
         },
         browser_navigate: {
           done: 'Osclaíodh leathanach',
           pending: 'Ag oscailt leathanaigh',
-          pendingAction: 'Ag oscailt',
+          pendingAction: 'Ag oscailt'
         },
         browser_snapshot: {
           done: 'Gabhadh léargas leathanaigh',
           pending: 'Ag gabháil léargas leathanaigh',
-          pendingAction: 'Ag gabháil',
+          pendingAction: 'Ag gabháil'
         },
         browser_take_screenshot: {
           done: 'Gabhadh scáileánghrianghraf',
           pending: 'Ag gabháil scáileánghrianghraf',
-          pendingAction: 'Ag gabháil',
+          pendingAction: 'Ag gabháil'
         },
         browser_type: {
           done: 'Clóscríobhadh ar an leathanach',
           pending: 'Ag clóscríobh ar an leathanach',
-          pendingAction: 'Ag clóscríobh',
+          pendingAction: 'Ag clóscríobh'
         },
         clarify: {
           done: 'Cuireadh ceist',
           pending: 'Ag cur ceist',
-          pendingAction: 'Ag fiafraí',
+          pendingAction: 'Ag fiafraí'
         },
         cronjob: {
           done: 'Tasc cron',
           pending: 'Ag sceidealú tasc cron',
-          pendingAction: 'Ag sceidealú',
+          pendingAction: 'Ag sceidealú'
         },
         edit_file: {
           done: 'Cuireadh comhad in eagar',
           pending: 'Ag cur comhad in eagar',
-          pendingAction: 'Ag cur in eagar',
+          pendingAction: 'Ag cur in eagar'
         },
         execute_code: {
           done: 'Rith cód',
           pending: 'Ag scriptiú',
-          pendingAction: 'Ag scriptiú',
+          pendingAction: 'Ag scriptiú'
         },
         image_generate: {
           done: 'Íomhá ghinte',
           pending: 'Ag giniúint íomhá',
-          pendingAction: 'Ag giniúint',
+          pendingAction: 'Ag giniúint'
         },
         list_files: {
           done: 'Comhaid liostaithe',
           pending: 'Ag liostú comhad',
-          pendingAction: 'Ag liostú',
+          pendingAction: 'Ag liostú'
         },
         patch: {
           done: 'Comhad paisteáilte',
           pending: 'Ag paisteáil comhaid',
-          pendingAction: 'Ag paisteáil',
+          pendingAction: 'Ag paisteáil'
         },
         read_file: {
           done: 'Comhad léite',
           pending: 'Ag léamh comhaid',
-          pendingAction: 'Ag léamh',
+          pendingAction: 'Ag léamh'
         },
         search_files: {
           done: 'Comhaid chuardaithe',
           pending: 'Ag cuardach comhad',
-          pendingAction: 'Ag cuardach',
+          pendingAction: 'Ag cuardach'
         },
         session_search_recall: {
           done: 'Stair seisiúin cuardaithe',
           pending: 'Ag cuardach stair seisiúin',
-          pendingAction: 'Ag cuardach',
+          pendingAction: 'Ag cuardach'
         },
         terminal: {
           done: 'Ordú rite',
           pending: 'Ag rith ordú',
-          pendingAction: 'Ag rith',
+          pendingAction: 'Ag rith'
         },
         todo: {
           done: 'Tascanna nuashonraithe',
           pending: 'Tascanna á nuashonrú',
-          pendingAction: 'Á nuashonrú',
+          pendingAction: 'Á nuashonrú'
         },
         vision_analyze: {
           done: 'Íomhá anailísithe',
           pending: 'Íomhá á hanailísiú',
-          pendingAction: 'Ag anailísiú',
+          pendingAction: 'Ag anailísiú'
         },
         web_extract: {
           done: 'Leathanach gréasáin léite',
           pending: 'Leathanach gréasáin á léamh',
-          pendingAction: 'Ag léamh',
+          pendingAction: 'Ag léamh'
         },
         web_search: {
           done: 'An gréasán cuardaithe',
           pending: 'An gréasán á chuardach',
-          pendingAction: 'Ag cuardach',
+          pendingAction: 'Ag cuardach'
         },
         write_file: {
           done: 'Comhad curtha in eagar',
           pending: 'Comhad á chur in eagar',
-          pendingAction: 'Á chur in eagar',
-        },
-      },
-    },
+          pendingAction: 'Á chur in eagar'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'Níl geata OpenAmer ceangailte',
     sudoSendFailed: 'Níorbh fhéidir pasfhocal sudo a sheoladh',
     secretSendFailed: 'Níorbh fhéidir rún a sheoladh',
     sudoTitle: 'Pasfhocal an riarthóra',
-    sudoDesc: 'Teastaíonn do phasfhocal sudo ó OpenAmer chun ordú faoi phribhléid a rith. Ní sheoltar é ach chuig do ghníomhaire áitiúil.',
+    sudoDesc:
+      'Teastaíonn do phasfhocal sudo ó OpenAmer chun ordú faoi phribhléid a rith. Ní sheoltar é ach chuig do ghníomhaire áitiúil.',
     sudoPlaceholder: 'pasfhocal sudo',
     secretTitle: 'Rún de dhíth',
     secretDesc: 'Tá dintiúr de dhíth ar OpenAmer le leanúint ar aghaidh.',
-    secretPlaceholder: 'luach rúnda',
+    secretPlaceholder: 'luach rúnda'
   },
   desktop: {
     audioReadFailed: 'Níorbh fhéidir fuaim thaifeadta a léamh',
@@ -2909,7 +3004,8 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     yoloSystem: active => `YOLO ${active ? 'ar' : 'as'} don seisiún seo`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Níorbh fhéidir YOLO a mhalartú',
-    profileStatus: current => `Próifíl: ${current}. Úsáid /profile <name> nó an roghnóir "Seisiún nua" chun comhrá a thosú i bpróifíl eile.`,
+    profileStatus: current =>
+      `Próifíl: ${current}. Úsáid /profile <name> nó an roghnóir "Seisiún nua" chun comhrá a thosú i bpróifíl eile.`,
     unknownProfile: 'Próifíl anaithnid',
     noProfileNamed: (target, available) => `Níl aon phróifíl darb ainm "${target}". Ar fáil: ${available}`,
     newChatsProfile: name => `Úsáidfidh comhráite nua próifíl ${name}.`,
@@ -2919,8 +3015,9 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     regenerateFailed: 'Theip ar athghiniúint',
     editFailed: 'Theip ar eagarthóireacht',
     resumeFailed: 'Theip ar atosú',
-    resumeStrandedTitle: "Níorbh fhéidir an seisiún seo a luchtú",
-    resumeStrandedBody: 'Theip ar an nasc leis an seisiún seo agus thug na hatriallacha uathoibríocha suas. Seiceáil go bhfuil an geata ag rith, ansin triail arís.',
+    resumeStrandedTitle: 'Níorbh fhéidir an seisiún seo a luchtú',
+    resumeStrandedBody:
+      'Theip ar an nasc leis an seisiún seo agus thug na hatriallacha uathoibríocha suas. Seiceáil go bhfuil an geata ag rith, ansin triail arís.',
     resumeRetry: 'Triail arís',
     nothingToBranch: 'Níl aon rud le brainseáil',
     branchNeedsChat: 'Tosaigh comhrá nó atosaigh é roimh bhrainseáil.',
@@ -2934,7 +3031,8 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
     archiveFailed: 'Theip ar chartlannú',
     cwdChangeFailed: 'Theip ar athrú na comhadlainne oibre',
     cwdStagedTitle: 'Comhadlann oibre ullmhaithe',
-    cwdStagedMessage: 'Atosaigh inneall cúil an deisce chun athruithe cwd a chur i bhfeidhm ar an seisiún gníomhach seo.',
+    cwdStagedMessage:
+      'Atosaigh inneall cúil an deisce chun athruithe cwd a chur i bhfeidhm ar an seisiún gníomhach seo.',
     modelSwitchFailed: 'Theip ar athrú samhla',
     sessionExported: 'Seisiún easpórtáilte',
     sessionExportFailed: 'Níorbh fhéidir an seisiún a easpórtáil',
@@ -2960,31 +3058,31 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       success: platform => `Tugadh ar aghaidh chuig ${platform} é. Lean ar aghaidh anseo am ar bith.`,
       systemNote: platform => `↻ Tugadh ar aghaidh chuig ${platform} é — lean ar aghaidh anseo am ar bith.`,
       failed: error => `Theip ar an aistriú: ${error}`,
-      timedOut: 'Chuaigh sé thar am ag fanacht leis an ngeata. An bhfuil `openamer gateway` ag rith?',
-    },
+      timedOut: 'Chuaigh sé thar am ag fanacht leis an ngeata. An bhfuil `openamer gateway` ag rith?'
+    }
   },
   errors: {
     genericFailure: 'Chuaigh rud éigin mícheart',
     boundaryTitle: 'Bhris rud éigin sa chomhéadan',
     boundaryDesc: 'Bhuail earráid gan choinne an t-amharc. Tá do chomhráite agus do shocruithe sábháilte.',
     reloadWindow: 'Athlódáil an fhuinneog',
-    openLogs: 'Oscail logaí',
+    openLogs: 'Oscail logaí'
   },
   ui: {
     search: {
-      clear: 'Glan an cuardach',
+      clear: 'Glan an cuardach'
     },
     pagination: {
       label: 'uimhriú leathanach',
       previous: 'Roimhe seo',
       previousAria: 'Téigh go dtí an leathanach roimhe seo',
       next: 'Ar aghaidh',
-      nextAria: 'Téigh go dtí an chéad leathanach eile',
+      nextAria: 'Téigh go dtí an chéad leathanach eile'
     },
     sidebar: {
       title: 'Barra Taoibh',
       description: 'Taispeánann sé barra taoibh soghluaiste.',
-      toggle: 'Scoránaigh Barra Taoibh',
-    },
-  },
+      toggle: 'Scoránaigh Barra Taoibh'
+    }
+  }
 })

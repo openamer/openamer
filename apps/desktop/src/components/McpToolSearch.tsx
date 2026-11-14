@@ -1,10 +1,10 @@
-import { useState } from "react"
+import { useState } from 'react'
 
-import { Button } from "@/components/ui/button"
-import { Codicon } from "@/components/ui/codicon"
-import { Input } from "@/components/ui/input"
-import { searchCommunityMcpCatalog, searchMcpTools } from "@/openamer"
-import type { McpCommunityResponse, McpSearchToolsResponse } from "@/types/openamer"
+import { Button } from '@/components/ui/button'
+import { Codicon } from '@/components/ui/codicon'
+import { Input } from '@/components/ui/input'
+import { searchCommunityMcpCatalog, searchMcpTools } from '@/openamer'
+import type { McpCommunityResponse, McpSearchToolsResponse } from '@/types/openamer'
 
 /**
  * Tool / server discovery for the MCP tab (Desktop renderer).
@@ -16,18 +16,20 @@ import type { McpCommunityResponse, McpSearchToolsResponse } from "@/types/opena
  * Query syntax: space = AND, a|b = OR, "exact phrase".
  */
 export function McpToolSearch() {
-  const [toolQ, setToolQ] = useState("")
+  const [toolQ, setToolQ] = useState('')
   const [toolResult, setToolResult] = useState<McpSearchToolsResponse | null>(null)
   const [toolLoading, setToolLoading] = useState(false)
   const [toolRan, setToolRan] = useState(false)
 
-  const [communityQ, setCommunityQ] = useState("")
+  const [communityQ, setCommunityQ] = useState('')
   const [community, setCommunity] = useState<McpCommunityResponse | null>(null)
   const [communityLoading, setCommunityLoading] = useState(false)
   const [communityRan, setCommunityRan] = useState(false)
 
   async function runTools() {
-    if (!toolQ.trim()) {return}
+    if (!toolQ.trim()) {
+      return
+    }
     setToolLoading(true)
     setToolRan(true)
 
@@ -41,7 +43,9 @@ export function McpToolSearch() {
   }
 
   async function runCommunity() {
-    if (!communityQ.trim()) {return}
+    if (!communityQ.trim()) {
+      return
+    }
     setCommunityLoading(true)
     setCommunityRan(true)
 
@@ -59,9 +63,7 @@ export function McpToolSearch() {
       <div className="flex items-center gap-2 text-sm font-medium">
         <Codicon name="search" />
         Discovery
-        <span className="text-xs font-normal opacity-60">
-          space=AND · a|b=OR · “phrase”
-        </span>
+        <span className="text-xs font-normal opacity-60">space=AND · a|b=OR · “phrase”</span>
       </div>
 
       {/* Installed-tool search */}
@@ -69,12 +71,12 @@ export function McpToolSearch() {
         <div className="flex gap-1.5">
           <Input
             onChange={e => setToolQ(e.target.value)}
-            onKeyDown={e => e.key === "Enter" && runTools()}
+            onKeyDown={e => e.key === 'Enter' && runTools()}
             placeholder="Find a tool across installed servers"
             value={toolQ}
           />
           <Button disabled={toolLoading || !toolQ.trim()} onClick={runTools} size="sm">
-            {toolLoading ? "…" : "Search"}
+            {toolLoading ? '…' : 'Search'}
           </Button>
         </div>
         {toolRan && toolResult && (
@@ -86,7 +88,9 @@ export function McpToolSearch() {
           <div className="flex flex-col gap-1">
             {toolResult.matches.map(m => (
               <div className="flex items-start gap-2 text-xs" key={`${m.server}::${m.name}`}>
-                <code className="shrink-0 text-primary">{m.server}::{m.name}</code>
+                <code className="shrink-0 text-primary">
+                  {m.server}::{m.name}
+                </code>
                 <span className="opacity-70">{m.description}</span>
               </div>
             ))}
@@ -96,9 +100,7 @@ export function McpToolSearch() {
           <div className="text-xs opacity-60">No matching tools.</div>
         )}
         {toolResult && toolResult.probe_errors.length > 0 && (
-          <div className="text-xs text-warning">
-            {toolResult.probe_errors.length} server(s) could not be probed.
-          </div>
+          <div className="text-xs text-warning">{toolResult.probe_errors.length} server(s) could not be probed.</div>
         )}
       </div>
 
@@ -107,17 +109,15 @@ export function McpToolSearch() {
         <div className="flex gap-1.5">
           <Input
             onChange={e => setCommunityQ(e.target.value)}
-            onKeyDown={e => e.key === "Enter" && runCommunity()}
+            onKeyDown={e => e.key === 'Enter' && runCommunity()}
             placeholder="Search community MCP catalog (e.g. github, postgres)"
             value={communityQ}
           />
           <Button disabled={communityLoading || !communityQ.trim()} onClick={runCommunity} size="sm">
-            {communityLoading ? "…" : "Search"}
+            {communityLoading ? '…' : 'Search'}
           </Button>
         </div>
-        {communityRan && community && (
-          <div className="text-xs opacity-70">{community.count} server(s) found</div>
-        )}
+        {communityRan && community && <div className="text-xs opacity-70">{community.count} server(s) found</div>}
         {communityRan && community && community.entries.length === 0 && (
           <div className="text-xs opacity-60">No matching servers.</div>
         )}

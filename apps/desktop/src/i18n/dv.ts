@@ -45,7 +45,7 @@ export const dv = defineLocale({
     update: 'އަޕްޑޭޓްކުރޭ',
     tryHint: term => `Try “${term}”`,
     on: 'އޮން',
-    off: 'އޮފް',
+    off: 'އޮފް'
   },
   fileMenu: {
     revealFinder: 'Finder ގައި ދައްކާ',
@@ -60,7 +60,7 @@ export const dv = defineLocale({
     renameLabel: 'އައު ނަން',
     deleteTitle: name => `Delete ${name}?`,
     deleteBody: 'އެއީ ޓްރާޝްއަށް ބަދަލުކުރެވޭނެ — އެތަނުން އަނެއްކާ ބަހައްޓައިދެވޭނެ.',
-    pathCopied: 'ޕާތް ކޮޕީކުރެވިއްޖެ',
+    pathCopied: 'ޕާތް ކޮޕީކުރެވިއްޖެ'
   },
   boot: {
     ready: 'OpenAmer Desktop ތައްޔާރުވެއްޖެ',
@@ -70,7 +70,7 @@ export const dv = defineLocale({
       loadingSettings: 'OpenAmer ސެޓިންގްސް ލޯޑްކުރަނީ',
       loadingSessions: 'ފަހުގެ ސެޝަންސް ލޯޑްކުރަނީ',
       startingDesktopConnection: 'ޑެސްކްޓޮޕް ގުޅުން ފަށަނީ',
-      startingOpenAmerDesktop: 'OpenAmer Desktop ފަށަނީ…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop ފަށަނީ…'
     },
     errors: {
       backgroundExited: 'OpenAmer ބެކްގްރައުންޑް ޕްރޮސެސް ނިމިއްޖެ.',
@@ -79,13 +79,15 @@ export const dv = defineLocale({
       desktopBootFailed: 'ޑެސްކްޓޮޕް ބޫޓް ނާކާމިވެއްޖެ',
       gatewayConnectionLost: 'ގޭޓްވޭއާއި ގުޅުން ގެއްލިއްޖެ',
       gatewaySignInRequired: 'ގޭޓްވޭ ސައިން އިން ކުރަން ޖެހޭ',
-      ipcBridgeUnavailable: 'ޑެސްކްޓޮޕް IPC ބްރިޖް ނުލިބެ.',
+      ipcBridgeUnavailable: 'ޑެސްކްޓޮޕް IPC ބްރިޖް ނުލިބެ.'
     },
     failure: {
-      title: "OpenAmer ފެށޭގޮތެއް ނުވި",
-      description: "ބެކްގްރައުންޑް ގޭޓްވޭ ފެށިނުވި. ތިރީގައިވާ ރިކަވަރީ ފިޔަވަޅުތަކުން އެކެއް މަސައްކަތްކުރައްވާ. މިތަނުން ތިބާގެ ޗެޓްތައް ނުވަތަ ސެޓިންގްސް ނުފޮހެވޭނެ.",
+      title: 'OpenAmer ފެށޭގޮތެއް ނުވި',
+      description:
+        'ބެކްގްރައުންޑް ގޭޓްވޭ ފެށިނުވި. ތިރީގައިވާ ރިކަވަރީ ފިޔަވަޅުތަކުން އެކެއް މަސައްކަތްކުރައްވާ. މިތަނުން ތިބާގެ ޗެޓްތައް ނުވަތަ ސެޓިންގްސް ނުފޮހެވޭނެ.',
       remoteTitle: 'ރިމޯޓް ގޭޓްވޭ ސައިން އިން ކުރަން ޖެހޭ',
-      remoteDescription: 'ތިބާގެ ރިމޯޓް ގޭޓްވޭ ސެޝަން މުއްދަތު ހަމަވެއްޖެ. އަލުން ގުޅުވުމަށް ސައިން އިން ކުރައްވާ. މިތަނުން ތިބާގެ ޗެޓްތައް ނުވަތަ ސެޓިންގްސް ނުފޮހެވޭނެ.',
+      remoteDescription:
+        'ތިބާގެ ރިމޯޓް ގޭޓްވޭ ސެޝަން މުއްދަތު ހަމަވެއްޖެ. އަލުން ގުޅުވުމަށް ސައިން އިން ކުރައްވާ. މިތަނުން ތިބާގެ ޗެޓްތައް ނުވަތަ ސެޓިންގްސް ނުފޮހެވޭނެ.',
       retry: 'އަލުން މަސައްކަތްކުރައްވާ',
       repairInstall: 'އިންސްޓޯލް ރިޕެއަރ ކުރައްވާ',
       useLocalGateway: 'ލޯކަލް ގޭޓްވޭ ބޭނުންކުރައްވާ',
@@ -93,9 +95,11 @@ export const dv = defineLocale({
       back: 'ފަހަތަށް',
       openLogs: 'ލޮގްތައް ހުޅުވައްވާ',
       repairHint: 'ރިޕެއަރ އިންސްޓޯލަރ އަލުން ދުއްވާނެ، އަދި އައު މެޝިނެއްގައި ކުޑަކޮށް މިނެޓްތަކެއް ނަގައިދާނެ.',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
       signOutAndSignIn: 'ސައިން އައުޓް އަދި ސައިން އިން',
-      remoteFailureHint: 'ގޭޓްވޭ ސެޓިންގްސް ދަށުން ގޭޓްވޭ URL އަދި ސައިން އިން ބައްލަވާ، ނުވަތަ ލޯކަލް ގޭޓްވޭއަށް ބަދަލުކުރައްވާ.',
+      remoteFailureHint:
+        'ގޭޓްވޭ ސެޓިންގްސް ދަށުން ގޭޓްވޭ URL އަދި ސައިން އިން ބައްލަވާ، ނުވަތަ ލޯކަލް ގޭޓްވޭއަށް ބަދަލުކުރައްވާ.',
       hideRecentLogs: 'ފަހުގެ ލޮގްތައް ފޮރުވައްވާ',
       showRecentLogs: 'ފަހުގެ ލޮގްތައް ދައްކަވާ',
       signedInTitle: 'ސައިން އިން ވެއްޖެ',
@@ -105,8 +109,8 @@ export const dv = defineLocale({
       signInFailed: 'ސައިން އިން ނާކާމިޔާބުވި',
       signInToRemoteGateway: 'ރިމޯޓް ގޭޓްވޭއަށް ސައިން އިންކުރޭ',
       signInWithProvider: provider => `Sign in with ${provider}`,
-      identityProvider: 'ތިބާގެ އައިޑެންޓިޓީ ޕްރޮވައިޑަރ',
-    },
+      identityProvider: 'ތިބާގެ އައިޑެންޓިޓީ ޕްރޮވައިޑަރ'
+    }
   },
   notifications: {
     region: 'ނޮޓިފިކޭޝަންތައް',
@@ -119,21 +123,23 @@ export const dv = defineLocale({
     copyDetail: 'ތަފްސީލު ކޮޕީކުރޭ',
     copyDetailFailed: 'ނޮޓިފިކޭޝަން ތަފްސީލު ކޮޕީކުރެވެންނުވި',
     backendOutOfDateTitle: 'ބެކްއެންޑް ޒަމާނުން ނިކުތް',
-    backendOutOfDateMessage: 'ތިބާގެ OpenAmer ބެކްއެންޑް މި ޑެސްކްޓޮޕް ބިލްޑަށްވުރެ ދުވަސްވެފައިވާތީ ރަނގަޅަށް މަސައްކަތްނުކުރެވިދާނެ. އެއްގޮތްކުރުމަށް އަޕްޑޭޓްކުރޭ.',
+    backendOutOfDateMessage:
+      'ތިބާގެ OpenAmer ބެކްއެންޑް މި ޑެސްކްޓޮޕް ބިލްޑަށްވުރެ ދުވަސްވެފައިވާތީ ރަނގަޅަށް މަސައްކަތްނުކުރެވިދާނެ. އެއްގޮތްކުރުމަށް އަޕްޑޭޓްކުރޭ.',
     installMethodUnsupportedTitle: 'ސަޕޯޓް ނުކުރާ އިންސްޓޯލް ގޮތް',
     updateOpenAmer: 'OpenAmer އަޕްޑޭޓްކުރޭ',
     updateReadyTitle: 'އަޕްޑޭޓް ތައްޔާރު',
     updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
-    seeWhatsNew: "އައު ކަންތައްތައް ބައްލަވާ",
+    seeWhatsNew: 'އައު ކަންތައްތައް ބައްލަވާ',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT އަށް ELEVENLABS_API_KEY ބޭނުންވޭ',
       elevenLabsRejectedKey: 'ElevenLabs އިން API key ޤަބޫލެއް ނުކުރި (401).',
       gatewayAuthFailed: 'Gateway authentication ފެއިލްވި — API_SERVER_KEY ޗެކްކުރައްވާ.',
-      methodNotAllowed: 'Desktop backend އިން އެ ރިކުއެސްޓް ޤަބޫލެއް ނުކުރި (405 Method Not Allowed). OpenAmer Desktop އަލުން ފަށާލަން ބައްލަވާ.',
+      methodNotAllowed:
+        'Desktop backend އިން އެ ރިކުއެސްޓް ޤަބޫލެއް ނުކުރި (405 Method Not Allowed). OpenAmer Desktop އަލުން ފަށާލަން ބައްލަވާ.',
       microphonePermission: 'މައިކްރޯފޯން ހުއްދަ ނުދެވުނު.',
       openaiRejectedApiKey: 'OpenAI އިން API key ޤަބޫލެއް ނުކުރި.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS އަށް VOICE_TOOLS_OPENAI_KEY ނުވަތަ OPENAI_API_KEY ބޭނުންވޭ.',
+      openaiTtsNeedsKey: 'OpenAI TTS އަށް VOICE_TOOLS_OPENAI_KEY ނުވަތަ OPENAI_API_KEY ބޭނުންވޭ.'
     },
     voice: {
       configureSpeechToText: 'voice mode ބޭނުންކުރަން speech-to-text ކޮންފިގްކުރައްވާ.',
@@ -152,7 +158,7 @@ export const dv = defineLocale({
       transcriptionFailed: 'ވޯއިސް ޓްރާންސްކްރިޕްޝަން ފެއިލްވި.',
       transcriptionUnavailable: 'ވޯއިސް ޓްރާންސްކްރިޕްޝަން އަދިއަށް ނުލިބެއެވެ.',
       tryRecordingAgain: 'އަލުން ރެކޯޑް ކުރައްވާ',
-      unavailable: 'ވޯއިސް ނުލިބެއެވެ',
+      unavailable: 'ވޯއިސް ނުލިބެއެވެ'
     },
     native: {
       approvalTitle: 'ހުއްދަ ބޭނުންވެއެވެ',
@@ -165,11 +171,12 @@ export const dv = defineLocale({
       turnErrorTitle: 'ދައުރު ނާކާމިޔާބުވެއްޖެ',
       backgroundDoneTitle: 'ބެކްގްރައުންޑް ޓާސްކް ނިމިއްޖެ',
       backgroundFailedTitle: 'ބެކްގްރައުންޑް ޓާސްކް ނާކާމިޔާބުވެއްޖެ',
-      creditsTitle: 'ކްރެޑިޓް',
-    },
+      creditsTitle: 'ކްރެޑިޓް'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer ކްރެޑިޓް ހަމަވެއްޖެ',
@@ -177,7 +184,7 @@ export const dv = defineLocale({
     fallbackMessage: 'ތިޔަބޭފުޅާގެ އެކައުންޓްގެ ކްރެޑިޓް ހަމަވެއްޖެ. ކުރިއަށް ދިއުމަށް ކްރެޑިޓް އިތުރުކުރައްވާ.',
     openBilling: 'ބިލިންގ ހުޅުވާ',
     addCredits: 'ކްރެޑިޓް އިތުރުކުރައްވާ',
-    dismiss: 'ދުރުކުރައްވާ',
+    dismiss: 'ދުރުކުރައްވާ'
   },
   titlebar: {
     hideSidebar: 'ސައިޑްބާ ފޮރުވާ',
@@ -194,7 +201,7 @@ export const dv = defineLocale({
     openStarmap: 'މެމަރީ ގްރާފް ހުޅުވާ',
     openKeybinds: 'ކީބޯޑް ޝޯޓްކަޓްތައް',
     layoutEditor: 'ލޭއައުޓް އެޑިޓަރ',
-    layoutEditorTitle: 'ލޭއައުޓް އެޑިޓަރ — ⌘-click ލޭއައުޓް ރީސެޓްކުރޭ',
+    layoutEditorTitle: 'ލޭއައުޓް އެޑިޓަރ — ⌘-click ލޭއައުޓް ރީސެޓްކުރޭ'
   },
   keybinds: {
     title: 'ކީބޯޑް ޝޯޓްކަޓްތައް',
@@ -211,7 +218,7 @@ export const dv = defineLocale({
       profiles: 'ޕްރޮފައިލްތައް',
       session: 'ސެޝަން',
       navigation: 'ނެވިގޭޝަން',
-      view: 'ބައްލަވާ',
+      view: 'ބައްލަވާ'
     },
     actions: {
       'keybinds.openPanel': 'ކީބޯޑް ޝޯޓްކަޓްތައް ހުޅުވާ',
@@ -290,8 +297,8 @@ export const dv = defineLocale({
       'composer.slash': 'ސްލޭޝް ކޮމާންޑް ޕެލެޓް',
       'composer.help': 'އަވަސް އެހީ',
       'composer.history': 'ޕޮޕްއޯވަރ / ތާރީޚް ދައުރުކުރޭ',
-      'composer.cancel': 'ޕޮޕްއޯވަރ ބަންދުކުރޭ · ރަން ކެންސަލްކުރޭ',
-    },
+      'composer.cancel': 'ޕޮޕްއޯވަރ ބަންދުކުރޭ · ރަން ކެންސަލްކުރޭ'
+    }
   },
   language: {
     label: 'ބަސް',
@@ -300,7 +307,7 @@ export const dv = defineLocale({
     saveError: 'ބަސް އަޕްޑޭޓް ފެއިލްވެއްޖެ',
     switchTo: 'ބަސް ބަދަލުކުރޭ',
     searchPlaceholder: 'ބަސް ހޯދާ…',
-    noResults: 'ބަސް ނުފެނުނެވެ',
+    noResults: 'ބަސް ނުފެނުނެވެ'
   },
   settings: {
     closeSettings: 'ސެޓިންގްސް ބަންދުކުރޭ',
@@ -325,11 +332,12 @@ export const dv = defineLocale({
       about: 'އެބްޓް',
       billing: 'ބިލިންގައިން',
       notifications: 'ނޮޓިފިކޭޝަންސް',
-      plugins: 'ޕްލަޖިންސް',
+      plugins: 'ޕްލަޖިންސް'
     },
     plugins: {
       title: 'ދެސްކްޓޮޕް ޕްލަޖިންސް',
-      blurb: 'އިއީ އެޕްގެއްވައިފައިކަށް އެކްސްޓެންޝަންސް އެކްޓެންޑުގެއްވައިފައިކަށް އެއްޓްނަންގައިން — ބިލްޑްގެއްވައިފައިކަށް އެކްޓެންޑުގެއްވައިފައިކަށް, ނަންބައިކަށް ދެސްކްޓޮޕް-ޕްލަޖިންސް ފޮބުރުގައި އެކްޓެންޑުގެއްވައިފައިކަށް (OpenAmer އެކްޓެންޑުގެއްވައިފައިކަށް ކަންދައިވައިފި). ޑިސަބައިލިންގައިން ޕްލަޖިންގެއްވައިފައިކަށް ލިވްގެއްވައިފައިކަށް އަންނަންގައިން އެއްޓްނަންގައިން ރިސްޓާޓްސްގެއްވައިފައިކަށް ތަންތަންގައިން.',
+      blurb:
+        'އިއީ އެޕްގެއްވައިފައިކަށް އެކްސްޓެންޝަންސް އެކްޓެންޑުގެއްވައިފައިކަށް އެއްޓްނަންގައިން — ބިލްޑްގެއްވައިފައިކަށް އެކްޓެންޑުގެއްވައިފައިކަށް, ނަންބައިކަށް ދެސްކްޓޮޕް-ޕްލަޖިންސް ފޮބުރުގައި އެކްޓެންޑުގެއްވައިފައިކަށް (OpenAmer އެކްޓެންޑުގެއްވައިފައިކަށް ކަންދައިވައިފި). ޑިސަބައިލިންގައިން ޕްލަޖިންގެއްވައިފައިކަށް ލިވްގެއްވައިފައިކަށް އަންނަންގައިން އެއްޓްނަންގައިން ރިސްޓާޓްސްގެއްވައިފައިކަށް ތަންތަންގައިން.',
       count: n => `${n} installed`,
       openFolder: 'ޕްލަޖިންސް ފޮބުރު ފަތަށް',
       rescan: 'މަރުން ސްކެން',
@@ -341,49 +349,52 @@ export const dv = defineLocale({
       kinds: {
         bundled: 'ބަންޑަލްކޮށްފައި',
         disk: 'ޑިސްކުގައި',
-        runtime: 'ރަންޓައިމް',
-      },
+        runtime: 'ރަންޓައިމް'
+      }
     },
     notifications: {
       title: 'ނޮޓިފިކޭޝަންތައް',
-      intro: 'ނޭޓިވް ޑެސްކްޓޮޕް ނޮޓިފިކޭޝަންތައް، އެޕްގެ ތެރޭގެ ޓޯސްޓްތަކާ ވަކިން. މިއީ ޑިވައިސްގައި ރައްކާކުރެވޭ އެއްޗެކެވެ — ކޮންމެ ކޮމްޕިއުޓަރަކު އެއިންގެ އަމިއްލަ ސެޓިންގްސް ބަހައްޓައެވެ.',
+      intro:
+        'ނޭޓިވް ޑެސްކްޓޮޕް ނޮޓިފިކޭޝަންތައް، އެޕްގެ ތެރޭގެ ޓޯސްޓްތަކާ ވަކިން. މިއީ ޑިވައިސްގައި ރައްކާކުރެވޭ އެއްޗެކެވެ — ކޮންމެ ކޮމްޕިއުޓަރަކު އެއިންގެ އަމިއްލަ ސެޓިންގްސް ބަހައްޓައެވެ.',
       enableAll: 'ނޮޓިފިކޭޝަންތައް އެނޭބަލްކުރޭ',
       enableAllDesc: 'މާސްޓަރ ސްވިޗް. ތިރީގައިވާ ހުރިހާ ނޮޓިފިކޭޝަނެއް ހަމަހިމޭންކުރުމަށް މިއީ އޮފްކުރޭ.',
       focusedHint: 'ނިމުނުކަން އަންގާ އަލާރޓްތައް ފޮނުވަނީ OpenAmer ބެކްގްރައުންޑްގައި ހުންނައިރު އެކަނިއެވެ.',
       kinds: {
         approval: {
           label: 'ތަސްދީގެއް ބޭނުންވޭ',
-          description: 'ކޮމާންޑެއް ތަސްދީގުކުރުމަށް ނުވަތަ ރައްދުކުރުމަށް ތިބާއަށް އިންތިޒާރުކުރަމުންދެއެވެ.',
+          description: 'ކޮމާންޑެއް ތަސްދީގުކުރުމަށް ނުވަތަ ރައްދުކުރުމަށް ތިބާއަށް އިންތިޒާރުކުރަމުންދެއެވެ.'
         },
         input: {
           label: 'އިންޕުޓެއް ބޭނުންވޭ',
-          description: 'OpenAmer ސުވާލެއް އަޅުވާފައިވެއެވެ، ނުވަތަ ޕާސްވޯޑެއް ނުވަތަ ސިއްރެއް ބޭނުންވެއެވެ.',
+          description: 'OpenAmer ސުވާލެއް އަޅުވާފައިވެއެވެ، ނުވަތަ ޕާސްވޯޑެއް ނުވަތަ ސިއްރެއް ބޭނުންވެއެވެ.'
         },
         turnDone: {
           label: 'ޖަވާބު ތައްޔާރު',
-          description: 'OpenAmer ބެކްގްރައުންޑްގައި ހުންނައިރު ޓާނެއް ނިމުނެވެ.',
+          description: 'OpenAmer ބެކްގްރައުންޑްގައި ހުންނައިރު ޓާނެއް ނިމުނެވެ.'
         },
         turnError: {
           label: 'ޓާން ފެއިލްވި',
-          description: 'ޓާނެއް ނިމުނީ އެރަރަކާ އެކުގައެވެ.',
+          description: 'ޓާނެއް ނިމުނީ އެރަރަކާ އެކުގައެވެ.'
         },
         backgroundDone: {
           label: 'ބެކްގްރައުންޑް ޓާސްކް ނިމުނެވެ',
-          description: 'ބެކްގްރައުންޑްކޮށްފައިވާ ޓަރމިނަލް ކޮމާންޑެއް ފުރިހަމަވެއްޖެއެވެ.',
+          description: 'ބެކްގްރައުންޑްކޮށްފައިވާ ޓަރމިނަލް ކޮމާންޑެއް ފުރިހަމަވެއްޖެއެވެ.'
         },
         credits: {
           label: 'ކްރެޑިޓް އަލާރޓްތައް',
-          description: 'ކްރެޑިޓް އެކްސެސް ވަގުތީއަށް ހުއްޓާލެވިފައިވޭ ނުވަތަ އަލުން އިޢާދަކުރެވިފައިވޭ.',
-        },
+          description: 'ކްރެޑިޓް އެކްސެސް ވަގުތީއަށް ހުއްޓާލެވިފައިވޭ ނުވަތަ އަލުން އިޢާދަކުރެވިފައިވޭ.'
+        }
       },
       test: 'ޓެސްޓް ނޮޓިފިކޭޝަނެއް ފޮނުވާ',
       testTitle: 'OpenAmer',
       testBody: 'ނޮޓިފިކޭޝަންތައް މަސައްކަތްކުރަނީ.',
-      testSent: 'ޓެސްޓް ފޮނުވިއްޖެ. އެއްވެސް އެއްޗެއް ނުފެންނަނަމަ، ތިޔަބޭފުޅާގެ OS ނޮޓިފިކޭޝަން ހުއްދަތައް އަދި Focus/Do Not Disturb ޗެކްކުރައްވާ.',
+      testSent:
+        'ޓެސްޓް ފޮނުވިއްޖެ. އެއްވެސް އެއްޗެއް ނުފެންނަނަމަ، ތިޔަބޭފުޅާގެ OS ނޮޓިފިކޭޝަން ހުއްދަތައް އަދި Focus/Do Not Disturb ޗެކްކުރައްވާ.',
       testUnsupported: 'މި ސިސްޓަމަކު ނޭޓިވް ނޮޓިފިކޭޝަންތައް ސަޕޯޓް ނުކުރޭ.',
       completionSoundTitle: 'ނިމުން އަޑު',
-      completionSoundDesc: 'އޭޖެންޓްގެ ދައުރެއް ނިމޭއިރު އަޑުގޮވާނެ. ޕްރީސެޓެއް އިޚްތިޔާރުކުރައްވައި މިތަނުން ޕްރީވިއުކުރައްވާ.',
-      completionSoundPreview: 'ޕްރީވިއު',
+      completionSoundDesc:
+        'އޭޖެންޓްގެ ދައުރެއް ނިމޭއިރު އަޑުގޮވާނެ. ޕްރީސެޓެއް އިޚްތިޔާރުކުރައްވައި މިތަނުން ޕްރީވިއުކުރައްވާ.',
+      completionSoundPreview: 'ޕްރީވިއު'
     },
     sections: {
       model: 'މޮޑެލް',
@@ -393,7 +404,7 @@ export const dv = defineLocale({
       safety: 'ސަލާމަތްތެރިކަން',
       memory: 'މެމަރީ އަދި ކޮންޓެކްސްޓް',
       voice: 'ވޮއިސް',
-      advanced: 'އެޑްވާންސްޑް',
+      advanced: 'އެޑްވާންސްޑް'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop އާ ބެހޭ',
@@ -401,37 +412,41 @@ export const dv = defineLocale({
       gateway: 'ގޭޓްވޭ ގުޅުން...',
       keys: 'API ކީތައް ހޯދާ...',
       mcp: 'MCP ސަރވަރތައް ހޯދާ...',
-      sessions: 'އާކައިވްކޮށްފައިވާ ސެޝަންތައް ހޯދާ...',
+      sessions: 'އާކައިވްކޮށްފައިވާ ސެޝަންތައް ހޯދާ...'
     },
     modeOptions: {
       light: {
         label: 'އަލި',
-        description: 'އަލިކަން ބޮޑު ޑެސްކްޓޮޕް ސަރފޭސްތައް',
+        description: 'އަލިކަން ބޮޑު ޑެސްކްޓޮޕް ސަރފޭސްތައް'
       },
       dark: {
         label: 'އަނދިރު',
-        description: 'އަލިކަން މަދު ވޯކްސްޕޭސް',
+        description: 'އަލިކަން މަދު ވޯކްސްޕޭސް'
       },
       system: {
         label: 'ސިސްޓަމް',
-        description: 'OS ގެ އެޕިއަރެންސް ތަބާވާ',
-      },
+        description: 'OS ގެ އެޕިއަރެންސް ތަބާވާ'
+      }
     },
     appearance: {
       title: 'އެޕިއަރެންސް',
-      intro: 'މިއީ ޑެސްކްޓޮޕްއަށް އެކަނި ބެހޭ ޑިސްޕްލޭ ޕްރެފަރެންސްތަކެވެ. މޯޑް އިން އަލިކަން ކޮންޓްރޯލްކުރެވެ؛ ތީމް އިން އެކްސެންޓް ޕެލެޓް އަދި ޗެޓް ސަރފޭސް ސްޓައިލިންގ ކޮންޓްރޯލްކުރެވެ.',
+      intro:
+        'މިއީ ޑެސްކްޓޮޕްއަށް އެކަނި ބެހޭ ޑިސްޕްލޭ ޕްރެފަރެންސްތަކެވެ. މޯޑް އިން އަލިކަން ކޮންޓްރޯލްކުރެވެ؛ ތީމް އިން އެކްސެންޓް ޕެލެޓް އަދި ޗެޓް ސަރފޭސް ސްޓައިލިންގ ކޮންޓްރޯލްކުރެވެ.',
       colorMode: 'ކުލަ މޯޑް',
       colorModeDesc: 'ފިކްސް މޯޑެއް ނަގާ، ނުވަތަ OpenAmer އަށް ތިބާގެ ސިސްޓަމް ސެޓިންގަށް ތަބާވާގޮތަށް ދޫކުރޭ.',
       toolViewTitle: 'ޓޫލް ކޯލް ޑިސްޕްލޭ',
-      toolViewDesc: 'ޕްރޮޑަކްޓް އިން ރޯ ޓޫލް ޕޭލޯޑްތައް ފޮރުވައެވެ؛ ޓެކްނިކަލް އިން ފުރިހަމަ އިންޕުޓް/އައުޓްޕުޓް ދައްކައެވެ.',
+      toolViewDesc:
+        'ޕްރޮޑަކްޓް އިން ރޯ ޓޫލް ޕޭލޯޑްތައް ފޮރުވައެވެ؛ ޓެކްނިކަލް އިން ފުރިހަމަ އިންޕުޓް/އައުޓްޕުޓް ދައްކައެވެ.',
       uiScaleTitle: 'UI ސްކޭލް',
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       translucencyTitle: 'ވިންޑޯ ޓްރާންސްލޫސެންސީ',
       translucencyDesc: 'މުޅި ވިންޑޯއިން ތިބާގެ ޑެސްކްޓޮޕް ފެނިގެންދާނެ. macOS އަދި Windows އަށް އެކަނި.',
       backdropTitle: 'ޗެޓް ބެކްޑްރޮޕް',
       backdropDesc: 'ޗެޓްގެ ފަހަތުގައިވާ ފަންޏަރު ބުދުގެ ފޮޓޯ.',
       embedsTitle: 'އިންލެއިން އެމްރެޑްސް',
-      embedsDesc: 'ރިޗް ޕްރެވީއްޓްސް ތަރިކޮލް ވެބްސެޓްގެ ގައި ގައި (YouTube, X, …). އެސްކް ކަށްވައިގައި ޕްލޭޝްދެރް ވައިގައި އެއްވައި އެއްވައި އެއްވައި…',
+      embedsDesc:
+        'ރިޗް ޕްރެވީއްޓްސް ތަރިކޮލް ވެބްސެޓްގެ ގައި ގައި (YouTube, X, …). އެސްކް ކަށްވައިގައި ޕްލޭޝްދެރް ވައިގައި އެއްވައި އެއްވައި އެއްވައި…',
       embedsAsk: 'އެސްކް',
       embedsAlways: 'ލައްސްޓް',
       embedsOff: 'އޮފް',
@@ -441,10 +456,12 @@ export const dv = defineLocale({
       technical: 'ޓެކްނިކަލް',
       technicalDesc: 'އެންގެންނަން ޓޫލް އަޑްގްއިއްރެޑްސް/ރެޒައްސްއެއްވައި އެންގެންނަން ލޮ-ލޭވަލް ޑެޓޭއެއްވައި.',
       themeTitle: 'ތެމް',
-      themeDesc: 'ޑެސްކްޓޮޕް ޕެލޭޓްޕްސް ފޮންކަލްއަށް. ތެންވައިގައި ޓެން އެންގެންނަން އެންގެންނަން އެންގެންނަން އެންގެންނަން…',
+      themeDesc:
+        'ޑެސްކްޓޮޕް ޕެލޭޓްޕްސް ފޮންކަލްއަށް. ތެންވައިގައި ޓެން އެންގެންނަން އެންގެންނަން އެންގެންނަން އެންގެންނަން…',
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installTitle: 'އިންސްޓޮލް ފޮން VS Code',
-      installDesc: 'މާޓްކެޓްޕްލޭޝްއެއްވައި އިޑް ޕޭސް ކަށްވައިގައި (e.g. dracula-theme.theme-dracula) ކޮންވެޓް ކަށްވައިގައި ޕެލޭޓްޕް ކޮލަރް ތެމްވައިގައިގައި.',
+      installDesc:
+        'މާޓްކެޓްޕްލޭޝްއެއްވައި އިޑް ޕޭސް ކަށްވައިގައި (e.g. dracula-theme.theme-dracula) ކޮންވެޓް ކަށްވައިގައި ޕެލޭޓްޕް ކޮލަރް ތެމްވައިގައިގައި.',
       installPlaceholder: 'publisher.extension',
       installButton: 'އިންސްޓޮލް',
       installing: 'އިންސްޓެޅިންގައި…',
@@ -454,8 +471,10 @@ export const dv = defineLocale({
       importedBadge: 'އިންޕޮޓްޑް',
       pet: {
         title: 'ޕެޓް',
-        intro: 'އެޕް މަތީގައި ފްލޯޓްވެ، OpenAmer ކުރާ ކަންކަމަށް ރިއެކްޓްވާ އެނިމޭޓެޑް petdex މެސްކޮޓެއް އެޑޮޕްޓްކުރޭ. ޓޫލްތައް އެގްޒިކިއުޓްވާއިރު ދުވާނެ، ކާމިޔާބުވުމުން ފާހަގަކުރާނެ، އެރަރުތަކުން ހިތްހަމަނުޖެހޭނެ.',
-        restartHint: 'ޕެޓްތަކަށް އަވަސް ރީސްޓާރޓެއް ބޭނުންވޭ — މި ފީޗަރ އިތުރުކުރުމުގެ ކުރިން ފެށި އެޕް ރަންވަމުންދޭ. OpenAmer ބަންދުކޮށް އަލުން ހުޅުވާ، ފަހުން މިތަނަށް އެނބުރި އަންނާ.',
+        intro:
+          'އެޕް މަތީގައި ފްލޯޓްވެ، OpenAmer ކުރާ ކަންކަމަށް ރިއެކްޓްވާ އެނިމޭޓެޑް petdex މެސްކޮޓެއް އެޑޮޕްޓްކުރޭ. ޓޫލްތައް އެގްޒިކިއުޓްވާއިރު ދުވާނެ، ކާމިޔާބުވުމުން ފާހަގަކުރާނެ، އެރަރުތަކުން ހިތްހަމަނުޖެހޭނެ.',
+        restartHint:
+          'ޕެޓްތަކަށް އަވަސް ރީސްޓާރޓެއް ބޭނުންވޭ — މި ފީޗަރ އިތުރުކުރުމުގެ ކުރިން ފެށި އެޕް ރަންވަމުންދޭ. OpenAmer ބަންދުކޮށް އަލުން ހުޅުވާ، ފަހުން މިތަނަށް އެނބުރި އަންނާ.',
         on: 'އޮން',
         off: 'އޮފް',
         scaleTitle: 'ސައިޒް',
@@ -465,7 +484,7 @@ export const dv = defineLocale({
         chooseTitle: 'ޕެޓެއް އިޚްތިޔާރުކުރޭ',
         chooseDesc: 'އެއްޗެއް އިޚްތިޔާރުކުރުމުން (ބޭނުންވާނަމަ) އިންސްޓޯލްކޮށް އެކްޓިވްކުރާނެ.',
         searchPlaceholder: 'ޕެޓްތައް ހޯދާ…',
-        unreachable: "petdex ގެލެރީއަށް ވާސިލްވެވެއްޖެނޫން. ކަނެކްޝަން ޗެކްކޮށް މި ޕޭޖް އަލުން ހުޅުވާ.",
+        unreachable: 'petdex ގެލެރީއަށް ވާސިލްވެވެއްޖެނޫން. ކަނެކްޝަން ޗެކްކޮށް މި ޕޭޖް އަލުން ހުޅުވާ.',
         noMatch: query => `No pets match "${query}".`,
         installedTag: 'އިންސްޓޯލްވެއްޖެ',
         generatedTag: 'އުފެއްދިފައި',
@@ -474,7 +493,7 @@ export const dv = defineLocale({
         uninstall: name => `Uninstall ${name}`,
         delete: name => `Delete ${name}`,
         deleteTitle: name => `Delete ${name}?`,
-        deleteBody: "މިކަމުން ޕެޓް ދާއިމީކޮށް ފޮހެލާނެ — އަލުން އިންސްޓޯލްކުރެވޭނެއެއް ނޫން.",
+        deleteBody: 'މިކަމުން ޕެޓް ދާއިމީކޮށް ފޮހެލާނެ — އަލުން އިންސްޓޯލްކުރެވޭނެއެއް ނޫން.',
         deleteConfirm: 'ޑިލީޓް',
         rename: name => `Rename ${name}`,
         renameTitle: 'ޕެޓްގެ ނަން ބަދަލުކުރޭ',
@@ -487,8 +506,8 @@ export const dv = defineLocale({
         exportFailed: slug => `Could not export ${slug}`,
         noneAvailable: 'މިވަގުތު އޮންކުރަން ލިބޭ ޕެޓެއް ނެތް.',
         turnOnFailed: 'ޕެޓް އޮން ކުރެވެން ނުވިއެވެ.',
-        turnOffFailed: 'ޕެޓް އޮފް ކުރެވެން ނުވިއެވެ.',
-      },
+        turnOffFailed: 'ޕެޓް އޮފް ކުރެވެން ނުވިއެވެ.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -499,25 +518,26 @@ export const dv = defineLocale({
       updates: 'އަޕްޑޭޓްތައް',
       checkNow: 'މިހާރު ޗެކްކުރޭ',
       checking: 'ޗެކްކުރަނީ…',
-      seeWhatsNew: "އައު ކަންކަން ބަލާ",
+      seeWhatsNew: 'އައު ކަންކަން ބަލާ',
       updateNow: 'މިހާރު އަޕްޑޭޓްކުރޭ',
       releaseNotes: 'ރިލީޒް ނޯޓްސް',
-      onLatest: "ތިބާ މިވަނީ އެންމެ ފަހުގެ ވަރޒަންގައެވެ.",
+      onLatest: 'ތިބާ މިވަނީ އެންމެ ފަހުގެ ވަރޒަންގައެވެ.',
       installing: 'އަޕްޑޭޓެއް މިވަގުތު އިންސްޓޯލްވަނީ.',
-      cantUpdate: "މި ބިލްޑަކަށް އެޕް އެތެރެއިން އަމިއްލައަށް އަޕްޑޭޓް ނުކުރެވޭނެ.",
-      cantReach: "އަޕްޑޭޓް ސަރވަރާ ގުޅެން ނުކުރެވިއެވެ.",
+      cantUpdate: 'މި ބިލްޑަކަށް އެޕް އެތެރެއިން އަމިއްލައަށް އަޕްޑޭޓް ނުކުރެވޭނެ.',
+      cantReach: 'އަޕްޑޭޓް ސަރވަރާ ގުޅެން ނުކުރެވިއެވެ.',
       tapCheck: 'އަޕްޑޭޓްތައް ބަލަން "މިހާރު ޗެކްކުރޭ" އަށް ފިތާލާ.',
       updateReady: count => `A new update is ready (${count} change${count === 1 ? '' : 's'} included).`,
       lastChecked: age => `Last checked ${age}`,
       justNowSuffix: '· މިހާރު',
       automaticUpdates: 'އޮޓޯމެޓިކް އަޕްޑޭޓްތައް',
-      automaticUpdatesDesc: 'OpenAmer އިން ބެކްގްރައުންޑުގައި އޮޓޯމެޓިކްކޮށް އަޕްޑޭޓްތައް ޗެކްކުރައި، އެއް ތައްޔާރުވުމުން ތިބާއަށް އަންގައެވެ.',
+      automaticUpdatesDesc:
+        'OpenAmer އިން ބެކްގްރައުންޑުގައި އޮޓޯމެޓިކްކޮށް އަޕްޑޭޓްތައް ޗެކްކުރައި، އެއް ތައްޔާރުވުމުން ތިބާއަށް އަންގައެވެ.',
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       never: 'ދުވަހަކުވެސް ނޫން',
       justNow: 'މިހާރު',
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     config: {
       none: 'ނެތް',
@@ -533,7 +553,8 @@ export const dv = defineLocale({
       imported: 'ކޮންފިގް އިމްޕޯޓްކުރެވި',
       invalidJson: 'ކޮންފިގް JSON އިންވެލިޑް',
       keepAwakeTitle: 'ކޮމްޕިއުޓަރ ހޭލަން ބަހައްޓާ',
-      keepAwakeDesc: 'މި މެޝިން ނިދިއިން ހުއްޓުވާ، ދިގު ނުވަތަ ރޭގެ ރަންތަކުރުން ކުރިއަށް ދިއުމަށް. ޑިސްޕްލޭ އަދިވެސް ފަނޑުވެދާނެ.',
+      keepAwakeDesc:
+        'މި މެޝިން ނިދިއިން ހުއްޓުވާ، ދިގު ނުވަތަ ރޭގެ ރަންތަކުރުން ކުރިއަށް ދިއުމަށް. ޑިސްޕްލޭ އަދިވެސް ފަނޑުވެދާނެ.'
     },
     credentials: {
       pasteKey: 'ކީ ޕޭސްޓްކުރޭ',
@@ -543,7 +564,7 @@ export const dv = defineLocale({
       couldNotSave: 'ކްރެޑެންޝަލް ސޭވްކުރަން ނުކުރެވުނު.',
       remove: 'ނަގާ',
       getKey: 'ކީއެއް ހޯދާ',
-      saving: 'ސޭވްކުރަނީ',
+      saving: 'ސޭވްކުރަނީ'
     },
     envActions: {
       actionsFor: label => `Actions for ${label}`,
@@ -554,7 +575,7 @@ export const dv = defineLocale({
       revealValue: 'ވެލިއު ދައްކާ',
       replace: 'ބަދަލުކުރޭ',
       set: 'ސެޓްކުރޭ',
-      clear: 'ހުސްކުރޭ',
+      clear: 'ހުސްކުރޭ'
     },
     gateway: {
       loading: 'ގޭޓްވޭ ސެޓިންގްސް ލޯޑްކުރަނީ...',
@@ -562,28 +583,35 @@ export const dv = defineLocale({
       unavailableDesc: 'ޑެސްކްޓޮޕް IPC ބްރިޖުން ގޭޓްވޭ ސެޓިންގްސް ހާމަނުކުރޭ.',
       title: 'ގޭޓްވޭ ކަނެކްޝަން',
       envOverride: 'env އޯވަރރައިޑް',
-      intro: 'OpenAmer ޑެސްކްޓޮޕް އިން ޑިފޯލްޓުން އެއަށް ޚާއްޞަ ލޯކަލް ގޭޓްވޭއެއް ފަށައެވެ. މި އެޕްއިން އެހެން މެޝިނެއްގައި ނުވަތަ އިތުބާރުހުރި ޕްރޮކްސީއެއްގެ ފަހަތުގައި ދަނީން ރަންކުރަމުންދާ OpenAmer ބެކްއެންޑެއް ކޮންޓްރޯލްކުރަން ބޭނުންވާނަމަ ރިމޯޓް ގޭޓްވޭއެއް ބޭނުންކުރޭ. ތިރީގައިވާ ޕްރޮފައިލެއް ނަގައި އެ ޕްރޮފައިލަށް އޭގެ ރިމޯޓް ހޯސްޓެއް ދޭށެވެ.',
+      intro:
+        'OpenAmer ޑެސްކްޓޮޕް އިން ޑިފޯލްޓުން އެއަށް ޚާއްޞަ ލޯކަލް ގޭޓްވޭއެއް ފަށައެވެ. މި އެޕްއިން އެހެން މެޝިނެއްގައި ނުވަތަ އިތުބާރުހުރި ޕްރޮކްސީއެއްގެ ފަހަތުގައި ދަނީން ރަންކުރަމުންދާ OpenAmer ބެކްއެންޑެއް ކޮންޓްރޯލްކުރަން ބޭނުންވާނަމަ ރިމޯޓް ގޭޓްވޭއެއް ބޭނުންކުރޭ. ތިރީގައިވާ ޕްރޮފައިލެއް ނަގައި އެ ޕްރޮފައިލަށް އޭގެ ރިމޯޓް ހޯސްޓެއް ދޭށެވެ.',
       appliesTo: 'ޢަމަލުކުރަނީ',
       allProfiles: 'ހުރިހާ ޕްރޮފައިލްތައް',
       defaultConnection: 'އެއްވެސް އޯވަރރައިޑެއް ނެތް ކޮންމެ ޕްރޮފައިލެއްގެ ޑިފޯލްޓް ކަނެކްޝަން.',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       envOverrideTitle: 'މި ޑެސްކްޓޮޕް ސެޝަން ކޮންޓްރޯލްކުރަނީ އެންވަޔަރަންމަންޓް ވެރިއެބްލްސްތަކުންނެވެ.',
-      envOverrideDesc: 'ތިރީގައި ސޭވްކޮށްފައިވާ ސެޓިންގް ބޭނުންކުރުމަށް OPENAMER_DESKTOP_REMOTE_URL އަދި OPENAMER_DESKTOP_REMOTE_TOKEN އަންސެޓްކުރޭ.',
+      envOverrideDesc:
+        'ތިރީގައި ސޭވްކޮށްފައިވާ ސެޓިންގް ބޭނުންކުރުމަށް OPENAMER_DESKTOP_REMOTE_URL އަދި OPENAMER_DESKTOP_REMOTE_TOKEN އަންސެޓްކުރޭ.',
       modeTitle: 'ގައިމު މޯޑް',
       localTitle: 'ލޯކަލް ގޭޓްވޭ',
-      localDesc: 'ތަކުރުވައިފި ޝަރީކަށް OpenAmer ބޭކޭންޑް ލޯކަލްހޮސްޓްއަށް. މީގައި ދިފިފައިވައިފި އެކުރަށް އޮފްލެއިންސް މިލުން.',
+      localDesc:
+        'ތަކުރުވައިފި ޝަރީކަށް OpenAmer ބޭކޭންޑް ލޯކަލްހޮސްޓްއަށް. މީގައި ދިފިފައިވައިފި އެކުރަށް އޮފްލެއިންސް މިލުން.',
       inheritTitle: 'ދިފިފައިވައިފި ގޭޓްވޭ މިތަށް',
-      inheritDesc: "މީ ޕްރޮފައިލްގައި އޮވެރްއެއްރިޑީ އަފަތުއިފި އެކުރަށް ދިފިފައިވައިފި ގައިމު މިތަށް.",
+      inheritDesc: 'މީ ޕްރޮފައިލްގައި އޮވެރްއެއްރިޑީ އަފަތުއިފި އެކުރަށް ދިފިފައިވައިފި ގައިމު މިތަށް.',
       remoteTitle: 'ރިމްޓް ގޭޓްވޭ',
       remoteDesc: 'މީ ޑެސްކްޓަމް ޝޭލް ރިމްޓް OpenAmer ބޭކޭންޑްގައި ގައިމު ތަކުރުވައިފި.',
-      remoteAuthHint: 'ހޮސްޓެޑް ގޭޓްވޭގައި OAuth އެކޮތް އެއްވައިފި އެކުސަރައްވައިފި ނަން އެކުރަށް ޕެސްވަންޓް މިތަށް. ތަންތަން ހޮސްޓެޑް ގޭޓްވޭގައި ސޭޝަން ޓޯކެން މިތަށް ކަންތައިފި.',
+      remoteAuthHint:
+        'ހޮސްޓެޑް ގޭޓްވޭގައި OAuth އެކޮތް އެއްވައިފި އެކުސަރައްވައިފި ނަން އެކުރަށް ޕެސްވަންޓް މިތަށް. ތަންތަން ހޮސްޓެޑް ގޭޓްވޭގައި ސޭޝަން ޓޯކެން މިތަށް ކަންތައިފި.',
       cloudTitle: 'OpenAmer ކްދައްޓު',
-      cloudDesc: 'OpenAmer ކްދައްޓުއަށް ފަންތައް މަންތަށް އެއްވައިފި އެއްވައިފި އެޞިޔަންތަކުރުންގައި މިގަށް އަކަންޓުގައި ތަކުފިއިވައިފި. URL ޕޭސްޓް ނައިކަށް ނައިކަށް.',
+      cloudDesc:
+        'OpenAmer ކްދައްޓުއަށް ފަންތައް މަންތަށް އެއްވައިފި އެއްވައިފި އެޞިޔަންތަކުރުންގައި މިގަށް އަކަންޓުގައި ތަކުފިއިވައިފި. URL ޕޭސްޓް ނައިކަށް ނައިކަށް.',
       cloudSignInTitle: 'OpenAmer ކްދައްޓު',
       cloudSignIn: 'OpenAmer ކްދައްޓުއަށް ސައިން އިން މަންތަށް',
       cloudSignedIn: 'OpenAmer ކްދައްޓުއަށް ސައިން އިން މަންތެއްވައިފި',
       cloudNeedsSignIn: 'OpenAmer ކްދައްޓުއަށް ސައިން އިން މަންތަށް މިގަށް އަކަންޓުގައި އެޞިޔަންތަކުރުން ތަކުރުވައިފި.',
-      cloudSignedInDesc: 'ޢިން ސައިން އިން މަންތެއްވައިފި. ފަރެއްސަށް އެޞިޔަންތަކުރުން ތަކުފިއިވައިފި. ސޭޝަން ރިފްރޭޝްސް އައްވައިފި އެއްވައިފި އެއްވައިފި.',
+      cloudSignedInDesc:
+        'ޢިން ސައިން އިން މަންތެއްވައިފި. ފަރެއްސަށް އެޞިޔަންތަކުރުން ތަކުފިއިވައިފި. ސޭޝަން ރިފްރޭޝްސް އައްވައިފި އެއްވައިފި އެއްވައިފި.',
       cloudAgentsTitle: 'ޢިންގައި އެޞިޔަންތަކުރުން',
       cloudOrgPickerTitle: 'އެއްވައިފި އްރެގަނިޒޭޝަން ތަކުފިއިވައިފި',
       cloudOrgSelect: 'ތަކުފިއިވައިފި',
@@ -593,7 +621,7 @@ export const dv = defineLocale({
       cloudNoAgents: {
         before: 'މި އެކައުންޓުގައި އެއްވެސް އޭޖެންޓެއް ނުފެނުނު. އެއް ހަދާށެވެ',
         linkText: 'OpenAmer ޕޯޓަލް',
-        after: 'ގައި، ދެން ރީފްރެޝް ކުރާށެވެ.',
+        after: 'ގައި، ދެން ރީފްރެޝް ކުރާށެވެ.'
       },
       cloudRefresh: 'ރީފްރެޝް',
       cloudConnect: 'ގުޅުވާ',
@@ -609,20 +637,26 @@ export const dv = defineLocale({
       cloudAgentProvisioning: 'ތައްޔާރުކުރަނީ…',
       cloudStatusLabel: status => `Status: ${status}`,
       remoteUrlTitle: 'ރިމޯޓް ޔޫއަރއެލް',
-      remoteUrlDesc: 'ރިމޯޓް ޑޭޝްބޯޑް ބެކްއެންޑްގެ ބޭސް ޔޫއަރއެލް. ޕާތް ޕްރީފިކްސްތައް ސަޕޯޓްކުރެވެއެވެ، މިސާލަކަށް /openamer.',
+      remoteUrlDesc:
+        'ރިމޯޓް ޑޭޝްބޯޑް ބެކްއެންޑްގެ ބޭސް ޔޫއަރއެލް. ޕާތް ޕްރީފިކްސްތައް ސަޕޯޓްކުރެވެއެވެ، މިސާލަކަށް /openamer.',
       probing: 'މި ގޭޓްވޭ އޮތެންޓިކޭޓްކުރާގޮތް ބަލަނީ…',
-      probeError: 'މި ގޭޓްވޭއަށް އަދި ވާސިލެއް ނުވެވުނެވެ. ޔޫއަރއެލް ބަލާށެވެ — އެއް ރެސްޕޮންޑްކުރުމުން އޮތެންޓިކޭޝަން ގޮތް ފެންނާނެއެވެ.',
+      probeError:
+        'މި ގޭޓްވޭއަށް އަދި ވާސިލެއް ނުވެވުނެވެ. ޔޫއަރއެލް ބަލާށެވެ — އެއް ރެސްޕޮންޑްކުރުމުން އޮތެންޓިކޭޝަން ގޮތް ފެންނާނެއެވެ.',
       signedIn: 'ސައިން އިންވެއްޖެ',
       signIn: 'ސައިން އިން',
       signOut: 'ސައިން އައުޓް',
       signInWith: provider => `Sign in with ${provider}`,
       authTitle: 'އެތެންޓިކޭޝަން',
-      authSignedInPassword: 'މި ގޭޓްވޭއިން ޔޫޒަރނޭމް އަދި ޕާސްވަރޑް ބޭނުންކުރެއެވެ. ތިޔަބައިން ސައިން އިންވެފައިވެއެވެ؛ ސެޝަން އޮޓޮމެޓިކުން ރިފްރެޝްވެއެވެ.',
-      authSignedInOauth: 'މި ގޭޓްވޭއިން OAuth ބޭނުންކުރެއެވެ. ތިޔަބައިން ސައިން އިންވެފައިވެއެވެ؛ ސެޝަން އޮޓޮމެޓިކުން ރިފްރެޝްވެއެވެ.',
-      authNeedsPassword: 'މި ގޭޓްވޭއިން ޔޫޒަރނޭމް އަދި ޕާސްވަރޑް ބޭނުންކުރެއެވެ. މި ޑެސްކްޓޮޕް އެޕް އޮތޯރައިޒްކުރުމަށް ސައިން އިންވާ.',
+      authSignedInPassword:
+        'މި ގޭޓްވޭއިން ޔޫޒަރނޭމް އަދި ޕާސްވަރޑް ބޭނުންކުރެއެވެ. ތިޔަބައިން ސައިން އިންވެފައިވެއެވެ؛ ސެޝަން އޮޓޮމެޓިކުން ރިފްރެޝްވެއެވެ.',
+      authSignedInOauth:
+        'މި ގޭޓްވޭއިން OAuth ބޭނުންކުރެއެވެ. ތިޔަބައިން ސައިން އިންވެފައިވެއެވެ؛ ސެޝަން އޮޓޮމެޓިކުން ރިފްރެޝްވެއެވެ.',
+      authNeedsPassword:
+        'މި ގޭޓްވޭއިން ޔޫޒަރނޭމް އަދި ޕާސްވަރޑް ބޭނުންކުރެއެވެ. މި ޑެސްކްޓޮޕް އެޕް އޮތޯރައިޒްކުރުމަށް ސައިން އިންވާ.',
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
       tokenTitle: 'ސެޝަން ޓޯކަން',
-      tokenDesc: 'REST އަދި WebSocket އެކްސެސްއަށް ބޭނުންކުރާ ޑޭޝްބޯޑް ސެޝަން ޓޯކަން. ސޭވްކޮށްފައިވާ ޓޯކަން އޮތުމަށް ހުސްކޮށްލާ.',
+      tokenDesc:
+        'REST އަދި WebSocket އެކްސެސްއަށް ބޭނުންކުރާ ޑޭޝްބޯޑް ސެޝަން ޓޯކަން. ސޭވްކޮށްފައިވާ ޓޯކަން އޮތުމަށް ހުސްކޮށްލާ.',
       existingToken: value => `Existing token ${value}`,
       savedToken: 'ސޭވްކޮށްފައި',
       pasteSessionToken: 'ސެޝަން ޓޯކަން ޕޭސްޓްކުރޭ',
@@ -640,7 +674,8 @@ export const dv = defineLocale({
       enterUrlFirst: 'ފުރަތަމަ ރިމޯޓް URL އެއް ލިޔުއްވާ.',
       restartingTitle: 'ގޭޓްވޭ ގުޅުން އަލުން ފެށެނީ',
       savedTitle: 'ގޭޓްވޭ ސެޓިންގްސް ރައްކާކޮށްފި',
-      restartingMessage: 'OpenAmer Desktop ސޭވްކޮށްފައިވާ ސެޓިންގްސް ބޭނުންކޮށްގެން އަލުން ގުޅޭނެ — ޝެލް ހުޅުވައިގެން އޮންނާނެ.',
+      restartingMessage:
+        'OpenAmer Desktop ސޭވްކޮށްފައިވާ ސެޓިންގްސް ބޭނުންކޮށްގެން އަލުން ގުޅޭނެ — ޝެލް ހުޅުވައިގެން އޮންނާނެ.',
       savedMessage: 'ދެން ފެށޭ ފަހަރަށް ރައްކާކޮށްފި.',
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       reachableTitle: 'ރިމޯޓް ގޭޓްވޭ ގުޅޭނެ',
@@ -653,7 +688,8 @@ export const dv = defineLocale({
       applyFailed: 'ގޭޓްވޭ ސެޓިންގްސް އަމަލުކުރެވެއްނުވި',
       saveFailed: 'ގޭޓްވޭ ސެޓިންގްސް ރައްކާކުރެވެއްނުވި',
       sshTitle: 'SSH އިން ގުޅޭ',
-      sshDesc: 'OpenAmer ރިމޯޓްގައި SSH މެދުގެން ފެށި، އަދި މި އެޕްއަށް ޓަނަލްކޮށްފައިވޭ — ތިބާ އަމިއްލައަށް ފެށުމެއް ނުވަތަ ހާމަކުރުމެއް ނުޖެހޭ. ހޯސްއަށް މަސައްކަތްކުރާ ކީގެ އަސާސްގައިވާ SSH އެކްސެސް ބޭނުންވޭ.',
+      sshDesc:
+        'OpenAmer ރިމޯޓްގައި SSH މެދުގެން ފެށި، އަދި މި އެޕްއަށް ޓަނަލްކޮށްފައިވޭ — ތިބާ އަމިއްލައަށް ފެށުމެއް ނުވަތަ ހާމަކުރުމެއް ނުޖެހޭ. ހޯސްއަށް މަސައްކަތްކުރާ ކީގެ އަސާސްގައިވާ SSH އެކްސެސް ބޭނުންވޭ.',
       sshTrustHint: 'ފުރަތަމަ ދައްކާ ހޯސް ކީ އިތުބާރުކޮށް ޕިންކޮށްފައިވޭ؛ ފަހުން ބަދަލުވާނަމަ ނާކާމިޔާބުވެ ބަންދުވާނެ.',
       sshHostTitle: 'ހޯސް',
       sshHostDesc: 'user@host، ނުވަތަ ~/.ssh/config އިން ހޯސް އަލިއަސްއެއް.',
@@ -677,18 +713,23 @@ export const dv = defineLocale({
       sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
       sshIncompleteHost: 'ގުޅައިލުމުގެ ކުރިން SSH ހޯސްޓެއް ލިޔުއްވާ.',
       sshErrUnreachable: 'SSH އިން އެ ހޯސްޓަށް ވާސިލްވެވެއްނުނު. ހޯސްޓް، ޕޯޓް އަދި ތިޔަބޭފުޅާގެ ނެޓްވޯކް ބައްލަވާ.',
-      sshErrAuth: 'SSH އައުތެންޓިކޭޝަން ނާކާމިޔާބުވެއްޖެ. ތިޔަބޭފުޅާގެ ކީ ssh-agent އަށް ލޯޑްކުރައްވާ (ssh-add) ނުވަތަ ~/.ssh/config ގައި IdentityFile ސެޓްކުރައްވާ — OpenAmer އިން ssh ނޮން-އިންޓަރެކްޓިވްކޮށް ދުއްވާ.',
-      sshErrHostKey: 'ފަހުން ގުޅުނުފަހުން ހޯސްޓް ކީ ބަދަލުވެއްޖެ. މިއީ އުންމީދުކުރާ ގޮތްތޯ ކަށަވަރުކުރައްވާ، ދެން ssh-keygen -R <host> ދުއްވައި އަލުން ގުޅައިލައްވާ.',
-      sshErrNotInstalled: 'OpenAmer ރިމޯޓް ހޯސްޓްގައި އިންސްޓޯލް ނުވެއެވެ. އެތަނަށް އިންސްޓޯލްކުރޭ (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ނުވަތަ OpenAmer ޕާތް ސެޓްކުރޭ.',
-      sshErrPlatform: 'ސަޕޯޓް ނުކުރާ ރިމޯޓް ޕްލެޓްފޯމެކެވެ. OpenAmer Desktop SSH މޯޑްއިން Linux, macOS, އަދި Windows ރިމޯޓް ހޯސްޓްތައް ސަޕޯޓްކުރެއެވެ.',
-      sshErrTimeout: 'SSH ކަނެކްޝަން ޓައިމްއައުޓްވެއްޖެއެވެ. ހޯސްޓަށް ނުފޯރުން ނުވަތަ ސްލީޕްގައި އޮންނަން އެކަށީގެންވެއެވެ.',
+      sshErrAuth:
+        'SSH އައުތެންޓިކޭޝަން ނާކާމިޔާބުވެއްޖެ. ތިޔަބޭފުޅާގެ ކީ ssh-agent އަށް ލޯޑްކުރައްވާ (ssh-add) ނުވަތަ ~/.ssh/config ގައި IdentityFile ސެޓްކުރައްވާ — OpenAmer އިން ssh ނޮން-އިންޓަރެކްޓިވްކޮށް ދުއްވާ.',
+      sshErrHostKey:
+        'ފަހުން ގުޅުނުފަހުން ހޯސްޓް ކީ ބަދަލުވެއްޖެ. މިއީ އުންމީދުކުރާ ގޮތްތޯ ކަށަވަރުކުރައްވާ، ދެން ssh-keygen -R <host> ދުއްވައި އަލުން ގުޅައިލައްވާ.',
+      sshErrNotInstalled:
+        'OpenAmer ރިމޯޓް ހޯސްޓްގައި އިންސްޓޯލް ނުވެއެވެ. އެތަނަށް އިންސްޓޯލްކުރޭ (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ނުވަތަ OpenAmer ޕާތް ސެޓްކުރޭ.',
+      sshErrPlatform:
+        'ސަޕޯޓް ނުކުރާ ރިމޯޓް ޕްލެޓްފޯމެކެވެ. OpenAmer Desktop SSH މޯޑްއިން Linux, macOS, އަދި Windows ރިމޯޓް ހޯސްޓްތައް ސަޕޯޓްކުރެއެވެ.',
+      sshErrTimeout:
+        'SSH ކަނެކްޝަން ޓައިމްއައުޓްވެއްޖެއެވެ. ހޯސްޓަށް ނުފޯރުން ނުވަތަ ސްލީޕްގައި އޮންނަން އެކަށީގެންވެއެވެ.',
       sshErrUpdateRequired: 'Desktop SSH އިން ކަނެކްޓްކުރުމުގެ ކުރިން ރިމޯޓް ހޯސްޓްގައި OpenAmer އަޕްޑޭޓްކުރޭ.',
-      sshErrUnknown: 'SSH ކަނެކްޝަން ނާކާމިޔާބުވެއްޖެއެވެ.',
+      sshErrUnknown: 'SSH ކަނެކްޝަން ނާކާމިޔާބުވެއްޖެއެވެ.'
     },
     keys: {
       loading: 'API ކީތަކާއި ކްރެޑެންޝަލްތައް ލޯޑްކުރަނީ...',
       failedLoad: 'API ކީތައް ލޯޑްކުރުން ނާކާމިޔާބުވެއްޖެ',
-      empty: 'މި ކެޓަގަރީގައި އަދި ކޮންފިގަރޭޝަނެއް ނެތެވެ.',
+      empty: 'މި ކެޓަގަރީގައި އަދި ކޮންފިގަރޭޝަނެއް ނެތެވެ.'
     },
     mcp: {
       loading: 'MCP ސާވަރތައް ލޯޑްކުރަނީ...',
@@ -740,7 +781,8 @@ export const dv = defineLocale({
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
       catalogEnvRequired: 'އިންސްޓޯލް ކުރުމުގެ ކުރިން ބޭނުންވާ ވެލިއުތައް ފުރިހަމަކުރޭ.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       statusConnecting: 'ކަނެކްޓްވަމުން...',
       statusNeedsAuth: 'އޮތެންޓިކޭޝަން ބޭނުންވޭ',
       statusError: 'ގޯހެއް',
@@ -753,11 +795,12 @@ export const dv = defineLocale({
       unsavedConnect: 'ސޭވްނުކޮށް — ގުޅުވަން mcp.json ސޭވްކުރޭ.',
       enableTool: tool => `Enable ${tool}`,
       disableTool: tool => `Disable ${tool}`,
-      noOutput: 'އަދި އައުޓްޕުޓެއް ނެތް.',
+      noOutput: 'އަދި އައުޓްޕުޓެއް ނެތް.'
     },
     model: {
       loading: 'މޮޑެލް ކޮންފިގްރޭޝަން ލޯޑްކުރަމުން...',
-      appliesDesc: 'އައު ސެޝަންތަކަށް އެޕްލައިވެއެވެ. އެކްޓިވް ޗެޓް ހޮޓް-ސްވަޕް ކުރަން ކޮމްޕޯޒަރުގެ މޮޑެލް ޕިކަރ ބޭނުންކުރޭ.',
+      appliesDesc:
+        'އައު ސެޝަންތަކަށް އެޕްލައިވެއެވެ. އެކްޓިވް ޗެޓް ހޮޓް-ސްވަޕް ކުރަން ކޮމްޕޯޒަރުގެ މޮޑެލް ޕިކަރ ބޭނުންކުރޭ.',
       provider: 'ޕްރޮވައިޑަރ',
       model: 'މޮޑެލް',
       applying: 'އަމަލުކުރަނީ...',
@@ -767,53 +810,55 @@ export const dv = defineLocale({
       defaultsFailed: 'މޮޑެލް ޑިފޯލްޓްތައް ސޭވްކުރުން ފެއިލްވެއްޖެ',
       auxiliaryTitle: 'އެހީތެރި މޮޑެލްތައް',
       resetAllToMain: 'ހުރިހާ އެއްޗެއް މައި މޮޑެލްއަށް ރީސެޓްކުރޭ',
-      auxiliaryDesc: 'އެހީތެރި މަސައްކަތްތައް ޑިފޯލްޓްކޮށް މައި މޮޑެލްއަށް ދުއްވާނެ. އޯވަރރައިޑްކުރުމަށް ކޮންމެ މަސައްކަތަކަށް ޚާއްސަ މޮޑެލެއް އައްޔަންކުރޭ.',
+      auxiliaryDesc:
+        'އެހީތެރި މަސައްކަތްތައް ޑިފޯލްޓްކޮށް މައި މޮޑެލްއަށް ދުއްވާނެ. އޯވަރރައިޑްކުރުމަށް ކޮންމެ މަސައްކަތަކަށް ޚާއްސަ މޮޑެލެއް އައްޔަންކުރޭ.',
       setToMain: 'މައި މޮޑެލްއަށް ސެޓްކުރޭ',
       change: 'ބަދަލުކުރޭ',
       autoUseMain: 'އޮޓޯ · މައި މޮޑެލް ބޭނުންކުރޭ',
       providerDefault: '(ޕްރޮވައިޑަރ ޑިފޯލްޓް)',
       fallbackAdd: 'ފޯލްބެކް އިތުރުކުރޭ',
       fallbackEmpty: 'ފޯލްބެކް މޮޑެލްތައް ނެތް — ފެއިލްނުވާ ހަމައަށް ޑިފޯލްޓް މޮޑެލް ބޭނުންކުރެވޭނެ.',
-      notInCatalog: "މި ޕްރޮވައިޑަރގެ މޮޑެލް ލިސްޓްގައި ނެތް — ކޯލްތައް ބެކަޕަކަށް ފޯލްބެކްވެދާނެ.",
+      notInCatalog: 'މި ޕްރޮވައިޑަރގެ މޮޑެލް ލިސްޓްގައި ނެތް — ކޯލްތައް ބެކަޕަކަށް ފޯލްބެކްވެދާނެ.',
       tasks: {
         vision: {
           label: 'ވިޒަން',
-          hint: 'ތަސްވީރު ތަޙުލީލް',
+          hint: 'ތަސްވީރު ތަޙުލީލް'
         },
         web_extract: {
           label: 'ވެބުން ނެގުން',
-          hint: 'ޞަފްޙާ ޚުލާޞާކުރުން',
+          hint: 'ޞަފްޙާ ޚުލާޞާކުރުން'
         },
         compression: {
           label: 'ކޮންޑެންޝަން',
-          hint: 'ކޮންޓޭކްޓް ކޮންޕެކްޓިން',
+          hint: 'ކޮންޓޭކްޓް ކޮންޕެކްޓިން'
         },
         skills_hub: {
           label: 'ސްކިލްސް ހަބް',
-          hint: 'ސްކިލްސް ތެއްވަން',
+          hint: 'ސްކިލްސް ތެއްވަން'
         },
         approval: {
           label: 'އެއްވަން',
-          hint: 'ސްމާޓް އޮޓޯ-އެއްވަން',
+          hint: 'ސްމާޓް އޮޓޯ-އެއްވަން'
         },
         mcp: {
           label: 'MCP',
-          hint: 'MCP ޓޫލް ރޯޓިންގައި',
+          hint: 'MCP ޓޫލް ރޯޓިންގައި'
         },
         title_generation: {
           label: 'ޓރައިޓް ޖެން',
-          hint: 'ސޭޝަން ޓރައިޓްސް',
+          hint: 'ސޭޝަން ޓރައިޓްސް'
         },
         curator: {
           label: 'ކުރަޓަރް',
-          hint: 'ސްކިލްސް އުސަލުގެއްވަން ރިވީވް',
-        },
-      },
+          hint: 'ސްކިލްސް އުސަލުގެއްވަން ރިވީވް'
+        }
+      }
     },
     providers: {
       connectAccount: 'އަކަންޓް ކަންނޭތައި',
       haveApiKey: 'އެޕްއާއި ކެއި އެއްވަން ކަންނޭތައި?',
-      intro: 'ސައްޕޭސްކްރިޕްޝަން ކަންނަން ސައިން-އިން — އެޕްއާއި ކެއި ކޮޕީ ކުރި ނައްވަން. OpenAmer ބްރޯޞަރް ސައިން-އިން އަންނަން ދިވެހިންގައި އެޕްކަންނަން ކަންނަން.',
+      intro:
+        'ސައްޕޭސްކްރިޕްޝަން ކަންނަން ސައިން-އިން — އެޕްއާއި ކެއި ކޮޕީ ކުރި ނައްވަން. OpenAmer ބްރޯޞަރް ސައިން-އިން އަންނަން ދިވެހިންގައި އެޕްކަންނަން ކަންނަން.',
       connected: 'ކަންނޭތައި',
       collapse: 'ކޮޅުންވަން',
       connectAnother: 'މިއައްކަން ޕްރޮވިޑްރް ކަންނޭތައި',
@@ -823,7 +868,8 @@ export const dv = defineLocale({
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedTitle: 'އެކައުންޓް ނަގާލެވިއްޖެ',
       removedMessage: provider => `${provider} was removed.`,
@@ -833,14 +879,16 @@ export const dv = defineLocale({
       noKeysMatch: 'ތިޔަ ހޯދުމާ އެއްގޮތްވާ ޕްރޮވައިޑަރެއް ނެތް.',
       localEndpoint: {
         title: 'ލޯކަލް / ކަސްޓަމް އެންޑްޕޮއިންޓް',
-        description: 'OpenAmer އިން OpenAI އާ އެއްގޮތްވާ ކޮންމެ އެންޑްޕޮއިންޓަކަށް ދިމާކުރޭ (Zyphra, vLLM, llama.cpp, Ollama, ފަދަ ތަކެތި).',
+        description:
+          'OpenAmer އިން OpenAI އާ އެއްގޮތްވާ ކޮންމެ އެންޑްޕޮއިންޓަކަށް ދިމާކުރޭ (Zyphra, vLLM, llama.cpp, Ollama, ފަދަ ތަކެތި).'
       },
-      loading: 'ޕްރޮވައިޑަރުން ލޯޑްކުރަނީ...',
+      loading: 'ޕްރޮވައިޑަރުން ލޯޑްކުރަނީ...'
     },
     sessions: {
       loading: 'އާކައިވްކުރެވިފައިވާ ސެޝަންތައް ލޯޑްކުރަނީ…',
       archivedTitle: 'އާކައިވްކުރެވިފައިވާ ސެޝަންތައް',
-      archivedIntro: 'އާކައިވްކުރެވިފައިވާ ޗެޓްތައް ސައިޑްބާރުގައި ނުފެންނާނެއެވެ؛ ނަމަވެސް އެތަކުގެ ހުރިހާ މެސެޖެއް ބަހައްޓައެވެ. އާކައިވްކުރުމަށް ސައިޑްބާރުގައިވާ ޗެޓަކަށް Ctrl/⌘-click ކުރޭ.',
+      archivedIntro:
+        'އާކައިވްކުރެވިފައިވާ ޗެޓްތައް ސައިޑްބާރުގައި ނުފެންނާނެއެވެ؛ ނަމަވެސް އެތަކުގެ ހުރިހާ މެސެޖެއް ބަހައްޓައެވެ. އާކައިވްކުރުމަށް ސައިޑްބާރުގައިވާ ޗެޓަކަށް Ctrl/⌘-click ކުރޭ.',
       emptyArchivedTitle: 'އެއްވެސް އެއްޗެއް އާކައިވްކުރެވިފައި ނެތް',
       emptyArchivedDesc: 'މިތަނުގައި ފޮރުވުމަށް ޗެޓެއް އާކައިވްކުރޭ.',
       unarchive: 'އާކައިވްއިން ނަގާ',
@@ -849,12 +897,14 @@ export const dv = defineLocale({
       restored: 'އަލުން ގެނެވިއްޖެ',
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
       autoArchiveTitle: 'ދުވަސްވެފައިވާ ޗެޓްތައް އޮޓޯ-އާކައިވްކުރޭ',
-      autoArchiveDesc: "ދުވަސްތަކެއްވަންދެން ނުބައްދަލުވާ ޗެޓްތައް އޮޓޯމެޓިކުން އާކައިވްކުރޭ. ޕިންކުރެވިފައިވާ ޗެޓްތައް އެއްވެސް ދުވަހަކު އާކައިވް ނުކުރެވޭނެ، އަދި އެއްވެސް އެއްޗެއް ފޮހެނުން ނުވާނެ — އާކައިވްކުރެވިފައިވާ ޗެޓްތައް އެކަނި މިތަނަށް ބަދަލުވާނެ.",
+      autoArchiveDesc:
+        'ދުވަސްތަކެއްވަންދެން ނުބައްދަލުވާ ޗެޓްތައް އޮޓޯމެޓިކުން އާކައިވްކުރޭ. ޕިންކުރެވިފައިވާ ޗެޓްތައް އެއްވެސް ދުވަހަކު އާކައިވް ނުކުރެވޭނެ، އަދި އެއްވެސް އެއްޗެއް ފޮހެނުން ނުވާނެ — އާކައިވްކުރެވިފައިވާ ޗެޓްތައް އެކަނި މިތަނަށް ބަދަލުވާނެ.',
       autoArchiveDaysLabel: 'އާކައިވްކުރާނީ',
       autoArchiveDaysUnit: 'އެކްޓިވް ނުވާ ދުވަސްތައް',
       autoArchiveFailed: 'އޮޓޯ-އާކައިވް އަޕްޑޭޓް ނުކުރެވުނު',
       defaultDirTitle: 'ޑީފޯލްޓް ޕްރޮޖެކްޓް ޑިރެކްޓަރީ',
-      defaultDirDesc: 'އައު ސެޝަންތައް މި ފޯލްޑަރުގައި ފެށޭނެ، އެހެން ޑިރެކްޓަރީއެއް ނެގުމުން މެނުވީ. ޔުޒަރގެ ހޯމް ޑިރެކްޓަރީ ބޭނުންކުރަން ސެޓްނުކޮށް ދޫކޮށްލާ.',
+      defaultDirDesc:
+        'އައު ސެޝަންތައް މި ފޯލްޑަރުގައި ފެށޭނެ، އެހެން ޑިރެކްޓަރީއެއް ނެގުމުން މެނުވީ. ޔުޒަރގެ ހޯމް ޑިރެކްޓަރީ ބޭނުންކުރަން ސެޓްނުކޮށް ދޫކޮށްލާ.',
       defaultDirUpdated: 'ޑީފޯލްޓް ޕްރޮޖެކްޓް ޑިރެކްޓަރީ އަޕްޑޭޓްވެއްޖެ — އަސަރުކުރުމަށް އައު ޗެޓެއް ފަށާ (Ctrl/⌘+N)',
       defaultsTo: label => `Defaults to ${label}.`,
       change: 'ބަދަލުކުރޭ',
@@ -865,7 +915,7 @@ export const dv = defineLocale({
       unarchiveFailed: 'އަންއާކައިވް ފެއިލްވެއްޖެ',
       deleteFailed: 'ޑިލީޓް ފެއިލްވެއްޖެ',
       updateDirFailed: 'ޑީފޯލްޓް ޑިރެކްޓަރީ އަޕްޑޭޓް ނުކުރެވުނު',
-      clearDirFailed: 'ޑީފޯލްޓް ޑިރެކްޓަރީ ސާފު ނުކުރެވުނު',
+      clearDirFailed: 'ޑީފޯލްޓް ޑިރެކްޓަރީ ސާފު ނުކުރެވުނު'
     },
     toolsets: {
       loadingConfig: 'ކޮންފިގްރޭޝަން ލޯޑްކުރަނީ',
@@ -883,20 +933,24 @@ export const dv = defineLocale({
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
       failedLoad: 'ޓޫލް ކޮންފިގްރޭޝަން ލޯޑްކުރުން ފެއިލްވެއްޖެ',
-      noProviderOptions: 'މި ޓޫލްސެޓަށް ޕްރޮވައިޑަރ އޮޕްޝަންތައް ނެތް — އެނޭބަލް ކުރުމުން މިހާރުގެ ސެޓަޕްއާ އެކު މަސައްކަތް ކުރާނެ.',
+      noProviderOptions:
+        'މި ޓޫލްސެޓަށް ޕްރޮވައިޑަރ އޮޕްޝަންތައް ނެތް — އެނޭބަލް ކުރުމުން މިހާރުގެ ސެޓަޕްއާ އެކު މަސައްކަތް ކުރާނެ.',
       noProviders: 'މި ޓޫލްސެޓަށް މިވަގުތު ޕްރޮވައިޑަރުން ނެތް.',
       ready: 'ތައްޔާރު',
       needsSignIn: 'ސައިން އިން ބޭނުން',
       needsSetup: 'ސެޓަޕް ބޭނުން',
-      openamerIncluded: 'OpenAmer ސަބްސްކްރިޕްޝަންއާ އެކު ހިމެނޭ — އެކްޓިވޭޓް ކުރުމަށް OpenAmer Portal އަށް ސައިން އިން ކުރޭ.',
+      openamerIncluded:
+        'OpenAmer ސަބްސްކްރިޕްޝަންއާ އެކު ހިމެނޭ — އެކްޓިވޭޓް ކުރުމަށް OpenAmer Portal އަށް ސައިން އިން ކުރޭ.',
       openamerAuthNeededTitle: 'OpenAmer Portal އަށް ސައިން އިން ކުރޭ',
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
       openamerAuthSignIn: 'ސައިން އިން',
       openamerAuthDoneTitle: 'OpenAmer Portal ގުޅިއްޖެ',
       openamerAuthDoneMessage: 'ތިބާގެ ސަބްސްކްރިޕްޝަން ބެކްއެންޑްތައް މިހާރު ހަރަކާތްތެރިވެއްޖެ.',
       openamerAuthFailed: 'OpenAmer Portal ސައިން އިން ފުރިހަމަ ނުވި',
       noApiKeyRequired: 'API ކީ ބޭނުން ނުވޭ.',
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupInstalledHint: 'އިންސްޓޯލް ވެއްޖެ. ކަމެއް ހަލާކުވެފައި ވާނަމަ އަލުން ސެޓަޕް ކުރޭ.',
       postSetupRun: 'ސެޓަޕް ކުރޭ',
       postSetupRerun: 'އަލުން ސެޓަޕް ކުރޭ',
@@ -937,9 +991,9 @@ export const dv = defineLocale({
         selectedTitle: 'ބެކްއެންޑް ނަގާފައި',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
         failedSelect: backend => `Failed to select ${backend}`,
-        needsSetupHint: 'މި ބެކްއެންޑް މިހާރު ނަގައިދާނެ — ސެޓަޕް ފުރިހަމަވަންދެން ކޮމާންޑްތައް ފެއިލްވާނެ.',
-      },
-    },
+        needsSetupHint: 'މި ބެކްއެންޑް މިހާރު ނަގައިދާނެ — ސެޓަޕް ފުރިހަމަވަންދެން ކޮމާންޑްތައް ފެއިލްވާނެ.'
+      }
+    }
   },
   skills: {
     tabSkills: 'މިހަންތައި',
@@ -959,7 +1013,8 @@ export const dv = defineLocale({
     noDescription: 'މައްކުޓައި ނަންނައިވައި.',
     configured: 'ކަންފިގްޑުގައި',
     needsKeys: 'ކެކީގައި ލަޒިއްވައި',
-    visionModelHint: 'ވިޒިޔަން ޢިކުންތައި އެކްސިލިއްނަރީ މޯޑޭލް ކަންފިގްޑޭޒައި މަތަށް ކުރައިވައި — ދިވެހިނަން މަތަށް ދައިރައްޖެއްވައި މޯޑޭލް ޓަކަފަށް ތަން ކުރައިވައި, ތަން ޕްރޮވިޑަރް ކަމަށް ނަންނައިވައި.',
+    visionModelHint:
+      'ވިޒިޔަން ޢިކުންތައި އެކްސިލިއްނަރީ މޯޑޭލް ކަންފިގްޑޭޒައި މަތަށް ކުރައިވައި — ދިވެހިނަން މަތަށް ދައިރައްޖެއްވައި މޯޑޭލް ޓަކަފަށް ތަން ކުރައިވައި, ތަން ޕްރޮވިޑަރް ކަމަށް ނަންނައިވައި.',
     visionModelLink: 'ސޭޓިންގައިންސް → މޯޑޭލްސެއް އިންޓެއްފެރިކަށް ވިޒިޔަން މޯޑޭލް',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} toolsets enabled`,
     configureToolset: label => `Configure ${label}`,
@@ -985,7 +1040,7 @@ export const dv = defineLocale({
     provenance: {
       agent: 'ވައިގަޑައިގައި ދިވަހަން',
       bundled: 'އިންބިލްޓީ',
-      hub: 'ހަބް',
+      hub: 'ހަބް'
     },
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
@@ -1003,7 +1058,8 @@ export const dv = defineLocale({
       connectingHubs: 'ސްކިލް ހަބްތަކާ ގުޅަމުން...',
       connectedHubs: 'ގުޅިފައިވާ ހަބްތައް:',
       featured: 'ފީޗާޑް ސްކިލްތައް',
-      landingHint: 'އޮފިޝަލް އިންޑެކްސް، GitHub އަދި ކޮމިއުނިޓީ ސޯސްތަކުން އިންސްޓޯލް ކުރެވިދާނެ ސްކިލްތައް ބަލާލުމަށް ހަބް ހޯދާ.',
+      landingHint:
+        'އޮފިޝަލް އިންޑެކްސް، GitHub އަދި ކޮމިއުނިޓީ ސޯސްތަކުން އިންސްޓޯލް ކުރެވިދާނެ ސްކިލްތައް ބަލާލުމަށް ހަބް ހޯދާ.',
       noResults: 'ހަބްގައި ގުޅޭ ސްކިލްތަކެއް ނުފެނުނު.',
       resultCount: (count, ms) => `${count} result${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Timed out: ${sources}`,
@@ -1023,7 +1079,7 @@ export const dv = defineLocale({
       trust: {
         builtin: 'ބިލްޓް-އިން',
         trusted: 'އިތުބާރުކުރެވޭ',
-        community: 'ކޮމިއުނިޓީ',
+        community: 'ކޮމިއުނިޓީ'
       },
       verdictSafe: 'ރައްކާތެރި',
       verdictCaution: 'އިންޒާރު',
@@ -1041,8 +1097,8 @@ export const dv = defineLocale({
       loadFailed: 'ސްކިލް ހަބް ލޯޑްކުރަން ނާކާމިޔާބު',
       previewFailed: 'ސްކިލް ޕްރިވިއު ނާކާމިޔާބު',
       scanFailed: 'ސެކިއުރިޓީ ސްކޭން ނާކާމިޔާބު',
-      searchFailed: 'ހަބް ހޯދުން ނާކާމިޔާބު',
-    },
+      searchFailed: 'ހަބް ހޯދުން ނާކާމިޔާބު'
+    }
   },
   starmap: {
     title: 'މެމަރީ ގްރާފް',
@@ -1059,7 +1115,8 @@ export const dv = defineLocale({
     emptyTitle: 'އަދި ދަސްކުރެވިފައި ނެތް',
     emptyDesc: 'OpenAmer އިން ތިބާގެ މަސައްކަތަށް ހުނަރާއި ހަނދާންތައް ބިނާކުރަމުން ދާއިރު، އެތަކެތި މިތާ ފެންނާނެ.',
     share: 'މެޕް ހިއްސާކުރޭ',
-    shareHint: 'މި މެޕް ހިއްސާކުރުމަށް ކޯޑް ކޮޕީކުރޭ، ނުވަތަ ލޯޑްކުރުމަށް ކޯޑެއް ޕޭސްޓްކުރޭ. އޭގައި ހިމެނޭނީ ލޭއައުޓް އެކަނިކަން، ތިބާގެ މެމަރީ ނުވަތަ ސްކިލް ޓެކްސްޓް ނޫން.',
+    shareHint:
+      'މި މެޕް ހިއްސާކުރުމަށް ކޯޑް ކޮޕީކުރޭ، ނުވަތަ ލޯޑްކުރުމަށް ކޯޑެއް ޕޭސްޓްކުރޭ. އޭގައި ހިމެނޭނީ ލޭއައުޓް އެކަނިކަން، ތިބާގެ މެމަރީ ނުވަތަ ސްކިލް ޓެކްސްޓް ނޫން.',
     shareTitle: 'މެޕް އިމްޕޯޓް / އެކްސްޕޯޓް',
     sharePlaceholder: 'މެޕް ކޯޑެއް ޕޭސްޓްކުރޭ...',
     copy: 'މެޕް ކޯޑް ކޮޕީކުރޭ',
@@ -1069,14 +1126,15 @@ export const dv = defineLocale({
     importEmpty: 'މެޕް ކޯޑެއް ޕޭސްޓްކޮށް ލޯޑްކުރޭ',
     importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'އިމްޕޯޓްކުރި މެޕް',
-    resetToMine: 'އަހަރެންގެ މެޕްއަށް އެނބުރޭ',
+    resetToMine: 'އަހަރެންގެ މެޕްއަށް އެނބުރޭ'
   },
   agents: {
     close: 'އޭޖެންޓުން ބަންދުކުރޭ',
     title: 'ޓްރީ ސްޕޯންކުރޭ',
     subtitle: 'މި ޓާންގެ ސަބްއޭޖެންޓް ލައިވް އެކްޓިވިޓީ.',
     emptyTitle: 'ލައިވް ސަބްއޭޖެންޓުން ނެތް',
-    emptyDesc: 'ޓާނަކުން މަސައްކަތް ޑެލިގޭޓްކުރާ ހިނދު، ޗައިލްޑް އޭޖެންޓުން އެމީހުންގެ ކުރިއެރުން މިތަނަށް ސްޓްރީމްކުރާނެ.',
+    emptyDesc:
+      'ޓާނަކުން މަސައްކަތް ޑެލިގޭޓްކުރާ ހިނދު، ޗައިލްޑް އޭޖެންޓުން އެމީހުންގެ ކުރިއެރުން މިތަނަށް ސްޓްރީމްކުރާނެ.',
     running: 'ދުވަނީ',
     failed: 'ފެއިލްވެއްޖެ',
     done: 'ނިމިއްޖެ',
@@ -1099,7 +1157,7 @@ export const dv = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'ކޮމާންޑް ސެންޓަރ ބަންދުކުރޭ',
@@ -1121,7 +1179,8 @@ export const dv = defineLocale({
       placeholder: 'ޕެޓްތައް ހޯދާ…',
       loading: 'petdex ގެލެރީ ލޯޑްވަނީ…',
       error: 'petdex ގެލެރީއަށް ދެވެންނުވިއެވެ.',
-      staleBackend: 'ޕެޓްތައް ބޭނުންކުރުމަށް OpenAmer އަލުން ފަށާ — ބެކްއެންޑް އަކީ މި ފީޗަރުގެ ކުރިން އުފެދިފައިވާ އެއްޗެކެވެ.',
+      staleBackend:
+        'ޕެޓްތައް ބޭނުންކުރުމަށް OpenAmer އަލުން ފަށާ — ބެކްއެންޑް އަކީ މި ފީޗަރުގެ ކުރިން އުފެދިފައިވާ އެއްޗެކެވެ.',
       empty: 'ގުޅޭ ޕެޓްތަކެއް ނެތެވެ.',
       turnOff: 'ނިއްވާ',
       turnOn: 'ދިއްލާ',
@@ -1129,7 +1188,7 @@ export const dv = defineLocale({
       generatedTag: 'އުފެދިފައި',
       adoptFailed: 'އެ ޕެޓް އެޑޮޕްޓްކުރެވެންނުވިއެވެ.',
       toggleFailed: 'ޕެޓް ޓޮގަލްކުރެވެންނުވިއެވެ.',
-      noneAvailable: 'ލިބެންހުރި ޕެޓްތަކެއް ނެތެވެ — އިންސްޓޯލްކުރުމަށް ތިރިން އެކެއް ނަގާ.',
+      noneAvailable: 'ލިބެންހުރި ޕެޓްތަކެއް ނެތެވެ — އިންސްޓޯލްކުރުމަށް ތިރިން އެކެއް ނަގާ.'
     },
     generatePet: {
       title: 'ޕެޓެއް އުފައްދާ',
@@ -1153,12 +1212,13 @@ export const dv = defineLocale({
       slowProviderHint: 'މިކަމަށް ގިނަ މިނެޓްތަކެއް ނަގައިދާނެ',
       remix: 'ރީމިކްސް',
       remixConfirmTitle: 'މި ލޫކް ރީމިކްސްކުރަންތޯ؟',
-      remixConfirmBody: 'މިއެއް ފެށޭ ހިސާބުކޮށްގެން އައު ޑްރާފްތަކެއް އުފައްދައެވެ. މިކަމަށް ގިނަ މިނެޓްތަކެއް ނަގައިދާނެ.',
+      remixConfirmBody:
+        'މިއެއް ފެށޭ ހިސާބުކޮށްގެން އައު ޑްރާފްތަކެއް އުފައްދައެވެ. މިކަމަށް ގިނަ މިނެޓްތަކެއް ނަގައިދާނެ.',
       genericError: 'ޖެނެރޭޝަން ނާކާމިޔާބުވި — އަލުން މަސައްކަތްކުރޭ ނުވަތަ ސަޖެސްޓެއް ނެގޭ.',
       referenceImageTooLarge: 'ރެފަރެންސް ފޮޓޯ ވަރަށް ބޮޑުވެއްޖެ. 16 MB އަށް ވުރެ ކުޑަ އެއްޗެއް ބޭނުންކުރޭ.',
       referenceImageInvalid: 'އެ ރެފަރެންސް ފޮޓޯ ނުކިޔެވުނު. PNG، JPG، WebP ނުވަތަ GIF ބޭނުންކުރޭ.',
       adopt: 'ޤަބޫލުކުރޭ',
-      startOver: 'އަލުން ފެށޭ',
+      startOver: 'އަލުން ފެށޭ'
     },
     installTheme: {
       title: 'ތީމް އިންސްޓޯލްކުރޭ…',
@@ -1170,7 +1230,7 @@ export const dv = defineLocale({
       install: 'އިންސްޓޯލްކުރޭ',
       installing: 'އިންސްޓޯލްކުރަނީ...',
       installed: 'އިންސްޓޯލްވެއްޖެ',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'ސެޓިންގްސް ފީލްޑްތައް',
     mcpServers: 'MCP ސަރވަރތައް',
@@ -1179,49 +1239,49 @@ export const dv = defineLocale({
       maintenance: 'ދިހަމަކުރުން',
       sessions: 'ސެޝަންތައް',
       system: 'ސިސްޓަމް',
-      usage: 'ބޭނުން',
+      usage: 'ބޭނުން'
     },
     sectionDescriptions: {
       maintenance: 'ޑައިގްނޮސްޓިކްސް، ބެކަޕްތައް، ކިއުރޭޓަރ އަދި މެމަރީ ޑޭޓާ',
       sessions: 'ސެޝަންތައް ހޯދައި މެނޭޖްކުރޭ',
       system: 'ސްޓޭޓަސް، ލޮގްތައް، އަދި ސިސްޓަމް އެކްޝަންތައް',
-      usage: 'ޓޯކަން، ކޮސްޓް، އަދި ސްކިލް އެކްޓިވިޓީ ވަގުތުން ވަގުތަށް',
+      usage: 'ޓޯކަން، ކޮސްޓް، އަދި ސްކިލް އެކްޓިވިޓީ ވަގުތުން ވަގުތަށް'
     },
     nav: {
       newChat: {
         title: 'އައު ސެޝަން',
-        detail: 'އައު ސެޝަނެއް ފަށާ',
+        detail: 'އައު ސެޝަނެއް ފަށާ'
       },
       settings: {
         title: 'ސެޓިންގްސް',
-        detail: 'OpenAmer ޑެސްކްޓޮޕް ކޮންފިގްރޭޓްކުރޭ',
+        detail: 'OpenAmer ޑެސްކްޓޮޕް ކޮންފިގްރޭޓްކުރޭ'
       },
       skills: {
         title: 'ކެޕަބިލިޓީތައް',
-        detail: 'ސްކިލްތައް، ޓޫލްތައް، އަދި MCP ސާވަރތައް',
+        detail: 'ސްކިލްތައް، ޓޫލްތައް، އަދި MCP ސާވަރތައް'
       },
       messaging: {
         title: 'މެސެޖިންގ',
-        detail: 'ޓެލެގްރާމް، ސްލެކް، ޑިސްކޯޑް، އަދި އިތުރުތައް ސެޓްއަޕްކުރޭ',
+        detail: 'ޓެލެގްރާމް، ސްލެކް، ޑިސްކޯޑް، އަދި އިތުރުތައް ސެޓްއަޕްކުރޭ'
       },
       artifacts: {
         title: 'އާޓިފެކްޓްތައް',
-        detail: 'އުފެދިފައިވާ ނަތީޖާތައް ބެލުމަށް ބްރައުޒްކުރޭ',
-      },
+        detail: 'އުފެދިފައިވާ ނަތީޖާތައް ބެލުމަށް ބްރައުޒްކުރޭ'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'ސެޝަން ޕެނަލް',
-        detail: 'ސެޝަންތައް ހޯދައި، ޕިންކޮށް، މެނޭޖްކުރޭ',
+        detail: 'ސެޝަންތައް ހޯދައި، ޕިންކޮށް، މެނޭޖްކުރޭ'
       },
       system: {
         title: 'ސިސްޓަމް ޕެނަލް',
-        detail: 'ގޭޓްވޭ ސްޓޭޓަސް، ލޮގްތައް، ރީސްޓާޓް/އަޕްޑޭޓް',
+        detail: 'ގޭޓްވޭ ސްޓޭޓަސް، ލޮގްތައް، ރީސްޓާޓް/އަޕްޑޭޓް'
       },
       usage: {
         title: 'ބޭނުންކުރުމުގެ ޕެނެލް',
-        detail: 'ޓޯކަން، ޚަރަދު، އަދި ހުނަރުގެ ޙަރަކާތް',
-      },
+        detail: 'ޓޯކަން، ޚަރަދު، އަދި ހުނަރުގެ ޙަރަކާތް'
+      }
     },
     providerNavigate: 'ނެވިގޭޓްކުރޭ',
     providerSessions: 'ސެޝަންތައް',
@@ -1276,7 +1336,8 @@ export const dv = defineLocale({
       backup: 'ބެކަޕް ހަދާ',
       backupDesc: 'ކޮންފިގް، މެމޮރީސް، ސްކިލްސް، އަދި ސެޝަންސް ޒިޕްކުރޭ',
       debugShare: 'ޑީބަގް ޝެއާ',
-      debugShareDesc: 'ރީޑެކްޓްކުރެވިފައިވާ ރިޕޯޓް + ލޮގްތައް އަޕްލޯޑްކުރޭ، ޝެއާކުރެވޭ ލިންކްތައް ލިބޭ (6 ގަޑިއިރުތެރޭ އަމިއްލައަށް ޑިލީޓްވާ)',
+      debugShareDesc:
+        'ރީޑެކްޓްކުރެވިފައިވާ ރިޕޯޓް + ލޮގްތައް އަޕްލޯޑްކުރޭ، ޝެއާކުރެވޭ ލިންކްތައް ލިބޭ (6 ގަޑިއިރުތެރޭ އަމިއްލައަށް ޑިލީޓްވާ)',
       debugShareRunning: 'ޑީބަގް ރިޕޯޓް އަޕްލޯޑްކުރަނީ...',
       debugShareLinks: 'ޝެއާ ލިންކްތައް',
       debugShareFailed: 'ޑީބަގް ޝެއާ ފެއިލްވެއްޖެ',
@@ -1309,8 +1370,8 @@ export const dv = defineLocale({
       actionStarted: name => `${name} started — tailing log...`,
       actionFailed: name => `${name} failed to start`,
       running: 'ދުވަނީ...',
-      viewLog: 'އެކްޝަން ލޮގް',
-    },
+      viewLog: 'އެކްޝަން ލޮގް'
+    }
   },
   messaging: {
     search: 'މެސެޖިންގ ހޯދަނީ...',
@@ -1325,7 +1386,7 @@ export const dv = defineLocale({
       not_configured: 'ސެޓަޕް ބޭނުންވޭ',
       pending_restart: 'ރީސްޓާޓް ކުރަންޖެހޭ',
       retrying: 'އަލުން މަސައްކަތްކުރަނީ',
-      startup_failed: 'ސްޓާޓްއަޕް ނާކާމިޔާބުވެއްޖެ',
+      startup_failed: 'ސްޓާޓްއަޕް ނާކާމިޔާބުވެއްޖެ'
     },
     unknown: 'ނޭނގޭ',
     hintPendingRestart: 'މި ބަދަލު ތަންފީޒުކުރުމަށް ސްޓޭޓަސް ބާރުން ގޭޓްވޭ ރީސްޓާޓްކުރައްވާ.',
@@ -1338,7 +1399,8 @@ export const dv = defineLocale({
     required: 'ބޭނުންވޭ',
     recommended: 'ރެކޮމެންޑްކުރި',
     advanced: count => `Advanced (${count})`,
-    noTokenNeeded: 'މި ޕްލެޓްފޯމަށް މިތާ ޓޯކަން ބޭނުންނުވޭ. މަތީގައިވާ ސެޓަޕް ގައިޑް ބޭނުންކުރައްވާ، ދެން ތިރީގައި އެކަން އެނޭބަލްކުރައްވާ.',
+    noTokenNeeded:
+      'މި ޕްލެޓްފޯމަށް މިތާ ޓޯކަން ބޭނުންނުވޭ. މަތީގައިވާ ސެޓަޕް ގައިޑް ބޭނުންކުރައްވާ، ދެން ތިރީގައި އެކަން އެނޭބަލްކުރައްވާ.',
     enabled: 'ހިންގާ',
     disabled: 'ނުހިންގާ',
     unsavedChanges: 'ސޭވް ނުކުރެވިފައިވާ ބަދަލުތައް',
@@ -1364,127 +1426,126 @@ export const dv = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'ބޮޓް ޓޯކަން',
         help: '@BotFather އިން ބޮޓެއް ހަދާ، ދެން އެއިން ދޭ ޓޯކަން ޕޭސްޓްކުރޭ.',
-        placeholder: 'Telegram ބޮޓް ޓޯކަން ޕޭސްޓްކުރޭ',
+        placeholder: 'Telegram ބޮޓް ޓޯކަން ޕޭސްޓްކުރޭ'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'ހުއްދަ Telegram ޔޫސަރ އައިޑީތައް',
-        help: 'ރެކޮމެންޑްކުރެވޭ. @userinfobot އިން ލިބޭ ކޮމާއިން ވަކިކުރެވިފައިވާ ނަމްބަރ އައިޑީތައް. މިއެއް ނެތްނަމަ، ކޮންމެ މީހަކަށް ވެސް ތިޔަ ބޮޓަށް DM ފޮނުވޭނެ.',
+        help: 'ރެކޮމެންޑްކުރެވޭ. @userinfobot އިން ލިބޭ ކޮމާއިން ވަކިކުރެވިފައިވާ ނަމްބަރ އައިޑީތައް. މިއެއް ނެތްނަމަ، ކޮންމެ މީހަކަށް ވެސް ތިޔަ ބޮޓަށް DM ފޮނުވޭނެ.'
       },
       TELEGRAM_PROXY: {
         label: 'ޕްރޮކްސީ URL',
-        help: 'Telegram ބްލޮކްކުރެވިފައިވާ ނެޓްވޯކްތަކުގައި އެކަނި ބޭނުންވެއެވެ.',
+        help: 'Telegram ބްލޮކްކުރެވިފައިވާ ނެޓްވޯކްތަކުގައި އެކަނި ބޭނުންވެއެވެ.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'ބޮޓް ޓޯކަން',
-        help: 'Discord Developer Portal ގައި އެޕްލިކޭޝަނެއް ހަދާ، ބޮޓެއް އިތުރުކުރޭ، ދެން އެބޮޓުގެ ޓޯކަން ޕޭސްޓްކުރޭ.',
+        help: 'Discord Developer Portal ގައި އެޕްލިކޭޝަނެއް ހަދާ، ބޮޓެއް އިތުރުކުރޭ، ދެން އެބޮޓުގެ ޓޯކަން ޕޭސްޓްކުރޭ.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'ހުއްދަ Discord ޔޫސަރ އައިޑީތައް',
-        help: 'ރެކޮމެންޑްކުރެވޭ. ކޮމާއިން ވަކިކުރެވިފައިވާ Discord ޔޫސަރ އައިޑީތައް.',
+        help: 'ރެކޮމެންޑްކުރެވޭ. ކޮމާއިން ވަކިކުރެވިފައިވާ Discord ޔޫސަރ އައިޑީތައް.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'ޖަވާބުގެ ގޮތް',
-        help: 'ފުރަތަމަ، ހުރިހާ، ނުވަތަ ނިއްވާ.',
+        help: 'ފުރަތަމަ، ހުރިހާ، ނުވަތަ ނިއްވާ.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Discord ގެ ހުރިހާ ބޭނުންކުރާ ފަރާތްތަކަށް ހުއްދަކުރޭ',
-        help: 'ތަރައްގީއަށް އެކަނި. true ނަމަ، ހުއްދަ ލިސްޓެއް ނެތި ކޮންމެ މީހަކަށް ބޮޓަށް ސީދާ މެސެޖް ފޮނުވޭނެ.',
+        help: 'ތަރައްގީއަށް އެކަނި. true ނަމަ، ހުއްދަ ލިސްޓެއް ނެތި ކޮންމެ މީހަކަށް ބޮޓަށް ސީދާ މެސެޖް ފޮނުވޭނެ.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ހޯމް ޗެނެލް ID',
-        help: 'ބޮޓުން އަމިއްލައަށް ފޮނުވާ މެސެޖްތައް (cron އައުޓްޕުޓް، ރިމައިންޑަރތައް) ފޮނުވާ ޗެނެލް.',
+        help: 'ބޮޓުން އަމިއްލައަށް ފޮނުވާ މެސެޖްތައް (cron އައުޓްޕުޓް، ރިމައިންޑަރތައް) ފޮނުވާ ޗެނެލް.'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'ހޯމް ޗެނެލްގެ ނަން',
-        help: 'ލޮގްތަކާއި ސްޓޭޓަސް އައުޓްޕުޓްގައި ހޯމް ޗެނެލަށް ދައްކާ ނަން.',
+        help: 'ލޮގްތަކާއި ސްޓޭޓަސް އައުޓްޕުޓްގައި ހޯމް ޗެނެލަށް ދައްކާ ނަން.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'iMessage ގެ ހުރިހާ ބޭނުންކުރާ ފަރާތްތަކަށް ހުއްދަކުރޭ',
-        help: 'true ނަމަ، BlueBubbles ހުއްދަ ލިސްޓް ދޫކޮށްލާ.',
+        help: 'true ނަމަ، BlueBubbles ހުއްދަ ލިސްޓް ދޫކޮށްލާ.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Mattermost ގެ ހުރިހާ ބޭނުންކުރާ ފަރާތްތަކަށް ހުއްދަކުރޭ',
+        label: 'Mattermost ގެ ހުރިހާ ބޭނުންކުރާ ފަރާތްތަކަށް ހުއްދަކުރޭ'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'ހޯމް ޗެނެލް',
+        label: 'ހޯމް ޗެނެލް'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'QQ ގެ ހުރިހާ ބޭނުންކުރާ ފަރާތްތަކަށް ހުއްދަކުރޭ',
+        label: 'QQ ގެ ހުރިހާ ބޭނުންކުރާ ފަރާތްތަކަށް ހުއްދަކުރޭ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ ހޯމް ޗެނެލް',
-        help: 'cron ޑެލިވަރީއަށް ޑީފޯލްޓް ޗެނެލް ނުވަތަ ގްރޫޕް.',
+        help: 'cron ޑެލިވަރީއަށް ޑީފޯލްޓް ޗެނެލް ނުވަތަ ގްރޫޕް.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ ހޯމް ޗެނެލްގެ ނަން',
+        label: 'QQ ހޯމް ޗެނެލްގެ ނަން'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack ބޮޓް ޓޯކަން',
         help: 'ތިޔަބޭފުޅާގެ Slack އެޕް އިންސްޓޯލްކުރުމަށް ފަހު OAuth & Permissions އިން ބޮޓް ޓޯކަން ބޭނުންކުރޭ.',
-        placeholder: 'Slack ބޮޓް ޓޯކަން ޕޭސްޓްކުރޭ',
+        placeholder: 'Slack ބޮޓް ޓޯކަން ޕޭސްޓްކުރޭ'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack އެޕް ޓޯކަން',
         help: 'ސޮކޭޓް ޓައިމް އައްސައްޕް ޓޯކަން މައިންލް އެކްސައްޕް ތަކެއްވައިގައި މިޔަތް ގައިގައި ތަކެއްވައި',
-        placeholder: 'ސްލެކް އެޕް ޓޯކަން ޖައްޓައްވައި',
+        placeholder: 'ސްލެކް އެޕް ޓޯކަން ޖައްޓައްވައި'
       },
       SLACK_ALLOWED_USERS: {
         label: 'ސްލެކް އުސަރިގެއްވައި ޖައިޑްސް',
-        help: 'މިކޮމޭންޑެއްވައި. ކޮމާ-ސެޕެޓެޑް ސްލެކް އުސަރިގެއްވައި ޖައިޑްސް.',
+        help: 'މިކޮމޭންޑެއްވައި. ކޮމާ-ސެޕެޓެޑް ސްލެކް އުސަރިގެއްވައި ޖައިޑްސް.'
       },
       MATTERMOST_URL: {
         label: 'ސެޓްޓަރް ޔުކުލް',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'ބޮޓް ޓޯކަން',
+        label: 'ބޮޓް ޓޯކަން'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'އުސަރިގެއްވައި ޖައިޑްސް',
-        help: 'މިކޮމޭންޑެއްވައި. ކޮމާ-ސެޕެޓެޑް މެޓްޓަރްމޮސް އުސަރިގެއްވައި ޖައިޑްސް.',
+        help: 'މިކޮމޭންޑެއްވައި. ކޮމާ-ސެޕެޓެޑް މެޓްޓަރްމޮސް އުސަރިގެއްވައި ޖައިޑްސް.'
       },
       MATRIX_HOMESERVER: {
         label: 'ހޮމެސޭންސަރް ޔުކުލް',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'އެކްސޭސް ޓޯކަން',
+        label: 'އެކްސޭސް ޓޯކަން'
       },
       MATRIX_USER_ID: {
         label: 'ބޮޓް އުސަރި ޖައިޑް',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'މެޓްޓްރިކްސް އުސަރިގެއްވައި ޖައިޑްސް',
-        help: 'މިކޮމޭންޑެއްވައި. ކޮމާ-ސެޕެޓެޑް ޖައިޑްސް އައްސައްޕް އުސަރިގެއްވައި އިން @user:server މިކޮޑްޓް.',
+        help: 'މިކޮމޭންޑެއްވައި. ކޮމާ-ސެޕެޓެޑް ޖައިޑްސް އައްސައްޕް އުސަރިގެއްވައި އިން @user:server މިކޮޑްޓް.'
       },
       SIGNAL_HTTP_URL: {
         label: 'ސިގްނަލް ބްރިޑްޖް ޔުކުލް',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'ރަނިންގައި ސިގްނަލް-ކުލި ރެސްޓް ބްރިޑްޖްގައި ޔުކުލް.',
+        help: 'ރަނިންގައި ސިގްނަލް-ކުލި ރެސްޓް ބްރިޑްޖްގައި ޔުކުލް.'
       },
       SIGNAL_ACCOUNT: {
         label: 'ފޮން ނަންބަން',
-        help: 'ތިޔަބޭފުޅާގެ signal-cli bridge އަށް ރަޖިސްޓަރކޮށްފައިވާ ނަންބަރު.',
+        help: 'ތިޔަބޭފުޅާގެ signal-cli bridge އަށް ރަޖިސްޓަރކޮށްފައިވާ ނަންބަރު.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'ހުއްދަކުރެވިފައިވާ Signal ޔޫޒަރުން',
-        help: 'ލަފާދެވޭ. ކޮމާއިން ވަކިކޮށްފައިވާ Signal އައިޑެންޓިފަޔަރތައް.',
+        help: 'ލަފާދެވޭ. ކޮމާއިން ވަކިކޮށްފައިވާ Signal އައިޑެންޓިފަޔަރތައް.'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp bridge އެނޭބަލްކުރޭ',
-        help: 'ތިރީގައިވާ ޓޮގަލްއިން އޮޓޯމެޓިކްކޮށް ސެޓްވާނެ. ބޭނުންޖެހޭކަން ޔަގީންނަމަ މެނުވީ ބަދަލުނުކުރައްވާ.',
+        help: 'ތިރީގައިވާ ޓޮގަލްއިން އޮޓޯމެޓިކްކޮށް ސެޓްވާނެ. ބޭނުންޖެހޭކަން ޔަގީންނަމަ މެނުވީ ބަދަލުނުކުރައްވާ.'
       },
       WHATSAPP_MODE: {
-        label: 'Bridge މޯޑް',
+        label: 'Bridge މޯޑް'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'ހުއްދަކުރެވިފައިވާ WhatsApp ޔޫޒަރުން',
-        help: 'ލަފާދެވޭ. ކޮމާއިން ވަކިކޮށްފައިވާ ފޯން ނަންބަރުތައް ނުވަތަ WhatsApp ID ތައް.',
-      },
+        help: 'ލަފާދެވޭ. ކޮމާއިން ވަކިކޮށްފައިވާ ފޯން ނަންބަރުތައް ނުވަތަ WhatsApp ID ތައް.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'webhooks ސާޗްކުރޭ...',
@@ -1494,7 +1555,8 @@ export const dv = defineLocale({
     hint: 'ރިސީވަރ ދުވަން ފެށުމުން ސަބްސްކްރިޕްޝަން ބަދަލުތައް ހޮޓް-ރީލޯޑްވާނެ. ޑިސެބަލްކޮށްފައިވާ ސަބްސްކްރިޕްޝަންތަކުން އަންނަ އީވެންޓްތައް ޤަބޫލެއްނުކުރާނެ.',
     empty: 'webhook ސަބްސްކްރިޕްޝަންތައް އަދިވެސް ނެތެވެ.',
     disabledTitle: 'webhook receiver ޑިސެބަލްކޮށްފައިވޭ',
-    disabledBody: 'webhooks އަކީ ވަކި ގޭޓްވޭ ޕްލެޓްފޯމެކެވެ. އަންނަ HTTP އީވެންޓްތައް ޤަބޫލުކުރުމަށް މިތަނުން އެނޭބަލްކުރޭ؛ ސަބްސްކްރިޕްޝަނަކުން Telegram، Discord، Slack ނުވަތަ އެހެން ޗެނަލަކަށް ފޮނުވާނަމަ މެނުވީ ޗެޓް ޗެނަލްތައް ބޭނުންނުވާނެ.',
+    disabledBody:
+      'webhooks އަކީ ވަކި ގޭޓްވޭ ޕްލެޓްފޯމެކެވެ. އަންނަ HTTP އީވެންޓްތައް ޤަބޫލުކުރުމަށް މިތަނުން އެނޭބަލްކުރޭ؛ ސަބްސްކްރިޕްޝަނަކުން Telegram، Discord، Slack ނުވަތަ އެހެން ޗެނަލަކަށް ފޮނުވާނަމަ މެނުވީ ޗެޓް ޗެނަލްތައް ބޭނުންނުވާނެ.',
     enable: 'webhooks އެނޭބަލްކުރޭ',
     enabling: 'އެނޭބަލްކުރަނީ...',
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -1511,7 +1573,8 @@ export const dv = defineLocale({
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     newSubscription: 'އައު ސަބްސްކްރިޕްޝަން',
     restarting: 'ގޭޓްވޭ ރީސްޓާރޓްވަންނަނީ...',
-    restartNeeded: 'ވެބްހޫކްތައް އެނެބްލްކޮށްފި، ނަމަވެސް ރީސީވަރ އޮންލައިންވުމުގެ ކުރިން ގޭޓްވޭ އަދިވެސް ރީސްޓާރޓްކުރަން ޖެހޭނެ.',
+    restartNeeded:
+      'ވެބްހޫކްތައް އެނެބްލްކޮށްފި، ނަމަވެސް ރީސީވަރ އޮންލައިންވުމުގެ ކުރިން ގޭޓްވޭ އަދިވެސް ރީސްޓާރޓްކުރަން ޖެހޭނެ.',
     restartGateway: 'ގޭޓްވޭ ރީސްޓާރޓްކުރޭ',
     restartingGateway: 'ރީސްޓާރޓްކުރަންނަނީ...',
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
@@ -1547,12 +1610,13 @@ export const dv = defineLocale({
       discord: 'ޑިސްކޯޑް',
       slack: 'ސްލެކް',
       email: 'އީމެއިލް',
-      github_comment: 'GitHub ކޮމެންޓް',
-    },
+      github_comment: 'GitHub ކޮމެންޓް'
+    }
   },
   profiles: {
     close: 'ޕްރޮފައިލްތައް ބަންދުކުރޭ',
-    nameHint: 'ކުދި އަކުރުތައް، ޑިޖިޓްތައް، ހައިފެންތައް، އަދި އަންޑަސްކޯރތައް. ފެށުން ވާނީ އަކުރަކުން ނުވަތަ ޑިޖިޓަކުން.',
+    nameHint:
+      'ކުދި އަކުރުތައް، ޑިޖިޓްތައް، ހައިފެންތައް، އަދި އަންޑަސްކޯރތައް. ފެށުން ވާނީ އަކުރަކުން ނުވަތަ ޑިޖިޓަކުން.',
     title: 'ޕްރޮފައިލްތައް',
     count: count => `${count} ${count === 1 ? 'profile' : 'profiles'}`,
     search: 'ޕްރޮފައިލްތައް ހޯދާ...',
@@ -1626,7 +1690,7 @@ Leave blank to keep the ${mode} default.`,
     failedLoadSoul: 'SOUL.md ލޯޑް ކުރަން ނުކުރެވުނު',
     failedSaveSoul: 'SOUL.md ސޭވް ކުރަން ނުކުރެވުނު',
     failedCreate: 'ޕްރޮފައިލް އުފެއްދުމަށް ނުކުރެވުނު',
-    failedRename: 'ޕްރޮފައިލް ނަން ބަދަލުކުރުމަށް ނުކުރެވުނު',
+    failedRename: 'ޕްރޮފައިލް ނަން ބަދަލުކުރުމަށް ނުކުރެވުނު'
   },
   cron: {
     close: 'ކްރޮން ބަންދުކުރޭ',
@@ -1641,14 +1705,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'ޕޯސްކުރެވިފައި',
       disabled: 'ޑިސެބްލްކުރެވިފައި',
       error: 'ގޯހެއް',
-      completed: 'ނިމިއްޖެ',
+      completed: 'ނިމިއްޖެ'
     },
     deliveryLabels: {
       local: 'މި ޑެސްކްޓޮޕް',
       telegram: 'ޓެލެގްރާމް',
       discord: 'ޑިސްކޯޑް',
       slack: 'ސްލެކް',
-      email: 'އީމެއިލް',
+      email: 'އީމެއިލް'
     },
     scheduleLabels: {
       daily: 'ދުވަހުން ދުވަހަށް',
@@ -1657,7 +1721,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'މަހަކު',
       hourly: 'ގަޑިއިރަކު',
       'every-15-minutes': 'ކޮންމެ 15 މިނެޓަކު',
-      custom: 'އަމިއްލަ',
+      custom: 'އަމިއްލަ'
     },
     scheduleHints: {
       daily: 'ކޮންމެ ދުވަހަކު ހެނދުނު 9:00 ގައި',
@@ -1666,7 +1730,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'ކޮންމެ މަހަކުގެ ފުރަތަމަ ދުވަހު ހެނދުނު 9:00 ގައި',
       hourly: 'ކޮންމެ ގަޑިއިރެއްގެ ފެށުމުގައި',
       'every-15-minutes': 'ކޮންމެ 15 މިނެޓަކު',
-      custom: 'ކްރޮން ސިންޓެކްސް ނުވަތަ އާދައިގެ ބަސް',
+      custom: 'ކްރޮން ސިންޓެކްސް ނުވަތަ އާދައިގެ ބަސް'
     },
     days: {
       '0': 'އާދިއްތަ',
@@ -1676,7 +1740,7 @@ Leave blank to keep the ${mode} default.`,
       '4': 'ބުރާސްފަތި',
       '5': 'ހުކުރު',
       '6': 'ހޮނިހިރު',
-      '7': 'އާދިއްތަ',
+      '7': 'އާދިއްތަ'
     },
     dayFallback: value => `day ${value}`,
     everyDayAt: time => `Every day at ${time}`,
@@ -1686,7 +1750,8 @@ Leave blank to keep the ${mode} default.`,
     topOfHour: 'ކޮންމެ ގަޑިއެއްގެ ފުރަތަމަ',
     everyHourAt: minute => `Every hour at :${minute}`,
     newCron: 'އައު ކްރޮން',
-    emptyDescNew: 'ކްރޮން އެކްސްޕްރެޝަނެއްގެ މައްޗަށް ދުވާނެ ޕްރޮމްޕްޓެއް ސްކެޖްކުރޭ. OpenAmer އެ ދުވާނެ، އަދި ތިޔަ ނެގި ޑެސްޓިނޭޝަނަށް ނަތީޖާ ފޯރުކުރާނެ.',
+    emptyDescNew:
+      'ކްރޮން އެކްސްޕްރެޝަނެއްގެ މައްޗަށް ދުވާނެ ޕްރޮމްޕްޓެއް ސްކެޖްކުރޭ. OpenAmer އެ ދުވާނެ، އަދި ތިޔަ ނެގި ޑެސްޓިނޭޝަނަށް ނަތީޖާ ފޯރުކުރާނެ.',
     emptyDescSearch: 'ފުޅާ ސަރޗް ކުއެރީއެއް އަޒުމަވާ.',
     emptyTitleNew: 'އަދި ސްކެޖްކޮށްފައިވާ ޖޮބްތަކެއް ނެތް',
     emptyTitleSearch: 'މެޗެއް ނެތް',
@@ -1723,7 +1788,8 @@ Leave blank to keep the ${mode} default.`,
     editTitle: 'cron ޖޯބް އެޑިޓްކުރޭ',
     createTitle: 'އައު cron ޖޯބް',
     editDesc: 'ޝެޑިއުލް، ޕްރޮމްޕްޓް، ނުވަތަ ފޮނުވާނެ ތަން އަޕްޑޭޓްކުރޭ. ބަދަލުތައް ދެން ރަންވާއިރު ޢަމަލުކުރާނެ.',
-    createDesc: 'ޕްރޮމްޕްޓެއް އޮޓަމެޓިކުން ރަންކުރުމަށް ޝެޑިއުލްކުރޭ. cron ސިންޓެކްސް ނުވަތަ "ކޮންމެ 15 މިނިޓަކު" ފަދަ ތަބީޢީ ޖުމްލައެއް ބޭނުންކުރޭ.',
+    createDesc:
+      'ޕްރޮމްޕްޓެއް އޮޓަމެޓިކުން ރަންކުރުމަށް ޝެޑިއުލްކުރޭ. cron ސިންޓެކްސް ނުވަތަ "ކޮންމެ 15 މިނިޓަކު" ފަދަ ތަބީޢީ ޖުމްލައެއް ބޭނުންކުރޭ.',
     nameLabel: 'ނަން',
     namePlaceholder: 'ހެނދުނުގެ ބްރީފިންގ',
     promptLabel: 'ޕްރޮމްޕްޓް',
@@ -1745,7 +1811,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'cron އުފައްދާ',
     tabs: {
       jobs: 'ޖޯބްތައް',
-      blueprints: 'ބްލޫޕްރިންޓްތައް',
+      blueprints: 'ބްލޫޕްރިންޓްތައް'
     },
     blueprints: {
       tab: 'ބްލޫޕްރިންޓްތައް',
@@ -1759,8 +1825,8 @@ Leave blank to keep the ${mode} default.`,
       loading: 'ބްލޫޕްރިންޓްތައް ލޯޑްކުރަނީ...',
       failedLoad: 'ބްލޫޕްރިންޓްތައް ލޯޑްކުރަން ނުކުރެވުނު',
       emptyTitle: 'ބްލޫޕްރިންޓްތައް ނެތް',
-      emptyDesc: 'މި ބެކްއެންޑްގައި އޮޓޮމޭޝަން ބްލޫޕްރިންޓްތައް ލިބެން ނެތް.',
-    },
+      emptyDesc: 'މި ބެކްއެންޑްގައި އޮޓޮމޭޝަން ބްލޫޕްރިންޓްތައް ލިބެން ނެތް.'
+    }
   },
   artifacts: {
     search: 'އާޓިފެކްޓްތައް ހޯދާ...',
@@ -1794,14 +1860,14 @@ Leave blank to keep the ${mode} default.`,
     kindLink: 'ލިންކް',
     chat: 'ޗެޓް',
     copyUrl: 'URL ކޮޕީކުރޭ',
-    copyPath: 'ޕާތް ކޮޕީކުރޭ',
+    copyPath: 'ޕާތް ކޮޕީކުރޭ'
   },
   sidebar: {
     nav: {
       'new-session': 'އައު ސެޝަން',
       skills: 'ކުޅަދާނަކަންތައް',
       messaging: 'މެސެޖް ފޮނުވުން',
-      artifacts: 'އާޓިފެކްޓްތައް',
+      artifacts: 'އާޓިފެކްޓްތައް'
     },
     searchAria: 'ސެޝަންތައް ހޯދާ',
     searchPlaceholder: 'ސެޝަންތައް ހޯދާ…',
@@ -1833,7 +1899,7 @@ Leave blank to keep the ${mode} default.`,
       namePlaceholder: 'މިސާލަކަށް Skunkworks',
       foldersLabel: 'ފޯލްޑަރތައް',
       ideaLabel: 'އައިޑިއާ',
-      ideaPlaceholder: "މި ޕްރޮޖެކްޓަކީ ކޮންކަމެއްގެ މައްޗަށްތޯ؟ (IDEA.md އަށް ސޭވްވާ)",
+      ideaPlaceholder: 'މި ޕްރޮޖެކްޓަކީ ކޮންކަމެއްގެ މައްޗަށްތޯ؟ (IDEA.md އަށް ސޭވްވާ)',
       ideaGenerate: 'އައިޑިއާ އުފައްދާ',
       ideaGenerating: 'އުފައްދަނީ…',
       ideaShuffle: 'ޓެމްޕްލޭޓްތައް އޮޅުވާ',
@@ -1853,8 +1919,10 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'ޕާތް ކޮޕީކުރޭ',
       removeFromSidebar: 'ސައިޑްބާރުން ފޮރުވާ',
       createFailed: 'ޕްރޮޖެކްޓް އުފައްދަން ނުކުރެވުނު',
-      staleBackend: 'ޕްރޮޖެކްޓްތައް އުފެއްދުމަށް OpenAmer ބެކްއެންޑް އަޕްޑޭޓް ކުރޭ — ތިބާގެ ބެކްއެންޑް މި ޑެސްކްޓޮޕް އެޕްއަށްވުރެ ދުވަސްވެފައިވެއެވެ (ސެޓިންގްސް → އަޕްޑޭޓްސް → ބެކްއެންޑް).',
-      deleteConfirm: 'މިކަމުން ސޭވްކޮށްފައިވާ ޕްރޮޖެކްޓް OpenAmer އިން ނަގާނެއެވެ. ފައިލްތަކާއި ގިޓް ރެޕޯތަކާއި ވޯކްޓްރީތައް ބަދަލެއް ނުވާނެއެވެ.',
+      staleBackend:
+        'ޕްރޮޖެކްޓްތައް އުފެއްދުމަށް OpenAmer ބެކްއެންޑް އަޕްޑޭޓް ކުރޭ — ތިބާގެ ބެކްއެންޑް މި ޑެސްކްޓޮޕް އެޕްއަށްވުރެ ދުވަސްވެފައިވެއެވެ (ސެޓިންގްސް → އަޕްޑޭޓްސް → ބެކްއެންޑް).',
+      deleteConfirm:
+        'މިކަމުން ސޭވްކޮށްފައިވާ ޕްރޮޖެކްޓް OpenAmer އިން ނަގާނެއެވެ. ފައިލްތަކާއި ގިޓް ރެޕޯތަކާއި ވޯކްޓްރީތައް ބަދަލެއް ނުވާނެއެވެ.',
       startWork: 'އައު ވޯކްޓްރީ',
       newWorktreeTitle: 'އައު ވޯކްޓްރީ',
       newWorktreeDesc: 'މި ވޯކްޓްރީއަށް ބްރާންޗުގެ ނަން ދޭށެވެ.',
@@ -1875,13 +1943,15 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'ބްރާންޗެއް ނުފެނުނެވެ',
       removeWorktree: 'ވޯކްޓްރީ ނަގާ',
       removeWorktreeFailed: 'ވޯކްޓްރީ ނަގައިނުލެވުނު (ކޮމިޓް ނުކުރެވިފައިވާ ބަދަލުތައް؟)',
-      removeWorktreeConfirm: 'git އިން ނަގާ (ވޯކްޓްރީ ޑައިރެކްޓަރީ ޑިލީޓްކުރޭ؛ ބްރާންޗް ދެމިއޮންނާނެ)، ނުވަތަ ސައިޑްބާރުން ލޭން ފޮރުވާ އަދި ވޯކްޓްރީ ޑިސްކުގައި ދޫކޮށްލާ.',
-      removeWorktreeDirty: 'މި ވޯކްޓްރީގައި ކޮމިޓް ނުކުރެވިފައިވާ ބަދަލުތަކެއް ހުރެއެވެ. ބާރުކޮށް ނަގާ (އެ ބަދަލުތައް ދޫކޮށްލައެވެ)، ނުވަތަ ލޭން ފޮރުވާ އަދި ޑިސްކުގައި ބަހައްޓާ.',
+      removeWorktreeConfirm:
+        'git އިން ނަގާ (ވޯކްޓްރީ ޑައިރެކްޓަރީ ޑިލީޓްކުރޭ؛ ބްރާންޗް ދެމިއޮންނާނެ)، ނުވަތަ ސައިޑްބާރުން ލޭން ފޮރުވާ އަދި ވޯކްޓްރީ ޑިސްކުގައި ދޫކޮށްލާ.',
+      removeWorktreeDirty:
+        'މި ވޯކްޓްރީގައި ކޮމިޓް ނުކުރެވިފައިވާ ބަދަލުތަކެއް ހުރެއެވެ. ބާރުކޮށް ނަގާ (އެ ބަދަލުތައް ދޫކޮށްލައެވެ)، ނުވަތަ ލޭން ފޮރުވާ އަދި ޑިސްކުގައި ބަހައްޓާ.',
       forceRemove: 'ބާރުކޮށް ނަގާ',
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
       toggle: label => `Toggle ${label} sessions`,
-      back: 'ހުރިހާ ޕްރޮޖެކްޓްތައް',
+      back: 'ހުރިހާ ޕްރޮޖެކްޓްތައް'
     },
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
@@ -1919,15 +1989,15 @@ Leave blank to keep the ${mode} default.`,
       ageNow: 'މިހާރު',
       ageDay: 'ދ',
       ageHour: 'ގ',
-      ageMin: 'މ',
+      ageMin: 'މ'
     },
     dateDivider: {
       today: 'މިއަދު ކުރިން',
       yesterday: 'އިއްޔެ',
       thisWeek: 'މި ހަފްތާގެ ކުރިން',
       lastWeek: 'ފާއިތުވި ހަފްތާ',
-      thisMonth: 'މި މަހުގެ ކުރިން',
-    },
+      thisMonth: 'މި މަހުގެ ކުރިން'
+    }
   },
   composer: {
     message: 'މެސެޖް',
@@ -1942,7 +2012,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -1951,7 +2021,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     startVoice: 'އަޑު ވާހަކަދައްކަ ފެށޭ',
     queueMessage: 'މެސެޖް ސަފަށް ލޭ',
@@ -1987,7 +2057,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'އެންސްރީމަށް ސޭޝަން މިނިވައިވާ',
       '/details': 'ޓްރެންސްކްރިޕްޓް ތަފިލަތް ލެވެލް ކޮންޓްރޮލް ކަށް',
       '/copy': 'ތްރަކީބުގައި ކަން އަށް އެސިސްޓެންޓް މެސޭޖް ކޮޕީ ކަށް',
-      '/quit': 'ފެވައިވާ openamer',
+      '/quit': 'ފެވައިވާ openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'ފައިލްސް, ފޮބްޑަރްސް, އެއްސީއެލްސް, ޖިޓް ރޭފެރެންގައި',
@@ -1997,7 +2067,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'އައިގަތް އެމްބައްވައި ކުރިއްވައިގަތީ ތަން',
       'keybinds.openPanel': 'އައްވަން ކެއިބޯޓް ޝްކޯޓްކަޓްސް',
       'composer.cancel': 'ޕޮޕޯވަރް މައިލައް · ރަން މައިލައް',
-      'composer.history': 'ޕޮޕޯވަރް / ޓަރިކޮޓްރީ ސިކްލް',
+      'composer.history': 'ޕޮޕޯވަރް / ޓަރިކޮޓްރީ ސިކްލް'
     },
     attachUrlTitle: 'URL އެއްވައިގަތް',
     attachUrlDesc: 'OpenAmer ޕޭޒް ފޭޓްޗް ކުރި އެމްބައްވައިގަތީ ކަންޓެކްޝަން ކަން ތަން ކަން',
@@ -2018,7 +2088,8 @@ Leave blank to keep the ${mode} default.`,
     queueResume: 'މަރުމްވައިގަތް',
     queueResumeTip: 'ޕޯޒް ކަން މައިލައް ކަން — ކުރިއްވައިގަތުން އައިގަތް މަރުމްވައިގަތް',
     queueStuckTitle: 'ކުއްވައި ކަށީ މެސޭޖް ސެންޓް ނަށް',
-    queueStuckBody: 'ކުއްވައި ކަށީ ޓަރްން ސެންޓް ކަށް މިނިވަޑައިވެރިންތަކަށް. މީނި ކުއްވައިގައި ކަށް — މަރިކަލަށް ސެންޓް ކަށް ކަފިގައި.',
+    queueStuckBody:
+      'ކުއްވައި ކަށީ ޓަރްން ސެންޓް ކަށް މިނިވަޑައިވެރިންތަކަށް. މީނި ކުއްވައިގައި ކަށް — މަރިކަލަށް ސެންޓް ކަށް ކަފިގައި.',
     previewUnavailable: 'ޕްރެވިއޫ މިނިވަޑައިވައި',
     previewLabel: label => `Preview ${label}`,
     couldNotPreview: label => `Could not preview ${label}`,
@@ -2048,19 +2119,19 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'ކޯޑް ރިވިއު',
         description: 'މި ބަދަލު އޮޑިޓްކޮށް، ރީގްރެޝަންތައް، ދޫކޮށްލެވިފައިވާ އެޖްތައް، އަދި ނެތް ޓެސްޓްތައް ބައްލަވާ.',
-        text: 'މިކަން ރިވިއުކުރައްވާ: ބަގްތައް، ރީގްރެޝަންތައް، އަދި ނެތް ޓެސްޓްތައް.',
+        text: 'މިކަން ރިވިއުކުރައްވާ: ބަގްތައް، ރީގްރެޝަންތައް، އަދި ނެތް ޓެސްޓްތައް.'
       },
       implementationPlan: {
         label: 'އިމްޕްލިމެންޓޭޝަން ޕްލޭން',
         description: 'ކޯޑަށް އަތްލައްވަންކުރިން އެޕްރޯޗެއް ބަޔާންކުރައްވާ، ޑިފް ފޯކަސްކޮށް ބެހެއްޓުމަށް.',
-        text: 'ކޯޑަށް ބަދަލުގެންނަންކުރިން ކުރު އިމްޕްލިމެންޓޭޝަން ޕްލޭނެއް ހަދައްވާ.',
+        text: 'ކޯޑަށް ބަދަލުގެންނަންކުރިން ކުރު އިމްޕްލިމެންޓޭޝަން ޕްލޭނެއް ހަދައްވާ.'
       },
       explainThis: {
         label: 'މިކަން ބަޔާންކުރައްވާ',
         description: 'ނަންގަވާފައިވާ ކޯޑް މަސައްކަތްކުރާގޮތް ބަޔާންކޮށް، މުހިންމު ފައިލްތަކަށް ލިންކްކުރައްވާ.',
-        text: 'މިކަން މަސައްކަތްކުރާގޮތް ބަޔާންކޮށް، މުހިންމު ފައިލްތަކަށް އިޝާރާތްކުރައްވާ.',
-      },
-    },
+        text: 'މިކަން މަސައްކަތްކުރާގޮތް ބަޔާންކޮށް، މުހިންމު ފައިލްތަކަށް އިޝާރާތްކުރައްވާ.'
+      }
+    }
   },
   statusStack: {
     agents: 'އޭޖަންޓްތައް',
@@ -2090,8 +2161,10 @@ Leave blank to keep the ${mode} default.`,
       viewAsList: 'ލިސްޓު ގޮތަށް ބައްލަވާ',
       revert: 'ރިވާޓްކުރޭ',
       revertAll: 'ހުރިހާ އެއްޗެއް ރިވާޓްކުރޭ',
-      revertConfirm: 'މި ފައިލަށް ގެންނަ ބަދަލުތައް ދޫކޮށް، ކޮމިޓްކުރެވިފައިވާ ހާލަތަށް އަނބުރާ ގެންނާނެތޯ؟ މިކަން އަނބުރާ ނުގެންނެވޭނެ.',
-      revertAllConfirm: 'ހުރިހާ ބަދަލެއް ދޫކޮށް، ފައިލުތައް ކޮމިޓްކުރެވިފައިވާ ހާލަތަށް އަނބުރާ ގެންނާނެތޯ؟ މިކަން އަނބުރާ ނުގެންނެވޭނެ.',
+      revertConfirm:
+        'މި ފައިލަށް ގެންނަ ބަދަލުތައް ދޫކޮށް، ކޮމިޓްކުރެވިފައިވާ ހާލަތަށް އަނބުރާ ގެންނާނެތޯ؟ މިކަން އަނބުރާ ނުގެންނެވޭނެ.',
+      revertAllConfirm:
+        'ހުރިހާ ބަދަލެއް ދޫކޮށް، ފައިލުތައް ކޮމިޓްކުރެވިފައިވާ ހާލަތަށް އަނބުރާ ގެންނާނެތޯ؟ މިކަން އަނބުރާ ނުގެންނެވޭނެ.',
       staged: 'ސްޓޭޖްކޮށްފައި',
       noChanges: 'ބަދަލެއް ނެތް',
       notRepo: 'git ރެޕޮޒިޓަރީއެއް ނޫން',
@@ -2108,13 +2181,14 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'ޕްރީ ވައިވައިލައި',
       ghMissing: 'ގިޓްހަބް ސިލްއިއެއި (gh) އިންސްޓަލް ކައިލައި އެއްސްޖޭން ޕްރީގެއްވައި ކައިލައި ސައިން އިން',
       agentShip: 'ޕްރީ ވައިވައިލައި ކައިލައި އޮޕެންއެމަރްގެއްވައި އެސްކުލައި',
-      agentShipPrompt: 'މިގަތް ދަކުބައިގައި ރިވިއްޒީކަށް, ކަންތައިގައި ކޮނެމްވައިކަށް ކޮމިޓް މެސޭޖްގެއްވައި ކައިލައި ކޮމިޓް ކައިލައި, ބްްރެންޝައިގެއްވައި ޕުޝް ކައިލައި, އެއްސްޖޭން ޕްރީ ވައިވައިލައި ކައިލައި.',
+      agentShipPrompt:
+        'މިގަތް ދަކުބައިގައި ރިވިއްޒީކަށް, ކަންތައިގައި ކޮނެމްވައިކަށް ކޮމިޓް މެސޭޖްގެއްވައި ކައިލައި ކޮމިޓް ކައިލައި, ބްްރެންޝައިގެއްވައި ޕުޝް ކައިލައި, އެއްސްޖޭން ޕްރީ ވައިވައިލައި ކައިލައި.',
       newBranch: 'ނަވިގައި ބްްރެންޝައި',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
       switchFailed: branch => `Could not switch to ${branch}`,
-      worktrees: 'ވަރުކަށި',
-    },
+      worktrees: 'ވަރުކަށި'
+    }
   },
   updates: {
     stages: {
@@ -2129,7 +2203,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'އެޕްޑޭޓް ކަމްތަކަށް ދައިކޮޅުވައިވަސް',
       manual: 'ޓެރްމިނަލްގެ އެޕްޑޭޓް ކުރައްވައިވަސް',
       guiSkew: 'ޑެސްކްޓޮޕް އެޕް އެޕްޑޭޓް ކުރައްވައިވަސް',
-      error: 'އެޕްޑޭޓް ޕޯޒް ކަމްތަކަށް ދައިކޮޅުވައިވަސް',
+      error: 'އެޕްޑޭޓް ޕޯޒް ކަމްތަކަށް ދައިކޮޅުވައިވަސް'
     },
     checking: 'އެޕްޑޭޓްގެ ވެރިކަންތަކަށް ދައިކޮޅުވައިވަސް…',
     checkFailedTitle: 'އެޕްޑޭޓްގެ ވެރިކަން ކުރައްވައިވަސް ނަށް ދައިކޮޅުވައިވަސް',
@@ -2144,21 +2218,27 @@ Leave blank to keep the ${mode} default.`,
     availableBody: 'OpenAmer ވެންސްންކަމަށް އިންސްޓަލް ކުރައެވެއްޖެ ދައިކޮޅުގައި.',
     availableTitleBackend: 'ބޭކޭންޑް އެޕްޑޭޓް މިނިވައިގައި.',
     availableBodyBackend: 'ގޮޑުއެވެ ބޭކޭންޑް ކަންޓްރަލް ވެންސްންކަމަށް އިންސްޓަލް ކުރައެވެއްޖެ ދައިކޮޅުގައި.',
-    availableBodyNoChangelog: 'ވެންސްންކަމަށް ދައިކޮޅުގައި. ރެލީޒް ނޯޓްސް އެއްނަން އިންސްޓަލް ޓައިޕް ކަންޓްރަލް މިނިވައިގައި.',
+    availableBodyNoChangelog:
+      'ވެންސްންކަމަށް ދައިކޮޅުގައި. ރެލީޒް ނޯޓްސް އެއްނަން އިންސްޓަލް ޓައިޕް ކަންޓްރަލް މިނިވައިގައި.',
     updateNow: 'އެޕްޑޭޓް ކުރި އައިލައްވައި.',
     maybeLater: 'މިނިންތަން ހިންގައި.',
     moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
     manualTitle: 'ޓެރްމިނަލްގައި އެޕްޑޭޓް ކުރުވައި.',
-    manualBody: 'ކޮމެންޑް ލހިންގައި OpenAmer އިންސްޓަލް ކުރައެވެއްޖެ, އެޕްޑޭޓްގެ ޓެރްމިނަލްގައި ރަން ކުރައެވެއްޖެ. މިނިވައިގައި ޓެރްމިނަލްގައި ޕޭސްޓް ކުރުވައި:',
+    manualBody:
+      'ކޮމެންޑް ލހިންގައި OpenAmer އިންސްޓަލް ކުރައެވެއްޖެ, އެޕްޑޭޓްގެ ޓެރްމިނަލްގައި ރަން ކުރައެވެއްޖެ. މިނިވައިގައި ޓެރްމިނަލްގައި ޕޭސްޓް ކުރުވައި:',
     manualPickedUp: 'OpenAmer ވެންސްންކަމަށް އެއްނަން ވެރި ވެކަރައި ކުރައެވެއްޖެ.',
     guiSkewTitle: 'ޑެސްކްޓޮޕް އެޕް އެޕްޑޭޓް ކުރުވައި.',
-    guiSkewBody: 'ބޭކޭންޑް އެޕްޑޭޓް ކުރައެވެއްޖެ, ފިލް ޑެސްކްޓޮޕް އެޕް ޕޭކޭޖް މަތިގައި ދެވެއްވައި. OpenAmer ޑެސްކްޓޮޕް އެޕް އެޕްޑޭޓް ކުރުވައި ކަންޓްރަލް އިންސްޓަލް ކުރުވައި (ޢަންނަން AppImage / .deb / .rpm) މަތިގައި ކުރުވައި.',
+    guiSkewBody:
+      'ބޭކޭންޑް އެޕްޑޭޓް ކުރައެވެއްޖެ, ފިލް ޑެސްކްޓޮޕް އެޕް ޕޭކޭޖް މަތިގައި ދެވެއްވައި. OpenAmer ޑެސްކްޓޮޕް އެޕް އެޕްޑޭޓް ކުރުވައި ކަންޓްރަލް އިންސްޓަލް ކުރުވައި (ޢަންނަން AppImage / .deb / .rpm) މަތިގައި ކުރުވައި.',
     copy: 'ކޮޕީ ކުރުވައި.',
     copied: 'ކޮޕީ ކުރައެވެއްޖެ.',
     done: 'ދައިކޮޅުގައި.',
-    applyingBody: 'OpenAmer އެޕްޑޭޓްރައްޓަރް ޢަންނަން ވިންޑޯ ކަންޓްރަލް އެޕްޑޭޓް ކުރައެވެއްޖެ އެއްނަން ދައިކޮޅުގައި އެޕްޑޭޓް ކުރައެވެއްޖެ އެއްނަން ވެރި ވެކަރައި ކުރައެވެއްޖެ. ދައިކޮޅުގައި އެޕްޑޭޓް ކުރައެވެއްޖެ ކަންޓްރަލް OpenAmer އެއްނަން ވެރި ވެކަރައި ކުރައެވެއްޖެ ނައުގައި.',
-    applyingBodyBackend: 'ރިމޯޓް ބޭކޭންޑް އެޕްޑޭޓް ކުރައެވެއްޖެ ކަންޓްރަލް ރިސްޓާޓް ކުރައެވެއްޖެ. OpenAmer ކަންޓްރަލް އެއްނަން ގޮޑުއެވެ ކަންޓްރަލް އެއްނަން ވެރި ވެކަރައި ކުރައެވެއްޖެ.',
-    applyingClose: 'އެޕްޑޭޓް ރަން ކުރައެވެއްޖެ ކަންޓްރަލް ވިންޑޯ ކުރައެވެއްޖެ ކަންޓްރަލް OpenAmer އެއްނަން ވެރި ވެކަރައި ކުރައެވެއްޖެ.',
+    applyingBody:
+      'OpenAmer އެޕްޑޭޓްރައްޓަރް ޢަންނަން ވިންޑޯ ކަންޓްރަލް އެޕްޑޭޓް ކުރައެވެއްޖެ އެއްނަން ދައިކޮޅުގައި އެޕްޑޭޓް ކުރައެވެއްޖެ އެއްނަން ވެރި ވެކަރައި ކުރައެވެއްޖެ. ދައިކޮޅުގައި އެޕްޑޭޓް ކުރައެވެއްޖެ ކަންޓްރަލް OpenAmer އެއްނަން ވެރި ވެކަރައި ކުރައެވެއްޖެ ނައުގައި.',
+    applyingBodyBackend:
+      'ރިމޯޓް ބޭކޭންޑް އެޕްޑޭޓް ކުރައެވެއްޖެ ކަންޓްރަލް ރިސްޓާޓް ކުރައެވެއްޖެ. OpenAmer ކަންޓްރަލް އެއްނަން ގޮޑުއެވެ ކަންޓްރަލް އެއްނަން ވެރި ވެކަރައި ކުރައެވެއްޖެ.',
+    applyingClose:
+      'އެޕްޑޭޓް ރަން ކުރައެވެއްޖެ ކަންޓްރަލް ވިންޑޯ ކުރައެވެއްޖެ ކަންޓްރަލް OpenAmer އެއްނަން ވެރި ވެކަރައި ކުރައެވެއްޖެ.',
     errorTitle: 'އެޕްޑޭޓް ދައިކޮޅުގައި ނައުގައި.',
     errorBody: 'މަތިގައި ނައުގައި — އެއްނަން ނައުގައި ނައުގައި. އެއްނަން އެއްނަން ތަރިކޮޅުގައި ކުރުވައި.',
     notNow: 'އެއްނަން ނައުގައި.',
@@ -2168,12 +2248,15 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'އެޕްޑޭޓް ލޯޑް ކަރައްވައިވައި ބޭކޭންޑް ރިސްޓާޓްރިންގައިވައި…',
       notAvailable: 'މި ބޭކޭންޑް އެޕްޑޭޓް މިނިސްތައިވައި.',
       failed: 'ބޭކޭންޑް އެޕްޑޭޓް ފޭޕްލެދައިވައި.',
-      noReturn: 'ބޭކޭންޑް ވެއެޔަށް އެއްވައިވައި ނައްކަށް. އެޕްޑޭޓް ކޮމްޕްލީޓް ނައްކަށް އެއްވައިވައި — ބޭކޭންޑް ހޮސްޓް ގައިފައިވައި.',
+      noReturn:
+        'ބޭކޭންޑް ވެއެޔަށް އެއްވައިވައި ނައްކަށް. އެޕްޑޭޓް ކޮމްޕްލީޓް ނައްކަށް އެއްވައިވައި — ބޭކޭންޑް ހޮސްޓް ގައިފައިވައި.'
     },
     appErrors: {
-      updateLocked: 'އެޕްޑޭޓް އަބޯޓް ކޮވެއްވައިވައި: އެއްވައި OpenAmer ވިންޑޯ އައް ޓެރްމިނަލް އެއްވައި openamer ރަން ކަރައްވައިވައި މި އިންސްޓޯލް ޕޭނިންގައި ކޮވެއްވައިވައި. އުންގައި މަދަތްކަށް އެއްވައިވައި ރެޓްރައި.',
-      updateFailed: 'އެޕްޑޭޓް ކޮމްޕްލީޓް ނައްކަށް. މިނިންގައި ނައްކަށް — ކަމިއަށް ނައްކަށް. އެއްވައިވައި އަށް އެއްވައިވައި ރެޓްރައި.',
-    },
+      updateLocked:
+        'އެޕްޑޭޓް އަބޯޓް ކޮވެއްވައިވައި: އެއްވައި OpenAmer ވިންޑޯ އައް ޓެރްމިނަލް އެއްވައި openamer ރަން ކަރައްވައިވައި މި އިންސްޓޯލް ޕޭނިންގައި ކޮވެއްވައިވައި. އުންގައި މަދަތްކަށް އެއްވައިވައި ރެޓްރައި.',
+      updateFailed:
+        'އެޕްޑޭޓް ކޮމްޕްލީޓް ނައްކަށް. މިނިންގައި ނައްކަށް — ކަމިއަށް ނައްކަށް. އެއްވައިވައި އަށް އެއްވައިވައި ރެޓްރައި.'
+    }
   },
   install: {
     stageStates: {
@@ -2181,17 +2264,19 @@ Leave blank to keep the ${mode} default.`,
       running: 'އިންސްޓޯލް ކޮވެއްވައިވައި',
       succeeded: 'ދައިން',
       skipped: 'އަޅުވައިވައި',
-      failed: 'ފޭޕްލެދައިވައި',
+      failed: 'ފޭޕްލެދައިވައި'
     },
     oneTimeTitle: 'OpenAmer އެއްވައި ފަންތައި އިންސްޓޯލް ދައިރައްޖެއްވައި.',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     installCommand: 'އިންސްޓޯލް ކޮމެންޑް',
     copyCommand: 'ކޮޕީ ކޮމެންޑް',
     viewDocs: 'އިންސްޓޯލް ޑޮކްސް ވެއެޔަށް ނޮތްކަށް',
     installTo: 'އިންސްޓޯލް ކަރައްވައިވައި',
     retryAfterRun: 'އިންގައި ރަން ކަރައްވައިވައި -- ރެޓްރައި',
     setupChoiceTitle: 'OpenAmer Desktop ސޭޓް އަޕް ކަރައްވައިވައި',
-    setupChoiceDesc: 'Connect this app to a OpenAmer gateway you already run, or install OpenAmer locally on this computer.',
+    setupChoiceDesc:
+      'Connect this app to a OpenAmer gateway you already run, or install OpenAmer locally on this computer.',
     connectExistingTitle: 'Connect to existing OpenAmer',
     connectExistingShort: 'Connect existing',
     connectExistingDesc: 'Use a remote backend with a session token or browser sign-in. No local install will start.',
@@ -2199,7 +2284,8 @@ Leave blank to keep the ${mode} default.`,
     installLocalDesc: 'Download OpenAmer, create its Python environment, and run the backend on this computer.',
     localStartUnavailable: 'Local installation could not start. Restart OpenAmer Desktop and try again.',
     remoteSetupTitle: 'Connect to existing OpenAmer',
-    remoteSetupDesc: 'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
+    remoteSetupDesc:
+      'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
     remoteUrlTitle: 'Gateway URL',
     remoteUrlDesc: 'Use the base URL of the OpenAmer gateway, including https:// when remote.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2226,8 +2312,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Installation failed',
     settingUpTitle: 'Setting up OpenAmer Agent',
     finishingTitle: 'Finishing up',
-    failedDesc: 'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
-    activeDesc: 'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
+    failedDesc:
+      'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
+    activeDesc:
+      'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
     fetchingManifest: 'Fetching installer manifest...',
@@ -2241,48 +2329,53 @@ Leave blank to keep the ${mode} default.`,
     transcriptSaved: 'މުކަންގައި ޓްރެންސްކްރިޕްޓް ސޭވް ކަން ކުރައްވައިވާ',
     copiedOutput: 'ކޮޕީ ކަން ކުރައްވައިވާ!',
     copyOutput: 'އޮޓްޕުޓް ކޮޕީ ކުރިވެސްކަމް',
-    reloadRetry: 'މަރުންލޯޑް ކުރި މަރުން ކޮށްފެއްވައިވާ',
+    reloadRetry: 'މަރުންލޯޑް ކުރި މަރުން ކޮށްފެއްވައިވާ'
   },
   onboarding: {
-    headerTitle: "ޢައްޔަން އެއްސޭޓަމްތަކަށް OpenAmer Agent ކުރައްވައިވާ",
-    headerDesc: 'ކަންތަކަމް ކޮޓްކަން ޕްރޮވިޑަރު ކަނޭކަށް އައިނަންތަކަމް ކަނަށް. މިނިމަން އޮޕ޸ެޝަންސުން އެކް ކުންތަން ކަނޭކަށް ކަނަށް.',
-    preparingInstall: 'OpenAmer އިންސްޓަލް ކަންތަކަމް ކުރައިވައިވާ. އެއްވައިވަށް ފަންމިނުޓް ކުރިވެސްކަމް ކަންތަކަމް ކުރައްވައިވާ.',
+    headerTitle: 'ޢައްޔަން އެއްސޭޓަމްތަކަށް OpenAmer Agent ކުރައްވައިވާ',
+    headerDesc:
+      'ކަންތަކަމް ކޮޓްކަން ޕްރޮވިޑަރު ކަނޭކަށް އައިނަންތަކަމް ކަނަށް. މިނިމަން އޮޕ޸ެޝަންސުން އެކް ކުންތަން ކަނޭކަށް ކަނަށް.',
+    preparingInstall:
+      'OpenAmer އިންސްޓަލް ކަންތަކަމް ކުރައިވައިވާ. އެއްވައިވަށް ފަންމިނުޓް ކުރިވެސްކަމް ކަންތަކަމް ކުރައްވައިވާ.',
     starting: 'OpenAmer ކަންތަކަމް ކުރައިވައިވާ…',
     lookingUpProviders: 'ޕްރޮވިޑަރުގެންޑްވައިވާ...',
     collapse: 'މަދަތަކަމް',
     otherProviders: 'ކެމްވެންގެން ޕްރޮވިޑަރު',
     haveApiKey: 'އަރެއެވަ އެޕްއެއި ކެއި',
-    chooseLater: "އަރެއެވަ މުހުންދައިގައި ޕްރޮވިޑަރު އެއްވަށް ކުރައިވައިވާ.",
+    chooseLater: 'އަރެއެވަ މުހުންދައިގައި ޕްރޮވިޑަރު އެއްވަށް ކުރައިވައިވާ.',
     recommended: 'ސިފައްވައިވާ',
     connected: 'ކަންތަކަމް ކަނަށް',
-    featuredPitch: 'އެކް ސަބްސްކްރައިޕްޝަން, 300+ ފްރެންޓިޔަރް މޮޑޭލްސް — OpenAmer ރަން ކުރިވެސްކަމް ސިފައްވައިވާ ތަރިކޮލް.',
+    featuredPitch:
+      'އެކް ސަބްސްކްރައިޕްޝަން, 300+ ފްރެންޓިޔަރް މޮޑޭލްސް — OpenAmer ރަން ކުރިވެސްކަމް ސިފައްވައިވާ ތަރިކޮލް.',
     fireworksPitch: 'ދިރެކްޓް ކޮޓްކަން API — Fireworks-ހުޅައްވައިވާ ފްރެންޓިޔަރް މޮޑޭލްސް',
     openRouterPitch: 'އެކް ކެއި, ހިންގައި މޮޑޭލްސް — ތަރިކޮލްގައި ޑިފޮލްޓް.',
     apiKeyOptions: {
       fireworks: {
         short: 'ދިރެކްޓް ކޮޓްކަން API',
-        description: 'ފައިޕްޓްއެއިގެ ހުންނައިގައި މޮޑޭލްސްގެ އެއްވައިގައި އެއްވައިގައި އެއްވައިގައި',
+        description: 'ފައިޕްޓްއެއިގެ ހުންނައިގައި މޮޑޭލްސްގެ އެއްވައިގައި އެއްވައިގައި އެއްވައިގައި'
       },
       openrouter: {
         short: 'އެއްވައިގައި ކެއްޕް, މިނިންތަން މޮޑޭލްސް',
-        description: 'އެއްވައިގައި ކެއްޕްގެ މިނިންތަން މޮޑޭލްސް ހުންނައިގައި. ދިވެހިގައި އެއްވައިގައި އެއްވައިގައި އެއްވައިގައި.',
+        description:
+          'އެއްވައިގައި ކެއްޕްގެ މިނިންތަން މޮޑޭލްސް ހުންނައިގައި. ދިވެހިގައި އެއްވައިގައި އެއްވައިގައި އެއްވައިގައި.'
       },
       openai: {
         short: 'GPT-ކްލެސްސް މޮޑޭލްސް',
-        description: 'ޖެޕްޓެއި މޮޑޭލްސްގެ އެއްވައިގައި އެއްވައިގައި އެއްވައިގައި.',
+        description: 'ޖެޕްޓެއި މޮޑޭލްސްގެ އެއްވައިގައި އެއްވައިގައި އެއްވައިގައި.'
       },
       gemini: {
         short: 'ޖެމިންއައި މޮޑޭލްސް',
-        description: 'ޖޯގްލަންޑް ޖެމިންއައި މޮޑޭލްސްގެ އެއްވައިގައި އެއްވައިގައި އެއްވައިގައި.',
+        description: 'ޖޯގްލަންޑް ޖެމިންއައި މޮޑޭލްސްގެ އެއްވައިގައި އެއްވައިގައި އެއްވައިގައި.'
       },
       xai: {
         short: 'ގްރޮކް މޮޑޭލްސް',
-        description: 'xAI ގްރޮކް މޮޑޭލްސްގެ އެއްވައިގައި އެއްވައިގައި އެއްވައިގައި.',
+        description: 'xAI ގްރޮކް މޮޑޭލްސްގެ އެއްވައިގައި އެއްވައިގައި އެއްވައިގައި.'
       },
       local: {
         short: 'ސޭލްފް-ހޯސްޓޭޑްޑެޑް',
-        description: 'OpenAmer އެއްވައިގައި ލޮކަލް ބައްލައްވައިގައި ބައްލައްވައިގައި އެއްވައިގައި އެއްވައިގައި އެއްވައިގައި (vLLM, llama.cpp, Ollama, އެއްވައިގައި).',
-      },
+        description:
+          'OpenAmer އެއްވައިގައި ލޮކަލް ބައްލައްވައިގައި ބައްލައްވައިގައި އެއްވައިގައި އެއްވައިގައި އެއްވައިގައި (vLLM, llama.cpp, Ollama, އެއްވައިގައި).'
+      }
     },
     backToSignIn: 'ސައިން އިން ކަށް ފެތްކަމަށް',
     getKey: 'ކެއްޕް މިލިކަލް',
@@ -2295,7 +2388,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'ބްރޯޓްޞަރު ފަތްކަމަށް ސައިން އިން ކަށް, ތަންތަންތަން އެއްވައިގައި އެއްވައިގައި އެއްވައިގައި',
       device_code: 'Opens a verification page in your browser — OpenAmer connects automatically',
-      external: 'Sign in once in your terminal, then come back to chat',
+      external: 'Sign in once in your terminal, then come back to chat'
     },
     startingSignIn: provider => `Starting sign-in for ${provider}...`,
     verifyingCode: provider => `Verifying your code with ${provider}...`,
@@ -2309,10 +2402,12 @@ Leave blank to keep the ${mode} default.`,
     copyAuthCode: 'Copy the authorization code and paste it below.',
     pasteAuthCode: 'Paste authorization code',
     reopenAuthPage: 'Re-open authorization page',
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
     reopenSignInPage: 'Re-open sign-in page',
     waitingAuthorize: 'Waiting for you to authorize...',
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     signedIn: "I've signed in",
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     reopenVerification: 'Re-open verification page',
@@ -2324,7 +2419,7 @@ Leave blank to keep the ${mode} default.`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
     change: 'Change',
     startChatting: 'Begin',
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'Switch model',
@@ -2340,13 +2435,13 @@ Leave blank to keep the ${mode} default.`,
     free: 'މިނިވައިވަސް',
     freeTier: 'މިނިވައިވަސް ޓިޔަރު',
     priceTitle: 'އިންޕުޓް / އައުޓްޕުޓް މިލިއިއަން ޓޯކެންގައި ވަރެއްސަނަށް',
-    wasPrice: 'ކަންދައިކަށް',
+    wasPrice: 'ކަންދައިކަށް'
   },
   modelVisibility: {
     title: 'މޮޑޭލުގައި',
     search: 'މޮޑޭލުގައި ތަންވައިވަސް',
     noAuthenticatedProviders: 'އެކްސްޓެންޓިކަތް ކަށްވައިވަސްގައި ޕްރޮވައިޑަރު ނައުކަށް ނެމަށް.',
-    addProvider: 'ޕްރޮވައިޑަރު ދެވެގައި…',
+    addProvider: 'ޕްރޮވައިޑަރު ދެވެގައި…'
   },
   shell: {
     windowControls: 'ވިންޑޯ ކޮންޓްރޮލްސް',
@@ -2357,7 +2452,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'މޮޑޭލް ކަންދެއްވެ',
       editModels: 'މޮޑޭލް ސްކަންޑުވައިފިލް…',
       refreshModels: 'މޮޑޭލްގައި މިލައްކަށް',
-      fast: 'ފެސްޓް',
+      fast: 'ފެސްޓް'
     },
     modelOptions: {
       noOptions: 'މޮޑޭލް އެއްވެ އިންޓަރްފެސް ނަންކަށް',
@@ -2373,7 +2468,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'މޭކްސްތަމަށް',
       ultra: 'އުލްޓްޓްރާ',
       updateFailed: 'މޮޑޭލް އިންޓަރްފެސްގައި ޢަންނަންދައިވެ ފެއްހުރައްވެ',
-      fastFailed: 'ފެސްޓް ޓްމޯޑްގައި ޢަންނަންދައިވެ ފެއްހުރައްވެ',
+      fastFailed: 'ފެސްޓް ޓްމޯޑްގައި ޢަންނަންދައިވެ ފެއްހުރައްވެ'
     },
     gatewayMenu: {
       gateway: 'ގޭޓޭފް',
@@ -2388,7 +2483,7 @@ Leave blank to keep the ${mode} default.`,
       connection: label => `Connection: ${label}`,
       recentActivity: 'Recent activity',
       viewAllLogs: 'View all logs →',
-      messagingPlatforms: 'Messaging platforms',
+      messagingPlatforms: 'Messaging platforms'
     },
     approvalMode: {
       title: 'Approval mode',
@@ -2398,7 +2493,7 @@ Leave blank to keep the ${mode} default.`,
       smart: 'Smart',
       smartDescription: 'Automatically assess actions and ask when needed',
       off: 'Off',
-      offDescription: 'Run without approval prompts',
+      offDescription: 'Run without approval prompts'
     },
     statusbar: {
       unknown: 'unknown',
@@ -2454,13 +2549,13 @@ Leave blank to keep the ${mode} default.`,
           skills: 'Skills',
           subagent_definitions: 'Subagent definitions',
           system_prompt: 'System prompt',
-          tool_definitions: 'Tool definitions',
+          tool_definitions: 'Tool definitions'
         },
         empty: 'No context data yet',
         loading: 'Loading breakdown…',
         percentFull: percent => `${percent}% Full`,
         title: 'Context Usage',
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Open context usage breakdown',
       session: 'Session',
@@ -2473,8 +2568,8 @@ Leave blank to keep the ${mode} default.`,
       openModelPicker: 'Open model picker',
       modelPinned: 'pinned by you; new chats use this instead of the Settings default',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Right sidebar',
@@ -2510,7 +2605,7 @@ Leave blank to keep the ${mode} default.`,
     terminalNew: 'New terminal',
     terminalCloseOthers: 'Close others',
     terminalCloseAll: 'Close all',
-    addToChat: 'Add to chat',
+    addToChat: 'Add to chat'
   },
   preview: {
     tab: 'Preview',
@@ -2544,7 +2639,8 @@ Leave blank to keep the ${mode} default.`,
     unsavedChanges: 'Unsaved changes',
     saveFailed: message => `Couldn't save: ${message}`,
     diskChangedTitle: 'File changed on disk',
-    diskChangedBody: 'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
+    diskChangedBody:
+      'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
     overwrite: 'Overwrite',
     discardReload: 'Discard & reload',
     console: {
@@ -2565,7 +2661,7 @@ Leave blank to keep the ${mode} default.`,
       empty: 'No console messages yet.',
       promptHeader: 'Preview console:',
       sentTitle: 'Sent to chat',
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Preview app failed to boot',
@@ -2590,17 +2686,19 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'Reloading the preview now.',
       restartFailedTitle: 'Preview restart failed',
       restartFailedMessage: 'OpenAmer could not restart the server.',
-      stillWorking: 'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
+      stillWorking:
+        'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
       workspaceReloading: 'Workspace changed, reloading preview',
       fileChanged: url => `File changed, reloading preview: ${url}`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
-      moduleMimeDescription: 'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
+      moduleMimeDescription:
+        'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'The preview page could not be reached.',
       openTarget: url => `Open ${url}`,
-      fallbackTitle: 'Preview',
-    },
+      fallbackTitle: 'Preview'
+    }
   },
   zones: {
     showHeader: 'Show header',
@@ -2608,7 +2706,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Minimize',
     restore: 'Restore',
     closeRunningTitle: 'Close running tab?',
-    closeRunningBody: 'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
+    closeRunningBody:
+      'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
     closeRunningConfirm: 'Close tab',
     closeOthers: 'Close others',
     closeToRight: 'Close to the right',
@@ -2645,14 +2744,15 @@ Leave blank to keep the ${mode} default.`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
     saveApply: 'Save & apply',
     notExpressible: 'this arrangement interlocks (pinwheel) — not expressible as nested splits yet',
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
       loadingSession: 'Loading session',
       showEarlier: 'Show earlier messages',
       loadingResponse: 'OpenAmer is loading a response',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Thinking',
@@ -2675,12 +2775,13 @@ Leave blank to keep the ${mode} default.`,
       restoreCheckpoint: 'Restore checkpoint',
       restoreFromHere: 'Restore checkpoint — rerun from this prompt',
       restoreTitle: 'Restore to this checkpoint?',
-      restoreBody: 'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
+      restoreBody:
+        'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
       restoreConfirm: 'Restore & rerun',
       restoreNext: 'Restore next checkpoint',
       goForward: 'Go forward',
       sendEdited: 'Send edited message',
-      attachingFile: 'Attaching…',
+      attachingFile: 'Attaching…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2693,8 +2794,9 @@ Leave blank to keep the ${mode} default.`,
       jumpToApproval: 'Approval needed',
       reject: 'Reject',
       alwaysTitle: 'Always allow this command?',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
-      alwaysAllow: 'Always allow',
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysAllow: 'Always allow'
     },
     clarify: {
       notReady: 'Clarify request is not ready yet',
@@ -2708,7 +2810,7 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'Continue',
       lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
       lateAnswerTip: 'Draft this answer as a follow-up message',
-      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.',
+      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.'
     },
     tool: {
       code: 'Code',
@@ -2744,11 +2846,11 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Ran',
         running: 'Running',
         ranCode: 'Ran code',
-        runningCode: 'Scripting',
+        runningCode: 'Scripting'
       },
       prefixes: {
         browser: 'Browser',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2756,121 +2858,121 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
+        runningTool: action => `Running ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Clicked page element',
           pending: 'Clicking page element',
-          pendingAction: 'Clicking',
+          pendingAction: 'Clicking'
         },
         browser_fill: {
           done: 'Filled form field',
           pending: 'Filling form field',
-          pendingAction: 'Filling',
+          pendingAction: 'Filling'
         },
         browser_navigate: {
           done: 'Opened page',
           pending: 'Opening page',
-          pendingAction: 'Opening',
+          pendingAction: 'Opening'
         },
         browser_snapshot: {
           done: 'Captured page snapshot',
           pending: 'Capturing page snapshot',
-          pendingAction: 'Capturing',
+          pendingAction: 'Capturing'
         },
         browser_take_screenshot: {
           done: 'Captured screenshot',
           pending: 'Capturing screenshot',
-          pendingAction: 'Capturing',
+          pendingAction: 'Capturing'
         },
         browser_type: {
           done: 'Typed on page',
           pending: 'Typing on page',
-          pendingAction: 'Typing',
+          pendingAction: 'Typing'
         },
         clarify: {
           done: 'Asked a question',
           pending: 'Asking a question',
-          pendingAction: 'Asking',
+          pendingAction: 'Asking'
         },
         cronjob: {
           done: 'Cron job',
           pending: 'Scheduling cron job',
-          pendingAction: 'Scheduling',
+          pendingAction: 'Scheduling'
         },
         edit_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
+          pendingAction: 'Editing'
         },
         execute_code: {
           done: 'Ran code',
           pending: 'Scripting',
-          pendingAction: 'Scripting',
+          pendingAction: 'Scripting'
         },
         image_generate: {
           done: 'Generated image',
           pending: 'Generating image',
-          pendingAction: 'Generating',
+          pendingAction: 'Generating'
         },
         list_files: {
           done: 'Listed files',
           pending: 'Listing files',
-          pendingAction: 'Listing',
+          pendingAction: 'Listing'
         },
         patch: {
           done: 'Patched file',
           pending: 'Patching file',
-          pendingAction: 'Patching',
+          pendingAction: 'Patching'
         },
         read_file: {
           done: 'Read file',
           pending: 'Reading file',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         search_files: {
           done: 'Searched files',
           pending: 'Searching files',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         session_search_recall: {
           done: 'Searched session history',
           pending: 'Searching session history',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         terminal: {
           done: 'Ran command',
           pending: 'Running command',
-          pendingAction: 'Running',
+          pendingAction: 'Running'
         },
         todo: {
           done: 'Updated todos',
           pending: 'Updating todos',
-          pendingAction: 'Updating',
+          pendingAction: 'Updating'
         },
         vision_analyze: {
           done: 'Analyzed image',
           pending: 'Analyzing image',
-          pendingAction: 'Analyzing',
+          pendingAction: 'Analyzing'
         },
         web_extract: {
           done: 'Read webpage',
           pending: 'Reading webpage',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         web_search: {
           done: 'Searched web',
           pending: 'Searching web',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         write_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
-        },
-      },
-    },
+          pendingAction: 'Editing'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2881,7 +2983,7 @@ Leave blank to keep the ${mode} default.`,
     sudoPlaceholder: 'sudo password',
     secretTitle: 'Secret required',
     secretDesc: 'OpenAmer needs a credential to continue.',
-    secretPlaceholder: 'secret value',
+    secretPlaceholder: 'secret value'
   },
   desktop: {
     audioReadFailed: 'Could not read recorded audio',
@@ -2898,7 +3000,8 @@ Leave blank to keep the ${mode} default.`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Could not toggle YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     unknownProfile: 'Unknown profile',
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
@@ -2909,7 +3012,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'Edit failed',
     resumeFailed: 'Resume failed',
     resumeStrandedTitle: "Couldn't load this session",
-    resumeStrandedBody: 'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
+    resumeStrandedBody:
+      'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
     resumeRetry: 'Retry',
     nothingToBranch: 'Nothing to branch',
     branchNeedsChat: 'Start or resume a chat before branching.',
@@ -2949,31 +3053,31 @@ Leave blank to keep the ${mode} default.`,
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
       failed: error => `Handoff failed: ${error}`,
-      timedOut: 'Timed out waiting for the gateway. Is `openamer gateway` running?',
-    },
+      timedOut: 'Timed out waiting for the gateway. Is `openamer gateway` running?'
+    }
   },
   errors: {
     genericFailure: 'Something went wrong',
     boundaryTitle: 'Something broke in the interface',
     boundaryDesc: 'The view hit an unexpected error. Your chats and settings are safe.',
     reloadWindow: 'Reload window',
-    openLogs: 'Open logs',
+    openLogs: 'Open logs'
   },
   ui: {
     search: {
-      clear: 'Clear search',
+      clear: 'Clear search'
     },
     pagination: {
       label: 'pagination',
       previous: 'Prev',
       previousAria: 'Go to previous page',
       next: 'Next',
-      nextAria: 'Go to next page',
+      nextAria: 'Go to next page'
     },
     sidebar: {
       title: 'Sidebar',
       description: 'Displays the mobile sidebar.',
-      toggle: 'Toggle Sidebar',
-    },
-  },
+      toggle: 'Toggle Sidebar'
+    }
+  }
 })

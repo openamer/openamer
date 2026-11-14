@@ -44,7 +44,7 @@ export const sv = defineLocale({
     update: 'Uppdatera',
     tryHint: term => `Prova “${term}”`,
     on: 'På',
-    off: 'Av',
+    off: 'Av'
   },
   fileMenu: {
     revealFinder: 'Visa i Finder',
@@ -59,7 +59,7 @@ export const sv = defineLocale({
     renameLabel: 'Nytt namn',
     deleteTitle: name => `Ta bort ${name}?`,
     deleteBody: 'Den flyttas till Papperskorgen — du kan återställa den därifrån.',
-    pathCopied: 'Sökväg kopierad',
+    pathCopied: 'Sökväg kopierad'
   },
   boot: {
     ready: 'OpenAmer Desktop är redo',
@@ -69,7 +69,7 @@ export const sv = defineLocale({
       loadingSettings: 'Laddar OpenAmer-inställningar',
       loadingSessions: 'Laddar senaste sessioner',
       startingDesktopConnection: 'Startar skrivbordsanslutning',
-      startingOpenAmerDesktop: 'Startar OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Startar OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'OpenAmer-bakgrundsprocessen avslutades.',
@@ -78,13 +78,15 @@ export const sv = defineLocale({
       desktopBootFailed: 'Det gick inte att starta skrivbordet',
       gatewayConnectionLost: 'Förlorade anslutningen till gateway',
       gatewaySignInRequired: 'Inloggning till gateway krävs',
-      ipcBridgeUnavailable: 'Skrivbordets IPC-brygga är inte tillgänglig.',
+      ipcBridgeUnavailable: 'Skrivbordets IPC-brygga är inte tillgänglig.'
     },
     failure: {
-      title: "OpenAmer kunde inte startas",
-      description: "Bakgrundsgatewayen startade inte. Prova något av återställningsstegen nedan. Ingenting här raderar dina chattar eller inställningar.",
+      title: 'OpenAmer kunde inte startas',
+      description:
+        'Bakgrundsgatewayen startade inte. Prova något av återställningsstegen nedan. Ingenting här raderar dina chattar eller inställningar.',
       remoteTitle: 'Inloggning till fjärrgateway krävs',
-      remoteDescription: 'Din fjärrgateway-session har upphört att gälla. Logga in igen för att återansluta. Ingenting här raderar dina chattar eller inställningar.',
+      remoteDescription:
+        'Din fjärrgateway-session har upphört att gälla. Logga in igen för att återansluta. Ingenting här raderar dina chattar eller inställningar.',
       retry: 'Försök igen',
       repairInstall: 'Reparera installationen',
       useLocalGateway: 'Använd lokal gateway',
@@ -92,7 +94,8 @@ export const sv = defineLocale({
       back: 'Tillbaka',
       openLogs: 'Öppna loggar',
       repairHint: 'Reparationen kör om installationsprogrammet och kan ta några minuter på en ny dator.',
-      remoteSignInHint: signInLabel => `Loggar ut den sparade fjärrwebbläsarsessionen och öppnar sedan ${signInLabel}. Använd "Använd lokal gateway" för att växla till den medföljande backend.`,
+      remoteSignInHint: signInLabel =>
+        `Loggar ut den sparade fjärrwebbläsarsessionen och öppnar sedan ${signInLabel}. Använd "Använd lokal gateway" för att växla till den medföljande backend.`,
       signOutAndSignIn: 'Logga ut & logga in',
       remoteFailureHint: 'Kontrollera URL och inloggning i gateway-inställningarna, eller växla till lokal gateway.',
       hideRecentLogs: 'Dölj senaste loggar',
@@ -104,8 +107,8 @@ export const sv = defineLocale({
       signInFailed: 'Inloggningen misslyckades',
       signInToRemoteGateway: 'Logga in på fjärrgateway',
       signInWithProvider: provider => `Logga in med ${provider}`,
-      identityProvider: 'din identitetsleverantör',
-    },
+      identityProvider: 'din identitetsleverantör'
+    }
   },
   notifications: {
     region: 'Aviseringar',
@@ -118,21 +121,23 @@ export const sv = defineLocale({
     copyDetail: 'Kopiera detaljer',
     copyDetailFailed: 'Det gick inte att kopiera aviseringsdetaljer',
     backendOutOfDateTitle: 'Backend är föråldrad',
-    backendOutOfDateMessage: 'Din OpenAmer-backend är äldre än denna skrivbordsbygge och fungerar kanske inte korrekt. Uppdatera för att synka dem.',
+    backendOutOfDateMessage:
+      'Din OpenAmer-backend är äldre än denna skrivbordsbygge och fungerar kanske inte korrekt. Uppdatera för att synka dem.',
     installMethodUnsupportedTitle: 'Installationsmetod stöds inte',
     updateOpenAmer: 'Uppdatera OpenAmer',
     updateReadyTitle: 'Uppdatering redo',
     updateReadyMessage: count => `${count} ny ändring${count === 1 ? 'ändring' : 'ändringar'} tillgänglig.`,
-    seeWhatsNew: "Se vad som är nytt",
+    seeWhatsNew: 'Se vad som är nytt',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT kräver ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs avvisade API-nyckeln (401).',
       gatewayAuthFailed: 'Gateway-autentisering misslyckades — kontrollera din API_SERVER_KEY.',
-      methodNotAllowed: 'Skrivbords-backend avvisade den begäran (405 Method Not Allowed). Försök starta om OpenAmer Desktop.',
+      methodNotAllowed:
+        'Skrivbords-backend avvisade den begäran (405 Method Not Allowed). Försök starta om OpenAmer Desktop.',
       microphonePermission: 'Mikrofonbehörighet nekades.',
       openaiRejectedApiKey: 'OpenAI avvisade API-nyckeln.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI avvisade API-nyckeln (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS kräver VOICE_TOOLS_OPENAI_KEY eller OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS kräver VOICE_TOOLS_OPENAI_KEY eller OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Konfigurera tal till text för att använda röstläget.',
@@ -151,7 +156,7 @@ export const sv = defineLocale({
       transcriptionFailed: 'Transkription av röst misslyckades',
       transcriptionUnavailable: 'Rösttranskription är inte tillgänglig ännu.',
       tryRecordingAgain: 'Försök spela in igen.',
-      unavailable: 'Röst otillgänglig',
+      unavailable: 'Röst otillgänglig'
     },
     native: {
       approvalTitle: 'Godkännande krävs',
@@ -164,11 +169,12 @@ export const sv = defineLocale({
       turnErrorTitle: 'Ronden misslyckades',
       backgroundDoneTitle: 'Bakgrundsaktivitet slutförd',
       backgroundFailedTitle: 'Bakgrundsaktivitet misslyckades',
-      creditsTitle: 'Krediter',
-    },
+      creditsTitle: 'Krediter'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Programvarurendering aktiv — fjärrskärm upptäckt (${reason}). GPU-acceleration är inaktiverad för att förhindra flimmer.`,
+    message: reason =>
+      `Programvarurendering aktiv — fjärrskärm upptäckt (${reason}). GPU-acceleration är inaktiverad för att förhindra flimmer.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer-krediter slut',
@@ -176,7 +182,7 @@ export const sv = defineLocale({
     fallbackMessage: 'Ditt konto har slut på krediter. Lägg till krediter för att fortsätta.',
     openBilling: 'Öppna fakturering',
     addCredits: 'Lägg till krediter',
-    dismiss: 'Stäng',
+    dismiss: 'Stäng'
   },
   titlebar: {
     hideSidebar: 'Dölj sidofält',
@@ -193,7 +199,7 @@ export const sv = defineLocale({
     openStarmap: 'Öppna minnesgraf',
     openKeybinds: 'Tangentbordsgenvägar',
     layoutEditor: 'Layoutredigerare',
-    layoutEditorTitle: 'Layoutredigerare — Cmd/Ctrl+klick återställer layouten',
+    layoutEditorTitle: 'Layoutredigerare — Cmd/Ctrl+klick återställer layouten'
   },
   keybinds: {
     title: 'Tangentbordsgenvägar',
@@ -210,7 +216,7 @@ export const sv = defineLocale({
       profiles: 'Profiler',
       session: 'Session',
       navigation: 'Navigering',
-      view: 'Vy',
+      view: 'Vy'
     },
     actions: {
       'keybinds.openPanel': 'Öppna tangentbordsgenvägar',
@@ -289,8 +295,8 @@ export const sv = defineLocale({
       'composer.slash': 'Palett för snedstreckskommandon',
       'composer.help': 'Snabbhjälp',
       'composer.history': 'Växla snabbfönster / historik',
-      'composer.cancel': 'Stäng snabbfönster · avbryt körning',
-    },
+      'composer.cancel': 'Stäng snabbfönster · avbryt körning'
+    }
   },
   language: {
     label: 'Språk',
@@ -299,7 +305,7 @@ export const sv = defineLocale({
     saveError: 'Uppdatering av språk misslyckades',
     switchTo: 'Byt språk',
     searchPlaceholder: 'Sök språk…',
-    noResults: 'Inga språk hittades',
+    noResults: 'Inga språk hittades'
   },
   settings: {
     closeSettings: 'Stäng inställningar',
@@ -324,11 +330,12 @@ export const sv = defineLocale({
       about: 'Om',
       billing: 'Fakturering',
       notifications: 'Aviseringar',
-      plugins: 'Tillägg',
+      plugins: 'Tillägg'
     },
     plugins: {
       title: 'Skrivbordsplugins',
-      blurb: 'UI-tillägg som läses in i den här appen – medföljer bygget eller läggs i mappen desktop-plugins (inklusive sådana som OpenAmer skriver). Om du inaktiverar läses ett plugin ur direkt och ändringen består efter omstart.',
+      blurb:
+        'UI-tillägg som läses in i den här appen – medföljer bygget eller läggs i mappen desktop-plugins (inklusive sådana som OpenAmer skriver). Om du inaktiverar läses ett plugin ur direkt och ändringen består efter omstart.',
       count: n => `${n} installerade`,
       openFolder: 'Öppna pluginmappen',
       rescan: 'Skanna igen',
@@ -340,40 +347,41 @@ export const sv = defineLocale({
       kinds: {
         bundled: 'medföljande',
         disk: 'på disk',
-        runtime: 'körning',
-      },
+        runtime: 'körning'
+      }
     },
     notifications: {
       title: 'Aviseringar',
-      intro: 'Inbyggda skrivbordsaviseringar, separata från aviseringar i appen. De är lokala för enheten – varje dator har sina egna inställningar.',
+      intro:
+        'Inbyggda skrivbordsaviseringar, separata från aviseringar i appen. De är lokala för enheten – varje dator har sina egna inställningar.',
       enableAll: 'Aktivera aviseringar',
       enableAllDesc: 'Huvudbrytare. Stäng av den för att tysta alla aviseringar nedan.',
       focusedHint: 'Slutförandeaviseringar visas bara när OpenAmer körs i bakgrunden.',
       kinds: {
         approval: {
           label: 'Godkännande krävs',
-          description: 'Ett kommando väntar på att du godkänner eller avvisar det.',
+          description: 'Ett kommando väntar på att du godkänner eller avvisar det.'
         },
         input: {
           label: 'Indata krävs',
-          description: 'OpenAmer ställde en fråga eller behöver ett lösenord eller en hemlighet.',
+          description: 'OpenAmer ställde en fråga eller behöver ett lösenord eller en hemlighet.'
         },
         turnDone: {
           label: 'Svar klart',
-          description: 'En omgång slutfördes medan OpenAmer kördes i bakgrunden.',
+          description: 'En omgång slutfördes medan OpenAmer kördes i bakgrunden.'
         },
         turnError: {
           label: 'Omgången misslyckades',
-          description: 'En agentkörning avslutades med ett fel.',
+          description: 'En agentkörning avslutades med ett fel.'
         },
         backgroundDone: {
           label: 'Bakgrundsuppgift klar',
-          description: 'Ett terminalkommando i bakgrunden slutfördes.',
+          description: 'Ett terminalkommando i bakgrunden slutfördes.'
         },
         credits: {
           label: 'Kreditvarningar',
-          description: 'Kreditåtkomst har pausats eller återställts.',
-        },
+          description: 'Kreditåtkomst har pausats eller återställts.'
+        }
       },
       test: 'Skicka testavisering',
       testTitle: 'OpenAmer',
@@ -382,7 +390,7 @@ export const sv = defineLocale({
       testUnsupported: 'Det här systemet stöder inte inbyggda aviseringar.',
       completionSoundTitle: 'Ljud vid slutförande',
       completionSoundDesc: 'Spelas när en agentkörning slutförs. Välj en förinställning och förhandsgranska den här.',
-      completionSoundPreview: 'Förhandsgranska',
+      completionSoundPreview: 'Förhandsgranska'
     },
     sections: {
       model: 'Modell',
@@ -392,7 +400,7 @@ export const sv = defineLocale({
       safety: 'Säkerhet',
       memory: 'Minne & kontext',
       voice: 'Röst',
-      advanced: 'Avancerat',
+      advanced: 'Avancerat'
     },
     searchPlaceholder: {
       about: 'Om OpenAmer Desktop',
@@ -400,37 +408,40 @@ export const sv = defineLocale({
       gateway: 'Gateway-anslutning...',
       keys: 'Sök API-nycklar...',
       mcp: 'Sök MCP-servrar...',
-      sessions: 'Sök arkiverade sessioner...',
+      sessions: 'Sök arkiverade sessioner...'
     },
     modeOptions: {
       light: {
         label: 'Ljust',
-        description: 'Ljusa ytor',
+        description: 'Ljusa ytor'
       },
       dark: {
         label: 'Mörkt',
-        description: 'Arbetsyta med lite blänk',
+        description: 'Arbetsyta med lite blänk'
       },
       system: {
         label: 'System',
-        description: 'Följ systemets utseende',
-      },
+        description: 'Följ systemets utseende'
+      }
     },
     appearance: {
       title: 'Utseende',
-      intro: 'Det här är visningspreferenser endast för skrivbordet. Läget styr ljusstyrkan; temat styr accentpaletten och chattytans stil.',
+      intro:
+        'Det här är visningspreferenser endast för skrivbordet. Läget styr ljusstyrkan; temat styr accentpaletten och chattytans stil.',
       colorMode: 'Färgläge',
       colorModeDesc: 'Välj ett fast läge eller låt OpenAmer följa systeminställningen.',
       toolViewTitle: 'Visning av verktygsanrop',
       toolViewDesc: 'Produkt döljer råa verktygsdata; Teknisk visar fullständig in-/utdata.',
       uiScaleTitle: 'UI-skala',
-      uiScaleDesc: (percent: number) => `Skalar text och kontroller i hela appen. Cmd/Ctrl med +, - och 0 fungerar också. Nuvarande: ${percent} %.`,
+      uiScaleDesc: (percent: number) =>
+        `Skalar text och kontroller i hela appen. Cmd/Ctrl med +, - och 0 fungerar också. Nuvarande: ${percent} %.`,
       translucencyTitle: 'Fönstergenomskinlighet',
       translucencyDesc: 'Se ditt skrivbord genom hela fönstret. Endast macOS och Windows.',
       backdropTitle: 'Chattbakgrund',
       backdropDesc: 'Den svaga statybilden bakom samtalet.',
       embedsTitle: 'Inbäddat innehåll',
-      embedsDesc: 'Rika förhandsvisningar laddas från tredjepartswebbplatser (YouTube, X, …). Fråga visar en platshållare tills du tillåter var och en; Alltid laddar automatiskt; Av behåller vanliga länkar.',
+      embedsDesc:
+        'Rika förhandsvisningar laddas från tredjepartswebbplatser (YouTube, X, …). Fråga visar en platshållare tills du tillåter var och en; Alltid laddar automatiskt; Av behåller vanliga länkar.',
       embedsAsk: 'Fråga',
       embedsAlways: 'Alltid',
       embedsOff: 'Av',
@@ -443,7 +454,8 @@ export const sv = defineLocale({
       themeDesc: 'Endast skrivbordspaletter. Det valda läget tillämpas ovanpå.',
       themeProfileNote: profile => `Sparad för profilen ${profile} — varje profil behåller sitt eget tema.`,
       installTitle: 'Installera från VS Code',
-      installDesc: 'Klistra in ett Marketplace-tilläggs-ID (t.ex. dracula-theme.theme-dracula) för att konvertera dess färgtema till ett skrivbordspalett.',
+      installDesc:
+        'Klistra in ett Marketplace-tilläggs-ID (t.ex. dracula-theme.theme-dracula) för att konvertera dess färgtema till ett skrivbordspalett.',
       installPlaceholder: 'utgivare.tillägg',
       installButton: 'Installera',
       installing: 'Installerar…',
@@ -453,8 +465,10 @@ export const sv = defineLocale({
       importedBadge: 'Importerat',
       pet: {
         title: 'Husdjur',
-        intro: 'Adoptera en animerad petdex-maskot som flyter ovanpå appen och reagerar på vad OpenAmer gör – springer när verktyg körs, firar vid framgång, surar vid fel.',
-        restartHint: 'Husdjuren behöver en snabb omstart – den körande appen startades innan den här funktionen lades till. Avsluta och öppna OpenAmer igen och kom tillbaka hit.',
+        intro:
+          'Adoptera en animerad petdex-maskot som flyter ovanpå appen och reagerar på vad OpenAmer gör – springer när verktyg körs, firar vid framgång, surar vid fel.',
+        restartHint:
+          'Husdjuren behöver en snabb omstart – den körande appen startades innan den här funktionen lades till. Avsluta och öppna OpenAmer igen och kom tillbaka hit.',
         on: 'På',
         off: 'Av',
         scaleTitle: 'Storlek',
@@ -464,7 +478,7 @@ export const sv = defineLocale({
         chooseTitle: 'Välj ett husdjur',
         chooseDesc: 'När du väljer ett installeras det (vid behov) och blir aktivt.',
         searchPlaceholder: 'Sök husdjur…',
-        unreachable: "Kunde inte nå petdex-galleriet. Kontrollera anslutningen och öppna sidan igen.",
+        unreachable: 'Kunde inte nå petdex-galleriet. Kontrollera anslutningen och öppna sidan igen.',
         noMatch: query => `Inga husdjur matchar "${query}".`,
         installedTag: 'installerad',
         generatedTag: 'Genererad',
@@ -473,7 +487,7 @@ export const sv = defineLocale({
         uninstall: name => `Avinstallera ${name}`,
         delete: name => `Ta bort ${name}`,
         deleteTitle: name => `Ta bort ${name}?`,
-        deleteBody: "Detta tar bort husdjuret permanent – det kan inte installeras om.",
+        deleteBody: 'Detta tar bort husdjuret permanent – det kan inte installeras om.',
         deleteConfirm: 'Ta bort',
         rename: name => `Byt namn på ${name}`,
         renameTitle: 'Byt namn på husdjuret',
@@ -486,8 +500,8 @@ export const sv = defineLocale({
         exportFailed: slug => `Kunde inte exportera ${slug}`,
         noneAvailable: 'Inga husdjur tillgängliga att slå på just nu.',
         turnOnFailed: 'Kunde inte slå på husdjuret.',
-        turnOffFailed: 'Kunde inte slå av husdjuret.',
-      },
+        turnOffFailed: 'Kunde inte slå av husdjuret.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -498,25 +512,27 @@ export const sv = defineLocale({
       updates: 'Uppdateringar',
       checkNow: 'Kontrollera nu',
       checking: 'Kontrollerar…',
-      seeWhatsNew: "Se vad som är nytt",
+      seeWhatsNew: 'Se vad som är nytt',
       updateNow: 'Uppdatera nu',
       releaseNotes: 'Versionsinformation',
-      onLatest: "Du har den senaste versionen.",
+      onLatest: 'Du har den senaste versionen.',
       installing: 'En uppdatering installeras just nu.',
-      cantUpdate: "Denna bygge kan inte uppdatera sig själv inifrån appen.",
-      cantReach: "Vi kunde inte nå uppdateringsservern.",
+      cantUpdate: 'Denna bygge kan inte uppdatera sig själv inifrån appen.',
+      cantReach: 'Vi kunde inte nå uppdateringsservern.',
       tapCheck: 'Tryck på "Kontrollera nu" för att söka uppdateringar.',
-      updateReady: count => `En ny uppdatering är klar (${count} ändring${count === 1 ? 'ändring' : 'ändringar'} ingår).`,
+      updateReady: count =>
+        `En ny uppdatering är klar (${count} ändring${count === 1 ? 'ändring' : 'ändringar'} ingår).`,
       lastChecked: age => `Senast kontrollerad ${age}`,
       justNowSuffix: ' · just nu',
       automaticUpdates: 'Automatiska uppdateringar',
-      automaticUpdatesDesc: 'OpenAmer kontrollerar automatiskt uppdateringar i bakgrunden och meddelar dig när en är redo.',
+      automaticUpdatesDesc:
+        'OpenAmer kontrollerar automatiskt uppdateringar i bakgrunden och meddelar dig när en är redo.',
       branchCommit: (branch, commit) => `Gren ${branch} · Incheckning ${commit}`,
       never: 'aldrig',
       justNow: 'just nu',
       minAgo: count => `${count} min sedan`,
       hoursAgo: count => `${count} timmar sedan`,
-      daysAgo: count => `${count} dagar sedan`,
+      daysAgo: count => `${count} dagar sedan`
     },
     config: {
       none: 'Ingen',
@@ -532,7 +548,8 @@ export const sv = defineLocale({
       imported: 'Konfigurationen har importerats',
       invalidJson: 'Ogiltig konfigurations-JSON',
       keepAwakeTitle: 'Håll datorn vaken',
-      keepAwakeDesc: 'Hindra datorn från att somna så att långa körningar eller körningar över natten kan fortsätta. Skärmen kan fortfarande dimmas.',
+      keepAwakeDesc:
+        'Hindra datorn från att somna så att långa körningar eller körningar över natten kan fortsätta. Skärmen kan fortfarande dimmas.'
     },
     credentials: {
       pasteKey: 'Klistra in nyckel',
@@ -542,7 +559,7 @@ export const sv = defineLocale({
       couldNotSave: 'Det gick inte att spara autentiseringsuppgiften.',
       remove: 'Ta bort',
       getKey: 'Hämta en nyckel',
-      saving: 'Sparar',
+      saving: 'Sparar'
     },
     envActions: {
       actionsFor: label => `Åtgärder för ${label}`,
@@ -553,7 +570,7 @@ export const sv = defineLocale({
       revealValue: 'Visa värde',
       replace: 'Ersätt',
       set: 'Ange',
-      clear: 'Rensa',
+      clear: 'Rensa'
     },
     gateway: {
       loading: 'Läser in gateway-inställningar...',
@@ -561,23 +578,28 @@ export const sv = defineLocale({
       unavailableDesc: 'IPC-bryggan i skrivbordsappen exponerar inte gateway-inställningar.',
       title: 'Gateway-anslutning',
       envOverride: 'åsidosättning via miljövariabel',
-      intro: 'OpenAmer Desktop startar sin egen lokala gateway som standard. Använd en fjärrgateway när du vill att appen ska styra en redan körande OpenAmer-backend på en annan dator eller bakom en betrodd proxy. Välj en profil nedan för att ge den en egen fjärrvärd.',
+      intro:
+        'OpenAmer Desktop startar sin egen lokala gateway som standard. Använd en fjärrgateway när du vill att appen ska styra en redan körande OpenAmer-backend på en annan dator eller bakom en betrodd proxy. Välj en profil nedan för att ge den en egen fjärrvärd.',
       appliesTo: 'Gäller för',
       allProfiles: 'Alla profiler',
       defaultConnection: 'Standardanslutning för varje profil som inte har någon egen åsidosättning.',
-      profileConnection: profile => `Anslutning som endast används när “${profile}” är den aktiva profilen. Välj Använd standardgateway för att ta bort dess åsidosättning.`,
+      profileConnection: profile =>
+        `Anslutning som endast används när “${profile}” är den aktiva profilen. Välj Använd standardgateway för att ta bort dess åsidosättning.`,
       envOverrideTitle: 'Miljövariabler styr den här skrivbordssessionen.',
-      envOverrideDesc: 'Ta bort OPENAMER_DESKTOP_REMOTE_URL och OPENAMER_DESKTOP_REMOTE_TOKEN för att använda den sparade inställningen nedan.',
+      envOverrideDesc:
+        'Ta bort OPENAMER_DESKTOP_REMOTE_URL och OPENAMER_DESKTOP_REMOTE_TOKEN för att använda den sparade inställningen nedan.',
       modeTitle: 'Anslutningsläge',
       localTitle: 'Lokal gateway',
       localDesc: 'Starta en privat OpenAmer-backend på localhost. Detta är standard och fungerar offline.',
       inheritTitle: 'Använd standardgateway',
-      inheritDesc: "Ta bort profilens åsidosättning och använd standardanslutningen.",
+      inheritDesc: 'Ta bort profilens åsidosättning och använd standardanslutningen.',
       remoteTitle: 'Fjärrgateway',
       remoteDesc: 'Anslut detta skrivbordsskal till en fjärr-OpenAmer-backend.',
-      remoteAuthHint: 'Värdbaserade gateways använder OAuth eller användarnamn och lösenord; egenhostade kan använda en sessionstoken.',
+      remoteAuthHint:
+        'Värdbaserade gateways använder OAuth eller användarnamn och lösenord; egenhostade kan använda en sessionstoken.',
       cloudTitle: 'OpenAmer Cloud',
-      cloudDesc: 'Logga in en gång på OpenAmer Cloud och välj bland agenterna på ditt konto – ingen URL att klistra in.',
+      cloudDesc:
+        'Logga in en gång på OpenAmer Cloud och välj bland agenterna på ditt konto – ingen URL att klistra in.',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudSignIn: 'Logga in på OpenAmer Cloud',
       cloudSignedIn: 'Inloggad på OpenAmer Cloud',
@@ -592,7 +614,7 @@ export const sv = defineLocale({
       cloudNoAgents: {
         before: 'Inga agenter hittades på det här kontot. Skapa en i ',
         linkText: 'OpenAmer-portal',
-        after: ', uppdatera sedan.',
+        after: ', uppdatera sedan.'
       },
       cloudRefresh: 'Uppdatera',
       cloudConnect: 'Anslut',
@@ -616,12 +638,16 @@ export const sv = defineLocale({
       signOut: 'Logga ut',
       signInWith: provider => `Logga in med ${provider}`,
       authTitle: 'Autentisering',
-      authSignedInPassword: 'Denna gateway använder användarnamn och lösenord. Du är inloggad; sessionen förnyas automatiskt.',
+      authSignedInPassword:
+        'Denna gateway använder användarnamn och lösenord. Du är inloggad; sessionen förnyas automatiskt.',
       authSignedInOauth: 'Denna gateway använder OAuth. Du är inloggad; sessionen förnyas automatiskt.',
-      authNeedsPassword: 'Denna gateway använder användarnamn och lösenord. Logga in för att auktorisera detta skrivbordsprogram.',
-      authNeedsOauth: provider => `Denna gateway använder OAuth. Logga in med ${provider} för att auktorisera detta skrivbordsprogram.`,
+      authNeedsPassword:
+        'Denna gateway använder användarnamn och lösenord. Logga in för att auktorisera detta skrivbordsprogram.',
+      authNeedsOauth: provider =>
+        `Denna gateway använder OAuth. Logga in med ${provider} för att auktorisera detta skrivbordsprogram.`,
       tokenTitle: 'Sessionstoken',
-      tokenDesc: 'Dashboardens sessionstoken som används för REST- och WebSocket-åtkomst. Lämna tomt för att behålla den sparade token.',
+      tokenDesc:
+        'Dashboardens sessionstoken som används för REST- och WebSocket-åtkomst. Lämna tomt för att behålla den sparade token.',
       existingToken: value => `Befintlig token ${value}`,
       savedToken: 'sparad',
       pasteSessionToken: 'Klistra in sessionstoken',
@@ -652,7 +678,8 @@ export const sv = defineLocale({
       applyFailed: 'Kunde inte tillämpa gateway-inställningar',
       saveFailed: 'Kunde inte spara gateway-inställningar',
       sshTitle: 'Anslut via SSH',
-      sshDesc: 'OpenAmer startas på fjärrvärden via SSH och tunnlas till denna app — inget att starta eller exponera själv. Kräver fungerande nyckelbaserad SSH-åtkomst till värden.',
+      sshDesc:
+        'OpenAmer startas på fjärrvärden via SSH och tunnlas till denna app — inget att starta eller exponera själv. Kräver fungerande nyckelbaserad SSH-åtkomst till värden.',
       sshTrustHint: 'Den första presenterade värdnyckeln betros och låses; senare ändringar blockeras.',
       sshHostTitle: 'Värd',
       sshHostDesc: 'användare@värd, eller ett värdalias från ~/.ssh/config.',
@@ -676,18 +703,22 @@ export const sv = defineLocale({
       sshReachable: (host, platform) => `Nåbar: ${host} (${platform}) — OpenAmer hittades`,
       sshIncompleteHost: 'Ange en SSH-värd innan du ansluter.',
       sshErrUnreachable: 'Kunde inte nå värden via SSH. Kontrollera värd, port och nätverk.',
-      sshErrAuth: 'SSH-autentisering misslyckades. Ladda nyckeln i ssh-agent (ssh-add) eller ange IdentityFile i ~/.ssh/config — OpenAmer kör ssh icke-interaktivt.',
-      sshErrHostKey: 'Värdnyckeln har ÄNDRATS sedan du senast anslöt. Verifiera att det är väntat och kör sedan ssh-keygen -R <host> och anslut igen.',
-      sshErrNotInstalled: 'OpenAmer är inte installerat på fjärrvärden. Installera det där (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) eller ange sökvägen till OpenAmer.',
-      sshErrPlatform: 'Fjärrplattformen stöds inte. SSH-läget för skrivbordet i OpenAmer stöder Linux-, macOS- och Windows-fjärrvärdar.',
+      sshErrAuth:
+        'SSH-autentisering misslyckades. Ladda nyckeln i ssh-agent (ssh-add) eller ange IdentityFile i ~/.ssh/config — OpenAmer kör ssh icke-interaktivt.',
+      sshErrHostKey:
+        'Värdnyckeln har ÄNDRATS sedan du senast anslöt. Verifiera att det är väntat och kör sedan ssh-keygen -R <host> och anslut igen.',
+      sshErrNotInstalled:
+        'OpenAmer är inte installerat på fjärrvärden. Installera det där (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) eller ange sökvägen till OpenAmer.',
+      sshErrPlatform:
+        'Fjärrplattformen stöds inte. SSH-läget för skrivbordet i OpenAmer stöder Linux-, macOS- och Windows-fjärrvärdar.',
       sshErrTimeout: 'SSH-anslutningen tog för lång tid. Värden kan vara onåbar eller i viloläge.',
       sshErrUpdateRequired: 'Uppdatera OpenAmer på fjärrvärden innan du ansluter med skrivbords-SSH.',
-      sshErrUnknown: 'SSH-anslutningen misslyckades.',
+      sshErrUnknown: 'SSH-anslutningen misslyckades.'
     },
     keys: {
       loading: 'Läser in API-nycklar och autentiseringsuppgifter...',
       failedLoad: 'Det gick inte att läsa in API-nycklar',
-      empty: 'Inget har konfigurerats i den här kategorin ännu.',
+      empty: 'Inget har konfigurerats i den här kategorin ännu.'
     },
     mcp: {
       loading: 'Läser in MCP-servrar...',
@@ -739,7 +770,8 @@ export const sv = defineLocale({
       catalogInstallFailed: name => `Det gick inte att installera ${name}`,
       catalogEnvPrompt: name => `${name} kräver inloggningsuppgifter`,
       catalogEnvRequired: 'Fyll i de obligatoriska värdena innan du installerar.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} aktiverad`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} aktiverad`,
       statusConnecting: 'Ansluter…',
       statusNeedsAuth: 'Kräver autentisering',
       statusError: 'Fel',
@@ -752,11 +784,12 @@ export const sv = defineLocale({
       unsavedConnect: 'Osparat — spara mcp.json för att ansluta.',
       enableTool: tool => `Aktivera ${tool}`,
       disableTool: tool => `Inaktivera ${tool}`,
-      noOutput: 'Ingen utdata ännu.',
+      noOutput: 'Ingen utdata ännu.'
     },
     model: {
       loading: 'Läser in modellkonfiguration...',
-      appliesDesc: 'Gäller nya sessioner. Använd modellväljaren i inmatningsfältet för att snabbt byta modell i den aktiva chatten.',
+      appliesDesc:
+        'Gäller nya sessioner. Använd modellväljaren i inmatningsfältet för att snabbt byta modell i den aktiva chatten.',
       provider: 'Leverantör',
       model: 'Modell',
       applying: 'Tillämpar...',
@@ -766,53 +799,55 @@ export const sv = defineLocale({
       defaultsFailed: 'Kunde inte spara modellstandardvärden',
       auxiliaryTitle: 'Hjälpmodeller',
       resetAllToMain: 'Återställ alla till huvudmodellen',
-      auxiliaryDesc: 'Hjälpuppgifter körs som standard på huvudmodellen. Tilldela en egen modell till en uppgift för att åsidosätta detta.',
+      auxiliaryDesc:
+        'Hjälpuppgifter körs som standard på huvudmodellen. Tilldela en egen modell till en uppgift för att åsidosätta detta.',
       setToMain: 'Använd huvudmodellen',
       change: 'Ändra',
       autoUseMain: 'auto · använd huvudmodellen',
       providerDefault: '(leverantörsstandard)',
       fallbackAdd: 'Lägg till reserv',
       fallbackEmpty: 'Inga reservmodeller – standardmodellen används om den inte misslyckas.',
-      notInCatalog: "finns inte i leverantörens modellista – anrop kan falla tillbaka till en reserv.",
+      notInCatalog: 'finns inte i leverantörens modellista – anrop kan falla tillbaka till en reserv.',
       tasks: {
         vision: {
           label: 'Syn',
-          hint: 'Bildanalys',
+          hint: 'Bildanalys'
         },
         web_extract: {
           label: 'Webbutdrag',
-          hint: 'Sidsammanfattning',
+          hint: 'Sidsammanfattning'
         },
         compression: {
           label: 'Komprimering',
-          hint: 'Kontextkomprimering',
+          hint: 'Kontextkomprimering'
         },
         skills_hub: {
           label: 'Skillshubb',
-          hint: 'Sök skills',
+          hint: 'Sök skills'
         },
         approval: {
           label: 'Godkännande',
-          hint: 'Smart autogodkännande',
+          hint: 'Smart autogodkännande'
         },
         mcp: {
           label: 'MCP',
-          hint: 'MCP-verktygsrouting',
+          hint: 'MCP-verktygsrouting'
         },
         title_generation: {
           label: 'Titelgenerering',
-          hint: 'Sesionstitlar',
+          hint: 'Sesionstitlar'
         },
         curator: {
           label: 'Kurator',
-          hint: 'Granskning av skillanvändning',
-        },
-      },
+          hint: 'Granskning av skillanvändning'
+        }
+      }
     },
     providers: {
       connectAccount: 'Anslut ett konto',
       haveApiKey: 'Har du en API-nyckel i stället?',
-      intro: 'Logga in med en prenumeration – ingen API-nyckel att kopiera. OpenAmer kör webbläsarinloggningen åt dig, direkt här i appen.',
+      intro:
+        'Logga in med en prenumeration – ingen API-nyckel att kopiera. OpenAmer kör webbläsarinloggningen åt dig, direkt här i appen.',
       connected: 'Ansluten',
       collapse: 'Fäll ihop',
       connectAnother: 'Anslut en annan leverantör',
@@ -822,7 +857,8 @@ export const sv = defineLocale({
       removeConfirm: provider => `Ta bort ${provider}?`,
       removeExternalGeneric: provider => `${provider} hanteras av sitt eget CLI – ta bort det där.`,
       removeKeyManaged: provider => `${provider} konfigureras med en API-nyckel. Ta bort den under API-nycklar.`,
-      removeTerminalConfirm: (provider, command) => `Koppla från ${provider}? Detta kör "${command}" i terminalen för att rensa uppgifterna.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Koppla från ${provider}? Detta kör "${command}" i terminalen för att rensa uppgifterna.`,
       removeTerminalRunning: provider => `Kör frånkoppling av ${provider} i terminalen…`,
       removedTitle: 'Kontot har tagits bort',
       removedMessage: provider => `${provider} har tagits bort.`,
@@ -832,14 +868,15 @@ export const sv = defineLocale({
       noKeysMatch: 'Inga leverantörer matchar din sökning.',
       localEndpoint: {
         title: 'Lokal / anpassad slutpunkt',
-        description: 'Peka OpenAmer mot valfri OpenAI-kompatibel slutpunkt (Zyphra, vLLM, llama.cpp, Ollama m.fl.).',
+        description: 'Peka OpenAmer mot valfri OpenAI-kompatibel slutpunkt (Zyphra, vLLM, llama.cpp, Ollama m.fl.).'
       },
-      loading: 'Läser in leverantörer...',
+      loading: 'Läser in leverantörer...'
     },
     sessions: {
       loading: 'Läser in arkiverade sessioner…',
       archivedTitle: 'Arkiverade sessioner',
-      archivedIntro: 'Arkiverade chattar döljs i sidofältet men behåller alla sina meddelanden. Ctrl/⌘-klicka på en chatt i sidofältet för att arkivera den.',
+      archivedIntro:
+        'Arkiverade chattar döljs i sidofältet men behåller alla sina meddelanden. Ctrl/⌘-klicka på en chatt i sidofältet för att arkivera den.',
       emptyArchivedTitle: 'Inget arkiverat',
       emptyArchivedDesc: 'Arkivera en chatt för att dölja den här.',
       unarchive: 'Avarkivera',
@@ -848,13 +885,16 @@ export const sv = defineLocale({
       restored: 'Återställd',
       deleteConfirm: title => `Radera "${title}" permanent? Detta kan inte ångras.`,
       autoArchiveTitle: 'Autoarkivera inaktiva chattar',
-      autoArchiveDesc: "Arkivera automatiskt chattar som du inte har rört på ett tag. Fästa chattar arkiveras aldrig, och inget raderas – arkiverade chattar flyttas bara hit.",
+      autoArchiveDesc:
+        'Arkivera automatiskt chattar som du inte har rört på ett tag. Fästa chattar arkiveras aldrig, och inget raderas – arkiverade chattar flyttas bara hit.',
       autoArchiveDaysLabel: 'Arkivera efter',
       autoArchiveDaysUnit: 'dagars inaktivitet',
       autoArchiveFailed: 'Det gick inte att uppdatera autoarkivering',
       defaultDirTitle: 'Standardprojektkatalog',
-      defaultDirDesc: 'Nya sessioner startar i den här mappen om du inte väljer en annan. Lämna den tom för att använda din hemkatalog.',
-      defaultDirUpdated: 'Standardprojektkatalogen har uppdaterats – starta en ny chatt (Ctrl/⌘+N) för att ändringen ska gälla',
+      defaultDirDesc:
+        'Nya sessioner startar i den här mappen om du inte väljer en annan. Lämna den tom för att använda din hemkatalog.',
+      defaultDirUpdated:
+        'Standardprojektkatalogen har uppdaterats – starta en ny chatt (Ctrl/⌘+N) för att ändringen ska gälla',
       defaultsTo: label => `Standardvärdet är ${label}.`,
       change: 'Ändra',
       choose: 'Välj',
@@ -864,7 +904,7 @@ export const sv = defineLocale({
       unarchiveFailed: 'Avarkivering misslyckades',
       deleteFailed: 'Radering misslyckades',
       updateDirFailed: 'Det gick inte att uppdatera standardkatalogen',
-      clearDirFailed: 'Kunde inte rensa standardkatalogen',
+      clearDirFailed: 'Kunde inte rensa standardkatalogen'
     },
     toolsets: {
       loadingConfig: 'Läser in konfiguration',
@@ -882,20 +922,23 @@ export const sv = defineLocale({
       selectedMessage: provider => `${provider} är nu aktiv.`,
       failedSelect: provider => `Kunde inte välja ${provider}`,
       failedLoad: 'Det gick inte att läsa in verktygskonfigurationen',
-      noProviderOptions: 'Den här verktygsuppsättningen har inga leverantörsalternativ – aktivera den så fungerar den med din nuvarande konfiguration.',
+      noProviderOptions:
+        'Den här verktygsuppsättningen har inga leverantörsalternativ – aktivera den så fungerar den med din nuvarande konfiguration.',
       noProviders: 'Det finns inga leverantörer tillgängliga för den här verktygsuppsättningen just nu.',
       ready: 'Redo',
       needsSignIn: 'Kräver inloggning',
       needsSetup: 'Kräver installation',
       openamerIncluded: 'Ingår i en OpenAmer-prenumeration — logga in på OpenAmer Portal för att aktivera.',
       openamerAuthNeededTitle: 'Logga in på OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} har sparats men aktiveras inte förrän du loggar in på OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} har sparats men aktiveras inte förrän du loggar in på OpenAmer Portal.`,
       openamerAuthSignIn: 'Logga in',
       openamerAuthDoneTitle: 'OpenAmer Portal är ansluten',
       openamerAuthDoneMessage: 'Dina prenumerationsbackends är nu aktiva.',
       openamerAuthFailed: 'Inloggningen till OpenAmer Portal slutfördes inte',
       noApiKeyRequired: 'Ingen API-nyckel krävs.',
-      postSetupHint: step => `Den här backenden kräver en engångsinstallation (${step}). Körs på den här datorn — kan ta några minuter.`,
+      postSetupHint: step =>
+        `Den här backenden kräver en engångsinstallation (${step}). Körs på den här datorn — kan ta några minuter.`,
       postSetupInstalledHint: 'Installerad. Kör endast installationen igen om något är trasigt.',
       postSetupRun: 'Kör installation',
       postSetupRerun: 'Kör installationen igen',
@@ -936,9 +979,9 @@ export const sv = defineLocale({
         selectedTitle: 'Backend vald',
         selectedMessage: backend => `Terminalkommandon körs nu via ${backend}. Gäller nya sessioner.`,
         failedSelect: backend => `Kunde inte välja ${backend}`,
-        needsSetupHint: 'Du kan välja den här backenden nu – kommandon misslyckas tills konfigurationen är klar.',
-      },
-    },
+        needsSetupHint: 'Du kan välja den här backenden nu – kommandon misslyckas tills konfigurationen är klar.'
+      }
+    }
   },
   skills: {
     tabSkills: 'Färdigheter',
@@ -958,7 +1001,8 @@ export const sv = defineLocale({
     noDescription: 'Ingen beskrivning.',
     configured: 'Konfigurerad',
     needsKeys: 'Kräver nycklar',
-    visionModelHint: 'Vision använder din hjälpmodellkonfiguration – modellen som kan hantera bilder väljs där, inte per leverantör här.',
+    visionModelHint:
+      'Vision använder din hjälpmodellkonfiguration – modellen som kan hantera bilder väljs där, inte per leverantör här.',
     visionModelLink: 'Välj visionsmodell i Inställningar → Modeller',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} verktygsuppsättningar aktiverade`,
     configureToolset: label => `Konfigurera ${label}`,
@@ -984,7 +1028,7 @@ export const sv = defineLocale({
     provenance: {
       agent: 'Inlärd',
       bundled: 'Inbyggd',
-      hub: 'Hubb',
+      hub: 'Hubb'
     },
     emptyNoneFound: noun => `Inga ${noun} hittades`,
     emptyNothingMatches: query => `Inget matchar ”${query}”.`,
@@ -1002,9 +1046,11 @@ export const sv = defineLocale({
       connectingHubs: 'Ansluter till färdighetshubbar...',
       connectedHubs: 'Anslutna hubbar:',
       featured: 'Utvalda färdigheter',
-      landingHint: 'Sök i hubben för att bläddra bland installerbarafärdigheter från det officiella indexet, GitHub och communitykällor.',
+      landingHint:
+        'Sök i hubben för att bläddra bland installerbarafärdigheter från det officiella indexet, GitHub och communitykällor.',
       noResults: 'Inga matchande färdigheter hittades i hubben.',
-      resultCount: (count, ms) => `${count} resultat${count === 1 ? 'resultat' : 'resultat'}${ms !== null ? ` in ${ms}ms` : ''}`,
+      resultCount: (count, ms) =>
+        `${count} resultat${count === 1 ? 'resultat' : 'resultat'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Tidsgränsen överskreds: ${sources}`,
       installed: 'Installerad',
       install: 'Installera',
@@ -1022,7 +1068,7 @@ export const sv = defineLocale({
       trust: {
         builtin: 'inbyggd',
         trusted: 'betrodd',
-        community: 'gemenskap',
+        community: 'gemenskap'
       },
       verdictSafe: 'Säker',
       verdictCaution: 'Varning',
@@ -1040,8 +1086,8 @@ export const sv = defineLocale({
       loadFailed: 'Färdighetshubben kunde inte läsas in',
       previewFailed: 'Förhandsgranskning av färdigheten misslyckades',
       scanFailed: 'Säkerhetsskanning misslyckades',
-      searchFailed: 'Sökning i hubben misslyckades',
-    },
+      searchFailed: 'Sökning i hubben misslyckades'
+    }
   },
   starmap: {
     title: 'Minnesgraf',
@@ -1058,7 +1104,8 @@ export const sv = defineLocale({
     emptyTitle: 'Inget inlärt ännu',
     emptyDesc: 'När OpenAmer bygger färdigheter och minnen för ditt arbete visas de här.',
     share: 'Dela karta',
-    shareHint: 'Kopiera koden för att dela den här kartan, eller klistra in en för att läsa in. Den innehåller bara layouten, inte din minnes- eller färdighetstext.',
+    shareHint:
+      'Kopiera koden för att dela den här kartan, eller klistra in en för att läsa in. Den innehåller bara layouten, inte din minnes- eller färdighetstext.',
     shareTitle: 'Importera / exportera karta',
     sharePlaceholder: 'Klistra in en kartkod…',
     copy: 'Kopiera kartkod',
@@ -1068,7 +1115,7 @@ export const sv = defineLocale({
     importEmpty: 'Klistra in en kartkod för att läsa in den.',
     importSuccess: nodes => `Laddade in en karta med ${nodes} ${nodes === 1 ? 'nod' : 'noder'}.`,
     importedBadge: 'importerad karta',
-    resetToMine: 'Tillbaka till min karta',
+    resetToMine: 'Tillbaka till min karta'
   },
   agents: {
     close: 'Stäng agenter',
@@ -1098,7 +1145,7 @@ export const sv = defineLocale({
     ageDays: days => `${days}d sedan`,
     durationSeconds: seconds => `${seconds} s`,
     durationMinutes: (minutes, seconds) => `${minutes} min ${seconds} s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'Stäng kommandocentralen',
@@ -1128,7 +1175,7 @@ export const sv = defineLocale({
       generatedTag: 'Genererad',
       adoptFailed: 'Kunde inte adoptera det husdjuret.',
       toggleFailed: 'Kunde inte växla husdjuret.',
-      noneAvailable: 'Inga husdjur tillgängliga – välj ett nedan för att installera.',
+      noneAvailable: 'Inga husdjur tillgängliga – välj ett nedan för att installera.'
     },
     generatePet: {
       title: 'Generera ett husdjur',
@@ -1152,12 +1199,13 @@ export const sv = defineLocale({
       slowProviderHint: 'Det här kan ta flera minuter',
       remix: 'Remixa',
       remixConfirmTitle: 'Remixa den här stilen?',
-      remixConfirmBody: 'Det här skapar en ny uppsättning utkast med den här som utgångspunkt. Det kan ta flera minuter.',
+      remixConfirmBody:
+        'Det här skapar en ny uppsättning utkast med den här som utgångspunkt. Det kan ta flera minuter.',
       genericError: 'Genereringen misslyckades – försök igen eller välj ett förslag.',
       referenceImageTooLarge: 'Referensbilden är för stor. Använd en under 16 MB.',
       referenceImageInvalid: 'Kunde inte läsa referensbilden. Prova med en PNG, JPG, WebP eller GIF.',
       adopt: 'Använd',
-      startOver: 'Börja om',
+      startOver: 'Börja om'
     },
     installTheme: {
       title: 'Installera tema…',
@@ -1169,7 +1217,7 @@ export const sv = defineLocale({
       install: 'Installera',
       installing: 'Installerar...',
       installed: 'Installerad',
-      installs: count => `${count} installationer`,
+      installs: count => `${count} installationer`
     },
     settingsFields: 'Inställningsfält',
     mcpServers: 'MCP-servrar',
@@ -1178,49 +1226,49 @@ export const sv = defineLocale({
       maintenance: 'Underhåll',
       sessions: 'Sessioner',
       system: 'System',
-      usage: 'Användning',
+      usage: 'Användning'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostik, säkerhetskopior, kurator och minnesdata',
       sessions: 'Sök och hantera sessioner',
       system: 'Status, loggar och systemåtgärder',
-      usage: 'Token-, kostnads- och färdighetsaktivitet över tid',
+      usage: 'Token-, kostnads- och färdighetsaktivitet över tid'
     },
     nav: {
       newChat: {
         title: 'Ny session',
-        detail: 'Starta en ny session',
+        detail: 'Starta en ny session'
       },
       settings: {
         title: 'Inställningar',
-        detail: 'Konfigurera OpenAmer-skrivbordsappen',
+        detail: 'Konfigurera OpenAmer-skrivbordsappen'
       },
       skills: {
         title: 'Funktioner',
-        detail: 'Färdigheter, verktyg och MCP-servrar',
+        detail: 'Färdigheter, verktyg och MCP-servrar'
       },
       messaging: {
         title: 'Meddelanden',
-        detail: 'Konfigurera Telegram, Slack, Discord med flera',
+        detail: 'Konfigurera Telegram, Slack, Discord med flera'
       },
       artifacts: {
         title: 'Artefakter',
-        detail: 'Bläddra bland genererade utdata',
-      },
+        detail: 'Bläddra bland genererade utdata'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Sessionspanel',
-        detail: 'Sök, fäst och hantera sessioner',
+        detail: 'Sök, fäst och hantera sessioner'
       },
       system: {
         title: 'Systempanel',
-        detail: 'Gatewaystatus, loggar, omstart/uppdatering',
+        detail: 'Gatewaystatus, loggar, omstart/uppdatering'
       },
       usage: {
         title: 'Användningspanel',
-        detail: 'Token-, kostnads- och färdighetsaktivitet',
-      },
+        detail: 'Token-, kostnads- och färdighetsaktivitet'
+      }
     },
     providerNavigate: 'Navigera',
     providerSessions: 'Sessioner',
@@ -1308,8 +1356,8 @@ export const sv = defineLocale({
       actionStarted: name => `${name} startade — följer loggen...`,
       actionFailed: name => `${name} kunde inte starta`,
       running: 'Kör...',
-      viewLog: 'Åtgärdslogg',
-    },
+      viewLog: 'Åtgärdslogg'
+    }
   },
   messaging: {
     search: 'Sök meddelanden...',
@@ -1324,7 +1372,7 @@ export const sv = defineLocale({
       not_configured: 'Kräver konfiguration',
       pending_restart: 'Omstart krävs',
       retrying: 'Försöker igen',
-      startup_failed: 'Start misslyckades',
+      startup_failed: 'Start misslyckades'
     },
     unknown: 'Okänt',
     hintPendingRestart: 'Starta om gatewayen från statusfältet för att tillämpa ändringen.',
@@ -1337,7 +1385,8 @@ export const sv = defineLocale({
     required: 'Krävs',
     recommended: 'Rekommenderas',
     advanced: count => `Avancerat (${count})`,
-    noTokenNeeded: 'Den här plattformen behöver ingen token här. Använd konfigurationsguiden ovan och aktivera den sedan nedan.',
+    noTokenNeeded:
+      'Den här plattformen behöver ingen token här. Använd konfigurationsguiden ovan och aktivera den sedan nedan.',
     enabled: 'Aktiverad',
     disabled: 'Inaktiverad',
     unsavedChanges: 'Osparade ändringar',
@@ -1363,127 +1412,126 @@ export const sv = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Botnyckel',
         help: 'Skapa en bot med @BotFather och klistra in token du får.',
-        placeholder: 'Klistra in Telegram-bottoken',
+        placeholder: 'Klistra in Telegram-bottoken'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Tillåtna Telegram-användar-ID:n',
-        help: 'Rekommenderas. Kommaseparerade numeriska ID:n från @userinfobot. Utan detta kan vem som helst DM:a din bot.',
+        help: 'Rekommenderas. Kommaseparerade numeriska ID:n från @userinfobot. Utan detta kan vem som helst DM:a din bot.'
       },
       TELEGRAM_PROXY: {
         label: 'Proxyadress',
-        help: 'Behövs bara i nätverk där Telegram är blockerat.',
+        help: 'Behövs bara i nätverk där Telegram är blockerat.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Botnyckel',
-        help: 'Skapa en applikation i Discord Developer Portal, lägg till en bot och klistra sedan in dess token.',
+        help: 'Skapa en applikation i Discord Developer Portal, lägg till en bot och klistra sedan in dess token.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Tillåtna Discord-användar-ID:n',
-        help: 'Rekommenderas. Kommaseparerade Discord-användar-ID:n.',
+        help: 'Rekommenderas. Kommaseparerade Discord-användar-ID:n.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Svarsstil',
-        help: 'först, alla eller av.',
+        help: 'först, alla eller av.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Tillåt alla Discord-användare',
-        help: 'Endast för utveckling. Om det är aktiverat kan alla DM:a boten utan en tillåtelselista.',
+        help: 'Endast för utveckling. Om det är aktiverat kan alla DM:a boten utan en tillåtelselista.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Hemkanal-ID',
-        help: 'Kanal där boten skickar proaktiva meddelanden (cron-utdata, påminnelser).',
+        help: 'Kanal där boten skickar proaktiva meddelanden (cron-utdata, påminnelser).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Hemkanalnamn',
-        help: 'Visningsnamn för hemkanalen i loggar och statusutdata.',
+        help: 'Visningsnamn för hemkanalen i loggar och statusutdata.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Tillåt alla iMessage-användare',
-        help: 'Om det är aktiverat hoppas BlueBubbles tillåtelselista över.',
+        help: 'Om det är aktiverat hoppas BlueBubbles tillåtelselista över.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Tillåt alla Mattermost-användare',
+        label: 'Tillåt alla Mattermost-användare'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Hemkanal',
+        label: 'Hemkanal'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Tillåt alla QQ-användare',
+        label: 'Tillåt alla QQ-användare'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ-hemkanal',
-        help: 'Standardkanal eller grupp för cron-utskick.',
+        help: 'Standardkanal eller grupp för cron-utskick.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ-hemkanalens namn',
+        label: 'QQ-hemkanalens namn'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack-botnyckel',
         help: 'Använd bottoken från OAuth & Permissions när du har installerat din Slack-app.',
-        placeholder: 'Klistra in Slack-bottoken',
+        placeholder: 'Klistra in Slack-bottoken'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack-apptoken',
         help: 'Använd appnivåtoken som krävs för Socket Mode.',
-        placeholder: 'Klistra in Slack-apptoken',
+        placeholder: 'Klistra in Slack-apptoken'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Tillåtna Slack-användar-ID:n',
-        help: 'Rekommenderas. Kommaseparerade Slack-användar-ID:n.',
+        help: 'Rekommenderas. Kommaseparerade Slack-användar-ID:n.'
       },
       MATTERMOST_URL: {
         label: 'Server-URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Botnyckel',
+        label: 'Botnyckel'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Tillåtna användar-ID:n',
-        help: 'Rekommenderas. Kommaseparerade Mattermost-användar-ID:n.',
+        help: 'Rekommenderas. Kommaseparerade Mattermost-användar-ID:n.'
       },
       MATRIX_HOMESERVER: {
         label: 'Homeserver-URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Åtkomsttoken',
+        label: 'Åtkomsttoken'
       },
       MATRIX_USER_ID: {
         label: 'Bot-användar-ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Tillåtna Matrix-användar-ID:n',
-        help: 'Rekommenderas. Kommaseparerade användar-ID:n i formatet @user:server.',
+        help: 'Rekommenderas. Kommaseparerade användar-ID:n i formatet @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL för Signal-brygga',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL till en körande signal-cli REST-brygga.',
+        help: 'URL till en körande signal-cli REST-brygga.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Telefonnummer',
-        help: 'Numret som är registrerat med din signal-cli-brygga.',
+        help: 'Numret som är registrerat med din signal-cli-brygga.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Tillåtna Signal-användare',
-        help: 'Rekommenderas. Kommaseparerade Signal-identifierare.',
+        help: 'Rekommenderas. Kommaseparerade Signal-identifierare.'
       },
       WHATSAPP_ENABLED: {
         label: 'Aktivera WhatsApp-brygga',
-        help: 'Ställs in automatiskt av reglaget nedan. Lämna det ifred om du inte vet att du behöver det.',
+        help: 'Ställs in automatiskt av reglaget nedan. Lämna det ifred om du inte vet att du behöver det.'
       },
       WHATSAPP_MODE: {
-        label: 'Bryggläge',
+        label: 'Bryggläge'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Tillåtna WhatsApp-användare',
-        help: 'Rekommenderas. Kommaseparerade telefonnummer eller WhatsApp-ID:n.',
-      },
+        help: 'Rekommenderas. Kommaseparerade telefonnummer eller WhatsApp-ID:n.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Sök webhooks...',
@@ -1493,7 +1541,8 @@ export const sv = defineLocale({
     hint: 'Ändringar i prenumerationer laddas om direkt när mottagaren körs. Inaktiverade prenumerationer avvisar inkommande händelser.',
     empty: 'Inga webhook-prenumerationer ännu.',
     disabledTitle: 'Webhookmottagare inaktiverad',
-    disabledBody: 'Webhooks är en egen gatewayplattform. Aktivera dem här för att ta emot inkommande HTTP-händelser; chattkanaler behövs bara när en prenumeration levererar till Telegram, Discord, Slack eller en annan kanal.',
+    disabledBody:
+      'Webhooks är en egen gatewayplattform. Aktivera dem här för att ta emot inkommande HTTP-händelser; chattkanaler behövs bara när en prenumeration levererar till Telegram, Discord, Slack eller en annan kanal.',
     enable: 'Aktivera webhooks',
     enabling: 'Aktiverar...',
     enabled: (name: string) => `Aktiverad: "${name}"`,
@@ -1546,8 +1595,8 @@ export const sv = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'E-post',
-      github_comment: 'GitHub-kommentar',
-    },
+      github_comment: 'GitHub-kommentar'
+    }
   },
   profiles: {
     close: 'Stäng profiler',
@@ -1625,7 +1674,7 @@ Lämna tomt för att behålla ${mode} som standard.`,
     failedLoadSoul: 'Kunde inte läsa in SOUL.md',
     failedSaveSoul: 'Kunde inte spara SOUL.md',
     failedCreate: 'Kunde inte skapa profil',
-    failedRename: 'Kunde inte byta namn på profil',
+    failedRename: 'Kunde inte byta namn på profil'
   },
   cron: {
     close: 'Stäng cron',
@@ -1640,14 +1689,14 @@ Lämna tomt för att behålla ${mode} som standard.`,
       paused: 'pausad',
       disabled: 'inaktiverad',
       error: 'fel',
-      completed: 'slutförd',
+      completed: 'slutförd'
     },
     deliveryLabels: {
       local: 'Den här datorn',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'E-post',
+      email: 'E-post'
     },
     scheduleLabels: {
       daily: 'Dagligen',
@@ -1656,7 +1705,7 @@ Lämna tomt för att behålla ${mode} som standard.`,
       monthly: 'Månadsvis',
       hourly: 'Timvis',
       'every-15-minutes': 'Var 15:e minut',
-      custom: 'Anpassat',
+      custom: 'Anpassat'
     },
     scheduleHints: {
       daily: 'Varje dag kl. 09:00',
@@ -1665,7 +1714,7 @@ Lämna tomt för att behålla ${mode} som standard.`,
       monthly: 'Den första dagen varje månad kl. 09:00',
       hourly: 'Vid varje hel timme',
       'every-15-minutes': 'Var 15:e minut',
-      custom: 'Cron-syntax eller naturligt språk',
+      custom: 'Cron-syntax eller naturligt språk'
     },
     days: {
       '0': 'Söndag',
@@ -1675,7 +1724,7 @@ Lämna tomt för att behålla ${mode} som standard.`,
       '4': 'Torsdag',
       '5': 'Fredag',
       '6': 'Lördag',
-      '7': 'Söndag',
+      '7': 'Söndag'
     },
     dayFallback: value => `dag ${value}`,
     everyDayAt: time => `Varje dag kl. ${time}`,
@@ -1685,7 +1734,8 @@ Lämna tomt för att behålla ${mode} som standard.`,
     topOfHour: 'I början av varje timme',
     everyHourAt: minute => `Varje timme vid :${minute}`,
     newCron: 'Ny cron',
-    emptyDescNew: 'Schemalägg en prompt som ska köras enligt ett cron-uttryck. OpenAmer kör den och levererar resultaten till den destination du väljer.',
+    emptyDescNew:
+      'Schemalägg en prompt som ska köras enligt ett cron-uttryck. OpenAmer kör den och levererar resultaten till den destination du väljer.',
     emptyDescSearch: 'Prova en bredare sökning.',
     emptyTitleNew: 'Inga schemalagda jobb ännu',
     emptyTitleSearch: 'Inga träffar',
@@ -1722,7 +1772,8 @@ Lämna tomt för att behålla ${mode} som standard.`,
     editTitle: 'Redigera cron-jobb',
     createTitle: 'Nytt cron-jobb',
     editDesc: 'Uppdatera schemat, instruktionen eller leveransmålet. Ändringar gäller från nästa körning.',
-    createDesc: 'Schemalägg en instruktion att köras automatiskt. Använd cron-syntax eller en naturlig fras som "var 15:e minut".',
+    createDesc:
+      'Schemalägg en instruktion att köras automatiskt. Använd cron-syntax eller en naturlig fras som "var 15:e minut".',
     nameLabel: 'Namn',
     namePlaceholder: 'Morgonbriefing',
     promptLabel: 'Uppmaning',
@@ -1744,7 +1795,7 @@ Lämna tomt för att behålla ${mode} som standard.`,
     createAction: 'Skapa cron',
     tabs: {
       jobs: 'Jobb',
-      blueprints: 'Ritningar',
+      blueprints: 'Ritningar'
     },
     blueprints: {
       tab: 'Ritningar',
@@ -1758,8 +1809,8 @@ Lämna tomt för att behålla ${mode} som standard.`,
       loading: 'Läser in mallar...',
       failedLoad: 'Det gick inte att läsa in mallar',
       emptyTitle: 'Inga mallar tillgängliga',
-      emptyDesc: 'Det finns inga automatiseringsmallar på denna serverdel.',
-    },
+      emptyDesc: 'Det finns inga automatiseringsmallar på denna serverdel.'
+    }
   },
   artifacts: {
     search: 'Sök artefakter...',
@@ -1793,14 +1844,14 @@ Lämna tomt för att behålla ${mode} som standard.`,
     kindLink: 'länk',
     chat: 'Chatt',
     copyUrl: 'Kopiera URL',
-    copyPath: 'Kopiera sökväg',
+    copyPath: 'Kopiera sökväg'
   },
   sidebar: {
     nav: {
       'new-session': 'Ny session',
       skills: 'Funktioner',
       messaging: 'Meddelanden',
-      artifacts: 'Artefakter',
+      artifacts: 'Artefakter'
     },
     searchAria: 'Sök sessioner',
     searchPlaceholder: 'Sök sessioner…',
@@ -1832,7 +1883,7 @@ Lämna tomt för att behålla ${mode} som standard.`,
       namePlaceholder: 't.ex. Skunkworks',
       foldersLabel: 'Mappar',
       ideaLabel: 'Idé',
-      ideaPlaceholder: "Vad handlar projektet om? (sparas i IDEA.md)",
+      ideaPlaceholder: 'Vad handlar projektet om? (sparas i IDEA.md)',
       ideaGenerate: 'Generera idé',
       ideaGenerating: 'Genererar…',
       ideaShuffle: 'Slumpa mallar',
@@ -1852,8 +1903,10 @@ Lämna tomt för att behålla ${mode} som standard.`,
       copyPath: 'Kopiera sökväg',
       removeFromSidebar: 'Dölj från sidopanelen',
       createFailed: 'Kunde inte skapa projekt',
-      staleBackend: 'Uppdatera OpenAmer-backend för att skapa projekt – din backend är äldre än den här skrivbordsappen (Inställningar → Uppdateringar → Backend).',
-      deleteConfirm: 'Detta tar bort det sparade projektet från OpenAmer. Filer, git-repon och arbetsträd förblir orörda.',
+      staleBackend:
+        'Uppdatera OpenAmer-backend för att skapa projekt – din backend är äldre än den här skrivbordsappen (Inställningar → Uppdateringar → Backend).',
+      deleteConfirm:
+        'Detta tar bort det sparade projektet från OpenAmer. Filer, git-repon och arbetsträd förblir orörda.',
       startWork: 'Nytt arbetsträd',
       newWorktreeTitle: 'Nytt arbetsträd',
       newWorktreeDesc: 'Namnge grenen för detta arbetsträd.',
@@ -1874,13 +1927,15 @@ Lämna tomt för att behålla ${mode} som standard.`,
       noBranches: 'Inga grenar hittades',
       removeWorktree: 'Ta bort arbetsträd',
       removeWorktreeFailed: 'Kunde inte ta bort arbetsträd (okommittade ändringar?)',
-      removeWorktreeConfirm: 'Ta bort det från git (raderar mappen för arbetsträdet; grenen finns kvar), eller dölj bara filen från sidofältet och behåll arbetsträdet på disken.',
-      removeWorktreeDirty: 'Detta arbetsträd har okommittade ändringar. Tvinga bort det (kastar ändringarna), eller dölj bara filen och behåll det på disken.',
+      removeWorktreeConfirm:
+        'Ta bort det från git (raderar mappen för arbetsträdet; grenen finns kvar), eller dölj bara filen från sidofältet och behåll arbetsträdet på disken.',
+      removeWorktreeDirty:
+        'Detta arbetsträd har okommittade ändringar. Tvinga bort det (kastar ändringarna), eller dölj bara filen och behåll det på disken.',
       forceRemove: 'Tvinga bort',
       enter: label => `Öppna ${label}`,
       reorder: label => `Sortera om ${label}`,
       toggle: label => `Växla ${label} sessioner`,
-      back: 'Alla projekt',
+      back: 'Alla projekt'
     },
     newSessionIn: label => `Ny session i ${label}`,
     showMoreIn: (count, label) => `Visa ${count} fler i ${label}`,
@@ -1918,15 +1973,15 @@ Lämna tomt för att behålla ${mode} som standard.`,
       ageNow: 'nu',
       ageDay: 'd',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Tidigare i dag',
       yesterday: 'I går',
       thisWeek: 'Tidigare i veckan',
       lastWeek: 'Förra veckan',
-      thisMonth: 'Tidigare i månaden',
-    },
+      thisMonth: 'Tidigare i månaden'
+    }
   },
   composer: {
     message: 'Meddelande',
@@ -1937,20 +1992,20 @@ Lämna tomt för att behålla ${mode} som standard.`,
     newSessionPlaceholders: [
       'Vad bygger vi?',
       'Ge OpenAmer en uppgift',
-      "Vad tänker du på?",
+      'Vad tänker du på?',
       'Beskriv vad du behöver',
       'Vad ska vi ta oss an?',
       'Fråga vad som helst',
-      'Börja med ett mål',
+      'Börja med ett mål'
     ],
     followUpPlaceholders: [
       'Skicka en uppföljning',
       'Lägg till mer kontext',
       'Förfina begäran',
-      "Vad är nästa steg?",
+      'Vad är nästa steg?',
       'Fortsätt',
       'Ta det längre',
-      'Justera eller fortsätt',
+      'Justera eller fortsätt'
     ],
     startVoice: 'Starta röstsamtal',
     queueMessage: 'Köa meddelande',
@@ -1986,7 +2041,7 @@ Lämna tomt för att behålla ${mode} som standard.`,
       '/resume': 'återuppta en tidigare session',
       '/details': 'styr detaljnivån för transkriptet',
       '/copy': 'kopiera markering eller senaste assistentmeddelande',
-      '/quit': 'avsluta openamer',
+      '/quit': 'avsluta openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'referera filer, mappar, webbadresser, git',
@@ -1996,7 +2051,7 @@ Lämna tomt för att behålla ${mode} som standard.`,
       'composer.sendQueued': 'skicka nästa köade omgång',
       'keybinds.openPanel': 'alla tangentbordsgenvägar',
       'composer.cancel': 'stäng popover · avbryt körning',
-      'composer.history': 'växla popover / historik',
+      'composer.history': 'växla popover / historik'
     },
     attachUrlTitle: 'Bifoga en webbadress',
     attachUrlDesc: 'OpenAmer hämtar sidan och inkluderar den som kontext för denna omgång.',
@@ -2017,7 +2072,8 @@ Lämna tomt för att behålla ${mode} som standard.`,
     queueResume: 'Återuppta',
     queueResumeTip: 'Pausad av Stopp — återuppta sändningen av de köade meddelandena',
     queueStuckTitle: 'Köat meddelande skickades inte',
-    queueStuckBody: 'Ett köat meddelande misslyckades gång på gång med att skickas. Det ligger kvar i kön — försök skicka det igen.',
+    queueStuckBody:
+      'Ett köat meddelande misslyckades gång på gång med att skickas. Det ligger kvar i kön — försök skicka det igen.',
     previewUnavailable: 'Förhandsvisning ej tillgänglig',
     previewLabel: label => `Förhandsvisa ${label}`,
     couldNotPreview: label => `Kunde inte förhandsvisa ${label}`,
@@ -2047,19 +2103,19 @@ Lämna tomt för att behålla ${mode} som standard.`,
       codeReview: {
         label: 'Kodgranskning',
         description: 'Granska den aktuella ändringen för regressioner, missade kantfall och saknade tester.',
-        text: 'Granska detta för buggar, regressioner och saknade tester.',
+        text: 'Granska detta för buggar, regressioner och saknade tester.'
       },
       implementationPlan: {
         label: 'Implementeringsplan',
         description: 'Skissa ett tillvägagångssätt innan du rör koden så att diffen hålls fokuserad.',
-        text: 'Gör en kortfattad implementeringsplan innan du ändrar koden.',
+        text: 'Gör en kortfattad implementeringsplan innan du ändrar koden.'
       },
       explainThis: {
         label: 'Förklara detta',
         description: 'Gå igenom hur den valda koden fungerar och länka till nyckelfilerna.',
-        text: 'Förklara hur det här fungerar och hänvisa mig till nyckelfilerna.',
-      },
-    },
+        text: 'Förklara hur det här fungerar och hänvisa mig till nyckelfilerna.'
+      }
+    }
   },
   statusStack: {
     agents: 'Agenter',
@@ -2089,8 +2145,10 @@ Lämna tomt för att behålla ${mode} som standard.`,
       viewAsList: 'Visa som lista',
       revert: 'Återställ',
       revertAll: 'Återställ alla',
-      revertConfirm: 'Kasta bort ändringarna i den här filen och återställ den till det incheckade läget? Detta kan inte ångras.',
-      revertAllConfirm: 'Kasta bort alla ändringar och återställ filerna till det incheckade läget? Detta kan inte ångras.',
+      revertConfirm:
+        'Kasta bort ändringarna i den här filen och återställ den till det incheckade läget? Detta kan inte ångras.',
+      revertAllConfirm:
+        'Kasta bort alla ändringar och återställ filerna till det incheckade läget? Detta kan inte ångras.',
       staged: 'Stagade',
       noChanges: 'Inga ändringar',
       notRepo: 'Inte ett git-repo',
@@ -2107,13 +2165,14 @@ Lämna tomt för att behålla ${mode} som standard.`,
       openPr: 'Öppna PR',
       ghMissing: 'Installera GitHub CLI (gh) och logga in för att öppna PR:er',
       agentShip: 'Be OpenAmer att öppna PR',
-      agentShipPrompt: 'Granska de aktuella ändringarna, checka in dem med ett tydligt meddelande enligt Conventional Commits, pusha grenen och öppna en pull request.',
+      agentShipPrompt:
+        'Granska de aktuella ändringarna, checka in dem med ett tydligt meddelande enligt Conventional Commits, pusha grenen och öppna en pull request.',
       newBranch: 'Ny gren',
       branchOffFrom: base => `Ny gren från ${base}`,
       switchTo: branch => `Byt till ${branch}`,
       switchFailed: branch => `Kunde inte byta till ${branch}`,
-      worktrees: 'Arbetsträd',
-    },
+      worktrees: 'Arbetsträd'
+    }
   },
   updates: {
     stages: {
@@ -2128,7 +2187,7 @@ Lämna tomt för att behålla ${mode} som standard.`,
       done: 'Uppdateringen är klar',
       manual: 'Uppdatera från terminalen',
       guiSkew: 'Uppdatera skrivbordsappen',
-      error: 'Uppdateringen har pausats',
+      error: 'Uppdateringen har pausats'
     },
     checking: 'Söker efter uppdateringar…',
     checkFailedTitle: 'Det gick inte att söka efter uppdateringar',
@@ -2143,20 +2202,25 @@ Lämna tomt för att behålla ${mode} som standard.`,
     availableBody: 'En ny version av OpenAmer är redo att installeras.',
     availableTitleBackend: 'Backenduppdatering tillgänglig',
     availableBodyBackend: 'En nyare version av den anslutna OpenAmer-backenden är redo att installeras.',
-    availableBodyNoChangelog: 'En nyare version är redo. Versionsinformation finns inte för den här installationstypen.',
+    availableBodyNoChangelog:
+      'En nyare version är redo. Versionsinformation finns inte för den här installationstypen.',
     updateNow: 'Uppdatera nu',
     maybeLater: 'Kanske senare',
     moreChanges: count => `+ ${count} fler ändring${count === 1 ? 'ändring' : 'ändringar'} ingår.`,
     manualTitle: 'Uppdatera från terminalen',
-    manualBody: 'Du installerade OpenAmer från kommandoraden, så uppdateringar körs där också. Klistra in detta i terminalen:',
+    manualBody:
+      'Du installerade OpenAmer från kommandoraden, så uppdateringar körs där också. Klistra in detta i terminalen:',
     manualPickedUp: 'OpenAmer tar den nya versionen nästa gång du startar det.',
     guiSkewTitle: 'Uppdatera skrivbordsappen',
-    guiSkewBody: 'Backenden uppdaterades, men det här skrivbordsappspaketet ändrades inte. Uppdatera eller installera om OpenAmer-skrivbordsappen (din AppImage / .deb / .rpm) så att den matchar.',
+    guiSkewBody:
+      'Backenden uppdaterades, men det här skrivbordsappspaketet ändrades inte. Uppdatera eller installera om OpenAmer-skrivbordsappen (din AppImage / .deb / .rpm) så att den matchar.',
     copy: 'Kopiera',
     copied: 'Kopierat',
     done: 'Klart',
-    applyingBody: 'OpenAmer-uppdateraren tar över i ett eget fönster och öppnar OpenAmer automatiskt igen när den är klar. Öppna inte OpenAmer själv medan uppdateringen pågår.',
-    applyingBodyBackend: 'Den fjärranslutna backenden installerar uppdateringen och startar om. OpenAmer återansluter automatiskt när den är tillbaka.',
+    applyingBody:
+      'OpenAmer-uppdateraren tar över i ett eget fönster och öppnar OpenAmer automatiskt igen när den är klar. Öppna inte OpenAmer själv medan uppdateringen pågår.',
+    applyingBodyBackend:
+      'Den fjärranslutna backenden installerar uppdateringen och startar om. OpenAmer återansluter automatiskt när den är tillbaka.',
     applyingClose: 'Det här fönstret stängs medan uppdateringen körs, sedan öppnas OpenAmer igen av sig själv.',
     errorTitle: 'Uppdateringen slutfördes inte',
     errorBody: 'Inga problem — inget gick förlorat. Du kan försöka igen nu.',
@@ -2167,12 +2231,13 @@ Lämna tomt för att behålla ${mode} som standard.`,
       restarting: 'Backend startar om för att läsa in uppdateringen…',
       notAvailable: 'Uppdatering är inte tillgänglig för denna backend.',
       failed: 'Uppdateringen av backend misslyckades.',
-      noReturn: 'Backend kom inte tillbaka online. Uppdateringen kanske inte slutfördes — kontrollera backendvärden.',
+      noReturn: 'Backend kom inte tillbaka online. Uppdateringen kanske inte slutfördes — kontrollera backendvärden.'
     },
     appErrors: {
-      updateLocked: 'Uppdateringen avbröts: ett annat OpenAmer-fönster eller en terminal som kör openamer håller den här installationen öppen. Stäng den och försök igen.',
-      updateFailed: 'Uppdateringen slutfördes inte. Ingen fara — inget gick förlorat. Du kan försöka igen nu.',
-    },
+      updateLocked:
+        'Uppdateringen avbröts: ett annat OpenAmer-fönster eller en terminal som kör openamer håller den här installationen öppen. Stäng den och försök igen.',
+      updateFailed: 'Uppdateringen slutfördes inte. Ingen fara — inget gick förlorat. Du kan försöka igen nu.'
+    }
   },
   install: {
     stageStates: {
@@ -2180,25 +2245,29 @@ Lämna tomt för att behålla ${mode} som standard.`,
       running: 'Installerar',
       succeeded: 'Klart',
       skipped: 'Överhoppad',
-      failed: 'Misslyckades',
+      failed: 'Misslyckades'
     },
     oneTimeTitle: 'OpenAmer kräver en engångsinstallation',
-    unsupportedDesc: platform => `Automatisk förstagångsinstallation är inte tillgänglig på ${platform} ännu. Öppna Terminal och kör kommandot nedan och starta sedan om den här appen. Efterföljande starter hoppar över det här steget.`,
+    unsupportedDesc: platform =>
+      `Automatisk förstagångsinstallation är inte tillgänglig på ${platform} ännu. Öppna Terminal och kör kommandot nedan och starta sedan om den här appen. Efterföljande starter hoppar över det här steget.`,
     installCommand: 'Installationskommando',
     copyCommand: 'Kopiera kommandot',
     viewDocs: 'Visa installationsdokument',
     installTo: 'Installeras i',
     retryAfterRun: 'Jag har kört det -- försök igen',
     setupChoiceTitle: 'Konfigurera OpenAmer Desktop',
-    setupChoiceDesc: 'Anslut den här appen till en OpenAmer-gateway som du redan kör, eller installera OpenAmer lokalt på den här datorn.',
+    setupChoiceDesc:
+      'Anslut den här appen till en OpenAmer-gateway som du redan kör, eller installera OpenAmer lokalt på den här datorn.',
     connectExistingTitle: 'Anslut till befintlig OpenAmer',
     connectExistingShort: 'Anslut befintlig',
-    connectExistingDesc: 'Använd en fjärransluten backend med en sessionstoken eller inloggning i webbläsaren. Ingen lokal installation startas.',
+    connectExistingDesc:
+      'Använd en fjärransluten backend med en sessionstoken eller inloggning i webbläsaren. Ingen lokal installation startas.',
     installLocalTitle: 'Installera OpenAmer lokalt',
     installLocalDesc: 'Ladda ner OpenAmer, skapa dess Python-miljö och kör backend på den här datorn.',
     localStartUnavailable: 'Den lokala installationen kunde inte starta. Starta om OpenAmer Desktop och försök igen.',
     remoteSetupTitle: 'Anslut till befintlig OpenAmer',
-    remoteSetupDesc: 'Ange din gateway-URL. OpenAmer Desktop upptäcker om det behövs en token eller inloggning i webbläsaren.',
+    remoteSetupDesc:
+      'Ange din gateway-URL. OpenAmer Desktop upptäcker om det behövs en token eller inloggning i webbläsaren.',
     remoteUrlTitle: 'Gateway-URL',
     remoteUrlDesc: 'Använd OpenAmer-gatewayns bas-URL, inklusive https:// vid fjärranslutning.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2225,8 +2294,10 @@ Lämna tomt för att behålla ${mode} som standard.`,
     failedTitle: 'Installationen misslyckades',
     settingUpTitle: 'Konfigurerar OpenAmer Agent',
     finishingTitle: 'Slutför',
-    failedDesc: 'Ett av installationsstegen misslyckades. I Windows kan detta inträffa om en annan OpenAmer CLI- eller skrivbordsinstans körs. Stoppa alla OpenAmer-instanser som körs och försök igen. Kontrollera informationen nedan eller skrivbordsloggen för den fullständiga loggen.',
-    activeDesc: 'Det här är en engångsinstallation. OpenAmer-installatören hämtar beroenden och konfigurerar din dator. Nästa start hoppar över det här steget.',
+    failedDesc:
+      'Ett av installationsstegen misslyckades. I Windows kan detta inträffa om en annan OpenAmer CLI- eller skrivbordsinstans körs. Stoppa alla OpenAmer-instanser som körs och försök igen. Kontrollera informationen nedan eller skrivbordsloggen för den fullständiga loggen.',
+    activeDesc:
+      'Det här är en engångsinstallation. OpenAmer-installatören hämtar beroenden och konfigurerar din dator. Nästa start hoppar över det här steget.',
     progress: (completed, total) => `${completed} av ${total} steg klara`,
     currentStage: stage => ` -- nu: ${stage}`,
     fetchingManifest: 'Hämtar installationsmanifest...',
@@ -2240,10 +2311,10 @@ Lämna tomt för att behålla ${mode} som standard.`,
     transcriptSaved: 'Fullständig transkription sparad till',
     copiedOutput: 'Kopierat!',
     copyOutput: 'Kopiera utdata',
-    reloadRetry: 'Ladda om och försök igen',
+    reloadRetry: 'Ladda om och försök igen'
   },
   onboarding: {
-    headerTitle: "Låt oss komma igång med OpenAmer Agent",
+    headerTitle: 'Låt oss komma igång med OpenAmer Agent',
     headerDesc: 'Anslut en modellleverantör för att börja chatta. De flesta alternativ tar ett klick.',
     preparingInstall: 'OpenAmer slutför installationen. Det tar vanligtvis mindre än en minut vid första körningen.',
     starting: 'Startar OpenAmer…',
@@ -2251,7 +2322,7 @@ Lämna tomt för att behålla ${mode} som standard.`,
     collapse: 'Fäll ihop',
     otherProviders: 'Andra leverantörer',
     haveApiKey: 'Jag har en API-nyckel',
-    chooseLater: "Jag väljer leverantör senare",
+    chooseLater: 'Jag väljer leverantör senare',
     recommended: 'Rekommenderas',
     connected: 'Ansluten',
     featuredPitch: 'En prenumeration, 300+ ledande modeller – det rekommenderade sättet att köra OpenAmer',
@@ -2260,28 +2331,29 @@ Lämna tomt för att behålla ${mode} som standard.`,
     apiKeyOptions: {
       fireworks: {
         short: 'direkt modell-API',
-        description: 'Direkt åtkomst till modeller som drivs av Fireworks AI.',
+        description: 'Direkt åtkomst till modeller som drivs av Fireworks AI.'
       },
       openrouter: {
         short: 'en nyckel, många modeller',
-        description: 'Ger hundratals modeller bakom en enda nyckel. Bra standard för nya installationer.',
+        description: 'Ger hundratals modeller bakom en enda nyckel. Bra standard för nya installationer.'
       },
       openai: {
         short: 'Modeller i GPT-klass',
-        description: 'Direkt åtkomst till OpenAI-modeller.',
+        description: 'Direkt åtkomst till OpenAI-modeller.'
       },
       gemini: {
         short: 'Gemini-modeller',
-        description: 'Direkt åtkomst till Googles Gemini-modeller.',
+        description: 'Direkt åtkomst till Googles Gemini-modeller.'
       },
       xai: {
         short: 'Grok-modeller',
-        description: 'Direkt åtkomst till xAI:s Grok-modeller.',
+        description: 'Direkt åtkomst till xAI:s Grok-modeller.'
       },
       local: {
         short: 'självhostad',
-        description: 'Peka OpenAmer mot en lokal eller självhostad OpenAI-kompatibel endpoint (vLLM, llama.cpp, Ollama m.m.).',
-      },
+        description:
+          'Peka OpenAmer mot en lokal eller självhostad OpenAI-kompatibel endpoint (vLLM, llama.cpp, Ollama m.m.).'
+      }
     },
     backToSignIn: 'Tillbaka till inloggning',
     getKey: 'Hämta en nyckel',
@@ -2294,7 +2366,7 @@ Lämna tomt för att behålla ${mode} som standard.`,
     flowSubtitles: {
       pkce: 'Öppnar din webbläsare för inloggning och fortsätter sedan här',
       device_code: 'Öppnar en verifieringssida i din webbläsare – OpenAmer ansluter automatiskt',
-      external: 'Logga in en gång i din terminal och kom tillbaka till chatten',
+      external: 'Logga in en gång i din terminal och kom tillbaka till chatten'
     },
     startingSignIn: provider => `Startar inloggning för ${provider}...`,
     verifyingCode: provider => `Verifierar din kod med ${provider}...`,
@@ -2308,11 +2380,13 @@ Lämna tomt för att behålla ${mode} som standard.`,
     copyAuthCode: 'Kopiera auktoriseringskoden och klistra in den nedan.',
     pasteAuthCode: 'Klistra in auktoriseringskoden',
     reopenAuthPage: 'Öppna auktoriseringssidan igen',
-    autoBrowser: provider => `Vi öppnade ${provider} i din webbläsare. Auktorisera OpenAmer där så ansluts du automatiskt — inget att kopiera eller klistra in.`,
+    autoBrowser: provider =>
+      `Vi öppnade ${provider} i din webbläsare. Auktorisera OpenAmer där så ansluts du automatiskt — inget att kopiera eller klistra in.`,
     reopenSignInPage: 'Öppna inloggningssidan igen',
     waitingAuthorize: 'Väntar på att du auktoriserar...',
-    externalPending: provider => `${provider} loggar in via sin egen CLI. Kör det här kommandot i en terminal, kom sedan tillbaka och välj "Jag har loggat in":`,
-    signedIn: "Jag har loggat in",
+    externalPending: provider =>
+      `${provider} loggar in via sin egen CLI. Kör det här kommandot i en terminal, kom sedan tillbaka och välj "Jag har loggat in":`,
+    signedIn: 'Jag har loggat in',
     deviceCodeOpened: provider => `Vi öppnade ${provider} i din webbläsare. Ange den här koden där:`,
     reopenVerification: 'Öppna verifieringssidan igen',
     copy: 'Kopiera',
@@ -2323,7 +2397,7 @@ Lämna tomt för att behålla ${mode} som standard.`,
     price: (input, output) => `${input} in / ${output} ut per Mtok`,
     change: 'Ändra',
     startChatting: 'Börja',
-    docs: provider => `${provider}-dokumentation`,
+    docs: provider => `${provider}-dokumentation`
   },
   modelPicker: {
     title: 'Byt modell',
@@ -2339,13 +2413,13 @@ Lämna tomt för att behålla ${mode} som standard.`,
     free: 'Gratis',
     freeTier: 'Gratisnivå',
     priceTitle: 'Pris för indata/utdata per miljon token',
-    wasPrice: 'var',
+    wasPrice: 'var'
   },
   modelVisibility: {
     title: 'Modeller',
     search: 'Sök modeller',
     noAuthenticatedProviders: 'Inga autentiserade leverantörer.',
-    addProvider: 'Lägg till leverantör…',
+    addProvider: 'Lägg till leverantör…'
   },
   shell: {
     windowControls: 'Fönsterkontroller',
@@ -2356,7 +2430,7 @@ Lämna tomt för att behålla ${mode} som standard.`,
       noModels: 'Inga modeller hittades',
       editModels: 'Redigera modeller…',
       refreshModels: 'Uppdatera modeller',
-      fast: 'Snabb',
+      fast: 'Snabb'
     },
     modelOptions: {
       noOptions: 'Inga alternativ för den här modellen',
@@ -2372,7 +2446,7 @@ Lämna tomt för att behålla ${mode} som standard.`,
       max: 'Max',
       ultra: 'Ultra',
       updateFailed: 'Uppdatering av modelalternativ misslyckades',
-      fastFailed: 'Uppdatering av snabbläge misslyckades',
+      fastFailed: 'Uppdatering av snabbläge misslyckades'
     },
     gatewayMenu: {
       gateway: 'Nätport',
@@ -2387,7 +2461,7 @@ Lämna tomt för att behålla ${mode} som standard.`,
       connection: label => `Anslutning: ${label}`,
       recentActivity: 'Senaste aktivitet',
       viewAllLogs: 'Visa alla loggar →',
-      messagingPlatforms: 'Meddelandeplattformar',
+      messagingPlatforms: 'Meddelandeplattformar'
     },
     approvalMode: {
       title: 'Godkännandeläge',
@@ -2397,14 +2471,15 @@ Lämna tomt för att behålla ${mode} som standard.`,
       smart: 'Smart',
       smartDescription: 'Bedöm åtgärder automatiskt och fråga vid behov',
       off: 'Av',
-      offDescription: 'Kör utan godkännandefrågor',
+      offDescription: 'Kör utan godkännandefrågor'
     },
     statusbar: {
       unknown: 'okänt',
       restart: 'starta om',
       update: 'uppdatera',
       updateInProgress: 'Uppdatering pågår',
-      commitsBehind: (count, branch) => `${count} incheckning${count === 1 ? 'incheckning' : 'incheckningar'} bakom ${branch}`,
+      commitsBehind: (count, branch) =>
+        `${count} incheckning${count === 1 ? 'incheckning' : 'incheckningar'} bakom ${branch}`,
       desktopVersion: version => `OpenAmer Skrivbord v${version}`,
       backendVersion: version => `Serverdel v${version}`,
       clientLabel: version => `klient v${version}`,
@@ -2453,18 +2528,19 @@ Lämna tomt för att behålla ${mode} som standard.`,
           skills: 'Färdigheter',
           subagent_definitions: 'Subagentdefinitioner',
           system_prompt: 'Systemprompt',
-          tool_definitions: 'Verktygsdefinitioner',
+          tool_definitions: 'Verktygsdefinitioner'
         },
         empty: 'Ingen kontextdata ännu',
         loading: 'Läser in fördelning…',
         percentFull: percent => `${percent}% fullt`,
         title: 'Kontextanvändning',
-        tokenSummary: (used, max) => `${used} / ${max} token`,
+        tokenSummary: (used, max) => `${used} / ${max} token`
       },
       openContextUsage: 'Öppna kontextanvändningens fördelning',
       session: 'Session',
       runtimeSessionElapsed: 'Körningssessionens förflutna tid',
-      yoloOn: 'YOLO på — godkänner farliga kommandon automatiskt. Klicka för att stänga av. Skift+klick växlar det globalt.',
+      yoloOn:
+        'YOLO på — godkänner farliga kommandon automatiskt. Klicka för att stänga av. Skift+klick växlar det globalt.',
       yoloOff: 'YOLO av — klicka för att automatiskt godkänna farliga kommandon. Skift+klick växlar det globalt.',
       modelNone: 'ingen',
       noModel: 'ingen modell',
@@ -2472,8 +2548,8 @@ Lämna tomt för att behålla ${mode} som standard.`,
       openModelPicker: 'Öppna modellväljaren',
       modelPinned: 'fäst av dig; nya chattar använder denna i stället för standarden i Inställningar',
       modelTitle: (provider, model) => `Modell · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Höger sidofält',
@@ -2509,7 +2585,7 @@ Lämna tomt för att behålla ${mode} som standard.`,
     terminalNew: 'Ny terminal',
     terminalCloseOthers: 'Stäng övriga',
     terminalCloseAll: 'Stäng alla',
-    addToChat: 'Lägg till i chatten',
+    addToChat: 'Lägg till i chatten'
   },
   preview: {
     tab: 'Förhandsgranska',
@@ -2543,7 +2619,8 @@ Lämna tomt för att behålla ${mode} som standard.`,
     unsavedChanges: 'Osparade ändringar',
     saveFailed: message => `Det gick inte att spara: ${message}`,
     diskChangedTitle: 'Filen har ändrats på disken',
-    diskChangedBody: 'Den här filen har ändrats sedan du öppnade den. Skriv över den med din version, eller släng dina ändringar och läs in den igen?',
+    diskChangedBody:
+      'Den här filen har ändrats sedan du öppnade den. Skriv över den med din version, eller släng dina ändringar och läs in den igen?',
     overwrite: 'Skriv över',
     discardReload: 'Släng och läs in igen',
     console: {
@@ -2564,7 +2641,7 @@ Lämna tomt för att behålla ${mode} som standard.`,
       empty: 'Inga konsolmeddelanden ännu.',
       promptHeader: 'Förhandsgranskningskonsol:',
       sentTitle: 'Skickat till chatt',
-      sentMessage: count => `${count} loggpost${count === 1 ? 'y' : 'ies'} tillagd i skrivfältet`,
+      sentMessage: count => `${count} loggpost${count === 1 ? 'y' : 'ies'} tillagd i skrivfältet`
     },
     web: {
       appFailedToBoot: 'Förhandsgranskningsappen kunde inte starta',
@@ -2582,24 +2659,27 @@ Lämna tomt för att behålla ${mode} som standard.`,
       showConsole: 'Visa förhandsgranskningskonsolen',
       hideDevTools: 'Dölj förhandsgranskningens utvecklarverktyg',
       openDevTools: 'Öppna förhandsgranskningens utvecklarverktyg',
-      finishedRestarting: message => `OpenAmer har startat om förhandsgranskningsservern${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer har startat om förhandsgranskningsservern${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Omstart av servern misslyckades: ${message}`,
       unknownError: 'okänt fel',
       restartedTitle: 'Förhandsgranskningsservern har startats om',
       reloadingNow: 'Laddar om förhandsgranskningen nu.',
       restartFailedTitle: 'Omstart av förhandsgranskningen misslyckades',
       restartFailedMessage: 'OpenAmer kunde inte starta om servern.',
-      stillWorking: 'OpenAmer arbetar fortfarande, men inget omstartsresultat har kommit ännu. Serverkommandot kan köras i förgrunden.',
+      stillWorking:
+        'OpenAmer arbetar fortfarande, men inget omstartsresultat har kommit ännu. Serverkommandot kan köras i förgrunden.',
       workspaceReloading: 'Arbetsytan ändrades, läser in förhandsgranskningen igen',
       fileChanged: url => `Filen ändrades, läser in förhandsgranskningen igen: ${url}`,
       filesChanged: (count, url) => `${count} filändringar, läser in förhandsgranskningen igen: ${url}`,
       watchFailed: message => `Kunde inte bevaka förhandsgranskningsfilen: ${message}`,
-      moduleMimeDescription: 'Modulskript serveras med fel MIME-typ. Det innebär vanligtvis att en statisk filserver serverar en Vite/React-app i stället för projektets utvecklingsserver.',
+      moduleMimeDescription:
+        'Modulskript serveras med fel MIME-typ. Det innebär vanligtvis att en statisk filserver serverar en Vite/React-app i stället för projektets utvecklingsserver.',
       loadFailedConsole: (code, message) => `Inläsning misslyckades${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Förhandsgranskningssidan kunde inte nås.',
       openTarget: url => `Öppna ${url}`,
-      fallbackTitle: 'Förhandsgranska',
-    },
+      fallbackTitle: 'Förhandsgranska'
+    }
   },
   zones: {
     showHeader: 'Visa sidhuvud',
@@ -2607,7 +2687,8 @@ Lämna tomt för att behålla ${mode} som standard.`,
     minimize: 'Minimera',
     restore: 'Återställ',
     closeRunningTitle: 'Stäng flik som körs?',
-    closeRunningBody: 'Den här chatten arbetar fortfarande (eller väntar på din inmatning). Om du stänger fliken döljs den – sessionen behåller sina framsteg och kan öppnas igen från sidopanelen.',
+    closeRunningBody:
+      'Den här chatten arbetar fortfarande (eller väntar på din inmatning). Om du stänger fliken döljs den – sessionen behåller sina framsteg och kan öppnas igen från sidopanelen.',
     closeRunningConfirm: 'Stäng flik',
     closeOthers: 'Stäng övriga',
     closeToRight: 'Stäng till höger',
@@ -2644,27 +2725,16 @@ Lämna tomt för att behålla ${mode} som standard.`,
     layoutNamePlaceholder: fallback => `Layoutnamn (${fallback})`,
     saveApply: 'Spara och använd',
     notExpressible: 'den här ordningen hakar i varandra (pinwheel) – kan ännu inte uttryckas som nästlade delningar',
-    zoneCount: count => `${count} zoner`,
+    zoneCount: count => `${count} zoner`
   },
   assistant: {
     thread: {
       loadingSession: 'Läser in session',
       showEarlier: 'Visa tidigare meddelanden',
       loadingResponse: 'OpenAmer läser in ett svar',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Tänker',
       today: time => `I dag, ${time}`,
@@ -2691,7 +2761,7 @@ Lämna tomt för att behålla ${mode} som standard.`,
       restoreNext: 'Återställ nästa kontrollpunkt',
       goForward: 'Gå framåt',
       sendEdited: 'Skicka redigerat meddelande',
-      attachingFile: 'Bifogar…',
+      attachingFile: 'Bifogar…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer-gatewayen är inte ansluten',
@@ -2704,8 +2774,9 @@ Lämna tomt för att behålla ${mode} som standard.`,
       jumpToApproval: 'Godkännande krävs',
       reject: 'Avvisa',
       alwaysTitle: 'Tillåt alltid det här kommandot?',
-      alwaysDescription: pattern => `Detta lägger till mönstret “${pattern}” i din permanenta tillåtelselista (~/.openamer/config.yaml). OpenAmer frågar inte igen för kommandon som detta – i den här sessionen eller någon framtida.`,
-      alwaysAllow: 'Tillåt alltid',
+      alwaysDescription: pattern =>
+        `Detta lägger till mönstret “${pattern}” i din permanenta tillåtelselista (~/.openamer/config.yaml). OpenAmer frågar inte igen för kommandon som detta – i den här sessionen eller någon framtida.`,
+      alwaysAllow: 'Tillåt alltid'
     },
     clarify: {
       notReady: 'Förtydligandeförfrågan är inte klar än',
@@ -2719,7 +2790,8 @@ Lämna tomt för att behålla ${mode} som standard.`,
       continueLabel: 'Fortsätt',
       lateAnswer: (question, choice) => `Ang: "${question}" – mitt svar: ${choice}`,
       lateAnswerTip: 'Utforma det här svaret som ett uppföljningsmeddelande',
-      lateAnswerHint: 'Den här frågan väntar inte längre. Välj ett alternativ för att utforma det som ett uppföljningsmeddelande.',
+      lateAnswerHint:
+        'Den här frågan väntar inte längre. Välj ett alternativ för att utforma det som ett uppföljningsmeddelande.'
     },
     tool: {
       code: 'Kod',
@@ -2755,11 +2827,11 @@ Lämna tomt för att behålla ${mode} som standard.`,
         ran: 'Körde',
         running: 'Kör',
         ranCode: 'Körde kod',
-        runningCode: 'Skriptkörning',
+        runningCode: 'Skriptkörning'
       },
       prefixes: {
         browser: 'Webbläsare',
-        web: 'Webb',
+        web: 'Webb'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2767,132 +2839,133 @@ Lämna tomt för att behålla ${mode} som standard.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Kör ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Kör ${action.toLowerCase()}`,
+        runningTool: action => `Kör ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Klickade på sidelement',
           pending: 'Klickar på sidelement',
-          pendingAction: 'Klickar',
+          pendingAction: 'Klickar'
         },
         browser_fill: {
           done: 'Fyllde i formulärfält',
           pending: 'Fyller i formulärfält',
-          pendingAction: 'Fyller i',
+          pendingAction: 'Fyller i'
         },
         browser_navigate: {
           done: 'Öppnade sida',
           pending: 'Öppnar sida',
-          pendingAction: 'Öppnar',
+          pendingAction: 'Öppnar'
         },
         browser_snapshot: {
           done: 'Tog sidögonblicksbild',
           pending: 'Tar sidögonblicksbild',
-          pendingAction: 'Tar',
+          pendingAction: 'Tar'
         },
         browser_take_screenshot: {
           done: 'Tog skärmbild',
           pending: 'Tar skärmbild',
-          pendingAction: 'Tar',
+          pendingAction: 'Tar'
         },
         browser_type: {
           done: 'Skrev på sidan',
           pending: 'Skriver på sidan',
-          pendingAction: 'Skriver',
+          pendingAction: 'Skriver'
         },
         clarify: {
           done: 'Ställde en fråga',
           pending: 'Ställer en fråga',
-          pendingAction: 'Frågar',
+          pendingAction: 'Frågar'
         },
         cronjob: {
           done: 'Cronjobb',
           pending: 'Schemalägger cronjobb',
-          pendingAction: 'Schemalägger',
+          pendingAction: 'Schemalägger'
         },
         edit_file: {
           done: 'Redigerade fil',
           pending: 'Redigerar fil',
-          pendingAction: 'Redigerar',
+          pendingAction: 'Redigerar'
         },
         execute_code: {
           done: 'Körde kod',
           pending: 'Skriptar',
-          pendingAction: 'Skriptar',
+          pendingAction: 'Skriptar'
         },
         image_generate: {
           done: 'Genererade bild',
           pending: 'Genererar bild',
-          pendingAction: 'Genererar',
+          pendingAction: 'Genererar'
         },
         list_files: {
           done: 'Listade filer',
           pending: 'Listar filer',
-          pendingAction: 'Listar',
+          pendingAction: 'Listar'
         },
         patch: {
           done: 'Patchade fil',
           pending: 'Patchar fil',
-          pendingAction: 'Patchar',
+          pendingAction: 'Patchar'
         },
         read_file: {
           done: 'Läste fil',
           pending: 'Läser fil',
-          pendingAction: 'Läser',
+          pendingAction: 'Läser'
         },
         search_files: {
           done: 'Sökte i filer',
           pending: 'Söker i filer',
-          pendingAction: 'Söker',
+          pendingAction: 'Söker'
         },
         session_search_recall: {
           done: 'Sökte i sessionshistorik',
           pending: 'Söker i sessionshistorik',
-          pendingAction: 'Söker',
+          pendingAction: 'Söker'
         },
         terminal: {
           done: 'Körde kommando',
           pending: 'Kör kommando',
-          pendingAction: 'Kör',
+          pendingAction: 'Kör'
         },
         todo: {
           done: 'Uppdaterade att-göra',
           pending: 'Uppdaterar att-göra',
-          pendingAction: 'Uppdaterar',
+          pendingAction: 'Uppdaterar'
         },
         vision_analyze: {
           done: 'Analyserade bild',
           pending: 'Analyserar bild',
-          pendingAction: 'Analyserar',
+          pendingAction: 'Analyserar'
         },
         web_extract: {
           done: 'Läste webbsida',
           pending: 'Läser webbsida',
-          pendingAction: 'Läser',
+          pendingAction: 'Läser'
         },
         web_search: {
           done: 'Sökte på webben',
           pending: 'Söker på webben',
-          pendingAction: 'Söker',
+          pendingAction: 'Söker'
         },
         write_file: {
           done: 'Redigerade fil',
           pending: 'Redigerar fil',
-          pendingAction: 'Redigerar',
-        },
-      },
-    },
+          pendingAction: 'Redigerar'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer-gatewayen är inte ansluten',
     sudoSendFailed: 'Kunde inte skicka sudo-lösenordet',
     secretSendFailed: 'Kunde inte skicka hemligheten',
     sudoTitle: 'Administratörslösenord',
-    sudoDesc: 'OpenAmer behöver ditt sudo-lösenord för att köra ett privilegierat kommando. Det skickas endast till din lokala agent.',
+    sudoDesc:
+      'OpenAmer behöver ditt sudo-lösenord för att köra ett privilegierat kommando. Det skickas endast till din lokala agent.',
     sudoPlaceholder: 'sudo-lösenord',
     secretTitle: 'Hemlighet krävs',
     secretDesc: 'OpenAmer behöver en inloggningsuppgift för att fortsätta.',
-    secretPlaceholder: 'hemligt värde',
+    secretPlaceholder: 'hemligt värde'
   },
   desktop: {
     audioReadFailed: 'Kunde inte läsa inspelat ljud',
@@ -2909,7 +2982,8 @@ Lämna tomt för att behålla ${mode} som standard.`,
     yoloSystem: active => `YOLO ${active ? 'på' : 'av'} för den här sessionen`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Kunde inte växla YOLO',
-    profileStatus: current => `Profil: ${current}. Använd /profile <namn> eller väljaren "Ny session" för att starta en chatt i en annan profil.`,
+    profileStatus: current =>
+      `Profil: ${current}. Använd /profile <namn> eller väljaren "Ny session" för att starta en chatt i en annan profil.`,
     unknownProfile: 'Okänd profil',
     noProfileNamed: (target, available) => `Ingen profil med namnet "${target}". Tillgängliga: ${available}`,
     newChatsProfile: name => `Nya chattar använder profilen ${name}.`,
@@ -2919,8 +2993,9 @@ Lämna tomt för att behålla ${mode} som standard.`,
     regenerateFailed: 'Kunde inte återskapa',
     editFailed: 'Kunde inte redigera',
     resumeFailed: 'Kunde inte återuppta',
-    resumeStrandedTitle: "Kunde inte läsa in den här sessionen",
-    resumeStrandedBody: 'Anslutningen till den här sessionen misslyckades och de automatiska försöken gav upp. Kontrollera att gatewayen körs och försök igen.',
+    resumeStrandedTitle: 'Kunde inte läsa in den här sessionen',
+    resumeStrandedBody:
+      'Anslutningen till den här sessionen misslyckades och de automatiska försöken gav upp. Kontrollera att gatewayen körs och försök igen.',
     resumeRetry: 'Försök igen',
     nothingToBranch: 'Inget att skapa gren från',
     branchNeedsChat: 'Starta eller återuppta en chatt innan du skapar en gren.',
@@ -2960,31 +3035,31 @@ Lämna tomt för att behålla ${mode} som standard.`,
       success: platform => `Överlämnad till ${platform}. Återuppta här när som helst.`,
       systemNote: platform => `↻ Överlämnad till ${platform} — återuppta här när som helst.`,
       failed: error => `Överlämning misslyckades: ${error}`,
-      timedOut: 'Tidsgränsen överskreds i väntan på gatewayen. Körs `openamer gateway`?',
-    },
+      timedOut: 'Tidsgränsen överskreds i väntan på gatewayen. Körs `openamer gateway`?'
+    }
   },
   errors: {
     genericFailure: 'Något gick fel',
     boundaryTitle: 'Något gick sönder i gränssnittet',
     boundaryDesc: 'Vyn stötte på ett oväntat fel. Dina chattar och inställningar är säkra.',
     reloadWindow: 'Ladda om fönstret',
-    openLogs: 'Öppna loggar',
+    openLogs: 'Öppna loggar'
   },
   ui: {
     search: {
-      clear: 'Rensa sökning',
+      clear: 'Rensa sökning'
     },
     pagination: {
       label: 'paginering',
       previous: 'Föreg.',
       previousAria: 'Gå till föregående sida',
       next: 'Nästa',
-      nextAria: 'Gå till nästa sida',
+      nextAria: 'Gå till nästa sida'
     },
     sidebar: {
       title: 'Sidofält',
       description: 'Visar den mobila sidopanelen.',
-      toggle: 'Växla sidopanel',
-    },
-  },
+      toggle: 'Växla sidopanel'
+    }
+  }
 })

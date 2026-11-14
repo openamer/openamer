@@ -45,7 +45,7 @@ export const aa = defineLocale({
     delete: 'Tir',
     docs: 'Kutbe',
     done: 'Xongol',
-    tryHint: term => `Try “${term}”`,
+    tryHint: term => `Try “${term}”`
   },
   fileMenu: {
     revealFinder: 'Finder addal yay',
@@ -60,7 +60,7 @@ export const aa = defineLocale({
     renameLabel: 'Qusba magac',
     deleteBody: 'Trashâ fan ittankum — teetih gacisuh dudda.',
     pathCopied: 'Gita koppiimte',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop massoowa',
@@ -69,7 +69,7 @@ export const aa = defineLocale({
       loadingSettings: 'OpenAmer settings yayla',
       loadingSessions: 'Sessions qusbê yayla',
       startingDesktopConnection: 'Desktop connection abta',
-      startingOpenAmerDesktop: 'OpenAmer Desktop abta…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop abta…'
     },
     errors: {
       backgroundExited: 'OpenAmer background process yufne.',
@@ -78,7 +78,7 @@ export const aa = defineLocale({
       desktopBootFailed: 'Desktop boot rade.',
       gatewayConnectionLost: 'Gateway xagar bayte',
       gatewaySignInRequired: 'Gateway sign-in faxximta',
-      ipcBridgeUnavailable: 'Desktop IPC bridge mantaba.',
+      ipcBridgeUnavailable: 'Desktop IPC bridge mantaba.'
     },
     failure: {
       title: 'OpenAmer tambulle wayte',
@@ -103,10 +103,11 @@ export const aa = defineLocale({
       identityProvider: 'ku nammay yacee',
       gatewaySettings: 'Gaatee sittinnoota',
       signOutAndSignIn: 'Kaffisi & seeni',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   notifications: {
     region: 'Warkat',
@@ -118,7 +119,8 @@ export const aa = defineLocale({
     copyDetail: 'Xaah kobii',
     copyDetailFailed: 'Warkatih xaah kobii mafaxximte',
     backendOutOfDateTitle: 'Backend wakti siise',
-    backendOutOfDateMessage: 'OpenAmer backend ta desktop buildik xayuk raqteeh nummah taamitam maayakoona. Ittin muxxusuh Update.',
+    backendOutOfDateMessage:
+      'OpenAmer backend ta desktop buildik xayuk raqteeh nummah taamitam maayakoona. Ittin muxxusuh Update.',
     installMethodUnsupportedTitle: 'Cabis kara mamuxxusimta',
     updateOpenAmer: 'OpenAmer Update',
     updateReadyTitle: 'Update qari',
@@ -127,11 +129,12 @@ export const aa = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT ELEVENLABS_API_KEY faxxam.',
       elevenLabsRejectedKey: 'ElevenLabs API caagi (401) te wheelem.',
       gatewayAuthFailed: 'Gateway cagloyta te wheelem — API_SERVER_KEY kutbeh.',
-      methodNotAllowed: 'Desktop backend woh request te wheelem (405 Method Not Allowed). OpenAmer Desktop eddeqqaltoh kablale.',
+      methodNotAllowed:
+        'Desktop backend woh request te wheelem (405 Method Not Allowed). OpenAmer Desktop eddeqqaltoh kablale.',
       microphonePermission: 'Maayikrofoon idini te wheelem.',
       openaiRejectedApiKey: 'OpenAI API caagi te wheelem.',
       openaiTtsNeedsKey: 'OpenAI TTS VOICE_TOOLS_OPENAI_KEY hinnay OPENAI_API_KEY faxxam.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Speech-to-text voice modeh xagteh masso.',
@@ -150,7 +153,7 @@ export const aa = defineLocale({
       transcriptionFailed: 'Voice transcription te wheelem',
       transcriptionUnavailable: 'Maysó transkripsiyoon matan.',
       tryRecordingAgain: 'Maysó duubit qaagit.',
-      unavailable: 'Maysó matan.',
+      unavailable: 'Maysó matan.'
     },
     native: {
       approvalTitle: 'Oggol faxximta.',
@@ -163,10 +166,10 @@ export const aa = defineLocale({
       turnErrorTitle: 'Fanti kasaarite.',
       backgroundDoneTitle: 'Derre taama xummumte.',
       backgroundFailedTitle: 'Derre taama kasaarite.',
-      creditsTitle: 'Kredoot',
+      creditsTitle: 'Kredoot'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer kredoot matan.',
@@ -174,7 +177,7 @@ export const aa = defineLocale({
     openBilling: 'Bil aagi.',
     addCredits: 'Kredoot ossi.',
     dismiss: 'Cubbuse.',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Sidebar qellisi.',
@@ -191,7 +194,7 @@ export const aa = defineLocale({
     openStarmap: 'Xus graph fak',
     openKeybinds: 'Kibord shortcut',
     layoutEditor: 'Layout editoor',
-    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout',
+    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout'
   },
   keybinds: {
     title: 'Kibord shortcut',
@@ -206,7 +209,7 @@ export const aa = defineLocale({
       profiles: 'Profiilool',
       session: 'Muddo',
       navigation: 'Gexo',
-      view: 'Muuqa',
+      view: 'Muuqa'
     },
     actions: {
       'keybinds.openPanel': 'Kibordh gexooyin fak',
@@ -285,10 +288,10 @@ export const aa = defineLocale({
       'composer.help': 'Cato sissik',
       'composer.history': 'Popover / taariix korsa',
       'composer.cancel': 'Popover xig · ruk bayis',
-      'view.closeTab': 'Tab cuf',
+      'view.closeTab': 'Tab cuf'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   language: {
     label: 'Af',
@@ -297,7 +300,7 @@ export const aa = defineLocale({
     saveError: 'Af cusub faalet',
     switchTo: 'Af bedel',
     searchPlaceholder: 'Af cee…',
-    noResults: 'Af meyta',
+    noResults: 'Af meyta'
   },
   settings: {
     closeSettings: 'Settings xig',
@@ -322,11 +325,12 @@ export const aa = defineLocale({
       notifications: 'Xaggixiyo',
       plugins: 'Plugin',
       providers: 'Uummattoota',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'Desktop pluginoon',
-      blurb: 'UI farakta ta appih addal yeyyeeqen — buildih addal luken, hinnay desktop-plugins folderih addal qambisen (OpenAmer yazbeh tan caalatal). Disable kah abek plugin live yayxeereeh restartak lakal raaqa.',
+      blurb:
+        'UI farakta ta appih addal yeyyeeqen — buildih addal luken, hinnay desktop-plugins folderih addal qambisen (OpenAmer yazbeh tan caalatal). Disable kah abek plugin live yayxeereeh restartak lakal raaqa.',
       openFolder: 'Plugin folder qambis',
       rescan: 'Wada gexo',
       reveal: 'File manager addal yaybul',
@@ -337,41 +341,42 @@ export const aa = defineLocale({
       kinds: {
         bundled: 'wadar tan',
         disk: 'disk addal',
-        runtime: 'runtime',
+        runtime: 'runtime'
       },
-      count: n => `${n} installed`,
+      count: n => `${n} installed`
     },
     notifications: {
       title: 'Notifikaasion',
-      intro: 'Asli desktop notifikaasion, appil addal tan toastittek baxsime. Ta notifikaasion device addal tan — kulli kompiyutar isih settings kak yaxxeere.',
+      intro:
+        'Asli desktop notifikaasion, appil addal tan toastittek baxsime. Ta notifikaasion device addal tan — kulli kompiyutar isih settings kak yaxxeere.',
       enableAll: 'Notifikaasion daacris',
       enableAllDesc: 'Master switch. Ta switch dafe, gexah notifikaasion inkih calle.',
       focusedHint: 'Xumur notifikaasion OpenAmer derre addal yan waqdi kelta.',
       kinds: {
         approval: {
           label: 'Idni faxximta',
-          description: 'Amri sih xaagite, atu kaa raggaasitoh hinnay teetitoh.',
+          description: 'Amri sih xaagite, atu kaa raggaasitoh hinnay teetitoh.'
         },
         input: {
           label: 'Cukus faxximta',
-          description: 'OpenAmer esek yab yeexe, hinnay password hinnay qellisa faxximta.',
+          description: 'OpenAmer esek yab yeexe, hinnay password hinnay qellisa faxximta.'
         },
         turnDone: {
           label: 'Gaaba xayyoysime',
-          description: 'Foor xumurte OpenAmer derre addal yan waqdi.',
+          description: 'Foor xumurte OpenAmer derre addal yan waqdi.'
         },
         turnError: {
           label: 'Foor kasaarite',
-          description: 'Foor ceelalloh xumurte.',
+          description: 'Foor ceelalloh xumurte.'
         },
         backgroundDone: {
           label: 'Derre taama xumurte.',
-          description: 'Derre terminal amri xumurte.',
+          description: 'Derre terminal amri xumurte.'
         },
         credits: {
           label: 'Kredit notifikaasion',
-          description: 'Kareedit cattim xayyoysime hinnay caagisime.',
-        },
+          description: 'Kareedit cattim xayyoysime hinnay caagisime.'
+        }
       },
       test: 'Notifikasyoon test ruub',
       testTitle: 'OpenAmer',
@@ -380,7 +385,7 @@ export const aa = defineLocale({
       testUnsupported: 'Ta sirri native notifikasyoon mafakka.',
       completionSoundTitle: 'Xabanqo Sada',
       completionSoundDesc: 'Agent turn xabanqo waqdi tani. Preset doorit, takke preview ab.',
-      completionSoundPreview: 'Dura',
+      completionSoundPreview: 'Dura'
     },
     sections: {
       appearance: 'Mudun',
@@ -390,7 +395,7 @@ export const aa = defineLocale({
       voice: 'Sagvan',
       advanced: 'Fakim',
       model: 'Modeli',
-      chat: 'Chaat',
+      chat: 'Chaat'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop elle',
@@ -398,21 +403,21 @@ export const aa = defineLocale({
       gateway: 'Gateway xirrik...',
       keys: 'API keys cund...',
       mcp: 'MCP servers cund...',
-      sessions: 'Archived sessions cund...',
+      sessions: 'Archived sessions cund...'
     },
     modeOptions: {
       light: {
         label: 'Ifu',
-        description: 'Desktop surface ifu-le',
+        description: 'Desktop surface ifu-le'
       },
       dark: {
         label: 'Dite',
-        description: 'Workspace ifu-hinna',
+        description: 'Workspace ifu-hinna'
       },
       system: {
         label: 'Sistem',
-        description: 'OS mili katay',
-      },
+        description: 'OS mili katay'
+      }
     },
     appearance: {
       title: 'Mili',
@@ -424,7 +429,8 @@ export const aa = defineLocale({
       translucencyDesc: 'Ku desktop window inkih addal able. macOS kee Windows dubuk.',
       backdropDesc: 'Chat derreh sanam sawir ifu-hinna.',
       embedsTitle: 'Addal Embed',
-      embedsDesc: 'Gaddo-le previews qarboq-le saayitittek (YouTube, X, …) oobaan. Esser isin inkih idini takkeen innah bakkal yaybul; Waqti inkih nimmaysan oobaan; Cuf tu-male linkitte wadirta.',
+      embedsDesc:
+        'Gaddo-le previews qarboq-le saayitittek (YouTube, X, …) oobaan. Esser isin inkih idini takkeen innah bakkal yaybul; Waqti inkih nimmaysan oobaan; Cuf tu-male linkitte wadirta.',
       embedsAsk: 'Esser',
       embedsAlways: 'Waqti inkih',
       embedsOff: 'Cuf',
@@ -435,7 +441,8 @@ export const aa = defineLocale({
       themeTitle: 'Xeel',
       themeDesc: 'Desktop palette-qittek kalah. Doorime-le caalih bagul oobis.',
       installTitle: 'VS Code-k oobis',
-      installDesc: 'Marketplace extension id (e.g. dracula-theme.theme-dracula) duugis, isi kee boolo xeel desktop palette-ih gurrusuh.',
+      installDesc:
+        'Marketplace extension id (e.g. dracula-theme.theme-dracula) duugis, isi kee boolo xeel desktop palette-ih gurrusuh.',
       installButton: 'Oobis',
       installing: 'Oobisak…',
       installError: 'Tama xeel oobisuh duudewe.',
@@ -443,8 +450,10 @@ export const aa = defineLocale({
       importedBadge: 'Kenney',
       pet: {
         title: 'Xayawaan',
-        intro: 'OpenAmer abba haytam yaabbeh, app bagul gexxa animated petdex mascot qaybisa — qalab taamak yexce waqdi gurrutta, xaya takke waqdi faata, foh takke waqdi qaxa.',
-        restartHint: 'Pets qusba restart xaqih — taamak sugte app features additak duma. OpenAmer xidhaah, kaak lakal fak, edde lakal a gexo fan kaa.',
+        intro:
+          'OpenAmer abba haytam yaabbeh, app bagul gexxa animated petdex mascot qaybisa — qalab taamak yexce waqdi gurrutta, xaya takke waqdi faata, foh takke waqdi qaxa.',
+        restartHint:
+          'Pets qusba restart xaqih — taamak sugte app features additak duma. OpenAmer xidhaah, kaak lakal fak, edde lakal a gexo fan kaa.',
         on: 'Yeey',
         off: 'Mali',
         scaleTitle: 'Baxxa',
@@ -457,7 +466,7 @@ export const aa = defineLocale({
         unreachable: 'petdex gallery geyaami. Connection cub, a gexo lakal fak.',
         installedTag: 'installan',
         generatedTag: 'Yaggaliime',
-        deleteBody: 'A xaylo daa\'imih tirtirqa — inkinnah installanim mali.',
+        deleteBody: "A xaylo daa'imih tirtirqa — inkinnah installanim mali.",
         deleteConfirm: 'Tirtir',
         renameTitle: 'Xaylo maga badal',
         renamePlaceholder: 'Xaylo maga',
@@ -476,16 +485,17 @@ export const aa = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
       uiScaleTitle: 'UI miila',
       translucencyTitle: 'Xiqqoo qilleensa',
       backdropTitle: 'Chaat guddina',
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installPlaceholder: 'publisher.extension',
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     about: {
       versionUnavailable: 'Versioon mannu',
@@ -512,7 +522,7 @@ export const aa = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     config: {
       none: 'Mali',
@@ -528,7 +538,7 @@ export const aa = defineLocale({
       imported: 'Mekla celtimte',
       invalidJson: 'Mekla JSON qafyite way',
       keepAwakeTitle: 'Kompiyutar uyqumay',
-      keepAwakeDesc: 'Ta maakinih xinik yan waytah yooka barah qadooray. Siiqan faxxem daggoyta.',
+      keepAwakeDesc: 'Ta maakinih xinik yan waytah yooka barah qadooray. Siiqan faxxem daggoyta.'
     },
     credentials: {
       pasteKey: 'Mifta xaage',
@@ -538,7 +548,7 @@ export const aa = defineLocale({
       getKey: 'Mifta barit',
       saving: 'Wadlisak',
       enterValueFirst: 'Qimmi kormam cubut.',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     envActions: {
       credentialActions: 'Ammanto abni',
@@ -549,7 +559,7 @@ export const aa = defineLocale({
       replace: 'Baddalis',
       set: 'Diris',
       clear: 'Racmis',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     gateway: {
       loading: 'Gateway massosso yeyyeeqak...',
@@ -557,12 +567,14 @@ export const aa = defineLocale({
       unavailableDesc: 'Desktop IPC bridge gateway massosso maaybullee.',
       title: 'Gateway xokkoyo',
       envOverride: 'env baddalis',
-      intro: 'OpenAmer Desktop yayse local gateway fidóh masso. Remote gateway kee fayda hay, ta appi kalah tan maaqinih addal hinnay ammaanak yan proxyh addal yawqe OpenAmer backend maysossam faxxek. A-daqay profileh yayse remote host caglisuh door.',
+      intro:
+        'OpenAmer Desktop yayse local gateway fidóh masso. Remote gateway kee fayda hay, ta appi kalah tan maaqinih addal hinnay ammaanak yan proxyh addal yawqe OpenAmer backend maysossam faxxek. A-daqay profileh yayse remote host caglisuh door.',
       appliesTo: 'Edde tan',
       allProfiles: 'Dumah profile',
       defaultConnection: 'Yayse baddalis malin dumah profileh fidóh xokkoyo.',
       envOverrideTitle: 'Environment variables ta desktop session maysossak yan.',
-      envOverrideDesc: 'OPENAMER_DESKTOP_REMOTE_URL kee OPENAMER_DESKTOP_REMOTE_TOKEN bayis, a-daqay wadlisne massosso kee fayda haytuh.',
+      envOverrideDesc:
+        'OPENAMER_DESKTOP_REMOTE_URL kee OPENAMER_DESKTOP_REMOTE_TOKEN bayis, a-daqay wadlisne massosso kee fayda haytuh.',
       modeTitle: 'Xattaabir caalih',
       localTitle: 'Baaxol afak',
       localDesc: 'localhost amol qellisime OpenAmer backend baxsisa. Ta default, internet maleh taamita.',
@@ -570,7 +582,8 @@ export const aa = defineLocale({
       inheritDesc: 'Ta profile override beyse, default xattaabir ittifaax.',
       remoteTitle: 'Gexo afak',
       remoteDesc: 'Ta desktop shell gexo OpenAmer backend xattaabisa.',
-      remoteAuthHint: 'Hosted afak OAuth hinnay username kee password ittifaaxan; self-hosted afak session token ittifaaxan.',
+      remoteAuthHint:
+        'Hosted afak OAuth hinnay username kee password ittifaaxan; self-hosted afak session token ittifaaxan.',
       cloudDesc: 'OpenAmer Cloud inki adda cul, ku accountih agentitik fil — URL kah afka mali.',
       cloudSignIn: 'OpenAmer Cloud cul',
       cloudSignedIn: 'OpenAmer Cloud culte',
@@ -584,7 +597,7 @@ export const aa = defineLocale({
       cloudNoAgents: {
         before: 'Ta akawntil agenti mageen. Goytah gina',
         linkText: 'OpenAmer portal addal',
-        after: ', tohuk lakat qusbusa.',
+        after: ', tohuk lakat qusbusa.'
       },
       cloudRefresh: 'Qusbusa',
       cloudConnect: 'Xisso',
@@ -632,7 +645,8 @@ export const aa = defineLocale({
       applyFailed: 'Gateway massosso hin oysiten',
       saveFailed: 'Gateway massosso hin dacrisen',
       sshTitle: 'SSH fayxikim',
-      sshDesc: 'OpenAmer remoteh SSH fayxikim oobisen te appah tunnelisen — isi starten hinnay exposeen mali. Hostah key-based SSH access oomah yan.',
+      sshDesc:
+        'OpenAmer remoteh SSH fayxikim oobisen te appah tunnelisen — isi starten hinnay exposeen mali. Hostah key-based SSH access oomah yan.',
       sshTrustHint: 'Fakim yan host key aminan pinned; wadir yan waytoor closed fail.',
       sshHostDesc: 'user@host, hinnay ~/.ssh/configuk Host alias.',
       sshHostPick: 'Host door…',
@@ -648,10 +662,14 @@ export const aa = defineLocale({
       sshConnect: 'Xokkoy',
       sshButtonsHint: 'Save qarkatak launchih addat qarih. Connect ximmah xokkoy.',
       sshErrUnreachable: 'SSHtih addat woo Hostih xagge waynem. Host, Port kee ku network cubbus.',
-      sshErrAuth: 'SSH authentication mabaxsimte. Ku key ssh-agentih addat culus (ssh-add) hinnay ~/.ssh/configih addat IdentityFile hay — OpenAmer ssh interactive maleh qarih.',
-      sshErrHostKey: 'Host key ku duma xokkoyk lakal BEDDELTE. Ta faxxam cubbus, edde ssh-keygen -R <host> qarih kaadu xokkoy.',
-      sshErrNotInstalled: 'OpenAmer gaytá hostal culsumen. Tet aracal culsume (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) hinnay OpenAmer gita weeliy.',
-      sshErrPlatform: 'Gaytá platformay taceem matan. OpenAmer Desktop SSH mode Linux, macOS kee Windows gaytá hostow tace.',
+      sshErrAuth:
+        'SSH authentication mabaxsimte. Ku key ssh-agentih addat culus (ssh-add) hinnay ~/.ssh/configih addat IdentityFile hay — OpenAmer ssh interactive maleh qarih.',
+      sshErrHostKey:
+        'Host key ku duma xokkoyk lakal BEDDELTE. Ta faxxam cubbus, edde ssh-keygen -R <host> qarih kaadu xokkoy.',
+      sshErrNotInstalled:
+        'OpenAmer gaytá hostal culsumen. Tet aracal culsume (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) hinnay OpenAmer gita weeliy.',
+      sshErrPlatform:
+        'Gaytá platformay taceem matan. OpenAmer Desktop SSH mode Linux, macOS kee Windows gaytá hostow tace.',
       sshErrTimeout: 'SSH xikoomi wakti cabtem. Host xagtem matan hinnay raatot yan.',
       sshErrUpdateRequired: 'Desktop SSH edde xikteh duma gaytá hostal OpenAmer waylis.',
       sshErrUnknown: 'SSH xikoomi fasahte.',
@@ -668,7 +686,8 @@ export const aa = defineLocale({
       sshHostTitle: 'Meesha',
       sshHostPickTitle: 'Meesha',
       sshPortTitle: 'Madda',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudTitle: 'OpenAmer Cloud',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudOrgRole: role => `Role: ${role}`,
@@ -678,12 +697,12 @@ export const aa = defineLocale({
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     keys: {
       loading: 'API urtu kee tascasse qaddosak...',
       failedLoad: 'API urtu qaddosem fasahte.',
-      empty: 'Ta kategoril qimbisem matan.',
+      empty: 'Ta kategoril qimbisem matan.'
     },
     mcp: {
       loading: 'MCP servers qaddosak...',
@@ -745,10 +764,11 @@ export const aa = defineLocale({
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       authenticatedMessage: (server, count) => `${server}: ${count} tools`,
       enableTool: tool => `Enable ${tool}`,
-      disableTool: tool => `Disable ${tool}`,
+      disableTool: tool => `Disable ${tool}`
     },
     model: {
       loading: 'Modelih konfig qaggaasisa...',
@@ -757,36 +777,36 @@ export const aa = defineLocale({
       tasks: {
         compression: {
           label: 'Culsum',
-          hint: 'Xaaguh culsum',
+          hint: 'Xaaguh culsum'
         },
         skills_hub: {
           label: 'Skilolih buxa',
-          hint: 'Skilolih gurru',
+          hint: 'Skilolih gurru'
         },
         approval: {
           label: 'Idni',
-          hint: 'Xexxa idni oyto',
+          hint: 'Xexxa idni oyto'
         },
         mcp: {
           hint: 'MCP tamossoh daare',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Caylattih gen',
-          hint: 'Sesiyoonih caylattitte',
+          hint: 'Sesiyoonih caylattitte'
         },
         curator: {
           label: 'Curaator',
-          hint: 'Skilolih adah qimbis',
+          hint: 'Skilolih adah qimbis'
         },
         vision: {
           label: 'Muna',
-          hint: 'Sura fikri',
+          hint: 'Sura fikri'
         },
         web_extract: {
           label: 'Web edde baah',
-          hint: 'Gayyaabih koobis',
-        },
+          hint: 'Gayyaabih koobis'
+        }
       },
       model: 'Moodel',
       applying: 'Oobisama...',
@@ -796,19 +816,21 @@ export const aa = defineLocale({
       defaultsFailed: 'Moodel muddoyti oobisuh abe waam',
       auxiliaryTitle: 'Cattah moodelwa',
       resetAllToMain: 'Inkih kaxxa moodelil gacis',
-      auxiliaryDesc: 'Cattah taamoomi muddok kaxxa moodelil taamitan. Taamak kinnim kaxxa moodelik baxissuh catta moodel hayis.',
+      auxiliaryDesc:
+        'Cattah taamoomi muddok kaxxa moodelil taamitan. Taamak kinnim kaxxa moodelik baxissuh catta moodel hayis.',
       setToMain: 'Kaxxa moodelil oobis',
       change: 'Baddel',
       autoUseMain: 'auto · kaxxa moodel istixriim',
       providerDefault: '(provider muddo)',
       fallbackAdd: 'Gacak moodel osis',
       fallbackEmpty: 'Gacak moodelwa matan — muddo moodel istixriimama, usuk rabeek gamad.',
-      notInCatalog: 'A provider moodelwa giddah matan — calls gacak backupil gacen.',
+      notInCatalog: 'A provider moodelwa giddah matan — calls gacak backupil gacen.'
     },
     providers: {
       connectAccount: 'Akaawunti xagnis',
       haveApiKey: 'API fureyni maay?',
-      intro: 'Sabskiriyoonil sign in — API fureyni mabcina. OpenAmer biraawserih sign in koo gudbisah, aynah appih addal.',
+      intro:
+        'Sabskiriyoonil sign in — API fureyni mabcina. OpenAmer biraawserih sign in koo gudbisah, aynah appih addal.',
       connected: 'Xagnisime',
       collapse: 'Qusbus',
       connectAnother: 'Gaytah provider xagnis',
@@ -821,16 +843,18 @@ export const aa = defineLocale({
       noKeysMatch: 'Xisnek provider mali.',
       localEndpoint: {
         title: 'Baaxo / agbi endpoint',
-        description: 'OpenAmer OpenAI-llih xaqteh yan endpoint yarrih fan uyguule (Zyphra, vLLM, llama.cpp, Ollama, kee kinnih).',
+        description:
+          'OpenAmer OpenAI-llih xaqteh yan endpoint yarrih fan uyguule (Zyphra, vLLM, llama.cpp, Ollama, kee kinnih).'
       },
       loading: 'Provider yaymoole...',
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     sessions: {
       loading: 'Archived session yaymoole…',
@@ -841,7 +865,8 @@ export const aa = defineLocale({
       deletePermanently: 'Dumal bayis',
       restored: 'Qaftote',
       autoArchiveTitle: 'Chat daafe auto-archive',
-      autoArchiveDesc: 'Chat atuk waktik waktih xagtem mali auto-archive. Pinned chat abadan archivetewe mali, numin bayisimta mali — archived chat takka uyguule.',
+      autoArchiveDesc:
+        'Chat atuk waktik waktih xagtem mali auto-archive. Pinned chat abadan archivetewe mali, numin bayisimta mali — archived chat takka uyguule.',
       autoArchiveDaysLabel: 'Archivek lakal',
       autoArchiveDaysUnit: 'ayro taama mali',
       autoArchiveFailed: 'Auto-archive kollem maqaanne',
@@ -856,11 +881,12 @@ export const aa = defineLocale({
       deleteFailed: 'Tirso maqaanne',
       updateDirFailed: 'Default direktori kollem maqaanne',
       clearDirFailed: 'Default direktori baxsim maqaanne',
-      archivedIntro: 'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
+      archivedIntro:
+        'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
       defaultDirUpdated: 'Default project directory updated — start a new chat (Ctrl/⌘+N) for it to take effect',
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
       loadingConfig: 'Konfiguratsion aysuk',
@@ -910,7 +936,7 @@ export const aa = defineLocale({
         selectedTitle: 'Backend doorime',
         needsSetupHint: 'Atu ta backend dooritam duddah — setup xayyoysimuk amri yinqixiyu.',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       modelSectionTitle: 'Nummu',
       modelDefault: 'kaba',
@@ -922,8 +948,10 @@ export const aa = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -933,10 +961,10 @@ export const aa = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     tabSkills: 'Xamille',
@@ -955,7 +983,8 @@ export const aa = defineLocale({
     noDescription: 'Fanal mali.',
     configured: 'Malsisime',
     needsKeys: 'Cayni faxe',
-    visionModelHint: 'Mabla ku caxi miseel malsime yakke — suura dudda miseel usun addal faxeem, provider inkih addal maay aad.',
+    visionModelHint:
+      'Mabla ku caxi miseel malsime yakke — suura dudda miseel usun addal faxeem, provider inkih addal maay aad.',
     visionModelLink: 'Mabla miseel Malsime → Miseela addal faxeem',
     skillsLoadFailed: 'Xamille sookeysimte wayte',
     toolsetsRefreshFailed: 'Uduunitte cusubaysimta waayeh',
@@ -973,7 +1002,7 @@ export const aa = defineLocale({
     provenance: {
       agent: 'Bartime',
       bundled: 'Sissik tan',
-      hub: 'Madda',
+      hub: 'Madda'
     },
     changesApplyNewSessions: 'Baxsimte cusub sesiyoonitteh xagta.',
     skillUpdated: 'Xirfad cusubaysime',
@@ -1006,7 +1035,7 @@ export const aa = defineLocale({
       trust: {
         builtin: 'Gudah yan',
         trusted: 'Amanle',
-        community: 'Ummatta',
+        community: 'Ummatta'
       },
       verdictSafe: 'Nagay',
       verdictCaution: 'Daggoo',
@@ -1026,7 +1055,7 @@ export const aa = defineLocale({
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     tabMcp: 'MCP',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} toolsets enabled`,
@@ -1039,7 +1068,7 @@ export const aa = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     title: 'Xusuus Garaaf',
@@ -1055,7 +1084,8 @@ export const aa = defineLocale({
     emptyTitle: 'Hadda barittem matan',
     emptyDesc: 'OpenAmer kubaddooy xusuus taamakkih yessooqeeh, takke taamat adda yabal.',
     share: 'Maap qaybsi',
-    shareHint: 'Maap a qaybsittaah koodi buuq, hinnay oobisittah koodi dacris. Usuk kalabtu qibaadá qeebis, xusuus hinnay kubaddo koo qeebis.',
+    shareHint:
+      'Maap a qaybsittaah koodi buuq, hinnay oobisittah koodi dacris. Usuk kalabtu qibaadá qeebis, xusuus hinnay kubaddo koo qeebis.',
     shareTitle: 'Maap galis / teedis',
     sharePlaceholder: 'Maap koodi dacris…',
     copy: 'Maap koodi buuq',
@@ -1066,7 +1096,7 @@ export const aa = defineLocale({
     importedBadge: 'xaagu galte',
     resetToMine: 'Yi xaaguk gac',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Abeltoyta cubbus',
@@ -1096,7 +1126,7 @@ export const aa = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'Amar qari cubbus',
@@ -1125,7 +1155,7 @@ export const aa = defineLocale({
       generatedTag: 'Yasgime',
       adoptFailed: 'Tama bexu xayyam ma duddinnu.',
       toggleFailed: 'Bexu canga ma duddinnu.',
-      noneAvailable: 'Bexuwa mannan — dugsitam gubal takke dooro.',
+      noneAvailable: 'Bexuwa mannan — dugsitam gubal takke dooro.'
     },
     generatePet: {
       title: 'Xayawaan gin',
@@ -1154,7 +1184,7 @@ export const aa = defineLocale({
       referenceImageInvalid: 'Reference image akriyewway. PNG, JPG, WebP, hinnay GIF fayida.',
       adopt: 'Qabal',
       startOver: 'Qusba qimbis',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     installTheme: {
       title: 'Theme soolis…',
@@ -1166,7 +1196,7 @@ export const aa = defineLocale({
       install: 'Soolis',
       installing: 'Soolisak...',
       installed: 'Soolisime',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Massoysiyya baxo',
     mcpServers: 'MCP sarvaritte',
@@ -1175,49 +1205,49 @@ export const aa = defineLocale({
       maintenance: 'Dacay',
       sessions: 'Foora',
       system: 'Nidaam',
-      usage: 'Istixmaar',
+      usage: 'Istixmaar'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostik, kayd, kurator, kee xusuut daata',
       sessions: 'Fadhi barbaadi kee maamul',
       system: 'Xaali, log, kee nidaam taamoomi',
-      usage: 'Token, xaara, kee xikmata taama wakti gudul',
+      usage: 'Token, xaara, kee xikmata taama wakti gudul'
     },
     nav: {
       newChat: {
         title: 'Fadhi cusub',
-        detail: 'Fadhi cusub bilow',
+        detail: 'Fadhi cusub bilow'
       },
       settings: {
         title: 'Settiin',
-        detail: 'OpenAmer desktop qindeer',
+        detail: 'OpenAmer desktop qindeer'
       },
       skills: {
         title: 'Daddi',
-        detail: 'Xikmoota, meeqe, kee MCP server',
+        detail: 'Xikmoota, meeqe, kee MCP server'
       },
       messaging: {
         title: 'Ergi',
-        detail: 'Telegram, Slack, Discord, kee kalah qindeer',
+        detail: 'Telegram, Slack, Discord, kee kalah qindeer'
       },
       artifacts: {
         title: 'Ginno',
-        detail: 'Ginno daafe',
-      },
+        detail: 'Ginno daafe'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Fadhi panel',
-        detail: 'Fadhi barbaadi, pin, kee maamul',
+        detail: 'Fadhi barbaadi, pin, kee maamul'
       },
       system: {
         title: 'Nidaam panel',
-        detail: 'Gateway xaali, log, bilow/cusubays',
+        detail: 'Gateway xaali, log, bilow/cusubays'
       },
       usage: {
         title: 'Fayyisa panel',
-        detail: 'Token, kharash, fi xirfita harkita',
-      },
+        detail: 'Token, kharash, fi xirfita harkita'
+      }
     },
     refresh: 'Yakki',
     refreshing: 'Yakkita...',
@@ -1241,13 +1271,13 @@ export const aa = defineLocale({
     noLogs: 'Logs ma soo galin.',
     statSessions: 'Seysinoota',
     statApiCalls: 'API daawwitoota',
-    statTokens: 'Tookinoota keessaa/baay\'ee',
+    statTokens: "Tookinoota keessaa/baay'ee",
     statCost: 'Qiimma filannoo',
     loadingUsage: 'Fayyadama barbaachisaa...',
     retry: 'Dabaluu',
     dailyTokens: 'Tookinoota guyyaa',
-    input: 'Deebi\'a',
-    output: 'Baay\'ee',
+    input: "Deebi'a",
+    output: "Baay'ee",
     noDailyActivity: 'Fayyadama guyyaa miti.',
     topModels: 'Moodeloota guddachaa',
     noModelUsage: 'Fayyadama moodeelaa miti akka.',
@@ -1255,7 +1285,7 @@ export const aa = defineLocale({
     noSkillActivity: 'Fayyadama dandeenyaa miti akka.',
     logFile: 'Faayilii loogii',
     logLevel: 'Heerra',
-    logSearchPlaceholder: 'Loogii sari\'i filadhu...',
+    logSearchPlaceholder: "Loogii sari'i filadhu...",
     maintenance: {
       runOps: 'Daignoostiksoota',
       doctor: 'Daktooraa fufu',
@@ -1285,7 +1315,7 @@ export const aa = defineLocale({
       builtinMemory: 'jirta',
       memoryFile: 'Ajeenti xusuus (MEMORY.md)',
       userFile: 'Fayyadamaa profaayil (USER.md)',
-      empty: 'bo\'uu',
+      empty: "bo'uu",
       resetMemory: 'Xusuus dib u dhisi',
       resetUser: 'Profaayil dib u dhisi',
       resetAll: 'Laman dib u dhisi',
@@ -1298,7 +1328,7 @@ export const aa = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     providerNavigate: 'Wadda',
     providerSessions: 'Jalsaat',
@@ -1307,7 +1337,7 @@ export const aa = defineLocale({
     days: count => `${count}d`,
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   messaging: {
     search: 'Erga messaging...',
@@ -1322,19 +1352,20 @@ export const aa = defineLocale({
       not_configured: 'Setteebi yoh',
       pending_restart: 'Reeboot yoh',
       retrying: 'Dabale',
-      startup_failed: 'Bilow kisi',
+      startup_failed: 'Bilow kisi'
     },
     unknown: 'Ma yekiin',
     hintPendingRestart: 'Geytwee status bar-ka kadda reebooti, kana badlo.',
     hintGatewayStopped: 'Geytwee status bar-ka kadda bilowi, kana connecti.',
-    credentialsSet: 'Ma\'lumaat kadda',
+    credentialsSet: "Ma'lumaat kadda",
     needsSetup: 'Setteebi yoh',
     gatewayStopped: 'Messaging geytwee kisi',
-    getCredentials: 'Ma\'lumaadaka ka soo',
+    getCredentials: "Ma'lumaadaka ka soo",
     openSetupGuide: 'Setteebi guide-ka fur',
     required: 'Lazim',
     recommended: 'Kusii',
-    noTokenNeeded: 'Kana platform token ma baahni halkan. Guide-ka setteebi kor kadda isticmaali, kadibna hoos kadda enable-i.',
+    noTokenNeeded:
+      'Kana platform token ma baahni halkan. Guide-ka setteebi kor kadda isticmaali, kadibna hoos kadda enable-i.',
     enabled: 'Furan',
     disabled: 'Xiran',
     unsavedChanges: 'Badlo aan la keydin',
@@ -1344,129 +1375,130 @@ export const aa = defineLocale({
     replaceValue: 'Beddel qiimaha hadda',
     openDocs: 'Fur dokumentiyada',
     restartToApply: 'Isbeddelkan wuxuu dhaqan galayaa ka dib markii dib loo furayo gateway-ka.',
-    restartToReconnect: 'Dokumentiyada oggolasho ee cusub waxay dhaqan galaysaa ka dib markii dib loo furayo gateway-ka.',
+    restartToReconnect:
+      'Dokumentiyada oggolasho ee cusub waxay dhaqan galaysaa ka dib markii dib loo furayo gateway-ka.',
     fieldCopy: {
       TELEGRAM_BOT_TOKEN: {
         label: 'Token-ka bot-ka',
         help: 'Samee bot @BotFather ku, kadibna ku qaad token-ka uu ku siinayo.',
-        placeholder: 'Ku qaad token-ka bot-ka Telegram',
+        placeholder: 'Ku qaad token-ka bot-ka Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'ID-yooyinka isticmaalaha Telegram ee la oggolay',
-        help: 'Waa loo talo. ID tirooyinka tiro badan oo @userinfobot ka yimid. Tan la\'aan, qof kastaa wuxuu bot-kaaga u sheegi karaa DM.',
+        help: "Waa loo talo. ID tirooyinka tiro badan oo @userinfobot ka yimid. Tan la'aan, qof kastaa wuxuu bot-kaaga u sheegi karaa DM."
       },
       TELEGRAM_PROXY: {
         label: 'URL-ka proxy-ka',
-        help: 'Waa loo baahnaa oo keliya shabakadaha ee Telegram-ka la xannibay.',
+        help: 'Waa loo baahnaa oo keliya shabakadaha ee Telegram-ka la xannibay.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token-ka bot-ka',
-        help: 'Samee barnaam ku portal-ka horumarra Discord, ku dar bot, kadibna ku qaad token-ka isaga.',
+        help: 'Samee barnaam ku portal-ka horumarra Discord, ku dar bot, kadibna ku qaad token-ka isaga.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'ID-yooyinka isticmaalaha Discord ee la oggolay',
-        help: 'Waa loo talo. ID-yooyinka isticmaalaha Discord ee bannaanka ku kala duwan.',
+        help: 'Waa loo talo. ID-yooyinka isticmaalaha Discord ee bannaanka ku kala duwan.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Qaabka jawaabta',
-        help: 'kowaad, dhammaan, ama xannib.',
+        help: 'kowaad, dhammaan, ama xannib.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Oggol isticmaalaha Discord ee dhammaan',
-        help: 'Horumarka oo keliya. Markii run ta ah, qof kastaa wuxuu bot-ka u sheegi karaa DM adigoon ogol liis la ahin.',
+        help: 'Horumarka oo keliya. Markii run ta ah, qof kastaa wuxuu bot-ka u sheegi karaa DM adigoon ogol liis la ahin.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID-ka kana',
-        help: 'Kana hiddere, bot-ka fule yaadto (cron output, yaadto).',
+        help: 'Kana hiddere, bot-ka fule yaadto (cron output, yaadto).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Serta-ka kana',
-        help: 'Serta kana, log-ka yahay status-ka.',
+        help: 'Serta kana, log-ka yahay status-ka.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Hinnay iMessage kutoh-ota hay',
-        help: 'Soh yahay, BlueBubbles tuhuma-ka miissu.',
+        help: 'Soh yahay, BlueBubbles tuhuma-ka miissu.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Hinnay Mattermost kutoh-ota hay',
+        label: 'Hinnay Mattermost kutoh-ota hay'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Kana',
+        label: 'Kana'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Hinnay QQ kutoh-ota hay',
+        label: 'Hinnay QQ kutoh-ota hay'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Kana QQ',
-        help: 'Kana hore, cron delivery-ka.',
+        help: 'Kana hore, cron delivery-ka.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Serta-ka kana QQ',
+        label: 'Serta-ka kana QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token-ka bot Slack',
         help: 'App-ka Slack install-kah, Permissions & OAuth-ka dheeme token-ka bot fudh.',
-        placeholder: 'Token-ka bot Slack kaali',
+        placeholder: 'Token-ka bot Slack kaali'
       },
       SLACK_APP_TOKEN: {
         label: 'Token-ka app Slack',
         help: 'App-level token-ka Socket Mode-ka require-ti fudh.',
-        placeholder: 'Token-ka app Slack kaali',
+        placeholder: 'Token-ka app Slack kaali'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Slack user ID-ota hay',
-        help: 'Hinnay uusay. Slack user ID-ota comma separator.',
+        help: 'Hinnay uusay. Slack user ID-ota comma separator.'
       },
       WHATSAPP_ENABLED: {
         help: 'Kabaaluu keessaa dabalateetti. Maalumaa isin argitan yoo miti malee haa jiru.',
-        label: 'WhatsApp körpüsünü aktivləşdirin',
+        label: 'WhatsApp körpüsünü aktivləşdirin'
       },
       WHATSAPP_MODE: {
-        label: 'Jirruu walitti dhufeera',
+        label: 'Jirruu walitti dhufeera'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'WhatsApp fayyadamtoota gargaaru',
-        help: 'Barbaachisaa. Lakkoofsa bilbilaa waliin walqabatee ama WhatsApp IDs.',
+        help: 'Barbaachisaa. Lakkoofsa bilbilaa waliin walqabatee ama WhatsApp IDs.'
       },
       MATTERMOST_URL: {
         placeholder: 'https://mattermost.example.com',
-        label: 'Seerfir URL',
+        label: 'Seerfir URL'
       },
       MATTERMOST_TOKEN: {
-        label: 'Boot token',
+        label: 'Boot token'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Yaaqeen yimman ID',
-        help: 'Yaaqeen. Mattermost user ID comma-ay yiqi.',
+        help: 'Yaaqeen. Mattermost user ID comma-ay yiqi.'
       },
       MATRIX_HOMESERVER: {
         label: 'Gara server URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Yadda token',
+        label: 'Yadda token'
       },
       MATRIX_USER_ID: {
         label: 'Boot istifadəçi ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Yaraşan Matrix istifadəçi ID-ləri',
-        help: 'Təklif olunur. @istifadəçi:server formatında vergüllə ayrılmış istifadəçi ID-ləri.',
+        help: 'Təklif olunur. @istifadəçi:server formatında vergüllə ayrılmış istifadəçi ID-ləri.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal körpü URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'İşləyən signal-cli REST körpüsünün URL-i.',
+        help: 'İşləyən signal-cli REST körpüsünün URL-i.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Telefon numarası',
-        help: 'Sizin signal-cli körpünüzlə qeydiyyatdan keçmiş nömrə.',
+        help: 'Sizin signal-cli körpünüzlə qeydiyyatdan keçmiş nömrə.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Yaraşan Signal istifadəçiləri',
-        help: 'Təklif olunur. Vergüllə ayrılmış Signal identifikatorları.',
-      },
+        help: 'Təklif olunur. Vergüllə ayrılmış Signal identifikatorları.'
+      }
     },
     advanced: count => `Advanced (${count})`,
     clearField: key => `Clear ${key}`,
@@ -1480,17 +1512,17 @@ export const aa = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Webhooks raawwatamu...',
     loading: 'Webhooks gurgurruu...',
     loadFailed: 'Webhooks gurgurruu hin dandeenye',
-    hint: 'Jalqaba kennamummaa receiver jiraachuu danda\'a hot-reload ta\'e. Kennamummaa baayyee dhufte hin qabne.',
+    hint: "Jalqaba kennamummaa receiver jiraachuu danda'a hot-reload ta'e. Kennamummaa baayyee dhufte hin qabne.",
     empty: 'Amma kennamummaa webhook hin jiru.',
     disabledTitle: 'Webhook receiver baayyee',
-    disabledBody: 'Webhooks platform gateway keenyaan qaba. Kana keessaa gargaaruuf dhufte HTTP qabachuuf; caanalota dhahaa kennamummaa Telegram, Discord, Slack, ama caanaloo biroo deebisuuf gargaaru.',
+    disabledBody:
+      'Webhooks platform gateway keenyaan qaba. Kana keessaa gargaaruuf dhufte HTTP qabachuuf; caanalota dhahaa kennamummaa Telegram, Discord, Slack, ama caanaloo biroo deebisuuf gargaaru.',
     enable: 'Webhooks gargaaru',
     enabling: 'Gargarratti...',
     enableRow: 'Gargaaru',
@@ -1529,12 +1561,13 @@ export const aa = defineLocale({
       log: 'Warqad',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     deleteDescSuffix: '. Bu geri qaytarıla bilməz.',
     newSubscription: 'Yeni abunəlik',
     restarting: 'Gateway yenidən başladılır...',
-    restartNeeded: 'Webhook-lar aktivdir, amma alıcı onlayn ola bilməsi üçün gateway-in yenidən başlanması hələ tələb olunur.',
+    restartNeeded:
+      'Webhook-lar aktivdir, amma alıcı onlayn ola bilməsi üçün gateway-in yenidən başlanması hələ tələb olunur.',
     restartGateway: 'Gateway-i yenidən başladın',
     restartingGateway: 'Yenidən başladılır...',
     enabledRestarting: 'Webhook-lar aktivləşdirildi; gateway yenidən başladılır...',
@@ -1545,7 +1578,7 @@ export const aa = defineLocale({
     deleteFailed: (name: string) => `Failed to delete "${name}"`,
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     search: 'Profilool ceeq...',
@@ -1581,22 +1614,22 @@ export const aa = defineLocale({
     saving: 'Keydayaa...',
     saveSoul: 'SOUL.md keydiso',
     deleteTitle: 'Profilka tirtir?',
-    deleteDescPrefix: 'Kani waxaa baabbi\'in doonaa',
+    deleteDescPrefix: "Kani waxaa baabbi'in doonaa",
     deleteDescMid: 'iyo tirtiirida',
     deleteDescSuffix: 'folderka. Kani laga noqon karo.',
     deleting: 'Tirtiraa...',
     createDesc: 'Profiloyinka waa OpenAmer maahmaahyo madaxban: config, xaaxinno, iyo SOUL.md kala duwan.',
     nameLabel: 'Magac',
     cloneFrom: 'Noqo ka',
-    cloneFromNone: 'Ma hin qaban (bo\'o)',
-    cloneFromDesc: 'Konfig, xahamoyta, o SOUL.md ka akkaakkamu bu\'u profil qaxxo.',
+    cloneFromNone: "Ma hin qaban (bo'o)",
+    cloneFromDesc: "Konfig, xahamoyta, o SOUL.md ka akkaakkamu bu'u profil qaxxo.",
     cloneFromDefault: 'Ka default qaxxo',
     cloneFromDefaultDesc: 'Konfig, xahamoyta, o SOUL.md ka ke default profil qaxxo.',
     nameRequired: 'Maqas lazim yah.',
     creating: 'Yohin...',
     createAction: 'Profil yoh',
     renameTitle: 'Profil maqas bedel',
-    renameDescPrefix: 'Maqas bedel profil direktori o kulle wrapper script yakan bu\'u',
+    renameDescPrefix: "Maqas bedel profil direktori o kulle wrapper script yakan bu'u",
     renameDescSuffix: '.',
     newNameLabel: 'Saga maqas',
     renaming: 'Maqas bedelin...',
@@ -1605,7 +1638,7 @@ export const aa = defineLocale({
     deleted: 'Profil hasin',
     setupCopied: 'Setup amr qaxxin',
     soulSaved: 'SOUL.md keydin',
-    failedLoad: 'Profilya so\'o gelin yohin gelin',
+    failedLoad: "Profilya so'o gelin yohin gelin",
     failedDelete: 'Profil hasin yohin gelin',
     failedCopy: 'Setup amr qaxxin yohin gelin',
     close: 'Profoolih xakko',
@@ -1623,7 +1656,7 @@ export const aa = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   cron: {
     scheduleLabels: {
@@ -1631,18 +1664,18 @@ Leave blank to keep the ${mode} default.`,
       weekdays: 'Simal yowyo',
       weekly: 'Kada simal',
       monthly: 'Kada ayyo',
-      hourly: 'Kada sa\'at',
+      hourly: "Kada sa'at",
       'every-15-minutes': 'Kada 15 daqiiqo',
-      custom: 'Doo\'ita',
+      custom: "Doo'ita"
     },
     scheduleHints: {
-      daily: 'Kada yow sa\'at 9:00 subax',
-      weekdays: 'Isnin ka jima\'a ilaa sa\'at 9:00 subax',
-      weekly: 'Kada Isnin sa\'at 9:00 subax',
-      monthly: 'Kada ayyo yow kaddo sa\'at 9:00 subax',
-      hourly: 'Kada sa\'at gaba',
+      daily: "Kada yow sa'at 9:00 subax",
+      weekdays: "Isnin ka jima'a ilaa sa'at 9:00 subax",
+      weekly: "Kada Isnin sa'at 9:00 subax",
+      monthly: "Kada ayyo yow kaddo sa'at 9:00 subax",
+      hourly: "Kada sa'at gaba",
       'every-15-minutes': 'Kada 15 daqiiqo',
-      custom: 'Cron syntax ama af doo\'ita',
+      custom: "Cron syntax ama af doo'ita"
     },
     days: {
       '0': 'Axad',
@@ -1650,11 +1683,11 @@ Leave blank to keep the ${mode} default.`,
       '2': 'Talaado',
       '3': 'Arbaco',
       '4': 'Khamiis',
-      '5': 'Jima\'a',
+      '5': "Jima'a",
       '6': 'Sabti',
-      '7': 'Axad',
+      '7': 'Axad'
     },
-    topOfHour: 'Kul saa\'ati wori',
+    topOfHour: "Kul saa'ati wori",
     newCron: 'Cron caddi',
     emptyDescNew: 'Cron ifraagih prompt-u yooki. OpenAmer yooki yahenna natiijah-u meeqa doonay.',
     emptyDescSearch: 'Faan raaciyo kaa foogaa.',
@@ -1676,7 +1709,7 @@ Leave blank to keep the ${mode} default.`,
     edit: 'Cron bedel',
     deleteTitle: 'Cron shaqo iska kaa?',
     deleteDescPrefix: 'Yaa iska kaa',
-    deleteDescSuffix: 'daa\'iman. Gabaan wuu joogaa.',
+    deleteDescSuffix: "daa'iman. Gabaan wuu joogaa.",
     deleting: 'Iska kaa...',
     resumed: 'Cron dib u noqday',
     paused: 'Cron joogtay',
@@ -1691,14 +1724,15 @@ Leave blank to keep the ${mode} default.`,
     failedSave: 'Cron shaqo keyditaan waayay',
     editTitle: 'Cron shaqo bedel',
     createTitle: 'Cron shaqo cusub',
-    editDesc: 'Jadwalka, su\'aasha, ama gaariga diyaaradda cusboonaysi. Bedelada wuu ku soo noqon doonaa daban horteeda.',
+    editDesc:
+      "Jadwalka, su'aasha, ama gaariga diyaaradda cusboonaysi. Bedelada wuu ku soo noqon doonaa daban horteeda.",
     createDesc: 'Prompti yimee automatic yi\'akko. Cron syntax aw "every 15 minutes" kaaka natural phrase yimee.',
     nameLabel: 'Maqa',
     namePlaceholder: 'Subax warqad',
-    promptLabel: 'Su\'aal',
-    promptPlaceholder: 'Slack threads unread-an koo summarize yimee, email-koo top 5 yi\'akko...',
-    frequencyLabel: 'Yaa\'ak',
-    deliverLabel: 'Mi yi\'akko',
+    promptLabel: "Su'aal",
+    promptPlaceholder: "Slack threads unread-an koo summarize yimee, email-koo top 5 yi'akko...",
+    frequencyLabel: "Yaa'ak",
+    deliverLabel: "Mi yi'akko",
     deliverNeedsHomeChannel: 'Home channel awali set yimee',
     modelLabel: 'Namuna',
     modelDefault: 'Default (dunida namuna)',
@@ -1706,15 +1740,15 @@ Leave blank to keep the ${mode} default.`,
     customPlaceholder: '0 9 * * * aw weekdays 9am',
     customHint: 'Cron expression, aw phrases kaaka "every hour" aw "weekdays at 9am".',
     optional: 'Ixtiyaari',
-    promptRequired: 'Su\'aal waajib yahay.',
-    promptScheduleRequired: 'Su\'aal oo schedule waajib yahay.',
+    promptRequired: "Su'aal waajib yahay.",
+    promptScheduleRequired: "Su'aal oo schedule waajib yahay.",
     scheduleRequired: 'Schedule waajib yahay.',
     scriptOnlyEditHint: 'Script-only job (AI prompt ma jiro). Job id:',
     saveChanges: 'Badlaha keydiso',
     createAction: 'Cron abuur',
     tabs: {
       jobs: 'Hawlaha',
-      blueprints: 'Tilmaamaha',
+      blueprints: 'Tilmaamaha'
     },
     blueprints: {
       tab: 'Tilmaamaha',
@@ -1728,7 +1762,7 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Tilmaamaha laga soo gelayaa...',
       failedLoad: 'Tilmaamaha laga soo gelay waa khasaaray',
       emptyTitle: 'Tilmaamo kama jiro',
-      emptyDesc: 'Tilmaamo awtoomaasiyad ah kama jiro backend-kan.',
+      emptyDesc: 'Tilmaamo awtoomaasiyad ah kama jiro backend-kan.'
     },
     states: {
       enabled: 'fidda',
@@ -1737,14 +1771,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'kabatay',
       disabled: 'fiddan',
       error: 'khatay',
-      completed: 'furan',
+      completed: 'furan'
     },
     deliveryLabels: {
       local: 'Yihi desktop',
       email: 'Imeel',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     close: 'Cron xakko',
     title: 'Waqtih qaban hawl',
@@ -1757,7 +1791,7 @@ Leave blank to keep the ${mode} default.`,
     everyDayOfWeekAt: (day, time) => `Every ${day} at ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Monthly on day ${dayOfMonth} at ${time}`,
     everyHourAt: minute => `Every hour at :${minute}`,
-    actionsFor: title => `Actions for ${title}`,
+    actionsFor: title => `Actions for ${title}`
   },
   artifacts: {
     search: 'Raadi sanduuqaha...',
@@ -1791,14 +1825,14 @@ Leave blank to keep the ${mode} default.`,
     copyUrl: 'URL kobi',
     copyPath: 'Mara kobi',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'Jilsa adis',
       skills: 'Awood',
       messaging: 'Warqad dhig',
-      artifacts: 'Hantita',
+      artifacts: 'Hantita'
     },
     searchAria: 'Jilsa raadi',
     searchPlaceholder: 'Jilsa raadi…',
@@ -1849,7 +1883,8 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'Mara kopicci',
       removeFromSidebar: 'Barri kaa ka qaban',
       createFailed: 'Projeck yahin ma yahin',
-      staleBackend: 'OpenAmer backend kaa gabaan yah projeckih yahin — backend kaa kan desktop app kaa ka horree (Settings → Updates → Backend).',
+      staleBackend:
+        'OpenAmer backend kaa gabaan yah projeckih yahin — backend kaa kan desktop app kaa ka horree (Settings → Updates → Backend).',
       deleteConfirm: 'Yaan OpenAmer kaa projeck kaa kayyis kicin. Fayiliih, git reposih, worktreeh kahan yihin.',
       startWork: 'Worktree ciddi',
       newWorktreeTitle: 'Worktree ciddi',
@@ -1870,14 +1905,16 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'Branch-yo la helin',
       removeWorktree: 'Worktree ka saar',
       removeWorktreeFailed: 'Worktree ka saarin karin (bedeladoon aan la commit-gelin?)',
-      removeWorktreeConfirm: 'Git-ka ka saar (worktree directory-ka waa laga saarayaa; branch-ka wuu joogaa), ama fagaare lane-ka sidebar-ka ka daaweeyo worktree-ka disk-ka ugu daawo.',
-      removeWorktreeDirty: 'Worktree-kan waxaa jira bedeladoon aan la commit-gelin. Ku saar awood (bedeladoona waa laga saarayaa), ama fagaare lane-ka daawee worktree-ka disk-ka ugu daawo.',
+      removeWorktreeConfirm:
+        'Git-ka ka saar (worktree directory-ka waa laga saarayaa; branch-ka wuu joogaa), ama fagaare lane-ka sidebar-ka ka daaweeyo worktree-ka disk-ka ugu daawo.',
+      removeWorktreeDirty:
+        'Worktree-kan waxaa jira bedeladoon aan la commit-gelin. Ku saar awood (bedeladoona waa laga saarayaa), ama fagaare lane-ka daawee worktree-ka disk-ka ugu daawo.',
       forceRemove: 'Awood ku saar',
       back: 'Hedh hantoo',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     row: {
       backgroundRunning: 'Dabaloo kaa teesso',
@@ -1885,7 +1922,7 @@ Leave blank to keep the ${mode} default.`,
       renameFailed: 'Magaci beddelka khaasay',
       renameTitle: 'Kulan magaci beddel',
       renameDesc: 'Kan kulan magac yaad yaab leh sii. Coro u taga ee la tirtiro.',
-      untitledPlaceholder: 'Magaci la\'aan kulan',
+      untitledPlaceholder: "Magaci la'aan kulan",
       ageNow: 'Halkan',
       ageDay: 'K',
       ageHour: 'S',
@@ -1910,21 +1947,21 @@ Leave blank to keep the ${mode} default.`,
       actionsFor: title => `Actions for ${title}`,
       handoffOrigin: platform => `Handed off from ${platform}`,
       ownedByProfile: profile => `Profile: ${profile}`,
-      untitledChat: id => `Chat ${id}`,
+      untitledChat: id => `Chat ${id}`
     },
     dateDivider: {
       today: 'Kenan ka hor',
       yesterday: 'Kah',
       thisWeek: 'Siman ka hor',
       lastWeek: 'Siman ka hore',
-      thisMonth: 'Bil ka hor',
+      thisMonth: 'Bil ka hor'
     },
     loading: 'Waa la soo rarayaa…',
     loadMore: 'Soo rar kale',
     noMatch: query => `No sessions match “${query}”.`,
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     message: 'Warqad',
@@ -1938,14 +1975,14 @@ Leave blank to keep the ${mode} default.`,
     lookupOr: 'aw',
     commonCommands: 'Wali amarro',
     hotkeys: 'Xaqiijji kala',
-    helpFooter: 'Baxa buuxa furtaa · backspace kaa\'isa',
+    helpFooter: "Baxa buuxa furtaa · backspace kaa'isa",
     commandDescs: {
       '/help': 'Amarro buuxa + xaqiijji kala',
       '/clear': 'Jalsa ciddi bilow',
       '/resume': 'Jalsa hore soo noqo',
       '/details': 'Nidaamka faahfaahinta dhexdaalo',
       '/copy': 'Doorashada ama warqadda ka dambeysa ka koobi',
-      '/quit': 'Openamer ka bax',
+      '/quit': 'Openamer ka bax'
     },
     hotkeyDescs: {
       'composer.mention': 'Talo file-yo, folder-yo, url-yo, git',
@@ -1955,7 +1992,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'Dibadeedka hore u dir',
       'keybinds.openPanel': 'Dhammaan xaqiijji kala',
       'composer.cancel': 'Xir popover · jooji run',
-      'composer.history': 'yahakko popover / tarikih',
+      'composer.history': 'yahakko popover / tarikih'
     },
     queueMessage: 'Waari sira geli',
     steer: 'Amma dhaqsiisu laayi',
@@ -1993,25 +2030,26 @@ Leave blank to keep the ${mode} default.`,
     queueResume: 'Dib u billow',
     queueResumeTip: 'Joojin waa la joojiyey — dib u billow diridda jeeryada sugaya',
     queueStuckTitle: 'Fariinta sugaya aan loo dirin',
-    queueStuckBody: 'Jeer sugaya ayaa isku dayay in loo diro, waana dhibaateeyey. Weli waa sugaya — isku day mar kale in la diro.',
+    queueStuckBody:
+      'Jeer sugaya ayaa isku dayay in loo diro, waana dhibaateeyey. Weli waa sugaya — isku day mar kale in la diro.',
     previewUnavailable: 'Muujin ma ahan',
     dictating: 'Dikteeshan',
     snippets: {
       codeReview: {
         label: 'Koodo owwi',
         description: 'Regressiyon, kaa hin qaban, test hin argamu owwi',
-        text: 'Buug, regressiyon, test hin argamu owwi',
+        text: 'Buug, regressiyon, test hin argamu owwi'
       },
       implementationPlan: {
         label: 'Hawlo qaban',
         description: 'Koodo hin qabatan hawlo owwi',
-        text: 'Koodo hin qabatan hawlo qaban',
+        text: 'Koodo hin qabatan hawlo qaban'
       },
       explainThis: {
         label: 'Yaa ifa',
         description: 'Koodo ifa, faayilo keessa jira',
-        text: 'Yaa ifa, faayilo keessa jira',
-      },
+        text: 'Yaa ifa, faayilo keessa jira'
+      }
     },
     files: 'Faylawa…',
     folder: 'Guddo…',
@@ -2041,7 +2079,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -2050,14 +2088,14 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
     attachments: count => `${count} attachment${count === 1 ? '' : 's'}`,
     previewLabel: label => `Preview ${label}`,
     couldNotPreview: label => `Could not preview ${label}`,
-    removeAttachment: label => `Remove ${label}`,
+    removeAttachment: label => `Remove ${label}`
   },
   statusStack: {
     agents: 'Aganto',
@@ -2097,7 +2135,8 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'Fude PR',
       ghMissing: 'Install GitHub CLI (gh) dheena fudud in fude PR-yada',
       agentShip: 'Qeey OpenAmer in fude PR',
-      agentShipPrompt: 'Wixi chanqii ku sobo, boka conventional-commit kacal ku commit, branch push, pull request fude.',
+      agentShipPrompt:
+        'Wixi chanqii ku sobo, boka conventional-commit kacal ku commit, branch push, pull request fude.',
       newBranch: 'Branch horre',
       worktrees: 'Worktree-yada',
       changed: count => `${count} changed`,
@@ -2106,12 +2145,12 @@ Leave blank to keep the ${mode} default.`,
       commitPlaceholder: 'Message (⌘↵ to commit)',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -2126,7 +2165,7 @@ Leave blank to keep the ${mode} default.`,
       restart: 'OpenAmer mar u fudude…',
       done: 'Soo cusub wata',
       manual: 'Terminal keeha soo cusub',
-      guiSkew: 'Desktop app soo cusub',
+      guiSkew: 'Desktop app soo cusub'
     },
     checking: 'Maqasin rakkay…',
     checkFailedTitle: 'Maqasin fakitin yekkin',
@@ -2148,12 +2187,15 @@ Leave blank to keep the ${mode} default.`,
     manualBody: 'OpenAmer command line-kaaga ka dhigtay, maqasinkana halkaas waddaan. Terminal-kaaga ku dar:',
     manualPickedUp: 'OpenAmer wersiyoni cusub mar kale markaad furto.',
     guiSkewTitle: 'Desktop app-ki yakan',
-    guiSkewBody: 'Backend-ki yakan, amma desktop app package-kan ma yakanin. OpenAmer desktop app-ki (AppImage / .deb / .rpm) yakan ama reinstall yakanu.',
+    guiSkewBody:
+      'Backend-ki yakan, amma desktop app package-kan ma yakanin. OpenAmer desktop app-ki (AppImage / .deb / .rpm) yakan ama reinstall yakanu.',
     copy: 'Kopi',
     copied: 'Kopiyay',
     done: 'Fur',
-    applyingBody: 'OpenAmer updater-kan keessa window-kiisaa yakan, OpenAmer automatic yakan furay. Updating waxtaa OpenAmer-ki yakan furatin.',
-    applyingBodyBackend: 'Remote backend-ki update-ki yakan, restart yakan. OpenAmer automatic yakan reconnect yakan furay.',
+    applyingBody:
+      'OpenAmer updater-kan keessa window-kiisaa yakan, OpenAmer automatic yakan furay. Updating waxtaa OpenAmer-ki yakan furatin.',
+    applyingBodyBackend:
+      'Remote backend-ki update-ki yakan, restart yakan. OpenAmer automatic yakan reconnect yakan furay.',
     applyingClose: 'Window-kan update run waxtaa close yakan, OpenAmer keessatti reopen yakan.',
     errorTitle: 'Update ma furin',
     errorBody: 'Kalaatin — heesh ma bahin. Hikka try yakan.',
@@ -2164,13 +2206,14 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'Backend restart yakan update-ki load yakan…',
       notAvailable: 'Update backend-kan available ma.',
       failed: 'Backend update fail yakan.',
-      noReturn: 'Backend online ma yakan. Update complete ma yakan — backend host check yakan.',
+      noReturn: 'Backend online ma yakan. Update complete ma yakan — backend host check yakan.'
     },
     appErrors: {
-      updateLocked: 'Update abort yakan: OpenAmer window waye terminal openamer run yakan install-kan hold yakan. Close yakan retry yakan.',
-      updateFailed: 'Update complete ma yakan. Kalaatin — heesh ma bahin. Hikka try yakan.',
+      updateLocked:
+        'Update abort yakan: OpenAmer window waye terminal openamer run yakan install-kan hold yakan. Close yakan retry yakan.',
+      updateFailed: 'Update complete ma yakan. Kalaatin — heesh ma bahin. Hikka try yakan.'
     },
-    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
+    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`
   },
   install: {
     stageStates: {
@@ -2178,13 +2221,15 @@ Leave blank to keep the ${mode} default.`,
       running: 'Soo raa',
       succeeded: 'Hudde',
       skipped: 'Qarisii',
-      failed: 'Guuri',
+      failed: 'Guuri'
     },
     failedTitle: 'Dabaloo yicci',
     settingUpTitle: 'OpenAmer Agent kaa dabeessaa',
     finishingTitle: 'Kammeessaa',
-    failedDesc: 'Dabaloo addaa yicci. Windows ka, OpenAmer CLI ama desktop kaa jira yicci. OpenAmer kaa jira wahidda, deebi\'ee yaalo. Faahfaahin hoo akka desktop log yaalo akka buuxa yaali.',
-    activeDesc: 'Yoo wahid dabaloo yoo. OpenAmer installer baaxayaal soo dejiyaa akka makiinak kaa dabeessaa. Dabaloo kaleessaa adda yoo baheessaa.',
+    failedDesc:
+      "Dabaloo addaa yicci. Windows ka, OpenAmer CLI ama desktop kaa jira yicci. OpenAmer kaa jira wahidda, deebi'ee yaalo. Faahfaahin hoo akka desktop log yaalo akka buuxa yaali.",
+    activeDesc:
+      'Yoo wahid dabaloo yoo. OpenAmer installer baaxayaal soo dejiyaa akka makiinak kaa dabeessaa. Dabaloo kaleessaa adda yoo baheessaa.',
     fetchingManifest: 'Installer manifest soo dejiyaa...',
     error: 'Khalad',
     hideOutput: 'Installer output qari',
@@ -2195,7 +2240,7 @@ Leave blank to keep the ${mode} default.`,
     transcriptSaved: 'Buuxa transcript keessatti keessiyey',
     copiedOutput: 'Kopeeyey!',
     copyOutput: 'Output kopee',
-    reloadRetry: 'Dabali\'i deebi\'ee yaalo',
+    reloadRetry: "Dabali'i deebi'ee yaalo",
     oneTimeTitle: 'OpenAmer waa in kati mar la soo rawoo.',
     installCommand: 'Ergaga soo raaw',
     copyCommand: 'Ergaga awwal',
@@ -2203,15 +2248,18 @@ Leave blank to keep the ${mode} default.`,
     installTo: 'Waxa ku la ab xidin',
     retryAfterRun: 'Waxaan ku shaqeeyay -- dib u qor',
     setupChoiceTitle: 'OpenAmer Kombuyar qiiqis',
-    setupChoiceDesc: 'App-kan ku xir OpenAmer gateway aad hore u shaqeeyso, ama OpenAmer kombuyar-kan halkan ku qiiqis.',
+    setupChoiceDesc:
+      'App-kan ku xir OpenAmer gateway aad hore u shaqeeyso, ama OpenAmer kombuyar-kan halkan ku qiiqis.',
     connectExistingTitle: 'Ku xir OpenAmer hore u jira',
     connectExistingShort: 'Ku xir midka hore u jira',
-    connectExistingDesc: 'Session token ama browser sign-in leh backend fog ah isticmaal. Qiiqistu halkan ma bilaabi do.',
+    connectExistingDesc:
+      'Session token ama browser sign-in leh backend fog ah isticmaal. Qiiqistu halkan ma bilaabi do.',
     installLocalTitle: 'OpenAmer halkan ku qiiqis',
     installLocalDesc: 'OpenAmer soo daabac, Python environment-kiisa samee, backend-kana kombuyar-kan ku shaqee.',
     localStartUnavailable: 'Qiiqistu halkan ma furmi karin. OpenAmer Kombuyar dib u fur, dib u qor.',
     remoteSetupTitle: 'Ku xir OpenAmer hore u jira',
-    remoteSetupDesc: 'Gal URL-ka gateway-kaada. OpenAmer Kombuyar wuxuu ogaan doonaa haddii token ama browser sign-in u baahan yahay.',
+    remoteSetupDesc:
+      'Gal URL-ka gateway-kaada. OpenAmer Kombuyar wuxuu ogaan doonaa haddii token ama browser sign-in u baahan yahay.',
     remoteUrlTitle: 'URL-ka gateway-ka',
     remoteUrlDesc: 'Isticmaal URL-ka asalka ah ee OpenAmer gateway-ka, oo ku dar https:// marka u fog yahay.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2232,13 +2280,14 @@ Leave blank to keep the ${mode} default.`,
     testConnection: 'Kinni testi',
     applyRemote: 'Togga ka kinni-kulli.',
     backToSetup: 'Du',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
     signInWith: provider => `Sign in with ${provider}`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'OpenAmer Agent kaa dabeessina',
@@ -2258,28 +2307,28 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'API mudello toos ah',
-        description: 'Heli toos ah mudellaha Fireworks AI u haysta.',
+        description: 'Heli toos ah mudellaha Fireworks AI u haysta.'
       },
       openrouter: {
         short: 'Kiiro hal, mudello badan',
-        description: 'Boqolka mudello wata kiiro hal. Default wanaagsan installations cusub.',
+        description: 'Boqolka mudello wata kiiro hal. Default wanaagsan installations cusub.'
       },
       openai: {
         short: 'Mudello GPT-clas ah',
-        description: 'Heli toos ah mudello OpenAI.',
+        description: 'Heli toos ah mudello OpenAI.'
       },
       gemini: {
         short: 'Mudello Gemini',
-        description: 'Heli toos ah mudello Google Gemini.',
+        description: 'Heli toos ah mudello Google Gemini.'
       },
       xai: {
         short: 'Mudello Grok',
-        description: 'Heli toos ah mudello xAI Grok.',
+        description: 'Heli toos ah mudello xAI Grok.'
       },
       local: {
         short: 'nafta-urur',
-        description: 'OpenAmer yoo local yoo nafta-urur OpenAI-yooba endpoint-kee (vLLM, llama.cpp, Ollama, etc) eessa',
-      },
+        description: 'OpenAmer yoo local yoo nafta-urur OpenAI-yooba endpoint-kee (vLLM, llama.cpp, Ollama, etc) eessa'
+      }
     },
     backToSignIn: 'Sign in-kee yoo',
     getKey: 'Key-kee soo',
@@ -2292,7 +2341,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'Browser-kee yoo sign in-kee, halkan yoo',
       device_code: 'Browser-kee verification page-kee yoo — OpenAmer automatically yoo',
-      external: 'Terminal-kee sign in-kee yoo, chat-kee yoo',
+      external: 'Terminal-kee sign in-kee yoo, chat-kee yoo'
     },
     signInFailed: 'Sign-in failed. Again yoo',
     pickDifferentProvider: 'Provider different yoo',
@@ -2317,11 +2366,13 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     free: 'Fayya',
@@ -2337,13 +2388,13 @@ Leave blank to keep the ${mode} default.`,
     loadFailed: 'Models gelin karin',
     noAuthenticatedProviders: 'Authenticated provider kuma jirin.',
     proNeedsSubscription: 'Pro models OpenAmer subscription lahaanshii u baahan yihiin.',
-    pro: 'Pro',
+    pro: 'Pro'
   },
   modelVisibility: {
     title: 'Modeelitte',
     search: 'Modeelitte cee',
     noAuthenticatedProviders: 'Xaqiijisime yaceen hin tan.',
-    addProvider: 'Yacee osis…',
+    addProvider: 'Yacee osis…'
   },
   shell: {
     windowControls: 'Daafat maamusa',
@@ -2354,7 +2405,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'Modeelitte hin argitinnon',
       editModels: 'Modeelitte caagi…',
       refreshModels: 'Modeelitte uqbisi',
-      fast: 'Sissik',
+      fast: 'Sissik'
     },
     modelOptions: {
       noOptions: 'Ta modeelih dooroota hin tan',
@@ -2370,7 +2421,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'Dudda',
       ultra: 'Dudda dabal',
       updateFailed: 'Model dooro cokkalti baxsime',
-      fastFailed: 'Sissi cokkal cokkalti baxsime',
+      fastFailed: 'Sissi cokkal cokkalti baxsime'
     },
     gatewayMenu: {
       gateway: 'Afgita',
@@ -2385,7 +2436,7 @@ Leave blank to keep the ${mode} default.`,
       recentActivity: 'Madqaaqal qixi',
       viewAllLogs: 'Logoota inkih wagit →',
       messagingPlatforms: 'Xabar platformoota',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'Moomiyo caalih',
@@ -2395,7 +2446,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'Abtoota otomatikil cubultaay faxxak esser',
       off: 'Damma',
       offDescription: 'Moomiyo essero maleh exce',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'Aysinna',
@@ -2418,13 +2469,13 @@ Leave blank to keep the ${mode} default.`,
           tool_definitions: 'Malko tafsere',
           conversation: 'Wada hadal',
           memory: 'Xusuus',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Xaagu data wakalah matan',
         loading: 'Calla baxsim…',
         title: 'Xaagu yaymo',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Xaagu yaymo baxsim fak',
       session: 'Muddo',
@@ -2470,8 +2521,8 @@ Leave blank to keep the ${mode} default.`,
       cron: 'Cron',
       webhooks: 'Webhooks',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Migdi gabal',
@@ -2507,7 +2558,7 @@ Leave blank to keep the ${mode} default.`,
     treeErrorBody: 'Fayili caxa ta foldar rendarimak gaf gexte.',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'Eegis',
@@ -2524,22 +2575,22 @@ Leave blank to keep the ${mode} default.`,
     console: {
       copyFailed: 'Konsol akkayit ma hin fakkeen',
       copyEntry: 'Yih fakkeen',
-      sendEntry: 'Yih chat irra deebi\'',
-      resize: 'Preview konsol balli\'',
+      sendEntry: "Yih chat irra deebi'",
+      resize: "Preview konsol balli'",
       title: 'Preview Konsol',
-      sendToChat: 'Chat irra deebi\'',
+      sendToChat: "Chat irra deebi'",
       copySelected: 'Filatam clipboard irra fakkeen',
       copyAll: 'Hammam clipboard irra fakkeen',
       copy: 'Fakkeen',
       clear: 'Addi',
       empty: 'Konsol sagageeni ma hin jiru.',
       promptHeader: 'Preview konsol:',
-      sentTitle: 'Chat irra deebi\'e',
+      sentTitle: "Chat irra deebi'e",
       deselect: 'Kayd dooro haq',
       select: 'Kayd dooro',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Preview app boot hin dandeenye',
@@ -2562,7 +2613,8 @@ Leave blank to keep the ${mode} default.`,
       restartFailedMessage: 'OpenAmer server kak gexuh dudum mabaxin.',
       stillWorking: 'OpenAmer am taamita, kinnih immay kak gexo naba mameete. Server amri foocal taamitak yen.',
       workspaceReloading: 'Taama gita yewqe, kakawsa kak gexak',
-      moduleMimeDescription: 'Module scriptoota beyna MIME type luk tamqen. Ama baadil static file server project dev server badal Vite/React app tamqenta.',
+      moduleMimeDescription:
+        'Module scriptoota beyna MIME type luk tamqen. Ama baadil static file server project dev server badal Vite/React app tamqenta.',
       unreachableDescription: 'Kakawsa gita xaguh dudum mabaxin.',
       fallbackTitle: 'Kakawsa',
       lookingRestart: taskId => `OpenAmer is looking for a preview server to restart (${taskId})`,
@@ -2573,7 +2625,7 @@ Leave blank to keep the ${mode} default.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     sourceLineTitle: 'Qagxi dooroonuh · shift-qagxi farcisuh · gurrus qaddooseh',
     source: 'MADAR',
@@ -2589,7 +2641,8 @@ Leave blank to keep the ${mode} default.`,
     editing: 'Weeysa',
     unsavedChanges: 'Weesimte farcis',
     diskChangedTitle: 'Fayl diskil weesimte',
-    diskChangedBody: 'Ta fayl fakite waqditik weesimte. Ku weesoh alaalsal yaayise, hinnay ku weesitte qambaal kaay weeseeh fak?',
+    diskChangedBody:
+      'Ta fayl fakite waqditik weesimte. Ku weesoh alaalsal yaayise, hinnay ku weesitte qambaal kaay weeseeh fak?',
     overwrite: 'Alaalsal yaayise',
     discardReload: 'Qambaal weeseeh fak',
     closeTab: label => `Close ${label}`,
@@ -2597,7 +2650,7 @@ Leave blank to keep the ${mode} default.`,
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   zones: {
     showHeader: 'Qubul ayyaaqe',
@@ -2606,15 +2659,18 @@ Leave blank to keep the ${mode} default.`,
     restore: 'Cella',
     zoneEditorTitle: 'Zoon editeer',
     editorHintPre: 'lakkooyto kala bax ·',
-    editorHintPost: 'liinita ujeeddo · zoono kala dhex dhaqaaqo si ay isku darraan · wadajirka gacanaha u dhaqaaqo si ay wax ka beddelaan',
+    editorHintPost:
+      'liinita ujeeddo · zoono kala dhex dhaqaaqo si ay isku darraan · wadajirka gacanaha u dhaqaaqo si ay wax ka beddelaan',
     templateColumns: 'Kolamno',
     templateRows: 'Safafyo',
     templateGrid: 'Shabakad',
     templatePriority: 'Awliyo',
     saveApply: 'Keydiso & isticmaal',
-    notExpressible: 'kan dib u dhisan waxay isku xiran yihiin (pinwheel) — hadda kama hadlin karo sida nested splits ah',
+    notExpressible:
+      'kan dib u dhisan waxay isku xiran yihiin (pinwheel) — hadda kama hadlin karo sida nested splits ah',
     closeRunningTitle: 'Qaybta shaqeeyaysa xir?',
-    closeRunningBody: 'Wadalkan hadda wuxuu weli ka shaqeeyaa (ama wuxuu ku sugal yahay qaadashadaada). Marka aad qaybta xirto, ayaa lagu yaqaan—khaladku wuxuu haystaa horumarkiisa, wuxuuna ka dib furahaa dhinaca bar.',
+    closeRunningBody:
+      'Wadalkan hadda wuxuu weli ka shaqeeyaa (ama wuxuu ku sugal yahay qaadashadaada). Marka aad qaybta xirto, ayaa lagu yaqaan—khaladku wuxuu haystaa horumarkiisa, wuxuuna ka dib furahaa dhinaca bar.',
     closeRunningConfirm: 'Qaybta xir',
     closeOthers: 'Qaybta horra xir',
     closeToRight: 'Qaybta midixu xir',
@@ -2642,7 +2698,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
@@ -2665,19 +2721,20 @@ Leave blank to keep the ${mode} default.`,
       stop: 'Dubbisa',
       restorePrevious: 'Checkpoint ka halkan bakka',
       restoreCheckpoint: 'Checkpoint bakka',
-      restoreFromHere: 'Checkpoint bakka — prompt kana irra deebi\'ee jijjiirama',
+      restoreFromHere: "Checkpoint bakka — prompt kana irra deebi'ee jijjiirama",
       restoreTitle: 'Checkpoint kanatti bakka?',
-      restoreBody: 'Prompt kana gadi yoo waliin isiniif haala, prompt kana irra deebi\'ee jijjiirama.',
-      restoreConfirm: 'Bakka & deebi\'ee jijjiirama',
+      restoreBody: "Prompt kana gadi yoo waliin isiniif haala, prompt kana irra deebi'ee jijjiirama.",
+      restoreConfirm: "Bakka & deebi'ee jijjiirama",
       restoreNext: 'Checkpoint ka jaba bakka',
       goForward: 'Jaba deemi',
       sendEdited: 'Erga ka gabaabame erga',
       attachingFile: 'Kabachaa jira…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
-      yesterday: time => `Yesterday, ${time}`,
+      yesterday: time => `Yesterday, ${time}`
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gateway haa kabanna',
@@ -2691,21 +2748,22 @@ Leave blank to keep the ${mode} default.`,
       reject: 'Abki',
       alwaysTitle: 'Halkan amma yalli aada?',
       alwaysAllow: 'Halkan aada',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
       notReady: 'Sagal yallo baadu kaban',
       gatewayDisconnected: 'OpenAmer meesso yallo wah',
       sendFailed: 'Sagal jab marri kaban',
-      loadingQuestion: 'Su\'aal soo geliya…',
+      loadingQuestion: "Su'aal soo geliya…",
       other: 'Kale (jabkaaga qor)',
       placeholder: 'Jabkaaga qor…',
       skip: 'Ka tag',
       skipped: 'Ka tagay',
       continueLabel: 'Wadhadh',
       lateAnswerTip: 'Jabkan qoraal dib u noqo u samee',
-      lateAnswerHint: 'Su\'aalkan waa dib u sugmaya. Dooro dooro qoraal dib u noqo u samee.',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswerHint: "Su'aalkan waa dib u sugmaya. Dooro dooro qoraal dib u noqo u samee.",
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     tool: {
       code: 'Kood',
@@ -2715,15 +2773,15 @@ Leave blank to keep the ${mode} default.`,
       copyCommand: 'Amar kopii',
       copyContent: 'Meqalu kopii',
       copyUrl: 'URL kopii',
-      copyResults: 'Nataa\'ij kopii',
-      copyQuery: 'Su\'aal kopii',
+      copyResults: "Nataa'ij kopii",
+      copyQuery: "Su'aal kopii",
       copyFile: 'Fayl kopii',
       copyPath: 'Mara kopii',
       outputAlt: 'Uurumsa cikkinna',
       rawResponse: 'Jawab gibil',
       copyActivity: 'Harkita kopii',
-      recoveredOne: 'Kab 1 addi ba\'duu fakka',
-      failedOne: '1 addi ba\'du',
+      recoveredOne: "Kab 1 addi ba'duu fakka",
+      failedOne: "1 addi ba'du",
       statusRunning: 'Dhaqeessa',
       statusError: 'Khalal',
       statusRecovered: 'Fakka',
@@ -2734,128 +2792,128 @@ Leave blank to keep the ${mode} default.`,
         opened: 'Furan',
         opening: 'Furaya',
         failedToOpen: 'Furin gelle',
-        searched: 'Ra\'ay',
-        searching: 'Ra\'aya',
+        searched: "Ra'ay",
+        searching: "Ra'aya",
         ran: 'Dhufe',
         running: 'Dhufeya',
         ranCode: 'Kood dhufe',
-        runningCode: 'Skriptiya',
+        runningCode: 'Skriptiya'
       },
       prefixes: {
         browser: 'Brauzar',
-        web: 'Wab',
+        web: 'Wab'
       },
       titles: {
         browser_click: {
           done: 'Safha elemanto xannaba',
           pending: 'Safha elemanto xannabaya',
-          pendingAction: 'Xannabaya',
+          pendingAction: 'Xannabaya'
         },
         browser_fill: {
           done: 'Form filid buuxa',
           pending: 'Form filid buuxaya',
-          pendingAction: 'Buuxaya',
+          pendingAction: 'Buuxaya'
         },
         browser_navigate: {
           done: 'Safha furan',
           pending: 'Safha furaya',
-          pendingAction: 'Furaya',
+          pendingAction: 'Furaya'
         },
         browser_type: {
           pendingAction: 'Yakkita',
           done: 'Bogga ku qoray',
-          pending: 'Bogga ku qoraya',
+          pending: 'Bogga ku qoraya'
         },
         clarify: {
-          done: 'Su\'aal yi\'ay',
-          pending: 'Su\'aal yi\'ayta',
-          pendingAction: 'Yi\'ayta',
+          done: "Su'aal yi'ay",
+          pending: "Su'aal yi'ayta",
+          pendingAction: "Yi'ayta"
         },
         cronjob: {
           done: 'Cron xirfad',
           pending: 'Cron xirfad qabanta',
-          pendingAction: 'Qabanta',
+          pendingAction: 'Qabanta'
         },
         edit_file: {
-          done: 'Fayl yi\'ay',
-          pending: 'Fayl yi\'ayta',
-          pendingAction: 'Yi\'ayta',
+          done: "Fayl yi'ay",
+          pending: "Fayl yi'ayta",
+          pendingAction: "Yi'ayta"
         },
         execute_code: {
-          done: 'Kood yi\'ay',
-          pending: 'Skript yi\'ayta',
-          pendingAction: 'Skript yi\'ayta',
+          done: "Kood yi'ay",
+          pending: "Skript yi'ayta",
+          pendingAction: "Skript yi'ayta"
         },
         image_generate: {
-          done: 'Sawir yi\'ay',
-          pending: 'Sawir yi\'ayta',
-          pendingAction: 'Yi\'ayta',
+          done: "Sawir yi'ay",
+          pending: "Sawir yi'ayta",
+          pendingAction: "Yi'ayta"
         },
         list_files: {
-          done: 'Faylo yi\'ay',
-          pending: 'Faylo yi\'ayta',
-          pendingAction: 'Liist yi\'ayta',
+          done: "Faylo yi'ay",
+          pending: "Faylo yi'ayta",
+          pendingAction: "Liist yi'ayta"
         },
         patch: {
-          done: 'Fayl la\'ay',
+          done: "Fayl la'ay",
           pending: 'Fayil yahakko',
-          pendingAction: 'Yahakko',
+          pendingAction: 'Yahakko'
         },
         read_file: {
           done: 'Fayil akko',
           pending: 'Fayil akkooy',
-          pendingAction: 'Akkooy',
+          pendingAction: 'Akkooy'
         },
         search_files: {
           done: 'Fayilooh fakko',
           pending: 'Fayilooh fakkooy',
-          pendingAction: 'Fakkooy',
+          pendingAction: 'Fakkooy'
         },
         session_search_recall: {
           done: 'Sessiin tarik fakko',
           pending: 'Sessiin tarik fakkooy',
-          pendingAction: 'Fakkooy',
+          pendingAction: 'Fakkooy'
         },
         terminal: {
-          done: 'Amar geli\'e',
-          pending: 'Amar geli\'oy',
-          pendingAction: 'Geli\'oy',
+          done: "Amar geli'e",
+          pending: "Amar geli'oy",
+          pendingAction: "Geli'oy"
         },
         todo: {
           done: 'Todos yahakko',
           pending: 'Todos yahakkooy',
-          pendingAction: 'Yahakkooy',
+          pendingAction: 'Yahakkooy'
         },
         vision_analyze: {
           done: 'Soorri fakko',
           pending: 'Soorri fakkooy',
-          pendingAction: 'Fakkooy',
+          pendingAction: 'Fakkooy'
         },
         web_extract: {
           done: 'Websayti akak',
           pending: 'Websayti akakaya',
-          pendingAction: 'Akakaya',
+          pendingAction: 'Akakaya'
         },
         web_search: {
           done: 'Web saytay',
           pending: 'Web saytaya',
-          pendingAction: 'Saytaya',
+          pendingAction: 'Saytaya'
         },
         write_file: {
           done: 'Fayli geybay',
           pending: 'Fayli geybayay',
-          pendingAction: 'Geybayay',
+          pendingAction: 'Geybayay'
         },
         browser_snapshot: {
           done: 'Bogga sawir qaadmay',
           pending: 'Bogga sawir qaadaya',
-          pendingAction: 'Qaadaya',
+          pendingAction: 'Qaadaya'
         },
         browser_take_screenshot: {
           done: 'Sawir qaadmay',
           pending: 'Sawir qaadaya',
-          pendingAction: 'Qaadaya',
-        },
+          pendingAction: 'Qaadaya'
+        }
       },
       recoveredMany: count => `Recovered after ${count} failed steps`,
       failedMany: count => `${count} steps failed`,
@@ -2865,23 +2923,23 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer geytweyt ma yekkine',
-    sudoSendFailed: 'Sudo paswirdi yi\'in ma bahin',
-    secretSendFailed: 'Sirri yi\'in ma bahin',
+    sudoSendFailed: "Sudo paswirdi yi'in ma bahin",
+    secretSendFailed: "Sirri yi'in ma bahin",
     sudoTitle: 'Adminstratör paswirdi',
-    sudoDesc: 'OpenAmer kaa sudo paswirdi lazimay hakki amri rakaba. Ka mahali agen wahid yi\'in bahin.',
+    sudoDesc: "OpenAmer kaa sudo paswirdi lazimay hakki amri rakaba. Ka mahali agen wahid yi'in bahin.",
     sudoPlaceholder: 'sudo paswirdi',
     secretTitle: 'Sirri lazim',
     secretDesc: 'OpenAmer wahid shahaada lazimay rakkaba.',
-    secretPlaceholder: 'sirri qiimah',
+    secretPlaceholder: 'sirri qiimah'
   },
   desktop: {
-    audioReadFailed: 'Rekordeyte owdi akaki yi\'in ma bahin',
+    audioReadFailed: "Rekordeyte owdi akaki yi'in ma bahin",
     sessionUnavailable: 'Seshin ma bahin',
     branchNeedsChat: 'Maxcó caxah duma fayya hinnay qagte.',
     sessionBusy: 'Sessió xayuk.',
@@ -2919,11 +2977,11 @@ Leave blank to keep the ${mode} default.`,
       timedOut: 'Geetiweyih qagalta yefken. `openamer gateway` abtaa?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     createSessionFailed: 'Sessiin yakan yoh yihin',
     promptFailed: 'Promooti yihin',
-    providerCredentialRequired: 'Provider credential yiiso wara yakan biy\'o',
+    providerCredentialRequired: "Provider credential yiiso wara yakan biy'o",
     emptySlashCommand: 'Boyna slash command',
     yoloArmed: 'YOLO chat kan armed',
     yoloToggleFailed: 'YOLO toggle yihin',
@@ -2935,7 +2993,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'Edit yihin',
     resumeFailed: 'Resume yihin',
     resumeStrandedTitle: 'Sessiin kan load yihin',
-    resumeStrandedBody: 'Sessiin kan connection yihin, automatic retries gave up. Gateway running yihin check, kaan yakan retry.',
+    resumeStrandedBody:
+      'Sessiin kan connection yihin, automatic retries gave up. Gateway running yihin check, kaan yakan retry.',
     nothingToBranch: 'Branch yoh boyna',
     desktopCommands: 'Miiro amarro',
     yoloOff: 'YOLO kaban',
@@ -2944,10 +3003,11 @@ Leave blank to keep the ${mode} default.`,
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
-    branchTitle: n => `Draft: Branch #${n}`,
+    branchTitle: n => `Draft: Branch #${n}`
   },
   ui: {
     pagination: {
@@ -2955,25 +3015,26 @@ Leave blank to keep the ${mode} default.`,
       previousAria: 'Sahanka hor yi',
       next: 'Socda',
       nextAria: 'Sahanka socda yi',
-      label: 'Buxak buxa',
+      label: 'Buxak buxa'
     },
     sidebar: {
       title: 'Dabqad',
       description: 'Mobile-ka dabqad soo bandhiga.',
-      toggle: 'Dabqad bedel',
+      toggle: 'Dabqad bedel'
     },
     search: {
-      clear: 'Ceeqa haq',
-    },
+      clear: 'Ceeqa haq'
+    }
   },
   errors: {
     genericFailure: 'Tama cubbusa',
     boundaryTitle: 'Xaganah addal tu moxxa',
     boundaryDesc: 'Mokla tuqusiyyah xagge. Maxaasaa kee madooba salama.',
     reloadWindow: 'Shubbak qagalta',
-    openLogs: 'Daftar fakim',
+    openLogs: 'Daftar fakim'
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
-  },
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
+  }
 })

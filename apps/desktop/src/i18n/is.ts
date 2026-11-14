@@ -45,7 +45,7 @@ export const is = defineLocale({
     update: 'Uppfæra',
     tryHint: term => `Prófaðu „${term}“`,
     on: 'Kveikt',
-    off: 'Slökkt',
+    off: 'Slökkt'
   },
   fileMenu: {
     revealFileManager: 'Opna containing folder',
@@ -60,7 +60,7 @@ export const is = defineLocale({
     pathCopied: 'Slóð afrituð',
     revealFinder: 'Sýna í Finder',
     revealExplorer: 'Sýna í File Explorer',
-    deleteTitle: name => `Eyða ${name}?`,
+    deleteTitle: name => `Eyða ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop er tilbúið',
@@ -69,7 +69,7 @@ export const is = defineLocale({
       loadingSettings: 'Hleð OpenAmer stillingum',
       loadingSessions: 'Hleð nýlegum setum',
       startingDesktopConnection: 'Byrjar skrifstofutengingu',
-      startingOpenAmerDesktop: 'Byrjar OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Byrjar OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Bakgrunnsferli OpenAmer lokið.',
@@ -78,13 +78,15 @@ export const is = defineLocale({
       desktopBootFailed: 'Ræsing skrifstofu mistókst',
       gatewayConnectionLost: 'Tengingin við gáttina mistókst',
       gatewaySignInRequired: 'Innskráning á gátt er nauðsynleg',
-      ipcBridgeUnavailable: 'IPC-brúin fyrir skjáborð er ekki tiltæk.',
+      ipcBridgeUnavailable: 'IPC-brúin fyrir skjáborð er ekki tiltæk.'
     },
     failure: {
       title: 'Ekki var hægt að ræsa OpenAmer',
-      description: 'Bakgrunnsgáttin kom ekki upp. Prófunu eitt af endurheimtur-skrefunum hér að neðan. Ekkert hér eyðir samtölum þínum eða stillingum.',
+      description:
+        'Bakgrunnsgáttin kom ekki upp. Prófunu eitt af endurheimtur-skrefunum hér að neðan. Ekkert hér eyðir samtölum þínum eða stillingum.',
       remoteTitle: 'Innskráning á fjarlæga gátt er nauðsynleg',
-      remoteDescription: 'Setan þín á fjarlægu gáttina er útrunnin. Skráðu þig inn aftur til að tengjast. Ekkert hér eyðir samtölum þínum eða stillingum.',
+      remoteDescription:
+        'Setan þín á fjarlægu gáttina er útrunnin. Skráðu þig inn aftur til að tengjast. Ekkert hér eyðir samtölum þínum eða stillingum.',
       retry: 'Reyna',
       repairInstall: 'Endurheimta uppsetningu',
       useLocalGateway: 'Nota staðbundna gátt',
@@ -93,31 +95,34 @@ export const is = defineLocale({
       openLogs: 'Opna skrár',
       repairHint: 'Endurheimtingin keyrir uppsetningarforritið aftur og getur tekið nokkrar mínútur á nýrri tæki.',
       signOutAndSignIn: 'Skrá út og inn',
-      remoteFailureHint: 'Athugaðu URL gáttarinnar og innskráningu undir Stillingar gáttar, eða skiptu yfir í staðbundnu gáttina.',
+      remoteFailureHint:
+        'Athugaðu URL gáttarinnar og innskráningu undir Stillingar gáttar, eða skiptu yfir í staðbundnu gáttina.',
       hideRecentLogs: 'Fela nýlegar skrár',
       showRecentLogs: 'Sýna nýlegar skrár',
       signedInTitle: 'Skráður inn',
       signedInMessage: 'Endurtengist við fjarlæga gáttina…',
-      remoteSignInHint: signInLabel => `Skráir út úr vistaðri lotu í fjartengda vafranum og opnar svo ${signInLabel}. Notaðu staðbundna gátt til að skipta yfir í innbyggða bakendann í staðinn.`,
+      remoteSignInHint: signInLabel =>
+        `Skráir út úr vistaðri lotu í fjartengda vafranum og opnar svo ${signInLabel}. Notaðu staðbundna gátt til að skipta yfir í innbyggða bakendann í staðinn.`,
       signInIncompleteTitle: 'Innskráningu ólokið',
       signInIncompleteMessage: 'Innskráningarglugganum var lokað áður en auðkenningunni lauk.',
       signInFailed: 'Innskráning mistókst',
       signInToRemoteGateway: 'Skrá inn í fjartengda gátt',
       signInWithProvider: provider => `Skrá inn með ${provider}`,
-      identityProvider: 'auðkenningarþjónustuna þína',
+      identityProvider: 'auðkenningarþjónustuna þína'
     },
-    desktopBootFailedWithMessage: message => `Ræsing skjáborðsins mistókst: ${message}`,
+    desktopBootFailedWithMessage: message => `Ræsing skjáborðsins mistókst: ${message}`
   },
   notifications: {
     errors: {
       elevenLabsRejectedKey: 'ElevenLabs hafnaði API-lyklinum (401).',
       gatewayAuthFailed: 'Gateway-auðkenning mistókst — athugaðu API_SERVER_KEY.',
-      methodNotAllowed: 'Bakendið á skjáborðinu hafnaði beiðinni (405 Method Not Allowed). Prófaðu að endurræsa OpenAmer Desktop.',
+      methodNotAllowed:
+        'Bakendið á skjáborðinu hafnaði beiðinni (405 Method Not Allowed). Prófaðu að endurræsa OpenAmer Desktop.',
       microphonePermission: 'Heimild til hljóðsins var hafnað.',
       openaiRejectedApiKey: 'OpenAI hafnaði API-lyklinum.',
       openaiTtsNeedsKey: 'OpenAI TTS þarf VOICE_TOOLS_OPENAI_KEY eða OPENAI_API_KEY.',
       elevenLabsNeedsKey: 'ElevenLabs STT þarf ELEVENLABS_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI hafnaði API-lyklinum (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI hafnaði API-lyklinum (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Stilltu talaraðgerð til að nota talamóði.',
@@ -136,7 +141,7 @@ export const is = defineLocale({
       transcriptionFailed: 'Þýðing talræða mistókst',
       transcriptionUnavailable: 'Stafsetning talmáls er ekki tiltæk yet.',
       tryRecordingAgain: 'Reyndu að taka upp aftur.',
-      unavailable: 'Talmál ólægt',
+      unavailable: 'Talmál ólægt'
     },
     native: {
       approvalTitle: 'Samþykki þarf',
@@ -149,7 +154,7 @@ export const is = defineLocale({
       turnErrorTitle: 'Umræðan mistókst',
       backgroundDoneTitle: 'Bakgrundstarfi lokið',
       backgroundFailedTitle: 'Bakgrundstarfi mistókst',
-      creditsTitle: 'Kredítir',
+      creditsTitle: 'Kredítir'
     },
     region: 'Tilkynningar',
     hide: 'Fela',
@@ -161,12 +166,13 @@ export const is = defineLocale({
     copyDetail: 'Afrita smáatriði',
     copyDetailFailed: 'Gat ekki afritað smáatriði tilkynningar',
     backendOutOfDateTitle: 'Bakendinn er úreltur',
-    backendOutOfDateMessage: 'OpenAmer-bakendinn þinn er eldri en þessi skjáborðsútgáfa og virkar kannski ekki rétt. Uppfærðu til að samræma þá.',
+    backendOutOfDateMessage:
+      'OpenAmer-bakendinn þinn er eldri en þessi skjáborðsútgáfa og virkar kannski ekki rétt. Uppfærðu til að samræma þá.',
     installMethodUnsupportedTitle: 'Óstudd uppsetningaraðferð',
     updateOpenAmer: 'Uppfæra OpenAmer',
     updateReadyTitle: 'Uppfærsla tilbúin',
     updateReadyMessage: count => `${count} nýjar breytingar í boði (${count === 1 ? '' : 's'}).`,
-    seeWhatsNew: "Sjá hvað er nýtt",
+    seeWhatsNew: 'Sjá hvað er nýtt'
   },
   billingBlock: {
     titleOpenamer: 'Úr OpenAmer-kredítum',
@@ -174,7 +180,7 @@ export const is = defineLocale({
     openBilling: 'Opna reikningsskrá',
     addCredits: 'Bæta við kredítum',
     dismiss: 'Loka',
-    titleProvider: provider => `Inneign uppurin — ${provider}`,
+    titleProvider: provider => `Inneign uppurin — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Fela hliðarstik',
@@ -191,7 +197,7 @@ export const is = defineLocale({
     openStarmap: 'Opna minnisgraf',
     openKeybinds: 'Lyklaborðsstyttingar',
     layoutEditor: 'Ritstjóri útlits',
-    layoutEditorTitle: 'Ritstjóri útlits — ⌘-click endurstillir útlit',
+    layoutEditorTitle: 'Ritstjóri útlits — ⌘-click endurstillir útlit'
   },
   keybinds: {
     set: 'Stilla',
@@ -200,7 +206,7 @@ export const is = defineLocale({
       profiles: 'Notendasnið',
       session: 'Seta',
       navigation: 'Yfirferð',
-      view: 'Sýn',
+      view: 'Sýn'
     },
     actions: {
       'keybinds.openPanel': 'Opna lyklaborðsleiðir',
@@ -279,7 +285,7 @@ export const is = defineLocale({
       'profile.switch.9': 'Skiptir yfir í notandasnið 9',
       'composer.help': 'Fljótst hjálp',
       'composer.history': 'Skiptu yfirblás / saga',
-      'composer.cancel': 'Loka yfirblási · hætta keyrslu',
+      'composer.cancel': 'Loka yfirblási · hætta keyrslu'
     },
     title: 'Lyklaborðsstyttingar',
     search: 'Leita að styttingum…',
@@ -288,7 +294,7 @@ export const is = defineLocale({
     resetAll: 'Endurstilla allt',
     pressKey: 'Ýttu á lykli…',
     subtitle: open => `Smelltu á flýtileið til að endurskilgreina hana · ${open} opnar þennan glugga aftur.`,
-    conflictWith: label => `Einnig bundin við „${label}“`,
+    conflictWith: label => `Einnig bundin við „${label}“`
   },
   language: {
     label: 'Tungumál',
@@ -297,7 +303,7 @@ export const is = defineLocale({
     saveError: 'Mistókst að uppfæra tungumál',
     switchTo: 'Skipta um tungumál',
     searchPlaceholder: 'Leita í tungumálum…',
-    noResults: 'Engin tungumál fundust',
+    noResults: 'Engin tungumál fundust'
   },
   settings: {
     closeSettings: 'Loka stillingum',
@@ -322,12 +328,14 @@ export const is = defineLocale({
       about: 'Um forritið',
       billing: 'Greiðslur',
       notifications: 'Tilkynningar',
-      plugins: 'Viðbætur',
+      plugins: 'Viðbætur'
     },
     appearance: {
       pet: {
-        intro: 'Veldu hægtæknandi petdex-maskot sem flýst yfir appið og bregst við því sem OpenAmer gerir — hleður þegar verkefni keyra, fagnar árangri og er fúlfúr við villur.',
-        restartHint: 'Dýr þarf að endurræstast — forritið var í gangi áður en þessi eiginleiki komst í. Hættu OpenAmer og opnaðu það aftur, komdu síðan til baka hér.',
+        intro:
+          'Veldu hægtæknandi petdex-maskot sem flýst yfir appið og bregst við því sem OpenAmer gerir — hleður þegar verkefni keyra, fagnar árangri og er fúlfúr við villur.',
+        restartHint:
+          'Dýr þarf að endurræstast — forritið var í gangi áður en þessi eiginleiki komst í. Hættu OpenAmer og opnaðu það aftur, komdu síðan til baka hér.',
         on: 'Kveikt',
         off: 'Slökkt',
         scaleTitle: 'Stærð',
@@ -360,10 +368,11 @@ export const is = defineLocale({
         adoptFailed: slug => `Gat ekki skráð ${slug}`,
         uninstallFailed: slug => `Gat ekki fjarlægt ${slug}`,
         renameFailed: slug => `Gat ekki endurnefnt ${slug}`,
-        exportFailed: slug => `Gat ekki flutt ${slug} út`,
+        exportFailed: slug => `Gat ekki flutt ${slug} út`
       },
       embedsTitle: 'Innfelldar innihlífar',
-      embedsDesc: 'Rík framhlið hlaðast frá öðrum vefsíðum (YouTube, X, …). Bidl sýnir staðplásu þar til þú hefur heimilt hvert og eitt; Alltaf hleður þeim sjálfkrafa; Slökkt heldur einföldum hlekkjum.',
+      embedsDesc:
+        'Rík framhlið hlaðast frá öðrum vefsíðum (YouTube, X, …). Bidl sýnir staðplásu þar til þú hefur heimilt hvert og eitt; Alltaf hleður þeim sjálfkrafa; Slökkt heldur einföldum hlekkjum.',
       embedsAsk: 'Bidl',
       embedsAlways: 'Alltaf',
       embedsOff: 'Slökkt',
@@ -374,20 +383,23 @@ export const is = defineLocale({
       themeTitle: 'Þema',
       themeDesc: 'Aðeins skjáborðslitapalette. Valið hamur er lagður ofan á.',
       installTitle: 'Setja upp frá VS Code',
-      installDesc: 'Límdu inn auðkenni Marketplace-extensions (t.d. dracula-theme.theme-dracula) til að breyta litaþema þess í skjáborðslitapalette.',
+      installDesc:
+        'Límdu inn auðkenni Marketplace-extensions (t.d. dracula-theme.theme-dracula) til að breyta litaþema þess í skjáborðslitapalette.',
       installButton: 'Setja upp',
       installing: 'Set upp…',
       installError: 'Ekki tókst að setja upp það þema.',
       removeTheme: 'Fjarlægja þema',
       importedBadge: 'Innflutt',
       title: 'Útlit',
-      intro: 'Þetta eru birtustillingar sem gilda aðeins fyrir skjáborðið. Hamur stýrir birtu; þema stýrir áherslulitunum og útliti samtalssvæðisins.',
+      intro:
+        'Þetta eru birtustillingar sem gilda aðeins fyrir skjáborðið. Hamur stýrir birtu; þema stýrir áherslulitunum og útliti samtalssvæðisins.',
       colorMode: 'Litahamur',
       colorModeDesc: 'Veldu fastan ham eða láttu OpenAmer fylgja kerfisstillingunni.',
       toolViewTitle: 'Birting verkfærakalla',
       toolViewDesc: 'Einfalt felur hrá gögn verkfæra; Tæknilegt sýnir allt inntak og úttak.',
       uiScaleTitle: 'Kvörðun viðmóts',
-      uiScaleDesc: (percent: number) => `Kvarðar texta og stýrieiningar um allt forritið. Cmd/Ctrl með +, - og 0 virkar líka. Núverandi: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Kvarðar texta og stýrieiningar um allt forritið. Cmd/Ctrl með +, - og 0 virkar líka. Núverandi: ${percent}%.`,
       translucencyTitle: 'Gegnsæi glugga',
       translucencyDesc: 'Sjá skjáborðið í gegnum allan gluggann. Aðeins macOS og Windows.',
       backdropTitle: 'Bakgrunnur samtals',
@@ -395,7 +407,7 @@ export const is = defineLocale({
       embedsReset: (count: number) => `Endurstilla ${count} leyfða ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Vistað fyrir sniðið ${profile} — hvert snið heldur sínu þema.`,
       installPlaceholder: 'útgefandi.viðbót',
-      installed: name => `„${name}“ uppsett.`,
+      installed: name => `„${name}“ uppsett.`
     },
     about: {
       versionUnavailable: 'Útgáfa ekki í boði',
@@ -412,7 +424,8 @@ export const is = defineLocale({
       tapCheck: 'Ýttu á "Athuga núna" til að leita að uppfærslum.',
       justNowSuffix: '· rétt núna',
       automaticUpdates: 'Sjálfvirkar uppfærslur',
-      automaticUpdatesDesc: 'OpenAmer athugar uppfærslur sjálfkrafa í bakgrunni og lætur þig vita þegar uppfærsla er tilbúin.',
+      automaticUpdatesDesc:
+        'OpenAmer athugar uppfærslur sjálfkrafa í bakgrunni og lætur þig vita þegar uppfærsla er tilbúin.',
       never: 'aldrei',
       justNow: 'rétt núna',
       heading: 'OpenAmer Desktop',
@@ -422,7 +435,7 @@ export const is = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} mín. síðan`,
       hoursAgo: count => `fyrir ${count} klst.`,
-      daysAgo: count => `fyrir ${count} dögum`,
+      daysAgo: count => `fyrir ${count} dögum`
     },
     gateway: {
       sshHostPickTitle: 'Höstur',
@@ -443,10 +456,14 @@ export const is = defineLocale({
       sshButtonsHint: 'Vista tekur gildi við næstu keyrslu. Tengjast aftur núna.',
       sshIncompleteHost: 'Sláðu inn SSH-höst áður en þú tengst.',
       sshErrUnreachable: 'Ekki náðist í hann með SSH. Athugaðu hóst, grott og nettverk þitt.',
-      sshErrAuth: 'SSH auðkenning mistókst. Hleððu lyklinum þínum í ssh-agent (ssh-add) eða settu IdentityFile í ~/.ssh/config — OpenAmer keyrir ssh án samspils.',
-      sshErrHostKey: 'Lykill hýðarins hefur BREYTT síðan þú tengstast síðast. Staðfestu að þetta sé ætlað og keyrðu síðan ssh-keygen -R <host> og tengstu aftur.',
-      sshErrNotInstalled: 'OpenAmer er ekki uppsett á fjarlægri hlein. Settu það upp þar (`curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh`) eða stillu OpenAmer-slóð.',
-      sshErrPlatform: 'Óstudd fjarlægt kerfi. OpenAmer Desktop SSH-módið styður Linux-, macOS- og Windows-fjarlæg hýsil.',
+      sshErrAuth:
+        'SSH auðkenning mistókst. Hleððu lyklinum þínum í ssh-agent (ssh-add) eða settu IdentityFile í ~/.ssh/config — OpenAmer keyrir ssh án samspils.',
+      sshErrHostKey:
+        'Lykill hýðarins hefur BREYTT síðan þú tengstast síðast. Staðfestu að þetta sé ætlað og keyrðu síðan ssh-keygen -R <host> og tengstu aftur.',
+      sshErrNotInstalled:
+        'OpenAmer er ekki uppsett á fjarlægri hlein. Settu það upp þar (`curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh`) eða stillu OpenAmer-slóð.',
+      sshErrPlatform:
+        'Óstudd fjarlægt kerfi. OpenAmer Desktop SSH-módið styður Linux-, macOS- og Windows-fjarlæg hýsil.',
       sshErrTimeout: 'SSH-tengingin rann út tíma. Hlutið er mögulega óaðgengilegur eða í hvíld.',
       sshErrUpdateRequired: 'Uppdateer OpenAmer á fjarlægri hlein áður en þú tengst Desktop SSH.',
       sshErrUnknown: 'Ekki tókst að tengjast með SSH.',
@@ -455,23 +472,28 @@ export const is = defineLocale({
       unavailableDesc: 'IPC-brú skjáborðsins veitir ekki aðgang að stillingum gáttar.',
       title: 'Tenging við gátt',
       envOverride: 'umhverfisbreyta hnekkir',
-      intro: 'OpenAmer Desktop ræsir sjálft staðbundna gátt að sjálfgefnu. Notaðu fjartengda gátt þegar þú vilt að forritið stýri OpenAmer-bakenda sem þegar er í keyrslu á annarri vél eða á bak við treystan milliþjón. Veldu snið hér fyrir neðan til að gefa því eigið fjartengt vistfang.',
+      intro:
+        'OpenAmer Desktop ræsir sjálft staðbundna gátt að sjálfgefnu. Notaðu fjartengda gátt þegar þú vilt að forritið stýri OpenAmer-bakenda sem þegar er í keyrslu á annarri vél eða á bak við treystan milliþjón. Veldu snið hér fyrir neðan til að gefa því eigið fjartengt vistfang.',
       appliesTo: 'Gildir um',
       allProfiles: 'Öll snið',
       defaultConnection: 'Sjálfgefin tenging fyrir hvert snið sem hefur ekki sína eigin hnekkingarstillingu.',
-      profileConnection: profile => `Tenging sem notuð er aðeins þegar „${profile}“ er virkt snið. Veldu Nota sjálfgefna gátt til að fjarlægja hnekkinguna.`,
+      profileConnection: profile =>
+        `Tenging sem notuð er aðeins þegar „${profile}“ er virkt snið. Veldu Nota sjálfgefna gátt til að fjarlægja hnekkinguna.`,
       envOverrideTitle: 'Umhverfisbreytur stýra þessari skjáborðslotu.',
-      envOverrideDesc: 'Fjarlægðu OPENAMER_DESKTOP_REMOTE_URL og OPENAMER_DESKTOP_REMOTE_TOKEN til að nota vistuðu stillinguna hér fyrir neðan.',
+      envOverrideDesc:
+        'Fjarlægðu OPENAMER_DESKTOP_REMOTE_URL og OPENAMER_DESKTOP_REMOTE_TOKEN til að nota vistuðu stillinguna hér fyrir neðan.',
       modeTitle: 'Tengingarhamur',
       localTitle: 'Staðbundin gátt',
-      localDesc: 'Ræsir einkanlegum OpenAmer-bakenda á localhost. Þetta er sjálfgefna leiðin og virkar án nettengingar.',
+      localDesc:
+        'Ræsir einkanlegum OpenAmer-bakenda á localhost. Þetta er sjálfgefna leiðin og virkar án nettengingar.',
       inheritTitle: 'Nota sjálfgefna gátt',
-      inheritDesc: "Fjarlægir hnekkingarstillingu þessa sniðs og notar sjálfgefnu tenginguna.",
+      inheritDesc: 'Fjarlægir hnekkingarstillingu þessa sniðs og notar sjálfgefnu tenginguna.',
       remoteTitle: 'Fjartengd gátt',
       remoteDesc: 'Tengir þetta skjáborðsskel við fjartengdan OpenAmer-bakenda.',
       remoteAuthHint: 'Hýstar gáttir nota OAuth eða notandanafn og lykilorð; sjálfhýstar geta notað lotulykil.',
       cloudTitle: 'OpenAmer Cloud',
-      cloudDesc: 'Skráðu þig einu sinni inn í OpenAmer Cloud og veldu úr umboðsmönnunum á reikningnum þínum — enga slóð þarf að líma.',
+      cloudDesc:
+        'Skráðu þig einu sinni inn í OpenAmer Cloud og veldu úr umboðsmönnunum á reikningnum þínum — enga slóð þarf að líma.',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudSignIn: 'Skrá inn í OpenAmer Cloud',
       cloudSignedIn: 'Innskráning í OpenAmer Cloud tókst',
@@ -486,7 +508,7 @@ export const is = defineLocale({
       cloudNoAgents: {
         before: 'Engir umboðsmenn fundust á þessum reikningi. Búðu til einn í ',
         linkText: 'vefgátt OpenAmer',
-        after: ', og endurhladdu svo.',
+        after: ', og endurhladdu svo.'
       },
       cloudRefresh: 'Endurhlaða',
       cloudConnect: 'Tengjast',
@@ -504,18 +526,23 @@ export const is = defineLocale({
       remoteUrlTitle: 'Fjartengd slóð',
       remoteUrlDesc: 'Grunnslóð að fjartengda mælaborðsbakendanum. Slóðarforskeyti eru studd, til dæmis /openamer.',
       probing: 'Athuga hvernig þessi gátt auðkennir…',
-      probeError: 'Ekki náðist samband við þessa gátt enn. Athugaðu slóðina — auðkenningaraðferðin birtist þegar hún svarar.',
+      probeError:
+        'Ekki náðist samband við þessa gátt enn. Athugaðu slóðina — auðkenningaraðferðin birtist þegar hún svarar.',
       signedIn: 'Innskráð(ur)',
       signIn: 'Skrá inn',
       signOut: 'Skrá út',
       signInWith: provider => `Skrá inn með ${provider}`,
       authTitle: 'Auðkenning',
-      authSignedInPassword: 'Þessi gátt notar notandanafn og lykilorð. Þú ert innskráð(ur); lotan endurnýjast sjálfkrafa.',
+      authSignedInPassword:
+        'Þessi gátt notar notandanafn og lykilorð. Þú ert innskráð(ur); lotan endurnýjast sjálfkrafa.',
       authSignedInOauth: 'Þessi gátt notar OAuth. Þú ert innskráð(ur); lotan endurnýjast sjálfkrafa.',
-      authNeedsPassword: 'Þessi gátt notar notandanafn og lykilorð. Skráðu þig inn til að heimila þetta skjáborðsforrit.',
-      authNeedsOauth: provider => `Þessi gátt notar OAuth. Skráðu þig inn með ${provider} til að heimila þetta skjáborðsforrit.`,
+      authNeedsPassword:
+        'Þessi gátt notar notandanafn og lykilorð. Skráðu þig inn til að heimila þetta skjáborðsforrit.',
+      authNeedsOauth: provider =>
+        `Þessi gátt notar OAuth. Skráðu þig inn með ${provider} til að heimila þetta skjáborðsforrit.`,
       tokenTitle: 'Lotulykill',
-      tokenDesc: 'Lotulykill mælaborðsins sem notaður er fyrir REST og WebSocket. Skildu eftir autt til að halda vistuðum lykli.',
+      tokenDesc:
+        'Lotulykill mælaborðsins sem notaður er fyrir REST og WebSocket. Skildu eftir autt til að halda vistuðum lykli.',
       existingToken: value => `Fyrirliggjandi lykill ${value}`,
       savedToken: 'vistaður',
       pasteSessionToken: 'Líma lotulykil',
@@ -546,17 +573,19 @@ export const is = defineLocale({
       applyFailed: 'Gat ekki beitt stillingum gáttar',
       saveFailed: 'Gat ekki vistað stillingar gáttar',
       sshTitle: 'Tengjast um SSH',
-      sshDesc: 'OpenAmer er ræst á fjarvélinni um SSH og gönguð hingað inn í forritið — ekkert sem þú þarft að ræsa eða opna sjálf(ur). Krefst virks SSH-aðgangs með lykli að vélinni.',
-      sshTrustHint: 'Fyrsta vélarlyklum sem boðið er upp á er treyst og fest; síðari breytingar mistakast í örugga átt.',
+      sshDesc:
+        'OpenAmer er ræst á fjarvélinni um SSH og gönguð hingað inn í forritið — ekkert sem þú þarft að ræsa eða opna sjálf(ur). Krefst virks SSH-aðgangs með lykli að vélinni.',
+      sshTrustHint:
+        'Fyrsta vélarlyklum sem boðið er upp á er treyst og fest; síðari breytingar mistakast í örugga átt.',
       sshHostTitle: 'Vél',
       sshHostDesc: 'notandi@vél, eða Host-alias úr ~/.ssh/config.',
       sshHostPick: 'Veldu vél…',
-      sshReachable: (host, platform) => `Náanleg: ${host} (${platform}) — OpenAmer fannst`,
+      sshReachable: (host, platform) => `Náanleg: ${host} (${platform}) — OpenAmer fannst`
     },
     keys: {
       loading: 'Hleð API-lykli og auðkennum...',
       failedLoad: 'Ekki tókst að hlaða API-lyklum',
-      empty: 'Þessi flokkur er ekki uppsettur enn.',
+      empty: 'Þessi flokkur er ekki uppsettur enn.'
     },
     mcp: {
       loading: 'Hleð MCP-þjónum...',
@@ -618,48 +647,50 @@ export const is = defineLocale({
       catalogInstallStarted: name => `Set ${name} upp... gildir fyrir nýjar lotur þegar því lýkur.`,
       catalogInstallFailed: name => `Ekki tókst að setja ${name} upp`,
       catalogEnvPrompt: name => `${name} krefst skilríkja`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} virk`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} virk`,
       authenticatedMessage: (server, count) => `${server}: ${count} verkfæri`,
       enableTool: tool => `Virkja ${tool}`,
-      disableTool: tool => `Gera ${tool} óvirkt`,
+      disableTool: tool => `Gera ${tool} óvirkt`
     },
     model: {
       loading: 'Hleð líkanastillingum...',
-      appliesDesc: 'Gildir fyrir nýjar sessur. Notaðu líkanaveldinn í ritstjóranum til að skipta strax yfir á virka samræðið.',
+      appliesDesc:
+        'Gildir fyrir nýjar sessur. Notaðu líkanaveldinn í ritstjóranum til að skipta strax yfir á virka samræðið.',
       provider: 'Þjónustuveitandi',
       tasks: {
         compression: {
           label: 'Þjappa',
-          hint: 'Samþjöppun samhengis',
+          hint: 'Samþjöppun samhengis'
         },
         skills_hub: {
           label: 'Hubb færni',
-          hint: 'Leit í færnum',
+          hint: 'Leit í færnum'
         },
         approval: {
           label: 'Samþykki',
-          hint: 'Smart sjálfsamþykki',
+          hint: 'Smart sjálfsamþykki'
         },
         mcp: {
           hint: 'Leiðun MCP-verkfæra',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Myndun titla',
-          hint: 'Sessutitlar',
+          hint: 'Sessutitlar'
         },
         curator: {
           label: 'Kurator',
-          hint: 'Endurskoðun á notkun færni',
+          hint: 'Endurskoðun á notkun færni'
         },
         vision: {
           label: 'Sjón',
-          hint: 'Myndgreining',
+          hint: 'Myndgreining'
         },
         web_extract: {
           label: 'Vefúrdráttur',
-          hint: 'Samantekt vefsíðu',
-        },
+          hint: 'Samantekt vefsíðu'
+        }
       },
       model: 'Líkan',
       applying: 'Beiti...',
@@ -676,12 +707,13 @@ export const is = defineLocale({
       providerDefault: '(sjálfgefið hjá veitanda)',
       fallbackAdd: 'Bæta við varalíkani',
       fallbackEmpty: 'Engin varalíkön — sjálfgefna líkanið er notað nema það klikki.',
-      notInCatalog: "er ekki á líkanslista þessa veitanda — köll geta fallið á varalíkan.",
+      notInCatalog: 'er ekki á líkanslista þessa veitanda — köll geta fallið á varalíkan.'
     },
     providers: {
       connectAccount: 'Tengja reikning',
       haveApiKey: 'Ertu með API-lykil í staðinn?',
-      intro: 'Skráðu inn með áskrift — enginn API-lykill til afritunar. OpenAmer keyrir innskráningu í vafra fyrir þig, beint í appinu.',
+      intro:
+        'Skráðu inn með áskrift — enginn API-lykill til afritunar. OpenAmer keyrir innskráningu í vafra fyrir þig, beint í appinu.',
       connected: 'Tengdur',
       collapse: 'Fella saman',
       connectAnother: 'Tengja annan þjónustuveitanda',
@@ -691,7 +723,8 @@ export const is = defineLocale({
       removeConfirm: provider => `Fjarlægja ${provider}?`,
       removeExternalGeneric: provider => `${provider} er stýrt af eigin CLI — fjarlægðu það þar.`,
       removeKeyManaged: provider => `${provider} er stillt með API-lykli. Fjarlægðu það í API-lyklum.`,
-      removeTerminalConfirm: (provider, command) => `Aftengja ${provider}? Þetta keyrir „${command}“ í skjáhermi til að hreinsa skilríkin.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Aftengja ${provider}? Þetta keyrir „${command}“ í skjáhermi til að hreinsa skilríkin.`,
       removeTerminalRunning: provider => `Keyri aftengingu ${provider} í skjáhermi…`,
       removedTitle: 'Reikningi fjarlægt',
       removedMessage: provider => `${provider} var fjarlægt.`,
@@ -701,13 +734,15 @@ export const is = defineLocale({
       noKeysMatch: 'Engir veitendur passa við leitina.',
       localEndpoint: {
         title: 'Staðbundinn / sérsniðinn endapunktur',
-        description: 'Beindu OpenAmer að hvaða OpenAI-samhæfða endapunkti sem er (Zyphra, vLLM, llama.cpp, Ollama o.fl.).',
+        description:
+          'Beindu OpenAmer að hvaða OpenAI-samhæfða endapunkti sem er (Zyphra, vLLM, llama.cpp, Ollama o.fl.).'
       },
-      loading: 'Hleð veitendum...',
+      loading: 'Hleð veitendum...'
     },
     plugins: {
       title: 'Viðbætur skjáborðsins',
-      blurb: 'Viðbætur við notandaviðmótið sem hlaðast inn í þetta forrit — innbyggðar í útgáfuna eða settar í desktop-plugins möppuna (þar á meðal þær sem OpenAmer skrifar). Slökkt á viðbót hleður henni úr keyrslu og varðveitist milli endurræsinga.',
+      blurb:
+        'Viðbætur við notandaviðmótið sem hlaðast inn í þetta forrit — innbyggðar í útgáfuna eða settar í desktop-plugins möppuna (þar á meðal þær sem OpenAmer skrifar). Slökkt á viðbót hleður henni úr keyrslu og varðveitist milli endurræsinga.',
       count: n => `${n} uppsettar`,
       openFolder: 'Opna möppu viðbóta',
       rescan: 'Skanna aftur',
@@ -719,49 +754,51 @@ export const is = defineLocale({
       kinds: {
         bundled: 'innbyggð',
         disk: 'á diski',
-        runtime: 'í keyrslu',
-      },
+        runtime: 'í keyrslu'
+      }
     },
     notifications: {
       title: 'Tilkynningar',
-      intro: 'Upprunalegar tilkynningar skjáborðsins, aðskildar frá skilaboðum innan appsins. Þær eru bundnar við tækið — hver tölva heldur sínum eigin stillingum.',
+      intro:
+        'Upprunalegar tilkynningar skjáborðsins, aðskildar frá skilaboðum innan appsins. Þær eru bundnar við tækið — hver tölva heldur sínum eigin stillingum.',
       enableAll: 'Virkja tilkynningar',
       enableAllDesc: 'Aðalrofi. Slökktu á honum til að þagga allar tilkynningar hér fyrir neðan.',
       focusedHint: 'Tilkynningar um lok ferils birtast aðeins þegar OpenAmer er í bakgrunni.',
       kinds: {
         approval: {
           label: 'Samþykki þarf',
-          description: 'Skipun bíður þess að þú samþykkir hana eða hafnir henni.',
+          description: 'Skipun bíður þess að þú samþykkir hana eða hafnir henni.'
         },
         input: {
           label: 'Inntak þarf',
-          description: 'OpenAmer lagði spurningu eða þarf lykilorð eða leynigildi.',
+          description: 'OpenAmer lagði spurningu eða þarf lykilorð eða leynigildi.'
         },
         turnDone: {
           label: 'Svar tilbúið',
-          description: 'Ferli lauk á meðan OpenAmer var í bakgrunni.',
+          description: 'Ferli lauk á meðan OpenAmer var í bakgrunni.'
         },
         turnError: {
           label: 'Ferli mistókst',
-          description: 'Ferli endaði með villu.',
+          description: 'Ferli endaði með villu.'
         },
         backgroundDone: {
           label: 'Bakgrunnsverk lokið',
-          description: 'Bakgrunnsskipun í skjáhermi kláraðist.',
+          description: 'Bakgrunnsskipun í skjáhermi kláraðist.'
         },
         credits: {
           label: 'Viðvaranir um inneign',
-          description: 'Aðgangur að inneign er stöðvaður eða endurheimtur.',
-        },
+          description: 'Aðgangur að inneign er stöðvaður eða endurheimtur.'
+        }
       },
       test: 'Senda prufutilkynningu',
       testTitle: 'OpenAmer',
       testBody: 'Tilkynningar virka.',
-      testSent: 'Prufa send. Ef ekkert birtist skaltu athuga tilkynningaheimildir stýrikerfisins og Focus/Do Not Disturb.',
+      testSent:
+        'Prufa send. Ef ekkert birtist skaltu athuga tilkynningaheimildir stýrikerfisins og Focus/Do Not Disturb.',
       testUnsupported: 'Þetta kerfi styður ekki upprunalegar tilkynningar.',
       completionSoundTitle: 'Lokhljóð',
       completionSoundDesc: 'Spilast þegar ferli umboðsmanns lýkur. Veldu forstillingu og hlustaðu hér.',
-      completionSoundPreview: 'Forskoðun',
+      completionSoundPreview: 'Forskoðun'
     },
     sections: {
       model: 'Líkan',
@@ -771,7 +808,7 @@ export const is = defineLocale({
       safety: 'Öryggi',
       memory: 'Minni og samhengi',
       voice: 'Rödd',
-      advanced: 'Ítarlegt',
+      advanced: 'Ítarlegt'
     },
     searchPlaceholder: {
       about: 'Um OpenAmer Desktop',
@@ -779,21 +816,21 @@ export const is = defineLocale({
       gateway: 'Tenging við gátt...',
       keys: 'Leita í API-lyklum...',
       mcp: 'Leita í MCP-þjónum...',
-      sessions: 'Leita í geymdum lotum...',
+      sessions: 'Leita í geymdum lotum...'
     },
     modeOptions: {
       light: {
         label: 'Ljóst',
-        description: 'Bjart yfirborð skjáborðsins',
+        description: 'Bjart yfirborð skjáborðsins'
       },
       dark: {
         label: 'Dökkt',
-        description: 'Vinnusvæði með litla glýju',
+        description: 'Vinnusvæði með litla glýju'
       },
       system: {
         label: 'Kerfið',
-        description: 'Fylgja útliti stýrikerfisins',
-      },
+        description: 'Fylgja útliti stýrikerfisins'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -811,7 +848,8 @@ export const is = defineLocale({
       imported: 'Stillingar fluttar inn',
       invalidJson: 'Ógilt JSON í stillingum',
       keepAwakeTitle: 'Halta tölvunni vakandi',
-      keepAwakeDesc: 'Kemur í veg fyrir að vélin sofni svo langar eða næturkeyrslur haldi áfram. Skjárinn getur samt dimmst.',
+      keepAwakeDesc:
+        'Kemur í veg fyrir að vélin sofni svo langar eða næturkeyrslur haldi áfram. Skjárinn getur samt dimmst.'
     },
     credentials: {
       pasteKey: 'Líma lykil',
@@ -821,7 +859,7 @@ export const is = defineLocale({
       couldNotSave: 'Gat ekki vistað skilríki.',
       remove: 'Fjarlægja',
       getKey: 'Fá lykil',
-      saving: 'Vista…',
+      saving: 'Vista…'
     },
     envActions: {
       actionsFor: label => `Aðgerðir fyrir ${label}`,
@@ -832,12 +870,13 @@ export const is = defineLocale({
       revealValue: 'Sýna gildi',
       replace: 'Skipta út',
       set: 'Stilla',
-      clear: 'Hreinsa',
+      clear: 'Hreinsa'
     },
     sessions: {
       loading: 'Hleð geymdum lotum…',
       archivedTitle: 'Geymdar lotur',
-      archivedIntro: 'Geymdar samræður eru faldar í hliðarstikunni en halda öllum skilaboðum sínum. Ctrl/⌘-smelltu á samtal í hliðarstikunni til að geyma það.',
+      archivedIntro:
+        'Geymdar samræður eru faldar í hliðarstikunni en halda öllum skilaboðum sínum. Ctrl/⌘-smelltu á samtal í hliðarstikunni til að geyma það.',
       emptyArchivedTitle: 'Ekkert geymt',
       emptyArchivedDesc: 'Geymdu samtal til að fela það hér.',
       unarchive: 'Taka úr geymslu',
@@ -846,7 +885,8 @@ export const is = defineLocale({
       restored: 'Endurheimt',
       deleteConfirm: title => `Eyða „${title}“ varanlega? Þetta er ekki hægt að afturkalla.`,
       autoArchiveTitle: 'Geyma gömul samtöl sjálfkrafa',
-      autoArchiveDesc: "Geymir sjálfkrafa samtöl sem þú hefur ekki snert um stund. Fest samtöl eru aldrei geymd og engu er eytt — geymd samtöl flytjast bara hingað.",
+      autoArchiveDesc:
+        'Geymir sjálfkrafa samtöl sem þú hefur ekki snert um stund. Fest samtöl eru aldrei geymd og engu er eytt — geymd samtöl flytjast bara hingað.',
       autoArchiveDaysLabel: 'Geyma eftir',
       autoArchiveDaysUnit: 'daga óvirkni',
       autoArchiveFailed: 'Gat ekki uppfært sjálfvirka geymslu',
@@ -862,7 +902,7 @@ export const is = defineLocale({
       unarchiveFailed: 'Tókst ekki að taka úr geymslu',
       deleteFailed: 'Eyðing mistókst',
       updateDirFailed: 'Gat ekki uppfært sjálfgefna möppu',
-      clearDirFailed: 'Gat ekki hreinsað sjálfgefna möppu',
+      clearDirFailed: 'Gat ekki hreinsað sjálfgefna möppu'
     },
     toolsets: {
       loadingConfig: 'Hleð stillingum',
@@ -880,20 +920,23 @@ export const is = defineLocale({
       selectedMessage: provider => `${provider} er nú virkt.`,
       failedSelect: provider => `Ekki tókst að velja ${provider}`,
       failedLoad: 'Ekki tókst að hlaða verkfærastillingum',
-      noProviderOptions: 'Þetta verkfærasett hefur enga veitendavalkosti — virkjaðu það og það virkar með núverandi uppsetningu.',
+      noProviderOptions:
+        'Þetta verkfærasett hefur enga veitendavalkosti — virkjaðu það og það virkar með núverandi uppsetningu.',
       noProviders: 'Engir veitendur eru tiltækir fyrir þetta verkfærasett núna.',
       ready: 'Tilbúið',
       needsSignIn: 'Þarf innskráningu',
       needsSetup: 'Þarf uppsetningu',
       openamerIncluded: 'Innifalið í OpenAmer-áskrift — skráðu þig inn í OpenAmer Portal til að virkja.',
       openamerAuthNeededTitle: 'Skrá inn í OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} er vistað en virkjast ekki fyrr en þú skráir þig inn í OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} er vistað en virkjast ekki fyrr en þú skráir þig inn í OpenAmer Portal.`,
       openamerAuthSignIn: 'Skrá inn',
       openamerAuthDoneTitle: 'OpenAmer Portal tengt',
       openamerAuthDoneMessage: 'Áskriftarbakendarnir þínir eru nú virkir.',
       openamerAuthFailed: 'Innskráningu í OpenAmer Portal lauk ekki',
       noApiKeyRequired: 'Enginn API-lykill nauðsynlegur.',
-      postSetupHint: step => `Þessi bakendi þarf einskiptis uppsetningu (${step}). Keyrir á þessari vél — getur tekið nokkrar mínútur.`,
+      postSetupHint: step =>
+        `Þessi bakendi þarf einskiptis uppsetningu (${step}). Keyrir á þessari vél — getur tekið nokkrar mínútur.`,
       postSetupInstalledHint: 'Uppsett. Keyrðu uppsetninguna aftur aðeins ef eitthvað er bilað.',
       postSetupRun: 'Keyra uppsetningu',
       postSetupRerun: 'Keyra uppsetningu aftur',
@@ -934,9 +977,9 @@ export const is = defineLocale({
         selectedTitle: 'Bakendi valinn',
         selectedMessage: backend => `Skipanir í skjáhermi keyra nú um ${backend}. Gildir fyrir nýjar lotur.`,
         failedSelect: backend => `Ekki tókst að velja ${backend}`,
-        needsSetupHint: 'Þú getur valið þennan bakenda núna — skipanir mistakast þar til uppsetningu er lokið.',
-      },
-    },
+        needsSetupHint: 'Þú getur valið þennan bakenda núna — skipanir mistakast þar til uppsetningu er lokið.'
+      }
+    }
   },
   skills: {
     tabSkills: 'Færni',
@@ -967,7 +1010,8 @@ export const is = defineLocale({
       connectingHubs: 'Tengist hæfniskúrum...',
       connectedHubs: 'Tengdir kúr:',
       featured: 'Úrvaldar færni',
-      landingHint: 'Leitaðu í kúrnum til að skoða uppsettanlegar færni frá opinberum skránum, GitHub og samfélagslegum áttunum.',
+      landingHint:
+        'Leitaðu í kúrnum til að skoða uppsettanlegar færni frá opinberum skránum, GitHub og samfélagslegum áttunum.',
       noResults: 'Engar samsvarandi færni fundust í kúrnum.',
       installed: 'Uppsett',
       install: 'Setja upp',
@@ -985,7 +1029,7 @@ export const is = defineLocale({
       trust: {
         builtin: 'Innbyggt',
         trusted: 'Traust',
-        community: 'Samfélag',
+        community: 'Samfélag'
       },
       verdictSafe: 'Öruggt',
       verdictCaution: 'Varúð',
@@ -1005,7 +1049,7 @@ export const is = defineLocale({
       timedOut: sources => `Tímamörk náð: ${sources}`,
       findings: count => `Niðurstöður: ${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Set ${name} upp...`,
-      uninstallStarted: name => `Fjarlægi ${name}...`,
+      uninstallStarted: name => `Fjarlægi ${name}...`
     },
     toolsetsRefreshFailed: 'Mistókst að endurnýja verkfærastafla',
     skillEnabled: 'Hæfni virk',
@@ -1022,7 +1066,7 @@ export const is = defineLocale({
     provenance: {
       agent: 'Lært',
       bundled: 'Innbyggt',
-      hub: 'Miðstöð',
+      hub: 'Miðstöð'
     },
     changesApplyNewSessions: 'Breytingar gilda fyrir nýjar setur.',
     skillUpdated: 'Hæfni uppfærð',
@@ -1039,7 +1083,7 @@ export const is = defineLocale({
     usageCount: count => `notað ${count}×`,
     emptyNoneFound: noun => `Engin ${noun} fundust`,
     emptyNothingMatches: query => `Ekkert passar við „${query}“.`,
-    emptyNoneAvailable: noun => `Engin ${noun} tiltæk enn.`,
+    emptyNoneAvailable: noun => `Engin ${noun} tiltæk enn.`
   },
   starmap: {
     importEmpty: 'Settu inn kortakóða til að hlaða honum.',
@@ -1058,7 +1102,8 @@ export const is = defineLocale({
     emptyTitle: 'Enkert lært enn',
     emptyDesc: 'Þegar OpenAmer byggir færni og minni fyrir vinnu þína birtist það hér.',
     share: 'Deila korti',
-    shareHint: 'Afritaðu kóðann til að deila þessu korti eða settu inn einn til að hlaða því. Hann inniheldur aðeins uppsetningu, ekki minni- eða færnistexta þinn.',
+    shareHint:
+      'Afritaðu kóðann til að deila þessu korti eða settu inn einn til að hlaða því. Hann inniheldur aðeins uppsetningu, ekki minni- eða færnistexta þinn.',
     shareTitle: 'Flytja kort inn / út',
     sharePlaceholder: 'Settu inn kortakóða…',
     copy: 'Afrita kortakóða',
@@ -1066,7 +1111,7 @@ export const is = defineLocale({
     importMap: 'Flytja inn kort',
     importBtn: 'Hlaða',
     subtitle: (nodes, clusters) => `${nodes} færniþættir í ${clusters} flokkum`,
-    importSuccess: nodes => `Hlaðið korti með ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Hlaðið korti með ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Lokaðu agentum',
@@ -1096,7 +1141,7 @@ export const is = defineLocale({
     ageDays: days => `${days} d. síðan`,
     durationSeconds: seconds => `${seconds} sek.`,
     durationMinutes: (minutes, seconds) => `${minutes} mín. ${seconds} sek.`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'Lokaðu stjórnarmiðstöð',
@@ -1126,13 +1171,14 @@ export const is = defineLocale({
       slowProviderHint: 'Þetta getur tekið nokkrar mínútur',
       remix: 'Endurblanda',
       remixConfirmTitle: 'Endurblanda þetta útlit?',
-      remixConfirmBody: 'Þetta býr til nýtt sett af uppköstum og notar þetta sem upphafspunkt. Það getur tekið nokkrar mínútur.',
+      remixConfirmBody:
+        'Þetta býr til nýtt sett af uppköstum og notar þetta sem upphafspunkt. Það getur tekið nokkrar mínútur.',
       genericError: 'Uppbygging mistuðst — tilraun aftur eða veldu tillaga.',
       referenceImageTooLarge: 'Tilvísunarmyndin er of stór. Notaðu eina sem er undir 16 MB.',
       referenceImageInvalid: 'Ekki tókst að lesa þessa tilvísunarmynd. Tilraun með PNG, JPG, WebP eða GIF.',
       adopt: 'Samþykkja',
       startOver: 'Byrja upp á nýtt',
-      hatchRow: (_state, done, total) => `Teikna ramma ${done} af ${total}…`,
+      hatchRow: (_state, done, total) => `Teikna ramma ${done} af ${total}…`
     },
     installTheme: {
       title: 'Setja upp þema…',
@@ -1144,7 +1190,7 @@ export const is = defineLocale({
       install: 'Setja upp',
       installing: 'Set uppi...',
       installed: 'Uppsett',
-      installs: count => `${count} uppsetningar`,
+      installs: count => `${count} uppsetningar`
     },
     settingsFields: 'Stillingarfeltr',
     mcpServers: 'MCP-þjónar',
@@ -1153,7 +1199,7 @@ export const is = defineLocale({
       maintenance: 'Viðhald',
       sessions: 'Setur',
       system: 'Kerfi',
-      usage: 'Notkun',
+      usage: 'Notkun'
     },
     branches: 'Greinar',
     commands: 'Skipanir',
@@ -1175,7 +1221,7 @@ export const is = defineLocale({
       generatedTag: 'Myndað',
       adoptFailed: 'Ekki tókst að ætla þetta dýr.',
       toggleFailed: 'Ekki tókst að virka dýrið.',
-      noneAvailable: 'Engin dýr í boði — veldu eitt hér að neðan til að setja upp.',
+      noneAvailable: 'Engin dýr í boði — veldu eitt hér að neðan til að setja upp.'
     },
     actionStartedWaiting: 'Aðgerð hafinn, bið eftir stöðu...',
     loadingStatus: 'Hleð stöðu...',
@@ -1202,43 +1248,43 @@ export const is = defineLocale({
       maintenance: 'Greiningar, öryggisafrit, færniumsjón og minnisgögn',
       sessions: 'Leita í lotum og stjórna þeim',
       system: 'Staða, annálar og kerfisaðgerðir',
-      usage: 'Tókar, kostnaður og færnivirkni yfir tíma',
+      usage: 'Tókar, kostnaður og færnivirkni yfir tíma'
     },
     nav: {
       newChat: {
         title: 'Ný lota',
-        detail: 'Byrja nýja lotu',
+        detail: 'Byrja nýja lotu'
       },
       settings: {
         title: 'Stillingar',
-        detail: 'Stilla OpenAmer skjáborðið',
+        detail: 'Stilla OpenAmer skjáborðið'
       },
       skills: {
         title: 'Færni',
-        detail: 'Færni, verkfæri og MCP-þjónar',
+        detail: 'Færni, verkfæri og MCP-þjónar'
       },
       messaging: {
         title: 'Skilaboðaþjónustur',
-        detail: 'Setja upp Telegram, Slack, Discord og fleira',
+        detail: 'Setja upp Telegram, Slack, Discord og fleira'
       },
       artifacts: {
         title: 'Afurðir',
-        detail: 'Skoða skráð úttak',
-      },
+        detail: 'Skoða skráð úttak'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Lotuspjald',
-        detail: 'Leita í lotum, festa og stjórna',
+        detail: 'Leita í lotum, festa og stjórna'
       },
       system: {
         title: 'Kerfisspjald',
-        detail: 'Staða gáttar, annálar, endurræsing/uppfærsla',
+        detail: 'Staða gáttar, annálar, endurræsing/uppfærsla'
       },
       usage: {
         title: 'Notkunarskjald',
-        detail: 'Tókar, kostnaður og færnivirkni',
-      },
+        detail: 'Tókar, kostnaður og færnivirkni'
+      }
     },
     providerNavigate: 'Fletta',
     providerSessions: 'Lotur',
@@ -1273,7 +1319,8 @@ export const is = defineLocale({
       backup: 'Búa til öryggisafrit',
       backupDesc: 'Zip-a stillingar, minni, færni og lotur',
       debugShare: 'Deila greiningargögnum',
-      debugShareDesc: 'Hleður upp afmáðri skýrslu og annálum og gefur deilanlegar slóðir (eyðast sjálfkrafa eftir 6 klst.)',
+      debugShareDesc:
+        'Hleður upp afmáðri skýrslu og annálum og gefur deilanlegar slóðir (eyðast sjálfkrafa eftir 6 klst.)',
       debugShareRunning: 'Hleð upp greiningarskýrslu...',
       debugShareLinks: 'Deilislóðir',
       debugShareFailed: 'Deiling greiningargagna mistókst',
@@ -1306,8 +1353,8 @@ export const is = defineLocale({
       actionStarted: name => `${name} hófst — fylgist með annálinum...`,
       actionFailed: name => `Ekki tókst að ræsa ${name}`,
       running: 'Keyrir...',
-      viewLog: 'Aðgerðarannáll',
-    },
+      viewLog: 'Aðgerðarannáll'
+    }
   },
   messaging: {
     disabled: 'Óvirkt',
@@ -1323,124 +1370,124 @@ export const is = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Bot-token',
         help: 'Búðu til bot með @BotFather og limtu síðan tokenið sem hann gefur þér.',
-        placeholder: 'Limdu Telegram bot-token',
+        placeholder: 'Limdu Telegram bot-token'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Leyfð Telegram notanda-ID',
-        help: 'Mælt með. Tölugild notanda-ID frá @userinfobot, skilin með kommu. Án þess getur hver sem helst sent þér bein skilaboð á botinn.',
+        help: 'Mælt með. Tölugild notanda-ID frá @userinfobot, skilin með kommu. Án þess getur hver sem helst sent þér bein skilaboð á botinn.'
       },
       TELEGRAM_PROXY: {
         label: 'Proxy-URL',
-        help: 'Aðeins nauðsynlegt á netum þar sem Telegram er blokkað.',
+        help: 'Aðeins nauðsynlegt á netum þar sem Telegram er blokkað.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Bot-token',
-        help: 'Búðu til forrits í Discord-þróunarhliðinu, bættu við bot og limtu síðan tokenið.',
+        help: 'Búðu til forrits í Discord-þróunarhliðinu, bættu við bot og limtu síðan tokenið.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Leyfð Discord notanda-ID',
-        help: 'Mælt með. Discord notanda-ID, skilin með kommu.',
+        help: 'Mælt með. Discord notanda-ID, skilin með kommu.'
       },
       SIGNAL_ACCOUNT: {
         help: 'Númerið sem er skráð í signal-cli brúinni þinni.',
-        label: 'Símanúmer',
+        label: 'Símanúmer'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Leyfilegir Signal-notendur',
-        help: 'Mælt er með. Signal-identifikarar, með komu sem aðskiljandi.',
+        help: 'Mælt er með. Signal-identifikarar, með komu sem aðskiljandi.'
       },
       WHATSAPP_ENABLED: {
         label: 'Virkja WhatsApp-brú',
-        help: 'Staðfest automatískt með rofanum hér að neðan. Ekki breyta nema þú vitir að þú þarft það.',
+        help: 'Staðfest automatískt með rofanum hér að neðan. Ekki breyta nema þú vitir að þú þarft það.'
       },
       WHATSAPP_MODE: {
-        label: 'Brúhamur',
+        label: 'Brúhamur'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Leyfilegir WhatsApp-notendur',
-        help: 'Mælt er með. Símanúmer eða WhatsApp-auðkenni, með komu sem aðskiljandi.',
+        help: 'Mælt er með. Símanúmer eða WhatsApp-auðkenni, með komu sem aðskiljandi.'
       },
       SLACK_APP_TOKEN: {
         help: 'Notaðu app-stafinn sem Socket Mode þarf.',
         placeholder: 'Límdu inn Slack app-staf',
-        label: 'Slack-apptoken',
+        label: 'Slack-apptoken'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Leyfð Slack notendauðkenni',
-        help: 'Mælt er með. Slack notendauðkenni skilin með komum.',
+        help: 'Mælt er með. Slack notendauðkenni skilin með komum.'
       },
       MATTERMOST_URL: {
         label: 'Þjónarborðs-URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Bot-stafur',
+        label: 'Bot-stafur'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Leyfð notendauðkenni',
-        help: 'Mælt er með. Mattermost notendauðkenni skilin með komum.',
+        help: 'Mælt er með. Mattermost notendauðkenni skilin með komum.'
       },
       MATRIX_HOMESERVER: {
         label: 'Heimþjónarborðs-URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Aðgangstafur',
+        label: 'Aðgangstafur'
       },
       MATRIX_USER_ID: {
         label: 'Notendauðkenni bots',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Leyfð Matrix notendauðkenni',
-        help: 'Mælt er með. Notendauðkenni í forminu @notandi:server, skilin með komum.',
+        help: 'Mælt er með. Notendauðkenni í forminu @notandi:server, skilin með komum.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL Signal-gagnbrúar',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL á gangandi signal-cli REST-gagnbrú.',
+        help: 'URL á gangandi signal-cli REST-gagnbrú.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Svarstíll',
-        help: 'first, all eða off.',
+        help: 'first, all eða off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Leyfa alla Discord-notendur',
-        help: 'Aðeins fyrir þróun. Þegar satt er, getur hver sem er sent botnum skilaboð án leyfislista.',
+        help: 'Aðeins fyrir þróun. Þegar satt er, getur hver sem er sent botnum skilaboð án leyfislista.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Auðkenni heimrásar',
-        help: 'Rás þar sem botinn sendir frumkvæðisskilaboð (cron-úttak, áminningar).',
+        help: 'Rás þar sem botinn sendir frumkvæðisskilaboð (cron-úttak, áminningar).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Heiti heimrásar',
-        help: 'Birtingarheiti heimrásarinnar í annálum og stöðuúttaki.',
+        help: 'Birtingarheiti heimrásarinnar í annálum og stöðuúttaki.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Leyfa alla iMessage-notendur',
-        help: 'Þegar satt er, er leyfislista BlueBubbles sleppt.',
+        help: 'Þegar satt er, er leyfislista BlueBubbles sleppt.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Leyfa alla Mattermost-notendur',
+        label: 'Leyfa alla Mattermost-notendur'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Heimrás',
+        label: 'Heimrás'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Leyfa alla QQ-notendur',
+        label: 'Leyfa alla QQ-notendur'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Heimrás QQ',
-        help: 'Sjálfgefin rás eða hópur fyrir cron-sendingar.',
+        help: 'Sjálfgefin rás eða hópur fyrir cron-sendingar.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Heiti heimrásar QQ',
+        label: 'Heiti heimrásar QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack-botntoken',
         help: 'Notaðu botntoken úr OAuth & Permissions eftir að þú setur upp Slack-appið.',
-        placeholder: 'Líma Slack-botntoken',
-      },
+        placeholder: 'Líma Slack-botntoken'
+      }
     },
     search: 'Leita í skilaboðaþjónustum...',
     loading: 'Hleð skilaboðaþjónustum...',
@@ -1454,7 +1501,7 @@ export const is = defineLocale({
       not_configured: 'Þarf uppsetningu',
       pending_restart: 'Þarf endurræsingu',
       retrying: 'Reynir aftur',
-      startup_failed: 'Ræsing mistókst',
+      startup_failed: 'Ræsing mistókst'
     },
     unknown: 'Óþekkt',
     hintPendingRestart: 'Endurræstu gáttina úr stöðustikunni til að beita breytingunni.',
@@ -1467,7 +1514,8 @@ export const is = defineLocale({
     required: 'Nauðsynlegt',
     recommended: 'Mælt með',
     advanced: count => `Ítarlegt (${count})`,
-    noTokenNeeded: 'Þessi þjónusta þarf ekkert token hér. Notaðu leiðbeiningarnar hér fyrir ofan og virkjaðu svo hér fyrir neðan.',
+    noTokenNeeded:
+      'Þessi þjónusta þarf ekkert token hér. Notaðu leiðbeiningarnar hér fyrir ofan og virkjaðu svo hér fyrir neðan.',
     enabled: 'Virkt',
     clearField: key => `Hreinsa ${key}`,
     enableAria: name => `Virkja ${name}`,
@@ -1480,8 +1528,7 @@ export const is = defineLocale({
     failedUpdate: name => `Ekki tókst að uppfæra ${name}`,
     failedSave: name => `Ekki tókst að vista ${name}`,
     failedClear: key => `Ekki tókst að hreinsa ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Leita í vefaköllunum...',
@@ -1490,7 +1537,8 @@ export const is = defineLocale({
     hint: 'Breytingar á áskriftum endurhleðsast þegar móttakarið er í gangi. Óvirkar áskriftir hafna komandi atburðum.',
     empty: 'Engar vefaköllunaráskriftir enn.',
     disabledTitle: 'Móttakari vefaköllunar er óvirkur',
-    disabledBody: 'Vefaköllun er sitt eigið gateway-kerfi. Virkjaðu þær hér til að taka við komandi HTTP-atburðum; spjallrásir þarf aðeins þegar áskrift sendir efni í Telegram, Discord, Slack eða annað rás.',
+    disabledBody:
+      'Vefaköllun er sitt eigið gateway-kerfi. Virkjaðu þær hér til að taka við komandi HTTP-atburðum; spjallrásir þarf aðeins þegar áskrift sendir efni í Telegram, Discord, Slack eða annað rás.',
     enable: 'Virkja vefaköllunir',
     enabling: 'Virkji...',
     enableRow: 'Virkja',
@@ -1522,7 +1570,7 @@ export const is = defineLocale({
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Tölvupóstur',
+      email: 'Tölvupóstur'
     },
     subscriptions: (count: number) => `Áskriftir (${count})`,
     enabled: (name: string) => `Virkjað: „${name}“`,
@@ -1545,7 +1593,7 @@ export const is = defineLocale({
     creating: 'Bý til...',
     created: 'Búið til',
     createFailed: (detail: string) => `Ekki tókst að búa til: ${detail}`,
-    copy: 'Afrita',
+    copy: 'Afrita'
   },
   profiles: {
     close: 'Loka á notandasniðum',
@@ -1623,7 +1671,7 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
     failedLoadSoul: 'Ekki tókst að hlaða SOUL.md',
     failedSaveSoul: 'Ekki tókst að vista SOUL.md',
     failedCreate: 'Ekki tókst að búa til snið',
-    failedRename: 'Ekki tókst að endurnefna snið',
+    failedRename: 'Ekki tókst að endurnefna snið'
   },
   cron: {
     days: {
@@ -1634,11 +1682,12 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       '4': 'Fimmtudagur',
       '5': 'Föstudagur',
       '6': 'Laugardagur',
-      '7': 'Sunnudagur',
+      '7': 'Sunnudagur'
     },
     topOfHour: 'Á hverri klukkustund',
     newCron: 'Nýtt cron',
-    emptyDescNew: 'Skipuleggðu prompt til að keyra á cron-tímasetningu. OpenAmer keyrir hann og afhendir niðurstöðurnar á þeim áfangastad sem þú velur.',
+    emptyDescNew:
+      'Skipuleggðu prompt til að keyra á cron-tímasetningu. OpenAmer keyrir hann og afhendir niðurstöðurnar á þeim áfangastad sem þú velur.',
     emptyDescSearch: 'Prófundu víðari leitarsporun.',
     emptyTitleNew: 'Engin skipulögð verkefni enn',
     emptyTitleSearch: 'Engar samsvaranir',
@@ -1676,7 +1725,7 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
     createAction: 'Búa til cron',
     tabs: {
       jobs: 'Verkefni',
-      blueprints: 'Sniðmyndir',
+      blueprints: 'Sniðmyndir'
     },
     blueprints: {
       tab: 'Sniðmyndir',
@@ -1690,7 +1739,7 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       loading: 'Hleð niður sniðmyndum...',
       failedLoad: 'Mistókst að hlaða niður sniðmyndum',
       emptyTitle: 'Enginn sniðmyndir tiltækar',
-      emptyDesc: 'Enginar sjálfvirkissniðmyndir eru tiltækar á þessum bakenda.',
+      emptyDesc: 'Enginar sjálfvirkissniðmyndir eru tiltækar á þessum bakenda.'
     },
     close: 'Loka cron',
     title: 'Tímasett verk',
@@ -1704,14 +1753,14 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       paused: 'í hléi',
       disabled: 'óvirkt',
       error: 'villa',
-      completed: 'lokið',
+      completed: 'lokið'
     },
     deliveryLabels: {
       local: 'Þetta skjáborð',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Tölvupóstur',
+      email: 'Tölvupóstur'
     },
     scheduleLabels: {
       daily: 'Daglega',
@@ -1720,7 +1769,7 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       monthly: 'Mánaðarlega',
       hourly: 'Á klukkustundar fresti',
       'every-15-minutes': 'Á 15 mínútna fresti',
-      custom: 'Sérsniðið',
+      custom: 'Sérsniðið'
     },
     scheduleHints: {
       daily: 'Á hverjum degi kl. 9:00',
@@ -1729,7 +1778,7 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       monthly: 'Fyrsta dag hvers mánaðar kl. 9:00',
       hourly: 'Á heilli klukkustund',
       'every-15-minutes': 'Á 15 mínútna fresti',
-      custom: 'Cron-syntax eða venjulegt tungumál',
+      custom: 'Cron-syntax eða venjulegt tungumál'
     },
     dayFallback: value => `dagur ${value}`,
     everyDayAt: time => `Á hverjum degi kl. ${time}`,
@@ -1742,7 +1791,8 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
     editTitle: 'Breyta cron-verki',
     createTitle: 'Nýtt cron-verk',
     editDesc: 'Uppfærðu tímasetningu, prompt eða sendingarviðtakanda. Breytingar gilda frá næstu keyrslu.',
-    createDesc: 'Tímasettu prompt til að keyra sjálfkrafa. Notaðu cron-syntax eða venjulega setningu eins og „á 15 mínútna fresti“.',
+    createDesc:
+      'Tímasettu prompt til að keyra sjálfkrafa. Notaðu cron-syntax eða venjulega setningu eins og „á 15 mínútna fresti“.',
     nameLabel: 'Heiti',
     namePlaceholder: 'Morgunyfirlit',
     promptLabel: 'Prompt',
@@ -1757,7 +1807,7 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
     customHint: 'Cron-segð eða setningar eins og „á klukkustundar fresti“ eða „á virkum dögum kl. 9“.',
     optional: 'Valfrjálst',
     promptRequired: 'Prompt er nauðsynlegt.',
-    promptScheduleRequired: 'Prompt og tímasetning eru nauðsynleg.',
+    promptScheduleRequired: 'Prompt og tímasetning eru nauðsynleg.'
   },
   artifacts: {
     search: 'Leita í hleðslueyðum...',
@@ -1791,7 +1841,7 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
     kindLink: 'tengill',
     chat: 'Samtal',
     copyUrl: 'Afrita URL',
-    copyPath: 'Afrita slóð',
+    copyPath: 'Afrita slóð'
   },
   sidebar: {
     groupAriaUngrouped: 'Flokka samtöl eftir vinnusvæði',
@@ -1815,7 +1865,7 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       namePlaceholder: 't.d. Skunkworks',
       foldersLabel: 'Möppur',
       ideaLabel: 'Hugmynd',
-      ideaPlaceholder: "Við hvað snýst þetta verkefni? (vistast í IDEA.md)",
+      ideaPlaceholder: 'Við hvað snýst þetta verkefni? (vistast í IDEA.md)',
       ideaGenerate: 'Búa til hugmynd',
       ideaGenerating: 'Bý til…',
       ideaShuffle: 'Stokka sniðmát',
@@ -1835,7 +1885,8 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       copyPath: 'Afrita slóð',
       removeFromSidebar: 'Fela úr hliðarstiku',
       createFailed: 'Gat ekki búið til verkefni',
-      staleBackend: 'Uppfærðu OpenAmer-bakendann til að búa til verkefni — bakendinn þinn er eldri en þetta skjáborðsforrit (Stillingar → Uppfærslur → Bakendi).',
+      staleBackend:
+        'Uppfærðu OpenAmer-bakendann til að búa til verkefni — bakendinn þinn er eldri en þetta skjáborðsforrit (Stillingar → Uppfærslur → Bakendi).',
       deleteConfirm: 'Þetta fjarlægir vistaða verkefnið úr OpenAmer. Skrár, git-hirslur og vinnutré haldast ósnert.',
       startWork: 'Nýtt vinnutré',
       newWorktreeTitle: 'Nýtt vinnutré',
@@ -1857,19 +1908,21 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       noBranches: 'Engin branch fundust',
       removeWorktree: 'Fjarlægja vinnutré',
       removeWorktreeFailed: 'Gat ekki fjarlægt vinnutré (óvistaðar breytingar?)',
-      removeWorktreeConfirm: 'Fjarlægja það úr git (eyðir vinnutrémöppunni; branchið helst), eða fela bara akreinuna úr hliðarstikunni og skilja vinnutréð eftir á diski.',
-      removeWorktreeDirty: 'Þetta vinnutré hefur óvistaðar breytingar. Þvinga fjarlægingu (kastar þeim breytingum), eða feldu akreinuna og hafðu það á diski.',
+      removeWorktreeConfirm:
+        'Fjarlægja það úr git (eyðir vinnutrémöppunni; branchið helst), eða fela bara akreinuna úr hliðarstikunni og skilja vinnutréð eftir á diski.',
+      removeWorktreeDirty:
+        'Þetta vinnutré hefur óvistaðar breytingar. Þvinga fjarlægingu (kastar þeim breytingum), eða feldu akreinuna og hafðu það á diski.',
       forceRemove: 'Þvinga fjarlægingu',
       enter: label => `Opna ${label}`,
       reorder: label => `Endurraða ${label}`,
       toggle: label => `Sýna/fela lotur í ${label}`,
-      back: 'Öll verkefni',
+      back: 'Öll verkefni'
     },
     nav: {
       'new-session': 'Ný lota',
       skills: 'Færni',
       messaging: 'Skilaboðaþjónustur',
-      artifacts: 'Afurðir',
+      artifacts: 'Afurðir'
     },
     searchAria: 'Leita í lotum',
     searchPlaceholder: 'Leita í lotum…',
@@ -1916,19 +1969,20 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       ageNow: 'nú',
       ageDay: 'd',
       ageHour: 'klst',
-      ageMin: 'mín',
+      ageMin: 'mín'
     },
     dateDivider: {
       today: 'Fyrr í dag',
       yesterday: 'Í gær',
       thisWeek: 'Fyrr í þessari viku',
       lastWeek: 'Í síðustu viku',
-      thisMonth: 'Fyrr í þessum mánuði',
-    },
+      thisMonth: 'Fyrr í þessum mánuði'
+    }
   },
   composer: {
     queueStuckTitle: 'Skilaboð í biðröð ekki sent',
-    queueStuckBody: 'Skilaboð í biðröð mistiðst ítrett að sjálfkrafa. Það er enn í biðröðinni — reyndu að senda það aftur.',
+    queueStuckBody:
+      'Skilaboð í biðröð mistiðst ítrett að sjálfkrafa. Það er enn í biðröðinni — reyndu að senda það aftur.',
     previewUnavailable: 'Forsýning ekki tiltæk',
     dictating: 'Ráfar niður',
     preparingAudio: 'Undirbý audio',
@@ -1954,20 +2008,20 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
     newSessionPlaceholders: [
       'Hvað erum við að byggja?',
       'Gefðu OpenAmer verkefni',
-      "Hvað er á huga þínum?",
+      'Hvað er á huga þínum?',
       'Lýstu því sem þú þarft',
       'Hvað eigum við að taka á?',
       'Spurðu hvað sem er',
-      'Byrjaðu með markmið',
+      'Byrjaðu með markmið'
     ],
     followUpPlaceholders: [
       'Senda framhald',
       'Bæta við samhengi',
       'Fínpússa beiðnina',
-      "Hvað er næst?",
+      'Hvað er næst?',
       'Haltu áfram',
       'Ýttu því lengra',
-      'Aðlagaðu eða haltu áfram',
+      'Aðlagaðu eða haltu áfram'
     ],
     startVoice: 'Byrja raddsamtal',
     queueMessage: 'Setja skilaboð í biðröð',
@@ -2003,7 +2057,7 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       '/resume': 'halda áfram fyrri lotu',
       '/details': 'stilla smáatriðastig umrits',
       '/copy': 'afrita val eða síðasta svar umboðsmanns',
-      '/quit': 'hætta í openamer',
+      '/quit': 'hætta í openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'vísa í skrár, möppur, slóðir, git',
@@ -2013,7 +2067,7 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       'composer.sendQueued': 'senda næsta ferli í biðröð',
       'keybinds.openPanel': 'allar flýtileiðir',
       'composer.cancel': 'loka spjaldi · hætta keyrslu',
-      'composer.history': 'fletta spjaldi / ferli',
+      'composer.history': 'fletta spjaldi / ferli'
     },
     attachUrlTitle: 'Hengja við slóð',
     attachUrlDesc: 'OpenAmer sækir síðuna og notar hana sem samhengi fyrir þetta ferli.',
@@ -2045,27 +2099,29 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       codeReview: {
         label: 'Kóðarýni',
         description: 'Farðu yfir núverandi breytingu m.t.t. afturhvarfa, gleymdra tilvika og prófa sem vantar.',
-        text: 'Farðu yfir þetta m.t.t. villna, afturhvarfa og prófa sem vantar.',
+        text: 'Farðu yfir þetta m.t.t. villna, afturhvarfa og prófa sem vantar.'
       },
       implementationPlan: {
         label: 'Framkvæmdaáætlun',
         description: 'Leggðu línurnar áður en kóði er snertur svo diffið haldist afmarkað.',
-        text: 'Gerðu stutta framkvæmdaáætlun áður en þú breytir kóða.',
+        text: 'Gerðu stutta framkvæmdaáætlun áður en þú breytir kóða.'
       },
       explainThis: {
         label: 'Útskýrðu þetta',
         description: 'Farðu yfir hvernig valdi kóðinn virkar og vísaðu í lykilskrárnar.',
-        text: 'Útskýrðu hvernig þetta virkar og bentu mér á lykilskrárnar.',
-      },
-    },
+        text: 'Útskýrðu hvernig þetta virkar og bentu mér á lykilskrárnar.'
+      }
+    }
   },
   install: {
     installLocalDesc: 'Hlaða niður OpenAmer, búðu til Python-umhverf og keyrðu bakendið á þessari tölvu.',
     localStartUnavailable: 'Lokaluðun gafst ekki til. Endurrestartaðu OpenAmer Desktop og reyndu aftur.',
     remoteSetupTitle: 'Tengstu við OpenAmer sem er í gangi',
-    remoteSetupDesc: 'Sláðu inn gateway-vefslóð. OpenAmer Desktop mun greina hvort þarf token eða innskráningu í vafmiðli.',
+    remoteSetupDesc:
+      'Sláðu inn gateway-vefslóð. OpenAmer Desktop mun greina hvort þarf token eða innskráningu í vafmiðli.',
     remoteUrlTitle: 'Gateway-vefslóð',
-    remoteUrlDesc: 'Notaðu grunnvefslóð gateway-ins og gakktu úr skugga um að https:// sé í henni þegar gateway er fjarlægt.',
+    remoteUrlDesc:
+      'Notaðu grunnvefslóð gateway-ins og gakktu úr skugga um að https:// sé í henni þegar gateway er fjarlægt.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
     probing: 'Greini gateway-autentikun...',
     probeError: 'Ekki náðist í það OpenAmer-gateway.',
@@ -2087,8 +2143,10 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
     failedTitle: 'Uppsetning mistókst',
     settingUpTitle: 'Set upp OpenAmer Agent',
     finishingTitle: 'Kláruðum',
-    failedDesc: 'Eitt uppsetningsskref mistókst. Á Windows getur þetta happenn ef önnur OpenAmer CLI eða desktopforritsþýðing er í gangi. Stöðvaðu öll OpenAmer forrit sem eru í gangi og prófaðu aftur. Athugaðu nánari upplýsingar hér að neðan eða í desktop 日志 fyrir alla textann.',
-    activeDesc: 'Þetta er einstöð uppsetning. OpenAmer uppsetningarforritið er að hlaða niður nauðsynlegum skráum og stilla tölvunni þinni. Næstu rigningar munu sleppa þessu skrefi.',
+    failedDesc:
+      'Eitt uppsetningsskref mistókst. Á Windows getur þetta happenn ef önnur OpenAmer CLI eða desktopforritsþýðing er í gangi. Stöðvaðu öll OpenAmer forrit sem eru í gangi og prófaðu aftur. Athugaðu nánari upplýsingar hér að neðan eða í desktop 日志 fyrir alla textann.',
+    activeDesc:
+      'Þetta er einstöð uppsetning. OpenAmer uppsetningarforritið er að hlaða niður nauðsynlegum skráum og stilla tölvunni þinni. Næstu rigningar munu sleppa þessu skrefi.',
     fetchingManifest: 'Sæki uppsetningarlysingu...',
     error: 'Villa',
     hideOutput: 'Fela framleiðslu uppsetningar',
@@ -2105,27 +2163,30 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       running: 'Set upp',
       succeeded: 'Lokið',
       skipped: 'Sleppt',
-      failed: 'Mistókst',
+      failed: 'Mistókst'
     },
     oneTimeTitle: 'OpenAmer þarf einskiptis uppsetningu',
-    unsupportedDesc: platform => `Sjálfvirk uppsetning við fyrstu ræsingu er ekki tiltæk á ${platform} enn. Opnaðu skjáhermi, keyrðu skipunina hér fyrir neðan og ræstu forritið svo aftur. Síðari ræsingar sleppa þessu skrefi.`,
+    unsupportedDesc: platform =>
+      `Sjálfvirk uppsetning við fyrstu ræsingu er ekki tiltæk á ${platform} enn. Opnaðu skjáhermi, keyrðu skipunina hér fyrir neðan og ræstu forritið svo aftur. Síðari ræsingar sleppa þessu skrefi.`,
     installCommand: 'Uppsetningarskipun',
     copyCommand: 'Afrita skipun',
     viewDocs: 'Skoða uppsetningarskjöl',
     installTo: 'Verður sett upp í',
     retryAfterRun: 'Ég hef keyrt hana -- reyna aftur',
     setupChoiceTitle: 'Setja upp OpenAmer Desktop',
-    setupChoiceDesc: 'Tengdu þetta forrit við OpenAmer-gátt sem þú keyrir nú þegar, eða settu OpenAmer upp staðbundið á þessari tölvu.',
+    setupChoiceDesc:
+      'Tengdu þetta forrit við OpenAmer-gátt sem þú keyrir nú þegar, eða settu OpenAmer upp staðbundið á þessari tölvu.',
     connectExistingTitle: 'Tengjast fyrirliggjandi OpenAmer',
     connectExistingShort: 'Tengja fyrirliggjandi',
-    connectExistingDesc: 'Notaðu fjartengdan bakenda með lotulykli eða innskráningu í vafra. Engin staðbundin uppsetning verður ræst.',
+    connectExistingDesc:
+      'Notaðu fjartengdan bakenda með lotulykli eða innskráningu í vafra. Engin staðbundin uppsetning verður ræst.',
     installLocalTitle: 'Setja OpenAmer upp staðbundið',
     authNeedsOauth: provider => `Skráðu þig inn með ${provider} áður en þú prófar þessa gátt.`,
     signInWith: provider => `Skrá inn með ${provider}`,
     testSucceeded: (baseUrl, version) => `Tengt við ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} af ${total} skrefum lokið`,
     currentStage: stage => ` -- núna: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'} í útkomu`,
+    lines: count => `${count} line${count === 1 ? '' : 's'} í útkomu`
   },
   assistant: {
     clarify: {
@@ -2140,7 +2201,7 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       skip: 'Sleppa',
       skipped: 'Sleppt',
       continueLabel: 'Halda áfram',
-      lateAnswer: (question, choice) => `Varðandi „${question}“ — svar mitt: ${choice}`,
+      lateAnswer: (question, choice) => `Varðandi „${question}“ — svar mitt: ${choice}`
     },
     tool: {
       code: 'Kóði',
@@ -2176,11 +2237,11 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
         ran: 'Keyrði',
         running: 'Keyrir',
         ranCode: 'Keyrði kóða',
-        runningCode: 'Skrifar skript',
+        runningCode: 'Skrifar skript'
       },
       prefixes: {
         browser: 'Vafri',
-        web: 'Vefur',
+        web: 'Vefur'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2188,126 +2249,127 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Keyri ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Keyri ${action.toLowerCase()}`,
+        runningTool: action => `Keyri ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Smellti á þátt síðu',
           pending: 'Smelli á þátt síðu',
-          pendingAction: 'Smelli',
+          pendingAction: 'Smelli'
         },
         browser_fill: {
           done: 'Fyllti út í formreit',
           pending: 'Fylli út í formreit',
-          pendingAction: 'Fylli út',
+          pendingAction: 'Fylli út'
         },
         browser_navigate: {
           done: 'Opnaði síðu',
           pending: 'Opna síðu',
-          pendingAction: 'Opna',
+          pendingAction: 'Opna'
         },
         browser_snapshot: {
           done: 'Tók skyndimynd af síðu',
           pending: 'Tek skyndimynd af síðu',
-          pendingAction: 'Tek skyndimynd',
+          pendingAction: 'Tek skyndimynd'
         },
         browser_take_screenshot: {
           done: 'Tók skjáskot',
           pending: 'Tek skjáskot',
-          pendingAction: 'Tek skjáskot',
+          pendingAction: 'Tek skjáskot'
         },
         browser_type: {
           done: 'Skrifaði á síðu',
           pending: 'Skrifa á síðu',
-          pendingAction: 'Skrifa',
+          pendingAction: 'Skrifa'
         },
         clarify: {
           done: 'Lagði spurningu',
           pending: 'Legg spurningu',
-          pendingAction: 'Spyr',
+          pendingAction: 'Spyr'
         },
         cronjob: {
           done: 'Cron-verk',
           pending: 'Tímasetja cron-verk',
-          pendingAction: 'Tímaset',
+          pendingAction: 'Tímaset'
         },
         edit_file: {
           done: 'Breytti skrá',
           pending: 'Breyti skrá',
-          pendingAction: 'Breyti',
+          pendingAction: 'Breyti'
         },
         execute_code: {
           done: 'Keyrði kóða',
           pending: 'Skrifar skript',
-          pendingAction: 'Skrifar skript',
+          pendingAction: 'Skrifar skript'
         },
         image_generate: {
           done: 'Bjó til mynd',
           pending: 'Bý til mynd',
-          pendingAction: 'Bý til',
+          pendingAction: 'Bý til'
         },
         list_files: {
           done: 'Listaði skrár',
           pending: 'Lista skrár',
-          pendingAction: 'Lista',
+          pendingAction: 'Lista'
         },
         patch: {
           done: 'Lagaði skrá',
           pending: 'Laga skrá',
-          pendingAction: 'Laga',
+          pendingAction: 'Laga'
         },
         read_file: {
           done: 'Las skrá',
           pending: 'Les skrá',
-          pendingAction: 'Les',
+          pendingAction: 'Les'
         },
         search_files: {
           done: 'Leitaði í skrám',
           pending: 'Leitar í skrám',
-          pendingAction: 'Leitar',
+          pendingAction: 'Leitar'
         },
         session_search_recall: {
           done: 'Leitaði í lotusögu',
           pending: 'Leitar í lotusögu',
-          pendingAction: 'Leitar',
+          pendingAction: 'Leitar'
         },
         terminal: {
           done: 'Keyrði skipun',
           pending: 'Keyri skipun',
-          pendingAction: 'Keyri',
+          pendingAction: 'Keyri'
         },
         todo: {
           done: 'Uppfærði verkefnalista',
           pending: 'Uppfæri verkefnalista',
-          pendingAction: 'Uppfæri',
+          pendingAction: 'Uppfæri'
         },
         vision_analyze: {
           done: 'Greindi mynd',
           pending: 'Greini mynd',
-          pendingAction: 'Greini',
+          pendingAction: 'Greini'
         },
         web_extract: {
           done: 'Las vefsíðu',
           pending: 'Les vefsíðu',
-          pendingAction: 'Les',
+          pendingAction: 'Les'
         },
         web_search: {
           done: 'Leitaði á vefnum',
           pending: 'Leitar á vefnum',
-          pendingAction: 'Leitar',
+          pendingAction: 'Leitar'
         },
         write_file: {
           done: 'Breytti skrá',
           pending: 'Breyti skrá',
-          pendingAction: 'Breyti',
-        },
-      },
+          pendingAction: 'Breyti'
+        }
+      }
     },
     thread: {
       loadingSession: 'Hleð lotu',
       showEarlier: 'Sýna fyrri skilaboð',
       loadingResponse: 'OpenAmer er að hlaða svari',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Hugsar',
@@ -2335,7 +2397,7 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       restoreNext: 'Endurheimta næsta viðmið',
       goForward: 'Fara áfram',
       sendEdited: 'Senda breytt skilaboð',
-      attachingFile: 'Hengi við…',
+      attachingFile: 'Hengi við…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer-gáttin er ekki tengd',
@@ -2348,12 +2410,14 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       jumpToApproval: 'Samþykki þarf',
       reject: 'Hafna',
       alwaysTitle: 'Alltaf leyfa þessa skipun?',
-      alwaysDescription: pattern => `Þetta bætir mynstrinu „${pattern}“ við varanlega leyfislistann þinn (~/.openamer/config.yaml). OpenAmer spyr ekki aftur um svona skipanir — hvorki í þessari lotu né síðar.`,
-      alwaysAllow: 'Alltaf leyfa',
-    },
+      alwaysDescription: pattern =>
+        `Þetta bætir mynstrinu „${pattern}“ við varanlega leyfislistann þinn (~/.openamer/config.yaml). OpenAmer spyr ekki aftur um svona skipanir — hvorki í þessari lotu né síðar.`,
+      alwaysAllow: 'Alltaf leyfa'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Hugbúnaðarteiknun er virk — fjarskjár greindist (${reason}). GPU-hraðun er slökkt til að koma í veg fyrir flökt.`,
+    message: reason =>
+      `Hugbúnaðarteiknun er virk — fjarskjár greindist (${reason}). GPU-hraðun er slökkt til að koma í veg fyrir flökt.`
   },
   statusStack: {
     agents: 'Umboðsmenn',
@@ -2383,8 +2447,10 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       viewAsList: 'Sýna sem lista',
       revert: 'Afturkalla',
       revertAll: 'Afturkalla allt',
-      revertConfirm: 'Henda breytingum á þessari skrá og endurheimta hana í vistað ástand? Þetta er ekki hægt að afturkalla.',
-      revertAllConfirm: 'Henda öllum breytingum og endurheimta skrár í vistað ástand? Þetta er ekki hægt að afturkalla.',
+      revertConfirm:
+        'Henda breytingum á þessari skrá og endurheimta hana í vistað ástand? Þetta er ekki hægt að afturkalla.',
+      revertAllConfirm:
+        'Henda öllum breytingum og endurheimta skrár í vistað ástand? Þetta er ekki hægt að afturkalla.',
       staged: 'Í stage',
       noChanges: 'Engar breytingar',
       notRepo: 'Ekki git-hirsla',
@@ -2401,13 +2467,14 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       openPr: 'Opna PR',
       ghMissing: 'Settu upp GitHub CLI (gh) og skráðu þig inn til að opna PR',
       agentShip: 'Biðja OpenAmer að opna PR',
-      agentShipPrompt: 'Farðu yfir núverandi breytingar, commitaðu þeim með skýrum skilaboðum í conventional-commit stíl, push-aðu branchinu og opnaðu pull request.',
+      agentShipPrompt:
+        'Farðu yfir núverandi breytingar, commitaðu þeim með skýrum skilaboðum í conventional-commit stíl, push-aðu branchinu og opnaðu pull request.',
       newBranch: 'Nýtt branch',
       branchOffFrom: base => `Nýtt branch frá ${base}`,
       switchTo: branch => `Skipta yfir í ${branch}`,
       switchFailed: branch => `Gat ekki skipt yfir í ${branch}`,
-      worktrees: 'Vinnutré',
-    },
+      worktrees: 'Vinnutré'
+    }
   },
   updates: {
     stages: {
@@ -2422,7 +2489,7 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       done: 'Uppfærslu lokið',
       manual: 'Uppfærðu úr skjáhermi',
       guiSkew: 'Uppfærðu skjáborðsforritið',
-      error: 'Uppfærsla í hléi',
+      error: 'Uppfærsla í hléi'
     },
     checking: 'Leita að uppfærslum…',
     checkFailedTitle: 'Gat ekki leitað að uppfærslum',
@@ -2437,7 +2504,8 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
     availableBody: 'Ný útgáfa af OpenAmer er tilbúin til uppsetningar.',
     availableTitleBackend: 'Uppfærsla á bakenda í boði',
     availableBodyBackend: 'Nýrri útgáfa af tengda OpenAmer-bakendanum er tilbúin til uppsetningar.',
-    availableBodyNoChangelog: 'Nýrri útgáfa er tilbúin. Útgáfuskýrslur eru ekki tiltækar fyrir þessa tegund uppsetningar.',
+    availableBodyNoChangelog:
+      'Nýrri útgáfa er tilbúin. Útgáfuskýrslur eru ekki tiltækar fyrir þessa tegund uppsetningar.',
     updateNow: 'Uppfæra núna',
     maybeLater: 'Kannski seinna',
     moreChanges: count => `+ ${count} fleiri commit${count === 1 ? '' : 's'} innifalin.`,
@@ -2445,12 +2513,15 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
     manualBody: 'Þú settir OpenAmer upp úr skipanalínu, svo uppfærslur keyra þar líka. Límdu þetta í skjáherminn:',
     manualPickedUp: 'OpenAmer tekur nýju útgáfuna í notkun næst þegar þú ræsir forritið.',
     guiSkewTitle: 'Uppfærðu skjáborðsforritið',
-    guiSkewBody: 'Bakendinn var uppfærður en þessi skjáborðspakki breyttist ekki. Uppfærðu eða settu OpenAmer-skjáborðsforritið upp aftur (AppImage / .deb / .rpm) svo þau passi saman.',
+    guiSkewBody:
+      'Bakendinn var uppfærður en þessi skjáborðspakki breyttist ekki. Uppfærðu eða settu OpenAmer-skjáborðsforritið upp aftur (AppImage / .deb / .rpm) svo þau passi saman.',
     copy: 'Afrita',
     copied: 'Afritað',
     done: 'Lokið',
-    applyingBody: 'Uppfærsluforrit OpenAmer tekur yfir í eigin glugga og opnar OpenAmer sjálfkrafa aftur þegar því er lokið. Ekki opna OpenAmer sjálf(ur) á meðan uppfærslan stendur yfir.',
-    applyingBodyBackend: 'Fjartengdi bakendinn beitir uppfærslunni og endurræsist. OpenAmer tengist sjálfkrafa aftur þegar hann er kominn upp.',
+    applyingBody:
+      'Uppfærsluforrit OpenAmer tekur yfir í eigin glugga og opnar OpenAmer sjálfkrafa aftur þegar því er lokið. Ekki opna OpenAmer sjálf(ur) á meðan uppfærslan stendur yfir.',
+    applyingBodyBackend:
+      'Fjartengdi bakendinn beitir uppfærslunni og endurræsist. OpenAmer tengist sjálfkrafa aftur þegar hann er kominn upp.',
     applyingClose: 'Þessi gluggi lokast á meðan uppfærslan keyrir og OpenAmer opnast svo sjálft aftur.',
     errorTitle: 'Uppfærslu lauk ekki',
     errorBody: 'Engar áhyggjur — ekkert tapaðist. Þú getur reynt aftur núna.',
@@ -2461,15 +2532,16 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       restarting: 'Bakendi endurræsist til að hlaða uppfærslunni…',
       notAvailable: 'Uppfærsla ekki tiltæk fyrir þennan bakenda.',
       failed: 'Uppfærsla bakenda mistókst.',
-      noReturn: 'Bakendinn kom ekki aftur upp. Uppfærslan er kannski ekki fullkláruð — athugaðu vél bakendans.',
+      noReturn: 'Bakendinn kom ekki aftur upp. Uppfærslan er kannski ekki fullkláruð — athugaðu vél bakendans.'
     },
     appErrors: {
-      updateLocked: 'Uppfærslu hætt: annar OpenAmer-gluggi eða skjáhermir með openamer heldur þessari uppsetningu opinni. Lokaðu honum og reyndu aftur.',
-      updateFailed: 'Uppfærslan kláraðist ekki. Engar áhyggjur — ekkert tapaðist. Þú getur reynt aftur núna.',
-    },
+      updateLocked:
+        'Uppfærslu hætt: annar OpenAmer-gluggi eða skjáhermir með openamer heldur þessari uppsetningu opinni. Lokaðu honum og reyndu aftur.',
+      updateFailed: 'Uppfærslan kláraðist ekki. Engar áhyggjur — ekkert tapaðist. Þú getur reynt aftur núna.'
+    }
   },
   onboarding: {
-    headerTitle: "Setjum upp OpenAmer Agent",
+    headerTitle: 'Setjum upp OpenAmer Agent',
     headerDesc: 'Tengdu líkansveitanda til að byrja að spjalla. Flestir valkostir eru einn smella.',
     preparingInstall: 'OpenAmer er að klára uppsetningu. Það tekur venjulega innan við mínútu við fyrstu ræsingu.',
     starting: 'Ræsi OpenAmer…',
@@ -2477,7 +2549,7 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
     collapse: 'Fella saman',
     otherProviders: 'Aðrir veitendur',
     haveApiKey: 'Ég er með API-lykil',
-    chooseLater: "Ég vel veitanda seinna",
+    chooseLater: 'Ég vel veitanda seinna',
     recommended: 'Mælt með',
     connected: 'Tengt',
     featuredPitch: 'Ein áskrift, 300+ fremstu líkön — ráðlögð leið til að keyra OpenAmer',
@@ -2486,28 +2558,29 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
     apiKeyOptions: {
       fireworks: {
         short: 'beint líkana-API',
-        description: 'Beinn aðgangur að líkönum sem Fireworks AI hýsir.',
+        description: 'Beinn aðgangur að líkönum sem Fireworks AI hýsir.'
       },
       openrouter: {
         short: 'einn lykill, mörg líkön',
-        description: 'Hýsir hundruð líkana bak við einn lykil. Góður sjálfgefinn kostur fyrir nýjar uppsetningar.',
+        description: 'Hýsir hundruð líkana bak við einn lykil. Góður sjálfgefinn kostur fyrir nýjar uppsetningar.'
       },
       openai: {
         short: 'GPT-flokks líkön',
-        description: 'Beinn aðgangur að OpenAI-líkönum.',
+        description: 'Beinn aðgangur að OpenAI-líkönum.'
       },
       gemini: {
         short: 'Gemini-líkön',
-        description: 'Beinn aðgangur að Google Gemini-líkönum.',
+        description: 'Beinn aðgangur að Google Gemini-líkönum.'
       },
       xai: {
         short: 'Grok-líkön',
-        description: 'Beinn aðgangur að xAI Grok-líkönum.',
+        description: 'Beinn aðgangur að xAI Grok-líkönum.'
       },
       local: {
         short: 'sjálfhýst',
-        description: 'Beindu OpenAmer að staðbundnum eða sjálfhýstum OpenAI-samhæfðum endapunkti (vLLM, llama.cpp, Ollama o.fl.).',
-      },
+        description:
+          'Beindu OpenAmer að staðbundnum eða sjálfhýstum OpenAI-samhæfðum endapunkti (vLLM, llama.cpp, Ollama o.fl.).'
+      }
     },
     backToSignIn: 'Aftur í innskráningu',
     getKey: 'Fá lykil',
@@ -2520,7 +2593,7 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
     flowSubtitles: {
       pkce: 'Opnar vafrann þinn til innskráningar og heldur svo áfram hér',
       device_code: 'Opnar staðfestingarsíðu í vafranum — OpenAmer tengist sjálfkrafa',
-      external: 'Skráðu þig einu sinni inn í skjáhernum og komdu svo aftur að spjallinu',
+      external: 'Skráðu þig einu sinni inn í skjáhernum og komdu svo aftur að spjallinu'
     },
     startingSignIn: provider => `Hef innskráningu fyrir ${provider}...`,
     verifyingCode: provider => `Staðfesti kóðann þinn hjá ${provider}...`,
@@ -2534,11 +2607,13 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
     copyAuthCode: 'Afritaðu heimildarkóðann og límdu hann hér fyrir neðan.',
     pasteAuthCode: 'Líma heimildarkóða',
     reopenAuthPage: 'Opna heimildarsíðuna aftur',
-    autoBrowser: provider => `Við opnuðum ${provider} í vafranum þínum. Heimilaðu OpenAmer þar og þú tengist sjálfkrafa — ekkert þarf að afrita eða líma.`,
+    autoBrowser: provider =>
+      `Við opnuðum ${provider} í vafranum þínum. Heimilaðu OpenAmer þar og þú tengist sjálfkrafa — ekkert þarf að afrita eða líma.`,
     reopenSignInPage: 'Opna innskráningarsíðuna aftur',
     waitingAuthorize: 'Bíð eftir heimild frá þér...',
-    externalPending: provider => `${provider} skráir sig inn í gegnum eigið CLI. Keyrðu þessa skipun í skjáhermi og veldu svo „Ég hef skráð mig inn“:`,
-    signedIn: "Ég hef skráð mig inn",
+    externalPending: provider =>
+      `${provider} skráir sig inn í gegnum eigið CLI. Keyrðu þessa skipun í skjáhermi og veldu svo „Ég hef skráð mig inn“:`,
+    signedIn: 'Ég hef skráð mig inn',
     deviceCodeOpened: provider => `Við opnuðum ${provider} í vafranum þínum. Sláðu inn þennan kóða þar:`,
     reopenVerification: 'Opna staðfestingarsíðuna aftur',
     copy: 'Afrita',
@@ -2549,7 +2624,7 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
     price: (input, output) => `${input} inn / ${output} út á Mtok`,
     change: 'Breyta',
     startChatting: 'Byrja',
-    docs: provider => `Skjöl ${provider}`,
+    docs: provider => `Skjöl ${provider}`
   },
   modelPicker: {
     title: 'Skipta um líkan',
@@ -2565,13 +2640,13 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
     free: 'Ókeypis',
     freeTier: 'Ókeypisþrep',
     priceTitle: 'Verð inn / út á milljón tókna',
-    wasPrice: 'var',
+    wasPrice: 'var'
   },
   modelVisibility: {
     title: 'Líkön',
     search: 'Leita í líkönum',
     noAuthenticatedProviders: 'Engir auðkenndir veitendur.',
-    addProvider: 'Bæta við veitanda…',
+    addProvider: 'Bæta við veitanda…'
   },
   shell: {
     windowControls: 'Gluggastýring',
@@ -2582,7 +2657,7 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       noModels: 'Engin líkön fundust',
       editModels: 'Breyta líkönum…',
       refreshModels: 'Endurhlaða líkönum',
-      fast: 'Hratt',
+      fast: 'Hratt'
     },
     modelOptions: {
       noOptions: 'Engir valkostir fyrir þetta líkan',
@@ -2598,7 +2673,7 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       max: 'Hámark',
       ultra: 'Ultra',
       updateFailed: 'Uppfærsla líkansvalkosts mistókst',
-      fastFailed: 'Uppfærsla hraðhams mistókst',
+      fastFailed: 'Uppfærsla hraðhams mistókst'
     },
     gatewayMenu: {
       gateway: 'Gátt',
@@ -2613,7 +2688,7 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       connection: label => `Tenging: ${label}`,
       recentActivity: 'Nýleg virkni',
       viewAllLogs: 'Sjá alla annála →',
-      messagingPlatforms: 'Skilaboðaþjónustur',
+      messagingPlatforms: 'Skilaboðaþjónustur'
     },
     approvalMode: {
       title: 'Samþykkishamur',
@@ -2623,7 +2698,7 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       smart: 'Snjallt',
       smartDescription: 'Meta aðgerðir sjálfkrafa og spyrja þegar þarf',
       off: 'Slökkt',
-      offDescription: 'Keyra án samþykkisskilaboða',
+      offDescription: 'Keyra án samþykkisskilaboða'
     },
     statusbar: {
       unknown: 'óþekkt',
@@ -2679,27 +2754,29 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
           skills: 'Færni',
           subagent_definitions: 'Skilgreiningar subagenta',
           system_prompt: 'Kerfisprompt',
-          tool_definitions: 'Skilgreiningar verkfæra',
+          tool_definitions: 'Skilgreiningar verkfæra'
         },
         empty: 'Engin samhengisgögn enn',
         loading: 'Hleð sundurliðun…',
         percentFull: percent => `${percent}% fullt`,
         title: 'Notkun samhengis',
-        tokenSummary: (used, max) => `${used} / ${max} tóken`,
+        tokenSummary: (used, max) => `${used} / ${max} tóken`
       },
       openContextUsage: 'Opna sundurliðun á notkun samhengis',
       session: 'Lota',
       runtimeSessionElapsed: 'Tími liðinn í lotunni',
-      yoloOn: 'YOLO virkt — samþykkir hættulegar skipanir sjálfkrafa. Smelltu til að slökkva. Shift+smellur víxlar því altækt.',
-      yoloOff: 'YOLO slökkt — smelltu til að samþykkja hættulegar skipanir sjálfkrafa. Shift+smellur víxlar því altækt.',
+      yoloOn:
+        'YOLO virkt — samþykkir hættulegar skipanir sjálfkrafa. Smelltu til að slökkva. Shift+smellur víxlar því altækt.',
+      yoloOff:
+        'YOLO slökkt — smelltu til að samþykkja hættulegar skipanir sjálfkrafa. Shift+smellur víxlar því altækt.',
       modelNone: 'ekkert',
       noModel: 'ekkert líkan',
       switchModel: 'Skipta um líkan',
       openModelPicker: 'Opna líkansval',
       modelPinned: 'fest af þér; ný samræða notar þetta í stað sjálfgefins gildis í stillingum',
       modelTitle: (provider, model) => `Líkan · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Hægri hliðarstika',
@@ -2735,7 +2812,7 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
     terminalNew: 'Nýr skjáhermir',
     terminalCloseOthers: 'Loka öðrum',
     terminalCloseAll: 'Loka öllum',
-    addToChat: 'Bæta í samtal',
+    addToChat: 'Bæta í samtal'
   },
   preview: {
     tab: 'Forskoðun',
@@ -2769,7 +2846,8 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
     unsavedChanges: 'Óvistaðar breytingar',
     saveFailed: message => `Gat ekki vistað: ${message}`,
     diskChangedTitle: 'Skrá breyttist á diski',
-    diskChangedBody: 'Þessi skrá breyttist síðan þú opnaðir hana. Skrifa yfir hana með þinni útgáfu, eða henda breytingunum þínum og endurhlaða?',
+    diskChangedBody:
+      'Þessi skrá breyttist síðan þú opnaðir hana. Skrifa yfir hana með þinni útgáfu, eða henda breytingunum þínum og endurhlaða?',
     overwrite: 'Skrifa yfir',
     discardReload: 'Henda og endurhlaða',
     console: {
@@ -2790,7 +2868,7 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       empty: 'Engin skilaboð í stjórnborði enn.',
       promptHeader: 'Forskoðunarstjórnborð:',
       sentTitle: 'Sent í samtal',
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} bætt við í innsláttarsvæðið`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} bætt við í innsláttarsvæðið`
     },
     web: {
       appFailedToBoot: 'Forskoðunarforrit ræstist ekki',
@@ -2815,17 +2893,19 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       reloadingNow: 'Endurhleð forskoðunina núna.',
       restartFailedTitle: 'Endurræsing forskoðunar mistókst',
       restartFailedMessage: 'OpenAmer gat ekki endurræst þjóninn.',
-      stillWorking: 'OpenAmer vinnur enn, en engin niðurstaða endurræsingar hefur borist. Þjónskipunin er kannski í forgrunni.',
+      stillWorking:
+        'OpenAmer vinnur enn, en engin niðurstaða endurræsingar hefur borist. Þjónskipunin er kannski í forgrunni.',
       workspaceReloading: 'Vinnusvæði breyttist, endurhleð forskoðun',
       fileChanged: url => `Skrá breyttist, endurhleð forskoðun: ${url}`,
       filesChanged: (count, url) => `${count} skráabreytingar, endurhleð forskoðun: ${url}`,
       watchFailed: message => `Gat ekki fylgst með forskoðunarskrá: ${message}`,
-      moduleMimeDescription: 'Module-skrár eru afhentar með röngum MIME-flokki. Það þýðir venjulega að kyrrstæður skráaþjónn afhendir Vite/React-forrit í stað þróunarþjóns verkefnisins.',
+      moduleMimeDescription:
+        'Module-skrár eru afhentar með röngum MIME-flokki. Það þýðir venjulega að kyrrstæður skráaþjónn afhendir Vite/React-forrit í stað þróunarþjóns verkefnisins.',
       loadFailedConsole: (code, message) => `Hleðsla mistókst${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Ekki náðist í forskoðunarsíðuna.',
       openTarget: url => `Opna ${url}`,
-      fallbackTitle: 'Forskoðun',
-    },
+      fallbackTitle: 'Forskoðun'
+    }
   },
   zones: {
     showHeader: 'Sýna haus',
@@ -2833,7 +2913,8 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
     minimize: 'Fella niður',
     restore: 'Endurheimta',
     closeRunningTitle: 'Loka flipa sem er í keyrslu?',
-    closeRunningBody: 'Þetta samtal vinnur enn (eða bíður inntaks frá þér). Að loka flipanum felur hann — lotan heldur framvindu sinni og hægt er að opna hana aftur úr hliðarstikunni.',
+    closeRunningBody:
+      'Þetta samtal vinnur enn (eða bíður inntaks frá þér). Að loka flipanum felur hann — lotan heldur framvindu sinni og hægt er að opna hana aftur úr hliðarstikunni.',
     closeRunningConfirm: 'Loka flipa',
     closeOthers: 'Loka öðrum',
     closeToRight: 'Loka til hægri',
@@ -2859,7 +2940,8 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
     deletePreset: name => `Eyða ${name}`,
     zoneEditorTitle: 'Ritill hólfa',
     editorHintPre: 'smelltu til að kljúfa · ',
-    editorHintPost: ' vixlar línunni · dragðu milli hólfa til að sameina · dragðu sameiginlegar brúnir til að breyta stærð',
+    editorHintPost:
+      ' vixlar línunni · dragðu milli hólfa til að sameina · dragðu sameiginlegar brúnir til að breyta stærð',
     templateColumns: 'Dálkar',
     templateRows: 'Raðir',
     templateGrid: 'Rist',
@@ -2869,19 +2951,21 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
     customZoneName: count => `Sérsniðið ${count}-hólfa`,
     layoutNamePlaceholder: fallback => `Heiti útlags (${fallback})`,
     saveApply: 'Vista og beita',
-    notExpressible: 'þetta fyrirkomulag fléttast saman (pinwheel) — ekki hægt að setja fram sem hreiðraðar klofanir enn',
-    zoneCount: count => `${count} hólf`,
+    notExpressible:
+      'þetta fyrirkomulag fléttast saman (pinwheel) — ekki hægt að setja fram sem hreiðraðar klofanir enn',
+    zoneCount: count => `${count} hólf`
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer-gáttin er ekki tengd',
     sudoSendFailed: 'Gat ekki sent sudo-lykilorð',
     secretSendFailed: 'Gat ekki sent leynigildi',
     sudoTitle: 'Lykilorð stjórnanda',
-    sudoDesc: 'OpenAmer þarf sudo-lykilorðið þitt til að keyra skipun með stjórnandaréttindum. Það er aðeins sent staðbundna umboðsmanninum þínum.',
+    sudoDesc:
+      'OpenAmer þarf sudo-lykilorðið þitt til að keyra skipun með stjórnandaréttindum. Það er aðeins sent staðbundna umboðsmanninum þínum.',
     sudoPlaceholder: 'sudo-lykilorð',
     secretTitle: 'Leynigildi nauðsynlegt',
     secretDesc: 'OpenAmer þarf skilríki til að halda áfram.',
-    secretPlaceholder: 'leynigildi',
+    secretPlaceholder: 'leynigildi'
   },
   desktop: {
     audioReadFailed: 'Gat ekki lesið upptekið hljóð',
@@ -2898,7 +2982,8 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} í þessari lotu`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Gat ekki víxlað YOLO',
-    profileStatus: current => `Snið: ${current}. Notaðu /profile <name> eða valið „Ný lota“ til að byrja samtal í öðru sniði.`,
+    profileStatus: current =>
+      `Snið: ${current}. Notaðu /profile <name> eða valið „Ný lota“ til að byrja samtal í öðru sniði.`,
     unknownProfile: 'Óþekkt snið',
     noProfileNamed: (target, available) => `Ekkert snið heitir „${target}“. Tiltæk: ${available}`,
     newChatsProfile: name => `Ný samræða mun nota sniðið ${name}.`,
@@ -2908,8 +2993,9 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
     regenerateFailed: 'Endurgerð mistókst',
     editFailed: 'Breyting mistókst',
     resumeFailed: 'Endurupptaka mistókst',
-    resumeStrandedTitle: "Gat ekki hlaðið þessari lotu",
-    resumeStrandedBody: 'Tengingin við þessa lotu mistókst og sjálfvirkar tilraunir gáfust upp. Athugaðu að gáttin sé í keyrslu og reyndu svo aftur.',
+    resumeStrandedTitle: 'Gat ekki hlaðið þessari lotu',
+    resumeStrandedBody:
+      'Tengingin við þessa lotu mistókst og sjálfvirkar tilraunir gáfust upp. Athugaðu að gáttin sé í keyrslu og reyndu svo aftur.',
     resumeRetry: 'Reyna aftur',
     nothingToBranch: 'Ekkert til að búa til branch úr',
     branchNeedsChat: 'Byrjaðu eða endurtaktu samtal áður en þú býrð til branch.',
@@ -2949,31 +3035,31 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       success: platform => `Framselt til ${platform}. Þú getur haldið áfram hér hvenær sem er.`,
       systemNote: platform => `↻ Framselt til ${platform} — þú getur haldið áfram hér hvenær sem er.`,
       failed: error => `Framsal mistókst: ${error}`,
-      timedOut: 'Tímamörk náð við að bíða eftir gáttinni. Er `openamer gateway` í keyrslu?',
-    },
+      timedOut: 'Tímamörk náð við að bíða eftir gáttinni. Er `openamer gateway` í keyrslu?'
+    }
   },
   errors: {
     genericFailure: 'Eitthvað fór úrskeiðis',
     boundaryTitle: 'Eitthvað bilaði í viðmótinu',
     boundaryDesc: 'Skjárinn lenti í óvæntri villu. Samræðurnar þínar og stillingar eru öruggar.',
     reloadWindow: 'Endurhlaða glugga',
-    openLogs: 'Opna annála',
+    openLogs: 'Opna annála'
   },
   ui: {
     search: {
-      clear: 'Hreinsa leit',
+      clear: 'Hreinsa leit'
     },
     pagination: {
       label: 'síðuskipting',
       previous: 'Fyrri',
       previousAria: 'Fara á fyrri síðu',
       next: 'Næsta',
-      nextAria: 'Fara á næstu síðu',
+      nextAria: 'Fara á næstu síðu'
     },
     sidebar: {
       title: 'Hliðarstika',
       description: 'Sýnir hliðarstikuna í farsímaumslagi.',
-      toggle: 'Víxla hliðarstiku',
-    },
-  },
+      toggle: 'Víxla hliðarstiku'
+    }
+  }
 })

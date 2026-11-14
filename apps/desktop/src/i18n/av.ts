@@ -45,7 +45,7 @@ export const av = defineLocale({
     delete: 'ДӀачӀвалабизе',
     docs: 'Документал',
     done: 'ЛъугӀун',
-    tryHint: term => `Try “${term}”`,
+    tryHint: term => `Try “${term}”`
   },
   fileMenu: {
     revealFinder: 'Finder-алда бихьизабизе',
@@ -60,7 +60,7 @@ export const av = defineLocale({
     renameLabel: 'ЦIияб цIар',
     deleteBody: 'Гьеб къокъалде буссинабизе буго — гьенисан гьеб восстановить гьабизе бегьула.',
     pathCopied: 'Нух копия гьабуна',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   boot: {
     ready: 'OpenAmer Десктоп хIадур буго',
@@ -69,7 +69,7 @@ export const av = defineLocale({
       loadingSettings: 'OpenAmer настройкаби цIунизе',
       loadingSessions: 'АскIарал сессияби цIунизе',
       startingDesktopConnection: 'Десктопалъул связь байбихьизе',
-      startingOpenAmerDesktop: 'OpenAmer Десктоп байбихьизе…',
+      startingOpenAmerDesktop: 'OpenAmer Десктоп байбихьизе…'
     },
     errors: {
       backgroundExited: 'OpenAmer фон процесс къватIибе ина.',
@@ -78,13 +78,15 @@ export const av = defineLocale({
       desktopBootFailed: 'Десктопалъул загрузка хвела',
       gatewayConnectionLost: 'Гейтвейгун бувргъи хвеана',
       gatewaySignInRequired: 'Гейтвейде авторизация ккола',
-      ipcBridgeUnavailable: 'Десктопалъул IPC кьо гьечӀо.',
+      ipcBridgeUnavailable: 'Десктопалъул IPC кьо гьечӀо.'
     },
     failure: {
       title: 'OpenAmer байбихьизе кӀвечӀо',
-      description: 'Фоновый гейтвей богӀизе кӀвечӀо. Ресбахъизариялъул кӀоченал нижесадаса цо къабул гьаре. Гьанир гьич чат яги настройка биххизаруларо.',
+      description:
+        'Фоновый гейтвей богӀизе кӀвечӀо. Ресбахъизариялъул кӀоченал нижесадаса цо къабул гьаре. Гьанир гьич чат яги настройка биххизаруларо.',
       remoteTitle: 'Дистанционный гейтвейде авторизация ккола',
-      remoteDescription: 'Дуе дистанционный гейтвейде сессия лъугӀана. Цадахъ бувргъизе кӀунагӀан авторизация гьабе. Гьанир гьич чат яги настройка биххизаруларо.',
+      remoteDescription:
+        'Дуе дистанционный гейтвейде сессия лъугӀана. Цадахъ бувргъизе кӀунагӀан авторизация гьабе. Гьанир гьич чат яги настройка биххизаруларо.',
       retry: 'гӀунагӀан гьабе',
       repairInstall: 'Установка лъикӀ гьабизе',
       useLocalGateway: 'Локалияб гейтвей хӀалтӀизабе',
@@ -93,7 +95,8 @@ export const av = defineLocale({
       openLogs: 'Логаби рагӀалде',
       repairHint: 'ЛъикӀ гьабица установщик кӀунагӀан байбихьизабула, цӀияб машинада цо-цо минут ккола.',
       signOutAndSignIn: 'Авторизация тараде ва кӀунагӀан гьабе',
-      remoteFailureHint: 'Гейтвейалъул URL ва авторизация Гейтвей настройкабаздаса хал гьабе, яги локалияб гейтвейде хисизабе.',
+      remoteFailureHint:
+        'Гейтвейалъул URL ва авторизация Гейтвей настройкабаздаса хал гьабе, яги локалияб гейтвейде хисизабе.',
       hideRecentLogs: 'Ахирисел логаби рицӀцӀаде',
       showRecentLogs: 'Ахирисел логаби бихьизабе',
       signedInTitle: 'Авторизация гьабуна',
@@ -103,10 +106,11 @@ export const av = defineLocale({
       signInFailed: 'Вход гьабизе кӏвечӏо',
       signInToRemoteGateway: 'Рикӏкӏараб шлюзде жубизе',
       identityProvider: 'Дур identity provider',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   notifications: {
     region: 'Хабарал',
@@ -118,7 +122,8 @@ export const av = defineLocale({
     copyDetail: 'Магӏлумат копия гьабизе',
     copyDetailFailed: 'Хабар магӏлумат копия гьабизе кӏвечӏо',
     backendOutOfDateTitle: 'Backend заманалдаса кьадараб',
-    backendOutOfDateMessage: 'Дур OpenAmer backend гьаб desktop build-алдаса къадараб буго ва хӏакъикъатго ишлакъичӏого бегьула. Цоцалде данде ккезабизе обновление гьабе.',
+    backendOutOfDateMessage:
+      'Дур OpenAmer backend гьаб desktop build-алдаса къадараб буго ва хӏакъикъатго ишлакъичӏого бегьула. Цоцалде данде ккезабизе обновление гьабе.',
     installMethodUnsupportedTitle: 'Установка гьабизе къабул гьабичӏеб метод',
     updateOpenAmer: 'OpenAmer обновить гьабизе',
     updateReadyTitle: 'Обновление хӏадураб',
@@ -127,11 +132,12 @@ export const av = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT-е ELEVENLABS_API_KEY ккола.',
       elevenLabsRejectedKey: 'ElevenLabs-ал API ключ кьабул гьечӀо (401).',
       gatewayAuthFailed: 'Шлюзалъул аутентификация кӀолъичӀо — API_SERVER_KEY хал гьабе.',
-      methodNotAllowed: 'Десктоп бэкендалъул гьаб суал кьабул гьечӀо (405 Method Not Allowed). OpenAmer Desktop кӀигӀат байбихьизабе.',
+      methodNotAllowed:
+        'Десктоп бэкендалъул гьаб суал кьабул гьечӀо (405 Method Not Allowed). OpenAmer Desktop кӀигӀат байбихьизабе.',
       microphonePermission: 'Микрофон хӀалтӀизабизе ихтияр кьун гьечӀо.',
       openaiRejectedApiKey: 'OpenAI-ял API ключ кьабул гьечӀо.',
       openaiTtsNeedsKey: 'OpenAI TTS-е VOICE_TOOLS_OPENAI_KEY яги OPENAI_API_KEY лъазабула.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Гьаракь-текст гьаби конфигурация гьабе, гьаракьалъул режим хӀалтӀизабизе.',
@@ -150,7 +156,7 @@ export const av = defineLocale({
       transcriptionFailed: 'Гьаракьалъул транскрипция кӀолъичӀо.',
       transcriptionUnavailable: 'Гьаракьалъул транскрипция гьечӀо.',
       tryRecordingAgain: 'Цоги нухалъ рекорд гьабе.',
-      unavailable: 'Гьаракь гьечӀо',
+      unavailable: 'Гьаракь гьечӀо'
     },
     native: {
       approvalTitle: 'Къошари ккола',
@@ -163,10 +169,10 @@ export const av = defineLocale({
       turnErrorTitle: 'Жубай лъугӀичӀо',
       backgroundDoneTitle: 'БатӀалъул хӀалтӀи лъугӀана',
       backgroundFailedTitle: 'БатӀалъул хӀалтӀи лъугӀичӀо',
-      creditsTitle: 'Кредитал',
+      creditsTitle: 'Кредитал'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer кредитал лъугӀана',
@@ -174,7 +180,7 @@ export const av = defineLocale({
     openBilling: 'Биллинг рагьи',
     addCredits: 'Кредитал жубае',
     dismiss: 'ТӀаса те',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Боковой панель биххе',
@@ -191,7 +197,7 @@ export const av = defineLocale({
     openStarmap: 'Памятьалъул граф рагъизе',
     openKeybinds: 'Клавиатуралъул къокъаби',
     layoutEditor: 'ГӀуцӀиялъул редактор',
-    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout',
+    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout'
   },
   keybinds: {
     title: 'Клавиатуралъул къокъаби',
@@ -206,7 +212,7 @@ export const av = defineLocale({
       profiles: 'Профилал',
       session: 'Сессия',
       navigation: 'Навигация',
-      view: 'Куц',
+      view: 'Куц'
     },
     actions: {
       'keybinds.openPanel': 'Клавиатурал къутӀарал рагӀе',
@@ -285,10 +291,10 @@ export const av = defineLocale({
       'composer.slash': 'Слэш командабазул палитра',
       'composer.help': 'Хъаравул кумек',
       'composer.history': 'Поповер / история цикл',
-      'composer.cancel': 'Поповер кквезе · рижун чIей нахъе буссинабизе',
+      'composer.cancel': 'Поповер кквезе · рижун чIей нахъе буссинабизе'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   language: {
     label: 'МацI',
@@ -297,7 +303,7 @@ export const av = defineLocale({
     saveError: 'МацI цIигьинаби кьучI лъуларо',
     switchTo: 'МацI хисизабизе',
     searchPlaceholder: 'МацIал жагьизе…',
-    noResults: 'МацIал рихьун гьечIо',
+    noResults: 'МацIал рихьун гьечIо'
   },
   settings: {
     closeSettings: 'Настройкаял кквезе',
@@ -322,11 +328,12 @@ export const av = defineLocale({
       billing: 'Биллинг',
       notifications: 'Хабарби',
       plugins: 'Плагинал',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'Десктоп плагинал',
-      blurb: 'Гьаб аппликациялде гӀунтӀарал UI тӀадкъаял — билдаца цадахъ кьурал яги desktop-plugins папкаялде режарал (OpenAmer хъваялги цадахъ). ЧӀезе гьабуни, плагин живойго рехизе гьабула ва перезапускалдаса цӀунула.',
+      blurb:
+        'Гьаб аппликациялде гӀунтӀарал UI тӀадкъаял — билдаца цадахъ кьурал яги desktop-plugins папкаялде режарал (OpenAmer хъваялги цадахъ). ЧӀезе гьабуни, плагин живойго рехизе гьабула ва перезапускалдаса цӀунула.',
       openFolder: 'Плагиназул папка рагӀизе',
       rescan: 'ЦӀидасан балагьизе',
       reveal: 'Файлалъул менеджералда бихьизабизе',
@@ -337,36 +344,36 @@ export const av = defineLocale({
       kinds: {
         bundled: 'гъэтӀун',
         disk: 'дискда',
-        runtime: 'ишгъу',
+        runtime: 'ишгъу'
       },
-      count: n => `${n} installed`,
+      count: n => `${n} installed`
     },
     notifications: {
       kinds: {
         credits: {
           description: 'Кредиталъе ижаза паузаялда буго яги буссинабиун буго.',
-          label: 'Кредит хабар',
+          label: 'Кредит хабар'
         },
         approval: {
           label: 'МазкӀав хьун',
-          description: 'Команда сагъаб вас: я хьун, я биса тӀырыб.',
+          description: 'Команда сагъаб вас: я хьун, я биса тӀырыб.'
         },
         input: {
           label: 'МагӀарун хьун',
-          description: 'OpenAmer сорал хьун я пароль/тим хьун.',
+          description: 'OpenAmer сорал хьун я пароль/тим хьун.'
         },
         turnDone: {
           label: 'Жавоб тахьун',
-          description: 'Ход OpenAmer фонида хьугъу тахьун.',
+          description: 'Ход OpenAmer фонида хьугъу тахьун.'
         },
         turnError: {
           label: 'Ход мехь',
-          description: 'Ход хьунда тахьун.',
+          description: 'Ход хьунда тахьун.'
         },
         backgroundDone: {
           label: 'Фон тахьун',
-          description: 'Фонда терминал команда тахьун.',
-        },
+          description: 'Фонда терминал команда тахьун.'
+        }
       },
       test: 'Тест хабар кьезе',
       testTitle: 'OpenAmer',
@@ -380,7 +387,7 @@ export const av = defineLocale({
       intro: 'ӀацӀаб компьютер хабар, программа хабарал епкьыб. ГъэтӀи — умус компьютер рехь сагъабиш ет.',
       enableAll: 'Хабар епкьыб',
       enableAllDesc: 'Хабар къула маршрут. Гъула дур, аркхь хабар цуцӀигъун.',
-      focusedHint: 'Къула хабар OpenAmer фонида хьугъу байхь байгъу.',
+      focusedHint: 'Къула хабар OpenAmer фонида хьугъу байхь байгъу.'
     },
     sections: {
       model: 'Модель',
@@ -390,7 +397,7 @@ export const av = defineLocale({
       safety: 'ХӀинкъи гьечӀолъи',
       memory: 'РакӀ ва контекст',
       voice: 'Гьаракь',
-      advanced: 'ЦӀакъаб',
+      advanced: 'ЦӀакъаб'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop хӀакъалъулъ',
@@ -398,11 +405,12 @@ export const av = defineLocale({
       gateway: 'Gateway-гун бухьин...',
       keys: 'API ключ-та бара...',
       mcp: 'MCP сервер-та бара...',
-      sessions: 'Архивирован сеанс-та бара...',
+      sessions: 'Архивирован сеанс-та бара...'
     },
     appearance: {
       embedsTitle: 'Инлайн-эмбедал',
-      embedsDesc: 'Байбихьиял превью-ял цоги сайтаздаса (YouTube, X, …) грузалде руго. «Суал» режималъ лъазабула бакӀ-босун, гӀуцӀи гьабизе тӀад къачӀун; «ГӀемерго» автоматически грузалде руго; «ЧӀвараб» гӀадатал ссылкаби тала.',
+      embedsDesc:
+        'Байбихьиял превью-ял цоги сайтаздаса (YouTube, X, …) грузалде руго. «Суал» режималъ лъазабула бакӀ-босун, гӀуцӀи гьабизе тӀад къачӀун; «ГӀемерго» автоматически грузалде руго; «ЧӀвараб» гӀадатал ссылкаби тала.',
       embedsAsk: 'Суал',
       embedsAlways: 'ГӀемерго',
       embedsOff: 'ЧӀвараб',
@@ -413,7 +421,8 @@ export const av = defineLocale({
       themeTitle: 'Тема',
       themeDesc: 'Десктопалъул палитраби гурони. БакӀалъулаб режим тӀад хӀалтӀизабула.',
       installTitle: 'VS Code-даса установка гьабизе',
-      installDesc: 'Marketplace-алъул extension id лъе (мисалалъе dracula-theme.theme-dracula), гьелъул рангазул тема десктопалъул палитралде сверизабизе.',
+      installDesc:
+        'Marketplace-алъул extension id лъе (мисалалъе dracula-theme.theme-dracula), гьелъул рангазул тема десктопалъул палитралде сверизабизе.',
       installButton: 'Установка гьабизе',
       installing: 'Установка гьабун буго…',
       installError: 'Гьеб тема установка гьабизе лъугьун гьечӀо.',
@@ -421,8 +430,10 @@ export const av = defineLocale({
       importedBadge: 'Импорт гьабун',
       pet: {
         title: 'ХӀайван',
-        intro: 'OpenAmer гьабулеб жоялде жаваб кьолеб, приложениелда тӀад лъедезе анимациялъулаб petdex талисман босизе — инструментал гьарулаго вахъун, бергьенлъиялда шагӀир гьабун, гъалатӀазда хьул кьола.',
-        restartHint: 'ХӀайваназда хъагӀилаб цӀидасан байбихьизе ккола — гьаб функция жубазегӀан байбихьараб приложение хӀалтӀулеб буго. OpenAmer чӀагӀинабе ва цӀидасан байбихье, хадуб мандегӀе.',
+        intro:
+          'OpenAmer гьабулеб жоялде жаваб кьолеб, приложениелда тӀад лъедезе анимациялъулаб petdex талисман босизе — инструментал гьарулаго вахъун, бергьенлъиялда шагӀир гьабун, гъалатӀазда хьул кьола.',
+        restartHint:
+          'ХӀайваназда хъагӀилаб цӀидасан байбихьизе ккола — гьаб функция жубазегӀан байбихьараб приложение хӀалтӀулеб буго. OpenAmer чӀагӀинабе ва цӀидасан байбихье, хадуб мандегӀе.',
         on: 'ХӀалтӀулеб',
         off: 'ХӀалтӀулареб',
         scaleTitle: 'Кьадар',
@@ -432,7 +443,8 @@ export const av = defineLocale({
         chooseTitle: 'ХӀайван босе',
         chooseDesc: 'Цо босидал, кколани, гьеб лъезабула ва хӀалтӀулеб гьабула.',
         searchPlaceholder: 'ХӀайванал жагъуризе…',
-        unreachable: 'petdex галереялде щвазе кьунгутӀи. Интернеталъул хӀал цӀецӀел гьабе ва гьаб гьумер цӀидасан рагӀе.',
+        unreachable:
+          'petdex галереялде щвазе кьунгутӀи. Интернеталъул хӀал цӀецӀел гьабе ва гьаб гьумер цӀидасан рагӀе.',
         installedTag: 'Лъезабураб',
         generatedTag: 'Гьабураб',
         deleteBody: 'Гьаб хӀайван гӀумруялъе чӀагӀинабула — гьеб цӀидасан лъезабизе кьоларо.',
@@ -454,10 +466,11 @@ export const av = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
       title: 'Вид',
-      intro: 'Ана компьютер-бет дэ дисплей настройка-ра. Режим яркост бакъи; тема акцент палитра, чат бет-дин оформление бакъи.',
+      intro:
+        'Ана компьютер-бет дэ дисплей настройка-ра. Режим яркост бакъи; тема акцент палитра, чат бет-дин оформление бакъи.',
       colorMode: 'Цвет режим',
       colorModeDesc: 'Къоǀрус режим гъэра, ё `OpenAmer` ситема-дин настройка-бакъигъун.',
       toolViewTitle: 'Инструмент Call-дин дисплей',
@@ -467,25 +480,26 @@ export const av = defineLocale({
       translucencyDesc: 'Ви рабочьӀи стол окно шухӀ бетӀаза диш̄. macOS ба Windows ана.',
       backdropTitle: 'Чат фон',
       backdropDesc: 'Разговор-дин пастӀида хӀаза-гъэгъу статуя сурат.',
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installPlaceholder: 'publisher.extension',
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     modeOptions: {
       light: {
         label: 'ЦӀа',
-        description: 'ЦӀа рабочьӀи стол-дин бет-ар',
+        description: 'ЦӀа рабочьӀи стол-дин бет-ар'
       },
       dark: {
         label: 'ГъатӀа',
-        description: 'Блеск-да хӀаза-гъэгъу рабочьӀи тай',
+        description: 'Блеск-да хӀаза-гъэгъу рабочьӀи тай'
       },
       system: {
         label: 'Система',
-        description: 'ОС-дин вид-бакъигъу',
-      },
+        description: 'ОС-дин вид-бакъигъу'
+      }
     },
     about: {
       heading: 'OpenAmer Десктоп',
@@ -512,7 +526,7 @@ export const av = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     config: {
       none: 'ГьечӀо',
@@ -528,7 +542,7 @@ export const av = defineLocale({
       imported: 'Конфигурация импорт гьабун буго',
       invalidJson: 'Бигьулареб конфигурация JSON',
       keepAwakeTitle: 'Компьютер гӀужжалъулев тоге',
-      keepAwakeDesc: 'Гьаб машина гӀужжалъизе темен, кӀудиял яги сордоялъул хӀалтӀаби тӀубазе; дисплей гӀодобе бегьула.',
+      keepAwakeDesc: 'Гьаб машина гӀужжалъизе темен, кӀудиял яги сордоялъул хӀалтӀаби тӀубазе; дисплей гӀодобе бегьула.'
     },
     credentials: {
       pasteKey: 'Ключ лъезе',
@@ -538,7 +552,7 @@ export const av = defineLocale({
       remove: 'Бахъизе',
       getKey: 'Ключ босизе',
       saving: 'ЦIунабула',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     envActions: {
       credentialActions: 'Креденциалиялъул гIамалал',
@@ -549,7 +563,7 @@ export const av = defineLocale({
       replace: 'Хисабизе',
       set: 'ГIуцIизе',
       clear: 'ЦIикIкIизе',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     gateway: {
       loading: 'Гейтвейялъул низамал рахъула...',
@@ -557,20 +571,24 @@ export const av = defineLocale({
       unavailableDesc: 'Десктоп IPC кьо гейтвейялъул низамал бихьизаруларо.',
       title: 'Гейтвейгун цолъи',
       envOverride: 'env тIадегIанаби',
-      intro: 'OpenAmer Desktop жиндирго локалияб гейтвей стандарталъ хIалтIизабула. Гьаб апп-алъ цоги машинаялда ялъуни божулал проксиялъул рагIалдаса гIуцIун бугеб OpenAmer backend-алъул хIакимлъи гьабизе бокьилани, ремоталъулаб гейтвей хIалтIизабе. Гьанир профиль бихьизабе, гьелъ жиндирго ремоталъулаб хост букIине гьабизе.',
+      intro:
+        'OpenAmer Desktop жиндирго локалияб гейтвей стандарталъ хIалтIизабула. Гьаб апп-алъ цоги машинаялда ялъуни божулал проксиялъул рагIалдаса гIуцIун бугеб OpenAmer backend-алъул хIакимлъи гьабизе бокьилани, ремоталъулаб гейтвей хIалтIизабе. Гьанир профиль бихьизабе, гьелъ жиндирго ремоталъулаб хост букIине гьабизе.',
       appliesTo: 'ХIалтIизабула',
       allProfiles: 'Кинабниги профилал',
       defaultConnection: 'Жиндирго хисаб гьечIого, кинабниги профилалъе стандартияб цолъи.',
       envOverrideTitle: 'МухIиталъул переменнаял гьаб десктоп сессиялъул хIакимлъи гьабула.',
-      envOverrideDesc: 'Гьоркьосараб низам хIалтIизабизе, OPENAMER_DESKTOP_REMOTE_URL ва OPENAMER_DESKTOP_REMOTE_TOKEN гIунтIизаризе.',
+      envOverrideDesc:
+        'Гьоркьосараб низам хIалтIизабизе, OPENAMER_DESKTOP_REMOTE_URL ва OPENAMER_DESKTOP_REMOTE_TOKEN гIунтIизаризе.',
       modeTitle: 'Хурхеналъул режим',
       localTitle: 'Локалияб шлюз',
-      localDesc: 'Локалияб хостда тӀад приват OpenAmer бэкенд байбихье. Гьеб ккола стандарталъулаб ва офлайн хӀалтӀула.',
+      localDesc:
+        'Локалияб хостда тӀад приват OpenAmer бэкенд байбихье. Гьеб ккола стандарталъулаб ва офлайн хӀалтӀула.',
       inheritTitle: 'Стандарталъулаб шлюз хӀалтӀизабе',
       inheritDesc: 'Гьаб профилалъул хисизаби те, стандарталъулаб бухьен хӀалтӀизабе.',
       remoteTitle: 'РикӀкӀадаса шлюз',
       remoteDesc: 'Гьаб десктоп shell рикӀкӀадаса бугеб OpenAmer бэкендгун хурхен гьабе.',
-      remoteAuthHint: 'Хостингалда бугел шлюзал OAuth яги цӀар ва пароль хӀалтӀизарула; жидерго хостингалъул шлюзаз сессиялъул токен хӀалтӀизаризе бегьула.',
+      remoteAuthHint:
+        'Хостингалда бугел шлюзал OAuth яги цӀар ва пароль хӀалтӀизарула; жидерго хостингалъул шлюзаз сессиялъул токен хӀалтӀизаризе бегьула.',
       cloudDesc: 'Цо нухалъ OpenAmer Cloud-е жубазе ва аккаунталда бугел агентаздаса бищизе — URL лъезе кколаро.',
       cloudSignIn: 'OpenAmer Cloud-е жубазе',
       cloudSignedIn: 'OpenAmer Cloud-е жубана',
@@ -584,7 +602,7 @@ export const av = defineLocale({
       cloudNoAgents: {
         before: 'Гьаб аккаунталда агент батаро гьечӀо. Цо гьабе',
         linkText: 'OpenAmer порталда',
-        after: ', цӀигьи гьабе.',
+        after: ', цӀигьи гьабе.'
       },
       cloudRefresh: 'ЦӀигьи гьабе',
       cloudConnect: 'Бухьизе',
@@ -605,18 +623,23 @@ export const av = defineLocale({
       signIn: 'Жаниве кье',
       signOut: 'КъватӀи кке',
       authTitle: 'Аутентификация',
-      authSignedInPassword: 'Гьаб шлюзоца логин ва пароль хӀалтӀизабула. Дуца системаялде жужана; сессия автоматически цӀигьабизе буго.',
-      authSignedInOauth: 'Гьаб шлюзоца OAuth хӀалтӀизабула. Дуца системаялде жужана; сессия автоматически цӀигьабизе буго.',
-      authNeedsPassword: 'Гьаб шлюзоца логин ва пароль хӀалтӀизабула. Гьаб десктоп аппликациялъе ихтияр кьезе, системаялде жужа.',
+      authSignedInPassword:
+        'Гьаб шлюзоца логин ва пароль хӀалтӀизабула. Дуца системаялде жужана; сессия автоматически цӀигьабизе буго.',
+      authSignedInOauth:
+        'Гьаб шлюзоца OAuth хӀалтӀизабула. Дуца системаялде жужана; сессия автоматически цӀигьабизе буго.',
+      authNeedsPassword:
+        'Гьаб шлюзоца логин ва пароль хӀалтӀизабула. Гьаб десктоп аппликациялъе ихтияр кьезе, системаялде жужа.',
       tokenTitle: 'Сессиялъул токен',
-      tokenDesc: 'REST ва WebSocket-алъе хӀалтӀизабулеб дашбордалъул сессиялъул токен. ЦӀунун тараб токен тасдикъизе, холо тагьа.',
+      tokenDesc:
+        'REST ва WebSocket-алъе хӀалтӀизабулеб дашбордалъул сессиялъул токен. ЦӀунун тараб токен тасдикъизе, холо тагьа.',
       savedToken: 'цӀунун тараб',
       pasteSessionToken: 'Сессиялъул токен лъезе',
       testRemote: 'Ремоут тест гьабизе',
       saveForRestart: 'Хадусе цӀидасан байбихьиялъе цӀуне',
       saveAndReconnect: 'ЦӀуне ва цӀидасан жуба',
       diagnostics: 'Диагностика',
-      diagnosticsDesc: 'Дуца хӀалтӀизабулеб файлалъул менеджералда desktop.log бихьизабе — шлюз байбихьичӀого хӀалтӀи кьолареб мехалъ пайдаланаб.',
+      diagnosticsDesc:
+        'Дуца хӀалтӀизабулеб файлалъул менеджералда desktop.log бихьизабе — шлюз байбихьичӀого хӀалтӀи кьолареб мехалъ пайдаланаб.',
       openLogs: 'Логаби рагьизе',
       incompleteTitle: 'Ремоут шлюз тӀубараб гьечӀо',
       incompleteSignIn: 'Ремоут-алде вахилалде, ремоут URL лъе ва системаялде жужа.',
@@ -641,8 +664,10 @@ export const av = defineLocale({
       sshButtonsHint: 'Цӏуни гӏулеб гьабизе бачӏунеб рагъуда хӏалтӏила. «Рехсей» гьабсагьат цӏидаса рехсей гьабула.',
       sshIncompleteHost: 'Рехсей гьабизегӏан SSH хост хъвай.',
       sshErrUnreachable: 'Гьеб хост-алде SSH-алдаса щвезе кьвагьизегӏо. Хост, порт ва сеть проверка гьабе.',
-      sshErrAuth: 'SSH аутентификация гьикъизе кьвагьизегӏо. Ключ ssh-agent-алде бала (ssh-add) яги ~/.ssh/config-алда IdentityFile лъе — OpenAmer ssh интерактиваб гуреб хӏалтӏизабула.',
-      sshErrHostKey: 'Хост-ключалъул хӏалалъизе гьабун буго дунго ахирисес рехсей гьабураб мехалдаса. Гьеб тӏалаб букӏин проверка гьабе, цӏидаса ssh-keygen -R <host> хӏалтӏизабе ва цӏидаса рехсей гьабе.',
+      sshErrAuth:
+        'SSH аутентификация гьикъизе кьвагьизегӏо. Ключ ssh-agent-алде бала (ssh-add) яги ~/.ssh/config-алда IdentityFile лъе — OpenAmer ssh интерактиваб гуреб хӏалтӏизабула.',
+      sshErrHostKey:
+        'Хост-ключалъул хӏалалъизе гьабун буго дунго ахирисес рехсей гьабураб мехалдаса. Гьеб тӏалаб букӏин проверка гьабе, цӏидаса ssh-keygen -R <host> хӏалтӏизабе ва цӏидаса рехсей гьабе.',
       enterUrlFirst: 'Тӏоцебе цӏахӏияб URL хъвай.',
       restartingTitle: 'Шлюзлъул бухьен цӏидаса байбихьула.',
       savedTitle: 'Шлюзалъул настройкаби рикӏкӏана.',
@@ -658,17 +683,21 @@ export const av = defineLocale({
       applyFailed: 'Шлюзалъул настройкаби хӏалтӏизаризе кьибилачӏо.',
       saveFailed: 'Шлюзалъул настройкаби рикӏкӏизе кьибилачӏо.',
       sshTitle: 'SSH-алдалъун бухьине.',
-      sshDesc: 'OpenAmer SSH-алдалъун цӏахӏияб бакӏалда байбихьула ва гьаб аппалде туннелалдалъун бухьула — дуца байбихьизе яги къватӏибе кьезе щибниги гьечӏо. Хост-алде ключалдалъун хӏалтӏулеб SSH-бухьен гьабизе ккола.',
+      sshDesc:
+        'OpenAmer SSH-алдалъун цӏахӏияб бакӏалда байбихьула ва гьаб аппалде туннелалдалъун бухьула — дуца байбихьизе яги къватӏибе кьезе щибниги гьечӏо. Хост-алде ключалдалъун хӏалтӏулеб SSH-бухьен гьабизе ккола.',
       sshTrustHint: 'Тӏоцебе кьураб хост-ключ тӏаде щвезабула ва пин гьабула; хадусеб хиса-басиялдалъун кьибила.',
       sshHostTitle: 'Хост',
       sshHostDesc: 'user@host, яги ~/.ssh/config-алдаса Host-алиас.',
       sshHostPick: 'Хост хисизе…',
-      sshErrNotInstalled: 'OpenAmer рикъараб хостда лъуларо. Гьениб гьеб лъе (`curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh`) яги OpenAmer-алъул нух тӀами.',
-      sshErrPlatform: 'Квешалъулареб рикъараб платформа. OpenAmer Desktop SSH режималъ Linux, macOS ва Windows рикъарал хостал кӀола.',
+      sshErrNotInstalled:
+        'OpenAmer рикъараб хостда лъуларо. Гьениб гьеб лъе (`curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh`) яги OpenAmer-алъул нух тӀами.',
+      sshErrPlatform:
+        'Квешалъулареб рикъараб платформа. OpenAmer Desktop SSH режималъ Linux, macOS ва Windows рикъарал хостал кӀола.',
       sshErrTimeout: 'SSH цӀам гӀуцӀиялъул заман бахъана. Хост щвезе бегьуларо яги кьижараб буго.',
       sshErrUpdateRequired: 'Desktop SSH-лдалъун цӀам гӀуцӀизе цебе рикъараб хостда OpenAmer цӀигьабизе.',
       sshErrUnknown: 'SSH цӀам гӀуцӀи квешалъана.',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudTitle: 'OpenAmer Cloud',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudOrgRole: role => `Role: ${role}`,
@@ -678,7 +707,7 @@ export const av = defineLocale({
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     mcp: {
       reloadFailed: 'MCP цIигьун бажаричIо',
@@ -740,15 +769,16 @@ export const av = defineLocale({
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       authenticatedMessage: (server, count) => `${server}: ${count} tools`,
       enableTool: tool => `Enable ${tool}`,
-      disableTool: tool => `Disable ${tool}`,
+      disableTool: tool => `Disable ${tool}`
     },
     keys: {
       loading: 'API ключал ва креденциалал гьарула...',
       failedLoad: 'API ключал гьаризе квешалъана',
-      empty: 'Гьаб категориялда гьанже щиниги настройка гьабичӀо.',
+      empty: 'Гьаб категориялда гьанже щиниги настройка гьабичӀо.'
     },
     model: {
       loading: 'Моделалъул конфигурация бухьизабун буго…',
@@ -762,7 +792,8 @@ export const av = defineLocale({
       defaultsFailed: 'Моделалъул стандартал хъвазе кӀвечӀо',
       auxiliaryTitle: 'Кумекал моделал',
       resetAllToMain: 'Кинабго аслияб моделалде сверизе',
-      auxiliaryDesc: 'Кумекал хӀалтӀаби стандарталъ аслияб моделалда гьарула. Аслияб моделалъул бакӀалда хӀалтӀизабизе щибниги хӀалтӀиялде батӀияб модель лъе.',
+      auxiliaryDesc:
+        'Кумекал хӀалтӀаби стандарталъ аслияб моделалда гьарула. Аслияб моделалъул бакӀалда хӀалтӀизабизе щибниги хӀалтӀиялде батӀияб модель лъе.',
       setToMain: 'Аслияб моделалде лъе',
       change: 'Хисизе',
       autoUseMain: 'авто · аслияб модель хӀалтӀизабизе',
@@ -773,42 +804,43 @@ export const av = defineLocale({
       tasks: {
         vision: {
           label: 'Рижи',
-          hint: 'Сураталъул талкъи',
+          hint: 'Сураталъул талкъи'
         },
         web_extract: {
           label: 'Вебалдаса босизе',
-          hint: 'Гьумералъул кӀуцалъи',
+          hint: 'Гьумералъул кӀуцалъи'
         },
         compression: {
           label: 'КъатӀи',
-          hint: 'Контекст къатӀи',
+          hint: 'Контекст къатӀи'
         },
         skills_hub: {
           label: 'Гьунаразул центр',
-          hint: 'Гьунар балагьи',
+          hint: 'Гьунар балагьи'
         },
         approval: {
           label: 'Къобалъи',
-          hint: 'Гьакъилаб авто-къобалъи',
+          hint: 'Гьакъилаб авто-къобалъи'
         },
         mcp: {
           hint: 'MCP алаталъул маршрутизация',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'ТӀадалъи гьаби',
-          hint: 'Сессиялъул тӀадалъаби',
+          hint: 'Сессиялъул тӀадалъаби'
         },
         curator: {
           label: 'Куратор',
-          hint: 'Гьунар хӀалтӀизабиялъул хал-ах',
-        },
-      },
+          hint: 'Гьунар хӀалтӀизабиялъул хал-ах'
+        }
+      }
     },
     providers: {
       connectAccount: 'Аккаунт цолъизе',
       haveApiKey: 'API ключ бугони?',
-      intro: 'Подпискалдалъун жубазе — API ключ копия гьабизе кколаро. OpenAmer браузералда жубай гьабизе кьола, гьаниго приложенилда.',
+      intro:
+        'Подпискалдалъун жубазе — API ключ копия гьабизе кколаро. OpenAmer браузералда жубай гьабизе кьола, гьаниго приложенилда.',
       connected: 'Цолъун буго',
       collapse: 'КъатӀизе',
       connectAnother: 'Цоги провайдер цолъизе',
@@ -821,16 +853,18 @@ export const av = defineLocale({
       noKeysMatch: 'Дуда жагьарал провайдерзаби гьеч1о.',
       localEndpoint: {
         title: 'Локалияб / жиндирго эндпоинт',
-        description: 'OpenAmer щибниги OpenAI-ялъе рекъараб эндпоинталде т1асх1амизабе (Zyphra, vLLM, llama.cpp, Ollama, ва ц.).',
+        description:
+          'OpenAmer щибниги OpenAI-ялъе рекъараб эндпоинталде т1асх1амизабе (Zyphra, vLLM, llama.cpp, Ollama, ва ц.).'
       },
       loading: 'Провайдерзаби рещт1ула…',
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     sessions: {
       loading: 'Архивалде лъурал сессиял рещт1ула…',
@@ -841,12 +875,14 @@ export const av = defineLocale({
       deletePermanently: 'Т1убанго бахъизе',
       restored: 'Буссинабит1ун',
       autoArchiveTitle: 'Автоматически архивалде лъе къалмич1ел чатал',
-      autoArchiveDesc: 'Цо заман г1уц1ич1ел чатал автоматически архивалде лъе. Къайида лъурал чатал архивлъуларо, ва щибниги т1аг1инабуларо — архивалде лъурал чатал гьенире гоча.',
+      autoArchiveDesc:
+        'Цо заман г1уц1ич1ел чатал автоматически архивалде лъе. Къайида лъурал чатал архивлъуларо, ва щибниги т1аг1инабуларо — архивалде лъурал чатал гьенире гоча.',
       autoArchiveDaysLabel: 'Архивалде лъизе хадуб',
       autoArchiveDaysUnit: 'активлъи гьеч1ол къоял',
       autoArchiveFailed: 'Автоархив хисизабизе кIоларо',
       defaultDirTitle: 'Проекталъул гIадатияб директория',
-      defaultDirDesc: 'ЦIиял сессиял гьаб папкаялдаса байбихьула, цогидаб бищичIого. Гьеб тезе — васасул директория хIалтIизабизе.',
+      defaultDirDesc:
+        'ЦIиял сессиял гьаб папкаялдаса байбихьула, цогидаб бищичIого. Гьеб тезе — васасул директория хIалтIизабизе.',
       change: 'Хисизе',
       choose: 'Бищизе',
       clear: 'ТIаса гIунтIизе',
@@ -856,14 +892,16 @@ export const av = defineLocale({
       deleteFailed: 'ГIунтIизе кIоларо',
       updateDirFailed: 'ГIадатияб директория хисизабизе кIоларо',
       clearDirFailed: 'ГIадатияб директория тIаса гIунтIизе кIоларо',
-      archivedIntro: 'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
+      archivedIntro:
+        'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
       defaultDirUpdated: 'Default project directory updated — start a new chat (Ctrl/⌘+N) for it to take effect',
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
-      noProviderOptions: 'Гьаб арузда провайдер опцияби гьечӀо — гьеб лъезе, ва гьаб гьанжесеб бакӀарунца хӀалтӀизе буго.',
+      noProviderOptions:
+        'Гьаб арузда провайдер опцияби гьечӀо — гьеб лъезе, ва гьаб гьанжесеб бакӀарунца хӀалтӀизе буго.',
       noProviders: 'Гьаб арузда гьанже провайдерзаби гьечӀо.',
       ready: 'ХӀадур',
       needsSignIn: 'Жаниве вугьине ккола',
@@ -912,7 +950,7 @@ export const av = defineLocale({
         selectedTitle: 'Бекенд тӀасабун',
         needsSetupHint: 'Гьаб бекенд гьанже тӀасабизе бегьула — гӀуцӀи тӀубазегӀан командал хӀалтӀуларо.',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       savedMessage: key => `${key} updated.`,
       removedMessage: key => `${key} removed.`,
@@ -922,8 +960,10 @@ export const av = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -933,10 +973,10 @@ export const av = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     tabSkills: 'Гьунарзаби',
@@ -955,7 +995,8 @@ export const av = defineLocale({
     noDescription: 'Сипат гьечӀо.',
     configured: 'ГӀуцӀараб',
     needsKeys: 'Ключал къваригӀула',
-    visionModelHint: 'Бербахъиялъ хӀалтӀизабула дур кумекалъулаб моделалъул гӀуцӀи — сураталъе шапагӀат гьабизе лъикӀалъулада модел цибго хвела, гьанир провайдералъул гуреб.',
+    visionModelHint:
+      'Бербахъиялъ хӀалтӀизабула дур кумекалъулаб моделалъул гӀуцӀи — сураталъе шапагӀат гьабизе лъикӀалъулада модел цибго хвела, гьанир провайдералъул гуреб.',
     visionModelLink: 'Бербахъиялъул модель Настройкаби → Моделаби хвее.',
     skillsLoadFailed: 'Гьунарзаби букӀизе кӀвечӀо',
     toolsetsRefreshFailed: 'ГӀирсгӀун цӀикӀкӀинаризе лъугьинчо',
@@ -974,7 +1015,7 @@ export const av = defineLocale({
     provenance: {
       agent: 'Лъазабураб',
       bundled: 'Жаниб бугеб',
-      hub: 'Центр',
+      hub: 'Центр'
     },
     changesApplyNewSessions: 'Хисариял цӀиял сессиязда тӀад хӀалтӀизарула.',
     skillUpdated: 'ХӀунар цӀикӀкӀинабураб',
@@ -989,7 +1030,8 @@ export const av = defineLocale({
       connectingHubs: 'Гьунаразул хабазде хурхине...',
       connectedHubs: 'Хурхина ругел хабал:',
       featured: 'ТIаде кьун ругел гьунарал',
-      landingHint: 'Официалаб индекс, GitHub ва жамигIаталъул источниказдаса чIунтIизаризе бегьулел гьунарал хабалдаса жуба.',
+      landingHint:
+        'Официалаб индекс, GitHub ва жамигIаталъул источниказдаса чIунтIизаризе бегьулел гьунарал хабалдаса жуба.',
       noResults: 'Хабалда данде кIуцал гьунарал щвачIо.',
       installed: 'ЧIунтIизарун руго',
       install: 'ЧIунтIизабизе',
@@ -1007,7 +1049,7 @@ export const av = defineLocale({
       trust: {
         builtin: 'Жаниб бугеб',
         trusted: 'Божулеб',
-        community: 'ЖамагIат',
+        community: 'ЖамагIат'
       },
       verdictSafe: 'ХIинкъи гьечIеб',
       verdictCaution: 'ХIинкъи',
@@ -1027,7 +1069,7 @@ export const av = defineLocale({
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     tabMcp: 'MCP',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} toolsets enabled`,
@@ -1039,7 +1081,7 @@ export const av = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     title: 'Памяталъул граф',
@@ -1055,7 +1097,8 @@ export const av = defineLocale({
     emptyTitle: 'Лъазабурабниги гьечӀо',
     emptyDesc: 'OpenAmer-ас хӀалтӀиялъе гьунар ва память гьабулаго, гьанир бихьула.',
     share: 'Карта бутӀизе',
-    shareHint: 'Гьаб карта бутӀизе код копия гьабе, яги лъезе цо код лъе. Гьелда макет гурони гьечӀо, дур память яги гьунаралъул текст гьечӀо.',
+    shareHint:
+      'Гьаб карта бутӀизе код копия гьабе, яги лъезе цо код лъе. Гьелда макет гурони гьечӀо, дур память яги гьунаралъул текст гьечӀо.',
     shareTitle: 'Карта импорт / экспорт',
     sharePlaceholder: 'Картаялъул код лъе…',
     copy: 'Картаялъул код копия гьабе',
@@ -1066,7 +1109,7 @@ export const av = defineLocale({
     importedBadge: 'Импорт гьабураб карта',
     resetToMine: 'Нахъе дир картаялде',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Агентал кьура',
@@ -1096,7 +1139,7 @@ export const av = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'Командаялъул центр кьура',
@@ -1125,7 +1168,7 @@ export const av = defineLocale({
       generatedTag: 'Гьабун',
       adoptFailed: 'Гьаб хӀайван асизе кӀоларо.',
       toggleFailed: 'Гьаб хӀайван хисизе кӀоларо.',
-      noneAvailable: 'ХӀайванал гьечӀо — гӀодоб цояб гӀунтӀизабизе битӀе.',
+      noneAvailable: 'ХӀайванал гьечӀо — гӀодоб цояб гӀунтӀизабизе битӀе.'
     },
     generatePet: {
       title: 'Хӏайван гьабизе',
@@ -1154,7 +1197,7 @@ export const av = defineLocale({
       referenceImageInvalid: 'Гьаб референс сурат цIализе бажаричIо. PNG, JPG, WebP яги GIF хIалтIизабе.',
       adopt: 'Къабул гьабизе',
       startOver: 'ЦIидаса байбихьизе',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     installTheme: {
       title: 'Тема лъезе…',
@@ -1166,7 +1209,7 @@ export const av = defineLocale({
       install: 'Лъезе',
       installing: 'Лъола...',
       installed: 'Лъуна',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Настройкабазул майданзаби',
     mcpServers: 'MCP серверал',
@@ -1175,49 +1218,49 @@ export const av = defineLocale({
       maintenance: 'ХIалтIухъ гьаби',
       sessions: 'Сессияби',
       system: 'Система',
-      usage: 'ХӀалтӀизаби',
+      usage: 'ХӀалтӀизаби'
     },
     sectionDescriptions: {
       maintenance: 'Диагностика, резервон копиял, куратор ва памятьалъул магӀлумат',
       sessions: 'Сессиял басӀун ва тӀубазаризе',
       system: 'Статус, логал ва системаялъул гӀуцӀал',
-      usage: 'Токен, къимат ва махщелалъул активность заманалда',
+      usage: 'Токен, къимат ва махщелалъул активность заманалда'
     },
     nav: {
       newChat: {
         title: 'ЦӀияб сессия',
-        detail: 'ЦӀияб сессия байбихьизе',
+        detail: 'ЦӀияб сессия байбихьизе'
       },
       settings: {
         title: 'Настройкаби',
-        detail: 'OpenAmer десктоп настройка гьабизе',
+        detail: 'OpenAmer десктоп настройка гьабизе'
       },
       skills: {
         title: 'Возможности',
-        detail: 'Махщелал, инструментал ва MCP-серверал',
+        detail: 'Махщелал, инструментал ва MCP-серверал'
       },
       messaging: {
         title: 'Сообщениял',
-        detail: 'Telegram, Slack, Discord ва цогидал настройка гьабизе',
+        detail: 'Telegram, Slack, Discord ва цогидал настройка гьабизе'
       },
       artifacts: {
         title: 'Артефактал',
-        detail: 'Гьарурал натижаби балагьизе',
-      },
+        detail: 'Гьарурал натижаби балагьизе'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Сессиязул панель',
-        detail: 'Сессиял басӀун, закрепить гьабизе ва тӀубазаризе',
+        detail: 'Сессиял басӀун, закрепить гьабизе ва тӀубазаризе'
       },
       system: {
         title: 'Системаялъул панель',
-        detail: 'Гейталъул статус, логал, цӀидасан байбихьизе/цӀигитӀизе',
+        detail: 'Гейталъул статус, логал, цӀидасан байбихьизе/цӀигитӀизе'
       },
       usage: {
         title: 'ХӀалтӀизабиялъул панель',
-        detail: 'Токен, багьа ва гьунаралъул активность',
-      },
+        detail: 'Токен, багьа ва гьунаралъул активность'
+      }
     },
     providerNavigate: 'Навигация',
     providerSessions: 'Сессиял',
@@ -1300,14 +1343,14 @@ export const av = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     startInBranch: branch => `New conversation in ${branch}`,
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · Active sessions ${count}`,
     days: count => `${count}d`,
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   messaging: {
     search: 'Хабарзаби цӀехезе...',
@@ -1322,7 +1365,7 @@ export const av = defineLocale({
       not_configured: 'ГӀуцӀи ккола',
       pending_restart: 'ЦӀидасан байбихьи ккола',
       retrying: 'ЦӀидасан хӀалбихьулеб',
-      startup_failed: 'Байбихьи кӀвечӀо',
+      startup_failed: 'Байбихьи кӀвечӀо'
     },
     unknown: 'Лъалареб',
     hintPendingRestart: 'Гьаб хиса-баси тӀубазе, статус баралдаса гейтвей цӀидасан байбихье.',
@@ -1334,7 +1377,8 @@ export const av = defineLocale({
     openSetupGuide: 'ГӀуцӀиялъул руководство рагӀе',
     required: 'Кколеб',
     recommended: 'Бокьулеб',
-    noTokenNeeded: 'Гьаб платформаялда гьенир токен кколаро. ТӀаса гӀуцӀиялъул руководство хӀалтӀизабе, хадуб гъоркьаса гьеб хӀалтӀизабе.',
+    noTokenNeeded:
+      'Гьаб платформаялда гьенир токен кколаро. ТӀаса гӀуцӀиялъул руководство хӀалтӀизабе, хадуб гъоркьаса гьеб хӀалтӀизабе.',
     enabled: 'ХӀалтӀизабулеб',
     disabled: 'Гьабизе бегьулареб',
     unsavedChanges: 'ЦӀунарал гурел хиса-басиял',
@@ -1349,124 +1393,124 @@ export const av = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Бот токен',
         help: '@BotFather-ца бот гьабизе, хадуб гьеца кьураб токен лъезе.',
-        placeholder: 'Telegram бот токен лъезе',
+        placeholder: 'Telegram бот токен лъезе'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'РикӀкӀарал Telegram гӀахьалчагӀазул ID',
-        help: 'ТӀасабищула. @userinfobot-аса бачӀарал запятаялца батӀарал рикӀкӀарал ID. Гьаб гьечӀого, щиваго чияс дур бот DM гьабизе бегьула.',
+        help: 'ТӀасабищула. @userinfobot-аса бачӀарал запятаялца батӀарал рикӀкӀарал ID. Гьаб гьечӀого, щиваго чияс дур бот DM гьабизе бегьула.'
       },
       TELEGRAM_PROXY: {
         label: 'Прокси URL',
-        help: 'Telegram блокада гьабураб сеткабазда цохӀого ккола.',
+        help: 'Telegram блокада гьабураб сеткабазда цохӀого ккола.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Бот токен',
-        help: 'Discord Developer Portal-да приложение гьабизе, бот жубазе, хадуб гьелъул токен лъезе.',
+        help: 'Discord Developer Portal-да приложение гьабизе, бот жубазе, хадуб гьелъул токен лъезе.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'РикӀкӀарал Discord гӀахьалчагӀазул ID',
-        help: 'ТӀасабищула. Запятаялца батӀарал Discord гӀахьалчагӀазул ID.',
+        help: 'ТӀасабищула. Запятаялца батӀарал Discord гӀахьалчагӀазул ID.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Жавабалъул стиль',
-        help: 'тӏоцӏго, киналго яги гьабичӏого',
+        help: 'тӏоцӏго, киналго яги гьабичӏого'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Discord-алъул киназего рес кьола',
-        help: 'Разработкалъул тӏоцӏго. Битӏун бугони, киназего бот-алде DM гьабизе бегьула, allowlist гьечӏого.',
+        help: 'Разработкалъул тӏоцӏго. Битӏун бугони, киназего бот-алде DM гьабизе бегьула, allowlist гьечӏого.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Бетӏергьаб канал ID',
-        help: 'Бот-алъ инициативаялдаса сообщениял битӏулеб канал (cron output, reminders).',
+        help: 'Бот-алъ инициативаялдаса сообщениял битӏулеб канал (cron output, reminders).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Бетӏергьаб каналул цӏар',
-        help: 'Логазул ва статусул output-алда бетӏергьаб каналул цӏар',
+        help: 'Логазул ва статусул output-алда бетӏергьаб каналул цӏар'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'iMessage киназего рес кьола',
-        help: 'Битӏун бугони, BlueBubbles allowlist тӏаса ккола.',
+        help: 'Битӏун бугони, BlueBubbles allowlist тӏаса ккола.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Mattermost киназего рес кьола',
+        label: 'Mattermost киназего рес кьола'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Бетӏергьаб канал',
+        label: 'Бетӏергьаб канал'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'QQ киназего рес кьола',
+        label: 'QQ киназего рес кьола'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ бетӏергьаб канал',
-        help: 'Cron delivery-алъул default канал яги группа.',
+        help: 'Cron delivery-алъул default канал яги группа.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ бетӏергьаб каналул цӏар',
+        label: 'QQ бетӏергьаб каналул цӏар'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack бот token',
         help: 'Slack app инсталляция гьабидаса хадуб OAuth & Permissions-алдаса бот token хӏалтӏизабе.',
-        placeholder: 'Slack бот token паста гьабе',
+        placeholder: 'Slack бот token паста гьабе'
       },
       SLACK_APP_TOKEN: {
         help: 'Socket Mode-е кколеб app-level токен хӀалтӀизабе.',
         placeholder: 'Slack app токен лъе',
-        label: 'Slack app token',
+        label: 'Slack app token'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Рес кьурал Slack хӀалтӀизаразул ID',
-        help: 'Маслагат гьабула. Запятаяздалъун батӀа гьарурал Slack хӀалтӀизаразул ID.',
+        help: 'Маслагат гьабула. Запятаяздалъун батӀа гьарурал Slack хӀалтӀизаразул ID.'
       },
       MATTERMOST_URL: {
         label: 'Сервералъул URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Боталъул токен',
+        label: 'Боталъул токен'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Рес кьурал хӀалтӀизаразул ID',
-        help: 'Маслагат гьабула. Запятаяздалъун батӀа гьарурал Mattermost хӀалтӀизаразул ID.',
+        help: 'Маслагат гьабула. Запятаяздалъун батӀа гьарурал Mattermost хӀалтӀизаразул ID.'
       },
       MATRIX_HOMESERVER: {
         label: 'Homeserver-алъул URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Access токен',
+        label: 'Access токен'
       },
       MATRIX_USER_ID: {
         label: 'Бот-хӀалтӀизарав ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Рес кьурал Matrix хӀалтӀизаразул ID',
-        help: 'Маслагат гьабула. @user:server форматалда ругел, запятаяздалъун батӀа гьарурал хӀалтӀизаразул ID.',
+        help: 'Маслагат гьабула. @user:server форматалда ругел, запятаяздалъун батӀа гьарурал хӀалтӀизаразул ID.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal bridge-алъул URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'ХӀалтӀулеб signal-cli REST bridge-алъул URL.',
+        help: 'ХӀалтӀулеб signal-cli REST bridge-алъул URL.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Телефоналъул номер',
-        help: 'Дур signal-cli мосталда регистрация гьабураб номер.',
+        help: 'Дур signal-cli мосталда регистрация гьабураб номер.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Ихтияр кьун ругел Signal пайдаланулзар',
-        help: 'ЛъикӀаб. Запятаяздалъун рикьарал Signal идентификаторзар.',
+        help: 'ЛъикӀаб. Запятаяздалъун рикьарал Signal идентификаторзар.'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp мост хӀалтӀизабизе',
-        help: 'Гъоркьияб переключательца автоматически лъула. Дур хӀажатлъи лъалеу гьечӀони, гьеб те.',
+        help: 'Гъоркьияб переключательца автоматически лъула. Дур хӀажатлъи лъалеу гьечӀони, гьеб те.'
       },
       WHATSAPP_MODE: {
-        label: 'Мост режим',
+        label: 'Мост режим'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Ихтияр кьун ругел WhatsApp пайдаланулзар',
-        help: 'ЛъикӀаб. Запятаяздалъун рикьарал телефон номерал яги WhatsApp ID-ял.',
-      },
+        help: 'ЛъикӀаб. Запятаяздалъун рикьарал телефон номерал яги WhatsApp ID-ял.'
+      }
     },
     advanced: count => `Advanced (${count})`,
     clearField: key => `Clear ${key}`,
@@ -1480,8 +1524,7 @@ export const av = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Вебхукзар жагъизе...',
@@ -1490,7 +1533,8 @@ export const av = defineLocale({
     hint: 'Подпискабазул хиса-баси ресивер хӀалтӀизабун хадуб hot-reload гьабула. ГӀуцӀун гьечӀел подпискабаз бачӀунел событиял къабул гьаруларо.',
     empty: 'Вебхук подпискаби гьанжего гьечӀо.',
     disabledTitle: 'Вебхук ресивер гӀуцӀун гьечӀо',
-    disabledBody: 'Вебхукзар жиндирго gateway-платформа ккола. БачӀунел HTTP событиял къабул гьаризе гьанир гьезе ихтияр кье; чат-каналал хӀажатала гӀицӀго подпискаца Telegram, Discord, Slack яги цоги каналде щвараб мехалъ.',
+    disabledBody:
+      'Вебхукзар жиндирго gateway-платформа ккола. БачӀунел HTTP событиял къабул гьаризе гьанир гьезе ихтияр кье; чат-каналал хӀажатала гӀицӀго подпискаца Telegram, Discord, Slack яги цоги каналде щвараб мехалъ.',
     enable: 'Вебхукзар хӀалтӀизаризе',
     enabling: 'ХӀалтӀизарула...',
     enableRow: 'ХӀалтӀизабизе',
@@ -1537,7 +1581,7 @@ export const av = defineLocale({
       discord: 'Дискорд',
       slack: 'Слэк',
       email: 'Эл. почта',
-      github_comment: 'GitHub комментарий',
+      github_comment: 'GitHub комментарий'
     },
     subscriptions: (count: number) => `Subscriptions (${count})`,
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -1545,11 +1589,12 @@ export const av = defineLocale({
     deleteFailed: (name: string) => `Failed to delete "${name}"`,
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     close: 'Профилал къазе',
-    nameHint: 'ГьитӀинаб хӀарпал, цифрал, дефисал ва андерскоринал. БацӀцӀад гьитӀинаб хӀарп яги цифраялдаса байбихьизе ккола.',
+    nameHint:
+      'ГьитӀинаб хӀарпал, цифрал, дефисал ва андерскоринал. БацӀцӀад гьитӀинаб хӀарп яги цифраялдаса байбихьизе ккола.',
     title: 'Профилал',
     search: 'Профилал хъирхъизе...',
     loading: 'Профилал рещтӀулел...',
@@ -1623,7 +1668,7 @@ export const av = defineLocale({
     env: 'env',
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   cron: {
     close: 'cron къазе',
@@ -1637,14 +1682,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'чӀчӀадалъун',
       disabled: 'хӀалтӀуларо',
       error: 'гъалатӀ',
-      completed: 'тӀубараб',
+      completed: 'тӀубараб'
     },
     deliveryLabels: {
       local: 'Гьаб десктоп',
       email: 'Эл. почта',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     scheduleLabels: {
       daily: 'Къо-къоялъ',
@@ -1653,7 +1698,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Моцӏ-моцӏалъ',
       hourly: 'Сагӏат-сагӏаталъ',
       'every-15-minutes': '15 минут-минуталъ',
-      custom: 'ГӀадаталъулаб',
+      custom: 'ГӀадаталъулаб'
     },
     scheduleHints: {
       daily: 'Къо-къоялъ 9:00-ялда',
@@ -1662,7 +1707,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Кинабго моцӏалъул тӀоцӀебилеб къо 9:00-ялда',
       hourly: 'Кинабго сагӏаталъул байбихьулалда',
       'every-15-minutes': '15 минут-минуталъ',
-      custom: 'Cron синтаксис яги гӀадатияб мацӏ',
+      custom: 'Cron синтаксис яги гӀадатияб мацӏ'
     },
     days: {
       '0': 'Гьатӏан',
@@ -1672,11 +1717,12 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Хамиз',
       '5': 'Рузман',
       '6': 'Щамат',
-      '7': 'ГьатӀан',
+      '7': 'ГьатӀан'
     },
     topOfHour: 'СагӀат байбихьулаго',
     newCron: 'ЦӀияб cron',
-    emptyDescNew: 'Cron-выражениеялда рекъон промпт хӀалтӀизабизе график гьабе. OpenAmer гьеб хӀалтӀизабизе буго ва хӀасилал дур рищухъ бакӀалде щвезе руго.',
+    emptyDescNew:
+      'Cron-выражениеялда рекъон промпт хӀалтӀизабизе график гьабе. OpenAmer гьеб хӀалтӀизабизе буго ва хӀасилал дур рищухъ бакӀалде щвезе руго.',
     emptyDescSearch: 'ЦӀикӀкӀараб балагьи хӀалтӀизабе.',
     emptyTitleNew: 'Гьанже график гьарурал хӀалтӀи гьечӀо',
     emptyTitleSearch: 'Данде ккезари гьечӀо',
@@ -1712,7 +1758,8 @@ Leave blank to keep the ${mode} default.`,
     editTitle: 'Крон-хӀалтӀи хисизе',
     createTitle: 'ЦӀияб крон-хӀалтӀи',
     editDesc: 'График, промпт яги кьезе бакӀ хисизе. Хисизариял хадусе хӀалтӀиялде кӀола.',
-    createDesc: 'Промпт автоматикго хӀалтӀизе график гьабизе. Крон синтаксис яги «15 минут кьибил» гӀадин табигӀаталъул фраза хӀалтӀизабе.',
+    createDesc:
+      'Промпт автоматикго хӀалтӀизе график гьабизе. Крон синтаксис яги «15 минут кьибил» гӀадин табигӀаталъул фраза хӀалтӀизабе.',
     nameLabel: 'ЦӀар',
     namePlaceholder: 'Ракьалъул брифинг',
     promptLabel: 'Промпт',
@@ -1734,7 +1781,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Крон гӀуцӀизе',
     tabs: {
       jobs: 'ХӀалтӀаби',
-      blueprints: 'Блюпринтал',
+      blueprints: 'Блюпринтал'
     },
     blueprints: {
       tab: 'Блюпринтал',
@@ -1748,7 +1795,7 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Блюпринтал чӀезарулел руго...',
       failedLoad: 'Блюпринтал чӀезаризе хвейичӀо',
       emptyTitle: 'Блюпринтал гьечӀо',
-      emptyDesc: 'Гьаб бэкендалда автоматизациялъул блюпринтал гьечӀо.',
+      emptyDesc: 'Гьаб бэкендалда автоматизациялъул блюпринтал гьечӀо.'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -1757,7 +1804,7 @@ Leave blank to keep the ${mode} default.`,
     everyDayOfWeekAt: (day, time) => `Every ${day} at ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Monthly on day ${dayOfMonth} at ${time}`,
     everyHourAt: minute => `Every hour at :${minute}`,
-    actionsFor: title => `Actions for ${title}`,
+    actionsFor: title => `Actions for ${title}`
   },
   artifacts: {
     search: 'Артефактал жаге...',
@@ -1791,14 +1838,14 @@ Leave blank to keep the ${mode} default.`,
     copyUrl: 'URL копия гьабе',
     copyPath: 'Путь копия гьабе',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'Цӏияб сессия',
       skills: 'Къуватал',
       messaging: 'Хабар кьей',
-      artifacts: 'Артефактал',
+      artifacts: 'Артефактал'
     },
     searchAria: 'Сессиял жагӏун',
     searchPlaceholder: 'Сессиял жагӏун…',
@@ -1849,8 +1896,10 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'Нух копия гьабизе',
       removeFromSidebar: 'Панелалдаса хьул гьабизе',
       createFailed: 'Проект гьабизе кIвечIо',
-      staleBackend: 'Проектал гьаризе OpenAmer бекенд цӀигьабизе — гьаб десктоп-аппалдаса дур бекенд хераб буго (Настройкаби → ЦӀигьаби → Бекенд).',
-      deleteConfirm: 'Гьаб OpenAmer-алдаса цӀунун букӀараб проект босизе. Файлал, git-репозиториял ва worktree-ял хӀалтӀизаричӀого чӀола.',
+      staleBackend:
+        'Проектал гьаризе OpenAmer бекенд цӀигьабизе — гьаб десктоп-аппалдаса дур бекенд хераб буго (Настройкаби → ЦӀигьаби → Бекенд).',
+      deleteConfirm:
+        'Гьаб OpenAmer-алдаса цӀунун букӀараб проект босизе. Файлал, git-репозиториял ва worktree-ял хӀалтӀизаричӀого чӀола.',
       startWork: 'ЦӀияб worktree',
       newWorktreeTitle: 'ЦӀияб worktree',
       newWorktreeDesc: 'Гьаб worktree-ялъе тӀогьалъул цӀар кьезе.',
@@ -1870,14 +1919,16 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'ТӀогьал батун гьечӀо',
       removeWorktree: 'Worktree босизе',
       removeWorktreeFailed: 'Worktree бакъвизе кьоларо (commit гьабичӀел хисаби?)',
-      removeWorktreeConfirm: 'Git-алдаса бакъвизе (worktree директория бакъюла; ветка тола), яги боковой панелалдаса лейн гъуралъизабизе ва worktree дискалда тоге.',
-      removeWorktreeDirty: 'Гьаб worktree-ялда commit гьабичӀел хисаби руго. Къуваталъ бакъвизе (гьезда хисаби тезе), яги лейн гъуралъизабизе ва дискалда тоге.',
+      removeWorktreeConfirm:
+        'Git-алдаса бакъвизе (worktree директория бакъюла; ветка тола), яги боковой панелалдаса лейн гъуралъизабизе ва worktree дискалда тоге.',
+      removeWorktreeDirty:
+        'Гьаб worktree-ялда commit гьабичӀел хисаби руго. Къуваталъ бакъвизе (гьезда хисаби тезе), яги лейн гъуралъизабизе ва дискалда тоге.',
       forceRemove: 'Къуваталъ бакъвизе',
       back: 'Киналго проектал',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     loading: 'БечӀчӀун буго…',
     loadMore: 'ЦӀикӀкӀине бечӀчӀизе',
@@ -1912,19 +1963,19 @@ Leave blank to keep the ${mode} default.`,
       actionsFor: title => `Actions for ${title}`,
       handoffOrigin: platform => `Handed off from ${platform}`,
       ownedByProfile: profile => `Profile: ${profile}`,
-      untitledChat: id => `Chat ${id}`,
+      untitledChat: id => `Chat ${id}`
     },
     dateDivider: {
       today: 'Жакъа цебе',
       yesterday: 'Соналъ',
       thisWeek: 'Гьаб анкьалда цебе',
       lastWeek: 'Цебесеб анкь',
-      thisMonth: 'Гьаб моцӏалда цебе',
+      thisMonth: 'Гьаб моцӏалда цебе'
     },
     noMatch: query => `No sessions match “${query}”.`,
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     message: 'Хӏабар',
@@ -1965,7 +2016,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'Цебесеб сессия гІуцІизе',
       '/details': 'Транскрипталъул деталиялъул даража контролизе',
       '/copy': 'Бахъараб яги ахирисеб ассистенталъул хабар копия гьабизе',
-      '/quit': 'openamer-алдаса къватІиве вакъ',
+      '/quit': 'openamer-алдаса къватІиве вакъ'
     },
     hotkeyDescs: {
       'composer.mention': 'Файлал, папкаби, URL-ал, git референс гьаризе',
@@ -1975,7 +2026,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'очередьалда бугеб хадусеб раунд кьезе',
       'keybinds.openPanel': 'кинабго клавиатуралъул къокъаби',
       'composer.cancel': 'поповер бекьизе · запуск чӀезе',
-      'composer.history': 'поповер / история циклалда',
+      'composer.history': 'поповер / история циклалда'
     },
     attachUrlTitle: 'URL тӀадеги бачине',
     attachUrlDesc: 'OpenAmer гьумер босизе буго ва гьаб раундалъе контекст гӀадин тӀадеги бачине буго.',
@@ -2019,18 +2070,18 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'Код ревью',
         description: 'Гьаб хиса-басиялъе регрессиял, рехун ккарал краял случаял ва гьечӀел тестал хал гьабе.',
-        text: 'Гьаб балагьа: багал, регрессиял ва гьечӀел тестал.',
+        text: 'Гьаб балагьа: багал, регрессиял ва гьечӀел тестал.'
       },
       implementationPlan: {
         label: 'ТӀубазе план',
         description: 'Кодалде гъусен цебе тӀубазе нух бихьизабе, дифф мухӀканго чӀчӀа.',
-        text: 'Код хисизе цебе мухӀкан тӀубазе план гьабе.',
+        text: 'Код хисизе цебе мухӀкан тӀубазе план гьабе.'
       },
       explainThis: {
         label: 'Гьаб бихьизабе',
         description: 'Бусен ккараб код къалай хӀалтӀулеб бугеб бихьизабе ва кӀвар бугел файлазде линк гьабе.',
-        text: 'Гьаб къалай хӀалтӀулеб бугеб бихьизабе ва кӀвар бугел файлазде тӀад бихьизабе.',
-      },
+        text: 'Гьаб къалай хӀалтӀулеб бугеб бихьизабе ва кӀвар бугел файлазде тӀад бихьизабе.'
+      }
     },
     wakingProfile: profile => `Waking up ${profile}…`,
     newSessionPlaceholders: [
@@ -2040,7 +2091,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -2049,7 +2100,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
@@ -2057,7 +2108,7 @@ Leave blank to keep the ${mode} default.`,
     previewLabel: label => `Preview ${label}`,
     couldNotPreview: label => `Could not preview ${label}`,
     removeAttachment: label => `Remove ${label}`,
-    url: 'URL…',
+    url: 'URL…'
   },
   statusStack: {
     agents: 'Агентал',
@@ -2080,7 +2131,8 @@ Leave blank to keep the ${mode} default.`,
       viewAsList: 'СияхӀ хьалда балъаз',
       revert: 'Юха гьабиз',
       revertAll: 'Кинабниги юха гьабиз',
-      revertConfirm: 'Гьаб файлалде гьарурал хиса-басиял чӀван, гьеб къабул гьабураб хьалде юха гьабиз? Гьеб юха гьабиз кколаро.',
+      revertConfirm:
+        'Гьаб файлалде гьарурал хиса-басиял чӀван, гьеб къабул гьабураб хьалде юха гьабиз? Гьеб юха гьабиз кколаро.',
       revertAllConfirm: 'Кинабниги хиса-баси чӀван, файлал къабул гьабураб хьалде юха ризине? Гьеб юха гьабиз кколаро.',
       staged: 'Къабул гьабураб',
       noChanges: 'Хиса-баси гьечӀо',
@@ -2097,7 +2149,8 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'PR рагӀизе',
       ghMissing: 'GitHub CLI (gh) лъезе ва PR-ал рагӀизе аккаунталде жубазе',
       agentShip: 'OpenAmer-е PR рагӀизе абила',
-      agentShipPrompt: 'ГьабсагӀат бугел хисиял цӀалӀизе, гьел битӀараб conventional-commit хабаралдалъун коммит гьабизе, ветка пуш гьабизе ва pull request рагӀизе.',
+      agentShipPrompt:
+        'ГьабсагӀат бугел хисиял цӀалӀизе, гьел битӀараб conventional-commit хабаралдалъун коммит гьабизе, ветка пуш гьабизе ва pull request рагӀизе.',
       newBranch: 'ЦӀияб ветка',
       worktrees: 'ХӀалтӀиял гъветӀал',
       changed: count => `${count} changed`,
@@ -2106,12 +2159,12 @@ Leave blank to keep the ${mode} default.`,
       commitPlaceholder: 'Message (⌘↵ to commit)',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -2126,7 +2179,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'ЦӀиялъи тӀубана',
       manual: 'Терминалдаса цӀиялъизе',
       guiSkew: 'Десктоп аппликация цӀиялъизе',
-      error: 'ЦӀиялъи чӀезана',
+      error: 'ЦӀиялъи чӀезана'
     },
     checking: 'ЦӀиял версиял жагъурула…',
     checkFailedTitle: 'ЦӀиял версиял хал гьабизе кӀоларо',
@@ -2145,15 +2198,19 @@ Leave blank to keep the ${mode} default.`,
     updateNow: 'Гьанже цӀиялъизе',
     maybeLater: 'Нагагь хадуб',
     manualTitle: 'Терминалалдаса хисизабизе',
-    manualBody: 'Дуца OpenAmer командаялъул рагьалдаса лъуна, гьединлъидал хисизариял гьенибго рукӀина. Гьаб терминалде тӀадеги гьабе:',
+    manualBody:
+      'Дуца OpenAmer командаялъул рагьалдаса лъуна, гьединлъидал хисизариял гьенибго рукӀина. Гьаб терминалде тӀадеги гьабе:',
     manualPickedUp: 'OpenAmer цӀияб версиялде бачӀина дуца хадусеб гӀуцӀилаго.',
     guiSkewTitle: 'Десктоп апп хисизабизе',
-    guiSkewBody: 'Бекенд хисизабуна, амма гьаб десктоп аппалъул пакет хисичӀо. Гьебго бащалъи гьабизе OpenAmer десктоп апп (AppImage / .deb / .rpm) хисизабизе яги цӀидасан лъезе.',
+    guiSkewBody:
+      'Бекенд хисизабуна, амма гьаб десктоп аппалъул пакет хисичӀо. Гьебго бащалъи гьабизе OpenAmer десктоп апп (AppImage / .deb / .rpm) хисизабизе яги цӀидасан лъезе.',
     copy: 'Копия',
     copied: 'Копия гьабуна',
     done: 'ЛъугӀана',
-    applyingBody: 'OpenAmer хисизабулеб программа жиндирго гьумералда тӀад бачӀина ва лъугӀидал OpenAmer автоматикго цӀидасан рагӀьила. Хисизаби гьабизе гьабулеб мехалъ дуца жинца OpenAmer цӀидасан рагӀизе кколаро.',
-    applyingBodyBackend: 'РикӀкӀад бугеб бекенд хисизаби гьабизе буго ва цӀидасан гӀуцӀила. Гьеб бачӀидал OpenAmer автоматикго цӀидасан тухула.',
+    applyingBody:
+      'OpenAmer хисизабулеб программа жиндирго гьумералда тӀад бачӀина ва лъугӀидал OpenAmer автоматикго цӀидасан рагӀьила. Хисизаби гьабизе гьабулеб мехалъ дуца жинца OpenAmer цӀидасан рагӀизе кколаро.',
+    applyingBodyBackend:
+      'РикӀкӀад бугеб бекенд хисизаби гьабизе буго ва цӀидасан гӀуцӀила. Гьеб бачӀидал OpenAmer автоматикго цӀидасан тухула.',
     applyingClose: 'Гьаб гьумер кӀула хисизаби гьабизе бугеб мехалъ, хадуб OpenAmer жинцаго цӀидасан рагӀьила.',
     errorTitle: 'Хисизаби лъугӀичӀо',
     errorBody: 'Квешалъуларо — щибниги тӀагӀанаро. Гьанже цӀидасан хӀалбихьизе бегьула.',
@@ -2164,19 +2221,21 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'Бекенд цӀидасан гӀуцӀула хисизаби тӀадеги гьабизе…',
       notAvailable: 'Гьаб бекендалъе хисизаби гьечӀо.',
       failed: 'Бекендалъул хисизаби хӀалтӀичӀо.',
-      noReturn: 'Бэкенд юха онлайнлъун вачӀинчо. ЦӀигьабизе лъугӀинчӀи кӀола — бэкендал хост хьалхей.',
+      noReturn: 'Бэкенд юха онлайнлъун вачӀинчо. ЦӀигьабизе лъугӀинчӀи кӀола — бэкендал хост хьалхей.'
     },
     appErrors: {
-      updateLocked: 'ЦӀигьабизе чӀунтӀана: цоги OpenAmer чӀугьун ялъуни openamer тӀубалеб терминал гьаб инсталл ккун буго. Гьеб кьунги, юха хӀалбихье.',
-      updateFailed: 'ЦӀигьабизе лъугӀинчо. Кьижара гьечӀо — щибниги тӀагӀинчо. Гьанже юха хӀалбихьизе бегьула.',
+      updateLocked:
+        'ЦӀигьабизе чӀунтӀана: цоги OpenAmer чӀугьун ялъуни openamer тӀубалеб терминал гьаб инсталл ккун буго. Гьеб кьунги, юха хӀалбихье.',
+      updateFailed: 'ЦӀигьабизе лъугӀинчо. Кьижара гьечӀо — щибниги тӀагӀинчо. Гьанже юха хӀалбихьизе бегьула.'
     },
-    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
+    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`
   },
   install: {
     installLocalDesc: 'OpenAmer скачай гьабизе, гьелъул Python-муҳит гьабизе, ва гьаб компьютералда бэкенд байбихьизе.',
     localStartUnavailable: 'Локалияб инсталляция байбихьизе кӀвечӀо. OpenAmer Desktop цӀидаса байбихье ва кӀалъай.',
     remoteSetupTitle: 'Бугеб OpenAmer-алде хурхизе',
-    remoteSetupDesc: 'Дур гейтвей URL загьир гьабе. OpenAmer Desktop лъазе буго токен яги браузералдаса сигнин хӀажал бугебали.',
+    remoteSetupDesc:
+      'Дур гейтвей URL загьир гьабе. OpenAmer Desktop лъазе буго токен яги браузералдаса сигнин хӀажал бугебали.',
     remoteUrlTitle: 'Гейтвей URL',
     remoteUrlDesc: 'OpenAmer гейтвейлъул базалаб URL хӀалтӀизабе; рикӀкӀад бугони https:// кквезе.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2198,7 +2257,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'Инсталл гьабулеб буго',
       succeeded: 'ЛъугӀана',
       skipped: 'Тун тана',
-      failed: 'Къвариана',
+      failed: 'Къвариана'
     },
     oneTimeTitle: 'OpenAmerал цо нухалъ инсталл гьабизе ккола',
     installCommand: 'Инсталл гьабизе команда',
@@ -2207,10 +2266,12 @@ Leave blank to keep the ${mode} default.`,
     installTo: 'Инсталл гьабила',
     retryAfterRun: 'Дун гьеб тӀубана -- юха хӀалбихье',
     setupChoiceTitle: 'OpenAmer Desktop гӀуцӀе',
-    setupChoiceDesc: 'Гьаб апп жинцаго тӀубалеб OpenAmer шлюзгун цуге, ялъуни OpenAmer гьаб компьютералда локалалъе инсталл гьабе.',
+    setupChoiceDesc:
+      'Гьаб апп жинцаго тӀубалеб OpenAmer шлюзгун цуге, ялъуни OpenAmer гьаб компьютералда локалалъе инсталл гьабе.',
     connectExistingTitle: 'Бугеб OpenAmerгун цо гьабе',
     connectExistingShort: 'Бугебгун цо гьабе',
-    connectExistingDesc: 'Сессиялъул токеналъ ялъуни браузералдаса гьабигун рикӀкӀад бугеб бэкенд хӀалтӀизабе. Локалалъе инсталл байбихьиларо.',
+    connectExistingDesc:
+      'Сессиялъул токеналъ ялъуни браузералдаса гьабигун рикӀкӀад бугеб бэкенд хӀалтӀизабе. Локалалъе инсталл байбихьиларо.',
     installLocalTitle: 'OpenAmer локалалъе инсталл гьабе',
     incompleteTokenTest: 'Гьаб гейтвей тестизелда цебе сессиялъул токен хъвай.',
     testConnection: 'БетӀербахъи тестизе',
@@ -2219,8 +2280,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Установка бергьун гьечӀо',
     settingUpTitle: 'OpenAmer Agent настройка гьабулеб буго',
     finishingTitle: 'ТӀубалеб буго',
-    failedDesc: 'Установкалъул шагаздаса цояб бергьун гьечӀо. Windows-алда гьаб лъугьине бегьула, OpenAmer CLI яги desktop-экземпляр цогидаб хӀалтӀулеб батида. ХӀалтӀулел OpenAmer экземплярал чӀчӀезаре, хадуб цӀидасан гьабизе. ГӀодор деталял яги desktop-лъул лог балагьизе, тӀубараб транскрипт балагьизе.',
-    activeDesc: 'Гьаб — цо нухалъ гьабизе кколеб установка. OpenAmer установщик зависимостял рахъулеб буго ва компьютералда настройка гьабулеб буго. Хадусел гӀуцӀиязда гьаб шаг тун тала.',
+    failedDesc:
+      'Установкалъул шагаздаса цояб бергьун гьечӀо. Windows-алда гьаб лъугьине бегьула, OpenAmer CLI яги desktop-экземпляр цогидаб хӀалтӀулеб батида. ХӀалтӀулел OpenAmer экземплярал чӀчӀезаре, хадуб цӀидасан гьабизе. ГӀодор деталял яги desktop-лъул лог балагьизе, тӀубараб транскрипт балагьизе.',
+    activeDesc:
+      'Гьаб — цо нухалъ гьабизе кколеб установка. OpenAmer установщик зависимостял рахъулеб буго ва компьютералда настройка гьабулеб буго. Хадусел гӀуцӀиязда гьаб шаг тун тала.',
     fetchingManifest: 'Установщикалъул манифест рахъулеб буго...',
     error: 'ГъалатӀ',
     hideOutput: 'Установщикалъул натижа къазе',
@@ -2232,13 +2295,14 @@ Leave blank to keep the ${mode} default.`,
     copiedOutput: 'Копия гьабун буго!',
     copyOutput: 'Натижа копи гьабизе',
     reloadRetry: 'ЦӀидасан грузизе ва цӀидасан гьабизе',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
     signInWith: provider => `Sign in with ${provider}`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'OpenAmer Agent настройка гьабизе байбихье',
@@ -2258,28 +2322,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'тIадего моделалъул API',
-        description: 'Fireworks AI-ялъ гьарурал моделалде тIадего бачIи.',
+        description: 'Fireworks AI-ялъ гьарурал моделалде тIадего бачIи.'
       },
       openrouter: {
         short: 'цо клуч, гIемер моделал',
-        description: 'Цо клучалда гъоркь гIасрал моделал кIола. ЦIиял установказе лъикIаб стандарт.',
+        description: 'Цо клучалда гъоркь гIасрал моделал кIола. ЦIиял установказе лъикIаб стандарт.'
       },
       openai: {
         short: 'GPT-классалъул моделал',
-        description: 'OpenAI моделалде тIадего бачIи.',
+        description: 'OpenAI моделалде тIадего бачIи.'
       },
       gemini: {
         short: 'Gemini моделал',
-        description: 'Google Gemini моделазде битӀун рекъей.',
+        description: 'Google Gemini моделазде битӀун рекъей.'
       },
       xai: {
         short: 'Grok моделал',
-        description: 'xAI Grok моделазде битӀун рекъей.',
+        description: 'xAI Grok моделазде битӀун рекъей.'
       },
       local: {
         short: 'жинго серверда',
-        description: 'OpenAmer локал яги жинго серверда бугеб OpenAI-ялда рекъараб endpoint-алде кьезе (vLLM, llama.cpp, Ollama ва ц.).',
-      },
+        description:
+          'OpenAmer локал яги жинго серверда бугеб OpenAI-ялда рекъараб endpoint-алде кьезе (vLLM, llama.cpp, Ollama ва ц.).'
+      }
     },
     backToSignIn: 'Ворччизе нахъе',
     getKey: 'Ключ босизе',
@@ -2292,7 +2357,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'Дур браузер ворччизе рагьула, хадуб гьанире нахъвуссула',
       device_code: 'Дур браузерда верификациялъул гьумер рагьула — OpenAmer жинго къошала',
-      external: 'Дур терминалда цо нух ворччи, хадуб чат-алде нахъе',
+      external: 'Дур терминалда цо нух ворччи, хадуб чат-алде нахъе'
     },
     signInFailed: 'Ворччи кьоларо. Циги хьвагӀ.',
     pickDifferentProvider: 'БатӀияб провайдер бищун',
@@ -2317,11 +2382,13 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'Модель хисизе',
@@ -2337,13 +2404,13 @@ Leave blank to keep the ${mode} default.`,
     freeTier: 'Къимат гьечIеб тIегь',
     priceTitle: 'Жанибе / къватIибе къимат миллион токеналъе',
     wasPrice: 'гIуна',
-    pro: 'Pro',
+    pro: 'Pro'
   },
   modelVisibility: {
     title: 'Моделал',
     search: 'Моделал жагьизе',
     noAuthenticatedProviders: 'Аутентификация гьабурал провайдерал гьечIо.',
-    addProvider: 'Провайдер тIадегIун…',
+    addProvider: 'Провайдер тIадегIун…'
   },
   shell: {
     windowControls: 'Пенер контролал',
@@ -2354,7 +2421,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'Моделал ратиларо',
       editModels: 'Моделал хисизаре…',
       refreshModels: 'Моделал цIигьинаризе',
-      fast: 'ХIел',
+      fast: 'ХIел'
     },
     modelOptions: {
       noOptions: 'Гьаб моделалъе опциял гьечIо',
@@ -2370,7 +2437,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'Максимум',
       ultra: 'Ультра',
       updateFailed: 'Моделалъул опция хисизаби гӀунтӀичIо',
-      fastFailed: 'ХъагӀагӀат режималъул хисизаби гӀунтӀичIо',
+      fastFailed: 'ХъагӀагӀат режималъул хисизаби гӀунтӀичIо'
     },
     gatewayMenu: {
       gateway: 'Гейтвей',
@@ -2385,7 +2452,7 @@ Leave blank to keep the ${mode} default.`,
       recentActivity: 'Ахирисеб хӀалтӀи',
       viewAllLogs: 'Киналниги логаби бихьизе →',
       messagingPlatforms: 'Хабар биччазе платформаби',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'Къобулалъул режим',
@@ -2395,7 +2462,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'Ишал автоматически хӀисабалда хӀисаб гьабе ва ккани суал гьабе',
       off: 'Хвезаби',
       offDescription: 'Къобулалъул суалал гьечӀого хӀалтӀизе',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'ЛъачӀого',
@@ -2437,13 +2504,13 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'Суб-агентзабазул баянал',
           system_prompt: 'Системаялъул промпт',
           tool_definitions: 'Алатзабазул баянал',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Контексталъул даннаял нахъе гьечIо',
         loading: 'Разбивка бакъвазабула…',
         title: 'Контексталъул хIалтIи',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Контексталъул хIалтIиялъул разбивка рагьизе',
       session: 'Сессия',
@@ -2470,8 +2537,8 @@ Leave blank to keep the ${mode} default.`,
       yoloOn: 'YOLO on — auto-approving dangerous commands. Click to turn off. Shift+click toggles it globally.',
       yoloOff: 'YOLO off — click to auto-approve dangerous commands. Shift+click toggles it globally.',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Кваранаб бокӀонисеб панель',
@@ -2507,7 +2574,7 @@ Leave blank to keep the ${mode} default.`,
     addToChat: 'Чаталде жубай',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'Цебе бихьи',
@@ -2537,7 +2604,7 @@ Leave blank to keep the ${mode} default.`,
       sentTitle: 'Чатазе битӏана',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Preview app байбихьизе кӏоларо',
@@ -2558,9 +2625,11 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'Хьал акъуьыбжьара.',
       restartFailedTitle: 'Хьал цуналъяр рехьу тасана',
       restartFailedMessage: 'OpenAmer-цам сервер цуналъяр рехьу тасана.',
-      stillWorking: 'OpenAmer урху чIегIум чIара, алахь азкIар цуналъяр хатун акъуьна. Сервер-и команда ард чIегIум чIарба.',
+      stillWorking:
+        'OpenAmer урху чIегIум чIара, алахь азкIар цуналъяр хатун акъуьна. Сервер-и команда ард чIегIум чIарба.',
       workspaceReloading: 'МетIанис цIетах, хьал акъуьыбжьара',
-      moduleMimeDescription: 'Модуль скрипт-а MIME-и типани вун мехь мар. Гьа ирехьу «Vite/React» мунагъу веб-сахьят чагъи ард акъеб, проект-и сервер мад ебна.',
+      moduleMimeDescription:
+        'Модуль скрипт-а MIME-и типани вун мехь мар. Гьа ирехьу «Vite/React» мунагъу веб-сахьят чагъи ард акъеб, проект-и сервер мад ебна.',
       unreachableDescription: 'Хьал-и страница ептхала къочхарун бела.',
       fallbackTitle: 'Хьал',
       lookingRestart: taskId => `OpenAmer is looking for a preview server to restart (${taskId})`,
@@ -2571,7 +2640,7 @@ Leave blank to keep the ${mode} default.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     opening: 'Рагьулеб...',
     hide: 'Хьулизе',
@@ -2591,13 +2660,14 @@ Leave blank to keep the ${mode} default.`,
     editing: 'Хисизабулеб',
     unsavedChanges: 'Хъванчӏого хисаби',
     diskChangedTitle: 'Файл дискда хисун буго',
-    diskChangedBody: 'Гьаб файл дуца рагьидаса нахъе хисун буго. Гьаб дур версиялда тӏадехъвазе, яги дур хисаби кьуризе ва цӏигьабизе?',
+    diskChangedBody:
+      'Гьаб файл дуца рагьидаса нахъе хисун буго. Гьаб дур версиялда тӏадехъвазе, яги дур хисаби кьуризе ва цӏигьабизе?',
     closeTab: label => `Close ${label}`,
     linkHint: '⌘/Ctrl-click for preview pane',
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   zones: {
     showHeader: 'БетӀер бихьизабизе',
@@ -2605,7 +2675,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Гижиде гьабизе',
     restore: 'Буцаризе',
     closeRunningTitle: 'ХӀалтӀулеб таб хвезе?',
-    closeRunningBody: 'Гьаб чат хӀалтӀула (яги дуца хъвазе гӀундула). Таб хвезегӀан гьеб къулъ гьабула — сессиялъул прогресс цӀунула ва боковой панелалдаса цӀидасан бахъизе бегьула.',
+    closeRunningBody:
+      'Гьаб чат хӀалтӀула (яги дуца хъвазе гӀундула). Таб хвезегӀан гьеб къулъ гьабула — сессиялъул прогресс цӀунула ва боковой панелалдаса цӀидасан бахъизе бегьула.',
     closeRunningConfirm: 'Таб хвезе',
     closeOthers: 'Цогидал хвезе',
     closeToRight: 'Кваралде хвезе',
@@ -2626,7 +2697,8 @@ Leave blank to keep the ${mode} default.`,
     nameLayoutPlaceholder: 'Гьаб рагӀуда цӀар кьезе…',
     zoneEditorTitle: 'Зоналъул редактор',
     editorHintPre: 'Бикьизе гӀунтӀизе ·',
-    editorHintPost: 'линия борхизабила · зоназдасан кьучӀизабила цолъизабизе · гӀуцӀарал рахъаздасан кьучӀизабила кьадар хисабизе',
+    editorHintPost:
+      'линия борхизабила · зоназдасан кьучӀизабила цолъизабизе · гӀуцӀарал рахъаздасан кьучӀизабила кьадар хисабизе',
     templateColumns: 'Колонкаби',
     templateRows: 'Рядал',
     templateGrid: 'Сетка',
@@ -2642,7 +2714,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
@@ -2667,17 +2739,19 @@ Leave blank to keep the ${mode} default.`,
       restoreCheckpoint: 'Чекпоинт буссинабизе',
       restoreFromHere: 'Чекпоинт буссинабизе — гьаб промпталдаса цIидасан байбихьизе',
       restoreTitle: 'Гьаб чекпоинталде буссинабизе?',
-      restoreBody: 'Гьаб промпталдаса хадуб бугеб кинабго диалогалдаса рахъун тезе, ва промпт гьаниса цIидасан хIалтIизабизе.',
+      restoreBody:
+        'Гьаб промпталдаса хадуб бугеб кинабго диалогалдаса рахъун тезе, ва промпт гьаниса цIидасан хIалтIизабизе.',
       restoreConfirm: 'Буссинабизе ва цIидасан байбихьизе',
       restoreNext: 'Хадусе чекпоинт буссинабизе',
       goForward: 'Цере тIезе',
       sendEdited: 'Хисизабураб хабар битIизе',
       attachingFile: 'ТIадал тIамуле…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
-      yesterday: time => `Yesterday, ${time}`,
+      yesterday: time => `Yesterday, ${time}`
     },
     approval: {
       gatewayDisconnected: 'OpenAmer шлюз гIунтIизабичIого вуго',
@@ -2691,7 +2765,8 @@ Leave blank to keep the ${mode} default.`,
       reject: 'ТIаса бищизе',
       alwaysTitle: 'Кидаго гьаб командаялда ижаза кьезе?',
       alwaysAllow: 'Кидаго ижаза кьезе',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
       notReady: 'БатIизабиялъул суал гIуцIун гьечIо',
@@ -2705,7 +2780,7 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'ТIадегIанги',
       lateAnswerTip: 'Гьаб жаваб хадусеб хабар гӀадин хъвай',
       lateAnswerHint: 'Гьаб суал тӀадежо вахъун гьечӀо. Гьеб хадусеб хабар гӀадин хъваялъе опция бихьизабе.',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     tool: {
       code: 'Код',
@@ -2739,123 +2814,123 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Хӏалтӏана',
         running: 'Хӏалтӏула',
         ranCode: 'Код хӏалтӏана',
-        runningCode: 'Скрипт гьаби',
+        runningCode: 'Скрипт гьаби'
       },
       prefixes: {
         browser: 'Браузер',
-        web: 'Веб',
+        web: 'Веб'
       },
       titles: {
         browser_click: {
           done: 'Гьумерул элементалда клик гьабуна',
           pending: 'Гьумерул элементалда клик гьабула',
-          pendingAction: 'Клик гьабула',
+          pendingAction: 'Клик гьабула'
         },
         browser_fill: {
           done: 'Формалъул батӏалъи тӏуна',
           pending: 'Формалъул батӏалъи тӏула',
-          pendingAction: 'БецӀи',
+          pendingAction: 'БецӀи'
         },
         browser_navigate: {
           done: 'Кутараб гьумер',
           pending: 'Гьумер кутазе',
-          pendingAction: 'Кутазе',
+          pendingAction: 'Кутазе'
         },
         browser_snapshot: {
           done: 'Босараб гьумерин сурат',
           pending: 'Гьумерин сурат босизе',
-          pendingAction: 'Босизе',
+          pendingAction: 'Босизе'
         },
         browser_take_screenshot: {
           done: 'Босараб экраналъул сурат',
           pending: 'Экраналъул сурат босизе',
-          pendingAction: 'Босизе',
+          pendingAction: 'Босизе'
         },
         browser_type: {
           done: 'Гьумералда хъвараб',
           pending: 'Гьумералда хъвазе',
-          pendingAction: 'Хъвазе',
+          pendingAction: 'Хъвазе'
         },
         clarify: {
           done: 'Суал гьабураб',
           pending: 'Суал гьабизе',
-          pendingAction: 'Суал гьабизе',
+          pendingAction: 'Суал гьабизе'
         },
         cronjob: {
           done: 'Cron хӀалтӀи',
           pending: 'Cron хӀалтӀи план гьабизе',
-          pendingAction: 'План гьабизе',
+          pendingAction: 'План гьабизе'
         },
         edit_file: {
           done: 'Хисизабураб файл',
           pending: 'Файл хисизаби',
-          pendingAction: 'Хисизаби',
+          pendingAction: 'Хисизаби'
         },
         execute_code: {
           done: 'Код бажаризаби',
           pending: 'Скрипт гьабизе',
-          pendingAction: 'Скрипт гьабизе',
+          pendingAction: 'Скрипт гьабизе'
         },
         image_generate: {
           done: 'Сурат гьабизаби',
           pending: 'Сурат гьабулеб',
-          pendingAction: 'Гьабулеб',
+          pendingAction: 'Гьабулеб'
         },
         list_files: {
           done: 'Файлал рихьизарун',
           pending: 'Файлал рихьизари',
-          pendingAction: 'Рихьизари',
+          pendingAction: 'Рихьизари'
         },
         patch: {
           done: 'Файл патчизаби',
           pending: 'Файл патчизабулеб',
-          pendingAction: 'Патчизаби',
+          pendingAction: 'Патчизаби'
         },
         read_file: {
           done: 'Файл цӏализаби',
           pending: 'Файл цӏалулеб',
-          pendingAction: 'Цӏали',
+          pendingAction: 'Цӏали'
         },
         search_files: {
           done: 'Файлал риххизарун',
           pending: 'Файлал риххизари',
-          pendingAction: 'Риххизари',
+          pendingAction: 'Риххизари'
         },
         session_search_recall: {
           done: 'Сессиялъул история хъирщизабуна',
           pending: 'Сессиялъул история хъирщизабула',
-          pendingAction: 'Хъирщизабула',
+          pendingAction: 'Хъирщизабула'
         },
         terminal: {
           done: 'Команда лъуна',
           pending: 'Команда лъула',
-          pendingAction: 'Лъула',
+          pendingAction: 'Лъула'
         },
         todo: {
           done: 'Тодо цIигъинабуна',
           pending: 'Тодо цIигъинабула',
-          pendingAction: 'ЦIигъинабула',
+          pendingAction: 'ЦIигъинабула'
         },
         vision_analyze: {
           done: 'Сурат анализ гьабуна',
           pending: 'Сурат анализ гьабула',
-          pendingAction: 'Анализ гьабула',
+          pendingAction: 'Анализ гьабула'
         },
         web_extract: {
           done: 'Вебгьумер цIалIана',
           pending: 'Вебгьумер цIалIула',
-          pendingAction: 'ЦIалIула',
+          pendingAction: 'ЦIалIула'
         },
         web_search: {
           done: 'Веб хъирщизабуна',
           pending: 'Веб хъирщизабула',
-          pendingAction: 'Хъирщизабула',
+          pendingAction: 'Хъирщизабула'
         },
         write_file: {
           done: 'Файл хисизабуна',
           pending: 'Файл хисизабула',
-          pendingAction: 'Хисизаби',
-        },
+          pendingAction: 'Хисизаби'
+        }
       },
       recoveredMany: count => `Recovered after ${count} failed steps`,
       failedMany: count => `${count} steps failed`,
@@ -2865,9 +2940,9 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer gateway хурхун гьечӀо',
@@ -2878,7 +2953,7 @@ Leave blank to keep the ${mode} default.`,
     sudoPlaceholder: 'sudo пароль',
     secretTitle: 'Секрет ккола',
     secretDesc: 'OpenAmer-е ккола креденциал, цӀамгъуда гьабизе.',
-    secretPlaceholder: 'Секреталъул кьимат',
+    secretPlaceholder: 'Секреталъул кьимат'
   },
   desktop: {
     audioReadFailed: 'Рекорд гьабураб аудио цӀализе лъугьинчӀо',
@@ -2919,7 +2994,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'Хисизе кӏвекьичӏо',
     resumeFailed: 'Тӏадеса байбихьизе кӏвекьичӏо',
     resumeStrandedTitle: 'Гьаб сессия тӏаде босизе кӏвекьичӏо',
-    resumeStrandedBody: 'Гьаб сессиялде бухьен кӏвекьичӏо ва автоматик тӏасандаса гьаби лъугӏана. Gateway хӏалтӏулебищ хал гьабе, тӏасандаса кӏвекьи.',
+    resumeStrandedBody:
+      'Гьаб сессиялде бухьен кӏвекьичӏо ва автоматик тӏасандаса гьаби лъугӏана. Gateway хӏалтӏулебищ хал гьабе, тӏасандаса кӏвекьи.',
     resumeRetry: 'Тӏасандаса',
     nothingToBranch: 'Ветка гьабизе ниги гьечӏо',
     branchNeedsChat: 'Ветка гьабизелалде чат байбихье яги тӏадеса байбихье.',
@@ -2938,42 +3014,44 @@ Leave blank to keep the ${mode} default.`,
       timedOut: 'Гейтвейалдаса кьижаралъухъ заман тӏагӀун. `openamer gateway` хӏалтӏула?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     skillCommandsAvailable: count => `${count} skill commands available.`,
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
-    branchTitle: n => `Draft: Branch #${n}`,
+    branchTitle: n => `Draft: Branch #${n}`
   },
   errors: {
     genericFailure: 'Щибниги тӏагӀун',
     boundaryTitle: 'Интерфейсалда щибниги бихун',
     boundaryDesc: 'Бакӏалда гьич гьечӏел гъалатӏ ккун. Дуца гьарурал чатал ва настройкаби цӏуна руго.',
     reloadWindow: 'Гьаваз цӏидаса рагӏизе',
-    openLogs: 'Логаби рагӏизе',
+    openLogs: 'Логаби рагӏизе'
   },
   ui: {
     search: {
-      clear: 'Жубазе чӏаго гьабизе',
+      clear: 'Жубазе чӏаго гьабизе'
     },
     pagination: {
       label: 'Гьумерал',
       previous: 'Цебе',
       previousAria: 'Цебесеб гьумерде уне',
       next: 'Хадубе',
-      nextAria: 'Хадусеб гьумерде уне',
+      nextAria: 'Хадусеб гьумерде уне'
     },
     sidebar: {
       title: 'Боковой панель',
       description: 'Мобилиялъул боковой панель бихьизабула.',
-      toggle: 'Боковой панель хисизабизе',
-    },
+      toggle: 'Боковой панель хисизабизе'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
-  },
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
+  }
 })

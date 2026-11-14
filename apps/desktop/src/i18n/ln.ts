@@ -25,10 +25,14 @@ export const ln = defineLocale({
       sshButtonsHint: 'Kokoya ekabolisho kokwecha lanshuiyo mosala. Koneksa reconnecte sikawa.',
       sshIncompleteHost: 'Banga hôte SSH oyo koyikola.',
       sshErrUnreachable: 'Ekotambwisa teyo hôte kati ya SSH. Checkiya hôte, porti, na réseau woyoko.',
-      sshErrAuth: 'Échec de l’authentification SSH. Charge kiyungi yo yo dans ssh-agent (ssh-add) au设置 IdentityFile na `~/.ssh/config` — OpenAmer exécute ssh sans interaction.',
-      sshErrHostKey: 'Clé ya hôte esala CHANGED since you last connected. Verifyiya que cela est attendu, paka就跑 ssh-keygen -R <host> woyoka reconnecte.',
-      sshErrNotInstalled: 'OpenAmer n령 ezalaka na hôte ya remote. Instale yo kuna (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) au设置 nzila ya OpenAmer.',
-      sshErrPlatform: 'Plateforme distante non prise en charge. Le mode SSH de OpenAmer Desktop prend en charge les hôtes distants Linux, macOS et Windows.',
+      sshErrAuth:
+        'Échec de l’authentification SSH. Charge kiyungi yo yo dans ssh-agent (ssh-add) au设置 IdentityFile na `~/.ssh/config` — OpenAmer exécute ssh sans interaction.',
+      sshErrHostKey:
+        'Clé ya hôte esala CHANGED since you last connected. Verifyiya que cela est attendu, paka就跑 ssh-keygen -R <host> woyoka reconnecte.',
+      sshErrNotInstalled:
+        'OpenAmer n령 ezalaka na hôte ya remote. Instale yo kuna (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) au设置 nzila ya OpenAmer.',
+      sshErrPlatform:
+        'Plateforme distante non prise en charge. Le mode SSH de OpenAmer Desktop prend en charge les hôtes distants Linux, macOS et Windows.',
       sshErrTimeout: 'Connexion SSH a expiré. Le hôte est peut-être inaccessible ou en veille.',
       sshErrUpdateRequired: 'Misa à jour OpenAmer na hôte ya remote avant de vous connecter avec Desktop SSH.',
       sshErrUnknown: 'Échec de la connexion SSH.',
@@ -37,12 +41,14 @@ export const ln = defineLocale({
       unavailableDesc: 'Pont IPC ya desktop te ezalangi paramɛtriz ya passerelle.',
       title: 'Kɔngɛla passerelle',
       envOverride: 'Koboya ya env',
-      intro: 'OpenAmer Desktop bandaka passerelle ya lokal na nzete mokuse. Use passerelle yaremote oyo elingi bɛsɛ eloko OpenAmer backend oyo ekalaka na mashine mosala na kɔngɛla ya proxy oyo teki mot trust. Ponɲoma profili ya lɛndɔ alɔkɛ ya kotyisa motɔmɔ oyo mos.',
+      intro:
+        'OpenAmer Desktop bandaka passerelle ya lokal na nzete mokuse. Use passerelle yaremote oyo elingi bɛsɛ eloko OpenAmer backend oyo ekalaka na mashine mosala na kɔngɛla ya proxy oyo teki mot trust. Ponɲoma profili ya lɛndɔ alɔkɛ ya kotyisa motɔmɔ oyo mos.',
       appliesTo: 'Ekelɛ na',
       allProfiles: 'Profili nyonso',
       defaultConnection: 'Kɔngɛla ya defɔlti na profili nyonso oyo ezalaki na koboya oyo ya es.',
       envOverrideTitle: 'Mitindo ya env esiti sesyon ya desktop oyo adi.',
-      envOverrideDesc: 'Bikisa OPENAMER_DESKTOP_REMOTE_URL na OPENAMER_DESKTOP_REMOTE_TOKEN mba kota paramɛtriz oyo ka te nsima.',
+      envOverrideDesc:
+        'Bikisa OPENAMER_DESKTOP_REMOTE_URL na OPENAMER_DESKTOP_REMOTE_TOKEN mba kota paramɛtriz oyo ka te nsima.',
       modeTitle: 'Mode ya kɔngɛla',
       localTitle: 'Passerelle ya lokal',
       localDesc: 'Bandanga backend ya OpenAmer ya prive na localhost. Oyo mosi mokuse na ekalaka offline.',
@@ -50,8 +56,10 @@ export const ln = defineLocale({
       inheritDesc: 'ƈopa koboya ya profili oyo na kɔngɛla ya defɔlti.',
       remoteTitle: 'Passerelle ya remote',
       remoteDesc: 'Kɔngɛla yoko ya desktop na backend ya OpenAmer ya remote.',
-      remoteAuthHint: 'Passerelle oyo hosté use OAuth na mosala mot ya用户名 na mot ya motombi; passerelle oyo teki hosté na esome yako token ya sesyon.',
-      cloudDesc: 'Kɔngɛla na OpenAmer Cloud mbala ya moleka na ponɲoma agɛnti oyo kati na kɔnti na yo —无需 URL ya kopya.',
+      remoteAuthHint:
+        'Passerelle oyo hosté use OAuth na mosala mot ya用户名 na mot ya motombi; passerelle oyo teki hosté na esome yako token ya sesyon.',
+      cloudDesc:
+        'Kɔngɛla na OpenAmer Cloud mbala ya moleka na ponɲoma agɛnti oyo kati na kɔnti na yo —无需 URL ya kopya.',
       cloudSignIn: 'Kɔngɛla na OpenAmer Cloud',
       cloudSignedIn: 'Oko kɔngɛlaki na OpenAmer Cloud',
       cloudNeedsSignIn: 'Kɔngɛla na OpenAmer Cloud mba komona agɛnti oyo kati na kɔnti na yo.',
@@ -76,8 +84,9 @@ export const ln = defineLocale({
       applyFailed: 'Kopekola paramètre ya gateway esaluki.',
       saveFailed: 'Kobimisa paramètre ya gateway esaluki.',
       sshTitle: 'Konekta via SSH',
-      sshDesc: 'OpenAmer ebongami na remote via SSH moko ya tunneliya na app oyo — solo ya koboma to bomoko to exponi moto. Ebandi SSH ya clé eshingi na hosti.',
-      sshTrustHint: 'Clé ya hosti ya liboso ezalingi moko ya kondisa; shin\'a eshingi ekobanza.',
+      sshDesc:
+        'OpenAmer ebongami na remote via SSH moko ya tunneliya na app oyo — solo ya koboma to bomoko to exponi moto. Ebandi SSH ya clé eshingi na hosti.',
+      sshTrustHint: "Clé ya hosti ya liboso ezalingi moko ya kondisa; shin'a eshingi ekobanza.",
       sshHostTitle: 'Hosti',
       sshHostDesc: 'user@host, to moko ya aliasi Host originate ~/.ssh/config.',
       sshHostPick: 'Epona hosti…',
@@ -87,7 +96,7 @@ export const ln = defineLocale({
       cloudNoAgents: {
         before: 'Awa nzete agente yo konti nionso. Sala moko ya agente na',
         linkText: 'OpenAmer pɔrtal',
-        after: ', nsima monanga bilei.',
+        after: ', nsima monanga bilei.'
       },
       cloudRefresh: 'Monanga bilei',
       cloudConnect: 'Kanga',
@@ -101,7 +110,8 @@ export const ln = defineLocale({
       cloudConnectedPill: 'Eyangisami',
       cloudAgentProvisioning: 'Kobongola…',
       remoteUrlTitle: 'URL ya mosusu',
-      remoteUrlDesc: 'URL fotowe ya serverye ya tableau de bord ya mosusu. Prefiks dalongi ekwelamawa, oyo naboni /openamer.',
+      remoteUrlDesc:
+        'URL fotowe ya serverye ya tableau de bord ya mosusu. Prefiks dalongi ekwelamawa, oyo naboni /openamer.',
       probing: 'Eketeke boniseli ya poso oyo…',
       probeError: 'Teki te yeba poso oyo yetu. Kontrola URL — metode ya boniseli eyakotambwisa ntanga poso ekopondo.',
       signedIn: 'Oyomi',
@@ -110,9 +120,11 @@ export const ln = defineLocale({
       authTitle: 'Boniseli',
       authSignedInPassword: 'Poso oyo ezwisi lolomɔti mokosi mot de passe. Oyomi; seyon mpiko oyo monanga autɔmatik.',
       authSignedInOauth: 'Poso oyo ezwisi OAuth. Oyomi; seyon mpiko oyo monanga autɔmatik.',
-      authNeedsPassword: 'Poso oyo ezwisi lolomɔti mokosi mot de passe. Yoma mba oyo polongo aplikasyon ya desktop oyo.',
+      authNeedsPassword:
+        'Poso oyo ezwisi lolomɔti mokosi mot de passe. Yoma mba oyo polongo aplikasyon ya desktop oyo.',
       tokenTitle: 'Tokɛn ya seyon',
-      tokenDesc: 'Tokɛn ya seyon ya tableau de bord oyo ekosalamisama na REST mpe WebSocket. Seya tupu mba ukambo tokɛn oyo ekabombwisi.',
+      tokenDesc:
+        'Tokɛn ya seyon ya tableau de bord oyo ekosalamisama na REST mpe WebSocket. Seya tupu mba ukambo tokɛn oyo ekabombwisi.',
       savedToken: 'Bamboyi',
       pasteSessionToken: 'Bimisa tokɛn ya seyon',
       testRemote: 'Yekesela poso ya mosusu',
@@ -124,7 +136,8 @@ export const ln = defineLocale({
       incompleteTitle: 'Poso ya mosusu ekotombwisa',
       incompleteSignIn: 'Banga URL ya mosusu mpe yoma ofu na kozongwisa na mosusu.',
       incompleteToken: 'Banga URL ya mosusu mpe tokɛn ya seyon ofu na kozongwisa na mosusu.',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudTitle: 'OpenAmer Cloud',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudOrgRole: role => `Role: ${role}`,
@@ -134,12 +147,12 @@ export const ln = defineLocale({
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     keys: {
       loading: 'Chargement des clés API et des identifiants...',
       failedLoad: 'Échec du chargement des clés API',
-      empty: 'Rien n’est encore configuré dans cette catégorie.',
+      empty: 'Rien n’est encore configuré dans cette catégorie.'
     },
     mcp: {
       loading: 'Chargement des serveurs MCP...',
@@ -201,10 +214,11 @@ export const ln = defineLocale({
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       authenticatedMessage: (server, count) => `${server}: ${count} tools`,
       enableTool: tool => `Enable ${tool}`,
-      disableTool: tool => `Disable ${tool}`,
+      disableTool: tool => `Disable ${tool}`
     },
     closeSettings: 'Seka matendo',
     exportConfig: 'Tolinga config',
@@ -228,11 +242,12 @@ export const ln = defineLocale({
       billing: 'Lisolo la kweka',
       notifications: 'Awali',
       plugins: 'Mibale taba',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'Mibale taba ya Desktop',
-      blurb: 'Lisolo taba ya UI ebondi na build auwa liboso ya desktop-plugins (OpenAmer). Kukulila liboso lisaloki na moto na biso balingana.',
+      blurb:
+        'Lisolo taba ya UI ebondi na build auwa liboso ya desktop-plugins (OpenAmer). Kukulila liboso lisaloki na moto na biso balingana.',
       openFolder: 'Lisolo ya Mibale taba',
       rescan: 'Lisolo taba',
       reveal: 'Kwisa ya likambo mu manager',
@@ -243,50 +258,52 @@ export const ln = defineLocale({
       kinds: {
         bundled: 'Ebundled',
         disk: 'Pai disque',
-        runtime: 'Na runtime',
+        runtime: 'Na runtime'
       },
-      count: n => `${n} installed`,
+      count: n => `${n} installed`
     },
     notifications: {
       title: 'Bitangami',
-      intro: 'Bitangami asili ya bureau, mosusu na toast-app. Oyo ezali na kila ekoloma — kila ordinateur enso ezali na mikolo yake.',
+      intro:
+        'Bitangami asili ya bureau, mosusu na toast-app. Oyo ezali na kila ekoloma — kila ordinateur enso ezali na mikolo yake.',
       enableAll: 'Yoba bitangami',
       enableAllDesc: 'Bouton principal. Zongola oyo ntungo mokolo ya bitangami oyo nyonso.',
       focusedHint: 'Bitangami ya kamba bifongola kaka OpenAmer ezali na mboko.',
       kinds: {
         approval: {
           label: 'Mokana ya approve',
-          description: 'Baamusi ekoya mokana oyo approve wala reject.',
+          description: 'Baamusi ekoya mokana oyo approve wala reject.'
         },
         input: {
           label: 'Mokana ya kotanga',
-          description: 'OpenAmer atondiki moninga wala ekesela mot de passe wala secret.',
+          description: 'OpenAmer atondiki moninga wala ekesela mot de passe wala secret.'
         },
         turnDone: {
           label: 'Jibu lisusu',
-          description: 'Nzembo ekamelaki OpenAmer ezali na mboko.',
+          description: 'Nzembo ekamelaki OpenAmer ezali na mboko.'
         },
         turnError: {
           label: 'Nkeke',
-          description: 'Nzembo esimisaki na error.',
+          description: 'Nzembo esimisaki na error.'
         },
         backgroundDone: {
           label: 'Mekasa ya mboko esimisiki',
-          description: 'Komanda ya terminal ya background esekola.',
+          description: 'Komanda ya terminal ya background esekola.'
         },
         credits: {
           label: 'Alerte za krediti',
-          description: 'Access ya krediti esimbarisi pe esekola.',
-        },
+          description: 'Access ya krediti esimbarisi pe esekola.'
+        }
       },
       test: 'Tinda notification ya test',
       testTitle: 'OpenAmer',
       testBody: 'Notifications zuko.',
-      testSent: 'Test otindwa. Soko eloko echosalema, chima permissions za notifications za OS na Focus/Do Not Disturb.',
+      testSent:
+        'Test otindwa. Soko eloko echosalema, chima permissions za notifications za OS na Focus/Do Not Disturb.',
       testUnsupported: 'Sistema eyi te supporti notifications ya native.',
       completionSoundTitle: 'Sono ya kumala',
       completionSoundDesc: 'Ezimbaka mboso ya agent esala. Selecta preset pe previza yango hapa.',
-      completionSoundPreview: 'Previza',
+      completionSoundPreview: 'Previza'
     },
     sections: {
       model: 'Modèle',
@@ -296,7 +313,7 @@ export const ln = defineLocale({
       safety: 'Bobongisi',
       memory: 'Mbaso & Mokote',
       voice: 'Bombo',
-      advanced: 'Avansi',
+      advanced: 'Avansi'
     },
     searchPlaceholder: {
       about: 'Kota OpenAmer Desktop',
@@ -304,25 +321,26 @@ export const ln = defineLocale({
       gateway: 'Connexion ya Gateway...',
       keys: 'Pakisa tufa za API...',
       mcp: 'Pakisa serveurs MCP...',
-      sessions: 'Pakisa sesyons ya archive...',
+      sessions: 'Pakisa sesyons ya archive...'
     },
     modeOptions: {
       light: {
         label: 'Mwanga',
-        description: 'Surfaces za desktop za kongala',
+        description: 'Surfaces za desktop za kongala'
       },
       dark: {
         label: 'Nokanda',
-        description: 'Espace ya travail ya bonde ya mwanga komoya',
+        description: 'Espace ya travail ya bonde ya mwanga komoya'
       },
       system: {
         label: 'Système',
-        description: 'Kondza na apareyans ya OS.',
-      },
+        description: 'Kondza na apareyans ya OS.'
+      }
     },
     appearance: {
       title: 'Apareyans',
-      intro: 'Preference zalle zya kolesa za desktop. Mode eli kongala; ndenge eli paleti ya accent na style ya surface ya mbeli.',
+      intro:
+        'Preference zalle zya kolesa za desktop. Mode eli kongala; ndenge eli paleti ya accent na style ya surface ya mbeli.',
       colorMode: 'Mode ya mboko',
       colorModeDesc: 'Salula mode ya mboko ya fixe pe oyo OpenAmer akosala na paramètre ya système.',
       toolViewTitle: 'Kolesa ya Tool Call',
@@ -333,7 +351,8 @@ export const ln = defineLocale({
       backdropTitle: 'Mbande ya maloba',
       backdropDesc: 'Eloko ya statwè oyo ile eye mbande ya maloba.',
       embedsTitle: 'Embèdè li an lînda',
-      embedsDesc: 'Awambe d，过去 esoload tokei siti ya bitatu (YouTube, X, …). Kibali dikotisa placeholder kuntil oyo allowi kekasa; Mbala esoload yango automatiki; Bofunda esepoza bolingo.',
+      embedsDesc:
+        'Awambe d，过去 esoload tokei siti ya bitatu (YouTube, X, …). Kibali dikotisa placeholder kuntil oyo allowi kekasa; Mbala esoload yango automatiki; Bofunda esepoza bolingo.',
       embedsAsk: 'Kibali',
       embedsAlways: 'Mbala',
       embedsOff: 'Bofunda',
@@ -344,7 +363,8 @@ export const ln = defineLocale({
       themeTitle: 'Mokandé ya lokola',
       themeDesc: 'Mikandé ya bureau kaka. Mmode oyo esalami ezali likita.',
       installTitle: 'Kotenga tokei VS Code',
-      installDesc: 'Kopaste ID ya extension Marketplace (ex. dracula-theme.theme-dracula) mpo ya kongola mokandé ya lokola yanga na mikandé ya bureau.',
+      installDesc:
+        'Kopaste ID ya extension Marketplace (ex. dracula-theme.theme-dracula) mpo ya kongola mokandé ya lokola yanga na mikandé ya bureau.',
       installButton: 'Kotenga',
       installing: 'Kotenga…',
       installError: 'Tokotela kotenga mokandé oyo.',
@@ -352,8 +372,10 @@ export const ln = defineLocale({
       importedBadge: 'E importeri',
       pet: {
         title: 'Mbwawa',
-        intro: 'Boya mbwawa ya petdex oyo ewangwisi pono OpenAmer mpe ekosunga na mosala ya OpenAmer — ekoba ntoko ntoki lisusu ekoki, esepoza moninga na的成功, mpe esepoza kolinga na erreur.',
-        restartHint: 'Mbwawa esangi restart mw mopanga — aplika oyo ekoba maloba esalaki na libota oyo feature baddingaki. Funga OpenAmer, songa kofungu, mpe bo归来 kuna.',
+        intro:
+          'Boya mbwawa ya petdex oyo ewangwisi pono OpenAmer mpe ekosunga na mosala ya OpenAmer — ekoba ntoko ntoki lisusu ekoki, esepoza moninga na的成功, mpe esepoza kolinga na erreur.',
+        restartHint:
+          'Mbwawa esangi restart mw mopanga — aplika oyo ekoba maloba esalaki na libota oyo feature baddingaki. Funga OpenAmer, songa kofungu, mpe bo归来 kuna.',
         on: 'Bongo',
         off: 'Bofunda',
         scaleTitle: 'Bocale',
@@ -385,13 +407,14 @@ export const ln = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installPlaceholder: 'publisher.extension',
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     about: {
       heading: 'OpenAmer Burea',
@@ -418,7 +441,7 @@ export const ln = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     config: {
       none: 'Noki te',
@@ -434,7 +457,8 @@ export const ln = defineLocale({
       imported: 'Configuration ekotambwisa',
       invalidJson: 'JSON ya configuration invalide',
       keepAwakeTitle: 'Bongoya kompita to moninga',
-      keepAwakeDesc: 'Sala mosala oyo etalala koba to moninga oyo ekotambwisa na fulu, koba mise oyo ekotambwisa na kokima. Écran ekotambwisa komo koka te.',
+      keepAwakeDesc:
+        'Sala mosala oyo etalala koba to moninga oyo ekotambwisa na fulu, koba mise oyo ekotambwisa na kokima. Écran ekotambwisa komo koka te.'
     },
     credentials: {
       pasteKey: 'Kopola ki',
@@ -444,7 +468,7 @@ export const ln = defineLocale({
       remove: 'ƈopa',
       getKey: 'Bolanga miyɔkeyi',
       saving: 'Ko katoma',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     envActions: {
       credentialActions: 'Akɔsi ya kredensial',
@@ -455,7 +479,7 @@ export const ln = defineLocale({
       replace: 'Susa',
       set: 'Bongya',
       clear: 'Pɨsa',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     model: {
       loading: 'Configuration ya modeli ezali...',
@@ -480,42 +504,43 @@ export const ln = defineLocale({
       tasks: {
         vision: {
           label: 'Boniso',
-          hint: 'Analyse ya buli',
+          hint: 'Analyse ya buli'
         },
         web_extract: {
           label: 'Ekstraction ya web',
-          hint: 'Kusummary ezasi ya peji',
+          hint: 'Kusummary ezasi ya peji'
         },
         compression: {
           label: 'Kompreso',
-          hint: 'Kondense konteksti',
+          hint: 'Kondense konteksti'
         },
         skills_hub: {
           label: 'Hub ya skills',
-          hint: 'Lokutu ya skill',
+          hint: 'Lokutu ya skill'
         },
         approval: {
           label: 'Bokandali',
-          hint: 'Bokandali intelligent automatiki',
+          hint: 'Bokandali intelligent automatiki'
         },
         mcp: {
           hint: 'Envoyi ya boka ya MCP',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Kokota titré',
-          hint: 'Titré ya seso',
+          hint: 'Titré ya seso'
         },
         curator: {
           label: 'Mongeli',
-          hint: 'Revizyo ya usage ya skill',
-        },
-      },
+          hint: 'Revizyo ya usage ya skill'
+        }
+      }
     },
     providers: {
       connectAccount: 'Kokota kote ya mbongo',
       haveApiKey: 'Wana API key kende?',
-      intro: 'Kokota na subscription — API key nocombo. OpenAmer etandala proseso ya kokota na browser, hapa kati na aplikasyon.',
+      intro:
+        'Kokota na subscription — API key nocombo. OpenAmer etandala proseso ya kokota na browser, hapa kati na aplikasyon.',
       connected: 'Kokotami',
       collapse: 'Fungba',
       connectAnother: 'Kokota provider mosusu',
@@ -528,33 +553,38 @@ export const ln = defineLocale({
       noKeysMatch: 'Noki provider teyo loloko na moto.',
       localEndpoint: {
         title: 'Endpoint local / ya kizige',
-        description: 'Bondisa OpenAmer na endpoint nokosi oyo ekotambwisa na OpenAI (Zyphra, vLLM, llama.cpp, Ollama, nk.).',
+        description:
+          'Bondisa OpenAmer na endpoint nokosi oyo ekotambwisa na OpenAI (Zyphra, vLLM, llama.cpp, Ollama, nk.).'
       },
       loading: 'Boload providers...',
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     sessions: {
       loading: 'Boload seso oyo batimbi…',
       archivedTitle: 'Seso oyo batimbi',
-      archivedIntro: 'Bokatali oyo batimbi babombana na barre lateral kasi bon继续保持 mesa ya bango. Ctrl/⌘-klika na bokatali oyo ezali na barre lateral mba archiver.',
+      archivedIntro:
+        'Bokatali oyo batimbi babombana na barre lateral kasi bon继续保持 mesa ya bango. Ctrl/⌘-klika na bokatali oyo ezali na barre lateral mba archiver.',
       emptyArchivedTitle: 'Noki seso oyo batimbi',
       emptyArchivedDesc: 'Tinda seso oyo bompone kino.',
       unarchive: 'Sonta seso',
       deletePermanently: 'Fukuta permanant',
       restored: 'EsONGolami',
       autoArchiveTitle: 'Tinda automatiki bokatali oyo bayebana',
-      autoArchiveDesc: 'Kobombisa masolo oyo otalaki te pene na tango. Masolo ya kokangama ebombisamaka te, mpe eloko moko ebomisamaka te — masolo ya kobombama ekendaka kaka awa.',
+      autoArchiveDesc:
+        'Kobombisa masolo oyo otalaki te pene na tango. Masolo ya kokangama ebombisamaka te, mpe eloko moko ebomisamaka te — masolo ya kobombama ekendaka kaka awa.',
       autoArchiveDaysLabel: 'Bombisa sima ya',
       autoArchiveDaysUnit: 'mikolo ya kozala na mosala te',
       autoArchiveFailed: 'Kobongisa kobombisa otomatiki elungaki te',
       defaultDirTitle: 'Dosie ya proje ya ebandeli',
-      defaultDirDesc: 'Masesio ya sika ebandaka na dosie oyo soki oponi mosusu te. Tiká yango na pamba mpo na kosalela dosie ya ndako na yo.',
+      defaultDirDesc:
+        'Masesio ya sika ebandaka na dosie oyo soki oponi mosusu te. Tiká yango na pamba mpo na kosalela dosie ya ndako na yo.',
       defaultDirUpdated: 'Dosie ya proje ya ebandeli ebongisami — bandá lisolo ya sika (Ctrl/⌘+N) mpo esalela.',
       change: 'Bongola',
       choose: 'Pona',
@@ -567,7 +597,7 @@ export const ln = defineLocale({
       clearDirFailed: 'Kolimwisa dosie ya ebandeli elungaki te',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
       openamerAuthFailed: 'Kokota na OpenAmer Portal esilaki te',
@@ -602,7 +632,7 @@ export const ln = defineLocale({
         selectedTitle: 'Backend eponami',
         needsSetupHint: 'Okoki kopona backend oyo sikoyo — ba commandes ekosala mabe kino setup esili.',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       loadingConfig: 'Kotinda libongiseli',
       savedTitle: 'Elembo ya bokɔki ebombamaki',
@@ -611,7 +641,8 @@ export const ln = defineLocale({
       notSet: 'Etyami te',
       selectedTitle: 'Mopesi aponami',
       failedLoad: 'Kotinda libongiseli ya bisaleli elungaki te',
-      noProviderOptions: 'Ebongiseli ya bisaleli oyo ezali na maponi ya mopesi te — fungolá yango mpe ekosalela na libongiseli na yo ya lelo.',
+      noProviderOptions:
+        'Ebongiseli ya bisaleli oyo ezali na maponi ya mopesi te — fungolá yango mpe ekosalela na libongiseli na yo ya lelo.',
       noProviders: 'Bapesi bazali te mpo na ebongiseli ya bisaleli oyo lelo.',
       ready: 'Ezali prêt',
       needsSignIn: 'Esengeli kokɔta',
@@ -629,8 +660,10 @@ export const ln = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -640,10 +673,10 @@ export const ln = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   common: {
     error: 'Lisukí',
@@ -684,7 +717,7 @@ export const ln = defineLocale({
     delete: 'Futa',
     docs: 'Mikanda',
     done: 'Oyo',
-    tryHint: term => `Try “${term}”`,
+    tryHint: term => `Try “${term}”`
   },
   fileMenu: {
     revealFinder: 'Kóna Finder',
@@ -699,7 +732,7 @@ export const ln = defineLocale({
     renameLabel: 'Bokono bia',
     deleteBody: 'Esopela kina ya tieux — boningi bokotabela yo kuna.',
     pathCopied: 'Nzela ekopola',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   boot: {
     errors: {
@@ -709,20 +742,22 @@ export const ln = defineLocale({
       backgroundExited: 'Masuku ya OpenAmer esilituki.',
       backgroundExitedDuringStartup: 'Masuku ya OpenAmer esilituki nkembo ya kobanda.',
       backendStopped: 'Serevisi esilituki.',
-      desktopBootFailed: 'Kobanda ya desktop eswangisaki.',
+      desktopBootFailed: 'Kobanda ya desktop eswangisaki.'
     },
     failure: {
       title: 'OpenAmer ála kóla',
-      description: 'Gateway ya bakwadi balisá okóna. Coba motóbá ya recovery ba bino. Yo kóna lisusu ya chats ése ya settings.',
+      description:
+        'Gateway ya bakwadi balisá okóna. Coba motóbá ya recovery ba bino. Yo kóna lisusu ya chats ése ya settings.',
       remoteTitle: 'Sign-in ya gateway remote keli',
-      remoteDescription: 'Session ya gateway remote yá kóla. Sign-in kóna kóla. Yo kóna lisusu ya chats ése ya settings.',
+      remoteDescription:
+        'Session ya gateway remote yá kóla. Sign-in kóna kóla. Yo kóna lisusu ya chats ése ya settings.',
       retry: 'Kóna',
       repairInstall: 'Installer ya réparation',
       useLocalGateway: 'Liya gateway local',
       gatewaySettings: 'Setting ya gateway',
       back: 'Dosá',
       openLogs: 'Lisá logs',
-      repairHint: 'Réparation ré-run l\'installer lisóna lisusu ya motóbá sur machine fraîche.',
+      repairHint: "Réparation ré-run l'installer lisóna lisusu ya motóbá sur machine fraîche.",
       signOutAndSignIn: 'Déconnexion & connexion',
       remoteFailureHint: 'Kóna URL ya gateway na sign-in sous setting ya gateway, ou liya gateway local.',
       hideRecentLogs: 'Cachá logs récents',
@@ -734,8 +769,9 @@ export const ln = defineLocale({
       signInFailed: 'Kokota esali',
       signInToRemoteGateway: 'Kokota na gateway ya koyoka',
       identityProvider: 'moponolo wako wa identite',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
     ready: 'OpenAmer Desktop ebangi',
     steps: {
@@ -743,9 +779,9 @@ export const ln = defineLocale({
       loadingSettings: 'Kalamu mibongisi ya OpenAmer',
       loadingSessions: 'Kalamu mikolo ya mbale',
       startingDesktopConnection: 'Kobanda kokembana na desktop',
-      startingOpenAmerDesktop: 'OpenAmer Desktop ebanda…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop ebanda…'
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   titlebar: {
     showSidebar: 'Lisá liboso',
@@ -762,7 +798,7 @@ export const ln = defineLocale({
     openKeybinds: 'Atalako ya clavier',
     layoutEditor: 'Likála ya mise en page',
     hideSidebar: 'Mwana barake',
-    layoutEditorTitle: 'Mwandisi ya disposition — ⌘-click esekela lisusu.',
+    layoutEditorTitle: 'Mwandisi ya disposition — ⌘-click esekela lisusu.'
   },
   keybinds: {
     title: 'Atalako ya clavier',
@@ -848,7 +884,7 @@ export const ln = defineLocale({
       'profile.switch.5': 'Sala profil 5',
       'profile.switch.6': 'Sala profil 6',
       'profile.switch.7': 'Sala profil 7',
-      'profile.switch.8': 'Sala profil 8',
+      'profile.switch.8': 'Sala profil 8'
     },
     set: 'lisilo',
     categories: {
@@ -856,10 +892,10 @@ export const ln = defineLocale({
       profiles: 'miprof',
       session: 'sessi',
       navigation: 'kaka',
-      view: 'lukole',
+      view: 'lukole'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   language: {
     label: 'Lingála',
@@ -868,7 +904,7 @@ export const ln = defineLocale({
     saveError: 'Lingála likayó lisá',
     switchTo: 'Kolinga lingála',
     searchPlaceholder: 'Liboka lingála…',
-    noResults: 'Lingála balisá',
+    noResults: 'Lingála balisá'
   },
   notifications: {
     region: 'Mbokani',
@@ -880,7 +916,8 @@ export const ln = defineLocale({
     copyDetail: 'Kokopola mbotama',
     copyDetailFailed: 'Nasekula kokopola mbotama ya mbokani',
     backendOutOfDateTitle: 'Backend esili',
-    backendOutOfDateMessage: 'Backend wako wa OpenAmer esili kulamba build ya desktop ye minala mpe ekosala ndeosala. Sorola OpenAmer mpe ekotana.',
+    backendOutOfDateMessage:
+      'Backend wako wa OpenAmer esili kulamba build ya desktop ye minala mpe ekosala ndeosala. Sorola OpenAmer mpe ekotana.',
     installMethodUnsupportedTitle: 'N soki installation ekotambwisa',
     updateOpenAmer: 'Sorola OpenAmer',
     updateReadyTitle: 'Sorola esala',
@@ -889,11 +926,12 @@ export const ln = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT elambai ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs es rejecti key ya API (401).',
       gatewayAuthFailed: 'Kondimona ya gateway esali — tala API_SERVER_KEY wako.',
-      methodNotAllowed: 'Backend ya desktop es rejecti request yangi (405 Method Not Allowed ekotambwisa). Bobola OpenAmer Desktop.',
+      methodNotAllowed:
+        'Backend ya desktop es rejecti request yangi (405 Method Not Allowed ekotambwisa). Bobola OpenAmer Desktop.',
       microphonePermission: 'Permission ya microphone ekabanzaki.',
       openaiRejectedApiKey: 'OpenAI es rejecti key ya API.',
       openaiTtsNeedsKey: 'OpenAI TTS elambai VOICE_TOOLS_OPENAI_KEY na OPENAI_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Yekola speech-to-text mpe esala na voice mode.',
@@ -912,7 +950,7 @@ export const ln = defineLocale({
       transcriptionFailed: 'Kandika transcription ya voix es faili',
       transcriptionUnavailable: 'Nyo transcription vocale mona te.',
       tryRecordingAgain: 'Bongisa recording yango.',
-      unavailable: 'Voice disponible te',
+      unavailable: 'Voice disponible te'
     },
     native: {
       approvalTitle: 'Esangi approval',
@@ -925,10 +963,10 @@ export const ln = defineLocale({
       backgroundFailedTitle: 'Travail ya fond esekwang',
       creditsTitle: 'Kredi',
       approveAction: 'Ndima',
-      rejectAction: 'Boya',
+      rejectAction: 'Boya'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   billingBlock: {
     titleOpenamer: 'Kredi ya OpenAmer esili.',
@@ -936,7 +974,7 @@ export const ln = defineLocale({
     openBilling: 'Yekola facturation',
     addCredits: 'Bongisa kredi',
     dismiss: 'Bimisa',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   composer: {
     promptSnippets: 'Boole ya likita…',
@@ -949,19 +987,20 @@ export const ln = defineLocale({
     snippets: {
       codeReview: {
         label: 'Kengaya kode',
-        description: 'Kengaya kosala oyo ka bwoyoto oyo ekotambwisa, bope ekotambwisa mitilinga misinga, na kozambwisa teste.',
-        text: 'Mokula kengaya oyo etandambwisa mbuki, regressions, na teste misinga.',
+        description:
+          'Kengaya kosala oyo ka bwoyoto oyo ekotambwisa, bope ekotambwisa mitilinga misinga, na kozambwisa teste.',
+        text: 'Mokula kengaya oyo etandambwisa mbuki, regressions, na teste misinga.'
       },
       implementationPlan: {
         label: 'Plan ya bosaliso',
         description: 'Yota nzela ya kosala nyonso ya kode oyo mosala ekotanga.',
-        text: 'Mokula yota plan ya bosaliso oyo mokoteye ya kode ya boninga.',
+        text: 'Mokula yota plan ya bosaliso oyo mokoteye ya kode ya boninga.'
       },
       explainThis: {
         label: 'Explique oyo',
         description: 'Tantara nzela oyo kode oyo ekosala na tambisa mikanda ya nt important.',
-        text: 'Mokula explique oyo ekosala na pointa mime na mikanda ya nt important.',
-      },
+        text: 'Mokula explique oyo ekosala na pointa mime na mikanda ya nt important.'
+      }
     },
     helpFooter: 'kofungola paneli mobimba · backspace ekokanga',
     commandDescs: {
@@ -970,7 +1009,7 @@ export const ln = defineLocale({
       '/resume': 'kokoba session ya liboso',
       '/details': 'kokamba niveau ya detail ya transcript',
       '/copy': 'kopieda selection to message ya nsuka ya assistant',
-      '/quit': 'kobima na OpenAmer',
+      '/quit': 'kobima na OpenAmer'
     },
     hotkeyDescs: {
       'composer.mention': 'kosalela fichiers, dossiers, URL, git',
@@ -980,7 +1019,7 @@ export const ln = defineLocale({
       'composer.sendQueued': 'tinda tour oyo elandi na file',
       'keybinds.openPanel': 'ba raccourcis nionso ya clavier',
       'composer.cancel': 'kanga popover · kokata run',
-      'composer.history': 'kobalusa popover / historique',
+      'composer.history': 'kobalusa popover / historique'
     },
     attachUrlTitle: 'Kobakisa URL',
     attachUrlDesc: 'OpenAmer akoluka page mpe akobakisa yango lokola contexte ya tour oyo.',
@@ -998,7 +1037,8 @@ export const ln = defineLocale({
     queueResume: 'Koba',
     queueResumeTip: 'Ekatami na Stop — koba kotinda ba tours ya file',
     queueStuckTitle: 'Message ya file etindami te',
-    queueStuckBody: 'Tour ya file ezalaki kokufa ntango na ntango na kotinda. Ezali naino na file — meka kotinda yango lisusu.',
+    queueStuckBody:
+      'Tour ya file ezalaki kokufa ntango na ntango na kotinda. Ezali naino na file — meka kotinda yango lisusu.',
     previewUnavailable: 'Preview ezali te',
     dictating: 'Kokoma na mongongo',
     preparingAudio: 'Kobongisa audio',
@@ -1019,7 +1059,7 @@ export const ln = defineLocale({
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -1028,7 +1068,7 @@ export const ln = defineLocale({
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     startVoice: 'Start voice conversation',
     queueMessage: 'Queue message',
@@ -1069,7 +1109,7 @@ export const ln = defineLocale({
     folder: 'Folder…',
     images: 'Images…',
     pasteImage: 'Paste image',
-    url: 'URL…',
+    url: 'URL…'
   },
   statusStack: {
     agents: 'Mote',
@@ -1109,7 +1149,8 @@ export const ln = defineLocale({
       openPr: 'Fungola PR',
       ghMissing: 'Instalɛ GitHub CLI (gh) oyo kota ndako mpe fungola PR',
       agentShip: 'Luka OpenAmer na fungola PR',
-      agentShipPrompt: 'Talala mbongolo ya posho, komita yango na meseji conventional-commit ya boye, push branshi, kyo fungola pull request.',
+      agentShipPrompt:
+        'Talala mbongolo ya posho, komita yango na meseji conventional-commit ya boye, push branshi, kyo fungola pull request.',
       newBranch: 'Branshi ya boye',
       worktrees: 'Mik misuka',
       changed: count => `${count} changed`,
@@ -1118,12 +1159,12 @@ export const ln = defineLocale({
       close: 'Close',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   onboarding: {
     signInFailed: 'Kondwisa ngalé esalée. Koba mboka lisusu.',
@@ -1159,28 +1200,29 @@ export const ln = defineLocale({
     apiKeyOptions: {
       fireworks: {
         short: 'direct model API',
-        description: 'Direct access to models hosted by Fireworks AI.',
+        description: 'Direct access to models hosted by Fireworks AI.'
       },
       openrouter: {
         short: 'one key, many models',
-        description: 'Hosts hundreds of models behind a single key. Good default for new installs.',
+        description: 'Hosts hundreds of models behind a single key. Good default for new installs.'
       },
       openai: {
         short: 'GPT-class models',
-        description: 'Direct access to OpenAI models.',
+        description: 'Direct access to OpenAI models.'
       },
       gemini: {
         short: 'Gemini models',
-        description: 'Direct access to Google Gemini models.',
+        description: 'Direct access to Google Gemini models.'
       },
       xai: {
         short: 'Grok models',
-        description: 'Direct access to xAI Grok models.',
+        description: 'Direct access to xAI Grok models.'
       },
       local: {
         short: 'self-hosted',
-        description: 'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).',
-      },
+        description:
+          'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).'
+      }
     },
     backToSignIn: 'Back to sign in',
     getKey: 'Get a key',
@@ -1193,7 +1235,7 @@ export const ln = defineLocale({
     flowSubtitles: {
       pkce: 'Opens your browser to sign in, then continues here',
       device_code: 'Opens a verification page in your browser — OpenAmer connects automatically',
-      external: 'Sign in once in your terminal, then come back to chat',
+      external: 'Sign in once in your terminal, then come back to chat'
     },
     startingSignIn: provider => `Starting sign-in for ${provider}...`,
     verifyingCode: provider => `Verifying your code with ${provider}...`,
@@ -1201,12 +1243,14 @@ export const ln = defineLocale({
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     pro: 'Pro',
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'Nyangisa modèle',
@@ -1222,13 +1266,13 @@ export const ln = defineLocale({
     freeTier: 'Niveau ya mboka',
     priceTitle: 'Prix ya entrada na sortie kwa kati ya milione ya token',
     wasPrice: 'eza',
-    pro: 'Pro',
+    pro: 'Pro'
   },
   modelVisibility: {
     title: 'Modèle',
     search: 'Search modèle',
     noAuthenticatedProviders: 'Motambwisi teyimbu moko ya kondwisa.',
-    addProvider: 'Yongeza motambwisi…',
+    addProvider: 'Yongeza motambwisi…'
   },
   shell: {
     windowControls: 'Kontroli ya monzindo',
@@ -1239,7 +1283,7 @@ export const ln = defineLocale({
       noModels: 'Modèle teyimbu',
       editModels: 'Edit Models…',
       refreshModels: 'Refresh Models',
-      fast: 'Fast',
+      fast: 'Fast'
     },
     statusbar: {
       contextUsagePanel: {
@@ -1251,19 +1295,21 @@ export const ln = defineLocale({
           memory: 'Memory',
           rules: 'Rules',
           skills: 'Skills',
-          subagent_definitions: 'Subagent definitions',
+          subagent_definitions: 'Subagent definitions'
         },
         empty: 'Data ya contexte ezali nanu te',
         loading: 'Kofungola bokabwani…',
         title: 'Bosaleli ya contexte',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Fungola bokabwani ya bosaleli ya contexte',
       session: 'Sesio',
       runtimeSessionElapsed: 'Ntango ya sesio eleki',
-      yoloOn: 'YOLO ezali — ezali kondimela noki bakomande ya likama. Finá mpo kozimisa yango. Shift+click ebongolaka yango na mokili mobimba.',
-      yoloOff: 'YOLO ezali kozimisami — finá mpo kondimela noki bakomande ya likama. Shift+click ebongolaka yango na mokili mobimba.',
+      yoloOn:
+        'YOLO ezali — ezali kondimela noki bakomande ya likama. Finá mpo kozimisa yango. Shift+click ebongolaka yango na mokili mobimba.',
+      yoloOff:
+        'YOLO ezali kozimisami — finá mpo kondimela noki bakomande ya likama. Shift+click ebongolaka yango na mokili mobimba.',
       modelNone: 'ezali te',
       noModel: 'modelo ezali te',
       switchModel: 'Bongola modelo',
@@ -1314,7 +1360,7 @@ export const ln = defineLocale({
       currentTurnElapsed: 'Current turn elapsed',
       contextUsage: 'Context usage',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
     },
     modelOptions: {
       noOptions: 'No options for this model',
@@ -1330,7 +1376,7 @@ export const ln = defineLocale({
       max: 'Max',
       ultra: 'Ultra',
       updateFailed: 'Model option update failed',
-      fastFailed: 'Fast mode update failed',
+      fastFailed: 'Fast mode update failed'
     },
     gatewayMenu: {
       gateway: 'Gateway',
@@ -1345,7 +1391,7 @@ export const ln = defineLocale({
       connection: label => `Connection: ${label}`,
       recentActivity: 'Recent activity',
       viewAllLogs: 'View all logs →',
-      messagingPlatforms: 'Messaging platforms',
+      messagingPlatforms: 'Messaging platforms'
     },
     approvalMode: {
       title: 'Approval mode',
@@ -1355,8 +1401,8 @@ export const ln = defineLocale({
       smart: 'Smart',
       smartDescription: 'Automatically assess actions and ask when needed',
       off: 'Off',
-      offDescription: 'Run without approval prompts',
-    },
+      offDescription: 'Run without approval prompts'
+    }
   },
   updates: {
     stages: {
@@ -1371,7 +1417,7 @@ export const ln = defineLocale({
       done: 'Kota ebetu',
       manual: 'Kota terminali',
       guiSkew: 'Kota app ya desktop',
-      error: 'Kota esimbi',
+      error: 'Kota esimbi'
     },
     checking: 'Talala kota…',
     checkFailedTitle: 'Ndal未能 komona kota',
@@ -1391,15 +1437,19 @@ export const ln = defineLocale({
     maybeLater: 'Maybe later',
     moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
     manualTitle: 'Update from your terminal',
-    manualBody: 'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
+    manualBody:
+      'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
     manualPickedUp: 'OpenAmer will pick up the new version next time you launch it.',
     guiSkewTitle: 'Update the desktop app',
-    guiSkewBody: 'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
+    guiSkewBody:
+      'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
     copy: 'Copy',
     copied: 'Copied',
     done: 'Done',
-    applyingBody: 'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
-    applyingBodyBackend: 'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
+    applyingBody:
+      'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
+    applyingBodyBackend:
+      'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
     applyingClose: 'This window will close while the update runs, then OpenAmer reopens on its own.',
     errorTitle: 'Update didn’t finish',
     errorBody: 'No worries — nothing was lost. You can try again now.',
@@ -1410,12 +1460,13 @@ export const ln = defineLocale({
       restarting: 'Backend restarting to load the update…',
       notAvailable: 'Update not available for this backend.',
       failed: 'Backend update failed.',
-      noReturn: 'Backend didn’t come back online. The update may not have completed — check the backend host.',
+      noReturn: 'Backend didn’t come back online. The update may not have completed — check the backend host.'
     },
     appErrors: {
-      updateLocked: 'Update aborted: another OpenAmer window or a terminal running openamer is holding this install open. Close it and retry.',
-      updateFailed: 'The update didn’t complete. No worries — nothing was lost. You can try again now.',
-    },
+      updateLocked:
+        'Update aborted: another OpenAmer window or a terminal running openamer is holding this install open. Close it and retry.',
+      updateFailed: 'The update didn’t complete. No worries — nothing was lost. You can try again now.'
+    }
   },
   desktop: {
     deleteFailed: 'Longola lokotela',
@@ -1423,7 +1474,8 @@ export const ln = defineLocale({
     archiveFailed: 'Ezara lokotela',
     cwdChangeFailed: 'Kakombola eteyamboli mosala lokotela',
     cwdStagedTitle: 'Eteyamboli mosala lokotela ekomboli',
-    cwdStagedMessage: 'Sala ko restartiser backend ya desktop molakaka eteyamboli mosala lokotela na session oyo aktifi.',
+    cwdStagedMessage:
+      'Sala ko restartiser backend ya desktop molakaka eteyamboli mosala lokotela na session oyo aktifi.',
     modelSwitchFailed: 'Kakombolo modèle lokotela',
     sessionExported: 'Session exporti',
     sessionExportFailed: 'Kweza session ekotela',
@@ -1448,7 +1500,7 @@ export const ln = defineLocale({
       timedOut: 'Kozoteza gateway. `openamer gateway` ezali?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     audioReadFailed: 'Could not read recorded audio',
     sessionUnavailable: 'Session unavailable',
@@ -1464,7 +1516,8 @@ export const ln = defineLocale({
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Could not toggle YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     unknownProfile: 'Unknown profile',
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
@@ -1475,7 +1528,8 @@ export const ln = defineLocale({
     editFailed: 'Edit failed',
     resumeFailed: 'Resume failed',
     resumeStrandedTitle: "Couldn't load this session",
-    resumeStrandedBody: 'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
+    resumeStrandedBody:
+      'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
     resumeRetry: 'Retry',
     nothingToBranch: 'Nothing to branch',
     branchNeedsChat: 'Start or resume a chat before branching.',
@@ -1484,31 +1538,31 @@ export const ln = defineLocale({
     branchNoText: 'This message has no text to branch from.',
     branchTitle: n => `Draft: Branch #${n}`,
     branchFailed: 'Branch failed',
-    downloadImage: 'Download image',
+    downloadImage: 'Download image'
   },
   errors: {
     genericFailure: 'Kosa moninga',
     boundaryTitle: 'Koba moninga na interface',
     boundaryDesc: 'Vue moninga erreur inattendue. Discussions na paramètres na yo te 安全.',
     reloadWindow: 'Recharger fenêtre',
-    openLogs: 'Zamba ba journal',
+    openLogs: 'Zamba ba journal'
   },
   ui: {
     search: {
-      clear: 'Effacer recherche',
+      clear: 'Effacer recherche'
     },
     pagination: {
       label: 'Pagination',
       previous: 'Précédent',
       previousAria: 'Y[e] page précédente',
       next: 'Suivant',
-      nextAria: 'Y[e] page suivante',
+      nextAria: 'Y[e] page suivante'
     },
     sidebar: {
       title: 'Barre latérale',
       description: 'Displays the mobile sidebar.',
-      toggle: 'Toggle Sidebar',
-    },
+      toggle: 'Toggle Sidebar'
+    }
   },
   skills: {
     tabSkills: 'Mayele',
@@ -1537,7 +1591,7 @@ export const ln = defineLocale({
       trust: {
         builtin: 'ya kati',
         trusted: 'ya kolikya',
-        community: 'ya bato',
+        community: 'ya bato'
       },
       verdictSafe: 'Libaku te',
       verdictCaution: 'Keba',
@@ -1559,13 +1613,14 @@ export const ln = defineLocale({
       connectingHubs: 'Kosangana na ba Hub ya mayele...',
       connectedHubs: 'Ba Hub oyo esangani:',
       featured: 'Mayele eponami',
-      landingHint: 'Luka na Hub mpo na kotala mayele oyo ekoki kobakama uta na index officiel, GitHub, mpe ba source ya communauté.',
+      landingHint:
+        'Luka na Hub mpo na kotala mayele oyo ekoki kobakama uta na index officiel, GitHub, mpe ba source ya communauté.',
       noResults: 'Mayele oyo ekokani ekutani na Hub te.',
       resultCount: (count, ms) => `${count} result${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     noSkillsTitle: 'Mayele ekutani te',
     noSkillsDesc: 'Meka koluka na ndenge ya monene to na kategori mosusu.',
@@ -1574,7 +1629,8 @@ export const ln = defineLocale({
     noDescription: 'Ndimbola te.',
     configured: 'Ebongisami',
     needsKeys: 'Esengi bafungola',
-    visionModelHint: 'Bomoni esalelaka bobongisi ya model ya lisalisi — model oyo ekoki kosala na bilili eponami kuna, kasi te na fournisseur moko awa.',
+    visionModelHint:
+      'Bomoni esalelaka bobongisi ya model ya lisalisi — model oyo ekoki kosala na bilili eponami kuna, kasi te na fournisseur moko awa.',
     visionModelLink: 'Pona model ya bomoni na Paramɛtrɛ → Ba model',
     skillsLoadFailed: 'Mayele ekokaki kofungwama te',
     toolsetsRefreshFailed: 'Bisaleli ekokaki kobongisama lisusu te',
@@ -1592,7 +1648,7 @@ export const ln = defineLocale({
     provenance: {
       agent: 'Eyekolami',
       bundled: 'Ya kati',
-      hub: 'Hub',
+      hub: 'Hub'
     },
     changesApplyNewSessions: 'Mbongwana esalaka na ba session ya sika.',
     skillUpdated: 'Mayele ebongisami',
@@ -1611,7 +1667,7 @@ export const ln = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     title: 'Graph ya memoire',
@@ -1626,7 +1682,8 @@ export const ln = defineLocale({
     emptyTitle: 'Eloko eyebi nanu te',
     emptyDesc: 'Ntango OpenAmer atongi mayele mpe makundoli mpo na mosala na yo, emonanaka awa.',
     share: 'Kabola karte',
-    shareHint: 'Kopi code mpo na kokabola karte oyo, to kotia moko mpo na kokɔtisa. Ezali kaka na bokati, te makundoli to mayele na yo.',
+    shareHint:
+      'Kopi code mpo na kokabola karte oyo, to kotia moko mpo na kokɔtisa. Ezali kaka na bokati, te makundoli to mayele na yo.',
     shareTitle: 'Kokɔtisa / kobimisa karte',
     sharePlaceholder: 'Kotia code ya karte…',
     copy: 'Kopi code ya karte',
@@ -1638,7 +1695,7 @@ export const ln = defineLocale({
     resetToMine: 'Zonga na karte na ngai',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
     viewGraph: 'Graph',
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   commandCenter: {
     pets: {
@@ -1654,7 +1711,7 @@ export const ln = defineLocale({
       noneAvailable: 'Nyama ezali te — pona moko na nse mpo na kotya.',
       title: 'Ba nyama ya ndako',
       placeholder: 'Luka ba nyama ya ndako…',
-      loading: 'Ezali kokɔtisa galeri ya petdex…',
+      loading: 'Ezali kokɔtisa galeri ya petdex…'
     },
     generatePet: {
       title: 'Salá nyama',
@@ -1683,7 +1740,7 @@ export const ln = defineLocale({
       referenceImageInvalid: 'Tokokaki kotanga elilingi ya ndakisa yango te. Meká PNG, JPG, WebP, to GIF.',
       adopt: 'Zwa',
       startOver: 'Bandá lisusu',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     installTheme: {
       title: 'Tyá motindo…',
@@ -1695,7 +1752,7 @@ export const ln = defineLocale({
       install: 'Install',
       installing: 'Installing...',
       installed: 'Installed',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     close: 'Kanga centre ya ba commandes',
     paletteTitle: 'Palette ya ba commandes',
@@ -1782,7 +1839,7 @@ export const ln = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     startInBranch: branch => `New conversation in ${branch}`,
     settingsFields: 'Settings fields',
@@ -1792,49 +1849,49 @@ export const ln = defineLocale({
       maintenance: 'Maintenance',
       sessions: 'Sessions',
       system: 'System',
-      usage: 'Usage',
+      usage: 'Usage'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostics, backups, curator, and memory data',
       sessions: 'Search and manage sessions',
       system: 'Status, logs, and system actions',
-      usage: 'Token, cost, and skill activity over time',
+      usage: 'Token, cost, and skill activity over time'
     },
     nav: {
       newChat: {
         title: 'New session',
-        detail: 'Start a fresh session',
+        detail: 'Start a fresh session'
       },
       settings: {
         title: 'Settings',
-        detail: 'Configure OpenAmer desktop',
+        detail: 'Configure OpenAmer desktop'
       },
       skills: {
         title: 'Capabilities',
-        detail: 'Skills, tools, and MCP servers',
+        detail: 'Skills, tools, and MCP servers'
       },
       messaging: {
         title: 'Messaging',
-        detail: 'Set up Telegram, Slack, Discord, and more',
+        detail: 'Set up Telegram, Slack, Discord, and more'
       },
       artifacts: {
         title: 'Artifacts',
-        detail: 'Browse generated outputs',
-      },
+        detail: 'Browse generated outputs'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Sessions panel',
-        detail: 'Search, pin, and manage sessions',
+        detail: 'Search, pin, and manage sessions'
       },
       system: {
         title: 'System panel',
-        detail: 'Gateway status, logs, restart/update',
+        detail: 'Gateway status, logs, restart/update'
       },
       usage: {
         title: 'Usage panel',
-        detail: 'Token, cost, and skill activity',
-      },
+        detail: 'Token, cost, and skill activity'
+      }
     },
     providerNavigate: 'Navigate',
     providerSessions: 'Sessions',
@@ -1849,7 +1906,7 @@ export const ln = defineLocale({
     statSessions: 'Sessions',
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   agents: {
     close: 'Kanga ba agent',
@@ -1879,7 +1936,7 @@ export const ln = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   messaging: {
     search: 'Koluka messaging...',
@@ -1894,132 +1951,132 @@ export const ln = defineLocale({
       not_configured: 'Esengeli kobongisa',
       pending_restart: 'Esengeli kobanda lisusu',
       retrying: 'Ezali komeka lisusu',
-      startup_failed: 'Kobanda ekweyi',
+      startup_failed: 'Kobanda ekweyi'
     },
     unknown: 'Eyebani te',
     hintPendingRestart: 'Banda lisusu gateway na barre ya statut mpo na kokɔtisa mbongwana oyo.',
     fieldCopy: {
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Pesa nzela na basaleli nyonso ya Mattermost',
+        label: 'Pesa nzela na basaleli nyonso ya Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Cheneli ya ndako',
+        label: 'Cheneli ya ndako'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Pesa nzela na basaleli nyonso ya QQ',
+        label: 'Pesa nzela na basaleli nyonso ya QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Cheneli ya ndako ya QQ',
-        help: 'Cheneli to lingomba ya ebandeli mpo na kotinda na cron.',
+        help: 'Cheneli to lingomba ya ebandeli mpo na kotinda na cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Nkombo ya cheneli ya ndako ya QQ',
+        label: 'Nkombo ya cheneli ya ndako ya QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token ya bot ya Slack',
         help: 'Salela token ya bot ewuti na OAuth & Permissions nsima ya kotia app na yo ya Slack.',
-        placeholder: 'Bakisa token ya bot ya Slack',
+        placeholder: 'Bakisa token ya bot ya Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token ya app ya Slack',
         help: 'Salela token ya niveau ya app oyo esengeli mpo na Socket Mode.',
-        placeholder: 'Bakisa token ya app ya Slack',
+        placeholder: 'Bakisa token ya app ya Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Ba ID ya basaleli ya Slack oyo epesami nzela',
-        help: 'Epesami. Ba ID ya basaleli ya Slack ekabwani na virgule.',
+        help: 'Epesami. Ba ID ya basaleli ya Slack ekabwani na virgule.'
       },
       MATTERMOST_URL: {
         label: 'URL ya serveur',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token ya bot',
+        label: 'Token ya bot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Ba ID ya basaleli oyo epesami nzela',
-        help: 'Epesami. Ba ID ya basaleli ya Mattermost ekabwani na virgule.',
+        help: 'Epesami. Ba ID ya basaleli ya Mattermost ekabwani na virgule.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL ya homeserver',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token ya kokɔta',
+        label: 'Token ya kokɔta'
       },
       MATRIX_USER_ID: {
         label: 'ID ya mosaleli bot',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Ba ID ya basaleli ya Matrix oyo epesami nzela',
-        help: 'Epesami. Ba ID ya basaleli ekabwani na virgule na format @user:server.',
+        help: 'Epesami. Ba ID ya basaleli ekabwani na virgule na format @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL ya bridge ya Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL ya bridge ya signal-cli REST oyo ezali kotambola.',
+        help: 'URL ya bridge ya signal-cli REST oyo ezali kotambola.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Nimero ya telefone',
-        help: 'Nimero oyo ekomamaki na bridge na yo ya signal-cli.',
+        help: 'Nimero oyo ekomamaki na bridge na yo ya signal-cli.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Basaleli ya Signal oyo epesami nzela',
-        help: 'Epesami. Ba identifiant ya Signal ekabwani na virgule.',
+        help: 'Epesami. Ba identifiant ya Signal ekabwani na virgule.'
       },
       WHATSAPP_ENABLED: {
         label: 'Fungola bridge ya WhatsApp',
-        help: 'Esetami automatiquement na toggle ya nse. Tiká yango soki oyebi malamu te ete osengeli na yango.',
+        help: 'Esetami automatiquement na toggle ya nse. Tiká yango soki oyebi malamu te ete osengeli na yango.'
       },
       WHATSAPP_MODE: {
-        label: 'Mode ya bridge',
+        label: 'Mode ya bridge'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Basaleli ya WhatsApp oyo epesami nzela',
-        help: 'Epesami. Ba nimero ya telefone to ba ID ya WhatsApp ekabwani na virgule.',
+        help: 'Epesami. Ba nimero ya telefone to ba ID ya WhatsApp ekabwani na virgule.'
       },
       TELEGRAM_BOT_TOKEN: {
         label: 'Token ya bot',
         help: 'Kela bot na @BotFather, sima pakisá token oyo e pesi yo.',
-        placeholder: 'Pakisá token ya bot ya Telegram',
+        placeholder: 'Pakisá token ya bot ya Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Ba ID ya basaleli ya Telegram epesameli nzela',
-        help: 'Ependami. Ba ID ya mituya bakabwani na virgule uta @userinfobot. Soki ezali te, moto nyonso akoki kotinda DM na bot na yo.',
+        help: 'Ependami. Ba ID ya mituya bakabwani na virgule uta @userinfobot. Soki ezali te, moto nyonso akoki kotinda DM na bot na yo.'
       },
       TELEGRAM_PROXY: {
         label: 'URL ya proxy',
-        help: 'Esengeli kaka na ba réseau oyo Telegram epekisami.',
+        help: 'Esengeli kaka na ba réseau oyo Telegram epekisami.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token ya bot',
-        help: 'Kela application na Discord Developer Portal, bakisa bot, sima pakisá token na yango.',
+        help: 'Kela application na Discord Developer Portal, bakisa bot, sima pakisá token na yango.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Ba ID ya basaleli ya Discord epesameli nzela',
-        help: 'Ependami. Ba ID ya basaleli ya Discord bakabwani na virgule.',
+        help: 'Ependami. Ba ID ya basaleli ya Discord bakabwani na virgule.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Style ya eyano',
-        help: 'liboso, nyonso, to ebimisami te.',
+        help: 'liboso, nyonso, to ebimisami te.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Pesa nzela na basaleli nyonso ya Discord',
-        help: 'Mpo na développement kaka. Soki true, moto nyonso akoki kotinda DM na bot na liste ya nzela te.',
+        help: 'Mpo na développement kaka. Soki true, moto nyonso akoki kotinda DM na bot na liste ya nzela te.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID ya canal ya ndako',
-        help: 'Canal oyo bot etindaka bansango ya liboso (mbimisano ya cron, bakundoli).',
+        help: 'Canal oyo bot etindaka bansango ya liboso (mbimisano ya cron, bakundoli).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Nkombo ya canal ya ndako',
-        help: 'Nkombo ya bozwi mpo na canal ya ndako na ba logs mpe na mbimisano ya statu.',
+        help: 'Nkombo ya bozwi mpo na canal ya ndako na ba logs mpe na mbimisano ya statu.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Pesa nzela na basaleli nyonso ya iMessage',
-        help: 'Soki true, tika liste ya nzela ya BlueBubbles.',
-      },
+        help: 'Soki true, tika liste ya nzela ya BlueBubbles.'
+      }
     },
     hintGatewayStopped: 'Bandisa gɛtwe uta na barre ya état mpo na kokangama.',
     credentialsSet: 'Ba identifiants ebongisami',
@@ -2029,7 +2086,8 @@ export const ln = defineLocale({
     openSetupGuide: 'Fungola guide ya kobongisa',
     required: 'Esengeli',
     recommended: 'Ependami',
-    noTokenNeeded: 'Plateforme oyo esengeli token te awa. Salá na guide ya kobongisa likoló, sima fungola yango na nse.',
+    noTokenNeeded:
+      'Plateforme oyo esengeli token te awa. Salá na guide ya kobongisa likoló, sima fungola yango na nse.',
     enabled: 'Efungolami',
     disabled: 'Ebakisami',
     unsavedChanges: 'Mbongwana ebikisami te',
@@ -2052,8 +2110,7 @@ export const ln = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Luka ba webhooks...',
@@ -2063,7 +2120,8 @@ export const ln = defineLocale({
     hint: 'Subscription changes hot-reload once the receiver is running. Disabled subscriptions reject incoming events.',
     empty: 'No webhook subscriptions yet.',
     disabledTitle: 'Webhook receiver disabled',
-    disabledBody: 'Webhooks are their own gateway platform. Enable them here to accept incoming HTTP events; chat channels are only needed when a subscription delivers to Telegram, Discord, Slack, or another channel.',
+    disabledBody:
+      'Webhooks are their own gateway platform. Enable them here to accept incoming HTTP events; chat channels are only needed when a subscription delivers to Telegram, Discord, Slack, or another channel.',
     enable: 'Enable webhooks',
     enabling: 'Enabling...',
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -2116,8 +2174,8 @@ export const ln = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'Email',
-      github_comment: 'GitHub comment',
-    },
+      github_comment: 'GitHub comment'
+    }
   },
   rightSidebar: {
     aria: 'Bar ya mobali',
@@ -2153,10 +2211,11 @@ export const ln = defineLocale({
     terminalNew: 'New terminal',
     terminalCloseOthers: 'Close others',
     terminalCloseAll: 'Close all',
-    addToChat: 'Add to chat',
+    addToChat: 'Add to chat'
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
   },
   profiles: {
     close: 'Close profiles',
@@ -2234,7 +2293,7 @@ Leave blank to keep the ${mode} default.`,
     failedLoadSoul: 'Failed to load SOUL.md',
     failedSaveSoul: 'Failed to save SOUL.md',
     failedCreate: 'Failed to create profile',
-    failedRename: 'Failed to rename profile',
+    failedRename: 'Failed to rename profile'
   },
   cron: {
     close: 'Close cron',
@@ -2249,14 +2308,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'paused',
       disabled: 'disabled',
       error: 'error',
-      completed: 'completed',
+      completed: 'completed'
     },
     deliveryLabels: {
       local: 'This desktop',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Email',
+      email: 'Email'
     },
     scheduleLabels: {
       daily: 'Daily',
@@ -2265,7 +2324,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Monthly',
       hourly: 'Hourly',
       'every-15-minutes': 'Every 15 minutes',
-      custom: 'Custom',
+      custom: 'Custom'
     },
     scheduleHints: {
       daily: 'Every day at 9:00 AM',
@@ -2274,7 +2333,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'The first day of each month at 9:00 AM',
       hourly: 'At the top of every hour',
       'every-15-minutes': 'Every 15 minutes',
-      custom: 'Cron syntax or natural language',
+      custom: 'Cron syntax or natural language'
     },
     days: {
       '0': 'Sunday',
@@ -2284,7 +2343,7 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Thursday',
       '5': 'Friday',
       '6': 'Saturday',
-      '7': 'Sunday',
+      '7': 'Sunday'
     },
     dayFallback: value => `day ${value}`,
     everyDayAt: time => `Every day at ${time}`,
@@ -2294,7 +2353,8 @@ Leave blank to keep the ${mode} default.`,
     topOfHour: 'At the top of every hour',
     everyHourAt: minute => `Every hour at :${minute}`,
     newCron: 'New cron',
-    emptyDescNew: 'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
+    emptyDescNew:
+      'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
     emptyDescSearch: 'Try a broader search query.',
     emptyTitleNew: 'No scheduled jobs yet',
     emptyTitleSearch: 'No matches',
@@ -2353,7 +2413,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Create cron',
     tabs: {
       jobs: 'Jobs',
-      blueprints: 'Blueprints',
+      blueprints: 'Blueprints'
     },
     blueprints: {
       tab: 'Blueprints',
@@ -2367,8 +2427,8 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Loading blueprints...',
       failedLoad: 'Failed to load blueprints',
       emptyTitle: 'No blueprints available',
-      emptyDesc: 'No automation blueprints are available on this backend.',
-    },
+      emptyDesc: 'No automation blueprints are available on this backend.'
+    }
   },
   artifacts: {
     search: 'Search artifacts...',
@@ -2402,14 +2462,14 @@ Leave blank to keep the ${mode} default.`,
     kindLink: 'link',
     chat: 'Chat',
     copyUrl: 'Copy URL',
-    copyPath: 'Copy path',
+    copyPath: 'Copy path'
   },
   sidebar: {
     nav: {
       'new-session': 'New session',
       skills: 'Capabilities',
       messaging: 'Messaging',
-      artifacts: 'Artifacts',
+      artifacts: 'Artifacts'
     },
     searchAria: 'Search sessions',
     searchPlaceholder: 'Search sessions…',
@@ -2461,7 +2521,8 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'Copy path',
       removeFromSidebar: 'Hide from sidebar',
       createFailed: 'Could not create project',
-      staleBackend: 'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
+      staleBackend:
+        'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
       deleteConfirm: 'This removes the saved project from OpenAmer. Files, git repos, and worktrees stay untouched.',
       startWork: 'New worktree',
       newWorktreeTitle: 'New worktree',
@@ -2483,13 +2544,15 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'No branches found',
       removeWorktree: 'Remove worktree',
       removeWorktreeFailed: 'Could not remove worktree (uncommitted changes?)',
-      removeWorktreeConfirm: 'Remove it from git (deletes the worktree directory; the branch stays), or just hide the lane from the sidebar and leave the worktree on disk.',
-      removeWorktreeDirty: 'This worktree has uncommitted changes. Force-remove it (discards those changes), or just hide the lane and keep it on disk.',
+      removeWorktreeConfirm:
+        'Remove it from git (deletes the worktree directory; the branch stays), or just hide the lane from the sidebar and leave the worktree on disk.',
+      removeWorktreeDirty:
+        'This worktree has uncommitted changes. Force-remove it (discards those changes), or just hide the lane and keep it on disk.',
       forceRemove: 'Force remove',
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
       toggle: label => `Toggle ${label} sessions`,
-      back: 'All projects',
+      back: 'All projects'
     },
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
@@ -2527,15 +2590,15 @@ Leave blank to keep the ${mode} default.`,
       ageNow: 'now',
       ageDay: 'd',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Earlier today',
       yesterday: 'Yesterday',
       thisWeek: 'Earlier this week',
       lastWeek: 'Last week',
-      thisMonth: 'Earlier this month',
-    },
+      thisMonth: 'Earlier this month'
+    }
   },
   install: {
     stageStates: {
@@ -2543,17 +2606,19 @@ Leave blank to keep the ${mode} default.`,
       running: 'Installing',
       succeeded: 'Done',
       skipped: 'Skipped',
-      failed: 'Failed',
+      failed: 'Failed'
     },
     oneTimeTitle: 'OpenAmer needs a one-time install',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     installCommand: 'Install command',
     copyCommand: 'Copy command',
     viewDocs: 'View install docs',
     installTo: 'Will install to',
     retryAfterRun: 'I’ve run it -- retry',
     setupChoiceTitle: 'Set up OpenAmer Desktop',
-    setupChoiceDesc: 'Connect this app to a OpenAmer gateway you already run, or install OpenAmer locally on this computer.',
+    setupChoiceDesc:
+      'Connect this app to a OpenAmer gateway you already run, or install OpenAmer locally on this computer.',
     connectExistingTitle: 'Connect to existing OpenAmer',
     connectExistingShort: 'Connect existing',
     connectExistingDesc: 'Use a remote backend with a session token or browser sign-in. No local install will start.',
@@ -2561,7 +2626,8 @@ Leave blank to keep the ${mode} default.`,
     installLocalDesc: 'Download OpenAmer, create its Python environment, and run the backend on this computer.',
     localStartUnavailable: 'Local installation could not start. Restart OpenAmer Desktop and try again.',
     remoteSetupTitle: 'Connect to existing OpenAmer',
-    remoteSetupDesc: 'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
+    remoteSetupDesc:
+      'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
     remoteUrlTitle: 'Gateway URL',
     remoteUrlDesc: 'Use the base URL of the OpenAmer gateway, including https:// when remote.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2588,8 +2654,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Installation failed',
     settingUpTitle: 'Setting up OpenAmer Agent',
     finishingTitle: 'Finishing up',
-    failedDesc: 'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
-    activeDesc: 'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
+    failedDesc:
+      'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
+    activeDesc:
+      'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
     fetchingManifest: 'Fetching installer manifest...',
@@ -2603,7 +2671,7 @@ Leave blank to keep the ${mode} default.`,
     transcriptSaved: 'Full transcript saved to',
     copiedOutput: 'Copied!',
     copyOutput: 'Copy output',
-    reloadRetry: 'Reload and retry',
+    reloadRetry: 'Reload and retry'
   },
   preview: {
     tab: 'Preview',
@@ -2637,7 +2705,8 @@ Leave blank to keep the ${mode} default.`,
     unsavedChanges: 'Unsaved changes',
     saveFailed: message => `Couldn't save: ${message}`,
     diskChangedTitle: 'File changed on disk',
-    diskChangedBody: 'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
+    diskChangedBody:
+      'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
     overwrite: 'Overwrite',
     discardReload: 'Discard & reload',
     console: {
@@ -2658,7 +2727,7 @@ Leave blank to keep the ${mode} default.`,
       empty: 'No console messages yet.',
       promptHeader: 'Preview console:',
       sentTitle: 'Sent to chat',
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Preview app failed to boot',
@@ -2683,17 +2752,19 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'Reloading the preview now.',
       restartFailedTitle: 'Preview restart failed',
       restartFailedMessage: 'OpenAmer could not restart the server.',
-      stillWorking: 'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
+      stillWorking:
+        'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
       workspaceReloading: 'Workspace changed, reloading preview',
       fileChanged: url => `File changed, reloading preview: ${url}`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
-      moduleMimeDescription: 'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
+      moduleMimeDescription:
+        'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'The preview page could not be reached.',
       openTarget: url => `Open ${url}`,
-      fallbackTitle: 'Preview',
-    },
+      fallbackTitle: 'Preview'
+    }
   },
   zones: {
     showHeader: 'Show header',
@@ -2701,7 +2772,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Minimize',
     restore: 'Restore',
     closeRunningTitle: 'Close running tab?',
-    closeRunningBody: 'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
+    closeRunningBody:
+      'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
     closeRunningConfirm: 'Close tab',
     closeOthers: 'Close others',
     closeToRight: 'Close to the right',
@@ -2738,14 +2810,15 @@ Leave blank to keep the ${mode} default.`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
     saveApply: 'Save & apply',
     notExpressible: 'this arrangement interlocks (pinwheel) — not expressible as nested splits yet',
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
       loadingSession: 'Loading session',
       showEarlier: 'Show earlier messages',
       loadingResponse: 'OpenAmer is loading a response',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Thinking',
@@ -2768,12 +2841,13 @@ Leave blank to keep the ${mode} default.`,
       restoreCheckpoint: 'Restore checkpoint',
       restoreFromHere: 'Restore checkpoint — rerun from this prompt',
       restoreTitle: 'Restore to this checkpoint?',
-      restoreBody: 'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
+      restoreBody:
+        'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
       restoreConfirm: 'Restore & rerun',
       restoreNext: 'Restore next checkpoint',
       goForward: 'Go forward',
       sendEdited: 'Send edited message',
-      attachingFile: 'Attaching…',
+      attachingFile: 'Attaching…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2786,8 +2860,9 @@ Leave blank to keep the ${mode} default.`,
       jumpToApproval: 'Approval needed',
       reject: 'Reject',
       alwaysTitle: 'Always allow this command?',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
-      alwaysAllow: 'Always allow',
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysAllow: 'Always allow'
     },
     clarify: {
       notReady: 'Clarify request is not ready yet',
@@ -2801,7 +2876,7 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'Continue',
       lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
       lateAnswerTip: 'Draft this answer as a follow-up message',
-      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.',
+      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.'
     },
     tool: {
       code: 'Code',
@@ -2837,11 +2912,11 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Ran',
         running: 'Running',
         ranCode: 'Ran code',
-        runningCode: 'Scripting',
+        runningCode: 'Scripting'
       },
       prefixes: {
         browser: 'Browser',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2849,121 +2924,121 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
+        runningTool: action => `Running ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Clicked page element',
           pending: 'Clicking page element',
-          pendingAction: 'Clicking',
+          pendingAction: 'Clicking'
         },
         browser_fill: {
           done: 'Filled form field',
           pending: 'Filling form field',
-          pendingAction: 'Filling',
+          pendingAction: 'Filling'
         },
         browser_navigate: {
           done: 'Opened page',
           pending: 'Opening page',
-          pendingAction: 'Opening',
+          pendingAction: 'Opening'
         },
         browser_snapshot: {
           done: 'Captured page snapshot',
           pending: 'Capturing page snapshot',
-          pendingAction: 'Capturing',
+          pendingAction: 'Capturing'
         },
         browser_take_screenshot: {
           done: 'Captured screenshot',
           pending: 'Capturing screenshot',
-          pendingAction: 'Capturing',
+          pendingAction: 'Capturing'
         },
         browser_type: {
           done: 'Typed on page',
           pending: 'Typing on page',
-          pendingAction: 'Typing',
+          pendingAction: 'Typing'
         },
         clarify: {
           done: 'Asked a question',
           pending: 'Asking a question',
-          pendingAction: 'Asking',
+          pendingAction: 'Asking'
         },
         cronjob: {
           done: 'Cron job',
           pending: 'Scheduling cron job',
-          pendingAction: 'Scheduling',
+          pendingAction: 'Scheduling'
         },
         edit_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
+          pendingAction: 'Editing'
         },
         execute_code: {
           done: 'Ran code',
           pending: 'Scripting',
-          pendingAction: 'Scripting',
+          pendingAction: 'Scripting'
         },
         image_generate: {
           done: 'Generated image',
           pending: 'Generating image',
-          pendingAction: 'Generating',
+          pendingAction: 'Generating'
         },
         list_files: {
           done: 'Listed files',
           pending: 'Listing files',
-          pendingAction: 'Listing',
+          pendingAction: 'Listing'
         },
         patch: {
           done: 'Patched file',
           pending: 'Patching file',
-          pendingAction: 'Patching',
+          pendingAction: 'Patching'
         },
         read_file: {
           done: 'Read file',
           pending: 'Reading file',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         search_files: {
           done: 'Searched files',
           pending: 'Searching files',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         session_search_recall: {
           done: 'Searched session history',
           pending: 'Searching session history',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         terminal: {
           done: 'Ran command',
           pending: 'Running command',
-          pendingAction: 'Running',
+          pendingAction: 'Running'
         },
         todo: {
           done: 'Updated todos',
           pending: 'Updating todos',
-          pendingAction: 'Updating',
+          pendingAction: 'Updating'
         },
         vision_analyze: {
           done: 'Analyzed image',
           pending: 'Analyzing image',
-          pendingAction: 'Analyzing',
+          pendingAction: 'Analyzing'
         },
         web_extract: {
           done: 'Read webpage',
           pending: 'Reading webpage',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         web_search: {
           done: 'Searched web',
           pending: 'Searching web',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         write_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
-        },
-      },
-    },
+          pendingAction: 'Editing'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2974,6 +3049,6 @@ Leave blank to keep the ${mode} default.`,
     sudoPlaceholder: 'sudo password',
     secretTitle: 'Secret required',
     secretDesc: 'OpenAmer needs a credential to continue.',
-    secretPlaceholder: 'secret value',
-  },
+    secretPlaceholder: 'secret value'
+  }
 })

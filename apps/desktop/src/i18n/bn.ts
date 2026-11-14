@@ -19,7 +19,7 @@ export const bn = defineLocale({
     pathCopied: 'পাথ কপি হয়েছে',
     revealFinder: 'Finder-এ দেখান',
     revealExplorer: 'File Explorer-এ দেখান',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop প্রস্তুত',
@@ -28,7 +28,7 @@ export const bn = defineLocale({
       loadingSettings: 'OpenAmer সেটিংস লোড হচ্ছে',
       loadingSessions: 'সাম্প্রতিক সেশন লোড হচ্ছে',
       startingDesktopConnection: 'ডেস্কটপ সংযোগ শুরু করা হচ্ছে',
-      startingOpenAmerDesktop: 'OpenAmer Desktop শুরু করা হচ্ছে…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop শুরু করা হচ্ছে…'
     },
     errors: {
       backgroundExited: 'OpenAmer ব্যাকগ্রাউন্ড প্রসেস বন্ধ হয়েছে।',
@@ -37,13 +37,15 @@ export const bn = defineLocale({
       desktopBootFailed: 'ডেস্কটপ বুট ব্যর্থ হয়েছে',
       gatewayConnectionLost: 'গেটওয়ের সাথে সংযোগ বিচ্ছিন্ন হয়েছে',
       gatewaySignInRequired: 'গেটওয়েতে সাইন-ইন প্রয়োজন',
-      ipcBridgeUnavailable: 'ডেস্কটপ IPC ব্রিজ উপলব্ধ নেই।',
+      ipcBridgeUnavailable: 'ডেস্কটপ IPC ব্রিজ উপলব্ধ নেই।'
     },
     failure: {
       title: 'OpenAmer শুরু হতে পারেনি',
-      description: 'ব্যাকগ্রাউন্ড গেটওয়ে চালু হয়নি। নিচের পুনরুদ্ধার ধাপগুলোর একটি চেষ্টা করুন। এখানে কিছুই আপনার চ্যাট বা সেটিংস মুছে ফেলে না।',
+      description:
+        'ব্যাকগ্রাউন্ড গেটওয়ে চালু হয়নি। নিচের পুনরুদ্ধার ধাপগুলোর একটি চেষ্টা করুন। এখানে কিছুই আপনার চ্যাট বা সেটিংস মুছে ফেলে না।',
       remoteTitle: 'রিমোট গেটওয়েতে সাইন-ইন প্রয়োজন',
-      remoteDescription: 'আপনার রিমোট গেটওয়ে সেশন মেয়াদোত্তীর্ণ হয়েছে। পুনরায় সংযুক্ত হতে আবার সাইন ইন করুন। এখানে কিছুই আপনার চ্যাট বা সেটিংস মুছে ফেলে না।',
+      remoteDescription:
+        'আপনার রিমোট গেটওয়ে সেশন মেয়াদোত্তীর্ণ হয়েছে। পুনরায় সংযুক্ত হতে আবার সাইন ইন করুন। এখানে কিছুই আপনার চ্যাট বা সেটিংস মুছে ফেলে না।',
       retry: 'আবার চেষ্টা করুন',
       repairInstall: 'ইনস্টল মেরামত করুন',
       useLocalGateway: 'স্থানীয় গেটওয়ে ব্যবহার করুন',
@@ -62,10 +64,11 @@ export const bn = defineLocale({
       signInFailed: 'সাইন-ইন ব্যর্থ হয়েছে',
       signInToRemoteGateway: 'রিমোট গেটওয়েতে সাইন ইন করুন',
       identityProvider: 'আপনার আইডেন্টিটি প্রোভাইডার',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   common: {
     error: 'ত্রুটি',
@@ -106,7 +109,7 @@ export const bn = defineLocale({
     delete: 'মুছুন',
     docs: 'ডক্স',
     done: 'সম্পন্ন',
-    tryHint: term => `Try “${term}”`,
+    tryHint: term => `Try “${term}”`
   },
   notifications: {
     region: 'বিজ্ঞপ্তি',
@@ -118,7 +121,8 @@ export const bn = defineLocale({
     copyDetail: 'বিস্তারিত কপি করুন',
     copyDetailFailed: 'বিজ্ঞপ্তির বিস্তারিত কপি করা যায়নি',
     backendOutOfDateTitle: 'ব্যাকএন্ড পুরনো',
-    backendOutOfDateMessage: 'আপনার OpenAmer ব্যাকএন্ড এই ডেস্কটপ বিল্ডের চেয়ে পুরনো এবং সঠিকভাবে কাজ নাও করতে পারে। মিলিয়ে নিতে আপডেট করুন।',
+    backendOutOfDateMessage:
+      'আপনার OpenAmer ব্যাকএন্ড এই ডেস্কটপ বিল্ডের চেয়ে পুরনো এবং সঠিকভাবে কাজ নাও করতে পারে। মিলিয়ে নিতে আপডেট করুন।',
     installMethodUnsupportedTitle: 'অসমর্থিত ইনস্টল পদ্ধতি',
     updateOpenAmer: 'OpenAmer আপডেট করুন',
     updateReadyTitle: 'আপডেট প্রস্তুত',
@@ -127,11 +131,12 @@ export const bn = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT-এর জন্য ELEVENLABS_API_KEY প্রয়োজন।',
       elevenLabsRejectedKey: 'ElevenLabs API key প্রত্যাখ্যান করেছে (401)।',
       gatewayAuthFailed: 'গেটওয়ে প্রমাণীকরণ ব্যর্থ — আপনার API_SERVER_KEY পরীক্ষা করুন।',
-      methodNotAllowed: 'ডেস্কটপ ব্যাকএন্ড সেই অনুরোধ প্রত্যাখ্যান করেছে (405 Method Not Allowed)। OpenAmer Desktop পুনরায় চালু করার চেষ্টা করুন।',
+      methodNotAllowed:
+        'ডেস্কটপ ব্যাকএন্ড সেই অনুরোধ প্রত্যাখ্যান করেছে (405 Method Not Allowed)। OpenAmer Desktop পুনরায় চালু করার চেষ্টা করুন।',
       microphonePermission: 'মাইক্রোফোন অনুমতি প্রত্যাখ্যাত হয়েছে।',
       openaiRejectedApiKey: 'OpenAI API key প্রত্যাখ্যান করেছে।',
       openaiTtsNeedsKey: 'OpenAI TTS-এর জন্য VOICE_TOOLS_OPENAI_KEY অথবা OPENAI_API_KEY প্রয়োজন।',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'ভয়েস মোড ব্যবহার করতে স্পিচ-টু-টেক্সট কনফিগার করুন।',
@@ -150,7 +155,7 @@ export const bn = defineLocale({
       transcriptionFailed: 'ভয়েস ট্রান্সক্রিপশন ব্যর্থ হয়েছে',
       transcriptionUnavailable: 'ভয়েস ট্রান্সক্রিপশন এখনও উপলব্ধ নয়।',
       tryRecordingAgain: 'আবার রেকর্ড করার চেষ্টা করুন।',
-      unavailable: 'ভয়েস অনুপলব্ধ',
+      unavailable: 'ভয়েস অনুপলব্ধ'
     },
     native: {
       approvalTitle: 'অনুমোদন প্রয়োজন',
@@ -163,10 +168,10 @@ export const bn = defineLocale({
       turnErrorTitle: 'টার্ন ব্যর্থ হয়েছে',
       backgroundDoneTitle: 'ব্যাকগ্রাউন্ড টাস্ক শেষ হয়েছে',
       backgroundFailedTitle: 'ব্যাকগ্রাউন্ড টাস্ক ব্যর্থ হয়েছে',
-      creditsTitle: 'ক্রেডিট',
+      creditsTitle: 'ক্রেডিট'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer ক্রেডিট শেষ',
@@ -174,7 +179,7 @@ export const bn = defineLocale({
     openBilling: 'বিলিং খুলুন',
     addCredits: 'ক্রেডিট যোগ করুন',
     dismiss: 'খারিজ করুন',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   titlebar: {
     hideSidebar: 'সাইডবার লুকান',
@@ -191,7 +196,7 @@ export const bn = defineLocale({
     openStarmap: 'মেমরি গ্রাফ খুলুন',
     openKeybinds: 'কীবোর্ড শর্টকাট',
     layoutEditor: 'লেআউট এডিটর',
-    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout',
+    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout'
   },
   keybinds: {
     title: 'কীবোর্ড শর্টকাট',
@@ -206,7 +211,7 @@ export const bn = defineLocale({
       profiles: 'প্রোফাইল',
       session: 'সেশন',
       navigation: 'নেভিগেশন',
-      view: 'ভিউ',
+      view: 'ভিউ'
     },
     actions: {
       'keybinds.openPanel': 'কীবোর্ড শর্টকাট খুলুন',
@@ -285,10 +290,10 @@ export const bn = defineLocale({
       'composer.slash': 'স্ল্যাশ কমান্ড প্যালেট',
       'composer.help': 'দ্রুত সহায়তা',
       'composer.history': 'পপওভার / ইতিহাস ঘোরান',
-      'composer.cancel': 'পপওভার বন্ধ করুন · রান বাতিল করুন',
+      'composer.cancel': 'পপওভার বন্ধ করুন · রান বাতিল করুন'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   language: {
     label: 'ভাষা',
@@ -297,7 +302,7 @@ export const bn = defineLocale({
     saveError: 'ভাষা আপডেট ব্যর্থ হয়েছে',
     switchTo: 'ভাষা পরিবর্তন করুন',
     searchPlaceholder: 'ভাষা খুঁজুন…',
-    noResults: 'কোনো ভাষা পাওয়া যায়নি',
+    noResults: 'কোনো ভাষা পাওয়া যায়নি'
   },
   settings: {
     closeSettings: 'সেটিংস বন্ধ করুন',
@@ -322,11 +327,12 @@ export const bn = defineLocale({
       billing: 'বিলিং',
       notifications: 'নোটিফিকেশন',
       plugins: 'প্লাগইন',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'ডেস্কটপ প্লাগইন',
-      blurb: 'এই অ্যাপে লোড করা UI এক্সটেনশন — বিল্ডের সাথে বান্ডল করা, অথবা desktop-plugins ফোল্ডারে রাখা (OpenAmer যে প্লাগইন লেখে সেগুলোসহ)। নিষ্ক্রিয় করলে প্লাগইন লাইভ আনলোড হয় এবং রিস্টার্টেও থাকে।',
+      blurb:
+        'এই অ্যাপে লোড করা UI এক্সটেনশন — বিল্ডের সাথে বান্ডল করা, অথবা desktop-plugins ফোল্ডারে রাখা (OpenAmer যে প্লাগইন লেখে সেগুলোসহ)। নিষ্ক্রিয় করলে প্লাগইন লাইভ আনলোড হয় এবং রিস্টার্টেও থাকে।',
       openFolder: 'প্লাগইন ফোল্ডার খুলুন',
       rescan: 'আবার স্ক্যান করুন',
       reveal: 'ফাইল ম্যানেজারে দেখান',
@@ -337,50 +343,52 @@ export const bn = defineLocale({
       kinds: {
         bundled: 'বান্ডলড',
         disk: 'ডিস্কে',
-        runtime: 'রানটাইম',
+        runtime: 'রানটাইম'
       },
-      count: n => `${n} installed`,
+      count: n => `${n} installed`
     },
     notifications: {
       title: 'বিজ্ঞপ্তি',
-      intro: 'নেটিভ ডেস্কটপ বিজ্ঞপ্তি, অ্যাপ-ভেতরের টোস্ট থেকে আলাদা। এগুলি ডিভাইস-লোকাল — প্রতিটি কম্পিউটার নিজস্ব সেটিংস রাখে।',
+      intro:
+        'নেটিভ ডেস্কটপ বিজ্ঞপ্তি, অ্যাপ-ভেতরের টোস্ট থেকে আলাদা। এগুলি ডিভাইস-লোকাল — প্রতিটি কম্পিউটার নিজস্ব সেটিংস রাখে।',
       enableAll: 'বিজ্ঞপ্তি চালু করুন',
       enableAllDesc: 'মাস্টার সুইচ। নিচের প্রতিটি বিজ্ঞপ্তি নীরব করতে এটি বন্ধ করুন।',
       focusedHint: 'সম্পন্নতার সতর্কতা কেবল তখনই আসবে যখন OpenAmer ব্যাকগ্রাউন্ডে থাকে।',
       kinds: {
         approval: {
           label: 'অনুমোদন প্রয়োজন',
-          description: 'একটি কমান্ড আপনার অনুমোদন বা প্রত্যাখ্যানের অপেক্ষায় আছে।',
+          description: 'একটি কমান্ড আপনার অনুমোদন বা প্রত্যাখ্যানের অপেক্ষায় আছে।'
         },
         input: {
           label: 'ইনপুট প্রয়োজন',
-          description: 'OpenAmer একটি প্রশ্ন করেছে বা পাসওয়ার্ড বা গোপন তথ্য প্রয়োজন।',
+          description: 'OpenAmer একটি প্রশ্ন করেছে বা পাসওয়ার্ড বা গোপন তথ্য প্রয়োজন।'
         },
         turnDone: {
           label: 'প্রতিক্রিয়া প্রস্তুত',
-          description: 'OpenAmer ব্যাকগ্রাউন্ডে থাকার সময় একটি টার্ন শেষ হয়েছে।',
+          description: 'OpenAmer ব্যাকগ্রাউন্ডে থাকার সময় একটি টার্ন শেষ হয়েছে।'
         },
         turnError: {
           label: 'টার্ন ব্যর্থ হয়েছে',
-          description: 'একটি টার্ন ত্রুটিসহ শেষ হয়েছে।',
+          description: 'একটি টার্ন ত্রুটিসহ শেষ হয়েছে।'
         },
         backgroundDone: {
           label: 'ব্যাকগ্রাউন্ড কাজ শেষ হয়েছে',
-          description: 'ব্যাকগ্রাউন্ডে চালানো টার্মিনাল কমান্ড সম্পন্ন হয়েছে।',
+          description: 'ব্যাকগ্রাউন্ডে চালানো টার্মিনাল কমান্ড সম্পন্ন হয়েছে।'
         },
         credits: {
           label: 'ক্রেডিট সতর্কতা',
-          description: 'ক্রেডিট অ্যাক্সেস বিরত বা পুনরুদ্ধার করা হয়েছে।',
-        },
+          description: 'ক্রেডিট অ্যাক্সেস বিরত বা পুনরুদ্ধার করা হয়েছে।'
+        }
       },
       test: 'পরীক্ষা বিজ্ঞপ্তি পাঠান',
       testTitle: 'OpenAmer',
       testBody: 'বিজ্ঞপ্তি কাজ করছে।',
-      testSent: 'পরীক্ষা পাঠানো হয়েছে। কিছু না দেখালে, আপনার OS বিজ্ঞপ্তির অনুমতি এবং Focus/Do Not Disturb পরীক্ষা করুন।',
+      testSent:
+        'পরীক্ষা পাঠানো হয়েছে। কিছু না দেখালে, আপনার OS বিজ্ঞপ্তির অনুমতি এবং Focus/Do Not Disturb পরীক্ষা করুন।',
       testUnsupported: 'এই সিস্টেম নেটিভ বিজ্ঞপ্তি সমর্থন করে না।',
       completionSoundTitle: 'সমাপ্তি শব্দ',
       completionSoundDesc: 'এজেন্ট টার্ন শেষ হলে বাজে। একটি প্রিসেট বেছে এখানে প্রিভিউ করুন।',
-      completionSoundPreview: 'প্রিভিউ',
+      completionSoundPreview: 'প্রিভিউ'
     },
     sections: {
       model: 'মডেল',
@@ -390,7 +398,7 @@ export const bn = defineLocale({
       safety: 'নিরাপত্তা',
       memory: 'মেমরি ও কনটেক্সট',
       voice: 'ভয়েস',
-      advanced: 'উন্নত',
+      advanced: 'উন্নত'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop সম্পর্কে',
@@ -398,25 +406,26 @@ export const bn = defineLocale({
       gateway: 'গেটওয়ে সংযোগ...',
       keys: 'API কী খুঁজুন...',
       mcp: 'MCP সার্ভার খুঁজুন...',
-      sessions: 'আর্কাইভ করা সেশন খুঁজুন...',
+      sessions: 'আর্কাইভ করা সেশন খুঁজুন...'
     },
     modeOptions: {
       light: {
         label: 'হালকা',
-        description: 'উজ্জ্বল ডেস্কটপ সারফেস',
+        description: 'উজ্জ্বল ডেস্কটপ সারফেস'
       },
       dark: {
         label: 'গাঢ়',
-        description: 'কম ঝলকের কর্মক্ষেত্র',
+        description: 'কম ঝলকের কর্মক্ষেত্র'
       },
       system: {
         label: 'সিস্টেম',
-        description: 'OS-এর চেহারা অনুসরণ করুন',
-      },
+        description: 'OS-এর চেহারা অনুসরণ করুন'
+      }
     },
     appearance: {
       title: 'চেহারা',
-      intro: 'এগুলো শুধুমাত্র ডেস্কটপের ডিসপ্লে পছন্দ। মোড উজ্জ্বলতা নিয়ন্ত্রণ করে; থিম অ্যাকসেন্ট প্যালেট ও চ্যাট সারফেসের স্টাইল নিয়ন্ত্রণ করে।',
+      intro:
+        'এগুলো শুধুমাত্র ডেস্কটপের ডিসপ্লে পছন্দ। মোড উজ্জ্বলতা নিয়ন্ত্রণ করে; থিম অ্যাকসেন্ট প্যালেট ও চ্যাট সারফেসের স্টাইল নিয়ন্ত্রণ করে।',
       colorMode: 'রঙের মোড',
       colorModeDesc: 'একটি নির্দিষ্ট মোড বেছে নিন বা OpenAmer-কে আপনার সিস্টেম সেটিং অনুসরণ করতে দিন।',
       toolViewTitle: 'টুল কল প্রদর্শন',
@@ -427,7 +436,8 @@ export const bn = defineLocale({
       backdropTitle: 'চ্যাট ব্যাকড্রপ',
       backdropDesc: 'কথোপকথনের পেছনের মৃদু মূর্তির ছবি।',
       embedsTitle: 'ইনলাইন এমবেড',
-      embedsDesc: 'সমৃদ্ধ প্রিভিউ তৃতীয় পক্ষের সাইট (YouTube, X, …) থেকে লোড হয়। জিজ্ঞাসা প্রতিটির অনুমতি দেওয়ার আগে একটি প্লেসহোল্ডার দেখায়; সর্বদা সেগুলো স্বয়ংক্রিয়ভাবে লোড করে; বন্ধ সাধারণ লিঙ্ক রাখে।',
+      embedsDesc:
+        'সমৃদ্ধ প্রিভিউ তৃতীয় পক্ষের সাইট (YouTube, X, …) থেকে লোড হয়। জিজ্ঞাসা প্রতিটির অনুমতি দেওয়ার আগে একটি প্লেসহোল্ডার দেখায়; সর্বদা সেগুলো স্বয়ংক্রিয়ভাবে লোড করে; বন্ধ সাধারণ লিঙ্ক রাখে।',
       embedsAsk: 'জিজ্ঞাসা',
       embedsAlways: 'সর্বদা',
       embedsOff: 'বন্ধ',
@@ -438,7 +448,8 @@ export const bn = defineLocale({
       themeTitle: 'থিম',
       themeDesc: 'শুধু ডেস্কটপ প্যালেট। নির্বাচিত মোড এর উপরে প্রয়োগ করা হয়।',
       installTitle: 'VS Code থেকে ইনস্টল করুন',
-      installDesc: 'একটি মার্কেটপ্লেস এক্সটেনশন আইডি পেস্ট করুন (যেমন dracula-theme.theme-dracula) এর কালার থিমকে ডেস্কটপ প্যালেটে রূপান্তর করতে।',
+      installDesc:
+        'একটি মার্কেটপ্লেস এক্সটেনশন আইডি পেস্ট করুন (যেমন dracula-theme.theme-dracula) এর কালার থিমকে ডেস্কটপ প্যালেটে রূপান্তর করতে।',
       installButton: 'ইনস্টল',
       installing: 'ইনস্টল হচ্ছে…',
       installError: 'সেই থিমটি ইনস্টল করা যায়নি।',
@@ -446,8 +457,10 @@ export const bn = defineLocale({
       importedBadge: 'আমদানি করা হয়েছে',
       pet: {
         title: 'পেট',
-        intro: 'একটি অ্যানিমেটেড petdex মাসকট গ্রহণ করুন যা অ্যাপের উপরে ভাসে এবং OpenAmer কী করছে তাতে প্রতিক্রিয়া জানায় — টুল চলার সময় দৌড়ায়, সফল হলে উদযাপন করে, ত্রুটিতে বিষণ্ন হয়।',
-        restartHint: 'পেটগুলোর একটি দ্রুত রিস্টার্ট দরকার — চলমান অ্যাপটি এই ফিচার যোগ হওয়ার আগে চালু হয়েছিল। OpenAmer বন্ধ করে আবার খুলুন, তারপর এখানে ফিরে আসুন।',
+        intro:
+          'একটি অ্যানিমেটেড petdex মাসকট গ্রহণ করুন যা অ্যাপের উপরে ভাসে এবং OpenAmer কী করছে তাতে প্রতিক্রিয়া জানায় — টুল চলার সময় দৌড়ায়, সফল হলে উদযাপন করে, ত্রুটিতে বিষণ্ন হয়।',
+        restartHint:
+          'পেটগুলোর একটি দ্রুত রিস্টার্ট দরকার — চলমান অ্যাপটি এই ফিচার যোগ হওয়ার আগে চালু হয়েছিল। OpenAmer বন্ধ করে আবার খুলুন, তারপর এখানে ফিরে আসুন।',
         on: 'চালু',
         off: 'বন্ধ',
         scaleTitle: 'আকার',
@@ -479,13 +492,14 @@ export const bn = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installPlaceholder: 'publisher.extension',
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     about: {
       heading: 'OpenAmer ডেস্কটপ',
@@ -512,7 +526,7 @@ export const bn = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     config: {
       none: 'কিছু নেই',
@@ -528,7 +542,7 @@ export const bn = defineLocale({
       imported: 'কনফিগ আমদানি করা হয়েছে',
       invalidJson: 'অবৈধ কনফিগ JSON',
       keepAwakeTitle: 'কম্পিউটার জাগিয়ে রাখুন',
-      keepAwakeDesc: 'দীর্ঘ বা রাতভর রান চলতে রাখতে এই মেশিনকে ঘুমাতে দেবেন না। ডিসপ্লে তবুও ম্লান হতে পারে।',
+      keepAwakeDesc: 'দীর্ঘ বা রাতভর রান চলতে রাখতে এই মেশিনকে ঘুমাতে দেবেন না। ডিসপ্লে তবুও ম্লান হতে পারে।'
     },
     credentials: {
       pasteKey: 'কী পেস্ট করুন',
@@ -538,7 +552,7 @@ export const bn = defineLocale({
       remove: 'সরান',
       getKey: 'একটি কী নিন',
       saving: 'সংরক্ষণ করা হচ্ছে',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     envActions: {
       credentialActions: 'ক্রেডেনশিয়াল ক্রিয়া',
@@ -549,7 +563,7 @@ export const bn = defineLocale({
       replace: 'প্রতিস্থাপন',
       set: 'সেট করুন',
       clear: 'মুছুন',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     gateway: {
       loading: 'গেটওয়ে সেটিংস লোড হচ্ছে...',
@@ -557,12 +571,14 @@ export const bn = defineLocale({
       unavailableDesc: 'ডেস্কটপ IPC ব্রিজ গেটওয়ে সেটিংস প্রকাশ করে না।',
       title: 'গেটওয়ে সংযোগ',
       envOverride: 'env ওভাররাইড',
-      intro: 'OpenAmer Desktop ডিফল্টভাবে নিজস্ব স্থানীয় গেটওয়ে চালু করে। আপনি যখন এই অ্যাপ দিয়ে অন্য মেশিনে বা একটি বিশ্বস্ত প্রক্সির পিছনে ইতিমধ্যে চলমান OpenAmer ব্যাকএন্ড নিয়ন্ত্রণ করতে চান, তখন একটি রিমোট গেটওয়ে ব্যবহার করুন। এটিকে নিজস্ব রিমোট হোস্ট দিতে নিচে একটি প্রোফাইল বেছে নিন।',
+      intro:
+        'OpenAmer Desktop ডিফল্টভাবে নিজস্ব স্থানীয় গেটওয়ে চালু করে। আপনি যখন এই অ্যাপ দিয়ে অন্য মেশিনে বা একটি বিশ্বস্ত প্রক্সির পিছনে ইতিমধ্যে চলমান OpenAmer ব্যাকএন্ড নিয়ন্ত্রণ করতে চান, তখন একটি রিমোট গেটওয়ে ব্যবহার করুন। এটিকে নিজস্ব রিমোট হোস্ট দিতে নিচে একটি প্রোফাইল বেছে নিন।',
       appliesTo: 'প্রযোজ্য',
       allProfiles: 'সব প্রোফাইল',
       defaultConnection: 'যে প্রতিটি প্রোফাইলের নিজস্ব ওভাররাইড নেই তার জন্য ডিফল্ট সংযোগ।',
       envOverrideTitle: 'পরিবেশ ভেরিয়েবল এই ডেস্কটপ সেশন নিয়ন্ত্রণ করছে।',
-      envOverrideDesc: 'নিচের সংরক্ষিত সেটিং ব্যবহার করতে OPENAMER_DESKTOP_REMOTE_URL এবং OPENAMER_DESKTOP_REMOTE_TOKEN আনসেট করুন।',
+      envOverrideDesc:
+        'নিচের সংরক্ষিত সেটিং ব্যবহার করতে OPENAMER_DESKTOP_REMOTE_URL এবং OPENAMER_DESKTOP_REMOTE_TOKEN আনসেট করুন।',
       modeTitle: 'সংযোগ মোড',
       localTitle: 'স্থানীয় গেটওয়ে',
       localDesc: 'localhost-এ একটি ব্যক্তিগত OpenAmer ব্যাকএন্ড চালু করুন। এটি ডিফল্ট এবং অফলাইনে কাজ করে।',
@@ -570,8 +586,10 @@ export const bn = defineLocale({
       inheritDesc: 'এই প্রোফাইলের ওভাররাইড সরিয়ে ডিফল্ট সংযোগ ব্যবহার করুন।',
       remoteTitle: 'রিমোট গেটওয়ে',
       remoteDesc: 'এই ডেস্কটপ শেলটি একটি রিমোট OpenAmer ব্যাকএন্ডের সাথে সংযুক্ত করুন।',
-      remoteAuthHint: 'হোস্টেড গেটওয়েগুলো OAuth বা ব্যবহারকারীর নাম ও পাসওয়ার্ড ব্যবহার করে; সেলফ-হোস্টেডগুলো সেশন টোকেন ব্যবহার করতে পারে।',
-      cloudDesc: 'OpenAmer Cloud-এ একবার সাইন ইন করুন এবং আপনার অ্যাকাউন্টের এজেন্টগুলো থেকে বেছে নিন — পেস্ট করার কোনো URL নেই।',
+      remoteAuthHint:
+        'হোস্টেড গেটওয়েগুলো OAuth বা ব্যবহারকারীর নাম ও পাসওয়ার্ড ব্যবহার করে; সেলফ-হোস্টেডগুলো সেশন টোকেন ব্যবহার করতে পারে।',
+      cloudDesc:
+        'OpenAmer Cloud-এ একবার সাইন ইন করুন এবং আপনার অ্যাকাউন্টের এজেন্টগুলো থেকে বেছে নিন — পেস্ট করার কোনো URL নেই।',
       cloudSignIn: 'OpenAmer Cloud-এ সাইন ইন করুন',
       cloudSignedIn: 'OpenAmer Cloud-এ সাইন ইন করা হয়েছে',
       cloudNeedsSignIn: 'আপনার অ্যাকাউন্টের এজেন্টগুলো খুঁজে পেতে OpenAmer Cloud-এ সাইন ইন করুন।',
@@ -584,7 +602,7 @@ export const bn = defineLocale({
       cloudNoAgents: {
         before: 'এই অ্যাকাউন্টে কোনো এজেন্ট পাওয়া যায়নি। একটি তৈরি করুন',
         linkText: 'OpenAmer পোর্টাল',
-        after: ', তারপর রিফ্রেশ করুন।',
+        after: ', তারপর রিফ্রেশ করুন।'
       },
       cloudRefresh: 'রিফ্রেশ',
       cloudConnect: 'সংযুক্ত করুন',
@@ -605,9 +623,11 @@ export const bn = defineLocale({
       signIn: 'সাইন ইন',
       signOut: 'সাইন আউট',
       authTitle: 'প্রমাণীকরণ',
-      authSignedInPassword: 'এই গেটওয়ে ব্যবহারকারীর নাম ও পাসওয়ার্ড ব্যবহার করে। আপনি সাইন ইন করা আছেন; সেশন স্বয়ংক্রিয়ভাবে রিফ্রেশ হয়।',
+      authSignedInPassword:
+        'এই গেটওয়ে ব্যবহারকারীর নাম ও পাসওয়ার্ড ব্যবহার করে। আপনি সাইন ইন করা আছেন; সেশন স্বয়ংক্রিয়ভাবে রিফ্রেশ হয়।',
       authSignedInOauth: 'এই গেটওয়ে OAuth ব্যবহার করে। আপনি সাইন ইন করা আছেন; সেশন স্বয়ংক্রিয়ভাবে রিফ্রেশ হয়।',
-      authNeedsPassword: 'এই গেটওয়ে ব্যবহারকারীর নাম ও পাসওয়ার্ড ব্যবহার করে। এই ডেস্কটপ অ্যাপ অনুমোদন করতে সাইন ইন করুন।',
+      authNeedsPassword:
+        'এই গেটওয়ে ব্যবহারকারীর নাম ও পাসওয়ার্ড ব্যবহার করে। এই ডেস্কটপ অ্যাপ অনুমোদন করতে সাইন ইন করুন।',
       tokenTitle: 'সেশন টোকেন',
       tokenDesc: 'REST এবং WebSocket অ্যাক্সেসের জন্য ব্যবহৃত ড্যাশবোর্ড সেশন টোকেন। সংরক্ষিত টোকেন রাখতে ফাঁকা রাখুন।',
       savedToken: 'সংরক্ষিত',
@@ -638,7 +658,8 @@ export const bn = defineLocale({
       applyFailed: 'গেটওয়ে সেটিংস প্রয়োগ করা যায়নি',
       saveFailed: 'গেটওয়ে সেটিংস সংরক্ষণ করা যায়নি',
       sshTitle: 'SSH-এর মাধ্যমে সংযোগ করুন',
-      sshDesc: 'OpenAmer রিমোটে SSH-এর মাধ্যমে চালু হয় এবং এই অ্যাপে টানেল করা হয় — নিজে কিছু শুরু বা এক্সপোজ করতে হয় না। হোস্টে কার্যকর কী-ভিত্তিক SSH অ্যাক্সেস প্রয়োজন।',
+      sshDesc:
+        'OpenAmer রিমোটে SSH-এর মাধ্যমে চালু হয় এবং এই অ্যাপে টানেল করা হয় — নিজে কিছু শুরু বা এক্সপোজ করতে হয় না। হোস্টে কার্যকর কী-ভিত্তিক SSH অ্যাক্সেস প্রয়োজন।',
       sshTrustHint: 'প্রথম উপস্থাপিত হোস্ট কী বিশ্বাস ও পিন করা হয়; পরবর্তী পরিবর্তনগুলো নিরাপদে প্রত্যাখ্যাত হয়।',
       sshHostTitle: 'হোস্ট',
       sshHostDesc: 'user@host, অথবা ~/.ssh/config থেকে একটি হোস্ট অ্যালিয়াস।',
@@ -661,14 +682,19 @@ export const bn = defineLocale({
       sshButtonsHint: 'সংরক্ষণ পরবর্তী লঞ্চে প্রয়োগ হবে। সংযোগ এখনই পুনরায় সংযুক্ত করবে।',
       sshIncompleteHost: 'সংযোগ করার আগে একটি SSH হোস্ট লিখুন।',
       sshErrUnreachable: 'SSH-এর মাধ্যমে ওই হোস্টে পৌঁছানো যায়নি। হোস্ট, পোর্ট এবং আপনার নেটওয়ার্ক পরীক্ষা করুন।',
-      sshErrAuth: 'SSH প্রমাণীকরণ ব্যর্থ হয়েছে। আপনার কী ssh-agent-এ লোড করুন (ssh-add) অথবা ~/.ssh/config-এ IdentityFile সেট করুন — OpenAmer ssh নন-ইন্টারঅ্যাক্টিভভাবে চালায়।',
-      sshErrHostKey: 'শেষ সংযোগের পর থেকে হোস্ট কী পরিবর্তিত হয়েছে। এটি প্রত্যাশিত কিনা যাচাই করুন, তারপর ssh-keygen -R <host> চালান এবং আবার সংযোগ করুন।',
-      sshErrNotInstalled: 'রিমোট হোস্টে OpenAmer ইনস্টল করা নেই। সেখানে এটি ইনস্টল করুন (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) অথবা OpenAmer পাথ সেট করুন।',
-      sshErrPlatform: 'অসমর্থিত রিমোট প্ল্যাটফর্ম। OpenAmer Desktop SSH মোড Linux, macOS এবং Windows রিমোট হোস্ট সমর্থন করে।',
+      sshErrAuth:
+        'SSH প্রমাণীকরণ ব্যর্থ হয়েছে। আপনার কী ssh-agent-এ লোড করুন (ssh-add) অথবা ~/.ssh/config-এ IdentityFile সেট করুন — OpenAmer ssh নন-ইন্টারঅ্যাক্টিভভাবে চালায়।',
+      sshErrHostKey:
+        'শেষ সংযোগের পর থেকে হোস্ট কী পরিবর্তিত হয়েছে। এটি প্রত্যাশিত কিনা যাচাই করুন, তারপর ssh-keygen -R <host> চালান এবং আবার সংযোগ করুন।',
+      sshErrNotInstalled:
+        'রিমোট হোস্টে OpenAmer ইনস্টল করা নেই। সেখানে এটি ইনস্টল করুন (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) অথবা OpenAmer পাথ সেট করুন।',
+      sshErrPlatform:
+        'অসমর্থিত রিমোট প্ল্যাটফর্ম। OpenAmer Desktop SSH মোড Linux, macOS এবং Windows রিমোট হোস্ট সমর্থন করে।',
       sshErrTimeout: 'SSH সংযোগের সময় শেষ হয়ে গেছে। হোস্টটি হয়তো পৌঁছানো যাচ্ছে না বা স্লিপ মোডে আছে।',
       sshErrUpdateRequired: 'Desktop SSH দিয়ে সংযোগ করার আগে রিমোট হোস্টে OpenAmer আপডেট করুন।',
       sshErrUnknown: 'SSH সংযোগ ব্যর্থ হয়েছে।',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudTitle: 'OpenAmer Cloud',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudOrgRole: role => `Role: ${role}`,
@@ -678,12 +704,12 @@ export const bn = defineLocale({
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     keys: {
       loading: 'API কী এবং ক্রেডেনশিয়াল লোড হচ্ছে...',
       failedLoad: 'API কী লোড করতে ব্যর্থ হয়েছে',
-      empty: 'এই বিভাগে এখনও কিছু কনফিগার করা হয়নি।',
+      empty: 'এই বিভাগে এখনও কিছু কনফিগার করা হয়নি।'
     },
     mcp: {
       loading: 'MCP সার্ভার লোড হচ্ছে...',
@@ -745,10 +771,11 @@ export const bn = defineLocale({
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       authenticatedMessage: (server, count) => `${server}: ${count} tools`,
       enableTool: tool => `Enable ${tool}`,
-      disableTool: tool => `Disable ${tool}`,
+      disableTool: tool => `Disable ${tool}`
     },
     model: {
       loading: 'মডেল কনফিগারেশন লোড হচ্ছে...',
@@ -762,7 +789,8 @@ export const bn = defineLocale({
       defaultsFailed: 'মডেল ডিফল্ট সংরক্ষণ করা যায়নি',
       auxiliaryTitle: 'সহায়ক মডেল',
       resetAllToMain: 'সবগুলোকে মূল মডেলে রিসেট করুন',
-      auxiliaryDesc: 'সহায়ক কাজগুলো ডিফল্টভাবে মূল মডেলে চলে। ওভাররাইড করতে যেকোনো কাজে একটি নির্দিষ্ট মডেল বরাদ্দ করুন।',
+      auxiliaryDesc:
+        'সহায়ক কাজগুলো ডিফল্টভাবে মূল মডেলে চলে। ওভাররাইড করতে যেকোনো কাজে একটি নির্দিষ্ট মডেল বরাদ্দ করুন।',
       setToMain: 'মূল মডেলে সেট করুন',
       change: 'পরিবর্তন',
       autoUseMain: 'স্বয়ংক্রিয় · মূল মডেল ব্যবহার করুন',
@@ -773,42 +801,43 @@ export const bn = defineLocale({
       tasks: {
         vision: {
           label: 'ভিশন',
-          hint: 'ইমেজ বিশ্লেষণ',
+          hint: 'ইমেজ বিশ্লেষণ'
         },
         web_extract: {
           label: 'ওয়েব এক্সট্র্যাক্ট',
-          hint: 'পৃষ্ঠা সারসংক্ষেপণ',
+          hint: 'পৃষ্ঠা সারসংক্ষেপণ'
         },
         compression: {
           label: 'সংকোচন',
-          hint: 'প্রসঙ্গ সংকোচন',
+          hint: 'প্রসঙ্গ সংকোচন'
         },
         skills_hub: {
           label: 'দক্ষতা হাব',
-          hint: 'দক্ষতা অনুসন্ধান',
+          hint: 'দক্ষতা অনুসন্ধান'
         },
         approval: {
           label: 'অনুমোদন',
-          hint: 'স্মার্ট স্বয়ংক্রিয় অনুমোদন',
+          hint: 'স্মার্ট স্বয়ংক্রিয় অনুমোদন'
         },
         mcp: {
           hint: 'MCP টুল রাউটিং',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'শিরোনাম তৈরি',
-          hint: 'সেশন শিরোনাম',
+          hint: 'সেশন শিরোনাম'
         },
         curator: {
           label: 'কিউরেটর',
-          hint: 'দক্ষতা-ব্যবহার পর্যালোচনা',
-        },
-      },
+          hint: 'দক্ষতা-ব্যবহার পর্যালোচনা'
+        }
+      }
     },
     providers: {
       connectAccount: 'একটি অ্যাকাউন্ট সংযুক্ত করুন',
       haveApiKey: 'বরং API key আছে?',
-      intro: 'সাবস্ক্রিপশন দিয়ে সাইন ইন করুন — কপি করার জন্য কোনো API key নেই। OpenAmer আপনার জন্য ব্রাউজার সাইন-ইন এখানেই অ্যাপে চালায়।',
+      intro:
+        'সাবস্ক্রিপশন দিয়ে সাইন ইন করুন — কপি করার জন্য কোনো API key নেই। OpenAmer আপনার জন্য ব্রাউজার সাইন-ইন এখানেই অ্যাপে চালায়।',
       connected: 'সংযুক্ত',
       collapse: 'সংকুচিত করুন',
       connectAnother: 'আরেকটি প্রোভাইডার সংযুক্ত করুন',
@@ -821,16 +850,18 @@ export const bn = defineLocale({
       noKeysMatch: 'আপনার অনুসন্ধানের সাথে কোনো প্রোভাইডার মেলেনি।',
       localEndpoint: {
         title: 'স্থানীয় / কাস্টম এন্ডপয়েন্ট',
-        description: 'OpenAmer-কে যেকোনো OpenAI-সামঞ্জস্যপূর্ণ এন্ডপয়েন্টে নির্দেশ করুন (Zyphra, vLLM, llama.cpp, Ollama, ইত্যাদি)।',
+        description:
+          'OpenAmer-কে যেকোনো OpenAI-সামঞ্জস্যপূর্ণ এন্ডপয়েন্টে নির্দেশ করুন (Zyphra, vLLM, llama.cpp, Ollama, ইত্যাদি)।'
       },
       loading: 'প্রোভাইডার লোড হচ্ছে...',
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     sessions: {
       loading: 'আর্কাইভ করা সেশন লোড হচ্ছে…',
@@ -841,12 +872,14 @@ export const bn = defineLocale({
       deletePermanently: 'স্থায়ীভাবে মুছুন',
       restored: 'পুনরুদ্ধার করা হয়েছে',
       autoArchiveTitle: 'অসক্রিয় চ্যাট স্বয়ংক্রিয়-আর্কাইভ করুন',
-      autoArchiveDesc: 'কিছু সময় ধরে যেসব চ্যাটে আপনি হাত দেননি সেগুলো স্বয়ংক্রিয়ভাবে আর্কাইভ করুন। পিন করা চ্যাট কখনো আর্কাইভ হয় না, এবং কিছুই মুছে যায় না — আর্কাইভ করা চ্যাট শুধু এখানে চলে আসে।',
+      autoArchiveDesc:
+        'কিছু সময় ধরে যেসব চ্যাটে আপনি হাত দেননি সেগুলো স্বয়ংক্রিয়ভাবে আর্কাইভ করুন। পিন করা চ্যাট কখনো আর্কাইভ হয় না, এবং কিছুই মুছে যায় না — আর্কাইভ করা চ্যাট শুধু এখানে চলে আসে।',
       autoArchiveDaysLabel: 'এই সময় পরে আর্কাইভ করুন',
       autoArchiveDaysUnit: 'দিন নিষ্ক্রিয়তা',
       autoArchiveFailed: 'অটো-আর্কাইভ আপডেট করা যায়নি',
       defaultDirTitle: 'ডিফল্ট প্রজেক্ট ডিরেক্টরি',
-      defaultDirDesc: 'নতুন সেশন এই ফোল্ডারে শুরু হয়, যদি না আপনি অন্য একটি বেছে নেন। হোম ডিরেক্টরি ব্যবহার করতে এটি অনির্ধারিত রাখুন।',
+      defaultDirDesc:
+        'নতুন সেশন এই ফোল্ডারে শুরু হয়, যদি না আপনি অন্য একটি বেছে নেন। হোম ডিরেক্টরি ব্যবহার করতে এটি অনির্ধারিত রাখুন।',
       change: 'পরিবর্তন',
       choose: 'বেছে নিন',
       clear: 'সাফ করুন',
@@ -856,11 +889,12 @@ export const bn = defineLocale({
       deleteFailed: 'মুছে ফেলা ব্যর্থ হয়েছে',
       updateDirFailed: 'ডিফল্ট ডিরেক্টরি আপডেট করা যায়নি',
       clearDirFailed: 'ডিফল্ট ডিরেক্টরি সাফ করা যায়নি',
-      archivedIntro: 'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
+      archivedIntro:
+        'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
       defaultDirUpdated: 'Default project directory updated — start a new chat (Ctrl/⌘+N) for it to take effect',
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
       loadingConfig: 'কনফিগারেশন লোড হচ্ছে',
@@ -910,9 +944,10 @@ export const bn = defineLocale({
         unavailable: 'অনুপলব্ধ',
         inUse: 'ব্যবহৃত হচ্ছে',
         selectedTitle: 'ব্যাকএন্ড নির্বাচিত',
-        needsSetupHint: 'আপনি এখন এই ব্যাকএন্ড নির্বাচন করতে পারেন — সেটআপ সম্পূর্ণ না হওয়া পর্যন্ত কমান্ড ব্যর্থ হবে।',
+        needsSetupHint:
+          'আপনি এখন এই ব্যাকএন্ড নির্বাচন করতে পারেন — সেটআপ সম্পূর্ণ না হওয়া পর্যন্ত কমান্ড ব্যর্থ হবে।',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       savedMessage: key => `${key} updated.`,
       removedMessage: key => `${key} removed.`,
@@ -922,8 +957,10 @@ export const bn = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -933,10 +970,10 @@ export const bn = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     tabSkills: 'দক্ষতা',
@@ -955,7 +992,8 @@ export const bn = defineLocale({
     noDescription: 'কোনো বিবরণ নেই।',
     configured: 'কনফিগার করা হয়েছে',
     needsKeys: 'কী প্রয়োজন',
-    visionModelHint: 'ভিশন আপনার সহায়ক মডেল কনফিগারেশন ব্যবহার করে — ছবি-সক্ষম মডেল সেখানেই বেছে নেওয়া হয়, এখানে প্রতি-প্রোভাইডারে নয়।',
+    visionModelHint:
+      'ভিশন আপনার সহায়ক মডেল কনফিগারেশন ব্যবহার করে — ছবি-সক্ষম মডেল সেখানেই বেছে নেওয়া হয়, এখানে প্রতি-প্রোভাইডারে নয়।',
     visionModelLink: 'সেটিংস → মডেল-এ ভিশন মডেল বেছে নিন',
     skillsLoadFailed: 'দক্ষতা লোড করতে ব্যর্থ হয়েছে',
     toolsetsRefreshFailed: 'টুলসেট রিফ্রেশ ব্যর্থ',
@@ -973,7 +1011,7 @@ export const bn = defineLocale({
     provenance: {
       agent: 'শেখা হয়েছে',
       bundled: 'অন্তর্নির্মিত',
-      hub: 'হাব',
+      hub: 'হাব'
     },
     changesApplyNewSessions: 'পরিবর্তনগুলি নতুন সেশনে প্রযোজ্য হবে।',
     skillUpdated: 'স্কিল আপডেট হয়েছে',
@@ -1006,7 +1044,7 @@ export const bn = defineLocale({
       trust: {
         builtin: 'বিল্ট-ইন',
         trusted: 'বিশ্বস্ত',
-        community: 'কমিউনিটি',
+        community: 'কমিউনিটি'
       },
       verdictSafe: 'নিরাপদ',
       verdictCaution: 'সতর্কতা',
@@ -1026,7 +1064,7 @@ export const bn = defineLocale({
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     tabMcp: 'MCP',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} toolsets enabled`,
@@ -1039,7 +1077,7 @@ export const bn = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     title: 'মেমরি গ্রাফ',
@@ -1055,7 +1093,8 @@ export const bn = defineLocale({
     emptyTitle: 'এখনও কিছু শেখা হয়নি',
     emptyDesc: 'OpenAmer যখন আপনার কাজের জন্য দক্ষতা ও মেমরি তৈরি করে, সেগুলো এখানে দেখা যায়।',
     share: 'ম্যাপ শেয়ার করুন',
-    shareHint: 'এই ম্যাপ শেয়ার করতে কোড কপি করুন, বা লোড করতে একটি পেস্ট করুন। এতে শুধু লেআউট থাকে, আপনার মেমরি বা দক্ষতার লেখা নয়।',
+    shareHint:
+      'এই ম্যাপ শেয়ার করতে কোড কপি করুন, বা লোড করতে একটি পেস্ট করুন। এতে শুধু লেআউট থাকে, আপনার মেমরি বা দক্ষতার লেখা নয়।',
     shareTitle: 'ম্যাপ ইমপোর্ট / এক্সপোর্ট',
     sharePlaceholder: 'একটি ম্যাপ কোড পেস্ট করুন…',
     copy: 'ম্যাপ কোড কপি করুন',
@@ -1066,7 +1105,7 @@ export const bn = defineLocale({
     importedBadge: 'ইমপোর্ট করা ম্যাপ',
     resetToMine: 'আমার ম্যাপে ফিরে যান',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'এজেন্ট বন্ধ করুন',
@@ -1096,7 +1135,7 @@ export const bn = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'কমান্ড সেন্টার বন্ধ করুন',
@@ -1125,7 +1164,7 @@ export const bn = defineLocale({
       generatedTag: 'তৈরি করা হয়েছে',
       adoptFailed: 'সেই পেটটি অ্যাডপ্ট করা যায়নি।',
       toggleFailed: 'পেটটি টগল করা যায়নি।',
-      noneAvailable: 'কোনো পেট নেই — ইনস্টল করতে নিচের একটি বেছে নিন।',
+      noneAvailable: 'কোনো পেট নেই — ইনস্টল করতে নিচের একটি বেছে নিন।'
     },
     generatePet: {
       title: 'একটি পেট তৈরি করুন',
@@ -1148,13 +1187,14 @@ export const bn = defineLocale({
       slowProviderHint: 'এটি কয়েক মিনিট সময় নিতে পারে',
       remix: 'রিমিক্স',
       remixConfirmTitle: 'এই লুকটি রিমিক্স করবেন?',
-      remixConfirmBody: 'এটি এটিকে শুরুর বিন্দু হিসেবে ব্যবহার করে নতুন ড্রাফটের একটি সেট তৈরি করে। এতে কয়েক মিনিট সময় লাগতে পারে।',
+      remixConfirmBody:
+        'এটি এটিকে শুরুর বিন্দু হিসেবে ব্যবহার করে নতুন ড্রাফটের একটি সেট তৈরি করে। এতে কয়েক মিনিট সময় লাগতে পারে।',
       genericError: 'জেনারেশন ব্যর্থ হয়েছে — আবার চেষ্টা করুন বা একটি সাজেশন বেছে নিন।',
       referenceImageTooLarge: 'রেফারেন্স ছবিটি খুব বড়। 16 MB-এর কম আকারের একটি ব্যবহার করুন।',
       referenceImageInvalid: 'ওই রেফারেন্স ছবিটি পড়া যায়নি। PNG, JPG, WebP, বা GIF চেষ্টা করুন।',
       adopt: 'গ্রহণ করুন',
       startOver: 'নতুন করে শুরু করুন',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     installTheme: {
       title: 'থিম ইনস্টল করুন…',
@@ -1166,7 +1206,7 @@ export const bn = defineLocale({
       install: 'ইনস্টল করুন',
       installing: 'ইনস্টল করা হচ্ছে...',
       installed: 'ইনস্টল হয়েছে',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'সেটিংস ফিল্ড',
     mcpServers: 'MCP সার্ভার',
@@ -1175,49 +1215,49 @@ export const bn = defineLocale({
       maintenance: 'রক্ষণাবেক্ষণ',
       sessions: 'সেশন',
       system: 'সিস্টেম',
-      usage: 'ব্যবহার',
+      usage: 'ব্যবহার'
     },
     sectionDescriptions: {
       maintenance: 'ডায়াগনস্টিকস, ব্যাকআপ, কিউরেটর, এবং মেমরি ডেটা',
       sessions: 'সেশন খুঁজুন ও পরিচালনা করুন',
       system: 'স্ট্যাটাস, লগ, এবং সিস্টেম অ্যাকশন',
-      usage: 'সময়ের সাথে টোকেন, খরচ, এবং দক্ষতা কার্যকলাপ',
+      usage: 'সময়ের সাথে টোকেন, খরচ, এবং দক্ষতা কার্যকলাপ'
     },
     nav: {
       newChat: {
         title: 'নতুন সেশন',
-        detail: 'নতুন সেশন শুরু করুন',
+        detail: 'নতুন সেশন শুরু করুন'
       },
       settings: {
         title: 'সেটিংস',
-        detail: 'OpenAmer ডেস্কটপ কনফিগার করুন',
+        detail: 'OpenAmer ডেস্কটপ কনফিগার করুন'
       },
       skills: {
         title: 'সক্ষমতা',
-        detail: 'দক্ষতা, টুল, এবং MCP সার্ভার',
+        detail: 'দক্ষতা, টুল, এবং MCP সার্ভার'
       },
       messaging: {
         title: 'মেসেজিং',
-        detail: 'Telegram, Slack, Discord, এবং আরও সেট আপ করুন',
+        detail: 'Telegram, Slack, Discord, এবং আরও সেট আপ করুন'
       },
       artifacts: {
         title: 'আর্টিফ্যাক্ট',
-        detail: 'জেনারেট করা আউটপুট ব্রাউজ করুন',
-      },
+        detail: 'জেনারেট করা আউটপুট ব্রাউজ করুন'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'সেশন প্যানেল',
-        detail: 'সেশন খুঁজুন, পিন করুন, এবং পরিচালনা করুন',
+        detail: 'সেশন খুঁজুন, পিন করুন, এবং পরিচালনা করুন'
       },
       system: {
         title: 'সিস্টেম প্যানেল',
-        detail: 'গেটওয়ে স্ট্যাটাস, লগ, রিস্টার্ট/আপডেট',
+        detail: 'গেটওয়ে স্ট্যাটাস, লগ, রিস্টার্ট/আপডেট'
       },
       usage: {
         title: 'ব্যবহার প্যানেল',
-        detail: 'টোকেন, খরচ ও স্কিল কার্যকলাপ',
-      },
+        detail: 'টোকেন, খরচ ও স্কিল কার্যকলাপ'
+      }
     },
     providerNavigate: 'নেভিগেট',
     providerSessions: 'সেশন',
@@ -1300,14 +1340,14 @@ export const bn = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     startInBranch: branch => `New conversation in ${branch}`,
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · Active sessions ${count}`,
     days: count => `${count}d`,
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   messaging: {
     search: 'মেসেজিং খুঁজুন...',
@@ -1322,7 +1362,7 @@ export const bn = defineLocale({
       not_configured: 'সেটআপ প্রয়োজন',
       pending_restart: 'পুনরায় চালু প্রয়োজন',
       retrying: 'পুনরায় চেষ্টা করা হচ্ছে',
-      startup_failed: 'শুরু করা ব্যর্থ হয়েছে',
+      startup_failed: 'শুরু করা ব্যর্থ হয়েছে'
     },
     unknown: 'অজানা',
     hintPendingRestart: 'এই পরিবর্তন প্রয়োগ করতে স্ট্যাটাস বার থেকে গেটওয়ে পুনরায় চালু করুন।',
@@ -1334,7 +1374,8 @@ export const bn = defineLocale({
     openSetupGuide: 'সেটআপ গাইড খুলুন',
     required: 'প্রয়োজনীয়',
     recommended: 'সুপারিশকৃত',
-    noTokenNeeded: 'এই প্ল্যাটফর্মে এখানে টোকেনের প্রয়োজন নেই। উপরের সেটআপ গাইড ব্যবহার করুন, তারপর নিচে এটি সক্রিয় করুন।',
+    noTokenNeeded:
+      'এই প্ল্যাটফর্মে এখানে টোকেনের প্রয়োজন নেই। উপরের সেটআপ গাইড ব্যবহার করুন, তারপর নিচে এটি সক্রিয় করুন।',
     enabled: 'সক্রিয়',
     disabled: 'নিষ্ক্রিয়',
     unsavedChanges: 'অসংরক্ষিত পরিবর্তন',
@@ -1349,124 +1390,124 @@ export const bn = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'বট টোকেন',
         help: '@BotFather দিয়ে একটি বট তৈরি করুন, তারপর এটি যে টোকেন দেয় তা পেস্ট করুন।',
-        placeholder: 'Telegram বট টোকেন পেস্ট করুন',
+        placeholder: 'Telegram বট টোকেন পেস্ট করুন'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'অনুমোদিত Telegram ব্যবহারকারী ID',
-        help: 'সুপারিশকৃত। @userinfobot থেকে কমা-বিভক্ত সংখ্যাসূচক ID। এটি ছাড়া, যে কেউ আপনার বটে DM করতে পারবে।',
+        help: 'সুপারিশকৃত। @userinfobot থেকে কমা-বিভক্ত সংখ্যাসূচক ID। এটি ছাড়া, যে কেউ আপনার বটে DM করতে পারবে।'
       },
       TELEGRAM_PROXY: {
         label: 'প্রক্সি URL',
-        help: 'শুধুমাত্র সেই নেটওয়ার্কে প্রয়োজন যেখানে Telegram ব্লক করা আছে।',
+        help: 'শুধুমাত্র সেই নেটওয়ার্কে প্রয়োজন যেখানে Telegram ব্লক করা আছে।'
       },
       DISCORD_BOT_TOKEN: {
         label: 'বট টোকেন',
-        help: 'Discord Developer Portal-এ একটি অ্যাপ্লিকেশন তৈরি করুন, একটি বট যোগ করুন, তারপর এর টোকেন পেস্ট করুন।',
+        help: 'Discord Developer Portal-এ একটি অ্যাপ্লিকেশন তৈরি করুন, একটি বট যোগ করুন, তারপর এর টোকেন পেস্ট করুন।'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'অনুমোদিত Discord ব্যবহারকারী ID',
-        help: 'সুপারিশকৃত। কমা-বিভক্ত Discord ব্যবহারকারী ID।',
+        help: 'সুপারিশকৃত। কমা-বিভক্ত Discord ব্যবহারকারী ID।'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'উত্তর স্টাইল',
-        help: 'প্রথম, সব, বা বন্ধ।',
+        help: 'প্রথম, সব, বা বন্ধ।'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'সব Discord ব্যবহারকারীকে অনুমতি দিন',
-        help: 'শুধুমাত্র ডেভেলপমেন্ট। true হলে, যে কেউ allowlist ছাড়াই বটকে DM করতে পারবে।',
+        help: 'শুধুমাত্র ডেভেলপমেন্ট। true হলে, যে কেউ allowlist ছাড়াই বটকে DM করতে পারবে।'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'হোম চ্যানেল ID',
-        help: 'চ্যানেল যেখানে বট সক্রিয় বার্তা পাঠায় (cron আউটপুট, রিমাইন্ডার)।',
+        help: 'চ্যানেল যেখানে বট সক্রিয় বার্তা পাঠায় (cron আউটপুট, রিমাইন্ডার)।'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'হোম চ্যানেলের নাম',
-        help: 'লগ ও স্ট্যাটাস আউটপুটে হোম চ্যানেলের প্রদর্শিত নাম।',
+        help: 'লগ ও স্ট্যাটাস আউটপুটে হোম চ্যানেলের প্রদর্শিত নাম।'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'সব iMessage ব্যবহারকারীকে অনুমতি দিন',
-        help: 'true হলে, BlueBubbles allowlist বাদ দিন।',
+        help: 'true হলে, BlueBubbles allowlist বাদ দিন।'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'সব Mattermost ব্যবহারকারীকে অনুমতি দিন',
+        label: 'সব Mattermost ব্যবহারকারীকে অনুমতি দিন'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'হোম চ্যানেল',
+        label: 'হোম চ্যানেল'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'সব QQ ব্যবহারকারীকে অনুমতি দিন',
+        label: 'সব QQ ব্যবহারকারীকে অনুমতি দিন'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ হোম চ্যানেল',
-        help: 'cron ডেলিভারির জন্য ডিফল্ট চ্যানেল বা গ্রুপ।',
+        help: 'cron ডেলিভারির জন্য ডিফল্ট চ্যানেল বা গ্রুপ।'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ হোম চ্যানেলের নাম',
+        label: 'QQ হোম চ্যানেলের নাম'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack বট টোকেন',
         help: 'Slack অ্যাপ ইনস্টল করার পরে OAuth & Permissions থেকে বট টোকেন ব্যবহার করুন।',
-        placeholder: 'Slack বট টোকেন পেস্ট করুন',
+        placeholder: 'Slack বট টোকেন পেস্ট করুন'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack অ্যাপ টোকেন',
         help: 'Socket Mode-এর জন্য প্রয়োজনীয় অ্যাপ-লেভেল টোকেন ব্যবহার করুন।',
-        placeholder: 'Slack অ্যাপ টোকেন পেস্ট করুন',
+        placeholder: 'Slack অ্যাপ টোকেন পেস্ট করুন'
       },
       SLACK_ALLOWED_USERS: {
         label: 'অনুমোদিত Slack ব্যবহারকারী ID',
-        help: 'সুপারিশকৃত। কমা দিয়ে পৃথক করা Slack ব্যবহারকারী ID।',
+        help: 'সুপারিশকৃত। কমা দিয়ে পৃথক করা Slack ব্যবহারকারী ID।'
       },
       MATTERMOST_URL: {
         label: 'সার্ভার URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'বট টোকেন',
+        label: 'বট টোকেন'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'অনুমোদিত ব্যবহারকারী ID',
-        help: 'সুপারিশকৃত। কমা দিয়ে পৃথক করা Mattermost ব্যবহারকারী ID।',
+        help: 'সুপারিশকৃত। কমা দিয়ে পৃথক করা Mattermost ব্যবহারকারী ID।'
       },
       MATRIX_HOMESERVER: {
         label: 'হোমসার্ভার URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'অ্যাক্সেস টোকেন',
+        label: 'অ্যাক্সেস টোকেন'
       },
       MATRIX_USER_ID: {
         label: 'বট ব্যবহারকারী ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'অনুমোদিত Matrix ব্যবহারকারী ID',
-        help: 'সুপারিশকৃত। @user:server ফরম্যাটে কমা দিয়ে পৃথক করা ব্যবহারকারী ID।',
+        help: 'সুপারিশকৃত। @user:server ফরম্যাটে কমা দিয়ে পৃথক করা ব্যবহারকারী ID।'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal ব্রিজ URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'চলমান signal-cli REST ব্রিজের URL।',
+        help: 'চলমান signal-cli REST ব্রিজের URL।'
       },
       SIGNAL_ACCOUNT: {
         label: 'ফোন নম্বর',
-        help: 'আপনার signal-cli ব্রিজে নিবন্ধিত নম্বর।',
+        help: 'আপনার signal-cli ব্রিজে নিবন্ধিত নম্বর।'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'অনুমোদিত Signal ব্যবহারকারী',
-        help: 'প্রস্তাবিত। কমা-বিচ্ছেদিত Signal আইডেন্টিফায়ার।',
+        help: 'প্রস্তাবিত। কমা-বিচ্ছেদিত Signal আইডেন্টিফায়ার।'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp ব্রিজ সক্রিয় করুন',
-        help: 'নিচের টগল দ্বারা স্বয়ংক্রিয়ভাবে সেট হয়। প্রয়োজন না জানলে অপরিবর্তিত রাখুন।',
+        help: 'নিচের টগল দ্বারা স্বয়ংক্রিয়ভাবে সেট হয়। প্রয়োজন না জানলে অপরিবর্তিত রাখুন।'
       },
       WHATSAPP_MODE: {
-        label: 'ব্রিজ মোড',
+        label: 'ব্রিজ মোড'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'অনুমোদিত WhatsApp ব্যবহারকারী',
-        help: 'প্রস্তাবিত। কমা-বিচ্ছেদিত ফোন নম্বর বা WhatsApp আইডি।',
-      },
+        help: 'প্রস্তাবিত। কমা-বিচ্ছেদিত ফোন নম্বর বা WhatsApp আইডি।'
+      }
     },
     advanced: count => `Advanced (${count})`,
     clearField: key => `Clear ${key}`,
@@ -1480,8 +1521,7 @@ export const bn = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'ওয়েবহুক খুঁজুন...',
@@ -1490,7 +1530,8 @@ export const bn = defineLocale({
     hint: 'রিসিভার চললে সাবস্ক্রিপশন পরিবর্তনগুলো হট-রিলোড হয়। নিষ্ক্রিয় সাবস্ক্রিপশন আগত ইভেন্ট প্রত্যাখ্যান করে।',
     empty: 'এখনও কোনো ওয়েবহুক সাবস্ক্রিপশন নেই।',
     disabledTitle: 'ওয়েবহুক রিসিভার নিষ্ক্রিয়',
-    disabledBody: 'ওয়েবহুকগুলো নিজস্ব গেটওয়ে প্ল্যাটফর্ম। আগত HTTP ইভেন্ট গ্রহণ করতে এখানে সেগুলো সক্রিয় করুন; কোনো সাবস্ক্রিপশন Telegram, Discord, Slack বা অন্য চ্যানেলে ডেলিভার করলেই কেবল চ্যাট চ্যানেল প্রয়োজন।',
+    disabledBody:
+      'ওয়েবহুকগুলো নিজস্ব গেটওয়ে প্ল্যাটফর্ম। আগত HTTP ইভেন্ট গ্রহণ করতে এখানে সেগুলো সক্রিয় করুন; কোনো সাবস্ক্রিপশন Telegram, Discord, Slack বা অন্য চ্যানেলে ডেলিভার করলেই কেবল চ্যাট চ্যানেল প্রয়োজন।',
     enable: 'ওয়েবহুক সক্রিয় করুন',
     enabling: 'সক্রিয় করা হচ্ছে...',
     enableRow: 'সক্রিয় করুন',
@@ -1537,7 +1578,7 @@ export const bn = defineLocale({
       discord: 'ডিসকর্ড',
       slack: 'স্ল্যাক',
       email: 'ইমেল',
-      github_comment: 'GitHub মন্তব্য',
+      github_comment: 'GitHub মন্তব্য'
     },
     subscriptions: (count: number) => `Subscriptions (${count})`,
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -1545,7 +1586,7 @@ export const bn = defineLocale({
     deleteFailed: (name: string) => `Failed to delete "${name}"`,
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     close: 'প্রোফাইল বন্ধ করুন',
@@ -1623,7 +1664,7 @@ export const bn = defineLocale({
     env: 'env',
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   cron: {
     close: 'cron বন্ধ করুন',
@@ -1637,14 +1678,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'বিরত',
       disabled: 'নিষ্ক্রিয়',
       error: 'ত্রুটি',
-      completed: 'সম্পন্ন',
+      completed: 'সম্পন্ন'
     },
     deliveryLabels: {
       local: 'এই ডেস্কটপ',
       telegram: 'টেলিগ্রাম',
       discord: 'ডিসকর্ড',
       slack: 'স্ল্যাক',
-      email: 'ইমেইল',
+      email: 'ইমেইল'
     },
     scheduleLabels: {
       daily: 'দৈনিক',
@@ -1653,7 +1694,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'মাসিক',
       hourly: 'ঘণ্টায়',
       'every-15-minutes': 'প্রতি ১৫ মিনিটে',
-      custom: 'কাস্টম',
+      custom: 'কাস্টম'
     },
     scheduleHints: {
       daily: 'প্রতিদিন সকাল ৯:০০ টায়',
@@ -1662,7 +1703,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'প্রতি মাসের প্রথম দিন সকাল ৯:০০ টায়',
       hourly: 'প্রতি ঘণ্টার শুরুতে',
       'every-15-minutes': 'প্রতি ১৫ মিনিটে',
-      custom: 'Cron সিনট্যাক্স বা প্রাকৃতিক ভাষা',
+      custom: 'Cron সিনট্যাক্স বা প্রাকৃতিক ভাষা'
     },
     days: {
       '0': 'রবিবার',
@@ -1672,11 +1713,12 @@ Leave blank to keep the ${mode} default.`,
       '4': 'বৃহস্পতিবার',
       '5': 'শুক্রবার',
       '6': 'শনিবার',
-      '7': 'রবিবার',
+      '7': 'রবিবার'
     },
     topOfHour: 'প্রতি ঘণ্টার শুরুতে',
     newCron: 'নতুন ক্রন',
-    emptyDescNew: 'একটি ক্রন এক্সপ্রেশনে চালানোর জন্য প্রম্পট শিডিউল করুন। OpenAmer এটি চালাবে এবং আপনি যে গন্তব্য বেছে নেবেন সেখানে ফলাফল পৌঁছে দেবে।',
+    emptyDescNew:
+      'একটি ক্রন এক্সপ্রেশনে চালানোর জন্য প্রম্পট শিডিউল করুন। OpenAmer এটি চালাবে এবং আপনি যে গন্তব্য বেছে নেবেন সেখানে ফলাফল পৌঁছে দেবে।',
     emptyDescSearch: 'আরও বিস্তৃত অনুসন্ধান চেষ্টা করুন।',
     emptyTitleNew: 'এখনও কোনো শিডিউলড কাজ নেই',
     emptyTitleSearch: 'কোনো মিল নেই',
@@ -1712,7 +1754,8 @@ Leave blank to keep the ${mode} default.`,
     editTitle: 'ক্রন জব সম্পাদনা',
     createTitle: 'নতুন ক্রন জব',
     editDesc: 'সময়সূচি, প্রম্পট বা ডেলিভারি টার্গেট আপডেট করুন। পরিবর্তনগুলি পরবর্তী রানে প্রয়োগ হবে।',
-    createDesc: 'একটি প্রম্পট স্বয়ংক্রিয়ভাবে চালানোর সময়সূচি দিন। ক্রন সিনট্যাক্স বা "প্রতি ১৫ মিনিটে"-এর মতো স্বাভাবিক বাক্যাংশ ব্যবহার করুন।',
+    createDesc:
+      'একটি প্রম্পট স্বয়ংক্রিয়ভাবে চালানোর সময়সূচি দিন। ক্রন সিনট্যাক্স বা "প্রতি ১৫ মিনিটে"-এর মতো স্বাভাবিক বাক্যাংশ ব্যবহার করুন।',
     nameLabel: 'নাম',
     namePlaceholder: 'সকালের ব্রিফিং',
     promptLabel: 'প্রম্পট',
@@ -1734,7 +1777,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'ক্রন তৈরি করুন',
     tabs: {
       jobs: 'জবস',
-      blueprints: 'ব্লুপ্রিন্ট',
+      blueprints: 'ব্লুপ্রিন্ট'
     },
     blueprints: {
       tab: 'ব্লুপ্রিন্ট',
@@ -1748,7 +1791,7 @@ Leave blank to keep the ${mode} default.`,
       loading: 'ব্লুপ্রিন্ট লোড হচ্ছে...',
       failedLoad: 'ব্লুপ্রিন্ট লোড করা যায়নি',
       emptyTitle: 'কোনো ব্লুপ্রিন্ট নেই',
-      emptyDesc: 'এই ব্যাকএন্ডে কোনো অটোমেশন ব্লুপ্রিন্ট নেই।',
+      emptyDesc: 'এই ব্যাকএন্ডে কোনো অটোমেশন ব্লুপ্রিন্ট নেই।'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -1757,7 +1800,7 @@ Leave blank to keep the ${mode} default.`,
     everyDayOfWeekAt: (day, time) => `Every ${day} at ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Monthly on day ${dayOfMonth} at ${time}`,
     everyHourAt: minute => `Every hour at :${minute}`,
-    actionsFor: title => `Actions for ${title}`,
+    actionsFor: title => `Actions for ${title}`
   },
   artifacts: {
     search: 'আর্টিফ্যাক্ট খুঁজুন...',
@@ -1791,14 +1834,14 @@ Leave blank to keep the ${mode} default.`,
     copyUrl: 'URL কপি করুন',
     copyPath: 'পাথ কপি করুন',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'নতুন সেশন',
       skills: 'সক্ষমতা',
       messaging: 'মেসেজিং',
-      artifacts: 'আর্টিফ্যাক্ট',
+      artifacts: 'আর্টিফ্যাক্ট'
     },
     searchAria: 'সেশন খুঁজুন',
     searchPlaceholder: 'সেশন খুঁজুন…',
@@ -1849,7 +1892,8 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'পাথ কপি করুন',
       removeFromSidebar: 'সাইডবার থেকে লুকান',
       createFailed: 'প্রকল্প তৈরি করা যায়নি',
-      staleBackend: 'প্রকল্প তৈরি করতে OpenAmer ব্যাকএন্ড আপডেট করুন — আপনার ব্যাকএন্ড এই ডেস্কটপ অ্যাপের চেয়ে পুরোনো (সেটিংস → আপডেট → ব্যাকএন্ড)।',
+      staleBackend:
+        'প্রকল্প তৈরি করতে OpenAmer ব্যাকএন্ড আপডেট করুন — আপনার ব্যাকএন্ড এই ডেস্কটপ অ্যাপের চেয়ে পুরোনো (সেটিংস → আপডেট → ব্যাকএন্ড)।',
       deleteConfirm: 'এটি OpenAmer থেকে সংরক্ষিত প্রকল্পটি সরায়। ফাইল, git রেপো এবং ওয়ার্কট্রি অপরিবর্তিত থাকে।',
       startWork: 'নতুন ওয়ার্কট্রি',
       newWorktreeTitle: 'নতুন ওয়ার্কট্রি',
@@ -1870,14 +1914,16 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'কোনো শাখা পাওয়া যায়নি',
       removeWorktree: 'ওয়ার্কট্রি সরান',
       removeWorktreeFailed: 'ওয়ার্কট্রি সরানো যায়নি (আনকমিটেড পরিবর্তন?)',
-      removeWorktreeConfirm: 'এটি git থেকে সরান (ওয়ার্কট্রি ডিরেক্টরি মুছে যায়; ব্রাঞ্চ থাকে), অথবা শুধু সাইডবার থেকে লেন লুকান এবং ওয়ার্কট্রি ডিস্কে রেখে দিন।',
-      removeWorktreeDirty: 'এই ওয়ার্কট্রিতে আনকমিটেড পরিবর্তন রয়েছে। জোরপূর্বক সরান (সেগুলো বাতিল হয়), অথবা শুধু লেন লুকান এবং এটি ডিস্কে রাখুন।',
+      removeWorktreeConfirm:
+        'এটি git থেকে সরান (ওয়ার্কট্রি ডিরেক্টরি মুছে যায়; ব্রাঞ্চ থাকে), অথবা শুধু সাইডবার থেকে লেন লুকান এবং ওয়ার্কট্রি ডিস্কে রেখে দিন।',
+      removeWorktreeDirty:
+        'এই ওয়ার্কট্রিতে আনকমিটেড পরিবর্তন রয়েছে। জোরপূর্বক সরান (সেগুলো বাতিল হয়), অথবা শুধু লেন লুকান এবং এটি ডিস্কে রাখুন।',
       forceRemove: 'জোরপূর্বক সরান',
       back: 'সব প্রকল্প',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     loading: 'লোড হচ্ছে…',
     loadMore: 'আরও লোড করুন',
@@ -1912,19 +1958,19 @@ Leave blank to keep the ${mode} default.`,
       actionsFor: title => `Actions for ${title}`,
       handoffOrigin: platform => `Handed off from ${platform}`,
       ownedByProfile: profile => `Profile: ${profile}`,
-      untitledChat: id => `Chat ${id}`,
+      untitledChat: id => `Chat ${id}`
     },
     dateDivider: {
       today: 'আজ আগে',
       yesterday: 'গতকাল',
       thisWeek: 'এই সপ্তাহের আগে',
       lastWeek: 'গত সপ্তাহ',
-      thisMonth: 'এই মাসের আগে',
+      thisMonth: 'এই মাসের আগে'
     },
     noMatch: query => `No sessions match “${query}”.`,
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     message: 'বার্তা',
@@ -1965,7 +2011,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'আগের সেশন পুনরায় চালু করুন',
       '/details': 'ট্রান্সক্রিপ্টের বিস্তার নিয়ন্ত্রণ করুন',
       '/copy': 'নির্বাচিত অংশ বা শেষ সহায়কের বার্তা কপি করুন',
-      '/quit': 'openamer থেকে প্রস্থান করুন',
+      '/quit': 'openamer থেকে প্রস্থান করুন'
     },
     hotkeyDescs: {
       'composer.mention': 'ফাইল, ফোল্ডার, urls, git রেফার করুন',
@@ -1975,7 +2021,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'পরবর্তী সারিবদ্ধ টার্ন পাঠান',
       'keybinds.openPanel': 'সব কীবোর্ড শর্টকাট',
       'composer.cancel': 'পপওভার বন্ধ করুন · রান বাতিল করুন',
-      'composer.history': 'পপওভার / ইতিহাস সাইকেল করুন',
+      'composer.history': 'পপওভার / ইতিহাস সাইকেল করুন'
     },
     attachUrlTitle: 'একটি URL সংযুক্ত করুন',
     attachUrlDesc: 'OpenAmer পৃষ্ঠাটি আনবে এবং এই টার্নের প্রসঙ্গ হিসেবে অন্তর্ভুক্ত করবে।',
@@ -2019,18 +2065,18 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'কোড রিভিউ',
         description: 'রিগ্রেশন, বাদ পড়া এজ কেস ও অনুপস্থিত টেস্টের জন্য বর্তমান পরিবর্তন অডিট করুন।',
-        text: 'অনুগ্রহ করে এটি বাগ, রিগ্রেশন এবং অনুপস্থিত টেস্টের জন্য পর্যালোচনা করুন।',
+        text: 'অনুগ্রহ করে এটি বাগ, রিগ্রেশন এবং অনুপস্থিত টেস্টের জন্য পর্যালোচনা করুন।'
       },
       implementationPlan: {
         label: 'বাস্তবায়ন পরিকল্পনা',
         description: 'কোড ছোঁয়ার আগে একটি পদ্ধতির রূপরেখা দিন যেন ডিফ ফোকাসড থাকে।',
-        text: 'কোড পরিবর্তনের আগে অনুগ্রহ করে একটি সংক্ষিপ্ত বাস্তবায়ন পরিকল্পনা করুন।',
+        text: 'কোড পরিবর্তনের আগে অনুগ্রহ করে একটি সংক্ষিপ্ত বাস্তবায়ন পরিকল্পনা করুন।'
       },
       explainThis: {
         label: 'এটি ব্যাখ্যা করুন',
         description: 'নির্বাচিত কোডটি কীভাবে কাজ করে তা বুঝিয়ে দিন এবং মূল ফাইলগুলোর লিঙ্ক দিন।',
-        text: 'অনুগ্রহ করে এটি কীভাবে কাজ করে ব্যাখ্যা করুন এবং মূল ফাইলগুলো দেখান।',
-      },
+        text: 'অনুগ্রহ করে এটি কীভাবে কাজ করে ব্যাখ্যা করুন এবং মূল ফাইলগুলো দেখান।'
+      }
     },
     wakingProfile: profile => `Waking up ${profile}…`,
     newSessionPlaceholders: [
@@ -2040,7 +2086,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -2049,7 +2095,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
@@ -2057,7 +2103,7 @@ Leave blank to keep the ${mode} default.`,
     previewLabel: label => `Preview ${label}`,
     couldNotPreview: label => `Could not preview ${label}`,
     removeAttachment: label => `Remove ${label}`,
-    url: 'URL…',
+    url: 'URL…'
   },
   statusStack: {
     coding: {
@@ -2093,7 +2139,8 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'PR খুলুন',
       ghMissing: 'PR খুলতে GitHub CLI (`gh`) ইনস্টল করুন এবং সাইন ইন করুন',
       agentShip: 'OpenAmer-কে PR খুলতে বলুন',
-      agentShipPrompt: 'বর্তমান পরিবর্তনগুলো পর্যালোচনা করুন, স্পষ্ট conventional-commit বার্তাসহ কমিট করুন, ব্র্যাঞ্চ পুশ করুন, এবং pull request খুলুন।',
+      agentShipPrompt:
+        'বর্তমান পরিবর্তনগুলো পর্যালোচনা করুন, স্পষ্ট conventional-commit বার্তাসহ কমিট করুন, ব্র্যাঞ্চ পুশ করুন, এবং pull request খুলুন।',
       newBranch: 'নতুন ব্র্যাঞ্চ',
       worktrees: 'ওয়ার্কট্রি',
       changed: count => `${count} changed`,
@@ -2102,7 +2149,7 @@ Leave blank to keep the ${mode} default.`,
       commitPlaceholder: 'Message (⌘↵ to commit)',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     agents: 'এজেন্ট',
     running: 'চলছে',
@@ -2111,7 +2158,7 @@ Leave blank to keep the ${mode} default.`,
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -2126,7 +2173,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'আপডেট সম্পন্ন',
       manual: 'আপনার টার্মিনাল থেকে আপডেট করুন',
       guiSkew: 'ডেস্কটপ অ্যাপ আপডেট করুন',
-      error: 'আপডেট বিরত',
+      error: 'আপডেট বিরত'
     },
     checking: 'আপডেট খোঁজা হচ্ছে…',
     checkFailedTitle: 'আপডেটের জন্য চেক করা যায়নি',
@@ -2145,15 +2192,19 @@ Leave blank to keep the ${mode} default.`,
     updateNow: 'এখন আপডেট করুন',
     maybeLater: 'পরে হয়তো',
     manualTitle: 'আপনার টার্মিনাল থেকে আপডেট করুন',
-    manualBody: 'আপনি OpenAmer কমান্ড লাইন থেকে ইনস্টল করেছেন, তাই আপডেটও সেখানেই চলে। এটি আপনার টার্মিনালে পেস্ট করুন:',
+    manualBody:
+      'আপনি OpenAmer কমান্ড লাইন থেকে ইনস্টল করেছেন, তাই আপডেটও সেখানেই চলে। এটি আপনার টার্মিনালে পেস্ট করুন:',
     manualPickedUp: 'পরের বার চালু করলে OpenAmer নতুন সংস্করণটি পাবে।',
     guiSkewTitle: 'ডেস্কটপ অ্যাপ আপডেট করুন',
-    guiSkewBody: 'ব্যাকএন্ড আপডেট হয়েছে, কিন্তু এই ডেস্কটপ অ্যাপ প্যাকেজ পরিবর্তিত হয়নি। মিল রাখতে OpenAmer ডেস্কটপ অ্যাপ (আপনার AppImage / .deb / .rpm) আপডেট করুন বা পুনরায় ইনস্টল করুন।',
+    guiSkewBody:
+      'ব্যাকএন্ড আপডেট হয়েছে, কিন্তু এই ডেস্কটপ অ্যাপ প্যাকেজ পরিবর্তিত হয়নি। মিল রাখতে OpenAmer ডেস্কটপ অ্যাপ (আপনার AppImage / .deb / .rpm) আপডেট করুন বা পুনরায় ইনস্টল করুন।',
     copy: 'কপি',
     copied: 'কপি হয়েছে',
     done: 'সম্পন্ন',
-    applyingBody: 'OpenAmer আপডেটার নিজের উইন্ডোতে কাজ নেয় এবং শেষ হলে OpenAmer স্বয়ংক্রিয়ভাবে আবার খোলে। আপডেট চলাকালীন অনুগ্রহ করে নিজে OpenAmer পুনরায় খুলবেন না।',
-    applyingBodyBackend: 'রিমোট ব্যাকএন্ড আপডেট প্রয়োগ করছে এবং পুনরায় চালু হবে। ফিরে এলে OpenAmer স্বয়ংক্রিয়ভাবে পুনরায় সংযোগ করবে।',
+    applyingBody:
+      'OpenAmer আপডেটার নিজের উইন্ডোতে কাজ নেয় এবং শেষ হলে OpenAmer স্বয়ংক্রিয়ভাবে আবার খোলে। আপডেট চলাকালীন অনুগ্রহ করে নিজে OpenAmer পুনরায় খুলবেন না।',
+    applyingBodyBackend:
+      'রিমোট ব্যাকএন্ড আপডেট প্রয়োগ করছে এবং পুনরায় চালু হবে। ফিরে এলে OpenAmer স্বয়ংক্রিয়ভাবে পুনরায় সংযোগ করবে।',
     applyingClose: 'আপডেট চলাকালীন এই উইন্ডোটি বন্ধ হবে, তারপর OpenAmer নিজে থেকেই আবার খুলবে।',
     errorTitle: 'আপডেট সম্পন্ন হয়নি',
     errorBody: 'চিন্তা নেই — কিছুই হারায়নি। এখন আবার চেষ্টা করতে পারেন।',
@@ -2164,13 +2215,14 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'আপডেট লোড করতে ব্যাকএন্ড পুনরায় চালু হচ্ছে…',
       notAvailable: 'এই ব্যাকএন্ডের জন্য আপডেট উপলব্ধ নয়।',
       failed: 'ব্যাকএন্ড আপডেট ব্যর্থ হয়েছে।',
-      noReturn: 'ব্যাকএন্ড আবার অনলাইনে আসেনি। আপডেটটি সম্পূর্ণ নাও হতে পারে — ব্যাকএন্ড হোস্টটি যাচাই করুন।',
+      noReturn: 'ব্যাকএন্ড আবার অনলাইনে আসেনি। আপডেটটি সম্পূর্ণ নাও হতে পারে — ব্যাকএন্ড হোস্টটি যাচাই করুন।'
     },
     appErrors: {
-      updateLocked: 'আপডেট বাতিল হয়েছে: অন্য একটি OpenAmer উইন্ডো বা openamer চালানো একটি টার্মিনাল এই ইনস্টলটি খোলা রাখছে। এটি বন্ধ করে আবার চেষ্টা করুন।',
-      updateFailed: 'আপডেটটি সম্পূর্ণ হয়নি। চিন্তা নেই — কিছুই হারায়নি। এখন আবার চেষ্টা করতে পারেন।',
+      updateLocked:
+        'আপডেট বাতিল হয়েছে: অন্য একটি OpenAmer উইন্ডো বা openamer চালানো একটি টার্মিনাল এই ইনস্টলটি খোলা রাখছে। এটি বন্ধ করে আবার চেষ্টা করুন।',
+      updateFailed: 'আপডেটটি সম্পূর্ণ হয়নি। চিন্তা নেই — কিছুই হারায়নি। এখন আবার চেষ্টা করতে পারেন।'
     },
-    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
+    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`
   },
   install: {
     stageStates: {
@@ -2178,7 +2230,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'ইনস্টল হচ্ছে',
       succeeded: 'সম্পন্ন',
       skipped: 'বাদ দেওয়া হয়েছে',
-      failed: 'ব্যর্থ',
+      failed: 'ব্যর্থ'
     },
     oneTimeTitle: 'OpenAmer একবার ইনস্টল করতে হবে',
     installCommand: 'ইনস্টল কমান্ড',
@@ -2187,10 +2239,12 @@ Leave blank to keep the ${mode} default.`,
     installTo: 'এখানে ইনস্টল হবে',
     retryAfterRun: 'আমি এটি চালিয়েছি -- আবার চেষ্টা করুন',
     setupChoiceTitle: 'OpenAmer Desktop সেট আপ করুন',
-    setupChoiceDesc: 'এই অ্যাপটি আপনার ইতিমধ্যে চালানো একটি OpenAmer গেটওয়েতে সংযুক্ত করুন, অথবা এই কম্পিউটারে স্থানীয়ভাবে OpenAmer ইনস্টল করুন।',
+    setupChoiceDesc:
+      'এই অ্যাপটি আপনার ইতিমধ্যে চালানো একটি OpenAmer গেটওয়েতে সংযুক্ত করুন, অথবা এই কম্পিউটারে স্থানীয়ভাবে OpenAmer ইনস্টল করুন।',
     connectExistingTitle: 'বিদ্যমান OpenAmer-এ সংযুক্ত করুন',
     connectExistingShort: 'বিদ্যমানটিতে সংযুক্ত করুন',
-    connectExistingDesc: 'সেশন টোকেন বা ব্রাউজার সাইন-ইনসহ একটি রিমোট ব্যাকএন্ড ব্যবহার করুন। কোনো স্থানীয় ইনস্টল শুরু হবে না।',
+    connectExistingDesc:
+      'সেশন টোকেন বা ব্রাউজার সাইন-ইনসহ একটি রিমোট ব্যাকএন্ড ব্যবহার করুন। কোনো স্থানীয় ইনস্টল শুরু হবে না।',
     installLocalTitle: 'স্থানীয়ভাবে OpenAmer ইনস্টল করুন',
     installLocalDesc: 'OpenAmer ডাউনলোড করুন, এর Python পরিবেশ তৈরি করুন, এবং এই কম্পিউটারে ব্যাকএন্ড চালান।',
     localStartUnavailable: 'লোকাল ইনস্টলেশন শুরু করা যায়নি। OpenAmer Desktop পুনরায় চালু করে আবার চেষ্টা করুন।',
@@ -2219,8 +2273,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'ইনস্টলেশন ব্যর্থ হয়েছে',
     settingUpTitle: 'OpenAmer Agent সেট আপ করা হচ্ছে',
     finishingTitle: 'শেষ করা হচ্ছে',
-    failedDesc: 'ইনস্টলের একটি ধাপ ব্যর্থ হয়েছে। Windows-এ এটি হতে পারে যদি অন্য একটি OpenAmer CLI বা ডেস্কটপ ইনস্ট্যান্স চলছে। চলমান যেকোনো OpenAmer ইনস্ট্যান্স বন্ধ করুন, তারপর আবার চেষ্টা করুন। বিস্তারিত নিচে বা সম্পূর্ণ ট্রান্সক্রিপ্টের জন্য ডেস্কটপ লগ দেখুন।',
-    activeDesc: 'এটি একবারের সেটআপ। OpenAmer ইনস্টলার নির্ভরতা ডাউনলোড করছে এবং আপনার মেশিন কনফিগার করছে। পরবর্তী লঞ্চগুলো এই ধাপটি এড়িয়ে যাবে।',
+    failedDesc:
+      'ইনস্টলের একটি ধাপ ব্যর্থ হয়েছে। Windows-এ এটি হতে পারে যদি অন্য একটি OpenAmer CLI বা ডেস্কটপ ইনস্ট্যান্স চলছে। চলমান যেকোনো OpenAmer ইনস্ট্যান্স বন্ধ করুন, তারপর আবার চেষ্টা করুন। বিস্তারিত নিচে বা সম্পূর্ণ ট্রান্সক্রিপ্টের জন্য ডেস্কটপ লগ দেখুন।',
+    activeDesc:
+      'এটি একবারের সেটআপ। OpenAmer ইনস্টলার নির্ভরতা ডাউনলোড করছে এবং আপনার মেশিন কনফিগার করছে। পরবর্তী লঞ্চগুলো এই ধাপটি এড়িয়ে যাবে।',
     fetchingManifest: 'ইনস্টলার ম্যানিফেস্ট আনা হচ্ছে...',
     error: 'ত্রুটি',
     hideOutput: 'ইনস্টলার আউটপুট লুকান',
@@ -2232,13 +2288,14 @@ Leave blank to keep the ${mode} default.`,
     copiedOutput: 'কপি হয়েছে!',
     copyOutput: 'আউটপুট কপি করুন',
     reloadRetry: 'পুনঃলোড করুন এবং আবার চেষ্টা করুন',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
     signInWith: provider => `Sign in with ${provider}`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'চলুন আপনাকে OpenAmer Agent-এ সেটআপ করি',
@@ -2258,28 +2315,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'সরাসরি মডেল API',
-        description: 'Fireworks AI-হোস্টেড মডেলগুলিতে সরাসরি অ্যাক্সেস।',
+        description: 'Fireworks AI-হোস্টেড মডেলগুলিতে সরাসরি অ্যাক্সেস।'
       },
       openrouter: {
         short: 'একটি কী, অনেক মডেল',
-        description: 'একটি একক কী-এর পিছনে শত শত মডেল হোস্ট করে। নতুন ইনস্টলের জন্য ভালো ডিফল্ট।',
+        description: 'একটি একক কী-এর পিছনে শত শত মডেল হোস্ট করে। নতুন ইনস্টলের জন্য ভালো ডিফল্ট।'
       },
       openai: {
         short: 'GPT-শ্রেণির মডেল',
-        description: 'OpenAI মডেলগুলিতে সরাসরি অ্যাক্সেস।',
+        description: 'OpenAI মডেলগুলিতে সরাসরি অ্যাক্সেস।'
       },
       gemini: {
         short: 'জেমিনি মডেল',
-        description: 'Google জেমিনি মডেলগুলিতে সরাসরি অ্যাক্সেস।',
+        description: 'Google জেমিনি মডেলগুলিতে সরাসরি অ্যাক্সেস।'
       },
       xai: {
         short: 'গ্রোক মডেল',
-        description: 'xAI গ্রোক মডেলগুলিতে সরাসরি অ্যাক্সেস।',
+        description: 'xAI গ্রোক মডেলগুলিতে সরাসরি অ্যাক্সেস।'
       },
       local: {
         short: 'স্ব-হোস্টেড',
-        description: 'OpenAmer-কে একটি স্থানীয় বা স্ব-হোস্টেড OpenAI-সামঞ্জস্যপূর্ণ এন্ডপয়েন্টে (vLLM, llama.cpp, Ollama, ইত্যাদি) নির্দেশ করুন।',
-      },
+        description:
+          'OpenAmer-কে একটি স্থানীয় বা স্ব-হোস্টেড OpenAI-সামঞ্জস্যপূর্ণ এন্ডপয়েন্টে (vLLM, llama.cpp, Ollama, ইত্যাদি) নির্দেশ করুন।'
+      }
     },
     copyAuthCode: 'অনুমোদন কোডটি কপি করুন এবং নিচে পেস্ট করুন।',
     pasteAuthCode: 'অনুমোদন কোড পেস্ট করুন',
@@ -2306,7 +2364,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'সাইন ইন করতে আপনার ব্রাউজার খোলে, তারপর এখানে চালিয়ে যায়',
       device_code: 'আপনার ব্রাউজারে একটি যাচাইকরণ পৃষ্ঠা খোলে — OpenAmer স্বয়ংক্রিয়ভাবে সংযোগ করে',
-      external: 'আপনার টার্মিনালে একবার সাইন ইন করুন, তারপর চ্যাটে ফিরে আসুন',
+      external: 'আপনার টার্মিনালে একবার সাইন ইন করুন, তারপর চ্যাটে ফিরে আসুন'
     },
     signInFailed: 'সাইন-ইন ব্যর্থ হয়েছে। আবার চেষ্টা করুন।',
     pickDifferentProvider: 'একটি ভিন্ন প্রদানকারী বেছে নিন',
@@ -2317,11 +2375,13 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'মডেল পরিবর্তন করুন',
@@ -2337,13 +2397,13 @@ Leave blank to keep the ${mode} default.`,
     free: 'ফ্রি',
     freeTier: 'ফ্রি টিয়ার',
     priceTitle: 'প্রতি মিলিয়ন টোকেনের ইনপুট / আউটপুট মূল্য',
-    wasPrice: 'ছিল',
+    wasPrice: 'ছিল'
   },
   modelVisibility: {
     title: 'মডেল',
     search: 'মডেল খুঁজুন',
     noAuthenticatedProviders: 'কোনো প্রমাণীকৃত প্রোভাইডার নেই।',
-    addProvider: 'প্রোভাইডার যোগ করুন…',
+    addProvider: 'প্রোভাইডার যোগ করুন…'
   },
   shell: {
     windowControls: 'উইন্ডো নিয়ন্ত্রণ',
@@ -2354,7 +2414,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'কোনো মডেল পাওয়া যায়নি',
       editModels: 'মডেল সম্পাদনা…',
       refreshModels: 'মডেল রিফ্রেশ করুন',
-      fast: 'দ্রুত',
+      fast: 'দ্রুত'
     },
     modelOptions: {
       noOptions: 'এই মডেলের জন্য কোনো বিকল্প নেই',
@@ -2370,7 +2430,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'সর্বোচ্চ',
       ultra: 'আল্ট্রা',
       updateFailed: 'মডেল অপশন আপডেট ব্যর্থ হয়েছে',
-      fastFailed: 'দ্রুত মোড আপডেট ব্যর্থ হয়েছে',
+      fastFailed: 'দ্রুত মোড আপডেট ব্যর্থ হয়েছে'
     },
     gatewayMenu: {
       gateway: 'গেটওয়ে',
@@ -2385,7 +2445,7 @@ Leave blank to keep the ${mode} default.`,
       recentActivity: 'সাম্প্রতিক কার্যকলাপ',
       viewAllLogs: 'সব লগ দেখুন →',
       messagingPlatforms: 'মেসেজিং প্ল্যাটফর্ম',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'অনুমোদন মোড',
@@ -2395,7 +2455,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'কাজ স্বয়ংক্রিয়ভাবে মূল্যায়ন করে প্রয়োজন হলে জিজ্ঞাসা করুন',
       off: 'বন্ধ',
       offDescription: 'অনুমোদন প্রম্পট ছাড়াই চালান',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'অজানা',
@@ -2435,19 +2495,21 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'সাবএজেন্ট সংজ্ঞা',
           system_prompt: 'সিস্টেম প্রম্পট',
           tool_definitions: 'টুল সংজ্ঞা',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'এখনও কোনো প্রসঙ্গ ডেটা নেই',
         loading: 'ব্রেকডাউন লোড হচ্ছে…',
         title: 'প্রসঙ্গ ব্যবহার',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'প্রসঙ্গ ব্যবহারের ব্রেকডাউন খুলুন',
       session: 'সেশন',
       runtimeSessionElapsed: 'রানটাইম সেশন অতিবাহিত',
-      yoloOn: 'YOLO চালু — বিপজ্জনক কমান্ড স্বয়ংক্রিয়ভাবে অনুমোদন করছে। বন্ধ করতে ক্লিক করুন। Shift+click এটি বিশ্বব্যাপী টগল করে।',
-      yoloOff: 'YOLO বন্ধ — বিপজ্জনক কমান্ড স্বয়ংক্রিয়ভাবে অনুমোদন করতে ক্লিক করুন। Shift+click এটি বিশ্বব্যাপী টগল করে।',
+      yoloOn:
+        'YOLO চালু — বিপজ্জনক কমান্ড স্বয়ংক্রিয়ভাবে অনুমোদন করছে। বন্ধ করতে ক্লিক করুন। Shift+click এটি বিশ্বব্যাপী টগল করে।',
+      yoloOff:
+        'YOLO বন্ধ — বিপজ্জনক কমান্ড স্বয়ংক্রিয়ভাবে অনুমোদন করতে ক্লিক করুন। Shift+click এটি বিশ্বব্যাপী টগল করে।',
       modelNone: 'কোনোটি নয়',
       noModel: 'কোনো মডেল নেই',
       switchModel: 'মডেল পরিবর্তন করুন',
@@ -2470,8 +2532,8 @@ Leave blank to keep the ${mode} default.`,
       failed: count => `${count} failed`,
       running: count => `${count} running`,
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'ডান সাইডবার',
@@ -2507,7 +2569,7 @@ Leave blank to keep the ${mode} default.`,
     addToChat: 'চ্যাটে যোগ করুন',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'প্রিভিউ',
@@ -2535,7 +2597,8 @@ Leave blank to keep the ${mode} default.`,
     editing: 'সম্পাদনা চলছে',
     unsavedChanges: 'অসংরক্ষিত পরিবর্তন',
     diskChangedTitle: 'ডিস্কে ফাইল পরিবর্তিত হয়েছে',
-    diskChangedBody: 'আপনি এটি খোলার পর থেকে ফাইলটি পরিবর্তিত হয়েছে। আপনার সংস্করণ দিয়ে এটি ওভাররাইট করবেন, নাকি আপনার সম্পাদনা বাতিল করে পুনরায় লোড করবেন?',
+    diskChangedBody:
+      'আপনি এটি খোলার পর থেকে ফাইলটি পরিবর্তিত হয়েছে। আপনার সংস্করণ দিয়ে এটি ওভাররাইট করবেন, নাকি আপনার সম্পাদনা বাতিল করে পুনরায় লোড করবেন?',
     overwrite: 'ওভাররাইট করুন',
     discardReload: 'বাতিল করে পুনরায় লোড করুন',
     console: {
@@ -2556,7 +2619,7 @@ Leave blank to keep the ${mode} default.`,
       sentTitle: 'চ্যাটে পাঠানো হয়েছে',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'প্রিভিউ অ্যাপ চালু হতে ব্যর্থ হয়েছে',
@@ -2577,9 +2640,11 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'এখন প্রিভিউ পুনরায় লোড করা হচ্ছে।',
       restartFailedTitle: 'প্রিভিউ পুনরায় চালু করা ব্যর্থ হয়েছে',
       restartFailedMessage: 'OpenAmer সার্ভার পুনরায় চালু করতে পারেনি।',
-      stillWorking: 'OpenAmer এখনও কাজ করছে, কিন্তু পুনরায় চালুর ফলাফল এখনও আসেনি। সার্ভার কমান্ডটি ফোরগ্রাউন্ডে চলছে হতে পারে।',
+      stillWorking:
+        'OpenAmer এখনও কাজ করছে, কিন্তু পুনরায় চালুর ফলাফল এখনও আসেনি। সার্ভার কমান্ডটি ফোরগ্রাউন্ডে চলছে হতে পারে।',
       workspaceReloading: 'ওয়ার্কস্পেস পরিবর্তিত হয়েছে, প্রিভিউ পুনরায় লোড করা হচ্ছে',
-      moduleMimeDescription: 'মডিউল স্ক্রিপ্টগুলো ভুল MIME টাইপে পরিবেশন করা হচ্ছে। এর অর্থ সাধারণত একটি স্ট্যাটিক ফাইল সার্ভার প্রকল্পের ডেভ সার্ভারের পরিবর্তে একটি Vite/React অ্যাপ পরিবেশন করছে।',
+      moduleMimeDescription:
+        'মডিউল স্ক্রিপ্টগুলো ভুল MIME টাইপে পরিবেশন করা হচ্ছে। এর অর্থ সাধারণত একটি স্ট্যাটিক ফাইল সার্ভার প্রকল্পের ডেভ সার্ভারের পরিবর্তে একটি Vite/React অ্যাপ পরিবেশন করছে।',
       unreachableDescription: 'প্রিভিউ পৃষ্ঠায় পৌঁছানো যায়নি।',
       fallbackTitle: 'প্রিভিউ',
       lookingRestart: taskId => `OpenAmer is looking for a preview server to restart (${taskId})`,
@@ -2590,14 +2655,14 @@ Leave blank to keep the ${mode} default.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     closeTab: label => `Close ${label}`,
     linkHint: '⌘/Ctrl-click for preview pane',
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   zones: {
     showHeader: 'হেডার দেখান',
@@ -2605,7 +2670,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'মিনিমাইজ করুন',
     restore: 'পুনরুদ্ধার করুন',
     closeRunningTitle: 'চলমান ট্যাব বন্ধ করবেন?',
-    closeRunningBody: 'এই চ্যাটটি এখনও কাজ করছে (অথবা আপনার ইনপুটের জন্য অপেক্ষা করছে)। ট্যাবটি বন্ধ করলে এটি লুকিয়ে যাবে — সেশনটি তার অগ্রগতি সংরক্ষণ করে এবং সাইডবার থেকে আবার খোলা যাবে।',
+    closeRunningBody:
+      'এই চ্যাটটি এখনও কাজ করছে (অথবা আপনার ইনপুটের জন্য অপেক্ষা করছে)। ট্যাবটি বন্ধ করলে এটি লুকিয়ে যাবে — সেশনটি তার অগ্রগতি সংরক্ষণ করে এবং সাইডবার থেকে আবার খোলা যাবে।',
     closeRunningConfirm: 'ট্যাব বন্ধ করুন',
     closeOthers: 'অন্যগুলো বন্ধ করুন',
     closeToRight: 'ডানদিকেরগুলো বন্ধ করুন',
@@ -2642,7 +2708,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
@@ -2673,11 +2739,12 @@ Leave blank to keep the ${mode} default.`,
       goForward: 'সামনে যান',
       sendEdited: 'সম্পাদিত বার্তা পাঠান',
       attachingFile: 'সংযুক্ত করা হচ্ছে…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
-      yesterday: time => `Yesterday, ${time}`,
+      yesterday: time => `Yesterday, ${time}`
     },
     approval: {
       gatewayDisconnected: 'OpenAmer গেটওয়ে সংযুক্ত নয়',
@@ -2691,7 +2758,8 @@ Leave blank to keep the ${mode} default.`,
       reject: 'প্রত্যাখ্যান করুন',
       alwaysTitle: 'এই কমান্ডটি সর্বদা অনুমোদন করবেন?',
       alwaysAllow: 'সর্বদা অনুমোদন',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
       notReady: 'স্পষ্টিকরণ অনুরোধ এখনও প্রস্তুত নয়',
@@ -2705,7 +2773,7 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'চালিয়ে যান',
       lateAnswerTip: 'এই উত্তরটি ফলো-আপ বার্তা হিসেবে খসড়া করুন',
       lateAnswerHint: 'এই প্রম্পট আর অপেক্ষা করছে না। ফলো-আপ বার্তা হিসেবে খসড়া করতে একটি বিকল্প বেছে নিন।',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     tool: {
       code: 'কোড',
@@ -2739,123 +2807,123 @@ Leave blank to keep the ${mode} default.`,
         ran: 'চালানো হয়েছে',
         running: 'চলছে',
         ranCode: 'কোড চালানো হয়েছে',
-        runningCode: 'স্ক্রিপ্টিং',
+        runningCode: 'স্ক্রিপ্টিং'
       },
       prefixes: {
         browser: 'ব্রাউজার',
-        web: 'ওয়েব',
+        web: 'ওয়েব'
       },
       titles: {
         browser_click: {
           done: 'পৃষ্ঠা উপাদানে ক্লিক হয়েছে',
           pending: 'পৃষ্ঠা উপাদানে ক্লিক করছে',
-          pendingAction: 'ক্লিক করছে',
+          pendingAction: 'ক্লিক করছে'
         },
         browser_fill: {
           done: 'ফর্ম ক্ষেত্র পূরণ হয়েছে',
           pending: 'ফর্ম ক্ষেত্র পূরণ করছে',
-          pendingAction: 'পূরণ করা হচ্ছে',
+          pendingAction: 'পূরণ করা হচ্ছে'
         },
         browser_navigate: {
           done: 'পৃষ্ঠা খোলা হয়েছে',
           pending: 'পৃষ্ঠা খোলা হচ্ছে',
-          pendingAction: 'খোলা হচ্ছে',
+          pendingAction: 'খোলা হচ্ছে'
         },
         browser_snapshot: {
           done: 'পৃষ্ঠার স্ন্যাপশট নেওয়া হয়েছে',
           pending: 'পৃষ্ঠার স্ন্যাপশট নেওয়া হচ্ছে',
-          pendingAction: 'ক্যাপচার করা হচ্ছে',
+          pendingAction: 'ক্যাপচার করা হচ্ছে'
         },
         browser_take_screenshot: {
           done: 'স্ক্রিনশট নেওয়া হয়েছে',
           pending: 'স্ক্রিনশট নেওয়া হচ্ছে',
-          pendingAction: 'ক্যাপচার করা হচ্ছে',
+          pendingAction: 'ক্যাপচার করা হচ্ছে'
         },
         browser_type: {
           done: 'পৃষ্ঠায় টাইপ করা হয়েছে',
           pending: 'পৃষ্ঠায় টাইপ করা হচ্ছে',
-          pendingAction: 'টাইপ করা হচ্ছে',
+          pendingAction: 'টাইপ করা হচ্ছে'
         },
         clarify: {
           done: 'একটি প্রশ্ন করা হয়েছে',
           pending: 'একটি প্রশ্ন করা হচ্ছে',
-          pendingAction: 'জিজ্ঞাসা করা হচ্ছে',
+          pendingAction: 'জিজ্ঞাসা করা হচ্ছে'
         },
         cronjob: {
           done: 'ক্রন জব',
           pending: 'ক্রন জব শিডিউল করা হচ্ছে',
-          pendingAction: 'শিডিউল করা হচ্ছে',
+          pendingAction: 'শিডিউল করা হচ্ছে'
         },
         edit_file: {
           done: 'ফাইল সম্পাদনা করা হয়েছে',
           pending: 'ফাইল সম্পাদনা',
-          pendingAction: 'সম্পাদনা',
+          pendingAction: 'সম্পাদনা'
         },
         execute_code: {
           done: 'কোড চালানো হয়েছে',
           pending: 'স্ক্রিপ্টিং',
-          pendingAction: 'স্ক্রিপ্টিং',
+          pendingAction: 'স্ক্রিপ্টিং'
         },
         image_generate: {
           done: 'ছবি তৈরি হয়েছে',
           pending: 'ছবি তৈরি হচ্ছে',
-          pendingAction: 'তৈরি হচ্ছে',
+          pendingAction: 'তৈরি হচ্ছে'
         },
         list_files: {
           done: 'ফাইল তালিকাভুক্ত',
           pending: 'ফাইল তালিকাভুক্ত হচ্ছে',
-          pendingAction: 'তালিকাভুক্ত করা',
+          pendingAction: 'তালিকাভুক্ত করা'
         },
         patch: {
           done: 'ফাইল প্যাচ করা হয়েছে',
           pending: 'ফাইল প্যাচ হচ্ছে',
-          pendingAction: 'প্যাচিং',
+          pendingAction: 'প্যাচিং'
         },
         read_file: {
           done: 'ফাইল পড়া হয়েছে',
           pending: 'ফাইল পড়া হচ্ছে',
-          pendingAction: 'পড়া',
+          pendingAction: 'পড়া'
         },
         search_files: {
           done: 'ফাইল খোঁজা হয়েছে',
           pending: 'ফাইল খোঁজা হচ্ছে',
-          pendingAction: 'খোঁজা',
+          pendingAction: 'খোঁজা'
         },
         session_search_recall: {
           done: 'সেশন ইতিহাস অনুসন্ধান করা হয়েছে',
           pending: 'সেশন ইতিহাস অনুসন্ধান করা হচ্ছে',
-          pendingAction: 'অনুসন্ধান করা হচ্ছে',
+          pendingAction: 'অনুসন্ধান করা হচ্ছে'
         },
         terminal: {
           done: 'কমান্ড চালানো হয়েছে',
           pending: 'কমান্ড চালানো হচ্ছে',
-          pendingAction: 'চলছে',
+          pendingAction: 'চলছে'
         },
         todo: {
           done: 'করণীয় আপডেট করা হয়েছে',
           pending: 'করণীয় আপডেট করা হচ্ছে',
-          pendingAction: 'আপডেট করা হচ্ছে',
+          pendingAction: 'আপডেট করা হচ্ছে'
         },
         vision_analyze: {
           done: 'ছবি বিশ্লেষণ করা হয়েছে',
           pending: 'ছবি বিশ্লেষণ করা হচ্ছে',
-          pendingAction: 'বিশ্লেষণ করা হচ্ছে',
+          pendingAction: 'বিশ্লেষণ করা হচ্ছে'
         },
         web_extract: {
           done: 'ওয়েবপেজ পড়া হয়েছে',
           pending: 'ওয়েবপেজ পড়া হচ্ছে',
-          pendingAction: 'পড়া হচ্ছে',
+          pendingAction: 'পড়া হচ্ছে'
         },
         web_search: {
           done: 'ওয়েব অনুসন্ধান করা হয়েছে',
           pending: 'ওয়েব অনুসন্ধান করা হচ্ছে',
-          pendingAction: 'অনুসন্ধান করা হচ্ছে',
+          pendingAction: 'অনুসন্ধান করা হচ্ছে'
         },
         write_file: {
           done: 'ফাইল সম্পাদনা করা হয়েছে',
           pending: 'ফাইল সম্পাদনা করা হচ্ছে',
-          pendingAction: 'সম্পাদনা',
-        },
+          pendingAction: 'সম্পাদনা'
+        }
       },
       recoveredMany: count => `Recovered after ${count} failed steps`,
       failedMany: count => `${count} steps failed`,
@@ -2865,20 +2933,21 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer গেটওয়ে সংযুক্ত নেই',
     sudoSendFailed: 'sudo পাসওয়ার্ড পাঠানো যায়নি',
     secretSendFailed: 'গোপন তথ্য পাঠানো যায়নি',
     sudoTitle: 'প্রশাসক পাসওয়ার্ড',
-    sudoDesc: 'বিশেষাধিকারপ্রাপ্ত কমান্ড চালাতে OpenAmer-এর আপনার sudo পাসওয়ার্ড প্রয়োজন। এটি শুধু আপনার স্থানীয় এজেন্টে পাঠানো হয়।',
+    sudoDesc:
+      'বিশেষাধিকারপ্রাপ্ত কমান্ড চালাতে OpenAmer-এর আপনার sudo পাসওয়ার্ড প্রয়োজন। এটি শুধু আপনার স্থানীয় এজেন্টে পাঠানো হয়।',
     sudoPlaceholder: 'sudo পাসওয়ার্ড',
     secretTitle: 'গোপন তথ্য প্রয়োজন',
     secretDesc: 'চালিয়ে যেতে OpenAmer-এর একটি ক্রেডেনশিয়াল প্রয়োজন।',
-    secretPlaceholder: 'গোপন মান',
+    secretPlaceholder: 'গোপন মান'
   },
   desktop: {
     audioReadFailed: 'রেকর্ড করা অডিও পড়া যায়নি',
@@ -2899,7 +2968,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'সম্পাদনা ব্যর্থ হয়েছে',
     resumeFailed: 'পুনরায় শুরু ব্যর্থ হয়েছে',
     resumeStrandedTitle: 'এই সেশনটি লোড করা যায়নি',
-    resumeStrandedBody: 'এই সেশনের সাথে সংযোগ ব্যর্থ হয়েছে এবং স্বয়ংক্রিয় পুনঃপ্রচেষ্টা বন্ধ হয়েছে। গেটওয়ে চলছে কিনা দেখুন, তারপর আবার চেষ্টা করুন।',
+    resumeStrandedBody:
+      'এই সেশনের সাথে সংযোগ ব্যর্থ হয়েছে এবং স্বয়ংক্রিয় পুনঃপ্রচেষ্টা বন্ধ হয়েছে। গেটওয়ে চলছে কিনা দেখুন, তারপর আবার চেষ্টা করুন।',
     resumeRetry: 'আবার চেষ্টা করুন',
     nothingToBranch: 'ব্র্যাঞ্চ করার কিছু নেই',
     branchNeedsChat: 'ব্র্যাঞ্চ করার আগে একটি চ্যাট শুরু করুন বা পুনরায় শুরু করুন।',
@@ -2938,42 +3008,44 @@ Leave blank to keep the ${mode} default.`,
       timedOut: 'গেটওয়ের জন্য অপেক্ষার সময় শেষ। `openamer gateway` চলছে কি?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     skillCommandsAvailable: count => `${count} skill commands available.`,
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
-    branchTitle: n => `Draft: Branch #${n}`,
+    branchTitle: n => `Draft: Branch #${n}`
   },
   errors: {
     genericFailure: 'কিছু একটা ভুল হয়েছে',
     boundaryTitle: 'ইন্টারফেসে কিছু ভেঙে গেছে',
     boundaryDesc: 'ভিউতে অপ্রত্যাশিত ত্রুটি হয়েছে। আপনার চ্যাট ও সেটিংস নিরাপদ।',
     reloadWindow: 'উইন্ডো পুনরায় লোড করুন',
-    openLogs: 'লগ খুলুন',
+    openLogs: 'লগ খুলুন'
   },
   ui: {
     search: {
-      clear: 'অনুসন্ধান সাফ করুন',
+      clear: 'অনুসন্ধান সাফ করুন'
     },
     pagination: {
       label: 'পেজিনেশন',
       previous: 'পূর্ববর্তী',
       previousAria: 'পূর্ববর্তী পৃষ্ঠায় যান',
       next: 'পরবর্তী',
-      nextAria: 'পরবর্তী পৃষ্ঠায় যান',
+      nextAria: 'পরবর্তী পৃষ্ঠায় যান'
     },
     sidebar: {
       title: 'সাইডবার',
       description: 'মোবাইল সাইডবার দেখায়।',
-      toggle: 'সাইডবার টগল করুন',
-    },
+      toggle: 'সাইডবার টগল করুন'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
-  },
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
+  }
 })

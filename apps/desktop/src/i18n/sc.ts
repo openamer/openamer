@@ -84,7 +84,7 @@ export const sc = defineLocale({
       'view.showFiles': 'Show file browser',
       'composer.help': 'Quick help',
       'composer.history': 'Cycle popover / history',
-      'composer.cancel': 'Close popover · cancel run',
+      'composer.cancel': 'Close popover · cancel run'
     },
     title: 'Keyboard shortcuts',
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
@@ -100,34 +100,37 @@ export const sc = defineLocale({
       profiles: 'Profiles',
       session: 'Session',
       navigation: 'Navigation',
-      view: 'View',
-    },
+      view: 'View'
+    }
   },
   settings: {
     appearance: {
       pet: {
-        intro: 'Adotta un mascote animadu de petdex chi fluttuat subra a s\'app e reagis a sas aziones de OpenAmer — curreret mentre sos strumenti s\'esecutan, festeggiat quandu succeeds, e si arrabbia in casu d\'errore.',
-        restartHint: 'S\'animale depet fàre un riavviu rapidu — s\'app in esecutione est partita prima de chi custu funziunalidad si fesset addita. Serra OpenAmer, rialrutralu, e torra a issu.',
+        intro:
+          "Adotta un mascote animadu de petdex chi fluttuat subra a s'app e reagis a sas aziones de OpenAmer — curreret mentre sos strumenti s'esecutan, festeggiat quandu succeeds, e si arrabbia in casu d'errore.",
+        restartHint:
+          "S'animale depet fàre un riavviu rapidu — s'app in esecutione est partita prima de chi custu funziunalidad si fesset addita. Serra OpenAmer, rialrutralu, e torra a issu.",
         on: 'Attivatu',
         off: 'Disactivatu',
         scaleTitle: 'Dimensione',
         scaleDesc: 'Ridimensiona su mascote fluttuante. Si apliche a totu istantaneamente.',
         roamTitle: 'Vagà',
-        roamDesc: 'Fà cum\' custu animal vaguet da peru sa finestra in su soli.',
+        roamDesc: "Fà cum' custu animal vaguet da peru sa finestra in su soli.",
         chooseTitle: 'Sceghe un animal',
         chooseDesc: 'Sceghene unuInstallat, si dipendet, e activate.',
         searchPlaceholder: 'Busca animales…',
-        unreachable: 'No s\'est poghutu reached a sas galerias de petdex. Controlla sa connessione e rialrutra esta pagina.',
+        unreachable:
+          "No s'est poghutu reached a sas galerias de petdex. Controlla sa connessione e rialrutra esta pagina.",
         installedTag: 'Installadu',
         generatedTag: 'Generadu',
-        deleteBody: 'Custu eliminat permanently s\'animal — no si podet reinstallare.',
+        deleteBody: "Custu eliminat permanently s'animal — no si podet reinstallare.",
         deleteConfirm: 'Eliminà',
-        renameTitle: 'Rinomina s\'animal',
-        renamePlaceholder: 'Dae un nomen a s\'animal',
+        renameTitle: "Rinomina s'animal",
+        renamePlaceholder: "Dae un nomen a s'animal",
         renameSave: 'Salva',
         noneAvailable: 'Non hay@No animals available to turn on right now.',
-        turnOnFailed: 'No si est podutu activate s\'animal.',
-        turnOffFailed: 'No si est podutu deactivate s\'animal.',
+        turnOnFailed: "No si est podutu activate s'animal.",
+        turnOffFailed: "No si est podutu deactivate s'animal.",
         title: 'Pet',
         noMatch: query => `No pets match "${query}".`,
         countCapped: (cap, total) => `Showing ${cap} of ${total} — type to narrow it down.`,
@@ -140,22 +143,25 @@ export const sc = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
       title: 'Appearance',
-      intro: 'These are desktop-only display preferences. Mode controls brightness; theme controls the accent palette and chat surface styling.',
+      intro:
+        'These are desktop-only display preferences. Mode controls brightness; theme controls the accent palette and chat surface styling.',
       colorMode: 'Color Mode',
       colorModeDesc: 'Pick a fixed mode or let OpenAmer follow your system setting.',
       toolViewTitle: 'Tool Call Display',
       toolViewDesc: 'Product hides raw tool payloads; Technical shows full input/output.',
       uiScaleTitle: 'UI Scale',
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       translucencyTitle: 'Window Translucency',
       translucencyDesc: 'See your desktop through the whole window. macOS and Windows only.',
       backdropTitle: 'Chat Backdrop',
       backdropDesc: 'The faint statue image behind the conversation.',
       embedsTitle: 'Inline Embeds',
-      embedsDesc: 'Rich previews load from third-party sites (YouTube, X, …). Ask shows a placeholder until you allow each one; Always loads them automatically; Off keeps plain links.',
+      embedsDesc:
+        'Rich previews load from third-party sites (YouTube, X, …). Ask shows a placeholder until you allow each one; Always loads them automatically; Off keeps plain links.',
       embedsAsk: 'Ask',
       embedsAlways: 'Always',
       embedsOff: 'Off',
@@ -168,14 +174,15 @@ export const sc = defineLocale({
       themeDesc: 'Desktop palettes only. The selected mode is applied on top.',
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installTitle: 'Install from VS Code',
-      installDesc: 'Paste a Marketplace extension id (e.g. dracula-theme.theme-dracula) to convert its color theme into a desktop palette.',
+      installDesc:
+        'Paste a Marketplace extension id (e.g. dracula-theme.theme-dracula) to convert its color theme into a desktop palette.',
       installPlaceholder: 'publisher.extension',
       installButton: 'Install',
       installing: 'Installing…',
       installError: 'Could not install that theme.',
       installed: name => `Installed “${name}”.`,
       removeTheme: 'Remove theme',
-      importedBadge: 'Imported',
+      importedBadge: 'Imported'
     },
     about: {
       versionUnavailable: 'Versione non disponibile',
@@ -187,12 +194,13 @@ export const sc = defineLocale({
       releaseNotes: 'Notes de publicazione',
       onLatest: 'Uses sa versione più recente.',
       installing: 'Un atzializament si est installandu immo.',
-      cantUpdate: 'Custu build no si podet atzializare da solu in s\'app.',
-      cantReach: 'No s\'est poghutu reached a su server de atzializament.',
+      cantUpdate: "Custu build no si podet atzializare da solu in s'app.",
+      cantReach: "No s'est poghutu reached a su server de atzializament.",
       tapCheck: 'Toca "Controlla immo" pro cercare atzializament.',
       justNowSuffix: '· immo',
       automaticUpdates: 'Atzializament automaticu',
-      automaticUpdatesDesc: 'OpenAmer controlla automaticamente sa presenza d\'atzializament in secondu piana e ti avisa cando unu est prontu.',
+      automaticUpdatesDesc:
+        "OpenAmer controlla automaticamente sa presenza d'atzializament in secondu piana e ti avisa cando unu est prontu.",
       never: 'mai',
       justNow: 'immo',
       heading: 'OpenAmer Desktop',
@@ -202,11 +210,12 @@ export const sc = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     toolsets: {
-      noProviderOptions: 'Custu strumentu non tenet opzioni de furnidore — ativalu e funzionat cun sa configurazione atuale.',
-      noProviders: 'In custu momentu non c\'è nessun furnidore dispunìbile pro custu strumentu.',
+      noProviderOptions:
+        'Custu strumentu non tenet opzioni de furnidore — ativalu e funzionat cun sa configurazione atuale.',
+      noProviders: "In custu momentu non c'è nessun furnidore dispunìbile pro custu strumentu.",
       ready: 'Prontu',
       needsSignIn: 'Cessidad de acessu',
       needsSetup: 'Cessidad de configurazione',
@@ -214,9 +223,9 @@ export const sc = defineLocale({
       openamerAuthNeededTitle: 'Intra in u portale OpenAmer',
       openamerAuthSignIn: 'Intra',
       openamerAuthDoneTitle: 'Portale OpenAmer connettidu',
-      openamerAuthDoneMessage: 'Is retorches de s\'abbonamentu sunt ora ativos.',
-      openamerAuthFailed: 'L\'acessu a u portale OpenAmer no est completadu',
-      noApiKeyRequired: 'N\'este richiestu nessuna clave API.',
+      openamerAuthDoneMessage: "Is retorches de s'abbonamentu sunt ora ativos.",
+      openamerAuthFailed: "L'acessu a u portale OpenAmer no est completadu",
+      noApiKeyRequired: "N'este richiestu nessuna clave API.",
       postSetupInstalledHint: 'Installadu. Rialinea sa configurazione solo si custu est ruptu.',
       postSetupRun: 'Fissa sa configurazione',
       postSetupRerun: 'Rialinea sa configurazione',
@@ -239,15 +248,16 @@ export const sc = defineLocale({
       terminalBackend: {
         sectionTitle: 'Retorche de esecuzione',
         loading: 'Verificande retorches de esecuzione…',
-        failedLoad: 'No s\'est pòidu caricare retorches de terminale',
+        failedLoad: "No s'est pòidu caricare retorches de terminale",
         ready: 'Prontu',
         needsSetup: 'Cessidad de configurazione',
         unavailable: 'Non dispunìbile',
         inUse: 'In usu',
         selectedTitle: 'Retorche seletzionadu',
-        needsSetupHint: 'Podes seletzionare custu retorche oe — is comandos fallaran fintzas a sa configurazione no est completada.',
+        needsSetupHint:
+          'Podes seletzionare custu retorche oe — is comandos fallaran fintzas a sa configurazione no est completada.',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       loadingConfig: 'Loading configuration',
       savedTitle: 'Credential saved',
@@ -264,8 +274,10 @@ export const sc = defineLocale({
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
       failedLoad: 'Tool configuration failed to load',
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -275,7 +287,7 @@ export const sc = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     closeSettings: 'Close settings',
     exportConfig: 'Export config',
@@ -299,11 +311,12 @@ export const sc = defineLocale({
       about: 'About',
       billing: 'Billing',
       notifications: 'Notifications',
-      plugins: 'Plugins',
+      plugins: 'Plugins'
     },
     plugins: {
       title: 'Desktop plugins',
-      blurb: 'UI extensions loaded into this app — bundled with the build, or dropped into the desktop-plugins folder (including ones OpenAmer writes). Disabling unloads a plugin live and survives restarts.',
+      blurb:
+        'UI extensions loaded into this app — bundled with the build, or dropped into the desktop-plugins folder (including ones OpenAmer writes). Disabling unloads a plugin live and survives restarts.',
       count: n => `${n} installed`,
       openFolder: 'Open plugins folder',
       rescan: 'Rescan',
@@ -315,40 +328,41 @@ export const sc = defineLocale({
       kinds: {
         bundled: 'bundled',
         disk: 'on disk',
-        runtime: 'runtime',
-      },
+        runtime: 'runtime'
+      }
     },
     notifications: {
       title: 'Notifications',
-      intro: 'Native desktop notifications, separate from in-app toasts. These are device-local — each computer keeps its own settings.',
+      intro:
+        'Native desktop notifications, separate from in-app toasts. These are device-local — each computer keeps its own settings.',
       enableAll: 'Enable notifications',
       enableAllDesc: 'Master switch. Turn this off to silence every notification below.',
       focusedHint: 'Completion alerts only fire while OpenAmer is in the background.',
       kinds: {
         approval: {
           label: 'Approval needed',
-          description: 'A command is waiting for you to approve or reject it.',
+          description: 'A command is waiting for you to approve or reject it.'
         },
         input: {
           label: 'Input needed',
-          description: 'OpenAmer asked a question or needs a password or secret.',
+          description: 'OpenAmer asked a question or needs a password or secret.'
         },
         turnDone: {
           label: 'Response ready',
-          description: 'A turn finished while OpenAmer was in the background.',
+          description: 'A turn finished while OpenAmer was in the background.'
         },
         turnError: {
           label: 'Turn failed',
-          description: 'A turn ended with an error.',
+          description: 'A turn ended with an error.'
         },
         backgroundDone: {
           label: 'Background task finished',
-          description: 'A backgrounded terminal command completed.',
+          description: 'A backgrounded terminal command completed.'
         },
         credits: {
           label: 'Credit alerts',
-          description: 'Credit access is paused or restored.',
-        },
+          description: 'Credit access is paused or restored.'
+        }
       },
       test: 'Send test notification',
       testTitle: 'OpenAmer',
@@ -357,7 +371,7 @@ export const sc = defineLocale({
       testUnsupported: 'This system does not support native notifications.',
       completionSoundTitle: 'Completion Sound',
       completionSoundDesc: 'Plays when an agent turn finishes. Pick a preset and preview it here.',
-      completionSoundPreview: 'Preview',
+      completionSoundPreview: 'Preview'
     },
     sections: {
       model: 'Model',
@@ -367,7 +381,7 @@ export const sc = defineLocale({
       safety: 'Safety',
       memory: 'Memory & Context',
       voice: 'Voice',
-      advanced: 'Advanced',
+      advanced: 'Advanced'
     },
     searchPlaceholder: {
       about: 'About OpenAmer Desktop',
@@ -375,21 +389,21 @@ export const sc = defineLocale({
       gateway: 'Gateway connection...',
       keys: 'Search API keys...',
       mcp: 'Search MCP servers...',
-      sessions: 'Search archived sessions...',
+      sessions: 'Search archived sessions...'
     },
     modeOptions: {
       light: {
         label: 'Light',
-        description: 'Bright desktop surfaces',
+        description: 'Bright desktop surfaces'
       },
       dark: {
         label: 'Dark',
-        description: 'Low-glare workspace',
+        description: 'Low-glare workspace'
       },
       system: {
         label: 'System',
-        description: 'Follow OS appearance',
-      },
+        description: 'Follow OS appearance'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -407,7 +421,7 @@ export const sc = defineLocale({
       imported: 'Config imported',
       invalidJson: 'Invalid config JSON',
       keepAwakeTitle: 'Keep computer awake',
-      keepAwakeDesc: 'Stop this machine from sleeping so long or overnight runs keep going. The display can still dim.',
+      keepAwakeDesc: 'Stop this machine from sleeping so long or overnight runs keep going. The display can still dim.'
     },
     credentials: {
       pasteKey: 'Paste key',
@@ -417,7 +431,7 @@ export const sc = defineLocale({
       couldNotSave: 'Could not save credential.',
       remove: 'Remove',
       getKey: 'Get a key',
-      saving: 'Saving',
+      saving: 'Saving'
     },
     envActions: {
       actionsFor: label => `Actions for ${label}`,
@@ -428,7 +442,7 @@ export const sc = defineLocale({
       revealValue: 'Reveal value',
       replace: 'Replace',
       set: 'Set',
-      clear: 'Clear',
+      clear: 'Clear'
     },
     gateway: {
       loading: 'Loading gateway settings...',
@@ -436,13 +450,16 @@ export const sc = defineLocale({
       unavailableDesc: 'The desktop IPC bridge does not expose gateway settings.',
       title: 'Gateway Connection',
       envOverride: 'env override',
-      intro: 'OpenAmer Desktop starts its own local gateway by default. Use a remote gateway when you want this app to control an already-running OpenAmer backend on another machine or behind a trusted proxy. Pick a profile below to give it its own remote host.',
+      intro:
+        'OpenAmer Desktop starts its own local gateway by default. Use a remote gateway when you want this app to control an already-running OpenAmer backend on another machine or behind a trusted proxy. Pick a profile below to give it its own remote host.',
       appliesTo: 'Applies to',
       allProfiles: 'All profiles',
       defaultConnection: 'Default connection for every profile that has no override of its own.',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       envOverrideTitle: 'Environment variables are controlling this desktop session.',
-      envOverrideDesc: 'Unset OPENAMER_DESKTOP_REMOTE_URL and OPENAMER_DESKTOP_REMOTE_TOKEN to use the saved setting below.',
+      envOverrideDesc:
+        'Unset OPENAMER_DESKTOP_REMOTE_URL and OPENAMER_DESKTOP_REMOTE_TOKEN to use the saved setting below.',
       modeTitle: 'Connection mode',
       localTitle: 'Local gateway',
       localDesc: 'Start a private OpenAmer backend on localhost. This is the default and works offline.',
@@ -467,7 +484,7 @@ export const sc = defineLocale({
       cloudNoAgents: {
         before: 'No agents found on this account. Create one in the ',
         linkText: 'OpenAmer portal',
-        after: ', then refresh.',
+        after: ', then refresh.'
       },
       cloudRefresh: 'Refresh',
       cloudConnect: 'Connect',
@@ -491,7 +508,8 @@ export const sc = defineLocale({
       signOut: 'Sign out',
       signInWith: provider => `Sign in with ${provider}`,
       authTitle: 'Authentication',
-      authSignedInPassword: 'This gateway uses a username and password. You are signed in; the session refreshes automatically.',
+      authSignedInPassword:
+        'This gateway uses a username and password. You are signed in; the session refreshes automatically.',
       authSignedInOauth: 'This gateway uses OAuth. You are signed in; the session refreshes automatically.',
       authNeedsPassword: 'This gateway uses a username and password. Sign in to authorize this desktop app.',
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
@@ -527,7 +545,8 @@ export const sc = defineLocale({
       applyFailed: 'Could not apply gateway settings',
       saveFailed: 'Could not save gateway settings',
       sshTitle: 'Connect via SSH',
-      sshDesc: 'OpenAmer is launched on the remote over SSH and tunneled to this app — nothing to start or expose yourself. Requires working key-based SSH access to the host.',
+      sshDesc:
+        'OpenAmer is launched on the remote over SSH and tunneled to this app — nothing to start or expose yourself. Requires working key-based SSH access to the host.',
       sshTrustHint: 'The first presented host key is trusted and pinned; later changes fail closed.',
       sshHostTitle: 'Host',
       sshHostDesc: 'user@host, or a Host alias from ~/.ssh/config.',
@@ -551,18 +570,22 @@ export const sc = defineLocale({
       sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
       sshIncompleteHost: 'Enter an SSH host before connecting.',
       sshErrUnreachable: 'Could not reach that host over SSH. Check the host, port, and your network.',
-      sshErrAuth: 'SSH authentication failed. Load your key into the ssh-agent (ssh-add) or set an IdentityFile in ~/.ssh/config — OpenAmer runs ssh non-interactively.',
-      sshErrHostKey: 'The host key has CHANGED since you last connected. Verify this is expected, then run ssh-keygen -R <host> and reconnect.',
-      sshErrNotInstalled: 'OpenAmer is not installed on the remote host. Install it there (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) or set the OpenAmer path.',
-      sshErrPlatform: 'Unsupported remote platform. OpenAmer Desktop SSH mode supports Linux, macOS, and Windows remote hosts.',
+      sshErrAuth:
+        'SSH authentication failed. Load your key into the ssh-agent (ssh-add) or set an IdentityFile in ~/.ssh/config — OpenAmer runs ssh non-interactively.',
+      sshErrHostKey:
+        'The host key has CHANGED since you last connected. Verify this is expected, then run ssh-keygen -R <host> and reconnect.',
+      sshErrNotInstalled:
+        'OpenAmer is not installed on the remote host. Install it there (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) or set the OpenAmer path.',
+      sshErrPlatform:
+        'Unsupported remote platform. OpenAmer Desktop SSH mode supports Linux, macOS, and Windows remote hosts.',
       sshErrTimeout: 'SSH connection timed out. The host may be unreachable or asleep.',
       sshErrUpdateRequired: 'Update OpenAmer on the remote host before connecting with Desktop SSH.',
-      sshErrUnknown: 'SSH connection failed.',
+      sshErrUnknown: 'SSH connection failed.'
     },
     keys: {
       loading: 'Loading API keys and credentials...',
       failedLoad: 'API keys failed to load',
-      empty: 'Nothing configured in this category yet.',
+      empty: 'Nothing configured in this category yet.'
     },
     mcp: {
       loading: 'Loading MCP servers...',
@@ -614,7 +637,8 @@ export const sc = defineLocale({
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
       catalogEnvRequired: 'Fill in the required values before installing.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       statusConnecting: 'Connecting…',
       statusNeedsAuth: 'Needs authentication',
       statusError: 'Error',
@@ -627,7 +651,7 @@ export const sc = defineLocale({
       unsavedConnect: 'Unsaved — save mcp.json to connect.',
       enableTool: tool => `Enable ${tool}`,
       disableTool: tool => `Disable ${tool}`,
-      noOutput: 'No output yet.',
+      noOutput: 'No output yet.'
     },
     model: {
       loading: 'Loading model configuration...',
@@ -652,42 +676,43 @@ export const sc = defineLocale({
       tasks: {
         vision: {
           label: 'Vision',
-          hint: 'Image analysis',
+          hint: 'Image analysis'
         },
         web_extract: {
           label: 'Web extract',
-          hint: 'Page summarization',
+          hint: 'Page summarization'
         },
         compression: {
           label: 'Compression',
-          hint: 'Context compaction',
+          hint: 'Context compaction'
         },
         skills_hub: {
           label: 'Skills hub',
-          hint: 'Skill search',
+          hint: 'Skill search'
         },
         approval: {
           label: 'Approval',
-          hint: 'Smart auto-approve',
+          hint: 'Smart auto-approve'
         },
         mcp: {
           label: 'MCP',
-          hint: 'MCP tool routing',
+          hint: 'MCP tool routing'
         },
         title_generation: {
           label: 'Title gen',
-          hint: 'Session titles',
+          hint: 'Session titles'
         },
         curator: {
           label: 'Curator',
-          hint: 'Skill-usage review',
-        },
-      },
+          hint: 'Skill-usage review'
+        }
+      }
     },
     providers: {
       connectAccount: 'Connect an account',
       haveApiKey: 'Have an API key instead?',
-      intro: 'Sign in with a subscription — no API key to copy. OpenAmer runs the browser sign-in for you, right here in the app.',
+      intro:
+        'Sign in with a subscription — no API key to copy. OpenAmer runs the browser sign-in for you, right here in the app.',
       connected: 'Connected',
       collapse: 'Collapse',
       connectAnother: 'Connect another provider',
@@ -697,7 +722,8 @@ export const sc = defineLocale({
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedTitle: 'Account removed',
       removedMessage: provider => `${provider} was removed.`,
@@ -707,14 +733,15 @@ export const sc = defineLocale({
       noKeysMatch: 'No providers match your search.',
       localEndpoint: {
         title: 'Local / custom endpoint',
-        description: 'Point OpenAmer at any OpenAI-compatible endpoint (Zyphra, vLLM, llama.cpp, Ollama, etc).',
+        description: 'Point OpenAmer at any OpenAI-compatible endpoint (Zyphra, vLLM, llama.cpp, Ollama, etc).'
       },
-      loading: 'Loading providers...',
+      loading: 'Loading providers...'
     },
     sessions: {
       loading: 'Loading archived sessions…',
       archivedTitle: 'Archived sessions',
-      archivedIntro: 'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
+      archivedIntro:
+        'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
       emptyArchivedTitle: 'Nothing archived',
       emptyArchivedDesc: 'Archive a chat to hide it here.',
       unarchive: 'Unarchive',
@@ -723,12 +750,14 @@ export const sc = defineLocale({
       restored: 'Restored',
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
       autoArchiveTitle: 'Auto-archive stale chats',
-      autoArchiveDesc: "Automatically archive chats you haven't touched in a while. Pinned chats are never archived, and nothing is deleted — archived chats just move here.",
+      autoArchiveDesc:
+        "Automatically archive chats you haven't touched in a while. Pinned chats are never archived, and nothing is deleted — archived chats just move here.",
       autoArchiveDaysLabel: 'Archive after',
       autoArchiveDaysUnit: 'days of inactivity',
       autoArchiveFailed: 'Could not update auto-archive',
       defaultDirTitle: 'Default project directory',
-      defaultDirDesc: 'New sessions start in this folder unless you pick another. Leave it unset to use your home directory.',
+      defaultDirDesc:
+        'New sessions start in this folder unless you pick another. Leave it unset to use your home directory.',
       defaultDirUpdated: 'Default project directory updated — start a new chat (Ctrl/⌘+N) for it to take effect',
       defaultsTo: label => `Defaults to ${label}.`,
       change: 'Change',
@@ -739,8 +768,8 @@ export const sc = defineLocale({
       unarchiveFailed: 'Unarchive failed',
       deleteFailed: 'Delete failed',
       updateDirFailed: 'Could not update default directory',
-      clearDirFailed: 'Could not clear default directory',
-    },
+      clearDirFailed: 'Could not clear default directory'
+    }
   },
   commandCenter: {
     generatePet: {
@@ -770,19 +799,19 @@ export const sc = defineLocale({
       slowProviderHint: 'Pòet pigliar unos minotos',
       remix: 'Cambia sa iomada',
       remixConfirmTitle: 'Cambias sa custa iomada?',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     installTheme: {
       title: 'Installa su tema…',
       pageTitle: 'Installa su tema',
       placeholder: 'Cherca in su VS Code Marketplace...',
-      loading: 'Ch\'estazi consultando su Marketplace...',
+      loading: "Ch'estazi consultando su Marketplace...",
       error: 'No fintrasede a su Marketplace.',
       empty: 'Non hay temas coincidentes.',
       install: 'Installa',
       installing: 'Installande...',
       installed: 'Installadu',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Campos de configurazione',
     mcpServers: 'Servidors MCP',
@@ -791,49 +820,49 @@ export const sc = defineLocale({
       maintenance: 'Mantenimentu',
       sessions: 'Sessionis',
       system: 'Sistema',
-      usage: 'Utilizu',
+      usage: 'Utilizu'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostica, copies di segurtatza, curadore e datos de memoria',
       sessions: 'Cherca e gesti sessionis',
       system: 'Estadu, registus e aziones de sistema',
-      usage: 'Attivitade de tokens, costus e cumpetzencias in su cursu de su tempus',
+      usage: 'Attivitade de tokens, costus e cumpetzencias in su cursu de su tempus'
     },
     nav: {
       newChat: {
         title: 'Sessione nouva',
-        detail: 'Inizia una sessione nouva',
+        detail: 'Inizia una sessione nouva'
       },
       settings: {
         title: 'Configurazione',
-        detail: 'Configura l\'aplicazione desktop OpenAmer',
+        detail: "Configura l'aplicazione desktop OpenAmer"
       },
       skills: {
         title: 'Capacidades',
-        detail: 'Cumpetzencias, utensilios e servidors MCP',
+        detail: 'Cumpetzencias, utensilios e servidors MCP'
       },
       messaging: {
         title: 'Messageria',
-        detail: 'Configura Telegram, Slack, Discord e àutu',
+        detail: 'Configura Telegram, Slack, Discord e àutu'
       },
       artifacts: {
         title: 'Artefacts',
-        detail: 'Navega in sos resultantis generadas',
-      },
+        detail: 'Navega in sos resultantis generadas'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Pannellu de sessionis',
-        detail: 'Cherca, affighe e gesti sessionis',
+        detail: 'Cherca, affighe e gesti sessionis'
       },
       system: {
         title: 'Pannellu de sistema',
-        detail: 'Estadu de su gateway, registus, reinitzializazione e actualizazione',
+        detail: 'Estadu de su gateway, registus, reinitzializazione e actualizazione'
       },
       usage: {
-        title: 'Pannellu de s\'impreu',
-        detail: 'Atividade de token, costu e abilidades',
-      },
+        title: "Pannellu de s'impreu",
+        detail: 'Atividade de token, costu e abilidades'
+      }
     },
     branches: 'Rames',
     commands: 'Comandos',
@@ -855,7 +884,7 @@ export const sc = defineLocale({
       generatedTag: 'Generadas',
       adoptFailed: 'No si podet adottare custa mascotida.',
       toggleFailed: 'No si podet activare o disactivare sa mascotida.',
-      noneAvailable: 'Non d sunt mascotidas disponibles —前回の彼は、新しい生成~~~~~~~~',
+      noneAvailable: 'Non d sunt mascotidas disponibles —前回の彼は、新しい生成~~~~~~~~'
     },
     goToSession: 'Bae a sa sessione',
     providerNavigate: 'Navega',
@@ -876,24 +905,24 @@ export const sc = defineLocale({
     actionRunning: 'in cursu',
     actionDone: 'fatu',
     actionFailed: 'faddidu',
-    actionStartedWaiting: 'Atzione aviada, abetende s\'istadu...',
-    loadingStatus: 'Carrighende s\'istadu...',
+    actionStartedWaiting: "Atzione aviada, abetende s'istadu...",
+    loadingStatus: "Carrighende s'istadu...",
     recentLogs: 'Registros reghentes',
     noLogs: 'Galu non bi sunt registros carrigados.',
     statSessions: 'Sessiones',
     statApiCalls: 'Ciamadas API',
     statTokens: 'Token de intrada/essida',
     statCost: 'Costu stimadu',
-    loadingUsage: 'Carrighende s\'impreu...',
+    loadingUsage: "Carrighende s'impreu...",
     retry: 'Torra a proare',
     dailyTokens: 'Token diàrios',
     input: 'intrada',
     output: 'essida',
     noDailyActivity: 'Nudda atividade diària.',
     topModels: 'Modellos printzipales',
-    noModelUsage: 'Galu non b\'est impreu de modellos.',
+    noModelUsage: "Galu non b'est impreu de modellos.",
     topSkills: 'Abilidades printzipales',
-    noSkillActivity: 'Galu non b\'est atividade de abilidades.',
+    noSkillActivity: "Galu non b'est atividade de abilidades.",
     logFile: 'Archivu de registru',
     close: 'Close command center',
     paletteTitle: 'Command palette',
@@ -950,18 +979,21 @@ export const sc = defineLocale({
       actionStarted: name => `${name} started — tailing log...`,
       actionFailed: name => `${name} failed to start`,
       running: 'Running...',
-      viewLog: 'Action log',
-    },
+      viewLog: 'Action log'
+    }
   },
   cron: {
     failedSave: 'Fintu a salvare su cron job',
     editTitle: 'Modifica su cron job',
     createTitle: 'Cron job nou',
-    editDesc: 'Actualiza su pianu, su prompt o sa destinatzione de consegna. I chbiosmentos si aplicant a s\'urridu esecutzione.',
-    createDesc: 'Pianifica un prompt pro esse esecutadu automaticamente. Usa sa sintassi cron o una frase naturale comente "cada 15 minutos".',
+    editDesc:
+      "Actualiza su pianu, su prompt o sa destinatzione de consegna. I chbiosmentos si aplicant a s'urridu esecutzione.",
+    createDesc:
+      'Pianifica un prompt pro esse esecutadu automaticamente. Usa sa sintassi cron o una frase naturale comente "cada 15 minutos".',
     nameLabel: 'Nome',
     namePlaceholder: 'Informe de sa mattina',
-    promptPlaceholder: 'Fazi unu riassuntu de is meus thread de Slack non letos e imbia mi per email is 5 principals...',
+    promptPlaceholder:
+      'Fazi unu riassuntu de is meus thread de Slack non letos e imbia mi per email is 5 principals...',
     frequencyLabel: 'Frequenza',
     deliverLabel: 'Consigna a',
     deliverNeedsHomeChannel: 'defini primu unu canale domesticu',
@@ -979,7 +1011,7 @@ export const sc = defineLocale({
     createAction: 'Crea un cron',
     tabs: {
       blueprints: 'Schemi',
-      jobs: 'Trabajos',
+      jobs: 'Trabajos'
     },
     blueprints: {
       tab: 'Schemi',
@@ -993,7 +1025,7 @@ export const sc = defineLocale({
       loading: 'Carricamentu de is schemi...',
       failedLoad: 'Fintu a caricare is schemi',
       emptyTitle: 'Nissun schema dispunibile',
-      emptyDesc: 'Nissun schema de automatismu est dispunibile in custu backend.',
+      emptyDesc: 'Nissun schema de automatismu est dispunibile in custu backend.'
     },
     failedDelete: 'Impossibilu de eliminare su cron job',
     promptLabel: 'Richiesta',
@@ -1009,14 +1041,14 @@ export const sc = defineLocale({
       paused: 'paused',
       disabled: 'disabled',
       error: 'error',
-      completed: 'completed',
+      completed: 'completed'
     },
     deliveryLabels: {
       local: 'This desktop',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Email',
+      email: 'Email'
     },
     scheduleLabels: {
       daily: 'Daily',
@@ -1025,7 +1057,7 @@ export const sc = defineLocale({
       monthly: 'Monthly',
       hourly: 'Hourly',
       'every-15-minutes': 'Every 15 minutes',
-      custom: 'Custom',
+      custom: 'Custom'
     },
     scheduleHints: {
       daily: 'Every day at 9:00 AM',
@@ -1034,7 +1066,7 @@ export const sc = defineLocale({
       monthly: 'The first day of each month at 9:00 AM',
       hourly: 'At the top of every hour',
       'every-15-minutes': 'Every 15 minutes',
-      custom: 'Cron syntax or natural language',
+      custom: 'Cron syntax or natural language'
     },
     days: {
       '0': 'Sunday',
@@ -1044,7 +1076,7 @@ export const sc = defineLocale({
       '4': 'Thursday',
       '5': 'Friday',
       '6': 'Saturday',
-      '7': 'Sunday',
+      '7': 'Sunday'
     },
     dayFallback: value => `day ${value}`,
     everyDayAt: time => `Every day at ${time}`,
@@ -1054,7 +1086,8 @@ export const sc = defineLocale({
     topOfHour: 'At the top of every hour',
     everyHourAt: minute => `Every hour at :${minute}`,
     newCron: 'New cron',
-    emptyDescNew: 'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
+    emptyDescNew:
+      'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
     emptyDescSearch: 'Try a broader search query.',
     emptyTitleNew: 'No scheduled jobs yet',
     emptyTitleSearch: 'No matches',
@@ -1085,7 +1118,7 @@ export const sc = defineLocale({
     updated: 'Cron updated',
     failedLoad: 'Failed to load cron jobs',
     failedUpdate: 'Failed to update cron job',
-    failedTrigger: 'Failed to trigger cron job',
+    failedTrigger: 'Failed to trigger cron job'
   },
   artifacts: {
     search: 'Cherca artifacts...',
@@ -1119,7 +1152,7 @@ export const sc = defineLocale({
     copyUrl: 'Copia URL',
     copyPath: 'Copia percorsu',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   composer: {
     queueStuckTitle: 'Messagiu in coda inviatu',
@@ -1148,18 +1181,18 @@ export const sc = defineLocale({
       codeReview: {
         label: 'Revisione de codice',
         description: 'Controlla su cambiamentu atuale pro regressions, casus limite omissos e testes mancantes.',
-        text: 'Revisa custu pro bugs, regressions e testes mancantes.',
+        text: 'Revisa custu pro bugs, regressions e testes mancantes.'
       },
       implementationPlan: {
         label: 'Planu de implementazione',
         description: 'Disegna unu appruzzamentu prima de toccare codice, pro mantèere su diff concentradu.',
-        text: 'Fatzi un planu de implementazione concisu prima de mudare codice.',
+        text: 'Fatzi un planu de implementazione concisu prima de mudare codice.'
       },
       explainThis: {
         label: 'Explica custu',
         description: 'Explica como funziona su codice seletzionadu eLiga a sos archivios clave.',
-        text: 'Explica como funziona custu e indicami sos archivios clave.',
-      },
+        text: 'Explica como funziona custu e indicami sos archivios clave.'
+      }
     },
     transcribingDictation: 'Trascritzione de sa dettadu',
     voiceDictation: 'Dettadu vocale',
@@ -1178,7 +1211,7 @@ export const sc = defineLocale({
       '/resume': 'arratza una sessione precedente',
       '/details': 'controla su livellu de detall de sa transcript',
       '/copy': 'copia sa seletzione o sa ùrtima messu de s’assistent',
-      '/quit': 'essi de OpenAmer',
+      '/quit': 'essi de OpenAmer'
     },
     hotkeyDescs: {
       'composer.mention': 'archivi, cartellas, URL e Git de referentzia',
@@ -1188,7 +1221,7 @@ export const sc = defineLocale({
       'composer.sendQueued': 'invia su prossimu turnu in coda',
       'keybinds.openPanel': 'toți sos atajos de tastu',
       'composer.cancel': 'serra su popover · annulla sa esecutione',
-      'composer.history': 'alterna popover / istoricu',
+      'composer.history': 'alterna popover / istoricu'
     },
     attachUrlTitle: 'Attacca unu URL',
     attachUrlDesc: 'OpenAmer ateyeret sa pàgina e l’includerà comu contestu pro custu turnu.',
@@ -1217,7 +1250,7 @@ export const sc = defineLocale({
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -1226,7 +1259,7 @@ export const sc = defineLocale({
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     startVoice: 'Start voice conversation',
     queueMessage: 'Queue message',
@@ -1252,7 +1285,7 @@ export const sc = defineLocale({
     couldNotPreview: label => `Could not preview ${label}`,
     removeAttachment: label => `Remove ${label}`,
     themeTryPre: 'Try ',
-    url: 'URL…',
+    url: 'URL…'
   },
   statusStack: {
     agents: 'Agentes',
@@ -1296,21 +1329,22 @@ export const sc = defineLocale({
       openPr: 'Open PR',
       ghMissing: 'Install the GitHub CLI (gh) and sign in to open PRs',
       agentShip: 'Ask OpenAmer to open PR',
-      agentShipPrompt: 'Review the current changes, commit them with a clear conventional-commit message, push the branch, and open a pull request.',
+      agentShipPrompt:
+        'Review the current changes, commit them with a clear conventional-commit message, push the branch, and open a pull request.',
       newBranch: 'New branch',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
       switchFailed: branch => `Could not switch to ${branch}`,
-      worktrees: 'Worktrees',
+      worktrees: 'Worktrees'
     },
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   shell: {
     gatewayMenu: {
-      checkingInference: 'Verificà s\'inferenzia',
+      checkingInference: "Verificà s'inferenzia",
       disconnected: 'Disconnessu',
       openSystem: 'Aperi su pannellu de su sistema',
       recentActivity: 'Atividità recente',
@@ -1322,17 +1356,17 @@ export const sc = defineLocale({
       offline: 'Offline',
       inferenceReady: 'Inference ready',
       inferenceNotReady: 'Inference not ready',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'Modu de approvazione',
       manual: 'Manuale',
       manualDescription: 'Dimanda in antis de sos actes chi pigheint approvazione',
       smart: 'Intelligente',
-      smartDescription: 'Valuta automaticamente sos actes e dimanda s\'essere necessariu',
-      offDescription: 'Esegui senza messaxes d\'approvazione',
+      smartDescription: "Valuta automaticamente sos actes e dimanda s'essere necessariu",
+      offDescription: "Esegui senza messaxes d'approvazione",
       ariaLabel: mode => `Approval mode: ${mode}`,
-      off: 'Off',
+      off: 'Off'
     },
     statusbar: {
       unknown: 'Isconnessu',
@@ -1350,7 +1384,7 @@ export const sc = defineLocale({
       gatewayConnecting: 'Connectà',
       gatewayOffline: 'Fora de linea',
       gatewayRestarting: 'Ripristiz…',
-      gatewayTitle: 'Statu de su gateway d\'inferenzia OpenAmer',
+      gatewayTitle: "Statu de su gateway d'inferenzia OpenAmer",
       agents: 'Agentes',
       closeAgents: 'Serra sos agentes',
       openAgents: 'Aperi sos agentes',
@@ -1388,13 +1422,13 @@ export const sc = defineLocale({
           skills: 'Skills',
           subagent_definitions: 'Subagent definitions',
           system_prompt: 'System prompt',
-          tool_definitions: 'Tool definitions',
+          tool_definitions: 'Tool definitions'
         },
         empty: 'No context data yet',
         loading: 'Loading breakdown…',
         percentFull: percent => `${percent}% Full`,
         title: 'Context Usage',
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Open context usage breakdown',
       session: 'Session',
@@ -1407,7 +1441,7 @@ export const sc = defineLocale({
       openModelPicker: 'Open model picker',
       modelPinned: 'pinned by you; new chats use this instead of the Settings default',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
     },
     windowControls: 'Window controls',
     paneControls: 'Pane controls',
@@ -1417,7 +1451,7 @@ export const sc = defineLocale({
       noModels: 'No models found',
       editModels: 'Edit Models…',
       refreshModels: 'Refresh Models',
-      fast: 'Fast',
+      fast: 'Fast'
     },
     modelOptions: {
       noOptions: 'No options for this model',
@@ -1433,8 +1467,8 @@ export const sc = defineLocale({
       max: 'Max',
       ultra: 'Ultra',
       updateFailed: 'Model option update failed',
-      fastFailed: 'Fast mode update failed',
-    },
+      fastFailed: 'Fast mode update failed'
+    }
   },
   rightSidebar: {
     emptyTitle: 'Vidu',
@@ -1470,7 +1504,7 @@ export const sc = defineLocale({
     openFolder: 'Open folder',
     refreshTree: 'Refresh tree',
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'Antividu',
@@ -1499,68 +1533,72 @@ export const sc = defineLocale({
     editing: 'In modificatione',
     unsavedChanges: 'Modificationes non sarvadas',
     diskChangedTitle: 'Su file est cangiadu in su discu',
-    diskChangedBody: 'Custu file est cangiadu desde chi l’has apertu. Substituescilu cun sa tua versione, odroppa is tue modificationes e torra a caricare?',
+    diskChangedBody:
+      'Custu file est cangiadu desde chi l’has apertu. Substituescilu cun sa tua versione, odroppa is tue modificationes e torra a caricare?',
     overwrite: 'Subraiscriere',
     discardReload: 'Iscarta & ricàrriga',
     console: {
-      deselect: 'Desseleziona s\'elementu',
-      select: 'Selezziona s\'elementu',
-      copyFailed: 'Non si podet copiare s\'output de sa consola',
+      deselect: "Desseleziona s'elementu",
+      select: "Selezziona s'elementu",
+      copyFailed: "Non si podet copiare s'output de sa consola",
       copyEntry: 'Còpia custu elementu',
       sendEntry: 'Invia custu elementu a su chat',
-      resize: 'Ridimensiona sa consola de s\'antiprima',
-      title: 'Consola de s\'antiprima',
+      resize: "Ridimensiona sa consola de s'antiprima",
+      title: "Consola de s'antiprima",
       sendToChat: 'Invia a su chat',
       copySelected: 'Còpia su selezionadu in is appuntos',
       copyAll: 'Còpia totu in is appuntos',
       copy: 'Còpia',
       clear: 'Isbùida',
       empty: 'Ancora perunu messàgiu in sa consola.',
-      promptHeader: 'Consola de s\'antiprima:',
+      promptHeader: "Consola de s'antiprima:",
       sentTitle: 'Inviadu a su chat',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
-      appFailedToBoot: 'S\'app de s\'antiprima non at pòtidu aviare.',
+      appFailedToBoot: "S'app de s'antiprima non at pòtidu aviare.",
       serverNotFound: 'Serbidore non agatadu',
-      failedToLoad: 'S\'antiprima non at pòtidu carrigare',
+      failedToLoad: "S'antiprima non at pòtidu carrigare",
       tryAgain: 'Torra a proare',
       restarting: 'OpenAmer est torrende a aviare...',
       askRestart: 'Pedi a OpenAmer de torrare a aviare su serbidore',
-      restartingTitle: 'Torrende a aviare su serbidore de s\'antiprima',
-      restartingMessage: 'OpenAmer est traballende in segundu pianu. Guarda sa consola de s\'antiprima pro su progressu.',
+      restartingTitle: "Torrende a aviare su serbidore de s'antiprima",
+      restartingMessage:
+        "OpenAmer est traballende in segundu pianu. Guarda sa consola de s'antiprima pro su progressu.",
       restartFailed: 'Su torrare a aviare su serbidore est fallidu',
-      hideConsole: 'Cua sa consola de s\'antiprima',
-      showConsole: 'Mustra sa consola de s\'antiprima',
-      hideDevTools: 'Cua is DevTools de s\'antiprima',
-      openDevTools: 'Aberi is DevTools de s\'antiprima',
+      hideConsole: "Cua sa consola de s'antiprima",
+      showConsole: "Mustra sa consola de s'antiprima",
+      hideDevTools: "Cua is DevTools de s'antiprima",
+      openDevTools: "Aberi is DevTools de s'antiprima",
       unknownError: 'Errore disconnotu',
-      restartedTitle: 'Serbidore de s\'antiprima torradu a aviare',
-      reloadingNow: 'Torrende a carrigare s\'antiprima como.',
+      restartedTitle: "Serbidore de s'antiprima torradu a aviare",
+      reloadingNow: "Torrende a carrigare s'antiprima como.",
       lookingRestart: taskId => `OpenAmer is looking for a preview server to restart (${taskId})`,
       startRestartFailed: message => `Could not start server restart: ${message}`,
       finishedRestarting: message => `OpenAmer finished restarting the preview server${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Server restart failed: ${message}`,
       restartFailedTitle: 'Preview restart failed',
       restartFailedMessage: 'OpenAmer could not restart the server.',
-      stillWorking: 'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
+      stillWorking:
+        'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
       workspaceReloading: 'Workspace changed, reloading preview',
       fileChanged: url => `File changed, reloading preview: ${url}`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
-      moduleMimeDescription: 'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
+      moduleMimeDescription:
+        'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'The preview page could not be reached.',
       openTarget: url => `Open ${url}`,
-      fallbackTitle: 'Preview',
+      fallbackTitle: 'Preview'
     },
     closeTab: label => `Close ${label}`,
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   assistant: {
     tool: {
@@ -1568,113 +1606,113 @@ export const sc = defineLocale({
         session_search_recall: {
           done: 'Cronologia de sesiones chirchadas',
           pending: 'Chirchendu cronologia de sesiones',
-          pendingAction: 'Chirchendu',
+          pendingAction: 'Chirchendu'
         },
         terminal: {
           done: 'Comandu esjestidu',
           pending: 'Comandu in execuzzione',
-          pendingAction: 'In execuzzione',
+          pendingAction: 'In execuzzione'
         },
         todo: {
           done: 'Furas atualizadas',
           pending: 'Actualizende furas',
-          pendingAction: 'Actualizende',
+          pendingAction: 'Actualizende'
         },
         vision_analyze: {
           done: 'Immagine analizzada',
           pending: 'Analizende immagine',
-          pendingAction: 'Analizende',
+          pendingAction: 'Analizende'
         },
         web_extract: {
           done: 'Pagu web leghida',
           pending: 'Leghende pagu web',
-          pendingAction: 'Leghende',
+          pendingAction: 'Leghende'
         },
         web_search: {
           done: 'Web chirchada',
           pending: 'Chirchendu in su web',
-          pendingAction: 'Chirchendu',
+          pendingAction: 'Chirchendu'
         },
         write_file: {
           done: 'File modificadu',
           pending: 'Modificande file',
-          pendingAction: 'Modificande',
+          pendingAction: 'Modificande'
         },
         browser_fill: {
           pendingAction: 'Impletamentu',
           done: 'Filled form field',
-          pending: 'Filling form field',
+          pending: 'Filling form field'
         },
         browser_navigate: {
           done: 'Pagina abierta',
           pending: 'Apertura de pagina',
-          pendingAction: 'Apertura',
+          pendingAction: 'Apertura'
         },
         browser_snapshot: {
           done: 'Snapshot de pagina capturadu',
           pending: 'Capturandu snapshot de pagina',
-          pendingAction: 'Capturandu',
+          pendingAction: 'Capturandu'
         },
         browser_take_screenshot: {
           done: 'Screenshot capturadu',
           pending: 'Capturandu screenshot',
-          pendingAction: 'Capturandu',
+          pendingAction: 'Capturandu'
         },
         browser_type: {
           done: 'Digitadu in pagina',
           pending: 'Digitande in pagina',
-          pendingAction: 'Digitandu',
+          pendingAction: 'Digitandu'
         },
         clarify: {
           done: 'Domandà fintzada',
           pending: 'Fintendu sa domandà',
-          pendingAction: 'Fintendu',
+          pendingAction: 'Fintendu'
         },
         cronjob: {
           done: 'Travagliu cron',
           pending: 'Programandu travagliu cron',
-          pendingAction: 'Programandu',
+          pendingAction: 'Programandu'
         },
         edit_file: {
           done: 'File editadu',
           pending: 'Editande file',
-          pendingAction: 'Editandu',
+          pendingAction: 'Editandu'
         },
         execute_code: {
           done: 'Codici esecutadu',
           pending: 'Scriptere',
-          pendingAction: 'Scriptere',
+          pendingAction: 'Scriptere'
         },
         image_generate: {
           done: 'Immagine generadu',
           pending: 'Generande immagine',
-          pendingAction: 'Generandu',
+          pendingAction: 'Generandu'
         },
         list_files: {
           done: 'File listados',
           pending: 'Listando file',
-          pendingAction: 'Listandu',
+          pendingAction: 'Listandu'
         },
         patch: {
           done: 'File patchadu',
           pending: 'Patchande file',
-          pendingAction: 'Patchandu',
+          pendingAction: 'Patchandu'
         },
         read_file: {
           done: 'File letidu',
           pending: 'Letende file',
-          pendingAction: 'Letende',
+          pendingAction: 'Letende'
         },
         search_files: {
           done: 'File cercados',
           pending: 'Cercando file',
-          pendingAction: 'Cercande',
+          pendingAction: 'Cercande'
         },
         browser_click: {
           done: 'Clicked page element',
           pending: 'Clicking page element',
-          pendingAction: 'Clicking',
-        },
+          pendingAction: 'Clicking'
+        }
       },
       code: 'Code',
       copyCode: 'Copy code',
@@ -1709,11 +1747,11 @@ export const sc = defineLocale({
         ran: 'Ran',
         running: 'Running',
         ranCode: 'Ran code',
-        runningCode: 'Scripting',
+        runningCode: 'Scripting'
       },
       prefixes: {
         browser: 'Browser',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -1721,8 +1759,8 @@ export const sc = defineLocale({
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
     },
     thread: {
       loadingSession: 'Carrighende sa sessione',
@@ -1733,9 +1771,9 @@ export const sc = defineLocale({
       refresh: 'Annoa',
       moreActions: 'Prus atziones',
       branchNewChat: 'Ramu in tzata noa',
-      dismissError: 'Iscarta s\'errore',
+      dismissError: "Iscarta s'errore",
       readAloudFailed: 'Lèghere in boghe faddidu',
-      preparingAudio: 'Apprestende s\'àudiu...',
+      preparingAudio: "Apprestende s'àudiu...",
       stopReading: 'Firma sa leghidura',
       readAloud: 'Lèghe in boghe',
       editMessage: 'Modìfica su messàgiu',
@@ -1746,21 +1784,23 @@ export const sc = defineLocale({
       restoreCheckpoint: 'Riprìstina su puntu de controllu',
       restoreFromHere: 'Riprìstina su puntu de controllu — torra a esecutare da custu invitu',
       restoreTitle: 'Riprìstina a custu puntu de controllu?',
-      restoreBody: 'Totu su chi sighit custu invitu est bogadu dae sa conversatzione, e s\'invitu torrat a esecutare da inoghe.',
+      restoreBody:
+        "Totu su chi sighit custu invitu est bogadu dae sa conversatzione, e s'invitu torrat a esecutare da inoghe.",
       restoreConfirm: 'Riprìstina & torra a esecutare',
       restoreNext: 'Riprìstina su puntu de controllu imbeniente',
       goForward: 'Bae in antis',
       sendEdited: 'Imbia su messàgiu modificadu',
       attachingFile: 'Allighende...',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
-      yesterday: time => `Yesterday, ${time}`,
+      yesterday: time => `Yesterday, ${time}`
     },
     approval: {
       gatewayDisconnected: 'Sa porta de intrada de OpenAmer no est collegada',
-      sendFailed: 'No s\'est pòtidu imbiare sa risposta de aprobatzione',
+      sendFailed: "No s'est pòtidu imbiare sa risposta de aprobatzione",
       run: 'Esecuta',
       command: 'Cumandu',
       moreOptions: 'Prus opsiones de aprobatzione',
@@ -1770,7 +1810,8 @@ export const sc = defineLocale({
       reject: 'Refuda',
       alwaysTitle: 'Permite semper custu cumandu?',
       alwaysAllow: 'Permite semper',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
       notReady: 'Sa rechesta de crarimentu no est galu pronta',
@@ -1784,19 +1825,20 @@ export const sc = defineLocale({
       continueLabel: 'Continue',
       lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
       lateAnswerTip: 'Draft this answer as a follow-up message',
-      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.',
-    },
+      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.'
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer gateway non est connectadu',
     sudoSendFailed: 'No si potet inviare sa password sudo',
     secretSendFailed: 'No si potet inviare su segretu',
     sudoTitle: 'Password de amministratore',
-    sudoDesc: 'OpenAmer pighet sa password sudo tuo pro essecutare unu comandu privilegiau. Inviat sulu a tuu agent local.',
+    sudoDesc:
+      'OpenAmer pighet sa password sudo tuo pro essecutare unu comandu privilegiau. Inviat sulu a tuu agent local.',
     sudoPlaceholder: 'Password sudo',
     secretTitle: 'Segretu necessariu',
     secretDesc: 'OpenAmer pighet una credenziale pro continuare.',
-    secretPlaceholder: 'Valor de su segretu',
+    secretPlaceholder: 'Valor de su segretu'
   },
   desktop: {
     audioReadFailed: 'No si potet leghere s’audio registratu',
@@ -1808,12 +1850,12 @@ export const sc = defineLocale({
     desktopCommands: 'Comandos de desktop',
     yoloArmed: 'YOLO prontu pro custu chat',
     yoloOff: 'YOLO disactivadu',
-    downloadImage: 'Iscàrriga s\'immàgine',
-    savingImage: 'Sarvende s\'immàgine',
-    imagePreviewFailed: 'Anteprima de s\'immàgine fallida',
+    downloadImage: "Iscàrriga s'immàgine",
+    savingImage: "Sarvende s'immàgine",
+    imagePreviewFailed: "Anteprima de s'immàgine fallida",
     imageAttach: 'Allegà immàgine',
-    imageWriteFailed: 'No si podet iscriere s\'immàgine in discu.',
-    imageAttachFailed: 'Allegada de s\'immàgine fallida',
+    imageWriteFailed: "No si podet iscriere s'immàgine in discu.",
+    imageAttachFailed: "Allegada de s'immàgine fallida",
     attachImages: 'Allegà immàgines',
     clipboard: 'Appuntos',
     noClipboardImage: 'Nissuna immàgine in sos appuntos',
@@ -1824,14 +1866,15 @@ export const sc = defineLocale({
       timedOut: 'Tempus iscadu a isetare su gateway. `openamer gateway` est in cursu?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     skillCommandsAvailable: count => `${count} skill commands available.`,
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Could not toggle YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     unknownProfile: 'Unknown profile',
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
@@ -1842,7 +1885,8 @@ export const sc = defineLocale({
     editFailed: 'Edit failed',
     resumeFailed: 'Resume failed',
     resumeStrandedTitle: "Couldn't load this session",
-    resumeStrandedBody: 'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
+    resumeStrandedBody:
+      'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
     resumeRetry: 'Retry',
     nothingToBranch: 'Nothing to branch',
     branchNeedsChat: 'Start or resume a chat before branching.',
@@ -1865,21 +1909,22 @@ export const sc = defineLocale({
     restartToUseSaveImage: 'Restart OpenAmer Desktop to use Save Image.',
     restartToSaveImages: 'Restart OpenAmer Desktop to save images',
     imageDownloadFailed: 'Image download failed',
-    openImage: 'Open image',
+    openImage: 'Open image'
   },
   skills: {
     archive: 'Archìvia',
     skillArchivedTitle: 'Abilidade archiviada',
     skillArchivedMessage: 'Restaurabile cun openamer curator restore.',
     hub: {
-      searchPlaceholder: 'Chirca in s\'hub de abilidades',
+      searchPlaceholder: "Chirca in s'hub de abilidades",
       search: 'Chirca',
       searching: 'Chirchende...',
       connectingHubs: 'Connettende a sos hub de abilidades...',
       connectedHubs: 'Hub connettidos:',
       featured: 'Abilidades in evidèntzia',
-      landingHint: 'Chirca in s\'hub pro navigare sas abilidades installàbiles dae s\'inditu oficiale, GitHub e fontes de comunidade.',
-      noResults: 'Peruna abilidade corrispondente agatada in s\'hub.',
+      landingHint:
+        "Chirca in s'hub pro navigare sas abilidades installàbiles dae s'inditu oficiale, GitHub e fontes de comunidade.",
+      noResults: "Peruna abilidade corrispondente agatada in s'hub.",
       installed: 'Installadas',
       install: 'Installa',
       installing: 'Installende...',
@@ -1892,11 +1937,11 @@ export const sc = defineLocale({
       scanning: 'Iscansionende...',
       close: 'Serra',
       files: 'Archivos',
-      noReadme: 'Cust\'abilidade non tenet anteprima de SKILL.md.',
+      noReadme: "Cust'abilidade non tenet anteprima de SKILL.md.",
       trust: {
         builtin: 'integratu',
         trusted: 'fidu',
-        community: 'comunidade',
+        community: 'comunidade'
       },
       verdictSafe: 'Seguru',
       verdictCaution: 'Cautela',
@@ -1906,17 +1951,17 @@ export const sc = defineLocale({
       policyBlock: 'Installatzione blocada dae sa polìtica',
       noFindings: 'Perunu problema de seguridade agatadu.',
       updateStarted: 'Agiornende sas abilidades installadas...',
-      actionFailed: 'Atzione de s\'abilidade fallida',
+      actionFailed: "Atzione de s'abilidade fallida",
       actionLog: 'Registru de sas atziones',
-      loadFailed: 'Carrigamentu de s\'hub de abilidades fallidu',
-      previewFailed: 'Anteprima de s\'abilidade fallida',
+      loadFailed: "Carrigamentu de s'hub de abilidades fallidu",
+      previewFailed: "Anteprima de s'abilidade fallida",
       scanFailed: 'Iscansionamentu de seguridade fallidu',
       resultCount: (count, ms) => `${count} result${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
       uninstallStarted: name => `Uninstalling ${name}...`,
-      searchFailed: 'Hub search failed',
+      searchFailed: 'Hub search failed'
     },
     tabSkills: 'Skills',
     tabToolsets: 'Tools',
@@ -1935,7 +1980,8 @@ export const sc = defineLocale({
     noDescription: 'No description.',
     configured: 'Configured',
     needsKeys: 'Needs keys',
-    visionModelHint: 'Vision uses your auxiliary model configuration — the image-capable model is picked there, not per-provider here.',
+    visionModelHint:
+      'Vision uses your auxiliary model configuration — the image-capable model is picked there, not per-provider here.',
     visionModelLink: 'Choose vision model in Settings → Models',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} toolsets enabled`,
     configureToolset: label => `Configure ${label}`,
@@ -1961,22 +2007,24 @@ export const sc = defineLocale({
     provenance: {
       agent: 'Learned',
       bundled: 'Built-in',
-      hub: 'Hub',
+      hub: 'Hub'
     },
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
     emptyNoneAvailable: noun => `No ${noun} available yet.`,
     changesApplyNewSessions: 'Changes apply to new sessions.',
     skillUpdated: 'Skill updated',
-    edit: 'Edit',
+    edit: 'Edit'
   },
   sidebar: {
     projects: {
       copyPath: 'Còpia su caminu',
       removeFromSidebar: 'Cua dae sa barra laterale',
       createFailed: 'Non si podet creare su progetu',
-      staleBackend: 'Agiorna su backend de OpenAmer pro creare progetos — su backend tuo est prus betzu de custa aplicatzione de desktop (Impostatziones → Agiornamentos → Backend).',
-      deleteConfirm: 'Custu bogat su progetu sarvadu dae OpenAmer. Sos archivos, sos repositorios git e sos worktrees abarant intocados.',
+      staleBackend:
+        'Agiorna su backend de OpenAmer pro creare progetos — su backend tuo est prus betzu de custa aplicatzione de desktop (Impostatziones → Agiornamentos → Backend).',
+      deleteConfirm:
+        'Custu bogat su progetu sarvadu dae OpenAmer. Sos archivos, sos repositorios git e sos worktrees abarant intocados.',
       startWork: 'Worktree nou',
       newWorktreeTitle: 'Worktree nou',
       newWorktreeDesc: 'Nòmina su ramu pro custu worktree.',
@@ -1996,8 +2044,10 @@ export const sc = defineLocale({
       noBranches: 'Perunu ramu agatadu',
       removeWorktree: 'Boga su worktree',
       removeWorktreeFailed: 'Non si podet bogare su worktree (modìficas no commitidas?)',
-      removeWorktreeConfirm: 'Boga·lu dae git (cantzellat sa cartella de su worktree; su ramu abarrat), o cua·lu petzi dae sa barra laterale e lassa su worktree in su discu.',
-      removeWorktreeDirty: 'Custu worktree tenet modìficas no commitidas. Boga·lu a fortza (iscarta cussas modìficas), o cua sa carrera e lassa·lu in su discu.',
+      removeWorktreeConfirm:
+        'Boga·lu dae git (cantzellat sa cartella de su worktree; su ramu abarrat), o cua·lu petzi dae sa barra laterale e lassa su worktree in su discu.',
+      removeWorktreeDirty:
+        'Custu worktree tenet modìficas no commitidas. Boga·lu a fortza (iscarta cussas modìficas), o cua sa carrera e lassa·lu in su discu.',
       forceRemove: 'Boga a fortza',
       back: 'Totu sos progetos',
       sectionLabel: 'Projects',
@@ -2029,7 +2079,7 @@ export const sc = defineLocale({
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     loading: 'Carrighende…',
     loadMore: 'Carriga àteros',
@@ -2064,13 +2114,13 @@ export const sc = defineLocale({
       ageNow: 'now',
       ageDay: 'd',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     nav: {
       'new-session': 'Nova sesione',
       skills: 'Capacità',
       messaging: 'Messaggiu',
-      artifacts: 'Artefatos',
+      artifacts: 'Artefatos'
     },
     searchAria: 'Cerca sesiones',
     searchPlaceholder: 'Cerca sesiones…',
@@ -2100,21 +2150,24 @@ export const sc = defineLocale({
       yesterday: 'Yesterday',
       thisWeek: 'Earlier this week',
       lastWeek: 'Last week',
-      thisMonth: 'Earlier this month',
-    },
+      thisMonth: 'Earlier this month'
+    }
   },
   updates: {
     applyStatus: {
       preparing: 'Agiurnende su backend…',
       pulling: 'Backend in agiurnamentu…',
-      restarting: 'Su backend si reaviat pro carrigare s\'agiurnamentu…',
+      restarting: "Su backend si reaviat pro carrigare s'agiurnamentu…",
       notAvailable: 'Agiurnamentu non disponìbile pro custu backend.',
       failed: 'Agiurnamentu de su backend fallidu.',
-      noReturn: 'Su backend no est torradu in lìnia. S\'agiurnamentu podet non esser cumpletadu — controlla s\'host de su backend.',
+      noReturn:
+        "Su backend no est torradu in lìnia. S'agiurnamentu podet non esser cumpletadu — controlla s'host de su backend."
     },
     appErrors: {
-      updateLocked: 'Agiurnamentu interrùmpidu: un\'àtera ventana de OpenAmer o un terminale chi esecutat openamer tenet custa installatzione aberta. Serralu e torra a proare.',
-      updateFailed: 'S\'agiurnamentu no est cumpletadu. Non ti preocupes — non s\'est pèrdidu nudda. Podes torrare a proare como.',
+      updateLocked:
+        "Agiurnamentu interrùmpidu: un'àtera ventana de OpenAmer o un terminale chi esecutat openamer tenet custa installatzione aberta. Serralu e torra a proare.",
+      updateFailed:
+        "S'agiurnamentu no est cumpletadu. Non ti preocupes — non s'est pèrdidu nudda. Podes torrare a proare como."
     },
     stages: {
       idle: 'Getting ready…',
@@ -2128,7 +2181,7 @@ export const sc = defineLocale({
       done: 'Update complete',
       manual: 'Update from your terminal',
       guiSkew: 'Update the desktop app',
-      error: 'Update paused',
+      error: 'Update paused'
     },
     checking: 'Looking for updates…',
     checkFailedTitle: 'Couldn’t check for updates',
@@ -2148,19 +2201,23 @@ export const sc = defineLocale({
     maybeLater: 'Maybe later',
     moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
     manualTitle: 'Update from your terminal',
-    manualBody: 'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
+    manualBody:
+      'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
     manualPickedUp: 'OpenAmer will pick up the new version next time you launch it.',
     guiSkewTitle: 'Update the desktop app',
-    guiSkewBody: 'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
+    guiSkewBody:
+      'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
     copy: 'Copy',
     copied: 'Copied',
     done: 'Done',
-    applyingBody: 'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
-    applyingBodyBackend: 'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
+    applyingBody:
+      'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
+    applyingBodyBackend:
+      'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
     applyingClose: 'This window will close while the update runs, then OpenAmer reopens on its own.',
     errorTitle: 'Update didn’t finish',
     errorBody: 'No worries — nothing was lost. You can try again now.',
-    notNow: 'Not now',
+    notNow: 'Not now'
   },
   install: {
     stageStates: {
@@ -2168,36 +2225,41 @@ export const sc = defineLocale({
       running: 'Installende',
       succeeded: 'Fatu',
       skipped: 'Sartadu',
-      failed: 'Fallidu',
+      failed: 'Fallidu'
     },
-    oneTimeTitle: 'OpenAmer tenet bisòngiu de un\'installatzione ùnica',
+    oneTimeTitle: "OpenAmer tenet bisòngiu de un'installatzione ùnica",
     installCommand: 'Comandu de installatzione',
     copyCommand: 'Còpia comandu',
     viewDocs: 'Bìde documentos de installatzione',
-    installTo: 'S\'at a installare in',
-    retryAfterRun: 'L\'apo esecutadu -- torra a proare',
+    installTo: "S'at a installare in",
+    retryAfterRun: "L'apo esecutadu -- torra a proare",
     setupChoiceTitle: 'Cunfigura OpenAmer Desktop',
-    setupChoiceDesc: 'Connete custa aplicatzione a un gateway OpenAmer chi giai esecutas, o installa OpenAmer in locale in custu computer.',
+    setupChoiceDesc:
+      'Connete custa aplicatzione a un gateway OpenAmer chi giai esecutas, o installa OpenAmer in locale in custu computer.',
     connectExistingTitle: 'Connete a OpenAmer esistenti',
     connectExistingShort: 'Connete esistenti',
-    connectExistingDesc: 'Usa un backend remotu cun un token de sessione o cun s\'accessu dae su navigadore. Non at a comintzare perunu installu locale.',
+    connectExistingDesc:
+      "Usa un backend remotu cun un token de sessione o cun s'accessu dae su navigadore. Non at a comintzare perunu installu locale.",
     installLocalTitle: 'Installa OpenAmer in locale',
     installLocalDesc: 'Iscàrriga OpenAmer, crea su ambiente Python suo, e esecuta su backend in custu computer.',
-    localStartUnavailable: 'S\'installatzione locale no at pòtidu comintzare. Torra a aviare OpenAmer Desktop e torra a proare.',
+    localStartUnavailable:
+      "S'installatzione locale no at pòtidu comintzare. Torra a aviare OpenAmer Desktop e torra a proare.",
     remoteSetupTitle: 'Connete a OpenAmer esistenti',
-    remoteSetupDesc: 'Inserta s\'URL de su gateway tuo. OpenAmer Desktop at a detetare si tenet bisòngiu de un token o de s\'accessu dae su navigadore.',
+    remoteSetupDesc:
+      "Inserta s'URL de su gateway tuo. OpenAmer Desktop at a detetare si tenet bisòngiu de un token o de s'accessu dae su navigadore.",
     remoteUrlTitle: 'URL de su gateway',
-    remoteUrlDesc: 'Usa s\'URL base de su gateway OpenAmer, incluende https:// cando est remotu.',
+    remoteUrlDesc: "Usa s'URL base de su gateway OpenAmer, incluende https:// cando est remotu.",
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
-    probing: 'Detetende s\'autenticatzione de su gateway...',
+    probing: "Detetende s'autenticatzione de su gateway...",
     probeError: 'No fiat possìbile arribare a cussu gateway OpenAmer.',
     identityProvider: 'su frunidore de identidade tuo',
     authTitle: 'Autenticatzione',
     authSignedIn: 'Accessu dae su navigadore cumpletadu.',
     connected: 'Connetidu',
     signIn: 'Accede',
-    enterUrlFirst: 'Inserta prima un\'URL de gateway.',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    enterUrlFirst: "Inserta prima un'URL de gateway.",
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
     signInWith: provider => `Sign in with ${provider}`,
     signInIncomplete: 'The sign-in window closed before authentication completed.',
@@ -2213,8 +2275,10 @@ export const sc = defineLocale({
     failedTitle: 'Installation failed',
     settingUpTitle: 'Setting up OpenAmer Agent',
     finishingTitle: 'Finishing up',
-    failedDesc: 'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
-    activeDesc: 'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
+    failedDesc:
+      'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
+    activeDesc:
+      'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
     fetchingManifest: 'Fetching installer manifest...',
@@ -2228,31 +2292,32 @@ export const sc = defineLocale({
     transcriptSaved: 'Full transcript saved to',
     copiedOutput: 'Copied!',
     copyOutput: 'Copy output',
-    reloadRetry: 'Reload and retry',
+    reloadRetry: 'Reload and retry'
   },
   errors: {
     genericFailure: 'Carchi cosa est andada male',
-    boundaryTitle: 'Carchi cosa s\'est rùmpida in s\'interfache',
-    boundaryDesc: 'Sa vista at agatadu un\'errore imprevidu. Sas conversatziones e sas impostatziones tuas sunt seguras.',
+    boundaryTitle: "Carchi cosa s'est rùmpida in s'interfache",
+    boundaryDesc:
+      "Sa vista at agatadu un'errore imprevidu. Sas conversatziones e sas impostatziones tuas sunt seguras.",
     reloadWindow: 'Torra a carrigare sa ventana',
-    openLogs: 'Abèri sos registros',
+    openLogs: 'Abèri sos registros'
   },
   ui: {
     search: {
-      clear: 'Isbòida sa chirca',
+      clear: 'Isbòida sa chirca'
     },
     pagination: {
       label: 'paginatzione',
       previous: 'Ant.',
       previousAria: 'Bae a sa pàgina anteriore',
       next: 'Sig.',
-      nextAria: 'Bae a sa pàgina chi sighit',
+      nextAria: 'Bae a sa pàgina chi sighit'
     },
     sidebar: {
       title: 'Barra laterale',
       description: 'Amostat sa barra laterale mòbile.',
-      toggle: 'Càmbia sa barra laterale',
-    },
+      toggle: 'Càmbia sa barra laterale'
+    }
   },
   common: {
     apply: 'Apply',
@@ -2293,7 +2358,7 @@ export const sc = defineLocale({
     update: 'Update',
     tryHint: term => `Try “${term}”`,
     on: 'On',
-    off: 'Off',
+    off: 'Off'
   },
   fileMenu: {
     revealFinder: 'Reveal in Finder',
@@ -2308,7 +2373,7 @@ export const sc = defineLocale({
     renameLabel: 'New name',
     deleteTitle: name => `Delete ${name}?`,
     deleteBody: 'It will be moved to the Trash — you can restore it from there.',
-    pathCopied: 'Path copied',
+    pathCopied: 'Path copied'
   },
   boot: {
     ready: 'OpenAmer Desktop is ready',
@@ -2318,7 +2383,7 @@ export const sc = defineLocale({
       loadingSettings: 'Loading OpenAmer settings',
       loadingSessions: 'Loading recent sessions',
       startingDesktopConnection: 'Starting desktop connection',
-      startingOpenAmerDesktop: 'Starting OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Starting OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'OpenAmer background process exited.',
@@ -2327,13 +2392,15 @@ export const sc = defineLocale({
       desktopBootFailed: 'Desktop boot failed',
       gatewayConnectionLost: 'Lost connection to the gateway',
       gatewaySignInRequired: 'Gateway sign-in required',
-      ipcBridgeUnavailable: 'Desktop IPC bridge is unavailable.',
+      ipcBridgeUnavailable: 'Desktop IPC bridge is unavailable.'
     },
     failure: {
       title: "OpenAmer couldn't start",
-      description: "The background gateway didn't come up. Try one of the recovery steps below. Nothing here deletes your chats or settings.",
+      description:
+        "The background gateway didn't come up. Try one of the recovery steps below. Nothing here deletes your chats or settings.",
       remoteTitle: 'Remote gateway sign-in required',
-      remoteDescription: 'Your remote gateway session has expired. Sign in again to reconnect. Nothing here deletes your chats or settings.',
+      remoteDescription:
+        'Your remote gateway session has expired. Sign in again to reconnect. Nothing here deletes your chats or settings.',
       retry: 'Retry',
       repairInstall: 'Repair install',
       useLocalGateway: 'Use local gateway',
@@ -2341,7 +2408,8 @@ export const sc = defineLocale({
       back: 'Back',
       openLogs: 'Open logs',
       repairHint: 'Repair re-runs the installer and can take a few minutes on a fresh machine.',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
       signOutAndSignIn: 'Sign out & sign in',
       remoteFailureHint: 'Check the gateway URL and sign-in under Gateway settings, or switch to the local gateway.',
       hideRecentLogs: 'Hide recent logs',
@@ -2353,8 +2421,8 @@ export const sc = defineLocale({
       signInFailed: 'Sign-in failed',
       signInToRemoteGateway: 'Sign in to remote gateway',
       signInWithProvider: provider => `Sign in with ${provider}`,
-      identityProvider: 'your identity provider',
-    },
+      identityProvider: 'your identity provider'
+    }
   },
   notifications: {
     region: 'Notifications',
@@ -2367,7 +2435,8 @@ export const sc = defineLocale({
     copyDetail: 'Copy detail',
     copyDetailFailed: 'Could not copy notification detail',
     backendOutOfDateTitle: 'Backend out of date',
-    backendOutOfDateMessage: 'Your OpenAmer backend is older than this desktop build and may not work correctly. Update to align them.',
+    backendOutOfDateMessage:
+      'Your OpenAmer backend is older than this desktop build and may not work correctly. Update to align them.',
     installMethodUnsupportedTitle: 'Unsupported install method',
     updateOpenAmer: 'Update OpenAmer',
     updateReadyTitle: 'Update ready',
@@ -2377,11 +2446,12 @@ export const sc = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT needs ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs rejected the API key (401).',
       gatewayAuthFailed: 'Gateway authentication failed — check your API_SERVER_KEY.',
-      methodNotAllowed: 'The desktop backend rejected that request (405 Method Not Allowed). Try restarting OpenAmer Desktop.',
+      methodNotAllowed:
+        'The desktop backend rejected that request (405 Method Not Allowed). Try restarting OpenAmer Desktop.',
       microphonePermission: 'Microphone permission was denied.',
       openaiRejectedApiKey: 'OpenAI rejected the API key.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS needs VOICE_TOOLS_OPENAI_KEY or OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS needs VOICE_TOOLS_OPENAI_KEY or OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Configure speech-to-text to use voice mode.',
@@ -2400,7 +2470,7 @@ export const sc = defineLocale({
       transcriptionFailed: 'Voice transcription failed',
       transcriptionUnavailable: 'Voice transcription is not available yet.',
       tryRecordingAgain: 'Try recording again.',
-      unavailable: 'Voice unavailable',
+      unavailable: 'Voice unavailable'
     },
     native: {
       approvalTitle: 'Approval needed',
@@ -2413,11 +2483,12 @@ export const sc = defineLocale({
       turnErrorTitle: 'Turn failed',
       backgroundDoneTitle: 'Background task finished',
       backgroundFailedTitle: 'Background task failed',
-      creditsTitle: 'Credits',
-    },
+      creditsTitle: 'Credits'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
   },
   billingBlock: {
     titleOpenamer: 'Out of OpenAmer credits',
@@ -2425,7 +2496,7 @@ export const sc = defineLocale({
     fallbackMessage: 'Your account is out of credits. Add credits to keep going.',
     openBilling: 'Open billing',
     addCredits: 'Add credits',
-    dismiss: 'Dismiss',
+    dismiss: 'Dismiss'
   },
   titlebar: {
     hideSidebar: 'Hide sidebar',
@@ -2442,7 +2513,7 @@ export const sc = defineLocale({
     openStarmap: 'Open memory graph',
     openKeybinds: 'Keyboard shortcuts',
     layoutEditor: 'Layout editor',
-    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout',
+    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout'
   },
   language: {
     label: 'Language',
@@ -2451,7 +2522,7 @@ export const sc = defineLocale({
     saveError: 'Language update failed',
     switchTo: 'Switch language',
     searchPlaceholder: 'Search languages…',
-    noResults: 'No languages found',
+    noResults: 'No languages found'
   },
   starmap: {
     title: 'Memory Graph',
@@ -2468,7 +2539,8 @@ export const sc = defineLocale({
     emptyTitle: 'Nothing learned yet',
     emptyDesc: 'As OpenAmer builds skills and memories for your work, they appear here.',
     share: 'Share map',
-    shareHint: 'Copy the code to share this map, or paste one to load. It only includes the layout, not your memory or skill text.',
+    shareHint:
+      'Copy the code to share this map, or paste one to load. It only includes the layout, not your memory or skill text.',
     shareTitle: 'Import / export map',
     sharePlaceholder: 'Paste a map code…',
     copy: 'Copy map code',
@@ -2478,7 +2550,7 @@ export const sc = defineLocale({
     importEmpty: 'Paste a map code to load it.',
     importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'imported map',
-    resetToMine: 'Back to my map',
+    resetToMine: 'Back to my map'
   },
   agents: {
     close: 'Close agents',
@@ -2508,7 +2580,7 @@ export const sc = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   messaging: {
     search: 'Search messaging...',
@@ -2523,7 +2595,7 @@ export const sc = defineLocale({
       not_configured: 'Needs setup',
       pending_restart: 'Restart needed',
       retrying: 'Retrying',
-      startup_failed: 'Startup failed',
+      startup_failed: 'Startup failed'
     },
     unknown: 'Unknown',
     hintPendingRestart: 'Restart the gateway from the status bar to apply this change.',
@@ -2562,127 +2634,126 @@ export const sc = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Bot token',
         help: 'Create a bot with @BotFather, then paste the token it gives you.',
-        placeholder: 'Paste Telegram bot token',
+        placeholder: 'Paste Telegram bot token'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Allowed Telegram user IDs',
-        help: 'Recommended. Comma-separated numeric IDs from @userinfobot. Without this, anyone can DM your bot.',
+        help: 'Recommended. Comma-separated numeric IDs from @userinfobot. Without this, anyone can DM your bot.'
       },
       TELEGRAM_PROXY: {
         label: 'Proxy URL',
-        help: 'Only needed on networks where Telegram is blocked.',
+        help: 'Only needed on networks where Telegram is blocked.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Bot token',
-        help: 'Create an application in the Discord Developer Portal, add a bot, then paste its token.',
+        help: 'Create an application in the Discord Developer Portal, add a bot, then paste its token.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Allowed Discord user IDs',
-        help: 'Recommended. Comma-separated Discord user IDs.',
+        help: 'Recommended. Comma-separated Discord user IDs.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Reply style',
-        help: 'first, all, or off.',
+        help: 'first, all, or off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Allow all Discord users',
-        help: 'Development only. When true, anyone can DM the bot without an allowlist.',
+        help: 'Development only. When true, anyone can DM the bot without an allowlist.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Home channel ID',
-        help: 'Channel where the bot sends proactive messages (cron output, reminders).',
+        help: 'Channel where the bot sends proactive messages (cron output, reminders).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Home channel name',
-        help: 'Display name for the home channel in logs and status output.',
+        help: 'Display name for the home channel in logs and status output.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Allow all iMessage users',
-        help: 'When true, skip the BlueBubbles allowlist.',
+        help: 'When true, skip the BlueBubbles allowlist.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Allow all Mattermost users',
+        label: 'Allow all Mattermost users'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Home channel',
+        label: 'Home channel'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Allow all QQ users',
+        label: 'Allow all QQ users'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ home channel',
-        help: 'Default channel or group for cron delivery.',
+        help: 'Default channel or group for cron delivery.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ home channel name',
+        label: 'QQ home channel name'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack bot token',
         help: 'Use the bot token from OAuth & Permissions after installing your Slack app.',
-        placeholder: 'Paste Slack bot token',
+        placeholder: 'Paste Slack bot token'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack app token',
         help: 'Use the app-level token required for Socket Mode.',
-        placeholder: 'Paste Slack app token',
+        placeholder: 'Paste Slack app token'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Allowed Slack user IDs',
-        help: 'Recommended. Comma-separated Slack user IDs.',
+        help: 'Recommended. Comma-separated Slack user IDs.'
       },
       MATTERMOST_URL: {
         label: 'Server URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Bot token',
+        label: 'Bot token'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Allowed user IDs',
-        help: 'Recommended. Comma-separated Mattermost user IDs.',
+        help: 'Recommended. Comma-separated Mattermost user IDs.'
       },
       MATRIX_HOMESERVER: {
         label: 'Homeserver URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Access token',
+        label: 'Access token'
       },
       MATRIX_USER_ID: {
         label: 'Bot user ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Allowed Matrix user IDs',
-        help: 'Recommended. Comma-separated user IDs in @user:server format.',
+        help: 'Recommended. Comma-separated user IDs in @user:server format.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal bridge URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL of a running signal-cli REST bridge.',
+        help: 'URL of a running signal-cli REST bridge.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Phone number',
-        help: 'The number registered with your signal-cli bridge.',
+        help: 'The number registered with your signal-cli bridge.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Allowed Signal users',
-        help: 'Recommended. Comma-separated Signal identifiers.',
+        help: 'Recommended. Comma-separated Signal identifiers.'
       },
       WHATSAPP_ENABLED: {
         label: 'Enable WhatsApp bridge',
-        help: 'Set automatically by the toggle below. Leave alone unless you know you need it.',
+        help: 'Set automatically by the toggle below. Leave alone unless you know you need it.'
       },
       WHATSAPP_MODE: {
-        label: 'Bridge mode',
+        label: 'Bridge mode'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Allowed WhatsApp users',
-        help: 'Recommended. Comma-separated phone numbers or WhatsApp IDs.',
-      },
+        help: 'Recommended. Comma-separated phone numbers or WhatsApp IDs.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Search webhooks...',
@@ -2692,7 +2763,8 @@ export const sc = defineLocale({
     hint: 'Subscription changes hot-reload once the receiver is running. Disabled subscriptions reject incoming events.',
     empty: 'No webhook subscriptions yet.',
     disabledTitle: 'Webhook receiver disabled',
-    disabledBody: 'Webhooks are their own gateway platform. Enable them here to accept incoming HTTP events; chat channels are only needed when a subscription delivers to Telegram, Discord, Slack, or another channel.',
+    disabledBody:
+      'Webhooks are their own gateway platform. Enable them here to accept incoming HTTP events; chat channels are only needed when a subscription delivers to Telegram, Discord, Slack, or another channel.',
     enable: 'Enable webhooks',
     enabling: 'Enabling...',
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -2745,8 +2817,8 @@ export const sc = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'Email',
-      github_comment: 'GitHub comment',
-    },
+      github_comment: 'GitHub comment'
+    }
   },
   profiles: {
     close: 'Close profiles',
@@ -2824,7 +2896,7 @@ Leave blank to keep the ${mode} default.`,
     failedLoadSoul: 'Failed to load SOUL.md',
     failedSaveSoul: 'Failed to save SOUL.md',
     failedCreate: 'Failed to create profile',
-    failedRename: 'Failed to rename profile',
+    failedRename: 'Failed to rename profile'
   },
   onboarding: {
     headerTitle: "Let's get you setup with OpenAmer Agent",
@@ -2844,28 +2916,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'direct model API',
-        description: 'Direct access to models hosted by Fireworks AI.',
+        description: 'Direct access to models hosted by Fireworks AI.'
       },
       openrouter: {
         short: 'one key, many models',
-        description: 'Hosts hundreds of models behind a single key. Good default for new installs.',
+        description: 'Hosts hundreds of models behind a single key. Good default for new installs.'
       },
       openai: {
         short: 'GPT-class models',
-        description: 'Direct access to OpenAI models.',
+        description: 'Direct access to OpenAI models.'
       },
       gemini: {
         short: 'Gemini models',
-        description: 'Direct access to Google Gemini models.',
+        description: 'Direct access to Google Gemini models.'
       },
       xai: {
         short: 'Grok models',
-        description: 'Direct access to xAI Grok models.',
+        description: 'Direct access to xAI Grok models.'
       },
       local: {
         short: 'self-hosted',
-        description: 'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).',
-      },
+        description:
+          'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).'
+      }
     },
     backToSignIn: 'Back to sign in',
     getKey: 'Get a key',
@@ -2878,7 +2951,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'Opens your browser to sign in, then continues here',
       device_code: 'Opens a verification page in your browser — OpenAmer connects automatically',
-      external: 'Sign in once in your terminal, then come back to chat',
+      external: 'Sign in once in your terminal, then come back to chat'
     },
     startingSignIn: provider => `Starting sign-in for ${provider}...`,
     verifyingCode: provider => `Verifying your code with ${provider}...`,
@@ -2892,10 +2965,12 @@ Leave blank to keep the ${mode} default.`,
     copyAuthCode: 'Copy the authorization code and paste it below.',
     pasteAuthCode: 'Paste authorization code',
     reopenAuthPage: 'Re-open authorization page',
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
     reopenSignInPage: 'Re-open sign-in page',
     waitingAuthorize: 'Waiting for you to authorize...',
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     signedIn: "I've signed in",
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     reopenVerification: 'Re-open verification page',
@@ -2907,7 +2982,7 @@ Leave blank to keep the ${mode} default.`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
     change: 'Change',
     startChatting: 'Begin',
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'Switch model',
@@ -2923,13 +2998,13 @@ Leave blank to keep the ${mode} default.`,
     free: 'Free',
     freeTier: 'Free tier',
     priceTitle: 'Input / Output price per million tokens',
-    wasPrice: 'was',
+    wasPrice: 'was'
   },
   modelVisibility: {
     title: 'Models',
     search: 'Search models',
     noAuthenticatedProviders: 'No authenticated providers.',
-    addProvider: 'Add provider…',
+    addProvider: 'Add provider…'
   },
   zones: {
     showHeader: 'Show header',
@@ -2937,7 +3012,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Minimize',
     restore: 'Restore',
     closeRunningTitle: 'Close running tab?',
-    closeRunningBody: 'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
+    closeRunningBody:
+      'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
     closeRunningConfirm: 'Close tab',
     closeOthers: 'Close others',
     closeToRight: 'Close to the right',
@@ -2974,6 +3050,6 @@ Leave blank to keep the ${mode} default.`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
     saveApply: 'Save & apply',
     notExpressible: 'this arrangement interlocks (pinwheel) — not expressible as nested splits yet',
-    zoneCount: count => `${count} zones`,
-  },
+    zoneCount: count => `${count} zones`
+  }
 })

@@ -10,7 +10,7 @@ export const cy = defineLocale({
     apply: 'Cymhwyso',
     back: 'Yn ôl',
     save: 'Cadw',
-    saving: 'Wrthi\'n cadw…',
+    saving: "Wrthi'n cadw…",
     cancel: 'Canslo',
     change: 'Newid',
     choose: 'Dewis',
@@ -45,22 +45,22 @@ export const cy = defineLocale({
     update: 'Diweddaru',
     tryHint: term => `Try “${term}”`,
     on: 'Ymlaen',
-    off: 'I ffwrdd',
+    off: 'I ffwrdd'
   },
   fileMenu: {
     revealFinder: 'Dangos yn Finder',
     revealExplorer: 'Dangos yn File Explorer',
-    revealFileManager: 'Agor y ffolder sy\'n cynnwys',
+    revealFileManager: "Agor y ffolder sy'n cynnwys",
     revealInSidebar: 'Dangos yn y goeden ffeiliau',
-    copyPath: 'Copïo\'r llwybr',
-    copyRelativePath: 'Copïo\'r llwybr cymharol',
+    copyPath: "Copïo'r llwybr",
+    copyRelativePath: "Copïo'r llwybr cymharol",
     rename: 'Ailenwi…',
     delete: 'Dileu',
     renameTitle: 'Ailenwi',
     renameLabel: 'Enw newydd',
     deleteTitle: name => `Delete ${name}?`,
-    deleteBody: 'Bydd yn cael ei symud i\'r Bin — gallwch ei adfer oddi yno.',
-    pathCopied: 'Llwybr wedi\'i gopïo',
+    deleteBody: "Bydd yn cael ei symud i'r Bin — gallwch ei adfer oddi yno.",
+    pathCopied: "Llwybr wedi'i gopïo"
   },
   boot: {
     ready: 'Mae OpenAmer Desktop yn barod',
@@ -70,81 +70,87 @@ export const cy = defineLocale({
       loadingSettings: 'Yn llwytho gosodiadau OpenAmer',
       loadingSessions: 'Yn llwytho sesiynau diweddar',
       startingDesktopConnection: 'Yn dechrau cysylltiad desktop',
-      startingOpenAmerDesktop: 'Yn dechrau OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Yn dechrau OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Mae proses cefndir OpenAmer wedi dod i ben.',
       backgroundExitedDuringStartup: 'Mae proses cefndir OpenAmer wedi dod i ben yn ystod y cychwyn.',
       backendStopped: 'Backend wedi stopio',
       desktopBootFailed: 'Methodd cychwyn y desktop',
-      gatewayConnectionLost: 'Cyswllt i\'r porthwr wedi\'i golli',
-      gatewaySignInRequired: 'Mae angen mewngofn i\'r porthwr',
-      ipcBridgeUnavailable: 'Nid yw\'r brys IPC ar gyfer y bwrdd ymgymorth ar gael.',
+      gatewayConnectionLost: "Cyswllt i'r porthwr wedi'i golli",
+      gatewaySignInRequired: "Mae angen mewngofn i'r porthwr",
+      ipcBridgeUnavailable: "Nid yw'r brys IPC ar gyfer y bwrdd ymgymorth ar gael."
     },
     failure: {
-      title: "Ni allodd OpenAmer ddechrau",
-      description: "Ni ddeallodd y porthwr yn y cefndir. Ceisiwch un o'r camau adfer isod. Does dim yma yn dileu eich sgwrs neu osodiadau.",
-      remoteTitle: 'Mae angen mewngofn i\'r porthwr pell',
-      remoteDescription: 'Mae eich sesiwn porthwr pell wedi\'r hafodd. Mewngofnwch eto i ailddim cysyllu. Does dim yma yn dileu eich sgwrs neu osodiadau.',
+      title: 'Ni allodd OpenAmer ddechrau',
+      description:
+        "Ni ddeallodd y porthwr yn y cefndir. Ceisiwch un o'r camau adfer isod. Does dim yma yn dileu eich sgwrs neu osodiadau.",
+      remoteTitle: "Mae angen mewngofn i'r porthwr pell",
+      remoteDescription:
+        "Mae eich sesiwn porthwr pell wedi'r hafodd. Mewngofnwch eto i ailddim cysyllu. Does dim yma yn dileu eich sgwrs neu osodiadau.",
       retry: 'Ceisiwch eto',
-      repairInstall: 'Trwsio\'r gosodiad',
-      useLocalGateway: 'Defnyddio\'r porthwr lleol',
-      gatewaySettings: 'Gosodiadau\'r porthwr',
+      repairInstall: "Trwsio'r gosodiad",
+      useLocalGateway: "Defnyddio'r porthwr lleol",
+      gatewaySettings: "Gosodiadau'r porthwr",
       back: 'Yn ôl',
       openLogs: 'Agor logiau',
-      repairHint: 'Mae trwsio\'r gosodiad yn rhedi\'r gosodwr ac yn gallu cymryd ychydig o funud ar bwrdd newydd.',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      repairHint: "Mae trwsio'r gosodiad yn rhedi'r gosodwr ac yn gallu cymryd ychydig o funud ar bwrdd newydd.",
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
       signOutAndSignIn: 'Allgofnodiad a mewngofn',
-      remoteFailureHint: 'Gwirioch adres URL y porthwr a\'r mewngofn dan Gosodiadau\'r porthwr, neu newid i\'r porthwr lleol.',
+      remoteFailureHint:
+        "Gwirioch adres URL y porthwr a'r mewngofn dan Gosodiadau'r porthwr, neu newid i'r porthwr lleol.",
       hideRecentLogs: 'Cuddio logiau diweddar',
       showRecentLogs: 'Dangos logiau diweddar',
       signedInTitle: 'Wedi mewngofn',
-      signedInMessage: 'Yn ailddim i\'r porthwr pell…',
+      signedInMessage: "Yn ailddim i'r porthwr pell…",
       signInIncompleteTitle: 'Mewngofn angh incomplete',
-      signInIncompleteMessage: 'Cloesodd ffenestr mewngofn cyn i\'r dilysu orffen.',
+      signInIncompleteMessage: "Cloesodd ffenestr mewngofn cyn i'r dilysu orffen.",
       signInFailed: 'Mewngofn wedi methu',
-      signInToRemoteGateway: 'Mewngofn i\'r porthwr pell',
+      signInToRemoteGateway: "Mewngofn i'r porthwr pell",
       signInWithProvider: provider => `Sign in with ${provider}`,
-      identityProvider: 'eich darparwr enw',
-    },
+      identityProvider: 'eich darparwr enw'
+    }
   },
   notifications: {
     region: 'Hysbysiadau',
     hide: 'Cuddio',
     show: 'Dangos',
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    clearAll: 'Clirio\'r cyfan',
-    dismiss: 'Cau\'r hysbysiad',
+    clearAll: "Clirio'r cyfan",
+    dismiss: "Cau'r hysbysiad",
     details: 'Manylion',
     copyDetail: 'Copïo manylion',
     copyDetailFailed: 'Methwyd copïo manylion yr hysbysiad',
-    backendOutOfDateTitle: 'Mae\'r backend yn hen',
-    backendOutOfDateMessage: 'Mae eich backend OpenAmer yn hynach na\'r adeilad hwn o\'r bwrdd ymgymorth ac efallai ni fydd yn gweithio\'n gywir. Diweddariwch i\'w cyd-drefnu.',
+    backendOutOfDateTitle: "Mae'r backend yn hen",
+    backendOutOfDateMessage:
+      "Mae eich backend OpenAmer yn hynach na'r adeilad hwn o'r bwrdd ymgymorth ac efallai ni fydd yn gweithio'n gywir. Diweddariwch i'w cyd-drefnu.",
     installMethodUnsupportedTitle: 'dullt gosodiadau anghydngoriol',
     updateOpenAmer: 'Diweddariwch OpenAmer',
-    updateReadyTitle: 'Mae\'r diweddariad yn barod',
+    updateReadyTitle: "Mae'r diweddariad yn barod",
     updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
-    seeWhatsNew: "Gweld beth sydd newydd",
+    seeWhatsNew: 'Gweld beth sydd newydd',
     errors: {
       elevenLabsNeedsKey: 'Mae angen ELEVENLABS_API_KEY ar ElevenLabs STT.',
       elevenLabsRejectedKey: 'Gwrthododd ElevenLabs yr allwedd API (401).',
-      gatewayAuthFailed: 'Methodd dilysu\'r porth — gwiriwch eich API_SERVER_KEY.',
-      methodNotAllowed: 'Gwrthododd ôl-weinydd y bwrdd gwaith y cais hwnnw (405 Dull Heb ei Ganiatáu). Ceisiwch ailgychwyn OpenAmer Desktop.',
+      gatewayAuthFailed: "Methodd dilysu'r porth — gwiriwch eich API_SERVER_KEY.",
+      methodNotAllowed:
+        'Gwrthododd ôl-weinydd y bwrdd gwaith y cais hwnnw (405 Dull Heb ei Ganiatáu). Ceisiwch ailgychwyn OpenAmer Desktop.',
       microphonePermission: 'Gwrthodwyd caniatâd meicroffon.',
       openaiRejectedApiKey: 'Gwrthododd OpenAI yr allwedd API.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'Mae OpenAI TTS angen VOICE_TOOLS_OPENAI_KEY neu OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'Mae OpenAI TTS angen VOICE_TOOLS_OPENAI_KEY neu OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Ffurfweddwch llais-i-destun i ddefnyddio modd llais.',
       couldNotStartSession: 'Ni allwyd dechrau sesiwn llais',
       microphoneAccessDenied: 'Gwrthodwyd mynediad at y meicroffon.',
-      microphoneConstraintsUnsupported: 'Nid yw\'r ddyfais hon yn cefnogi cyfyngiadau meicroffon.',
+      microphoneConstraintsUnsupported: "Nid yw'r ddyfais hon yn cefnogi cyfyngiadau meicroffon.",
       microphoneFailed: 'Methodd y meicroffon',
-      microphoneInUse: 'Mae\'r meicroffon eisoes yn cael ei ddefnyddio gan ap arall.',
+      microphoneInUse: "Mae'r meicroffon eisoes yn cael ei ddefnyddio gan ap arall.",
       microphonePermissionDenied: 'Gwrthodwyd caniatâd meicroffon.',
       microphoneStartFailed: 'Ni allwyd dechrau recordio meicroffon.',
-      microphoneUnsupported: 'Nid yw\'r amgylchedd rhedeg hwn yn cefnogi recordio meicroffon.',
+      microphoneUnsupported: "Nid yw'r amgylchedd rhedeg hwn yn cefnogi recordio meicroffon.",
       noMicrophone: 'Ni ddarganfuwyd meicroffon.',
       noSpeechDetected: 'Ni chanfuwyd lleferydd',
       playbackFailed: 'Methodd chwarae llais',
@@ -152,7 +158,7 @@ export const cy = defineLocale({
       transcriptionFailed: 'Methodd trawsgrifio llais',
       transcriptionUnavailable: 'Voice transcription is not available yet.',
       tryRecordingAgain: 'Try recording again.',
-      unavailable: 'Voice unavailable',
+      unavailable: 'Voice unavailable'
     },
     native: {
       approvalTitle: 'Approval needed',
@@ -165,11 +171,12 @@ export const cy = defineLocale({
       turnErrorTitle: 'Turn failed',
       backgroundDoneTitle: 'Background task finished',
       backgroundFailedTitle: 'Background task failed',
-      creditsTitle: 'Credits',
-    },
+      creditsTitle: 'Credits'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
   },
   billingBlock: {
     titleOpenamer: 'Out of OpenAmer credits',
@@ -177,7 +184,7 @@ export const cy = defineLocale({
     fallbackMessage: 'Your account is out of credits. Add credits to keep going.',
     openBilling: 'Open billing',
     addCredits: 'Add credits',
-    dismiss: 'Dismiss',
+    dismiss: 'Dismiss'
   },
   titlebar: {
     hideSidebar: 'Hide sidebar',
@@ -194,7 +201,7 @@ export const cy = defineLocale({
     openStarmap: 'Open memory graph',
     openKeybinds: 'Keyboard shortcuts',
     layoutEditor: 'Layout editor',
-    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout',
+    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout'
   },
   keybinds: {
     title: 'Keyboard shortcuts',
@@ -211,7 +218,7 @@ export const cy = defineLocale({
       profiles: 'Proffiliau',
       session: 'Sesiwn',
       navigation: 'Llywio',
-      view: 'Golwg',
+      view: 'Golwg'
     },
     actions: {
       'keybinds.openPanel': 'Agor llwybrau byr y bysellfwrdd',
@@ -222,7 +229,7 @@ export const cy = defineLocale({
       'nav.skills': 'Agor sgiliau',
       'nav.messaging': 'Agor negeseua',
       'nav.artifacts': 'Agor arteffactau',
-      'nav.cron': 'Agor swyddi wedi\'u hamserlennu',
+      'nav.cron': "Agor swyddi wedi'u hamserlennu",
       'nav.agents': 'Agor asiantau',
       'session.new': 'Sesiwn newydd',
       'session.newTab': 'Tab sesiwn newydd',
@@ -241,7 +248,7 @@ export const cy = defineLocale({
       'session.focusSearch': 'Chwilio sesiynau',
       'session.togglePin': 'Pinio / dad-binio sesiwn gyfredol',
       'workspace.newWorktree': 'Coeden waith newydd',
-      'composer.focus': 'Ffocysu\'r cyfansoddwr',
+      'composer.focus': "Ffocysu'r cyfansoddwr",
       'composer.modelPicker': 'Agor dewisydd model',
       'composer.voice': 'Dechrau / stopio sgwrs lais',
       'view.toggleSidebar': 'Toglo bar ochr sesiynau',
@@ -253,10 +260,10 @@ export const cy = defineLocale({
       'view.nextTerminal': 'Terfynell nesaf',
       'view.prevTerminal': 'Terfynell flaenorol',
       'view.closeTerminal': 'Cau terfynell',
-      'view.terminalSelection': 'Anfon detholiad terfynell i\'r cyfansoddwr',
+      'view.terminalSelection': "Anfon detholiad terfynell i'r cyfansoddwr",
       'view.closeTab': 'Cau tab',
-      'view.reopenTab': 'Ailagor tab wedi\'i gau',
-      'view.flipPanes': 'Cyfnewid ochrau\'r bar ochr',
+      'view.reopenTab': "Ailagor tab wedi'i gau",
+      'view.flipPanes': "Cyfnewid ochrau'r bar ochr",
       'appearance.toggleMode': 'Toglo golau / tywyll',
       'profile.default': 'Newid i broffil rhagosodedig',
       'profile.switch.1': 'Newid i broffil 1',
@@ -283,31 +290,31 @@ export const cy = defineLocale({
       'profile.create': 'Creu proffil',
       'composer.send': 'Anfon neges',
       'composer.newline': 'Mewnosod llinell newydd',
-      'composer.steer': 'Llywio\'r tro sy\'n rhedeg',
+      'composer.steer': "Llywio'r tro sy'n rhedeg",
       'composer.queue': 'Ciwiwch neges',
       'composer.sendQueued': 'Anfon y tro nesaf yn y ciw',
       'composer.mention': 'Cyfeirio at ffeiliau, ffolderi, URLs',
       'composer.slash': 'Palet gorchmynion slaes',
       'composer.help': 'Clyfyr cymdeithas',
       'composer.history': 'Cyfryntio popover ac cyfunoedd',
-      'composer.cancel': 'Hiwau popover · Hiwau ei henchiwiadau',
-    },
+      'composer.cancel': 'Hiwau popover · Hiwau ei henchiwiadau'
+    }
   },
   language: {
     label: 'Ymddygiad y byc',
-    description: 'Chwt y byc i\'r ddesktop',
+    description: "Chwt y byc i'r ddesktop",
     saving: 'Safon y byc',
     saveError: 'Athwnad y byc gweldwyd',
     switchTo: 'Chwt y byc',
     searchPlaceholder: 'Cofh ymladd y byc',
-    noResults: 'Dyflaen y byc neu yn ymladd',
+    noResults: 'Dyflaen y byc neu yn ymladd'
   },
   settings: {
     closeSettings: 'Hiwau sylfaen',
     exportConfig: 'Effa config',
     importConfig: 'Efni config',
-    resetToDefaults: 'Rewain i\'r arwezennau',
-    resetConfirm: 'Rewain all sylfaen i\'r arwezennau `OpenAmer` defaults?',
+    resetToDefaults: "Rewain i'r arwezennau",
+    resetConfirm: "Rewain all sylfaen i'r arwezennau `OpenAmer` defaults?",
     exportFailed: 'Effa config gwelded',
     resetFailed: 'Rewain gwelded',
     nav: {
@@ -325,11 +332,12 @@ export const cy = defineLocale({
       about: 'About',
       billing: 'Billing',
       notifications: 'Notifications',
-      plugins: 'Plugins',
+      plugins: 'Plugins'
     },
     plugins: {
       title: 'Desktop plugins',
-      blurb: 'UI extensions loaded into this app — bundled with the build, or dropped into the desktop-plugins folder (including ones OpenAmer writes). Disabling unloads a plugin live and survives restarts.',
+      blurb:
+        'UI extensions loaded into this app — bundled with the build, or dropped into the desktop-plugins folder (including ones OpenAmer writes). Disabling unloads a plugin live and survives restarts.',
       count: n => `${n} installed`,
       openFolder: 'Open plugins folder',
       rescan: 'Rescan',
@@ -341,40 +349,41 @@ export const cy = defineLocale({
       kinds: {
         bundled: 'bundled',
         disk: 'on disk',
-        runtime: 'runtime',
-      },
+        runtime: 'runtime'
+      }
     },
     notifications: {
       title: 'Notifications',
-      intro: 'Native desktop notifications, separate from in-app toasts. These are device-local — each computer keeps its own settings.',
+      intro:
+        'Native desktop notifications, separate from in-app toasts. These are device-local — each computer keeps its own settings.',
       enableAll: 'Enable notifications',
       enableAllDesc: 'Master switch. Turn this off to silence every notification below.',
       focusedHint: 'Completion alerts only fire while OpenAmer is in the background.',
       kinds: {
         approval: {
           label: 'Approval needed',
-          description: 'A command is waiting for you to approve or reject it.',
+          description: 'A command is waiting for you to approve or reject it.'
         },
         input: {
           label: 'Input needed',
-          description: 'OpenAmer asked a question or needs a password or secret.',
+          description: 'OpenAmer asked a question or needs a password or secret.'
         },
         turnDone: {
           label: 'Response ready',
-          description: 'A turn finished while OpenAmer was in the background.',
+          description: 'A turn finished while OpenAmer was in the background.'
         },
         turnError: {
           label: 'Turn failed',
-          description: 'A turn ended with an error.',
+          description: 'A turn ended with an error.'
         },
         backgroundDone: {
           label: 'Background task finished',
-          description: 'A backgrounded terminal command completed.',
+          description: 'A backgrounded terminal command completed.'
         },
         credits: {
           label: 'Credit alerts',
-          description: 'Credit access is paused or restored.',
-        },
+          description: 'Credit access is paused or restored.'
+        }
       },
       test: 'Send test notification',
       testTitle: 'OpenAmer',
@@ -383,7 +392,7 @@ export const cy = defineLocale({
       testUnsupported: 'This system does not support native notifications.',
       completionSoundTitle: 'Completion Sound',
       completionSoundDesc: 'Plays when an agent turn finishes. Pick a preset and preview it here.',
-      completionSoundPreview: 'Preview',
+      completionSoundPreview: 'Preview'
     },
     sections: {
       model: 'Model',
@@ -393,7 +402,7 @@ export const cy = defineLocale({
       safety: 'Safety',
       memory: 'Memory & Context',
       voice: 'Voice',
-      advanced: 'Advanced',
+      advanced: 'Advanced'
     },
     searchPlaceholder: {
       about: 'About OpenAmer Desktop',
@@ -401,37 +410,40 @@ export const cy = defineLocale({
       gateway: 'Gateway connection...',
       keys: 'Chwilio allweddi API...',
       mcp: 'Chwilio gweinyddion MCP...',
-      sessions: 'Chwilio sesiynau wedi\'u harchifo...',
+      sessions: "Chwilio sesiynau wedi'u harchifo..."
     },
     modeOptions: {
       light: {
         label: 'Golau',
-        description: 'Arwynebau bwrdd gwaith llachar',
+        description: 'Arwynebau bwrdd gwaith llachar'
       },
       dark: {
         label: 'Tywyll',
-        description: 'Gweithle â llacharedd isel',
+        description: 'Gweithle â llacharedd isel'
       },
       system: {
         label: 'System',
-        description: 'Dilyn ymddangosiad y system',
-      },
+        description: 'Dilyn ymddangosiad y system'
+      }
     },
     appearance: {
       title: 'Ymddangosiad',
-      intro: 'Mae\'r rhain yn hoffterau arddangos ar gyfer y bwrdd gwaith yn unig. Mae\'r modd yn rheoli disgleirdeb; mae\'r thema yn rheoli\'r palet acen a steilio arwyneb y sgwrs.',
+      intro:
+        "Mae'r rhain yn hoffterau arddangos ar gyfer y bwrdd gwaith yn unig. Mae'r modd yn rheoli disgleirdeb; mae'r thema yn rheoli'r palet acen a steilio arwyneb y sgwrs.",
       colorMode: 'Modd Lliw',
       colorModeDesc: 'Dewiswch fodd sefydlog neu gadewch i OpenAmer ddilyn gosodiad eich system.',
       toolViewTitle: 'Arddangos Galwad Offer',
       toolViewDesc: 'Mae Cynnyrch yn cuddio data crai offer; mae Technegol yn dangos mewnbwn/allbwn llawn.',
       uiScaleTitle: 'Graddfa UI',
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       translucencyTitle: 'Tryloywder Ffenestr',
-      translucencyDesc: 'Gwelwch eich bwrdd gwaith drwy\'r ffenestr gyfan. macOS a Windows yn unig.',
+      translucencyDesc: "Gwelwch eich bwrdd gwaith drwy'r ffenestr gyfan. macOS a Windows yn unig.",
       backdropTitle: 'Cefndir Sgwrs',
-      backdropDesc: 'Y ddelwedd gerflun wan y tu ôl i\'r sgwrs.',
+      backdropDesc: "Y ddelwedd gerflun wan y tu ôl i'r sgwrs.",
       embedsTitle: 'Inline Embeds',
-      embedsDesc: 'Rich previews load from third-party sites (YouTube, X, …). Ask shows a placeholder until you allow each one; Always loads them automatically; Off keeps plain links.',
+      embedsDesc:
+        'Rich previews load from third-party sites (YouTube, X, …). Ask shows a placeholder until you allow each one; Always loads them automatically; Off keeps plain links.',
       embedsAsk: 'Ask',
       embedsAlways: 'Always',
       embedsOff: 'Off',
@@ -444,7 +456,8 @@ export const cy = defineLocale({
       themeDesc: 'Desktop palettes only. The selected mode is applied on top.',
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installTitle: 'Install from VS Code',
-      installDesc: 'Paste a Marketplace extension id (e.g. dracula-theme.theme-dracula) to convert its color theme into a desktop palette.',
+      installDesc:
+        'Paste a Marketplace extension id (e.g. dracula-theme.theme-dracula) to convert its color theme into a desktop palette.',
       installPlaceholder: 'publisher.extension',
       installButton: 'Install',
       installing: 'Installing…',
@@ -454,20 +467,22 @@ export const cy = defineLocale({
       importedBadge: 'Imported',
       pet: {
         title: 'Pet',
-        intro: 'Mabwysiadwch fasgot petdex animeiddiedig sy\'n hofran dros yr ap ac yn ymateb i\'r hyn y mae OpenAmer yn ei wneud — yn rhedeg tra bo offer yn gweithredu, yn dathlu ar lwyddiant, ac yn pwdu ar wallau.',
-        restartHint: 'Mae angen ailgychwyn cyflym ar anifeiliaid anwes — dechreuodd yr ap sy\'n rhedeg cyn i\'r nodwedd hon gael ei hychwanegu. Gadewch OpenAmer ac ailagorwch ef, yna dewch yn ôl yma.',
+        intro:
+          "Mabwysiadwch fasgot petdex animeiddiedig sy'n hofran dros yr ap ac yn ymateb i'r hyn y mae OpenAmer yn ei wneud — yn rhedeg tra bo offer yn gweithredu, yn dathlu ar lwyddiant, ac yn pwdu ar wallau.",
+        restartHint:
+          "Mae angen ailgychwyn cyflym ar anifeiliaid anwes — dechreuodd yr ap sy'n rhedeg cyn i'r nodwedd hon gael ei hychwanegu. Gadewch OpenAmer ac ailagorwch ef, yna dewch yn ôl yma.",
         on: 'Ymlaen',
         off: 'I ffwrdd',
         scaleTitle: 'Maint',
-        scaleDesc: 'Newid maint y masgot sy\'n hofran. Yn berthnasol ym mhobman ar unwaith.',
+        scaleDesc: "Newid maint y masgot sy'n hofran. Yn berthnasol ym mhobman ar unwaith.",
         roamTitle: 'Crwydro',
-        roamDesc: 'Gadewch i\'r anifail anwes grwydro\'r ffenestr ar ei ben ei hun pan mae\'n segur.',
+        roamDesc: "Gadewch i'r anifail anwes grwydro'r ffenestr ar ei ben ei hun pan mae'n segur.",
         chooseTitle: 'Dewiswch anifail anwes',
         chooseDesc: 'Mae dewis un yn ei osod (os oes angen) ac yn ei wneud yn actif.',
         searchPlaceholder: 'Chwilio anifeiliaid anwes…',
-        unreachable: "Methu cyrraedd oriel petdex. Gwiriwch eich cysylltiad ac ailagorwch y dudalen hon.",
+        unreachable: 'Methu cyrraedd oriel petdex. Gwiriwch eich cysylltiad ac ailagorwch y dudalen hon.',
         noMatch: query => `No pets match "${query}".`,
-        installedTag: 'wedi\'i osod',
+        installedTag: "wedi'i osod",
         generatedTag: 'Cynhyrchwyd',
         countCapped: (cap, total) => `Showing ${cap} of ${total} — type to narrow it down.`,
         count: n => `${n} pet${n === 1 ? '' : 's'}.`,
@@ -485,10 +500,10 @@ export const cy = defineLocale({
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
         exportFailed: slug => `Could not export ${slug}`,
-        noneAvailable: 'Nid oes anifeiliaid anwes ar gael i\'w troi ymlaen nawr.',
+        noneAvailable: "Nid oes anifeiliaid anwes ar gael i'w troi ymlaen nawr.",
         turnOnFailed: 'Could not turn the pet on.',
-        turnOffFailed: 'Could not turn the pet off.',
-      },
+        turnOffFailed: 'Could not turn the pet off.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -511,39 +526,41 @@ export const cy = defineLocale({
       lastChecked: age => `Last checked ${age}`,
       justNowSuffix: ' · just now',
       automaticUpdates: 'Automatic updates',
-      automaticUpdatesDesc: 'OpenAmer checks for updates automatically in the background and lets you know when one is ready.',
+      automaticUpdatesDesc:
+        'OpenAmer checks for updates automatically in the background and lets you know when one is ready.',
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       never: 'never',
       justNow: 'just now',
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     config: {
       none: 'Dim',
       noneParen: '(dim)',
       builtinOnly: 'Adeiledig yn unig',
       notSet: 'Heb ei osod',
-      commaSeparated: 'gwerthoedd wedi\'u gwahanu gan atalnodau',
+      commaSeparated: "gwerthoedd wedi'u gwahanu gan atalnodau",
       loading: 'Yn llwytho cyfluniad OpenAmer...',
-      emptyTitle: 'Dim byd i\'w ffurfweddu',
+      emptyTitle: "Dim byd i'w ffurfweddu",
       emptyDesc: 'Nid oes osodiadau addasadwy yn yr adran hon.',
-      failedLoad: 'Methwyd llwytho\'r gosodiadau',
+      failedLoad: "Methwyd llwytho'r gosodiadau",
       autosaveFailed: 'Methwyd awtogadw',
       imported: 'Mewnforiwyd y cyfluniad',
       invalidJson: 'JSON cyfluniad annilys',
-      keepAwakeTitle: 'Cadw\'r cyfrifiadur yn effro',
-      keepAwakeDesc: 'Atal y peiriant hwn rhag cysgu fel bod rhediadau hir neu dros nos yn parhau. Gall yr arddangosfa leihau disgleirdeb o hyd.',
+      keepAwakeTitle: "Cadw'r cyfrifiadur yn effro",
+      keepAwakeDesc:
+        'Atal y peiriant hwn rhag cysgu fel bod rhediadau hir neu dros nos yn parhau. Gall yr arddangosfa leihau disgleirdeb o hyd.'
     },
     credentials: {
       pasteKey: 'Gludo allwedd',
       pasteLabelKey: label => `Paste ${label} key`,
       optional: 'Dewisol',
       enterValueFirst: 'Rhowch werth yn gyntaf.',
-      couldNotSave: 'Methwyd cadw\'r dystlythyr.',
+      couldNotSave: "Methwyd cadw'r dystlythyr.",
       remove: 'Dileu',
       getKey: 'Cael allwedd',
-      saving: 'Saving',
+      saving: 'Saving'
     },
     envActions: {
       actionsFor: label => `Actions for ${label}`,
@@ -554,7 +571,7 @@ export const cy = defineLocale({
       revealValue: 'Reveal value',
       replace: 'Replace',
       set: 'Set',
-      clear: 'Clear',
+      clear: 'Clear'
     },
     gateway: {
       loading: 'Loading gateway settings...',
@@ -562,13 +579,16 @@ export const cy = defineLocale({
       unavailableDesc: 'The desktop IPC bridge does not expose gateway settings.',
       title: 'Gateway Connection',
       envOverride: 'env override',
-      intro: 'OpenAmer Desktop starts its own local gateway by default. Use a remote gateway when you want this app to control an already-running OpenAmer backend on another machine or behind a trusted proxy. Pick a profile below to give it its own remote host.',
+      intro:
+        'OpenAmer Desktop starts its own local gateway by default. Use a remote gateway when you want this app to control an already-running OpenAmer backend on another machine or behind a trusted proxy. Pick a profile below to give it its own remote host.',
       appliesTo: 'Applies to',
       allProfiles: 'All profiles',
       defaultConnection: 'Default connection for every profile that has no override of its own.',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       envOverrideTitle: 'Environment variables are controlling this desktop session.',
-      envOverrideDesc: 'Unset OPENAMER_DESKTOP_REMOTE_URL and OPENAMER_DESKTOP_REMOTE_TOKEN to use the saved setting below.',
+      envOverrideDesc:
+        'Unset OPENAMER_DESKTOP_REMOTE_URL and OPENAMER_DESKTOP_REMOTE_TOKEN to use the saved setting below.',
       modeTitle: 'Connection mode',
       localTitle: 'Local gateway',
       localDesc: 'Start a private OpenAmer backend on localhost. This is the default and works offline.',
@@ -593,7 +613,7 @@ export const cy = defineLocale({
       cloudNoAgents: {
         before: 'No agents found on this account. Create one in the ',
         linkText: 'OpenAmer portal',
-        after: ', then refresh.',
+        after: ', then refresh.'
       },
       cloudRefresh: 'Refresh',
       cloudConnect: 'Connect',
@@ -617,7 +637,8 @@ export const cy = defineLocale({
       signOut: 'Sign out',
       signInWith: provider => `Sign in with ${provider}`,
       authTitle: 'Authentication',
-      authSignedInPassword: 'This gateway uses a username and password. You are signed in; the session refreshes automatically.',
+      authSignedInPassword:
+        'This gateway uses a username and password. You are signed in; the session refreshes automatically.',
       authSignedInOauth: 'This gateway uses OAuth. You are signed in; the session refreshes automatically.',
       authNeedsPassword: 'This gateway uses a username and password. Sign in to authorize this desktop app.',
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
@@ -639,62 +660,69 @@ export const cy = defineLocale({
       incompleteTokenTest: 'Rhowch URL remote a token sesiwn cyn profi.',
       enterUrlFirst: 'Nodwch URL o bell yn gyntaf.',
       restartingTitle: 'Ailgychwyn cysylltiad y porth',
-      savedTitle: 'Gosodiadau\'r porth wedi\'u cadw',
-      restartingMessage: 'Bydd OpenAmer Desktop yn ailgysylltu gan ddefnyddio\'r gosodiadau sydd wedi\'u cadw — bydd y shell yn aros ar agor.',
-      savedMessage: 'Wedi\'i gadw ar gyfer yr ailgychwyn nesaf.',
+      savedTitle: "Gosodiadau'r porth wedi'u cadw",
+      restartingMessage:
+        "Bydd OpenAmer Desktop yn ailgysylltu gan ddefnyddio'r gosodiadau sydd wedi'u cadw — bydd y shell yn aros ar agor.",
+      savedMessage: "Wedi'i gadw ar gyfer yr ailgychwyn nesaf.",
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       reachableTitle: 'Porth o bell yn hygyrch',
       signedOutTitle: 'Wedi allgofnodi',
       signedOutMessage: 'Wedi clirio sesiwn y porth o bell.',
-      failedLoad: 'Methodd llwytho gosodiadau\'r porth',
+      failedLoad: "Methodd llwytho gosodiadau'r porth",
       signInFailed: 'Methodd mewngofnodi',
       signOutFailed: 'Methodd allgofnodi',
       testFailed: 'Methodd prawf y porth o bell',
-      applyFailed: 'Methu â chymhwyso gosodiadau\'r porth',
-      saveFailed: 'Methu â chadw gosodiadau\'r porth',
+      applyFailed: "Methu â chymhwyso gosodiadau'r porth",
+      saveFailed: "Methu â chadw gosodiadau'r porth",
       sshTitle: 'Cysylltu drwy SSH',
-      sshDesc: 'Mae OpenAmer yn cael ei lansio ar y peiriant o bell dros SSH ac yn cael ei dwnelu i\'r ap hwn — nid oes angen i chi ddechrau na datgelu unrhyw beth eich hun. Mae angen mynediad SSH gweithredol yn seiliedig ar allweddi i\'r gwesteiwr.',
-      sshTrustHint: 'Mae\'r allwedd gwesteiwr gyntaf a gyflwynir yn cael ei hymddiried ynddi a\'i phinio; bydd newidiadau diweddarach yn methu ar gau.',
+      sshDesc:
+        "Mae OpenAmer yn cael ei lansio ar y peiriant o bell dros SSH ac yn cael ei dwnelu i'r ap hwn — nid oes angen i chi ddechrau na datgelu unrhyw beth eich hun. Mae angen mynediad SSH gweithredol yn seiliedig ar allweddi i'r gwesteiwr.",
+      sshTrustHint:
+        "Mae'r allwedd gwesteiwr gyntaf a gyflwynir yn cael ei hymddiried ynddi a'i phinio; bydd newidiadau diweddarach yn methu ar gau.",
       sshHostTitle: 'Gwesteiwr',
       sshHostDesc: 'user@host, neu alias Gwesteiwr o ~/.ssh/config.',
       sshHostPick: 'Dewiswch westeiwr…',
       sshHostPickTitle: 'Gwystwr',
-      sshHostPickDesc: 'Alias gwystwr o ~/.ssh/config, neu Arbennig i\'w teipio.',
-      sshHostCustom: 'Arbennig (teipio\'n awtomatig)…',
+      sshHostPickDesc: "Alias gwystwr o ~/.ssh/config, neu Arbennig i'w teipio.",
+      sshHostCustom: "Arbennig (teipio'n awtomatig)…",
       sshUserTitle: 'Defnyddiwr',
-      sshUserDesc: 'Gof = ~/.ssh/config neu\'ch defnyddiwr presennol.',
+      sshUserDesc: "Gof = ~/.ssh/config neu'ch defnyddiwr presennol.",
       sshUserPlaceholder: 'o ~/.ssh/config',
       sshPortTitle: 'Port',
       sshPortDesc: 'Gof = 22 neu bort ~/.ssh/config.',
       sshKeyTitle: 'Ffeil hunaniaeth',
       sshKeyDesc: 'Llwybr preifat allwedd. Gof = ssh-agent neu ~/.ssh/config.',
       sshOpenAmerPathTitle: 'Llwybr OpenAmer (dewisol)',
-      sshOpenAmerPathDesc: 'Llwybr llawn i\'r binariad openamer remote. Gof = canfod yn awtomatig.',
+      sshOpenAmerPathDesc: "Llwybr llawn i'r binariad openamer remote. Gof = canfod yn awtomatig.",
       sshOpenAmerPathPlaceholder: 'canfod yn awtomatig',
       sshTestConnection: 'Profi SSH',
       sshConnect: 'Cysylltu',
-      sshButtonsHint: 'Mae Cadw yn berthynio ar y l lansied nesaf. Mae Cysylltu\'n ailgysylltu\'n awr.',
+      sshButtonsHint: "Mae Cadw yn berthynio ar y l lansied nesaf. Mae Cysylltu'n ailgysylltu'n awr.",
       sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
       sshIncompleteHost: 'Rhowch gwystwr SSH cyn cysylltu.',
-      sshErrUnreachable: 'Methwyd cyrraedd at y gwystwr hwn dros SSH. Gwiriwch y gwystwr, y port a\'ch rhwyd.',
-      sshErrAuth: 'Methodd dilysu SSH. Llwythwch eich chi i\'r ssh-agent (ssh-add) neu osodwch IdentityFile yn ~/.ssh/config — mae OpenAmer yn rhedeg ssh heb ryngodd.',
-      sshErrHostKey: 'Mae allwedd y gwystwr wedi NEWID ers y cysylltiad diwethaf. Gwiriwch bod hyn yn ddisgwyl, yna rhedegwch ssh-keygen -R <host> ac ailgysylltwch.',
-      sshErrNotInstalled: 'Nid yw OpenAmer wedi\'i osod ar y gwesteiwr o bell. Gosodwch ef yno (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) neu osodwch lwybr OpenAmer.',
-      sshErrPlatform: 'Platfform o bell heb ei gefnogi. Mae modd SSH OpenAmer Desktop yn cefnogi gwesteiwyr o bell Linux, macOS, a Windows.',
-      sshErrTimeout: 'Cysylltiad SSH wedi amseru allan. Efallai nad yw\'r gwesteiwr ar gael neu ei fod yn cysgu.',
+      sshErrUnreachable: "Methwyd cyrraedd at y gwystwr hwn dros SSH. Gwiriwch y gwystwr, y port a'ch rhwyd.",
+      sshErrAuth:
+        "Methodd dilysu SSH. Llwythwch eich chi i'r ssh-agent (ssh-add) neu osodwch IdentityFile yn ~/.ssh/config — mae OpenAmer yn rhedeg ssh heb ryngodd.",
+      sshErrHostKey:
+        'Mae allwedd y gwystwr wedi NEWID ers y cysylltiad diwethaf. Gwiriwch bod hyn yn ddisgwyl, yna rhedegwch ssh-keygen -R <host> ac ailgysylltwch.',
+      sshErrNotInstalled:
+        "Nid yw OpenAmer wedi'i osod ar y gwesteiwr o bell. Gosodwch ef yno (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) neu osodwch lwybr OpenAmer.",
+      sshErrPlatform:
+        'Platfform o bell heb ei gefnogi. Mae modd SSH OpenAmer Desktop yn cefnogi gwesteiwyr o bell Linux, macOS, a Windows.',
+      sshErrTimeout: "Cysylltiad SSH wedi amseru allan. Efallai nad yw'r gwesteiwr ar gael neu ei fod yn cysgu.",
       sshErrUpdateRequired: 'Diweddarwch OpenAmer ar y gwesteiwr o bell cyn cysylltu â Desktop SSH.',
-      sshErrUnknown: 'Methodd y cysylltiad SSH.',
+      sshErrUnknown: 'Methodd y cysylltiad SSH.'
     },
     keys: {
-      loading: 'Wrthi\'n llwytho allweddi API a thystlythyrau...',
+      loading: "Wrthi'n llwytho allweddi API a thystlythyrau...",
       failedLoad: 'Methodd llwytho allweddi API',
-      empty: 'Nid oes unrhyw beth wedi\'i ffurfweddu yn y categori hwn eto.',
+      empty: "Nid oes unrhyw beth wedi'i ffurfweddu yn y categori hwn eto."
     },
     mcp: {
-      loading: 'Wrthi\'n llwytho gweinyddwyr MCP...',
+      loading: "Wrthi'n llwytho gweinyddwyr MCP...",
       failedLoad: 'Methodd llwytho ffurfweddiad MCP',
       nameRequiredTitle: 'Enw yn ofynnol',
-      nameRequiredMessage: 'Rhowch allwedd ffurfweddiad i\'r gweinydd MCP hwn.',
+      nameRequiredMessage: "Rhowch allwedd ffurfweddiad i'r gweinydd MCP hwn.",
       objectRequired: 'Rhaid i ffurfweddiad y gweinydd fod yn wrthrych JSON',
       invalidJson: 'JSON MCP annilys',
       saveFailed: 'Methodd cadw',
@@ -711,7 +739,7 @@ export const cy = defineLocale({
       reloading: 'Yn ail-lwytho...',
       emptyTitle: 'Dim gweinyddion MCP',
       emptyDesc: 'Ychwanegwch weinydd stdio neu HTTP i amlygu dulliau MCP.',
-      disabled: 'wedi\'i anablwyddog',
+      disabled: "wedi'i anablwyddog",
       editServer: 'Golygu gweinydd',
       name: 'Enw',
       serverJson: 'JSON gweinydd',
@@ -731,16 +759,17 @@ export const cy = defineLocale({
       catalogLoading: 'Yn llwytho gatalog MCP...',
       catalogLoadFailed: 'MCP catalog failed to load',
       catalogEmpty: 'Dim cofnodion catalog ar gael.',
-      catalogInstalled: 'Wedi\'i osod',
-      catalogEnabled: 'Wedi\'i alluogi',
+      catalogInstalled: "Wedi'i osod",
+      catalogEnabled: "Wedi'i alluogi",
       catalogNeedsInstall: 'Angen adeiladu',
       catalogInstall: 'Gosod',
-      catalogInstalling: 'Wrthi\'n gosod...',
+      catalogInstalling: "Wrthi'n gosod...",
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
       catalogEnvRequired: 'Llenwch y gwerthoedd gofynnol cyn gosod.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       statusConnecting: 'Yn cysylltu…',
       statusNeedsAuth: 'Angen dilysu',
       statusError: 'Gwall',
@@ -753,11 +782,12 @@ export const cy = defineLocale({
       unsavedConnect: 'Heb ei gadw — cadwch mcp.json i gysylltu.',
       enableTool: tool => `Enable ${tool}`,
       disableTool: tool => `Disable ${tool}`,
-      noOutput: 'Dim allbwn eto.',
+      noOutput: 'Dim allbwn eto.'
     },
     model: {
       loading: 'Yn llwytho cyfluniad y model...',
-      appliesDesc: 'Yn berthnasol i sesiynau newydd. Defnyddiwch y dewisydd model yn y cyfansoddwr i gyfnewid y sgwrs weithredol yn gyflym.',
+      appliesDesc:
+        'Yn berthnasol i sesiynau newydd. Defnyddiwch y dewisydd model yn y cyfansoddwr i gyfnewid y sgwrs weithredol yn gyflym.',
       provider: 'Darparwr',
       model: 'Model',
       applying: 'Applying...',
@@ -778,42 +808,43 @@ export const cy = defineLocale({
       tasks: {
         vision: {
           label: 'Vision',
-          hint: 'Image analysis',
+          hint: 'Image analysis'
         },
         web_extract: {
           label: 'Web extract',
-          hint: 'Page summarization',
+          hint: 'Page summarization'
         },
         compression: {
           label: 'Cywasgu',
-          hint: 'Cywasgu cyd-destun',
+          hint: 'Cywasgu cyd-destun'
         },
         skills_hub: {
           label: 'Canolfan sgiliau',
-          hint: 'Chwilio sgiliau',
+          hint: 'Chwilio sgiliau'
         },
         approval: {
           label: 'Cymeradwyaeth',
-          hint: 'Awtogymeradwyo clyfar',
+          hint: 'Awtogymeradwyo clyfar'
         },
         mcp: {
           label: 'MCP',
-          hint: 'Llwybro offer MCP',
+          hint: 'Llwybro offer MCP'
         },
         title_generation: {
           label: 'Cynhyrchu teitl',
-          hint: 'Teitlau sesiwn',
+          hint: 'Teitlau sesiwn'
         },
         curator: {
           label: 'Curadur',
-          hint: 'Adolygiad defnydd sgiliau',
-        },
-      },
+          hint: 'Adolygiad defnydd sgiliau'
+        }
+      }
     },
     providers: {
       connectAccount: 'Cysylltu cyfrif',
       haveApiKey: 'Oes allwedd API gennych yn lle?',
-      intro: 'Mewngofnodi â thanysgrifiad — does dim allwedd API i\'w chopïo. Mae OpenAmer yn cynnal mewngofnodi\'r porwr i chi, yma yn yr ap.',
+      intro:
+        "Mewngofnodi â thanysgrifiad — does dim allwedd API i'w chopïo. Mae OpenAmer yn cynnal mewngofnodi'r porwr i chi, yma yn yr ap.",
       connected: 'Wedi cysylltu',
       collapse: 'Crebachu',
       connectAnother: 'Cysylltu darparwr arall',
@@ -823,38 +854,43 @@ export const cy = defineLocale({
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
-      removedTitle: 'Cyfrif wedi\'i ddileu',
+      removedTitle: "Cyfrif wedi'i ddileu",
       removedMessage: provider => `${provider} was removed.`,
       failedRemove: provider => `Could not remove ${provider}`,
       noProviderKeys: 'Nid oes allweddi API darparwr ar gael.',
       searchKeys: 'Chwilio darparwyr…',
-      noKeysMatch: 'Nid oes darparwyr yn cyfateb i\'ch chwiliad.',
+      noKeysMatch: "Nid oes darparwyr yn cyfateb i'ch chwiliad.",
       localEndpoint: {
         title: 'Pwynt terfyn lleol / cyfaddas',
-        description: 'Pwyntiwch OpenAmer at unrhyw bwynt terfyn sy\'n gydnaws ag OpenAI (Zyphra, vLLM, llama.cpp, Ollama, ac ati).',
+        description:
+          "Pwyntiwch OpenAmer at unrhyw bwynt terfyn sy'n gydnaws ag OpenAI (Zyphra, vLLM, llama.cpp, Ollama, ac ati)."
       },
-      loading: 'Wrthi\'n llwytho darparwyr...',
+      loading: "Wrthi'n llwytho darparwyr..."
     },
     sessions: {
-      loading: 'Wrthi\'n llwytho sesiynau archifedig…',
+      loading: "Wrthi'n llwytho sesiynau archifedig…",
       archivedTitle: 'Sesiynau archifedig',
-      archivedIntro: 'Mae sgyrsiau archifedig yn cael eu cuddio o\\\\\\\'r bar ochr ond maent yn cadw eu holl negeseuon. Ctrl/⌘-click sgwrs yn y bar ochr i\\\\\\\'w harchifo.',
-      emptyArchivedTitle: 'Dim byd wedi\'i archifo',
-      emptyArchivedDesc: 'Archifiwch sgwrs i\'w chuddio yma.',
+      archivedIntro:
+        "Mae sgyrsiau archifedig yn cael eu cuddio o\\\\\\'r bar ochr ond maent yn cadw eu holl negeseuon. Ctrl/⌘-click sgwrs yn y bar ochr i\\\\\\'w harchifo.",
+      emptyArchivedTitle: "Dim byd wedi'i archifo",
+      emptyArchivedDesc: "Archifiwch sgwrs i'w chuddio yma.",
       unarchive: 'Dadarchifo',
-      deletePermanently: 'Dileu\'n barhaol',
+      deletePermanently: "Dileu'n barhaol",
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
-      restored: 'Wedi\'i adfer',
+      restored: "Wedi'i adfer",
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
       autoArchiveTitle: 'Awto-archifo sgyrsiau segur',
-      autoArchiveDesc: "Archifio sgyrsiau yn awtomatig nad ydych wedi cyffwrdd â nhw ers tro. Ni archifir sgyrsiau wedi'u pinio byth, ac ni ddileir dim — mae sgyrsiau archifedig yn symud yma yn unig.",
+      autoArchiveDesc:
+        "Archifio sgyrsiau yn awtomatig nad ydych wedi cyffwrdd â nhw ers tro. Ni archifir sgyrsiau wedi'u pinio byth, ac ni ddileir dim — mae sgyrsiau archifedig yn symud yma yn unig.",
       autoArchiveDaysLabel: 'Archifo ar ôl',
       autoArchiveDaysUnit: 'diwrnodau o anweithgarwch',
       autoArchiveFailed: 'Could not update auto-archive',
       defaultDirTitle: 'Default project directory',
-      defaultDirDesc: 'New sessions start in this folder unless you pick another. Leave it unset to use your home directory.',
+      defaultDirDesc:
+        'New sessions start in this folder unless you pick another. Leave it unset to use your home directory.',
       defaultDirUpdated: 'Default project directory updated — start a new chat (Ctrl/⌘+N) for it to take effect',
       defaultsTo: label => `Defaults to ${label}.`,
       change: 'Change',
@@ -865,7 +901,7 @@ export const cy = defineLocale({
       unarchiveFailed: 'Unarchive failed',
       deleteFailed: 'Delete failed',
       updateDirFailed: 'Could not update default directory',
-      clearDirFailed: 'Could not clear default directory',
+      clearDirFailed: 'Could not clear default directory'
     },
     toolsets: {
       loadingConfig: 'Loading configuration',
@@ -890,13 +926,15 @@ export const cy = defineLocale({
       needsSetup: 'Needs setup',
       openamerIncluded: 'Included with a OpenAmer subscription — sign in to OpenAmer Portal to activate.',
       openamerAuthNeededTitle: 'Sign in to OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
       openamerAuthSignIn: 'Sign in',
       openamerAuthDoneTitle: 'OpenAmer Portal connected',
       openamerAuthDoneMessage: 'Your subscription backends are now active.',
       openamerAuthFailed: 'OpenAmer Portal sign-in did not complete',
       noApiKeyRequired: 'No API key required.',
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupInstalledHint: 'Installed. Re-run setup only if something is broken.',
       postSetupRun: 'Run setup',
       postSetupRerun: 'Re-run setup',
@@ -937,9 +975,9 @@ export const cy = defineLocale({
         selectedTitle: 'Backend selected',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
         failedSelect: backend => `Failed to select ${backend}`,
-        needsSetupHint: 'You can select this backend now — commands will fail until setup is complete.',
-      },
-    },
+        needsSetupHint: 'You can select this backend now — commands will fail until setup is complete.'
+      }
+    }
   },
   skills: {
     tabSkills: 'Skills',
@@ -959,7 +997,8 @@ export const cy = defineLocale({
     noDescription: 'No description.',
     configured: 'Configured',
     needsKeys: 'Needs keys',
-    visionModelHint: 'Vision uses your auxiliary model configuration — the image-capable model is picked there, not per-provider here.',
+    visionModelHint:
+      'Vision uses your auxiliary model configuration — the image-capable model is picked there, not per-provider here.',
     visionModelLink: 'Choose vision model in Settings → Models',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} toolsets enabled`,
     configureToolset: label => `Configure ${label}`,
@@ -985,7 +1024,7 @@ export const cy = defineLocale({
     provenance: {
       agent: 'Learned',
       bundled: 'Built-in',
-      hub: 'Hub',
+      hub: 'Hub'
     },
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
@@ -994,25 +1033,26 @@ export const cy = defineLocale({
     skillUpdated: 'Skill updated',
     edit: 'Golygu',
     archive: 'Archiw',
-    skillArchivedTitle: 'Sgil wedi\'i archifio',
+    skillArchivedTitle: "Sgil wedi'i archifio",
     skillArchivedMessage: 'Gellir adfer drwy openamer curator restore.',
     hub: {
-      searchPlaceholder: 'Chwilio\'r canolfan sgiliau',
+      searchPlaceholder: "Chwilio'r canolfan sgiliau",
       search: 'Chwilio',
       searching: 'Chwilio...',
       connectingHubs: 'Cysylltu â canolfannau sgiliau...',
       connectedHubs: 'Canolfannau cysylltiedig:',
       featured: 'Sgiliau nodweddion',
-      landingHint: 'Chwilio\'r canolfan i brwdfryd sgiliau a allai gael eu gosod o\'r mynegai swyddogol, GitHub, a ffynonellau\'r gymuned.',
+      landingHint:
+        "Chwilio'r canolfan i brwdfryd sgiliau a allai gael eu gosod o'r mynegai swyddogol, GitHub, a ffynonellau'r gymuned.",
       noResults: 'Ni chanfuwyd sgiliau cydweddiol yn y canolfan.',
       resultCount: (count, ms) => `${count} result${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Timed out: ${sources}`,
-      installed: 'Wedi\'i gosod',
+      installed: "Wedi'i gosod",
       install: 'Gosod',
       installing: 'Gosod...',
       uninstall: 'Dad-osod',
       uninstalling: 'Dad-osod...',
-      updateAll: 'Diweddaru\'r gosodwyd',
+      updateAll: "Diweddaru'r gosodwyd",
       updating: 'Diweddaru...',
       preview: 'Rhagolwg',
       scan: 'Skanio',
@@ -1021,28 +1061,28 @@ export const cy = defineLocale({
       files: 'Ffeiliau',
       noReadme: 'Nid oes rhagolwg SKILL.md ar gyfer y sgil hon.',
       trust: {
-        builtin: 'Wedi\'i mewnforio',
+        builtin: "Wedi'i mewnforio",
         trusted: 'Ymddiried',
-        community: 'Cymuned',
+        community: 'Cymuned'
       },
       verdictSafe: 'Diogel',
       verdictCaution: 'Rhybudd',
       verdictDangerous: 'Pelig',
       policyAllow: 'Gosod canel',
       policyAsk: 'Adolygu cyn gosod',
-      policyBlock: 'Gosod wedi\'i rwystro gan polisi',
+      policyBlock: "Gosod wedi'i rwystro gan polisi",
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       noFindings: 'Dim canfod diogelwch.',
       installStarted: name => `Installing ${name}...`,
       uninstallStarted: name => `Uninstalling ${name}...`,
-      updateStarted: 'Diweddaru sgiliau wedi\'u gosod...',
+      updateStarted: "Diweddaru sgiliau wedi'u gosod...",
       actionFailed: 'Methwyd gweithred ar y sgil',
       actionLog: 'Log gweithred',
-      loadFailed: 'Methwyd llwytho\'r canolfan sgiliau',
+      loadFailed: "Methwyd llwytho'r canolfan sgiliau",
       previewFailed: 'Methwyd rhagolwg y sgil',
       scanFailed: 'Methwyd y sgan diogelwch',
-      searchFailed: 'Methwyd y chwiliad hub',
-    },
+      searchFailed: 'Methwyd y chwiliad hub'
+    }
   },
   starmap: {
     title: 'Graff cof',
@@ -1052,24 +1092,25 @@ export const cy = defineLocale({
     memory: 'Haf',
     filterAll: 'Pob',
     filterUsed: 'Defnyddiwyd',
-    filterLearned: 'Wedi\'u dysgu',
+    filterLearned: "Wedi'u dysgu",
     viewGraph: 'Graff',
-    loadFailed: 'Methwyd llwytho\'r graff cof',
+    loadFailed: "Methwyd llwytho'r graff cof",
     loading: 'Yn llwytho…',
-    emptyTitle: 'Dim wedi\'i dysgu eto',
+    emptyTitle: "Dim wedi'i dysgu eto",
     emptyDesc: 'Writh i OpenAmer adeiladu sgiliau a chofion ar gyfer eich gwaith, byddant yn ymddangos yma.',
-    share: 'Rhannu\'r map',
-    shareHint: 'Copïwch y cod i rannu\'r map hwn, neu pastiwch un i\'w lwytho. Mae\'n cynnwys y cynlluniad yn unig, nid eich cof na thestun sgiliau.',
+    share: "Rhannu'r map",
+    shareHint:
+      "Copïwch y cod i rannu'r map hwn, neu pastiwch un i'w lwytho. Mae'n cynnwys y cynlluniad yn unig, nid eich cof na thestun sgiliau.",
     shareTitle: 'Mewnow / allforfio map',
     sharePlaceholder: 'Pastiwch god map…',
     copy: 'Copïwch god y map',
-    copied: 'Wedi\'i gopio!',
+    copied: "Wedi'i gopio!",
     importMap: 'Mewnow map',
     importBtn: 'Llwytho',
-    importEmpty: 'Pastiwch god map i\'w lwytho.',
+    importEmpty: "Pastiwch god map i'w lwytho.",
     importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
-    importedBadge: 'map wedi\'i fewnforio',
-    resetToMine: 'Yn ôl i fy map',
+    importedBadge: "map wedi'i fewnforio",
+    resetToMine: 'Yn ôl i fy map'
   },
   agents: {
     close: 'Close agentiaid',
@@ -1099,7 +1140,7 @@ export const cy = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'Close canolfan gorchmynion',
@@ -1129,7 +1170,7 @@ export const cy = defineLocale({
       generatedTag: 'Generated',
       adoptFailed: 'Could not adopt that pet.',
       toggleFailed: 'Could not toggle the pet.',
-      noneAvailable: 'No pets available — pick one below to install.',
+      noneAvailable: 'No pets available — pick one below to install.'
     },
     generatePet: {
       title: 'Generate a pet',
@@ -1153,12 +1194,13 @@ export const cy = defineLocale({
       slowProviderHint: 'This can take several minutes',
       remix: 'Remix',
       remixConfirmTitle: 'Remix this look?',
-      remixConfirmBody: 'This generates a fresh set of drafts using this one as the starting point. It can take several minutes.',
+      remixConfirmBody:
+        'This generates a fresh set of drafts using this one as the starting point. It can take several minutes.',
       genericError: 'Generation failed — try again or pick a suggestion.',
       referenceImageTooLarge: 'Reference image is too large. Use one under 16 MB.',
       referenceImageInvalid: 'Could not read that reference image. Try a PNG, JPG, WebP, or GIF.',
       adopt: 'Adopt',
-      startOver: 'Start over',
+      startOver: 'Start over'
     },
     installTheme: {
       title: 'Install theme…',
@@ -1170,7 +1212,7 @@ export const cy = defineLocale({
       install: 'Install',
       installing: 'Installing...',
       installed: 'Installed',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Settings fields',
     mcpServers: 'MCP servers',
@@ -1179,49 +1221,49 @@ export const cy = defineLocale({
       maintenance: 'Maintenance',
       sessions: 'Sessions',
       system: 'System',
-      usage: 'Defnydd',
+      usage: 'Defnydd'
     },
     sectionDescriptions: {
       maintenance: 'Data diagnosteg, copïau wrth gefn, curadur a data cof',
       sessions: 'Chwilio a rheoli sesiynau',
       system: 'Statws, logiau a gweithredoedd system',
-      usage: 'Gweithgaredd tocyn, cost a sgil dros amser',
+      usage: 'Gweithgaredd tocyn, cost a sgil dros amser'
     },
     nav: {
       newChat: {
         title: 'Sesiwn newydd',
-        detail: 'Dechrau sesiwn ffres',
+        detail: 'Dechrau sesiwn ffres'
       },
       settings: {
         title: 'Gosodiadau',
-        detail: 'Ffurfweddu bwrdd gwaith OpenAmer',
+        detail: 'Ffurfweddu bwrdd gwaith OpenAmer'
       },
       skills: {
         title: 'Galluoedd',
-        detail: 'Sgiliau, offer a gweinyddion MCP',
+        detail: 'Sgiliau, offer a gweinyddion MCP'
       },
       messaging: {
         title: 'Negeseuon',
-        detail: 'Sefydlu Telegram, Slack, Discord a mwy',
+        detail: 'Sefydlu Telegram, Slack, Discord a mwy'
       },
       artifacts: {
         title: 'Arteffactau',
-        detail: 'Pori allbynnau a gynhyrchwyd',
-      },
+        detail: 'Pori allbynnau a gynhyrchwyd'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Panel sesiynau',
-        detail: 'Chwilio, pinio a rheoli sesiynau',
+        detail: 'Chwilio, pinio a rheoli sesiynau'
       },
       system: {
         title: 'Panel system',
-        detail: 'Statws porth, logiau, ailgychwyn/diweddaru',
+        detail: 'Statws porth, logiau, ailgychwyn/diweddaru'
       },
       usage: {
         title: 'Panel defnydd',
-        detail: 'Gweithgaredd tocynnau, cost a sgiliau',
-      },
+        detail: 'Gweithgaredd tocynnau, cost a sgiliau'
+      }
     },
     providerNavigate: 'Llywio',
     providerSessions: 'Sesiynau',
@@ -1245,7 +1287,7 @@ export const cy = defineLocale({
     actionStartedWaiting: 'Gweithred wedi dechrau, yn aros am statws...',
     loadingStatus: 'Yn llwytho statws...',
     recentLogs: 'Logiau diweddar',
-    noLogs: 'Nid oes logiau wedi\'u llwytho eto.',
+    noLogs: "Nid oes logiau wedi'u llwytho eto.",
     days: count => `${count}d`,
     statSessions: 'Sesiynau',
     statApiCalls: 'Galwadau API',
@@ -1266,27 +1308,28 @@ export const cy = defineLocale({
     actions: count => `${count} actions`,
     logFile: 'Ffeil log',
     logLevel: 'Lefel',
-    logSearchPlaceholder: 'Hidlo llinellau\'r log...',
+    logSearchPlaceholder: "Hidlo llinellau'r log...",
     maintenance: {
       runOps: 'Diagnosteg',
       doctor: 'Rhedeg doctor',
-      doctorDesc: 'Gwirio iechyd y gosodiad, y ffurfweddiad a\'r darparwyr',
+      doctorDesc: "Gwirio iechyd y gosodiad, y ffurfweddiad a'r darparwyr",
       securityAudit: 'Archwiliad diogelwch',
       securityAuditDesc: 'Sganio ffurfweddiad a sgiliau am osodiadau peryglus',
       backup: 'Creu copi wrth gefn',
       backupDesc: 'Zipio ffurfweddiad, atgofion, sgiliau a sesiynau',
       debugShare: 'Rhannu dadfygio',
-      debugShareDesc: 'Uwchlwytho adroddiad wedi\'i redactio + logiau, cael dolenni rhanadwy (yn hunanddileu mewn 6 awr)',
-      debugShareRunning: 'Wrthi\'n uwchlwytho adroddiad dadfygio...',
+      debugShareDesc:
+        "Uwchlwytho adroddiad wedi'i redactio + logiau, cael dolenni rhanadwy (yn hunanddileu mewn 6 awr)",
+      debugShareRunning: "Wrthi'n uwchlwytho adroddiad dadfygio...",
       debugShareLinks: 'Dolenni rhannu',
       debugShareFailed: 'Methodd rhannu dadfygio',
       copyLink: 'Copïo dolen',
-      linkCopied: 'Dolen wedi\'i chopïo',
+      linkCopied: "Dolen wedi'i chopïo",
       curator: 'Curadur sgiliau',
-      curatorDesc: 'Adolygiad cefndir sy\'n archifo sgiliau hen a grëwyd gan asiantau',
-      curatorPaused: 'Wedi\'i oedi',
+      curatorDesc: "Adolygiad cefndir sy'n archifo sgiliau hen a grëwyd gan asiantau",
+      curatorPaused: "Wedi'i oedi",
       curatorActive: 'Gweithredol',
-      curatorDisabled: 'Wedi\'i analluogi',
+      curatorDisabled: "Wedi'i analluogi",
       curatorLastRun: when => `Last run ${when}`,
       curatorNeverRan: 'Never ran',
       pause: 'Pause',
@@ -1309,8 +1352,8 @@ export const cy = defineLocale({
       actionStarted: name => `${name} started — tailing log...`,
       actionFailed: name => `${name} failed to start`,
       running: 'Running...',
-      viewLog: 'Action log',
-    },
+      viewLog: 'Action log'
+    }
   },
   messaging: {
     search: 'Search messaging...',
@@ -1319,18 +1362,18 @@ export const cy = defineLocale({
     states: {
       connected: 'Wedi cysylltu',
       connecting: 'Yn cysylltu',
-      disabled: 'Wedi\'i analluogi',
+      disabled: "Wedi'i analluogi",
       fatal: 'Gwall',
       gateway_stopped: 'Porth negeseuon wedi stopio',
       not_configured: 'Angen gosod',
       pending_restart: 'Angen ailgychwyn',
       retrying: 'Yn ceisio eto',
-      startup_failed: 'Methodd cychwyn',
+      startup_failed: 'Methodd cychwyn'
     },
     unknown: 'Anhysbys',
-    hintPendingRestart: 'Ailgychwynnwch y porth o\'r bar statws i gymhwyso\'r newid hwn.',
-    hintGatewayStopped: 'Dechreuwch y porth o\'r bar statws i gysylltu.',
-    credentialsSet: 'Tystlythyrau wedi\'u gosod',
+    hintPendingRestart: "Ailgychwynnwch y porth o'r bar statws i gymhwyso'r newid hwn.",
+    hintGatewayStopped: "Dechreuwch y porth o'r bar statws i gysylltu.",
+    credentialsSet: "Tystlythyrau wedi'u gosod",
     needsSetup: 'Angen gosod',
     gatewayStopped: 'Porth negeseuon wedi stopio',
     getCredentials: 'Cael eich tystlythyrau',
@@ -1338,14 +1381,15 @@ export const cy = defineLocale({
     required: 'Gofynnol',
     recommended: 'Argymhellir',
     advanced: count => `Advanced (${count})`,
-    noTokenNeeded: 'Nid oes angen tocyn ar y platfform hwn yma. Defnyddiwch y canllaw gosod uchod, yna galluogwch ef isod.',
-    enabled: 'Wedi\'i alluogi',
-    disabled: 'Wedi\'i analluogi',
+    noTokenNeeded:
+      'Nid oes angen tocyn ar y platfform hwn yma. Defnyddiwch y canllaw gosod uchod, yna galluogwch ef isod.',
+    enabled: "Wedi'i alluogi",
+    disabled: "Wedi'i analluogi",
     unsavedChanges: 'Newidiadau heb eu cadw',
     saving: 'Yn cadw...',
     saveChanges: 'Cadw newidiadau',
-    saved: 'Wedi\'i gadw',
-    replaceValue: 'Disodli\'r gwerth presennol',
+    saved: "Wedi'i gadw",
+    replaceValue: "Disodli'r gwerth presennol",
     openDocs: 'Agor dogfennau',
     clearField: key => `Clear ${key}`,
     enableAria: name => `Enable ${name}`,
@@ -1363,128 +1407,127 @@ export const cy = defineLocale({
     fieldCopy: {
       TELEGRAM_BOT_TOKEN: {
         label: 'Tocyn bot',
-        help: 'Crëwch fot gyda @BotFather, yna gludwch y tocyn y mae\'n ei roi i chi.',
-        placeholder: 'Gludwch docyn bot Telegram',
+        help: "Crëwch fot gyda @BotFather, yna gludwch y tocyn y mae'n ei roi i chi.",
+        placeholder: 'Gludwch docyn bot Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'IDau defnyddwyr Telegram a ganiateir',
-        help: 'Argymhellir. IDau rhifol wedi\'u gwahanu â choma o @userinfobot. Heb hyn, gall unrhyw un anfon neges breifat at eich bot.',
+        help: "Argymhellir. IDau rhifol wedi'u gwahanu â choma o @userinfobot. Heb hyn, gall unrhyw un anfon neges breifat at eich bot."
       },
       TELEGRAM_PROXY: {
         label: 'URL dirprwy',
-        help: 'Dim ond ei angen ar rwydweithiau lle mae Telegram wedi\'i rwystro.',
+        help: "Dim ond ei angen ar rwydweithiau lle mae Telegram wedi'i rwystro."
       },
       DISCORD_BOT_TOKEN: {
         label: 'Tocyn bot',
-        help: 'Crëwch ap yn y Discord Developer Portal, ychwanegwch fot, yna gludwch ei docyn.',
+        help: 'Crëwch ap yn y Discord Developer Portal, ychwanegwch fot, yna gludwch ei docyn.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'IDau defnyddwyr Discord a ganiateir',
-        help: 'Argymhellir. IDau defnyddwyr Discord wedi\'u gwahanu â choma.',
+        help: "Argymhellir. IDau defnyddwyr Discord wedi'u gwahanu â choma."
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Dull ymateb',
-        help: 'cyntaf, i gyd, neu i ffwrdd.',
+        help: 'cyntaf, i gyd, neu i ffwrdd.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Caniatáu pob defnyddiwr Discord',
-        help: 'Datblygu yn unig. Pan mae\'n wir, gall unrhyw un DMio\'r bot heb restr caniatáu.',
+        help: "Datblygu yn unig. Pan mae'n wir, gall unrhyw un DMio'r bot heb restr caniatáu."
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID sianel cartref',
-        help: 'Sianel ble mae\'r bot yn anfon negesiadau rhagflaenol (allbwn cron, atgoffio).',
+        help: "Sianel ble mae'r bot yn anfon negesiadau rhagflaenol (allbwn cron, atgoffio)."
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Enw sianel cartref',
-        help: 'Enw ar gyfer y sianel cartref mewn logiau ac allbwn statws.',
+        help: 'Enw ar gyfer y sianel cartref mewn logiau ac allbwn statws.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Caniatáu pob defnyddiwr iMessage',
-        help: 'Pan mae\'n wir, hepgor rhestr caniatáu BlueBubbles.',
+        help: "Pan mae'n wir, hepgor rhestr caniatáu BlueBubbles."
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Caniatáu pob defnyddiwr Mattermost',
+        label: 'Caniatáu pob defnyddiwr Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Sianel cartref',
+        label: 'Sianel cartref'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Caniatáu pob defnyddiwr QQ',
+        label: 'Caniatáu pob defnyddiwr QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Sianel cartref QQ',
-        help: 'Sianel neu grwp diofel ar gyfer cludodd cron.',
+        help: 'Sianel neu grwp diofel ar gyfer cludodd cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Enw sianel cartref QQ',
+        label: 'Enw sianel cartref QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token bot Slack',
         help: 'Defnyddiwch y token bot o OAuth & Permissions ar ôl gosod eich Slack.',
-        placeholder: 'Gludwch token bot Slack',
+        placeholder: 'Gludwch token bot Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token ap Slack',
-        help: 'Defnyddiwch y token lefel ap sy\'n ofyn ar gyfer Socket Mode.',
-        placeholder: 'Gludwch token ap Slack',
+        help: "Defnyddiwch y token lefel ap sy'n ofyn ar gyfer Socket Mode.",
+        placeholder: 'Gludwch token ap Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'ID defnyddwyr Slack caeth',
-        help: 'Argymhellwyd. ID defnyddwyr Slack wedi\'u rhannu â phumedau.',
+        help: "Argymhellwyd. ID defnyddwyr Slack wedi'u rhannu â phumedau."
       },
       MATTERMOST_URL: {
         label: 'URL gwasanaeth',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token bot',
+        label: 'Token bot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'ID defnyddwyr caeth',
-        help: 'Argymhellwyd. ID defnyddwyr Mattermost wedi\'u rhannu â phumedau.',
+        help: "Argymhellwyd. ID defnyddwyr Mattermost wedi'u rhannu â phumedau."
       },
       MATRIX_HOMESERVER: {
         label: 'URL homeserwer',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token mynediad',
+        label: 'Token mynediad'
       },
       MATRIX_USER_ID: {
         label: 'ID defnyddiwr bot',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'ID defnyddwyr Matrix caeth',
-        help: 'Argymhellwyd. ID defnyddwyr wedi\'u rhannu â phumedau ar ffurf @user:server.',
+        help: "Argymhellwyd. ID defnyddwyr wedi'u rhannu â phumedau ar ffurf @user:server."
       },
       SIGNAL_HTTP_URL: {
         label: 'URL pont Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL of a running signal-cli REST bridge.',
+        help: 'URL of a running signal-cli REST bridge.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Phone number',
-        help: 'The number registered with your signal-cli bridge.',
+        help: 'The number registered with your signal-cli bridge.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Allowed Signal users',
-        help: 'Recommended. Comma-separated Signal identifiers.',
+        help: 'Recommended. Comma-separated Signal identifiers.'
       },
       WHATSAPP_ENABLED: {
         label: 'Enable WhatsApp bridge',
-        help: 'Set automatically by the toggle below. Leave alone unless you know you need it.',
+        help: 'Set automatically by the toggle below. Leave alone unless you know you need it.'
       },
       WHATSAPP_MODE: {
-        label: 'Bridge mode',
+        label: 'Bridge mode'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Allowed WhatsApp users',
-        help: 'Recommended. Comma-separated phone numbers or WhatsApp IDs.',
-      },
+        help: 'Recommended. Comma-separated phone numbers or WhatsApp IDs.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Search webhooks...',
@@ -1494,7 +1537,8 @@ export const cy = defineLocale({
     hint: 'Subscription changes hot-reload once the receiver is running. Disabled subscriptions reject incoming events.',
     empty: 'No webhook subscriptions yet.',
     disabledTitle: 'Webhook receiver disabled',
-    disabledBody: 'Webhooks are their own gateway platform. Enable them here to accept incoming HTTP events; chat channels are only needed when a subscription delivers to Telegram, Discord, Slack, or another channel.',
+    disabledBody:
+      'Webhooks are their own gateway platform. Enable them here to accept incoming HTTP events; chat channels are only needed when a subscription delivers to Telegram, Discord, Slack, or another channel.',
     enable: 'Enable webhooks',
     enabling: 'Enabling...',
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -1502,23 +1546,24 @@ export const cy = defineLocale({
     enableRow: 'Enable',
     disableRow: 'Disable',
     delete: 'Delete',
-    deleting: 'Wrthi\'n dileu...',
-    deleted: 'Webhook wedi\'i ddileu',
+    deleting: "Wrthi'n dileu...",
+    deleted: "Webhook wedi'i ddileu",
     deleteTitle: 'Dileu webhook',
-    deleteDescPrefix: 'Bydd hyn yn dileu\'n barhaol',
+    deleteDescPrefix: "Bydd hyn yn dileu'n barhaol",
     deleteDescSuffix: '. Ni ellir dadwneud hyn.',
     deleteFailed: (name: string) => `Failed to delete "${name}"`,
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     newSubscription: 'Tanysgrifiad newydd',
     restarting: 'Gateway yn ailgychwyn...',
-    restartNeeded: 'Mae webhooks wedi\'u galluogi, ond mae angen ailgychwyn ar y gateway o hyd cyn y gall y derbynnydd ddod ar-lein.',
+    restartNeeded:
+      "Mae webhooks wedi'u galluogi, ond mae angen ailgychwyn ar y gateway o hyd cyn y gall y derbynnydd ddod ar-lein.",
     restartGateway: 'Ailgychwyn gateway',
-    restartingGateway: 'Wrthi\'n ailgychwyn...',
+    restartingGateway: "Wrthi'n ailgychwyn...",
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
-    enabledRestarting: 'Webhooks wedi\'u galluogi; gateway yn ailgychwyn...',
+    enabledRestarting: "Webhooks wedi'u galluogi; gateway yn ailgychwyn...",
     all: '(oll)',
     deliverOnly: 'danfon yn unig',
-    createdTitle: 'Tanysgrifiad wedi\'i greu',
+    createdTitle: "Tanysgrifiad wedi'i greu",
     createdSecretHint: 'Copïwch y gyfrinach nawr — dim ond unwaith y caiff ei dangos.',
     webhookUrl: 'URL Webhook',
     secretOnce: 'Cyfrinach (dangosir unwaith)',
@@ -1526,19 +1571,19 @@ export const cy = defineLocale({
     fieldName: 'Enw',
     fieldNamePlaceholder: 'e.e. github-push',
     fieldDescription: 'Disgrifiad',
-    fieldDescriptionPlaceholder: 'Beth mae\'r webhook hwn yn ei wneud (dewisol)',
+    fieldDescriptionPlaceholder: "Beth mae'r webhook hwn yn ei wneud (dewisol)",
     fieldEvents: 'Digwyddiadau',
-    fieldEventsPlaceholder: 'wedi\'u gwahanu â choma, gadewch yn wag am bob un',
+    fieldEventsPlaceholder: "wedi'u gwahanu â choma, gadewch yn wag am bob un",
     fieldSkills: 'Sgiliau',
-    fieldSkillsPlaceholder: 'enwau sgiliau wedi\'u gwahanu â choma (dewisol)',
+    fieldSkillsPlaceholder: "enwau sgiliau wedi'u gwahanu â choma (dewisol)",
     fieldDeliver: 'Danfon i',
     fieldDeliverOnly: 'Danfon y payload yn unig',
     fieldPrompt: 'Anogiad',
-    fieldPromptPlaceholder: 'Cyfarwyddiadau i\'r asiant pan fydd y webhook hwn yn tanio (dewisol)',
+    fieldPromptPlaceholder: "Cyfarwyddiadau i'r asiant pan fydd y webhook hwn yn tanio (dewisol)",
     nameRequired: 'Enw yn ofynnol',
     create: 'Creu',
     creating: 'Yn creu...',
-    created: 'Wedi\'i greu',
+    created: "Wedi'i greu",
     createFailed: (detail: string) => `Failed to create: ${detail}`,
     copy: 'Copïo',
     deliverOptions: {
@@ -1547,8 +1592,8 @@ export const cy = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'E-bost',
-      github_comment: 'Sylwad GitHub',
-    },
+      github_comment: 'Sylwad GitHub'
+    }
   },
   profiles: {
     close: 'Cau proffiliau',
@@ -1583,35 +1628,35 @@ export const cy = defineLocale({
     modelLabel: 'Model',
     skillsLabel: 'Sgiliau',
     notSet: 'Heb ei osod',
-    soulDesc: 'Y prompt system a\'r cyfarwyddiadau persona sydd wedi\'u hymgorffori yn y proffil hwn.',
+    soulDesc: "Y prompt system a'r cyfarwyddiadau persona sydd wedi'u hymgorffori yn y proffil hwn.",
     soulOptional: 'dewisol',
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    soulPlaceholderCloned: 'wedi\'i glonio',
+    soulPlaceholderCloned: "wedi'i glonio",
     soulPlaceholderEmpty: 'gwag',
     unsavedChanges: 'Newidiadau heb eu cadw',
     loadingSoul: 'Yn llwytho SOUL.md...',
-    emptySoul: 'SOUL.md gwag — dechreuwch ysgrifennu\'r persona...',
+    emptySoul: "SOUL.md gwag — dechreuwch ysgrifennu'r persona...",
     saving: 'Yn cadw...',
     saveSoul: 'Cadw SOUL.md',
-    deleteTitle: 'Dileu\'r proffil?',
+    deleteTitle: "Dileu'r proffil?",
     deleteDescPrefix: 'Bydd hyn yn dileu',
     deleteDescMid: 'a dileu ei',
     deleteDescSuffix: 'gyfeiriadur. Ni ellir dadwneud hyn.',
     deleting: 'Yn dileu...',
-    createDesc: 'Mae proffiliau\'n amgylcheddau OpenAmer annibynnol: cyfluniad, sgiliau a SOUL.md ar wahân.',
+    createDesc: "Mae proffiliau'n amgylcheddau OpenAmer annibynnol: cyfluniad, sgiliau a SOUL.md ar wahân.",
     nameLabel: 'Enw',
     cloneFrom: 'Clonio o',
     cloneFromNone: 'Dim (gwag)',
-    cloneFromDesc: 'Yn copïo cyfluniad, sgiliau a SOUL.md o\'r proffil ffynhonnell a ddewiswyd.',
-    cloneFromDefault: 'Clonio o\'r diofyn',
-    cloneFromDefaultDesc: 'Copïo cyfluniad, sgiliau a SOUL.md o\'ch proffil diofyn.',
+    cloneFromDesc: "Yn copïo cyfluniad, sgiliau a SOUL.md o'r proffil ffynhonnell a ddewiswyd.",
+    cloneFromDefault: "Clonio o'r diofyn",
+    cloneFromDefaultDesc: "Copïo cyfluniad, sgiliau a SOUL.md o'ch proffil diofyn.",
     invalidName: hint => `Invalid name. ${hint}`,
-    nameRequired: 'Mae enw\'n ofynnol.',
+    nameRequired: "Mae enw'n ofynnol.",
     creating: 'Yn creu...',
     createAction: 'Creu proffil',
     renameTitle: 'Ailenwi proffil',
-    renameDescPrefix: 'Mae ailenwi\'n diweddaru cyfeiriadur y proffil ac unrhyw sgriptiau lapio yn',
+    renameDescPrefix: "Mae ailenwi'n diweddaru cyfeiriadur y proffil ac unrhyw sgriptiau lapio yn",
     renameDescSuffix: '.',
     newNameLabel: 'Enw newydd',
     renaming: 'Yn ailenwi...',
@@ -1619,45 +1664,45 @@ Leave blank to keep the ${mode} default.`,
     renamed: 'Ailenwyd proffil',
     deleted: 'Dilewyd proffil',
     setupCopied: 'Copïwyd y gorchymyn gosod',
-    soulSaved: 'SOUL.md wedi\'i gadw',
+    soulSaved: "SOUL.md wedi'i gadw",
     failedLoad: 'Methwyd llwytho proffiliau',
     failedDelete: 'Methwyd dileu proffil',
-    failedCopy: 'Methwyd copïo\'r gorchymyn gosod',
+    failedCopy: "Methwyd copïo'r gorchymyn gosod",
     failedLoadSoul: 'Methwyd llwytho SOUL.md',
     failedSaveSoul: 'Methwyd cadw SOUL.md',
     failedCreate: 'Methwyd creu proffil',
-    failedRename: 'Methwyd ailenwi proffil',
+    failedRename: 'Methwyd ailenwi proffil'
   },
   cron: {
     close: 'Cau cron',
-    title: 'Tasgau wedi\'u hamserlennu',
+    title: "Tasgau wedi'u hamserlennu",
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     search: 'Chwilio tasgau cron...',
-    loading: 'Wrthi\'n llwytho tasgau cron...',
+    loading: "Wrthi'n llwytho tasgau cron...",
     states: {
-      enabled: 'wedi\'i alluogi',
-      scheduled: 'wedi\'i amserlennu',
+      enabled: "wedi'i alluogi",
+      scheduled: "wedi'i amserlennu",
       running: 'yn rhedeg',
-      paused: 'wedi\'i saib',
-      disabled: 'wedi\'i analluogi',
+      paused: "wedi'i saib",
+      disabled: "wedi'i analluogi",
       error: 'gwall',
-      completed: 'wedi\'i gwblhau',
+      completed: "wedi'i gwblhau"
     },
     deliveryLabels: {
       local: 'Y bwrdd gwaith hwn',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'E-bost',
+      email: 'E-bost'
     },
     scheduleLabels: {
       daily: 'Dyddiol',
-      weekdays: 'Dyddiau\'r wythnos',
+      weekdays: "Dyddiau'r wythnos",
       weekly: 'Wythnosol',
       monthly: 'Misol',
       hourly: 'Bob awr',
       'every-15-minutes': 'Bob 15 munud',
-      custom: 'Cyfaddas',
+      custom: 'Cyfaddas'
     },
     scheduleHints: {
       daily: 'Bob dydd am 9:00 yb',
@@ -1666,7 +1711,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Y diwrnod cyntaf o bob mis am 9:00 yb',
       hourly: 'Ar ddechrau pob awr',
       'every-15-minutes': 'Bob 15 munud',
-      custom: 'Cystrawen Cron neu iaith naturiol',
+      custom: 'Cystrawen Cron neu iaith naturiol'
     },
     days: {
       '0': 'Dydd Sul',
@@ -1676,7 +1721,7 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Dydd Iau',
       '5': 'Dydd Gwener',
       '6': 'Dydd Sadwrn',
-      '7': 'Dydd Sul',
+      '7': 'Dydd Sul'
     },
     dayFallback: value => `day ${value}`,
     everyDayAt: time => `Every day at ${time}`,
@@ -1686,9 +1731,10 @@ Leave blank to keep the ${mode} default.`,
     topOfHour: 'Ar ben pob awr',
     everyHourAt: minute => `Every hour at :${minute}`,
     newCron: 'Cron newydd',
-    emptyDescNew: 'Trefnu anogwr i redeg ar fynegiad cron. Bydd OpenAmer yn ei redeg ac yn danfon y canlyniadau i\'r gyrchfan a ddewiswch.',
+    emptyDescNew:
+      "Trefnu anogwr i redeg ar fynegiad cron. Bydd OpenAmer yn ei redeg ac yn danfon y canlyniadau i'r gyrchfan a ddewiswch.",
     emptyDescSearch: 'Rhowch gynnig ar ymholiad chwilio ehangach.',
-    emptyTitleNew: 'Dim tasgau wedi\'u hamserlennu eto',
+    emptyTitleNew: "Dim tasgau wedi'u hamserlennu eto",
     emptyTitleSearch: 'Dim cyfatebiadau',
     last: 'Diwethaf:',
     next: 'Nesaf:',
@@ -1722,8 +1768,10 @@ Leave blank to keep the ${mode} default.`,
     failedSave: 'Methwyd cadw tasg cron',
     editTitle: 'Golygu tasg cron',
     createTitle: 'Tasg cron newydd',
-    editDesc: 'Diweddarwch yr amserlen, yr anogiad, neu\'r targed cyflenwi. Bydd newidiadau\'n gymwys yn y rhediad nesaf.',
-    createDesc: 'Trefnwch anogiad i redeg yn awtomatig. Defnyddiwch gystrawen cron neu ymadrodd naturiol fel "bob 15 munud".',
+    editDesc:
+      "Diweddarwch yr amserlen, yr anogiad, neu'r targed cyflenwi. Bydd newidiadau'n gymwys yn y rhediad nesaf.",
+    createDesc:
+      'Trefnwch anogiad i redeg yn awtomatig. Defnyddiwch gystrawen cron neu ymadrodd naturiol fel "bob 15 munud".',
     nameLabel: 'Enw',
     namePlaceholder: 'Briff bore',
     promptLabel: 'Anogiad',
@@ -1733,8 +1781,8 @@ Leave blank to keep the ${mode} default.`,
     deliverNeedsHomeChannel: 'gosodwch sianel gartref yn gyntaf',
     modelLabel: 'Model',
     modelDefault: 'Rhagosodedig (model byd-eang)',
-    customScheduleLabel: 'Amserlen wedi\'i addasu',
-    customPlaceholder: '0 9 * * * neu ddyddiau\'r wythnos am 9yb',
+    customScheduleLabel: "Amserlen wedi'i addasu",
+    customPlaceholder: "0 9 * * * neu ddyddiau'r wythnos am 9yb",
     customHint: 'Mynegiad cron, neu ymadroddion fel "bob awr" neu "ddyddiau\'r wythnos am 9yb".',
     optional: 'Dewisol',
     promptRequired: 'Mae anogiad yn ofynnol.',
@@ -1745,7 +1793,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Create cron',
     tabs: {
       jobs: 'Jobs',
-      blueprints: 'Blueprints',
+      blueprints: 'Blueprints'
     },
     blueprints: {
       tab: 'Blueprints',
@@ -1759,8 +1807,8 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Loading blueprints...',
       failedLoad: 'Failed to load blueprints',
       emptyTitle: 'No blueprints available',
-      emptyDesc: 'No automation blueprints are available on this backend.',
-    },
+      emptyDesc: 'No automation blueprints are available on this backend.'
+    }
   },
   artifacts: {
     search: 'Search artifacts...',
@@ -1794,21 +1842,21 @@ Leave blank to keep the ${mode} default.`,
     kindLink: 'dolen',
     chat: 'Sgwrs',
     copyUrl: 'Copïo URL',
-    copyPath: 'Copïo llwybr',
+    copyPath: 'Copïo llwybr'
   },
   sidebar: {
     nav: {
       'new-session': 'Sesiwn newydd',
       skills: 'Galluoedd',
       messaging: 'Negeseua',
-      artifacts: 'Arteffactau',
+      artifacts: 'Arteffactau'
     },
     searchAria: 'Chwilio sesiynau',
     searchPlaceholder: 'Chwilio sesiynau…',
     clearSearch: 'Clirio chwilio',
     noMatch: query => `No sessions match “${query}”.`,
     results: 'Canlyniadau',
-    pinned: 'Wedi\'u pinio',
+    pinned: "Wedi'u pinio",
     sessions: 'Sesiynau',
     cronJobs: 'Swyddi cron',
     groupAriaGrouped: 'Dangos sesiynau fel un rhestr',
@@ -1835,9 +1883,9 @@ Leave blank to keep the ${mode} default.`,
       ideaLabel: 'Idea',
       ideaPlaceholder: "Am beth mae'r prosiect hwn? (wedi'i gadw i IDEA.md)",
       ideaGenerate: 'Cynhyrchu syniad',
-      ideaGenerating: 'Wrthi\'n cynhyrchu…',
+      ideaGenerating: "Wrthi'n cynhyrchu…",
       ideaShuffle: 'Cymysgu templedi',
-      noFolders: 'Nid oes ffolderi wedi\'u hychwanegu eto.',
+      noFolders: "Nid oes ffolderi wedi'u hychwanegu eto.",
       addFolder: 'Ychwanegu ffolder',
       primaryBadge: 'cynradd',
       removeFolder: 'Tynnu',
@@ -1851,9 +1899,10 @@ Leave blank to keep the ${mode} default.`,
       menuDelete: 'Dileu',
       reveal: 'Dangos mewn ffolder',
       copyPath: 'Copïo llwybr',
-      removeFromSidebar: 'Cuddio o\'r bar ochr',
+      removeFromSidebar: "Cuddio o'r bar ochr",
       createFailed: 'Methwyd creu prosiect',
-      staleBackend: 'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
+      staleBackend:
+        'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
       deleteConfirm: 'This removes the saved project from OpenAmer. Files, git repos, and worktrees stay untouched.',
       startWork: 'New worktree',
       newWorktreeTitle: 'New worktree',
@@ -1875,13 +1924,15 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'No branches found',
       removeWorktree: 'Remove worktree',
       removeWorktreeFailed: 'Could not remove worktree (uncommitted changes?)',
-      removeWorktreeConfirm: 'Remove it from git (deletes the worktree directory; the branch stays), or just hide the lane from the sidebar and leave the worktree on disk.',
-      removeWorktreeDirty: 'This worktree has uncommitted changes. Force-remove it (discards those changes), or just hide the lane and keep it on disk.',
+      removeWorktreeConfirm:
+        'Remove it from git (deletes the worktree directory; the branch stays), or just hide the lane from the sidebar and leave the worktree on disk.',
+      removeWorktreeDirty:
+        'This worktree has uncommitted changes. Force-remove it (discards those changes), or just hide the lane and keep it on disk.',
       forceRemove: 'Force remove',
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
       toggle: label => `Toggle ${label} sessions`,
-      back: 'All projects',
+      back: 'All projects'
     },
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
@@ -1913,21 +1964,21 @@ Leave blank to keep the ${mode} default.`,
       renamed: 'Wedi ailenwi',
       renameFailed: 'Ailenwi wedi methu',
       renameTitle: 'Ailenwi sesiwn',
-      renameDesc: 'Rhowch deitl cofiadwy i\'r sgwrs hon. Gadewch yn wag i glirio.',
+      renameDesc: "Rhowch deitl cofiadwy i'r sgwrs hon. Gadewch yn wag i glirio.",
       untitledPlaceholder: 'Sesiwn heb deitl',
       untitledChat: id => `Chat ${id}`,
       ageNow: 'nawr',
       ageDay: 'd',
       ageHour: 'a',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Yn gynharach heddiw',
       yesterday: 'Ddoe',
       thisWeek: 'Yn gynharach yr wythnos hon',
       lastWeek: 'Wythnos diwethaf',
-      thisMonth: 'Yn gynharach y mis hwn',
-    },
+      thisMonth: 'Yn gynharach y mis hwn'
+    }
   },
   composer: {
     message: 'Neges',
@@ -1942,7 +1993,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -1951,11 +2002,11 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     startVoice: 'Dechrau sgwrs lais',
     queueMessage: 'Ciwio neges',
-    steer: 'Llywio\'r rhediad presennol',
+    steer: "Llywio'r rhediad presennol",
     stop: 'Stopio',
     send: 'Anfon',
     speaking: 'Yn siarad',
@@ -1963,8 +2014,8 @@ Leave blank to keep the ${mode} default.`,
     thinking: 'Yn meddwl',
     muted: 'Wedi tewi',
     listening: 'Yn gwrando',
-    muteMic: 'Tewi\'r meicroffon',
-    unmuteMic: 'Dad-dewi\'r meicroffon',
+    muteMic: "Tewi'r meicroffon",
+    unmuteMic: "Dad-dewi'r meicroffon",
     stopListening: 'Stopio gwrando ac anfon',
     stopShort: 'Stopio',
     endConversation: 'Diweddu sgwrs lais',
@@ -1987,7 +2038,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'resume a prior session',
       '/details': 'control transcript detail level',
       '/copy': 'copy selection or last assistant message',
-      '/quit': 'exit openamer',
+      '/quit': 'exit openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'reference files, folders, urls, git',
@@ -1997,7 +2048,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'send next queued turn',
       'keybinds.openPanel': 'all keyboard shortcuts',
       'composer.cancel': 'close popover · cancel run',
-      'composer.history': 'cycle popover / history',
+      'composer.history': 'cycle popover / history'
     },
     attachUrlTitle: 'Attach a URL',
     attachUrlDesc: 'OpenAmer will fetch the page and include it as context for this turn.',
@@ -2048,19 +2099,19 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'Code review',
         description: 'Audit the current change for regressions, dropped edge cases, and missing tests.',
-        text: 'Please review this for bugs, regressions, and missing tests.',
+        text: 'Please review this for bugs, regressions, and missing tests.'
       },
       implementationPlan: {
         label: 'Implementation plan',
         description: 'Outline an approach before touching code so the diff stays focused.',
-        text: 'Please make a concise implementation plan before changing code.',
+        text: 'Please make a concise implementation plan before changing code.'
       },
       explainThis: {
         label: 'Explain this',
         description: 'Walk through how the selected code works and link to the key files.',
-        text: 'Please explain how this works and point me to the key files.',
-      },
-    },
+        text: 'Please explain how this works and point me to the key files.'
+      }
+    }
   },
   statusStack: {
     agents: 'Agents',
@@ -2108,13 +2159,14 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'Agor PR',
       ghMissing: 'Gosod y GitHub CLI (gh) a mewngofnodi i agor PRs',
       agentShip: 'Gofyn i OpenAmer agor PR',
-      agentShipPrompt: 'Adolygu\'r newidiadau cyfredol, eu hymrwymo gyda neges ymrwymo gonfensiynol glir, gwthio\'r gangen, ac agor cais tynnu.',
+      agentShipPrompt:
+        "Adolygu'r newidiadau cyfredol, eu hymrwymo gyda neges ymrwymo gonfensiynol glir, gwthio'r gangen, ac agor cais tynnu.",
       newBranch: 'Cangen newydd',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
       switchFailed: branch => `Could not switch to ${branch}`,
-      worktrees: 'Coedwaith',
-    },
+      worktrees: 'Coedwaith'
+    }
   },
   updates: {
     stages: {
@@ -2124,12 +2176,12 @@ Leave blank to keep the ${mode} default.`,
       pull: 'Bron yno…',
       pydeps: 'Yn gorffen…',
       update: 'Yn diweddaru OpenAmer…',
-      rebuild: 'Yn ailadeiladu\'r ap bwrdd gwaith…',
+      rebuild: "Yn ailadeiladu'r ap bwrdd gwaith…",
       restart: 'Restarting OpenAmer…',
       done: 'Update complete',
       manual: 'Update from your terminal',
       guiSkew: 'Update the desktop app',
-      error: 'Update paused',
+      error: 'Update paused'
     },
     checking: 'Looking for updates…',
     checkFailedTitle: 'Couldn’t check for updates',
@@ -2149,15 +2201,19 @@ Leave blank to keep the ${mode} default.`,
     maybeLater: 'Maybe later',
     moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
     manualTitle: 'Update from your terminal',
-    manualBody: 'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
+    manualBody:
+      'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
     manualPickedUp: 'OpenAmer will pick up the new version next time you launch it.',
     guiSkewTitle: 'Update the desktop app',
-    guiSkewBody: 'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
+    guiSkewBody:
+      'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
     copy: 'Copy',
     copied: 'Copied',
     done: 'Done',
-    applyingBody: 'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
-    applyingBodyBackend: 'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
+    applyingBody:
+      'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
+    applyingBodyBackend:
+      'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
     applyingClose: 'This window will close while the update runs, then OpenAmer reopens on its own.',
     errorTitle: 'Update didn’t finish',
     errorBody: 'No worries — nothing was lost. You can try again now.',
@@ -2168,12 +2224,13 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'Backend restarting to load the update…',
       notAvailable: 'Update not available for this backend.',
       failed: 'Backend update failed.',
-      noReturn: 'Backend didn’t come back online. The update may not have completed — check the backend host.',
+      noReturn: 'Backend didn’t come back online. The update may not have completed — check the backend host.'
     },
     appErrors: {
-      updateLocked: 'Update aborted: another OpenAmer window or a terminal running openamer is holding this install open. Close it and retry.',
-      updateFailed: 'The update didn’t complete. No worries — nothing was lost. You can try again now.',
-    },
+      updateLocked:
+        'Update aborted: another OpenAmer window or a terminal running openamer is holding this install open. Close it and retry.',
+      updateFailed: 'The update didn’t complete. No worries — nothing was lost. You can try again now.'
+    }
   },
   install: {
     stageStates: {
@@ -2181,17 +2238,19 @@ Leave blank to keep the ${mode} default.`,
       running: 'Installing',
       succeeded: 'Done',
       skipped: 'Skipped',
-      failed: 'Failed',
+      failed: 'Failed'
     },
     oneTimeTitle: 'OpenAmer needs a one-time install',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     installCommand: 'Install command',
     copyCommand: 'Copy command',
     viewDocs: 'View install docs',
     installTo: 'Will install to',
     retryAfterRun: 'I’ve run it -- retry',
     setupChoiceTitle: 'Set up OpenAmer Desktop',
-    setupChoiceDesc: 'Connect this app to a OpenAmer gateway you already run, or install OpenAmer locally on this computer.',
+    setupChoiceDesc:
+      'Connect this app to a OpenAmer gateway you already run, or install OpenAmer locally on this computer.',
     connectExistingTitle: 'Connect to existing OpenAmer',
     connectExistingShort: 'Connect existing',
     connectExistingDesc: 'Use a remote backend with a session token or browser sign-in. No local install will start.',
@@ -2199,7 +2258,8 @@ Leave blank to keep the ${mode} default.`,
     installLocalDesc: 'Download OpenAmer, create its Python environment, and run the backend on this computer.',
     localStartUnavailable: 'Local installation could not start. Restart OpenAmer Desktop and try again.',
     remoteSetupTitle: 'Connect to existing OpenAmer',
-    remoteSetupDesc: 'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
+    remoteSetupDesc:
+      'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
     remoteUrlTitle: 'Gateway URL',
     remoteUrlDesc: 'Use the base URL of the OpenAmer gateway, including https:// when remote.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2226,8 +2286,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Installation failed',
     settingUpTitle: 'Setting up OpenAmer Agent',
     finishingTitle: 'Finishing up',
-    failedDesc: 'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
-    activeDesc: 'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
+    failedDesc:
+      'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
+    activeDesc:
+      'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
     fetchingManifest: 'Fetching installer manifest...',
@@ -2241,18 +2303,18 @@ Leave blank to keep the ${mode} default.`,
     transcriptSaved: 'Full transcript saved to',
     copiedOutput: 'Copied!',
     copyOutput: 'Copy output',
-    reloadRetry: 'Reload and retry',
+    reloadRetry: 'Reload and retry'
   },
   onboarding: {
-    headerTitle: "Gadewch i ni eich gosod gydag Asiant OpenAmer",
-    headerDesc: 'Cysylltwch ddarparwr model i ddechrau sgwrsio. Mae\'r rhan fwyaf o opsiynau\'n cymryd un clic.',
-    preparingInstall: 'Mae OpenAmer yn gorffen gosod. Fel arfer mae\'n cymryd llai na munud ar y tro cyntaf.',
+    headerTitle: 'Gadewch i ni eich gosod gydag Asiant OpenAmer',
+    headerDesc: "Cysylltwch ddarparwr model i ddechrau sgwrsio. Mae'r rhan fwyaf o opsiynau'n cymryd un clic.",
+    preparingInstall: "Mae OpenAmer yn gorffen gosod. Fel arfer mae'n cymryd llai na munud ar y tro cyntaf.",
     starting: 'Yn cychwyn OpenAmer…',
     lookingUpProviders: 'Yn chwilio am ddarparwyr...',
     collapse: 'Crebachu',
     otherProviders: 'Darparwyr eraill',
     haveApiKey: 'Mae gen i allwedd API',
-    chooseLater: "Dewisaf ddarparwr yn ddiweddarach",
+    chooseLater: 'Dewisaf ddarparwr yn ddiweddarach',
     recommended: 'A argymhellir',
     connected: 'Wedi cysylltu',
     featuredPitch: 'Un tanysgrifiad, 300+ o fodelau blaenllaw — y ffordd a argymhellir i redeg OpenAmer',
@@ -2261,28 +2323,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'API model uniongyrchol',
-        description: 'Mynediad uniongyrchol at fodelau a gynhelir gan Fireworks AI.',
+        description: 'Mynediad uniongyrchol at fodelau a gynhelir gan Fireworks AI.'
       },
       openrouter: {
         short: 'un allwedd, llawer o fodelau',
-        description: 'Yn cynnal cannoedd o fodelau y tu ôl i un allwedd. Diofyn da ar gyfer gosodiadau newydd.',
+        description: 'Yn cynnal cannoedd o fodelau y tu ôl i un allwedd. Diofyn da ar gyfer gosodiadau newydd.'
       },
       openai: {
         short: 'Modelau dosbarth GPT',
-        description: 'Mynediad uniongyrchol at fodelau OpenAI.',
+        description: 'Mynediad uniongyrchol at fodelau OpenAI.'
       },
       gemini: {
         short: 'Gemini models',
-        description: 'Direct access to Google Gemini models.',
+        description: 'Direct access to Google Gemini models.'
       },
       xai: {
         short: 'Grok models',
-        description: 'Direct access to xAI Grok models.',
+        description: 'Direct access to xAI Grok models.'
       },
       local: {
         short: 'self-hosted',
-        description: 'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).',
-      },
+        description:
+          'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).'
+      }
     },
     backToSignIn: 'Back to sign in',
     getKey: 'Get a key',
@@ -2295,7 +2358,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'Opens your browser to sign in, then continues here',
       device_code: 'Opens a verification page in your browser — OpenAmer connects automatically',
-      external: 'Sign in once in your terminal, then come back to chat',
+      external: 'Sign in once in your terminal, then come back to chat'
     },
     startingSignIn: provider => `Starting sign-in for ${provider}...`,
     verifyingCode: provider => `Verifying your code with ${provider}...`,
@@ -2306,14 +2369,16 @@ Leave blank to keep the ${mode} default.`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
     authorizeThere: 'Authorize OpenAmer there.',
-    copyAuthCode: 'Copïwch y cod awdurdodi a\'i gludo isod.',
+    copyAuthCode: "Copïwch y cod awdurdodi a'i gludo isod.",
     pasteAuthCode: 'Gludo cod awdurdodi',
     reopenAuthPage: 'Ail-agor tudalen awdurdodi',
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
     reopenSignInPage: 'Ail-agor tudalen mewngofnodi',
     waitingAuthorize: 'Yn aros i chi awdurdodi...',
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
-    signedIn: "Wedi mewngofnodi",
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    signedIn: 'Wedi mewngofnodi',
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     reopenVerification: 'Ail-agor tudalen ddilysu',
     copy: 'Copïo',
@@ -2324,14 +2389,14 @@ Leave blank to keep the ${mode} default.`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
     change: 'Newid',
     startChatting: 'Dechrau',
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'Newid model',
     current: 'cyfredol:',
     unknown: '(anhysbys)',
     search: 'Hidlo darparwyr a modelau...',
-    noModels: 'Dim modelau wedi\'u canfod.',
+    noModels: "Dim modelau wedi'u canfod.",
     addProvider: 'Ychwanegu darparwr',
     loadFailed: 'Could not load models',
     noAuthenticatedProviders: 'No authenticated providers.',
@@ -2340,13 +2405,13 @@ Leave blank to keep the ${mode} default.`,
     free: 'Free',
     freeTier: 'Free tier',
     priceTitle: 'Input / Output price per million tokens',
-    wasPrice: 'was',
+    wasPrice: 'was'
   },
   modelVisibility: {
     title: 'Models',
     search: 'Search models',
     noAuthenticatedProviders: 'No authenticated providers.',
-    addProvider: 'Add provider…',
+    addProvider: 'Add provider…'
   },
   shell: {
     windowControls: 'Window controls',
@@ -2357,7 +2422,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'No models found',
       editModels: 'Edit Models…',
       refreshModels: 'Refresh Models',
-      fast: 'Fast',
+      fast: 'Fast'
     },
     modelOptions: {
       noOptions: 'Dim opsiynau ar gyfer y model hwn',
@@ -2373,7 +2438,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'Uchaf',
       ultra: 'Eithafol',
       updateFailed: 'Methodd diweddaru opsiwn y model',
-      fastFailed: 'Methodd diweddaru\'r modd cyflym',
+      fastFailed: "Methodd diweddaru'r modd cyflym"
     },
     gatewayMenu: {
       gateway: 'Porth',
@@ -2388,7 +2453,7 @@ Leave blank to keep the ${mode} default.`,
       connection: label => `Connection: ${label}`,
       recentActivity: 'Recent activity',
       viewAllLogs: 'View all logs →',
-      messagingPlatforms: 'Messaging platforms',
+      messagingPlatforms: 'Messaging platforms'
     },
     approvalMode: {
       title: 'Approval mode',
@@ -2398,7 +2463,7 @@ Leave blank to keep the ${mode} default.`,
       smart: 'Smart',
       smartDescription: 'Automatically assess actions and ask when needed',
       off: 'Off',
-      offDescription: 'Run without approval prompts',
+      offDescription: 'Run without approval prompts'
     },
     statusbar: {
       unknown: 'unknown',
@@ -2454,13 +2519,13 @@ Leave blank to keep the ${mode} default.`,
           skills: 'Sgiliau',
           subagent_definitions: 'Diffiniadau is-asiantiaid',
           system_prompt: 'Prompt system',
-          tool_definitions: 'Diffiniadau offer',
+          tool_definitions: 'Diffiniadau offer'
         },
         empty: 'Nid oes data cyd-destun eto',
-        loading: 'Yn llwytho\'r dadansoddiad…',
+        loading: "Yn llwytho'r dadansoddiad…",
         percentFull: percent => `${percent}% Full`,
         title: 'Defnyddio cyd-destun',
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Agor dadansoddiad defnyddio cyd-destun',
       session: 'Sesiwn',
@@ -2471,24 +2536,24 @@ Leave blank to keep the ${mode} default.`,
       noModel: 'dim model',
       switchModel: 'Newid model',
       openModelPicker: 'Agor dewisydd model',
-      modelPinned: 'wedi\'i binio gennych chi; mae sgyrsiau newydd yn defnyddio hwn yn lle rhagosodiad y Gosodiadau',
+      modelPinned: "wedi'i binio gennych chi; mae sgyrsiau newydd yn defnyddio hwn yn lle rhagosodiad y Gosodiadau",
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Bar ochr dde',
     panelsAria: 'Panelau bar ochr dde',
     files: 'System ffeiliau',
     terminal: 'Terfynell',
-    noFolderSelected: 'Dim ffolder wedi\'i dewis',
+    noFolderSelected: "Dim ffolder wedi'i dewis",
     changeCwdTitle: 'Newid cyfeiriadur gwaith',
     remotePickerTitle: 'Dewis ffolder o bell',
     remotePickerDescription: 'Pori ffolderi ar y cefn cysylltiedig.',
     remotePickerSelect: 'Dewis ffolder',
     folderTip: cwd => `${cwd} — click to change folder`,
     openFolder: 'Agor ffolder',
-    refreshTree: 'Adnewyddu\'r goeden',
+    refreshTree: "Adnewyddu'r goeden",
     collapseAll: 'Cwympo pob ffolder',
     previewUnavailable: 'Rhagolwg ddim ar gael',
     couldNotPreview: path => `Could not preview ${path}`,
@@ -2499,18 +2564,18 @@ Leave blank to keep the ${mode} default.`,
     unreadableTitle: 'Anarllenadwy',
     unreadableBody: error => `Could not read this folder (${error}).`,
     emptyTitle: 'Gwag',
-    emptyBody: 'Mae\'r ffolder hwn yn wag.',
+    emptyBody: "Mae'r ffolder hwn yn wag.",
     treeErrorTitle: 'Gwall coed',
-    treeErrorBody: 'Cafodd coed ffeiliau wall wrth gyhoeddi\'r ffolder hwn.',
+    treeErrorBody: "Cafodd coed ffeiliau wall wrth gyhoeddi'r ffolder hwn.",
     tryAgain: 'Ceisiw eto',
-    loadingTree: 'Yn llwytho\'r coed ffeiliau',
+    loadingTree: "Yn llwytho'r coed ffeiliau",
     loadingFiles: 'Loading files',
     terminalHide: 'Hide terminal',
     terminalsAria: 'Terminals',
     terminalNew: 'New terminal',
     terminalCloseOthers: 'Close others',
     terminalCloseAll: 'Close all',
-    addToChat: 'Add to chat',
+    addToChat: 'Add to chat'
   },
   preview: {
     tab: 'Preview',
@@ -2544,7 +2609,8 @@ Leave blank to keep the ${mode} default.`,
     unsavedChanges: 'Unsaved changes',
     saveFailed: message => `Couldn't save: ${message}`,
     diskChangedTitle: 'File changed on disk',
-    diskChangedBody: 'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
+    diskChangedBody:
+      'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
     overwrite: 'Overwrite',
     discardReload: 'Discard & reload',
     console: {
@@ -2565,7 +2631,7 @@ Leave blank to keep the ${mode} default.`,
       empty: 'No console messages yet.',
       promptHeader: 'Preview console:',
       sentTitle: 'Sent to chat',
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Preview app failed to boot',
@@ -2587,20 +2653,22 @@ Leave blank to keep the ${mode} default.`,
       failedRestarting: message => `Server restart failed: ${message}`,
       unknownError: 'gwall anhysbys',
       restartedTitle: 'Ailgychwynnwyd gweinydd y rhagolwg',
-      reloadingNow: 'Yn ail-lwytho\'r rhagolwg nawr.',
+      reloadingNow: "Yn ail-lwytho'r rhagolwg nawr.",
       restartFailedTitle: 'Methodd ailgychwyn y rhagolwg',
       restartFailedMessage: 'Nid oedd OpenAmer yn gallu ailgychwyn y gweinydd.',
-      stillWorking: 'Mae OpenAmer yn dal i weithio, ond nid yw canlyniad ailgychwyn wedi cyrraedd eto. Efallai bod gorchymyn y gweinydd yn rhedeg yn y blaendir.',
-      workspaceReloading: 'Newidiodd y gweithle, yn ail-lwytho\'r rhagolwg',
+      stillWorking:
+        'Mae OpenAmer yn dal i weithio, ond nid yw canlyniad ailgychwyn wedi cyrraedd eto. Efallai bod gorchymyn y gweinydd yn rhedeg yn y blaendir.',
+      workspaceReloading: "Newidiodd y gweithle, yn ail-lwytho'r rhagolwg",
       fileChanged: url => `File changed, reloading preview: ${url}`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
-      moduleMimeDescription: 'Mae sgriptiau modiwl yn cael eu cyflwyno â\'r math MIME anghywir. Fel arfer mae hyn yn golygu bod gweinydd ffeil statig yn cyflwyno ap Vite/React yn lle gweinydd datblygu\'r prosiect.',
+      moduleMimeDescription:
+        "Mae sgriptiau modiwl yn cael eu cyflwyno â'r math MIME anghywir. Fel arfer mae hyn yn golygu bod gweinydd ffeil statig yn cyflwyno ap Vite/React yn lle gweinydd datblygu'r prosiect.",
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Nid oedd modd cyrraedd tudalen y rhagolwg.',
       openTarget: url => `Open ${url}`,
-      fallbackTitle: 'Rhagolwg',
-    },
+      fallbackTitle: 'Rhagolwg'
+    }
   },
   zones: {
     showHeader: 'Show header',
@@ -2608,7 +2676,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Minimize',
     restore: 'Restore',
     closeRunningTitle: 'Close running tab?',
-    closeRunningBody: 'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
+    closeRunningBody:
+      'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
     closeRunningConfirm: 'Close tab',
     closeOthers: 'Close others',
     closeToRight: 'Close to the right',
@@ -2645,14 +2714,15 @@ Leave blank to keep the ${mode} default.`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
     saveApply: 'Save & apply',
     notExpressible: 'this arrangement interlocks (pinwheel) — not expressible as nested splits yet',
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
       loadingSession: 'Loading session',
       showEarlier: 'Show earlier messages',
       loadingResponse: 'OpenAmer is loading a response',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Thinking',
@@ -2675,12 +2745,13 @@ Leave blank to keep the ${mode} default.`,
       restoreCheckpoint: 'Restore checkpoint',
       restoreFromHere: 'Restore checkpoint — rerun from this prompt',
       restoreTitle: 'Restore to this checkpoint?',
-      restoreBody: 'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
+      restoreBody:
+        'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
       restoreConfirm: 'Restore & rerun',
       restoreNext: 'Restore next checkpoint',
       goForward: 'Go forward',
       sendEdited: 'Send edited message',
-      attachingFile: 'Attaching…',
+      attachingFile: 'Attaching…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2692,23 +2763,24 @@ Leave blank to keep the ${mode} default.`,
       alwaysAllowMenu: 'Caniatáu bob amser…',
       jumpToApproval: 'Cymeradwyaeth angenrheidiol',
       reject: 'Gwrthod',
-      alwaysTitle: 'Caniatáu\'r gorchymyn hwn bob amser?',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
-      alwaysAllow: 'Caniatáu bob amser',
+      alwaysTitle: "Caniatáu'r gorchymyn hwn bob amser?",
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysAllow: 'Caniatáu bob amser'
     },
     clarify: {
-      notReady: 'Nid yw\'r cais eglur yn barod eto',
-      gatewayDisconnected: 'Nid yw\'r porth OpenAmer wedi\'i gysylltu',
+      notReady: "Nid yw'r cais eglur yn barod eto",
+      gatewayDisconnected: "Nid yw'r porth OpenAmer wedi'i gysylltu",
       sendFailed: 'Methu anfon ymateb eglur',
       loadingQuestion: 'Llwytho cwestiwn…',
       other: 'Arall (teipiwch eich ateb)',
       placeholder: 'Teipiwch eich ateb…',
       skip: 'Hylid',
-      skipped: 'Wedi\'i hylio',
+      skipped: "Wedi'i hylio",
       continueLabel: 'Parhau',
       lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
       lateAnswerTip: 'Amluniwch y ateb hwn fel neges dilynol',
-      lateAnswerHint: 'Nid yw\'r cyfleuster hon bellach yn aros. Dewiswch opsiwn i\'w hmluniad fel neges dilynol.',
+      lateAnswerHint: "Nid yw'r cyfleuster hon bellach yn aros. Dewiswch opsiwn i'w hmluniad fel neges dilynol."
     },
     tool: {
       code: 'Cod',
@@ -2732,7 +2804,7 @@ Leave blank to keep the ${mode} default.`,
       statusRunning: 'Yn rhedeg',
       statusError: 'Gwall',
       statusRecovered: 'Adferwyd',
-      statusDone: 'Wedi\'i gwblhau',
+      statusDone: "Wedi'i gwblhau",
       actions: {
         read: 'Darllen',
         reading: 'Yn darllen',
@@ -2744,11 +2816,11 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Ran',
         running: 'Running',
         ranCode: 'Ran code',
-        runningCode: 'Scripting',
+        runningCode: 'Scripting'
       },
       prefixes: {
         browser: 'Browser',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2756,135 +2828,136 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
+        runningTool: action => `Running ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Clicked page element',
           pending: 'Clicking page element',
-          pendingAction: 'Clicking',
+          pendingAction: 'Clicking'
         },
         browser_fill: {
           done: 'Filled form field',
           pending: 'Filling form field',
-          pendingAction: 'Filling',
+          pendingAction: 'Filling'
         },
         browser_navigate: {
           done: 'Opened page',
           pending: 'Opening page',
-          pendingAction: 'Opening',
+          pendingAction: 'Opening'
         },
         browser_snapshot: {
           done: 'Captured page snapshot',
           pending: 'Capturing page snapshot',
-          pendingAction: 'Capturing',
+          pendingAction: 'Capturing'
         },
         browser_take_screenshot: {
           done: 'Captured screenshot',
           pending: 'Capturing screenshot',
-          pendingAction: 'Capturing',
+          pendingAction: 'Capturing'
         },
         browser_type: {
           done: 'Typed on page',
           pending: 'Typing on page',
-          pendingAction: 'Typing',
+          pendingAction: 'Typing'
         },
         clarify: {
           done: 'Asked a question',
           pending: 'Asking a question',
-          pendingAction: 'Asking',
+          pendingAction: 'Asking'
         },
         cronjob: {
           done: 'Cron job',
           pending: 'Scheduling cron job',
-          pendingAction: 'Scheduling',
+          pendingAction: 'Scheduling'
         },
         edit_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
+          pendingAction: 'Editing'
         },
         execute_code: {
           done: 'Ran code',
           pending: 'Scripting',
-          pendingAction: 'Scripting',
+          pendingAction: 'Scripting'
         },
         image_generate: {
           done: 'Generated image',
           pending: 'Generating image',
-          pendingAction: 'Generating',
+          pendingAction: 'Generating'
         },
         list_files: {
           done: 'Listed files',
           pending: 'Listing files',
-          pendingAction: 'Listing',
+          pendingAction: 'Listing'
         },
         patch: {
           done: 'Patched file',
           pending: 'Patching file',
-          pendingAction: 'Patching',
+          pendingAction: 'Patching'
         },
         read_file: {
           done: 'Read file',
           pending: 'Reading file',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         search_files: {
           done: 'Searched files',
           pending: 'Searching files',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         session_search_recall: {
           done: 'Searched session history',
           pending: 'Searching session history',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         terminal: {
           done: 'Ran command',
           pending: 'Running command',
-          pendingAction: 'Running',
+          pendingAction: 'Running'
         },
         todo: {
           done: 'Updated todos',
           pending: 'Updating todos',
-          pendingAction: 'Updating',
+          pendingAction: 'Updating'
         },
         vision_analyze: {
           done: 'Analyzed image',
           pending: 'Analyzing image',
-          pendingAction: 'Analyzing',
+          pendingAction: 'Analyzing'
         },
         web_extract: {
           done: 'Read webpage',
           pending: 'Reading webpage',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         web_search: {
           done: 'Searched web',
           pending: 'Searching web',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         write_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Golygu',
-        },
-      },
-    },
+          pendingAction: 'Golygu'
+        }
+      }
+    }
   },
   prompts: {
-    gatewayDisconnected: 'Nid yw porth OpenAmer wedi\'i gysylltu',
+    gatewayDisconnected: "Nid yw porth OpenAmer wedi'i gysylltu",
     sudoSendFailed: 'Methwyd anfon cyfrinair sudo',
     secretSendFailed: 'Methwyd anfon cyfrinach',
     sudoTitle: 'Cyfrinair gweinyddwr',
-    sudoDesc: 'Mae OpenAmer angen eich cyfrinair sudo i redeg gorchymyn breintiedig. Anfonir ef yn unig at eich asiant lleol.',
+    sudoDesc:
+      'Mae OpenAmer angen eich cyfrinair sudo i redeg gorchymyn breintiedig. Anfonir ef yn unig at eich asiant lleol.',
     sudoPlaceholder: 'cyfrinair sudo',
     secretTitle: 'Cyfrinach yn ofynnol',
     secretDesc: 'Mae OpenAmer angen manylion cyfrif i barhau.',
-    secretPlaceholder: 'gwerth cyfrinach',
+    secretPlaceholder: 'gwerth cyfrinach'
   },
   desktop: {
-    audioReadFailed: 'Methwyd darllen sain wedi\'i recordio',
+    audioReadFailed: "Methwyd darllen sain wedi'i recordio",
     sessionUnavailable: 'Sesiwn ddim ar gael',
     createSessionFailed: 'Methwyd creu sesiwn newydd',
     promptFailed: 'Methodd yr anogwr',
@@ -2893,12 +2966,13 @@ Leave blank to keep the ${mode} default.`,
     desktopCommands: 'Gorchmynion bwrdd gwaith',
     skillCommandsAvailable: count => `${count} skill commands available.`,
     warningLine: message => `warning: ${message}`,
-    yoloArmed: 'YOLO wedi\'i arfogi ar gyfer y sgwrs hon',
+    yoloArmed: "YOLO wedi'i arfogi ar gyfer y sgwrs hon",
     yoloOff: 'YOLO i ffwrdd',
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Could not toggle YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     unknownProfile: 'Unknown profile',
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
@@ -2909,26 +2983,27 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'Golygu wedi methu',
     resumeFailed: 'Ail-gychwyn wedi methu',
     resumeStrandedTitle: "Methu llwytho'r sesiwn hwn",
-    resumeStrandedBody: 'Methwyd cysylltu â\'r sesiwn hwn a rhyddodd y hail-ysbrydion awtomataidd. Gwiriwch fod y porth yn rhedeg, yna ceisiwch eto.',
+    resumeStrandedBody:
+      "Methwyd cysylltu â'r sesiwn hwn a rhyddodd y hail-ysbrydion awtomataidd. Gwiriwch fod y porth yn rhedeg, yna ceisiwch eto.",
     resumeRetry: 'Ail-ysbryd',
     nothingToBranch: 'Dim rhywbeth i ffrwytho',
     branchNeedsChat: 'Cychwyn neu ail-gychwyn sgwrs cyn frwytho.',
     sessionBusy: 'Sesiwn yn bryderol',
-    branchStopCurrent: 'Stopiwch y tro presennol cyn frwytho\'r sgwrs.',
-    branchNoText: 'Nid oes testun i frwytho o\'r neges hon.',
+    branchStopCurrent: "Stopiwch y tro presennol cyn frwytho'r sgwrs.",
+    branchNoText: "Nid oes testun i frwytho o'r neges hon.",
     branchTitle: n => `Draft: Branch #${n}`,
     branchFailed: 'Ffrwytho wedi methu',
     deleteFailed: 'Dileu wedi methu',
     archived: 'Archiwwyd',
     archiveFailed: 'Archiwio wedi methu',
     cwdChangeFailed: 'Newid cyfeiriadur gwaith wedi methu',
-    cwdStagedTitle: 'Cyfeiriadur gwaith wedi\'i storio',
-    cwdStagedMessage: 'Ailgychwyn y cefndir bwrdd gwaith i gymhwyso newidiadau cwd i\'r sesiwn gweithredol.',
+    cwdStagedTitle: "Cyfeiriadur gwaith wedi'i storio",
+    cwdStagedMessage: "Ailgychwyn y cefndir bwrdd gwaith i gymhwyso newidiadau cwd i'r sesiwn gweithredol.",
     modelSwitchFailed: 'Newid model wedi methu',
-    sessionExported: 'Sesiwn wedi\'i allforio',
-    sessionExportFailed: 'Methu allforio\'r sesiwn',
-    imageSaved: 'Delwedd wedi\'i gadw',
-    downloadStarted: 'Lawrlwytho wedi\'i ddechrau',
+    sessionExported: "Sesiwn wedi'i allforio",
+    sessionExportFailed: "Methu allforio'r sesiwn",
+    imageSaved: "Delwedd wedi'i gadw",
+    downloadStarted: "Lawrlwytho wedi'i ddechrau",
     restartToUseSaveImage: 'Ailgychwyn OpenAmer Desktop i ddefnyddio Cadw Delwedd.',
     restartToSaveImages: 'Ailgychwyn OpenAmer Desktop i gadw delweddau',
     imageDownloadFailed: 'Lawrlwytho delwedd wedi methu',
@@ -2942,38 +3017,38 @@ Leave blank to keep the ${mode} default.`,
     attachImages: 'Cysylltu delweddau',
     clipboard: 'Clipbard',
     noClipboardImage: 'Ni chanfuwyd delwedd yn y clipfwrdd',
-    clipboardPasteFailed: 'Methodd gludo o\'r clipfwrdd',
+    clipboardPasteFailed: "Methodd gludo o'r clipfwrdd",
     dropFiles: 'Gollwng ffeiliau',
     handoff: {
       pickPlatform: 'Dewis cyrchfan',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
       failed: error => `Handoff failed: ${error}`,
-      timedOut: 'Amser wedi dod i ben yn aros am y porth. A yw `openamer gateway` yn rhedeg?',
-    },
+      timedOut: 'Amser wedi dod i ben yn aros am y porth. A yw `openamer gateway` yn rhedeg?'
+    }
   },
   errors: {
-    genericFailure: 'Aeth rhywbeth o\'i le',
+    genericFailure: "Aeth rhywbeth o'i le",
     boundaryTitle: 'Torrodd rhywbeth yn y rhyngwyneb',
-    boundaryDesc: 'Cafwyd gwall annisgwyl yn y golwg. Mae eich sgyrsiau a\'ch gosodiadau\'n ddiogel.',
-    reloadWindow: 'Ailwytho\'r ffenestr',
-    openLogs: 'Agor logiau',
+    boundaryDesc: "Cafwyd gwall annisgwyl yn y golwg. Mae eich sgyrsiau a'ch gosodiadau'n ddiogel.",
+    reloadWindow: "Ailwytho'r ffenestr",
+    openLogs: 'Agor logiau'
   },
   ui: {
     search: {
-      clear: 'Clirio chwilio',
+      clear: 'Clirio chwilio'
     },
     pagination: {
       label: 'tudio',
       previous: 'Blaen',
-      previousAria: 'Mynd i\'r dudalen flaenorol',
+      previousAria: "Mynd i'r dudalen flaenorol",
       next: 'Nesaf',
-      nextAria: 'Mynd i\'r dudalen nesaf',
+      nextAria: "Mynd i'r dudalen nesaf"
     },
     sidebar: {
       title: 'Bar ochr',
       description: 'Yn dangos y bar ochr symudol.',
-      toggle: 'Toglo\'r bar ochr',
-    },
-  },
+      toggle: "Toglo'r bar ochr"
+    }
+  }
 })

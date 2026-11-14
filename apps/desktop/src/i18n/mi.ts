@@ -45,7 +45,7 @@ export const mi = defineLocale({
     delete: 'Delete',
     docs: 'Docs',
     done: 'Done',
-    tryHint: term => `Try “${term}”`,
+    tryHint: term => `Try “${term}”`
   },
   fileMenu: {
     revealFinder: 'Whakaatu i Finder',
@@ -60,7 +60,7 @@ export const mi = defineLocale({
     renameLabel: 'New name',
     deleteTitle: name => `Delete ${name}?`,
     deleteBody: 'It will be moved to the Trash — you can restore it from there.',
-    pathCopied: 'Path copied',
+    pathCopied: 'Path copied'
   },
   boot: {
     failure: {
@@ -70,9 +70,11 @@ export const mi = defineLocale({
       signInToRemoteGateway: 'Takiuru ki te kuwaha mamao',
       identityProvider: 'tō kaiwhakarato tuakiri',
       title: 'Kāore i taea e OpenAmer te tīmata',
-      description: 'Kāore te kuaha o muri i tū. Whakamātautia tētahi o ngā hīkoi whakaora i raro. Kāore he mea i konei e mukua ana ō kōrero, ō tautuhinga rānei.',
+      description:
+        'Kāore te kuaha o muri i tū. Whakamātautia tētahi o ngā hīkoi whakaora i raro. Kāore he mea i konei e mukua ana ō kōrero, ō tautuhinga rānei.',
       remoteTitle: 'Me takiuru ki te kuaha mamao',
-      remoteDescription: 'Kua mutu tō wā o te kuaha mamao. Takiuru anō kia hono anō. Kāore he mea i konei e mukua ana ō kōrero, ō tautuhinga rānei.',
+      remoteDescription:
+        'Kua mutu tō wā o te kuaha mamao. Takiuru anō kia hono anō. Kāore he mea i konei e mukua ana ō kōrero, ō tautuhinga rānei.',
       retry: 'Whakamātautia anō',
       repairInstall: 'Whakatika tāutanga',
       useLocalGateway: 'Whakamahia te kuaha ā-rohe',
@@ -81,13 +83,15 @@ export const mi = defineLocale({
       openLogs: 'Whakatuwhera rangitaki',
       repairHint: 'Ka whakahaere anō te whakatika i te pūtāuru, ā, ka roa pea ētahi meneti i runga pūrere hou.',
       signOutAndSignIn: 'Takiputa & takiuru',
-      remoteFailureHint: 'Tirohia te URL kuaha me te takiurunga i ngā tautuhinga Kuaha, ka huri rānei ki te kuaha ā-rohe.',
+      remoteFailureHint:
+        'Tirohia te URL kuaha me te takiurunga i ngā tautuhinga Kuaha, ka huri rānei ki te kuaha ā-rohe.',
       hideRecentLogs: 'Huna ngā rangitaki tata',
       showRecentLogs: 'Whakaatu ngā rangitaki tata',
       signedInTitle: 'Kua takiuru',
       signedInMessage: 'E hono anō ana ki te kuaha mamao…',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
     errors: {
       gatewayConnectionLost: 'Kua ngaro te hononga ki te kuaha',
@@ -96,7 +100,7 @@ export const mi = defineLocale({
       backgroundExited: 'OpenAmer background process exited.',
       backgroundExitedDuringStartup: 'OpenAmer background process exited during startup.',
       backendStopped: 'Backend stopped',
-      desktopBootFailed: 'Desktop boot failed',
+      desktopBootFailed: 'Desktop boot failed'
     },
     ready: 'OpenAmer Desktop is ready',
     desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
@@ -105,8 +109,8 @@ export const mi = defineLocale({
       loadingSettings: 'Loading OpenAmer settings',
       loadingSessions: 'Loading recent sessions',
       startingDesktopConnection: 'Starting desktop connection',
-      startingOpenAmerDesktop: 'Starting OpenAmer Desktop…',
-    },
+      startingOpenAmerDesktop: 'Starting OpenAmer Desktop…'
+    }
   },
   notifications: {
     region: 'Ngā whakamōhiotanga',
@@ -118,7 +122,8 @@ export const mi = defineLocale({
     copyDetail: 'Tārua taipitopito',
     copyDetailFailed: 'Kāore i taea te tārua i te taipitopito whakamōhiotanga',
     backendOutOfDateTitle: 'Kua tawhito te pūmuri',
-    backendOutOfDateMessage: 'He tawhito tō pūmuri OpenAmer i tēnei hanganga papamahi, ā, kāore pea e mahi tika. Whakahōuhia kia ōrite ai.',
+    backendOutOfDateMessage:
+      'He tawhito tō pūmuri OpenAmer i tēnei hanganga papamahi, ā, kāore pea e mahi tika. Whakahōuhia kia ōrite ai.',
     installMethodUnsupportedTitle: 'Tikanga tāuta kāore i tautokohia',
     updateOpenAmer: 'Whakahōu OpenAmer',
     updateReadyTitle: 'Kua rite te whakahōu',
@@ -127,11 +132,12 @@ export const mi = defineLocale({
       elevenLabsNeedsKey: 'Me whai ELEVENLABS_API_KEY a ElevenLabs STT.',
       elevenLabsRejectedKey: 'I whakakahore a ElevenLabs i te kī API (401).',
       gatewayAuthFailed: 'I rahua te whakamotuhēhēnga o te tomokanga — tirohia tō API_SERVER_KEY.',
-      methodNotAllowed: 'I whakakahore te papamuri o te papamahi i tēnā tono (405 Kāore te Tikanga i Whakaaetia). Whakamātautia te tīmata anō i a OpenAmer Desktop.',
+      methodNotAllowed:
+        'I whakakahore te papamuri o te papamahi i tēnā tono (405 Kāore te Tikanga i Whakaaetia). Whakamātautia te tīmata anō i a OpenAmer Desktop.',
       microphonePermission: 'I whakakahoretia te whakaaetanga hopuoro.',
       openaiRejectedApiKey: 'I whakakahore a OpenAI i te kī API.',
       openaiTtsNeedsKey: 'Me whai a OpenAI TTS i a VOICE_TOOLS_OPENAI_KEY, i a OPENAI_API_KEY rānei.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Whiria te huri kōrero-ki-tuhinga kia whakamahi i te aratau reo.',
@@ -150,7 +156,7 @@ export const mi = defineLocale({
       transcriptionFailed: 'I rahua te tuhinga reo.',
       transcriptionUnavailable: 'Kāore anō te tuhituhi reo i te wātea.',
       tryRecordingAgain: 'Whakamātauria anō te hopu reo.',
-      unavailable: 'Kāore te reo i wātea',
+      unavailable: 'Kāore te reo i wātea'
     },
     native: {
       approvalTitle: 'E hiahiatia ana te whakaaetanga',
@@ -163,10 +169,10 @@ export const mi = defineLocale({
       turnErrorTitle: 'I rahua te huringa',
       backgroundDoneTitle: 'Kua oti te mahi papamuri',
       backgroundFailedTitle: 'I rahua te mahi papamuri',
-      creditsTitle: 'Whiwhinga',
+      creditsTitle: 'Whiwhinga'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   billingBlock: {
     titleOpenamer: 'Kua pau ngā whiwhinga OpenAmer',
@@ -174,7 +180,7 @@ export const mi = defineLocale({
     openBilling: 'Whakatuwhera pire',
     addCredits: 'Tāpiri whiwhinga',
     dismiss: 'Whakakore',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Huna te paetaha',
@@ -191,7 +197,7 @@ export const mi = defineLocale({
     openStarmap: 'Tuwhera kauwhata mahara',
     openKeybinds: 'Ngā pokatata papapātuhi',
     layoutEditor: 'Kaiwhakatika tahora',
-    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout',
+    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout'
   },
   keybinds: {
     title: 'Ngā pokatata papapātuhi',
@@ -206,7 +212,7 @@ export const mi = defineLocale({
       profiles: 'Kōtaha',
       session: 'Wā',
       navigation: 'Whakatere',
-      view: 'Tirohanga',
+      view: 'Tirohanga'
     },
     actions: {
       'keybinds.openPanel': 'Whakatuwhera pōtuhi papapātuhi',
@@ -285,10 +291,10 @@ export const mi = defineLocale({
       'composer.slash': 'Papatae whakahau rītaha',
       'composer.help': 'Āwhina tere',
       'composer.history': 'Hurihuri popover / hītori',
-      'composer.cancel': 'Katia te popover · whakakore oma',
+      'composer.cancel': 'Katia te popover · whakakore oma'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   language: {
     label: 'Reo',
@@ -297,7 +303,7 @@ export const mi = defineLocale({
     saveError: 'I rahua te whakahōu reo',
     switchTo: 'Hurihia te reo',
     searchPlaceholder: 'Rapua ngā reo…',
-    noResults: 'Kāore he reo i kitea',
+    noResults: 'Kāore he reo i kitea'
   },
   settings: {
     closeSettings: 'Katia ngā tautuhinga',
@@ -322,11 +328,12 @@ export const mi = defineLocale({
       billing: 'Utunga',
       notifications: 'Ngā Whakamōhio',
       plugins: 'Ngā Āpiti',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'Ngā Āpiti Papamahi',
-      blurb: 'Ko ngā toronga UI kua utaina ki tēnei taupānga — he mea whakauru ki te hanga, he mea maka rānei ki te kōpaki desktop-plugins (tae atu ki ngā mea ka tuhia e OpenAmer). Ka tango te whakakore i tētahi āpiti i te wā tonu, ā, ka mau tonu i ngā whakaara anō.',
+      blurb:
+        'Ko ngā toronga UI kua utaina ki tēnei taupānga — he mea whakauru ki te hanga, he mea maka rānei ki te kōpaki desktop-plugins (tae atu ki ngā mea ka tuhia e OpenAmer). Ka tango te whakakore i tētahi āpiti i te wā tonu, ā, ka mau tonu i ngā whakaara anō.',
       openFolder: 'Whakatuwhera kōpaki āpiti',
       rescan: 'Tirotiro anō',
       reveal: 'Whakaatu i te kaiwhakahaere kōnae',
@@ -337,50 +344,53 @@ export const mi = defineLocale({
       kinds: {
         bundled: 'kua whakaurua tahitia',
         disk: 'kei te kōpae',
-        runtime: 'wā whakahaere',
+        runtime: 'wā whakahaere'
       },
-      count: n => `${n} installed`,
+      count: n => `${n} installed`
     },
     notifications: {
       title: 'Ngā whakamōhiotanga',
-      intro: 'He whakamōhiotanga papamahi taketake, wehe atu i ngā whakamōhiotanga iti o roto taupānga. Kei te pūrere ake ēnei — ka pupuri ia rorohiko i āna ake tautuhinga.',
+      intro:
+        'He whakamōhiotanga papamahi taketake, wehe atu i ngā whakamōhiotanga iti o roto taupānga. Kei te pūrere ake ēnei — ka pupuri ia rorohiko i āna ake tautuhinga.',
       enableAll: 'Whakahohe whakamōhiotanga',
       enableAllDesc: 'Whakakā matua. Whakaweto i tēnei kia mutu ai ngā whakamōhiotanga katoa i raro.',
       focusedHint: 'Ka puta noa ngā matohi whakaotinga ina kei te papamuri a OpenAmer.',
       kinds: {
         approval: {
           label: 'Me whakaae',
-          description: 'Kei te tatari tētahi whakahau kia whakaaetia, kia whakakorengia rānei e koe.',
+          description: 'Kei te tatari tētahi whakahau kia whakaaetia, kia whakakorengia rānei e koe.'
         },
         input: {
           label: 'Kei te hiahiatia he tāuru',
-          description: 'Kua pātai a OpenAmer, kei te hiahia rānei i tētahi kupuhipa, muna rānei.',
+          description: 'Kua pātai a OpenAmer, kei te hiahia rānei i tētahi kupuhipa, muna rānei.'
         },
         turnDone: {
           label: 'Kua rite te whakautu',
-          description: 'Kua mutu tētahi huri i a OpenAmer i te papamuri.',
+          description: 'Kua mutu tētahi huri i a OpenAmer i te papamuri.'
         },
         turnError: {
           label: 'I rahua te huri',
-          description: 'I mutu tētahi huri me tētahi hapa.',
+          description: 'I mutu tētahi huri me tētahi hapa.'
         },
         backgroundDone: {
           label: 'Kua mutu te mahi papamuri',
-          description: 'Kua oti tētahi whakahau tauranga i whakapapamuri.',
+          description: 'Kua oti tētahi whakahau tauranga i whakapapamuri.'
         },
         credits: {
           label: 'Ngā matohi whiwhinga',
-          description: 'Kua okioki, kua whakaora rānei te urunga nama.',
-        },
+          description: 'Kua okioki, kua whakaora rānei te urunga nama.'
+        }
       },
       test: 'Tukuna he whakamōhio whakamātautau',
       testTitle: 'OpenAmer',
       testBody: 'Kei te mahi ngā whakamōhio.',
-      testSent: 'Kua tukuna te whakamātautau. Ki te kore he mea e puta, tirohia ngā whakaaetanga whakamōhio o tō OS me Arotahi/Kaua e Whakararuraru.',
+      testSent:
+        'Kua tukuna te whakamātautau. Ki te kore he mea e puta, tirohia ngā whakaaetanga whakamōhio o tō OS me Arotahi/Kaua e Whakararuraru.',
       testUnsupported: 'Kāore tēnei pūnaha e tautoko i ngā whakamōhio taketake.',
       completionSoundTitle: 'Oro Whakaoti',
-      completionSoundDesc: 'Ka whakatangihia ina mutu te tahuritanga a te māngai. Kōwhiria he tatūkē, ka tirohia i konei.',
-      completionSoundPreview: 'Tirohanga',
+      completionSoundDesc:
+        'Ka whakatangihia ina mutu te tahuritanga a te māngai. Kōwhiria he tatūkē, ka tirohia i konei.',
+      completionSoundPreview: 'Tirohanga'
     },
     sections: {
       model: 'Tauira',
@@ -390,7 +400,7 @@ export const mi = defineLocale({
       safety: 'Haumaru',
       memory: 'Pūmahara me te Horopaki',
       voice: 'Reo',
-      advanced: 'Matatau',
+      advanced: 'Matatau'
     },
     searchPlaceholder: {
       about: 'Mō te Papamahi OpenAmer',
@@ -398,25 +408,26 @@ export const mi = defineLocale({
       gateway: 'Hononga kuwaha...',
       keys: 'Rapua ngā kī API...',
       mcp: 'Rapua ngā tūmau MCP...',
-      sessions: 'Rapua ngā wātū pūranga...',
+      sessions: 'Rapua ngā wātū pūranga...'
     },
     modeOptions: {
       light: {
         label: 'Mārama',
-        description: 'Mata papamahi kanapa',
+        description: 'Mata papamahi kanapa'
       },
       dark: {
         label: 'Pōuri',
-        description: 'Wāhi mahi iti whiti',
+        description: 'Wāhi mahi iti whiti'
       },
       system: {
         label: 'Pūnaha',
-        description: 'Whāia te āhua o te OS',
-      },
+        description: 'Whāia te āhua o te OS'
+      }
     },
     appearance: {
       title: 'Āhua',
-      intro: 'He manakohanga whakaatu mō te papamahi anake ēnei. Ka whakahaere te aratau i te kanapa; ka whakahaere te kaupapa i te papatae whakahua me te whakaahua mata o te kōrero.',
+      intro:
+        'He manakohanga whakaatu mō te papamahi anake ēnei. Ka whakahaere te aratau i te kanapa; ka whakahaere te kaupapa i te papatae whakahua me te whakaahua mata o te kōrero.',
       colorMode: 'Aratau Tae',
       colorModeDesc: 'Kōwhiria he aratau pūmau, ka tuku rānei i a OpenAmer kia whai i tō tautuhinga pūnaha.',
       toolViewTitle: 'Whakaatu Waea Utauta',
@@ -427,7 +438,8 @@ export const mi = defineLocale({
       backdropTitle: 'Papamuri Kōrero',
       backdropDesc: 'Te whakaahua whakapakoko māmewa kei muri i te kōrerorero.',
       embedsTitle: 'Whakaurunga ā-rārangi',
-      embedsDesc: 'Ka utaina ngā arokite whaihua mai i ngā pae tuatoru (YouTube, X, …). Ka whakaatu a Pātai i tētahi tohu wāhi kia whakaae koe ki ia mea; ka utaina aunoa e Ngā wā katoa; ka pupuri a Wetohia i ngā hononga noa.',
+      embedsDesc:
+        'Ka utaina ngā arokite whaihua mai i ngā pae tuatoru (YouTube, X, …). Ka whakaatu a Pātai i tētahi tohu wāhi kia whakaae koe ki ia mea; ka utaina aunoa e Ngā wā katoa; ka pupuri a Wetohia i ngā hononga noa.',
       embedsAsk: 'Pātai',
       embedsAlways: 'Ngā wā katoa',
       embedsOff: 'Wetohia',
@@ -438,7 +450,8 @@ export const mi = defineLocale({
       themeTitle: 'Kaupapa',
       themeDesc: 'Ngā papatae papamahi anake. Ka whakamahia te aratau kua tīpakohia ki runga.',
       installTitle: 'Tāuta mai i VS Code',
-      installDesc: 'Whakapiria tētahi ID toronga Marketplace (hei tauira, dracula-theme.theme-dracula) kia huri ai tōna kaupapa tae hei papatae papamahi.',
+      installDesc:
+        'Whakapiria tētahi ID toronga Marketplace (hei tauira, dracula-theme.theme-dracula) kia huri ai tōna kaupapa tae hei papatae papamahi.',
       installButton: 'Tāuta',
       installing: 'E tāuta ana…',
       installError: 'Kāore i taea tērā kaupapa te tāuta.',
@@ -446,8 +459,10 @@ export const mi = defineLocale({
       importedBadge: 'Kua kawemai',
       pet: {
         title: 'Mōkai',
-        intro: 'Whāngaihia he mōkai petdex pūkoro e rewa ana i runga i te taupānga, ā, ka urupare ki ngā mahi a OpenAmer — e oma ana i te wā e mahi ana ngā taputapu, e whakanui ana i te angitu, e pōuri ana i ngā hapa.',
-        restartHint: 'Me whakaara anō ngā mōkai — i tīmata te taupānga e rere ana i mua i te tāpiritanga o tēnei āhuatanga. Whakamutua, whakatuwheratia anō a OpenAmer, kātahi ka hoki mai ki konei.',
+        intro:
+          'Whāngaihia he mōkai petdex pūkoro e rewa ana i runga i te taupānga, ā, ka urupare ki ngā mahi a OpenAmer — e oma ana i te wā e mahi ana ngā taputapu, e whakanui ana i te angitu, e pōuri ana i ngā hapa.',
+        restartHint:
+          'Me whakaara anō ngā mōkai — i tīmata te taupānga e rere ana i mua i te tāpiritanga o tēnei āhuatanga. Whakamutua, whakatuwheratia anō a OpenAmer, kātahi ka hoki mai ki konei.',
         on: 'Kā',
         off: 'Weto',
         scaleTitle: 'Rahi',
@@ -457,7 +472,8 @@ export const mi = defineLocale({
         chooseTitle: 'Kōwhiria he mōkai',
         chooseDesc: 'Ka tāutahia te mea ka kōwhiria (ki te hiahiatia) ā ka whakahohea.',
         searchPlaceholder: 'Rapua ngā mōkai…',
-        unreachable: 'Kāore i taea te toro atu ki te taiwhanga petdex. Tirohia tō hononga, kātahi ka whakatuwhera anō i tēnei whārangi.',
+        unreachable:
+          'Kāore i taea te toro atu ki te taiwhanga petdex. Tirohia tō hononga, kātahi ka whakatuwhera anō i tēnei whārangi.',
         installedTag: 'kua tāuta',
         generatedTag: 'Kua hangaia',
         deleteBody: 'Ka mukua pūtia tēnei mōkai — kāore e taea te tāuta anō.',
@@ -479,13 +495,14 @@ export const mi = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installPlaceholder: 'publisher.extension',
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     about: {
       heading: 'OpenAmer Papamahi',
@@ -503,7 +520,8 @@ export const mi = defineLocale({
       tapCheck: 'Pāwhiritia "Tirohia ināianei" ki te rapu whakahōutanga.',
       justNowSuffix: '· ināianei tonu',
       automaticUpdates: 'Whakahōutanga aunoa',
-      automaticUpdatesDesc: 'Ka tirotiro a OpenAmer i ngā whakahōutanga aunoa i te papamuri, ā, ka whakamōhio atu ki a koe ina rite ana tētahi.',
+      automaticUpdatesDesc:
+        'Ka tirotiro a OpenAmer i ngā whakahōutanga aunoa i te papamuri, ā, ka whakamōhio atu ki a koe ina rite ana tētahi.',
       never: 'kore rawa',
       justNow: 'ināianei tonu',
       version: value => `Version ${value}`,
@@ -512,7 +530,7 @@ export const mi = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     gateway: {
       modeTitle: 'Aratau hononga',
@@ -522,8 +540,10 @@ export const mi = defineLocale({
       inheritDesc: 'Tangohia te whakarerekētanga o tēnei kōtaha, ka whakamahi i te hononga taunoa.',
       remoteTitle: 'Kuaha ā-tawhiti',
       remoteDesc: 'Honoa tēnei anga papamahi ki tētahi tuarā OpenAmer ā-tawhiti.',
-      remoteAuthHint: 'Ka whakamahi ngā kuaha kua whakahaerehia i OAuth, i tētahi ingoa kaiwhakamahi me tētahi kupuhipa rānei; ka taea e ngā mea whaiaro-whakahaere te whakamahi i tētahi tohu wātū.',
-      cloudDesc: 'Takiuru kia kotahi ki OpenAmer Cloud, kōwhiria mai ngā māngai i tō pūkete — kāore he URL hei whakapiri.',
+      remoteAuthHint:
+        'Ka whakamahi ngā kuaha kua whakahaerehia i OAuth, i tētahi ingoa kaiwhakamahi me tētahi kupuhipa rānei; ka taea e ngā mea whaiaro-whakahaere te whakamahi i tētahi tohu wātū.',
+      cloudDesc:
+        'Takiuru kia kotahi ki OpenAmer Cloud, kōwhiria mai ngā māngai i tō pūkete — kāore he URL hei whakapiri.',
       cloudSignIn: 'Takiuru ki OpenAmer Cloud',
       cloudSignedIn: 'Kua takiuru ki OpenAmer Cloud',
       cloudNeedsSignIn: 'Takiuru ki OpenAmer Cloud kia kitea ngā māngai i tō pūkete.',
@@ -534,7 +554,7 @@ export const mi = defineLocale({
       cloudOrgChange: 'Hurihia te whakahaere',
       cloudLoadingAgents: 'E uta ana i ō māngai…',
       sshHostPickTitle: 'Kaihautū',
-      sshHostPickDesc: 'He ingoa kē mō te kaihautū mai i ~/.ssh/config, rānei \'Ritenga\' hei tapa i tētahi.',
+      sshHostPickDesc: "He ingoa kē mō te kaihautū mai i ~/.ssh/config, rānei 'Ritenga' hei tapa i tētahi.",
       sshHostCustom: 'Ritenga (tāuru ā-ringa)…',
       sshUserTitle: 'Kaiwhakamahi',
       sshUserDesc: 'Wātea = ~/.ssh/config, rānei tō kaiwhakamahi ināianei.',
@@ -550,11 +570,16 @@ export const mi = defineLocale({
       sshConnect: 'Tūhono',
       sshButtonsHint: 'Ka whakamahia te Tiaki ā te whakarewatanga e whai ake. Ka hono anō a Tūhono ināianei.',
       sshIncompleteHost: 'Whakaurua he kaihautū SSH i mua i te hono.',
-      sshErrUnreachable: 'Kāore i taea te toro atu ki tēnā kaihautū mā SSH. Tirohia te kaihautū, te tauranga, me tō whatunga.',
-      sshErrAuth: 'I rahua te whakamotuhēhē SSH. Utaina tō kī ki te ssh-agent (ssh-add), ka tautuhi rānei i tētahi IdentityFile i ~/.ssh/config — ka whakahaere a OpenAmer i ssh me te kore pāhekoheko.',
-      sshErrHostKey: 'Kua REREKĒ te kī kaihautū mai i tō hono whakamutunga. Whakaūngia e tika ana tēnei, kātahi ka whakahaere i ssh-keygen -R <host> me te hono anō.',
-      sshErrNotInstalled: 'Kāore a OpenAmer i te tāuta i runga i te pūnga mamao. Tāutahia ki reira (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh), whakaritea rānei te ara OpenAmer.',
-      sshErrPlatform: 'Kāore e tautokohia te pae mamao. Ka tautoko te aratau SSH o OpenAmer Desktop i ngā pūnga mamao Linux, macOS, me Windows.',
+      sshErrUnreachable:
+        'Kāore i taea te toro atu ki tēnā kaihautū mā SSH. Tirohia te kaihautū, te tauranga, me tō whatunga.',
+      sshErrAuth:
+        'I rahua te whakamotuhēhē SSH. Utaina tō kī ki te ssh-agent (ssh-add), ka tautuhi rānei i tētahi IdentityFile i ~/.ssh/config — ka whakahaere a OpenAmer i ssh me te kore pāhekoheko.',
+      sshErrHostKey:
+        'Kua REREKĒ te kī kaihautū mai i tō hono whakamutunga. Whakaūngia e tika ana tēnei, kātahi ka whakahaere i ssh-keygen -R <host> me te hono anō.',
+      sshErrNotInstalled:
+        'Kāore a OpenAmer i te tāuta i runga i te pūnga mamao. Tāutahia ki reira (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh), whakaritea rānei te ara OpenAmer.',
+      sshErrPlatform:
+        'Kāore e tautokohia te pae mamao. Ka tautoko te aratau SSH o OpenAmer Desktop i ngā pūnga mamao Linux, macOS, me Windows.',
       sshErrTimeout: 'Kua pau te wā o te hononga SSH. Kāore pea te pūnga e taea, kei te moe rānei.',
       sshErrUpdateRequired: 'Whakahōuhia a OpenAmer i te pūnga mamao i mua i te hono mā Desktop SSH.',
       sshErrUnknown: 'Kua rahua te hononga SSH.',
@@ -563,20 +588,23 @@ export const mi = defineLocale({
       unavailableDesc: 'The desktop IPC bridge does not expose gateway settings.',
       title: 'Gateway Connection',
       envOverride: 'env override',
-      intro: 'OpenAmer Desktop starts its own local gateway by default. Use a remote gateway when you want this app to control an already-running OpenAmer backend on another machine or behind a trusted proxy. Pick a profile below to give it its own remote host.',
+      intro:
+        'OpenAmer Desktop starts its own local gateway by default. Use a remote gateway when you want this app to control an already-running OpenAmer backend on another machine or behind a trusted proxy. Pick a profile below to give it its own remote host.',
       appliesTo: 'Applies to',
       allProfiles: 'All profiles',
       defaultConnection: 'Default connection for every profile that has no override of its own.',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       envOverrideTitle: 'Environment variables are controlling this desktop session.',
-      envOverrideDesc: 'Unset OPENAMER_DESKTOP_REMOTE_URL and OPENAMER_DESKTOP_REMOTE_TOKEN to use the saved setting below.',
+      envOverrideDesc:
+        'Unset OPENAMER_DESKTOP_REMOTE_URL and OPENAMER_DESKTOP_REMOTE_TOKEN to use the saved setting below.',
       cloudTitle: 'OpenAmer Cloud',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudOrgRole: role => `Role: ${role}`,
       cloudNoAgents: {
         before: 'No agents found on this account. Create one in the ',
         linkText: 'OpenAmer portal',
-        after: ', then refresh.',
+        after: ', then refresh.'
       },
       cloudRefresh: 'Refresh',
       cloudConnect: 'Connect',
@@ -600,7 +628,8 @@ export const mi = defineLocale({
       signOut: 'Sign out',
       signInWith: provider => `Sign in with ${provider}`,
       authTitle: 'Authentication',
-      authSignedInPassword: 'This gateway uses a username and password. You are signed in; the session refreshes automatically.',
+      authSignedInPassword:
+        'This gateway uses a username and password. You are signed in; the session refreshes automatically.',
       authSignedInOauth: 'This gateway uses OAuth. You are signed in; the session refreshes automatically.',
       authNeedsPassword: 'This gateway uses a username and password. Sign in to authorize this desktop app.',
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
@@ -636,17 +665,18 @@ export const mi = defineLocale({
       applyFailed: 'Could not apply gateway settings',
       saveFailed: 'Could not save gateway settings',
       sshTitle: 'Connect via SSH',
-      sshDesc: 'OpenAmer is launched on the remote over SSH and tunneled to this app — nothing to start or expose yourself. Requires working key-based SSH access to the host.',
+      sshDesc:
+        'OpenAmer is launched on the remote over SSH and tunneled to this app — nothing to start or expose yourself. Requires working key-based SSH access to the host.',
       sshTrustHint: 'The first presented host key is trusted and pinned; later changes fail closed.',
       sshHostTitle: 'Host',
       sshHostDesc: 'user@host, or a Host alias from ~/.ssh/config.',
       sshHostPick: 'Select a host…',
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     keys: {
       loading: 'Kei te uta ngā kī API me ngā whakamana...',
       failedLoad: 'Kua rahua te uta i ngā kī API',
-      empty: 'Kāore anō he mea kua whirihorahia i tēnei kāwai.',
+      empty: 'Kāore anō he mea kua whirihorahia i tēnei kāwai.'
     },
     mcp: {
       loading: 'Kei te uta i ngā tūmau MCP...',
@@ -708,48 +738,50 @@ export const mi = defineLocale({
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       authenticatedMessage: (server, count) => `${server}: ${count} tools`,
       enableTool: tool => `Enable ${tool}`,
-      disableTool: tool => `Disable ${tool}`,
+      disableTool: tool => `Disable ${tool}`
     },
     model: {
       loading: 'E uta ana i te whirihoranga tauira...',
-      appliesDesc: 'Ka pā ki ngā wātū hou. Whakamahia te kōwhiri tauira i te kaitito ki te whakawhiti tere i te kōrerorero hohe.',
+      appliesDesc:
+        'Ka pā ki ngā wātū hou. Whakamahia te kōwhiri tauira i te kaitito ki te whakawhiti tere i te kōrerorero hohe.',
       provider: 'Kaiwhakarato',
       tasks: {
         compression: {
           label: 'Kōpeketanga',
-          hint: 'Whakapōtae horopaki',
+          hint: 'Whakapōtae horopaki'
         },
         skills_hub: {
           label: 'Pūtahi pūkenga',
-          hint: 'Rapunga pūkenga',
+          hint: 'Rapunga pūkenga'
         },
         approval: {
           label: 'Whakaaetanga',
-          hint: 'Whakaaetanga aunoa atamai',
+          hint: 'Whakaaetanga aunoa atamai'
         },
         mcp: {
           hint: 'Whakatere taputapu MCP',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Whakaputa taitara',
-          hint: 'Taitara wātū',
+          hint: 'Taitara wātū'
         },
         curator: {
           label: 'Kaitiaki',
-          hint: 'Arotakenga whakamahinga pūkenga',
+          hint: 'Arotakenga whakamahinga pūkenga'
         },
         vision: {
           label: 'Tirohanga',
-          hint: 'Tātari whakaahua',
+          hint: 'Tātari whakaahua'
         },
         web_extract: {
           label: 'Tangohanga tukutuku',
-          hint: 'Whakarāpopoto whārangi',
-        },
+          hint: 'Whakarāpopoto whārangi'
+        }
       },
       model: 'Tauira',
       applying: 'E whakatinana ana...',
@@ -759,19 +791,21 @@ export const mi = defineLocale({
       defaultsFailed: 'I rahua te tiaki i ngā taunoa tauira',
       auxiliaryTitle: 'Ngā tauira āwhina',
       resetAllToMain: 'Tautuhi anō katoa ki te matua',
-      auxiliaryDesc: 'Ka rere ngā mahi āwhina i runga i te tauira matua mā te taunoa. Whakaritea he tauira motuhake ki tētahi mahi hei whakakapi.',
+      auxiliaryDesc:
+        'Ka rere ngā mahi āwhina i runga i te tauira matua mā te taunoa. Whakaritea he tauira motuhake ki tētahi mahi hei whakakapi.',
       setToMain: 'Tautuhia ki te matua',
       change: 'Whakarerekē',
       autoUseMain: 'aunoa · whakamahia te tauira matua',
       providerDefault: '(taunoa kaiwhakarato)',
       fallbackAdd: 'Tāpiri whakakapi',
       fallbackEmpty: 'Kāore he tauira whakakapi — ka whakamahia te tauira taunoa ki te kore e rahua.',
-      notInCatalog: 'kāore i te rārangi tauira a tēnei kaiwhakarato — ka taea ngā karanga te hoki ki tētahi whakakapi.',
+      notInCatalog: 'kāore i te rārangi tauira a tēnei kaiwhakarato — ka taea ngā karanga te hoki ki tētahi whakakapi.'
     },
     providers: {
       connectAccount: 'Honoa he pūkete',
       haveApiKey: 'Kei a koe he kī API?',
-      intro: 'Takiuru mā te ohaurunga — kāore he kī API hei tārua. Ka whakahaere a OpenAmer i te takiuru pūtirotiro māu, i konei tonu i te taupānga.',
+      intro:
+        'Takiuru mā te ohaurunga — kāore he kī API hei tārua. Ka whakahaere a OpenAmer i te takiuru pūtirotiro māu, i konei tonu i te taupānga.',
       connected: 'Kua honoa',
       collapse: 'Whakaiti',
       connectAnother: 'Honoa tētahi atu kaiwhakarato',
@@ -784,16 +818,18 @@ export const mi = defineLocale({
       noKeysMatch: 'Kāore he kaiwhakarato e rite ana ki tāu rapu.',
       localEndpoint: {
         title: 'Pito ā-rohe / pito ritenga',
-        description: 'Tohua a OpenAmer ki tētahi pito e hototahi ana ki OpenAI (Zyphra, vLLM, llama.cpp, Ollama, me ērā atu).',
+        description:
+          'Tohua a OpenAmer ki tētahi pito e hototahi ana ki OpenAI (Zyphra, vLLM, llama.cpp, Ollama, me ērā atu).'
       },
       loading: 'E uta ana ngā kaiwhakarato...',
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     sessions: {
       loading: 'E uta ana i ngā wātū kua pūrangatia…',
@@ -804,12 +840,14 @@ export const mi = defineLocale({
       deletePermanently: 'Mukua mō ake tonu',
       restored: 'Kua whakahokia',
       autoArchiveTitle: 'Aunoa-pūrangatia ngā kōrerorero kua roa',
-      autoArchiveDesc: 'Pūrangatia aunoatia ngā kōrerorero kāore koe i pā atu mō te wā. Kāore rawa ngā kōrerorero kua titia e pūrangatia, ā, kāore he mea e mukua — ka nuku noa ngā kōrerorero kua pūrangatia ki konei.',
+      autoArchiveDesc:
+        'Pūrangatia aunoatia ngā kōrerorero kāore koe i pā atu mō te wā. Kāore rawa ngā kōrerorero kua titia e pūrangatia, ā, kāore he mea e mukua — ka nuku noa ngā kōrerorero kua pūrangatia ki konei.',
       autoArchiveDaysLabel: 'Pūrangatia i muri i',
       autoArchiveDaysUnit: 'ngā rā kore mahi',
       autoArchiveFailed: 'Kāore i taea te whakahōu i te pūranga aunoa',
       defaultDirTitle: 'Kōpaki kaupapa taunoa',
-      defaultDirDesc: 'Ka tīmata ngā kōrerorero hou i tēnei kōpaki ki te kore koe e kōwhiri i tētahi atu. Waiho kia kore e tautuhia kia whakamahia ai tō kōpaki kāinga.',
+      defaultDirDesc:
+        'Ka tīmata ngā kōrerorero hou i tēnei kōpaki ki te kore koe e kōwhiri i tētahi atu. Waiho kia kore e tautuhia kia whakamahia ai tō kōpaki kāinga.',
       change: 'Whakarerekē',
       choose: 'Kōwhiria',
       clear: 'Whakawātea',
@@ -819,11 +857,12 @@ export const mi = defineLocale({
       deleteFailed: 'I rahua te muku',
       updateDirFailed: 'Kāore i taea te whakahōu i te kōpaki taunoa',
       clearDirFailed: 'Kāore i taea te whakawātea i te kōpaki taunoa',
-      archivedIntro: 'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
+      archivedIntro:
+        'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
       defaultDirUpdated: 'Default project directory updated — start a new chat (Ctrl/⌘+N) for it to take effect',
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
       loadingConfig: 'Kei te uta i te whirihoranga',
@@ -833,7 +872,8 @@ export const mi = defineLocale({
       notSet: 'Kāore i tautuhia',
       selectedTitle: 'Kua kōwhiria te kaiwhakarato',
       failedLoad: 'I rahua te uta i te whirihoranga taputapu',
-      noProviderOptions: 'Kāore he whiringa kaiwhakarato mō tēnei kāhui taputapu — whakahohehia, ka mahi me tō tautuhinga o nāianei.',
+      noProviderOptions:
+        'Kāore he whiringa kaiwhakarato mō tēnei kāhui taputapu — whakahohehia, ka mahi me tō tautuhinga o nāianei.',
       noProviders: 'Kāore he kaiwhakarato e wātea ana mō tēnei kāhui taputapu ināianei.',
       ready: 'Kua reri',
       needsSignIn: 'Me takiuru',
@@ -873,9 +913,10 @@ export const mi = defineLocale({
         unavailable: 'Kāore e wātea',
         inUse: 'Kei te whakamahia',
         selectedTitle: 'Kua tīpakohia te pūnaha muri',
-        needsSetupHint: 'Ka taea e koe tēnei pūnaha muri te tīpako ināianei — ka rahua ngā whakahau kia oti rānō te whakarite.',
+        needsSetupHint:
+          'Ka taea e koe tēnei pūnaha muri te tīpako ināianei — ka rahua ngā whakahau kia oti rānō te whakarite.',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       savedMessage: key => `${key} updated.`,
       removedMessage: key => `${key} removed.`,
@@ -885,8 +926,10 @@ export const mi = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -896,7 +939,7 @@ export const mi = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -914,7 +957,7 @@ export const mi = defineLocale({
       imported: 'Config imported',
       invalidJson: 'Invalid config JSON',
       keepAwakeTitle: 'Keep computer awake',
-      keepAwakeDesc: 'Stop this machine from sleeping so long or overnight runs keep going. The display can still dim.',
+      keepAwakeDesc: 'Stop this machine from sleeping so long or overnight runs keep going. The display can still dim.'
     },
     credentials: {
       pasteKey: 'Paste key',
@@ -924,7 +967,7 @@ export const mi = defineLocale({
       couldNotSave: 'Could not save credential.',
       remove: 'Remove',
       getKey: 'Get a key',
-      saving: 'Saving',
+      saving: 'Saving'
     },
     envActions: {
       actionsFor: label => `Actions for ${label}`,
@@ -935,8 +978,8 @@ export const mi = defineLocale({
       revealValue: 'Reveal value',
       replace: 'Replace',
       set: 'Set',
-      clear: 'Clear',
-    },
+      clear: 'Clear'
+    }
   },
   skills: {
     tabSkills: 'Pūkenga',
@@ -955,7 +998,8 @@ export const mi = defineLocale({
     noDescription: 'Kāore he whakaahuatanga.',
     configured: 'Kua whirihoratia',
     needsKeys: 'Me whai kī',
-    visionModelHint: 'Ka whakamahia e te tirohanga tō whirihoranga tauira āpiti — ka kōwhiria te tauira āhei ki te whakaahua i reira, ehara i te kaiwhakarato takitahi i konei.',
+    visionModelHint:
+      'Ka whakamahia e te tirohanga tō whirihoranga tauira āpiti — ka kōwhiria te tauira āhei ki te whakaahua i reira, ehara i te kaiwhakarato takitahi i konei.',
     visionModelLink: 'Kōwhiria te tauira tirohanga i Tautuhinga → Tauira',
     skillsLoadFailed: 'I rahua te uta i ngā pūkenga',
     toolsetsRefreshFailed: 'I rahua te whakahou i ngā huinga taputapu',
@@ -973,7 +1017,7 @@ export const mi = defineLocale({
     provenance: {
       agent: 'Kua akona',
       bundled: 'Ā-roto',
-      hub: 'Pokapū',
+      hub: 'Pokapū'
     },
     changesApplyNewSessions: 'Ka pā ngā huringa ki ngā wātū hou.',
     skillUpdated: 'Kua whakahoutia te pūkenga',
@@ -988,7 +1032,8 @@ export const mi = defineLocale({
       connectingHubs: 'E hono ana ki ngā pūtahi pūkenga...',
       connectedHubs: 'Ngā pūtahi kua hono:',
       featured: 'Ngā pūkenga kua tohua',
-      landingHint: 'Rapu i te pūtahi ki te tirotiro i ngā pūkenga ka taea te tāuta mai i te rārangi whaimana, GitHub, me ngā puna hapori.',
+      landingHint:
+        'Rapu i te pūtahi ki te tirotiro i ngā pūkenga ka taea te tāuta mai i te rārangi whaimana, GitHub, me ngā puna hapori.',
       noResults: 'Kāore i kitea he pūkenga e hāngai ana i te pūtahi.',
       installed: 'Kua tāuta',
       install: 'Tāuta',
@@ -1006,7 +1051,7 @@ export const mi = defineLocale({
       trust: {
         builtin: 'ā-roto',
         trusted: 'Whirinaki',
-        community: 'Hapori',
+        community: 'Hapori'
       },
       verdictSafe: 'Haumaru',
       verdictCaution: 'Tūpato',
@@ -1026,7 +1071,7 @@ export const mi = defineLocale({
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     tabMcp: 'MCP',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} toolsets enabled`,
@@ -1039,7 +1084,7 @@ export const mi = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     title: 'Kauwhata Mahara',
@@ -1055,7 +1100,8 @@ export const mi = defineLocale({
     emptyTitle: 'Kāore anō kia akohia',
     emptyDesc: 'I a OpenAmer e hanga ana i ngā pūkenga me ngā mahara mō āu mahi, ka puta mai i konei.',
     share: 'Tohatoha mahere',
-    shareHint: 'Tāruatia te waehere hei tohatoha i tēnei mahere, whakapiria rānei tētahi hei uta. Kei roto anake te whakatakotoranga, kāore ō mahara, ō tuhinga pūkenga rānei.',
+    shareHint:
+      'Tāruatia te waehere hei tohatoha i tēnei mahere, whakapiria rānei tētahi hei uta. Kei roto anake te whakatakotoranga, kāore ō mahara, ō tuhinga pūkenga rānei.',
     shareTitle: 'Kawemai / kaweake mahere',
     sharePlaceholder: 'Whakapiria he waehere mahere…',
     copy: 'Tāruatia te waehere mahere',
@@ -1066,7 +1112,7 @@ export const mi = defineLocale({
     importedBadge: 'Mapi kawemai',
     resetToMine: 'Hoki ki taku mapi',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Katia ngā māngai',
@@ -1096,7 +1142,7 @@ export const mi = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'Katia te pokapū whakahau',
@@ -1125,7 +1171,7 @@ export const mi = defineLocale({
       generatedTag: 'Kua hangaia',
       adoptFailed: 'Kāore i taea te whāngai i tērā mōkai.',
       toggleFailed: 'Kāore i taea te huri i te mōkai.',
-      noneAvailable: 'Kāore he mōkai e wātea ana — kōwhiria tētahi i raro nei hei tāuta.',
+      noneAvailable: 'Kāore he mōkai e wātea ana — kōwhiria tētahi i raro nei hei tāuta.'
     },
     generatePet: {
       title: 'Whakaputa he mōkai',
@@ -1148,13 +1194,15 @@ export const mi = defineLocale({
       slowProviderHint: 'Ka pau pea ētahi meneti maha',
       remix: 'Whakaranu',
       remixConfirmTitle: 'Whakaranu i tēnei āhua?',
-      remixConfirmBody: 'Ka whakaputa tēnei i tētahi huinga tauira hou mā te whakamahi i tēnei hei tīmatanga. Ka roa pea ētahi meneti.',
+      remixConfirmBody:
+        'Ka whakaputa tēnei i tētahi huinga tauira hou mā te whakamahi i tēnei hei tīmatanga. Ka roa pea ētahi meneti.',
       genericError: 'I rahua te whakaputa — ngana anō, kōwhiri rānei i tētahi whakaaro.',
       referenceImageTooLarge: 'He nui rawa te atahanga tohutoro. Whakamahia tētahi kei raro i te 16 MB.',
-      referenceImageInvalid: 'Kāore i taea te pānui i tērā atahanga tohutoro. Whakamātauria he PNG, JPG, WebP, GIF rānei.',
+      referenceImageInvalid:
+        'Kāore i taea te pānui i tērā atahanga tohutoro. Whakamātauria he PNG, JPG, WebP, GIF rānei.',
       adopt: 'Whakaae',
       startOver: 'Tīmata anō',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     installTheme: {
       title: 'Tāuta kaupapa…',
@@ -1166,7 +1214,7 @@ export const mi = defineLocale({
       install: 'Tāuta',
       installing: 'E tāuta ana...',
       installed: 'Kua tāutahia',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Ngā āpure tautuhinga',
     mcpServers: 'Ngā tūmau MCP',
@@ -1175,49 +1223,49 @@ export const mi = defineLocale({
       maintenance: 'Tiakitanga',
       sessions: 'Ngā wātū',
       system: 'Pūnaha',
-      usage: 'Whakamahinga',
+      usage: 'Whakamahinga'
     },
     sectionDescriptions: {
       maintenance: 'Ngā tātaritanga, ngā tārua, te kaitiaki, me ngā raraunga mahara',
       sessions: 'Rapua me te whakahaere wātū',
       system: 'Tūnga, ngā rangitaki, me ngā mahi pūnaha',
-      usage: 'Tohu, utu, mahi pūkenga i te wā',
+      usage: 'Tohu, utu, mahi pūkenga i te wā'
     },
     nav: {
       newChat: {
         title: 'Wātū hou',
-        detail: 'Tīmata i tētahi wātū hou',
+        detail: 'Tīmata i tētahi wātū hou'
       },
       settings: {
         title: 'Tautuhinga',
-        detail: 'Whirihora i te papamahi OpenAmer',
+        detail: 'Whirihora i te papamahi OpenAmer'
       },
       skills: {
         title: 'Ngā āheinga',
-        detail: 'Ngā pūkenga, ngā taputapu, me ngā tūmau MCP',
+        detail: 'Ngā pūkenga, ngā taputapu, me ngā tūmau MCP'
       },
       messaging: {
         title: 'Karere',
-        detail: 'Whakaritea Telegram, Slack, Discord, me ētahi atu',
+        detail: 'Whakaritea Telegram, Slack, Discord, me ētahi atu'
       },
       artifacts: {
         title: 'Ngā huānga',
-        detail: 'Tirotiro i ngā putanga i hangaia',
-      },
+        detail: 'Tirotiro i ngā putanga i hangaia'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Paewhiri wātū',
-        detail: 'Rapua, pine, whakahaere wātū',
+        detail: 'Rapua, pine, whakahaere wātū'
       },
       system: {
         title: 'Paewhiri pūnaha',
-        detail: 'Tūnga o te kuwaha, ngā rangitaki, whakaara anō/whakahōu',
+        detail: 'Tūnga o te kuwaha, ngā rangitaki, whakaara anō/whakahōu'
       },
       usage: {
         title: 'Paewhiri whakamahinga',
-        detail: 'Tohu, utu, me te mahi pūkenga',
-      },
+        detail: 'Tohu, utu, me te mahi pūkenga'
+      }
     },
     providerNavigate: 'Whakatere',
     providerSessions: 'Ngā wātū',
@@ -1300,14 +1348,14 @@ export const mi = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     startInBranch: branch => `New conversation in ${branch}`,
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · Active sessions ${count}`,
     days: count => `${count}d`,
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   messaging: {
     search: 'Rapua ngā karere...',
@@ -1322,7 +1370,7 @@ export const mi = defineLocale({
       not_configured: 'Me whakarite',
       pending_restart: 'Me whakaara anō',
       retrying: 'E whakamātau anō ana',
-      startup_failed: 'I rahua te whakaara',
+      startup_failed: 'I rahua te whakaara'
     },
     unknown: 'Kāore i mōhiotia',
     hintPendingRestart: 'Whakaarahia anō te kuaha mai i te pae tūnga kia whakatinanahia ai tēnei huringa.',
@@ -1334,7 +1382,8 @@ export const mi = defineLocale({
     openSetupGuide: 'Whakatuwheratia te aratohu whakarite',
     required: 'E hiahiatia ana',
     recommended: 'E tūtohungia ana',
-    noTokenNeeded: 'Kāore tēnei tūāpapa e hiahia tohu i konei. Whakamahia te aratohu whakarite i runga ake, kātahi whakahohea i raro nei.',
+    noTokenNeeded:
+      'Kāore tēnei tūāpapa e hiahia tohu i konei. Whakamahia te aratohu whakarite i runga ake, kātahi whakahohea i raro nei.',
     enabled: 'Kua whakahohea',
     disabled: 'Kua whakawetohia',
     unsavedChanges: 'Ngā huringa kāore i tiakina',
@@ -1349,124 +1398,124 @@ export const mi = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Tohu bot',
         help: 'Waihangatia he bot mā @BotFather, kātahi ka whakapiri i te tohu ka homai ki a koe.',
-        placeholder: 'Whakapiria te tohu bot Telegram',
+        placeholder: 'Whakapiria te tohu bot Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Ngā ID kaiwhakamahi Telegram kua whakaaetia',
-        help: 'E taunakitia ana. Ngā ID nama kua wehea ki te piko mai i @userinfobot. Ki te kore tēnei, ka taea e te tangata kē te tuku karere ki tō bot.',
+        help: 'E taunakitia ana. Ngā ID nama kua wehea ki te piko mai i @userinfobot. Ki te kore tēnei, ka taea e te tangata kē te tuku karere ki tō bot.'
       },
       TELEGRAM_PROXY: {
         label: 'URL takawaenga',
-        help: 'Ka hiahiatia anake i ngā whatunga e aukatia ana a Telegram.',
+        help: 'Ka hiahiatia anake i ngā whatunga e aukatia ana a Telegram.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Tohu bot',
-        help: 'Waihangatia he tono i te Discord Developer Portal, tāpirihia he bot, kātahi ka whakapiri i tōna tohu.',
+        help: 'Waihangatia he tono i te Discord Developer Portal, tāpirihia he bot, kātahi ka whakapiri i tōna tohu.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Ngā ID kaiwhakamahi Discord kua whakaaetia',
-        help: 'E taunakitia ana. Ngā ID kaiwhakamahi Discord kua wehea ki te piko.',
+        help: 'E taunakitia ana. Ngā ID kaiwhakamahi Discord kua wehea ki te piko.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Kāhua whakautu',
-        help: 'tuatahi, katoa, whakaweto ranei.',
+        help: 'tuatahi, katoa, whakaweto ranei.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Tukua ngā kaiwhakamahi Discord katoa',
-        help: 'Whanaketanga anake. Ina pono, ka taea e te tangata katoa te DM i te bot me te kore rārangi whakaaetanga.',
+        help: 'Whanaketanga anake. Ina pono, ka taea e te tangata katoa te DM i te bot me te kore rārangi whakaaetanga.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID hongere kāinga',
-        help: 'Hongere e tukuna ai e te bot ngā karere whakamōhio (putanga cron, ngā whakamaumaharatanga).',
+        help: 'Hongere e tukuna ai e te bot ngā karere whakamōhio (putanga cron, ngā whakamaumaharatanga).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Ingoa hongere kāinga',
-        help: 'Ingoa whakaatu mō te hongere kāinga i ngā rangitaki me te putanga tūnga.',
+        help: 'Ingoa whakaatu mō te hongere kāinga i ngā rangitaki me te putanga tūnga.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Tukua ngā kaiwhakamahi iMessage katoa',
-        help: 'Ina pono, kaua e whakamahi i te rārangi whakaaetanga BlueBubbles.',
+        help: 'Ina pono, kaua e whakamahi i te rārangi whakaaetanga BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Tukua ngā kaiwhakamahi Mattermost katoa',
+        label: 'Tukua ngā kaiwhakamahi Mattermost katoa'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Hongere kāinga',
+        label: 'Hongere kāinga'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Tukua ngā kaiwhakamahi QQ katoa',
+        label: 'Tukua ngā kaiwhakamahi QQ katoa'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Hongere kāinga QQ',
-        help: 'Hongere, rōpū ranei taunoa mō te tuku cron.',
+        help: 'Hongere, rōpū ranei taunoa mō te tuku cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Ingoa hongere kāinga QQ',
+        label: 'Ingoa hongere kāinga QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Tohu bot Slack',
         help: 'Whakamahia te tohu bot mai i OAuth & Permissions i muri i te tāuta i tō taupānga Slack.',
-        placeholder: 'Whakapiri i te tohu bot Slack',
+        placeholder: 'Whakapiri i te tohu bot Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Tohu taupānga Slack',
         help: 'Whakamahia te tohu taumata-app e hiahiatia ana mō Socket Mode.',
-        placeholder: 'Whakapiri i te tohu app Slack',
+        placeholder: 'Whakapiri i te tohu app Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Ngā ID kaiwhakamahi Slack e whakaaetia ana',
-        help: 'E tūtohutia ana. Ngā ID kaiwhakamahi Slack kua wehea ki te piko.',
+        help: 'E tūtohutia ana. Ngā ID kaiwhakamahi Slack kua wehea ki te piko.'
       },
       MATTERMOST_URL: {
         label: 'URL tūmau',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Tohu bot',
+        label: 'Tohu bot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Ngā ID kaiwhakamahi e whakaaetia ana',
-        help: 'E tūtohutia ana. Ngā ID kaiwhakamahi Mattermost kua wehea ki te piko.',
+        help: 'E tūtohutia ana. Ngā ID kaiwhakamahi Mattermost kua wehea ki te piko.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL tūmau kāinga',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Tohu uru',
+        label: 'Tohu uru'
       },
       MATRIX_USER_ID: {
         label: 'ID kaiwhakamahi bot',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Ngā ID kaiwhakamahi Matrix e whakaaetia ana',
-        help: 'E tūtohutia ana. Ngā ID kaiwhakamahi kua wehea ki te piko i te hōputu @user:server.',
+        help: 'E tūtohutia ana. Ngā ID kaiwhakamahi kua wehea ki te piko i te hōputu @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL piriti Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL o tētahi piriti REST signal-cli e rere ana.',
+        help: 'URL o tētahi piriti REST signal-cli e rere ana.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Nama waea',
-        help: 'Te nama kua rēhitatia ki tō piriti signal-cli.',
+        help: 'Te nama kua rēhitatia ki tō piriti signal-cli.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Ngā kaiwhakamahi Signal kua whakaaetia',
-        help: 'E taunakitia ana. Ngā tautohu Signal wehea ki te piko.',
+        help: 'E taunakitia ana. Ngā tautohu Signal wehea ki te piko.'
       },
       WHATSAPP_ENABLED: {
         label: 'Whakahohe i te piriti WhatsApp',
-        help: 'Ka tautuhia aunoatia e te whakawhiti o raro. Waiho noa mena e mōhio ana koe e hiahia ana.',
+        help: 'Ka tautuhia aunoatia e te whakawhiti o raro. Waiho noa mena e mōhio ana koe e hiahia ana.'
       },
       WHATSAPP_MODE: {
-        label: 'Aratau piriti',
+        label: 'Aratau piriti'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Ngā kaiwhakamahi WhatsApp kua whakaaetia',
-        help: 'E taunakitia ana. Ngā nama waea, ngā ID WhatsApp rānei kua wehea ki te piko.',
-      },
+        help: 'E taunakitia ana. Ngā nama waea, ngā ID WhatsApp rānei kua wehea ki te piko.'
+      }
     },
     advanced: count => `Advanced (${count})`,
     clearField: key => `Clear ${key}`,
@@ -1480,8 +1529,7 @@ export const mi = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Rapua ngā webhook...',
@@ -1490,7 +1538,8 @@ export const mi = defineLocale({
     hint: 'Ka whakahōutia aunoa ngā huringa ohaurunga ina rere te kaiwhiwhi. Ka ākiritia e ngā ohaurunga monokia ngā takahanga taumai.',
     empty: 'Kāore ano he ohaurunga webhook.',
     disabledTitle: 'Kua monokia te kaiwhiwhi webhook',
-    disabledBody: 'He tūāpapa tomokanga motuhake ngā webhook. Whakahohea ki konei kia whakaaetia ngā takahanga HTTP taumai; ka hiahiatia ngā hongere kōrero ina tuku te ohaurunga ki Telegram, Discord, Slack, tētahi atu hongere rānei.',
+    disabledBody:
+      'He tūāpapa tomokanga motuhake ngā webhook. Whakahohea ki konei kia whakaaetia ngā takahanga HTTP taumai; ka hiahiatia ngā hongere kōrero ina tuku te ohaurunga ki Telegram, Discord, Slack, tētahi atu hongere rānei.',
     enable: 'Whakahohe i ngā webhook',
     enabling: 'E whakahohe ana...',
     enableRow: 'Whakahohe',
@@ -1503,7 +1552,8 @@ export const mi = defineLocale({
     deleteDescSuffix: '. Kāore e taea te whakahoki.',
     newSubscription: 'Ohaurunga hōu',
     restarting: 'E whakaara anō ana te kuaha...',
-    restartNeeded: 'Kua whakahohehia ngā webhook, engari me whakaara anō tonu te kuaha kia taea ai te kaiwhiwhi te uru mai ki runga ipurangi.',
+    restartNeeded:
+      'Kua whakahohehia ngā webhook, engari me whakaara anō tonu te kuaha kia taea ai te kaiwhiwhi te uru mai ki runga ipurangi.',
     restartGateway: 'Whakaara anō i te kuaha',
     restartingGateway: 'E whakaara anō ana...',
     enabledRestarting: 'Kua whakahohehia ngā webhook; e whakaara anō ana te kuaha...',
@@ -1537,7 +1587,7 @@ export const mi = defineLocale({
       github_comment: 'Tākupu GitHub',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     subscriptions: (count: number) => `Subscriptions (${count})`,
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -1545,7 +1595,7 @@ export const mi = defineLocale({
     deleteFailed: (name: string) => `Failed to delete "${name}"`,
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     close: 'Katia ngā kōtaha',
@@ -1623,7 +1673,7 @@ export const mi = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   cron: {
     close: 'Katia a cron',
@@ -1637,14 +1687,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'kua whakatārewa',
       disabled: 'kua whakaweto',
       error: 'hapa',
-      completed: 'kua oti',
+      completed: 'kua oti'
     },
     deliveryLabels: {
       local: 'Tēnei papamahi',
       email: 'Īmēra',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     scheduleLabels: {
       daily: 'Ia rā',
@@ -1653,7 +1703,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Ia marama',
       hourly: 'Ia haora',
       'every-15-minutes': 'Ia 15 meneti',
-      custom: 'Ritenga',
+      custom: 'Ritenga'
     },
     scheduleHints: {
       daily: 'Ia rā i te 9:00 i te ata',
@@ -1662,7 +1712,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Te rā tuatahi o ia marama i te 9:00 i te ata',
       hourly: 'I te tīmatanga o ia haora',
       'every-15-minutes': 'Ia 15 meneti',
-      custom: 'Tātaitanga Cron, reo ā-tangata rānei',
+      custom: 'Tātaitanga Cron, reo ā-tangata rānei'
     },
     days: {
       '0': 'Rātapu',
@@ -1672,11 +1722,12 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Rāpare',
       '5': 'Rāmere',
       '6': 'Rāhoroi',
-      '7': 'Rātapu',
+      '7': 'Rātapu'
     },
     topOfHour: 'I te tīmatanga o ia haora',
     newCron: 'Cron hou',
-    emptyDescNew: 'Whakatauhia tētahi pāta kia rere mā tētahi kīanga cron. Ka whakahaere a OpenAmer i a ia, ā, ka tuku i ngā hua ki te wāhi ka kōwhiria e koe.',
+    emptyDescNew:
+      'Whakatauhia tētahi pāta kia rere mā tētahi kīanga cron. Ka whakahaere a OpenAmer i a ia, ā, ka tuku i ngā hua ki te wāhi ka kōwhiria e koe.',
     emptyDescSearch: 'Whakamātauria tētahi rapunga whānui ake.',
     emptyTitleNew: 'Kāore anō he mahi kua whakaritea',
     emptyTitleSearch: 'Kāore he hua',
@@ -1712,7 +1763,8 @@ Leave blank to keep the ${mode} default.`,
     editTitle: 'Whakatika mahi cron',
     createTitle: 'Mahi cron hou',
     editDesc: 'Whakahōu te hōtaka, te whakahau, te wāhi tuku rānei. Ka pā ngā huringa ā te oma e whai ake.',
-    createDesc: 'Whakarite i tētahi whakahau kia oma aunoa. Whakamahia te wetereo cron, tētahi kīanga māori rānei pēnei i te "ia 15 meneti".',
+    createDesc:
+      'Whakarite i tētahi whakahau kia oma aunoa. Whakamahia te wetereo cron, tētahi kīanga māori rānei pēnei i te "ia 15 meneti".',
     nameLabel: 'Ingoa',
     namePlaceholder: 'Pūrongo ata',
     promptLabel: 'Whakahau',
@@ -1734,7 +1786,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Waihanga cron',
     tabs: {
       jobs: 'Mahi',
-      blueprints: 'Mahere',
+      blueprints: 'Mahere'
     },
     blueprints: {
       tab: 'Mahere',
@@ -1748,7 +1800,7 @@ Leave blank to keep the ${mode} default.`,
       loading: 'E uta ana i ngā mahere...',
       failedLoad: 'I rahua te uta i ngā mahere',
       emptyTitle: 'Kāore he mahere e wātea ana',
-      emptyDesc: 'Kāore he mahere aunoatanga e wātea ana i tēnei tuarā.',
+      emptyDesc: 'Kāore he mahere aunoatanga e wātea ana i tēnei tuarā.'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -1757,7 +1809,7 @@ Leave blank to keep the ${mode} default.`,
     everyDayOfWeekAt: (day, time) => `Every ${day} at ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Monthly on day ${dayOfMonth} at ${time}`,
     everyHourAt: minute => `Every hour at :${minute}`,
-    actionsFor: title => `Actions for ${title}`,
+    actionsFor: title => `Actions for ${title}`
   },
   artifacts: {
     search: 'Rapua ngā whakaputanga...',
@@ -1791,14 +1843,14 @@ Leave blank to keep the ${mode} default.`,
     copyUrl: 'Tārua URL',
     copyPath: 'Tārua ara',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'Tūnga hōu',
       skills: 'Ngā āheinga',
       messaging: 'Karere',
-      artifacts: 'Ngā hua',
+      artifacts: 'Ngā hua'
     },
     searchAria: 'Rapua ngā tūnga',
     searchPlaceholder: 'Rapua ngā tūnga…',
@@ -1849,8 +1901,10 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'Tārua ara',
       removeFromSidebar: 'Huna mai i te paetaha',
       createFailed: 'Kāore i taea te waihanga kaupapa',
-      staleBackend: 'Whakahōutia te taha muri OpenAmer ki te waihanga kaupapa — he tawhito ake tō taha muri i tēnei taupānga papamahi (Ngā Tautuhinga → Ngā Whakahōutanga → Taha muri).',
-      deleteConfirm: 'Ka tangohia tēnei kaupapa kua tiakina i OpenAmer. Kāore e pāngia ngā konae, ngā pūranga git, me ngā rākau mahi.',
+      staleBackend:
+        'Whakahōutia te taha muri OpenAmer ki te waihanga kaupapa — he tawhito ake tō taha muri i tēnei taupānga papamahi (Ngā Tautuhinga → Ngā Whakahōutanga → Taha muri).',
+      deleteConfirm:
+        'Ka tangohia tēnei kaupapa kua tiakina i OpenAmer. Kāore e pāngia ngā konae, ngā pūranga git, me ngā rākau mahi.',
       startWork: 'Rākau mahi hou',
       newWorktreeTitle: 'Rākau mahi hou',
       newWorktreeDesc: 'Whakaingoatia te peka mō tēnei rākau mahi.',
@@ -1870,14 +1924,16 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'Kāore i kitea he peka',
       removeWorktree: 'Tangohia te rākau mahi',
       removeWorktreeFailed: 'Kāore i taea te tango i te wāhi mahi (ngā huringa kāore anō kia whakapūmau?)',
-      removeWorktreeConfirm: 'Tangohia atu i git (ka mukua te kōpaki wāhi mahi; ka noho tonu te peka), rānei me huna noa te ara mai i te paetaha, ā, waiho te wāhi mahi ki te kōpae.',
-      removeWorktreeDirty: 'He huringa kāore anō kia whakapūmau tēnei wāhi mahi. Tangohia mā te kaha (ka whiua ērā huringa), rānei me huna noa te ara, ā, me noho tonu ki te kōpae.',
+      removeWorktreeConfirm:
+        'Tangohia atu i git (ka mukua te kōpaki wāhi mahi; ka noho tonu te peka), rānei me huna noa te ara mai i te paetaha, ā, waiho te wāhi mahi ki te kōpae.',
+      removeWorktreeDirty:
+        'He huringa kāore anō kia whakapūmau tēnei wāhi mahi. Tangohia mā te kaha (ka whiua ērā huringa), rānei me huna noa te ara, ā, me noho tonu ki te kōpae.',
       forceRemove: 'Tango mā te kaha',
       back: 'Ngā kaupapa katoa',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     row: {
       sessionRunning: 'Kei te whakahaere te wātū',
@@ -1910,21 +1966,21 @@ Leave blank to keep the ${mode} default.`,
       ownedByProfile: profile => `Profile: ${profile}`,
       untitledChat: id => `Chat ${id}`,
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'I mua i tēnei rā',
       yesterday: 'Inanahi',
       thisWeek: 'I mua i tēnei wiki',
       lastWeek: 'I tērā wiki',
-      thisMonth: 'I mua i tēnei marama',
+      thisMonth: 'I mua i tēnei marama'
     },
     loading: 'E uta ana…',
     loadMore: 'Uta atu',
     noMatch: query => `No sessions match “${query}”.`,
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     message: 'Karere',
@@ -1965,7 +2021,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'Haere tonu i tētahi wāhanga o mua',
       '/details': 'Whakahaere i te taumata taipitopito o te tuhinga',
       '/copy': 'Tārua te tīpakonga, te karere whakamutunga a te kaiāwhina rānei',
-      '/quit': 'puta atu i openamer',
+      '/quit': 'puta atu i openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'tohutoro kōnae, kōpaki, URL, git',
@@ -1975,7 +2031,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'tuku i te wā e whai ake nei kua tūruhi',
       'keybinds.openPanel': 'ngā pokatata papapātuhi katoa',
       'composer.cancel': 'katia te poutāpoki · whakakore te oma',
-      'composer.history': 'hurihia te poutāpoki / te hītori',
+      'composer.history': 'hurihia te poutāpoki / te hītori'
     },
     attachUrlTitle: 'Āpiri he URL',
     attachUrlDesc: 'Ka tīkina e OpenAmer te whārangi, ka whakaurua hei horopaki mō tēnei wā.',
@@ -2018,19 +2074,20 @@ Leave blank to keep the ${mode} default.`,
     snippets: {
       codeReview: {
         label: 'Arotake waehere',
-        description: 'Arotakengia te huringa o nāianei mō ngā hokinga, ngā take tapa kua mahue, me ngā whakamātautau ngaro.',
-        text: 'Tēnā, arotakengia tēnei mō ngā hapa, ngā hokinga, me ngā whakamātautau ngaro.',
+        description:
+          'Arotakengia te huringa o nāianei mō ngā hokinga, ngā take tapa kua mahue, me ngā whakamātautau ngaro.',
+        text: 'Tēnā, arotakengia tēnei mō ngā hapa, ngā hokinga, me ngā whakamātautau ngaro.'
       },
       implementationPlan: {
         label: 'Mahere whakatinana',
         description: 'Whakaraupapahia tētahi huarahi i mua i te pā ki te waehere kia arotahi tonu te rerekētanga.',
-        text: 'Tēnā, hangaia he mahere whakatinana poto i mua i te huri i te waehere.',
+        text: 'Tēnā, hangaia he mahere whakatinana poto i mua i te huri i te waehere.'
       },
       explainThis: {
         label: 'Whakamāramahia tēnei',
         description: 'Whakamāramahia te mahi o te waehere kua tohua me te hono atu ki ngā kōnae matua.',
-        text: 'Tēnā, whakamāramahia te mahi o tēnei, ā, tohua mai ngā kōnae matua.',
-      },
+        text: 'Tēnā, whakamāramahia te mahi o tēnei, ā, tohua mai ngā kōnae matua.'
+      }
     },
     wakingProfile: profile => `Waking up ${profile}…`,
     newSessionPlaceholders: [
@@ -2040,7 +2097,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -2049,7 +2106,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
@@ -2057,7 +2114,7 @@ Leave blank to keep the ${mode} default.`,
     previewLabel: label => `Preview ${label}`,
     couldNotPreview: label => `Could not preview ${label}`,
     removeAttachment: label => `Remove ${label}`,
-    url: 'URL…',
+    url: 'URL…'
   },
   statusStack: {
     coding: {
@@ -2073,8 +2130,10 @@ Leave blank to keep the ${mode} default.`,
       viewAsList: 'Tirohia hei rārangi',
       revert: 'Whakahoki',
       revertAll: 'Whakahoki katoa',
-      revertConfirm: 'Whakakore ngā huringa ki tēnei kōnae, ā, whakahokia ki te āhua kua whakapūmautia? Kāore e taea te whakamuri.',
-      revertAllConfirm: 'Whakakore i ngā huringa katoa, ā, whakahokia ngā kōnae ki te āhua kua whakapūmautia? Kāore e taea te whakamuri.',
+      revertConfirm:
+        'Whakakore ngā huringa ki tēnei kōnae, ā, whakahokia ki te āhua kua whakapūmautia? Kāore e taea te whakamuri.',
+      revertAllConfirm:
+        'Whakakore i ngā huringa katoa, ā, whakahokia ngā kōnae ki te āhua kua whakapūmautia? Kāore e taea te whakamuri.',
       staged: 'Kua whakaritea',
       noChanges: 'Kāore he huringa',
       notRepo: 'Ehara i te pūputunga git',
@@ -2093,7 +2152,8 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'Whakatuwhera PR',
       ghMissing: 'Tāuta te GitHub CLI (gh) ka takiuru hei whakatuwhera PR',
       agentShip: 'Pātai ki a OpenAmer kia whakatuwhera PR',
-      agentShipPrompt: 'Arotake i ngā huringa o nāianei, tuku me tētahi karere tuku tikanga mārama, pana te peka, ā, whakatuwhera i tētahi PR.',
+      agentShipPrompt:
+        'Arotake i ngā huringa o nāianei, tuku me tētahi karere tuku tikanga mārama, pana te peka, ā, whakatuwhera i tētahi PR.',
       newBranch: 'Peka hou',
       worktrees: 'Ngā rākau mahi',
       changed: count => `${count} changed`,
@@ -2102,7 +2162,7 @@ Leave blank to keep the ${mode} default.`,
       commitPlaceholder: 'Message (⌘↵ to commit)',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     agents: 'Ngā māngai',
     running: 'E rere ana',
@@ -2111,7 +2171,7 @@ Leave blank to keep the ${mode} default.`,
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -2126,7 +2186,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'Kua oti te whakahōu',
       manual: 'Whakahōu mai i tō raina whakahau',
       guiSkew: 'Whakahōutia te taupānga papamahi',
-      error: 'Kua whakatārewa te whakahōu',
+      error: 'Kua whakatārewa te whakahōu'
     },
     checking: 'Kei te rapu whakahōunga…',
     checkFailedTitle: 'Kāore i taea te tiro whakahōunga',
@@ -2141,20 +2201,26 @@ Leave blank to keep the ${mode} default.`,
     availableBody: 'Kua rite tētahi putanga hou o OpenAmer hei tāuta.',
     availableTitleBackend: 'He whakahōunga pūnaha tuarā e wātea ana',
     availableBodyBackend: 'Kua rite tētahi putanga hou ake o te pūnaha tuarā OpenAmer e hono ana hei tāuta.',
-    availableBodyNoChangelog: 'Kua rite tētahi putanga hou ake. Kāore ngā tuhipoka tuku i te wātea mō tēnei momo tāuta.',
+    availableBodyNoChangelog:
+      'Kua rite tētahi putanga hou ake. Kāore ngā tuhipoka tuku i te wātea mō tēnei momo tāuta.',
     updateNow: 'Whakahōutia ināianei',
     maybeLater: 'Ākuanei pea',
     manualTitle: 'Whakahou mai i tō tāpaetanga',
-    manualBody: 'I whakauru koe i a OpenAmer mai i te raina whakahau, nō reira ka rere ngā whakahou ki reira anō. Whakapiria tēnei ki tō tāpaetanga:',
+    manualBody:
+      'I whakauru koe i a OpenAmer mai i te raina whakahau, nō reira ka rere ngā whakahou ki reira anō. Whakapiria tēnei ki tō tāpaetanga:',
     manualPickedUp: 'Ka tiki a OpenAmer i te putanga hou ā muri ake ina whakarewa koe i a ia.',
     guiSkewTitle: 'Whakahoutia te taupānga papamahi',
-    guiSkewBody: 'I whakahoutia te tuarā, engari kāore i hurihia tēnei pōkai taupānga papamahi. Whakahoutia, whakaurua anō rānei te taupānga papamahi OpenAmer (tō AppImage / .deb / .rpm) kia ōrite.',
+    guiSkewBody:
+      'I whakahoutia te tuarā, engari kāore i hurihia tēnei pōkai taupānga papamahi. Whakahoutia, whakaurua anō rānei te taupānga papamahi OpenAmer (tō AppImage / .deb / .rpm) kia ōrite.',
     copy: 'Tārua',
     copied: 'Kua tāruatia',
     done: 'Kua oti',
-    applyingBody: 'Ka whakahaere te pūwhakahou OpenAmer i tōna ake matapihi, ā, ka whakatuwhera anō i a OpenAmer aunoa ina oti. Tēnā kaua e whakatuwhera anō i a OpenAmer māu anō i te wā e whakahou ana.',
-    applyingBodyBackend: 'Kei te whakatinana te tuarā mamao i te whakahou, ā, ka tīmata anō. Ka hono anō a OpenAmer aunoa ina hoki mai.',
-    applyingClose: 'Ka kati tēnei matapihi i te wā e rere ana te whakahou, kātahi ka whakatuwhera anō a OpenAmer i a ia anō.',
+    applyingBody:
+      'Ka whakahaere te pūwhakahou OpenAmer i tōna ake matapihi, ā, ka whakatuwhera anō i a OpenAmer aunoa ina oti. Tēnā kaua e whakatuwhera anō i a OpenAmer māu anō i te wā e whakahou ana.',
+    applyingBodyBackend:
+      'Kei te whakatinana te tuarā mamao i te whakahou, ā, ka tīmata anō. Ka hono anō a OpenAmer aunoa ina hoki mai.',
+    applyingClose:
+      'Ka kati tēnei matapihi i te wā e rere ana te whakahou, kātahi ka whakatuwhera anō a OpenAmer i a ia anō.',
     errorTitle: 'Kāore te whakahou i oti',
     errorBody: 'Kaua e māharahara — kāore he mea i ngaro. Ka taea e koe te whakamātau anō ināianei.',
     notNow: 'Kāore i tēnei wā',
@@ -2164,13 +2230,15 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'Kei te tīmata anō te tuarā ki te uta i te whakahou…',
       notAvailable: 'Kāore te whakahou e wātea ana mō tēnei tuarā.',
       failed: 'I rahua te whakahou tuarā.',
-      noReturn: 'Kāore te tuarā i hoki mai ki te tuihono. Tērā pea kāore te whakahou i oti — tirohia te kaihautū tuarā.',
+      noReturn: 'Kāore te tuarā i hoki mai ki te tuihono. Tērā pea kāore te whakahou i oti — tirohia te kaihautū tuarā.'
     },
     appErrors: {
-      updateLocked: 'Kua whakakorea te whakahou: kei te pupuri tētahi atu matapihi OpenAmer, tētahi terminal rānei e whakahaere ana i a openamer i tēnei whakaurunga. Katia, ka ngana anō.',
-      updateFailed: 'Kāore te whakahou i oti. Kaua e māharahara — kāore he mea i ngaro. Ka taea e koe te ngana anō ināianei.',
+      updateLocked:
+        'Kua whakakorea te whakahou: kei te pupuri tētahi atu matapihi OpenAmer, tētahi terminal rānei e whakahaere ana i a openamer i tēnei whakaurunga. Katia, ka ngana anō.',
+      updateFailed:
+        'Kāore te whakahou i oti. Kaua e māharahara — kāore he mea i ngaro. Ka taea e koe te ngana anō ināianei.'
     },
-    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
+    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`
   },
   install: {
     stageStates: {
@@ -2178,7 +2246,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'E whakauru ana',
       succeeded: 'Kua oti',
       skipped: 'Kua pekehia',
-      failed: 'I rahua',
+      failed: 'I rahua'
     },
     oneTimeTitle: 'Me whakauru a OpenAmer kotahi noa iho',
     installCommand: 'Whakahau whakauru',
@@ -2187,15 +2255,19 @@ Leave blank to keep the ${mode} default.`,
     installTo: 'Ka whakauru ki',
     retryAfterRun: 'Kua whakahaere ahau -- ngana anō',
     setupChoiceTitle: 'Whakaritea a OpenAmer Desktop',
-    setupChoiceDesc: 'Honoa tēnei taupānga ki tētahi tūwaha OpenAmer e whakahaere ana koe, ki te whakauru rānei i a OpenAmer ki tēnei rorohiko.',
+    setupChoiceDesc:
+      'Honoa tēnei taupānga ki tētahi tūwaha OpenAmer e whakahaere ana koe, ki te whakauru rānei i a OpenAmer ki tēnei rorohiko.',
     connectExistingTitle: 'Hono ki tētahi OpenAmer e noho ana',
     connectExistingShort: 'Hono ki tērā e noho ana',
-    connectExistingDesc: 'Whakamahia he tuarā mamao me tētahi tohu wā, me te haina rānei mā te pūtirotiro. Kāore he whakaurunga ā-rohe e tīmata.',
+    connectExistingDesc:
+      'Whakamahia he tuarā mamao me tētahi tohu wā, me te haina rānei mā te pūtirotiro. Kāore he whakaurunga ā-rohe e tīmata.',
     installLocalTitle: 'Whakaurua a OpenAmer ā-rohe',
     installLocalDesc: 'Tikiake a OpenAmer, hanga tōna taiao Python, whakahaere i te pūnaha tuarā i tēnei rorohiko.',
-    localStartUnavailable: 'Kāore te tāutanga ā-rohe i tīmata. Whakaara anō i OpenAmer Desktop, kātahi ka whakamātau anō.',
+    localStartUnavailable:
+      'Kāore te tāutanga ā-rohe i tīmata. Whakaara anō i OpenAmer Desktop, kātahi ka whakamātau anō.',
     remoteSetupTitle: 'Hono ki tētahi OpenAmer kua tīariari',
-    remoteSetupDesc: 'Whakauruhia tō URL o te kuaha. Ka kitea e OpenAmer Desktop mēnā e hiahia ana ki tētahi tohu, ki te takiuru rānei mā te pūtirotiro.',
+    remoteSetupDesc:
+      'Whakauruhia tō URL o te kuaha. Ka kitea e OpenAmer Desktop mēnā e hiahia ana ki tētahi tohu, ki te takiuru rānei mā te pūtirotiro.',
     remoteUrlTitle: 'URL kuaha',
     remoteUrlDesc: 'Whakamahia te URL taketake o te kuaha OpenAmer, me te https:// inā mamao.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2219,8 +2291,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'I rahua te whakaurunga',
     settingUpTitle: 'Whakarite i te OpenAmer Agent',
     finishingTitle: 'Whakaoti ana',
-    failedDesc: 'I rahua tētahi o ngā mahi whakauru. I runga i Windows, ka pēnei pea mena kei te rere tētahi atu OpenAmer CLI, papamahi rānei. Whakamutua ngā OpenAmer e rere ana, kātahi ka ngana anō. Tirohia ngā taipitopito i raro nei, te rangitaki papamahi rānei mō te tuhinga katoa.',
-    activeDesc: 'He whakaritenga kotahi tēnei. Kei te tiki te kaiwhakauru OpenAmer i ngā whakawhirinaki me te whirihora i tō mīhini. Ka pekehia tēnei mahi i ngā whakarewanga o muri.',
+    failedDesc:
+      'I rahua tētahi o ngā mahi whakauru. I runga i Windows, ka pēnei pea mena kei te rere tētahi atu OpenAmer CLI, papamahi rānei. Whakamutua ngā OpenAmer e rere ana, kātahi ka ngana anō. Tirohia ngā taipitopito i raro nei, te rangitaki papamahi rānei mō te tuhinga katoa.',
+    activeDesc:
+      'He whakaritenga kotahi tēnei. Kei te tiki te kaiwhakauru OpenAmer i ngā whakawhirinaki me te whirihora i tō mīhini. Ka pekehia tēnei mahi i ngā whakarewanga o muri.',
     fetchingManifest: 'Kei te tiki i te rārangi kaiwhakauru...',
     error: 'Hapa',
     hideOutput: 'Huna i te putanga kaiwhakauru',
@@ -2232,18 +2306,20 @@ Leave blank to keep the ${mode} default.`,
     copiedOutput: 'Kua tāruatia!',
     copyOutput: 'Tārua putanga',
     reloadRetry: 'Utaina anō ka ngana anō',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
     signInWith: provider => `Sign in with ${provider}`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'Me whakarite koe mō OpenAmer Agent',
     headerDesc: 'Honoa tētahi kaiwhakarato tauira ki te tīmata kōrero. Kotahi pā noa te nuinga o ngā whiringa.',
-    preparingInstall: 'Kei te whakaoti a OpenAmer i te tāuta. I te nuinga o te wā ka iti iho i te meneti i te wā tuatahi.',
+    preparingInstall:
+      'Kei te whakaoti a OpenAmer i te tāuta. I te nuinga o te wā ka iti iho i te meneti i te wā tuatahi.',
     starting: 'Kei te tīmata a OpenAmer…',
     lookingUpProviders: 'Kei te rapu kaiwhakarato...',
     collapse: 'Whakawhāiti',
@@ -2258,28 +2334,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'API tauira tōtika',
-        description: 'Uru tōtika ki ngā tauira e whakahaeretia e Fireworks AI.',
+        description: 'Uru tōtika ki ngā tauira e whakahaeretia e Fireworks AI.'
       },
       openrouter: {
         short: 'kotahi kī, he maha ngā tauira',
-        description: 'Ka whakahaere i ngā rau tauira i muri i te kī kotahi. He taunoa pai mō ngā tāuta hou.',
+        description: 'Ka whakahaere i ngā rau tauira i muri i te kī kotahi. He taunoa pai mō ngā tāuta hou.'
       },
       openai: {
         short: 'Ngā tauira karaehe GPT',
-        description: 'Uru tōtika ki ngā tauira OpenAI.',
+        description: 'Uru tōtika ki ngā tauira OpenAI.'
       },
       gemini: {
         short: 'Ngā tauira Gemini',
-        description: 'Whai wāhi tōtika ki ngā tauira Google Gemini.',
+        description: 'Whai wāhi tōtika ki ngā tauira Google Gemini.'
       },
       xai: {
         short: 'Ngā tauira Grok',
-        description: 'Whai wāhi tōtika ki ngā tauira xAI Grok.',
+        description: 'Whai wāhi tōtika ki ngā tauira xAI Grok.'
       },
       local: {
         short: 'Whakahaere-ake',
-        description: 'Tohua a OpenAmer ki tētahi pito hononga OpenAI-hototahi ā-rohe, ā-whakahaere-ake rānei (vLLM, llama.cpp, Ollama, etc).',
-      },
+        description:
+          'Tohua a OpenAmer ki tētahi pito hononga OpenAI-hototahi ā-rohe, ā-whakahaere-ake rānei (vLLM, llama.cpp, Ollama, etc).'
+      }
     },
     backToSignIn: 'Hoki ki te takiuru',
     getKey: 'Tiki kī',
@@ -2292,7 +2369,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'Ka whakatuwhera i tō pūtirotiro ki te takiuru, kātahi ka haere tonu ki konei',
       device_code: 'Ka whakatuwhera i tētahi whārangi manatoko i tō pūtirotiro — ka hono aunoa a OpenAmer',
-      external: 'Takiuru kotahi i tō tūmatanga, kātahi ka hoki mai ki te kōrero',
+      external: 'Takiuru kotahi i tō tūmatanga, kātahi ka hoki mai ki te kōrero'
     },
     signInFailed: 'I rahua te takiuru. Whakamātauria anō.',
     pickDifferentProvider: 'Kōwhiria tētahi kaiwhakarato kē',
@@ -2317,11 +2394,13 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'Whakawhiti tauira',
@@ -2337,7 +2416,7 @@ Leave blank to keep the ${mode} default.`,
     free: 'Free',
     freeTier: 'Free tier',
     priceTitle: 'Input / Output price per million tokens',
-    wasPrice: 'was',
+    wasPrice: 'was'
   },
   shell: {
     gatewayMenu: {
@@ -2353,7 +2432,7 @@ Leave blank to keep the ${mode} default.`,
       offline: 'Offline',
       inferenceReady: 'Inference ready',
       inferenceNotReady: 'Inference not ready',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'Aratau whakaaetanga',
@@ -2363,7 +2442,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'Arotake aunoa i ngā mahi, pātai ina hiahiatia',
       off: 'Weto',
       offDescription: 'Whakahaere me te kore pātai whakaaetanga',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'kāore e mōhiotia',
@@ -2383,18 +2462,19 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'Whakamāramatanga kaiāwhina-iti',
           system_prompt: 'Whakahau pūnaha',
           tool_definitions: 'Whakamāramatanga taputapu',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Kāore anō he raraunga horopaki',
         loading: 'E uta ana i te wāhanga…',
         title: 'Whakamahinga Horopaki',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Whakatuwhera i te wāhanga whakamahinga horopaki',
       session: 'Wā',
       runtimeSessionElapsed: 'Kua pau te wā whakahaere',
-      yoloOn: 'Kua kā YOLO — e whakaae aunoa ana i ngā whakahau mōrearea. Pāwhiritia hei whakaweto. Shift+click ka huri puta noa.',
+      yoloOn:
+        'Kua kā YOLO — e whakaae aunoa ana i ngā whakahau mōrearea. Pāwhiritia hei whakaweto. Shift+click ka huri puta noa.',
       yoloOff: 'Kua weto YOLO — pāwhiritia hei whakaae aunoa i ngā whakahau mōrearea. Shift+click ka huri puta noa.',
       modelNone: 'kore',
       noModel: 'kāore he tauira',
@@ -2438,7 +2518,7 @@ Leave blank to keep the ${mode} default.`,
       turnRunning: 'Running',
       currentTurnElapsed: 'Current turn elapsed',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
     },
     windowControls: 'Window controls',
     paneControls: 'Pane controls',
@@ -2448,7 +2528,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'No models found',
       editModels: 'Edit Models…',
       refreshModels: 'Refresh Models',
-      fast: 'Fast',
+      fast: 'Fast'
     },
     modelOptions: {
       noOptions: 'No options for this model',
@@ -2464,8 +2544,8 @@ Leave blank to keep the ${mode} default.`,
       max: 'Max',
       ultra: 'Ultra',
       updateFailed: 'Model option update failed',
-      fastFailed: 'Fast mode update failed',
-    },
+      fastFailed: 'Fast mode update failed'
+    }
   },
   rightSidebar: {
     aria: 'Pae taha matau',
@@ -2501,7 +2581,7 @@ Leave blank to keep the ${mode} default.`,
     terminalNew: 'New terminal',
     terminalCloseOthers: 'Close others',
     terminalCloseAll: 'Close all',
-    addToChat: 'Add to chat',
+    addToChat: 'Add to chat'
   },
   preview: {
     opening: 'E whakatuwhera ana...',
@@ -2522,7 +2602,8 @@ Leave blank to keep the ${mode} default.`,
     editing: 'E whakatika ana',
     unsavedChanges: 'Huringa kāore i tiakina',
     diskChangedTitle: 'Kua huri te kōnae i runga i te kōpae',
-    diskChangedBody: 'Kua huri tēnei kōnae mai i tō whakatuwhera. Whakakapia ki tō putanga, whakareretia rānei ō whakatikatanga ka uta anō?',
+    diskChangedBody:
+      'Kua huri tēnei kōnae mai i tō whakatuwhera. Whakakapia ki tō putanga, whakareretia rānei ō whakatikatanga ka uta anō?',
     web: {
       tryAgain: 'Whakamātau anō',
       restarting: 'Kei te tīmata anō a OpenAmer...',
@@ -2539,9 +2620,11 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'Kei te uta anō i te arokite ināianei.',
       restartFailedTitle: 'I rahua te tīmata anō o te arokite',
       restartFailedMessage: 'Kāore i taea e OpenAmer te tīmata anō i te tūmau.',
-      stillWorking: 'Kei te mahi tonu a OpenAmer, engari kāore anō he hua tīmata anō kia tae mai. Tērā pea kei te rere te whakahau tūmau i mua.',
+      stillWorking:
+        'Kei te mahi tonu a OpenAmer, engari kāore anō he hua tīmata anō kia tae mai. Tērā pea kei te rere te whakahau tūmau i mua.',
       workspaceReloading: 'Kua huri te wāhi mahi, kei te uta anō i te arokite',
-      moduleMimeDescription: 'Kei te tukuna ngā hōtuhi kōwae me te momo MIME hē. Ko te tikanga, kei te tukuna e tētahi tūmau kōnae pūmau he taupānga Vite/React, kāore ko te tūmau whakawhanake o te kaupapa.',
+      moduleMimeDescription:
+        'Kei te tukuna ngā hōtuhi kōwae me te momo MIME hē. Ko te tikanga, kei te tukuna e tētahi tūmau kōnae pūmau he taupānga Vite/React, kāore ko te tūmau whakawhanake o te kaupapa.',
       unreachableDescription: 'Kāore i taea te toro atu ki te whārangi arokite.',
       fallbackTitle: 'Arokite',
       appFailedToBoot: 'Preview app failed to boot',
@@ -2555,7 +2638,7 @@ Leave blank to keep the ${mode} default.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     tab: 'Preview',
     closeTab: label => `Close ${label}`,
@@ -2590,8 +2673,8 @@ Leave blank to keep the ${mode} default.`,
       empty: 'No console messages yet.',
       promptHeader: 'Preview console:',
       sentTitle: 'Sent to chat',
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
-    },
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
+    }
   },
   zones: {
     showHeader: 'Whakaatu upoko',
@@ -2599,7 +2682,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Whakaiti',
     restore: 'Whakaora',
     closeRunningTitle: 'Katia te ripa e mahi ana?',
-    closeRunningBody: 'Kei te mahi tonu tēnei kōrero (e tatari ana rānei ki tāu whakauru). Ka huna te ripa i a ia — ka mau tonu te kauneke o te wātū, ā, ka taea te whakatuwhera anō mai i te paetaha.',
+    closeRunningBody:
+      'Kei te mahi tonu tēnei kōrero (e tatari ana rānei ki tāu whakauru). Ka huna te ripa i a ia — ka mau tonu te kauneke o te wātū, ā, ka taea te whakatuwhera anō mai i te paetaha.',
     closeRunningConfirm: 'Katia te ripa',
     closeOthers: 'Katia ērā atu',
     closeToRight: 'Katia ki te taha matau',
@@ -2611,7 +2695,8 @@ Leave blank to keep the ${mode} default.`,
     dirRight: 'matau',
     pluginDisabledBody: 'Whakahohea anō i roto i ngā Tautuhinga → Ngā Āpiti kia hoki mai te pane.',
     editTitle: 'Whakatakotoranga',
-    editHint: 'Kōwhiria tētahi whakatakotoranga, ka tō rānei i ngā pane ki waenga i ngā rohe. Pāwhiri-matau i tētahi rohe kia wehea.',
+    editHint:
+      'Kōwhiria tētahi whakatakotoranga, ka tō rānei i ngā pane ki waenga i ngā rohe. Pāwhiri-matau i tētahi rohe kia wehea.',
     reset: 'Tautuhi anō',
     templates: 'Ngā Tauira',
     custom: 'Ritenga',
@@ -2620,13 +2705,15 @@ Leave blank to keep the ${mode} default.`,
     nameLayoutPlaceholder: 'Whakaingoatia tēnei tahora…',
     zoneEditorTitle: 'Ētita rohe',
     editorHintPre: 'pāwhiritia ki te wehe ·',
-    editorHintPost: 'ka huri te rārangi · tōia puta noa i ngā rohe ki te whakakotahi · tōia ngā tapa tiritahi ki te whakarerekē rahi',
+    editorHintPost:
+      'ka huri te rārangi · tōia puta noa i ngā rohe ki te whakakotahi · tōia ngā tapa tiritahi ki te whakarerekē rahi',
     templateColumns: 'Pou',
     templateRows: 'Rārangi',
     templateGrid: 'Matiti',
     templatePriority: 'Taumata',
     saveApply: 'Tiaki & whakamahi',
-    notExpressible: 'ka honohono tēnei whakatakotoranga (wīra porowhita) — kāore anō e taea te whakaatu hei wehenga whakaroto',
+    notExpressible:
+      'ka honohono tēnei whakatakotoranga (wīra porowhita) — kāore anō e taea te whakaatu hei wehenga whakaroto',
     split: dir => `Split ${dir}`,
     move: dir => `Move ${dir}`,
     pluginDisabled: pluginId => `Plugin "${pluginId}" disabled`,
@@ -2636,7 +2723,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
@@ -2654,7 +2741,8 @@ Leave blank to keep the ${mode} default.`,
       restoreCheckpoint: 'Whakahoki i te tohu tiaki',
       restoreFromHere: 'Whakahoki i te tohu tiaki — whakahaere anō mai i tēnei tohutohu',
       restoreTitle: 'Whakahoki ki tēnei tohu tiaki?',
-      restoreBody: 'Ka tangohia ngā mea katoa i muri i tēnei tohutohu i te kōrerorero, ā, ka whakahaeretia anō te tohutohu mai i konei.',
+      restoreBody:
+        'Ka tangohia ngā mea katoa i muri i tēnei tohutohu i te kōrerorero, ā, ka whakahaeretia anō te tohutohu mai i konei.',
       restoreConfirm: 'Whakahoki & whakahaere anō',
       restoreNext: 'Whakahoki i te tohu tiaki e whai ake',
       goForward: 'Haere whakamua',
@@ -2667,124 +2755,125 @@ Leave blank to keep the ${mode} default.`,
       copy: 'Tārua',
       refresh: 'Whakahou',
       moreActions: 'Ētahi atu mahi',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
-      yesterday: time => `Yesterday, ${time}`,
+      yesterday: time => `Yesterday, ${time}`
     },
     tool: {
       titles: {
         session_search_recall: {
           done: 'Kua rapua te hītori wātū',
           pending: 'E rapu ana i te hītori wātū',
-          pendingAction: 'E rapu ana',
+          pendingAction: 'E rapu ana'
         },
         terminal: {
           done: 'Kua whakahaeretia te whakahau',
           pending: 'E whakahaere ana i te whakahau',
-          pendingAction: 'E whakahaere ana',
+          pendingAction: 'E whakahaere ana'
         },
         todo: {
           done: 'Kua whakahōutia ngā mahi',
           pending: 'E whakahōu ana i ngā mahi',
-          pendingAction: 'E whakahōu ana',
+          pendingAction: 'E whakahōu ana'
         },
         vision_analyze: {
           done: 'Kua tātarihia te atahanga',
           pending: 'E tātari ana i te atahanga',
-          pendingAction: 'E tātari ana',
+          pendingAction: 'E tātari ana'
         },
         web_extract: {
           done: 'Kua pānuitia te whārangi tukutuku',
           pending: 'E pānui ana i te whārangi tukutuku',
-          pendingAction: 'E pānui ana',
+          pendingAction: 'E pānui ana'
         },
         web_search: {
           done: 'Kua rapua te tukutuku',
           pending: 'E rapu ana i te tukutuku',
-          pendingAction: 'E rapu ana',
+          pendingAction: 'E rapu ana'
         },
         write_file: {
           done: 'Kua whakatikahia te kōnae',
           pending: 'E whakatika ana i te kōnae',
-          pendingAction: 'Editing',
+          pendingAction: 'Editing'
         },
         browser_click: {
           done: 'Clicked page element',
           pending: 'Clicking page element',
-          pendingAction: 'Clicking',
+          pendingAction: 'Clicking'
         },
         browser_fill: {
           done: 'Filled form field',
           pending: 'Filling form field',
-          pendingAction: 'Filling',
+          pendingAction: 'Filling'
         },
         browser_navigate: {
           done: 'Opened page',
           pending: 'Opening page',
-          pendingAction: 'Opening',
+          pendingAction: 'Opening'
         },
         browser_snapshot: {
           done: 'Captured page snapshot',
           pending: 'Capturing page snapshot',
-          pendingAction: 'Capturing',
+          pendingAction: 'Capturing'
         },
         browser_take_screenshot: {
           done: 'Captured screenshot',
           pending: 'Capturing screenshot',
-          pendingAction: 'Capturing',
+          pendingAction: 'Capturing'
         },
         browser_type: {
           done: 'Typed on page',
           pending: 'Typing on page',
-          pendingAction: 'Typing',
+          pendingAction: 'Typing'
         },
         clarify: {
           done: 'Asked a question',
           pending: 'Asking a question',
-          pendingAction: 'Asking',
+          pendingAction: 'Asking'
         },
         cronjob: {
           done: 'Cron job',
           pending: 'Scheduling cron job',
-          pendingAction: 'Scheduling',
+          pendingAction: 'Scheduling'
         },
         edit_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
+          pendingAction: 'Editing'
         },
         execute_code: {
           done: 'Ran code',
           pending: 'Scripting',
-          pendingAction: 'Scripting',
+          pendingAction: 'Scripting'
         },
         image_generate: {
           done: 'Generated image',
           pending: 'Generating image',
-          pendingAction: 'Generating',
+          pendingAction: 'Generating'
         },
         list_files: {
           done: 'Listed files',
           pending: 'Listing files',
-          pendingAction: 'Listing',
+          pendingAction: 'Listing'
         },
         patch: {
           done: 'Patched file',
           pending: 'Patching file',
-          pendingAction: 'Patching',
+          pendingAction: 'Patching'
         },
         read_file: {
           done: 'Read file',
           pending: 'Reading file',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         search_files: {
           done: 'Searched files',
           pending: 'Searching files',
-          pendingAction: 'Searching',
-        },
+          pendingAction: 'Searching'
+        }
       },
       code: 'Code',
       copyCode: 'Copy code',
@@ -2819,11 +2908,11 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Ran',
         running: 'Running',
         ranCode: 'Ran code',
-        runningCode: 'Scripting',
+        runningCode: 'Scripting'
       },
       prefixes: {
         browser: 'Browser',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2831,8 +2920,8 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2845,8 +2934,9 @@ Leave blank to keep the ${mode} default.`,
       jumpToApproval: 'Approval needed',
       reject: 'Reject',
       alwaysTitle: 'Always allow this command?',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
-      alwaysAllow: 'Always allow',
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysAllow: 'Always allow'
     },
     clarify: {
       notReady: 'Clarify request is not ready yet',
@@ -2860,17 +2950,18 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'Continue',
       lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
       lateAnswerTip: 'Draft this answer as a follow-up message',
-      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.',
-    },
+      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
   },
   modelVisibility: {
     title: 'Models',
     search: 'Search models',
     noAuthenticatedProviders: 'No authenticated providers.',
-    addProvider: 'Add provider…',
+    addProvider: 'Add provider…'
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2881,7 +2972,7 @@ Leave blank to keep the ${mode} default.`,
     sudoPlaceholder: 'sudo password',
     secretTitle: 'Secret required',
     secretDesc: 'OpenAmer needs a credential to continue.',
-    secretPlaceholder: 'secret value',
+    secretPlaceholder: 'secret value'
   },
   desktop: {
     audioReadFailed: 'Could not read recorded audio',
@@ -2898,7 +2989,8 @@ Leave blank to keep the ${mode} default.`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Could not toggle YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     unknownProfile: 'Unknown profile',
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
@@ -2909,7 +3001,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'Edit failed',
     resumeFailed: 'Resume failed',
     resumeStrandedTitle: "Couldn't load this session",
-    resumeStrandedBody: 'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
+    resumeStrandedBody:
+      'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
     resumeRetry: 'Retry',
     nothingToBranch: 'Nothing to branch',
     branchNeedsChat: 'Start or resume a chat before branching.',
@@ -2949,31 +3042,31 @@ Leave blank to keep the ${mode} default.`,
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
       failed: error => `Handoff failed: ${error}`,
-      timedOut: 'Timed out waiting for the gateway. Is `openamer gateway` running?',
-    },
+      timedOut: 'Timed out waiting for the gateway. Is `openamer gateway` running?'
+    }
   },
   errors: {
     genericFailure: 'Something went wrong',
     boundaryTitle: 'Something broke in the interface',
     boundaryDesc: 'The view hit an unexpected error. Your chats and settings are safe.',
     reloadWindow: 'Reload window',
-    openLogs: 'Open logs',
+    openLogs: 'Open logs'
   },
   ui: {
     search: {
-      clear: 'Clear search',
+      clear: 'Clear search'
     },
     pagination: {
       label: 'pagination',
       previous: 'Prev',
       previousAria: 'Go to previous page',
       next: 'Next',
-      nextAria: 'Go to next page',
+      nextAria: 'Go to next page'
     },
     sidebar: {
       title: 'Sidebar',
       description: 'Displays the mobile sidebar.',
-      toggle: 'Toggle Sidebar',
-    },
-  },
+      toggle: 'Toggle Sidebar'
+    }
+  }
 })

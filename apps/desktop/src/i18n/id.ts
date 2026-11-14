@@ -44,7 +44,7 @@ export const id = defineLocale({
     update: 'Perbarui',
     tryHint: term => `Coba “${term}”`,
     on: 'Nyala',
-    off: 'Mati',
+    off: 'Mati'
   },
   fileMenu: {
     revealFinder: 'Tampilkan di Finder',
@@ -59,7 +59,7 @@ export const id = defineLocale({
     renameLabel: 'Nama baru',
     deleteTitle: name => `Hapus ${name}?`,
     deleteBody: 'Akan dipindah ke Tempat Sampah — bisa dipulihkan dari sana.',
-    pathCopied: 'Jalur tersalin',
+    pathCopied: 'Jalur tersalin'
   },
   boot: {
     ready: 'OpenAmer Desktop siap',
@@ -69,7 +69,7 @@ export const id = defineLocale({
       loadingSettings: 'Memuat pengaturan OpenAmer',
       loadingSessions: 'Memuat sesi terbaru',
       startingDesktopConnection: 'Memulai koneksi desktop',
-      startingOpenAmerDesktop: 'Memulai OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Memulai OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Proses latar belakang OpenAmer berakhir.',
@@ -78,13 +78,15 @@ export const id = defineLocale({
       desktopBootFailed: 'Gagal memulai desktop',
       gatewayConnectionLost: 'Koneksi ke gateway terputus',
       gatewaySignInRequired: 'Perlu masuk ke gateway',
-      ipcBridgeUnavailable: 'Jembatan IPC desktop tidak tersedia.',
+      ipcBridgeUnavailable: 'Jembatan IPC desktop tidak tersedia.'
     },
     failure: {
-      title: "OpenAmer gagal dimulai",
-      description: "Gateway latar belakang tidak jalan. Coba salah satu langkah pemulihan di bawah. Tidak ada yang menghapus chat atau pengaturan Anda di sini.",
+      title: 'OpenAmer gagal dimulai',
+      description:
+        'Gateway latar belakang tidak jalan. Coba salah satu langkah pemulihan di bawah. Tidak ada yang menghapus chat atau pengaturan Anda di sini.',
       remoteTitle: 'Perlu masuk ke gateway jarak jauh',
-      remoteDescription: 'Sesi gateway jarak jauh Anda kedaluwarsa. Masuk kembali untuk menyambung ulang. Tidak ada yang menghapus chat atau pengaturan Anda di sini.',
+      remoteDescription:
+        'Sesi gateway jarak jauh Anda kedaluwarsa. Masuk kembali untuk menyambung ulang. Tidak ada yang menghapus chat atau pengaturan Anda di sini.',
       retry: 'Coba lagi',
       repairInstall: 'Perbaiki instalasi',
       useLocalGateway: 'Gunakan gateway lokal',
@@ -92,7 +94,8 @@ export const id = defineLocale({
       back: 'Kembali',
       openLogs: 'Buka log',
       repairHint: 'Perbaikan menjalankan ulang penginstal dan bisa memakan beberapa menit di mesin baru.',
-      remoteSignInHint: signInLabel => `Keluar dari sesi browser jarak jauh yang tersimpan, lalu buka ${signInLabel}. Gunakan "Gunakan gateway lokal" untuk beralih ke backend bawaan.`,
+      remoteSignInHint: signInLabel =>
+        `Keluar dari sesi browser jarak jauh yang tersimpan, lalu buka ${signInLabel}. Gunakan "Gunakan gateway lokal" untuk beralih ke backend bawaan.`,
       signOutAndSignIn: 'Keluar & masuk',
       remoteFailureHint: 'Periksa URL dan masuk di pengaturan gateway, atau beralih ke gateway lokal.',
       hideRecentLogs: 'Sembunyikan log terbaru',
@@ -104,8 +107,8 @@ export const id = defineLocale({
       signInFailed: 'Gagal masuk',
       signInToRemoteGateway: 'Masuk ke gateway jarak jauh',
       signInWithProvider: provider => `Masuk dengan ${provider}`,
-      identityProvider: 'penyedia identitas Anda',
-    },
+      identityProvider: 'penyedia identitas Anda'
+    }
   },
   notifications: {
     region: 'Notifikasi',
@@ -118,21 +121,23 @@ export const id = defineLocale({
     copyDetail: 'Salin detail',
     copyDetailFailed: 'Tidak bisa menyalin detail notifikasi',
     backendOutOfDateTitle: 'Backend kedaluwarsa',
-    backendOutOfDateMessage: 'Backend OpenAmer Anda lebih lama dari build desktop ini dan mungkin tidak bekerja dengan baik. Perbarui agar selaras.',
+    backendOutOfDateMessage:
+      'Backend OpenAmer Anda lebih lama dari build desktop ini dan mungkin tidak bekerja dengan baik. Perbarui agar selaras.',
     installMethodUnsupportedTitle: 'Metode instalasi tidak didukung',
     updateOpenAmer: 'Perbarui OpenAmer',
     updateReadyTitle: 'Pembaruan siap',
     updateReadyMessage: count => `${count} perubahan baru${count === 1 ? 'perubahan' : 'perubahan'} tersedia.`,
-    seeWhatsNew: "Lihat yang baru",
+    seeWhatsNew: 'Lihat yang baru',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT membutuhkan ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs menolak kunci API (401).',
       gatewayAuthFailed: 'Autentikasi gateway gagal — periksa API_SERVER_KEY Anda.',
-      methodNotAllowed: 'Backend desktop menolak permintaan itu (405 Method Not Allowed). Coba mulai ulang OpenAmer Desktop.',
+      methodNotAllowed:
+        'Backend desktop menolak permintaan itu (405 Method Not Allowed). Coba mulai ulang OpenAmer Desktop.',
       microphonePermission: 'Izin mikrofon ditolak.',
       openaiRejectedApiKey: 'OpenAI menolak kunci API.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI menolak kunci API (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS membutuhkan VOICE_TOOLS_OPENAI_KEY atau OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS membutuhkan VOICE_TOOLS_OPENAI_KEY atau OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Konfigurasikan suara-ke-teks untuk memakai mode suara.',
@@ -151,7 +156,7 @@ export const id = defineLocale({
       transcriptionFailed: 'Transkripsi suara gagal',
       transcriptionUnavailable: 'Transkripsi suara belum tersedia.',
       tryRecordingAgain: 'Coba rekam lagi.',
-      unavailable: 'Suara tidak tersedia',
+      unavailable: 'Suara tidak tersedia'
     },
     native: {
       approvalTitle: 'Perlu persetujuan',
@@ -164,11 +169,12 @@ export const id = defineLocale({
       turnErrorTitle: 'Giliran gagal',
       backgroundDoneTitle: 'Tugas latar belakang selesai',
       backgroundFailedTitle: 'Tugas latar belakang gagal',
-      creditsTitle: 'Kredit',
-    },
+      creditsTitle: 'Kredit'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Rendering perangkat lunak aktif — tampilan jarak jauh terdeteksi (${reason}). Akselerasi GPU dinonaktifkan untuk mencegah kedipan.`,
+    message: reason =>
+      `Rendering perangkat lunak aktif — tampilan jarak jauh terdeteksi (${reason}). Akselerasi GPU dinonaktifkan untuk mencegah kedipan.`
   },
   billingBlock: {
     titleOpenamer: 'Kredit OpenAmer habis',
@@ -176,7 +182,7 @@ export const id = defineLocale({
     fallbackMessage: 'Kredit akun Anda habis. Tambahkan kredit untuk melanjutkan.',
     openBilling: 'Buka penagihan',
     addCredits: 'Tambah kredit',
-    dismiss: 'Tutup',
+    dismiss: 'Tutup'
   },
   titlebar: {
     hideSidebar: 'Sembunyikan bilah samping',
@@ -193,7 +199,7 @@ export const id = defineLocale({
     openStarmap: 'Buka graf memori',
     openKeybinds: 'Pintasan papan tulis',
     layoutEditor: 'Editor tata letak',
-    layoutEditorTitle: 'Editor tata letak — Cmd/Ctrl+klik mengatur ulang tata letak',
+    layoutEditorTitle: 'Editor tata letak — Cmd/Ctrl+klik mengatur ulang tata letak'
   },
   keybinds: {
     title: 'Pintasan papan ketik',
@@ -210,7 +216,7 @@ export const id = defineLocale({
       profiles: 'Profil',
       session: 'Sesi',
       navigation: 'Navigasi',
-      view: 'Tampilan',
+      view: 'Tampilan'
     },
     actions: {
       'keybinds.openPanel': 'Buka pintasan papan ketik',
@@ -289,8 +295,8 @@ export const id = defineLocale({
       'composer.slash': 'Palet perintah slash',
       'composer.help': 'Bantuan cepat',
       'composer.history': 'Putar popover / riwayat',
-      'composer.cancel': 'Tutup popover · batalkan eksekusi',
-    },
+      'composer.cancel': 'Tutup popover · batalkan eksekusi'
+    }
   },
   language: {
     label: 'Bahasa',
@@ -299,7 +305,7 @@ export const id = defineLocale({
     saveError: 'Gagal memperbarui bahasa',
     switchTo: 'Ganti bahasa',
     searchPlaceholder: 'Cari bahasa…',
-    noResults: 'Bahasa tidak ditemukan',
+    noResults: 'Bahasa tidak ditemukan'
   },
   settings: {
     closeSettings: 'Tutup pengaturan',
@@ -324,11 +330,12 @@ export const id = defineLocale({
       about: 'Tentang',
       billing: 'Penagihan',
       notifications: 'Notifikasi',
-      plugins: 'Pengaya',
+      plugins: 'Pengaya'
     },
     plugins: {
       title: 'Plugin desktop',
-      blurb: 'Ekstensi UI yang dimuat ke aplikasi ini — disertakan dalam build, atau dimasukkan ke folder desktop-plugins (termasuk yang ditulis OpenAmer). Menonaktifkan akan melepas plugin secara langsung dan bertahan setelah mulai ulang.',
+      blurb:
+        'Ekstensi UI yang dimuat ke aplikasi ini — disertakan dalam build, atau dimasukkan ke folder desktop-plugins (termasuk yang ditulis OpenAmer). Menonaktifkan akan melepas plugin secara langsung dan bertahan setelah mulai ulang.',
       count: n => `${n} terpasang`,
       openFolder: 'Buka folder plugin',
       rescan: 'Pindai ulang',
@@ -340,40 +347,41 @@ export const id = defineLocale({
       kinds: {
         bundled: 'bawaan',
         disk: 'di disk',
-        runtime: 'saat berjalan',
-      },
+        runtime: 'saat berjalan'
+      }
     },
     notifications: {
       title: 'Notifikasi',
-      intro: 'Notifikasi desktop native, terpisah dari toast dalam aplikasi. Ini bersifat lokal per perangkat — setiap komputer menyimpan pengaturannya sendiri.',
+      intro:
+        'Notifikasi desktop native, terpisah dari toast dalam aplikasi. Ini bersifat lokal per perangkat — setiap komputer menyimpan pengaturannya sendiri.',
       enableAll: 'Aktifkan notifikasi',
       enableAllDesc: 'Sakelar utama. Matikan untuk membisukan semua notifikasi di bawah.',
       focusedHint: 'Peringatan penyelesaian hanya muncul saat OpenAmer berjalan di latar belakang.',
       kinds: {
         approval: {
           label: 'Perlu persetujuan',
-          description: 'Sebuah perintah menunggu persetujuan atau penolakan Anda.',
+          description: 'Sebuah perintah menunggu persetujuan atau penolakan Anda.'
         },
         input: {
           label: 'Perlu masukan',
-          description: 'OpenAmer mengajukan pertanyaan atau memerlukan kata sandi atau rahasia.',
+          description: 'OpenAmer mengajukan pertanyaan atau memerlukan kata sandi atau rahasia.'
         },
         turnDone: {
           label: 'Respons siap',
-          description: 'Satu giliran selesai saat OpenAmer berjalan di latar belakang.',
+          description: 'Satu giliran selesai saat OpenAmer berjalan di latar belakang.'
         },
         turnError: {
           label: 'Giliran gagal',
-          description: 'Satu giliran berakhir dengan kesalahan.',
+          description: 'Satu giliran berakhir dengan kesalahan.'
         },
         backgroundDone: {
           label: 'Tugas latar belakang selesai',
-          description: 'Perintah terminal di latar belakang selesai.',
+          description: 'Perintah terminal di latar belakang selesai.'
         },
         credits: {
           label: 'Peringatan kredit',
-          description: 'Akses kredit dijeda atau dipulihkan.',
-        },
+          description: 'Akses kredit dijeda atau dipulihkan.'
+        }
       },
       test: 'Kirim notifikasi uji',
       testTitle: 'OpenAmer',
@@ -382,7 +390,7 @@ export const id = defineLocale({
       testUnsupported: 'Sistem ini tidak mendukung notifikasi native.',
       completionSoundTitle: 'Suara Selesai',
       completionSoundDesc: 'Diputar saat giliran agen selesai. Pilih preset dan pratinjau di sini.',
-      completionSoundPreview: 'Pratinjau',
+      completionSoundPreview: 'Pratinjau'
     },
     sections: {
       model: 'Model',
@@ -392,7 +400,7 @@ export const id = defineLocale({
       safety: 'Keamanan',
       memory: 'Memori & Konteks',
       voice: 'Suara',
-      advanced: 'Lanjutan',
+      advanced: 'Lanjutan'
     },
     searchPlaceholder: {
       about: 'Tentang OpenAmer Desktop',
@@ -400,37 +408,40 @@ export const id = defineLocale({
       gateway: 'Koneksi gateway...',
       keys: 'Cari kunci API...',
       mcp: 'Cari server MCP...',
-      sessions: 'Cari sesi terarsip...',
+      sessions: 'Cari sesi terarsip...'
     },
     modeOptions: {
       light: {
         label: 'Terang',
-        description: 'Permukaan cerah',
+        description: 'Permukaan cerah'
       },
       dark: {
         label: 'Gelap',
-        description: 'Ruang dengan silau rendah',
+        description: 'Ruang dengan silau rendah'
       },
       system: {
         label: 'Sistem',
-        description: 'Ikuti tampilan OS',
-      },
+        description: 'Ikuti tampilan OS'
+      }
     },
     appearance: {
       title: 'Tampilan',
-      intro: 'Ini preferensi tampilan khusus desktop. Mode mengatur kecerahan; tema mengatur palet aksen dan gaya permukaan obrolan.',
+      intro:
+        'Ini preferensi tampilan khusus desktop. Mode mengatur kecerahan; tema mengatur palet aksen dan gaya permukaan obrolan.',
       colorMode: 'Mode Warna',
       colorModeDesc: 'Pilih mode tetap atau biarkan OpenAmer mengikuti pengaturan sistem.',
       toolViewTitle: 'Tampilan Panggilan Alat',
       toolViewDesc: 'Produk menyembunyikan data mentah alat; Teknis menampilkan input/output penuh.',
       uiScaleTitle: 'Skala UI',
-      uiScaleDesc: (percent: number) => `Menskalakan teks dan kontrol di seluruh aplikasi. Cmd/Ctrl dengan +, - dan 0 juga berfungsi. Saat ini: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Menskalakan teks dan kontrol di seluruh aplikasi. Cmd/Ctrl dengan +, - dan 0 juga berfungsi. Saat ini: ${percent}%.`,
       translucencyTitle: 'Transparansi Jendela',
       translucencyDesc: 'Lihat desktop Anda melalui seluruh jendela. Hanya macOS dan Windows.',
       backdropTitle: 'Latar Obrolan',
       backdropDesc: 'Gambar patung samar di belakang percakapan.',
       embedsTitle: 'Sematan Inline',
-      embedsDesc: 'Pratinjau kaya dimuat dari situs pihak ketiga (YouTube, X, …). Tanya menampilkan penanda sampai Anda izinkan masing-masing; Selalu memuat otomatis; Mati tetap sebagai tautan biasa.',
+      embedsDesc:
+        'Pratinjau kaya dimuat dari situs pihak ketiga (YouTube, X, …). Tanya menampilkan penanda sampai Anda izinkan masing-masing; Selalu memuat otomatis; Mati tetap sebagai tautan biasa.',
       embedsAsk: 'Tanya',
       embedsAlways: 'Selalu',
       embedsOff: 'Mati',
@@ -443,7 +454,8 @@ export const id = defineLocale({
       themeDesc: 'Hanya palet desktop. Mode terpilih diterapkan di atasnya.',
       themeProfileNote: profile => `Disimpan untuk profil ${profile} — setiap profil menyimpan temanya sendiri.`,
       installTitle: 'Pasang dari VS Code',
-      installDesc: 'Tempel ID ekstensi Marketplace (mis. dracula-theme.theme-dracula) untuk mengubah tema warnanya menjadi palet desktop.',
+      installDesc:
+        'Tempel ID ekstensi Marketplace (mis. dracula-theme.theme-dracula) untuk mengubah tema warnanya menjadi palet desktop.',
       installPlaceholder: 'penerbit.ekstensi',
       installButton: 'Pasang',
       installing: 'Memasang…',
@@ -453,8 +465,10 @@ export const id = defineLocale({
       importedBadge: 'Diimpor',
       pet: {
         title: 'Hewan Peliharaan',
-        intro: 'Adopsi maskot petdex beranimasi yang melayang di atas aplikasi dan bereaksi terhadap yang dilakukan OpenAmer — berlari saat alat dieksekusi, merayakan keberhasilan, merajuk saat error.',
-        restartHint: 'Hewan peliharaan perlu mulai ulang cepat — aplikasi yang berjalan dimulai sebelum fitur ini ditambahkan. Keluar dan buka lagi OpenAmer, lalu kembali ke sini.',
+        intro:
+          'Adopsi maskot petdex beranimasi yang melayang di atas aplikasi dan bereaksi terhadap yang dilakukan OpenAmer — berlari saat alat dieksekusi, merayakan keberhasilan, merajuk saat error.',
+        restartHint:
+          'Hewan peliharaan perlu mulai ulang cepat — aplikasi yang berjalan dimulai sebelum fitur ini ditambahkan. Keluar dan buka lagi OpenAmer, lalu kembali ke sini.',
         on: 'Aktif',
         off: 'Nonaktif',
         scaleTitle: 'Ukuran',
@@ -464,7 +478,7 @@ export const id = defineLocale({
         chooseTitle: 'Pilih peliharaan',
         chooseDesc: 'Memilih satu akan memasangnya (jika perlu) dan mengaktifkannya.',
         searchPlaceholder: 'Cari peliharaan…',
-        unreachable: "Tidak dapat menjangkau galeri petdex. Periksa koneksi Anda dan buka kembali halaman ini.",
+        unreachable: 'Tidak dapat menjangkau galeri petdex. Periksa koneksi Anda dan buka kembali halaman ini.',
         noMatch: query => `Tidak ada peliharaan yang cocok dengan "${query}".`,
         installedTag: 'terpasang',
         generatedTag: 'Dibuat',
@@ -473,7 +487,7 @@ export const id = defineLocale({
         uninstall: name => `Copot ${name}`,
         delete: name => `Hapus ${name}`,
         deleteTitle: name => `Hapus ${name}?`,
-        deleteBody: "Ini menghapus peliharaan secara permanen — tidak dapat dipasang ulang.",
+        deleteBody: 'Ini menghapus peliharaan secara permanen — tidak dapat dipasang ulang.',
         deleteConfirm: 'Hapus',
         rename: name => `Ganti nama ${name}`,
         renameTitle: 'Ganti nama peliharaan',
@@ -486,8 +500,8 @@ export const id = defineLocale({
         exportFailed: slug => `Tidak dapat mengekspor ${slug}`,
         noneAvailable: 'Tidak ada pet yang tersedia untuk diaktifkan saat ini.',
         turnOnFailed: 'Tidak dapat mengaktifkan pet.',
-        turnOffFailed: 'Tidak dapat menonaktifkan pet.',
-      },
+        turnOffFailed: 'Tidak dapat menonaktifkan pet.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -498,15 +512,16 @@ export const id = defineLocale({
       updates: 'Pembaruan',
       checkNow: 'Periksa sekarang',
       checking: 'Memeriksa…',
-      seeWhatsNew: "Lihat yang baru",
+      seeWhatsNew: 'Lihat yang baru',
       updateNow: 'Perbarui sekarang',
       releaseNotes: 'Catatan rilis',
-      onLatest: "Anda di versi terbaru.",
+      onLatest: 'Anda di versi terbaru.',
       installing: 'Satu pembaruan sedang dipasang.',
-      cantUpdate: "Build ini tidak bisa memperbarui dirinya dari dalam aplikasi.",
-      cantReach: "Kami tidak bisa menjangkau server pembaruan.",
+      cantUpdate: 'Build ini tidak bisa memperbarui dirinya dari dalam aplikasi.',
+      cantReach: 'Kami tidak bisa menjangkau server pembaruan.',
       tapCheck: 'Ketuk "Periksa sekarang" untuk mencari pembaruan.',
-      updateReady: count => `Pembaruan baru siap (${count} perubahan${count === 1 ? 'perubahan' : 'perubahan'} disertakan).`,
+      updateReady: count =>
+        `Pembaruan baru siap (${count} perubahan${count === 1 ? 'perubahan' : 'perubahan'} disertakan).`,
       lastChecked: age => `Terakhir diperiksa ${age}`,
       justNowSuffix: ' · baru saja',
       automaticUpdates: 'Pembaruan otomatis',
@@ -516,7 +531,7 @@ export const id = defineLocale({
       justNow: 'baru saja',
       minAgo: count => `${count} menit lalu`,
       hoursAgo: count => `${count} jam lalu`,
-      daysAgo: count => `${count} hari lalu`,
+      daysAgo: count => `${count} hari lalu`
     },
     config: {
       none: 'Tidak ada',
@@ -532,7 +547,8 @@ export const id = defineLocale({
       imported: 'Konfigurasi diimpor',
       invalidJson: 'JSON konfigurasi tidak valid',
       keepAwakeTitle: 'Cegah komputer tidur',
-      keepAwakeDesc: 'Cegah komputer ini tidur agar proses yang lama atau sepanjang malam tetap berjalan. Layar tetap dapat meredup.',
+      keepAwakeDesc:
+        'Cegah komputer ini tidur agar proses yang lama atau sepanjang malam tetap berjalan. Layar tetap dapat meredup.'
     },
     credentials: {
       pasteKey: 'Tempel kunci',
@@ -542,7 +558,7 @@ export const id = defineLocale({
       couldNotSave: 'Tidak dapat menyimpan kredensial.',
       remove: 'Hapus',
       getKey: 'Dapatkan kunci',
-      saving: 'Menyimpan',
+      saving: 'Menyimpan'
     },
     envActions: {
       actionsFor: label => `Tindakan untuk ${label}`,
@@ -553,7 +569,7 @@ export const id = defineLocale({
       revealValue: 'Tampilkan nilai',
       replace: 'Ganti',
       set: 'Atur',
-      clear: 'Hapus',
+      clear: 'Hapus'
     },
     gateway: {
       loading: 'Memuat pengaturan gateway...',
@@ -561,21 +577,25 @@ export const id = defineLocale({
       unavailableDesc: 'Jembatan IPC desktop tidak menyediakan pengaturan gateway.',
       title: 'Koneksi Gateway',
       envOverride: 'timpa env',
-      intro: 'OpenAmer Desktop memulai gateway lokalnya sendiri secara default. Gunakan gateway remote saat Anda ingin aplikasi ini mengendalikan backend OpenAmer yang sudah berjalan di mesin lain atau di balik proxy tepercaya. Pilih profil di bawah untuk memberinya host remote sendiri.',
+      intro:
+        'OpenAmer Desktop memulai gateway lokalnya sendiri secara default. Gunakan gateway remote saat Anda ingin aplikasi ini mengendalikan backend OpenAmer yang sudah berjalan di mesin lain atau di balik proxy tepercaya. Pilih profil di bawah untuk memberinya host remote sendiri.',
       appliesTo: 'Berlaku untuk',
       allProfiles: 'Semua profil',
       defaultConnection: 'Koneksi default untuk setiap profil yang tidak memiliki timpaan sendiri.',
-      profileConnection: profile => `Koneksi yang digunakan hanya saat “${profile}” adalah profil aktif. Pilih Gunakan gateway default untuk menghapus timpaannya.`,
+      profileConnection: profile =>
+        `Koneksi yang digunakan hanya saat “${profile}” adalah profil aktif. Pilih Gunakan gateway default untuk menghapus timpaannya.`,
       envOverrideTitle: 'Variabel lingkungan mengendalikan sesi desktop ini.',
-      envOverrideDesc: 'Hapus setelan OPENAMER_DESKTOP_REMOTE_URL dan OPENAMER_DESKTOP_REMOTE_TOKEN untuk menggunakan pengaturan tersimpan di bawah.',
+      envOverrideDesc:
+        'Hapus setelan OPENAMER_DESKTOP_REMOTE_URL dan OPENAMER_DESKTOP_REMOTE_TOKEN untuk menggunakan pengaturan tersimpan di bawah.',
       modeTitle: 'Mode koneksi',
       localTitle: 'Gateway lokal',
       localDesc: 'Mulai backend OpenAmer privat di localhost. Ini default dan berfungsi offline.',
       inheritTitle: 'Gunakan gateway default',
-      inheritDesc: "Hapus timpaan profil ini dan gunakan koneksi default.",
+      inheritDesc: 'Hapus timpaan profil ini dan gunakan koneksi default.',
       remoteTitle: 'Gateway remote',
       remoteDesc: 'Hubungkan shell desktop ini ke backend OpenAmer remote.',
-      remoteAuthHint: 'Gateway yang dihosting memakai OAuth atau nama pengguna dan kata sandi; yang dihosting sendiri dapat memakai token sesi.',
+      remoteAuthHint:
+        'Gateway yang dihosting memakai OAuth atau nama pengguna dan kata sandi; yang dihosting sendiri dapat memakai token sesi.',
       cloudTitle: 'OpenAmer Cloud',
       cloudDesc: 'Masuk sekali ke OpenAmer Cloud dan pilih agen di akun Anda — tidak perlu menempel URL.',
       cloudSignInTitle: 'OpenAmer Cloud',
@@ -592,7 +612,7 @@ export const id = defineLocale({
       cloudNoAgents: {
         before: 'Tidak ada agen di akun ini. Buat satu di ',
         linkText: 'Portal OpenAmer',
-        after: ', lalu segarkan.',
+        after: ', lalu segarkan.'
       },
       cloudRefresh: 'Segarkan',
       cloudConnect: 'Hubungkan',
@@ -610,18 +630,23 @@ export const id = defineLocale({
       remoteUrlTitle: 'URL Jarak Jauh',
       remoteUrlDesc: 'URL dasar untuk backend dasbor jarak jauh. Prefiks jalur didukung, misalnya /openamer.',
       probing: 'Memeriksa cara gateway ini mengautentikasi…',
-      probeError: 'Belum dapat menjangkau gateway ini. Periksa URL — metode autentikasi akan muncul setelah gateway merespons.',
+      probeError:
+        'Belum dapat menjangkau gateway ini. Periksa URL — metode autentikasi akan muncul setelah gateway merespons.',
       signedIn: 'Telah masuk',
       signIn: 'Masuk',
       signOut: 'Keluar',
       signInWith: provider => `Masuk dengan ${provider}`,
       authTitle: 'Autentikasi',
-      authSignedInPassword: 'Gateway ini menggunakan nama pengguna dan kata sandi. Anda telah masuk; sesi diperbarui otomatis.',
+      authSignedInPassword:
+        'Gateway ini menggunakan nama pengguna dan kata sandi. Anda telah masuk; sesi diperbarui otomatis.',
       authSignedInOauth: 'Gateway ini menggunakan OAuth. Anda sudah masuk; sesi disegarkan otomatis.',
-      authNeedsPassword: 'Gateway ini menggunakan nama pengguna dan kata sandi. Masuk untuk mengotorisasi aplikasi desktop ini.',
-      authNeedsOauth: provider => `Gateway ini menggunakan OAuth. Masuk dengan ${provider} untuk mengotorisasi aplikasi desktop ini.`,
+      authNeedsPassword:
+        'Gateway ini menggunakan nama pengguna dan kata sandi. Masuk untuk mengotorisasi aplikasi desktop ini.',
+      authNeedsOauth: provider =>
+        `Gateway ini menggunakan OAuth. Masuk dengan ${provider} untuk mengotorisasi aplikasi desktop ini.`,
       tokenTitle: 'Token sesi',
-      tokenDesc: 'Token sesi dasbor untuk akses REST dan WebSocket. Biarkan kosong untuk mempertahankan token tersimpan.',
+      tokenDesc:
+        'Token sesi dasbor untuk akses REST dan WebSocket. Biarkan kosong untuk mempertahankan token tersimpan.',
       existingToken: value => `Token yang ada ${value}`,
       savedToken: 'tersimpan',
       pasteSessionToken: 'Tempel token sesi',
@@ -639,7 +664,8 @@ export const id = defineLocale({
       enterUrlFirst: 'Masukkan URL remote terlebih dahulu.',
       restartingTitle: 'Koneksi gateway sedang dimulai ulang',
       savedTitle: 'Pengaturan gateway tersimpan',
-      restartingMessage: 'OpenAmer Desktop akan menyambung ulang menggunakan pengaturan tersimpan — shell tetap terbuka.',
+      restartingMessage:
+        'OpenAmer Desktop akan menyambung ulang menggunakan pengaturan tersimpan — shell tetap terbuka.',
       savedMessage: 'Tersimpan untuk restart berikutnya.',
       connectedTo: (baseUrl, version) => `Terhubung ke ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       reachableTitle: 'Gateway remote dapat dijangkau',
@@ -652,7 +678,8 @@ export const id = defineLocale({
       applyFailed: 'Tidak dapat menerapkan pengaturan gateway',
       saveFailed: 'Tidak dapat menyimpan pengaturan gateway',
       sshTitle: 'Hubungkan melalui SSH',
-      sshDesc: 'OpenAmer dijalankan di mesin jarak jauh melalui SSH dan diterowongkan ke aplikasi ini — tidak ada yang perlu Anda jalankan atau buka sendiri. Memerlukan akses SSH berbasis kunci yang berfungsi ke host.',
+      sshDesc:
+        'OpenAmer dijalankan di mesin jarak jauh melalui SSH dan diterowongkan ke aplikasi ini — tidak ada yang perlu Anda jalankan atau buka sendiri. Memerlukan akses SSH berbasis kunci yang berfungsi ke host.',
       sshTrustHint: 'Kunci host yang pertama disajikan dipercaya dan disematkan; perubahan berikutnya akan ditolak.',
       sshHostTitle: 'Inang',
       sshHostDesc: 'user@host, atau alias Host dari ~/.ssh/config.',
@@ -676,18 +703,22 @@ export const id = defineLocale({
       sshReachable: (host, platform) => `Dapat dijangkau: ${host} (${platform}) — OpenAmer ditemukan`,
       sshIncompleteHost: 'Masukkan host SSH sebelum menghubungkan.',
       sshErrUnreachable: 'Tidak dapat menjangkau host tersebut melalui SSH. Periksa host, port, dan jaringan Anda.',
-      sshErrAuth: 'Autentikasi SSH gagal. Muat kunci Anda ke ssh-agent (ssh-add) atau atur IdentityFile di ~/.ssh/config — OpenAmer menjalankan ssh secara non-interaktif.',
-      sshErrHostKey: 'Kunci host telah BERUBAH sejak terakhir Anda terhubung. Pastikan ini memang diharapkan, lalu jalankan ssh-keygen -R <host> dan hubungkan kembali.',
-      sshErrNotInstalled: 'OpenAmer tidak terpasang di host jarak jauh. Pasang di sana (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) atau atur jalur OpenAmer.',
-      sshErrPlatform: 'Platform jarak jauh tidak didukung. Mode SSH OpenAmer Desktop mendukung host jarak jauh Linux, macOS, dan Windows.',
+      sshErrAuth:
+        'Autentikasi SSH gagal. Muat kunci Anda ke ssh-agent (ssh-add) atau atur IdentityFile di ~/.ssh/config — OpenAmer menjalankan ssh secara non-interaktif.',
+      sshErrHostKey:
+        'Kunci host telah BERUBAH sejak terakhir Anda terhubung. Pastikan ini memang diharapkan, lalu jalankan ssh-keygen -R <host> dan hubungkan kembali.',
+      sshErrNotInstalled:
+        'OpenAmer tidak terpasang di host jarak jauh. Pasang di sana (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) atau atur jalur OpenAmer.',
+      sshErrPlatform:
+        'Platform jarak jauh tidak didukung. Mode SSH OpenAmer Desktop mendukung host jarak jauh Linux, macOS, dan Windows.',
       sshErrTimeout: 'Koneksi SSH habis waktu. Host mungkin tidak dapat dijangkau atau sedang tidur.',
       sshErrUpdateRequired: 'Perbarui OpenAmer di host jarak jauh sebelum menghubungkan dengan SSH Desktop.',
-      sshErrUnknown: 'Koneksi SSH gagal.',
+      sshErrUnknown: 'Koneksi SSH gagal.'
     },
     keys: {
       loading: 'Memuat kunci API dan kredensial...',
       failedLoad: 'Kunci API gagal dimuat',
-      empty: 'Belum ada yang dikonfigurasi di kategori ini.',
+      empty: 'Belum ada yang dikonfigurasi di kategori ini.'
     },
     mcp: {
       loading: 'Memuat server MCP...',
@@ -739,7 +770,8 @@ export const id = defineLocale({
       catalogInstallFailed: name => `Gagal memasang ${name}`,
       catalogEnvPrompt: name => `${name} memerlukan kredensial`,
       catalogEnvRequired: 'Isi nilai yang diperlukan sebelum memasang.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} diaktifkan`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} diaktifkan`,
       statusConnecting: 'Menghubungkan…',
       statusNeedsAuth: 'Perlu autentikasi',
       statusError: 'Kesalahan',
@@ -752,11 +784,12 @@ export const id = defineLocale({
       unsavedConnect: 'Belum disimpan — simpan mcp.json untuk terhubung.',
       enableTool: tool => `Aktifkan ${tool}`,
       disableTool: tool => `Nonaktifkan ${tool}`,
-      noOutput: 'Belum ada output.',
+      noOutput: 'Belum ada output.'
     },
     model: {
       loading: 'Memuat konfigurasi model...',
-      appliesDesc: 'Berlaku untuk sesi baru. Gunakan pemilih model di composer untuk mengganti chat aktif secara instan.',
+      appliesDesc:
+        'Berlaku untuk sesi baru. Gunakan pemilih model di composer untuk mengganti chat aktif secara instan.',
       provider: 'Penyedia',
       model: 'Model',
       applying: 'Menerapkan...',
@@ -766,53 +799,55 @@ export const id = defineLocale({
       defaultsFailed: 'Gagal menyimpan model bawaan',
       auxiliaryTitle: 'Model pendukung',
       resetAllToMain: 'Atur ulang semua ke utama',
-      auxiliaryDesc: 'Tugas pembantu dijalankan pada model utama secara bawaan. Tetapkan model khusus untuk tugas apa pun untuk menggantinya.',
+      auxiliaryDesc:
+        'Tugas pembantu dijalankan pada model utama secara bawaan. Tetapkan model khusus untuk tugas apa pun untuk menggantinya.',
       setToMain: 'Atur ke utama',
       change: 'Ubah',
       autoUseMain: 'auto · gunakan model utama',
       providerDefault: '(bawaan penyedia)',
       fallbackAdd: 'Tambah cadangan',
       fallbackEmpty: 'Tidak ada model cadangan — model bawaan digunakan kecuali gagal.',
-      notInCatalog: "tidak ada dalam daftar model penyedia ini — panggilan dapat dialihkan ke cadangan.",
+      notInCatalog: 'tidak ada dalam daftar model penyedia ini — panggilan dapat dialihkan ke cadangan.',
       tasks: {
         vision: {
           label: 'Visi',
-          hint: 'Analisis gambar',
+          hint: 'Analisis gambar'
         },
         web_extract: {
           label: 'Ekstrak web',
-          hint: 'Ringkasan halaman',
+          hint: 'Ringkasan halaman'
         },
         compression: {
           label: 'Kompresi',
-          hint: 'Pemadatan konteks',
+          hint: 'Pemadatan konteks'
         },
         skills_hub: {
           label: 'Pusat keterampilan',
-          hint: 'Pencarian keterampilan',
+          hint: 'Pencarian keterampilan'
         },
         approval: {
           label: 'Persetujuan',
-          hint: 'Persetujuan otomatis pintar',
+          hint: 'Persetujuan otomatis pintar'
         },
         mcp: {
           label: 'MCP',
-          hint: 'Perutean alat MCP',
+          hint: 'Perutean alat MCP'
         },
         title_generation: {
           label: 'Pembuatan judul',
-          hint: 'Judul sesi',
+          hint: 'Judul sesi'
         },
         curator: {
           label: 'Kurator',
-          hint: 'Tinjauan penggunaan keterampilan',
-        },
-      },
+          hint: 'Tinjauan penggunaan keterampilan'
+        }
+      }
     },
     providers: {
       connectAccount: 'Hubungkan akun',
       haveApiKey: 'Punya kunci API sebagai gantinya?',
-      intro: 'Masuk dengan langganan — tidak perlu menyalin kunci API. OpenAmer menjalankan proses masuk browser untuk Anda, langsung di aplikasi ini.',
+      intro:
+        'Masuk dengan langganan — tidak perlu menyalin kunci API. OpenAmer menjalankan proses masuk browser untuk Anda, langsung di aplikasi ini.',
       connected: 'Terhubung',
       collapse: 'Ciutkan',
       connectAnother: 'Hubungkan penyedia lain',
@@ -822,7 +857,8 @@ export const id = defineLocale({
       removeConfirm: provider => `Hapus ${provider}?`,
       removeExternalGeneric: provider => `${provider} dikelola oleh CLI-nya sendiri — hapus di sana.`,
       removeKeyManaged: provider => `${provider} dikonfigurasi dari kunci API. Hapus dari Kunci API.`,
-      removeTerminalConfirm: (provider, command) => `Putuskan koneksi ${provider}? Ini akan menjalankan "${command}" di terminal untuk menghapus kredensial.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Putuskan koneksi ${provider}? Ini akan menjalankan "${command}" di terminal untuk menghapus kredensial.`,
       removeTerminalRunning: provider => `Menjalankan putus koneksi ${provider} di terminal…`,
       removedTitle: 'Akun dihapus',
       removedMessage: provider => `${provider} telah dihapus.`,
@@ -832,14 +868,16 @@ export const id = defineLocale({
       noKeysMatch: 'Tidak ada penyedia yang cocok dengan pencarian Anda.',
       localEndpoint: {
         title: 'Titik akhir lokal / kustom',
-        description: 'Arahkan OpenAmer ke titik akhir apa pun yang kompatibel dengan OpenAI (Zyphra, vLLM, llama.cpp, Ollama, dll).',
+        description:
+          'Arahkan OpenAmer ke titik akhir apa pun yang kompatibel dengan OpenAI (Zyphra, vLLM, llama.cpp, Ollama, dll).'
       },
-      loading: 'Memuat penyedia...',
+      loading: 'Memuat penyedia...'
     },
     sessions: {
       loading: 'Memuat sesi arsip…',
       archivedTitle: 'Sesi arsip',
-      archivedIntro: 'Obrolan yang diarsip disembunyikan dari bilah sisi tetapi tetap menyimpan semua pesannya. Ctrl/⌘-klik obrolan di bilah sisi untuk mengarsipkannya.',
+      archivedIntro:
+        'Obrolan yang diarsip disembunyikan dari bilah sisi tetapi tetap menyimpan semua pesannya. Ctrl/⌘-klik obrolan di bilah sisi untuk mengarsipkannya.',
       emptyArchivedTitle: 'Tidak ada arsip',
       emptyArchivedDesc: 'Arsipkan obrolan untuk menyembunyikannya di sini.',
       unarchive: 'Batal arsipkan',
@@ -848,12 +886,14 @@ export const id = defineLocale({
       restored: 'Dipulihkan',
       deleteConfirm: title => `Hapus "${title}" secara permanen? Tindakan ini tidak dapat dibatalkan.`,
       autoArchiveTitle: 'Arsip otomatis obrolan lama',
-      autoArchiveDesc: "Arsipkan obrolan yang sudah lama tidak Anda gunakan secara otomatis. Obrolan yang disematkan tidak akan pernah diarsip, dan tidak ada yang dihapus — obrolan yang diarsip hanya dipindahkan ke sini.",
+      autoArchiveDesc:
+        'Arsipkan obrolan yang sudah lama tidak Anda gunakan secara otomatis. Obrolan yang disematkan tidak akan pernah diarsip, dan tidak ada yang dihapus — obrolan yang diarsip hanya dipindahkan ke sini.',
       autoArchiveDaysLabel: 'Arsip setelah',
       autoArchiveDaysUnit: 'hari tidak aktif',
       autoArchiveFailed: 'Tidak dapat memperbarui arsip otomatis',
       defaultDirTitle: 'Direktori proyek bawaan',
-      defaultDirDesc: 'Sesi baru dimulai di folder ini kecuali Anda memilih folder lain. Biarkan kosong untuk menggunakan direktori beranda Anda.',
+      defaultDirDesc:
+        'Sesi baru dimulai di folder ini kecuali Anda memilih folder lain. Biarkan kosong untuk menggunakan direktori beranda Anda.',
       defaultDirUpdated: 'Direktori proyek bawaan diperbarui — mulai obrolan baru (Ctrl/⌘+N) agar diterapkan',
       defaultsTo: label => `Bawaannya ${label}.`,
       change: 'Ubah',
@@ -864,7 +904,7 @@ export const id = defineLocale({
       unarchiveFailed: 'Gagal mengeluarkan dari arsip',
       deleteFailed: 'Gagal menghapus',
       updateDirFailed: 'Gagal memperbarui direktori default',
-      clearDirFailed: 'Gagal membersihkan direktori default',
+      clearDirFailed: 'Gagal membersihkan direktori default'
     },
     toolsets: {
       loadingConfig: 'Memuat konfigurasi',
@@ -882,20 +922,23 @@ export const id = defineLocale({
       selectedMessage: provider => `${provider} kini aktif.`,
       failedSelect: provider => `Gagal memilih ${provider}`,
       failedLoad: 'Konfigurasi alat gagal dimuat',
-      noProviderOptions: 'Toolset ini tidak punya opsi penyedia — aktifkan dan langsung berjalan dengan pengaturan Anda saat ini.',
+      noProviderOptions:
+        'Toolset ini tidak punya opsi penyedia — aktifkan dan langsung berjalan dengan pengaturan Anda saat ini.',
       noProviders: 'Tidak ada penyedia yang tersedia untuk toolset ini saat ini.',
       ready: 'Siap',
       needsSignIn: 'Perlu masuk',
       needsSetup: 'Perlu penyiapan',
       openamerIncluded: 'Termasuk dalam langganan OpenAmer — masuk ke OpenAmer Portal untuk mengaktifkan.',
       openamerAuthNeededTitle: 'Masuk ke OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} tersimpan tetapi tidak akan aktif sampai Anda masuk ke OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} tersimpan tetapi tidak akan aktif sampai Anda masuk ke OpenAmer Portal.`,
       openamerAuthSignIn: 'Masuk',
       openamerAuthDoneTitle: 'OpenAmer Portal terhubung',
       openamerAuthDoneMessage: 'Backend langganan Anda kini aktif.',
       openamerAuthFailed: 'Proses masuk OpenAmer Portal tidak selesai',
       noApiKeyRequired: 'Tidak perlu kunci API.',
-      postSetupHint: step => `Backend ini perlu instalasi sekali (${step}). Berjalan di mesin ini — mungkin butuh beberapa menit.`,
+      postSetupHint: step =>
+        `Backend ini perlu instalasi sekali (${step}). Berjalan di mesin ini — mungkin butuh beberapa menit.`,
       postSetupInstalledHint: 'Terinstal. Jalankan ulang penyiapan hanya jika ada masalah.',
       postSetupRun: 'Jalankan penyiapan',
       postSetupRerun: 'Jalankan ulang penyiapan',
@@ -936,9 +979,9 @@ export const id = defineLocale({
         selectedTitle: 'Backend dipilih',
         selectedMessage: backend => `Perintah terminal kini dijalankan melalui ${backend}. Berlaku untuk sesi baru.`,
         failedSelect: backend => `Gagal memilih ${backend}`,
-        needsSetupHint: 'Anda dapat memilih backend ini sekarang — perintah akan gagal hingga penyiapan selesai.',
-      },
-    },
+        needsSetupHint: 'Anda dapat memilih backend ini sekarang — perintah akan gagal hingga penyiapan selesai.'
+      }
+    }
   },
   skills: {
     tabSkills: 'Keterampilan',
@@ -958,7 +1001,8 @@ export const id = defineLocale({
     noDescription: 'Tidak ada deskripsi.',
     configured: 'Terkonfigurasi',
     needsKeys: 'Perlu kunci',
-    visionModelHint: 'Visi menggunakan konfigurasi model tambahan Anda — model yang mendukung gambar dipilih di sana, bukan per penyedia di sini.',
+    visionModelHint:
+      'Visi menggunakan konfigurasi model tambahan Anda — model yang mendukung gambar dipilih di sana, bukan per penyedia di sini.',
     visionModelLink: 'Pilih model visi di Pengaturan → Model',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} toolset diaktifkan`,
     configureToolset: label => `Konfigurasikan ${label}`,
@@ -984,7 +1028,7 @@ export const id = defineLocale({
     provenance: {
       agent: 'Dipelajari',
       bundled: 'Bawaan',
-      hub: 'Pusat',
+      hub: 'Pusat'
     },
     emptyNoneFound: noun => `Tidak ada ${noun} yang ditemukan`,
     emptyNothingMatches: query => `Tidak ada yang cocok dengan “${query}”.`,
@@ -1002,7 +1046,8 @@ export const id = defineLocale({
       connectingHubs: 'Menghubungkan ke pusat keterampilan...',
       connectedHubs: 'Pusat terhubung:',
       featured: 'Keterampilan unggulan',
-      landingHint: 'Cari di pusat untuk menjelajahi keterampilan yang dapat dipasang dari indeks resmi, GitHub, dan sumber komunitas.',
+      landingHint:
+        'Cari di pusat untuk menjelajahi keterampilan yang dapat dipasang dari indeks resmi, GitHub, dan sumber komunitas.',
       noResults: 'Tidak ditemukan keterampilan yang cocok di pusat.',
       resultCount: (count, ms) => `${count} hasil${count === 1 ? 'hasil' : 'hasil'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Waktu habis: ${sources}`,
@@ -1022,7 +1067,7 @@ export const id = defineLocale({
       trust: {
         builtin: 'bawaan',
         trusted: 'tepercaya',
-        community: 'komunitas',
+        community: 'komunitas'
       },
       verdictSafe: 'Aman',
       verdictCaution: 'Perhatian',
@@ -1040,8 +1085,8 @@ export const id = defineLocale({
       loadFailed: 'Hub keterampilan gagal dimuat',
       previewFailed: 'Pratinjau keterampilan gagal',
       scanFailed: 'Pemindaian keamanan gagal',
-      searchFailed: 'Pencarian hub gagal',
-    },
+      searchFailed: 'Pencarian hub gagal'
+    }
   },
   starmap: {
     title: 'Grafik Memori',
@@ -1058,7 +1103,8 @@ export const id = defineLocale({
     emptyTitle: 'Belum ada yang dipelajari',
     emptyDesc: 'Saat OpenAmer membangun keterampilan dan memori untuk pekerjaan Anda, semuanya muncul di sini.',
     share: 'Bagikan peta',
-    shareHint: 'Salin kode untuk membagikan peta ini, atau tempel kode untuk memuatnya. Hanya berisi tata letak, bukan teks memori atau keterampilan Anda.',
+    shareHint:
+      'Salin kode untuk membagikan peta ini, atau tempel kode untuk memuatnya. Hanya berisi tata letak, bukan teks memori atau keterampilan Anda.',
     shareTitle: 'Impor / ekspor peta',
     sharePlaceholder: 'Tempel kode peta…',
     copy: 'Salin kode peta',
@@ -1068,7 +1114,7 @@ export const id = defineLocale({
     importEmpty: 'Tempel kode peta untuk memuatnya.',
     importSuccess: nodes => `Memuat peta dengan ${nodes} ${nodes === 1 ? 'simpul' : 'simpul'}.`,
     importedBadge: 'peta impor',
-    resetToMine: 'Kembali ke peta saya',
+    resetToMine: 'Kembali ke peta saya'
   },
   agents: {
     close: 'Tutup agen',
@@ -1098,7 +1144,7 @@ export const id = defineLocale({
     ageDays: days => `${days} hr lalu`,
     durationSeconds: seconds => `${seconds} dtk`,
     durationMinutes: (minutes, seconds) => `${minutes} mnt ${seconds} dtk`,
-    tokens: value => `${value} token`,
+    tokens: value => `${value} token`
   },
   commandCenter: {
     close: 'Tutup pusat perintah',
@@ -1128,7 +1174,7 @@ export const id = defineLocale({
       generatedTag: 'Dihasilkan',
       adoptFailed: 'Tidak dapat mengadopsi hewan peliharaan itu.',
       toggleFailed: 'Tidak dapat mengubah status hewan peliharaan.',
-      noneAvailable: 'Tidak ada hewan peliharaan tersedia — pilih satu di bawah untuk memasang.',
+      noneAvailable: 'Tidak ada hewan peliharaan tersedia — pilih satu di bawah untuk memasang.'
     },
     generatePet: {
       title: 'Buat hewan peliharaan',
@@ -1152,12 +1198,13 @@ export const id = defineLocale({
       slowProviderHint: 'Ini bisa memakan beberapa menit',
       remix: 'Campur Ulang',
       remixConfirmTitle: 'Racik ulang tampilan ini?',
-      remixConfirmBody: 'Ini membuat kumpulan draf baru dengan yang ini sebagai titik awal. Bisa memakan beberapa menit.',
+      remixConfirmBody:
+        'Ini membuat kumpulan draf baru dengan yang ini sebagai titik awal. Bisa memakan beberapa menit.',
       genericError: 'Pembuatan gagal — coba lagi atau pilih saran.',
       referenceImageTooLarge: 'Gambar referensi terlalu besar. Gunakan yang di bawah 16 MB.',
       referenceImageInvalid: 'Tidak dapat membaca gambar referensi itu. Coba PNG, JPG, WebP, atau GIF.',
       adopt: 'Adopsi',
-      startOver: 'Mulai ulang',
+      startOver: 'Mulai ulang'
     },
     installTheme: {
       title: 'Pasang tema…',
@@ -1169,7 +1216,7 @@ export const id = defineLocale({
       install: 'Pasang',
       installing: 'Memasang...',
       installed: 'Terpasang',
-      installs: count => `${count} pemasangan`,
+      installs: count => `${count} pemasangan`
     },
     settingsFields: 'Bidang pengaturan',
     mcpServers: 'Server MCP',
@@ -1178,49 +1225,49 @@ export const id = defineLocale({
       maintenance: 'Pemeliharaan',
       sessions: 'Sesi',
       system: 'Sistem',
-      usage: 'Penggunaan',
+      usage: 'Penggunaan'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostik, cadangan, kurator, dan data memori',
       sessions: 'Cari dan kelola sesi',
       system: 'Status, log, dan tindakan sistem',
-      usage: 'Aktivitas token, biaya, dan keterampilan dari waktu ke waktu',
+      usage: 'Aktivitas token, biaya, dan keterampilan dari waktu ke waktu'
     },
     nav: {
       newChat: {
         title: 'Sesi baru',
-        detail: 'Mulai sesi baru',
+        detail: 'Mulai sesi baru'
       },
       settings: {
         title: 'Pengaturan',
-        detail: 'Konfigurasikan OpenAmer desktop',
+        detail: 'Konfigurasikan OpenAmer desktop'
       },
       skills: {
         title: 'Kemampuan',
-        detail: 'Keterampilan, alat, dan server MCP',
+        detail: 'Keterampilan, alat, dan server MCP'
       },
       messaging: {
         title: 'Perpesanan',
-        detail: 'Siapkan Telegram, Slack, Discord, dan lainnya',
+        detail: 'Siapkan Telegram, Slack, Discord, dan lainnya'
       },
       artifacts: {
         title: 'Artefak',
-        detail: 'Telusuri keluaran yang dihasilkan',
-      },
+        detail: 'Telusuri keluaran yang dihasilkan'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Panel sesi',
-        detail: 'Cari, sematkan, dan kelola sesi',
+        detail: 'Cari, sematkan, dan kelola sesi'
       },
       system: {
         title: 'Panel sistem',
-        detail: 'Status gerbang, log, mulai ulang/perbarui',
+        detail: 'Status gerbang, log, mulai ulang/perbarui'
       },
       usage: {
         title: 'Panel penggunaan',
-        detail: 'Aktivitas token, biaya, dan keterampilan',
-      },
+        detail: 'Aktivitas token, biaya, dan keterampilan'
+      }
     },
     providerNavigate: 'Navigasi',
     providerSessions: 'Sesi',
@@ -1275,7 +1322,8 @@ export const id = defineLocale({
       backup: 'Buat cadangan',
       backupDesc: 'Zip konfigurasi, memori, keterampilan, dan sesi',
       debugShare: 'Berbagi debug',
-      debugShareDesc: 'Unggah laporan + log yang disunting, dapatkan tautan yang bisa dibagikan (hapus otomatis dalam 6 jam)',
+      debugShareDesc:
+        'Unggah laporan + log yang disunting, dapatkan tautan yang bisa dibagikan (hapus otomatis dalam 6 jam)',
       debugShareRunning: 'Mengunggah laporan debug...',
       debugShareLinks: 'Bagikan tautan',
       debugShareFailed: 'Debug berbagi gagal',
@@ -1308,8 +1356,8 @@ export const id = defineLocale({
       actionStarted: name => `${name} dimulai — memantau log...`,
       actionFailed: name => `${name} gagal dimulai`,
       running: 'Berjalan...',
-      viewLog: 'Log tindakan',
-    },
+      viewLog: 'Log tindakan'
+    }
   },
   messaging: {
     search: 'Cari pesan...',
@@ -1324,7 +1372,7 @@ export const id = defineLocale({
       not_configured: 'Perlu pengaturan',
       pending_restart: 'Perlu mulai ulang',
       retrying: 'Mencoba lagi',
-      startup_failed: 'Gagal memulai',
+      startup_failed: 'Gagal memulai'
     },
     unknown: 'Tidak diketahui',
     hintPendingRestart: 'Mulai ulang gateway dari bilah status untuk menerapkan perubahan ini.',
@@ -1337,7 +1385,8 @@ export const id = defineLocale({
     required: 'Wajib',
     recommended: 'Disarankan',
     advanced: count => `Lanjutan (${count})`,
-    noTokenNeeded: 'Platform ini tidak memerlukan token di sini. Gunakan panduan penyiapan di atas, lalu aktifkan di bawah ini.',
+    noTokenNeeded:
+      'Platform ini tidak memerlukan token di sini. Gunakan panduan penyiapan di atas, lalu aktifkan di bawah ini.',
     enabled: 'Aktif',
     disabled: 'Nonaktif',
     unsavedChanges: 'Perubahan belum disimpan',
@@ -1363,127 +1412,126 @@ export const id = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Token bot',
         help: 'Buat bot dengan @BotFather, lalu tempel token yang diberikan.',
-        placeholder: 'Tempel token bot Telegram',
+        placeholder: 'Tempel token bot Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'ID pengguna Telegram yang diizinkan',
-        help: 'Direkomendasikan. ID numerik dipisahkan koma dari @userinfobot. Tanpa ini, siapa pun dapat mengirim DM ke bot Anda.',
+        help: 'Direkomendasikan. ID numerik dipisahkan koma dari @userinfobot. Tanpa ini, siapa pun dapat mengirim DM ke bot Anda.'
       },
       TELEGRAM_PROXY: {
         label: 'URL Proksi',
-        help: 'Hanya diperlukan di jaringan tempat Telegram diblokir.',
+        help: 'Hanya diperlukan di jaringan tempat Telegram diblokir.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token bot',
-        help: 'Buat aplikasi di Discord Developer Portal, tambahkan bot, lalu tempel tokennya.',
+        help: 'Buat aplikasi di Discord Developer Portal, tambahkan bot, lalu tempel tokennya.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'ID pengguna Discord yang diizinkan',
-        help: 'Direkomendasikan. ID pengguna Discord dipisahkan koma.',
+        help: 'Direkomendasikan. ID pengguna Discord dipisahkan koma.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Gaya balasan',
-        help: 'pertama, semua, atau nonaktif.',
+        help: 'pertama, semua, atau nonaktif.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Izinkan semua pengguna Discord',
-        help: 'Hanya untuk pengembangan. Jika aktif, siapa pun dapat DM bot tanpa daftar izin.',
+        help: 'Hanya untuk pengembangan. Jika aktif, siapa pun dapat DM bot tanpa daftar izin.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID saluran utama',
-        help: 'Saluran tempat bot mengirim pesan proaktif (output cron, pengingat).',
+        help: 'Saluran tempat bot mengirim pesan proaktif (output cron, pengingat).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Nama saluran utama',
-        help: 'Nama tampilan saluran utama di log dan output status.',
+        help: 'Nama tampilan saluran utama di log dan output status.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Izinkan semua pengguna iMessage',
-        help: 'Jika aktif, lewati daftar izin BlueBubbles.',
+        help: 'Jika aktif, lewati daftar izin BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Izinkan semua pengguna Mattermost',
+        label: 'Izinkan semua pengguna Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Saluran utama',
+        label: 'Saluran utama'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Izinkan semua pengguna QQ',
+        label: 'Izinkan semua pengguna QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Saluran utama QQ',
-        help: 'Saluran atau grup default untuk pengiriman cron.',
+        help: 'Saluran atau grup default untuk pengiriman cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Nama saluran utama QQ',
+        label: 'Nama saluran utama QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token bot Slack',
         help: 'Gunakan token bot dari OAuth & Permissions setelah memasang aplikasi Slack Anda.',
-        placeholder: 'Tempel token bot Slack',
+        placeholder: 'Tempel token bot Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token aplikasi Slack',
         help: 'Gunakan token tingkat aplikasi yang diperlukan untuk Socket Mode.',
-        placeholder: 'Tempel token aplikasi Slack',
+        placeholder: 'Tempel token aplikasi Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'ID pengguna Slack yang diizinkan',
-        help: 'Direkomendasikan. ID pengguna Slack dipisahkan koma.',
+        help: 'Direkomendasikan. ID pengguna Slack dipisahkan koma.'
       },
       MATTERMOST_URL: {
         label: 'URL server',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token bot',
+        label: 'Token bot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'ID pengguna yang diizinkan',
-        help: 'Direkomendasikan. ID pengguna Mattermost dipisahkan koma.',
+        help: 'Direkomendasikan. ID pengguna Mattermost dipisahkan koma.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL homeserver',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token akses',
+        label: 'Token akses'
       },
       MATRIX_USER_ID: {
         label: 'ID pengguna bot',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'ID pengguna Matrix yang diizinkan',
-        help: 'Direkomendasikan. ID pengguna dipisahkan koma dalam format @user:server.',
+        help: 'Direkomendasikan. ID pengguna dipisahkan koma dalam format @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL jembatan Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL dari bridge REST signal-cli yang berjalan.',
+        help: 'URL dari bridge REST signal-cli yang berjalan.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Nomor telepon',
-        help: 'Nomor yang terdaftar dengan bridge signal-cli Anda.',
+        help: 'Nomor yang terdaftar dengan bridge signal-cli Anda.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Pengguna Signal yang diizinkan',
-        help: 'Disarankan. Identifier Signal yang dipisahkan dengan koma.',
+        help: 'Disarankan. Identifier Signal yang dipisahkan dengan koma.'
       },
       WHATSAPP_ENABLED: {
         label: 'Aktifkan bridge WhatsApp',
-        help: 'Diatur otomatis oleh toggle di bawah. Jangan diubah kecuali Anda yakin membutuhkannya.',
+        help: 'Diatur otomatis oleh toggle di bawah. Jangan diubah kecuali Anda yakin membutuhkannya.'
       },
       WHATSAPP_MODE: {
-        label: 'Mode bridge',
+        label: 'Mode bridge'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Pengguna WhatsApp yang diizinkan',
-        help: 'Disarankan. Nomor telepon atau ID WhatsApp yang dipisahkan dengan koma.',
-      },
+        help: 'Disarankan. Nomor telepon atau ID WhatsApp yang dipisahkan dengan koma.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Cari webhook...',
@@ -1493,7 +1541,8 @@ export const id = defineLocale({
     hint: 'Perubahan langganan dimuat ulang secara langsung setelah penerima berjalan. Langganan yang dinonaktifkan menolak event yang masuk.',
     empty: 'Belum ada langganan webhook.',
     disabledTitle: 'Penerima webhook dinonaktifkan',
-    disabledBody: 'Webhook adalah platform gateway tersendiri. Aktifkan di sini untuk menerima event HTTP yang masuk; kanal chat hanya diperlukan ketika sebuah langganan mengirim ke Telegram, Discord, Slack, atau kanal lainnya.',
+    disabledBody:
+      'Webhook adalah platform gateway tersendiri. Aktifkan di sini untuk menerima event HTTP yang masuk; kanal chat hanya diperlukan ketika sebuah langganan mengirim ke Telegram, Discord, Slack, atau kanal lainnya.',
     enable: 'Aktifkan webhook',
     enabling: 'Mengaktifkan...',
     enabled: (name: string) => `Diaktifkan: "${name}"`,
@@ -1546,8 +1595,8 @@ export const id = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'Email',
-      github_comment: 'Komentar GitHub',
-    },
+      github_comment: 'Komentar GitHub'
+    }
   },
   profiles: {
     close: 'Tutup profil',
@@ -1625,7 +1674,7 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
     failedLoadSoul: 'Gagal memuat SOUL.md',
     failedSaveSoul: 'Gagal menyimpan SOUL.md',
     failedCreate: 'Gagal membuat profil',
-    failedRename: 'Gagal mengganti nama profil',
+    failedRename: 'Gagal mengganti nama profil'
   },
   cron: {
     close: 'Tutup cron',
@@ -1640,14 +1689,14 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       paused: 'dijeda',
       disabled: 'nonaktif',
       error: 'kesalahan',
-      completed: 'selesai',
+      completed: 'selesai'
     },
     deliveryLabels: {
       local: 'Desktop ini',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Email',
+      email: 'Email'
     },
     scheduleLabels: {
       daily: 'Harian',
@@ -1656,7 +1705,7 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       monthly: 'Bulanan',
       hourly: 'Per jam',
       'every-15-minutes': 'Setiap 15 menit',
-      custom: 'Kustom',
+      custom: 'Kustom'
     },
     scheduleHints: {
       daily: 'Setiap hari pukul 09.00',
@@ -1665,7 +1714,7 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       monthly: 'Hari pertama setiap bulan pukul 09.00',
       hourly: 'Setiap awal jam',
       'every-15-minutes': 'Setiap 15 menit',
-      custom: 'Sintaks Cron atau bahasa alami',
+      custom: 'Sintaks Cron atau bahasa alami'
     },
     days: {
       '0': 'Minggu',
@@ -1675,7 +1724,7 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       '4': 'Kamis',
       '5': 'Jumat',
       '6': 'Sabtu',
-      '7': 'Minggu',
+      '7': 'Minggu'
     },
     dayFallback: value => `hari ${value}`,
     everyDayAt: time => `Setiap hari pukul ${time}`,
@@ -1685,7 +1734,8 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
     topOfHour: 'Setiap awal jam',
     everyHourAt: minute => `Setiap jam pada :${minute}`,
     newCron: 'Cron baru',
-    emptyDescNew: 'Jadwalkan prompt untuk berjalan dengan ekspresi cron. OpenAmer akan menjalankannya dan mengirimkan hasil ke tujuan pilihan Anda.',
+    emptyDescNew:
+      'Jadwalkan prompt untuk berjalan dengan ekspresi cron. OpenAmer akan menjalankannya dan mengirimkan hasil ke tujuan pilihan Anda.',
     emptyDescSearch: 'Coba kueri pencarian yang lebih luas.',
     emptyTitleNew: 'Belum ada jadwal tugas',
     emptyTitleSearch: 'Tidak ada kecocokan',
@@ -1722,7 +1772,8 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
     editTitle: 'Ubah tugas cron',
     createTitle: 'Tugas cron baru',
     editDesc: 'Perbarui jadwal, prompt, atau target pengiriman. Perubahan berlaku pada eksekusi berikutnya.',
-    createDesc: 'Jadwalkan perintah agar berjalan otomatis. Gunakan sintaks cron atau frasa alami seperti "setiap 15 menit".',
+    createDesc:
+      'Jadwalkan perintah agar berjalan otomatis. Gunakan sintaks cron atau frasa alami seperti "setiap 15 menit".',
     nameLabel: 'Nama',
     namePlaceholder: 'Ringkasan pagi',
     promptLabel: 'Perintah',
@@ -1744,7 +1795,7 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
     createAction: 'Buat cron',
     tabs: {
       jobs: 'Pekerjaan',
-      blueprints: 'Cetak biru',
+      blueprints: 'Cetak biru'
     },
     blueprints: {
       tab: 'Cetak biru',
@@ -1758,8 +1809,8 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       loading: 'Memuat cetak biru...',
       failedLoad: 'Gagal memuat cetak biru',
       emptyTitle: 'Tidak ada cetak biru tersedia',
-      emptyDesc: 'Tidak ada cetak biru otomasi yang tersedia di backend ini.',
-    },
+      emptyDesc: 'Tidak ada cetak biru otomasi yang tersedia di backend ini.'
+    }
   },
   artifacts: {
     search: 'Cari artefak...',
@@ -1793,14 +1844,14 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
     kindLink: 'tautan',
     chat: 'Obrolan',
     copyUrl: 'Salin URL',
-    copyPath: 'Salin jalur',
+    copyPath: 'Salin jalur'
   },
   sidebar: {
     nav: {
       'new-session': 'Sesi baru',
       skills: 'Kemampuan',
       messaging: 'Perpesanan',
-      artifacts: 'Artefak',
+      artifacts: 'Artefak'
     },
     searchAria: 'Cari sesi',
     searchPlaceholder: 'Cari sesi…',
@@ -1832,7 +1883,7 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       namePlaceholder: 'mis. Skunkworks',
       foldersLabel: 'Folder',
       ideaLabel: 'Ide',
-      ideaPlaceholder: "Tentang apa proyek ini? (disimpan ke IDEA.md)",
+      ideaPlaceholder: 'Tentang apa proyek ini? (disimpan ke IDEA.md)',
       ideaGenerate: 'Buat ide',
       ideaGenerating: 'Membuat…',
       ideaShuffle: 'Acak templat',
@@ -1852,7 +1903,8 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       copyPath: 'Salin jalur',
       removeFromSidebar: 'Sembunyikan dari bilah sisi',
       createFailed: 'Tidak dapat membuat proyek',
-      staleBackend: 'Perbarui backend OpenAmer untuk membuat proyek — backend Anda lebih lama daripada aplikasi desktop ini (Pengaturan → Pembaruan → Backend).',
+      staleBackend:
+        'Perbarui backend OpenAmer untuk membuat proyek — backend Anda lebih lama daripada aplikasi desktop ini (Pengaturan → Pembaruan → Backend).',
       deleteConfirm: 'Ini menghapus proyek tersimpan dari OpenAmer. File, repo git, dan worktree tetap tidak diubah.',
       startWork: 'Worktree baru',
       newWorktreeTitle: 'Worktree baru',
@@ -1874,13 +1926,15 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       noBranches: 'Tidak ada cabang ditemukan',
       removeWorktree: 'Hapus worktree',
       removeWorktreeFailed: 'Tidak dapat menghapus worktree (perubahan belum di-commit?)',
-      removeWorktreeConfirm: 'Hapus dari git (menghapus direktori worktree; cabang tetap ada), atau cukup sembunyikan jalur dari bilah sisi dan biarkan worktree di disk.',
-      removeWorktreeDirty: 'Worktree ini memiliki perubahan yang belum di-commit. Hapus paksa (perubahan tersebut dibuang), atau cukup sembunyikan jalur dan biarkan tetap di disk.',
+      removeWorktreeConfirm:
+        'Hapus dari git (menghapus direktori worktree; cabang tetap ada), atau cukup sembunyikan jalur dari bilah sisi dan biarkan worktree di disk.',
+      removeWorktreeDirty:
+        'Worktree ini memiliki perubahan yang belum di-commit. Hapus paksa (perubahan tersebut dibuang), atau cukup sembunyikan jalur dan biarkan tetap di disk.',
       forceRemove: 'Hapus paksa',
       enter: label => `Buka ${label}`,
       reorder: label => `Susun ulang ${label}`,
       toggle: label => `Alihkan sesi ${label}`,
-      back: 'Semua proyek',
+      back: 'Semua proyek'
     },
     newSessionIn: label => `Sesi baru di ${label}`,
     showMoreIn: (count, label) => `Tampilkan ${count} lainnya di ${label}`,
@@ -1918,15 +1972,15 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       ageNow: 'sekarang',
       ageDay: 'h',
       ageHour: 'j',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Lebih awal hari ini',
       yesterday: 'Kemarin',
       thisWeek: 'Awal minggu ini',
       lastWeek: 'Minggu lalu',
-      thisMonth: 'Awal bulan ini',
-    },
+      thisMonth: 'Awal bulan ini'
+    }
   },
   composer: {
     message: 'Pesan',
@@ -1937,20 +1991,20 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
     newSessionPlaceholders: [
       'Apa yang kita bangun?',
       'Beri OpenAmer tugas',
-      "Apa yang Anda pikirkan?",
+      'Apa yang Anda pikirkan?',
       'Jelaskan kebutuhan Anda',
       'Apa yang harus kita kerjakan?',
       'Tanyakan apa saja',
-      'Mulai dengan tujuan',
+      'Mulai dengan tujuan'
     ],
     followUpPlaceholders: [
       'Kirim tindak lanjut',
       'Tambah konteks',
       'Perjelas permintaan',
-      "Apa selanjutnya?",
+      'Apa selanjutnya?',
       'Lanjutkan',
       'Dorong lebih jauh',
-      'Sesuaikan atau lanjutkan',
+      'Sesuaikan atau lanjutkan'
     ],
     startVoice: 'Mulai percakapan suara',
     queueMessage: 'Antrekan pesan',
@@ -1986,7 +2040,7 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       '/resume': 'lanjutkan sesi sebelumnya',
       '/details': 'atur tingkat detail transkrip',
       '/copy': 'salin pilihan atau pesan asisten terakhir',
-      '/quit': 'keluar dari openamer',
+      '/quit': 'keluar dari openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'rujuk file, folder, url, git',
@@ -1996,7 +2050,7 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       'composer.sendQueued': 'kirim giliran antrean berikutnya',
       'keybinds.openPanel': 'semua pintasan keyboard',
       'composer.cancel': 'tutup popover · batalkan proses',
-      'composer.history': 'siklus popover / riwayat',
+      'composer.history': 'siklus popover / riwayat'
     },
     attachUrlTitle: 'Lampirkan URL',
     attachUrlDesc: 'OpenAmer akan mengambil halaman dan menyertakannya sebagai konteks untuk giliran ini.',
@@ -2047,19 +2101,19 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       codeReview: {
         label: 'Ulasan kode',
         description: 'Audit perubahan saat ini untuk regresi, kasus tepi yang terlewat, dan pengujian yang hilang.',
-        text: 'Harap tinjau ini untuk bug, regresi, dan pengujian yang hilang.',
+        text: 'Harap tinjau ini untuk bug, regresi, dan pengujian yang hilang.'
       },
       implementationPlan: {
         label: 'Rencana implementasi',
         description: 'Buat garis besar pendekatan sebelum menyentuh kode agar diff tetap fokus.',
-        text: 'Harap buat rencana implementasi ringkas sebelum mengubah kode.',
+        text: 'Harap buat rencana implementasi ringkas sebelum mengubah kode.'
       },
       explainThis: {
         label: 'Jelaskan ini',
         description: 'Uraikan cara kerja kode yang dipilih dan tautkan ke file kunci.',
-        text: 'Harap jelaskan cara kerjanya dan tunjukkan file kunci.',
-      },
-    },
+        text: 'Harap jelaskan cara kerjanya dan tunjukkan file kunci.'
+      }
+    }
   },
   statusStack: {
     agents: 'Agen',
@@ -2089,8 +2143,10 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       viewAsList: 'Lihat sebagai daftar',
       revert: 'Kembalikan',
       revertAll: 'Kembalikan semua',
-      revertConfirm: 'Buang perubahan pada berkas ini dan kembalikan ke keadaan terkomit? Tindakan ini tidak dapat dibatalkan.',
-      revertAllConfirm: 'Buang semua perubahan dan kembalikan berkas ke keadaan terkomit? Tindakan ini tidak dapat dibatalkan.',
+      revertConfirm:
+        'Buang perubahan pada berkas ini dan kembalikan ke keadaan terkomit? Tindakan ini tidak dapat dibatalkan.',
+      revertAllConfirm:
+        'Buang semua perubahan dan kembalikan berkas ke keadaan terkomit? Tindakan ini tidak dapat dibatalkan.',
       staged: 'Disiapkan',
       noChanges: 'Tidak ada perubahan',
       notRepo: 'Bukan repositori git',
@@ -2107,13 +2163,14 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       openPr: 'Buka PR',
       ghMissing: 'Instal GitHub CLI (gh) dan masuk untuk membuka PR',
       agentShip: 'Minta OpenAmer membuka PR',
-      agentShipPrompt: 'Tinjau perubahan saat ini, komit dengan pesan komit konvensional yang jelas, push cabang, dan buka pull request.',
+      agentShipPrompt:
+        'Tinjau perubahan saat ini, komit dengan pesan komit konvensional yang jelas, push cabang, dan buka pull request.',
       newBranch: 'Cabang baru',
       branchOffFrom: base => `Cabang baru dari ${base}`,
       switchTo: branch => `Beralih ke ${branch}`,
       switchFailed: branch => `Tidak dapat beralih ke ${branch}`,
-      worktrees: 'Pohon kerja',
-    },
+      worktrees: 'Pohon kerja'
+    }
   },
   updates: {
     stages: {
@@ -2128,7 +2185,7 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       done: 'Pembaruan selesai',
       manual: 'Perbarui dari terminal Anda',
       guiSkew: 'Perbarui aplikasi desktop',
-      error: 'Pembaruan dijeda',
+      error: 'Pembaruan dijeda'
     },
     checking: 'Mencari pembaruan…',
     checkFailedTitle: 'Tidak dapat memeriksa pembaruan',
@@ -2148,16 +2205,21 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
     maybeLater: 'Mungkin nanti',
     moreChanges: count => `+ ${count} perubahan lagi${count === 1 ? 'perubahan' : 'perubahan'} disertakan.`,
     manualTitle: 'Perbarui dari terminal Anda',
-    manualBody: 'Anda memasang OpenAmer dari baris perintah, jadi pembaruan juga berjalan di sana. Tempelkan ini ke terminal Anda:',
+    manualBody:
+      'Anda memasang OpenAmer dari baris perintah, jadi pembaruan juga berjalan di sana. Tempelkan ini ke terminal Anda:',
     manualPickedUp: 'OpenAmer akan memakai versi baru saat Anda menjalankannya berikutnya.',
     guiSkewTitle: 'Perbarui aplikasi desktop',
-    guiSkewBody: 'Backend telah diperbarui, tetapi paket aplikasi desktop ini tidak berubah. Perbarui atau pasang ulang aplikasi desktop OpenAmer (AppImage / .deb / .rpm Anda) agar sesuai.',
+    guiSkewBody:
+      'Backend telah diperbarui, tetapi paket aplikasi desktop ini tidak berubah. Perbarui atau pasang ulang aplikasi desktop OpenAmer (AppImage / .deb / .rpm Anda) agar sesuai.',
     copy: 'Salin',
     copied: 'Disalin',
     done: 'Selesai',
-    applyingBody: 'Program pembaruan OpenAmer mengambil alih di jendelanya sendiri dan membuka kembali OpenAmer secara otomatis setelah selesai. Jangan membuka kembali OpenAmer sendiri saat pembaruan berlangsung.',
-    applyingBodyBackend: 'Backend jarak jauh sedang menerapkan pembaruan dan akan memulai ulang. OpenAmer akan terhubung kembali secara otomatis saat sudah kembali.',
-    applyingClose: 'Jendela ini akan tertutup saat pembaruan berjalan, lalu OpenAmer terbuka kembali dengan sendirinya.',
+    applyingBody:
+      'Program pembaruan OpenAmer mengambil alih di jendelanya sendiri dan membuka kembali OpenAmer secara otomatis setelah selesai. Jangan membuka kembali OpenAmer sendiri saat pembaruan berlangsung.',
+    applyingBodyBackend:
+      'Backend jarak jauh sedang menerapkan pembaruan dan akan memulai ulang. OpenAmer akan terhubung kembali secara otomatis saat sudah kembali.',
+    applyingClose:
+      'Jendela ini akan tertutup saat pembaruan berjalan, lalu OpenAmer terbuka kembali dengan sendirinya.',
     errorTitle: 'Pembaruan tidak selesai',
     errorBody: 'Tidak masalah — tidak ada yang hilang. Anda dapat mencoba lagi sekarang.',
     notNow: 'Nanti saja',
@@ -2167,12 +2229,13 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       restarting: 'Backend dimulai ulang untuk memuat pembaruan…',
       notAvailable: 'Pembaruan tidak tersedia untuk backend ini.',
       failed: 'Pembaruan backend gagal.',
-      noReturn: 'Backend tidak kembali daring. Pembaruan mungkin belum selesai — periksa host backend.',
+      noReturn: 'Backend tidak kembali daring. Pembaruan mungkin belum selesai — periksa host backend.'
     },
     appErrors: {
-      updateLocked: 'Pembaruan dibatalkan: jendela OpenAmer lain atau terminal yang menjalankan openamer sedang menahan instalasi ini tetap terbuka. Tutup dan coba lagi.',
-      updateFailed: 'Pembaruan belum selesai. Tidak masalah — tidak ada yang hilang. Anda dapat mencoba lagi sekarang.',
-    },
+      updateLocked:
+        'Pembaruan dibatalkan: jendela OpenAmer lain atau terminal yang menjalankan openamer sedang menahan instalasi ini tetap terbuka. Tutup dan coba lagi.',
+      updateFailed: 'Pembaruan belum selesai. Tidak masalah — tidak ada yang hilang. Anda dapat mencoba lagi sekarang.'
+    }
   },
   install: {
     stageStates: {
@@ -2180,25 +2243,29 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       running: 'Menginstal',
       succeeded: 'Selesai',
       skipped: 'Dilewati',
-      failed: 'Gagal',
+      failed: 'Gagal'
     },
     oneTimeTitle: 'OpenAmer memerlukan instalasi sekali jalan',
-    unsupportedDesc: platform => `Instalasi otomatis pada peluncuran pertama belum tersedia di ${platform}. Buka Terminal dan jalankan perintah di bawah ini, lalu mulai ulang aplikasi ini. Peluncuran berikutnya akan melewati langkah ini.`,
+    unsupportedDesc: platform =>
+      `Instalasi otomatis pada peluncuran pertama belum tersedia di ${platform}. Buka Terminal dan jalankan perintah di bawah ini, lalu mulai ulang aplikasi ini. Peluncuran berikutnya akan melewati langkah ini.`,
     installCommand: 'Perintah instalasi',
     copyCommand: 'Salin perintah',
     viewDocs: 'Lihat dokumentasi instalasi',
     installTo: 'Akan diinstal ke',
     retryAfterRun: 'Saya sudah menjalankannya -- coba lagi',
     setupChoiceTitle: 'Siapkan OpenAmer Desktop',
-    setupChoiceDesc: 'Hubungkan aplikasi ini ke gateway OpenAmer yang sudah Anda jalankan, atau instal OpenAmer secara lokal di komputer ini.',
+    setupChoiceDesc:
+      'Hubungkan aplikasi ini ke gateway OpenAmer yang sudah Anda jalankan, atau instal OpenAmer secara lokal di komputer ini.',
     connectExistingTitle: 'Hubungkan ke OpenAmer yang ada',
     connectExistingShort: 'Hubungkan yang ada',
-    connectExistingDesc: 'Gunakan backend jarak jauh dengan token sesi atau masuk lewat browser. Tidak ada instalasi lokal yang akan dimulai.',
+    connectExistingDesc:
+      'Gunakan backend jarak jauh dengan token sesi atau masuk lewat browser. Tidak ada instalasi lokal yang akan dimulai.',
     installLocalTitle: 'Instal OpenAmer secara lokal',
     installLocalDesc: 'Unduh OpenAmer, buat lingkungan Python-nya, dan jalankan backend di komputer ini.',
     localStartUnavailable: 'Instalasi lokal tidak dapat dimulai. Mulai ulang OpenAmer Desktop lalu coba lagi.',
     remoteSetupTitle: 'Hubungkan ke OpenAmer yang ada',
-    remoteSetupDesc: 'Masukkan URL gateway Anda. OpenAmer Desktop akan mendeteksi apakah perlu token atau masuk lewat browser.',
+    remoteSetupDesc:
+      'Masukkan URL gateway Anda. OpenAmer Desktop akan mendeteksi apakah perlu token atau masuk lewat browser.',
     remoteUrlTitle: 'URL gateway',
     remoteUrlDesc: 'Gunakan URL dasar gateway OpenAmer, termasuk https:// jika remote.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2225,8 +2292,10 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
     failedTitle: 'Instalasi gagal',
     settingUpTitle: 'Menyiapkan OpenAmer Agent',
     finishingTitle: 'Menyelesaikan',
-    failedDesc: 'Salah satu langkah instalasi gagal. Di Windows, ini dapat terjadi jika instans CLI OpenAmer atau desktop lain sedang berjalan. Hentikan semua instans OpenAmer yang berjalan, lalu coba lagi. Periksa detail di bawah atau log desktop untuk transkrip lengkap.',
-    activeDesc: 'Ini adalah penyiapan sekali jalan. Penginstal OpenAmer sedang mengunduh dependensi dan mengonfigurasi mesin Anda. Peluncuran berikutnya akan melewati langkah ini.',
+    failedDesc:
+      'Salah satu langkah instalasi gagal. Di Windows, ini dapat terjadi jika instans CLI OpenAmer atau desktop lain sedang berjalan. Hentikan semua instans OpenAmer yang berjalan, lalu coba lagi. Periksa detail di bawah atau log desktop untuk transkrip lengkap.',
+    activeDesc:
+      'Ini adalah penyiapan sekali jalan. Penginstal OpenAmer sedang mengunduh dependensi dan mengonfigurasi mesin Anda. Peluncuran berikutnya akan melewati langkah ini.',
     progress: (completed, total) => `${completed} dari ${total} langkah selesai`,
     currentStage: stage => ` -- sekarang: ${stage}`,
     fetchingManifest: 'Mengambil manifes penginstal...',
@@ -2240,18 +2309,19 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
     transcriptSaved: 'Transkrip lengkap disimpan ke',
     copiedOutput: 'Disalin!',
     copyOutput: 'Salin keluaran',
-    reloadRetry: 'Muat ulang dan coba lagi',
+    reloadRetry: 'Muat ulang dan coba lagi'
   },
   onboarding: {
-    headerTitle: "Mari siapkan OpenAmer Agent untuk Anda",
+    headerTitle: 'Mari siapkan OpenAmer Agent untuk Anda',
     headerDesc: 'Hubungkan penyedia model untuk mulai mengobrol. Sebagian besar opsi hanya perlu satu klik.',
-    preparingInstall: 'OpenAmer sedang menyelesaikan instalasi. Biasanya kurang dari satu menit saat pertama kali dijalankan.',
+    preparingInstall:
+      'OpenAmer sedang menyelesaikan instalasi. Biasanya kurang dari satu menit saat pertama kali dijalankan.',
     starting: 'Memulai OpenAmer…',
     lookingUpProviders: 'Mencari penyedia...',
     collapse: 'Ciutkan',
     otherProviders: 'Penyedia lain',
     haveApiKey: 'Saya punya kunci API',
-    chooseLater: "Saya akan memilih penyedia nanti",
+    chooseLater: 'Saya akan memilih penyedia nanti',
     recommended: 'Direkomendasikan',
     connected: 'Terhubung',
     featuredPitch: 'Satu langganan, 300+ model terdepan — cara yang direkomendasikan untuk menjalankan OpenAmer',
@@ -2260,28 +2330,29 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
     apiKeyOptions: {
       fireworks: {
         short: 'API model langsung',
-        description: 'Akses langsung ke model yang dihosting oleh Fireworks AI.',
+        description: 'Akses langsung ke model yang dihosting oleh Fireworks AI.'
       },
       openrouter: {
         short: 'satu kunci, banyak model',
-        description: 'Menyediakan ratusan model di balik satu kunci. Default yang baik untuk instalasi baru.',
+        description: 'Menyediakan ratusan model di balik satu kunci. Default yang baik untuk instalasi baru.'
       },
       openai: {
         short: 'Model kelas GPT',
-        description: 'Akses langsung ke model OpenAI.',
+        description: 'Akses langsung ke model OpenAI.'
       },
       gemini: {
         short: 'Model Gemini',
-        description: 'Akses langsung ke model Google Gemini.',
+        description: 'Akses langsung ke model Google Gemini.'
       },
       xai: {
         short: 'Model Grok',
-        description: 'Akses langsung ke model Grok xAI.',
+        description: 'Akses langsung ke model Grok xAI.'
       },
       local: {
         short: 'dihosting sendiri',
-        description: 'Arahkan OpenAmer ke endpoint yang kompatibel dengan OpenAI lokal atau yang dihosting sendiri (vLLM, llama.cpp, Ollama, dll).',
-      },
+        description:
+          'Arahkan OpenAmer ke endpoint yang kompatibel dengan OpenAI lokal atau yang dihosting sendiri (vLLM, llama.cpp, Ollama, dll).'
+      }
     },
     backToSignIn: 'Kembali untuk masuk',
     getKey: 'Dapatkan kunci',
@@ -2294,7 +2365,7 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
     flowSubtitles: {
       pkce: 'Membuka browser Anda untuk masuk, lalu melanjutkan di sini',
       device_code: 'Membuka halaman verifikasi di browser Anda — OpenAmer terhubung otomatis',
-      external: 'Masuk sekali di terminal Anda, lalu kembali ke obrolan',
+      external: 'Masuk sekali di terminal Anda, lalu kembali ke obrolan'
     },
     startingSignIn: provider => `Memulai proses masuk untuk ${provider}...`,
     verifyingCode: provider => `Memverifikasi kode Anda dengan ${provider}...`,
@@ -2308,11 +2379,13 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
     copyAuthCode: 'Salin kode otorisasi dan tempelkan di bawah.',
     pasteAuthCode: 'Tempelkan kode otorisasi',
     reopenAuthPage: 'Buka lagi halaman otorisasi',
-    autoBrowser: provider => `Kami membuka ${provider} di browser Anda. Otorisasi OpenAmer di sana dan Anda akan terhubung otomatis — tidak perlu menyalin atau menempel.`,
+    autoBrowser: provider =>
+      `Kami membuka ${provider} di browser Anda. Otorisasi OpenAmer di sana dan Anda akan terhubung otomatis — tidak perlu menyalin atau menempel.`,
     reopenSignInPage: 'Buka lagi halaman masuk',
     waitingAuthorize: 'Menunggu otorisasi Anda...',
-    externalPending: provider => `${provider} masuk melalui CLI-nya sendiri. Jalankan perintah ini di terminal, lalu kembali dan pilih "Saya sudah masuk":`,
-    signedIn: "Saya sudah masuk",
+    externalPending: provider =>
+      `${provider} masuk melalui CLI-nya sendiri. Jalankan perintah ini di terminal, lalu kembali dan pilih "Saya sudah masuk":`,
+    signedIn: 'Saya sudah masuk',
     deviceCodeOpened: provider => `Kami membuka ${provider} di browser Anda. Masukkan kode ini di sana:`,
     reopenVerification: 'Buka lagi halaman verifikasi',
     copy: 'Salin',
@@ -2323,7 +2396,7 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
     price: (input, output) => `${input} masuk / ${output} keluar per Mtok`,
     change: 'Ubah',
     startChatting: 'Mulai',
-    docs: provider => `Dokumentasi ${provider}`,
+    docs: provider => `Dokumentasi ${provider}`
   },
   modelPicker: {
     title: 'Ganti model',
@@ -2339,13 +2412,13 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
     free: 'Gratis',
     freeTier: 'Paket gratis',
     priceTitle: 'Harga input / output per juta token',
-    wasPrice: 'dulu',
+    wasPrice: 'dulu'
   },
   modelVisibility: {
     title: 'Model',
     search: 'Cari model',
     noAuthenticatedProviders: 'Tidak ada penyedia terautentikasi.',
-    addProvider: 'Tambah penyedia…',
+    addProvider: 'Tambah penyedia…'
   },
   shell: {
     windowControls: 'Kontrol jendela',
@@ -2356,7 +2429,7 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       noModels: 'Model tidak ditemukan',
       editModels: 'Ubah Model…',
       refreshModels: 'Segarkan Model',
-      fast: 'Cepat',
+      fast: 'Cepat'
     },
     modelOptions: {
       noOptions: 'Tidak ada opsi untuk model ini',
@@ -2372,7 +2445,7 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       max: 'Maks',
       ultra: 'Ultra',
       updateFailed: 'Pembaruan opsi model gagal',
-      fastFailed: 'Pembaruan mode cepat gagal',
+      fastFailed: 'Pembaruan mode cepat gagal'
     },
     gatewayMenu: {
       gateway: 'Gerbang',
@@ -2387,7 +2460,7 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       connection: label => `Koneksi: ${label}`,
       recentActivity: 'Aktivitas terbaru',
       viewAllLogs: 'Lihat semua log →',
-      messagingPlatforms: 'Platform perpesanan',
+      messagingPlatforms: 'Platform perpesanan'
     },
     approvalMode: {
       title: 'Mode persetujuan',
@@ -2397,7 +2470,7 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       smart: 'Pintar',
       smartDescription: 'Nilai tindakan secara otomatis dan tanyakan saat diperlukan',
       off: 'Mati',
-      offDescription: 'Jalankan tanpa permintaan persetujuan',
+      offDescription: 'Jalankan tanpa permintaan persetujuan'
     },
     statusbar: {
       unknown: 'Tidak diketahui',
@@ -2453,27 +2526,29 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
           skills: 'Keterampilan',
           subagent_definitions: 'Definisi subagen',
           system_prompt: 'Prompt sistem',
-          tool_definitions: 'Definisi alat',
+          tool_definitions: 'Definisi alat'
         },
         empty: 'Belum ada data konteks',
         loading: 'Memuat rincian…',
         percentFull: percent => `${percent}% Penuh`,
         title: 'Penggunaan Konteks',
-        tokenSummary: (used, max) => `${used} / ${max} Token`,
+        tokenSummary: (used, max) => `${used} / ${max} Token`
       },
       openContextUsage: 'Buka rincian penggunaan konteks',
       session: 'Sesi',
       runtimeSessionElapsed: 'Durasi sesi runtime',
-      yoloOn: 'YOLO aktif — otomatis menyetujui perintah berbahaya. Klik untuk mematikan. Shift+klik mengalihkannya secara global.',
-      yoloOff: 'YOLO nonaktif — klik untuk otomatis menyetujui perintah berbahaya. Shift+klik mengalihkannya secara global.',
+      yoloOn:
+        'YOLO aktif — otomatis menyetujui perintah berbahaya. Klik untuk mematikan. Shift+klik mengalihkannya secara global.',
+      yoloOff:
+        'YOLO nonaktif — klik untuk otomatis menyetujui perintah berbahaya. Shift+klik mengalihkannya secara global.',
       modelNone: 'tidak ada',
       noModel: 'tanpa model',
       switchModel: 'Ganti model',
       openModelPicker: 'Buka pemilih model',
       modelPinned: 'disematkan oleh Anda; chat baru memakai ini alih-alih default Pengaturan',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Sidebar kanan',
@@ -2509,7 +2584,7 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
     terminalNew: 'Terminal baru',
     terminalCloseOthers: 'Tutup lainnya',
     terminalCloseAll: 'Tutup semua',
-    addToChat: 'Tambah ke chat',
+    addToChat: 'Tambah ke chat'
   },
   preview: {
     tab: 'Pratinjau',
@@ -2543,7 +2618,8 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
     unsavedChanges: 'Perubahan belum disimpan',
     saveFailed: message => `Tidak dapat menyimpan: ${message}`,
     diskChangedTitle: 'Berkas berubah di disk',
-    diskChangedBody: 'Berkas ini berubah sejak Anda membukanya. Timpa dengan versi Anda, atau abaikan pengeditan dan muat ulang?',
+    diskChangedBody:
+      'Berkas ini berubah sejak Anda membukanya. Timpa dengan versi Anda, atau abaikan pengeditan dan muat ulang?',
     overwrite: 'Timpa',
     discardReload: 'Abaikan & muat ulang',
     console: {
@@ -2564,7 +2640,7 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       empty: 'Belum ada pesan konsol.',
       promptHeader: 'Konsol pratinjau:',
       sentTitle: 'Dikirim ke chat',
-      sentMessage: count => `${count} entri log${count === 1 ? 'y' : 'ies'} ditambahkan ke composer`,
+      sentMessage: count => `${count} entri log${count === 1 ? 'y' : 'ies'} ditambahkan ke composer`
     },
     web: {
       appFailedToBoot: 'Aplikasi pratinjau gagal dimulai',
@@ -2589,17 +2665,19 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       reloadingNow: 'Memuat ulang pratinjau sekarang.',
       restartFailedTitle: 'Gagal memulai ulang pratinjau',
       restartFailedMessage: 'OpenAmer tidak dapat memulai ulang server.',
-      stillWorking: 'OpenAmer masih bekerja, tetapi hasil mulai ulang belum tiba. Perintah server mungkin berjalan di latar depan.',
+      stillWorking:
+        'OpenAmer masih bekerja, tetapi hasil mulai ulang belum tiba. Perintah server mungkin berjalan di latar depan.',
       workspaceReloading: 'Ruang kerja berubah, memuat ulang pratinjau',
       fileChanged: url => `File berubah, memuat ulang pratinjau: ${url}`,
       filesChanged: (count, url) => `${count} perubahan file, memuat ulang pratinjau: ${url}`,
       watchFailed: message => `Tidak dapat memantau file pratinjau: ${message}`,
-      moduleMimeDescription: 'Skrip modul dilayani dengan tipe MIME yang salah. Biasanya ini berarti server file statis melayani aplikasi Vite/React, bukan server dev proyek.',
+      moduleMimeDescription:
+        'Skrip modul dilayani dengan tipe MIME yang salah. Biasanya ini berarti server file statis melayani aplikasi Vite/React, bukan server dev proyek.',
       loadFailedConsole: (code, message) => `Gagal memuat${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Halaman pratinjau tidak dapat dijangkau.',
       openTarget: url => `Buka ${url}`,
-      fallbackTitle: 'Pratinjau',
-    },
+      fallbackTitle: 'Pratinjau'
+    }
   },
   zones: {
     showHeader: 'Tampilkan tajuk',
@@ -2607,7 +2685,8 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
     minimize: 'Minimalkan',
     restore: 'Pulihkan',
     closeRunningTitle: 'Tutup tab yang berjalan?',
-    closeRunningBody: 'Chat ini masih berjalan (atau menunggu masukan Anda). Menutup tab akan menyembunyikannya — sesi tetap menyimpan kemajuannya dan dapat dibuka kembali dari bilah sisi.',
+    closeRunningBody:
+      'Chat ini masih berjalan (atau menunggu masukan Anda). Menutup tab akan menyembunyikannya — sesi tetap menyimpan kemajuannya dan dapat dibuka kembali dari bilah sisi.',
     closeRunningConfirm: 'Tutup tab',
     closeOthers: 'Tutup lainnya',
     closeToRight: 'Tutup ke kanan',
@@ -2644,27 +2723,16 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
     layoutNamePlaceholder: fallback => `Nama tata letak (${fallback})`,
     saveApply: 'Simpan & terapkan',
     notExpressible: 'Susunan ini saling mengunci (pinwheel) — belum dapat dinyatakan sebagai split bersarang',
-    zoneCount: count => `${count} zona`,
+    zoneCount: count => `${count} zona`
   },
   assistant: {
     thread: {
       loadingSession: 'Memuat sesi',
       showEarlier: 'Tampilkan pesan sebelumnya',
       loadingResponse: 'OpenAmer sedang memuat respons',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Berpikir',
       today: time => `Hari ini, ${time}`,
@@ -2691,7 +2759,7 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       restoreNext: 'Pulihkan titik pemeriksaan berikutnya',
       goForward: 'Lanjut',
       sendEdited: 'Kirim pesan yang telah diedit',
-      attachingFile: 'Menyertakan…',
+      attachingFile: 'Menyertakan…'
     },
     approval: {
       gatewayDisconnected: 'Gateway OpenAmer tidak terhubung',
@@ -2704,8 +2772,9 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       jumpToApproval: 'Persetujuan diperlukan',
       reject: 'Tolak',
       alwaysTitle: 'Selalu izinkan perintah ini?',
-      alwaysDescription: pattern => `Ini menambahkan pola “${pattern}” ke daftar izin permanen Anda (~/.openamer/config.yaml). OpenAmer tidak akan bertanya lagi untuk perintah seperti ini — di sesi ini atau sesi mendatang.`,
-      alwaysAllow: 'Selalu izinkan',
+      alwaysDescription: pattern =>
+        `Ini menambahkan pola “${pattern}” ke daftar izin permanen Anda (~/.openamer/config.yaml). OpenAmer tidak akan bertanya lagi untuk perintah seperti ini — di sesi ini atau sesi mendatang.`,
+      alwaysAllow: 'Selalu izinkan'
     },
     clarify: {
       notReady: 'Permintaan klarifikasi belum siap',
@@ -2719,7 +2788,7 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       continueLabel: 'Lanjutkan',
       lateAnswer: (question, choice) => `Re: "${question}" — jawaban saya: ${choice}`,
       lateAnswerTip: 'Buat draf jawaban ini sebagai pesan lanjutan',
-      lateAnswerHint: 'Prompt ini tidak lagi menunggu. Pilih opsi untuk membuat draf sebagai pesan lanjutan.',
+      lateAnswerHint: 'Prompt ini tidak lagi menunggu. Pilih opsi untuk membuat draf sebagai pesan lanjutan.'
     },
     tool: {
       code: 'Kode',
@@ -2755,11 +2824,11 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
         ran: 'Dijalankan',
         running: 'Berjalan',
         ranCode: 'Kode dijalankan',
-        runningCode: 'Menjalankan skrip',
+        runningCode: 'Menjalankan skrip'
       },
       prefixes: {
         browser: 'Peramban',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2767,132 +2836,133 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Berjalan ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Berjalan ${action.toLowerCase()}`,
+        runningTool: action => `Berjalan ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Mengklik elemen halaman',
           pending: 'Mengklik elemen halaman',
-          pendingAction: 'Mengklik',
+          pendingAction: 'Mengklik'
         },
         browser_fill: {
           done: 'Mengisi kolom formulir',
           pending: 'Mengisi kolom formulir',
-          pendingAction: 'Mengisi',
+          pendingAction: 'Mengisi'
         },
         browser_navigate: {
           done: 'Membuka halaman',
           pending: 'Membuka halaman',
-          pendingAction: 'Membuka',
+          pendingAction: 'Membuka'
         },
         browser_snapshot: {
           done: 'Mengambil cuplikan halaman',
           pending: 'Mengambil cuplikan halaman',
-          pendingAction: 'Mengambil',
+          pendingAction: 'Mengambil'
         },
         browser_take_screenshot: {
           done: 'Tangkapan layar diambil',
           pending: 'Mengambil tangkapan layar',
-          pendingAction: 'Mengambil',
+          pendingAction: 'Mengambil'
         },
         browser_type: {
           done: 'Mengetik pada halaman',
           pending: 'Mengetik di halaman',
-          pendingAction: 'Mengetik',
+          pendingAction: 'Mengetik'
         },
         clarify: {
           done: 'Mengajukan pertanyaan',
           pending: 'Sedang bertanya',
-          pendingAction: 'Bertanya',
+          pendingAction: 'Bertanya'
         },
         cronjob: {
           done: 'Tugas cron',
           pending: 'Menjadwalkan tugas cron',
-          pendingAction: 'Menjadwalkan',
+          pendingAction: 'Menjadwalkan'
         },
         edit_file: {
           done: 'Mengedit file',
           pending: 'Menyunting file',
-          pendingAction: 'Mengedit',
+          pendingAction: 'Mengedit'
         },
         execute_code: {
           done: 'Menjalankan kode',
           pending: 'Menulis skrip',
-          pendingAction: 'Menulis skrip',
+          pendingAction: 'Menulis skrip'
         },
         image_generate: {
           done: 'Gambar dihasilkan',
           pending: 'Membuat gambar',
-          pendingAction: 'Menghasilkan',
+          pendingAction: 'Menghasilkan'
         },
         list_files: {
           done: 'File terdaftar',
           pending: 'Mendaftar file',
-          pendingAction: 'Mendaftar',
+          pendingAction: 'Mendaftar'
         },
         patch: {
           done: 'File ditambal',
           pending: 'Menambal file',
-          pendingAction: 'Menambal',
+          pendingAction: 'Menambal'
         },
         read_file: {
           done: 'File dibaca',
           pending: 'Membaca file',
-          pendingAction: 'Membaca',
+          pendingAction: 'Membaca'
         },
         search_files: {
           done: 'File dicari',
           pending: 'Mencari file',
-          pendingAction: 'Mencari',
+          pendingAction: 'Mencari'
         },
         session_search_recall: {
           done: 'Riwayat sesi dicari',
           pending: 'Mencari riwayat sesi',
-          pendingAction: 'Mencari',
+          pendingAction: 'Mencari'
         },
         terminal: {
           done: 'Perintah dijalankan',
           pending: 'Menjalankan perintah',
-          pendingAction: 'Menjalankan',
+          pendingAction: 'Menjalankan'
         },
         todo: {
           done: 'Tugas diperbarui',
           pending: 'Memperbarui todo',
-          pendingAction: 'Memperbarui',
+          pendingAction: 'Memperbarui'
         },
         vision_analyze: {
           done: 'Gambar dianalisis',
           pending: 'Menganalisis gambar',
-          pendingAction: 'Menganalisis',
+          pendingAction: 'Menganalisis'
         },
         web_extract: {
           done: 'Halaman web dibaca',
           pending: 'Membaca halaman web',
-          pendingAction: 'Membaca',
+          pendingAction: 'Membaca'
         },
         web_search: {
           done: 'Web ditelusuri',
           pending: 'Menelusuri web',
-          pendingAction: 'Menelusuri',
+          pendingAction: 'Menelusuri'
         },
         write_file: {
           done: 'File diedit',
           pending: 'Mengedit file',
-          pendingAction: 'Mengedit',
-        },
-      },
-    },
+          pendingAction: 'Mengedit'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'Gateway OpenAmer tidak terhubung',
     sudoSendFailed: 'Tidak dapat mengirim kata sandi sudo',
     secretSendFailed: 'Tidak dapat mengirim rahasia',
     sudoTitle: 'Kata sandi administrator',
-    sudoDesc: 'OpenAmer memerlukan kata sandi sudo Anda untuk menjalankan perintah istimewa. Kata sandi ini hanya dikirim ke agen lokal Anda.',
+    sudoDesc:
+      'OpenAmer memerlukan kata sandi sudo Anda untuk menjalankan perintah istimewa. Kata sandi ini hanya dikirim ke agen lokal Anda.',
     sudoPlaceholder: 'kata sandi sudo',
     secretTitle: 'Rahasia diperlukan',
     secretDesc: 'OpenAmer memerlukan kredensial untuk melanjutkan.',
-    secretPlaceholder: 'nilai rahasia',
+    secretPlaceholder: 'nilai rahasia'
   },
   desktop: {
     audioReadFailed: 'Tidak dapat membaca audio yang direkam',
@@ -2909,7 +2979,8 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
     yoloSystem: active => `YOLO ${active ? 'aktif' : 'nonaktif'} untuk sesi ini`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Tidak dapat mengubah YOLO',
-    profileStatus: current => `Profil: ${current}. Gunakan /profile <name> atau pemilih "Sesi baru" untuk memulai chat di profil lain.`,
+    profileStatus: current =>
+      `Profil: ${current}. Gunakan /profile <name> atau pemilih "Sesi baru" untuk memulai chat di profil lain.`,
     unknownProfile: 'Profil tidak dikenal',
     noProfileNamed: (target, available) => `Tidak ada profil bernama "${target}". Tersedia: ${available}`,
     newChatsProfile: name => `Chat baru akan menggunakan profil ${name}.`,
@@ -2919,8 +2990,9 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
     regenerateFailed: 'Gagal membuat ulang',
     editFailed: 'Gagal mengedit',
     resumeFailed: 'Gagal melanjutkan',
-    resumeStrandedTitle: "Tidak dapat memuat sesi ini",
-    resumeStrandedBody: 'Koneksi ke sesi ini gagal dan percobaan ulang otomatis berhenti. Pastikan gateway berjalan, lalu coba lagi.',
+    resumeStrandedTitle: 'Tidak dapat memuat sesi ini',
+    resumeStrandedBody:
+      'Koneksi ke sesi ini gagal dan percobaan ulang otomatis berhenti. Pastikan gateway berjalan, lalu coba lagi.',
     resumeRetry: 'Coba lagi',
     nothingToBranch: 'Tidak ada yang bisa dicabangkan',
     branchNeedsChat: 'Mulai atau lanjutkan chat sebelum mencabangkan.',
@@ -2960,31 +3032,31 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       success: platform => `Diserahkan ke ${platform}. Lanjutkan di sini kapan saja.`,
       systemNote: platform => `↻ Diserahkan ke ${platform} — lanjutkan di sini kapan saja.`,
       failed: error => `Pengalihan gagal: ${error}`,
-      timedOut: 'Waktu tunggu gateway habis. Apakah `openamer gateway` berjalan?',
-    },
+      timedOut: 'Waktu tunggu gateway habis. Apakah `openamer gateway` berjalan?'
+    }
   },
   errors: {
     genericFailure: 'Terjadi kesalahan',
     boundaryTitle: 'Ada yang rusak di antarmuka',
     boundaryDesc: 'Tampilan mengalami kesalahan tak terduga. Chat dan pengaturan Anda aman.',
     reloadWindow: 'Muat ulang jendela',
-    openLogs: 'Buka log',
+    openLogs: 'Buka log'
   },
   ui: {
     search: {
-      clear: 'Hapus pencarian',
+      clear: 'Hapus pencarian'
     },
     pagination: {
       label: 'paginasi',
       previous: 'Sebelumnya',
       previousAria: 'Ke halaman sebelumnya',
       next: 'Berikutnya',
-      nextAria: 'Ke halaman berikutnya',
+      nextAria: 'Ke halaman berikutnya'
     },
     sidebar: {
       title: 'Bilah samping',
       description: 'Menampilkan sidebar seluler.',
-      toggle: 'Alihkan Sidebar',
-    },
-  },
+      toggle: 'Alihkan Sidebar'
+    }
+  }
 })

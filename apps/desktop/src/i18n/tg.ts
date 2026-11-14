@@ -24,7 +24,7 @@ export const tg = defineLocale({
       noSpeechDetected: 'No speech detected',
       playbackFailed: 'Voice playback failed',
       recordingFailed: 'Voice recording failed',
-      transcriptionFailed: 'Voice transcription failed',
+      transcriptionFailed: 'Voice transcription failed'
     },
     native: {
       approvalTitle: 'Тасдиқ лозим аст',
@@ -37,7 +37,7 @@ export const tg = defineLocale({
       turnErrorTitle: 'Навишти кор ноком шуд',
       backgroundDoneTitle: 'Вазифаи фонӣ анҷом ёфт',
       backgroundFailedTitle: 'Вазифаи фонӣ ноком шуд',
-      creditsTitle: 'Кредитҳо',
+      creditsTitle: 'Кредитҳо'
     },
     region: 'Notifications',
     hide: 'Hide',
@@ -49,7 +49,8 @@ export const tg = defineLocale({
     copyDetail: 'Copy detail',
     copyDetailFailed: 'Could not copy notification detail',
     backendOutOfDateTitle: 'Backend out of date',
-    backendOutOfDateMessage: 'Your OpenAmer backend is older than this desktop build and may not work correctly. Update to align them.',
+    backendOutOfDateMessage:
+      'Your OpenAmer backend is older than this desktop build and may not work correctly. Update to align them.',
     installMethodUnsupportedTitle: 'Unsupported install method',
     updateOpenAmer: 'Update OpenAmer',
     updateReadyTitle: 'Update ready',
@@ -59,12 +60,13 @@ export const tg = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT needs ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs rejected the API key (401).',
       gatewayAuthFailed: 'Gateway authentication failed — check your API_SERVER_KEY.',
-      methodNotAllowed: 'The desktop backend rejected that request (405 Method Not Allowed). Try restarting OpenAmer Desktop.',
+      methodNotAllowed:
+        'The desktop backend rejected that request (405 Method Not Allowed). Try restarting OpenAmer Desktop.',
       microphonePermission: 'Microphone permission was denied.',
       openaiRejectedApiKey: 'OpenAI rejected the API key.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS needs VOICE_TOOLS_OPENAI_KEY or OPENAI_API_KEY.',
-    },
+      openaiTtsNeedsKey: 'OpenAI TTS needs VOICE_TOOLS_OPENAI_KEY or OPENAI_API_KEY.'
+    }
   },
   billingBlock: {
     titleOpenamer: 'Кредитҳои OpenAmer тамом шуданд',
@@ -72,7 +74,7 @@ export const tg = defineLocale({
     openBilling: 'Кушидани ҳисоб',
     addCredits: 'Кредит илова кардан',
     dismiss: 'Пӯшидан',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Панели бокӯ пинҳон кардан',
@@ -89,7 +91,7 @@ export const tg = defineLocale({
     openStarmap: 'Кушодни графи хотира',
     openKeybinds: 'Миёбӣҳои клавиатура',
     layoutEditor: 'Таҳриргари машқул',
-    layoutEditorTitle: 'Таҳриргари машқул — ⌘-click машқулро аз нав мегузорад',
+    layoutEditorTitle: 'Таҳриргари машқул — ⌘-click машқулро аз нав мегузорад'
   },
   keybinds: {
     set: 'Танҳо кардан',
@@ -98,7 +100,7 @@ export const tg = defineLocale({
       profiles: 'Профилҳо',
       session: 'Сессия',
       navigation: 'Роҳнавигатсия',
-      view: 'Намоиш',
+      view: 'Намоиш'
     },
     actions: {
       'keybinds.openPanel': 'Кушодани тугмаҳои миёнагии устуворӣ',
@@ -177,7 +179,7 @@ export const tg = defineLocale({
       'composer.slash': 'Slash command palette',
       'composer.help': 'Quick help',
       'composer.history': 'Cycle popover / history',
-      'composer.cancel': 'Close popover · cancel run',
+      'composer.cancel': 'Close popover · cancel run'
     },
     title: 'Миёбӣҳои клавиатура',
     search: 'Ҷустуҷӯи миёбӣҳо…',
@@ -186,7 +188,7 @@ export const tg = defineLocale({
     resetAll: 'Ҳамаиро аз нав кардан',
     pressKey: 'Клавишро бишӯед…',
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   settings: {
     plugins: {
@@ -194,49 +196,51 @@ export const tg = defineLocale({
       kinds: {
         bundled: 'ҳамроҳ',
         disk: 'дар диск',
-        runtime: 'вақти иҷро',
+        runtime: 'вақти иҷро'
       },
       title: 'Desktop plugins',
-      blurb: 'UI extensions loaded into this app — bundled with the build, or dropped into the desktop-plugins folder (including ones OpenAmer writes). Disabling unloads a plugin live and survives restarts.',
+      blurb:
+        'UI extensions loaded into this app — bundled with the build, or dropped into the desktop-plugins folder (including ones OpenAmer writes). Disabling unloads a plugin live and survives restarts.',
       count: n => `${n} installed`,
       openFolder: 'Open plugins folder',
       rescan: 'Rescan',
       reveal: 'Reveal in file manager',
       enable: 'Enable',
       disable: 'Disable',
-      failed: 'failed',
+      failed: 'failed'
     },
     notifications: {
       title: 'Огоҳиҳо',
-      intro: 'Огоҳиҳои миқдории дастгирии компютер, аз хабари дохили барнома ҷудо. Инҳо маҳалдӣ мебошанд — ҳар компютер танзими худро дорад.',
+      intro:
+        'Огоҳиҳои миқдории дастгирии компютер, аз хабари дохили барнома ҷудо. Инҳо маҳалдӣ мебошанд — ҳар компютер танзими худро дорад.',
       enableAll: 'Огоҳиҳоро фаъол кун',
       enableAllDesc: 'Ҳолати асосӣ. Инро хомӯш кунед, то ҳамаи огоҳиҳои зериро сӯ шувед.',
       focusedHint: 'Огоҳиҳои анҷоми кор танҳо вақте пайдо мешаванд, ки OpenAmer дар паси ҳолат аст.',
       kinds: {
         approval: {
           label: 'Тасдиқ лозим аст',
-          description: 'Фармон мунтазири тасдиқ ё радкунии шумост.',
+          description: 'Фармон мунтазири тасдиқ ё радкунии шумост.'
         },
         input: {
           label: 'Вуруд лозим аст',
-          description: 'OpenAmer савол кард ё ба парол ё сир ниёб кард.',
+          description: 'OpenAmer савол кард ё ба парол ё сир ниёб кард.'
         },
         turnDone: {
           label: 'Ҷавоб тайё аст',
-          description: 'Навбат вақте ба итмом расид, ки OpenAmer дар паси ҳолат буд.',
+          description: 'Навбат вақте ба итмом расид, ки OpenAmer дар паси ҳолат буд.'
         },
         turnError: {
           label: 'Навбат ноком шуд',
-          description: 'Навбат бо хато ба итмом расид.',
+          description: 'Навбат бо хато ба итмом расид.'
         },
         backgroundDone: {
           label: 'Вазифаи фонӣ ба итмом расід',
-          description: 'Фармони терминал дар паси ҳолат иҷро шуд.',
+          description: 'Фармони терминал дар паси ҳолат иҷро шуд.'
         },
         credits: {
           label: 'Огоҳиҳои кредит',
-          description: 'Credit access is paused or restored.',
-        },
+          description: 'Credit access is paused or restored.'
+        }
       },
       test: 'Send test notification',
       testTitle: 'OpenAmer',
@@ -245,11 +249,12 @@ export const tg = defineLocale({
       testUnsupported: 'This system does not support native notifications.',
       completionSoundTitle: 'Completion Sound',
       completionSoundDesc: 'Plays when an agent turn finishes. Pick a preset and preview it here.',
-      completionSoundPreview: 'Preview',
+      completionSoundPreview: 'Preview'
     },
     appearance: {
       embedsTitle: 'Дастгириии байни хатлар',
-      embedsDesc: 'Пеш намудҳои пурра аз сайтҳои беромӣ (YouTube, X, …) бор мешаванд. Дар ҳолати «Пурсиш» то ҳар якеро иҷозат надиҳед, ҷойи он нишона ишода мешавад; «Ҳамиша» онҳоро худкор бор мекунад; «Хомӯш» танҳо истинодҳоро нишон медиҳад.',
+      embedsDesc:
+        'Пеш намудҳои пурра аз сайтҳои беромӣ (YouTube, X, …) бор мешаванд. Дар ҳолати «Пурсиш» то ҳар якеро иҷозат надиҳед, ҷойи он нишона ишода мешавад; «Ҳамиша» онҳоро худкор бор мекунад; «Хомӯш» танҳо истинодҳоро нишон медиҳад.',
       embedsAsk: 'Пурсиш',
       embedsAlways: 'Ҳамиша',
       embedsOff: 'Хомӯш',
@@ -260,7 +265,8 @@ export const tg = defineLocale({
       themeTitle: 'Ранг',
       themeDesc: 'Тангафаҳҳои танҳои компютер. Ҳолати интихобшуда болои он татбиқ дода мешавад.',
       installTitle: 'Насб аз VS Code',
-      installDesc: 'ID-и афзунчаи Marketplace-ро часӣш кун (масалан dracula-theme.theme-dracula) то рангчашмаи онро ба тангафаҳи компютер табдил деҳ.',
+      installDesc:
+        'ID-и афзунчаи Marketplace-ро часӣш кун (масалан dracula-theme.theme-dracula) то рангчашмаи онро ба тангафаҳи компютер табдил деҳ.',
       installButton: 'Насб',
       installing: 'Насб карда истода…',
       installError: 'Он рангро насб кардан нашуд.',
@@ -268,8 +274,10 @@ export const tg = defineLocale({
       importedBadge: 'Импорт шуд',
       pet: {
         title: 'Сӣғол',
-        intro: 'Маскоти ҳавоӣ-ҳаракатдори petdexро қабул кунед, ки болои барнома шиш мешавад ва ба амалиёти OpenAmer ҳавоия медиҳад — ҳангоми иҷрои абзор давидан, дар муваффақият шодан ва дар хато норӯҳ кардан.',
-        restartHint: 'Ҳайвонотҳо ба сарӯҳои нав ниёз доранд — барномаи ҷорӣ пеш аз илова шудани ин имконият оғоз шудааст. OpenAmer-ро пӯшӯд ва дубора кушода, ба ин саҳифа баръакс ҳараред.',
+        intro:
+          'Маскоти ҳавоӣ-ҳаракатдори petdexро қабул кунед, ки болои барнома шиш мешавад ва ба амалиёти OpenAmer ҳавоия медиҳад — ҳангоми иҷрои абзор давидан, дар муваффақият шодан ва дар хато норӯҳ кардан.',
+        restartHint:
+          'Ҳайвонотҳо ба сарӯҳои нав ниёз доранд — барномаи ҷорӣ пеш аз илова шудани ин имконият оғоз шудааст. OpenAmer-ро пӯшӯд ва дубора кушода, ба ин саҳифа баръакс ҳараред.',
         on: 'Бол',
         off: 'Хом',
         scaleTitle: 'Андоза',
@@ -279,7 +287,8 @@ export const tg = defineLocale({
         chooseTitle: 'Ҳайвонот интихоб кунед',
         chooseDesc: 'Интихоби якто онро насб мекунад (агар зарур бошад) ва фаъол мӯҳамм аст.',
         searchPlaceholder: 'Ҳайвонотҳоро ҷуёш кунед…',
-        unreachable: 'Галереяи petdex-ро дастгир кардан мумкин нест. Пайвасти худро тафтиш кунед ва ин саҳифаро дубора кушод.',
+        unreachable:
+          'Галереяи petdex-ро дастгир кардан мумкин нест. Пайвасти худро тафтиш кунед ва ин саҳифаро дубора кушод.',
         installedTag: 'Насбшуда',
         generatedTag: 'Сохташуда',
         deleteBody: 'Ин ҳайвонотро ба ҳамеша нест мекунад — дубора онро насб кардан мумкин нест.',
@@ -301,16 +310,18 @@ export const tg = defineLocale({
         renameFailed: slug => `Could not rename ${slug}`,
         exportFailed: slug => `Could not export ${slug}`,
         turnOnFailed: 'Could not turn the pet on.',
-        turnOffFailed: 'Could not turn the pet off.',
+        turnOffFailed: 'Could not turn the pet off.'
       },
       title: 'Appearance',
-      intro: 'These are desktop-only display preferences. Mode controls brightness; theme controls the accent palette and chat surface styling.',
+      intro:
+        'These are desktop-only display preferences. Mode controls brightness; theme controls the accent palette and chat surface styling.',
       colorMode: 'Color Mode',
       colorModeDesc: 'Pick a fixed mode or let OpenAmer follow your system setting.',
       toolViewTitle: 'Tool Call Display',
       toolViewDesc: 'Product hides raw tool payloads; Technical shows full input/output.',
       uiScaleTitle: 'UI Scale',
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       translucencyTitle: 'Window Translucency',
       translucencyDesc: 'See your desktop through the whole window. macOS and Windows only.',
       backdropTitle: 'Chat Backdrop',
@@ -318,7 +329,7 @@ export const tg = defineLocale({
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installPlaceholder: 'publisher.extension',
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     config: {
       none: 'Ҳеҷ',
@@ -334,7 +345,8 @@ export const tg = defineLocale({
       imported: 'Конфигурация ворид карда шуд',
       invalidJson: 'JSON-и конфигурация нодуруст аст',
       keepAwakeTitle: 'Компютерро бедор ҳол нигоҳ доред',
-      keepAwakeDesc: 'Компютерро аз хӯлӣ баромадан боздоред, то корҳои дароз ва шабонагӣ давом ёбанд. Нури экран метавонад кам шавад.',
+      keepAwakeDesc:
+        'Компютерро аз хӯлӣ баромадан боздоред, то корҳои дароз ва шабонагӣ давом ёбанд. Нури экран метавонад кам шавад.'
     },
     credentials: {
       pasteKey: 'Ключро гузоштан',
@@ -344,7 +356,7 @@ export const tg = defineLocale({
       remove: 'Ҳазф кардан',
       getKey: 'Ключ гирифтан',
       saving: 'Сохтшаванда',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     envActions: {
       credentialActions: 'Амалиёти идоракунонӣ',
@@ -355,7 +367,7 @@ export const tg = defineLocale({
       replace: 'Иваз кардан',
       set: 'Таъин кардан',
       clear: 'Тоза кардан',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     gateway: {
       loading: 'Бордиқшани танзимоти шлюз...',
@@ -363,26 +375,33 @@ export const tg = defineLocale({
       unavailableDesc: 'Кӯпӯрӣ IPC-и барномаи компютерӣ танзимоти шлюз-ро пеш раҳ намекунад.',
       title: 'Пайвасти шлюз',
       envOverride: 'Таҳоитиҳи муҳит',
-      intro: 'OpenAmer Desktop аз ҳаққ тоғики шлюзи маҳалӣ худро оғоз мекунад. Шлюзи дурро истифода баред, агар мехоҳед ин барнома OpenAmer-и корӣ дар як мошин ё дар паси проксии таъминшударо идора кунад. Профили зериро интихоб кунед, то шлюзи дури мустақила ба он дода шавад.',
+      intro:
+        'OpenAmer Desktop аз ҳаққ тоғики шлюзи маҳалӣ худро оғоз мекунад. Шлюзи дурро истифода баред, агар мехоҳед ин барнома OpenAmer-и корӣ дар як мошин ё дар паси проксии таъминшударо идора кунад. Профили зериро интихоб кунед, то шлюзи дури мустақила ба он дода шавад.',
       appliesTo: 'Татбиқ мешавад ба',
       allProfiles: 'Ҳамаи профилҳо',
       defaultConnection: 'Пайвасти пешфарз барои ҳамаи профилҳое, ки таҳоитиҳи мустақила надоранд.',
       envOverrideTitle: 'Таҳоитиҳҳои муҳит ин ҷойи корӣ ин барномаи компютерӣ-ро идора мекунанд.',
-      envOverrideDesc: 'OPENAMER_DESKTOP_REMOTE_URL ва OPENAMER_DESKTOP_REMOTE_TOKEN-ро бекор созед, то танзими ҳифзшудаи зериро истифода баред.',
+      envOverrideDesc:
+        'OPENAMER_DESKTOP_REMOTE_URL ва OPENAMER_DESKTOP_REMOTE_TOKEN-ро бекор созед, то танзими ҳифзшудаи зериро истифода баред.',
       signOut: 'Хуҷоз аз ҳисоб',
       authTitle: 'Идентификация',
-      authSignedInPassword: 'Ин шлюз аз номи корбар ва парол истифода мебарад. Шумо ворид шудаи��; машғуллат ба таври автоматӣ нав карда мешавад.',
-      authSignedInOauth: 'Ин шлюз аз OAuth истифода мебарад. Шумо ворид шудаид; машғуллат ба таври автоматӣ нав карда мешавад.',
-      authNeedsPassword: 'Ин шлюз аз номи корбар ва парол истифода мебарад. Барои додан иҷоза ба ин барномаи десктопӣ воред шавед.',
+      authSignedInPassword:
+        'Ин шлюз аз номи корбар ва парол истифода мебарад. Шумо ворид шудаи��; машғуллат ба таври автоматӣ нав карда мешавад.',
+      authSignedInOauth:
+        'Ин шлюз аз OAuth истифода мебарад. Шумо ворид шудаид; машғуллат ба таври автоматӣ нав карда мешавад.',
+      authNeedsPassword:
+        'Ин шлюз аз номи корбар ва парол истифода мебарад. Барои додан иҷоза ба ин барномаи десктопӣ воред шавед.',
       tokenTitle: 'Нишонаи машғуллат',
-      tokenDesc: 'Нишонаи машғуллати панели идорасозӣ, ки барои дастёбии REST ва WebSocket истифода мешавад. Холӣ бир харо ёи дастгирӣ нашавед, то нишонаи сагташударо истифода баред.',
+      tokenDesc:
+        'Нишонаи машғуллати панели идорасозӣ, ки барои дастёбии REST ва WebSocket истифода мешавад. Холӣ бир харо ёи дастгирӣ нашавед, то нишонаи сагташударо истифода баред.',
       savedToken: 'сагташуда',
       pasteSessionToken: 'Нишонаи машғуллатро часб кун',
       testRemote: 'Санҷиши шлюзи дур',
       saveForRestart: 'Барои оғози навбатӣ нигоҳ доштан',
       saveAndReconnect: 'Нигоҳ доштан ва дубора пайваст шудан',
       diagnostics: 'Диагностика',
-      diagnosticsDesc: '`desktop.log`-ро дар муҳарриши файлҳоятон нишон деҳ — ин ҳангоми муасиса нашудани шлюз муфид аст.',
+      diagnosticsDesc:
+        '`desktop.log`-ро дар муҳарриши файлҳоятон нишон деҳ — ин ҳангоми муасиса нашудани шлюз муфид аст.',
       openLogs: 'Кушодани логоҳҳо',
       incompleteTitle: 'Шлюзи дур нопурра аст',
       incompleteSignIn: 'Пеш аз гузариш ба шлюзи дур, URL-и дурро воред ва хуҷоз шавед.',
@@ -392,7 +411,7 @@ export const tg = defineLocale({
       cloudNoAgents: {
         before: 'Дар ин ҳисоб ягон агент ёфт нашууд. Яке дар',
         linkText: 'портали OpenAmer созед',
-        after: ', сипас навсозӣ кунед.',
+        after: ', сипас навсозӣ кунед.'
       },
       cloudRefresh: 'Навсозӣ',
       cloudConnect: 'Пайваст кардан',
@@ -406,20 +425,25 @@ export const tg = defineLocale({
       cloudConnectedPill: 'Пайваст шуд',
       cloudAgentProvisioning: 'Таъмин кардан…',
       remoteUrlTitle: 'URL-и масофавӣ',
-      remoteUrlDesc: 'URL-и асосӣ барои back-end-и дастгоҳи масофавӣ. Префиксҳои роҳ ҳам дастгирӣ мешаванд, масалан /openamer.',
+      remoteUrlDesc:
+        'URL-и асосӣ барои back-end-и дастгоҳи масофавӣ. Префиксҳои роҳ ҳам дастгирӣ мешаванд, масалан /openamer.',
       probing: 'Санҷиши он ки ин дарвоза чӣ гуна муаллифӣ мекунад…',
-      probeError: 'То ҳозир ин дарвоза дастгирӣ нашуд. URL-ро санҷиш кунед — усули муаллифӣ пас аз ҷавоб додан он мешавад.',
+      probeError:
+        'То ҳозир ин дарвоза дастгирӣ нашуд. URL-ро санҷиш кунед — усули муаллифӣ пас аз ҷавоб додан он мешавад.',
       signedIn: 'Ворид шуд',
       signIn: 'Воридшавӣ',
-      sshErrNotInstalled: 'OpenAmer дар хости дур нас гузошта нашудааст. Онро дар он ҷойгир кун (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ё роҳи OpenAmer-ро муайян кунед.',
-      sshErrPlatform: 'Платформаи дур дастгирӣ намешавад. Режими SSH-и OpenAmer Desktop дар хости дур Linux, macOS ва Windows-ро дастгирӣ мекунад.',
+      sshErrNotInstalled:
+        'OpenAmer дар хости дур нас гузошта нашудааст. Онро дар он ҷойгир кун (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ё роҳи OpenAmer-ро муайян кунед.',
+      sshErrPlatform:
+        'Платформаи дур дастгирӣ намешавад. Режими SSH-и OpenAmer Desktop дар хости дур Linux, macOS ва Windows-ро дастгирӣ мекунад.',
       sshErrTimeout: 'Пайвасти SSH аз вақт гузашт. Ҳост метавонад дастгирӣ нашавад ё хоб бошад.',
       sshErrUpdateRequired: 'Пеш аз пайвастшавӣ бо Desktop SSH, OpenAmer-ро дар хости дур аз нав бахуд гиред.',
       sshErrUnknown: 'Пайвастшавӣ ба SSH ноком буд.',
       enterUrlFirst: 'Аввал URL-и дур сервер воред.',
       restartingTitle: 'Пайвасти шлюз аз нав тасдиқ мешавад',
       savedTitle: 'Танзимоти шлюз саҳл шуд',
-      restartingMessage: 'OpenAmer Desktop бо танзимоти саҳлшуда дубора пайваст мешавад — панели тавсиянӣ кушода мемонанд.',
+      restartingMessage:
+        'OpenAmer Desktop бо танзимоти саҳлшуда дубора пайваст мешавад — панели тавсиянӣ кушода мемонанд.',
       savedMessage: 'Барои тасдиқи навбатӣ саҳл шуд.',
       reachableTitle: 'Шлюзи дур дастрас аст',
       signedOutTitle: 'Аз ҳисоб баромад',
@@ -431,7 +455,8 @@ export const tg = defineLocale({
       applyFailed: 'Татбиқи танзимоти шлюз мумкин нашуд',
       saveFailed: 'Саҳл кардани танзимоти шлюз мумкин нашуд',
       sshTitle: 'Пайвастшавӣ тавассути SSH',
-      sshDesc: 'OpenAmer дар сервери дур тавассути SSH оғоз мешавад ва ба ин замина интиқол дода мешавад — оғоз кардан ё аз худ сар кардан лозим нест. Дастрасии кормандаи SSH ба сервер зарур аст.',
+      sshDesc:
+        'OpenAmer дар сервери дур тавассути SSH оғоз мешавад ва ба ин замина интиқол дода мешавад — оғоз кардан ё аз худ сар кардан лозим нест. Дастрасии кормандаи SSH ба сервер зарур аст.',
       sshTrustHint: 'Калиди аввалии сервер бовардо ва мустақим шудааст; тағйироти дастӣ баъдӣ қабул карда намешаванд.',
       sshHostTitle: 'Сервер',
       sshHostDesc: 'user@host, ё иқтибоси Сервер аз ~/.ssh/config.',
@@ -454,9 +479,12 @@ export const tg = defineLocale({
       sshButtonsHint: 'Сақташ дар оғози нав амал мешавад. Пайвастӣ ҳоло аз нав пайваст мешавад.',
       sshIncompleteHost: 'Пеш аз пайвастӣ мизбони SSH-ро ворид кунед.',
       sshErrUnreachable: 'Пайвастӣ ба он мизбон бо SSH мумкин нашуд. Мизбон, порт ва шабакаи худро санҷиш кунед.',
-      sshErrAuth: 'Аутентификатсияи SSH ноком шуд. Калиди худро ба ssh-agent бор кунед (ssh-add) ё IdentityFile-ро дар ~/.ssh/config танъим кунед — OpenAmer ssh-ро бе ҳамкорӣ иҷро мекунад.',
-      sshErrHostKey: 'Калиди мизбон аз замине ки шу ба шуда тағйир ёфтааст. Инро тасдиқ кунед, сипас ssh-keygen -R <host>-ро иҷро кунед ва дубора пайваст шавед.',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      sshErrAuth:
+        'Аутентификатсияи SSH ноком шуд. Калиди худро ба ssh-agent бор кунед (ssh-add) ё IdentityFile-ро дар ~/.ssh/config танъим кунед — OpenAmer ssh-ро бе ҳамкорӣ иҷро мекунад.',
+      sshErrHostKey:
+        'Калиди мизбон аз замине ки шу ба шуда тағйир ёфтааст. Инро тасдиқ кунед, сипас ssh-keygen -R <host>-ро иҷро кунед ва дубора пайваст шавед.',
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       modeTitle: 'Connection mode',
       localTitle: 'Local gateway',
       localDesc: 'Start a private OpenAmer backend on localhost. This is the default and works offline.',
@@ -484,12 +512,12 @@ export const tg = defineLocale({
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     keys: {
       loading: 'Клитҳои API ва иттилоотномаҳо дар баргирӣ...',
       failedLoad: 'Клитҳои API аз бор кардани сӯхфт буданд',
-      empty: 'Дар ин категория ҳанӯз чӣзи танзим нашудааст.',
+      empty: 'Дар ин категория ҳанӯз чӣзи танзим нашудааст.'
     },
     mcp: {
       loading: 'Серверҳои MCP дар баргирӣ...',
@@ -541,7 +569,8 @@ export const tg = defineLocale({
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
       catalogEnvRequired: 'Fill in the required values before installing.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       statusConnecting: 'Connecting…',
       statusNeedsAuth: 'Needs authentication',
       statusError: 'Error',
@@ -554,7 +583,7 @@ export const tg = defineLocale({
       unsavedConnect: 'Unsaved — save mcp.json to connect.',
       enableTool: tool => `Enable ${tool}`,
       disableTool: tool => `Disable ${tool}`,
-      noOutput: 'No output yet.',
+      noOutput: 'No output yet.'
     },
     model: {
       model: 'Модел',
@@ -565,7 +594,8 @@ export const tg = defineLocale({
       defaultsFailed: 'Пешфартҳои моделро нигоҳ кардан нашуд',
       auxiliaryTitle: 'Моделҳои ёрмандӣ',
       resetAllToMain: 'Ҳамаро ба асосӣ баръакс кун',
-      auxiliaryDesc: 'Вазифаҳои ёрмандӣ аз рӯи модели асосӣ иҷро мешаванд. Ба ҳар як вазифа модели аз ҷудошуда таъйин намоед, то ба ҳадл баръакс шавад.',
+      auxiliaryDesc:
+        'Вазифаҳои ёрмандӣ аз рӯи модели асосӣ иҷро мешаванд. Ба ҳар як вазифа модели аз ҷудошуда таъйин намоед, то ба ҳадл баръакс шавад.',
       setToMain: 'Ба асосӣ таъйин кардан',
       change: 'Тағйир додан',
       autoUseMain: 'худкор · модели асосӣ истифода шавад',
@@ -576,45 +606,46 @@ export const tg = defineLocale({
       tasks: {
         vision: {
           label: 'Рӯй',
-          hint: 'Таҳлили тасвир',
+          hint: 'Таҳлили тасвир'
         },
         web_extract: {
           label: 'Маълумоти веб',
-          hint: 'Чамъоварии саҳифа',
+          hint: 'Чамъоварии саҳифа'
         },
         compression: {
           label: 'Фишур',
-          hint: 'Фишурдани контекст',
+          hint: 'Фишурдани контекст'
         },
         skills_hub: {
           label: 'Маркази малаҳиятҳо',
-          hint: 'Ҷоисти малаҳият',
+          hint: 'Ҷоисти малаҳият'
         },
         approval: {
           label: 'Тасдиқ',
-          hint: 'Тасдиқи худкор боқиши зур',
+          hint: 'Тасдиқи худкор боқиши зур'
         },
         mcp: {
           hint: 'Раҳбарии абзори MCP',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Сохтори унвон',
-          hint: 'Унвонҳои сессия',
+          hint: 'Унвонҳои сессия'
         },
         curator: {
           label: 'Муҳарриф',
-          hint: 'Баррӯи истифодаи малаҳият',
-        },
+          hint: 'Баррӯи истифодаи малаҳият'
+        }
       },
       loading: 'Loading model configuration...',
       appliesDesc: 'Applies to new sessions. Use the model picker in the composer to hot-swap the active chat.',
-      provider: 'Provider',
+      provider: 'Provider'
     },
     providers: {
       connectAccount: 'Пайдост кардани ҳисоб',
       haveApiKey: 'API-ключи доред?',
-      intro: 'Бо обуна ворид шавед — API-ключи лозим нест. OpenAmer барои шумо браузериро барои воридшавӣ истифода мебарад, ҳамин ҷо дар барнома.',
+      intro:
+        'Бо обуна ворид шавед — API-ключи лозим нест. OpenAmer барои шумо браузериро барои воридшавӣ истифода мебарад, ҳамин ҷо дар барнома.',
       connected: 'Пайдост шуд',
       collapse: 'Пӯшидани',
       connectAnother: 'Пайдост кардани провайдери дигар',
@@ -624,7 +655,8 @@ export const tg = defineLocale({
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedTitle: 'Account removed',
       removedMessage: provider => `${provider} was removed.`,
@@ -634,14 +666,15 @@ export const tg = defineLocale({
       noKeysMatch: 'No providers match your search.',
       localEndpoint: {
         title: 'Local / custom endpoint',
-        description: 'Point OpenAmer at any OpenAI-compatible endpoint (Zyphra, vLLM, llama.cpp, Ollama, etc).',
+        description: 'Point OpenAmer at any OpenAI-compatible endpoint (Zyphra, vLLM, llama.cpp, Ollama, etc).'
       },
-      loading: 'Loading providers...',
+      loading: 'Loading providers...'
     },
     sessions: {
       autoArchiveFailed: 'Авто-архивни навзар кардан нашуд',
       defaultDirTitle: 'Тоталишии лоишаи пешфарзд',
-      defaultDirDesc: 'Ҷайҳои нав дар ин папка оғоз меёнд, агар ҷои дигаре интихоб накунед. Онро боз нагузед, то аз хонаи худ истифода баред.',
+      defaultDirDesc:
+        'Ҷайҳои нав дар ин папка оғоз меёнд, агар ҷои дигаре интихоб накунед. Онро боз нагузед, то аз хонаи худ истифода баред.',
       defaultDirUpdated: 'Тоталишии лоишаи пешфарзд навзар шуд — барои амал кардан чатипи навиро (Ctrl/⌘+N) оғоз кунед',
       change: 'Тағйир додан',
       choose: 'Интихоб кардан',
@@ -654,7 +687,8 @@ export const tg = defineLocale({
       clearDirFailed: 'Тоталишии умумии лоишаро соф кардан нашуд',
       loading: 'Loading archived sessions…',
       archivedTitle: 'Archived sessions',
-      archivedIntro: 'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
+      archivedIntro:
+        'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
       emptyArchivedTitle: 'Nothing archived',
       emptyArchivedDesc: 'Archive a chat to hide it here.',
       unarchive: 'Unarchive',
@@ -663,10 +697,11 @@ export const tg = defineLocale({
       restored: 'Restored',
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
       autoArchiveTitle: 'Auto-archive stale chats',
-      autoArchiveDesc: "Automatically archive chats you haven't touched in a while. Pinned chats are never archived, and nothing is deleted — archived chats just move here.",
+      autoArchiveDesc:
+        "Automatically archive chats you haven't touched in a while. Pinned chats are never archived, and nothing is deleted — archived chats just move here.",
       autoArchiveDaysLabel: 'Archive after',
       autoArchiveDaysUnit: 'days of inactivity',
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
       loadingConfig: 'Танзим бор карда мешавад',
@@ -696,16 +731,19 @@ export const tg = defineLocale({
         unavailable: 'Дастнопаст',
         inUse: 'Истифода мешавад',
         selectedTitle: 'Аз ҳисоб интихоб шуд',
-        needsSetupHint: 'Ҳоло ин аз ҳисобро интихоб карда метавонед — то дамгирии пурра шавад, фармонҳо ноком мешаванд.',
+        needsSetupHint:
+          'Ҳоло ин аз ҳисобро интихоб карда метавонед — то дамгирии пурра шавад, фармонҳо ноком мешаванд.',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
-      noProviderOptions: 'Ин якбораи абзур ягон варианти провайдер надорад — онро фаъол кунед, он бо созатҳои ҷорӣ шумо кор мекунад.',
+      noProviderOptions:
+        'Ин якбораи абзур ягон варианти провайдер надорад — онро фаъол кунед, он бо созатҳои ҷорӣ шумо кор мекунад.',
       noProviders: 'Ҳозир барои ин якбораи абзур ҳеҷ провайдер мавжуд нест.',
       ready: 'Тайёр',
       needsSignIn: 'Воридшавӣ талаб аст',
       needsSetup: 'Танзим талаб аст',
-      openamerIncluded: 'Дар муқовиси илтишоми OpenAmer ҳамгиро шудааст — барои фаъолсозӣ ба OpenAmer Portal ворид шавед.',
+      openamerIncluded:
+        'Дар муқовиси илтишоми OpenAmer ҳамгиро шудааст — барои фаъолсозӣ ба OpenAmer Portal ворид шавед.',
       openamerAuthNeededTitle: 'Ба OpenAmer Portal ворид шавед',
       openamerAuthSignIn: 'Ворид шудан',
       openamerAuthDoneTitle: 'OpenAmer Portal пайваст шудааст',
@@ -728,8 +766,10 @@ export const tg = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -739,7 +779,7 @@ export const tg = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     closeSettings: 'Close settings',
     exportConfig: 'Export config',
@@ -763,7 +803,7 @@ export const tg = defineLocale({
       about: 'About',
       billing: 'Billing',
       notifications: 'Notifications',
-      plugins: 'Plugins',
+      plugins: 'Plugins'
     },
     sections: {
       model: 'Model',
@@ -773,7 +813,7 @@ export const tg = defineLocale({
       safety: 'Safety',
       memory: 'Memory & Context',
       voice: 'Voice',
-      advanced: 'Advanced',
+      advanced: 'Advanced'
     },
     searchPlaceholder: {
       about: 'About OpenAmer Desktop',
@@ -781,21 +821,21 @@ export const tg = defineLocale({
       gateway: 'Gateway connection...',
       keys: 'Search API keys...',
       mcp: 'Search MCP servers...',
-      sessions: 'Search archived sessions...',
+      sessions: 'Search archived sessions...'
     },
     modeOptions: {
       light: {
         label: 'Light',
-        description: 'Bright desktop surfaces',
+        description: 'Bright desktop surfaces'
       },
       dark: {
         label: 'Dark',
-        description: 'Low-glare workspace',
+        description: 'Low-glare workspace'
       },
       system: {
         label: 'System',
-        description: 'Follow OS appearance',
-      },
+        description: 'Follow OS appearance'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -818,14 +858,15 @@ export const tg = defineLocale({
       lastChecked: age => `Last checked ${age}`,
       justNowSuffix: ' · just now',
       automaticUpdates: 'Automatic updates',
-      automaticUpdatesDesc: 'OpenAmer checks for updates automatically in the background and lets you know when one is ready.',
+      automaticUpdatesDesc:
+        'OpenAmer checks for updates automatically in the background and lets you know when one is ready.',
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       never: 'never',
       justNow: 'just now',
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
-    },
+      daysAgo: count => `${count} days ago`
+    }
   },
   skills: {
     tabSkills: 'Малафатҳо',
@@ -844,7 +885,8 @@ export const tg = defineLocale({
     noDescription: 'Тавсиф нест.',
     configured: 'Танҳошуда',
     needsKeys: 'Калидҳо лозим',
-    visionModelHint: 'Тасдир аз танҳои модели ёрдамӣ истифода мебарад — модели тасдирӣ дар ҳамон ҷоин интихоб мешавад, на аз ҳар як таъмоновоз дар ин ҷо.',
+    visionModelHint:
+      'Тасдир аз танҳои модели ёрдамӣ истифода мебарад — модели тасдирӣ дар ҳамон ҷоин интихоб мешавад, на аз ҳар як таъмоновоз дар ин ҷо.',
     visionModelLink: 'Дар Танҳо → Моделҳо модели тасдирӣ интихоб кунед',
     skillsLoadFailed: 'Бор кардани малафатҳо ноком буд',
     toolsetsRefreshFailed: 'Навшавии маҷмӯаҳои абзарҳо ноком буд',
@@ -863,7 +905,7 @@ export const tg = defineLocale({
     provenance: {
       agent: 'Омӯхта',
       bundled: 'Дар дастман',
-      hub: 'Марказ',
+      hub: 'Марказ'
     },
     changesApplyNewSessions: 'Тағйирот ба сессияҳои нав татбиқ мешаванд.',
     skillUpdated: 'Машқ нав шуд',
@@ -878,7 +920,8 @@ export const tg = defineLocale({
       connectingHubs: 'Пай кардани пай то ҷои малалаҳо...',
       connectedHubs: 'Ҷоиҳои пайшуда:',
       featured: 'Малалаҳои машҳур',
-      landingHint: 'Ҷойи малалаҳоро ҷустӯ кунед то малалаҳои насбшавандаро аз нишонаи расмӣ, GitHub ва манбаъҳои ҷомеагиро назар андозед.',
+      landingHint:
+        'Ҷойи малалаҳоро ҷустӯ кунед то малалаҳои насбшавандаро аз нишонаи расмӣ, GitHub ва манбаъҳои ҷомеагиро назар андозед.',
       noResults: 'Дар ҷойи малалаҳо ягон мувофиқ ёфт нашуд.',
       installed: 'Насбшуда',
       install: 'Насб',
@@ -896,7 +939,7 @@ export const tg = defineLocale({
       trust: {
         builtin: 'дастопош',
         trusted: 'эътимоднокарда',
-        community: 'ҷамоа',
+        community: 'ҷамоа'
       },
       verdictSafe: 'Бозигаар',
       verdictCaution: 'Огоҳӣ',
@@ -916,7 +959,7 @@ export const tg = defineLocale({
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     tabMcp: 'MCP',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} toolsets enabled`,
@@ -928,7 +971,7 @@ export const tg = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     title: 'Графики хотирот',
@@ -944,7 +987,8 @@ export const tg = defineLocale({
     emptyTitle: 'Ҳанӯз омӯхта нашудааст',
     emptyDesc: 'Аз онӯнки OpenAmer барои кори шумо малака ва хотиротҳо мӯҳтадид, онҳо дар ин ҷо мешаванд.',
     share: 'Музҳи харита',
-    shareHint: 'Коди онро нусха кӯҳед, то ин харитаро мубодила кунед ё якеро час кӯҳед, то бор кунед. Он танҳо сохториро дар бар мегирад, на матни хотирот ё малакаи шуморо.',
+    shareHint:
+      'Коди онро нусха кӯҳед, то ин харитаро мубодила кунед ё якеро час кӯҳед, то бор кунед. Он танҳо сохториро дар бар мегирад, на матни хотирот ё малакаи шуморо.',
     shareTitle: 'Ворид/содироти харита',
     sharePlaceholder: 'Коди харитаро час кӯҳед…',
     copy: 'Нусха кардани коди харита',
@@ -955,7 +999,7 @@ export const tg = defineLocale({
     importedBadge: 'Харитаи воридшуда',
     resetToMine: 'Бозгашт ба харитаи ман',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Пӯшидани агенҳо',
@@ -985,7 +1029,7 @@ export const tg = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'Пӯшидани маркази фармон',
@@ -1006,7 +1050,8 @@ export const tg = defineLocale({
       placeholder: 'Ҷустҷӯи ҳайвонҳои хонагӣ…',
       loading: 'Бор кардани галереяи `petdex`…',
       error: 'Галереяи `petdex` дастёс нашуд.',
-      staleBackend: 'Барои истифодаи ҳайвонҳои хонагӣ OpenAmer-ро аз нав оғоз кунед — бақлидаи футур ин хусусиятро надорад.',
+      staleBackend:
+        'Барои истифодаи ҳайвонҳои хонагӣ OpenAmer-ро аз нав оғоз кунед — бақлидаи футур ин хусусиятро надорад.',
       empty: 'Ҳайвони хонагии мувофиқ нест.',
       turnOff: 'Хомӯш кардан',
       turnOn: 'Роҳ кардан',
@@ -1014,7 +1059,7 @@ export const tg = defineLocale({
       generatedTag: 'Сохта шудааст',
       adoptFailed: 'Сабти кардани он ҳайвони хонагӣ мумкин нашуд.',
       toggleFailed: 'Хомӯш ё равон кардани ҳайвони хонагӣ мумкин нашуд.',
-      noneAvailable: 'Ҳайвони хонагии дастёс нест — якеи зеринро интихоб кунед.',
+      noneAvailable: 'Ҳайвони хонагии дастёс нест — якеи зеринро интихоб кунед.'
     },
     generatePet: {
       title: 'Ҳайвон тайёд кардан',
@@ -1037,13 +1082,14 @@ export const tg = defineLocale({
       slowProviderHint: 'Ин метавонад якчанд дақиқа вақт байд гирад',
       remix: 'Тағйир додан',
       remixConfirmTitle: 'Ин намоишро тағйир додан мехоҳид?',
-      remixConfirmBody: 'Бо як нуқтаи истифода барои тайғара як ҷойи нав месозад. Ин метавонад якчанд дақиқа вақт б гирад.',
+      remixConfirmBody:
+        'Бо як нуқтаи истифода барои тайғара як ҷойи нав месозад. Ин метавонад якчанд дақиқа вақт б гирад.',
       genericError: 'Тайғара нашуд — аз нав боз кӯшиш ёрмеш ё пешниҳодро интихоб кунед.',
       referenceImageTooLarge: 'Тасвири муқовамма хеле калон аст. Яке тоҳи 16 MB истифода баред.',
       referenceImageInvalid: 'Тасвири муқовамма хонда нашуд. PNG, JPG, WebP ё GIF-ро истифода баред.',
       adopt: 'Қабул кардан',
       startOver: 'Аз нав',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     installTheme: {
       title: 'Услубро насб кардан…',
@@ -1055,7 +1101,7 @@ export const tg = defineLocale({
       install: 'Насб кардан',
       installing: 'Насб карда истодааст...',
       installed: 'Насб шуд',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Майдонҳои танзим',
     mcpServers: 'Серверҳои MCP',
@@ -1064,49 +1110,49 @@ export const tg = defineLocale({
       maintenance: 'Нигоҳдорӣ',
       sessions: 'Дастsessionҳо',
       system: 'Система',
-      usage: 'Истифода',
+      usage: 'Истифода'
     },
     sectionDescriptions: {
       maintenance: 'Диагностика, нусхагиҳои эҳтиёт, куратор ва маълумоти хотира',
       sessions: 'Ҷустуҷу ва идораи машғулотҳо',
       system: 'Статус, журналҳо ва амалиёти система',
-      usage: 'Фаъолияти токен, арзонӣ ва малақа дар давоми вақт',
+      usage: 'Фаъолияти токен, арзонӣ ва малақа дар давоми вақт'
     },
     nav: {
       newChat: {
         title: 'Машғулоти нав',
-        detail: 'Оғози машғулоли нав',
+        detail: 'Оғози машғулоли нав'
       },
       settings: {
         title: 'Танзимот',
-        detail: 'Танзими OpenAmer дар компютер',
+        detail: 'Танзими OpenAmer дар компютер'
       },
       skills: {
         title: 'Имкониятҳо',
-        detail: 'Малақаҳо, абзорҳо ва серверҳои MCP',
+        detail: 'Малақаҳо, абзорҳо ва серверҳои MCP'
       },
       messaging: {
         title: 'Паёмӯзӣ',
-        detail: 'Танзими Telegram, Slack, Discord ва дигарон',
+        detail: 'Танзими Telegram, Slack, Discord ва дигарон'
       },
       artifacts: {
         title: 'Артефактҳо',
-        detail: 'Матодуби натиҷаҳои тавлидшуда',
-      },
+        detail: 'Матодуби натиҷаҳои тавлидшуда'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Панели машғулотҳо',
-        detail: 'Ҷустуҷу, неъкарӣ ва идораи машғулотҳо',
+        detail: 'Ҷустуҷу, неъкарӣ ва идораи машғулотҳо'
       },
       system: {
         title: 'Панели система',
-        detail: 'Статуси шлюз, журналҳо, аз нав кардан/барқарорсозӣ',
+        detail: 'Статуси шлюз, журналҳо, аз нав кардан/барқарорсозӣ'
       },
       usage: {
         title: 'Панели истифода',
-        detail: 'Токен, арзон ва фаъолияти малаҳа',
-      },
+        detail: 'Токен, арзон ва фаъолияти малаҳа'
+      }
     },
     providerNavigate: 'Саросар',
     providerSessions: 'Ҷонлашҳо',
@@ -1156,7 +1202,8 @@ export const tg = defineLocale({
       backup: 'Эҷоди нусхаи пойгоҳӣ',
       backupDesc: 'Фистури конфигурация, хотирот, малакаҳо ва ҷалашҳо ба ZIP',
       debugShare: 'Мубодилаи ислоҳӣ',
-      debugShareDesc: 'Борди гирии ҳисоботи пӯшӯд ва логҳо, пайвастҳои мубодилагирӣ гиред (баъди 6 соат худкор нест мешаванд)',
+      debugShareDesc:
+        'Борди гирии ҳисоботи пӯшӯд ва логҳо, пайвастҳои мубодилагирӣ гиред (баъди 6 соат худкор нест мешаванд)',
       debugShareRunning: 'Борди гирии ҳисоботи ислоҳӣ...',
       debugShareLinks: 'Пайвастҳои мубодила',
       debugShareFailed: 'Мубодила нуқса хушт',
@@ -1189,14 +1236,14 @@ export const tg = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     startInBranch: branch => `New conversation in ${branch}`,
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · Active sessions ${count}`,
     days: count => `${count}d`,
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   messaging: {
     search: 'Ҷоиёб кардани пайвозҳо...',
@@ -1211,7 +1258,7 @@ export const tg = defineLocale({
       not_configured: 'Танзимлаш талаб қилинади',
       pending_restart: 'Қайта ишга тушириш керак',
       retrying: 'Қайта уринилмоқда',
-      startup_failed: 'Ишга тушириш муваффақиятли бўлмади',
+      startup_failed: 'Ишга тушириш муваффақиятли бўлмади'
     },
     unknown: 'Номаълум',
     hintPendingRestart: 'Ушбу ўзгаришни қўллаш учун шлюзни ҳолат панелидан қайта ишга туширинг.',
@@ -1223,7 +1270,8 @@ export const tg = defineLocale({
     openSetupGuide: 'Танзимлаш ҳужажини очинг',
     required: 'Тақдиман',
     recommended: 'Тавсия қилинади',
-    noTokenNeeded: 'Бу платформада токен керак эмас. Юқоридаги танзимлаш ҳужажидан фойдаланинг, сўнгра уни пастда ёқинг.',
+    noTokenNeeded:
+      'Бу платформада токен керак эмас. Юқоридаги танзимлаш ҳужажидан фойдаланинг, сўнгра уни пастда ёқинг.',
     enabled: 'Ёқилган',
     disabled: 'Ғайлаш',
     unsavedChanges: 'Таҳрироти нигоҳнашуда',
@@ -1238,124 +1286,124 @@ export const tg = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Токени бот',
         help: 'Бо @BotFather бот соз, сипасан токени додашударо часб кун.',
-        placeholder: 'Токени боти Telegram-ро часб кунед',
+        placeholder: 'Токени боти Telegram-ро часб кунед'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'ID-и корбарони иҷозатдодашудаи Telegram',
-        help: 'Тавсия мешавад. ID-ҳои адами бо нуқтаи ҳарфӣ аз @userinfobot. Без ин, ҳар кӣ метавонад ба боти шумо DM фириостад.',
+        help: 'Тавсия мешавад. ID-ҳои адами бо нуқтаи ҳарфӣ аз @userinfobot. Без ин, ҳар кӣ метавонад ба боти шумо DM фириостад.'
       },
       TELEGRAM_PROXY: {
         label: 'URL-и прокси',
-        help: 'Танҷои шабакаи Telegram баста шудааст.',
+        help: 'Танҷои шабакаи Telegram баста шудааст.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Токени бот',
-        help: 'Дар Portal-и таҳиротчирони Discord барнома соз, бот илова кун, сипасан токени онро часб кун.',
+        help: 'Дар Portal-и таҳиротчирони Discord барнома соз, бот илова кун, сипасан токени онро часб кун.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'ID-и корбарони иҷозатдодашудаи Discord',
-        help: 'Тавсия мешавад. ID-ҳои корбарони Discord бо нуқтаи ҳарфӣ.',
+        help: 'Тавсия мешавад. ID-ҳои корбарони Discord бо нуқтаи ҳарфӣ.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Услуби чавоб',
-        help: 'аввал, ҳама ё хомӯш',
+        help: 'аввал, ҳама ё хомӯш'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Ҳамаи корбаронои Discord-ро иҷозат додан',
-        help: 'Танҳо дар ҳамкорӣ. Агар дуст, ҳар кӣ метавонад ботро дар бораи хуборасӣ (DM) бинад, бе рӯйхати иҷозат.',
+        help: 'Танҳо дар ҳамкорӣ. Агар дуст, ҳар кӣ метавонад ботро дар бораи хуборасӣ (DM) бинад, бе рӯйхати иҷозат.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID-и канали хона',
-        help: 'Канал, ки бот паёмҳои худкор (натиҷаи cron, ёдгорӣҳо) мефиристад.',
+        help: 'Канал, ки бот паёмҳои худкор (натиҷаи cron, ёдгорӣҳо) мефиристад.'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Номи канали хона',
-        help: 'Номи намоишии канали хона дар логҳо ва натиҷаи ҳолат.',
+        help: 'Номи намоишии канали хона дар логҳо ва натиҷаи ҳолат.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Ҳамаи корбаронои iMessage-ро иҷозат додан',
-        help: 'Агар дуст, рӯйхати иҷозати BlueBubbles саркашӣ карда мешавад.',
+        help: 'Агар дуст, рӯйхати иҷозати BlueBubbles саркашӣ карда мешавад.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Ҳамаи корбаронои Mattermost-ро иҷозат додан',
+        label: 'Ҳамаи корбаронои Mattermost-ро иҷозат додан'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Канали хона',
+        label: 'Канали хона'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Ҳамаи корбаронои QQ-ро иҷозат додан',
+        label: 'Ҳамаи корбаронои QQ-ро иҷозат додан'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Канали хонаи QQ',
-        help: 'Канали ё гурӯҳи пешфарш барои фиристонидани cron.',
+        help: 'Канали ё гурӯҳи пешфарш барои фиристонидани cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Номи канали хонаи QQ',
+        label: 'Номи канали хонаи QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Токени боти Slack',
         help: 'Токени ботро аз OAuth & Permissions баъди насб кардани барномаи Slack-и худ истифода баред.',
-        placeholder: 'Токени боти Slack-ро часб кун',
+        placeholder: 'Токени боти Slack-ро часб кун'
       },
       SLACK_APP_TOKEN: {
         label: 'Токени барномаи Slack',
         help: 'Барои мустақилии Socket Mode, туфроки ба сатҳи барнома истифода баред.',
-        placeholder: 'Туфроки барномаи Slack-ро гузоред',
+        placeholder: 'Туфроки барномаи Slack-ро гузоред'
       },
       SLACK_ALLOWED_USERS: {
         label: 'ID-ҳои корбарони иҷозат дар Slack',
-        help: 'Тавсия мешавад. ID-ҳои корбарони Slack-ро бо ҳамина аз ҳам ҷудо кунед.',
+        help: 'Тавсия мешавад. ID-ҳои корбарони Slack-ро бо ҳамина аз ҳам ҷудо кунед.'
       },
       MATTERMOST_URL: {
         label: 'URL-и сервер',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Туфроки бот',
+        label: 'Туфроки бот'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'ID-ҳои корбарони иҷозат дар амал',
-        help: 'Тавсия мешавад. ID-ҳои корбарони Mattermost-ро бо ҳамина аз ҳам ҷудо кунед.',
+        help: 'Тавсия мешавад. ID-ҳои корбарони Mattermost-ро бо ҳамина аз ҳам ҷудо кунед.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL-и сервери хона',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Туфроки дастрасӣ',
+        label: 'Туфроки дастрасӣ'
       },
       MATRIX_USER_ID: {
         label: 'ID-и корбари бот',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'ID-ҳои корбарони иҷозат дар Matrix',
-        help: 'Тавсия мешавад. ID-ҳои корбаронро бо шакли @user:server ва бо ҳамина аз ҳам ҷудо кунед.',
+        help: 'Тавсия мешавад. ID-ҳои корбаронро бо шакли @user:server ва бо ҳамина аз ҳам ҷудо кунед.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL-и мости Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL-и як мости REST-и дастёпдаи signal-cli, ки дар ҳаракат аст.',
+        help: 'URL-и як мости REST-и дастёпдаи signal-cli, ки дар ҳаракат аст.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Рақами телефон',
-        help: 'Рақами барои кӯприки signal-cli',
+        help: 'Рақами барои кӯприки signal-cli'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Корбарлани Signal-и иҷозат',
-        help: 'Тавсия. Нишондодаҳои Signal-и аз ҳам ҷудогона.',
+        help: 'Тавсия. Нишондодаҳои Signal-и аз ҳам ҷудогона.'
       },
       WHATSAPP_ENABLED: {
         label: 'Фаъол кардани кӯприки WhatsApp',
-        help: 'Бо тугмаи зерун автоматӣ муайян карда мешавад. То ҳере агар намедонед, дастгир накунед.',
+        help: 'Бо тугмаи зерун автоматӣ муайян карда мешавад. То ҳере агар намедонед, дастгир накунед.'
       },
       WHATSAPP_MODE: {
-        label: 'Ҳолати кӯприк',
+        label: 'Ҳолати кӯприк'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Корбарлани WhatsApp-и иҷозат',
-        help: 'Тавсия. Рақамҳои телефон ё нишондодаҳои WhatsApp-и аз ҳам ҷудогона.',
-      },
+        help: 'Тавсия. Рақамҳои телефон ё нишондодаҳои WhatsApp-и аз ҳам ҷудогона.'
+      }
     },
     advanced: count => `Advanced (${count})`,
     clearField: key => `Clear ${key}`,
@@ -1369,8 +1417,7 @@ export const tg = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Ҷустӣ кардани вебхукҳо...',
@@ -1379,7 +1426,8 @@ export const tg = defineLocale({
     hint: 'Тағйироти абонӣ пас аз кор ба шудани қабулкунанда бефарқ дар вақти воридшавӣ нав карда мешаванд. Абонӣ-и ғайрифаъол воридшавӳҳоро рад мекунад.',
     empty: 'Ҳанӯз ягон абонӣи вебхук нест.',
     disabledTitle: 'Қабулкунандаи вебхук ғайрифаъол аст',
-    disabledBody: 'Вебхукҳо платформаи кӯприки худро доранд. Барои қабули воридшавӳҳои HTTP онҳоро дар ин ҷо фаъол кунед; каналҳои чат танҳо вақте лозиманд, ки абонӣ ба Telegram, Discord, Slack ё канали дигар таштил шавад.',
+    disabledBody:
+      'Вебхукҳо платформаи кӯприки худро доранд. Барои қабули воридшавӳҳои HTTP онҳоро дар ин ҷо фаъол кунед; каналҳои чат танҳо вақте лозиманд, ки абонӣ ба Telegram, Discord, Slack ё канали дигар таштил шавад.',
     enable: 'Фаъол кардани вебхукҳо',
     enabling: 'Фаъол карда истодааст...',
     enableRow: 'Фаъол кардан',
@@ -1426,7 +1474,7 @@ export const tg = defineLocale({
       github_comment: 'Шарҳи GitHub',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     subscriptions: (count: number) => `Subscriptions (${count})`,
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -1434,7 +1482,7 @@ export const tg = defineLocale({
     deleteFailed: (name: string) => `Failed to delete "${name}"`,
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     close: 'Пӯшидани профилҳо',
@@ -1512,7 +1560,7 @@ export const tg = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   cron: {
     close: 'Пӯшидани cron',
@@ -1526,14 +1574,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'мувақтаф',
       disabled: 'ғайрифаъол',
       error: 'хато',
-      completed: 'мукаммал шуд',
+      completed: 'мукаммал шуд'
     },
     deliveryLabels: {
       local: 'Ин машъур',
       email: 'Почта',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     scheduleLabels: {
       daily: 'Ҳар рӯз',
@@ -1542,7 +1590,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Моҳавӣ',
       hourly: 'Ҳар соат',
       'every-15-minutes': 'Ҳар 15 дақиқа',
-      custom: 'Тантарб',
+      custom: 'Тантарб'
     },
     scheduleHints: {
       daily: 'Ҳар рӯз дар соати 9:00 AM',
@@ -1551,7 +1599,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Аввал ҳар моҳ дар соати 9:00 AM',
       hourly: 'Дар дараи ҳар соат',
       'every-15-minutes': 'Ҳар 15 дақиқа',
-      custom: 'Синтаксиси Cron ё забони табиӣ',
+      custom: 'Синтаксиси Cron ё забони табиӣ'
     },
     days: {
       '0': 'Якшанбе',
@@ -1561,11 +1609,12 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Панҷшанбе',
       '5': 'Ҷумъа',
       '6': 'Шанбе',
-      '7': 'Якшанбе',
+      '7': 'Якшанбе'
     },
     topOfHour: 'Дар аъболи ҳар соат',
     newCron: 'Крони нав',
-    emptyDescNew: 'Бароиноми худро мувофиқи ибораи cron барои иҷро расм кунед. OpenAmer онро иҷро мекунад ва натиҷаҳоро ба мақсади интихобшудаи шумо мефиристад.',
+    emptyDescNew:
+      'Бароиноми худро мувофиқи ибораи cron барои иҷро расм кунед. OpenAmer онро иҷро мекунад ва натиҷаҳоро ба мақсади интихобшудаи шумо мефиристад.',
     emptyDescSearch: 'Дархости васеътарро озмоиш кунед.',
     emptyTitleNew: 'Ҳуқуқи банавшатшуда ҳанӯз нестанд',
     emptyTitleSearch: 'Ҳеҷ мутобиқе нест',
@@ -1601,7 +1650,8 @@ Leave blank to keep the ${mode} default.`,
     editTitle: 'Крон вазифаро таҳрир кардан',
     createTitle: 'Крон вазифаи нав',
     editDesc: 'Ҷадвал, пурсиш ё ҳадафи расонияро бароред. Тағйирот дар иераи навбатӣ татбиқ мешаванд.',
-    createDesc: 'Пурсишро барои истифодаи автоматӣ ба нақша гиред. Аз нақшаи крон ё ибораи монанд «ҳар 15 дақиқа» истифода баред.',
+    createDesc:
+      'Пурсишро барои истифодаи автоматӣ ба нақша гиред. Аз нақшаи крон ё ибораи монанд «ҳар 15 дақиқа» истифода баред.',
     nameLabel: 'Ном',
     namePlaceholder: 'Сомонаи субҳ',
     promptLabel: 'Пурсиш',
@@ -1623,7 +1673,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Сохти cron',
     tabs: {
       jobs: 'Вазифаҳо',
-      blueprints: 'Нархабӣҳо',
+      blueprints: 'Нархабӣҳо'
     },
     blueprints: {
       tab: 'Нархабӣҳо',
@@ -1637,7 +1687,7 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Нархабӣҳо бор мешаванд...',
       failedLoad: 'Нархабӣҳоро бор кардан нашуд',
       emptyTitle: 'Нархабӣ даст нест',
-      emptyDesc: 'Дар ин сервер ҳеҷ нархабии автоматизатсия даст нест.',
+      emptyDesc: 'Дар ин сервер ҳеҷ нархабии автоматизатсия даст нест.'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -1646,7 +1696,7 @@ Leave blank to keep the ${mode} default.`,
     everyDayOfWeekAt: (day, time) => `Every ${day} at ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Monthly on day ${dayOfMonth} at ${time}`,
     everyHourAt: minute => `Every hour at :${minute}`,
-    actionsFor: title => `Actions for ${title}`,
+    actionsFor: title => `Actions for ${title}`
   },
   artifacts: {
     refreshing: 'Навсозӣи маводҳо',
@@ -1680,14 +1730,14 @@ Leave blank to keep the ${mode} default.`,
     copyUrl: 'URL-и нусх кардан',
     copyPath: 'Роҳи нусх кардан',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'Даври нав',
       skills: 'Имкониятҳо',
       messaging: 'Паёмӣ',
-      artifacts: 'Маҳсулотҳо',
+      artifacts: 'Маҳсулотҳо'
     },
     searchAria: 'Даврҳоро ҷуст кардан',
     searchPlaceholder: 'Даврҳоро ҷуст кардан…',
@@ -1728,12 +1778,16 @@ Leave blank to keep the ${mode} default.`,
       foldersLabel: 'Ҳампӯштҳо',
       ideaLabel: 'Идея',
       removeWorktreeFailed: 'Дарахтори корӣ ҳазф нашуд (тағйироти сахтнашуда?)',
-      removeWorktreeConfirm: 'Онро аз git ҳазф кун (каталоги дарахтори корӣ нест карда мешавад; шоҳаб бакӣ мемонанд), ё танҳо лайнро аз панели бокӣ пинҳон кун ва дарахтори корӣро дар диск ҷойгир кун.',
-      removeWorktreeDirty: 'Ин дарахтори корӣ тағйироти сахтнашуда дорад. Онро бо зӯр ҳазф кун (тағйироти нобартар карда мешаванд), ё танҳо лайнро пинҳон кун ва дар диск нигоҳ дор.',
+      removeWorktreeConfirm:
+        'Онро аз git ҳазф кун (каталоги дарахтори корӣ нест карда мешавад; шоҳаб бакӣ мемонанд), ё танҳо лайнро аз панели бокӣ пинҳон кун ва дарахтори корӣро дар диск ҷойгир кун.',
+      removeWorktreeDirty:
+        'Ин дарахтори корӣ тағйироти сахтнашуда дорад. Онро бо зӯр ҳазф кун (тағйироти нобартар карда мешаванд), ё танҳо лайнро пинҳон кун ва дар диск нигоҳ дор.',
       forceRemove: 'Бо зӯр ҳазф кардан',
       back: 'Ҳамаи лоиҳаҳо',
-      staleBackend: 'Бэкенди OpenAmer-ро навзояд, то ки лоиҳаҳо соз шавед — бэкенди шумо аз ин барномаи десктопӣ кӯҳнатар аст (Танзимот → Навсозӣҳо → Бэкенд).',
-      deleteConfirm: 'Ин лоиҳаи нигоҳдошташударо аз OpenAmer мегустард. Файлҳо, репозиторияҳои git ва дарахторҳои кори дасткорӣ намешаванд.',
+      staleBackend:
+        'Бэкенди OpenAmer-ро навзояд, то ки лоиҳаҳо соз шавед — бэкенди шумо аз ин барномаи десктопӣ кӯҳнатар аст (Танзимот → Навсозӣҳо → Бэкенд).',
+      deleteConfirm:
+        'Ин лоиҳаи нигоҳдошташударо аз OpenAmer мегустард. Файлҳо, репозиторияҳои git ва дарахторҳои кори дасткорӣ намешаванд.',
       startWork: 'Дарахтори кори нав',
       newWorktreeTitle: 'Дарахтори кори нав',
       newWorktreeDesc: 'Ба ин дарахтори корӣ номи шоҳбараро муайян кунед.',
@@ -1755,7 +1809,7 @@ Leave blank to keep the ${mode} default.`,
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     groupAriaUngrouped: 'Гурӯҳбанд кардани сеансҳо аз рӯи фазои корӣ',
     showProjects: 'Намоиштани лоиҳаҳо',
@@ -1801,19 +1855,19 @@ Leave blank to keep the ${mode} default.`,
       actionsFor: title => `Actions for ${title}`,
       handoffOrigin: platform => `Handed off from ${platform}`,
       ownedByProfile: profile => `Profile: ${profile}`,
-      untitledChat: id => `Chat ${id}`,
+      untitledChat: id => `Chat ${id}`
     },
     dateDivider: {
       today: 'Дар вайрони имрӯз',
       yesterday: 'Дирӯз',
       thisWeek: 'Дар вайрони ҳафта',
       lastWeek: 'Ҳафтаи гузашта',
-      thisMonth: 'Дар вайрони моҳ',
+      thisMonth: 'Дар вайрони моҳ'
     },
     noMatch: query => `No sessions match “${query}”.`,
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     message: 'Паём',
@@ -1854,7 +1908,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'давом додан ба сессияи қаблӣ',
       '/details': 'идоҳаи дараҷаи тафсили транскрипт',
       '/copy': 'нусхагирии интихоб ё паёми охири ёрдамчи',
-      '/quit': 'бар аз openamer',
+      '/quit': 'бар аз openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'файлҳо, папкаҳо, url-ҳо, git-ро ишрифт кардан',
@@ -1864,7 +1918,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'фириши давраи навбатӣ дар навбат',
       'keybinds.openPanel': 'ҳамаи миёбурҳои клавиатура',
       'composer.cancel': 'пӯшидани попавер · қатъ кардани иҷро',
-      'composer.history': 'айланиши попавер / таърих',
+      'composer.history': 'айланиши попавер / таърих'
     },
     attachUrlTitle: 'Пайваст кардани URL',
     attachUrlDesc: 'OpenAmer саҳифаро мегирад ва онро ҳамчун контекст ба ин давра илова мекунад.',
@@ -1882,7 +1936,8 @@ Leave blank to keep the ${mode} default.`,
     queueResume: 'Давом додан',
     queueResumeTip: 'Бо дустӣ қатъ шудааст — фириши давраҳои навбатӣро аз нав давом диҳед',
     queueStuckTitle: 'Паём дар навбат настарда шуд',
-    queueStuckBody: 'Ҳар як навбати дар навбат ҳар вақт барои фиристан муваффакқият надошт. Он ҳанӯз дар навбат аст — дубора кӯшиши фиристани он.',
+    queueStuckBody:
+      'Ҳар як навбати дар навбат ҳар вақт барои фиристан муваффакқият надошт. Он ҳанӯз дар навбат аст — дубора кӯшиши фиристани он.',
     previewUnavailable: 'Пешгӯӣ дастпеш нест',
     dictating: 'Диктовӣ кардан',
     preparingAudio: 'Тайёр кардани садо',
@@ -1908,18 +1963,18 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'Бозди коди',
         description: 'Тағйири ҷорӣро барои хатолҳо, ҳолатҳои назарнагизда ва тестҳои наме existent барои тафтиш.',
-        text: 'Лутфан инро аз рӯи хатолҳо, регрессияҳо ва тестҳои наме existent боз диҳед.',
+        text: 'Лутфан инро аз рӯи хатолҳо, регрессияҳо ва тестҳои наме existent боз диҳед.'
       },
       implementationPlan: {
         label: 'Нақшаи татбиқ',
         description: 'Пеш аз дастгирии код равиши корро муайян кунед, то тағйирот марказӣ биманд.',
-        text: 'Лутфан пеш аз тағйири код як нақшаи мухтасри татбиқ тайёр кунед.',
+        text: 'Лутфан пеш аз тағйири код як нақшаи мухтасри татбиқ тайёр кунед.'
       },
       explainThis: {
         label: 'Инро шарҳ деҳ',
         description: 'Раванди кори коди интихобшударо шарҳ деҳ ва ба файлҳои асосӣ истинод кунед.',
-        text: 'Лутфан раванди инро шарҳ деҳ ва макони файлҳои асосиро нишон деҳ.',
-      },
+        text: 'Лутфан раванди инро шарҳ деҳ ва макони файлҳои асосиро нишон деҳ.'
+      }
     },
     wakingProfile: profile => `Waking up ${profile}…`,
     newSessionPlaceholders: [
@@ -1929,7 +1984,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -1938,7 +1993,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
@@ -1946,7 +2001,7 @@ Leave blank to keep the ${mode} default.`,
     previewLabel: label => `Preview ${label}`,
     couldNotPreview: label => `Could not preview ${label}`,
     removeAttachment: label => `Remove ${label}`,
-    url: 'URL…',
+    url: 'URL…'
   },
   statusStack: {
     agents: 'Агентҳо',
@@ -1969,8 +2024,10 @@ Leave blank to keep the ${mode} default.`,
       viewAsList: 'Ҳамчун рӯйхат дидан',
       revert: 'Бозгардостан',
       revertAll: 'Ҳамаро бозгардостан',
-      revertConfirm: 'Ҳамаи тағйирот ин файлро тарки карда, онро ба ҳолати ҷомъашуда барқарор карсем? Ин амалро бозгашт кардан наметавонад.',
-      revertAllConfirm: 'Ҳамаи тағйиротро тарки карда, файлҳоро ба ҳолати ҷомъашуда барқарор карсем? Ин амалро бозгашт кардан наметавонад.',
+      revertConfirm:
+        'Ҳамаи тағйирот ин файлро тарки карда, онро ба ҳолати ҷомъашуда барқарор карсем? Ин амалро бозгашт кардан наметавонад.',
+      revertAllConfirm:
+        'Ҳамаи тағйиротро тарки карда, файлҳоро ба ҳолати ҷомъашуда барқарор карсем? Ин амалро бозгашт кардан наметавонад.',
       staged: 'Ба индексашуд',
       noChanges: 'Тағйирот нест',
       notRepo: 'Ин як git ан нест',
@@ -1987,7 +2044,8 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'Кушодан PR',
       ghMissing: 'Насбкусти GitHub CLI (gh) ва воридшавӣ барои кушодани PR',
       agentShip: 'Аз OpenAmer хоҳид, ки PR кушорад',
-      agentShipPrompt: 'Таҳлили тағйиротҳои ҷорӣ, татбиди онҳо бо паёми равшанеи конвенсионалии татбид, интишони шоҳ ва кушодани пул-декхост.',
+      agentShipPrompt:
+        'Таҳлили тағйиротҳои ҷорӣ, татбиди онҳо бо паёми равшанеи конвенсионалии татбид, интишони шоҳ ва кушодани пул-декхост.',
       newBranch: 'Шоҳи нав',
       worktrees: 'Дараҳҳои корӣ',
       changed: count => `${count} changed`,
@@ -1995,12 +2053,12 @@ Leave blank to keep the ${mode} default.`,
       behind: count => `${count} behind`,
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -2015,7 +2073,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'Аздарув пурра шуд',
       manual: 'Аз терминал нав диҳед',
       guiSkew: 'Аз барномаи десктоп нав диҳед',
-      error: 'Аздарув қатъ шудааст',
+      error: 'Аздарув қатъ шудааст'
     },
     checking: 'Аздарувҳо ҷуё мешаванд…',
     checkFailedTitle: 'Аздарувҳоро санҷида нашуд',
@@ -2034,15 +2092,19 @@ Leave blank to keep the ${mode} default.`,
     updateNow: 'Ҳозир нав диҳед',
     maybeLater: 'Шояд инер',
     manualTitle: 'Аз терминали худро наврез кун',
-    manualBody: 'Шумо OpenAmer-ро аз сатри фармон насб кардед, аз ҳамин ҷо низ наврезҳо иҷро мешаванд. Инро дар терминали худ часб кун:',
+    manualBody:
+      'Шумо OpenAmer-ро аз сатри фармон насб кардед, аз ҳамин ҷо низ наврезҳо иҷро мешаванд. Инро дар терминали худ часб кун:',
     manualPickedUp: 'OpenAmer дар дигарбораи ки бароварда мешавад, ин навзоро мегирад.',
     guiSkewTitle: 'Наврез кардани барномаи компютерӣ',
-    guiSkewBody: 'Таҳмоил наврез шуд, аммо ин бастаи барномаи компютерӣ тағйир наёфт. Барои мувофиқ будан, барномаи компютерӣи OpenAmer-ро (AppImage / .deb / .rpm-и худ) наврез ё аз нав насб кунед.',
+    guiSkewBody:
+      'Таҳмоил наврез шуд, аммо ин бастаи барномаи компютерӣ тағйир наёфт. Барои мувофиқ будан, барномаи компютерӣи OpenAmer-ро (AppImage / .deb / .rpm-и худ) наврез ё аз нав насб кунед.',
     copy: 'Нусха кардан',
     copied: 'Нусха шуд',
     done: 'Анҷом шуд',
-    applyingBody: 'Барномаи навзди OpenAmer дар равзанаи алоҳида вазодиятро ба даст мегирад ва ҳама чизро ба низ меорад. Пас аз анҷом ёфтан, OpenAmer-ро ба тавр автоматӣ аз нав мекушояд. Лутфан ҳама бар OpenAmer-ро дар ҳама вақти наврез кардан аз нав накушоед.',
-    applyingBodyBackend: 'Таҳмоили дурӣ наврезро иҷро мекунад ва аз нав оғоз мешавад. OpenAmer пас аз баргардани он ба тавр автоматӣ пайваст мешавад.',
+    applyingBody:
+      'Барномаи навзди OpenAmer дар равзанаи алоҳида вазодиятро ба даст мегирад ва ҳама чизро ба низ меорад. Пас аз анҷом ёфтан, OpenAmer-ро ба тавр автоматӣ аз нав мекушояд. Лутфан ҳама бар OpenAmer-ро дар ҳама вақти наврез кардан аз нав накушоед.',
+    applyingBodyBackend:
+      'Таҳмоили дурӣ наврезро иҷро мекунад ва аз нав оғоз мешавад. OpenAmer пас аз баргардани он ба тавр автоматӣ пайваст мешавад.',
     applyingClose: 'Ҳама равзана дар вақти иҷро шудани наврез пӯшида мешавад, баъд OpenAmer аз худ аз нав мекушояд.',
     errorTitle: 'Наврез иҷро нашуд',
     errorBody: 'Ҳама чиз ду нест — ҳеҷ чиз гум нашуд. Шумо ҳоло метавонед аз нав кӯшиш кунед.',
@@ -2053,13 +2115,14 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'Таҳмоил барои бор кардани навз аз нав оғоз мешавад…',
       notAvailable: 'Барои ин таҳмоил наврез даст нест.',
       failed: 'Наврез кардани таҳмоил ноком шуд.',
-      noReturn: 'Сервер қатъом бар наомад. Навзодиш шояд аз даст рафта бошад — хости серверро тафтиш кун.',
+      noReturn: 'Сервер қатъом бар наомад. Навзодиш шояд аз даст рафта бошад — хости серверро тафтиш кун.'
     },
     appErrors: {
-      updateLocked: 'Навзодиш бекор шуд: як равзанаи дигари OpenAmer ё терминали `openamer` ин таттиқро кушода нигоҳ доштааст. Онро пӯшид ва аз нав кӯшиш кун.',
-      updateFailed: 'Навзодиш аз даст на рафт. Нигоҳ набард — ҳеҷ чиз гум нашуд. Акнун аз нав кӯшиш мумкин аст.',
+      updateLocked:
+        'Навзодиш бекор шуд: як равзанаи дигари OpenAmer ё терминали `openamer` ин таттиқро кушода нигоҳ доштааст. Онро пӯшид ва аз нав кӯшиш кун.',
+      updateFailed: 'Навзодиш аз даст на рафт. Нигоҳ набард — ҳеҷ чиз гум нашуд. Акнун аз нав кӯшиш мумкин аст.'
     },
-    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
+    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`
   },
   install: {
     stageStates: {
@@ -2067,7 +2130,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'Дар ҳамаи таттиқ',
       succeeded: 'Анҷом шуд',
       skipped: 'Гузашта шуд',
-      failed: 'Нокомуд',
+      failed: 'Нокомуд'
     },
     oneTimeTitle: 'Барои OpenAmer як мартак таттиқ лозим аст',
     installCommand: 'Фармони таттиқ',
@@ -2076,10 +2139,12 @@ Leave blank to keep the ${mode} default.`,
     installTo: 'Дар куҷо таттиқ мешавад',
     retryAfterRun: 'Ман онро иҷро крӯм — аз нав кӯшиш',
     setupChoiceTitle: 'Танзими OpenAmer Desktop',
-    setupChoiceDesc: 'Ин барномаро ба шлюзи OpenAmer-и мавҷуд пайваст кун ё OpenAmer-ро дар ин компютер маҳалӣ таттиқ кун.',
+    setupChoiceDesc:
+      'Ин барномаро ба шлюзи OpenAmer-и мавҷуд пайваст кун ё OpenAmer-ро дар ин компютер маҳалӣ таттиқ кун.',
     connectExistingTitle: 'Пайваст ба OpenAmer-и мавҷуд',
     connectExistingShort: 'Пайвасти мавҷуд',
-    connectExistingDesc: 'Аз бэкенди дурда бо токени сессия ё воридшавӣ дар браузер истифода баред. Таттиқи маҳалӣ оғоз намешавад.',
+    connectExistingDesc:
+      'Аз бэкенди дурда бо токени сессия ё воридшавӣ дар браузер истифода баред. Таттиқи маҳалӣ оғоз намешавад.',
     installLocalTitle: 'OpenAmer-ро маҳалӣ таттиқ кун',
     incompleteTokenTest: 'Пеш аз санҷиши ин интернет, аломаи сессияро воред.',
     testConnection: 'Санҷиши пайвастӣ',
@@ -2088,8 +2153,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Насосӣ ноком шуд',
     settingUpTitle: 'Танзими OpenAmer Agent',
     finishingTitle: 'Анҷом додан',
-    failedDesc: 'Яке аз қадамҳои насосӣ ноком шуд. Дар Windows ин метавонад рӯй диҳад, агар OpenAmer CLI ё дастшуворӣ дигар кор кунад. Ҳамаи OpenAmer-и кор кардаро қатъ кунед ва дубора кӯшиш кунед. Барои матни пурра ба зери муфаққалӣ ё логии дастшуворӣ нигоҳ кунед.',
-    activeDesc: 'Ин як тарҷиби якмартагист. Насоси OpenAmer вобастагиҳоро бор мекунад ва дастгоҳи шуморо танзим мекунад. Оғозҳои оянда ин қадаро намегузаранд.',
+    failedDesc:
+      'Яке аз қадамҳои насосӣ ноком шуд. Дар Windows ин метавонад рӯй диҳад, агар OpenAmer CLI ё дастшуворӣ дигар кор кунад. Ҳамаи OpenAmer-и кор кардаро қатъ кунед ва дубора кӯшиш кунед. Барои матни пурра ба зери муфаққалӣ ё логии дастшуворӣ нигоҳ кунед.',
+    activeDesc:
+      'Ин як тарҷиби якмартагист. Насоси OpenAmer вобастагиҳоро бор мекунад ва дастгоҳи шуморо танзим мекунад. Оғозҳои оянда ин қадаро намегузаранд.',
     fetchingManifest: 'Бор кардани рӯйхати насосӣ...',
     error: 'Хато',
     hideOutput: 'Пинҳон кардани натиҷаи насосӣ',
@@ -2101,12 +2168,15 @@ Leave blank to keep the ${mode} default.`,
     copiedOutput: 'Нусхагиро шуд!',
     copyOutput: 'Нусхагирии натиҷа',
     reloadRetry: 'Аз нав бор ва дубора кӯшиш',
-    installLocalDesc: 'OpenAmer-ро дастгир кунед, муҳити Python-и онро созед ва сервери манбаъро дар ин компютер кор баред.',
+    installLocalDesc:
+      'OpenAmer-ро дастгир кунед, муҳити Python-и онро созед ва сервери манбаъро дар ин компютер кор баред.',
     localStartUnavailable: 'Намудан маҳаллӣ оғоз нашуд. OpenAmer Desktop-ро аз нав оғоз карда, дубора кӯшиш кунед.',
     remoteSetupTitle: 'Пайваст шудан ба OpenAmer-и мавҷуда',
-    remoteSetupDesc: 'URL-и шлюз-и худро ворид кунед. OpenAmer Desktop муайян мекунад, ки токен ё воридшавӣ бо браузер лозим аст ё не.',
+    remoteSetupDesc:
+      'URL-и шлюз-и худро ворид кунед. OpenAmer Desktop муайян мекунад, ки токен ё воридшавӣ бо браузер лозим аст ё не.',
     remoteUrlTitle: 'URL-и шлюз',
-    remoteUrlDesc: 'URL-и асосии шлюзи OpenAmer-ро истифода баред. Дар ҳолати дур будан, https://-ро ҳам дар бар гиред.',
+    remoteUrlDesc:
+      'URL-и асосии шлюзи OpenAmer-ро истифода баред. Дар ҳолати дур будан, https://-ро ҳам дар бар гиред.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
     probing: 'Аутентификатсияи шлюз мушаххас карда мешавад...',
     probeError: 'Ба шлюзи OpenAmer-и мазкур дастгирӣ нашуд.',
@@ -2121,13 +2191,14 @@ Leave blank to keep the ${mode} default.`,
     tokenDesc: 'Токени сессияро аз файли `.env`-и шлюзи дур часб кунед.',
     pasteSessionToken: 'Токени сессияро часб кунед',
     incompleteSignInTest: 'Пеш аз санҷиши шлюзи маҳдуд бо OAuth ворид шавед.',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
     signInWith: provider => `Sign in with ${provider}`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   modelPicker: {
     loadFailed: 'Моделҳоро бор кардан нашуд',
@@ -2143,13 +2214,13 @@ Leave blank to keep the ${mode} default.`,
     unknown: '(unknown)',
     search: 'Filter providers and models...',
     noModels: 'No models found.',
-    addProvider: 'Add provider',
+    addProvider: 'Add provider'
   },
   modelVisibility: {
     title: 'Моделҳо',
     search: 'Ҷои моделҳо',
     noAuthenticatedProviders: 'Провайдерҳои ба аутентификатӣшуда нестанд.',
-    addProvider: 'Иловаи провайдер…',
+    addProvider: 'Иловаи провайдер…'
   },
   shell: {
     windowControls: 'Идораи равзана',
@@ -2160,7 +2231,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'Модел ёфт нашуд',
       editModels: 'Таҳрири моделҳо…',
       refreshModels: 'Нав кардани моделҳо',
-      fast: 'Тез',
+      fast: 'Тез'
     },
     gatewayMenu: {
       checkingInference: 'Санҷиши инференс',
@@ -2175,7 +2246,7 @@ Leave blank to keep the ${mode} default.`,
       offline: 'Offline',
       inferenceReady: 'Inference ready',
       inferenceNotReady: 'Inference not ready',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'Ҳолати тасдиқ',
@@ -2185,7 +2256,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'Автоматӣ арзёбӣ кардани амалҳо ва пурсиш ҳар он ҷо',
       off: 'Хомӯш',
       offDescription: 'Иҷро бе пешнишодҳои тасдиқ',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'Номаълум',
@@ -2205,19 +2276,21 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'Таърифи зердефакҳо',
           system_prompt: 'Системный промпт',
           tool_definitions: 'Таърифи абзорҳо',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Ҳанӯз маълумоти контекст нест',
         loading: 'Баргирии таҳлилӣ…',
         title: 'Истифодаи контекст',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Кушоди таҳлили истифодаи контекст',
       session: 'Давра',
       runtimeSessionElapsed: 'Вақти сарфашуда дар давраи иҷро',
-      yoloOn: 'YOLO фаъол — фармони хатарнок ба тавқар автоматӣ тасдиқ мешавад. Барои хомӯш кардан клик кунед. Shift+click онро дар ҳама ҷоҳр мегузарад.',
-      yoloOff: 'YOLO хомӯш — барои тасдиқи автоматии фармони хатарнок клик кунед. Shift+click онро дар ҳама ҷоҳр мегузарад.',
+      yoloOn:
+        'YOLO фаъол — фармони хатарнок ба тавқар автоматӣ тасдиқ мешавад. Барои хомӯш кардан клик кунед. Shift+click онро дар ҳама ҷоҳр мегузарад.',
+      yoloOff:
+        'YOLO хомӯш — барои тасдиқи автоматии фармони хатарнок клик кунед. Shift+click онро дар ҳама ҷоҳр мегузарад.',
       modelNone: 'ҳеҷ',
       noModel: 'модел нест',
       switchModel: 'Ҷоиши модел',
@@ -2260,7 +2333,7 @@ Leave blank to keep the ${mode} default.`,
       failed: count => `${count} failed`,
       running: count => `${count} running`,
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
     },
     modelOptions: {
       noOptions: 'No options for this model',
@@ -2276,8 +2349,8 @@ Leave blank to keep the ${mode} default.`,
       max: 'Max',
       ultra: 'Ultra',
       updateFailed: 'Model option update failed',
-      fastFailed: 'Fast mode update failed',
-    },
+      fastFailed: 'Fast mode update failed'
+    }
   },
   rightSidebar: {
     aria: 'Бурдаи рост',
@@ -2313,7 +2386,7 @@ Leave blank to keep the ${mode} default.`,
     terminalNew: 'New terminal',
     terminalCloseOthers: 'Close others',
     terminalCloseAll: 'Close all',
-    addToChat: 'Add to chat',
+    addToChat: 'Add to chat'
   },
   preview: {
     opening: 'Кушодан...',
@@ -2335,7 +2408,8 @@ Leave blank to keep the ${mode} default.`,
     editing: 'Дар ҳоли таҳрир',
     unsavedChanges: 'Тағйироти саҳтнашуда',
     diskChangedTitle: 'Файл дар диск тағйир ёфт',
-    diskChangedBody: 'Ин файл аз вақте кушодани шумо тағйир ёфтааст. Онро бо варианти худ ҷои хушкор кардан ё тағйироти худро бекор карда, аз нав бор кунед?',
+    diskChangedBody:
+      'Ин файл аз вақте кушодани шумо тағйир ёфтааст. Онро бо варианти худ ҷои хушкор кардан ё тағйироти худро бекор карда, аз нав бор кунед?',
     overwrite: 'Боз аз нав соз',
     discardReload: 'Ташкод кун ва аз нав бор кун',
     console: {
@@ -2356,7 +2430,7 @@ Leave blank to keep the ${mode} default.`,
       sentTitle: 'Ба чат фиришта шуд',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Барномаи пешдиё наметавонад оғоз ёбад',
@@ -2377,9 +2451,11 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'Пешмост ҳозир аз бор бароварда мешавад.',
       restartFailedTitle: 'Аз нав гузаштани пешмост ноком буд',
       restartFailedMessage: 'OpenAmer наметавонад серверро аз нав гузорад.',
-      stillWorking: 'OpenAmer ҳанӯз кор мекунад, аммо натиҷаи аз нав гузаришан то ҳол наёбарад. Фармони сервер мумкин аст дар пеш ҷойгир истода бошад.',
+      stillWorking:
+        'OpenAmer ҳанӯз кор мекунад, аммо натиҷаи аз нав гузаришан то ҳол наёбарад. Фармони сервер мумкин аст дар пеш ҷойгир истода бошад.',
       workspaceReloading: 'Фазои корӣ тағйир ёфт, пешмост аз бор бароварда мешавад',
-      moduleMimeDescription: 'Скриптҳои модул бо навъи MIME-и нодуруст пеш дода мешаванд. Ин одактан маъно дорад, ки сервери файлҳои статикӣ ба ҷои сервери таҳлилгии лоиҳа, барномаи Vite/React-ро пеш мекунад.',
+      moduleMimeDescription:
+        'Скриптҳои модул бо навъи MIME-и нодуруст пеш дода мешаванд. Ин одактан маъно дорад, ки сервери файлҳои статикӣ ба ҷои сервери таҳлилгии лоиҳа, барномаи Vite/React-ро пеш мекунад.',
       unreachableDescription: 'Саҳифаи пешмост дастрас нест.',
       fallbackTitle: 'Пешмост',
       lookingRestart: taskId => `OpenAmer is looking for a preview server to restart (${taskId})`,
@@ -2390,7 +2466,7 @@ Leave blank to keep the ${mode} default.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     tab: 'Preview',
     closeTab: label => `Close ${label}`,
@@ -2403,7 +2479,7 @@ Leave blank to keep the ${mode} default.`,
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   assistant: {
     thread: {
@@ -2434,15 +2510,17 @@ Leave blank to keep the ${mode} default.`,
       copy: 'Нусха',
       refresh: 'Нав кардан',
       moreActions: 'Амалҳои бештар',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
-      yesterday: time => `Yesterday, ${time}`,
+      yesterday: time => `Yesterday, ${time}`
     },
     clarify: {
       lateAnswerTip: 'Ҷавобро ҳамчун паём одаконда тайёр соз',
-      lateAnswerHint: 'Ин пурсист диқат намекунад. Барои тайёр кардани он ҳамчун паём одаконда як варианти интихоб кунед.',
+      lateAnswerHint:
+        'Ин пурсист диқат намекунад. Барои тайёр кардани он ҳамчун паём одаконда як варианти интихоб кунед.',
       notReady: 'Clarify request is not ready yet',
       gatewayDisconnected: 'OpenAmer gateway is not connected',
       sendFailed: 'Could not send clarify response',
@@ -2452,7 +2530,7 @@ Leave blank to keep the ${mode} default.`,
       skip: 'Skip',
       skipped: 'Skipped',
       continueLabel: 'Continue',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     tool: {
       code: 'Код',
@@ -2488,11 +2566,11 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Ran',
         running: 'Running',
         ranCode: 'Ran code',
-        runningCode: 'Scripting',
+        runningCode: 'Scripting'
       },
       prefixes: {
         browser: 'Browser',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2500,120 +2578,120 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
+        runningTool: action => `Running ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Clicked page element',
           pending: 'Clicking page element',
-          pendingAction: 'Clicking',
+          pendingAction: 'Clicking'
         },
         browser_fill: {
           done: 'Filled form field',
           pending: 'Filling form field',
-          pendingAction: 'Filling',
+          pendingAction: 'Filling'
         },
         browser_navigate: {
           done: 'Opened page',
           pending: 'Opening page',
-          pendingAction: 'Opening',
+          pendingAction: 'Opening'
         },
         browser_snapshot: {
           done: 'Captured page snapshot',
           pending: 'Capturing page snapshot',
-          pendingAction: 'Capturing',
+          pendingAction: 'Capturing'
         },
         browser_take_screenshot: {
           done: 'Captured screenshot',
           pending: 'Capturing screenshot',
-          pendingAction: 'Capturing',
+          pendingAction: 'Capturing'
         },
         browser_type: {
           done: 'Typed on page',
           pending: 'Typing on page',
-          pendingAction: 'Typing',
+          pendingAction: 'Typing'
         },
         clarify: {
           done: 'Asked a question',
           pending: 'Asking a question',
-          pendingAction: 'Asking',
+          pendingAction: 'Asking'
         },
         cronjob: {
           done: 'Cron job',
           pending: 'Scheduling cron job',
-          pendingAction: 'Scheduling',
+          pendingAction: 'Scheduling'
         },
         edit_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
+          pendingAction: 'Editing'
         },
         execute_code: {
           done: 'Ran code',
           pending: 'Scripting',
-          pendingAction: 'Scripting',
+          pendingAction: 'Scripting'
         },
         image_generate: {
           done: 'Generated image',
           pending: 'Generating image',
-          pendingAction: 'Generating',
+          pendingAction: 'Generating'
         },
         list_files: {
           done: 'Listed files',
           pending: 'Listing files',
-          pendingAction: 'Listing',
+          pendingAction: 'Listing'
         },
         patch: {
           done: 'Patched file',
           pending: 'Patching file',
-          pendingAction: 'Patching',
+          pendingAction: 'Patching'
         },
         read_file: {
           done: 'Read file',
           pending: 'Reading file',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         search_files: {
           done: 'Searched files',
           pending: 'Searching files',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         session_search_recall: {
           done: 'Searched session history',
           pending: 'Searching session history',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         terminal: {
           done: 'Ran command',
           pending: 'Running command',
-          pendingAction: 'Running',
+          pendingAction: 'Running'
         },
         todo: {
           done: 'Updated todos',
           pending: 'Updating todos',
-          pendingAction: 'Updating',
+          pendingAction: 'Updating'
         },
         vision_analyze: {
           done: 'Analyzed image',
           pending: 'Analyzing image',
-          pendingAction: 'Analyzing',
+          pendingAction: 'Analyzing'
         },
         web_extract: {
           done: 'Read webpage',
           pending: 'Reading webpage',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         web_search: {
           done: 'Searched web',
           pending: 'Searching web',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         write_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
-        },
-      },
+          pendingAction: 'Editing'
+        }
+      }
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2626,9 +2704,10 @@ Leave blank to keep the ${mode} default.`,
       jumpToApproval: 'Approval needed',
       reject: 'Reject',
       alwaysTitle: 'Always allow this command?',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
-      alwaysAllow: 'Always allow',
-    },
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysAllow: 'Always allow'
+    }
   },
   zones: {
     custom: 'Фардӣ',
@@ -2637,19 +2716,22 @@ Leave blank to keep the ${mode} default.`,
     nameLayoutPlaceholder: 'Ба ин тарҳ ном диҳед…',
     zoneEditorTitle: 'Таҳриргари минтақа',
     editorHintPre: 'Барои тақсим кардан клик кунед·',
-    editorHintPost: 'хатро баръакс мекунад · барои як кардан ба болои минтақаҳо кашёд · барои тағйир додани андоза хоҳирони муштарак кашёд',
+    editorHintPost:
+      'хатро баръакс мекунад · барои як кардан ба болои минтақаҳо кашёд · барои тағйир додани андоза хоҳирони муштарак кашёд',
     templateColumns: 'Сутунҳо',
     templateRows: 'Қаторҳо',
     templateGrid: 'Шабарона',
     templatePriority: 'Афзалият',
     saveApply: 'Нигоҳ дор ва татбиқ деҳ',
-    notExpressible: 'ин тарҳ бо ҳам қуфс мешавад (чархӯ) — ҳанӯз ҳамчун тақсимҳои дастгиршаванда ифода карда наметавонад',
+    notExpressible:
+      'ин тарҳ бо ҳам қуфс мешавад (чархӯ) — ҳанӯз ҳамчун тақсимҳои дастгиршаванда ифода карда наметавонад',
     showHeader: 'Show header',
     hideHeader: 'Hide header',
     minimize: 'Minimize',
     restore: 'Restore',
     closeRunningTitle: 'Close running tab?',
-    closeRunningBody: 'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
+    closeRunningBody:
+      'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
     closeRunningConfirm: 'Close tab',
     closeOthers: 'Close others',
     closeToRight: 'Close to the right',
@@ -2673,7 +2755,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   desktop: {
     cwdChangeFailed: 'Иваз кардани раваи корӣ ноком шуд',
@@ -2704,7 +2786,7 @@ Leave blank to keep the ${mode} default.`,
       timedOut: 'Дар интизори gateway вақт там шуд. Оё `openamer gateway` кор мекунад?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     audioReadFailed: 'Could not read recorded audio',
     sessionUnavailable: 'Session unavailable',
@@ -2720,7 +2802,8 @@ Leave blank to keep the ${mode} default.`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Could not toggle YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     unknownProfile: 'Unknown profile',
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
@@ -2731,7 +2814,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'Edit failed',
     resumeFailed: 'Resume failed',
     resumeStrandedTitle: "Couldn't load this session",
-    resumeStrandedBody: 'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
+    resumeStrandedBody:
+      'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
     resumeRetry: 'Retry',
     nothingToBranch: 'Nothing to branch',
     branchNeedsChat: 'Start or resume a chat before branching.',
@@ -2742,31 +2826,31 @@ Leave blank to keep the ${mode} default.`,
     branchFailed: 'Branch failed',
     deleteFailed: 'Delete failed',
     archived: 'Archived',
-    archiveFailed: 'Archive failed',
+    archiveFailed: 'Archive failed'
   },
   errors: {
     genericFailure: 'Чизе нодуруст шуд',
     boundaryTitle: 'Дар интерфейс чизе вайрон шуд',
     boundaryDesc: 'Намоиш ба хатои ғайричаён дар рӯ баст. Чатҳо ва танзимҳои шумо бехавфанд.',
     reloadWindow: 'Панелро аз нав боркун',
-    openLogs: 'Логҳоро кушод',
+    openLogs: 'Логҳоро кушод'
   },
   ui: {
     search: {
-      clear: 'Ҷустуриро тоза кун',
+      clear: 'Ҷустуриро тоза кун'
     },
     pagination: {
       label: 'Саҳифабандӣ',
       previous: 'Қаблӣ',
       previousAria: 'Ба саҳифаи қаблӣ гузаред',
       next: 'Баъдӣ',
-      nextAria: 'Ба саҳифаи баъдӣ гузаред',
+      nextAria: 'Ба саҳифаи баъдӣ гузаред'
     },
     sidebar: {
       title: 'Менюи боксӣ',
       description: 'Менюи боксии мобилро нишон медиҳад.',
-      toggle: 'Менюи боксиро кушод ё пӯшод',
-    },
+      toggle: 'Менюи боксиро кушод ё пӯшод'
+    }
   },
   common: {
     apply: 'Apply',
@@ -2807,7 +2891,7 @@ Leave blank to keep the ${mode} default.`,
     update: 'Update',
     tryHint: term => `Try “${term}”`,
     on: 'On',
-    off: 'Off',
+    off: 'Off'
   },
   fileMenu: {
     revealFinder: 'Reveal in Finder',
@@ -2822,7 +2906,7 @@ Leave blank to keep the ${mode} default.`,
     renameLabel: 'New name',
     deleteTitle: name => `Delete ${name}?`,
     deleteBody: 'It will be moved to the Trash — you can restore it from there.',
-    pathCopied: 'Path copied',
+    pathCopied: 'Path copied'
   },
   boot: {
     ready: 'OpenAmer Desktop is ready',
@@ -2832,7 +2916,7 @@ Leave blank to keep the ${mode} default.`,
       loadingSettings: 'Loading OpenAmer settings',
       loadingSessions: 'Loading recent sessions',
       startingDesktopConnection: 'Starting desktop connection',
-      startingOpenAmerDesktop: 'Starting OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Starting OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'OpenAmer background process exited.',
@@ -2841,13 +2925,15 @@ Leave blank to keep the ${mode} default.`,
       desktopBootFailed: 'Desktop boot failed',
       gatewayConnectionLost: 'Lost connection to the gateway',
       gatewaySignInRequired: 'Gateway sign-in required',
-      ipcBridgeUnavailable: 'Desktop IPC bridge is unavailable.',
+      ipcBridgeUnavailable: 'Desktop IPC bridge is unavailable.'
     },
     failure: {
       title: "OpenAmer couldn't start",
-      description: "The background gateway didn't come up. Try one of the recovery steps below. Nothing here deletes your chats or settings.",
+      description:
+        "The background gateway didn't come up. Try one of the recovery steps below. Nothing here deletes your chats or settings.",
       remoteTitle: 'Remote gateway sign-in required',
-      remoteDescription: 'Your remote gateway session has expired. Sign in again to reconnect. Nothing here deletes your chats or settings.',
+      remoteDescription:
+        'Your remote gateway session has expired. Sign in again to reconnect. Nothing here deletes your chats or settings.',
       retry: 'Retry',
       repairInstall: 'Repair install',
       useLocalGateway: 'Use local gateway',
@@ -2855,7 +2941,8 @@ Leave blank to keep the ${mode} default.`,
       back: 'Back',
       openLogs: 'Open logs',
       repairHint: 'Repair re-runs the installer and can take a few minutes on a fresh machine.',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
       signOutAndSignIn: 'Sign out & sign in',
       remoteFailureHint: 'Check the gateway URL and sign-in under Gateway settings, or switch to the local gateway.',
       hideRecentLogs: 'Hide recent logs',
@@ -2867,11 +2954,12 @@ Leave blank to keep the ${mode} default.`,
       signInFailed: 'Sign-in failed',
       signInToRemoteGateway: 'Sign in to remote gateway',
       signInWithProvider: provider => `Sign in with ${provider}`,
-      identityProvider: 'your identity provider',
-    },
+      identityProvider: 'your identity provider'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
   },
   language: {
     label: 'Language',
@@ -2880,7 +2968,7 @@ Leave blank to keep the ${mode} default.`,
     saveError: 'Language update failed',
     switchTo: 'Switch language',
     searchPlaceholder: 'Search languages…',
-    noResults: 'No languages found',
+    noResults: 'No languages found'
   },
   onboarding: {
     headerTitle: "Let's get you setup with OpenAmer Agent",
@@ -2900,28 +2988,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'direct model API',
-        description: 'Direct access to models hosted by Fireworks AI.',
+        description: 'Direct access to models hosted by Fireworks AI.'
       },
       openrouter: {
         short: 'one key, many models',
-        description: 'Hosts hundreds of models behind a single key. Good default for new installs.',
+        description: 'Hosts hundreds of models behind a single key. Good default for new installs.'
       },
       openai: {
         short: 'GPT-class models',
-        description: 'Direct access to OpenAI models.',
+        description: 'Direct access to OpenAI models.'
       },
       gemini: {
         short: 'Gemini models',
-        description: 'Direct access to Google Gemini models.',
+        description: 'Direct access to Google Gemini models.'
       },
       xai: {
         short: 'Grok models',
-        description: 'Direct access to xAI Grok models.',
+        description: 'Direct access to xAI Grok models.'
       },
       local: {
         short: 'self-hosted',
-        description: 'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).',
-      },
+        description:
+          'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).'
+      }
     },
     backToSignIn: 'Back to sign in',
     getKey: 'Get a key',
@@ -2934,7 +3023,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'Opens your browser to sign in, then continues here',
       device_code: 'Opens a verification page in your browser — OpenAmer connects automatically',
-      external: 'Sign in once in your terminal, then come back to chat',
+      external: 'Sign in once in your terminal, then come back to chat'
     },
     startingSignIn: provider => `Starting sign-in for ${provider}...`,
     verifyingCode: provider => `Verifying your code with ${provider}...`,
@@ -2948,10 +3037,12 @@ Leave blank to keep the ${mode} default.`,
     copyAuthCode: 'Copy the authorization code and paste it below.',
     pasteAuthCode: 'Paste authorization code',
     reopenAuthPage: 'Re-open authorization page',
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
     reopenSignInPage: 'Re-open sign-in page',
     waitingAuthorize: 'Waiting for you to authorize...',
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     signedIn: "I've signed in",
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     reopenVerification: 'Re-open verification page',
@@ -2963,7 +3054,7 @@ Leave blank to keep the ${mode} default.`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
     change: 'Change',
     startChatting: 'Begin',
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2974,6 +3065,6 @@ Leave blank to keep the ${mode} default.`,
     sudoPlaceholder: 'sudo password',
     secretTitle: 'Secret required',
     secretDesc: 'OpenAmer needs a credential to continue.',
-    secretPlaceholder: 'secret value',
-  },
+    secretPlaceholder: 'secret value'
+  }
 })

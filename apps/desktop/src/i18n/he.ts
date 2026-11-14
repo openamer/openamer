@@ -45,7 +45,7 @@ export const he = defineLocale({
     update: 'עדכון',
     on: 'אל',
     off: 'לא',
-    tryHint: term => `נסה “${term}”`,
+    tryHint: term => `נסה “${term}”`
   },
   fileMenu: {
     revealFinder: 'הצג ב-Finder',
@@ -60,7 +60,7 @@ export const he = defineLocale({
     renameLabel: 'שם חדש',
     deleteBody: 'זה יועבר למטמון — ניתן לשלוף אותו מהמטמון.',
     pathCopied: 'הנתיב נשלף',
-    deleteTitle: name => `למחוק את ${name}?`,
+    deleteTitle: name => `למחוק את ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop מוכן',
@@ -69,44 +69,47 @@ export const he = defineLocale({
       loadingSettings: 'טוען את הגדרות OpenAmer',
       loadingSessions: 'טוען את הפגישות האחרונות',
       startingDesktopConnection: 'מתחבר לממשק',
-      startingOpenAmerDesktop: 'מתחבר ל-OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'מתחבר ל-OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'תהליך הבסיס של OpenAmer נסתם.',
       backgroundExitedDuringStartup: 'תהליך הבסיס של OpenAmer נסתם במהלך ההפעלה.',
       backendStopped: 'הבסיס נעצר.',
       desktopBootFailed: 'הפעלת ממשק נכשלה.',
-      gatewayConnectionLost: 'נפסק קישור לג\'ייווט',
-      gatewaySignInRequired: 'סינון ג\'ייווט נדרש',
-      ipcBridgeUnavailable: 'מנהרת IPC של ממשק המשתמש אינה זמינה.',
+      gatewayConnectionLost: "נפסק קישור לג'ייווט",
+      gatewaySignInRequired: "סינון ג'ייווט נדרש",
+      ipcBridgeUnavailable: 'מנהרת IPC של ממשק המשתמש אינה זמינה.'
     },
     failure: {
       title: 'לא הצליח OpenAmer להתחיל',
-      description: 'הג\'ייווט הבסיסי לא עלה. נסה אחד מהשלבים הריפורמיים למטה. דברים אלה לא מפנים את השיחות או ההגדרות שלך.',
-      remoteTitle: 'סינון ג\'ייווט רחוק נדרש',
-      remoteDescription: 'חיבור הרחוק של הג\'ייווט שלך פסק. סנכר שוב כדי להתחבר. דברים אלה לא מפנים את השיחות או ההגדרות שלך.',
+      description:
+        "הג'ייווט הבסיסי לא עלה. נסה אחד מהשלבים הריפורמיים למטה. דברים אלה לא מפנים את השיחות או ההגדרות שלך.",
+      remoteTitle: "סינון ג'ייווט רחוק נדרש",
+      remoteDescription:
+        "חיבור הרחוק של הג'ייווט שלך פסק. סנכר שוב כדי להתחבר. דברים אלה לא מפנים את השיחות או ההגדרות שלך.",
       retry: 'נסה שוב',
       repairInstall: 'התקנת ריפורמ',
-      useLocalGateway: 'השתמש בג\'ייווט מקומי',
-      gatewaySettings: 'הגדרות ג\'ייווט',
+      useLocalGateway: "השתמש בג'ייווט מקומי",
+      gatewaySettings: "הגדרות ג'ייווט",
       back: 'אחורה',
       openLogs: 'פתיחת יומנים',
       repairHint: 'התקנת ריפורמ חוזרת מחדש ומצריכה מספר דקות במחשב חדש.',
       signOutAndSignIn: 'סנכר & סנכר',
-      remoteFailureHint: 'בדוק את כתובת הרשת של הג\'ייווט וסנכר תחת הגדרות ג\'ייווט, או השתמש בג\'ייווט מקומי.',
+      remoteFailureHint: "בדוק את כתובת הרשת של הג'ייווט וסנכר תחת הגדרות ג'ייווט, או השתמש בג'ייווט מקומי.",
       hideRecentLogs: 'הסתר יומנים אחרונים',
       showRecentLogs: 'הצג יומנים אחרונים',
       signedInTitle: 'סנכר',
-      signedInMessage: 'מתחבר לג\'ייווט הרחוק…',
+      signedInMessage: "מתחבר לג'ייווט הרחוק…",
       signInIncompleteTitle: 'חיבור לא הושלם',
       signInIncompleteMessage: 'החלון הרשמה נסגר לפני סיום האימות.',
       signInFailed: 'חיבור נכשל',
       signInToRemoteGateway: 'התחבר למתג רחוק',
       identityProvider: 'מזהה זהויות שלך',
-      remoteSignInHint: signInLabel => `מתנתק מהפעלת הדפדפן המרוחקת השמורה, ואז פותח את ${signInLabel}. השתמש בשער מקומי כדי לעבור לקצה העורפי המובנה במקום זאת.`,
-      signInWithProvider: provider => `התחבר עם ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `מתנתק מהפעלת הדפדפן המרוחקת השמורה, ואז פותח את ${signInLabel}. השתמש בשער מקומי כדי לעבור לקצה העורפי המובנה במקום זאת.`,
+      signInWithProvider: provider => `התחבר עם ${provider}`
     },
-    desktopBootFailedWithMessage: message => `אתחול שולחן העבודה נכשל: ${message}`,
+    desktopBootFailedWithMessage: message => `אתחול שולחן העבודה נכשל: ${message}`
   },
   notifications: {
     region: 'הודעות',
@@ -118,7 +121,8 @@ export const he = defineLocale({
     copyDetail: 'העתק פרט',
     copyDetailFailed: 'לא ניתן להעתק פרטי הודעה',
     backendOutOfDateTitle: 'בסיס מיושן',
-    backendOutOfDateMessage: 'בסיס OpenAmer שלך מיושן יותר מהמערכת הפעלה הנוכחית ועשוי לעבוד לא כראוי. עדכן כדי לאזן ביניהם.',
+    backendOutOfDateMessage:
+      'בסיס OpenAmer שלך מיושן יותר מהמערכת הפעלה הנוכחית ועשוי לעבוד לא כראוי. עדכן כדי לאזן ביניהם.',
     installMethodUnsupportedTitle: 'שיטת התתקנה לא תומכת',
     updateOpenAmer: 'עדכן OpenAmer',
     updateReadyTitle: 'עדכון מוכן',
@@ -127,11 +131,12 @@ export const he = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT דרושה ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs דחה את מפתח ה-API (401).',
       gatewayAuthFailed: 'אימות השער נכשל — בדוק את API_SERVER_KEY.',
-      methodNotAllowed: 'הקצה העורפי של שולחן העבודה דחה את הבקשה (405 Method Not Allowed). נסה להפעיל מחדש את OpenAmer Desktop.',
+      methodNotAllowed:
+        'הקצה העורפי של שולחן העבודה דחה את הבקשה (405 Method Not Allowed). נסה להפעיל מחדש את OpenAmer Desktop.',
       microphonePermission: 'הרשאת המיקרופון נדחתה.',
       openaiRejectedApiKey: 'OpenAI דחה את מפתח ה-API.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI דחה את מפתח ה-API (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS דורש VOICE_TOOLS_OPENAI_KEY או OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS דורש VOICE_TOOLS_OPENAI_KEY או OPENAI_API_KEY.'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
     updateReadyMessage: count => `${count} שינוי${count === 1 ? '' : 's'} חדש זמין.`,
@@ -152,7 +157,7 @@ export const he = defineLocale({
       transcriptionFailed: 'תמלול הקול נכשל',
       transcriptionUnavailable: 'תמלול קולי אינו זמין עדיין.',
       tryRecordingAgain: 'נסה להקליט שוב.',
-      unavailable: 'קול אינו זמין',
+      unavailable: 'קול אינו זמין'
     },
     native: {
       approvalTitle: 'נדרש אישור',
@@ -165,8 +170,8 @@ export const he = defineLocale({
       turnErrorTitle: 'התור נכשל',
       backgroundDoneTitle: 'משימת הרקע הסתיימה',
       backgroundFailedTitle: 'משימת הרקע נכשלה',
-      creditsTitle: 'קרדיטים',
-    },
+      creditsTitle: 'קרדיטים'
+    }
   },
   keybinds: {
     set: 'הגדר',
@@ -175,7 +180,7 @@ export const he = defineLocale({
       profiles: 'פרופילים',
       session: 'מסד',
       navigation: 'ניווט',
-      view: 'תצוגה',
+      view: 'תצוגה'
     },
     actions: {
       'keybinds.openPanel': 'פתח קיצורי דרך מקלדת',
@@ -254,7 +259,7 @@ export const he = defineLocale({
       'profile.switch.9': 'המר לפרטי 9',
       'composer.help': 'מדריך מהיר',
       'composer.history': 'התמודד עם פופאר / היסטוריה',
-      'composer.cancel': 'סגור פופאר · בטל ריצה',
+      'composer.cancel': 'סגור פופאר · בטל ריצה'
     },
     title: 'קיצורי מקלדת',
     subtitle: open => `לחץ על קיצור כדי לשנות אותו · ${open} פותח מחדש את הלוח.`,
@@ -263,7 +268,7 @@ export const he = defineLocale({
     reset: 'אפס לברירת מחדל',
     resetAll: 'אפס הכול',
     pressKey: 'לחץ על מקש…',
-    conflictWith: label => `משויך גם ל-“${label}”`,
+    conflictWith: label => `משויך גם ל-“${label}”`
   },
   language: {
     label: 'שפה',
@@ -272,7 +277,7 @@ export const he = defineLocale({
     saveError: 'השפה לא עודכנה',
     switchTo: 'החלף שפה',
     searchPlaceholder: 'חיפוש שפות…',
-    noResults: 'לא נמצאו שפות',
+    noResults: 'לא נמצאו שפות'
   },
   settings: {
     closeSettings: 'סגור הגדרות',
@@ -297,56 +302,58 @@ export const he = defineLocale({
       about: 'אודות',
       billing: 'חיוב',
       notifications: 'התראות',
-      plugins: 'תוספים',
+      plugins: 'תוספים'
     },
     plugins: {
       empty: 'עדיין לא מותקנים דפדפוני עט',
       kinds: {
         bundled: 'כולל',
         disk: 'על הדיסק',
-        runtime: 'רקע פעולה',
+        runtime: 'רקע פעולה'
       },
       title: 'תוספים לשולחן העבודה',
-      blurb: 'הרחבות ממשק שנטענות לאפליקציה זו — מובנות בגרסה, או שהועברו לתיקיית desktop-plugins (כולל כאלה ש-OpenAmer כותב). השבתה פורקת תוסף באופן חי ושורדת הפעלות מחדש.',
+      blurb:
+        'הרחבות ממשק שנטענות לאפליקציה זו — מובנות בגרסה, או שהועברו לתיקיית desktop-plugins (כולל כאלה ש-OpenAmer כותב). השבתה פורקת תוסף באופן חי ושורדת הפעלות מחדש.',
       count: n => `${n} מותקנים`,
       openFolder: 'פתח תיקיית תוספים',
       rescan: 'סרוק מחדש',
       reveal: 'הצג במנהל הקבצים',
       enable: 'הפעל',
       disable: 'השבת',
-      failed: 'נכשל',
+      failed: 'נכשל'
     },
     notifications: {
       title: 'התראות',
-      intro: 'התראות למערכת המחשב, נפרדות מהתראות בתוך האפליקציה. אלה נמצאים במערכת המקומית — כל מחשב שומר על הגדרות משלו.',
+      intro:
+        'התראות למערכת המחשב, נפרדות מהתראות בתוך האפליקציה. אלה נמצאים במערכת המקומית — כל מחשב שומר על הגדרות משלו.',
       enableAll: 'הפעל התראות',
       enableAllDesc: 'מפתח. השבת כדי להשתיק את כל ההתראות מתחת לכפתית.',
       focusedHint: 'התראות סיום רק פועלות כאשר OpenAmer נמצא ברקע.',
       kinds: {
         approval: {
           label: 'דרוש אישור',
-          description: 'פקודה ממתינה לאישור או דחייה.',
+          description: 'פקודה ממתינה לאישור או דחייה.'
         },
         input: {
           label: 'נדרש קלט',
-          description: 'OpenAmer שאל שאלה או דורש סיסמה או סוד.',
+          description: 'OpenAmer שאל שאלה או דורש סיסמה או סוד.'
         },
         turnDone: {
           label: 'התשובה מוכנה',
-          description: 'המשימה הסתיימה כאשר OpenAmer היה ברקע.',
+          description: 'המשימה הסתיימה כאשר OpenAmer היה ברקע.'
         },
         turnError: {
           label: 'המשימה נכשלה',
-          description: 'המשימה הסתיימה עם שגיאה.',
+          description: 'המשימה הסתיימה עם שגיאה.'
         },
         backgroundDone: {
           label: 'משימת רקע הושלמה',
-          description: 'פקודה שהוצאה לרקע הושלמה.',
+          description: 'פקודה שהוצאה לרקע הושלמה.'
         },
         credits: {
           label: 'התראות אשראי',
-          description: 'הגישה לקרדיטים הושהותה או שוחזרה.',
-        },
+          description: 'הגישה לקרדיטים הושהותה או שוחזרה.'
+        }
       },
       test: 'שלח התראת בדיקה',
       testTitle: 'OpenAmer',
@@ -355,7 +362,7 @@ export const he = defineLocale({
       testUnsupported: 'מערכת זו אינה תומכת בהתראות מקוריות.',
       completionSoundTitle: 'צליל סיום',
       completionSoundDesc: 'מושמע כשהתור של הסוכן מסתיים. בחר פריסט ובדוק אותו כאן.',
-      completionSoundPreview: 'תצוגה מקדימה',
+      completionSoundPreview: 'תצוגה מקדימה'
     },
     searchPlaceholder: {
       keys: 'חיפוש קריאות API...',
@@ -363,21 +370,21 @@ export const he = defineLocale({
       sessions: 'חיפוש סשנים מרוטים...',
       about: 'אודות OpenAmer Desktop',
       config: 'חפש הגדרות...',
-      gateway: 'חיבור לשער...',
+      gateway: 'חיבור לשער...'
     },
     modeOptions: {
       light: {
         label: 'רזה',
-        description: 'משטחי דלתא בהירים',
+        description: 'משטחי דלתא בהירים'
       },
       dark: {
         label: 'כהה',
-        description: 'עבודת חלל נמוכה זיעה',
+        description: 'עבודת חלל נמוכה זיעה'
       },
       system: {
         label: 'מערכת',
-        description: 'להתאים למראה מערכת ההפעלה',
-      },
+        description: 'להתאים למראה מערכת ההפעלה'
+      }
     },
     appearance: {
       title: 'מראה',
@@ -393,7 +400,8 @@ export const he = defineLocale({
       backdropDesc: 'תמונת סמל עדינה מאחורי השיח.',
       pet: {
         intro: 'קבל מופע מוטורי של מותג petdex שעף מעל האפליקציה ומגיב לפעולות OpenAmer',
-        restartHint: 'הכלבים זקוקים לריצת הפסקה מהירה — האפליקציה הרצה לפני שהוספת התכונה הזו. סגור ורענן את OpenAmer ואז חזור כאן.',
+        restartHint:
+          'הכלבים זקוקים לריצת הפסקה מהירה — האפליקציה הרצה לפני שהוספת התכונה הזו. סגור ורענן את OpenAmer ואז חזור כאן.',
         on: 'הפעלה',
         off: 'הפסק',
         scaleTitle: 'גודל',
@@ -426,11 +434,13 @@ export const he = defineLocale({
         adoptFailed: slug => `לא ניתן לאמץ ${slug}`,
         uninstallFailed: slug => `לא ניתן להסיר את ${slug}`,
         renameFailed: slug => `לא ניתן לשנות את השם של ${slug}`,
-        exportFailed: slug => `לא ניתן לייצא ${slug}`,
+        exportFailed: slug => `לא ניתן לייצא ${slug}`
       },
-      uiScaleDesc: (percent: number) => `מגדיל טקסט ופקדים בכל האפליקציה. גם Cmd/Ctrl עם +, - ו-0 עובד. נוכחי: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `מגדיל טקסט ופקדים בכל האפליקציה. גם Cmd/Ctrl עם +, - ו-0 עובד. נוכחי: ${percent}%.`,
       embedsTitle: 'הטמעות מוטבעות',
-      embedsDesc: 'תצוגות מקדימות עשירות נטענות מאתרים חיצוניים (YouTube, X, …). "שאל" מציג מקום ריק עד שתאשר כל אחד; "תמיד" טוען אותן אוטומטית; "כבוי" משאיר קישורים רגילים.',
+      embedsDesc:
+        'תצוגות מקדימות עשירות נטענות מאתרים חיצוניים (YouTube, X, …). "שאל" מציג מקום ריק עד שתאשר כל אחד; "תמיד" טוען אותן אוטומטית; "כבוי" משאיר קישורים רגילים.',
       embedsAsk: 'שאל',
       embedsAlways: 'תמיד',
       embedsOff: 'כבוי',
@@ -443,14 +453,15 @@ export const he = defineLocale({
       themeDesc: 'פלטות שולחן עבודה בלבד. המצב הנבחר מוחל מעליהן.',
       themeProfileNote: profile => `נשמר לפרופיל ${profile} — לכל פרופיל ערכת נושא משלו.`,
       installTitle: 'התקן מ-VS Code',
-      installDesc: 'הדבק מזהה תוסף מהחנות (למשל dracula-theme.theme-dracula) כדי להמיר את ערכת הצבעים שלו לפלטת שולחן עבודה.',
+      installDesc:
+        'הדבק מזהה תוסף מהחנות (למשל dracula-theme.theme-dracula) כדי להמיר את ערכת הצבעים שלו לפלטת שולחן עבודה.',
       installPlaceholder: 'publisher.extension',
       installButton: 'התקן',
       installing: 'מתקין…',
       installError: 'לא ניתן להתקין את ערכת הנושא הזו.',
       installed: name => `הותקן “${name}”.`,
       removeTheme: 'הסר ערכת נושא',
-      importedBadge: 'מיובא',
+      importedBadge: 'מיובא'
     },
     about: {
       heading: 'מסדר המחשב של OpenAmer',
@@ -477,7 +488,7 @@ export const he = defineLocale({
       branchCommit: (branch, commit) => `ענף ${branch} · קומיט ${commit}`,
       minAgo: count => `לפני ${count} דק'`,
       hoursAgo: count => `לפני ${count} שעות`,
-      daysAgo: count => `לפני ${count} ימים`,
+      daysAgo: count => `לפני ${count} ימים`
     },
     config: {
       none: 'אין',
@@ -493,7 +504,7 @@ export const he = defineLocale({
       imported: 'הגדרות הועלו',
       invalidJson: 'הגדרות JSON לא חוקיות',
       keepAwakeTitle: 'הישאר ער',
-      keepAwakeDesc: 'הפסק את המחשב מלהרדים זמן רב או במשימות לילה. הצג יכולה להציג עוד.',
+      keepAwakeDesc: 'הפסק את המחשב מלהרדים זמן רב או במשימות לילה. הצג יכולה להציג עוד.'
     },
     credentials: {
       pasteKey: 'הדבק את המפתח',
@@ -503,7 +514,7 @@ export const he = defineLocale({
       remove: 'הסר',
       getKey: 'קבל מפתח',
       pasteLabelKey: label => `הדבק מפתח ${label}`,
-      saving: 'שומר',
+      saving: 'שומר'
     },
     gateway: {
       signOut: 'התנתק',
@@ -512,7 +523,8 @@ export const he = defineLocale({
       authSignedInOauth: 'הפורטל הזה משתמש ב-OAuth. אתה מחובר; המשתנה מתעדכן אוטומי.',
       authNeedsPassword: 'הפורטל הזה משתמש במזהה משתמש ובסיסמה. התחבר כדי לאשר את האפליקציה למחשב.',
       tokenTitle: 'מזהה משתנה',
-      tokenDesc: 'מזהה המשתנה של הפורטל הרשתי הנמצא בשימוש לגישה ל-REST ול-WebSocket. השאר חלל ריק כדי לשמור את המזהה השמור.',
+      tokenDesc:
+        'מזהה המשתנה של הפורטל הרשתי הנמצא בשימוש לגישה ל-REST ול-WebSocket. השאר חלל ריק כדי לשמור את המזהה השמור.',
       savedToken: 'שמור',
       pasteSessionToken: 'הדבק מזהה משתנה',
       testRemote: 'בדיקת רחוק',
@@ -527,26 +539,28 @@ export const he = defineLocale({
       incompleteSignInTest: 'הכנס כתובת רחוק והתחבר לפני הבדיקה.',
       incompleteTokenTest: 'הכנס כתובת רחוק ומזהה משתנה לפני הבדיקה.',
       enterUrlFirst: 'הכנס URL מרוחק ראשון.',
-      restartingTitle: 'התחברות ג\'ייטה מתחלן',
-      savedTitle: 'הגדרות ג\'ייטה נשמרו',
+      restartingTitle: "התחברות ג'ייטה מתחלן",
+      savedTitle: "הגדרות ג'ייטה נשמרו",
       restartingMessage: 'OpenAmer Desktop ישוחח מחדש עם הגדרות השמורות — החלל נשאר פתוח.',
       savedMessage: 'נשמר לפעם הבאה.',
-      reachableTitle: 'הג\'ייטה המרוחקת נגישה',
+      reachableTitle: "הג'ייטה המרוחקת נגישה",
       signedOutTitle: 'התנתל מהרשת',
-      signedOutMessage: 'נמחקה הפגישה עם הג\'ייטה המרוחקת.',
-      failedLoad: 'הגדרות הג\'ייטה לא הצליחו להפעיל',
+      signedOutMessage: "נמחקה הפגישה עם הג'ייטה המרוחקת.",
+      failedLoad: "הגדרות הג'ייטה לא הצליחו להפעיל",
       signInFailed: 'התחברות נכשלה',
       signOutFailed: 'התנתל נכשל',
-      testFailed: 'בדיקת הג\'ייטה המרוחקת נכשלה',
-      applyFailed: 'לא הצליחה ליישם את הגדרות הג\'ייטה',
-      saveFailed: 'לא הצליחה לשמור את הגדרות הג\'ייטה',
+      testFailed: "בדיקת הג'ייטה המרוחקת נכשלה",
+      applyFailed: "לא הצליחה ליישם את הגדרות הג'ייטה",
+      saveFailed: "לא הצליחה לשמור את הגדרות הג'ייטה",
       sshTitle: 'התחבר דרך SSH',
-      sshDesc: 'OpenAmer פועל במרחק על SSH ומקושר ליישום הזה — דברים לפתוח או להציג את עצמך. דרושה גישה חשבונית-בסיסית לרשת של המארח.',
+      sshDesc:
+        'OpenAmer פועל במרחק על SSH ומקושר ליישום הזה — דברים לפתוח או להציג את עצמך. דרושה גישה חשבונית-בסיסית לרשת של המארח.',
       sshTrustHint: 'המפתח הראשון שהוצג נאושר ומוטבע; שינויים מאוחרים נכשלים בסגירה.',
       sshHostTitle: 'מארח',
       sshHostDesc: 'משתמש@מארח, או כתובת מארח מיוחדת מתוך ~/.ssh/config.',
       sshHostPick: 'בחר מארח…',
-      sshErrNotInstalled: 'OpenAmer אינו מותקן במארח הרחב. התקן אותו שם (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) או השים את נתיב OpenAmer.',
+      sshErrNotInstalled:
+        'OpenAmer אינו מותקן במארח הרחב. התקן אותו שם (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) או השים את נתיב OpenAmer.',
       sshErrPlatform: 'פלטפורמה רחב לא תומכת. מצב SSH של OpenAmer Desktop תומך במארחי Linux, macOS ו-Windows.',
       sshErrTimeout: 'קישור SSH נדחה. המארח עלול להיות לא מגיע או ישן.',
       sshErrUpdateRequired: 'עדכן את OpenAmer במארח הרחב לפני חיבת עם Desktop SSH.',
@@ -556,18 +570,21 @@ export const he = defineLocale({
       unavailableDesc: 'גשר ה-IPC של שולחן העבודה אינו חושף הגדרות שער.',
       title: 'חיבור לשער',
       envOverride: 'עקיפת משתנה סביבה',
-      intro: 'OpenAmer Desktop מפעיל כברירת מחדל שער מקומי משלו. השתמש בשער מרוחק כשאתה רוצה שאפליקציה זו תשלוט בקצה עורפי של OpenAmer שכבר פועל במחשב אחר או מאחורי פרוקסי מהימן. בחר פרופיל למטה כדי לתת לו מארח מרוחק משלו.',
+      intro:
+        'OpenAmer Desktop מפעיל כברירת מחדל שער מקומי משלו. השתמש בשער מרוחק כשאתה רוצה שאפליקציה זו תשלוט בקצה עורפי של OpenAmer שכבר פועל במחשב אחר או מאחורי פרוקסי מהימן. בחר פרופיל למטה כדי לתת לו מארח מרוחק משלו.',
       appliesTo: 'חל על',
       allProfiles: 'כל הפרופילים',
       defaultConnection: 'חיבור ברירת מחדל לכל פרופיל שאין לו עקיפה משלו.',
-      profileConnection: profile => `חיבור שמשמש רק כאשר “${profile}” הוא הפרופיל הפעיל. בחר "השתמש בשער ברירת מחדל" כדי להסיר את העקיפה שלו.`,
+      profileConnection: profile =>
+        `חיבור שמשמש רק כאשר “${profile}” הוא הפרופיל הפעיל. בחר "השתמש בשער ברירת מחדל" כדי להסיר את העקיפה שלו.`,
       envOverrideTitle: 'משתני סביבה שולטים בהפעלה זו של שולחן העבודה.',
-      envOverrideDesc: 'בטל את OPENAMER_DESKTOP_REMOTE_URL ו-OPENAMER_DESKTOP_REMOTE_TOKEN כדי להשתמש בהגדרה השמורה למטה.',
+      envOverrideDesc:
+        'בטל את OPENAMER_DESKTOP_REMOTE_URL ו-OPENAMER_DESKTOP_REMOTE_TOKEN כדי להשתמש בהגדרה השמורה למטה.',
       modeTitle: 'מצב חיבור',
       localTitle: 'שער מקומי',
       localDesc: 'הפעל קצה עורפי פרטי של OpenAmer על localhost. זו ברירת המחדל והיא עובדת גם ללא חיבור.',
       inheritTitle: 'השתמש בשער ברירת מחדל',
-      inheritDesc: "הסר את העקיפה של פרופיל זה והשתמש בחיבור ברירת המחדל.",
+      inheritDesc: 'הסר את העקיפה של פרופיל זה והשתמש בחיבור ברירת המחדל.',
       remoteTitle: 'שער מרוחק',
       remoteDesc: 'חבר את מעטפת שולחן העבודה הזו לקצה עורפי מרוחק של OpenAmer.',
       remoteAuthHint: 'שערים מתארחים משתמשים ב-OAuth או בשם משתמש וסיסמה; שערים עצמאיים עשויים להשתמש באסימון הפעלה.',
@@ -587,7 +604,7 @@ export const he = defineLocale({
       cloudNoAgents: {
         before: 'לא נמצאו סוכנים בחשבון זה. צור אחד ב-',
         linkText: 'פורטל OpenAmer',
-        after: ', ואז רענן.',
+        after: ', ואז רענן.'
       },
       cloudRefresh: 'רענן',
       cloudConnect: 'התחבר',
@@ -631,13 +648,14 @@ export const he = defineLocale({
       sshReachable: (host, platform) => `זמין: ${host} (${platform}) — OpenAmer נמצא`,
       sshIncompleteHost: 'הזן מארח SSH לפני ההתחברות.',
       sshErrUnreachable: 'לא ניתן להגיע למארח הזה דרך SSH. בדוק את המארח, הפורט והרשת.',
-      sshErrAuth: 'אימות SSH נכשל. טען את המפתח שלך ל-ssh-agent (ssh-add) או הגדר IdentityFile ב-~/.ssh/config — OpenAmer מריץ ssh ללא אינטראקציה.',
-      sshErrHostKey: 'מפתח המארח השתנה מאז ההתחברות האחרונה. ודא שזה צפוי, ואז הרץ ssh-keygen -R <host> והתחבר מחדש.',
+      sshErrAuth:
+        'אימות SSH נכשל. טען את המפתח שלך ל-ssh-agent (ssh-add) או הגדר IdentityFile ב-~/.ssh/config — OpenAmer מריץ ssh ללא אינטראקציה.',
+      sshErrHostKey: 'מפתח המארח השתנה מאז ההתחברות האחרונה. ודא שזה צפוי, ואז הרץ ssh-keygen -R <host> והתחבר מחדש.'
     },
     keys: {
       loading: 'טוענת מפתחי API ונתוני אבטחה...',
       failedLoad: 'מפתחי API לא טענו.',
-      empty: 'דבר לא מוגדר בתחום הזה עדיין.',
+      empty: 'דבר לא מוגדר בתחום הזה עדיין.'
     },
     mcp: {
       loading: 'טוענת שרתים MCP...',
@@ -689,7 +707,8 @@ export const he = defineLocale({
       catalogInstallFailed: name => `התקנת ${name} נכשלה`,
       catalogEnvPrompt: name => `${name} דורש פרטי גישה`,
       catalogEnvRequired: 'מלא את הערכים הנדרשים לפני ההתקנה.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} פעילים`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} פעילים`,
       statusConnecting: 'מתחבר…',
       statusNeedsAuth: 'דורש אימות',
       statusError: 'שגיאה',
@@ -702,7 +721,7 @@ export const he = defineLocale({
       unsavedConnect: 'לא נשמר — שמור את mcp.json כדי להתחבר.',
       enableTool: tool => `הפעל ${tool}`,
       disableTool: tool => `השבת ${tool}`,
-      noOutput: 'אין פלט עדיין.',
+      noOutput: 'אין פלט עדיין.'
     },
     sessions: {
       autoArchiveFailed: 'לא הצלחה לעדכון אוטומי',
@@ -719,20 +738,22 @@ export const he = defineLocale({
       clearDirFailed: 'לא הצלחה לנקות תיקיית ברירת מחדל',
       loading: 'טוען הפעלות בארכיון…',
       archivedTitle: 'הפעלות בארכיון',
-      archivedIntro: 'צ\'אטים בארכיון מוסתרים מסרגל הצד אך שומרים על כל ההודעות שלהם. Ctrl/⌘-לחיצה על צ\'אט בסרגל הצד תעביר אותו לארכיון.',
+      archivedIntro:
+        "צ'אטים בארכיון מוסתרים מסרגל הצד אך שומרים על כל ההודעות שלהם. Ctrl/⌘-לחיצה על צ'אט בסרגל הצד תעביר אותו לארכיון.",
       emptyArchivedTitle: 'אין דבר בארכיון',
-      emptyArchivedDesc: 'העבר צ\'אט לארכיון כדי להסתיר אותו כאן.',
+      emptyArchivedDesc: "העבר צ'אט לארכיון כדי להסתיר אותו כאן.",
       unarchive: 'הוצא מהארכיון',
       deletePermanently: 'מחק לצמיתות',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       restored: 'שוחזר',
       deleteConfirm: title => `למחוק לצמיתות את "${title}"? לא ניתן לבטל פעולה זו.`,
-      autoArchiveTitle: 'העבר צ\'אטים לא פעילים לארכיון אוטומטית',
-      autoArchiveDesc: "העבר אוטומטית צ'אטים שלא נגעת בהם זמן מה לארכיון. צ'אטים נעוצים לעולם אינם עוברים לארכיון, ושום דבר אינו נמחק — צ'אטים בארכיון פשוט עוברים לכאן.",
+      autoArchiveTitle: "העבר צ'אטים לא פעילים לארכיון אוטומטית",
+      autoArchiveDesc:
+        "העבר אוטומטית צ'אטים שלא נגעת בהם זמן מה לארכיון. צ'אטים נעוצים לעולם אינם עוברים לארכיון, ושום דבר אינו נמחק — צ'אטים בארכיון פשוט עוברים לכאן.",
       autoArchiveDaysLabel: 'העבר לארכיון לאחר',
       autoArchiveDaysUnit: 'ימים ללא פעילות',
-      defaultDirUpdated: 'תיקיית הפרויקט המוגדרת עודכנה — התחל צ\'אט חדש (Ctrl/⌘+N) כדי שתחול',
-      defaultsTo: label => `ברירת מחדל: ${label}.`,
+      defaultDirUpdated: "תיקיית הפרויקט המוגדרת עודכנה — התחל צ'אט חדש (Ctrl/⌘+N) כדי שתחול",
+      defaultsTo: label => `ברירת מחדל: ${label}.`
     },
     toolsets: {
       loadingConfig: 'טוען הגדרות',
@@ -764,7 +785,7 @@ export const he = defineLocale({
         selectedTitle: 'בסיס נבחר',
         needsSetupHint: 'באפשרותך לבחור את הבסיס הזה כעת — פקודות יעבדנה עד שההתקנה תושלם.',
         selectedMessage: backend => `פקודות מסוף רצות כעת דרך ${backend}. חל על הפעלות חדשות.`,
-        failedSelect: backend => `בחירת ${backend} נכשלה`,
+        failedSelect: backend => `בחירת ${backend} נכשלה`
       },
       noProviderOptions: 'רכיב זה אינו מכיל אפשרויות ספק - הפעל אותו והוא יעבוד עם הגדרות הקצה הנוכחי.',
       noProviders: 'אין ספקים זמינים לרכיב זה כרגע.',
@@ -805,17 +826,17 @@ export const he = defineLocale({
       failedSelectCapability: provider => `הגדרת ${provider} נכשלה`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} חל על הפעלות חדשות.`,
-      failedSelectModel: model => `בחירת ${model} נכשלה`,
+      failedSelectModel: model => `בחירת ${model} נכשלה`
     },
     sections: {
       model: 'מודל',
-      chat: 'צ\'אט',
+      chat: "צ'אט",
       appearance: 'מראה',
       workspace: 'סביבת עבודה',
       safety: 'בטיחות',
       memory: 'זיכרון והקשר',
       voice: 'קול',
-      advanced: 'מתקדם',
+      advanced: 'מתקדם'
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -828,11 +849,11 @@ export const he = defineLocale({
       revealValue: 'הצג ערך',
       replace: 'החלף',
       set: 'הגדר',
-      clear: 'נקה',
+      clear: 'נקה'
     },
     model: {
       loading: 'טוען תצורת מודל...',
-      appliesDesc: 'חל על הפעלות חדשות. השתמש בבורר המודל בתיבת ההודעה כדי להחליף את הצ\'אט הפעיל בזמן אמת.',
+      appliesDesc: "חל על הפעלות חדשות. השתמש בבורר המודל בתיבת ההודעה כדי להחליף את הצ'אט הפעיל בזמן אמת.",
       provider: 'ספק',
       model: 'מודל',
       applying: 'מחיל...',
@@ -849,41 +870,41 @@ export const he = defineLocale({
       providerDefault: '(ברירת מחדל של הספק)',
       fallbackAdd: 'הוסף גיבוי',
       fallbackEmpty: 'אין מודלי גיבוי — המודל המוגדר משמש אלא אם ייכשל.',
-      notInCatalog: "אינו ברשימת המודלים של הספק הזה — ייתכן שהקריאות יעברו לגיבוי.",
+      notInCatalog: 'אינו ברשימת המודלים של הספק הזה — ייתכן שהקריאות יעברו לגיבוי.',
       tasks: {
         vision: {
           label: 'ראייה',
-          hint: 'ניתוח תמונות',
+          hint: 'ניתוח תמונות'
         },
         web_extract: {
           label: 'חילוץ מהאינטרנט',
-          hint: 'תמצות דפים',
+          hint: 'תמצות דפים'
         },
         compression: {
           label: 'דחיסה',
-          hint: 'כיווץ הקשר',
+          hint: 'כיווץ הקשר'
         },
         skills_hub: {
           label: 'מרכז המיומנויות',
-          hint: 'חיפוש מיומנויות',
+          hint: 'חיפוש מיומנויות'
         },
         approval: {
           label: 'אישור',
-          hint: 'אישור אוטומטי חכם',
+          hint: 'אישור אוטומטי חכם'
         },
         mcp: {
           label: 'MCP',
-          hint: 'ניתוב כלי MCP',
+          hint: 'ניתוב כלי MCP'
         },
         title_generation: {
           label: 'יצירת כותרת',
-          hint: 'כותרות הפעלות',
+          hint: 'כותרות הפעלות'
         },
         curator: {
           label: 'אוצר',
-          hint: 'סקירת שימוש במיומנויות',
-        },
-      },
+          hint: 'סקירת שימוש במיומנויות'
+        }
+      }
     },
     providers: {
       connectAccount: 'חבר חשבון',
@@ -898,7 +919,8 @@ export const he = defineLocale({
       removeConfirm: provider => `להסיר את ${provider}?`,
       removeExternalGeneric: provider => `${provider} מנוהל על ידי ה-CLI שלו — הסר אותו שם.`,
       removeKeyManaged: provider => `${provider} מוגדר ממפתח API. הסר אותו ממפתחות API.`,
-      removeTerminalConfirm: (provider, command) => `לנתק את ${provider}? הפעולה מריצה "${command}" במסוף כדי לנקות את פרטי הגישה.`,
+      removeTerminalConfirm: (provider, command) =>
+        `לנתק את ${provider}? הפעולה מריצה "${command}" במסוף כדי לנקות את פרטי הגישה.`,
       removeTerminalRunning: provider => `מנתק את ${provider} במסוף…`,
       removedTitle: 'החשבון הוסר',
       removedMessage: provider => `${provider} הוסר.`,
@@ -908,10 +930,10 @@ export const he = defineLocale({
       noKeysMatch: 'אין ספקים שמתאימים לחיפוש.',
       localEndpoint: {
         title: 'נקודת קצה מקומית / מותאמת',
-        description: 'כוון את OpenAmer לכל נקודת קצה תואמת OpenAI (Zyphra, vLLM, llama.cpp, Ollama וכו\').',
+        description: "כוון את OpenAmer לכל נקודת קצה תואמת OpenAI (Zyphra, vLLM, llama.cpp, Ollama וכו')."
       },
-      loading: 'טוען ספקים...',
-    },
+      loading: 'טוען ספקים...'
+    }
   },
   skills: {
     toolsetsRefreshFailed: 'ערכי כלים לא השתנו',
@@ -930,7 +952,7 @@ export const he = defineLocale({
     provenance: {
       agent: 'למד',
       bundled: 'מובנה',
-      hub: 'הוב',
+      hub: 'הוב'
     },
     changesApplyNewSessions: 'השינויים חלים על חדרי עבודה חדשים.',
     skillUpdated: 'כישורים מעודכנים',
@@ -995,7 +1017,7 @@ export const he = defineLocale({
       trust: {
         builtin: 'מובנה',
         trusted: 'מהימן',
-        community: 'קהילתי',
+        community: 'קהילתי'
       },
       verdictSafe: 'בטוח',
       verdictCaution: 'זהירות',
@@ -1013,8 +1035,8 @@ export const he = defineLocale({
       loadFailed: 'טעינת מרכז המיומנויות נכשלה',
       previewFailed: 'תצוגה מקדימה של המיומנות נכשלה',
       scanFailed: 'סריקת האבטחה נכשלה',
-      searchFailed: 'חיפוש במרכז נכשל',
-    },
+      searchFailed: 'חיפוש במרכז נכשל'
+    }
   },
   starmap: {
     importEmpty: 'הדבק קוד מפתח כדי לטעון אותו.',
@@ -1034,14 +1056,15 @@ export const he = defineLocale({
     emptyTitle: 'עדיין לא נלמד דבר',
     emptyDesc: 'ככל ש-OpenAmer בונה מיומנויות וזיכרונות לעבודה שלך, הם מופיעים כאן.',
     share: 'שתף מפה',
-    shareHint: 'העתק את הקוד כדי לשתף את המפה, או הדבק אחד כדי לטעון. הוא כולל רק את הפריסה, לא את הזיכרון או טקסט המיומנויות שלך.',
+    shareHint:
+      'העתק את הקוד כדי לשתף את המפה, או הדבק אחד כדי לטעון. הוא כולל רק את הפריסה, לא את הזיכרון או טקסט המיומנויות שלך.',
     shareTitle: 'ייבוא / ייצוא מפה',
     sharePlaceholder: 'הדבק קוד מפה…',
     copy: 'העתק קוד מפה',
     copied: 'הועתק!',
     importMap: 'ייבא מפה',
     importBtn: 'טען',
-    importSuccess: nodes => `נטענה מפה עם ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `נטענה מפה עם ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'סגור אגדים',
@@ -1071,7 +1094,7 @@ export const he = defineLocale({
     ageDays: days => `לפני ${days} ימים`,
     durationSeconds: seconds => `${seconds} שנ׳`,
     durationMinutes: (minutes, seconds) => `${minutes} דק׳ ${seconds} שנ׳`,
-    tokens: value => `${value} אסימונים`,
+    tokens: value => `${value} אסימונים`
   },
   commandCenter: {
     close: 'סגור מרכז בקרה',
@@ -1101,7 +1124,7 @@ export const he = defineLocale({
       generatedTag: 'נוצר',
       adoptFailed: 'לא ניתן לאמץ את חיית המחמד הזו.',
       toggleFailed: 'לא ניתן להחליף את מצב חיית המחמד.',
-      noneAvailable: 'אין חיות מחמד זמינות — בחר אחת למטה כדי להתקין.',
+      noneAvailable: 'אין חיות מחמד זמינות — בחר אחת למטה כדי להתקין.'
     },
     generatePet: {
       title: 'צור חיית מחמד',
@@ -1130,7 +1153,7 @@ export const he = defineLocale({
       referenceImageTooLarge: 'תמונת ההפניה גדולה מדי. השתמש בתמונה מתחת ל-16 MB.',
       referenceImageInvalid: 'לא ניתן לקרוא את תמונת ההפניה הזו. נסה PNG, JPG, WebP או GIF.',
       adopt: 'אמץ',
-      startOver: 'התחל מחדש',
+      startOver: 'התחל מחדש'
     },
     installTheme: {
       title: 'התקן ערכת נושא…',
@@ -1142,58 +1165,58 @@ export const he = defineLocale({
       install: 'התקן',
       installing: 'מתקין...',
       installed: 'הותקן',
-      installs: count => `${count} התקנות`,
+      installs: count => `${count} התקנות`
     },
     settingsFields: 'שדות הגדרות',
     mcpServers: 'שרתי MCP',
-    archivedChats: 'צ\'אטים בארכיון',
+    archivedChats: "צ'אטים בארכיון",
     sections: {
       maintenance: 'תחזוקה',
       sessions: 'הפעלות',
       system: 'מערכת',
-      usage: 'שימוש',
+      usage: 'שימוש'
     },
     sectionDescriptions: {
       maintenance: 'אבחון, גיבויים, אוצר ונתוני זיכרון',
       sessions: 'חפש ונהל הפעלות',
       system: 'מצב, יומנים ופעולות מערכת',
-      usage: 'אסימונים, עלות ופעילות מיומנויות לאורך זמן',
+      usage: 'אסימונים, עלות ופעילות מיומנויות לאורך זמן'
     },
     nav: {
       newChat: {
         title: 'הפעלה חדשה',
-        detail: 'התחל הפעלה חדשה',
+        detail: 'התחל הפעלה חדשה'
       },
       settings: {
         title: 'הגדרות',
-        detail: 'הגדר את OpenAmer Desktop',
+        detail: 'הגדר את OpenAmer Desktop'
       },
       skills: {
         title: 'יכולות',
-        detail: 'מיומנויות, כלים ושרתי MCP',
+        detail: 'מיומנויות, כלים ושרתי MCP'
       },
       messaging: {
         title: 'הודעות',
-        detail: 'הגדר Telegram, Slack, Discord ועוד',
+        detail: 'הגדר Telegram, Slack, Discord ועוד'
       },
       artifacts: {
         title: 'חפצים',
-        detail: 'עיין בפלטים שנוצרו',
-      },
+        detail: 'עיין בפלטים שנוצרו'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'פאנל הפעלות',
-        detail: 'חפש, נעץ ונהל הפעלות',
+        detail: 'חפש, נעץ ונהל הפעלות'
       },
       system: {
         title: 'פאנל מערכת',
-        detail: 'מצב השער, יומנים, הפעלה מחדש ועדכון',
+        detail: 'מצב השער, יומנים, הפעלה מחדש ועדכון'
       },
       usage: {
         title: 'פאנל שימוש',
-        detail: 'אסימונים, עלות ופעילות מיומנויות',
-      },
+        detail: 'אסימונים, עלות ופעילות מיומנויות'
+      }
     },
     providerNavigate: 'ניווט',
     providerSessions: 'הפעלות',
@@ -1281,8 +1304,8 @@ export const he = defineLocale({
       actionStarted: name => `${name} החל — עוקב אחר היומן...`,
       actionFailed: name => `${name} לא הצליח להתחיל`,
       running: 'פועל...',
-      viewLog: 'יומן פעולות',
-    },
+      viewLog: 'יומן פעולות'
+    }
   },
   artifacts: {
     refresh: 'רענן ארטיפקטים',
@@ -1311,19 +1334,19 @@ export const he = defineLocale({
     kindImage: 'תמונה',
     kindFile: 'קובץ',
     kindLink: 'קישור',
-    chat: 'צ\'אט',
+    chat: "צ'אט",
     copyUrl: 'העתק כתובת URL',
     copyPath: 'העתק נתיב',
     search: 'חפש חפצים...',
     rangeOf: (start, end, total) => `${start}-${end} מתוך ${total}`,
-    goToPage: (itemLabel, page) => `עבור אל ${itemLabel} עמוד ${page}`,
+    goToPage: (itemLabel, page) => `עבור אל ${itemLabel} עמוד ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'סשן חדש',
       skills: 'יכולות',
       messaging: 'הודעות',
-      artifacts: 'ארטיפקטים',
+      artifacts: 'ארטיפקטים'
     },
     searchAria: 'חיפוש סשנים',
     searchPlaceholder: 'חיפוש סשנים…',
@@ -1363,14 +1386,14 @@ export const he = defineLocale({
       actionsFor: title => `פעולות עבור ${title}`,
       handoffOrigin: platform => `הועבר מ-${platform}`,
       ownedByProfile: profile => `פרופיל: ${profile}`,
-      untitledChat: id => `צ'אט ${id}`,
+      untitledChat: id => `צ'אט ${id}`
     },
     dateDivider: {
       today: 'מוקדם יותר היום',
       yesterday: 'אתמול',
       thisWeek: 'מוקדם יותר השבוע',
       lastWeek: 'שבוע שעבר',
-      thisMonth: 'מוקדם יותר החודש',
+      thisMonth: 'מוקדם יותר החודש'
     },
     noMatch: query => `אין הפעלות שמתאימות ל-“${query}”.`,
     groupAriaGrouped: 'הצג הפעלות כרשימה אחת',
@@ -1379,8 +1402,8 @@ export const he = defineLocale({
     showSessions: 'הצג הפעלות',
     groupTitleGrouped: 'בטל קיבוץ הפעלות',
     groupTitleUngrouped: 'קבץ לפי סביבת עבודה',
-    allPinned: 'הכול כאן נעוץ. בטל נעיצה של צ\'אט כדי להציג אותו באחרונים.',
-    shiftClickHint: 'Shift-לחיצה על צ\'אט כדי לנעוץ',
+    allPinned: "הכול כאן נעוץ. בטל נעיצה של צ'אט כדי להציג אותו באחרונים.",
+    shiftClickHint: "Shift-לחיצה על צ'אט כדי לנעוץ",
     noWorkspace: 'אין סביבת עבודה',
     noProject: 'אין פרויקט',
     projectEmpty: 'אין הפעלות עדיין',
@@ -1395,7 +1418,7 @@ export const he = defineLocale({
       namePlaceholder: 'למשל Skunkworks',
       foldersLabel: 'תיקיות',
       ideaLabel: 'רעיון',
-      ideaPlaceholder: "על מה הפרויקט הזה? (נשמר ל-IDEA.md)",
+      ideaPlaceholder: 'על מה הפרויקט הזה? (נשמר ל-IDEA.md)',
       ideaGenerate: 'צור רעיון',
       ideaGenerating: 'יוצר…',
       ideaShuffle: 'ערבב תבניות',
@@ -1415,7 +1438,8 @@ export const he = defineLocale({
       copyPath: 'העתק נתיב',
       removeFromSidebar: 'הסתר מסרגל הצד',
       createFailed: 'לא ניתן ליצור פרויקט',
-      staleBackend: 'עדכן את הקצה העורפי של OpenAmer כדי ליצור פרויקטים — הקצה העורפי שלך ישן מאפליקציית שולחן העבודה הזו (הגדרות → עדכונים → קצה עורפי).',
+      staleBackend:
+        'עדכן את הקצה העורפי של OpenAmer כדי ליצור פרויקטים — הקצה העורפי שלך ישן מאפליקציית שולחן העבודה הזו (הגדרות → עדכונים → קצה עורפי).',
       deleteConfirm: 'פעולה זו מסירה את הפרויקט השמור מ-OpenAmer. קבצים, מאגרי git ו-worktrees נשארים ללא שינוי.',
       startWork: 'worktree חדש',
       newWorktreeTitle: 'worktree חדש',
@@ -1437,19 +1461,21 @@ export const he = defineLocale({
       noBranches: 'לא נמצאו ענפים',
       removeWorktree: 'הסר worktree',
       removeWorktreeFailed: 'לא ניתן להסיר את ה-worktree (שינויים שלא נשמרו?)',
-      removeWorktreeConfirm: 'הסר אותו מ-git (מוחק את תיקיית ה-worktree; הענף נשאר), או פשוט הסתר את הנתיב מסרגל הצד והשאר את ה-worktree בדיסק.',
-      removeWorktreeDirty: 'ל-worktree הזה יש שינויים שלא נשמרו. הסר אותו בכוח (משליך את השינויים), או פשוט הסתר את הנתיב והשאר אותו בדיסק.',
+      removeWorktreeConfirm:
+        'הסר אותו מ-git (מוחק את תיקיית ה-worktree; הענף נשאר), או פשוט הסתר את הנתיב מסרגל הצד והשאר את ה-worktree בדיסק.',
+      removeWorktreeDirty:
+        'ל-worktree הזה יש שינויים שלא נשמרו. הסר אותו בכוח (משליך את השינויים), או פשוט הסתר את הנתיב והשאר אותו בדיסק.',
       forceRemove: 'הסר בכוח',
       enter: label => `פתח ${label}`,
       reorder: label => `סדר מחדש ${label}`,
       toggle: label => `החלף הפעלות ${label}`,
-      back: 'כל הפרויקטים',
+      back: 'כל הפרויקטים'
     },
     newSessionIn: label => `הפעלה חדשה ב-${label}`,
     showMoreIn: (count, label) => `הצג ${count} נוספים ב-${label}`,
     loading: 'טוען…',
     loadMore: 'טען עוד',
-    loadCount: step => `טען ${step} נוספים`,
+    loadCount: step => `טען ${step} נוספים`
   },
   composer: {
     message: 'הודעה',
@@ -1476,20 +1502,20 @@ export const he = defineLocale({
     newSessionPlaceholders: [
       'מה אנחנו בונים?',
       'תן ל-OpenAmer משימה',
-      "מה עובר לך בראש?",
+      'מה עובר לך בראש?',
       'תאר מה אתה צריך',
       'במה נתמודד?',
       'שאל כל דבר',
-      'התחל עם מטרה',
+      'התחל עם מטרה'
     ],
     followUpPlaceholders: [
       'שלח הודעת המשך',
       'הוסף עוד הקשר',
       'דייק את הבקשה',
-      "מה הלאה?",
+      'מה הלאה?',
       'המשך כך',
       'דחוף את זה קדימה',
-      'התאם או המשך',
+      'התאם או המשך'
     ],
     stopDictation: 'עצור הכתבה',
     transcribingDictation: 'מתמלל הכתבה',
@@ -1509,7 +1535,7 @@ export const he = defineLocale({
       '/resume': 'המשך הפעלה קודמת',
       '/details': 'שלוט ברמת פירוט התמליל',
       '/copy': 'העתק בחירה או הודעת עוזר אחרונה',
-      '/quit': 'צא מ-openamer',
+      '/quit': 'צא מ-openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'הפנה לקבצים, תיקיות, כתובות, git',
@@ -1519,7 +1545,7 @@ export const he = defineLocale({
       'composer.sendQueued': 'שלח את התור הבא בתור',
       'keybinds.openPanel': 'כל קיצורי המקלדת',
       'composer.cancel': 'סגור חלונית · בטל ריצה',
-      'composer.history': 'עבור בין חלוניות / היסטוריה',
+      'composer.history': 'עבור בין חלוניות / היסטוריה'
     },
     attachUrlTitle: 'צרף כתובת URL',
     attachUrlDesc: 'OpenAmer יביא את הדף ויכלול אותו כהקשר לתור הזה.',
@@ -1565,51 +1591,51 @@ export const he = defineLocale({
     snippetsTitle: 'קטעי הנחיה',
     snippetsDesc: 'בחר הנחיית פתיחה להכניס לתיבת ההודעה.',
     dropFiles: 'שחרר קבצים כדי לצרף',
-    dropSession: 'שחרר כדי לקשר את הצ\'אט הזה',
+    dropSession: "שחרר כדי לקשר את הצ'אט הזה",
     snippets: {
       codeReview: {
         label: 'סקירת קוד',
         description: 'בדוק את השינוי הנוכחי לאיתור רגרסיות, מקרי קצה שנשמטו ובדיקות חסרות.',
-        text: 'אנא סקור את זה לאיתור באגים, רגרסיות ובדיקות חסרות.',
+        text: 'אנא סקור את זה לאיתור באגים, רגרסיות ובדיקות חסרות.'
       },
       implementationPlan: {
         label: 'תוכנית מימוש',
         description: 'מתווה גישה לפני נגיעה בקוד כדי שהדיף יישאר ממוקד.',
-        text: 'אנא עשה תוכנית מימוש תמציתית לפני שינוי הקוד.',
+        text: 'אנא עשה תוכנית מימוש תמציתית לפני שינוי הקוד.'
       },
       explainThis: {
         label: 'הסבר את זה',
         description: 'עבור על איך הקוד הנבחר עובד וקשר לקבצים המרכזיים.',
-        text: 'אנא הסבר איך זה עובד והפנה אותי לקבצים המרכזיים.',
-      },
-    },
+        text: 'אנא הסבר איך זה עובד והפנה אותי לקבצים המרכזיים.'
+      }
+    }
   },
   onboarding: {
     apiKeyOptions: {
       openai: {
         description: 'גישה ישירה למודלים של OpenAI.',
-        short: 'מודלים ברמת GPT',
+        short: 'מודלים ברמת GPT'
       },
       gemini: {
         short: 'מודלי Gemini',
-        description: 'גישה ישירה למודלי Google Gemini.',
+        description: 'גישה ישירה למודלי Google Gemini.'
       },
       xai: {
         short: 'מודלי Grok',
-        description: 'גישה ישירה למודלי xAI Grok.',
+        description: 'גישה ישירה למודלי xAI Grok.'
       },
       local: {
         short: 'באירוח עצמי',
-        description: 'הפנו את OpenAmer לנקודת קצה מקומית או באירוח עצמי התואמת ל-OpenAI (vLLM, llama.cpp, Ollama וכו\').',
+        description: "הפנו את OpenAmer לנקודת קצה מקומית או באירוח עצמי התואמת ל-OpenAI (vLLM, llama.cpp, Ollama וכו')."
       },
       fireworks: {
         short: 'API ישיר למודלים',
-        description: 'גישה ישירה למודלים המתארחים ב-Fireworks AI.',
+        description: 'גישה ישירה למודלים המתארחים ב-Fireworks AI.'
       },
       openrouter: {
         short: 'מפתח אחד, מודלים רבים',
-        description: 'מארח מאות מודלים תחת מפתח אחד. ברירת מחדל טובה להתקנות חדשות.',
-      },
+        description: 'מארח מאות מודלים תחת מפתח אחד. ברירת מחדל טובה להתקנות חדשות.'
+      }
     },
     backToSignIn: 'חזרה להתחברות',
     getKey: 'קבלת מפתח',
@@ -1622,7 +1648,7 @@ export const he = defineLocale({
     flowSubtitles: {
       pkce: 'פותח את הדפדפן שלך להתחברות, ואז ממשיך כאן',
       device_code: 'פותח דף אימות בדפדפן שלך — OpenAmer מתחבר אוטומטית',
-      external: 'התחברו פעם אחת בטרמינל, ואז חזרו לצ\'אט',
+      external: "התחברו פעם אחת בטרמינל, ואז חזרו לצ'אט"
     },
     signInFailed: 'ההתחברות נכשלה. נסו שוב.',
     pickDifferentProvider: 'בחרו ספק אחר',
@@ -1640,7 +1666,7 @@ export const he = defineLocale({
     free: 'חינם',
     change: 'שינוי',
     startChatting: 'התחל',
-    headerTitle: "בוא נגדיר לך את OpenAmer Agent",
+    headerTitle: 'בוא נגדיר לך את OpenAmer Agent',
     headerDesc: 'חבר ספק מודל כדי להתחיל לשוחח. רוב האפשרויות דורשות לחיצה אחת.',
     preparingInstall: 'OpenAmer מסיים התקנה. זה בדרך כלל לוקח פחות מדקה בהרצה הראשונה.',
     starting: 'מפעיל את OpenAmer…',
@@ -1648,7 +1674,7 @@ export const he = defineLocale({
     collapse: 'כווץ',
     otherProviders: 'ספקים אחרים',
     haveApiKey: 'יש לי מפתח API',
-    chooseLater: "אבחר ספק מאוחר יותר",
+    chooseLater: 'אבחר ספק מאוחר יותר',
     recommended: 'מומלץ',
     connected: 'מחובר',
     featuredPitch: 'מינוי אחד, יותר מ-300 מודלי חזית — הדרך המומלצת להריץ את OpenAmer',
@@ -1660,12 +1686,13 @@ export const he = defineLocale({
     connectedPicking: provider => `${provider} מחובר. בוחר מודל ברירת מחדל...`,
     signInWith: provider => `התחבר עם ${provider}`,
     openedBrowser: provider => `פתחנו את ${provider} בדפדפן שלך.`,
-    autoBrowser: provider => `פתחנו את ${provider} בדפדפן שלך. אשר את OpenAmer שם ותתחבר אוטומטית — אין צורך להעתיק או להדביק.`,
+    autoBrowser: provider =>
+      `פתחנו את ${provider} בדפדפן שלך. אשר את OpenAmer שם ותתחבר אוטומטית — אין צורך להעתיק או להדביק.`,
     externalPending: provider => `${provider} מתחבר דרך ה-CLI שלו. הרץ את הפקודה הזו במסוף, ואז חזור ובחר "התחברתי":`,
     deviceCodeOpened: provider => `פתחנו את ${provider} בדפדפן שלך. הזן שם את הקוד הזה:`,
     pro: 'Pro',
     price: (input, output) => `${input} נכנס / ${output} יוצא לכל Mtok`,
-    docs: provider => `תיעוד ${provider}`,
+    docs: provider => `תיעוד ${provider}`
   },
   modelPicker: {
     title: 'החלפת מודל',
@@ -1681,12 +1708,12 @@ export const he = defineLocale({
     free: 'חינם',
     freeTier: 'מסלול חינמי',
     priceTitle: 'מחיר קלט / פלט למיליון אסימונים',
-    wasPrice: 'היה',
+    wasPrice: 'היה'
   },
   assistant: {
     thread: {
       moreActions: 'פעולות נוספות',
-      branchNewChat: 'צור ענף בצ\'אט חדש',
+      branchNewChat: "צור ענף בצ'אט חדש",
       dismissError: 'סגור שגיאה',
       readAloudFailed: 'הקריאה בקול נכשלה',
       preparingAudio: 'מכין שמע...',
@@ -1709,14 +1736,15 @@ export const he = defineLocale({
       loadingSession: 'טוען הפעלה',
       showEarlier: 'הצג הודעות קודמות',
       loadingResponse: 'OpenAmer טוען תשובה',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'חושב',
       today: time => `היום, ${time}`,
       yesterday: time => `אתמול, ${time}`,
       copy: 'העתק',
-      refresh: 'רענן',
+      refresh: 'רענן'
     },
     approval: {
       gatewayDisconnected: 'שער OpenAmer אינו מחובר',
@@ -1730,7 +1758,8 @@ export const he = defineLocale({
       reject: 'דחה',
       alwaysTitle: 'לאפשר תמיד את הפקודה הזו?',
       alwaysAllow: 'אפשר תמיד',
-      alwaysDescription: pattern => `זה מוסיף את התבנית “${pattern}” לרשימת ההיתרים הקבועה שלך (~/.openamer/config.yaml). OpenAmer לא ישאל שוב על פקודות כאלה — בהפעלה הזו או בכל הפעלה עתידית.`,
+      alwaysDescription: pattern =>
+        `זה מוסיף את התבנית “${pattern}” לרשימת ההיתרים הקבועה שלך (~/.openamer/config.yaml). OpenAmer לא ישאל שוב על פקודות כאלה — בהפעלה הזו או בכל הפעלה עתידית.`
     },
     clarify: {
       notReady: 'בקשת ההבהרה עדיין לא מוכנה',
@@ -1744,7 +1773,7 @@ export const he = defineLocale({
       continueLabel: 'המשך',
       lateAnswer: (question, choice) => `בנוגע ל: "${question}" — התשובה שלי: ${choice}`,
       lateAnswerTip: 'נסח את התשובה הזו כהודעת המשך',
-      lateAnswerHint: 'ההנחיה הזו כבר לא ממתינה. בחר אפשרות כדי לנסח אותה כהודעת המשך.',
+      lateAnswerHint: 'ההנחיה הזו כבר לא ממתינה. בחר אפשרות כדי לנסח אותה כהודעת המשך.'
     },
     tool: {
       code: 'קוד',
@@ -1780,11 +1809,11 @@ export const he = defineLocale({
         ran: 'הריץ',
         running: 'פועל',
         ranCode: 'הריץ קוד',
-        runningCode: 'כותב סקריפט',
+        runningCode: 'כותב סקריפט'
       },
       prefixes: {
         browser: 'דפדפן',
-        web: 'אינטרנט',
+        web: 'אינטרנט'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -1792,124 +1821,124 @@ export const he = defineLocale({
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `מפעיל ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `מפעיל ${action.toLowerCase()}`,
+        runningTool: action => `מפעיל ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'לחץ על רכיב בדף',
           pending: 'לוחץ על רכיב בדף',
-          pendingAction: 'לוחץ',
+          pendingAction: 'לוחץ'
         },
         browser_fill: {
           done: 'מילא שדה טופס',
           pending: 'ממלא שדה טופס',
-          pendingAction: 'ממלא',
+          pendingAction: 'ממלא'
         },
         browser_navigate: {
           done: 'פתח דף',
           pending: 'פותח דף',
-          pendingAction: 'פותח',
+          pendingAction: 'פותח'
         },
         browser_snapshot: {
           done: 'צילם תמונת מצב של הדף',
           pending: 'מצלם תמונת מצב של הדף',
-          pendingAction: 'מצלם',
+          pendingAction: 'מצלם'
         },
         browser_take_screenshot: {
           done: 'צילם מסך',
           pending: 'מצלם מסך',
-          pendingAction: 'מצלם',
+          pendingAction: 'מצלם'
         },
         browser_type: {
           done: 'הקליד בדף',
           pending: 'מקליד בדף',
-          pendingAction: 'מקליד',
+          pendingAction: 'מקליד'
         },
         clarify: {
           done: 'שאל שאלה',
           pending: 'שואל שאלה',
-          pendingAction: 'שואל',
+          pendingAction: 'שואל'
         },
         cronjob: {
           done: 'משימת cron',
           pending: 'מתזמן משימת cron',
-          pendingAction: 'מתזמן',
+          pendingAction: 'מתזמן'
         },
         edit_file: {
           done: 'ערך קובץ',
           pending: 'עורך קובץ',
-          pendingAction: 'עורך',
+          pendingAction: 'עורך'
         },
         execute_code: {
           done: 'הריץ קוד',
           pending: 'כותב סקריפט',
-          pendingAction: 'כותב סקריפט',
+          pendingAction: 'כותב סקריפט'
         },
         image_generate: {
           done: 'יצר תמונה',
           pending: 'יוצר תמונה',
-          pendingAction: 'יוצר',
+          pendingAction: 'יוצר'
         },
         list_files: {
           done: 'הציג קבצים',
           pending: 'מציג קבצים',
-          pendingAction: 'מציג',
+          pendingAction: 'מציג'
         },
         patch: {
           done: 'הטמיע טלאי בקובץ',
           pending: 'מטמיע טלאי בקובץ',
-          pendingAction: 'מטמיע טלאי',
+          pendingAction: 'מטמיע טלאי'
         },
         read_file: {
           done: 'קרא קובץ',
           pending: 'קורא קובץ',
-          pendingAction: 'קורא',
+          pendingAction: 'קורא'
         },
         search_files: {
           done: 'חיפש בקבצים',
           pending: 'מחפש בקבצים',
-          pendingAction: 'מחפש',
+          pendingAction: 'מחפש'
         },
         session_search_recall: {
           done: 'חיפש בהיסטוריית הפעלות',
           pending: 'מחפש בהיסטוריית הפעלות',
-          pendingAction: 'מחפש',
+          pendingAction: 'מחפש'
         },
         terminal: {
           done: 'הריץ פקודה',
           pending: 'מריץ פקודה',
-          pendingAction: 'מריץ',
+          pendingAction: 'מריץ'
         },
         todo: {
           done: 'עדכן משימות',
           pending: 'מעדכן משימות',
-          pendingAction: 'מעדכן',
+          pendingAction: 'מעדכן'
         },
         vision_analyze: {
           done: 'ניתח תמונה',
           pending: 'מנתח תמונה',
-          pendingAction: 'מנתח',
+          pendingAction: 'מנתח'
         },
         web_extract: {
           done: 'קרא דף אינטרנט',
           pending: 'קורא דף אינטרנט',
-          pendingAction: 'קורא',
+          pendingAction: 'קורא'
         },
         web_search: {
           done: 'חיפש באינטרנט',
           pending: 'מחפש באינטרנט',
-          pendingAction: 'מחפש',
+          pendingAction: 'מחפש'
         },
         write_file: {
           done: 'ערך קובץ',
           pending: 'עורך קובץ',
-          pendingAction: 'עורך',
-        },
-      },
-    },
+          pendingAction: 'עורך'
+        }
+      }
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `רינדור תוכנה פעיל — זוהה צג מרוחק (${reason}). האצת GPU מושבתת כדי למנוע הבהוב.`,
+    message: reason => `רינדור תוכנה פעיל — זוהה צג מרוחק (${reason}). האצת GPU מושבתת כדי למנוע הבהוב.`
   },
   billingBlock: {
     titleOpenamer: 'אזלו הקרדיטים של OpenAmer',
@@ -1917,7 +1946,7 @@ export const he = defineLocale({
     fallbackMessage: 'בחשבונך אזלו הקרדיטים. הוסף קרדיטים כדי להמשיך.',
     openBilling: 'פתח חיוב',
     addCredits: 'הוסף קרדיטים',
-    dismiss: 'סגור',
+    dismiss: 'סגור'
   },
   titlebar: {
     hideSidebar: 'הסתר סרגל צד',
@@ -1934,7 +1963,7 @@ export const he = defineLocale({
     openStarmap: 'פתח גרף זיכרון',
     openKeybinds: 'קיצורי מקלדת',
     layoutEditor: 'עורך פריסה',
-    layoutEditorTitle: 'עורך פריסה — ⌘-לחיצה מאפסת את הפריסה',
+    layoutEditorTitle: 'עורך פריסה — ⌘-לחיצה מאפסת את הפריסה'
   },
   messaging: {
     search: 'חפש הודעות...',
@@ -1949,7 +1978,7 @@ export const he = defineLocale({
       not_configured: 'דורש הגדרה',
       pending_restart: 'נדרשת הפעלה מחדש',
       retrying: 'מנסה שוב',
-      startup_failed: 'האתחול נכשל',
+      startup_failed: 'האתחול נכשל'
     },
     unknown: 'לא ידוע',
     hintPendingRestart: 'הפעל מחדש את השער משורת המצב כדי להחיל שינוי זה.',
@@ -1988,127 +2017,126 @@ export const he = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'אסימון בוט',
         help: 'צור בוט עם @BotFather, ואז הדבק את האסימון שהוא נותן.',
-        placeholder: 'הדבק אסימון בוט של Telegram',
+        placeholder: 'הדבק אסימון בוט של Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'מזהי משתמש מורשים ב-Telegram',
-        help: 'מומלץ. מזהים מספריים מופרדים בפסיקים מ-@userinfobot. בלי זה, כל אחד יכול לשלוח הודעה לבוט שלך.',
+        help: 'מומלץ. מזהים מספריים מופרדים בפסיקים מ-@userinfobot. בלי זה, כל אחד יכול לשלוח הודעה לבוט שלך.'
       },
       TELEGRAM_PROXY: {
         label: 'כתובת פרוקסי',
-        help: 'נדרש רק ברשתות שבהן Telegram חסום.',
+        help: 'נדרש רק ברשתות שבהן Telegram חסום.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'אסימון בוט',
-        help: 'צור אפליקציה בפורטל המפתחים של Discord, הוסף בוט, ואז הדבק את האסימון שלו.',
+        help: 'צור אפליקציה בפורטל המפתחים של Discord, הוסף בוט, ואז הדבק את האסימון שלו.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'מזהי משתמש מורשים ב-Discord',
-        help: 'מומלץ. מזהי משתמש של Discord מופרדים בפסיקים.',
+        help: 'מומלץ. מזהי משתמש של Discord מופרדים בפסיקים.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'סגנון תגובה',
-        help: 'first, all, או off.',
+        help: 'first, all, או off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'אפשר את כל משתמשי Discord',
-        help: 'לפיתוח בלבד. כשמופעל, כל אחד יכול לשלוח הודעה לבוט בלי רשימת הרשאה.',
+        help: 'לפיתוח בלבד. כשמופעל, כל אחד יכול לשלוח הודעה לבוט בלי רשימת הרשאה.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'מזהה ערוץ בית',
-        help: 'הערוץ שאליו הבוט שולח הודעות יזומות (פלט cron, תזכורות).',
+        help: 'הערוץ שאליו הבוט שולח הודעות יזומות (פלט cron, תזכורות).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'שם ערוץ הבית',
-        help: 'שם תצוגה לערוץ הבית ביומנים ובפלט המצב.',
+        help: 'שם תצוגה לערוץ הבית ביומנים ובפלט המצב.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'אפשר את כל משתמשי iMessage',
-        help: 'כשמופעל, דלג על רשימת ההרשאה של BlueBubbles.',
+        help: 'כשמופעל, דלג על רשימת ההרשאה של BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'אפשר את כל משתמשי Mattermost',
+        label: 'אפשר את כל משתמשי Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'ערוץ בית',
+        label: 'ערוץ בית'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'אפשר את כל משתמשי QQ',
+        label: 'אפשר את כל משתמשי QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'ערוץ בית של QQ',
-        help: 'ערוץ או קבוצה כברירת מחדל למסירה של cron.',
+        help: 'ערוץ או קבוצה כברירת מחדל למסירה של cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'שם ערוץ הבית של QQ',
+        label: 'שם ערוץ הבית של QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'אסימון בוט של Slack',
         help: 'השתמש באסימון הבוט מ-OAuth & Permissions לאחר התקנת אפליקציית Slack שלך.',
-        placeholder: 'הדבק אסימון בוט של Slack',
+        placeholder: 'הדבק אסימון בוט של Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'אסימון אפליקציה של Slack',
         help: 'השתמש באסימון ברמת האפליקציה הנדרש ל-Socket Mode.',
-        placeholder: 'הדבק אסימון אפליקציה של Slack',
+        placeholder: 'הדבק אסימון אפליקציה של Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'מזהי משתמש מורשים ב-Slack',
-        help: 'מומלץ. מזהי משתמש של Slack מופרדים בפסיקים.',
+        help: 'מומלץ. מזהי משתמש של Slack מופרדים בפסיקים.'
       },
       MATTERMOST_URL: {
         label: 'כתובת שרת',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'אסימון בוט',
+        label: 'אסימון בוט'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'מזהי משתמש מורשים',
-        help: 'מומלץ. מזהי משתמש של Mattermost מופרדים בפסיקים.',
+        help: 'מומלץ. מזהי משתמש של Mattermost מופרדים בפסיקים.'
       },
       MATRIX_HOMESERVER: {
         label: 'כתובת שרת בית',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'אסימון גישה',
+        label: 'אסימון גישה'
       },
       MATRIX_USER_ID: {
         label: 'מזהה משתמש הבוט',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'מזהי משתמש מורשים ב-Matrix',
-        help: 'מומלץ. מזהי משתמש מופרדים בפסיקים בפורמט @user:server.',
+        help: 'מומלץ. מזהי משתמש מופרדים בפסיקים בפורמט @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'כתובת גשר Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'כתובת של גשר REST של signal-cli שרץ.',
+        help: 'כתובת של גשר REST של signal-cli שרץ.'
       },
       SIGNAL_ACCOUNT: {
         label: 'מספר טלפון',
-        help: 'המספר הרשום בגשר signal-cli שלך.',
+        help: 'המספר הרשום בגשר signal-cli שלך.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'משתמשי Signal מורשים',
-        help: 'מומלץ. מזהי Signal מופרדים בפסיקים.',
+        help: 'מומלץ. מזהי Signal מופרדים בפסיקים.'
       },
       WHATSAPP_ENABLED: {
         label: 'הפעל גשר WhatsApp',
-        help: 'נקבע אוטומטית על ידי המתג למטה. אל תיגע אלא אם אתה יודע שאתה צריך את זה.',
+        help: 'נקבע אוטומטית על ידי המתג למטה. אל תיגע אלא אם אתה יודע שאתה צריך את זה.'
       },
       WHATSAPP_MODE: {
-        label: 'מצב גשר',
+        label: 'מצב גשר'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'משתמשי WhatsApp מורשים',
-        help: 'מומלץ. מספרי טלפון או מזהי WhatsApp מופרדים בפסיקים.',
-      },
+        help: 'מומלץ. מספרי טלפון או מזהי WhatsApp מופרדים בפסיקים.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'חפש וובהוקים...',
@@ -2118,7 +2146,8 @@ export const he = defineLocale({
     hint: 'שינויי מינוי נטענים מחדש באופן חי ברגע שהמקבל פועל. מינויים מושבתים דוחים אירועים נכנסים.',
     empty: 'אין עדיין מינויים לוובהוק.',
     disabledTitle: 'מקבל הוובהוק מושבת',
-    disabledBody: 'וובהוקים הם פלטפורמת שער בפני עצמה. הפעל אותם כאן כדי לקבל אירועי HTTP נכנסים; ערוצי צ\'אט נדרשים רק כשמינוי מוסר ל-Telegram, Discord, Slack או ערוץ אחר.',
+    disabledBody:
+      "וובהוקים הם פלטפורמת שער בפני עצמה. הפעל אותם כאן כדי לקבל אירועי HTTP נכנסים; ערוצי צ'אט נדרשים רק כשמינוי מוסר ל-Telegram, Discord, Slack או ערוץ אחר.",
     enable: 'הפעל וובהוקים',
     enabling: 'מפעיל...',
     enabled: (name: string) => `הופעל: "${name}"`,
@@ -2171,8 +2200,8 @@ export const he = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'אימייל',
-      github_comment: 'תגובת GitHub',
-    },
+      github_comment: 'תגובת GitHub'
+    }
   },
   profiles: {
     close: 'סגור פרופילים',
@@ -2250,7 +2279,7 @@ export const he = defineLocale({
     failedLoadSoul: 'טעינת SOUL.md נכשלה',
     failedSaveSoul: 'שמירת SOUL.md נכשלה',
     failedCreate: 'יצירת הפרופיל נכשלה',
-    failedRename: 'שינוי שם הפרופיל נכשל',
+    failedRename: 'שינוי שם הפרופיל נכשל'
   },
   cron: {
     close: 'סגור cron',
@@ -2265,14 +2294,14 @@ export const he = defineLocale({
       paused: 'מושהה',
       disabled: 'מושבת',
       error: 'שגיאה',
-      completed: 'הושלם',
+      completed: 'הושלם'
     },
     deliveryLabels: {
       local: 'שולחן העבודה הזה',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'אימייל',
+      email: 'אימייל'
     },
     scheduleLabels: {
       daily: 'יומי',
@@ -2281,7 +2310,7 @@ export const he = defineLocale({
       monthly: 'חודשי',
       hourly: 'שעתי',
       'every-15-minutes': 'כל 15 דקות',
-      custom: 'מותאם',
+      custom: 'מותאם'
     },
     scheduleHints: {
       daily: 'כל יום ב-9:00',
@@ -2290,7 +2319,7 @@ export const he = defineLocale({
       monthly: 'היום הראשון של כל חודש ב-9:00',
       hourly: 'בראש כל שעה',
       'every-15-minutes': 'כל 15 דקות',
-      custom: 'תחביר cron או שפה טבעית',
+      custom: 'תחביר cron או שפה טבעית'
     },
     days: {
       '0': 'יום ראשון',
@@ -2300,7 +2329,7 @@ export const he = defineLocale({
       '4': 'יום חמישי',
       '5': 'יום שישי',
       '6': 'יום שבת',
-      '7': 'יום ראשון',
+      '7': 'יום ראשון'
     },
     dayFallback: value => `יום ${value}`,
     everyDayAt: time => `כל יום ב-${time}`,
@@ -2369,7 +2398,7 @@ export const he = defineLocale({
     createAction: 'צור cron',
     tabs: {
       jobs: 'משימות',
-      blueprints: 'תבניות',
+      blueprints: 'תבניות'
     },
     blueprints: {
       tab: 'תבניות',
@@ -2383,8 +2412,8 @@ export const he = defineLocale({
       loading: 'טוען תבניות...',
       failedLoad: 'טעינת התבניות נכשלה',
       emptyTitle: 'אין תבניות זמינות',
-      emptyDesc: 'אין תבניות אוטומציה זמינות בקצה העורפי הזה.',
-    },
+      emptyDesc: 'אין תבניות אוטומציה זמינות בקצה העורפי הזה.'
+    }
   },
   statusStack: {
     agents: 'סוכנים',
@@ -2432,13 +2461,14 @@ export const he = defineLocale({
       openPr: 'פתח PR',
       ghMissing: 'התקן את GitHub CLI (gh) והתחבר כדי לפתוח PRs',
       agentShip: 'בקש מ-OpenAmer לפתוח PR',
-      agentShipPrompt: 'סקור את השינויים הנוכחיים, קומט אותם עם הודעת conventional-commit ברורה, דחוף את הענף ופתח בקשת משיכה.',
+      agentShipPrompt:
+        'סקור את השינויים הנוכחיים, קומט אותם עם הודעת conventional-commit ברורה, דחוף את הענף ופתח בקשת משיכה.',
       newBranch: 'ענף חדש',
       branchOffFrom: base => `ענף חדש מ-${base}`,
       switchTo: branch => `עבור אל ${branch}`,
       switchFailed: branch => `לא ניתן לעבור אל ${branch}`,
-      worktrees: 'עצי עבודה',
-    },
+      worktrees: 'עצי עבודה'
+    }
   },
   updates: {
     stages: {
@@ -2453,7 +2483,7 @@ export const he = defineLocale({
       done: 'העדכון הושלם',
       manual: 'עדכן מהמסוף שלך',
       guiSkew: 'עדכן את אפליקציית שולחן העבודה',
-      error: 'העדכון הושהה',
+      error: 'העדכון הושהה'
     },
     checking: 'מחפש עדכונים…',
     checkFailedTitle: 'לא ניתן היה לבדוק עדכונים',
@@ -2476,11 +2506,13 @@ export const he = defineLocale({
     manualBody: 'התקנת את OpenAmer משורת הפקודה, ולכן העדכונים רצים גם שם. הדבק את זה במסוף שלך:',
     manualPickedUp: 'OpenAmer יקלוט את הגרסה החדשה בהפעלה הבאה.',
     guiSkewTitle: 'עדכן את אפליקציית שולחן העבודה',
-    guiSkewBody: 'הקצה העורפי עודכן, אך חבילת אפליקציית שולחן העבודה הזו לא השתנתה. עדכן או התקן מחדש את אפליקציית OpenAmer (ה-AppImage / ‎.deb / ‎.rpm שלך) כדי להתאים.',
+    guiSkewBody:
+      'הקצה העורפי עודכן, אך חבילת אפליקציית שולחן העבודה הזו לא השתנתה. עדכן או התקן מחדש את אפליקציית OpenAmer (ה-AppImage / ‎.deb / ‎.rpm שלך) כדי להתאים.',
     copy: 'העתק',
     copied: 'הועתק',
     done: 'סיום',
-    applyingBody: 'מעדכן OpenAmer משתלט בחלון משלו ופותח את OpenAmer מחדש אוטומטית כשמסיים. אנא אל תפתח את OpenAmer בעצמך בזמן העדכון.',
+    applyingBody:
+      'מעדכן OpenAmer משתלט בחלון משלו ופותח את OpenAmer מחדש אוטומטית כשמסיים. אנא אל תפתח את OpenAmer בעצמך בזמן העדכון.',
     applyingBodyBackend: 'הקצה העורפי המרוחק מחיל את העדכון ויופעל מחדש. OpenAmer מתחבר מחדש אוטומטית כשהוא חוזר.',
     applyingClose: 'חלון זה ייסגר בזמן העדכון, ואז OpenAmer ייפתח מחדש מעצמו.',
     errorTitle: 'העדכון לא הסתיים',
@@ -2492,12 +2524,13 @@ export const he = defineLocale({
       restarting: 'הקצה העורפי מופעל מחדש כדי לטעון את העדכון…',
       notAvailable: 'העדכון אינו זמין לקצה העורפי הזה.',
       failed: 'עדכון הקצה העורפי נכשל.',
-      noReturn: 'הקצה העורפי לא חזר לרשת. ייתכן שהעדכון לא הושלם — בדוק את מארח הקצה העורפי.',
+      noReturn: 'הקצה העורפי לא חזר לרשת. ייתכן שהעדכון לא הושלם — בדוק את מארח הקצה העורפי.'
     },
     appErrors: {
-      updateLocked: 'העדכון בוטל: חלון אחר של OpenAmer או מסוף שמריץ openamer מחזיק את ההתקנה הזו פתוחה. סגור אותו ונסה שוב.',
-      updateFailed: 'העדכון לא הושלם. אל דאגה — שום דבר לא אבד. אתה יכול לנסות שוב עכשיו.',
-    },
+      updateLocked:
+        'העדכון בוטל: חלון אחר של OpenAmer או מסוף שמריץ openamer מחזיק את ההתקנה הזו פתוחה. סגור אותו ונסה שוב.',
+      updateFailed: 'העדכון לא הושלם. אל דאגה — שום דבר לא אבד. אתה יכול לנסות שוב עכשיו.'
+    }
   },
   install: {
     stageStates: {
@@ -2505,10 +2538,11 @@ export const he = defineLocale({
       running: 'מתקין',
       succeeded: 'הושלם',
       skipped: 'דולג',
-      failed: 'נכשל',
+      failed: 'נכשל'
     },
     oneTimeTitle: 'OpenAmer דורש התקנה חד-פעמית',
-    unsupportedDesc: platform => `התקנה אוטומטית בהפעלה ראשונה אינה זמינה עדיין ב-${platform}. פתח מסוף והרץ את הפקודה למטה, ואז הפעל מחדש את האפליקציה. הפעלות לאחר מכן ידלגו על השלב הזה.`,
+    unsupportedDesc: platform =>
+      `התקנה אוטומטית בהפעלה ראשונה אינה זמינה עדיין ב-${platform}. פתח מסוף והרץ את הפקודה למטה, ואז הפעל מחדש את האפליקציה. הפעלות לאחר מכן ידלגו על השלב הזה.`,
     installCommand: 'פקודת התקנה',
     copyCommand: 'העתק פקודה',
     viewDocs: 'הצג תיעוד התקנה',
@@ -2550,8 +2584,10 @@ export const he = defineLocale({
     failedTitle: 'ההתקנה נכשלה',
     settingUpTitle: 'מגדיר את OpenAmer Agent',
     finishingTitle: 'מסיים',
-    failedDesc: 'אחד משלבי ההתקנה נכשל. ב-Windows זה יכול לקרות אם מופע אחר של OpenAmer CLI או שולחן עבודה פועל. עצור את כל מופעי OpenAmer הפועלים, ואז נסה שוב. בדוק את הפרטים למטה או את יומן שולחן העבודה לתמלול המלא.',
-    activeDesc: 'זו התקנה חד-פעמית. מתקין OpenAmer מוריד תלויות ומגדיר את המחשב שלך. הפעלות לאחר מכן ידלגו על השלב הזה.',
+    failedDesc:
+      'אחד משלבי ההתקנה נכשל. ב-Windows זה יכול לקרות אם מופע אחר של OpenAmer CLI או שולחן עבודה פועל. עצור את כל מופעי OpenAmer הפועלים, ואז נסה שוב. בדוק את הפרטים למטה או את יומן שולחן העבודה לתמלול המלא.',
+    activeDesc:
+      'זו התקנה חד-פעמית. מתקין OpenAmer מוריד תלויות ומגדיר את המחשב שלך. הפעלות לאחר מכן ידלגו על השלב הזה.',
     progress: (completed, total) => `${completed} מתוך ${total} שלבים הושלמו`,
     currentStage: stage => `  -- כעת: ${stage}`,
     fetchingManifest: 'מביא מניפסט מתקין...',
@@ -2565,13 +2601,13 @@ export const he = defineLocale({
     transcriptSaved: 'התמלול המלא נשמר ב-',
     copiedOutput: 'הועתק!',
     copyOutput: 'העתק פלט',
-    reloadRetry: 'טען מחדש ונסה שוב',
+    reloadRetry: 'טען מחדש ונסה שוב'
   },
   modelVisibility: {
     title: 'מודלים',
     search: 'חפש מודלים',
     noAuthenticatedProviders: 'אין ספקים מאומתים.',
-    addProvider: 'הוסף ספק…',
+    addProvider: 'הוסף ספק…'
   },
   shell: {
     windowControls: 'בקרות חלון',
@@ -2582,7 +2618,7 @@ export const he = defineLocale({
       noModels: 'לא נמצאו מודלים',
       editModels: 'ערוך מודלים…',
       refreshModels: 'רענן מודלים',
-      fast: 'מהיר',
+      fast: 'מהיר'
     },
     modelOptions: {
       noOptions: 'אין אפשרויות למודל הזה',
@@ -2598,7 +2634,7 @@ export const he = defineLocale({
       max: 'מקסימום',
       ultra: 'אולטרה',
       updateFailed: 'עדכון אפשרות המודל נכשל',
-      fastFailed: 'עדכון המצב המהיר נכשל',
+      fastFailed: 'עדכון המצב המהיר נכשל'
     },
     gatewayMenu: {
       gateway: 'שער',
@@ -2613,7 +2649,7 @@ export const he = defineLocale({
       connection: label => `חיבור: ${label}`,
       recentActivity: 'פעילות אחרונה',
       viewAllLogs: 'הצג את כל היומנים →',
-      messagingPlatforms: 'פלטפורמות הודעות',
+      messagingPlatforms: 'פלטפורמות הודעות'
     },
     approvalMode: {
       title: 'מצב אישור',
@@ -2623,7 +2659,7 @@ export const he = defineLocale({
       smart: 'חכם',
       smartDescription: 'הערך פעולות אוטומטית ושאל כשצריך',
       off: 'כבוי',
-      offDescription: 'הרץ בלי בקשות אישור',
+      offDescription: 'הרץ בלי בקשות אישור'
     },
     statusbar: {
       unknown: 'לא ידוע',
@@ -2679,13 +2715,13 @@ export const he = defineLocale({
           skills: 'מיומנויות',
           subagent_definitions: 'הגדרות תת-סוכן',
           system_prompt: 'הנחיית מערכת',
-          tool_definitions: 'הגדרות כלים',
+          tool_definitions: 'הגדרות כלים'
         },
         empty: 'אין נתוני הקשר עדיין',
         loading: 'טוען פירוט…',
         percentFull: percent => `${percent}% מלא`,
         title: 'שימוש בהקשר',
-        tokenSummary: (used, max) => `${used} / ${max} אסימונים`,
+        tokenSummary: (used, max) => `${used} / ${max} אסימונים`
       },
       openContextUsage: 'פתח פירוט שימוש בהקשר',
       session: 'הפעלה',
@@ -2696,10 +2732,10 @@ export const he = defineLocale({
       noModel: 'אין מודל',
       switchModel: 'החלף מודל',
       openModelPicker: 'פתח בורר מודלים',
-      modelPinned: 'נעוץ על ידך; צ\'אטים חדשים משתמשים בזה במקום ברירת המחדל של ההגדרות',
+      modelPinned: "נעוץ על ידך; צ'אטים חדשים משתמשים בזה במקום ברירת המחדל של ההגדרות",
       modelTitle: (provider, model) => `מודל · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'סרגל צד ימני',
@@ -2735,7 +2771,7 @@ export const he = defineLocale({
     terminalNew: 'מסוף חדש',
     terminalCloseOthers: 'סגור אחרים',
     terminalCloseAll: 'סגור הכול',
-    addToChat: 'הוסף לצ\'אט',
+    addToChat: "הוסף לצ'אט"
   },
   preview: {
     tab: 'תצוגה מקדימה',
@@ -2777,20 +2813,20 @@ export const he = defineLocale({
       select: 'בחר רשומה',
       copyFailed: 'לא ניתן להעתיק את פלט הקונסולה',
       copyEntry: 'העתק את הרשומה הזו',
-      sendEntry: 'שלח את הרשומה הזו לצ\'אט',
+      sendEntry: "שלח את הרשומה הזו לצ'אט",
       messages: count => `${count} הודעות קונסולה`,
       resize: 'שנה גודל קונסולת תצוגה מקדימה',
       title: 'קונסולת תצוגה מקדימה',
       selected: count => `${count} נבחרו`,
-      sendToChat: 'שלח לצ\'אט',
+      sendToChat: "שלח לצ'אט",
       copySelected: 'העתק את הנבחר ללוח',
       copyAll: 'העתק הכול ללוח',
       copy: 'העתק',
       clear: 'נקה',
       empty: 'אין הודעות קונסולה עדיין.',
       promptHeader: 'קונסולת תצוגה מקדימה:',
-      sentTitle: 'נשלח לצ\'אט',
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} נוספו לתיבת ההודעה`,
+      sentTitle: "נשלח לצ'אט",
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} נוספו לתיבת ההודעה`
     },
     web: {
       appFailedToBoot: 'אפליקציית התצוגה המקדימה לא עלתה',
@@ -2820,12 +2856,13 @@ export const he = defineLocale({
       fileChanged: url => `הקובץ השתנה, טוען את התצוגה המקדימה מחדש: ${url}`,
       filesChanged: (count, url) => `${count} שינויי קבצים, טוען את התצוגה המקדימה מחדש: ${url}`,
       watchFailed: message => `לא ניתן לעקוב אחר קובץ התצוגה המקדימה: ${message}`,
-      moduleMimeDescription: 'סקריפטים של מודולים מוגשים עם סוג MIME שגוי. זה בדרך כלל אומר ששרת קבצים סטטי מגיש אפליקציית Vite/React במקום שרת הפיתוח של הפרויקט.',
+      moduleMimeDescription:
+        'סקריפטים של מודולים מוגשים עם סוג MIME שגוי. זה בדרך כלל אומר ששרת קבצים סטטי מגיש אפליקציית Vite/React במקום שרת הפיתוח של הפרויקט.',
       loadFailedConsole: (code, message) => `הטעינה נכשלה${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'לא ניתן היה להגיע לדף התצוגה המקדימה.',
       openTarget: url => `פתח ${url}`,
-      fallbackTitle: 'תצוגה מקדימה',
-    },
+      fallbackTitle: 'תצוגה מקדימה'
+    }
   },
   zones: {
     showHeader: 'הצג כותרת',
@@ -2833,7 +2870,8 @@ export const he = defineLocale({
     minimize: 'מזער',
     restore: 'שחזר',
     closeRunningTitle: 'לסגור לשונית פעילה?',
-    closeRunningBody: 'הצ\'אט הזה עדיין עובד (או ממתין לקלט שלך). סגירת הלשונית מסתירה אותו — ההפעלה שומרת על ההתקדמות שלה וניתן לפתוח אותה מחדש מסרגל הצד.',
+    closeRunningBody:
+      "הצ'אט הזה עדיין עובד (או ממתין לקלט שלך). סגירת הלשונית מסתירה אותו — ההפעלה שומרת על ההתקדמות שלה וניתן לפתוח אותה מחדש מסרגל הצד.",
     closeRunningConfirm: 'סגור לשונית',
     closeOthers: 'סגור אחרים',
     closeToRight: 'סגור מימין',
@@ -2870,7 +2908,7 @@ export const he = defineLocale({
     layoutNamePlaceholder: fallback => `שם פריסה (${fallback})`,
     saveApply: 'שמור והחל',
     notExpressible: 'הסידור הזה משתלב (pinwheel) — אינו ניתן לביטוי כפיצולים מקוננים עדיין',
-    zoneCount: count => `${count} אזורים`,
+    zoneCount: count => `${count} אזורים`
   },
   prompts: {
     gatewayDisconnected: 'שער OpenAmer אינו מחובר',
@@ -2881,7 +2919,7 @@ export const he = defineLocale({
     sudoPlaceholder: 'סיסמת sudo',
     secretTitle: 'נדרש סוד',
     secretDesc: 'OpenAmer זקוק לפרטי גישה כדי להמשיך.',
-    secretPlaceholder: 'ערך סוד',
+    secretPlaceholder: 'ערך סוד'
   },
   desktop: {
     audioReadFailed: 'לא ניתן לקרוא את האודיו שהוקלט',
@@ -2893,12 +2931,13 @@ export const he = defineLocale({
     desktopCommands: 'פקודות שולחן עבודה',
     skillCommandsAvailable: count => `${count} פקודות מיומנות זמינות.`,
     warningLine: message => `אזהרה: ${message}`,
-    yoloArmed: 'YOLO חמוש לצ\'אט הזה',
+    yoloArmed: "YOLO חמוש לצ'אט הזה",
     yoloOff: 'YOLO כבוי',
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} להפעלה הזו`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'לא ניתן להחליף YOLO',
-    profileStatus: current => `פרופיל: ${current}. השתמש ב-/profile <name> או בבורר "הפעלה חדשה" כדי להתחיל צ'אט בפרופיל אחר.`,
+    profileStatus: current =>
+      `פרופיל: ${current}. השתמש ב-/profile <name> או בבורר "הפעלה חדשה" כדי להתחיל צ'אט בפרופיל אחר.`,
     unknownProfile: 'פרופיל לא ידוע',
     noProfileNamed: (target, available) => `אין פרופיל בשם "${target}". זמינים: ${available}`,
     newChatsProfile: name => `צ'אטים חדשים ישתמשו בפרופיל ${name}.`,
@@ -2908,13 +2947,13 @@ export const he = defineLocale({
     regenerateFailed: 'יצירה מחדש נכשלה',
     editFailed: 'העריכה נכשלה',
     resumeFailed: 'ההמשך נכשל',
-    resumeStrandedTitle: "לא ניתן היה לטעון את ההפעלה הזו",
+    resumeStrandedTitle: 'לא ניתן היה לטעון את ההפעלה הזו',
     resumeStrandedBody: 'החיבור להפעלה הזו נכשל והניסיונות החוזרים נגמרו. בדוק שהשער פועל, ואז נסה שוב.',
     resumeRetry: 'נסה שוב',
     nothingToBranch: 'אין ממה להסתעף',
-    branchNeedsChat: 'התחל או המשך צ\'אט לפני הסתעפות.',
+    branchNeedsChat: "התחל או המשך צ'אט לפני הסתעפות.",
     sessionBusy: 'ההפעלה עסוקה',
-    branchStopCurrent: 'עצור את התור הנוכחי לפני הסתעפות הצ\'אט הזה.',
+    branchStopCurrent: "עצור את התור הנוכחי לפני הסתעפות הצ'אט הזה.",
     branchNoText: 'להודעה הזו אין טקסט להסתעף ממנו.',
     branchTitle: n => `טיוטה: ענף #${n}`,
     branchFailed: 'ההסתעפות נכשלה',
@@ -2949,31 +2988,31 @@ export const he = defineLocale({
       success: platform => `הועבר ל-${platform}. אפשר להמשיך כאן בכל עת.`,
       systemNote: platform => `↻ הועבר ל-${platform} — אפשר להמשיך כאן בכל עת.`,
       failed: error => `ההעברה נכשלה: ${error}`,
-      timedOut: 'פג זמן בהמתנה לשער. האם `openamer gateway` פועל?',
-    },
+      timedOut: 'פג זמן בהמתנה לשער. האם `openamer gateway` פועל?'
+    }
   },
   errors: {
     genericFailure: 'משהו השתבש',
     boundaryTitle: 'משהו נשבר בממשק',
-    boundaryDesc: 'התצוגה נתקלה בשגיאה לא צפויה. הצ\'אטים וההגדרות שלך בטוחים.',
+    boundaryDesc: "התצוגה נתקלה בשגיאה לא צפויה. הצ'אטים וההגדרות שלך בטוחים.",
     reloadWindow: 'טען מחדש את החלון',
-    openLogs: 'פתח יומנים',
+    openLogs: 'פתח יומנים'
   },
   ui: {
     search: {
-      clear: 'נקה חיפוש',
+      clear: 'נקה חיפוש'
     },
     pagination: {
       label: 'עימוד',
       previous: 'הקודם',
       previousAria: 'עבור לעמוד הקודם',
       next: 'הבא',
-      nextAria: 'עבור לעמוד הבא',
+      nextAria: 'עבור לעמוד הבא'
     },
     sidebar: {
       title: 'סרגל צד',
       description: 'מציג את סרגל הצד הנייד.',
-      toggle: 'החלף סרגל צד',
-    },
-  },
+      toggle: 'החלף סרגל צד'
+    }
+  }
 })

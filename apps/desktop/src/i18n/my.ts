@@ -12,58 +12,61 @@ export const my = defineLocale({
       kinds: {
         bundled: 'ပါဝင်သည်',
         disk: 'ဒစ်ခ်ပေါ်တွင်',
-        runtime: 'အလုပ်လုပ်အချိန်',
+        runtime: 'အလုပ်လုပ်အချိန်'
       },
       title: 'Desktop plugins',
-      blurb: 'UI extensions loaded into this app — bundled with the build, or dropped into the desktop-plugins folder (including ones OpenAmer writes). Disabling unloads a plugin live and survives restarts.',
+      blurb:
+        'UI extensions loaded into this app — bundled with the build, or dropped into the desktop-plugins folder (including ones OpenAmer writes). Disabling unloads a plugin live and survives restarts.',
       count: n => `${n} installed`,
       openFolder: 'Open plugins folder',
       rescan: 'Rescan',
       reveal: 'Reveal in file manager',
       enable: 'Enable',
       disable: 'Disable',
-      failed: 'failed',
+      failed: 'failed'
     },
     notifications: {
       title: 'အကြောင်းကြားချက်များ',
-      intro: 'အမှီအယုံ ဒီးကတ် အကြောင်းကြားချက်များ။ အက်ပ်အတွင်း ချက်ပြမှုများမှ သီးခြားသည်။ ဤသည်များသည် စက်လုံးအတွက် ဒေသမှာသာ ဖြစ်ပြီး ကျော်ကြောင်းတိုင်းက ကိုယ်ပိုင် ဆက်တင်များကို သိမ်းဆည်းထားပါမည်။',
+      intro:
+        'အမှီအယုံ ဒီးကတ် အကြောင်းကြားချက်များ။ အက်ပ်အတွင်း ချက်ပြမှုများမှ သီးခြားသည်။ ဤသည်များသည် စက်လုံးအတွက် ဒေသမှာသာ ဖြစ်ပြီး ကျော်ကြောင်းတိုင်းက ကိုယ်ပိုင် ဆက်တင်များကို သိမ်းဆည်းထားပါမည်။',
       enableAll: 'အကြောင်းကြားချက်များ ဖွင့်ရန်',
       enableAllDesc: 'အဓိက ခလုတ်။ အောက်ရှိ အကြောင်းကြားချက်အားလုံးကို အသံပိတ်ရန် ဤကို ပိတ်ပါ။',
       focusedHint: 'ပြီးဆုံးချက်ချင်းများကို OpenAmer နောက်ခံအခြေအနေတွင် ရှိစဉ်သာ ထုတ်ပေးပါမည်။',
       kinds: {
         approval: {
           label: 'အတည်ပြုမှု လိုအပ်သည်',
-          description: 'အတည်ပြုရန် သို့မဟုတ် ငြင်းပယ်ရန် စောင့်ဆိုင်းနေသော ကိုမ်းရိုးတစ်ခု ရှိပါသည်။',
+          description: 'အတည်ပြုရန် သို့မဟုတ် ငြင်းပယ်ရန် စောင့်ဆိုင်းနေသော ကိုမ်းရိုးတစ်ခု ရှိပါသည်။'
         },
         input: {
           label: 'ထည့်သွင်းမှု လိုအပ်သည်',
-          description: 'OpenAmer က မေးခွန်းတစ်ခု မေးခြင်း သို့မဟုတ် စကားဝှက်စကား လိုအပ်နေသည်။',
+          description: 'OpenAmer က မေးခွန်းတစ်ခု မေးခြင်း သို့မဟုတ် စကားဝှက်စကား လိုအပ်နေသည်။'
         },
         turnDone: {
           label: 'ပြောပြန်ချက် အသင့်ဖြစ်ပါပြီ',
-          description: 'OpenAmer နောက်ခံအခြေအနေတွင် ရှိစဉ် အလုပ်လုပ်မှုတစ်ခု ပြီးဆုံးခဲ့သည်။',
+          description: 'OpenAmer နောက်ခံအခြေအနေတွင် ရှိစဉ် အလုပ်လုပ်မှုတစ်ခု ပြီးဆုံးခဲ့သည်။'
         },
         turnError: {
           label: 'အလုပ်လုပ်မှု မအောင်မြင်ပါ',
-          description: 'အလုပ်လုပ်မှုသည် အမှားဖြင့် ပြီးဆုံးခဲ့သည်။',
+          description: 'အလုပ်လုပ်မှုသည် အမှားဖြင့် ပြီးဆုံးခဲ့သည်။'
         },
         backgroundDone: {
           label: 'နောက်ခံလုပ်ငန်း ပြီးဆုံးခဲ့သည်',
-          description: 'နောက်ခံအခြေအနေတွင် လုပ်ဆောင်ခဲ့သော တာမီနယ် ကိုမ်းရိုး ပြီးဆုံးခဲ့သည်။',
+          description: 'နောက်ခံအခြေအနေတွင် လုပ်ဆောင်ခဲ့သော တာမီနယ် ကိုမ်းရိုး ပြီးဆုံးခဲ့သည်။'
         },
         credits: {
           label: 'ချွန်းသတိပေးချက်များ',
-          description: 'ချေးချင်းအသုံးပြုမှုကို ခဏရပ်ထားသည် သို့မဟုတ် ပြန်လည်သွင့်ပေးထားသည်။',
-        },
+          description: 'ချေးချင်းအသုံးပြုမှုကို ခဏရပ်ထားသည် သို့မဟုတ် ပြန်လည်သွင့်ပေးထားသည်။'
+        }
       },
       test: 'စမ်းသပ်အကြောင်းကြားချက် ပို့ရန်',
       testTitle: 'OpenAmer',
       testBody: 'အကြောင်းကြားချက်များ အလုပ်လုပ်နေသည်။',
-      testSent: 'စမ်းသပ်ပို့ပြီးပါပြီ။ ဘာမှ မပေါ်လာပါက သင့် OS ၏ အကြောင်းကြားချက် ခွင့်ပြုချက်များနှင့် အာရုံစိုင်မှု/မစွပ်ရန် ဆက်တင်ကို စစ်ဆေးပါ။',
+      testSent:
+        'စမ်းသပ်ပို့ပြီးပါပြီ။ ဘာမှ မပေါ်လာပါက သင့် OS ၏ အကြောင်းကြားချက် ခွင့်ပြုချက်များနှင့် အာရုံစိုင်မှု/မစွပ်ရန် ဆက်တင်ကို စစ်ဆေးပါ။',
       testUnsupported: 'ဤစနစ်သည် ပုံမှန် OS အကြောင်းကြားချက်များကို မပံ့ပိုးပါ။',
       completionSoundTitle: 'ပြီးဆုံးအသံ',
       completionSoundDesc: 'အက်ဇိုဂျင်တစ်ချက် ပြီးဆုံးသည့်အခါ ဖွင့်ပါမည်။ ပုံမှန်တစ်ခုရွေး၍ ဤနေရာတွင် ကြိုတင်နှင့်းပါ။',
-      completionSoundPreview: 'ကြိုတင်နှင့်း',
+      completionSoundPreview: 'ကြိုတင်နှင့်း'
     },
     sections: {
       model: 'မော်ဒယ်',
@@ -73,7 +76,7 @@ export const my = defineLocale({
       safety: 'ဘေးကင်းရေး',
       memory: 'မှတ်တမ်းနှင့် အခြေအနေ',
       voice: 'အသံ',
-      advanced: 'အဆင့်မြင့်',
+      advanced: 'အဆင့်မြင့်'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop အကြောင်း',
@@ -81,40 +84,45 @@ export const my = defineLocale({
       gateway: 'ဂိတ်ဝေးဝေချိတ်ဆက်မှု...',
       keys: 'API သားချိတ်များ ရှာဖွေရန်...',
       mcp: 'MCP ဆာဗာများ ရှာဖွေရန်...',
-      sessions: 'မိုးမှတ်တမ်းထားသော အသုံးအနေများ ရှာဖွေရန်...',
+      sessions: 'မိုးမှတ်တမ်းထားသော အသုံးအနေများ ရှာဖွေရန်...'
     },
     modeOptions: {
       light: {
         label: 'အလင်းမျက်နှာ',
-        description: 'အလင်းရှင်းသော ဒေစာင်မျက်နှာနောက်ခံများ',
+        description: 'အလင်းရှင်းသော ဒေစာင်မျက်နှာနောက်ခံများ'
       },
       dark: {
         label: 'အမှောင်',
-        description: 'အလင်းမျက်စိမ်းသည့် အလုပ်ဇိုင်း',
+        description: 'အလင်းမျက်စိမ်းသည့် အလုပ်ဇိုင်း'
       },
       system: {
         label: 'စနစ်',
-        description: 'OS အပြင်အဆင်ကို နားလိုက်ရန်',
-      },
+        description: 'OS အပြင်အဆင်ကို နားလိုက်ရန်'
+      }
     },
     appearance: {
       title: 'အပြင်အဆင်',
-      intro: 'ဤတို့သည် ဒေစာင်သာ ပြသမှု စိတ်ကြိုက်ရမှုများဖြစ်သည်။ အပြင်အဆင်က အလင်းပြင်းမှုကို နားချိန်သည်။ အပြင်အဆင်အရောင်သည် အထူးအရောင်စီစဉ်နှင့် စကားဝိုင်း နောက်ခံပုံစတာကို နားချိန်သည်။',
+      intro:
+        'ဤတို့သည် ဒေစာင်သာ ပြသမှု စိတ်ကြိုက်ရမှုများဖြစ်သည်။ အပြင်အဆင်က အလင်းပြင်းမှုကို နားချိန်သည်။ အပြင်အဆင်အရောင်သည် အထူးအရောင်စီစဉ်နှင့် စကားဝိုင်း နောက်ခံပုံစတာကို နားချိန်သည်။',
       colorMode: 'အရောင်အပြင်အဆင်',
       colorModeDesc: 'ပုံသေတဲ့အပြင်အဆင်ကို ရွေးချယ်ပါ သို့မဟုတ် OpenAmer ကို စနစ်ဆက်တင်ကို နားလိုက်ရန် ခွင့်ပြုပါ။',
       toolViewTitle: 'ကိရိယာခေါ်ဝေါ်မှု ပြသမှု',
-      toolViewDesc: 'Product က ကိရိယာ၏ ရှိလင်းသော သတင်းအချက်အလက်များကို ဖုံးပါသည်။ Technical က အချက်အလက်ထိုးအတွင်း/အထွက်ကို အပြည့်အစုံ ပြသါသည်။',
+      toolViewDesc:
+        'Product က ကိရိယာ၏ ရှိလင်းသော သတင်းအချက်အလက်များကို ဖုံးပါသည်။ Technical က အချက်အလက်ထိုးအတွင်း/အထွက်ကို အပြည့်အစုံ ပြသါသည်။',
       uiScaleTitle: 'UI အရွယ်အစား',
       translucencyTitle: 'ပြတ်ပိုင်း စိတ်လင်မြည်ခြင်း',
-      translucencyDesc: 'ပြတ်ပိုင်းတစ်ခုလုံးမှတစ်ဆင့် သင့်ဒေစာင်ကို မြင်ရန် ရနိုင်သည်။ macOS နှင့် Windows တွင်သာ အလုပ်ဆောင်သည်။',
+      translucencyDesc:
+        'ပြတ်ပိုင်းတစ်ခုလုံးမှတစ်ဆင့် သင့်ဒေစာင်ကို မြင်ရန် ရနိုင်သည်။ macOS နှင့် Windows တွင်သာ အလုပ်ဆောင်သည်။',
       backdropTitle: 'စကားဝိုင်း နောက်ခံပုံ',
       backdropDesc: 'စကားဝိုင်းနောက်တွင် ရှိသော မှိန်းဖျော့သည့် ရာစုရုပ်ပုံ။',
       pet: {
         turnOnFailed: 'ပိတ်ကို ဖွင့်၍ မရပါ။',
         turnOffFailed: 'ပိတ်ကို ပိတ်၍ မရပါ။',
         title: 'Pet',
-        intro: 'Adopt an animated petdex mascot that floats over the app and reacts to what OpenAmer is doing — running while tools execute, celebrating on success, sulking on errors.',
-        restartHint: 'Pets need a quick restart — the running app started before this feature was added. Quit and reopen OpenAmer, then come back here.',
+        intro:
+          'Adopt an animated petdex mascot that floats over the app and reacts to what OpenAmer is doing — running while tools execute, celebrating on success, sulking on errors.',
+        restartHint:
+          'Pets need a quick restart — the running app started before this feature was added. Quit and reopen OpenAmer, then come back here.',
         on: 'On',
         off: 'Off',
         scaleTitle: 'Size',
@@ -144,11 +152,13 @@ export const my = defineLocale({
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
         exportFailed: slug => `Could not export ${slug}`,
-        noneAvailable: 'No pets available to turn on right now.',
+        noneAvailable: 'No pets available to turn on right now.'
       },
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsTitle: 'Inline Embeds',
-      embedsDesc: 'Rich previews load from third-party sites (YouTube, X, …). Ask shows a placeholder until you allow each one; Always loads them automatically; Off keeps plain links.',
+      embedsDesc:
+        'Rich previews load from third-party sites (YouTube, X, …). Ask shows a placeholder until you allow each one; Always loads them automatically; Off keeps plain links.',
       embedsAsk: 'Ask',
       embedsAlways: 'Always',
       embedsOff: 'Off',
@@ -161,14 +171,15 @@ export const my = defineLocale({
       themeDesc: 'Desktop palettes only. The selected mode is applied on top.',
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installTitle: 'Install from VS Code',
-      installDesc: 'Paste a Marketplace extension id (e.g. dracula-theme.theme-dracula) to convert its color theme into a desktop palette.',
+      installDesc:
+        'Paste a Marketplace extension id (e.g. dracula-theme.theme-dracula) to convert its color theme into a desktop palette.',
       installPlaceholder: 'publisher.extension',
       installButton: 'Install',
       installing: 'Installing…',
       installError: 'Could not install that theme.',
       installed: name => `Installed “${name}”.`,
       removeTheme: 'Remove theme',
-      importedBadge: 'Imported',
+      importedBadge: 'Imported'
     },
     about: {
       heading: 'OpenAmer ဒေဃန်းတစ်',
@@ -186,7 +197,8 @@ export const my = defineLocale({
       tapCheck: 'အဆင့်မြင့်များ ရှာဖွေရန် “ယခု စစ်ဆေးပါ” ကို နှိပ်ပါ။',
       justNowSuffix: '· ခုလေးတင်',
       automaticUpdates: 'အလိုအလျောက် အဆင့်မြင့်များ',
-      automaticUpdatesDesc: 'OpenAmer သည် နောက်ခံလုပ်တွင် အဆင့်မြင့်များကို အလိုအလျောက် စစ်ဆေးပြီး အဆင့်မြင့် ရနိုင်သည့်အခါ အကြောင်းကြားပေးပါသည်။',
+      automaticUpdatesDesc:
+        'OpenAmer သည် နောက်ခံလုပ်တွင် အဆင့်မြင့်များကို အလိုအလျောက် စစ်ဆေးပြီး အဆင့်မြင့် ရနိုင်သည့်အခါ အကြောင်းကြားပေးပါသည်။',
       never: 'ဘယ်တော့မှ',
       justNow: 'ခုလေးတင်',
       version: value => `Version ${value}`,
@@ -195,7 +207,7 @@ export const my = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     config: {
       none: 'မရှိ',
@@ -211,7 +223,8 @@ export const my = defineLocale({
       imported: 'ဖွဲ့စည်းပုံကို တင်ယူပြီးပါပြီ',
       invalidJson: 'ဖွဲ့စည်းပုံ JSON မမှန်ကန်ပါ',
       keepAwakeTitle: 'ကွန်ပျူတာကို မအိပ်စေထားရ',
-      keepAwakeDesc: 'ကွန်ပျူတာကို အိပ်ခြင်းမှ တားဆီးထားပါမည်။ ရှည်လျားသော သို့မဟုတ် ညနေအထက်အစ် လုပ်ဆောင်မှုများ ဆက်လက်လုပ်ဆောင်နိုင်ပါမည်။ ပြသစက်များကိုတို့ မှောင်းနိုင်သေးသည်။',
+      keepAwakeDesc:
+        'ကွန်ပျူတာကို အိပ်ခြင်းမှ တားဆီးထားပါမည်။ ရှည်လျားသော သို့မဟုတ် ညနေအထက်အစ် လုပ်ဆောင်မှုများ ဆက်လက်လုပ်ဆောင်နိုင်ပါမည်။ ပြသစက်များကိုတို့ မှောင်းနိုင်သေးသည်။'
     },
     credentials: {
       pasteKey: 'ကိုယ်ရေးကို ကူးထည့်ရန်',
@@ -221,7 +234,7 @@ export const my = defineLocale({
       remove: 'ဖယ်ရှားရန်',
       getKey: 'ကိုယ်ရေးရယူရန်',
       saving: 'သိမ်းဆည်းခြင်း',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     envActions: {
       credentialActions: 'အမှတ်အသားစီမံခြင်းလုပ်ငန်းများ',
@@ -232,7 +245,7 @@ export const my = defineLocale({
       replace: 'အစားထိုးရန်',
       set: 'သတ်မှတ်ရန်',
       clear: 'ရှင်းလင်းရန်',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     gateway: {
       loading: 'ဂိတ်ဝေးဆက်တိုက်ဆက် ဆက်တင်မှုများ ဖွင့်နေသည်...',
@@ -240,26 +253,33 @@ export const my = defineLocale({
       unavailableDesc: 'ဒက်စတော IPC ချိတ်ဆက်က ဂိတ်ဝေးဆက်တိုက်ဆက် ဆက်တင်မှုများကို မဖွင့်ပါ။',
       title: 'ဂိတ်ဝေးဆက်တိုက်ဆက်ချိတ်ဆက်မှု',
       envOverride: 'ပတ်ဝန်းပိုင်း အတည်ပြုချက်ပို့စ်ခြင်း',
-      intro: 'OpenAmer Desktop က မူလအနေဖြင့် ကိုယ်တိုင်ရှိ ဒေသခံဂိတ်ဝေးကို စတင်သည်။ အခြားစက်တစ်ခုတွင် သို့မဟုတ် ယုံကြည်လောက်သော proxy အနောက်ရှိ အဆင်းရှိ OpenAmer backend ကို ဤအက်ပ်က ထိန်းချုပ်လိုလျှင် အဝေးခံဂိတ်ဝေးကို သုံးပါ။ ကိုယ်ပိုင်အဝေးခံအင်္ဂါတစ်ခု သတ်မှတ်ရန် အောက်ရှိ ပရိုဖိုင်တစ်ခုကို ရွေးပါ။',
+      intro:
+        'OpenAmer Desktop က မူလအနေဖြင့် ကိုယ်တိုင်ရှိ ဒေသခံဂိတ်ဝေးကို စတင်သည်။ အခြားစက်တစ်ခုတွင် သို့မဟုတ် ယုံကြည်လောက်သော proxy အနောက်ရှိ အဆင်းရှိ OpenAmer backend ကို ဤအက်ပ်က ထိန်းချုပ်လိုလျှင် အဝေးခံဂိတ်ဝေးကို သုံးပါ။ ကိုယ်ပိုင်အဝေးခံအင်္ဂါတစ်ခု သတ်မှတ်ရန် အောက်ရှိ ပရိုဖိုင်တစ်ခုကို ရွေးပါ။',
       appliesTo: 'အသုံးပြုသည့်နေရာ',
       allProfiles: 'ပရိုဖိုင်အားလုံး',
       defaultConnection: 'ကိုယ်ပိုင် အတည်ပြုချက်ပို့စ်မှုမရှိသော ပရိုဖိုင်အားလုံးအတွက် မူလအသုံးပြုသည့်ချိတ်ဆက်မှု။',
       envOverrideTitle: 'ပတ်ဝန်းပိုင်းပြောင်းလဲမှန်းများက ဤဒက်စတောအသုံးပြုမှုကို တိုက်ရိုက်ထိန်းချုပ်ထားသည်။',
-      envOverrideDesc: 'အောက်ရှိ သိမ်းဆည်းထားသော ဆက်တင်မှုကို သုံးရန် OPENAMER_DESKTOP_REMOTE_URL နှင့် OPENAMER_DESKTOP_REMOTE_TOKEN ကို မသတ်မှတ်ဘဲထားပါ။',
+      envOverrideDesc:
+        'အောက်ရှိ သိမ်းဆည်းထားသော ဆက်တင်မှုကို သုံးရန် OPENAMER_DESKTOP_REMOTE_URL နှင့် OPENAMER_DESKTOP_REMOTE_TOKEN ကို မသတ်မှတ်ဘဲထားပါ။',
       signOut: 'ထွက်ခြင်း',
       authTitle: 'အမှတ်စစ်ခြင်း',
-      authSignedInPassword: 'ဤဂိတ်ဝေကတ်သည် အသုံးပြုသူအမည်နှင့် စကားဝှက်ကို သုံးသည်။ သင့်သည် ဝင်ရောက်ထားပြီး အသုံးပြုမှုကို အလိုအလျောက် ပြန်လည်အသစ်စေသည်။',
-      authSignedInOauth: 'ဤဂိတ်ဝေကတ်သည် OAuth ကို သုံးသည်။ သင့်သည် ဝင်ရောက်ထားပြီး အသုံးပြုမှုကို အလိုအလျောက် ပြန်လည်အသစ်စေသည်။',
-      authNeedsPassword: 'ဤဂိတ်ဝေကတ်သည် အသုံးပြုသူအမည်နှင့် စကားဝှက်ကို သုံးသည်။ ဤဒက်စတေပ်အက်ပ်ကို ခွင့်ပြုရန် ဝင်ရောက်ပါ။',
+      authSignedInPassword:
+        'ဤဂိတ်ဝေကတ်သည် အသုံးပြုသူအမည်နှင့် စကားဝှက်ကို သုံးသည်။ သင့်သည် ဝင်ရောက်ထားပြီး အသုံးပြုမှုကို အလိုအလျောက် ပြန်လည်အသစ်စေသည်။',
+      authSignedInOauth:
+        'ဤဂိတ်ဝေကတ်သည် OAuth ကို သုံးသည်။ သင့်သည် ဝင်ရောက်ထားပြီး အသုံးပြုမှုကို အလိုအလျောက် ပြန်လည်အသစ်စေသည်။',
+      authNeedsPassword:
+        'ဤဂိတ်ဝေကတ်သည် အသုံးပြုသူအမည်နှင့် စကားဝှက်ကို သုံးသည်။ ဤဒက်စတေပ်အက်ပ်ကို ခွင့်ပြုရန် ဝင်ရောက်ပါ။',
       tokenTitle: 'အသုံးပြုမှု တိုက်',
-      tokenDesc: 'REST နှင့် WebSocket ချိတ်ဆက်ရေးအတွက် သုံးသည့် ဒက်စတေပ်အက်ပ် အသုံးပြုမှု တိုက်။ သိမ်းဆည်းထားသော တိုက်ကို ဆက်လက်သုံးရန် ဗလာထားပါ။',
+      tokenDesc:
+        'REST နှင့် WebSocket ချိတ်ဆက်ရေးအတွက် သုံးသည့် ဒက်စတေပ်အက်ပ် အသုံးပြုမှု တိုက်။ သိမ်းဆည်းထားသော တိုက်ကို ဆက်လက်သုံးရန် ဗလာထားပါ။',
       savedToken: 'သိမ်းဆည်းထားသည်',
       pasteSessionToken: 'အသုံးပြုမှု တိုက်ကို ကူးထည့်ပါ',
       testRemote: 'အဝေးမှန် စမ်းသပ်ပါ',
       saveForRestart: 'နောက်ထပ် ပြန်လည်စတင်ရန် သိမ်းဆည်းပါ',
       saveAndReconnect: 'သိမ်းဆည်းပြီး ပြန်လည်ချိတ်ဆက်ပါ',
       diagnostics: 'ရေးယုံးခြင်းများ',
-      diagnosticsDesc: 'သင့်ဖိုင်မန်ဂေးစာတမ်းတွင် `desktop.log` ကို ပေါ်လွင်ပါ — ဂိတ်ဝေကတ် မစတင်နိုင်ချိန်တွင် အသုံးဝင်သည်။',
+      diagnosticsDesc:
+        'သင့်ဖိုင်မန်ဂေးစာတမ်းတွင် `desktop.log` ကို ပေါ်လွင်ပါ — ဂိတ်ဝေကတ် မစတင်နိုင်ချိန်တွင် အသုံးဝင်သည်။',
       openLogs: 'မှတ်တမ်းများ ဖွင့်ပါ',
       incompleteTitle: 'အဝေးမှန် ဂိတ်ဝေကတ် မပြည့်စုံပါ',
       incompleteSignIn: 'အဝေးမှန် URL ထည့်ပြီး အဝေးမှန်သို့ ကူးပြောင်းမည်အတွက် ဦးစွာ ဝင်ရောက်ပါ။',
@@ -284,12 +304,15 @@ export const my = defineLocale({
       sshButtonsHint: 'သိမ်းဆည်းမှုကို နောက်တစ်ကြိမ်စတင်သည့်အခါ အသုံးပြုမည်။ Connect က ယခု ပြန်လည်ချိတ်ဆက်မည်။',
       sshIncompleteHost: 'ချိတ်ဆက်မီမတိုင် ရို့ကောက် SSH အက်အဖုတ်ထည့်ပါ။',
       sshErrUnreachable: 'SSH မှတဆင့် အက်အဖုတ်ကို မရောက်နိုင်ပါ။ အက်အဖုတ်၊ ပို့တ်နှင့် ကွန်တက်ဝက်ကို စစ်ဆေးပါ။',
-      sshErrAuth: 'SSH အတည်ပြုမှု မအောင်မြင်ပါ။ သင့်ကိုးချောင်းကို ssh-agent (ssh-add) ထဲတွင် ထည့်ပါ သို့မဟုတ် ~/.ssh/config တွင် IdentityFile သတ်မှတ်ပါ — OpenAmer သည် ssh ကို အပြန်အလှန်မဟုတ်ဘဲ လုပ်ဆောင်သည်။',
-      sshErrHostKey: 'နောက်ဆုံးချိတ်ဆက်ခဲ့သည့်အခါမှစ၍ အက်အဖုတ်ကီးသည် ပြောင်းလဲနေသည်။ ယခုအတိုင်အောက်စဉ်ဖြစ်ကြောင်း အတည်ပြုပြီးနောက် ssh-keygen -R <host> ကို လုပ်ဆောင်ကာ ပြန်လည်ချိတ်ဆက်ပါ။',
+      sshErrAuth:
+        'SSH အတည်ပြုမှု မအောင်မြင်ပါ။ သင့်ကိုးချောင်းကို ssh-agent (ssh-add) ထဲတွင် ထည့်ပါ သို့မဟုတ် ~/.ssh/config တွင် IdentityFile သတ်မှတ်ပါ — OpenAmer သည် ssh ကို အပြန်အလှန်မဟုတ်ဘဲ လုပ်ဆောင်သည်။',
+      sshErrHostKey:
+        'နောက်ဆုံးချိတ်ဆက်ခဲ့သည့်အခါမှစ၍ အက်အဖုတ်ကီးသည် ပြောင်းလဲနေသည်။ ယခုအတိုင်အောက်စဉ်ဖြစ်ကြောင်း အတည်ပြုပြီးနောက် ssh-keygen -R <host> ကို လုပ်ဆောင်ကာ ပြန်လည်ချိတ်ဆက်ပါ။',
       enterUrlFirst: 'ဦးစွာ အလင်္က် URL ထည့်ပါ။',
       restartingTitle: 'Gateway ချိတ်ဆက်မှုကို ပြန်လည်စတင်နေသည်',
       savedTitle: 'Gateway ဆက်တင်များကို သိမ်းဆည်းပြီးပါပြီ',
-      restartingMessage: 'OpenAmer Desktop သည် သိမ်းဆည်းထားသော ဆက်တင်များဖြင့် ပြန်လည်ချိတ်ဆက်မည် — shell ကို ဖွင့်ထားဆဲဖြစ်သည်။',
+      restartingMessage:
+        'OpenAmer Desktop သည် သိမ်းဆည်းထားသော ဆက်တင်များဖြင့် ပြန်လည်ချိတ်ဆက်မည် — shell ကို ဖွင့်ထားဆဲဖြစ်သည်။',
       savedMessage: 'နောက်တစ်ခါ ပြန်လည်စတင်ရန် သိမ်းဆည်းထားပြီး။',
       reachableTitle: 'Remote gateway ကို ရောက်ရှိနိုင်သည်',
       signedOutTitle: 'အကောင့်မှ ထွက်ပြီးပါပြီ',
@@ -301,16 +324,22 @@ export const my = defineLocale({
       applyFailed: 'Gateway ဆက်တင်များကို မသုံးနိုင်ပါ',
       saveFailed: 'Gateway ဆက်တင်များကို မသိမ်းဆည်းနိုင်ပါ',
       sshTitle: 'SSH မှတစ်ဆင့် ချိတ်ဆက်ရန်',
-      sshDesc: 'OpenAmer ကို remote တွင် SSH မှတစ်ဆင့် စတင်ပြီး ဤ app သို့ tunnel လုပ်ထားသည် — စတင်ရန်မှု သို့မဟုတ် ကိုယ်တိုင် expose လုပ်ရန် မလိုအပ်ပါ။ host သို့ key-based SSH access အလုပ်လုပ်ရန် လိုအပ်သည်။',
-      sshTrustHint: 'ပထမဆုံး တင်ပြသော host key ကို ယုံကြည်ပြီး pin လုပ်ထားသည်; နောက်ပိုင်း ပြောင်းလဲမှုများကို fail closed အဖြစ် ငြင်းထားသည်။',
+      sshDesc:
+        'OpenAmer ကို remote တွင် SSH မှတစ်ဆင့် စတင်ပြီး ဤ app သို့ tunnel လုပ်ထားသည် — စတင်ရန်မှု သို့မဟုတ် ကိုယ်တိုင် expose လုပ်ရန် မလိုအပ်ပါ။ host သို့ key-based SSH access အလုပ်လုပ်ရန် လိုအပ်သည်။',
+      sshTrustHint:
+        'ပထမဆုံး တင်ပြသော host key ကို ယုံကြည်ပြီး pin လုပ်ထားသည်; နောက်ပိုင်း ပြောင်းလဲမှုများကို fail closed အဖြစ် ငြင်းထားသည်။',
       sshHostDesc: 'user@host သို့မဟုတ် ~/.ssh/config မှ Host alias။',
       sshHostPick: 'Host ရွေးပါ…',
-      sshErrNotInstalled: '`OpenAmer` ကို အလှပြင်သောအကြားစက်တွင် မထည့်ရှိသေးပါ။ ထိုင်းလိုက်ပါ (`curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh`) သို့မဟုတ် `OpenAmer` path ကို သတ်မှတ်ပါ။',
-      sshErrPlatform: 'အလှပြင်သော platform ကို မပံ့ပိုးပါ။ `OpenAmer Desktop` SSH mode သည် Linux၊ macOS နှင့် Windows အကြားစက်များကို ပံ့ပိုးသည်။',
+      sshErrNotInstalled:
+        '`OpenAmer` ကို အလှပြင်သောအကြားစက်တွင် မထည့်ရှိသေးပါ။ ထိုင်းလိုက်ပါ (`curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh`) သို့မဟုတ် `OpenAmer` path ကို သတ်မှတ်ပါ။',
+      sshErrPlatform:
+        'အလှပြင်သော platform ကို မပံ့ပိုးပါ။ `OpenAmer Desktop` SSH mode သည် Linux၊ macOS နှင့် Windows အကြားစက်များကို ပံ့ပိုးသည်။',
       sshErrTimeout: 'SSH ချိတ်ဆက်မှု အချိန်ကုန်သွားပါသည်။ အကြားစက်သည် မရောက်နိုင်သော သို့မဟုတ် အိပ်နေသည်ဖြစ်နိုင်သည်။',
-      sshErrUpdateRequired: '`Desktop SSH` ဖြင့် ချိတ်ဆက်မည်မသည်မတိုင်မီ အလှပြင်သောအကြားစက်တွင် `OpenAmer` ကို အဆင့်မြှင့်တင်ပါ။',
+      sshErrUpdateRequired:
+        '`Desktop SSH` ဖြင့် ချိတ်ဆက်မည်မသည်မတိုင်မီ အလှပြင်သောအကြားစက်တွင် `OpenAmer` ကို အဆင့်မြှင့်တင်ပါ။',
       sshErrUnknown: 'SSH ချိတ်ဆက်မှု မအောင်မြင်ပါ။',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       modeTitle: 'Connection mode',
       localTitle: 'Local gateway',
       localDesc: 'Start a private OpenAmer backend on localhost. This is the default and works offline.',
@@ -335,7 +364,7 @@ export const my = defineLocale({
       cloudNoAgents: {
         before: 'No agents found on this account. Create one in the ',
         linkText: 'OpenAmer portal',
-        after: ', then refresh.',
+        after: ', then refresh.'
       },
       cloudRefresh: 'Refresh',
       cloudConnect: 'Connect',
@@ -361,7 +390,7 @@ export const my = defineLocale({
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       sshHostTitle: 'Host',
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     mcp: {
       reloadFailed: 'MCP ပြန်လည်ဖတ်ခြင်း မအောင်မြင်ပါ',
@@ -413,7 +442,8 @@ export const my = defineLocale({
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
       catalogEnvRequired: 'Fill in the required values before installing.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       statusConnecting: 'Connecting…',
       statusNeedsAuth: 'Needs authentication',
       statusError: 'Error',
@@ -426,47 +456,47 @@ export const my = defineLocale({
       unsavedConnect: 'Unsaved — save mcp.json to connect.',
       enableTool: tool => `Enable ${tool}`,
       disableTool: tool => `Disable ${tool}`,
-      noOutput: 'No output yet.',
+      noOutput: 'No output yet.'
     },
     keys: {
       loading: 'API keys နှင့် credentials များကို ဖတ်နေသည်...',
       failedLoad: 'API keys များကို မဖတ်နိုင်ပါ။',
-      empty: 'ဤအမျိုးအစားတွင် မည်သူမျှ မစီစဉ်ရှိသေးပါ။',
+      empty: 'ဤအမျိုးအစားတွင် မည်သူမျှ မစီစဉ်ရှိသေးပါ။'
     },
     model: {
       tasks: {
         compression: {
           label: 'ဖိအားချိန်ခြင်း',
-          hint: 'အခြေအနေ ပေါ်တွင်းလျှင့်ချုပ်ခြင်း',
+          hint: 'အခြေအနေ ပေါ်တွင်းလျှင့်ချုပ်ခြင်း'
         },
         skills_hub: {
           label: 'ကျွမ်းမာ ဗီဘာ',
-          hint: 'ကျွမ်းမာ ရှာဖွေခြင်း',
+          hint: 'ကျွမ်းမာ ရှာဖွေခြင်း'
         },
         approval: {
           label: 'အတည်ပြုချက်',
-          hint: 'အလိုအလျောက် အတည်ပြုခြင်း',
+          hint: 'အလိုအလျောက် အတည်ပြုခြင်း'
         },
         mcp: {
           hint: 'MCP ရေက်လမ်းညွှန်ခြင်း',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'ခေါင်းစဉ် ထုတ်လုပ်ခြင်း',
-          hint: 'အသုံးအစား ခေါင်းစဉ်များ',
+          hint: 'အသုံးအစား ခေါင်းစဉ်များ'
         },
         curator: {
           label: 'စောင့်သပ်သူ',
-          hint: 'ကျွမ်းမာအသုံးပြုမှု ပြန်လည်စစ်ဆေးခြင်း',
+          hint: 'ကျွမ်းမာအသုံးပြုမှု ပြန်လည်စစ်ဆေးခြင်း'
         },
         vision: {
           label: 'Vision',
-          hint: 'Image analysis',
+          hint: 'Image analysis'
         },
         web_extract: {
           label: 'Web extract',
-          hint: 'Page summarization',
-        },
+          hint: 'Page summarization'
+        }
       },
       loading: 'Loading model configuration...',
       appliesDesc: 'Applies to new sessions. Use the model picker in the composer to hot-swap the active chat.',
@@ -486,12 +516,13 @@ export const my = defineLocale({
       providerDefault: '(provider default)',
       fallbackAdd: 'Add fallback',
       fallbackEmpty: 'No fallback models — the default model is used unless it fails.',
-      notInCatalog: "isn't in this provider's model list — calls may fall back to a backup.",
+      notInCatalog: "isn't in this provider's model list — calls may fall back to a backup."
     },
     providers: {
       connectAccount: 'အကောင့်တစ်ခု ချိတ်ဆက်ပါ',
       haveApiKey: 'API သေား ရှိပါသလား?',
-      intro: 'သုံးသပ်ချက်ဖြင့့ ဝင်ရောက်ပါ — ကူးစက်ရန် API သေားမလိုအပ်ပါ။ OpenAmer သည် ဤအက်ပ်အတွင်းမှ ဘရောက်ဆာဝင်ရောက်မှုကို အလိုအလျောက် လုပ်ဆောင်ပေးပါမည်။',
+      intro:
+        'သုံးသပ်ချက်ဖြင့့ ဝင်ရောက်ပါ — ကူးစက်ရန် API သေားမလိုအပ်ပါ။ OpenAmer သည် ဤအက်ပ်အတွင်းမှ ဘရောက်ဆာဝင်ရောက်မှုကို အလိုအလျောက် လုပ်ဆောင်ပေးပါမည်။',
       connected: 'ချိတ်ဆက်ပြီး',
       collapse: 'ပိုမိုပေါ်နေရာသို့ ပြန်လည်ဖွင့်ပါ',
       connectAnother: 'ပေါ်ပေါ်ထွက် ပေးသူတစ်ခုကို ချိတ်ဆက်ပါ',
@@ -504,22 +535,26 @@ export const my = defineLocale({
       noKeysMatch: 'ရှာဖွေမှုနှင့်ကိုက်ညီသော ဝန်ဆောင်သူ မရှိပါ။',
       localEndpoint: {
         title: 'ဒေသအတွင်း / သီးသန့် အဆုံးအမည်',
-        description: 'OpenAmer ကို OpenAI နှင့်ကိုက်ညီသော အဆုံးအမည်တိုင်းသို့ ညွှန်ပါ (Zyphra, vLLM, llama.cpp, Ollama, စသည်ဖြင့်)။',
+        description:
+          'OpenAmer ကို OpenAI နှင့်ကိုက်ညီသော အဆုံးအမည်တိုင်းသို့ ညွှန်ပါ (Zyphra, vLLM, llama.cpp, Ollama, စသည်ဖြင့်)။'
       },
       loading: 'ဝန်ဆောင်သူများ ဖွင့်နေသည်...',
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     sessions: {
       autoArchiveFailed: 'အော်တီကာဗိုင်းကို မွမ်းမံ့ မရှိနိုင်ခဲ့',
       defaultDirTitle: 'မူလအကြမ်း ပိုစတာ ဖိုင်တွဲ',
-      defaultDirDesc: 'အခြားသင့်ဖိုင်တွဲကို မရွေးချယ်ဘဲ ဆက်တိုက်စမ်းသပ်ခန်းများသည် ဤဖိုင်တွဲတွင် စတင်ပါမည်။ သင့်အိမ်ဖိုင်တွဲကို အသုံးပြုရန် မသတ်မှတ်ထားပါ။',
-      defaultDirUpdated: 'မူလအကြမ်း ပိုစတာ ဖိုင်တွဲကို ပြောင်းလဲပြီး — အသုံးပြုရန် ဆက်တိုက်စမ်းသပ်ခန်းအသစ်ကို စတင်ပါ (Ctrl/⌘+N)',
+      defaultDirDesc:
+        'အခြားသင့်ဖိုင်တွဲကို မရွေးချယ်ဘဲ ဆက်တိုက်စမ်းသပ်ခန်းများသည် ဤဖိုင်တွဲတွင် စတင်ပါမည်။ သင့်အိမ်ဖိုင်တွဲကို အသုံးပြုရန် မသတ်မှတ်ထားပါ။',
+      defaultDirUpdated:
+        'မူလအကြမ်း ပိုစတာ ဖိုင်တွဲကို ပြောင်းလဲပြီး — အသုံးပြုရန် ဆက်တိုက်စမ်းသပ်ခန်းအသစ်ကို စတင်ပါ (Ctrl/⌘+N)',
       change: 'ပြောင်းလဲပါ',
       choose: 'ရွေးပါ',
       clear: 'ရှင်းလင်းပါ',
@@ -531,19 +566,21 @@ export const my = defineLocale({
       clearDirFailed: 'မူလဖိုင်တွဲကို မရှင်းလင်းနိုင်ခဲ့',
       loading: 'မော်ကားထားသော အသုံးအထိုးများ ဖွင့်နေသည်…',
       archivedTitle: 'မော်ကားထားသော အသုံးအထိုးများ',
-      archivedIntro: 'မော်ကားထားသော စကားဝိုင်းများကို ဘေးလမ်းတွင် ဖုံးကွယ်ထားသော်လည်း မကြားခဲ့ဘဲ မကြောင်းခံမှုအားလုံး ထိန်းသိမ်းထားပါမည်။ ဘေးလမ်းရှိ စကားဝိုင်းကို မော်ကားရန် Ctrl/⌘-click ပြုလုပ်ပါ။',
+      archivedIntro:
+        'မော်ကားထားသော စကားဝိုင်းများကို ဘေးလမ်းတွင် ဖုံးကွယ်ထားသော်လည်း မကြားခဲ့ဘဲ မကြောင်းခံမှုအားလုံး ထိန်းသိမ်းထားပါမည်။ ဘေးလမ်းရှိ စကားဝိုင်းကို မော်ကားရန် Ctrl/⌘-click ပြုလုပ်ပါ။',
       emptyArchivedTitle: 'မော်ကားထားသည့်အများ မရှိပါ',
       emptyArchivedDesc: 'ဤနေရာတွင် ဖုံးကွယ်ရန် စကားဝိုင်းကို မော်ကားပါ။',
       unarchive: 'မော်ကားမှုကို ပြန်ဖြည်ရန်',
       deletePermanently: 'အပြီးတည်း ဖျက်ပါ',
       restored: 'ပြန်လည်ရေးသွင်းပြီး',
       autoArchiveTitle: 'အသုံးမပြုသော စကားဝိုင်းများကို အလိုအလျောက် မော်ကားရန်',
-      autoArchiveDesc: 'အချိန်ကြာစွာ မသုံးသော စကားဝိုင်းများကို အလိုအလျောက် မော်ကားပါမည်။ ချည်နှောင်ထားသော စကားဝိုင်းများကို မည်သည့်အခါမျှ မော်ကားမည် မဟုတ်ပါ။ ဘာများမှ မဖျက်မည် ဖြစ်ပြီး မော်ကားထားသော စကားဝိုင်းများသာ ဤနေရာသို့ ရွှေ့ပါမည်။',
+      autoArchiveDesc:
+        'အချိန်ကြာစွာ မသုံးသော စကားဝိုင်းများကို အလိုအလျောက် မော်ကားပါမည်။ ချည်နှောင်ထားသော စကားဝိုင်းများကို မည်သည့်အခါမျှ မော်ကားမည် မဟုတ်ပါ။ ဘာများမှ မဖျက်မည် ဖြစ်ပြီး မော်ကားထားသော စကားဝိုင်းများသာ ဤနေရာသို့ ရွှေ့ပါမည်။',
       autoArchiveDaysLabel: 'မော်ကားမည့်အချိန်',
       autoArchiveDaysUnit: 'လှုပ်ရှားမှုမရှိသော ရက်များအောက်တွင်',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
       loadingConfig: 'ဖွဲ့စည်းပုံကို ဖွင့်နေသည်',
@@ -575,7 +612,7 @@ export const my = defineLocale({
         selectedTitle: 'နောက်ခံစနစ်ကို ရွေးပြီးပါပြီ',
         needsSetupHint: 'ဤနောက်ခံစနစ်ကို ယခုရွေးနိုင်ပါသည် — တပ်ဆင်မှုပြီးမီအထိ ကိုးမိုဒ်များ မအောင်မြင်ပါ။',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       noProviderOptions: 'ဤလုပ်ငန်းစုံတွင် ပေးသူမရှိပါ — ဖွင့်ပေးရုံသာလျှင် လက်ရှိစီမံချိတ်ဖြင့် အလုပ်လုပ်ပါမည်။',
       noProviders: 'ဤလုပ်ငန်းစုံအတွက် ယခုအချိန်တွင် ပေးသူမရှိပါ။',
@@ -605,8 +642,10 @@ export const my = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -616,7 +655,7 @@ export const my = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     closeSettings: 'Close settings',
     exportConfig: 'Export config',
@@ -640,10 +679,10 @@ export const my = defineLocale({
       about: 'About',
       billing: 'Billing',
       notifications: 'Notifications',
-      plugins: 'Plugins',
+      plugins: 'Plugins'
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     toolsetsRefreshFailed: 'လုပ်ငန်းစုံများ မွမ်းမံခြင်း မအောင်မြင်',
@@ -661,7 +700,7 @@ export const my = defineLocale({
     provenance: {
       agent: 'လေ့လာပြီးပါပြီ',
       bundled: 'ပုံပိုင်းအတွဲ',
-      hub: 'ဗဟိုတ်ဘ်',
+      hub: 'ဗဟိုတ်ဘ်'
     },
     changesApplyNewSessions: 'ပြောင်းလဲမှုများသည် ဆက်စပီရှင်းများတွင် အသုံးပြုရမည်။',
     skillUpdated: 'ကိရိယာ ပြောင်းလဲပြီးပါပြီ',
@@ -676,7 +715,8 @@ export const my = defineLocale({
       connectingHubs: 'လုပ်ငန်းဗီတာများနှင့် ချိတ်ဆက်နေသည်...',
       connectedHubs: 'ချိတ်ဆက်ထားသော ဗီတာများ:',
       featured: 'အထူးပေါ်ပြားလုပ်ငန်းများ',
-      landingHint: 'တရားဝင်ညွှန်းစာရင်း၊ GitHub နှင့် လူထုအရင်းအနှီးများမှ တပ်ဆင်နိုင်သော လုပ်ငန်းများကို ကြည့်ရန် ဗီတာတွင် ရှာဖွေပါ။',
+      landingHint:
+        'တရားဝင်ညွှန်းစာရင်း၊ GitHub နှင့် လူထုအရင်းအနှီးများမှ တပ်ဆင်နိုင်သော လုပ်ငန်းများကို ကြည့်ရန် ဗီတာတွင် ရှာဖွေပါ။',
       noResults: 'ဗီတာတွင် မတူညီသော လုပ်ငန်းများ မတွေ့ပါ။',
       installed: 'တပ်ဆင်ပြီး',
       install: 'တပ်ဆင်မည်',
@@ -694,7 +734,7 @@ export const my = defineLocale({
       trust: {
         builtin: 'ပုံကြီးသင့်လုပ်ဆောင်နေသည်',
         trusted: 'ယုံကြည်ရသည်',
-        community: 'လူထုအကယ်',
+        community: 'လူထုအကယ်'
       },
       verdictSafe: 'ဘေးကင်မှု',
       verdictCaution: 'သတိပေးရန်',
@@ -714,7 +754,7 @@ export const my = defineLocale({
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     tabSkills: 'ကျွမ်းမှုများ',
     tabToolsets: 'လုပ်ငန်းများ',
@@ -732,7 +772,8 @@ export const my = defineLocale({
     noDescription: 'ဖော်ပြချက်မရှိပါ။',
     configured: 'သတ်မှတ်ပြီး',
     needsKeys: 'သော့ချက်များ လိုအပ်သည်',
-    visionModelHint: 'ဝေမ်းမြင်မှုသည် သင့်အကူအကောင့်မော်ဒယ်ဆက်တင်ကို အသုံးပြုသည် — ပုံရိုက်နိုင်သောမော်ဒယ်ကို ဤနေရာတွင်မဟုတ်ဘဲ ထိုနေရာတွင် ရွေးချယ်ပါသည်။',
+    visionModelHint:
+      'ဝေမ်းမြင်မှုသည် သင့်အကူအကောင့်မော်ဒယ်ဆက်တင်ကို အသုံးပြုသည် — ပုံရိုက်နိုင်သောမော်ဒယ်ကို ဤနေရာတွင်မဟုတ်ဘဲ ထိုနေရာတွင် ရွေးချယ်ပါသည်။',
     visionModelLink: 'ဆက်တင်များ → မော်ဒယ်များတွင် ဝေမ်းမြင်မော်ဒယ်ရွေးပါ',
     skillsLoadFailed: 'ကျွမ်းမှုများ ဖွင့်ရန် မအောင်မြင်ပါ',
     tabMcp: 'MCP',
@@ -746,7 +787,7 @@ export const my = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     title: 'မှတ်တမ်း မြင်ကွက်',
@@ -762,7 +803,8 @@ export const my = defineLocale({
     emptyTitle: 'မလေ့လာရသေးပါ',
     emptyDesc: 'သင့်အလုပအတွက် OpenAmer က ကျွမ်းမှုများနှင့် မှတ်တမ်းများကို တည်ဆောက်သည့်အတိုင်း ယခုဒီမှာ ပေါ်လာပါမည်။',
     share: 'မြင်ကွက် မှတ်သိမ်းရန်',
-    shareHint: 'ဤမြင်ကွက်ကို မှတ်သိမ်းရန် ကုဒ်ကို ကူးယူပါ သို့မဟုတ် ဖွင့်ရန် ကူးထည့်ပါ။ ၎င်းတွင် အပြင်အဆင်သာ ပါဝင်ပြီး မှတ်တမ်း သို့မဟုတ် ကျွမ်းမှု စာသားများ မပါဝင်ပါ။',
+    shareHint:
+      'ဤမြင်ကွက်ကို မှတ်သိမ်းရန် ကုဒ်ကို ကူးယူပါ သို့မဟုတ် ဖွင့်ရန် ကူးထည့်ပါ။ ၎င်းတွင် အပြင်အဆင်သာ ပါဝင်ပြီး မှတ်တမ်း သို့မဟုတ် ကျွမ်းမှု စာသားများ မပါဝင်ပါ။',
     shareTitle: 'မြင်ကွက် တင်သွင်း/တင်ပို့ရန်',
     sharePlaceholder: 'မြင်ကွက်ကုဒ်ကို ကူးထည့်ပါ…',
     copy: 'မြင်ကွက်ကုဒ်ကို ကူးယူရန်',
@@ -773,7 +815,7 @@ export const my = defineLocale({
     importedBadge: 'ပြောင်းထုတ်ထားသော မှတ်တမ်း',
     resetToMine: 'ကျွန်ုပ်၏မှတ်တမ်းသို့ ပြန်သွားပါ',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'အက်အက်တ်များ ပိတ်ပါ',
@@ -803,7 +845,7 @@ export const my = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'အမိန့်ဗီးစင်တာ ပိတ်ပါ',
@@ -832,7 +874,7 @@ export const my = defineLocale({
       generatedTag: 'ထုတ်လုပ်ပြီး',
       adoptFailed: 'ထိုပိုးများကို မော်စားနိုင်ခဲ့ပါမည်မထရဆို။',
       toggleFailed: 'ပိုးများကို ဖွင့်/ပိတ် မပြုနိုင်ခဲ့ပါ။',
-      noneAvailable: 'ပိုးများ မရှိသေးပါ — တင်ဆက်ရန် အောက်တွင် တစ်ကောင်ကို ရွေးပါ။',
+      noneAvailable: 'ပိုးများ မရှိသေးပါ — တင်ဆက်ရန် အောက်တွင် တစ်ကောင်ကို ရွေးပါ။'
     },
     generatePet: {
       title: 'ပိုင်းတစ်ကောင် ဖန်တီးပါ',
@@ -855,13 +897,14 @@ export const my = defineLocale({
       slowProviderHint: 'ဤသည် မိနစ်အနောက်ပိုင်း ကြာနိုင်သည်',
       remix: 'ပြန်လည်ဖွဲ့စည်းပါ',
       remixConfirmTitle: 'ဒီဒုံးကို ပြန်လည်ဖွဲ့စည်းမလား?',
-      remixConfirmBody: 'ဤအရာကို အခြေခံအဖြစ်အသုံးပြု၍ ဆွဲထုတ်မည့် မူရင်းအစားအစာများကို ထုတ်လုပ်ပေးပါသည်။ မိနစ်များစွာ ကြာနိုင်ပါသည်။',
+      remixConfirmBody:
+        'ဤအရာကို အခြေခံအဖြစ်အသုံးပြု၍ ဆွဲထုတ်မည့် မူရင်းအစားအစာများကို ထုတ်လုပ်ပေးပါသည်။ မိနစ်များစွာ ကြာနိုင်ပါသည်။',
       genericError: 'ထုတ်လုပ်ခြင်း မအောင်မြင်ပါ — ထပ်မံကြိုးစားပါ သို့မဟုတ် အကြံပြုချက်တစ်ခုကို ရွေးပါ။',
       referenceImageTooLarge: 'ကိုယ်ကိုးကားပုံက ကြီးလွန်းနေပါသည်။ 16 MB အောက်ရှိ ပုံကို သုံးပါ။',
       referenceImageInvalid: 'ကိုယ်ကိုးကားပုံကို ဖတ်၍ မရပါ။ PNG, JPG, WebP သို့မဟုတ် GIF ကို ကြိုးစားပါ။',
       adopt: 'လက်ခံရေး',
       startOver: 'အစမှ စတင်ရန်',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     installTheme: {
       title: 'အပြင်အဆင် တပ်ဆင်ရန်…',
@@ -873,7 +916,7 @@ export const my = defineLocale({
       install: 'တပ်ဆင်ရန်',
       installing: 'တပ်ဆင်နေပါသည်...',
       installed: 'တပ်ဆင်ပြီးပါပြီ',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'ဆက်တင်နေရာများ',
     mcpServers: 'MCP ဆာဗာများ',
@@ -882,49 +925,49 @@ export const my = defineLocale({
       maintenance: 'ထိန်းသိမ်းရေး',
       sessions: 'အထိအစ်များ',
       system: 'စနစ်',
-      usage: 'အသုံးပြုမှု',
+      usage: 'အသုံးပြုမှု'
     },
     sectionDescriptions: {
       maintenance: 'ရေးနပ်ခြင်းများ၊ မိတ်ကန်များ၊ စောင့်ရှောက်သူနှင့် မှတ်တမ်းဒေတာ',
       sessions: 'အကြောင်းအရာများရှာဖွေပြီး စကားဝိန်းများကို စီမံပါ',
       system: 'အခြေအနေ၊ မှတ်တမ်းများနှင့် စနစ်လုပ်ဆောင်ချက်များ',
-      usage: 'ဒေတာ၊ ကုန်ကျစရိတ်နှင့် ကျွမ်းကျင်မှုများ အချိန်တိုင်',
+      usage: 'ဒေတာ၊ ကုန်ကျစရိတ်နှင့် ကျွမ်းကျင်မှုများ အချိန်တိုင်'
     },
     nav: {
       newChat: {
         title: 'စကားဝိန်းအသစ်',
-        detail: 'စကားဝိန်းအသစ်ဖွင့်ပါ',
+        detail: 'စကားဝိန်းအသစ်ဖွင့်ပါ'
       },
       settings: {
         title: 'ဆက်တင်များ',
-        detail: '`OpenAmer` ဒေတ်စတောကို ပုံဖော်ပါ',
+        detail: '`OpenAmer` ဒေတ်စတောကို ပုံဖော်ပါ'
       },
       skills: {
         title: 'စွမ်းဆောင်ရည်များ',
-        detail: 'ကျွမ်းကျင်မှုများ၊ ကိရိယာများနှင့် MCP ဆာဗာများ',
+        detail: 'ကျွမ်းကျင်မှုများ၊ ကိရိယာများနှင့် MCP ဆာဗာများ'
       },
       messaging: {
         title: 'မက်ဆေ့ဂျစ်နိုင်မှု',
-        detail: 'Telegram၊ Slack၊ Discord နှင့် နောက်ထပ်များကို သတ်မှတ်ပါ',
+        detail: 'Telegram၊ Slack၊ Discord နှင့် နောက်ထပ်များကို သတ်မှတ်ပါ'
       },
       artifacts: {
         title: 'အနုပညာများ',
-        detail: 'ထုတ်လုပ်ထားသော ရလဒ်များကို ရှာဖွေပါ',
-      },
+        detail: 'ထုတ်လုပ်ထားသော ရလဒ်များကို ရှာဖွေပါ'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'စကားဝိန်းပန်းချက်',
-        detail: 'စကားဝိန်းများရှာဖွေပြီး ပူးတွယ်ကာ စီမံပါ',
+        detail: 'စကားဝိန်းများရှာဖွေပြီး ပူးတွယ်ကာ စီမံပါ'
       },
       system: {
         title: 'စနစ်ပန်းချက်',
-        detail: 'Gateway အခြေအနေ၊ မှတ်တမ်းများ၊ ပြန်လည်စတင်/မွမ်းမံ',
+        detail: 'Gateway အခြေအနေ၊ မှတ်တမ်းများ၊ ပြန်လည်စတင်/မွမ်းမံ'
       },
       usage: {
         title: 'အသုံးပြုမှုအပိုင်း',
-        detail: 'တိုက်ခေါင်း၊ ကုန်ကျစရိတ်နှင့် ကျွမ်းကျင်မှု',
-      },
+        detail: 'တိုက်ခေါင်း၊ ကုန်ကျစရိတ်နှင့် ကျွမ်းကျင်မှု'
+      }
     },
     providerNavigate: 'ရွှေ့နိုင်ရန်',
     providerSessions: 'စကားဝေများ',
@@ -974,7 +1017,8 @@ export const my = defineLocale({
       backup: 'အရန်ကူးမှတ်တမ်း ဖန်တီးရန်',
       backupDesc: 'ပုံစံ၊ မှတ်တမ်းများ၊ ကျွမ်းကျင်များနှင့် အသုံးအထိုးမှုများကို ဇစ်ပိုင်း ထုပ်ရန်',
       debugShare: 'ရှုပ်ထွေးမှု မျှဝေမှု',
-      debugShareDesc: 'လွတ်လင်းချက်ပြင်ထားသော အစီရံချက်နှင့် မှတ်တမ်းများ တင်ပြီး မျှဝေနိုင်သည့် လင့်ခ်များ ရယူရန် (နာရီ ၆ အတွင်း အလိုအလျောက် ဖျက်မည်)',
+      debugShareDesc:
+        'လွတ်လင်းချက်ပြင်ထားသော အစီရံချက်နှင့် မှတ်တမ်းများ တင်ပြီး မျှဝေနိုင်သည့် လင့်ခ်များ ရယူရန် (နာရီ ၆ အတွင်း အလိုအလျောက် ဖျက်မည်)',
       debugShareRunning: 'ရှုပ်ထွေးမှု အစီရံချက် တင်နေသည်...',
       debugShareLinks: 'မျှဝေလင့်ခ်များ',
       debugShareFailed: 'ရှုပ်ထွေးမှု မျှဝေမှု မအောင်မြင်ပါ',
@@ -1007,14 +1051,14 @@ export const my = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     startInBranch: branch => `New conversation in ${branch}`,
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · Active sessions ${count}`,
     days: count => `${count}d`,
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   messaging: {
     search: 'မက်ဆေ့ဂျင်းများ ရှာဖွေ...',
@@ -1029,7 +1073,7 @@ export const my = defineLocale({
       not_configured: 'တပ်ဆင်ရန်လိုအပ်သည်',
       pending_restart: 'ပြန်စတင်ရန်လိုအပ်သည်',
       retrying: 'ထပ်စမ်းနေသည်',
-      startup_failed: 'စတင်မှု မအောင်မြင်',
+      startup_failed: 'စတင်မှု မအောင်မြင်'
     },
     unknown: 'မသိ',
     hintPendingRestart: 'ဤပြောင်းလဲမှုကို အသုံးပြုရန် အချိန်းဘားကို ပြန်စတင်ပါ။',
@@ -1056,124 +1100,124 @@ export const my = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'ဘော့တိုကတ်',
         help: '@BotFather ဖြင့် ဘော့တစ်ခုဖန်တီးပြီး ပေးထားသော တိုက်ကို ကူးထည့်ပါ။',
-        placeholder: 'Telegram ဘော့တိုက်ကို ကူးထည့်ပါ',
+        placeholder: 'Telegram ဘော့တိုက်ကို ကူးထည့်ပါ'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'ခွင့်ပြုထားသော Telegram အသုံးပြုသူ ID များ',
-        help: 'အကြံပြုထားသည်။ @userinfobot မှ ရှေးကျက်စဉ်ဖြင့် နံပါတ်ဆိုင်ရာ ID များ။ မသတ်မှတ်ထားပါက လူတိုင်းသည် သင့်ဘော့ကို DM ပို့နိုင်မည်။',
+        help: 'အကြံပြုထားသည်။ @userinfobot မှ ရှေးကျက်စဉ်ဖြင့် နံပါတ်ဆိုင်ရာ ID များ။ မသတ်မှတ်ထားပါက လူတိုင်းသည် သင့်ဘော့ကို DM ပို့နိုင်မည်။'
       },
       TELEGRAM_PROXY: {
         label: 'ပရိုစီ URL',
-        help: 'Telegram ကို ပိတ်ဆိုင်းထားသော ကွန်တက်များတွင်သာ လိုအပ်ပါသည်။',
+        help: 'Telegram ကို ပိတ်ဆိုင်းထားသော ကွန်တက်များတွင်သာ လိုအပ်ပါသည်။'
       },
       DISCORD_BOT_TOKEN: {
         label: 'ဘော့တိုက်',
-        help: 'Discord Developer Portal တွင် အက်ပ်လီကေးရှင်းတစ်ခုဖန်တီးပြီး ဘော့ထည့်ကာ တိုက်ကို ကူးထည့်ပါ။',
+        help: 'Discord Developer Portal တွင် အက်ပ်လီကေးရှင်းတစ်ခုဖန်တီးပြီး ဘော့ထည့်ကာ တိုက်ကို ကူးထည့်ပါ။'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'ခွင့်ပြုထားသော Discord အသုံးပြုသူ ID များ',
-        help: 'အကြံပြုထားသည်။ ရှေးကျက်စဉ်ဖြင့် ဖော်ပြထားသော Discord အသုံးပြုသူ ID များ။',
+        help: 'အကြံပြုထားသည်။ ရှေးကျက်စဉ်ဖြင့် ဖော်ပြထားသော Discord အသုံးပြုသူ ID များ။'
       },
       SLACK_APP_TOKEN: {
         help: 'Socket Mode အတွက် လိုအပ်သော အက်ပ်အဆင့် တိုက်ကို သုံးပါ။',
         placeholder: 'Slack အက်ပ် တိုက်ကို ကူးထည့်ပါ',
-        label: 'Slack အက်ပ် တိုက်ကန်',
+        label: 'Slack အက်ပ် တိုက်ကန်'
       },
       SLACK_ALLOWED_USERS: {
         label: 'ခွင့်ပြုထားသော Slack အသုံးပြုသူ ID များ',
-        help: 'အကြံပြုထားသည်။ Slack အသုံးပြုသူ ID များကို ကော်မာဖြင့် ချိတ်ထားပါ။',
+        help: 'အကြံပြုထားသည်။ Slack အသုံးပြုသူ ID များကို ကော်မာဖြင့် ချိတ်ထားပါ။'
       },
       MATTERMOST_URL: {
         label: 'ဆာဗာ URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'ဘော့တ် တိုက်',
+        label: 'ဘော့တ် တိုက်'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'ခွင့်ပြုထားသော အသုံးပြုသူ ID များ',
-        help: 'အကြံပြုထားသည်။ Mattermost အသုံးပြုသူ ID များကို ကော်မာဖြင့် ချိတ်ထားပါ။',
+        help: 'အကြံပြုထားသည်။ Mattermost အသုံးပြုသူ ID များကို ကော်မာဖြင့် ချိတ်ထားပါ။'
       },
       MATRIX_HOMESERVER: {
         label: 'ပင်မဆာဗာ URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'ဝင်ခွင့် တိုက်',
+        label: 'ဝင်ခွင့် တိုက်'
       },
       MATRIX_USER_ID: {
         label: 'ဘော့တ် အသုံးပြုသူ ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'ခွင့်ပြုထားသော Matrix အသုံးပြုသူ ID များ',
-        help: 'အကြံပြုထားသည်။ @user:server ပုံစံဖြင့် အသုံးပြုသူ ID များကို ကော်မာဖြင့် ချိတ်ထားပါ။',
+        help: 'အကြံပြုထားသည်။ @user:server ပုံစံဖြင့် အသုံးပြုသူ ID များကို ကော်မာဖြင့် ချိတ်ထားပါ။'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal ချိတ်ဆက်မှု URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'လည်ပတ်နေသော signal-cli REST ချိတ်ဆက်မှု၏ URL။',
+        help: 'လည်ပတ်နေသော signal-cli REST ချိတ်ဆက်မှု၏ URL။'
       },
       SIGNAL_ACCOUNT: {
         label: 'ဖုန်းနံပါတ်',
-        help: 'သင့် signal-cli လွတ်စ်ရှင်းနှင့် မှတ်ပြီးထားသော နံပါတ်။',
+        help: 'သင့် signal-cli လွတ်စ်ရှင်းနှင့် မှတ်ပြီးထားသော နံပါတ်။'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'ပထမ်း၊ အားလုံး သို့မဟုတ် ပိတ်',
-        help: 'ပထမ်း၊ အားလုံး သို့မဟုတ် ပိတ်',
+        help: 'ပထမ်း၊ အားလုံး သို့မဟုတ် ပိတ်'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Discord အသုံးပြုသူအားလုံးကို ခွင့်ပေးရန်',
-        help: 'ဖွံ့ဖြို့လုပ်ရန်သာ။ true ဖြစ်လျှင် ခွင့်ပေးစာရင်းမရှိဘဲ ဘော့ကို မည်သူမျိုးလည်း DM ပို့နိုင်သည်။',
+        help: 'ဖွံ့ဖြို့လုပ်ရန်သာ။ true ဖြစ်လျှင် ခွင့်ပေးစာရင်းမရှိဘဲ ဘော့ကို မည်သူမျိုးလည်း DM ပို့နိုင်သည်။'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ပင်ရိယာ ID',
-        help: 'ဘော့က အစောအတိုင်း မကြာမီ မက်ဆေဂျ်များ (cron ရလဒ်၊ သတိပေးချက်များ) ပို့သည့် ချန်း။',
+        help: 'ဘော့က အစောအတိုင်း မကြာမီ မက်ဆေဂျ်များ (cron ရလဒ်၊ သတိပေးချက်များ) ပို့သည့် ချန်း။'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'ပင်ရိယာ အမည်',
-        help: 'မှတ်တမ်းများနှင့် အခြေအနေ ရလဒ်တွင် ပင်ရိယာအတွက် ပြသထားမည့် အမည်။',
+        help: 'မှတ်တမ်းများနှင့် အခြေအနေ ရလဒ်တွင် ပင်ရိယာအတွက် ပြသထားမည့် အမည်။'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'iMessage အသုံးပြုသူအားလုံးကို ခွင့်ပေးရန်',
-        help: 'true ဖြစ်လျှင် BlueBubbles ခွင့်ပေးစာရင်းကို ကျော်ရန်။',
+        help: 'true ဖြစ်လျှင် BlueBubbles ခွင့်ပေးစာရင်းကို ကျော်ရန်။'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Mattermost အသုံးပြုသူအားလုံးကို ခွင့်ပေးရန်',
+        label: 'Mattermost အသုံးပြုသူအားလုံးကို ခွင့်ပေးရန်'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'ပင်ရိယာ ချန်း',
+        label: 'ပင်ရိယာ ချန်း'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'QQ အသုံးပြုသူအားလုံးကို ခွင့်ပေးရန်',
+        label: 'QQ အသုံးပြုသူအားလုံးကို ခွင့်ပေးရန်'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ ပင်ရိယာ ချန်း',
-        help: 'cron ဖြင့် ပို့ဆောင်ရန် ပုံမှန် ချန်း သို့မဟုတ် အုပ်စု။',
+        help: 'cron ဖြင့် ပို့ဆောင်ရန် ပုံမှန် ချန်း သို့မဟုတ် အုပ်စု။'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ ပင်ရိယာ အမည်',
+        label: 'QQ ပင်ရိယာ အမည်'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack ဘော့ တိုက်ကန်',
         help: 'Slack အက်ပ်ကို ထည့်သွင်းပြီးနောက် OAuth & Permissions မှ ဘော့ တိုက်ကန်ကို သုံးပါ။',
-        placeholder: 'Slack ဘော့ တိုက်ကန်ကို ကူးထည့်ပါ',
+        placeholder: 'Slack ဘော့ တိုက်ကန်ကို ကူးထည့်ပါ'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'ခွင့်ပြုထားသော Signal အသုံးပြုသူများ',
-        help: 'အကြံပြုထားသည်။ ကော်မာဖြင့် ခွဲထားသော Signal အမှတ်အသားများ။',
+        help: 'အကြံပြုထားသည်။ ကော်မာဖြင့် ခွဲထားသော Signal အမှတ်အသားများ။'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp လွတ်စ်ရှင်းကို ဖွင့်ရန်',
-        help: 'အောက်ရှိ ခလုတ်ဖြင့် အလိုအလျောက် သတ်မှတ်ပေးပါမည်။ လိုအပ်သည်ဟု မသိမှ မလှမ်းရန်။',
+        help: 'အောက်ရှိ ခလုတ်ဖြင့် အလိုအလျောက် သတ်မှတ်ပေးပါမည်။ လိုအပ်သည်ဟု မသိမှ မလှမ်းရန်။'
       },
       WHATSAPP_MODE: {
-        label: 'လွတ်စ်ရှင်းမုဒ်',
+        label: 'လွတ်စ်ရှင်းမုဒ်'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'ခွင့်ပြုထားသော WhatsApp အသုံးပြုသူများ',
-        help: 'အကြံပြုထားသည်။ ကော်မာဖြင့် ခွဲထားသော ဖုန်းနံပါတ်များ သို့မဟုတ် WhatsApp IDs များ။',
-      },
+        help: 'အကြံပြုထားသည်။ ကော်မာဖြင့် ခွဲထားသော ဖုန်းနံပါတ်များ သို့မဟုတ် WhatsApp IDs များ။'
+      }
     },
     advanced: count => `Advanced (${count})`,
     clearField: key => `Clear ${key}`,
@@ -1187,8 +1231,7 @@ export const my = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'ဝဘ်ချောင်းများ ရှာဖွေရန်...',
@@ -1197,7 +1240,8 @@ export const my = defineLocale({
     hint: 'လက်ခံသူ စတင်အလုပ်လုပ်ပြီးနောက် အကျုသီပြောင်းလဲမှုများကို ချက်ချင်း ပြန်ဖတ်ပေးပါမည်။ ပိတ်ထားသော အကျုသီများက ဝင်ရောက်လာသော ဖြစ်ပွားမှုများကို ငြင်းပယ်ပါမည်။',
     empty: 'ဝဘ်ချောင်း အကျုသီများ မရှိသေးပါ။',
     disabledTitle: 'ဝဘ်ချောင်း လက်ခံသူ ပိတ်ထားသည်',
-    disabledBody: 'ဝဘ်ချောင်းများသည် သီးသန့် ဂိတ်ဝေးပလက်ဖောမ်းများ ဖြစ်ကြသည်။ ဝင်ရောက်လာသော HTTP ဖြစ်ပွားမှုများကို လက်ခံရန် ဤနေရာတွင် ဖွင့်ပါ။ အကျုသီတစ်ခုက Telegram၊ Discord၊ Slack သို့မဟုတ် ကျန်ခေတ်ပိတ်တစ်ခုသို့ ပေးပို့သည့်အခါသာ ခေတ်ပိတ်များ လိုအပ်ပါမည်။',
+    disabledBody:
+      'ဝဘ်ချောင်းများသည် သီးသန့် ဂိတ်ဝေးပလက်ဖောမ်းများ ဖြစ်ကြသည်။ ဝင်ရောက်လာသော HTTP ဖြစ်ပွားမှုများကို လက်ခံရန် ဤနေရာတွင် ဖွင့်ပါ။ အကျုသီတစ်ခုက Telegram၊ Discord၊ Slack သို့မဟုတ် ကျန်ခေတ်ပိတ်တစ်ခုသို့ ပေးပို့သည့်အခါသာ ခေတ်ပိတ်များ လိုအပ်ပါမည်။',
     enable: 'ဝဘ်ချောင်းများကို ဖွင့်ရန်',
     enabling: 'ဖွင့်နေသည်...',
     enableRow: 'ဖွင့်ရန်',
@@ -1224,7 +1268,7 @@ export const my = defineLocale({
       github_comment: 'GitHub မှတိုင်းချက်',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     deleting: 'ဖျက်နေသည်...',
     deleted: 'ဝဲဗှုက် ဖျက်ပြီးပါပြီ',
@@ -1252,11 +1296,12 @@ export const my = defineLocale({
     deleteFailed: (name: string) => `Failed to delete "${name}"`,
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     close: 'ပရိုဖိုင်များကို ပိတ်ပါ',
-    nameHint: 'အင်္ဂလိပ်စာလုံးအောက်ခေါင်း၊ နံပါတ်များ၊ သင်္ကေတများနှင့် အောက်မျက်စိနှင့် ဖြစ်သင့်သည်။ စာလုံးသို့မဟုတ် နံပါတ်ဖြင့် စတင်ရမည်။',
+    nameHint:
+      'အင်္ဂလိပ်စာလုံးအောက်ခေါင်း၊ နံပါတ်များ၊ သင်္ကေတများနှင့် အောက်မျက်စိနှင့် ဖြစ်သင့်သည်။ စာလုံးသို့မဟုတ် နံပါတ်ဖြင့် စတင်ရမည်။',
     title: 'ပရိုဖိုင်များ',
     search: 'ပရိုဖိုင်များရှာဖွေပါ...',
     loading: 'ပရိုဖိုင်များကို ဖွင့်နေသည်...',
@@ -1295,7 +1340,8 @@ export const my = defineLocale({
     deleteDescMid: 'ကို ဖျက်ပြီး ၎င်း၏',
     deleteDescSuffix: 'မြို့တွဲကို ဖျက်မည်။ ဤလုပ်ဆောင်ခြင်းကို နောက်ပြန် မပြုနိုင်ပါ။',
     deleting: 'ဖျက်နေသည်...',
-    createDesc: 'ပရိုဖိုင်များသည် အချင်းချင်းကိုယ်ပိုင် OpenAmer ပတ်ဝန်းကျင်များဖြစ်ပြီး config၊ skills နှင့် SOUL.md တို့ကို သီးခြားစီမံကိုင်ထားသည်။',
+    createDesc:
+      'ပရိုဖိုင်များသည် အချင်းချင်းကိုယ်ပိုင် OpenAmer ပတ်ဝန်းကျင်များဖြစ်ပြီး config၊ skills နှင့် SOUL.md တို့ကို သီးခြားစီမံကိုင်ထားသည်။',
     nameLabel: 'အမည်',
     cloneFrom: 'မှတ်တောက်မှကူးထုတ်ရန်',
     cloneFromNone: 'မရှိ (ဗလက်ကင်း)',
@@ -1330,7 +1376,7 @@ export const my = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   cron: {
     close: 'ကရန်ပိတ်ရန်',
@@ -1344,14 +1390,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'ခဏရပ်ထားသည်',
       disabled: 'ပိတ်ထားသည်',
       error: 'အမှား',
-      completed: 'ပြီးဆုံးသည်',
+      completed: 'ပြီးဆုံးသည်'
     },
     deliveryLabels: {
       local: 'ဤဒက်စ်တုပ်',
       email: 'အီးမေးလ်',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     scheduleLabels: {
       daily: 'နေ့စဉ်',
@@ -1360,7 +1406,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'လတိုင်း',
       hourly: 'နာရီတိုင်း',
       'every-15-minutes': 'မိနစ် 15 ခုတိုင်း',
-      custom: 'စိတ်ကြိုက်',
+      custom: 'စိတ်ကြိုက်'
     },
     scheduleHints: {
       daily: 'နေ့တိုင်း နံနက် ၉:၀၀ တွင်',
@@ -1369,7 +1415,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'လတိုင်း၏ ပထမဆုံးနေ့ နံနက် ၉:၀၀ တွင်',
       hourly: 'နာရီတိုင်း၏ အစောပိုင်းတွင်',
       'every-15-minutes': 'မိနစ် 15 ခုတိုင်း',
-      custom: 'Cron အသုံးအနှုန်း သို့မဟုတ် သဘာဝအသုံးအနှုန်း',
+      custom: 'Cron အသုံးအနှုန်း သို့မဟုတ် သဘာဝအသုံးအနှုန်း'
     },
     days: {
       '0': 'တနင်္ဂနွေ',
@@ -1379,11 +1425,12 @@ Leave blank to keep the ${mode} default.`,
       '4': 'ကြာသပတေး',
       '5': 'သောကြာ',
       '6': 'စနေ',
-      '7': 'တနင်္ဂနွေ',
+      '7': 'တနင်္ဂနွေ'
     },
     topOfHour: 'နာရီတိုင်းတိုင်း အပေါ်ဆုံးတွင်',
     newCron: 'ခရန်အသစ်',
-    emptyDescNew: 'ခရန်ဖော်ပြချက်အတိုင်း ပြေးဆောင်ရန် ပြဇာတ်ကို ရက်စွဲချိန်တင်ပါ။ OpenAmer က လုပ်ဆောင်ပေးပြီး ရလဒ်များကို သင့်ရွေးချယ်ထားသည့်နေရာသို့ ပေးပို့ပါမည်။',
+    emptyDescNew:
+      'ခရန်ဖော်ပြချက်အတိုင်း ပြေးဆောင်ရန် ပြဇာတ်ကို ရက်စွဲချိန်တင်ပါ။ OpenAmer က လုပ်ဆောင်ပေးပြီး ရလဒ်များကို သင့်ရွေးချယ်ထားသည့်နေရာသို့ ပေးပို့ပါမည်။',
     emptyDescSearch: 'ပိုမိုကျယ်ပြန့်သော ရှာဖွေမှုကို စမ်းပါ။',
     emptyTitleNew: 'ရက်စွဲချိန်တင်ထားသော အလုပ်များ မရှိသေးပါ',
     emptyTitleSearch: 'မတူညီမှုများ မရှိပါ',
@@ -1418,8 +1465,10 @@ Leave blank to keep the ${mode} default.`,
     failedSave: 'cron job ကို သိမ်းဆည်း၍ မအောင်မြင်ပါ',
     editTitle: 'cron job ကို တည်းဖြတ်ရန်',
     createTitle: 'cron job အသစ်',
-    editDesc: 'အချိန်စီစဉ်၊ သတိပေးချက် သို့မဟုတ် ပို့ဆောင်ရမည့်နေရာကို ပြောင်းလဲပါ။ ပြောင်းလဲမှုများကို နောက်တစ်ကြိမ် လုပ်ဆောင်ချိန်တွင် အသက်သွင်းမည်။',
-    createDesc: 'သတိပေးချက်တစ်ခုကို အလိုအလျောက် လုပ်ဆောင်ရန် အချိန်စီစဉ်ပေးပါ။ cron ဖွဲ့စည်းပုံ သို့မဟုတ် “မိနစ်ပိုင်းတိုင်း” ကဲ့သို့သော စာသားသုံးပါ။',
+    editDesc:
+      'အချိန်စီစဉ်၊ သတိပေးချက် သို့မဟုတ် ပို့ဆောင်ရမည့်နေရာကို ပြောင်းလဲပါ။ ပြောင်းလဲမှုများကို နောက်တစ်ကြိမ် လုပ်ဆောင်ချိန်တွင် အသက်သွင်းမည်။',
+    createDesc:
+      'သတိပေးချက်တစ်ခုကို အလိုအလျောက် လုပ်ဆောင်ရန် အချိန်စီစဉ်ပေးပါ။ cron ဖွဲ့စည်းပုံ သို့မဟုတ် “မိနစ်ပိုင်းတိုင်း” ကဲ့သို့သော စာသားသုံးပါ။',
     nameLabel: 'အမည်',
     namePlaceholder: 'မနက်စောစာစီစဉ်',
     promptLabel: 'သတိပေးချက်',
@@ -1441,7 +1490,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'cron ဖန်တီးရန်',
     tabs: {
       jobs: 'အလုပ်များ',
-      blueprints: 'ပုံစံများ',
+      blueprints: 'ပုံစံများ'
     },
     blueprints: {
       tab: 'ပုံစံများ',
@@ -1455,7 +1504,7 @@ Leave blank to keep the ${mode} default.`,
       loading: 'ပုံစံများ ဖွင့်နေသည်...',
       failedLoad: 'ပုံစံများ မဖွင့်နိုင်ခဲ့ပါ',
       emptyTitle: 'ပုံစံများ မရှိပါ',
-      emptyDesc: 'ဤ backend တွင် အလိုအလျောက်စနစ် ပုံစံများ မရှိပါ။',
+      emptyDesc: 'ဤ backend တွင် အလိုအလျောက်စနစ် ပုံစံများ မရှိပါ။'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -1464,7 +1513,7 @@ Leave blank to keep the ${mode} default.`,
     everyDayOfWeekAt: (day, time) => `Every ${day} at ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Monthly on day ${dayOfMonth} at ${time}`,
     everyHourAt: minute => `Every hour at :${minute}`,
-    actionsFor: title => `Actions for ${title}`,
+    actionsFor: title => `Actions for ${title}`
   },
   artifacts: {
     search: 'အနုပ်အရာများကို ရှာဖွေရန်...',
@@ -1498,14 +1547,14 @@ Leave blank to keep the ${mode} default.`,
     copyUrl: 'URL ကိုယ်ပိုင်ရန်',
     copyPath: 'လမ်းကြောင်းကိုယ်ပိုင်ရန်',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'အစ်ကားအသစ်',
       skills: 'စွမ်းဆောင်ရည်များ',
       messaging: 'မက်ဆေ့ဂျင်း',
-      artifacts: 'ရလဒ်ဖိုင်များ',
+      artifacts: 'ရလဒ်ဖိုင်များ'
     },
     searchAria: 'အစ်ကားများရှာဖွေရန်',
     searchPlaceholder: 'အစ်ကားများရှာဖွေရန်…',
@@ -1556,8 +1605,10 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'လမ်းကြောင်း ကူးယူပါ',
       removeFromSidebar: 'ဘယ်ဘက်ခေတ်မှုမှ ဖယ်ရှားပါ',
       createFailed: 'ပရောဂျ် မဖန်တီးနိုင်ပါ',
-      staleBackend: 'OpenAmer နောက်ကွယ်ကို စီမံကိန်းများဖန်တီးနိုင်ရန် ပြင်ဆင်ပါ — သင့် နောက်ကွယ်သည် ဤ desktop အက်ပ်ထက် နောက်ကျက်နေသည် (ဆက်တင်မှုများ → နောက်ကွယ်)',
-      deleteConfirm: 'သိမ်းထားသော စီမံကိန်းကို OpenAmer မှ ဖယ်ရှားပါမည်။ ဖိုင်များ၊ git repos နှင့် worktrees များကို မထိခိုက်ပါ။',
+      staleBackend:
+        'OpenAmer နောက်ကွယ်ကို စီမံကိန်းများဖန်တီးနိုင်ရန် ပြင်ဆင်ပါ — သင့် နောက်ကွယ်သည် ဤ desktop အက်ပ်ထက် နောက်ကျက်နေသည် (ဆက်တင်မှုများ → နောက်ကွယ်)',
+      deleteConfirm:
+        'သိမ်းထားသော စီမံကိန်းကို OpenAmer မှ ဖယ်ရှားပါမည်။ ဖိုင်များ၊ git repos နှင့် worktrees များကို မထိခိုက်ပါ။',
       startWork: 'အသစ် worktree',
       newWorktreeTitle: 'အသစ် worktree',
       newWorktreeDesc: 'ဤ worktree အတွက် branch အမည်ပေးပါ။',
@@ -1577,14 +1628,16 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'Branch များ မတွေ့ပါ',
       removeWorktree: 'Worktree ကို ဖယ်ရှားပါ',
       removeWorktreeFailed: 'အလုပ်စောင်ကို မဖျက်နိုင်ခဲ့ပါ (မသိမ်းဆည်းထားသော ပြောင်းလဲမှုများ ရှိသလား?)',
-      removeWorktreeConfirm: 'အဲဒါကို git မှ ဖယ်ရှာပါ (အလုပ်စောင် နိုင်ခွဲကို ဖျက်မည်; အခက်ကူး အတည်နေမည်), ဒီကဇာမှာ လမ်းကြောင်းကို ဖုံးပြီး အလုပ်စောင်ကို ဒစ်ခ်ထဲတွင် ထားခဲ့ပါ။',
-      removeWorktreeDirty: 'ဤအလုပ်စောင်တွင် မသိမ်းဆည်းထားသော ပြောင်းလဲမှုများ ရှိနေသည်။ အချင်းဖျက်ပါ (ပြောင်းလဲမှုများကို ပစ်ပျိုးမည်), ဒီကဇာမှာ လမ်းကြောင်းကို ဖုံးပြီး ဒစ်ခ်ထဲတွင် ထားခဲ့ပါ။',
+      removeWorktreeConfirm:
+        'အဲဒါကို git မှ ဖယ်ရှာပါ (အလုပ်စောင် နိုင်ခွဲကို ဖျက်မည်; အခက်ကူး အတည်နေမည်), ဒီကဇာမှာ လမ်းကြောင်းကို ဖုံးပြီး အလုပ်စောင်ကို ဒစ်ခ်ထဲတွင် ထားခဲ့ပါ။',
+      removeWorktreeDirty:
+        'ဤအလုပ်စောင်တွင် မသိမ်းဆည်းထားသော ပြောင်းလဲမှုများ ရှိနေသည်။ အချင်းဖျက်ပါ (ပြောင်းလဲမှုများကို ပစ်ပျိုးမည်), ဒီကဇာမှာ လမ်းကြောင်းကို ဖုံးပြီး ဒစ်ခ်ထဲတွင် ထားခဲ့ပါ။',
       forceRemove: 'အချင်းဖျက်မည်',
       back: 'စီမံကိုးအားလုံး',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     loading: 'ဖွင့်နေသည်…',
     loadMore: 'နောက်ထပ်ဖွင့်မည်',
@@ -1619,19 +1672,19 @@ Leave blank to keep the ${mode} default.`,
       actionsFor: title => `Actions for ${title}`,
       handoffOrigin: platform => `Handed off from ${platform}`,
       ownedByProfile: profile => `Profile: ${profile}`,
-      untitledChat: id => `Chat ${id}`,
+      untitledChat: id => `Chat ${id}`
     },
     dateDivider: {
       today: 'ယနေ့ အထက်တွင်',
       yesterday: 'မနက်ဖြန်',
       thisWeek: 'ဤအပတ် အထက်တွင်',
       lastWeek: 'ပြီးခဲ့သောအပတ်',
-      thisMonth: 'ဤလ အထက်တွင်',
+      thisMonth: 'ဤလ အထက်တွင်'
     },
     noMatch: query => `No sessions match “${query}”.`,
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     message: 'မက်ဆေဇာဘိုတ်',
@@ -1672,7 +1725,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'ယခင်စွန့်ချန်မှုကို ဆက်လုပ်ပါ',
       '/details': 'စကားမှတ်တမ်း အသေးစိတ်အဆင့်ကို ထိန်းချုပ်ပါ',
       '/copy': 'ရွေးချယ်မှု သို့မဟုတ် အကူအကောင့်၏ နောက်ဆုံး မက်ဆော်စာကို ကူးထည့်ပါ',
-      '/quit': '`OpenAmer` မှ ထွက်ပါ',
+      '/quit': '`OpenAmer` မှ ထွက်ပါ'
     },
     hotkeyDescs: {
       'composer.mention': 'ရိုင်္ဖိုင်များ၊ ဖိုင်တန်းများ၊ url၊ git',
@@ -1682,7 +1735,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'တန်းစီထားသော နောက်တစ်ခုကို ပို့ရန်',
       'keybinds.openPanel': 'ကီးဘိုတ်ဖြတ်လမ်းအားလုံး',
       'composer.cancel': 'ပို့က်ပေါ်ဝန်ကို ပိတ်ရန် · ပို့မှုကို ပယ်ဖျက်ရန်',
-      'composer.history': 'ပို့က်ပေါ်ဝန် / မှတ်တမ်းအား လှည့်ရန်',
+      'composer.history': 'ပို့က်ပေါ်ဝန် / မှတ်တမ်းအား လှည့်ရန်'
     },
     attachUrlTitle: 'URL တွဲဖိုက်ရန်',
     attachUrlDesc: 'OpenAmer သည် စာမျက်နှာကို ရယူကာ ဤပို့မှုအတွက် ဆက်စပ်မှုအဖြစ် ထည့်ပေးမည်။',
@@ -1700,7 +1753,8 @@ Leave blank to keep the ${mode} default.`,
     queueResume: 'ဆက်လုပ်',
     queueResumeTip: 'ရပ်ဖျက်ခြင်းကြောင့် ခဏရပ်ထားသည် — တန်းစီပို့မှုများကို ဆက်လုပ်ပို့ရန်',
     queueStuckTitle: 'စုစည်းထားသော မက်ဆေ့ချ် မပို့ရသေးပါ',
-    queueStuckBody: 'စုစည်းထားသော အကြောင်းပြချက်ကို ပို့ရန် ဆက်တိုက် မအောင်မြင်ခဲ့ပါ။ အဲဒီသော စာရင်းထဲတွင် ရှိနေဆဲဖြစ်သေးပါ — ထပ်မံပို့ကြည့်ပါ။',
+    queueStuckBody:
+      'စုစည်းထားသော အကြောင်းပြချက်ကို ပို့ရန် ဆက်တိုက် မအောင်မြင်ခဲ့ပါ။ အဲဒီသော စာရင်းထဲတွင် ရှိနေဆဲဖြစ်သေးပါ — ထပ်မံပို့ကြည့်ပါ။',
     previewUnavailable: 'အကြိတ်မှု မရှိနိုင်ပါ',
     dictating: 'စကားမေးနေသည်',
     preparingAudio: 'အသံအသင့်နေသည်',
@@ -1726,19 +1780,20 @@ Leave blank to keep the ${mode} default.`,
     snippets: {
       codeReview: {
         label: 'ကုဒ်ပိုင်း ပြန်လည်စစ်ခြင်း',
-        description: 'လက်ရှိပြောင်းလဲမှုတွင် ပြန်လည်လှမ်းမှုများ၊ လွတ်ကျန်အခြေအနေများနှင့် မရှိသောစမ်းသပ်မှုများကို စစ်ဆေးပါ။',
-        text: 'ပြန်လည်စစ်ပေးရန် ဘူးများ၊ ပြန်လည်လှမ်းမှုများနှင့် မရှိသောစမ်းသပ်မှုများကို စစ်ဆေးပါ။',
+        description:
+          'လက်ရှိပြောင်းလဲမှုတွင် ပြန်လည်လှမ်းမှုများ၊ လွတ်ကျန်အခြေအနေများနှင့် မရှိသောစမ်းသပ်မှုများကို စစ်ဆေးပါ။',
+        text: 'ပြန်လည်စစ်ပေးရန် ဘူးများ၊ ပြန်လည်လှမ်းမှုများနှင့် မရှိသောစမ်းသပ်မှုများကို စစ်ဆေးပါ။'
       },
       implementationPlan: {
         label: 'အဖွဲ့စည်းချက် လမ်းညွှန်ချက်',
         description: 'ကုဒ်ကို မထိမ်းမီ နည်းလမ်းတစ်ခု ရှင်းလင်းချက်ပေးပါ။',
-        text: 'ကုဒ်ပြောင်းလဲမှုများမလုပ်မီ ကုဒ်သည်းတင် အဖွဲ့စည်းချက် လမ်းညွှန်ချက်တစ်ခု ပေးပါ။',
+        text: 'ကုဒ်ပြောင်းလဲမှုများမလုပ်မီ ကုဒ်သည်းတင် အဖွဲ့စည်းချက် လမ်းညွှန်ချက်တစ်ခု ပေးပါ။'
       },
       explainThis: {
         label: 'ဤသည်ကို ရှင်းပြပါ',
         description: 'ရွေးထားသောကုဒ် မည်သို့လုပ်သည်ကို ရှင်းပြပီး အဓိကဖိုင်များကို လင့်ခ်ပါ။',
-        text: 'ဤသည်ကို ရှင်းပြပီး အဓိကဖိုင်များကို ညွှန်ပြပါ။',
-      },
+        text: 'ဤသည်ကို ရှင်းပြပီး အဓိကဖိုင်များကို ညွှန်ပြပါ။'
+      }
     },
     wakingProfile: profile => `Waking up ${profile}…`,
     newSessionPlaceholders: [
@@ -1748,7 +1803,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -1757,14 +1812,14 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
     attachments: count => `${count} attachment${count === 1 ? '' : 's'}`,
     previewLabel: label => `Preview ${label}`,
     couldNotPreview: label => `Could not preview ${label}`,
-    removeAttachment: label => `Remove ${label}`,
+    removeAttachment: label => `Remove ${label}`
   },
   statusStack: {
     agents: 'အက်ဂျင်များ',
@@ -1787,8 +1842,10 @@ Leave blank to keep the ${mode} default.`,
       viewAsList: 'စာရင်းအတုံးအတန်းဖြင့်ကြည့်မည်',
       revert: 'ပြန်လည်ရေးသားမည်',
       revertAll: 'အားလုံးကို ပြန်လည်ရေးသားမည်',
-      revertConfirm: 'ဤဖိုင်၏ အပြင်းအနားများကို ပစ်ပယ်ပြီး တင်သွင်းထားသောအတိုင်း ပြန်လည်သို့ ရေးသားမည်လား။ ဤသည်ကို နောက်ပြန်မရှိနိုင်ပါ။',
-      revertAllConfirm: 'အပြင်းအနားအားလုံးကို ပစ်ပယ်ပြီး ဖိုင်များကို တင်သွင်းထားသောအတိုင်း ပြန်လည်သို့ ရေးသားမည်လား။ ဤသည်ကို နောက်ပြန်မရှိနိုင်ပါ။',
+      revertConfirm:
+        'ဤဖိုင်၏ အပြင်းအနားများကို ပစ်ပယ်ပြီး တင်သွင်းထားသောအတိုင်း ပြန်လည်သို့ ရေးသားမည်လား။ ဤသည်ကို နောက်ပြန်မရှိနိုင်ပါ။',
+      revertAllConfirm:
+        'အပြင်းအနားအားလုံးကို ပစ်ပယ်ပြီး ဖိုင်များကို တင်သွင်းထားသောအတိုင်း ပြန်လည်သို့ ရေးသားမည်လား။ ဤသည်ကို နောက်ပြန်မရှိနိုင်ပါ။',
       staged: 'အဆင့်တင်ပြီး',
       noChanges: 'အပြင်းအနားမရှိပါ',
       notRepo: 'Git သို့မဟုတ်ပါ',
@@ -1805,7 +1862,8 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'PR ဖွင့်ပါ',
       ghMissing: 'GitHub CLI (gh) ကို ထည့်သွင်းပြီး PR ဖွင့်ရန် ဝင်ရောက်ပါ',
       agentShip: 'OpenAmer ကို PR ဖွင့်ပေးရန် ပြောပါ',
-      agentShipPrompt: 'လက်ရှိပြောင်းလဲမှုများကို စစ်ဆေးပြီး ရှင်းလင်းသော conventional-commit မက်ဆေ့ဂျဖြင့် မှတ်သားကာ အချိုက်ကို တင်သွင်းပြီး pull request ဖွင့်ပါ။',
+      agentShipPrompt:
+        'လက်ရှိပြောင်းလဲမှုများကို စစ်ဆေးပြီး ရှင်းလင်းသော conventional-commit မက်ဆေ့ဂျဖြင့် မှတ်သားကာ အချိုက်ကို တင်သွင်းပြီး pull request ဖွင့်ပါ။',
       newBranch: 'အချိုက်အသစ်',
       worktrees: 'အလုပ်သစ်ချိုက်များ',
       changed: count => `${count} changed`,
@@ -1813,12 +1871,12 @@ Leave blank to keep the ${mode} default.`,
       behind: count => `${count} behind`,
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -1833,7 +1891,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'အဆင်မွမ်းပြီးပါပြီ',
       manual: 'Terminal မှတစ်ဆင့်တင်မွမ်းပါလိုက်',
       guiSkew: 'ဒေးစတော့အက်ပ်ကို တင်မွမ်းပါလိုက်',
-      error: 'တင်မွမ်းမှု ခဏရပ်နေသည်',
+      error: 'တင်မွမ်းမှု ခဏရပ်နေသည်'
     },
     checking: 'အဆင်မွမ်းများ ရှာဖွေနေသည်…',
     checkFailedTitle: 'အဆင်မွမ်းများ စစ်ဆေးမရှုပ်နိုင်ခဲ့ပါ',
@@ -1848,20 +1906,26 @@ Leave blank to keep the ${mode} default.`,
     availableBody: 'OpenAmer ဗားရှင်အသစ် ရနိုင်သည်။',
     availableTitleBackend: 'နောက်ကွယ်အဆင်မွမ်း ရရှိနိုင်သည်',
     availableBodyBackend: 'ချိတ်ဆက်ထားသော OpenAmer နောက်ကွယ်၏ နောက်ဆုံးဗားရှင် ပြင်ဆင်ရန် အသင့်ဖြစ်ပါပြီ။',
-    availableBodyNoChangelog: 'ဗားရှင်အသစ် အသင့်ဖြစ်ပါပြီ။ ဤထည့်သွင်းအမျိုးအစားအတွက် ထုတ်လွှင်မှတ်တမ်းများ မရရှိနိုင်ပါ။',
+    availableBodyNoChangelog:
+      'ဗားရှင်အသစ် အသင့်ဖြစ်ပါပြီ။ ဤထည့်သွင်းအမျိုးအစားအတွက် ထုတ်လွှင်မှတ်တမ်းများ မရရှိနိုင်ပါ။',
     updateNow: 'ယခုတင်မွမ်းပါ',
     maybeLater: 'နောက်မှပြန်မည်',
     manualTitle: 'သင့် စက်ပိုးအခေါ်အောင်မှတစ်ဆင့် အဆင်သတ်မွမ်းရန်',
-    manualBody: 'သင် အမိန့်ကြောင်းလမ်းမှတစ်ဆင့် OpenAmer ကို ထည့်သွင်းခဲ့သဖြင့် အဆင်သတ်မွမ်းမှုများကိုလည်း ထိုမှတ်တမ်းတွင်ပင် လုပ်ဆောင်ပါမည်။ ဤကို သင့်စက်ပိုးအခေါ်အောင်ထဲ ကူးထည့်ပါ။',
+    manualBody:
+      'သင် အမိန့်ကြောင်းလမ်းမှတစ်ဆင့် OpenAmer ကို ထည့်သွင်းခဲ့သဖြင့် အဆင်သတ်မွမ်းမှုများကိုလည်း ထိုမှတ်တမ်းတွင်ပင် လုပ်ဆောင်ပါမည်။ ဤကို သင့်စက်ပိုးအခေါ်အောင်ထဲ ကူးထည့်ပါ။',
     manualPickedUp: 'OpenAmer ကို နောက်တစ်ကြိမ် ဖွင့်တဲ့အခါ အဆင်သတ်မွမ်းမှုအသစ်ကို အလိုအလျောက် ရယူမည်။',
     guiSkewTitle: 'ဒေက်စတောပ် အက်ပ်ကို အဆင်သတ်မွမ်းရန်',
-    guiSkewBody: 'နောက်ကွယ်မှုကို အဆင်သတ်မွမ်းခဲ့သော်လည်း ဤဒေက်စတောပ် အက်ပ် ပက်ကေ့ဂျ်ကို မပြောင်းလဲခဲ့ပါ။ ညီညွတ်အောင် OpenAmer ဒေက်စတောပ် အက်ပ်ကို အဆင်သတ်မွမ်းရန် သို့မဟုတ် ပြန်ထည့်ရန် (သင့် AppImage / .deb / .rpm) လုပ်ပါ။',
+    guiSkewBody:
+      'နောက်ကွယ်မှုကို အဆင်သတ်မွမ်းခဲ့သော်လည်း ဤဒေက်စတောပ် အက်ပ် ပက်ကေ့ဂျ်ကို မပြောင်းလဲခဲ့ပါ။ ညီညွတ်အောင် OpenAmer ဒေက်စတောပ် အက်ပ်ကို အဆင်သတ်မွမ်းရန် သို့မဟုတ် ပြန်ထည့်ရန် (သင့် AppImage / .deb / .rpm) လုပ်ပါ။',
     copy: 'ကူးယူရန်',
     copied: 'ကူးယူပြီး',
     done: 'ပြီးပါပြီ',
-    applyingBody: 'OpenAmer အဆင်သတ်မွမ်းသူက အဆင်သတ်မွမ်းမှုကို သီးသန့်ပေါ်တွင် လက်ယူလုပ်ဆောင်ပြီး ပြီးဆုံးတွင် OpenAmer ကို အလိုအလျောက် ပြန်ဖွင့်ပေးပါမည်။ အဆင်သတ်မွမ်းနေစဉ် OpenAmer ကို ကိုယ်တိုင် ပြန်ဖွင့်မည်ကို မလုပ်ပါနှင့်။',
-    applyingBodyBackend: 'ပိုမိုနောက်ကွယ်မှုက အဆင်သတ်မွမ်းမှုကို လုပ်ဆောင်ပြီး ပြန်လည်စတင်မည်။ ပြန်ရောက်လာပါက OpenAmer က အလိုအလျောက် ပြန်ချိတ်ဆက်မည်။',
-    applyingClose: 'အဆင်သတ်မွမ်းမှု လုပ်ဆောင်နေစဉ် ဤပြတ်တောက်မှုက ပိတ်သွားပြီးနောက် OpenAmer က အလိုအလျောက် ပြန်ဖွင့်မည်။',
+    applyingBody:
+      'OpenAmer အဆင်သတ်မွမ်းသူက အဆင်သတ်မွမ်းမှုကို သီးသန့်ပေါ်တွင် လက်ယူလုပ်ဆောင်ပြီး ပြီးဆုံးတွင် OpenAmer ကို အလိုအလျောက် ပြန်ဖွင့်ပေးပါမည်။ အဆင်သတ်မွမ်းနေစဉ် OpenAmer ကို ကိုယ်တိုင် ပြန်ဖွင့်မည်ကို မလုပ်ပါနှင့်။',
+    applyingBodyBackend:
+      'ပိုမိုနောက်ကွယ်မှုက အဆင်သတ်မွမ်းမှုကို လုပ်ဆောင်ပြီး ပြန်လည်စတင်မည်။ ပြန်ရောက်လာပါက OpenAmer က အလိုအလျောက် ပြန်ချိတ်ဆက်မည်။',
+    applyingClose:
+      'အဆင်သတ်မွမ်းမှု လုပ်ဆောင်နေစဉ် ဤပြတ်တောက်မှုက ပိတ်သွားပြီးနောက် OpenAmer က အလိုအလျောက် ပြန်ဖွင့်မည်။',
     errorTitle: 'အဆင်သတ်မွမ်းမှု မပြီးပါ',
     errorBody: 'စိတ်ရှည်ပါစေ — မည်သူမျှ မဆုံးရှုံးခဲ့ပါ။ ယခု ထပ်မံကြိုးစားနိုင်ပါသည်။',
     notNow: 'ယခုမဟုတ်ဘူး',
@@ -1871,13 +1935,16 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'အဆင်သတ်မွမ်းမှုကို ဖတ်ရန် နောက်ကွယ်မှုကို ပြန်လည်စတင်နေပါသည်…',
       notAvailable: 'ဤနောက်ကွယ်မှုအတွက် အဆင်သတ်မွမ်းမှု မရှိပါ။',
       failed: 'နောက်ကွယ်မှု အဆင်သတ်မွမ်းမှု မအောင်မြင်ပါ။',
-      noReturn: 'နောက်ကွယ်သော အဝေးချိုင့်စနစ် ပြန်လည်အွန်လိုင်မလာပါ။ အပြင်းအဆင်း မပြီးဆုံးနိုင်ခြင်း မရှိနိုင်သေးသောလျှင် — အဝေးချိုင့်စနစ်အိမ်ရှိကို စစ်ဆေးပါ။',
+      noReturn:
+        'နောက်ကွယ်သော အဝေးချိုင့်စနစ် ပြန်လည်အွန်လိုင်မလာပါ။ အပြင်းအဆင်း မပြီးဆုံးနိုင်ခြင်း မရှိနိုင်သေးသောလျှင် — အဝေးချိုင့်စနစ်အိမ်ရှိကို စစ်ဆေးပါ။'
     },
     appErrors: {
-      updateLocked: 'အပြင်းအဆင်း ပျက်ပန်းခဲ့သည်။ OpenAmer လေးတစ်ခုချင်း သို့မဟုတ် တစ်ခုချင်းတွင် `openamer` ကို လုပ်ဆောင်နေသည့် terminal က ထည့်သွင်းမှုကို ဖွင့်ထားသဖြင့် ဖြစ်ပါသည်။ အတန်းကို ပိတ်ပြီး ထပ်ကြိုးစားပါ။',
-      updateFailed: 'အပြင်းအဆင်း မပြီးဆုံးခဲ့ပါ။ စိတ်ရှည်ပါးမထိပ်ရ — မည်သူမျှ မဆုံးရှုံးခဲ့ပါ။ ယခု ထပ်ကြိုးစားနိုင်ပါသည်။',
+      updateLocked:
+        'အပြင်းအဆင်း ပျက်ပန်းခဲ့သည်။ OpenAmer လေးတစ်ခုချင်း သို့မဟုတ် တစ်ခုချင်းတွင် `openamer` ကို လုပ်ဆောင်နေသည့် terminal က ထည့်သွင်းမှုကို ဖွင့်ထားသဖြင့် ဖြစ်ပါသည်။ အတန်းကို ပိတ်ပြီး ထပ်ကြိုးစားပါ။',
+      updateFailed:
+        'အပြင်းအဆင်း မပြီးဆုံးခဲ့ပါ။ စိတ်ရှည်ပါးမထိပ်ရ — မည်သူမျှ မဆုံးရှုံးခဲ့ပါ။ ယခု ထပ်ကြိုးစားနိုင်ပါသည်။'
     },
-    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
+    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`
   },
   install: {
     stageStates: {
@@ -1885,7 +1952,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'ထည့်သွင်းနေသည်',
       succeeded: 'ပြီးဆုံး',
       skipped: 'ကျော်လို့',
-      failed: 'မအောင်မြင်',
+      failed: 'မအောင်မြင်'
     },
     oneTimeTitle: 'OpenAmer အတွက် တစ်ခါတစ်လေ ထည့်သွင်းရန်လိုသည်',
     installCommand: 'ထည့်သွင်းမှု အမိန့်',
@@ -1894,15 +1961,19 @@ Leave blank to keep the ${mode} default.`,
     installTo: 'ထည့်သွင်းမည့် နေရာ',
     retryAfterRun: 'ကျွန်ုပ် လုပ်ပြီးပါပြီ -- ထပ်ကြိုးစားပါ',
     setupChoiceTitle: 'OpenAmer Desktop ကို တပ်ဆင်ရန်',
-    setupChoiceDesc: 'ဤအက်ပ်ကို သင့်ရှိပြီးသော OpenAmer gateway နှင့် ချိတ်ဆက်ပါ၊ သို့မဟုတ် ဤကွန်ပျူတာထဲတွင် OpenAmer ကို တိုင်းရင်းထည့်သွင်းပါ။',
+    setupChoiceDesc:
+      'ဤအက်ပ်ကို သင့်ရှိပြီးသော OpenAmer gateway နှင့် ချိတ်ဆက်ပါ၊ သို့မဟုတ် ဤကွန်ပျူတာထဲတွင် OpenAmer ကို တိုင်းရင်းထည့်သွင်းပါ။',
     connectExistingTitle: 'ရှိပြီးသော OpenAmer နှင့် ချိတ်ဆက်ရန်',
     connectExistingShort: 'ရှိပြီးသောကို ချိတ်ဆက်ရန်',
-    connectExistingDesc: 'စကားရှင် token သို့မဟုတ် ဘရောက်စာရင်းဝင်ခြင်းဖြင့် အဝေးချိုင့် အဝေးချိုင့်စနစ်ကို သုံးပါ။ တိုင်းရင်း ထည့်သွင်းမှု မစတင်ပါ။',
+    connectExistingDesc:
+      'စကားရှင် token သို့မဟုတ် ဘရောက်စာရင်းဝင်ခြင်းဖြင့် အဝေးချိုင့် အဝေးချိုင့်စနစ်ကို သုံးပါ။ တိုင်းရင်း ထည့်သွင်းမှု မစတင်ပါ။',
     installLocalTitle: 'OpenAmer ကို တိုင်းရင်းထည့်သွင်းရန်',
-    installLocalDesc: 'OpenAmer ကို ဒေါင်လုဒ်လုပ်၊ Python ပတ်ဝန်းကျင်ကို ဖန်တီးပါ၊ ပြီးလျှင် backend ကို ဤကွန်ပျူတာတွင် အသုံးပြုပါ။',
+    installLocalDesc:
+      'OpenAmer ကို ဒေါင်လုဒ်လုပ်၊ Python ပတ်ဝန်းကျင်ကို ဖန်တီးပါ၊ ပြီးလျှင် backend ကို ဤကွန်ပျူတာတွင် အသုံးပြုပါ။',
     localStartUnavailable: 'ဒေသဖွင့်မှု မစတင်နိုင်ပါ။ OpenAmer Desktop ကို ပြန်လည်စတင်ကာ ထပ်မံကြိုးစားပါ။',
     remoteSetupTitle: 'လက်ရှိ OpenAmer နှင့် ချိတ်ဆက်ပါ',
-    remoteSetupDesc: 'ဂိတ်ဝေ URL ကို ထည့်ပါ။ OpenAmer Desktop က တိုက်ကလေး သို့မဟုတ် ဘရောက်ဇာ ဝင်ရောက်မှု လိုအပ်သည်မှာ သိမ်းဆေးပါမည်။',
+    remoteSetupDesc:
+      'ဂိတ်ဝေ URL ကို ထည့်ပါ။ OpenAmer Desktop က တိုက်ကလေး သို့မဟုတ် ဘရောက်ဇာ ဝင်ရောက်မှု လိုအပ်သည်မှာ သိမ်းဆေးပါမည်။',
     remoteUrlTitle: 'ဂိတ်ဝေ URL',
     remoteUrlDesc: 'အမြဲလ်ဂိတ်ဝေအတွက် https:// ပါဝင်သော OpenAmer ဂိတ်ဝေ၏ အခြေခံ URL ကို သုံးပါ။',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -1926,8 +1997,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'တပ်ဆင်မှု မအောင်မြင်ပါ',
     settingUpTitle: 'OpenAmer Agent ကို တည်ဆောက်နေသည်',
     finishingTitle: 'နောက်ဆုံးဆုံး လုပ်ဆောင်နေသည်',
-    failedDesc: 'တပ်ဆင်မှု အဆင့်တစ်ခုခု မအောင်မြင်ပါ။ Windows တွင် OpenAmer CLI သို့မဟုတ် desktop instance အချားတစ်ခုခု အကြောင်းရှိနေသည့်အခါ ဖြစ်နိုင်သည်။ အကြောင်းရှိသော OpenAmer instances အားရပ်ပြီးနောက် ထပ်စမ်းသပ်ပါ။ အပြည့်အစုံ မှတ်တမ်းကို အောက်ပါအသေးစိတ်များ သို့မဟုတ် desktop log တွင် ကြည့်ပါ။',
-    activeDesc: 'ဤသည်မှာ တစ်ခါတလေသော တည်ဆောက်မှု ဖြစ်ပါသည်။ OpenAmer installer က dependencies များကို ဒေါင်းလုဒ်နေပြီး သင့်စက်ကို ဖွဲ့စည်းနေသည်။ နောက်လည်များတွင် ဤအဆင့်ကို ကျော်သွားပါမည်။',
+    failedDesc:
+      'တပ်ဆင်မှု အဆင့်တစ်ခုခု မအောင်မြင်ပါ။ Windows တွင် OpenAmer CLI သို့မဟုတ် desktop instance အချားတစ်ခုခု အကြောင်းရှိနေသည့်အခါ ဖြစ်နိုင်သည်။ အကြောင်းရှိသော OpenAmer instances အားရပ်ပြီးနောက် ထပ်စမ်းသပ်ပါ။ အပြည့်အစုံ မှတ်တမ်းကို အောက်ပါအသေးစိတ်များ သို့မဟုတ် desktop log တွင် ကြည့်ပါ။',
+    activeDesc:
+      'ဤသည်မှာ တစ်ခါတလေသော တည်ဆောက်မှု ဖြစ်ပါသည်။ OpenAmer installer က dependencies များကို ဒေါင်းလုဒ်နေပြီး သင့်စက်ကို ဖွဲ့စည်းနေသည်။ နောက်လည်များတွင် ဤအဆင့်ကို ကျော်သွားပါမည်။',
     fetchingManifest: 'Installer manifest ကို ယူယူနေသည်...',
     error: 'အမှား',
     hideOutput: 'Installer output ကို ဖုံးပါ',
@@ -1939,13 +2012,14 @@ Leave blank to keep the ${mode} default.`,
     copiedOutput: 'ကူးယူပြီး!',
     copyOutput: 'ရလဒ်ကို ကူးယူရန်',
     reloadRetry: 'ပြန်လည်ဖတ်ရေးပြီး ထပ်စမ်းသပ်ပါ',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
     signInWith: provider => `Sign in with ${provider}`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'OpenAmer Agent ကို သင့်အတွက် သတ်မှတ်ပါ',
@@ -1965,28 +2039,30 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         description: 'Fireworks AI ကိုင်းသည့် မော်ဒယ်များကို တိုက်ရိုက်အသုံးပြုနိုင်ပါသည်။',
-        short: 'direct model API',
+        short: 'direct model API'
       },
       openrouter: {
         short: 'ခုလေးတစ်ခုနဲ့ မော်ဒယ်များစွာ',
-        description: 'ခုလေးတစ်ခုတည်းအောက် မော်ဒယ်များစွာကို ပေးသည်။ အသစ်ထည့်မှုများအတွက် ကောင်းမွန်းသော ပုံမှန်ရွေးချယ်မှု။',
+        description:
+          'ခုလေးတစ်ခုတည်းအောက် မော်ဒယ်များစွာကို ပေးသည်။ အသစ်ထည့်မှုများအတွက် ကောင်းမွန်းသော ပုံမှန်ရွေးချယ်မှု။'
       },
       openai: {
         short: 'GPT အဆင့် မော်ဒယ်များ',
-        description: 'OpenAI မော်ဒယ်များကို တိုက်ရိုက်အသုံးပြုနိုင်ပါသည်။',
+        description: 'OpenAI မော်ဒယ်များကို တိုက်ရိုက်အသုံးပြုနိုင်ပါသည်။'
       },
       gemini: {
         short: 'Gemini မော်ဒယ်များ',
-        description: 'Google Gemini မော်ဒယ်များကို တိုက်ရိုက်အသုံးပြုရန်။',
+        description: 'Google Gemini မော်ဒယ်များကို တိုက်ရိုက်အသုံးပြုရန်။'
       },
       xai: {
         short: 'Grok မော်ဒယ်များ',
-        description: 'xAI Grok မော်ဒယ်များကို တိုက်ရိုက်အသုံးပြုရန်။',
+        description: 'xAI Grok မော်ဒယ်များကို တိုက်ရိုက်အသုံးပြုရန်။'
       },
       local: {
         short: 'ကိုယ်တိုင်အိမ်တွင် ဖွင့်ထားသည်',
-        description: 'OpenAmer ကို ဒေသမြေနိုင်ရာ သို့မဟုတ် ကိုယ်တိုင်အိမ်တွင်ဖွင့်ထားသော OpenAI-တူညီသည့် endpoint သို့ ညွှန်ချရန် (vLLM, llama.cpp, Ollama, စသည်)။',
-      },
+        description:
+          'OpenAmer ကို ဒေသမြေနိုင်ရာ သို့မဟုတ် ကိုယ်တိုင်အိမ်တွင်ဖွင့်ထားသော OpenAI-တူညီသည့် endpoint သို့ ညွှန်ချရန် (vLLM, llama.cpp, Ollama, စသည်)။'
+      }
     },
     backToSignIn: 'အကောင့်ဝင်မှုသို့ ပြန်သွားရန်',
     getKey: 'key ရယူရန်',
@@ -1998,8 +2074,9 @@ Leave blank to keep the ${mode} default.`,
     update: 'အသစ်ဖြင့် ပြောင်းလဲရန်',
     flowSubtitles: {
       pkce: 'သင့် browser ကို ဖွင့်၍ အကောင့်ဝင်ပြီးနောက် ဤနေရာတွင် ဆက်လက်ရန်',
-      device_code: 'သင့် browser တွင် အတည်ပြုစစ်ဆေးမှုစာမျက်နှာကို ဖွင့်ပေးပါမည် — OpenAmer သည် အလိုအလျောက် ချိတ်ဆက်ပါမည်',
-      external: 'သင့် terminal တွင် တစ်ကြိမ် အကောင့်ဝင်ပြီးနောက် စကားဆိုရန် ပြန်လာပါ',
+      device_code:
+        'သင့် browser တွင် အတည်ပြုစစ်ဆေးမှုစာမျက်နှာကို ဖွင့်ပေးပါမည် — OpenAmer သည် အလိုအလျောက် ချိတ်ဆက်ပါမည်',
+      external: 'သင့် terminal တွင် တစ်ကြိမ် အကောင့်ဝင်ပြီးနောက် စကားဆိုရန် ပြန်လာပါ'
     },
     signInFailed: 'အကောင့်ဝင်ခြင်း မအောင်မြင်ပါ။ ထပ်မံကြိုးစားပါ။',
     pickDifferentProvider: 'အခြား provider တစ်ခု ရွေးရန်',
@@ -2024,11 +2101,13 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'မော်ဒယ်ကို ပြောင်းရန်',
@@ -2044,13 +2123,13 @@ Leave blank to keep the ${mode} default.`,
     free: 'အခမဲ့',
     freeTier: 'အခမဲ့အဆင့်',
     priceTitle: 'သက်တမ်း တစ်သင်းလျှင် ထည့်သွင်းခြင်း/ထုတ်ခြင်း စျေးနှုန်း',
-    wasPrice: 'ဖြစ်ခဲ့သည်',
+    wasPrice: 'ဖြစ်ခဲ့သည်'
   },
   modelVisibility: {
     title: 'မော်ဒယ်များ',
     search: 'မော်ဒယ်များ ရှာဖွေရန်',
     noAuthenticatedProviders: 'အတည်ပြုပြီးသော ပေးသန်များ မရှိပါ။',
-    addProvider: 'ပေးသန်ထည့်ရန်…',
+    addProvider: 'ပေးသန်ထည့်ရန်…'
   },
   shell: {
     windowControls: 'အခန်းထိန်းချုပ်များ',
@@ -2061,7 +2140,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'မော်ဒယ်များ မတွေ့ရှိပါ',
       editModels: 'မော်ဒယ်များ တည်းဖြတ်ရန်…',
       refreshModels: 'မော်ဒယ်များ ပြန်ဖတ်ရန်',
-      fast: 'လျင်မြန်',
+      fast: 'လျင်မြန်'
     },
     modelOptions: {
       noOptions: 'ဤမော်ဒီလ်အတွက် ရွေးစားချက်မရှိပါ',
@@ -2077,7 +2156,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'အမြင့်ဆုံး',
       ultra: 'အလွန်အစွန်ဆုံး',
       updateFailed: 'မော်ဒီလ်ရွေးစားချက် မွမ်းမံခြင်း မအောင်မြင်ပါ',
-      fastFailed: 'မြန်မြန်သောမုဒ် မွမ်းမံခြင်း မအောင်မြင်ပါ',
+      fastFailed: 'မြန်မြန်သောမုဒ် မွမ်းမံခြင်း မအောင်မြင်ပါ'
     },
     gatewayMenu: {
       gateway: 'ဂိတ်ဝေယျ',
@@ -2092,7 +2171,7 @@ Leave blank to keep the ${mode} default.`,
       recentActivity: 'လွန်ခဲ့သော လှုပ်ရှားမှုများ',
       viewAllLogs: 'မှတ်တမ်းအားလုံးကို ကြည့်ပါ →',
       messagingPlatforms: 'မက်ဆေ့ဂျင်းပလက်ဖောင်းများ',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'အတည်ပြုမှု မုဒ်',
@@ -2102,7 +2181,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'လုပ်ဆောင်ခြင်းများကို အလိုအလျောက် တွင်းဝင်စစ်ပြီး လိုအပ်ပါက မေးပါ',
       off: 'ပိတ်',
       offDescription: 'အတည်ပြုမှု မေးခွန်းများမရှိဘဲ လုပ်ဆောင်ပါ',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'မသိ',
@@ -2142,19 +2221,21 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'ဒုတိယအကူ သတ်မှတ်ချက်များ',
           system_prompt: 'စစ်မက် ပြောဆိုချက်',
           tool_definitions: 'လုပ်ငန်းစနစ် သတ်မှတ်ချက်များ',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'အကြောင်းအရာ ဒေတာမရှိသေးပါ',
         loading: 'အသုံးပြုမှု ခွဲခြမ်းမှုကို ဖတ်နေသည်…',
         title: 'အကြောင်းအရာ အသုံးပြုမှု',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'အကြောင်းအရာ အသုံးပြုမှု ခွဲခြမ်းမှုကို ဖွင့်ပါ',
       session: 'အစ်းနှင့်',
       runtimeSessionElapsed: 'အစ်းနှင့် ကြာချိန်',
-      yoloOn: 'YOLO ဖွင့်နေသည် — အန္တရာယ်ရှိသော ကွေ့ပို့စတို့ကို အလိုအလျောက် ခွင့်ပြုနေသည်။ ပိတ်ရန် နှိပ်ပါ။ Shift+click ဖြင့် တစ်ဝှမ်းတလုံးတွင် ပြောင်းလဲပေးသည်။',
-      yoloOff: 'YOLO ပိတ်နေသည် — အန္တရာယ်ရှိသော ကွေ့ပို့စတို့ကို အလိုအလျောက် ခွင့်ပြုရန် နှိပ်ပါ။ Shift+click ဖြင့် တစ်ဝှမ်းတလုံးတွင် ပြောင်းလဲပေးသည်။',
+      yoloOn:
+        'YOLO ဖွင့်နေသည် — အန္တရာယ်ရှိသော ကွေ့ပို့စတို့ကို အလိုအလျောက် ခွင့်ပြုနေသည်။ ပိတ်ရန် နှိပ်ပါ။ Shift+click ဖြင့် တစ်ဝှမ်းတလုံးတွင် ပြောင်းလဲပေးသည်။',
+      yoloOff:
+        'YOLO ပိတ်နေသည် — အန္တရာယ်ရှိသော ကွေ့ပို့စတို့ကို အလိုအလျောက် ခွင့်ပြုရန် နှိပ်ပါ။ Shift+click ဖြင့် တစ်ဝှမ်းတလုံးတွင် ပြောင်းလဲပေးသည်။',
       modelNone: 'မရှိ',
       noModel: 'မော်ဒယ်မရှိ',
       switchModel: 'မော်ဒယ်ပြောင်းပါ',
@@ -2177,8 +2258,8 @@ Leave blank to keep the ${mode} default.`,
       failed: count => `${count} failed`,
       running: count => `${count} running`,
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'ညာဘက် လေးထွက်ခေါင်းစီး',
@@ -2214,7 +2295,7 @@ Leave blank to keep the ${mode} default.`,
     addToChat: 'ခိုင်းတိုင််သို့ ထည့်ပါ',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'အကြည့်ရှုမှု',
@@ -2243,7 +2324,8 @@ Leave blank to keep the ${mode} default.`,
     editing: 'တည်းဖြတ်နေသည်',
     unsavedChanges: 'မသိမ်းဆုံးရသော ပြောင်းလဲမှုများ',
     diskChangedTitle: 'ဖိုင်သည် ဒစ်ကွင့်တွင် ပြောင်းလဲသွားသည်',
-    diskChangedBody: 'ဤဖိုင်သည် သင့်ဖွင့်ချိန်ကတည်းက ပြောင်းလဲခဲ့သည်။ ၎င်းကို သင့်ဗားစနှင့် အစားထိုးမည်လား၊ သို့မဟုတ် သင့်တည်းဖြတ်မှုများကို ပယ်ဖျက်၍ ပြန်ဖတ်မလား။',
+    diskChangedBody:
+      'ဤဖိုင်သည် သင့်ဖွင့်ချိန်ကတည်းက ပြောင်းလဲခဲ့သည်။ ၎င်းကို သင့်ဗားစနှင့် အစားထိုးမည်လား၊ သို့မဟုတ် သင့်တည်းဖြတ်မှုများကို ပယ်ဖျက်၍ ပြန်ဖတ်မလား။',
     overwrite: 'အစားထိုးရန်',
     discardReload: 'ပယ်ဖျက်ပြီး ပြန်ဖတ်ရန်',
     console: {
@@ -2264,7 +2346,7 @@ Leave blank to keep the ${mode} default.`,
       sentTitle: 'စကားဝိုင်းသို့ ပို့ပြီးပါပြီ',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'မူးရင်းအက်ပ် မစတင်နိုင်ခဲ့ပါ',
@@ -2274,7 +2356,8 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'OpenAmer ကို ပြန်လည်စတင်နေသည်...',
       askRestart: 'OpenAmer ကို ဆာဗာကို ပြန်လည်စတင်ရန် ပြောပါ',
       restartingTitle: 'ပြန်လည်ကြည့်ဆာဗာကို ပြန်လည်စတင်နေသည်',
-      restartingMessage: 'OpenAmer က နောက်ကွယ်တွင် အလုပ်လုပ်နေသည်။ တိုးမျက်နှာ ကွန်ဆိုလ်တွင် တိုးမျက်နှာကို စောင့်ကြည့်ပါ။',
+      restartingMessage:
+        'OpenAmer က နောက်ကွယ်တွင် အလုပ်လုပ်နေသည်။ တိုးမျက်နှာ ကွန်ဆိုလ်တွင် တိုးမျက်နှာကို စောင့်ကြည့်ပါ။',
       restartFailed: 'ဆာဗာကို ပြန်လည်စတင်ခြင်း မအောင်မြင်ပါ',
       hideConsole: 'ပြန်လည်ကြည့်ဆာဗာကို ဖျောက်ပါ',
       showConsole: 'ပြန်လည်ကြည့်ဆာဗာကို ပြပါ',
@@ -2285,9 +2368,11 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'ပြန်လည်ကြည့်မှုကို ယခု ပြန်လည်ဖတ်နေသည်။',
       restartFailedTitle: 'ပြန်လည်ကြည့်မှုကို ပြန်လည်စတင်ခြင်း မအောင်မြင်ပါ',
       restartFailedMessage: 'OpenAmer က ဆာဗာကို ပြန်လည်မစတင်နိုင်ပါ။',
-      stillWorking: 'OpenAmer က နောက်ကွယ်တွင် ဆက်လက်အလုပ်လုပ်နေသော်လည်း ပြန်လည်စတင်မှုရလဒ် မရောက်သေးပါ။ ဆာဗာကိုင်းက ရှေ့တွင် အလုပ်လုပ်နေနိုင်သည်။',
+      stillWorking:
+        'OpenAmer က နောက်ကွယ်တွင် ဆက်လက်အလုပ်လုပ်နေသော်လည်း ပြန်လည်စတင်မှုရလဒ် မရောက်သေးပါ။ ဆာဗာကိုင်းက ရှေ့တွင် အလုပ်လုပ်နေနိုင်သည်။',
       workspaceReloading: 'လုပ်ငန်းချိန်ပြောင်းလဲသဖြင့် ပြန်လည်ကြည့်မှုကို ပြန်လည်ဖတ်နေသည်',
-      moduleMimeDescription: 'Module scripts များကို မှားသော MIME type ဖြင့် ဝန်ဆောင်နေသည်။ ယခုအခြေအနေက ပုံမှန်သော ဖိုင်ဆာဗာတစ်ခုက Vite/React အက်ပ်ကို ဝန်ဆောင်နေခြင်းကြောင့် ဖြစ်ပါသည်။',
+      moduleMimeDescription:
+        'Module scripts များကို မှားသော MIME type ဖြင့် ဝန်ဆောင်နေသည်။ ယခုအခြေအနေက ပုံမှန်သော ဖိုင်ဆာဗာတစ်ခုက Vite/React အက်ပ်ကို ဝန်ဆောင်နေခြင်းကြောင့် ဖြစ်ပါသည်။',
       unreachableDescription: 'ပြန်လည်ကြည့်မှုစာမျက်နှာကို မရောက်နိုင်ပါ။',
       fallbackTitle: 'ပြန်လည်ကြည့်မှု',
       lookingRestart: taskId => `OpenAmer is looking for a preview server to restart (${taskId})`,
@@ -2298,13 +2383,13 @@ Leave blank to keep the ${mode} default.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     closeTab: label => `Close ${label}`,
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   zones: {
     showHeader: 'ခေါင်းစဉ်ပြထားရန်',
@@ -2312,7 +2397,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'အနည်းဆုံးသောအောင်လုပ်ရန်',
     restore: 'ပြန်လည်ဖွင့်ရန်',
     closeRunningTitle: 'အလုပ်လုပ်နေသော တပ်းကို ပိတ်မည်လား?',
-    closeRunningBody: 'ဤစကားက မလုပ်ဆောင်နေသေး (သို့မဟုတ် သင့်သွင်းချက်ကို စောင့်ဆိုင်းနေသည်)။ တပ်းကို ပိတ်လိုက်ပါက ဖုံးသွားမည်ဖြစ်သော်လည်း စကားသည် ဆက်လက်တိုးမှုကို ထိန်းသိမ်းထားပြီး ရေဘူးဘားမှ ပြန်လည်ဖွင့်နိုင်သည်။',
+    closeRunningBody:
+      'ဤစကားက မလုပ်ဆောင်နေသေး (သို့မဟုတ် သင့်သွင်းချက်ကို စောင့်ဆိုင်းနေသည်)။ တပ်းကို ပိတ်လိုက်ပါက ဖုံးသွားမည်ဖြစ်သော်လည်း စကားသည် ဆက်လက်တိုးမှုကို ထိန်းသိမ်းထားပြီး ရေဘူးဘားမှ ပြန်လည်ဖွင့်နိုင်သည်။',
     closeRunningConfirm: 'တပ်းပိတ်ရန်',
     closeOthers: 'အခြားတပ်းများပိတ်ရန်',
     closeToRight: 'ညာဘက်ရှိ တပ်းများပိတ်ရန်',
@@ -2324,7 +2410,8 @@ Leave blank to keep the ${mode} default.`,
     dirRight: 'ညာ',
     pluginDisabledBody: 'ပိုင်းကို ပြန်လည်ဖွင့်ရန် ဆက်တင်များ → ပလက်ဂင်များတွင် ပြန်လည်ဖွင့်ပါ။',
     editTitle: 'အပြင်အဆင်များ',
-    editHint: 'အပြင်အဆင်တစ်ခုကို ရွေးချယ်ပါ။ သို့မဟုတ် ပိုင်းအပိုင်းများကို ဇုန်းများအကြား ဆွဲနိုင်သည်။ ဇုန်းတစ်ခုကို ညာဘက်နှိပ်၍ နှစ်ပိုင်းခွဲနိုင်သည်။',
+    editHint:
+      'အပြင်အဆင်တစ်ခုကို ရွေးချယ်ပါ။ သို့မဟုတ် ပိုင်းအပိုင်းများကို ဇုန်းများအကြား ဆွဲနိုင်သည်။ ဇုန်းတစ်ခုကို ညာဘက်နှိပ်၍ နှစ်ပိုင်းခွဲနိုင်သည်။',
     reset: 'ပြန်လည်သတ်မှတ်ရန်',
     templates: 'ပုံစံများ',
     custom: 'စိတ်ကူးပြုစုံ',
@@ -2349,7 +2436,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
@@ -2374,17 +2461,19 @@ Leave blank to keep the ${mode} default.`,
       restoreCheckpoint: 'အမှတ်အသားကို ပြန်လည်သုံးသပ်',
       restoreFromHere: 'အမှတ်အသားကို ပြန်လည်သုံးသပ် — ဤအခေါင်းစဉ်မှ ပြန်လည်လုပ်',
       restoreTitle: 'ဤအမှတ်အသားသို့ ပြန်လည်သုံးသပ်မည်လား?',
-      restoreBody: 'ဤအခေါင်းစဉ်နောက်ရှေ့ရှိ အားလုံးကို စကားဝှေ့ပိုင်းမှ ဖျက်လိမ့်ပြီး အခေါင်းစဉ်ကို ဤနေရာမှ ပြန်လည်လုပ်ပါမည်။',
+      restoreBody:
+        'ဤအခေါင်းစဉ်နောက်ရှေ့ရှိ အားလုံးကို စကားဝှေ့ပိုင်းမှ ဖျက်လိမ့်ပြီး အခေါင်းစဉ်ကို ဤနေရာမှ ပြန်လည်လုပ်ပါမည်။',
       restoreConfirm: 'ပြန်လည်သုံးသပ်ပြီး ပြန်လည်လုပ်',
       restoreNext: 'နောက်အမှတ်အသားကို ပြန်လည်သုံးသပ်',
       goForward: 'ရှေ့သို့သွား',
       sendEdited: 'တည်းဖြတ်ထားသော မက်ဆေ့ဂျ် ပို့',
       attachingFile: 'ပူးတှက်နေသည်…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
-      yesterday: time => `Yesterday, ${time}`,
+      yesterday: time => `Yesterday, ${time}`
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gateway မချိတ်ဆက်ထားပါ',
@@ -2398,7 +2487,8 @@ Leave blank to keep the ${mode} default.`,
       reject: 'ငြင်းပယ်ပါ',
       alwaysTitle: 'ဤအမိန့်ကို အပြုံလျက် ခွင့်ပြုမည်လား?',
       alwaysAllow: 'အပြုံလျက် ခွင့်ပြုပါ',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
       notReady: 'ရှင်းလင်းချက် တောင်းဆိုချက်သည် အဆင်သင့်မဟုတ်သေးပါ',
@@ -2412,7 +2502,7 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'ဆက်လက်ပါ',
       lateAnswerTip: 'ဤအဖြေကို လုပ်ဆောင်ချက်အဖြစ် ရေးဆွဲရန်',
       lateAnswerHint: 'ဤပြေးစာကို မစောင့်တော့ပါ။ လုပ်ဆောင်ချက်အဖြစ် ရေးဆွဲရန် ရွေးချယ်စရိတ်တစ်ခုကို ရွေးပါ။',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     tool: {
       code: 'ကုဒ်',
@@ -2446,123 +2536,123 @@ Leave blank to keep the ${mode} default.`,
         ran: 'လုပ်ဆောင်ပြီး',
         running: 'လုပ်ဆောင်နေသည်',
         ranCode: 'ကုဒ်ကို လုပ်ဆောင်ပြီး',
-        runningCode: 'စကရင်းရေးနေသည်',
+        runningCode: 'စကရင်းရေးနေသည်'
       },
       prefixes: {
         browser: 'ဘရာဝက်တာ',
-        web: 'ဝက်',
+        web: 'ဝက်'
       },
       titles: {
         browser_click: {
           done: 'စာမျက်နှာပေါ်ရှိ အစိတ်အပိုးကို နှိပ်ပြီး',
           pending: 'စာမျက်နှာပေါ်ရှိ အစိတ်အပိုးကို နှိပ်နေသည်',
-          pendingAction: 'နှိပ်နေသည်',
+          pendingAction: 'နှိပ်နေသည်'
         },
         browser_fill: {
           done: 'ပုံစံအကွက်ကို ဖြည့်ပြီး',
           pending: 'ပုံစံအကွက်ကို ဖြည့်နေသည်',
-          pendingAction: 'ဖြည့်နေသည်',
+          pendingAction: 'ဖြည့်နေသည်'
         },
         browser_navigate: {
           done: 'စာမျက်နှာကို ဖွင့်ပြီး',
           pending: 'စာမျက်နှာကို ဖွင့်နေသည်',
-          pendingAction: 'ဖွင့်နေသည်',
+          pendingAction: 'ဖွင့်နေသည်'
         },
         browser_snapshot: {
           done: 'စာမျက်နှာ ပုံရိပ်ကို ဖမ်းယူပြီး',
           pending: 'စာမျက်နှာ ပုံရိပ်ကို ဖမ်းယူနေသည်',
-          pendingAction: 'ဖမ်းယူနေသည်',
+          pendingAction: 'ဖမ်းယူနေသည်'
         },
         browser_take_screenshot: {
           done: 'မြင်ကောင်းတင်ကို ဖမ်းယူပြီး',
           pending: 'မြင်ကောင်းတင်ကို ဖမ်းယူနေသည်',
-          pendingAction: 'ဖမ်းယူနေသည်',
+          pendingAction: 'ဖမ်းယူနေသည်'
         },
         browser_type: {
           done: 'စာမျက်နှာတွင် ရိုက်ထည့်ပြီး',
           pending: 'စာမျက်နှာတွင် ရိုက်ထည့်နေသည်',
-          pendingAction: 'ရိုက်ထည့်နေသည်',
+          pendingAction: 'ရိုက်ထည့်နေသည်'
         },
         clarify: {
           done: 'မေးခွန်းမေးပြီး',
           pending: 'မေးခွန်းမေးနေသည်',
-          pendingAction: 'မေးခွန်းမေးနေသည်',
+          pendingAction: 'မေးခွန်းမေးနေသည်'
         },
         cronjob: {
           done: 'အချိန်ဇယားအလုပ်',
           pending: 'အချိန်ဇယားအလုပ်ကို အချိန်ဇယားမှတ်ပုံတင်နေသည်',
-          pendingAction: 'အချိန်ဇယားချရနေသည်',
+          pendingAction: 'အချိန်ဇယားချရနေသည်'
         },
         edit_file: {
           done: 'ဖိုင်ကို တည်းဖြတ်ပြီး',
           pending: 'ဖိုင်ကို တည်းဖြတ်နေသည်',
-          pendingAction: 'တည်းဖြတ်နေသည်',
+          pendingAction: 'တည်းဖြတ်နေသည်'
         },
         execute_code: {
           done: 'ကုဒ်ကို လုပ်ဆောင်လိုက်သည်',
           pending: 'စိတ်ကူးရေးလုပ်နေသည်',
-          pendingAction: 'စိတ်ကူးရေးလုပ်နေသည်',
+          pendingAction: 'စိတ်ကူးရေးလုပ်နေသည်'
         },
         image_generate: {
           done: 'ပုံကို ထုတ်လုပ်လိုက်သည်',
           pending: 'ပုံထုတ်လုပ်နေသည်',
-          pendingAction: 'ထုတ်လုပ်နေသည်',
+          pendingAction: 'ထုတ်လုပ်နေသည်'
         },
         list_files: {
           done: 'ဖိုင်များကို စာရင်းပြုလိုက်သည်',
           pending: 'ဖိုင်များကို စာရင်းပြုနေသည်',
-          pendingAction: 'စာရင်းပြုနေသည်',
+          pendingAction: 'စာရင်းပြုနေသည်'
         },
         patch: {
           done: 'ဖိုင်ကို ပြင်ဆင်လိုက်သည်',
           pending: 'ဖိုင်ကို ပြင်ဆင်နေသည်',
-          pendingAction: 'ပြင်ဆင်နေသည်',
+          pendingAction: 'ပြင်ဆင်နေသည်'
         },
         read_file: {
           done: 'ဖိုင်ကို ဖတ်လိုက်သည်',
           pending: 'ဖိုင်ကို ဖတ်နေသည်',
-          pendingAction: 'ဖတ်နေသည်',
+          pendingAction: 'ဖတ်နေသည်'
         },
         search_files: {
           done: 'ဖိုင်များကို ရှာဖွေလိုက်သည်',
           pending: 'ဖိုင်များကို ရှာဖွေနေသည်',
-          pendingAction: 'ရှာဖွေနေသည်',
+          pendingAction: 'ရှာဖွေနေသည်'
         },
         session_search_recall: {
           done: 'အကြောင်းအရာမှတ်တမ်း ရှာဖွေပြီး',
           pending: 'အကြောင်းအရာမှတ်တမ်း ရှာဖွေနေသည်',
-          pendingAction: 'ရှာဖွေနေသည်',
+          pendingAction: 'ရှာဖွေနေသည်'
         },
         terminal: {
           done: 'အမိန့်ကို လုပ်ဆောင်ပြီး',
           pending: 'အမိန့်ကို လုပ်ဆောင်နေသည်',
-          pendingAction: 'လုပ်ဆောင်နေသည်',
+          pendingAction: 'လုပ်ဆောင်နေသည်'
         },
         todo: {
           done: 'လုပ်ငန်းစဉ်များ ပြောင်းလဲပြီး',
           pending: 'လုပ်ငန်းစဉ်များ ပြောင်းလဲနေသည်',
-          pendingAction: 'ပြောင်းလဲနေသည်',
+          pendingAction: 'ပြောင်းလဲနေသည်'
         },
         vision_analyze: {
           done: 'ပုံကို ခွဲခြမ်းစိတ်ဖြာပြီး',
           pending: 'ပုံကို ခွဲခြမ်းစိတ်ဖြာနေသည်',
-          pendingAction: 'ခွဲခြမ်းစိတ်ဖြာနေသည်',
+          pendingAction: 'ခွဲခြမ်းစိတ်ဖြာနေသည်'
         },
         web_extract: {
           done: 'ဝဘ်ဘုတ်ကို ဖတ်ပြီး',
           pending: 'ဝဘ်ဘုတ်ကို ဖတ်နေသည်',
-          pendingAction: 'ဖတ်နေသည်',
+          pendingAction: 'ဖတ်နေသည်'
         },
         web_search: {
           done: 'ဝဘ်ကို ရှာဖွေပြီး',
           pending: 'ဝဘ်ကို ရှာဖွေနေသည်',
-          pendingAction: 'ရှာဖွေနေသည်',
+          pendingAction: 'ရှာဖွေနေသည်'
         },
         write_file: {
           done: 'ဖိုင်ကို တည်းဖြတ်ပြီး',
           pending: 'ဖိုင်ကို တည်းဖြတ်နေသည်',
-          pendingAction: 'တည်းဖြတ်ခြင်း',
-        },
+          pendingAction: 'တည်းဖြတ်ခြင်း'
+        }
       },
       recoveredMany: count => `Recovered after ${count} failed steps`,
       failedMany: count => `${count} steps failed`,
@@ -2572,9 +2662,9 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
+    }
   },
   desktop: {
     yoloToggleFailed: 'YOLO ကို ဖွင့်/ပိတ်နိုင်ခဲ့မရ',
@@ -2586,7 +2676,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'တည်းဖြတ်ရန် မအောင်မြင်ပါ',
     resumeFailed: 'ဆက်လုပ်ရန် မအောင်မြင်ပါ',
     resumeStrandedTitle: 'ဤစကားသုံးကို မဖွင့်နိုင်ခဲ့ပါ',
-    resumeStrandedBody: 'ဤစကားသုံးနှင့် ချိတ်ဆက်မှု မအောင်မြင်ပြီး အလိုအလျောက် ထပ်ကြိုးစားမှုများလည်း ရပ်တန့်သွားပါသည်။ ဂိတ်ဝေးဝါစ် လည်ပတ်နေကြောင်း စစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။',
+    resumeStrandedBody:
+      'ဤစကားသုံးနှင့် ချိတ်ဆက်မှု မအောင်မြင်ပြီး အလိုအလျောက် ထပ်ကြိုးစားမှုများလည်း ရပ်တန့်သွားပါသည်။ ဂိတ်ဝေးဝါစ် လည်ပတ်နေကြောင်း စစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။',
     resumeRetry: 'ထပ်ကြိုးစားပါ',
     nothingToBranch: 'ခေတ်ခွဲစရာ မရှိပါ',
     branchNeedsChat: 'ခေတ်ခွဲမည်ဆိုပါက စကားသုံးတစ်ခုကို စတင်ရန် သို့မဟုတ် ဆက်လုပ်ရန်ပါ။',
@@ -2609,7 +2700,8 @@ Leave blank to keep the ${mode} default.`,
     yoloTitle: 'ယိုလို',
     cwdChangeFailed: 'လုပ်ဆောင်မှု လမ်းညွှန်ပြောင်းလဲမှု မအောင်မြင်ပါ',
     cwdStagedTitle: 'လုပ်ဆောင်မှု လမ်းညွှန်ကို ပြင်ဆင်ပြီး',
-    cwdStagedMessage: 'ဤ အသက်ဝင်သော စကားဝင်မှုတွင် cwd ပြောင်းလဲမှုများ အသုံးပြုရန် ဒက်စတောန် နောက်ကွယ်ကို ပြန်လည်စတင်ပါ။',
+    cwdStagedMessage:
+      'ဤ အသက်ဝင်သော စကားဝင်မှုတွင် cwd ပြောင်းလဲမှုများ အသုံးပြုရန် ဒက်စတောန် နောက်ကွယ်ကို ပြန်လည်စတင်ပါ။',
     modelSwitchFailed: 'မော်ဒယ် ပြောင်းလဲမှု မအောင်မြင်ပါ',
     sessionExported: 'စကားဝင်မှု တင်ပို့ပြီး',
     sessionExportFailed: 'စကားဝင်မှုကို မတင်ပို့နိုင်ပါ',
@@ -2635,50 +2727,53 @@ Leave blank to keep the ${mode} default.`,
       timedOut: 'ဂိတ်ဝေးအတွက် စောင့်ရှောက်ချိန် ကုန်သွားပါသည်။ `openamer gateway` ကို လည်ပတ်နေပါသလား။',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     skillCommandsAvailable: count => `${count} skill commands available.`,
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
-    branchTitle: n => `Draft: Branch #${n}`,
+    branchTitle: n => `Draft: Branch #${n}`
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer gateway ချိတ်ဆက်မှု မရှိပါ',
     sudoSendFailed: 'sudo စားပြီးမှု မပို့နိုင်ပါ',
     secretSendFailed: 'လျှိုက်နှင့် မပို့နိုင်ပါ',
     sudoTitle: 'အက်ဒမင်စားပြီး စားပြီးမှု',
-    sudoDesc: 'OpenAmer သည် privileged command ကို လုပ်ရန် sudo စားပြီးမှု လိုအပ်ပါသည်။ သင့်ဒေသဂိုလိုက် agent သို့သာ ပို့ပါမည်။',
+    sudoDesc:
+      'OpenAmer သည် privileged command ကို လုပ်ရန် sudo စားပြီးမှု လိုအပ်ပါသည်။ သင့်ဒေသဂိုလိုက် agent သို့သာ ပို့ပါမည်။',
     sudoPlaceholder: 'sudo စားပြီးမှု',
     secretTitle: 'လျှိုက်နှင့် လိုအပ်ပါသည်',
     secretDesc: 'OpenAmer သည် ဆက်လက်ရန် credential တစ်ခု လိုအပ်ပါသည်။',
-    secretPlaceholder: 'လျှိုက်နှင့် တန်ဖိုး',
+    secretPlaceholder: 'လျှိုက်နှင့် တန်ဖိုး'
   },
   errors: {
     genericFailure: 'တစ်ခုခု မှားယွင်းသွားပါသည်',
     boundaryTitle: 'အင်တာပ်ဖေးစနစ်တွင် တစ်ခုခု ပျက်စီးသွားပါသည်',
-    boundaryDesc: 'မြင်ကြည့်မှုတွင် မမူနောက်သည့် အမှားဖြစ်ပွားခဲ့ပါသည်။ သင့်စကားများနှင့် ဆက်တင်များမှာ ဘေးမလိုက်ဘဲ ရှိပါသည်။',
+    boundaryDesc:
+      'မြင်ကြည့်မှုတွင် မမူနောက်သည့် အမှားဖြစ်ပွားခဲ့ပါသည်။ သင့်စကားများနှင့် ဆက်တင်များမှာ ဘေးမလိုက်ဘဲ ရှိပါသည်။',
     reloadWindow: 'ဝင်းကို ပြန်ဖတ်ပါ',
-    openLogs: 'မှတ်တမ်းများ ဖွင့်ပါ',
+    openLogs: 'မှတ်တမ်းများ ဖွင့်ပါ'
   },
   ui: {
     search: {
-      clear: 'ရှာဖွေမှု ရှင်းလင်းပါ',
+      clear: 'ရှာဖွေမှု ရှင်းလင်းပါ'
     },
     pagination: {
       label: 'စာမျက်နှာ ရှင်းလင်းခြင်း',
       previous: 'ရှေ့သို့',
       previousAria: 'ယခင်စာမျက်နှာသို့ သွားပါ',
       next: 'နောက်သို့',
-      nextAria: 'နောက်စာမျက်နှာသို့ သွားပါ',
+      nextAria: 'နောက်စာမျက်နှာသို့ သွားပါ'
     },
     sidebar: {
       title: 'ဘကားဘက်ကား',
       description: 'မိုဘိုင်းဘက်ကားကို ပြသည်။',
-      toggle: 'ဘက်ကားကို ဖွင့်/ပိတ်ပါ',
-    },
+      toggle: 'ဘက်ကားကို ဖွင့်/ပိတ်ပါ'
+    }
   },
   common: {
     apply: 'Apply',
@@ -2719,7 +2814,7 @@ Leave blank to keep the ${mode} default.`,
     update: 'Update',
     tryHint: term => `Try “${term}”`,
     on: 'On',
-    off: 'Off',
+    off: 'Off'
   },
   fileMenu: {
     revealFinder: 'Reveal in Finder',
@@ -2734,7 +2829,7 @@ Leave blank to keep the ${mode} default.`,
     renameLabel: 'New name',
     deleteTitle: name => `Delete ${name}?`,
     deleteBody: 'It will be moved to the Trash — you can restore it from there.',
-    pathCopied: 'Path copied',
+    pathCopied: 'Path copied'
   },
   boot: {
     ready: 'OpenAmer Desktop is ready',
@@ -2744,7 +2839,7 @@ Leave blank to keep the ${mode} default.`,
       loadingSettings: 'Loading OpenAmer settings',
       loadingSessions: 'Loading recent sessions',
       startingDesktopConnection: 'Starting desktop connection',
-      startingOpenAmerDesktop: 'Starting OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Starting OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'OpenAmer background process exited.',
@@ -2753,13 +2848,15 @@ Leave blank to keep the ${mode} default.`,
       desktopBootFailed: 'Desktop boot failed',
       gatewayConnectionLost: 'Lost connection to the gateway',
       gatewaySignInRequired: 'Gateway sign-in required',
-      ipcBridgeUnavailable: 'Desktop IPC bridge is unavailable.',
+      ipcBridgeUnavailable: 'Desktop IPC bridge is unavailable.'
     },
     failure: {
       title: "OpenAmer couldn't start",
-      description: "The background gateway didn't come up. Try one of the recovery steps below. Nothing here deletes your chats or settings.",
+      description:
+        "The background gateway didn't come up. Try one of the recovery steps below. Nothing here deletes your chats or settings.",
       remoteTitle: 'Remote gateway sign-in required',
-      remoteDescription: 'Your remote gateway session has expired. Sign in again to reconnect. Nothing here deletes your chats or settings.',
+      remoteDescription:
+        'Your remote gateway session has expired. Sign in again to reconnect. Nothing here deletes your chats or settings.',
       retry: 'Retry',
       repairInstall: 'Repair install',
       useLocalGateway: 'Use local gateway',
@@ -2767,7 +2864,8 @@ Leave blank to keep the ${mode} default.`,
       back: 'Back',
       openLogs: 'Open logs',
       repairHint: 'Repair re-runs the installer and can take a few minutes on a fresh machine.',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
       signOutAndSignIn: 'Sign out & sign in',
       remoteFailureHint: 'Check the gateway URL and sign-in under Gateway settings, or switch to the local gateway.',
       hideRecentLogs: 'Hide recent logs',
@@ -2779,8 +2877,8 @@ Leave blank to keep the ${mode} default.`,
       signInFailed: 'Sign-in failed',
       signInToRemoteGateway: 'Sign in to remote gateway',
       signInWithProvider: provider => `Sign in with ${provider}`,
-      identityProvider: 'your identity provider',
-    },
+      identityProvider: 'your identity provider'
+    }
   },
   notifications: {
     region: 'Notifications',
@@ -2793,7 +2891,8 @@ Leave blank to keep the ${mode} default.`,
     copyDetail: 'Copy detail',
     copyDetailFailed: 'Could not copy notification detail',
     backendOutOfDateTitle: 'Backend out of date',
-    backendOutOfDateMessage: 'Your OpenAmer backend is older than this desktop build and may not work correctly. Update to align them.',
+    backendOutOfDateMessage:
+      'Your OpenAmer backend is older than this desktop build and may not work correctly. Update to align them.',
     installMethodUnsupportedTitle: 'Unsupported install method',
     updateOpenAmer: 'Update OpenAmer',
     updateReadyTitle: 'Update ready',
@@ -2803,11 +2902,12 @@ Leave blank to keep the ${mode} default.`,
       elevenLabsNeedsKey: 'ElevenLabs STT needs ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs rejected the API key (401).',
       gatewayAuthFailed: 'Gateway authentication failed — check your API_SERVER_KEY.',
-      methodNotAllowed: 'The desktop backend rejected that request (405 Method Not Allowed). Try restarting OpenAmer Desktop.',
+      methodNotAllowed:
+        'The desktop backend rejected that request (405 Method Not Allowed). Try restarting OpenAmer Desktop.',
       microphonePermission: 'Microphone permission was denied.',
       openaiRejectedApiKey: 'OpenAI rejected the API key.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS needs VOICE_TOOLS_OPENAI_KEY or OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS needs VOICE_TOOLS_OPENAI_KEY or OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Configure speech-to-text to use voice mode.',
@@ -2826,7 +2926,7 @@ Leave blank to keep the ${mode} default.`,
       transcriptionFailed: 'Voice transcription failed',
       transcriptionUnavailable: 'Voice transcription is not available yet.',
       tryRecordingAgain: 'Try recording again.',
-      unavailable: 'Voice unavailable',
+      unavailable: 'Voice unavailable'
     },
     native: {
       approvalTitle: 'Approval needed',
@@ -2839,11 +2939,12 @@ Leave blank to keep the ${mode} default.`,
       turnErrorTitle: 'Turn failed',
       backgroundDoneTitle: 'Background task finished',
       backgroundFailedTitle: 'Background task failed',
-      creditsTitle: 'Credits',
-    },
+      creditsTitle: 'Credits'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
   },
   billingBlock: {
     titleOpenamer: 'Out of OpenAmer credits',
@@ -2851,7 +2952,7 @@ Leave blank to keep the ${mode} default.`,
     fallbackMessage: 'Your account is out of credits. Add credits to keep going.',
     openBilling: 'Open billing',
     addCredits: 'Add credits',
-    dismiss: 'Dismiss',
+    dismiss: 'Dismiss'
   },
   titlebar: {
     hideSidebar: 'Hide sidebar',
@@ -2868,7 +2969,7 @@ Leave blank to keep the ${mode} default.`,
     openStarmap: 'Open memory graph',
     openKeybinds: 'Keyboard shortcuts',
     layoutEditor: 'Layout editor',
-    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout',
+    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout'
   },
   keybinds: {
     title: 'Keyboard shortcuts',
@@ -2885,7 +2986,7 @@ Leave blank to keep the ${mode} default.`,
       profiles: 'Profiles',
       session: 'Session',
       navigation: 'Navigation',
-      view: 'View',
+      view: 'View'
     },
     actions: {
       'keybinds.openPanel': 'Open keyboard shortcuts',
@@ -2964,8 +3065,8 @@ Leave blank to keep the ${mode} default.`,
       'composer.slash': 'Slash command palette',
       'composer.help': 'Quick help',
       'composer.history': 'Cycle popover / history',
-      'composer.cancel': 'Close popover · cancel run',
-    },
+      'composer.cancel': 'Close popover · cancel run'
+    }
   },
   language: {
     label: 'Language',
@@ -2974,6 +3075,6 @@ Leave blank to keep the ${mode} default.`,
     saveError: 'Language update failed',
     switchTo: 'Switch language',
     searchPlaceholder: 'Search languages…',
-    noResults: 'No languages found',
-  },
+    noResults: 'No languages found'
+  }
 })

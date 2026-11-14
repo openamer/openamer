@@ -45,7 +45,7 @@ export const tk = defineLocale({
     update: 'Ýenile',
     on: 'Açyk',
     off: 'Ýapyk',
-    tryHint: term => `Try “${term}”`,
+    tryHint: term => `Try “${term}”`
   },
   fileMenu: {
     revealFinder: 'Finder-de aç',
@@ -60,7 +60,7 @@ export const tk = defineLocale({
     renameLabel: 'Täze ad',
     deleteBody: 'Ol çöp belgisine geçiriler — ony şondan dikeldip bolar.',
     pathCopied: 'Ýol kopyalandy',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop taýýar',
@@ -69,7 +69,7 @@ export const tk = defineLocale({
       loadingSettings: 'OpenAmer sazlamalary ýüklenýär',
       loadingSessions: 'Soňky sessiýalar ýüklenýär',
       startingDesktopConnection: 'İş stoly birikmesi başlaýar',
-      startingOpenAmerDesktop: 'OpenAmer Desktop başlaýar…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop başlaýar…'
     },
     errors: {
       backgroundExited: 'OpenAmer fon processi ýapyldy.',
@@ -78,13 +78,15 @@ export const tk = defineLocale({
       desktopBootFailed: 'İş stoly açylyşy şowsuz boldy',
       gatewayConnectionLost: 'Geýç bilen baglanyşyk ýitdi',
       gatewaySignInRequired: 'Geýçe giriş talap edilýär',
-      ipcBridgeUnavailable: 'Iş stolynyň IPC köprüssi elýeterli däl.',
+      ipcBridgeUnavailable: 'Iş stolynyň IPC köprüssi elýeterli däl.'
     },
     failure: {
       title: 'OpenAmer başlap bilmedi',
-      description: 'Fon geýçi işledilmedi. Aşakdaky dikeltiş ädimlerinden birini synanyň. Hiç şu ýerde çatlar ýa-da sazlamalar ýok edilmeýär.',
+      description:
+        'Fon geýçi işledilmedi. Aşakdaky dikeltiş ädimlerinden birini synanyň. Hiç şu ýerde çatlar ýa-da sazlamalar ýok edilmeýär.',
       remoteTitle: 'Uzak geýçe giriş talap edilýär',
-      remoteDescription: 'Uzak geýçiň seansyň möhleti gutar. Gaýtadan birikmek üçin täzeden giriň. Hiç şu ýerde çatlar ýa-da sazlamalar ýok edilmeýär.',
+      remoteDescription:
+        'Uzak geýçiň seansyň möhleti gutar. Gaýtadan birikmek üçin täzeden giriň. Hiç şu ýerde çatlar ýa-da sazlamalar ýok edilmeýär.',
       retry: 'Gaýtadan synanyň',
       repairInstall: 'Gurluşy bejermek',
       useLocalGateway: 'Ýerli geýçi ulan',
@@ -103,10 +105,11 @@ export const tk = defineLocale({
       signInFailed: 'Giriş şowsuz boldy',
       signInToRemoteGateway: 'Daşky geçelgä giriň',
       identityProvider: 'şahsyýet üpjün edijiňiz',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   notifications: {
     region: 'Bildirişler',
@@ -118,7 +121,8 @@ export const tk = defineLocale({
     copyDetail: 'Jikme-jikligi kopyala',
     copyDetailFailed: 'Bildiriş jikme-jikligini kopyalap bolmady',
     backendOutOfDateTitle: 'Back-end könelipdir',
-    backendOutOfDateMessage: 'OpenAmer back-end-i bu desktop gurluşundan köne we dogry işlemek bilen biler. Olary deňleşdirmek üçin täzeläň.',
+    backendOutOfDateMessage:
+      'OpenAmer back-end-i bu desktop gurluşundan köne we dogry işlemek bilen biler. Olary deňleşdirmek üçin täzeläň.',
     installMethodUnsupportedTitle: 'Gurluş usuly goldamaýar',
     updateOpenAmer: 'OpenAmer-i täzeläň',
     updateReadyTitle: 'Täzeleýiş taýýar',
@@ -127,11 +131,12 @@ export const tk = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT üçin ELEVENLABS_API_KEY zerurdyr.',
       elevenLabsRejectedKey: 'ElevenLabs API açaryny kabul etmedi (401).',
       gatewayAuthFailed: 'Geçitde autentifikasiýa başarılmady — API_SERVER_KEY-ni barlaň.',
-      methodNotAllowed: 'Desktop backend-i şol soragy kabul etmedi (405 Görnüşi nädogry). OpenAmer Desktop-i täzeden başladyryň.',
+      methodNotAllowed:
+        'Desktop backend-i şol soragy kabul etmedi (405 Görnüşi nädogry). OpenAmer Desktop-i täzeden başladyryň.',
       microphonePermission: 'Mikrofon rugsady berilmedi.',
       openaiRejectedApiKey: 'OpenAI API açaryny kabul etmedi.',
       openaiTtsNeedsKey: 'OpenAI TTS üçin VOICE_TOOLS_OPENAI_KEY ýa-da OPENAI_API_KEY zerurdyr.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     voice: {
       transcriptionUnavailable: 'Ses transkripsiýasy heniz elýeterli däl.',
@@ -150,7 +155,7 @@ export const tk = defineLocale({
       noSpeechDetected: 'Ses aýrylmady',
       playbackFailed: 'Sesi oýnatmak başarılmady',
       recordingFailed: 'Ses ýazgysy başarılmady',
-      transcriptionFailed: 'Sesi tekstä öwirmek başarılmady',
+      transcriptionFailed: 'Sesi tekstä öwirmek başarılmady'
     },
     native: {
       approvalTitle: 'Ygtyýar gerek',
@@ -163,10 +168,10 @@ export const tk = defineLocale({
       turnErrorTitle: 'Jogap başartylmady',
       backgroundDoneTitle: 'Göryň soňky wezipesi tamamlandy',
       backgroundFailedTitle: 'Göryň soňky wezipesi başartylmady',
-      creditsTitle: 'Krediler',
+      creditsTitle: 'Krediler'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer kredileri tükendi',
@@ -174,7 +179,7 @@ export const tk = defineLocale({
     openBilling: 'Billing aç',
     addCredits: 'Krediler goş',
     dismiss: 'Ýap',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Paneli gizle',
@@ -191,7 +196,7 @@ export const tk = defineLocale({
     openStarmap: 'Ýatdaş grafyny aç',
     openKeybinds: 'Klawiatura gysgaldawlary',
     layoutEditor: 'Ýerleşiş redaktory',
-    layoutEditorTitle: 'Ýerleşdirijini redaktory â€” âŒ˜-click ýerleşdirmäni täzeden ýagdaýlandyrýar',
+    layoutEditorTitle: 'Ýerleşdirijini redaktory â€” âŒ˜-click ýerleşdirmäni täzeden ýagdaýlandyrýar'
   },
   keybinds: {
     actions: {
@@ -271,7 +276,7 @@ export const tk = defineLocale({
       'nav.agents': 'Agentlary aç',
       'session.new': 'Täze sesýa',
       'session.newTab': 'Täze sesýa taby',
-      'session.newWindow': 'Täze penjire',
+      'session.newWindow': 'Täze penjire'
     },
     title: 'Klawiatura gysgaldawlary',
     search: 'Gysgaldawlary gözle…',
@@ -285,10 +290,10 @@ export const tk = defineLocale({
       profiles: 'Profiller',
       session: 'Sesýa',
       navigation: 'Nawigasiýa',
-      view: 'Görnüş',
+      view: 'Görnüş'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   skills: {
     skillArchivedTitle: 'Hünär arhiwlenildi',
@@ -300,7 +305,8 @@ export const tk = defineLocale({
       connectingHubs: 'Hünär merkezlerine birleşilýär...',
       connectedHubs: 'Birleşen merkezler:',
       featured: 'Aýratyn hünärler',
-      landingHint: 'Gurulýan hünärleri resmi indeksden, GitHub-dan we jemiýet çeşmelerinden görmek üçin merkezde gözle.',
+      landingHint:
+        'Gurulýan hünärleri resmi indeksden, GitHub-dan we jemiýet çeşmelerinden görmek üçin merkezde gözle.',
       noResults: 'Merkezde deňeşdirilýän hünär tapylmady.',
       installed: 'Gurnuldy',
       install: 'Gur',
@@ -318,7 +324,7 @@ export const tk = defineLocale({
       trust: {
         builtin: 'Gözbaşynda',
         trusted: 'Ygtybarly',
-        community: 'Jemiýet',
+        community: 'Jemiýet'
       },
       verdictSafe: 'Howpsuz',
       verdictCaution: 'Seredeli',
@@ -338,7 +344,7 @@ export const tk = defineLocale({
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     tabSkills: 'Hünärler',
     tabToolsets: 'Guralar',
@@ -355,7 +361,7 @@ export const tk = defineLocale({
     provenance: {
       agent: 'Öwrenilen',
       bundled: 'Gurlan',
-      hub: 'Merkez',
+      hub: 'Merkez'
     },
     changesApplyNewSessions: 'Üýtgetmeler täze sessiýalara ulanylýar.',
     skillUpdated: 'Hünär uýdyldy',
@@ -370,7 +376,8 @@ export const tk = defineLocale({
     noDescription: 'Açyklamasy ýok.',
     configured: 'Sazlanan',
     needsKeys: 'Açarlar gerek',
-    visionModelHint: 'Görüş kömekçi model sazlamanyny ulanýar — suratlary goldaýan model şu ýerde, her üpjüňçilik üçin aýratyn däl-de, saýlanýar.',
+    visionModelHint:
+      'Görüş kömekçi model sazlamanyny ulanýar — suratlary goldaýan model şu ýerde, her üpjüňçilik üçin aýratyn däl-de, saýlanýar.',
     visionModelLink: 'Görüş modelini Saýlamalar – Modeller bölüminde saýlaň.',
     skillsLoadFailed: 'Bahaşlyklar ýüklenmedi',
     toolsetsRefreshFailed: 'Gural toplumlary täzelenmedi',
@@ -391,7 +398,7 @@ export const tk = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     title: 'Ýat grafik',
@@ -407,7 +414,8 @@ export const tk = defineLocale({
     emptyTitle: 'Häzir ýat öwrenilme ýok',
     emptyDesc: 'OpenAmer siziň işiňiz üçin endikler we ýatlar döredende, olar bu ýerde görnüp başlar.',
     share: 'Mapy paýlaş',
-    shareHint: 'Bu mapy paýlaşmak üçin kodu kopyalaň ýa-da birini ýüklemek üçin goýuň. Onda diňe ýerleşiş bar, ýatyňyz ýa-da endikleriňiziň teksti ýok.',
+    shareHint:
+      'Bu mapy paýlaşmak üçin kodu kopyalaň ýa-da birini ýüklemek üçin goýuň. Onda diňe ýerleşiş bar, ýatyňyz ýa-da endikleriňiziň teksti ýok.',
     shareTitle: 'Mapy import/export et',
     sharePlaceholder: 'Map kodyny goýuň…',
     copy: 'Map kodyny kopyala',
@@ -418,7 +426,7 @@ export const tk = defineLocale({
     importedBadge: 'import edilen map',
     resetToMine: 'Meniň mapyma dolan',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Agentleri ýap',
@@ -448,7 +456,7 @@ export const tk = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'Buyruk merkezini ýap',
@@ -470,7 +478,7 @@ export const tk = defineLocale({
       title: 'Mashynlar',
       placeholder: 'Haýwanlary gözle…',
       loading: 'petdex galereýasy ýüklenýär…',
-      error: 'petdex galereýasyna ýetip bolmady.',
+      error: 'petdex galereýasyna ýetip bolmady.'
     },
     generatePet: {
       title: 'Hawa döret',
@@ -493,13 +501,14 @@ export const tk = defineLocale({
       slowProviderHint: 'Bu birnäçe minut wagt alabiler',
       remix: 'Täzeden düz',
       remixConfirmTitle: 'Bu stil täzeden düzülälimi?',
-      remixConfirmBody: 'Bu şu birini başlangyç nokat hökmünde ulanyp, täze çykyş toplumyny döredýär. Birnäçe minut wagt alabiler.',
+      remixConfirmBody:
+        'Bu şu birini başlangyç nokat hökmünde ulanyp, täze çykyş toplumyny döredýär. Birnäçe minut wagt alabiler.',
       genericError: 'Döretmek başarılmady — ýene denäň ýa-da maslahat saýlaň.',
       referenceImageTooLarge: 'Salgylanma suraty örän uly. 16 MB-dan kiçi ulanyň.',
       referenceImageInvalid: 'Şu salgylanma suratyny okap bolmady. PNG, JPG, WebP ýa-da GIF ulanyň.',
       adopt: 'Eýeleşdir',
       startOver: 'Başdan başla',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     input: 'Giriş',
     output: 'Çykyş',
@@ -520,7 +529,8 @@ export const tk = defineLocale({
       backup: 'ätiýaçlyk döred',
       backupDesc: 'Konfigurasiýany, ýatlamalary, endikleri we seanslary zip arkaly ätiýaçla',
       debugShare: 'Näsazlyk paýlaşy',
-      debugShareDesc: 'Redaktirlenen hasabat we loglary ýükle, paýlaşylýan baglanyşyklar al (6 sagatdan soň awtomatik ýyrylýar)',
+      debugShareDesc:
+        'Redaktirlenen hasabat we loglary ýükle, paýlaşylýan baglanyşyklar al (6 sagatdan soň awtomatik ýyrylýar)',
       debugShareRunning: 'Näsazlyk hasabaty ýüklenýär...',
       debugShareLinks: 'Baglanyşmalary paýlaş',
       debugShareFailed: 'Paýlaşdyryşy şöhlelemek başarýlmady',
@@ -553,7 +563,7 @@ export const tk = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     branches: 'Branşlar',
     commands: 'Kommandalar',
@@ -572,7 +582,7 @@ export const tk = defineLocale({
       install: 'Gurmak',
       installing: 'Gurulýar...',
       installed: 'Guruldy',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Sazlama meýdanlary',
     mcpServers: 'MCP serwerleri',
@@ -581,35 +591,35 @@ export const tk = defineLocale({
       maintenance: 'Tehniki hyzmat',
       sessions: 'Seansiýalar',
       system: 'Ulgam',
-      usage: 'Ulanyş',
+      usage: 'Ulanyş'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostika, ätiýaçlyklar, kurator we ýatdaş maglumatlary',
       sessions: 'Seansiýalary gözle we dolandyyr',
       system: 'Ýagdaý, ýazgylar we ulgam hereketleri',
-      usage: 'Token, çykdajy we hünär işjeňligi',
+      usage: 'Token, çykdajy we hünär işjeňligi'
     },
     nav: {
       newChat: {
         title: 'Täze seansiýa',
-        detail: 'Täze seansiýa başla',
+        detail: 'Täze seansiýa başla'
       },
       settings: {
         title: 'Barlaglar',
-        detail: 'OpenAmer iş stol programmasyny düzleşdirin',
+        detail: 'OpenAmer iş stol programmasyny düzleşdirin'
       },
       skills: {
         title: 'Mümkinçilikler',
-        detail: 'Hünärler, guralar we MCP serwerleri',
+        detail: 'Hünärler, guralar we MCP serwerleri'
       },
       messaging: {
         title: 'Meslegenme',
-        detail: 'Telegram, Slack, Discord we beýlekileri gurmak',
+        detail: 'Telegram, Slack, Discord we beýlekileri gurmak'
       },
       artifacts: {
         title: 'Artefaktlar',
-        detail: 'Döredilen netijelere seredyň',
-      },
+        detail: 'Döredilen netijelere seredyň'
+      }
     },
     unpinSession: 'Sessiýany ýerinden ýokary çykar',
     exportSession: 'Sessiýany eksportla',
@@ -637,16 +647,16 @@ export const tk = defineLocale({
     sectionEntries: {
       sessions: {
         title: 'Sessii paneli',
-        detail: 'Sessilere gözlemek, ýygnamak we dolandyrmak',
+        detail: 'Sessilere gözlemek, ýygnamak we dolandyrmak'
       },
       system: {
         title: 'Sistem paneli',
-        detail: 'Geçitiň ýagdaýy, žurnallary, täzelemek/gaýtadan başlatmak',
+        detail: 'Geçitiň ýagdaýy, žurnallary, täzelemek/gaýtadan başlatmak'
       },
       usage: {
         title: 'Ulanyş paneli',
-        detail: 'Token, baha we hünär işjeňligi',
-      },
+        detail: 'Token, baha we hünär işjeňligi'
+      }
     },
     providerNavigate: 'Nawigasiýa',
     providerSessions: 'Sessii',
@@ -659,7 +669,7 @@ export const tk = defineLocale({
     days: count => `${count}d`,
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   statusStack: {
     coding: {
@@ -675,8 +685,10 @@ export const tk = defineLocale({
       viewAsList: 'Sanaw görnüşinde',
       revert: 'Gaýtar',
       revertAll: 'Älisini gaýtar',
-      revertConfirm: 'Bu faýldaky ähli üýgeltmeleri ädim we commit edilen ýagdaýyna gaýtarmak? Bu amal yzyna gaýtarylyp bilinmez.',
-      revertAllConfirm: 'Ähli üýgeltmeleri ädim we commit edilen ýagdaýyna gaýtarmak? Bu amal yzyna gaýtarylyp bilinmez.',
+      revertConfirm:
+        'Bu faýldaky ähli üýgeltmeleri ädim we commit edilen ýagdaýyna gaýtarmak? Bu amal yzyna gaýtarylyp bilinmez.',
+      revertAllConfirm:
+        'Ähli üýgeltmeleri ädim we commit edilen ýagdaýyna gaýtarmak? Bu amal yzyna gaýtarylyp bilinmez.',
       staged: 'Sahnalandy',
       noChanges: 'Üýgeltme ýok',
       notRepo: 'GitDeposy ýok',
@@ -692,7 +704,8 @@ export const tk = defineLocale({
       openPr: 'PR aç',
       ghMissing: 'PR açmak üçin GitHub CLI (gh) gurnama we giriş et',
       agentShip: 'OpenAmer-e PR açmagyny haýsyň',
-      agentShipPrompt: 'Häzirki üýgeltmeleri barla, anyk conventional-commit mesajy bilen commit et, şahy push et we pull request aç.',
+      agentShipPrompt:
+        'Häzirki üýgeltmeleri barla, anyk conventional-commit mesajy bilen commit et, şahy push et we pull request aç.',
       newBranch: 'Täze şah',
       worktrees: 'Iş ýokollary',
       title: 'Işlenýän agaj',
@@ -704,7 +717,7 @@ export const tk = defineLocale({
       behind: count => `${count} behind`,
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     agents: 'Agentlar',
     running: 'Işleýär',
@@ -713,7 +726,7 @@ export const tk = defineLocale({
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -728,7 +741,7 @@ export const tk = defineLocale({
       done: 'Täzeleýiş tamamlandy',
       manual: 'Terminaldan täzeleň',
       guiSkew: 'Desktop programmasyny täzeleň',
-      error: 'Täzeleýiş togtaldy',
+      error: 'Täzeleýiş togtaldy'
     },
     checking: 'Täzeleýişler gözlenýär…',
     checkFailedTitle: 'Täzeleýişleri barlap bolmady',
@@ -747,15 +760,19 @@ export const tk = defineLocale({
     updateNow: 'Häzir täzele',
     maybeLater: 'Soňra',
     manualTitle: 'Terminaldan täzeläň',
-    manualBody: 'OpenAmer bu düwmä basmak arkaly gurnaldy, şonuň üçin täzelemeler hem şol ýerde amala aşyrylýar. Muny terminalyňyza göçüriň:',
+    manualBody:
+      'OpenAmer bu düwmä basmak arkaly gurnaldy, şonuň üçin täzelemeler hem şol ýerde amala aşyrylýar. Muny terminalyňyza göçüriň:',
     manualPickedUp: 'OpenAmer indiki gezek açylanda täze wersiýany alyar.',
     guiSkewTitle: 'Desktop programmasyny täzeläň',
-    guiSkewBody: 'Serwer gowşaldy, emma bu desktop programma paketi üýtgemedi. OpenAmer desktop programmasyny (AppImage / .deb / .rpm) laýyk gelmek üçin täzeläň ýa-da täzeden gurnaşyň.',
+    guiSkewBody:
+      'Serwer gowşaldy, emma bu desktop programma paketi üýtgemedi. OpenAmer desktop programmasyny (AppImage / .deb / .rpm) laýyk gelmek üçin täzeläň ýa-da täzeden gurnaşyň.',
     copy: 'Göter',
     copied: 'Göçürildi',
     done: 'Tamam',
-    applyingBody: 'OpenAmer täzeleýjisi öz penjiresinde iş başlaýar we tamamlanan soň OpenAmer awtomatik ýagdaýda açylýar. Täzeleme dowamynda OpenAmer-iň özüni el bilen açmaň.',
-    applyingBodyBackend: 'Uzak serwer täzeleme amala aşyryp, täzeden başlaýar. Ol gaýtadan işläp başlanda OpenAmer awtomatik ýagdaýda birikýär.',
+    applyingBody:
+      'OpenAmer täzeleýjisi öz penjiresinde iş başlaýar we tamamlanan soň OpenAmer awtomatik ýagdaýda açylýar. Täzeleme dowamynda OpenAmer-iň özüni el bilen açmaň.',
+    applyingBodyBackend:
+      'Uzak serwer täzeleme amala aşyryp, täzeden başlaýar. Ol gaýtadan işläp başlanda OpenAmer awtomatik ýagdaýda birikýär.',
     applyingClose: 'Täzeleme amala aşyrylýanda bu penjire ýapylýar, soňra OpenAmer awtomatik ýagdaýda açylýar.',
     errorTitle: 'Täzeleme tamamlanmady',
     errorBody: 'Hamat ýok — hiç zat ýitirilmedi. Indi gaýtadan synanyp bilersiňiz.',
@@ -766,13 +783,15 @@ export const tk = defineLocale({
       restarting: 'Täzelemäni ýüklemek üçin serwer täzeden başlaýar…',
       notAvailable: 'Bu serwer üçin täzeleme elýeterli däl.',
       failed: 'Serweriň täzelenmesi başarylmady.',
-      noReturn: 'Serwer gaýtadan işläp başlamady. Täzeleme gutarlymy bolsa bilmez — serweriň ýerleşýän主机 adresini barlalyň.',
+      noReturn:
+        'Serwer gaýtadan işläp başlamady. Täzeleme gutarlymy bolsa bilmez — serweriň ýerleşýän主机 adresini barlalyň.'
     },
     appErrors: {
-      updateLocked: 'Täzeleme abort edildi: başga OpenAmer penjiresi ýa-da openamer işleýän terminal bu gurnama açyk saklaýar. Ony ýapyp, täzeden synanyň.',
-      updateFailed: 'Täzeleme tamamlanmady. Hiç zat ýitmedi. Indi täzeden synanyp bilersiňiz.',
+      updateLocked:
+        'Täzeleme abort edildi: başga OpenAmer penjiresi ýa-da openamer işleýän terminal bu gurnama açyk saklaýar. Ony ýapyp, täzeden synanyň.',
+      updateFailed: 'Täzeleme tamamlanmady. Hiç zat ýitmedi. Indi täzeden synanyp bilersiňiz.'
     },
-    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
+    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`
   },
   preview: {
     overwrite: 'Üstüne ýaz',
@@ -795,7 +814,7 @@ export const tk = defineLocale({
       sentTitle: 'Chat-a iberildi',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Öň görkezij işe başlamady',
@@ -816,9 +835,11 @@ export const tk = defineLocale({
       reloadingNow: 'Öň görkezij indi täzeden ýüklenýär.',
       restartFailedTitle: 'Öň görkezij täzeden başlamak başarylmady',
       restartFailedMessage: 'OpenAmer serweri täzeden başlap bilmedi.',
-      stillWorking: 'OpenAmer heniz işleýär, ýöne täzeden başlamak netijesi gelmedi. Serwer komandy öň planda işläp biler.',
+      stillWorking:
+        'OpenAmer heniz işleýär, ýöne täzeden başlamak netijesi gelmedi. Serwer komandy öň planda işläp biler.',
       workspaceReloading: 'Iş ýeri üýtgendi, öň görkezij täzeden ýüklenýär',
-      moduleMimeDescription: 'Modul skriptleri ýalňyş MIME görnüşi bilen berilýär. Bu adatyda statik faýl serweri Vite/React programmasyna görnüşi ýaly hyzmat edýär, ýöne onuň ýerine öň görkezij serişdemesi işletilmelidir.',
+      moduleMimeDescription:
+        'Modul skriptleri ýalňyş MIME görnüşi bilen berilýär. Bu adatyda statik faýl serweri Vite/React programmasyna görnüşi ýaly hyzmat edýär, ýöne onuň ýerine öň görkezij serişdemesi işletilmelidir.',
       unreachableDescription: 'Öň görkezij sahypa ýetip bilmedik.',
       fallbackTitle: 'Öň görkezij',
       lookingRestart: taskId => `OpenAmer is looking for a preview server to restart (${taskId})`,
@@ -829,7 +850,7 @@ export const tk = defineLocale({
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     tab: 'Öňünden gör',
     closeOthers: 'Beýlekileri ýapyň',
@@ -857,12 +878,13 @@ export const tk = defineLocale({
     editing: 'Üýtgedilýär',
     unsavedChanges: 'Ýatlanmadyk üýtgeşmeler',
     diskChangedTitle: 'Faýl diskde üýtgedildi',
-    diskChangedBody: 'Bu faýl açylandan bäri üýtgedildi. Ony öz wersiýaňyz bilen çalyşyň ýa-da üýtgeşmeleriňizi goýup täzeden ýükläň?',
+    diskChangedBody:
+      'Bu faýl açylandan bäri üýtgedildi. Ony öz wersiýaňyz bilen çalyşyň ýa-da üýtgeşmeleriňizi goýup täzeden ýükläň?',
     closeTab: label => `Close ${label}`,
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   desktop: {
     noClipboardImage: 'Gyrada surat tapylmady',
@@ -873,7 +895,7 @@ export const tk = defineLocale({
       timedOut: 'Geýit-gapak göreldeýildi. `openamer gateway` işleýärmi?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     sessionUnavailable: 'Sessiýa elýeterli däl',
     createSessionFailed: 'Täze sessiýa döredip bilemedim',
@@ -892,7 +914,8 @@ export const tk = defineLocale({
     editFailed: 'Redaktirlemek ýumşaldy',
     resumeFailed: 'Dowam etdirmek ýumşaldy',
     resumeStrandedTitle: 'Bu sessiýany ýükläp bilmedim',
-    resumeStrandedBody: 'Bu sessiýä baglanyşyk ýumşaldy we awtomatik gaýtalama synaglary gutarýar. Geýtportiň işledigini barlap, soň ýene synanyň.',
+    resumeStrandedBody:
+      'Bu sessiýä baglanyşyk ýumşaldy we awtomatik gaýtalama synaglary gutarýar. Geýtportiň işledigini barlap, soň ýene synanyň.',
     resumeRetry: 'Gaýtala',
     archived: 'Arhiwlenen',
     archiveFailed: 'Arhiwlemek ýokarylandy',
@@ -928,34 +951,35 @@ export const tk = defineLocale({
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
-    branchTitle: n => `Draft: Branch #${n}`,
+    branchTitle: n => `Draft: Branch #${n}`
   },
   errors: {
     genericFailure: 'Bir ýalňyşlyk ýüze çykty',
     boundaryTitle: 'Interfewsde bir ýalňyşlyk ýüze çykty',
     boundaryDesc: 'Görünüş çak edilmedik ýalňyşlyga duş geldi. Çatlar we sazlamalaryňyz goragly.',
     reloadWindow: 'Windowsy täzele',
-    openLogs: 'Ýazgylary aç',
+    openLogs: 'Ýazgylary aç'
   },
   ui: {
     search: {
-      clear: 'Gözlegi arassala',
+      clear: 'Gözlegi arassala'
     },
     pagination: {
       label: 'Sahypalaşdyrma',
       previous: 'Öňki',
       previousAria: 'Öňki sahypa geç',
       next: 'Indiki',
-      nextAria: 'Indiki sahypa geç',
+      nextAria: 'Indiki sahypa geç'
     },
     sidebar: {
       title: 'Gapdal panel',
       description: 'Mobil gapdal paneli görkezýär.',
-      toggle: 'Gapdal paneli aç/ýapy',
-    },
+      toggle: 'Gapdal paneli aç/ýapy'
+    }
   },
   language: {
     label: 'Hýat',
@@ -964,7 +988,7 @@ export const tk = defineLocale({
     saveError: 'Hýat ýangylanda ýalňyşdy',
     switchTo: 'Hýaty üýtmek',
     searchPlaceholder: 'Hýatlary izlemek…',
-    noResults: 'Hýatlary tapmady',
+    noResults: 'Hýatlary tapmady'
   },
   settings: {
     closeSettings: 'Aýarlary ýap',
@@ -989,11 +1013,12 @@ export const tk = defineLocale({
       billing: 'Öýümler',
       notifications: 'Bilýýetler',
       plugins: 'Plugýnlar',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'Desktop Plugýnlar',
-      blurb: 'UI kengýýämleri app-ge ýüklenýän - ýýgnaýa girýän ýa-da desktop-plugins foldera salynýan (OpenAmer tarapyndan ýazylanlar). Ondan ýygnaýaýýp, plugin çýkýşy we gaýta ýükleýş çäkli.',
+      blurb:
+        'UI kengýýämleri app-ge ýüklenýän - ýýgnaýa girýän ýa-da desktop-plugins foldera salynýan (OpenAmer tarapyndan ýazylanlar). Ondan ýygnaýaýýp, plugin çýkýşy we gaýta ýükleýş çäkli.',
       openFolder: 'Plugýnlar folderyny aç',
       rescan: 'Gaña ýükle',
       reveal: 'Faýl menýjerinde ýerlestir',
@@ -1004,58 +1029,62 @@ export const tk = defineLocale({
       kinds: {
         bundled: 'ýyralýan',
         disk: 'diskde',
-        runtime: 'ýürýş wagty',
+        runtime: 'ýürýş wagty'
       },
-      count: n => `${n} installed`,
+      count: n => `${n} installed`
     },
     notifications: {
       title: 'Duýdurlar',
-      intro: 'Desktop native duýdurlar, ilatyň içindäki bildeýşlerden aýrylar. Bu qurýalyga bagyşylan — her komýuter öz sazlamalarýn saklaýar.',
+      intro:
+        'Desktop native duýdurlar, ilatyň içindäki bildeýşlerden aýrylar. Bu qurýalyga bagyşylan — her komýuter öz sazlamalarýn saklaýar.',
       enableAll: 'Duýdurlary çalykdyryň',
       enableAllDesc: 'Baş switch. Bu ýapyklanda-da asydaky ähli duýdurlar ýumurt ediler.',
       focusedHint: 'Tamamlaýyş duýdurlary OpenAmer fon-da bolanda çalykdyryýar.',
       kinds: {
         approval: {
           label: 'Taslamaly',
-          description: 'Sizden taslamak ýa-da ret etmeginiýän bir komanda gütýär.',
+          description: 'Sizden taslamak ýa-da ret etmeginiýän bir komanda gütýär.'
         },
         input: {
           label: 'Input gerek',
-          description: 'OpenAmer soramaly berdi ýa-da parol ýa-da sekret talap edýär.',
+          description: 'OpenAmer soramaly berdi ýa-da parol ýa-da sekret talap edýär.'
         },
         turnDone: {
           label: 'Jawap hazyr',
-          description: 'OpenAmer fon-da bolanda bir oýun tamamlandy.',
+          description: 'OpenAmer fon-da bolanda bir oýun tamamlandy.'
         },
         turnError: {
           label: 'Oýun amala ýetmedi',
-          description: 'Bir oýun hatamenny tamamlandy.',
+          description: 'Bir oýun hatamenny tamamlandy.'
         },
         backgroundDone: {
           label: 'Fon tapşyrmasy tamamlandy',
-          description: 'Fonlan terminal komandasy tamamlandy.',
+          description: 'Fonlan terminal komandasy tamamlandy.'
         },
         credits: {
           label: 'Kredit duýdurlary',
-          description: 'Kredit girişi togtaldyldy ýa-da dikeldildi.',
-        },
+          description: 'Kredit girişi togtaldyldy ýa-da dikeldildi.'
+        }
       },
       test: 'Synag habary iber',
       testTitle: 'OpenAmer',
       testBody: 'Habarlar işleýär.',
-      testSent: 'Synag iberildi. Hiç näme görünmeýän bolsa, OS habar rugsatatlaryny we Focus/Do Not Disturb režimini barlaň.',
+      testSent:
+        'Synag iberildi. Hiç näme görünmeýän bolsa, OS habar rugsatatlaryny we Focus/Do Not Disturb režimini barlaň.',
       testUnsupported: 'Bu ulgam öz habarlaryny natively goldamaýar.',
       completionSoundTitle: 'Tamamlanma sesi',
       completionSoundDesc: 'Agentiň nobaty gutaranda oýnadylar. Bir preýdi sowat we ony bu ýerde sylap görüň.',
-      completionSoundPreview: 'Öň görkezme',
+      completionSoundPreview: 'Öň görkezme'
     },
     appearance: {
       pet: {
         turnOnFailed: 'Peti ýaňlandyrýp bolmady.',
         turnOffFailed: 'Peti ýapyp bolmady.',
         title: 'Mascot',
-        intro: 'OpenAmer-iň üstünde ýüzýän, OpenAmer-iň edýän zadyna görüşlişiýän animasiýaly petdex maskotyny eýele — guralar işläp durka ýüzgün, üstünlikde gutlaýar, ýalňyşlykda hümmet çekýär.',
-        restartHint: 'Mascot gaýtadan başlamagy talap edýär — işleýän program bu aýratynlyk goşulmazdan öň açylypdyr. OpenAmer-i ýapyp, täzeden açyň, soňra bu sahypa dolanyň.',
+        intro:
+          'OpenAmer-iň üstünde ýüzýän, OpenAmer-iň edýän zadyna görüşlişiýän animasiýaly petdex maskotyny eýele — guralar işläp durka ýüzgün, üstünlikde gutlaýar, ýalňyşlykda hümmet çekýär.',
+        restartHint:
+          'Mascot gaýtadan başlamagy talap edýär — işleýän program bu aýratynlyk goşulmazdan öň açylypdyr. OpenAmer-i ýapyp, täzeden açyň, soňra bu sahypa dolanyň.',
         on: 'Ýan',
         off: 'Öç',
         scaleTitle: 'Ölçeg',
@@ -1085,12 +1114,13 @@ export const tk = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
       backdropTitle: 'Söhbet fony',
       backdropDesc: 'Söhbetiň aňyrsynda ýeňil heykeltaraş suraty.',
       embedsTitle: 'Gömülen goşmaçalar',
-      embedsDesc: 'Baquly öňnizlemeler üçünji tarapdaky çenlilerden ýüklenýär (YouTube, X, â€¦). Sorag: her birine rugsat berýänçä ýer tutujy görkezilýär; Hemişe: awtomatik ýüklenýär; Öçen: adaty baglanyşyklary saklaýar.',
+      embedsDesc:
+        'Baquly öňnizlemeler üçünji tarapdaky çenlilerden ýüklenýär (YouTube, X, â€¦). Sorag: her birine rugsat berýänçä ýer tutujy görkezilýär; Hemişe: awtomatik ýüklenýär; Öçen: adaty baglanyşyklary saklaýar.',
       embedsAsk: 'Sorag',
       embedsAlways: 'Hemişe',
       embedsOff: 'Öçen',
@@ -1101,14 +1131,16 @@ export const tk = defineLocale({
       themeTitle: 'Tema',
       themeDesc: 'Diňe kompýuter palitralary. Saýlanan režim ýokarky gatynda ulanylýar.',
       installTitle: 'VS Code-dan gurmak',
-      installDesc: 'Reňk temasyny kompýuter palitrasyna öwürmek üçin Marketplace giňişlemesiniň id-sini goşuň (mysal üçin dracula-theme.theme-dracula).',
+      installDesc:
+        'Reňk temasyny kompýuter palitrasyna öwürmek üçin Marketplace giňişlemesiniň id-sini goşuň (mysal üçin dracula-theme.theme-dracula).',
       installButton: 'Gurmak',
       installing: 'Gurulýarâ€¦',
       installError: 'Şol tema guralyp bilmedi.',
       removeTheme: 'Temany aýyrmak',
       importedBadge: 'Import edildi',
       title: 'Görnüş',
-      intro: 'Bular diňe desktop görkezijileri üçin görkezme sazlamalary. Režim ýagtylygy, tema bolsa vurgu reňklerini we çat üstüň bezegini dolandyrýar.',
+      intro:
+        'Bular diňe desktop görkezijileri üçin görkezme sazlamalary. Režim ýagtylygy, tema bolsa vurgu reňklerini we çat üstüň bezegini dolandyrýar.',
       colorMode: 'Reňk režimi',
       colorModeDesc: 'Möhüm režimi saýlaň ýa-da OpenAmer sistemiňizi yzarlasyn.',
       toolViewTitle: 'Gurallaja çykyryş görkezilişi',
@@ -1116,11 +1148,12 @@ export const tk = defineLocale({
       uiScaleTitle: 'UI ölçegi',
       translucencyTitle: 'Peneýeň çýňňallagy',
       translucencyDesc: 'Desktopy doly penere arkaly görüň. Diňe macOS we Windows-da.',
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installPlaceholder: 'publisher.extension',
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     about: {
       versionUnavailable: 'Wersýa ýetirilmedi',
@@ -1147,7 +1180,7 @@ export const tk = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     config: {
       none: 'Ýok',
@@ -1163,7 +1196,8 @@ export const tk = defineLocale({
       imported: 'Konfigurasiýa import edildi',
       invalidJson: 'Nädogry konfigurasiýa JSON',
       keepAwakeTitle: 'Komýutery uýataryň tut',
-      keepAwakeDesc: 'Bu maşyny uýamazlykdan saklaýyn, şol sebäpten gepleşikler we gepleşikler dowam edýär. Ekran sönýär bolup bilýär.',
+      keepAwakeDesc:
+        'Bu maşyny uýamazlykdan saklaýyn, şol sebäpten gepleşikler we gepleşikler dowam edýär. Ekran sönýär bolup bilýär.'
     },
     credentials: {
       pasteKey: 'Açyklanyşy ýapyşyň',
@@ -1173,7 +1207,7 @@ export const tk = defineLocale({
       remove: 'Aýryň',
       getKey: 'Açyklanyşy al',
       saving: 'Ýatda saklanýar',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     gateway: {
       modeTitle: 'Baglanyşyk režimi',
@@ -1183,7 +1217,8 @@ export const tk = defineLocale({
       inheritDesc: 'Bu profilinýň override-ny aýryň we default baglanyşykdany ulanyň.',
       remoteTitle: 'Aýryk şlýuz',
       remoteDesc: 'Bu desktop kabini remote OpenAmer backend-e baglanyň.',
-      remoteAuthHint: 'Hosted şlýuzlar OAuth ýa-da username we password ulanyş; özi host edýän şlýuzlar session token ulanyş bilen bolup bilýär.',
+      remoteAuthHint:
+        'Hosted şlýuzlar OAuth ýa-da username we password ulanyş; özi host edýän şlýuzlar session token ulanyş bilen bolup bilýär.',
       cloudDesc: 'OpenAmer Cloud bir gezek girin we account-daýy agentlerden saýlaň — URL-ny ýapýň.',
       cloudSignIn: 'OpenAmer Cloud-ä girin',
       cloudSignedIn: 'OpenAmer Cloud-ä girdiňiz',
@@ -1196,11 +1231,14 @@ export const tk = defineLocale({
       cloudLoadingAgents: 'Sizin agentler ýüklenýär…',
       signOut: 'Çyk',
       authTitle: 'Autentifikasiya',
-      authSignedInPassword: 'Bu gateway ulanyjy ady we paroly bilen işläýär. Siz girdiňiz; sessiýa awtomatikada ýenilener.',
+      authSignedInPassword:
+        'Bu gateway ulanyjy ady we paroly bilen işläýär. Siz girdiňiz; sessiýa awtomatikada ýenilener.',
       authSignedInOauth: 'Bu gateway OAuth bilen işläýär. Siz girdiňiz; sessiýa awtomatikada ýenilener.',
-      authNeedsPassword: 'Bu gateway ulanyjy ady we paroly bilen işläýär. Bu desktop app-nyň autorizasiýasy üçin giriň.',
+      authNeedsPassword:
+        'Bu gateway ulanyjy ady we paroly bilen işläýär. Bu desktop app-nyň autorizasiýasy üçin giriň.',
       tokenTitle: 'Sessiýa tokeni',
-      tokenDesc: 'REST we WebSocket ýetkezliýi üçin ulanylyň dashboard sessiýa tokeni. Saçylan tokeni saklamak üçin boş goý.',
+      tokenDesc:
+        'REST we WebSocket ýetkezliýi üçin ulanylyň dashboard sessiýa tokeni. Saçylan tokeni saklamak üçin boş goý.',
       savedToken: 'Saklandy',
       pasteSessionToken: 'Sessiýa tokeni ýapışdyryň',
       testRemote: 'Uzakdan syna',
@@ -1229,11 +1267,13 @@ export const tk = defineLocale({
       applyFailed: 'Gaplawyň sazlamalary uýdaşdyryp bilmedi',
       saveFailed: 'Gaplawyň sazlamalary saýlan bilmedi',
       sshTitle: 'SSH arkaly baglan',
-      sshDesc: 'OpenAmer SSH arkaly ýüpeýedä indirilip, bu app-ge tunnelenýär — start etmek ýa-da öňüňi ýaşyrmak ýok. Hosta işläp bilýän açyklavly SSH girisi talap edýär.',
+      sshDesc:
+        'OpenAmer SSH arkaly ýüpeýedä indirilip, bu app-ge tunnelenýär — start etmek ýa-da öňüňi ýaşyrmak ýok. Hosta işläp bilýän açyklavly SSH girisi talap edýär.',
       sshTrustHint: 'Birinji berilen host açyklavly saýlanýar we ilatyýanyň üýtgändikleri kabul etmeýär.',
       sshHostDesc: 'user@host, ýa-da ~/.ssh/config dan Host aliasy.',
       sshHostPick: 'Host saýla…',
-      sshErrNotInstalled: 'OpenAmer remote host-da oňlanmaýan. Olaryň ýerine (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) arkaly oňlaň, ýa-da OpenAmer ýolyny ber.',
+      sshErrNotInstalled:
+        'OpenAmer remote host-da oňlanmaýan. Olaryň ýerine (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) arkaly oňlaň, ýa-da OpenAmer ýolyny ber.',
       sshErrPlatform: 'Golýan platforma. OpenAmer Desktop SSH mode Linux, macOS we Windows remote hostlaryny kolýar.',
       sshErrTimeout: 'SSH ulanyşy wagt aýryldy. Host ýetimsiz bolup, ýa-da uýkuda bolup bilner.',
       sshErrUpdateRequired: 'OpenAmer Desktop SSH bilen baglanyşmanyň öňünde remote host-da OpenAmeri ýenil.',
@@ -1252,11 +1292,14 @@ export const tk = defineLocale({
       sshButtonsHint: 'Saklaň indiňräk başlamada ýääräär. Baglan indi gaýta baglan.',
       sshIncompleteHost: 'Baglanmadan SSH host girň.',
       sshErrUnreachable: 'Şol hosta SSH arkaly ýetip bilmedi. Host, port we şbejäň şbejesiň şbejesiň barada tekshiriň.',
-      sshErrAuth: 'SSH autentifikasiýa ýaýldy. ssh-agent (ssh-add) içine çekiňizi ýüklemiň ýa-da ~/.ssh/config-de IdentityFile beriň — OpenAmer ssh interaktiw däl çagyrdaşyr.',
-      sshErrHostKey: 'Host çekiň size soňraky baglandan beri ÜPGEDİ. Bu goralandygyny tekshiriň, soň ssh-keygen -R <host> çagyrdaşyň we gaýta baglaň.',
+      sshErrAuth:
+        'SSH autentifikasiýa ýaýldy. ssh-agent (ssh-add) içine çekiňizi ýüklemiň ýa-da ~/.ssh/config-de IdentityFile beriň — OpenAmer ssh interaktiw däl çagyrdaşyr.',
+      sshErrHostKey:
+        'Host çekiň size soňraky baglandan beri ÜPGEDİ. Bu goralandygyny tekshiriň, soň ssh-keygen -R <host> çagyrdaşyň we gaýta baglaň.',
       remoteUrlDesc: 'Uzak dashboards back-endi üçin esasy URL. Ýol prefiksleri goldamaýar, mysaly /openamer.',
       probing: 'Bu geçawitiň nähili autentifikasiýa ulanýandygyny barlaýarys...',
-      probeError: 'Bu geçawite ýene ýetip bilmedik. URL-ni barlaň — ol jogap berende autentifikasiýa usuly görkezilýär.',
+      probeError:
+        'Bu geçawite ýene ýetip bilmedik. URL-ni barlaň — ol jogap berende autentifikasiýa usuly görkezilýär.',
       signedIn: 'Giriş edildi',
       signIn: 'Giriş',
       sshHostTitle: 'Saly',
@@ -1269,7 +1312,8 @@ export const tk = defineLocale({
       unavailableDesc: 'Desktop IPC köprüsi geçirgiň sazlamalaryny açmaýar.',
       title: 'Geçirgi birikmesi',
       envOverride: 'env bilen basyp almak',
-      intro: 'OpenAmer Desktop öz ýerli geçirgisini adaty görnüşinde başladýar. Bu programanyň başga maşynada ýa-da ygtybarly proksi arkaly işleýän OpenAmer backend-sini dolandyrmak üçin uzak geçirgiden peýdalanýyň. Ona ýörite uzak host bermek üçin aşakdaky profilleriň birini saýlaň.',
+      intro:
+        'OpenAmer Desktop öz ýerli geçirgisini adaty görnüşinde başladýar. Bu programanyň başga maşynada ýa-da ygtybarly proksi arkaly işleýän OpenAmer backend-sini dolandyrmak üçin uzak geçirgiden peýdalanýyň. Ona ýörite uzak host bermek üçin aşakdaky profilleriň birini saýlaň.',
       appliesTo: 'Şu ýere ulanylýar',
       cloudConnectFailed: 'Şol agent-a baglanyşdyryp bolmady',
       cloudSignInFailed: 'OpenAmer Cloud-a girizmek başarylmady',
@@ -1285,7 +1329,7 @@ export const tk = defineLocale({
       cloudNoAgents: {
         before: 'Bu hasapda agent tapylmady. Birini',
         linkText: 'OpenAmer portalynda',
-        after: 'döredip, soňra täzeleň.',
+        after: 'döredip, soňra täzeleň.'
       },
       cloudRefresh: 'Täzele',
       cloudConnect: 'Birik',
@@ -1293,7 +1337,8 @@ export const tk = defineLocale({
       cloudDiscoverFailed: 'OpenAmer Cloud agentlerini ýüklemäge mümkin bolmady',
       cloudTitle: 'OpenAmer bulut',
       cloudSignInTitle: 'OpenAmer bulut',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudOrgRole: role => `Role: ${role}`,
       cloudConnectedTo: name => `Connected to ${name}.`,
       cloudStatusLabel: status => `Status: ${status}`,
@@ -1302,12 +1347,12 @@ export const tk = defineLocale({
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       sshPortTitle: 'Port',
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     keys: {
       loading: 'API açylary we akreditasiýalarý ýüklenýär...',
       failedLoad: 'API açylary ýüklenip bilmedi',
-      empty: 'Bu kategorýada halaç heýbir nçe konfigurirlenmedi.',
+      empty: 'Bu kategorýada halaç heýbir nçe konfigurirlenmedi.'
     },
     mcp: {
       loading: 'MCP serverler ýüklenýär...',
@@ -1369,10 +1414,11 @@ export const tk = defineLocale({
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       authenticatedMessage: (server, count) => `${server}: ${count} tools`,
       enableTool: tool => `Enable ${tool}`,
-      disableTool: tool => `Disable ${tool}`,
+      disableTool: tool => `Disable ${tool}`
     },
     sections: {
       chat: 'Çat',
@@ -1382,7 +1428,7 @@ export const tk = defineLocale({
       memory: 'Ýat we kontekst',
       voice: 'Ses',
       advanced: 'Giňişleşdirilen',
-      model: 'Model',
+      model: 'Model'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop hakynda',
@@ -1390,25 +1436,26 @@ export const tk = defineLocale({
       gateway: 'Gateýa birikmesi...',
       keys: 'API açarlaryny gözle...',
       mcp: 'MCP serwerlerini gözle...',
-      sessions: 'Arhiwlenen sessiýalary gözle...',
+      sessions: 'Arhiwlenen sessiýalary gözle...'
     },
     modeOptions: {
       light: {
         label: 'Ýagty',
-        description: 'Parlak desktop ýüzleri',
+        description: 'Parlak desktop ýüzleri'
       },
       dark: {
         label: 'Garaňky',
-        description: 'Az parlaklykly iş meýdany',
+        description: 'Az parlaklykly iş meýdany'
       },
       system: {
         description: 'OS görnüşini yzarla',
-        label: 'Systema',
-      },
+        label: 'Systema'
+      }
     },
     model: {
       loading: 'Model konfigurasiýasy ýüklenýär...',
-      appliesDesc: 'Täze sessiýalara ulanylýar. Işjeň gabyşdaky modeli çaltlyk çalyşmak üçin model saýlaýjysyny ulanyň.',
+      appliesDesc:
+        'Täze sessiýalara ulanylýar. Işjeň gabyşdaky modeli çaltlyk çalyşmak üçin model saýlaýjysyny ulanyň.',
       provider: 'Üpjün ediji',
       applying: 'Uygulanyp durýar...',
       defaultsLabel: 'Deslapky ýagdaýlar',
@@ -1417,7 +1464,8 @@ export const tk = defineLocale({
       defaultsFailed: 'Model deslapky ýagdaýlaryny ýatda saklamak başaryldy',
       auxiliaryTitle: 'Goşmaça modeller',
       resetAllToMain: 'Ählisini esasy modela dikelt',
-      auxiliaryDesc: 'Kömekçi wezipeler adatça esasy modelde ýerine ýetirilýär. Islendik wezipäni aýratyn modele barmak üçin ony bölüp berseňiz, şu ýerine ýetirilýär.',
+      auxiliaryDesc:
+        'Kömekçi wezipeler adatça esasy modelde ýerine ýetirilýär. Islendik wezipäni aýratyn modele barmak üçin ony bölüp berseňiz, şu ýerine ýetirilýär.',
       setToMain: 'Esasy modela barla',
       change: 'Üýtget',
       autoUseMain: 'awtomatik · esasy modeli ulan',
@@ -1428,38 +1476,38 @@ export const tk = defineLocale({
       tasks: {
         vision: {
           label: 'Görüş',
-          hint: 'Surat analizi',
+          hint: 'Surat analizi'
         },
         web_extract: {
           label: 'Webden maglumat alyş',
-          hint: 'Sahypany jemlemek',
+          hint: 'Sahypany jemlemek'
         },
         compression: {
           label: 'Gysystyrmak',
-          hint: 'Konteksti kompaktlaşdyrmak',
+          hint: 'Konteksti kompaktlaşdyrmak'
         },
         skills_hub: {
           label: 'Hünärler merkezi',
-          hint: 'Hünär gözleglemek',
+          hint: 'Hünär gözleglemek'
         },
         approval: {
           label: 'Tassyklamak',
-          hint: 'Akylly awtomatik tassyklamak',
+          hint: 'Akylly awtomatik tassyklamak'
         },
         mcp: {
           hint: 'MCP gurallaryny yönlendirmek',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'At generasiýasy',
-          hint: 'Sessiya atlary',
+          hint: 'Sessiya atlary'
         },
         curator: {
           label: 'Kurator',
-          hint: 'Hümmür ulanyşyň barlagy',
-        },
+          hint: 'Hümmür ulanyşyň barlagy'
+        }
       },
-      model: 'Model',
+      model: 'Model'
     },
     envActions: {
       credentialActions: 'Gözlegçilik hereketleri',
@@ -1470,12 +1518,13 @@ export const tk = defineLocale({
       replace: 'Çalyş',
       set: 'Byle',
       clear: 'Arassala',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     providers: {
       connectAccount: 'Hasap birikdir',
       haveApiKey: 'Eýsem API açary bar bolsa?',
-      intro: 'Abone bilen gir — API açaryny götermäge mätäç bolsaňyz ýok. OpenAmer brauzeriň içindäki girişini sizin üçin şu ýerde amala aşyrar.',
+      intro:
+        'Abone bilen gir — API açaryny götermäge mätäç bolsaňyz ýok. OpenAmer brauzeriň içindäki girişini sizin üçin şu ýerde amala aşyrar.',
       connected: 'Birikdirildi',
       collapse: 'Ýygnama',
       connectAnother: 'Başda bir üpjünçi birikdir',
@@ -1488,33 +1537,38 @@ export const tk = defineLocale({
       noKeysMatch: 'Gözlegiňize degişli üpjünçi ýok.',
       localEndpoint: {
         title: 'Ýerli / ýörite endpoint',
-        description: 'OpenAmer-y OpenAI bilen gabat gelýän islendik endpoint-a (Zyphra, vLLM, llama.cpp, Ollama, we ş.m.) salgylaň.',
+        description:
+          'OpenAmer-y OpenAI bilen gabat gelýän islendik endpoint-a (Zyphra, vLLM, llama.cpp, Ollama, we ş.m.) salgylaň.'
       },
       loading: 'Üpjünçiler ýüklenýär...',
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     sessions: {
       loading: 'Arhiwlenen sessiyalar ýüklenýärâ€¦',
       archivedTitle: 'Arhiwlenen sessiyalar',
-      archivedIntro: 'Arhiwlenen çatlar ýan panelden gizlenýär, ýöne ähli mesajlary saklanýar. Çaty arhiwlemek üçin ýan paneldäki çata Ctrl/âŒ˜-click ediň.',
+      archivedIntro:
+        'Arhiwlenen çatlar ýan panelden gizlenýär, ýöne ähli mesajlary saklanýar. Çaty arhiwlemek üçin ýan paneldäki çata Ctrl/âŒ˜-click ediň.',
       emptyArchivedTitle: 'Hiç zat arhiwlenen däl',
       emptyArchivedDesc: 'Ony gizlemek üçin çaty arhiwleň.',
       unarchive: 'Arhiwdan çykar',
       deletePermanently: 'Hemişelik öçür',
       restored: 'Dikeldildi',
       autoArchiveTitle: 'Könelen çatları awtomat arhiwle',
-      autoArchiveDesc: 'Bir wagt işlemedik çatları awtomat arhiwle. Berkidilen çatlar hiç haçan arhiwlenmeýär we hiç näme öçürilmeýär â€” arhiwlenen çatlar diňe şu ýere geçýär.',
+      autoArchiveDesc:
+        'Bir wagt işlemedik çatları awtomat arhiwle. Berkidilen çatlar hiç haçan arhiwlenmeýär we hiç näme öçürilmeýär â€” arhiwlenen çatlar diňe şu ýere geçýär.',
       autoArchiveDaysLabel: 'Şondan soň arhiwle',
       autoArchiveDaysUnit: 'gün işjeňlik',
       autoArchiveFailed: 'Awtomat arhiwlemegi täzelemek bolmady',
       defaultDirTitle: 'Standart taslamanyň ýönegi',
-      defaultDirDesc: 'Täze sessiyalar başga ýöne saýlamadyk bolsa şu папка-da başlaýar. Öz ýöneýiňizi ulanmak üçin ony boş goýuň.',
+      defaultDirDesc:
+        'Täze sessiyalar başga ýöne saýlamadyk bolsa şu папка-da başlaýar. Öz ýöneýiňizi ulanmak üçin ony boş goýuň.',
       defaultDirUpdated: 'Standart taslamanyň ýönegi täzelenen â€” täsirini görkezmek üçin täze çat açyň (Ctrl/âŒ˜+N)',
       change: 'Üýtget',
       choose: 'Saýla',
@@ -1527,7 +1581,7 @@ export const tk = defineLocale({
       clearDirFailed: 'Başynky ýoly arassalamak bolmady',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
       modelDefault: 'Standart',
@@ -1544,7 +1598,7 @@ export const tk = defineLocale({
         selectedTitle: 'Backend saýlandy',
         needsSetupHint: 'Bu backendi indi saýlap bilersiňiz â€” gurluş tamamlanýança komandalar işlemez.',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       loadingConfig: 'Konfigurasiýa ýüklenýär',
       savedTitle: 'Girizijilik maglumatlar ýatladyldy',
@@ -1553,7 +1607,8 @@ export const tk = defineLocale({
       notSet: 'Bellenmedi',
       selectedTitle: 'Üpjün ediji saýlandy',
       failedLoad: 'Guralyň konfigurasiýasy ýüklenmedi',
-      noProviderOptions: 'Bu gural toplumynyň üpjün ediji mümkinçilikleri ýok — ony açyň, ol indiki sazlamanyňyz bilen işleýär.',
+      noProviderOptions:
+        'Bu gural toplumynyň üpjün ediji mümkinçilikleri ýok — ony açyň, ol indiki sazlamanyňyz bilen işleýär.',
       noProviders: 'Bu gural toplumy üçin şu wagt üpjün edijiler elýeterli däl.',
       ready: 'Taýýar',
       needsSignIn: 'Giriş talap edýär',
@@ -1588,8 +1643,10 @@ export const tk = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -1600,16 +1657,17 @@ export const tk = defineLocale({
       modelSectionTitle: 'Model',
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   webhooks: {
     hint: 'Ýazgylylyk üýtgemeleri alýjy işläp başlanda bir gezek ýüklenýär. Öçürilen ýazgylylyklar gelýän hadysalary kabul etmeýär.',
     empty: 'Heniz webhook ýazgylylyk ýok.',
     disabledTitle: 'Webhook alýjy öçürildi',
-    disabledBody: 'Webhooklar aýratyn gateway platformasydyr. Gelen HTTP hadysalary kabul etmek üçin olary bu ýerde açyň; çat kanallary diňe ýazgylylyk Telegram, Discord, Slack ýa-da beýleki kanala ibberilende gerekli.',
+    disabledBody:
+      'Webhooklar aýratyn gateway platformasydyr. Gelen HTTP hadysalary kabul etmek üçin olary bu ýerde açyň; çat kanallary diňe ýazgylylyk Telegram, Discord, Slack ýa-da beýleki kanala ibberilende gerekli.',
     enable: 'Webhooklary aç',
     enabling: 'Açylýar...',
     enableRow: 'Aç',
@@ -1658,7 +1716,7 @@ export const tk = defineLocale({
       github_comment: 'GitHub belligi',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     fieldPrompt: 'Sorag',
     subscriptions: (count: number) => `Subscriptions (${count})`,
@@ -1667,7 +1725,7 @@ export const tk = defineLocale({
     deleteFailed: (name: string) => `Failed to delete "${name}"`,
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     autoColor: 'Awtomatik',
@@ -1745,7 +1803,7 @@ export const tk = defineLocale({
     env: 'env',
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   cron: {
     close: 'Crony ýap',
@@ -1785,7 +1843,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Cron döredip',
     tabs: {
       jobs: 'Işler',
-      blueprints: 'Şablonlar',
+      blueprints: 'Şablonlar'
     },
     blueprints: {
       tab: 'Şablonlar',
@@ -1799,7 +1857,7 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Şablonlar ýüklenýär...',
       failedLoad: 'Şablonlary ýüklemek başartylmady',
       emptyTitle: 'Şablonlar ýok',
-      emptyDesc: 'Bu backend-de awtomatizasiýa şablonlary ýok.',
+      emptyDesc: 'Bu backend-de awtomatizasiýa şablonlary ýok.'
     },
     paused: 'Cron togtaldy',
     triggered: 'Cron işledi',
@@ -1814,7 +1872,8 @@ Leave blank to keep the ${mode} default.`,
     editTitle: 'Cron işini redaktirläň',
     createTitle: 'Täze cron işi',
     editDesc: 'Grafigi, buýrugy ýa-da gönderilýän ýeri üýtgediň. Üýtgeşikler indiki gezekde ulanylýar.',
-    createDesc: 'Buýrugy awtomatik işletmek üçin wagty kesgitleň. Cron sintaksisini ýa-da "her 15 minutda" ýaly tebigy ifade ulanyň.',
+    createDesc:
+      'Buýrugy awtomatik işletmek üçin wagty kesgitleň. Cron sintaksisini ýa-da "her 15 minutda" ýaly tebigy ifade ulanyň.',
     nameLabel: 'Ady',
     namePlaceholder: 'Ertirleýin gysgaça habar',
     promptLabel: 'Buýruk',
@@ -1829,14 +1888,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'Togtaldyryldy',
       disabled: 'Öçürilen',
       error: 'Ýalňyş',
-      completed: 'Tamamlandy',
+      completed: 'Tamamlandy'
     },
     deliveryLabels: {
       local: 'Bu desktop',
       email: 'Elektron poçta',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     scheduleLabels: {
       daily: 'Her gün',
@@ -1845,7 +1904,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Her aý',
       hourly: 'Her sagat',
       'every-15-minutes': 'Her 15 minutda',
-      custom: 'Ýörite',
+      custom: 'Ýörite'
     },
     scheduleHints: {
       daily: 'Her gün sagat 9:00-da',
@@ -1854,7 +1913,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Her aýyň birinji günü sagat 9:00-da',
       hourly: 'Her sagat başynda',
       'every-15-minutes': 'Her 15 minutda',
-      custom: 'Cron sintaksisi ýa-da tebigy dil',
+      custom: 'Cron sintaksisi ýa-da tebigy dil'
     },
     days: {
       '0': 'Ýekşenbe',
@@ -1864,12 +1923,13 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Ýaş',
       '5': 'Şenbe',
       '6': 'Şambe',
-      '7': 'Ýekşenbe',
+      '7': 'Ýekşenbe'
     },
     emptyTitleNew: 'Bellenen işler ýok',
     topOfHour: 'Her sagatyn başynda',
     newCron: 'Täze cron',
-    emptyDescNew: 'Prompty cron ifadesi boýunça işletmegi meýilleşdiriň. OpenAmer ony ýerine ýetirer we netijeleri saýlanan ýere ugradar.',
+    emptyDescNew:
+      'Prompty cron ifadesi boýunça işletmegi meýilleşdiriň. OpenAmer ony ýerine ýetirer we netijeleri saýlanan ýere ugradar.',
     emptyDescSearch: 'Has giňişli gözleg soragyny synanyň.',
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -1879,7 +1939,7 @@ Leave blank to keep the ${mode} default.`,
     monthlyOnDayAt: (dayOfMonth, time) => `Monthly on day ${dayOfMonth} at ${time}`,
     everyHourAt: minute => `Every hour at :${minute}`,
     actionsFor: title => `Actions for ${title}`,
-    modelLabel: 'Model',
+    modelLabel: 'Model'
   },
   artifacts: {
     search: 'Artefaktlary gözle...',
@@ -1913,7 +1973,7 @@ Leave blank to keep the ${mode} default.`,
     copyUrl: 'URL-y kopyala',
     copyPath: 'Ýoly kopyala',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     projects: {
@@ -1926,8 +1986,10 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'Ýoly çykyp al',
       removeFromSidebar: 'Sidebardan gizle',
       createFailed: 'Projekt döredip bolmady',
-      staleBackend: 'Projektleri döretmek üçin OpenAmer backendini täzele — backendiň bu desktop programdan köne (Sazlamalar → Täzelemeler → Backend).',
-      deleteConfirm: 'Bu, OpenAmer-da saklanan projekti aýyrýar. Faýllar, git repozitoriýalary we iş pökgeleri üýtgeşilmeýär.',
+      staleBackend:
+        'Projektleri döretmek üçin OpenAmer backendini täzele — backendiň bu desktop programdan köne (Sazlamalar → Täzelemeler → Backend).',
+      deleteConfirm:
+        'Bu, OpenAmer-da saklanan projekti aýyrýar. Faýllar, git repozitoriýalary we iş pökgeleri üýtgeşilmeýär.',
       startWork: 'Täze iş pökgesi',
       newWorktreeTitle: 'Täze iş pökgesi',
       newWorktreeDesc: 'Bu iş pökgesi üçin şahalanyň adyny görkeziň.',
@@ -1966,22 +2028,24 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'Şahalar tapylmady',
       removeWorktree: 'Iş ýerini aýyr',
       removeWorktreeFailed: 'Iş ýeri aýrylyp bilinmedi (üýtgedilmedik üýtgeçmeler?)',
-      removeWorktreeConfirm: 'Ony git-den aýyryň (iş ýeriniň ýöly aýrylýar; şaha galýar), ýa-da zolaky çep paneldan gizläp, iş ýerini diskde galdyryň.',
-      removeWorktreeDirty: 'Bu iş ýerinde üýtgedilmedik üýtgeçmeler bar. Ony mecbur aýyryň (üýtgeçmeler ýitirilýär), ýa-da zolaky gizläp, iş ýerini diskde galdyryň.',
+      removeWorktreeConfirm:
+        'Ony git-den aýyryň (iş ýeriniň ýöly aýrylýar; şaha galýar), ýa-da zolaky çep paneldan gizläp, iş ýerini diskde galdyryň.',
+      removeWorktreeDirty:
+        'Bu iş ýerinde üýtgedilmedik üýtgeçmeler bar. Ony mecbur aýyryň (üýtgeçmeler ýitirilýär), ýa-da zolaky gizläp, iş ýerini diskde galdyryň.',
       forceRemove: 'Mecburan aýyr',
       back: 'Ähli projeksiýalar',
       ideaLabel: 'Pikir',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     dateDivider: {
       today: 'Şu günüň öň bölegi',
       yesterday: 'Dün',
       thisWeek: 'Şu hepdeň öň bölegi',
       lastWeek: 'Geçen hepde',
-      thisMonth: 'Şu aýyň öň bölegi',
+      thisMonth: 'Şu aýyň öň bölegi'
     },
     row: {
       renamed: 'Atlandyryldy',
@@ -2014,13 +2078,13 @@ Leave blank to keep the ${mode} default.`,
       handoffOrigin: platform => `Handed off from ${platform}`,
       ownedByProfile: profile => `Profile: ${profile}`,
       untitledChat: id => `Chat ${id}`,
-      ageMin: 'm',
+      ageMin: 'm'
     },
     nav: {
       'new-session': 'Täze seans',
       skills: 'Ýumaklylyklar',
       messaging: 'Mesajlar',
-      artifacts: 'Artefaktlar',
+      artifacts: 'Artefaktlar'
     },
     searchAria: 'Sesiýalary gözle',
     searchPlaceholder: 'Sesiýalary gözle…',
@@ -2046,7 +2110,7 @@ Leave blank to keep the ${mode} default.`,
     noMatch: query => `No sessions match “${query}”.`,
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     message: 'Mesaj',
@@ -2067,7 +2131,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'öňki sessiýany dowam etmek',
       '/details': 'transkriptiň jikme-jiklik derejesini saýlamak',
       '/copy': 'saýlanany ýa-da iň soňky kömekçi jogaby göçürmek',
-      '/quit': 'OpenAmer-den çykmak',
+      '/quit': 'OpenAmer-den çykmak'
     },
     hotkeyDescs: {
       'composer.mention': 'faýllary, папкалары, URL-leri we git salmak',
@@ -2077,7 +2141,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'näbelli kemsäni ibermek',
       'keybinds.openPanel': 'ähli klawiatura gysgalary',
       'composer.cancel': 'popoweri ýapmak · işlegi ýatyrmak',
-      'composer.history': 'popower / taryh arasynda gezmek',
+      'composer.history': 'popower / taryh arasynda gezmek'
     },
     attachUrlTitle: 'URL goşmak',
     attachUrlDesc: 'OpenAmer sahypany alyp, ony bu gezek üçin kontekst hökmünde goşar.',
@@ -2089,18 +2153,18 @@ Leave blank to keep the ${mode} default.`,
       explainThis: {
         description: 'Saýlanan kodynyň nähili işleýändigini düşündiriň we esasy faýllara salgylan.',
         text: 'Munuň nähili işleýändigini düşündiriň we esasy faýllary görkez.',
-        label: 'Muny düşündiriň',
+        label: 'Muny düşündiriň'
       },
       codeReview: {
         label: 'Kod barlagy',
         description: 'Häzirki üýtgeşmegi öňki ýagdaýlara, ýitirilen çäkli ýagdaýlara we ýitýän synaglara görä barlaň.',
-        text: 'Möhüm ýalňyşlyklary, öňki ýagdaýlary we ýitýän synaglary barlamak üçin buyny barlaň.',
+        text: 'Möhüm ýalňyşlyklary, öňki ýagdaýlary we ýitýän synaglary barlamak üçin buyny barlaň.'
       },
       implementationPlan: {
         label: 'Amaly meýilnamasy',
         description: 'Koduň üstüne degmeden öň ýönekeý çemeleşme beýan ediň.',
-        text: 'Kodu üýtgetmezden öň gysga amaly meýilnama taýýarlaň.',
-      },
+        text: 'Kodu üýtgetmezden öň gysga amaly meýilnama taýýarlaň.'
+      }
     },
     muted: 'M',
     listening: 'Ses ýok',
@@ -2131,7 +2195,8 @@ Leave blank to keep the ${mode} default.`,
     queueResume: 'Dowam et',
     queueResumeTip: 'Stop durdy — navbatdaky ýalňyşlary uçatmagy dowam etdir',
     queueStuckTitle: 'Navbatdaky habar uçatylmady',
-    queueStuckBody: 'Navbatdaky ýalňyşy uçatmaga birnäçe gezek bolsa başynyň biteýin şikildendi. Ol häzirä çenli navbatda dur — ony uçatmaga gaýtadan synag.',
+    queueStuckBody:
+      'Navbatdaky ýalňyşy uçatmaga birnäçe gezek bolsa başynyň biteýin şikildendi. Ol häzirä çenli navbatda dur — ony uçatmaga gaýtadan synag.',
     previewUnavailable: 'Öňsini görnüşi elýeterli däl',
     dictating: 'Dikte etmek',
     preparingAudio: 'Audany taýýarlaýarys',
@@ -2163,7 +2228,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -2172,14 +2237,14 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
     attachments: count => `${count} attachment${count === 1 ? '' : 's'}`,
     previewLabel: label => `Preview ${label}`,
     couldNotPreview: label => `Could not preview ${label}`,
-    removeAttachment: label => `Remove ${label}`,
+    removeAttachment: label => `Remove ${label}`
   },
   install: {
     authSignedIn: 'Brauzer arkaly girizmek tamamlandy.',
@@ -2198,8 +2263,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Gurnama üstünliksiz boldy',
     settingUpTitle: 'OpenAmer Agent gurnalyar',
     finishingTitle: 'Jemlenýär',
-    failedDesc: 'Gurluş ädimleriniň biri üstünliksiz boldy. Windows-da, beýleki OpenAmer CLI ýa-da çeşme programmasy işläp durýanda bu ýüze çykyp biler. Işleýän OpenAmer programmalaryny togtadyň, soňra täzeden synanyň. Doly ýazgyny aşakda ýa-da desktop logunda görüp bilersiňiz.',
-    activeDesc: 'Bu bir gezeklik gurnama. OpenAmer gurnamaçy baganymlary göterip alýar we kompýuteriňizi sazlaýar. Indiki açyşlarda bu ädim öňünden geçilýär.',
+    failedDesc:
+      'Gurluş ädimleriniň biri üstünliksiz boldy. Windows-da, beýleki OpenAmer CLI ýa-da çeşme programmasy işläp durýanda bu ýüze çykyp biler. Işleýän OpenAmer programmalaryny togtadyň, soňra täzeden synanyň. Doly ýazgyny aşakda ýa-da desktop logunda görüp bilersiňiz.',
+    activeDesc:
+      'Bu bir gezeklik gurnama. OpenAmer gurnamaçy baganymlary göterip alýar we kompýuteriňizi sazlaýar. Indiki açyşlarda bu ädim öňünden geçilýär.',
     fetchingManifest: 'Gurnama manifestini alýarys...',
     error: 'Ýalňyşlyk',
     remoteSetupDesc: 'Giriş URL-ni giriz. OpenAmer Desktop tokene ýa-da brauzer arkaly girmegiň zerarlymy anyklar.',
@@ -2224,7 +2291,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'Gurulýar',
       succeeded: 'Tamamlandy',
       skipped: 'Atlandy',
-      failed: 'Şowsuz boldy',
+      failed: 'Şowsuz boldy'
     },
     oneTimeTitle: 'OpenAmer bir gezek gurmaly',
     installCommand: 'Gurmak komandasy',
@@ -2233,21 +2300,24 @@ Leave blank to keep the ${mode} default.`,
     installTo: 'Guraljak ýer',
     retryAfterRun: 'Ony ýerine ýetirdim -- indiki gezek',
     setupChoiceTitle: 'OpenAmer Desktop-i gurmak',
-    setupChoiceDesc: 'Bu programy ýöriteňizde bar OpenAmer geçirijisine baglaň ýa-da OpenAmer-i bu kompýutere ýerli gurnaň.',
+    setupChoiceDesc:
+      'Bu programy ýöriteňizde bar OpenAmer geçirijisine baglaň ýa-da OpenAmer-i bu kompýutere ýerli gurnaň.',
     connectExistingTitle: 'Bar OpenAmer-e baglan',
     connectExistingShort: 'Baryna baglan',
-    connectExistingDesc: 'Uzak backend-i sessiýa belgisi ýa-da brauzer arkaly girmez bilen ulanyň. Ýerli gurnama başlamaz.',
+    connectExistingDesc:
+      'Uzak backend-i sessiýa belgisi ýa-da brauzer arkaly girmez bilen ulanyň. Ýerli gurnama başlamaz.',
     installLocalTitle: 'OpenAmer-i ýerli gurnamak',
     installLocalDesc: 'OpenAmer-i göterip, Python gurşawyny dörediň we backend-i bu kompýuterde işlediň.',
     localStartUnavailable: 'Ýerli gurnama başlap bilmedi. OpenAmer Desktop-y täzeden başlaň we indiki gezek synanyň.',
     remoteSetupTitle: 'Bar OpenAmer-e baglan',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
     signInWith: provider => `Sign in with ${provider}`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     free: 'Mugtylmak',
@@ -2256,28 +2326,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       gemini: {
         description: 'Google Gemini modellerine göni elýeter.',
-        short: 'Gemini modelleri',
+        short: 'Gemini modelleri'
       },
       xai: {
         short: 'Grok modelleri',
-        description: 'xAI Grok modellerine göni elýeter.',
+        description: 'xAI Grok modellerine göni elýeter.'
       },
       local: {
         short: 'Öz-özüne ýerleşdirilen',
-        description: 'OpenAmer-i ýerli ýa-da öz-özüne ýerleşdirilen, OpenAI bilen deňleşdirilýän nokada (vLLM, llama.cpp, Ollama we ş.m.) gönükdiriň.',
+        description:
+          'OpenAmer-i ýerli ýa-da öz-özüne ýerleşdirilen, OpenAI bilen deňleşdirilýän nokada (vLLM, llama.cpp, Ollama we ş.m.) gönükdiriň.'
       },
       fireworks: {
         short: 'göni model API',
-        description: 'Fireworks AI tarapyndan ýerleşdirilen modellerine göni giriziş.',
+        description: 'Fireworks AI tarapyndan ýerleşdirilen modellerine göni giriziş.'
       },
       openrouter: {
         short: 'bir açar, köp model',
-        description: 'Ýüzlerçe modeli bir açar arkaly elýär. Täze gurnama üçin gowy saýlaw.',
+        description: 'Ýüzlerçe modeli bir açar arkaly elýär. Täze gurnama üçin gowy saýlaw.'
       },
       openai: {
         short: 'GPT synply modeller',
-        description: 'OpenAI modellerine göni giriziş.',
-      },
+        description: 'OpenAI modellerine göni giriziş.'
+      }
     },
     backToSignIn: 'Girişe yzyna gel',
     getKey: 'Açar al',
@@ -2290,7 +2361,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'Giriş üçin brauzeriňizi açýar, soňra bu ýerde dowam edýär.',
       device_code: 'Brauzeriňizde barlag sahypasyny açýar — OpenAmer awtomatik birleşýär.',
-      external: 'Terminalda bir gezek giriş ediň, soňra hereket edip geliň.',
+      external: 'Terminalda bir gezek giriş ediň, soňra hereket edip geliň.'
     },
     signInFailed: 'Giriş başarşyz. Ýene bir gezek denäň.',
     pickDifferentProvider: 'Başga saýlaýjy saýlaň',
@@ -2325,12 +2396,14 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     pro: 'Pro',
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'Modeli çalyş',
@@ -2346,13 +2419,13 @@ Leave blank to keep the ${mode} default.`,
     freeTier: 'Mugtylmak derejesi',
     priceTitle: '1 million token üçin giriş / çykış bahasy',
     wasPrice: 'ýa',
-    pro: 'Pro',
+    pro: 'Pro'
   },
   modelVisibility: {
     title: 'Modeller',
     search: 'Modelleri gözle',
     noAuthenticatedProviders: 'Autentifikasiýalanan üpjünçiler ýok.',
-    addProvider: 'Üpjünçi goş…',
+    addProvider: 'Üpjünçi goş…'
   },
   shell: {
     modelOptions: {
@@ -2369,7 +2442,7 @@ Leave blank to keep the ${mode} default.`,
       xhigh: 'Örän ýokary',
       max: 'Iň ýokary',
       noOptions: 'Bu model üçin saýlamalar ýok',
-      options: 'Saýlamalar',
+      options: 'Saýlamalar'
     },
     gatewayMenu: {
       gateway: 'Geçit',
@@ -2384,7 +2457,7 @@ Leave blank to keep the ${mode} default.`,
       recentActivity: 'Soňky hereketler',
       viewAllLogs: 'Ähli ýazgylary gör →',
       messagingPlatforms: 'Habarlaşma platformalary',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'Yzygiderlilik režimi',
@@ -2394,7 +2467,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'Hereketleri awtomatik bahalandyrmak we zerur bolsa sorag bermek',
       off: 'Öçürilen',
       offDescription: 'Ygtyýat bermek soraglary bolmadan işlet',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'Belli däl',
@@ -2433,18 +2506,19 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'Kiçi agent kesgitlemeleri',
           system_prompt: 'Ulgam soragy',
           tool_definitions: 'Gural kesgitlemeleri',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Kontekst maglumaty ýok',
         loading: 'Barlamak ýüklenýärâ€¦',
         title: 'Kontekst ulanylyşy',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Kontekst ulanylyşyny aç',
       session: 'Sessiya',
       runtimeSessionElapsed: 'Iş wagtynyň sessiýasy geçdi',
-      yoloOn: 'YOLO işledi â€” howpsuz ýörelgeler awtomatik tassyklanýar. Öçürmek üçin basyň. Shift+click ony global işledýär.',
+      yoloOn:
+        'YOLO işledi â€” howpsuz ýörelgeler awtomatik tassyklanýar. Öçürmek üçin basyň. Shift+click ony global işledýär.',
       yoloOff: 'YOLO öçük â€” howpsuz ýörelgeler awtomatik tassyklamak üçin basyň. Shift+click ony global işledýär.',
       modelNone: 'ýok',
       noModel: 'model ýok',
@@ -2469,7 +2543,7 @@ Leave blank to keep the ${mode} default.`,
       running: count => `${count} running`,
       cron: 'Cron',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
     },
     windowControls: 'Çarçuwany dolandyrmak',
     paneControls: 'Paneli dolandyrmak',
@@ -2479,8 +2553,8 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'Model tapylmady',
       editModels: 'Modelleri redaktirle…',
       refreshModels: 'Modelleri täzele',
-      fast: 'Çalt',
-    },
+      fast: 'Çalt'
+    }
   },
   zones: {
     dirUp: 'ýokary',
@@ -2498,7 +2572,8 @@ Leave blank to keep the ${mode} default.`,
     nameLayoutPlaceholder: 'Bu ýerleşise ad beriň…',
     zoneEditorTitle: 'Zolak redaktory',
     editorHintPre: 'bölmek üçin basyň ·',
-    editorHintPost: 'çyzyk çevirir · birleşdirmek üçin zolaklaryň arasynda süýşüriň · ölçegini üýtgetmek üçin umumy gyralary süýşüriň',
+    editorHintPost:
+      'çyzyk çevirir · birleşdirmek üçin zolaklaryň arasynda süýşüriň · ölçegini üýtgetmek üçin umumy gyralary süýşüriň',
     templateColumns: 'Sütünler',
     templateRows: 'Setirler',
     templateGrid: 'Tor',
@@ -2508,7 +2583,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Kiçeld',
     restore: 'Dikelt',
     closeRunningTitle: 'Işleýän taby ýapmalymy?',
-    closeRunningBody: 'Bu çat hemişe işleýär (ýa-da siziň jogabyňyzy garaşýar). Taby ýapmak ony gizlýär — sessiýa öňki ýagdaýyny saklaýar we çarçuwadan täzeden açylp bilner.',
+    closeRunningBody:
+      'Bu çat hemişe işleýär (ýa-da siziň jogabyňyzy garaşýar). Taby ýapmak ony gizlýär — sessiýa öňki ýagdaýyny saklaýar we çarçuwadan täzeden açylp bilner.',
     closeRunningConfirm: 'Taby ýap',
     closeOthers: 'Beýlekileri ýap',
     closeToRight: 'Sag tarapy ýapyk',
@@ -2525,7 +2601,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     tool: {
@@ -2540,123 +2616,123 @@ Leave blank to keep the ${mode} default.`,
         searched: 'Gözlenildi',
         searching: 'Gözlenilýär',
         ran: 'Ýerine ýetirildi',
-        running: 'Ýerine ýetirilýär',
+        running: 'Ýerine ýetirilýär'
       },
       prefixes: {
         browser: 'Brauzer',
-        web: 'Web',
+        web: 'Web'
       },
       titles: {
         browser_click: {
           done: 'Sahypa elementine basyldy',
           pending: 'Sahypa elementine basylýar',
-          pendingAction: 'Basylýar',
+          pendingAction: 'Basylýar'
         },
         browser_fill: {
           done: 'Form meýdany dolduryldy',
           pending: 'Form meýdany doldurylýar',
-          pendingAction: 'Doldurylýar',
+          pendingAction: 'Doldurylýar'
         },
         browser_navigate: {
           done: 'Sahypa açyldy',
           pending: 'Sahypa açylýar',
-          pendingAction: 'Açylýar',
+          pendingAction: 'Açylýar'
         },
         browser_snapshot: {
           done: 'Sahypanyň ýagdaýynyň suraty alnypdy',
           pending: 'Sahypanyň ýagdaýynyň suraty alynýar',
-          pendingAction: 'Surat alynýar',
+          pendingAction: 'Surat alynýar'
         },
         browser_take_screenshot: {
           done: 'Ekran suraty alnypdy',
           pending: 'Ekran suraty alynýar',
-          pendingAction: 'Surat alynýar',
+          pendingAction: 'Surat alynýar'
         },
         browser_type: {
           done: 'Sahypada ýazyldy',
           pending: 'Sahypada ýazmak',
-          pendingAction: 'Ýazmak',
+          pendingAction: 'Ýazmak'
         },
         patch: {
           done: 'Düzeltilen faýl',
           pending: 'Faýl düzeldilýär',
-          pendingAction: 'Düzeldilýär',
+          pendingAction: 'Düzeldilýär'
         },
         read_file: {
           done: 'Faýl okalýar',
           pending: 'Faýl okalýar',
-          pendingAction: 'Okaýar',
+          pendingAction: 'Okaýar'
         },
         search_files: {
           done: 'Faýllar gözlenildi',
           pending: 'Faýllar gözleýär',
-          pendingAction: 'Gözleýär',
+          pendingAction: 'Gözleýär'
         },
         session_search_recall: {
           done: 'Sessiýa taryhy gözlenildi',
           pending: 'Sessiýa taryhy gözleýär',
-          pendingAction: 'Gözleýär',
+          pendingAction: 'Gözleýär'
         },
         terminal: {
           done: 'Komanda ýerine ýetirildi',
           pending: 'Komanda ýerine ýetirilýär',
-          pendingAction: 'Ýerine ýetirilýär',
+          pendingAction: 'Ýerine ýetirilýär'
         },
         todo: {
           done: 'To-do-lar täzelenildi',
           pending: 'To-do-lar täzelenýär',
-          pendingAction: 'Täzeleneýär',
+          pendingAction: 'Täzeleneýär'
         },
         vision_analyze: {
           done: 'Surat analizlenildi',
           pending: 'Surat analizlenýär',
-          pendingAction: 'Analiz edilýär',
+          pendingAction: 'Analiz edilýär'
         },
         edit_file: {
           done: 'Faýl üýtgedildi',
           pending: 'Faýl üýtgedilýär',
-          pendingAction: 'Üýtgedilýär',
+          pendingAction: 'Üýtgedilýär'
         },
         execute_code: {
           done: 'Kod ýylyldy',
           pending: 'Skript ýazylýar',
-          pendingAction: 'Skript ýazylýar',
+          pendingAction: 'Skript ýazylýar'
         },
         image_generate: {
           done: 'Surat döredildi',
           pending: 'Surat döredilýär',
-          pendingAction: 'Döredilýär',
+          pendingAction: 'Döredilýär'
         },
         list_files: {
           done: 'Faýllar sanalandy',
           pending: 'Faýllar sanalýar',
-          pendingAction: 'Sanalyş',
+          pendingAction: 'Sanalyş'
         },
         web_extract: {
           done: 'Web sahypa okaldy',
           pending: 'Web sahypa okaýar',
-          pendingAction: 'Okaýar',
+          pendingAction: 'Okaýar'
         },
         web_search: {
           done: 'Webde gözleg edildi',
           pending: 'Webde gözleg edilýär',
-          pendingAction: 'Gözleg edilýär',
+          pendingAction: 'Gözleg edilýär'
         },
         write_file: {
           done: 'Faýl üýtgedildi',
           pending: 'Faýl redaktirlenýär',
-          pendingAction: 'Redaktirlemek',
+          pendingAction: 'Redaktirlemek'
         },
         clarify: {
           done: 'Sorag soraldy',
           pending: 'Sorag soramak',
-          pendingAction: 'Soramak',
+          pendingAction: 'Soramak'
         },
         cronjob: {
           done: 'Cron işi',
           pending: 'Cron işini meýilleşdirmek',
-          pendingAction: 'Meýilleşdirmek',
-        },
+          pendingAction: 'Meýilleşdirmek'
+        }
       },
       copyFile: 'Fayl kopyalamak',
       copyPath: 'Ýoly kopyalamak',
@@ -2686,8 +2762,8 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
     },
     thread: {
       branchNewChat: 'Täze gabatda şahýa aç',
@@ -2717,11 +2793,12 @@ Leave blank to keep the ${mode} default.`,
       copy: 'Kopyala',
       refresh: 'Täzele',
       moreActions: 'Has köp amallar',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
-      yesterday: time => `Yesterday, ${time}`,
+      yesterday: time => `Yesterday, ${time}`
     },
     clarify: {
       lateAnswerTip: 'Bu jogaby yzarlama hökmünde taýýarlaň',
@@ -2735,7 +2812,7 @@ Leave blank to keep the ${mode} default.`,
       skip: 'Ötür',
       skipped: 'Ötürildi',
       continueLabel: 'Dowam et',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     approval: {
       gatewayDisconnected: 'OpenAmer geçirijisi birikdirilmedik',
@@ -2749,8 +2826,9 @@ Leave blank to keep the ${mode} default.`,
       reject: 'Ýatyr',
       alwaysTitle: 'Bu buyruga hemişe rugsat bermeli?',
       alwaysAllow: 'Hemişe rugsat beriň',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
-    },
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
+    }
   },
   messaging: {
     search: 'Ýazgyş gözlenilýär...',
@@ -2765,131 +2843,131 @@ Leave blank to keep the ${mode} default.`,
       not_configured: 'Düzenlemäni talap edýär',
       pending_restart: 'Gaýtadan başlamak zerur',
       retrying: 'Gaýtadan synalýar',
-      startup_failed: 'Başlangyç işlemedi',
+      startup_failed: 'Başlangyç işlemedi'
     },
     restartToReconnect: 'Täze giriş maglumatlary gateway täzeden başlanandan soň güýje eýe bolýar.',
     fieldCopy: {
       TELEGRAM_BOT_TOKEN: {
         label: 'Bot belgisi',
         help: '@BotFather arkaly bot dörediň, soňra size beren belgini goýuň.',
-        placeholder: 'Telegram bot belgisini goýuň',
+        placeholder: 'Telegram bot belgisini goýuň'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Rugsat berlen Telegram ulanyjy ID-leri',
-        help: 'Maslahat berilýär. @userinfobot-dan alnan san ID-leri, koma bilen bölünen. Bolmasa, islendik adam botuňyz göni habar ibere bilner.',
+        help: 'Maslahat berilýär. @userinfobot-dan alnan san ID-leri, koma bilen bölünen. Bolmasa, islendik adam botuňyz göni habar ibere bilner.'
       },
       TELEGRAM_PROXY: {
         label: 'Proksi URL-i',
-        help: 'Diňe Telegram bloklanan torlarda zerur.',
+        help: 'Diňe Telegram bloklanan torlarda zerur.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Bot belgisi',
-        help: 'Discord Developer Portal-da programma dörediň, bot goşuň, soňra onuň belgisini goýuň.',
+        help: 'Discord Developer Portal-da programma dörediň, bot goşuň, soňra onuň belgisini goýuň.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Rugsat berlen Discord ulanyjy ID-leri',
-        help: 'Maslahat berilýär. Koma bilen bölünen Discord ulanyjy ID-leri.',
+        help: 'Maslahat berilýär. Koma bilen bölünen Discord ulanyjy ID-leri.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Jogap görnüşi',
-        help: 'birinji, ähli ýa-da ýok.',
+        help: 'birinji, ähli ýa-da ýok.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Ähli Discord ulanyjylaryna rugsat ber',
-        help: 'Diňe ösdürmek üçin. Goýlananda islendik adam rugsat sanawy bolmasa bota göni habar ibere bilner.',
+        help: 'Diňe ösdürmek üçin. Goýlananda islendik adam rugsat sanawy bolmasa bota göni habar ibere bilner.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Baş kanal ID-si',
-        help: 'Botuň öz-özüne habarlary (cron netijeleri, ýatlatmalar) iberýän kanal.',
+        help: 'Botuň öz-özüne habarlary (cron netijeleri, ýatlatmalar) iberýän kanal.'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Baş kanalyň ady',
-        help: 'Baş kanalyň loglarda we status çyktysynda görkezilýän ady.',
+        help: 'Baş kanalyň loglarda we status çyktysynda görkezilýän ady.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Ähli iMessage ulanyjylaryna rugsat ber',
-        help: 'Dogry bolsa, BlueBubbles rugsat sanawyny geç',
+        help: 'Dogry bolsa, BlueBubbles rugsat sanawyny geç'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Ähli Mattermost ulanyjylaryna rugsat ber',
+        label: 'Ähli Mattermost ulanyjylaryna rugsat ber'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Baş kanaly',
+        label: 'Baş kanaly'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Ähli QQ ulanyjylaryna rugsat ber',
+        label: 'Ähli QQ ulanyjylaryna rugsat ber'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ baş kanaly',
-        help: 'Cron bermek üçin başlangyç kanal ýa-da topary.',
+        help: 'Cron bermek üçin başlangyç kanal ýa-da topary.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ baş kanalynyň ady',
+        label: 'QQ baş kanalynyň ady'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack bot belligi',
         help: 'Slack goşundyňy gurnamandan soň OAuth we Riklerdäki bot belligini ulanyň.',
-        placeholder: 'Slack bot belligini goýuň',
+        placeholder: 'Slack bot belligini goýuň'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack goşundy belligi',
         help: 'Socket Mode üçin talap edilýän goşundy derejesindäki belligi ulanyň.',
-        placeholder: 'Slack goşundy belligini goýuň',
+        placeholder: 'Slack goşundy belligini goýuň'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Rugsat berlen Slack ulanyjy ID-leri',
-        help: 'Maslahat berilýär. Slack ulanyjy ID-leri coma bilen aýrylan.',
+        help: 'Maslahat berilýär. Slack ulanyjy ID-leri coma bilen aýrylan.'
       },
       MATTERMOST_URL: {
         label: 'Serwer URL-i',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Bot belligi',
+        label: 'Bot belligi'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Rugsat berlen ulanyjy ID-leri',
-        help: 'Maslahat berilýär. Mattermost ulanyjylarynyň ID-leri, komma bilen bölünen.',
+        help: 'Maslahat berilýär. Mattermost ulanyjylarynyň ID-leri, komma bilen bölünen.'
       },
       MATRIX_HOMESERVER: {
         label: 'Öý serversiniň URL-si',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Giriş belgisi',
+        label: 'Giriş belgisi'
       },
       MATRIX_USER_ID: {
         label: 'Bot ulanyjynyň ID-si',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Rugsat berilýän Matrix ulanyjylarynyň ID-leri',
-        help: 'Maslahat berilýär. @user:server formatyndaky ulanyjylaryň ID-leri, komma bilen bölünen.',
+        help: 'Maslahat berilýär. @user:server formatyndaky ulanyjylaryň ID-leri, komma bilen bölünen.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal köprüniň URL-si',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'Işleýän signal-cli REST köprüsiniň URL-si.',
+        help: 'Işleýän signal-cli REST köprüsiniň URL-si.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Telefon belgisi',
-        help: 'signal-cli köprüňize hasaba alnan belgi.',
+        help: 'signal-cli köprüňize hasaba alnan belgi.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Rugsat berilýän Signal ulanyjylary',
-        help: 'Maslahat berilýär. Signal identifikatorlary, komma bilen bölünen.',
+        help: 'Maslahat berilýär. Signal identifikatorlary, komma bilen bölünen.'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp köprüsini işjeň et',
-        help: 'Aşakdaky açaryş awtomatik basýar. Zerur bolsa başga üýtgetme.',
+        help: 'Aşakdaky açaryş awtomatik basýar. Zerur bolsa başga üýtgetme.'
       },
       WHATSAPP_MODE: {
-        label: 'Köprü režimi',
+        label: 'Köprü režimi'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Rugsat berilýän WhatsApp ulanyjylary',
-        help: 'Maslahat berilýär. Telefon belgileri ýa-da WhatsApp ID-leri, komma bilen bölünen.',
-      },
+        help: 'Maslahat berilýär. Telefon belgileri ýa-da WhatsApp ID-leri, komma bilen bölünen.'
+      }
     },
     unknown: 'Näbelli',
     hintPendingRestart: 'Şu üýtgemegi ulanmak üçin gözegçilik setirinden gategaýy täzeden başladyň.',
@@ -2901,7 +2979,8 @@ Leave blank to keep the ${mode} default.`,
     openSetupGuide: 'Gurşaw gollanmasyny açyň',
     required: 'Hökmany',
     recommended: 'Maslahat berilýär',
-    noTokenNeeded: 'Bu platforma bu ýerde token gerek däl. Ýokardaky gurnama boýunça ulanyň, soň ony aşakynda işjeň ediň.',
+    noTokenNeeded:
+      'Bu platforma bu ýerde token gerek däl. Ýokardaky gurnama boýunça ulanyň, soň ony aşakynda işjeň ediň.',
     enabled: 'Işjeň',
     disabled: 'Işjeň däl',
     unsavedChanges: 'Ýatlanmadyk üýtgeşmeler',
@@ -2923,8 +3002,7 @@ Leave blank to keep the ${mode} default.`,
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   rightSidebar: {
     emptyTitle: 'Boş',
@@ -2960,20 +3038,22 @@ Leave blank to keep the ${mode} default.`,
     terminal: 'Terminal',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer gategisi birikdirilmädi',
     sudoSendFailed: 'sudo parolyny ibermek bolmady',
     secretSendFailed: 'Gizli maglumaty ibermek bolmady',
     sudoTitle: 'Administrator paroly',
-    sudoDesc: 'OpenAmer-a ýokary hukukly komandany ýygnamak üçin sudo paroly zerur. Ol diňe siziň ýerli agentiňize iberilýär.',
+    sudoDesc:
+      'OpenAmer-a ýokary hukukly komandany ýygnamak üçin sudo paroly zerur. Ol diňe siziň ýerli agentiňize iberilýär.',
     sudoPlaceholder: 'sudo paroly',
     secretTitle: 'Gizli maglumat talap edilýär',
     secretDesc: 'Dowlulyk maglumat zerur.',
-    secretPlaceholder: 'Gizli maglumat gymmaty',
+    secretPlaceholder: 'Gizli maglumat gymmaty'
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
-  },
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
+  }
 })

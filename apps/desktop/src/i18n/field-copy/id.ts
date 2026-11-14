@@ -6,249 +6,251 @@
 import { defineFieldCopy } from '@/app/settings/field-copy'
 
 export const FIELD_LABELS: Record<string, string> = defineFieldCopy({
-    model: "Model Bawaan",
-    modelContextLength: "Jendela Konteks",
-    fallbackProviders: "Model Cadangan",
-    toolsets: "Toolset Aktif",
-    timezone: "Zona Waktu",
-    display: {
-      personality: "Kepribadian",
-      showReasoning: "Blok Penalaran",
+  model: 'Model Bawaan',
+  modelContextLength: 'Jendela Konteks',
+  fallbackProviders: 'Model Cadangan',
+  toolsets: 'Toolset Aktif',
+  timezone: 'Zona Waktu',
+  display: {
+    personality: 'Kepribadian',
+    showReasoning: 'Blok Penalaran'
+  },
+  desktop: {
+    repoScanEnabled: 'Penemuan Repositori Otomatis',
+    repoScanRoots: 'Akar Penemuan Repositori',
+    repoScanExcludePaths: 'Jalur Repositori Dikecualikan'
+  },
+  agent: {
+    maxTurns: 'Langkah Agen Maksimum',
+    imageInputMode: 'Lampiran Gambar',
+    apiMaxRetries: 'Percobaan Ulang API',
+    serviceTier: 'Tingkat Layanan',
+    toolUseEnforcement: 'Penegakan Penggunaan Alat'
+  },
+  terminal: {
+    cwd: 'Direktori Kerja',
+    backend: 'Backend Eksekusi',
+    timeout: 'Batas Waktu Perintah',
+    persistentShell: 'Shell Persisten',
+    envPassthrough: 'Passthrough Lingkungan',
+    dockerImage: 'Image Docker',
+    singularityImage: 'Image Singularity',
+    modalImage: 'Image Modal',
+    daytonaImage: 'Image Daytona'
+  },
+  fileReadMaxChars: 'Batas Baca File',
+  toolOutput: {
+    maxBytes: 'Batas Output Terminal',
+    maxLines: 'Batas Halaman File',
+    maxLineLength: 'Batas Panjang Baris'
+  },
+  codeExecution: {
+    mode: 'Mode Eksekusi Kode'
+  },
+  approvals: {
+    mode: 'Mode Persetujuan',
+    timeout: 'Batas Waktu Persetujuan',
+    mcpReloadConfirm: 'Konfirmasi Muat Ulang MCP'
+  },
+  commandAllowlist: 'Daftar Perintah Diizinkan',
+  security: {
+    redactSecrets: 'Sensor Rahasia',
+    allowPrivateUrls: 'Izinkan URL Privat'
+  },
+  browser: {
+    allowPrivateUrls: 'URL Privat Browser',
+    autoLocalForPrivateUrls: 'Browser Lokal untuk URL Privat'
+  },
+  checkpoints: {
+    enabled: 'Checkpoint File',
+    maxSnapshots: 'Batas Checkpoint'
+  },
+  voice: {
+    recordKey: 'Pintasan Suara',
+    maxRecordingSeconds: 'Panjang Rekaman Maksimum',
+    autoTts: 'Bacakan Respons'
+  },
+  stt: {
+    enabled: 'Ucapan ke Teks',
+    echoTranscripts: 'Echo Transkrip',
+    provider: 'Penyedia Ucapan ke Teks',
+    local: {
+      model: 'Model Transkripsi Lokal',
+      language: 'Bahasa Transkripsi'
     },
-    desktop: {
-      repoScanEnabled: "Penemuan Repositori Otomatis",
-      repoScanRoots: "Akar Penemuan Repositori",
-      repoScanExcludePaths: "Jalur Repositori Dikecualikan",
+    openai: {
+      model: 'Model STT OpenAI'
     },
-    agent: {
-      maxTurns: "Langkah Agen Maksimum",
-      imageInputMode: "Lampiran Gambar",
-      apiMaxRetries: "Percobaan Ulang API",
-      serviceTier: "Tingkat Layanan",
-      toolUseEnforcement: "Penegakan Penggunaan Alat",
+    groq: {
+      model: 'Model STT Groq'
     },
-    terminal: {
-      cwd: "Direktori Kerja",
-      backend: "Backend Eksekusi",
-      timeout: "Batas Waktu Perintah",
-      persistentShell: "Shell Persisten",
-      envPassthrough: "Passthrough Lingkungan",
-      dockerImage: "Image Docker",
-      singularityImage: "Image Singularity",
-      modalImage: "Image Modal",
-      daytonaImage: "Image Daytona",
+    mistral: {
+      model: 'Model STT Mistral'
     },
-    fileReadMaxChars: "Batas Baca File",
-    toolOutput: {
-      maxBytes: "Batas Output Terminal",
-      maxLines: "Batas Halaman File",
-      maxLineLength: "Batas Panjang Baris",
+    elevenlabs: {
+      modelId: 'Model STT ElevenLabs',
+      languageCode: 'Bahasa ElevenLabs',
+      tagAudioEvents: 'Tandai Peristiwa Audio',
+      diarize: 'Diarisasi Pembicara'
+    }
+  },
+  tts: {
+    provider: 'Penyedia Teks ke Ucapan',
+    edge: {
+      voice: 'Suara Edge'
     },
-    codeExecution: {
-      mode: "Mode Eksekusi Kode",
+    openai: {
+      model: 'Model TTS OpenAI',
+      voice: 'Suara OpenAI'
     },
-    approvals: {
-      mode: "Mode Persetujuan",
-      timeout: "Batas Waktu Persetujuan",
-      mcpReloadConfirm: "Konfirmasi Muat Ulang MCP",
+    elevenlabs: {
+      voiceId: 'Suara ElevenLabs',
+      modelId: 'Model ElevenLabs'
     },
-    commandAllowlist: "Daftar Perintah Diizinkan",
-    security: {
-      redactSecrets: "Sensor Rahasia",
-      allowPrivateUrls: "Izinkan URL Privat",
+    xai: {
+      voiceId: 'Suara xAI (Grok)',
+      language: 'Bahasa xAI',
+      speed: 'Kecepatan Pemutaran xAI',
+      autoSpeechTags: 'Tag Ucapan Otomatis xAI',
+      optimizeStreamingLatency: 'Optimasi Latensi Streaming xAI',
+      sampleRate: 'Laju Sampel xAI',
+      bitRate: 'Laju Bit xAI'
     },
-    browser: {
-      allowPrivateUrls: "URL Privat Browser",
-      autoLocalForPrivateUrls: "Browser Lokal untuk URL Privat",
+    minimax: {
+      model: 'Model TTS MiniMax',
+      voiceId: 'Suara MiniMax'
     },
-    checkpoints: {
-      enabled: "Checkpoint File",
-      maxSnapshots: "Batas Checkpoint",
+    mistral: {
+      model: 'Model TTS Mistral',
+      voiceId: 'Suara Mistral'
     },
-    voice: {
-      recordKey: "Pintasan Suara",
-      maxRecordingSeconds: "Panjang Rekaman Maksimum",
-      autoTts: "Bacakan Respons",
+    gemini: {
+      model: 'Model TTS Gemini',
+      voice: 'Suara Gemini'
     },
-    stt: {
-      enabled: "Ucapan ke Teks",
-      echoTranscripts: "Echo Transkrip",
-      provider: "Penyedia Ucapan ke Teks",
-      local: {
-        model: "Model Transkripsi Lokal",
-        language: "Bahasa Transkripsi",
-      },
-      openai: {
-        model: "Model STT OpenAI",
-      },
-      groq: {
-        model: "Model STT Groq",
-      },
-      mistral: {
-        model: "Model STT Mistral",
-      },
-      elevenlabs: {
-        modelId: "Model STT ElevenLabs",
-        languageCode: "Bahasa ElevenLabs",
-        tagAudioEvents: "Tandai Peristiwa Audio",
-        diarize: "Diarisasi Pembicara",
-      },
+    neutts: {
+      model: 'Model NeuTTS',
+      device: 'Perangkat NeuTTS'
     },
-    tts: {
-      provider: "Penyedia Teks ke Ucapan",
-      edge: {
-        voice: "Suara Edge",
-      },
-      openai: {
-        model: "Model TTS OpenAI",
-        voice: "Suara OpenAI",
-      },
-      elevenlabs: {
-        voiceId: "Suara ElevenLabs",
-        modelId: "Model ElevenLabs",
-      },
-      xai: {
-        voiceId: "Suara xAI (Grok)",
-        language: "Bahasa xAI",
-        speed: "Kecepatan Pemutaran xAI",
-        autoSpeechTags: "Tag Ucapan Otomatis xAI",
-        optimizeStreamingLatency: "Optimasi Latensi Streaming xAI",
-        sampleRate: "Laju Sampel xAI",
-        bitRate: "Laju Bit xAI",
-      },
-      minimax: {
-        model: "Model TTS MiniMax",
-        voiceId: "Suara MiniMax",
-      },
-      mistral: {
-        model: "Model TTS Mistral",
-        voiceId: "Suara Mistral",
-      },
-      gemini: {
-        model: "Model TTS Gemini",
-        voice: "Suara Gemini",
-      },
-      neutts: {
-        model: "Model NeuTTS",
-        device: "Perangkat NeuTTS",
-      },
-      kittentts: {
-        model: "Model KittenTTS",
-        voice: "Suara KittenTTS",
-      },
-      piper: {
-        voice: "Suara Piper",
-      },
-      deepinfra: {
-        model: "Model TTS DeepInfra",
-        voice: "Suara DeepInfra",
-      },
+    kittentts: {
+      model: 'Model KittenTTS',
+      voice: 'Suara KittenTTS'
     },
-    memory: {
-      memoryEnabled: "Memori Persisten",
-      userProfileEnabled: "Profil Pengguna",
-      memoryCharLimit: "Anggaran Memori",
-      userCharLimit: "Anggaran Profil",
-      provider: "Penyedia Memori",
+    piper: {
+      voice: 'Suara Piper'
     },
-    context: {
-      engine: "Mesin Konteks",
-    },
-    compression: {
-      enabled: "Kompresi Otomatis",
-      threshold: "Ambang Kompresi",
-      targetRatio: "Target Kompresi",
-      protectLastN: "Pesan Terbaru yang Dilindungi",
-    },
-    delegation: {
-      model: "Model Subagen",
-      provider: "Penyedia Subagen",
-      maxIterations: "Batas Giliran Subagen",
-      maxConcurrentChildren: "Subagen Paralel",
-      childTimeoutSeconds: "Batas Waktu Subagen",
-      reasoningEffort: "Upaya Penalaran Subagen",
-    },
-    updates: {
-      nonInteractiveLocalChanges: "Perubahan Lokal Pembaruan Dalam Aplikasi",
-    },
+    deepinfra: {
+      model: 'Model TTS DeepInfra',
+      voice: 'Suara DeepInfra'
+    }
+  },
+  memory: {
+    memoryEnabled: 'Memori Persisten',
+    userProfileEnabled: 'Profil Pengguna',
+    memoryCharLimit: 'Anggaran Memori',
+    userCharLimit: 'Anggaran Profil',
+    provider: 'Penyedia Memori'
+  },
+  context: {
+    engine: 'Mesin Konteks'
+  },
+  compression: {
+    enabled: 'Kompresi Otomatis',
+    threshold: 'Ambang Kompresi',
+    targetRatio: 'Target Kompresi',
+    protectLastN: 'Pesan Terbaru yang Dilindungi'
+  },
+  delegation: {
+    model: 'Model Subagen',
+    provider: 'Penyedia Subagen',
+    maxIterations: 'Batas Giliran Subagen',
+    maxConcurrentChildren: 'Subagen Paralel',
+    childTimeoutSeconds: 'Batas Waktu Subagen',
+    reasoningEffort: 'Upaya Penalaran Subagen'
+  },
+  updates: {
+    nonInteractiveLocalChanges: 'Perubahan Lokal Pembaruan Dalam Aplikasi'
+  }
 })
 
 export const FIELD_DESCRIPTIONS: Record<string, string> = defineFieldCopy({
-    model: "Digunakan untuk chat baru kecuali Anda memilih model lain di composer.",
-    modelContextLength: "Biarkan 0 untuk menggunakan jendela konteks terdeteksi dari model yang dipilih.",
-    fallbackProviders: "Entri provider:model cadangan untuk dicoba jika model default gagal.",
-    display: {
-      personality: "Gaya asisten default untuk sesi baru.",
-      showReasoning: "Tampilkan bagian penalaran saat backend menyediakannya.",
+  model: 'Digunakan untuk chat baru kecuali Anda memilih model lain di composer.',
+  modelContextLength: 'Biarkan 0 untuk menggunakan jendela konteks terdeteksi dari model yang dipilih.',
+  fallbackProviders: 'Entri provider:model cadangan untuk dicoba jika model default gagal.',
+  display: {
+    personality: 'Gaya asisten default untuk sesi baru.',
+    showReasoning: 'Tampilkan bagian penalaran saat backend menyediakannya.'
+  },
+  desktop: {
+    repoScanEnabled: 'Pindai folder lokal untuk repositori Git agar ditampilkan di Proyek.',
+    repoScanRoots: 'Folder yang dipindai. Biarkan kosong untuk memindai direktori home Anda.',
+    repoScanExcludePaths: 'Folder dan turunannya yang dilewati selama penemuan repositori.'
+  },
+  timezone: 'Digunakan saat OpenAmer membutuhkan konteks waktu lokal. Kosongkan untuk menggunakan zona waktu sistem.',
+  agent: {
+    imageInputMode: 'Mengontrol cara lampiran gambar dikirim ke model.',
+    maxTurns: 'Batas atas giliran pemanggilan alat sebelum OpenAmer menghentikan eksekusi.'
+  },
+  terminal: {
+    cwd: 'Folder proyek default untuk pekerjaan alat dan terminal.',
+    persistentShell: 'Pertahankan status shell di antara perintah saat backend mendukungnya.',
+    envPassthrough: 'Variabel lingkungan untuk diteruskan ke eksekusi alat.',
+    dockerImage: 'Image kontainer yang digunakan saat backend eksekusi adalah Docker.',
+    singularityImage: 'Image yang digunakan saat backend eksekusi adalah Singularity.',
+    modalImage: 'Image yang digunakan saat backend eksekusi adalah Modal.',
+    daytonaImage: 'Image yang digunakan saat backend eksekusi adalah Daytona.'
+  },
+  codeExecution: {
+    mode: 'Seberapa ketat eksekusi kode dibatasi ke proyek saat ini.'
+  },
+  fileReadMaxChars: 'Jumlah karakter maksimum yang dapat dibaca OpenAmer dari satu permintaan file.',
+  approvals: {
+    mode: 'Cara OpenAmer menangani perintah yang memerlukan persetujuan eksplisit.',
+    timeout: 'Berapa lama prompt persetujuan menunggu sebelum waktu habis.'
+  },
+  security: {
+    redactSecrets: 'Sembunyikan rahasia yang terdeteksi dari konten yang terlihat oleh model jika memungkinkan.'
+  },
+  checkpoints: {
+    enabled: 'Buat snapshot rollback sebelum pengeditan file.'
+  },
+  memory: {
+    memoryEnabled: 'Simpan memori tahan lama yang dapat membantu sesi mendatang.',
+    userProfileEnabled: 'Pertahankan profil ringkas preferensi pengguna.'
+  },
+  context: {
+    engine: 'Strategi untuk mengelola percakapan panjang mendekati batas konteks.'
+  },
+  compression: {
+    enabled: 'Ringkas konteks lama saat percakapan menjadi panjang.'
+  },
+  voice: {
+    autoTts: 'Bacakan respons asisten secara otomatis.'
+  },
+  tts: {
+    xai: {
+      voiceId: 'ID suara xAI (mis. eve) atau ID suara kustom.',
+      language: 'Kode bahasa lisan (mis. en, pt-BR) atau "auto" untuk deteksi otomatis.',
+      speed: 'Kecepatan pemutaran. 0,7 = lebih lambat, 1,0 = normal, 1,5 = lebih cepat.',
+      autoSpeechTags:
+        'Biarkan LLM menyisipkan tag audio ekspresif ([laughing], [sighs]) ke dalam skrip sebelum sintesis.',
+      optimizeStreamingLatency: 'Kompromi latensi vs. kualitas. 0 = kualitas terbaik, 2 = latensi terendah.',
+      sampleRate: 'Laju sampel audio dalam Hz. Lebih tinggi = kualitas lebih baik, file lebih besar.',
+      bitRate: 'Bitrate MP3 dalam bps. Hanya berlaku saat codec adalah mp3.'
     },
-    desktop: {
-      repoScanEnabled: "Pindai folder lokal untuk repositori Git agar ditampilkan di Proyek.",
-      repoScanRoots: "Folder yang dipindai. Biarkan kosong untuk memindai direktori home Anda.",
-      repoScanExcludePaths: "Folder dan turunannya yang dilewati selama penemuan repositori.",
-    },
-    timezone: "Digunakan saat OpenAmer membutuhkan konteks waktu lokal. Kosongkan untuk menggunakan zona waktu sistem.",
-    agent: {
-      imageInputMode: "Mengontrol cara lampiran gambar dikirim ke model.",
-      maxTurns: "Batas atas giliran pemanggilan alat sebelum OpenAmer menghentikan eksekusi.",
-    },
-    terminal: {
-      cwd: "Folder proyek default untuk pekerjaan alat dan terminal.",
-      persistentShell: "Pertahankan status shell di antara perintah saat backend mendukungnya.",
-      envPassthrough: "Variabel lingkungan untuk diteruskan ke eksekusi alat.",
-      dockerImage: "Image kontainer yang digunakan saat backend eksekusi adalah Docker.",
-      singularityImage: "Image yang digunakan saat backend eksekusi adalah Singularity.",
-      modalImage: "Image yang digunakan saat backend eksekusi adalah Modal.",
-      daytonaImage: "Image yang digunakan saat backend eksekusi adalah Daytona.",
-    },
-    codeExecution: {
-      mode: "Seberapa ketat eksekusi kode dibatasi ke proyek saat ini.",
-    },
-    fileReadMaxChars: "Jumlah karakter maksimum yang dapat dibaca OpenAmer dari satu permintaan file.",
-    approvals: {
-      mode: "Cara OpenAmer menangani perintah yang memerlukan persetujuan eksplisit.",
-      timeout: "Berapa lama prompt persetujuan menunggu sebelum waktu habis.",
-    },
-    security: {
-      redactSecrets: "Sembunyikan rahasia yang terdeteksi dari konten yang terlihat oleh model jika memungkinkan.",
-    },
-    checkpoints: {
-      enabled: "Buat snapshot rollback sebelum pengeditan file.",
-    },
-    memory: {
-      memoryEnabled: "Simpan memori tahan lama yang dapat membantu sesi mendatang.",
-      userProfileEnabled: "Pertahankan profil ringkas preferensi pengguna.",
-    },
-    context: {
-      engine: "Strategi untuk mengelola percakapan panjang mendekati batas konteks.",
-    },
-    compression: {
-      enabled: "Ringkas konteks lama saat percakapan menjadi panjang.",
-    },
-    voice: {
-      autoTts: "Bacakan respons asisten secara otomatis.",
-    },
-    tts: {
-      xai: {
-        voiceId: "ID suara xAI (mis. eve) atau ID suara kustom.",
-        language: "Kode bahasa lisan (mis. en, pt-BR) atau \"auto\" untuk deteksi otomatis.",
-        speed: "Kecepatan pemutaran. 0,7 = lebih lambat, 1,0 = normal, 1,5 = lebih cepat.",
-        autoSpeechTags: "Biarkan LLM menyisipkan tag audio ekspresif ([laughing], [sighs]) ke dalam skrip sebelum sintesis.",
-        optimizeStreamingLatency: "Kompromi latensi vs. kualitas. 0 = kualitas terbaik, 2 = latensi terendah.",
-        sampleRate: "Laju sampel audio dalam Hz. Lebih tinggi = kualitas lebih baik, file lebih besar.",
-        bitRate: "Bitrate MP3 dalam bps. Hanya berlaku saat codec adalah mp3.",
-      },
-      neutts: {
-        device: "Perangkat inferensi lokal untuk NeuTTS.",
-      },
-    },
-    stt: {
-      enabled: "Aktifkan transkripsi ucapan lokal atau berbasis penyedia.",
-      echoTranscripts: "Kirim transkrip mentah 🎙️ pesan suara kembali ke chat.",
-      elevenlabs: {
-        languageCode: "Kode bahasa ISO-639-3 opsional. Kosongkan agar ElevenLabs mendeteksi otomatis.",
-      },
-    },
-    updates: {
-      nonInteractiveLocalChanges: "Saat OpenAmer memperbarui dirinya dari aplikasi (tanpa prompt terminal), pertahankan editan sumber lokal (stash) atau buang (discard). Pembaruan terminal selalu meminta konfirmasi.",
-    },
+    neutts: {
+      device: 'Perangkat inferensi lokal untuk NeuTTS.'
+    }
+  },
+  stt: {
+    enabled: 'Aktifkan transkripsi ucapan lokal atau berbasis penyedia.',
+    echoTranscripts: 'Kirim transkrip mentah 🎙️ pesan suara kembali ke chat.',
+    elevenlabs: {
+      languageCode: 'Kode bahasa ISO-639-3 opsional. Kosongkan agar ElevenLabs mendeteksi otomatis.'
+    }
+  },
+  updates: {
+    nonInteractiveLocalChanges:
+      'Saat OpenAmer memperbarui dirinya dari aplikasi (tanpa prompt terminal), pertahankan editan sumber lokal (stash) atau buang (discard). Pembaruan terminal selalu meminta konfirmasi.'
+  }
 })

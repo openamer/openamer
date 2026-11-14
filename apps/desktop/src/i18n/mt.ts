@@ -84,7 +84,7 @@ export const mt = defineLocale({
       'composer.queue': 'Queue message',
       'composer.sendQueued': 'Send next queued turn',
       'composer.mention': 'Reference files, folders, URLs',
-      'composer.slash': 'Slash command palette',
+      'composer.slash': 'Slash command palette'
     },
     title: 'Keyboard shortcuts',
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
@@ -100,8 +100,8 @@ export const mt = defineLocale({
       profiles: 'Profiles',
       session: 'Session',
       navigation: 'Navigation',
-      view: 'View',
-    },
+      view: 'View'
+    }
   },
   language: {
     label: 'Lingwa',
@@ -110,14 +110,14 @@ export const mt = defineLocale({
     saveError: 'L-aġġornament tal-lingwa falla',
     switchTo: 'Biddel il-lingwa',
     searchPlaceholder: 'Fittex lingwi…',
-    noResults: 'Ma nstabet l-ebda lingwa',
+    noResults: 'Ma nstabet l-ebda lingwa'
   },
   settings: {
     closeSettings: 'Agħlaq l-impostazzjonijiet',
     exportConfig: 'Esporta l-konfigurazzjoni',
     importConfig: 'Importa l-konfigurazzjoni',
     resetToDefaults: 'Irrisettja għall-valuri prestabbiliti',
-    resetConfirm: 'Irrisettja l-impostazzjonijiet kollha għall-valuri prestabbiliti ta\' OpenAmer?',
+    resetConfirm: "Irrisettja l-impostazzjonijiet kollha għall-valuri prestabbiliti ta' OpenAmer?",
     exportFailed: 'L-esportazzjoni falliet',
     resetFailed: 'Ir-risettjar falla',
     nav: {
@@ -135,56 +135,58 @@ export const mt = defineLocale({
       about: 'About',
       billing: 'Billing',
       notifications: 'Notifications',
-      plugins: 'Plugins',
+      plugins: 'Plugins'
     },
     plugins: {
       empty: 'Għadhom ma ġew installati l-ebda plugins tad-desktop.',
       kinds: {
         bundled: 'inklużi',
         disk: 'fuq id-diska',
-        runtime: 'runtime',
+        runtime: 'runtime'
       },
       title: 'Desktop plugins',
-      blurb: 'UI extensions loaded into this app — bundled with the build, or dropped into the desktop-plugins folder (including ones OpenAmer writes). Disabling unloads a plugin live and survives restarts.',
+      blurb:
+        'UI extensions loaded into this app — bundled with the build, or dropped into the desktop-plugins folder (including ones OpenAmer writes). Disabling unloads a plugin live and survives restarts.',
       count: n => `${n} installed`,
       openFolder: 'Open plugins folder',
       rescan: 'Rescan',
       reveal: 'Reveal in file manager',
       enable: 'Enable',
       disable: 'Disable',
-      failed: 'failed',
+      failed: 'failed'
     },
     notifications: {
       title: 'Notifikazzjonijiet',
-      intro: 'Notifikazzjonijiet tad-desktop nativi, separati mit-toasts tal-app. Dawn huma lokali għall-apparat — kull kompjuter iżomm is-settings tiegħu.',
+      intro:
+        'Notifikazzjonijiet tad-desktop nativi, separati mit-toasts tal-app. Dawn huma lokali għall-apparat — kull kompjuter iżomm is-settings tiegħu.',
       enableAll: 'Attiva n-notifikazzjonijiet',
       enableAllDesc: 'Switċ prinċipali. Itfi dan biex tissilenzja kull notifikazzjoni hawn taħt.',
       focusedHint: 'Avviżi tat-tlestija jintwerew biss meta OpenAmer ikun fil-background.',
       kinds: {
         approval: {
           label: 'Tinħtieġ approvazzjoni',
-          description: 'Kmand qed jistenna li tapprovah jew tirrifjutah.',
+          description: 'Kmand qed jistenna li tapprovah jew tirrifjutah.'
         },
         input: {
           label: 'Tinħtieġ input',
-          description: 'OpenAmer staqsa mistoqsija jew għandu bżonn password jew sigriet.',
+          description: 'OpenAmer staqsa mistoqsija jew għandu bżonn password jew sigriet.'
         },
         turnDone: {
           label: 'Risposta lesta',
-          description: 'Dawra spiċċat waqt li OpenAmer kien fil-background.',
+          description: 'Dawra spiċċat waqt li OpenAmer kien fil-background.'
         },
         turnError: {
           label: 'Dawra falliet',
-          description: 'Dawra spiċċat bi żball.',
+          description: 'Dawra spiċċat bi żball.'
         },
         backgroundDone: {
           label: 'Kompitu fil-background lest',
-          description: 'Kmand tat-terminal fil-background ġie komplut.',
+          description: 'Kmand tat-terminal fil-background ġie komplut.'
         },
         credits: {
           label: 'Avviżi dwar il-krediti',
-          description: 'Credit access is paused or restored.',
-        },
+          description: 'Credit access is paused or restored.'
+        }
       },
       test: 'Send test notification',
       testTitle: 'OpenAmer',
@@ -193,7 +195,7 @@ export const mt = defineLocale({
       testUnsupported: 'This system does not support native notifications.',
       completionSoundTitle: 'Completion Sound',
       completionSoundDesc: 'Plays when an agent turn finishes. Pick a preset and preview it here.',
-      completionSoundPreview: 'Preview',
+      completionSoundPreview: 'Preview'
     },
     searchPlaceholder: {
       keys: 'Fittex ċwievet API...',
@@ -201,25 +203,26 @@ export const mt = defineLocale({
       sessions: 'Fittex sessjonijiet arkivjati...',
       about: 'About OpenAmer Desktop',
       config: 'Search settings...',
-      gateway: 'Gateway connection...',
+      gateway: 'Gateway connection...'
     },
     modeOptions: {
       light: {
         label: 'Dawl',
-        description: 'Uċuħ tal-desktop qawwija',
+        description: 'Uċuħ tal-desktop qawwija'
       },
       dark: {
         label: 'Skur',
-        description: 'Spazju tax-xogħol b\'inqas tleqqija',
+        description: "Spazju tax-xogħol b'inqas tleqqija"
       },
       system: {
         label: 'Sistema',
-        description: 'Segwi d-dehra tas-Sistema Operattiva',
-      },
+        description: 'Segwi d-dehra tas-Sistema Operattiva'
+      }
     },
     appearance: {
       title: 'Dehra',
-      intro: 'Dawn huma preferenzi tad-dehra għad-desktop biss. Il-modalità tikkontrolla l-luminożità; it-tema tikkontrolla l-paletta tal-aċċent u l-istil tal-wiċċ taċ-chat.',
+      intro:
+        'Dawn huma preferenzi tad-dehra għad-desktop biss. Il-modalità tikkontrolla l-luminożità; it-tema tikkontrolla l-paletta tal-aċċent u l-istil tal-wiċċ taċ-chat.',
       colorMode: 'Modalità tal-Kulur',
       colorModeDesc: 'Agħżel modalità fissa jew ħalli lil OpenAmer isegwi s-setting tas-sistema tiegħek.',
       toolViewTitle: 'Wiri tas-Sejħa tal-Għodda',
@@ -233,8 +236,10 @@ export const mt = defineLocale({
         turnOnFailed: 'Ma stajniex nixgħlu l-annimal.',
         turnOffFailed: 'Ma stajniex nitfi l-annimal.',
         title: 'Pet',
-        intro: 'Adopt an animated petdex mascot that floats over the app and reacts to what OpenAmer is doing — running while tools execute, celebrating on success, sulking on errors.',
-        restartHint: 'Pets need a quick restart — the running app started before this feature was added. Quit and reopen OpenAmer, then come back here.',
+        intro:
+          'Adopt an animated petdex mascot that floats over the app and reacts to what OpenAmer is doing — running while tools execute, celebrating on success, sulking on errors.',
+        restartHint:
+          'Pets need a quick restart — the running app started before this feature was added. Quit and reopen OpenAmer, then come back here.',
         on: 'On',
         off: 'Off',
         scaleTitle: 'Size',
@@ -264,11 +269,13 @@ export const mt = defineLocale({
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
         exportFailed: slug => `Could not export ${slug}`,
-        noneAvailable: 'No pets available to turn on right now.',
+        noneAvailable: 'No pets available to turn on right now.'
       },
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsTitle: 'Inline Embeds',
-      embedsDesc: 'Rich previews load from third-party sites (YouTube, X, …). Ask shows a placeholder until you allow each one; Always loads them automatically; Off keeps plain links.',
+      embedsDesc:
+        'Rich previews load from third-party sites (YouTube, X, …). Ask shows a placeholder until you allow each one; Always loads them automatically; Off keeps plain links.',
       embedsAsk: 'Ask',
       embedsAlways: 'Always',
       embedsOff: 'Off',
@@ -281,21 +288,22 @@ export const mt = defineLocale({
       themeDesc: 'Desktop palettes only. The selected mode is applied on top.',
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installTitle: 'Install from VS Code',
-      installDesc: 'Paste a Marketplace extension id (e.g. dracula-theme.theme-dracula) to convert its color theme into a desktop palette.',
+      installDesc:
+        'Paste a Marketplace extension id (e.g. dracula-theme.theme-dracula) to convert its color theme into a desktop palette.',
       installPlaceholder: 'publisher.extension',
       installButton: 'Install',
       installing: 'Installing…',
       installError: 'Could not install that theme.',
       installed: name => `Installed “${name}”.`,
       removeTheme: 'Remove theme',
-      importedBadge: 'Imported',
+      importedBadge: 'Imported'
     },
     about: {
       versionUnavailable: 'Verżjoni mhix disponibbli',
       updates: 'Aġġornamenti',
       checkNow: 'Iċċekkja issa',
       checking: 'Qed niċċekkja…',
-      seeWhatsNew: 'Ara x\'hemm ġdid',
+      seeWhatsNew: "Ara x'hemm ġdid",
       updateNow: 'Aġġorna issa',
       releaseNotes: 'Noti tar-rilaxx',
       onLatest: 'Int fuq l-aħħar verżjoni.',
@@ -305,7 +313,8 @@ export const mt = defineLocale({
       tapCheck: 'Tektek "Iċċekkja issa" biex tfittex aġġornamenti.',
       justNowSuffix: '· għadu kemm',
       automaticUpdates: 'Aġġornamenti awtomatiċi',
-      automaticUpdatesDesc: 'OpenAmer jiċċekkja aġġornamenti awtomatikament fl-isfond u jgħarrfek meta wieħed ikun lest.',
+      automaticUpdatesDesc:
+        'OpenAmer jiċċekkja aġġornamenti awtomatikament fl-isfond u jgħarrfek meta wieħed ikun lest.',
       never: 'qatt',
       justNow: 'għadu kemm',
       heading: 'OpenAmer Desktop',
@@ -315,7 +324,7 @@ export const mt = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     credentials: {
       saving: 'Qed jiġi ffrankat',
@@ -325,7 +334,7 @@ export const mt = defineLocale({
       enterValueFirst: 'Enter a value first.',
       couldNotSave: 'Could not save credential.',
       remove: 'Remove',
-      getKey: 'Get a key',
+      getKey: 'Get a key'
     },
     envActions: {
       credentialActions: 'Azzjonijiet tal-kredenzjali',
@@ -336,7 +345,7 @@ export const mt = defineLocale({
       replace: 'Sostitwixxi',
       set: 'Issettja',
       clear: 'Neħħi',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     gateway: {
       loading: 'Qed jiġu mgħobbija l-issettjar tal-gateway...',
@@ -344,21 +353,24 @@ export const mt = defineLocale({
       unavailableDesc: 'Il-pont IPC tad-desktop ma jesponix l-issettjar tal-gateway.',
       title: 'Konnessjoni tal-Gateway',
       envOverride: 'Sostituzzjoni env',
-      intro: 'OpenAmer Desktop jibda gateway lokali tiegħu b\'mod awtomatiku. Uża gateway remot meta trid li din l-app tikkontrolla backend OpenAmer li diġà qed jaħdem fuq magna oħra jew wara proxy affidabbli. Agħżel profil hawn taħt biex tagħtih host remot tiegħu.',
+      intro:
+        "OpenAmer Desktop jibda gateway lokali tiegħu b'mod awtomatiku. Uża gateway remot meta trid li din l-app tikkontrolla backend OpenAmer li diġà qed jaħdem fuq magna oħra jew wara proxy affidabbli. Agħżel profil hawn taħt biex tagħtih host remot tiegħu.",
       appliesTo: 'Japplika għal',
       allProfiles: 'Il-profili kollha',
-      defaultConnection: 'Konnessjoni predefinita għal kull profil li m\'għandux sostituzzjoni tiegħu stess.',
+      defaultConnection: "Konnessjoni predefinita għal kull profil li m'għandux sostituzzjoni tiegħu stess.",
       envOverrideTitle: 'Varjabbli tal-ambjent qed jikkontrollaw din is-sessjoni tad-desktop.',
-      envOverrideDesc: 'Neħħi OPENAMER_DESKTOP_REMOTE_URL u OPENAMER_DESKTOP_REMOTE_TOKEN biex tuża l-issettjar salvat hawn taħt.',
+      envOverrideDesc:
+        'Neħħi OPENAMER_DESKTOP_REMOTE_URL u OPENAMER_DESKTOP_REMOTE_TOKEN biex tuża l-issettjar salvat hawn taħt.',
       modeTitle: 'Mod tal-konnessjoni',
       localTitle: 'Gateway lokali',
       localDesc: 'Ibda backend OpenAmer privat fuq localhost. Dan huwa l-predefinit u jaħdem offline.',
       inheritTitle: 'Uża l-gateway predefinit',
-      inheritDesc: 'Neħħi l-override ta\' dan il-profil u uża l-konnessjoni predefinita.',
+      inheritDesc: "Neħħi l-override ta' dan il-profil u uża l-konnessjoni predefinita.",
       remoteTitle: 'Gateway remot',
-      remoteDesc: 'Qabbad dan is-shell tad-desktop ma\' backend OpenAmer remot.',
-      remoteAuthHint: 'Il-gateways ospitati jużaw OAuth jew isem tal-utent u password; dawk awto-ospitati jistgħu jużaw token tas-sessjoni.',
-      cloudDesc: 'Idħol darba fl-OpenAmer Cloud u agħżel mill-aġenti fuq il-kont tiegħek — l-ebda URL x\'tpejstja.',
+      remoteDesc: "Qabbad dan is-shell tad-desktop ma' backend OpenAmer remot.",
+      remoteAuthHint:
+        'Il-gateways ospitati jużaw OAuth jew isem tal-utent u password; dawk awto-ospitati jistgħu jużaw token tas-sessjoni.',
+      cloudDesc: "Idħol darba fl-OpenAmer Cloud u agħżel mill-aġenti fuq il-kont tiegħek — l-ebda URL x'tpejstja.",
       cloudSignIn: 'Idħol fl-OpenAmer Cloud',
       cloudSignedIn: 'Illoggjat fil-OpenAmer Cloud',
       cloudNeedsSignIn: 'Idħol fl-OpenAmer Cloud biex tiskopri l-aġenti fuq il-kont tiegħek.',
@@ -369,15 +381,15 @@ export const mt = defineLocale({
       cloudOrgChange: 'Ibdel l-org',
       cloudLoadingAgents: 'Qed jitgħabbew l-aġenti tiegħek…',
       cloudNoAgents: {
-        before: 'Ma nstabux aġenti f\'dan il-kont. Oħloq wieħed fil-',
+        before: "Ma nstabux aġenti f'dan il-kont. Oħloq wieħed fil-",
         linkText: 'Portal OpenAmer',
-        after: ', imbagħad aġġorna.',
+        after: ', imbagħad aġġorna.'
       },
       cloudRefresh: 'Aġġorna',
       cloudConnect: 'Qabbad',
       cloudConnecting: 'Qed jikkonnettja…',
       cloudDiscoverFailed: 'Ma setgħux jitgħabbew l-aġenti OpenAmer Cloud tiegħek',
-      cloudConnectFailed: 'Ma setax jinqabad ma\' dak l-aġent',
+      cloudConnectFailed: "Ma setax jinqabad ma' dak l-aġent",
       cloudSignInFailed: 'Id-dħul fil-OpenAmer Cloud falla',
       cloudSignedOutTitle: 'Ħriġt mill-OpenAmer Cloud',
       cloudSignedOutMessage: 'Is-sessjoni tal-OpenAmer Cloud tnaddfet.',
@@ -385,23 +397,27 @@ export const mt = defineLocale({
       cloudConnectedPill: 'Ikkonnettjat',
       cloudAgentProvisioning: 'Qed jiġi pprovdut…',
       remoteUrlTitle: 'URL remota',
-      remoteUrlDesc: 'URL bażi għall-backend remota tad-dashboard. Prefissi tal-mogħdija huma appoġġjati, pereżempju /openamer.',
+      remoteUrlDesc:
+        'URL bażi għall-backend remota tad-dashboard. Prefissi tal-mogħdija huma appoġġjati, pereżempju /openamer.',
       probing: 'Qed jiġi ċċekkjat kif dan il-gateway jawtentika…',
-      probeError: 'Għad ma nistax nilħaq dan il-gateway. Iċċekkja l-URL — il-metodu tal-awtentikazzjoni se jidher ladarba jwieġeb.',
+      probeError:
+        'Għad ma nistax nilħaq dan il-gateway. Iċċekkja l-URL — il-metodu tal-awtentikazzjoni se jidher ladarba jwieġeb.',
       signedIn: 'Idħolt',
       signIn: 'Idħol',
       signOut: 'Oħroġ',
       authTitle: 'Awtentikazzjoni',
-      authSignedInPassword: 'Dan il-gateway juża isem tal-utent u password. Inti dħalt; is-sessjoni tiġġedded awtomatikament.',
+      authSignedInPassword:
+        'Dan il-gateway juża isem tal-utent u password. Inti dħalt; is-sessjoni tiġġedded awtomatikament.',
       authSignedInOauth: 'Dan il-gateway juża OAuth. Inti dħalt; is-sessjoni tiġġedded awtomatikament.',
       authNeedsPassword: 'Dan il-gateway juża isem tal-utent u password. Idħol biex tawtorizza din l-app tad-desktop.',
       tokenTitle: 'Token tas-sessjoni',
-      tokenDesc: 'It-token tas-sessjoni tad-dashboard użat għall-aċċess REST u WebSocket. Ħallih vojt biex iżżomm it-token salvat.',
+      tokenDesc:
+        'It-token tas-sessjoni tad-dashboard użat għall-aċċess REST u WebSocket. Ħallih vojt biex iżżomm it-token salvat.',
       savedToken: 'salvat',
       pasteSessionToken: 'Waħħal token tas-sessjoni',
       testRemote: 'Ittestja remot',
       saveForRestart: 'Issejvja għar-restart li jmiss',
-      saveAndReconnect: 'Issejvja u erġa\' qabbad',
+      saveAndReconnect: "Issejvja u erġa' qabbad",
       diagnostics: 'Dijanjostika',
       diagnosticsDesc: 'Uri desktop.log fil-maniġer tal-fajls tiegħek — utli meta l-gateway ma jibdax.',
       openLogs: 'Iftaħ ir-reġistri',
@@ -411,11 +427,11 @@ export const mt = defineLocale({
       incompleteSignInTest: 'Daħħal URL remot u idħol qabel ma tittestja.',
       incompleteTokenTest: 'Daħħal URL remot u token tas-sessjoni qabel ma tittestja.',
       enterUrlFirst: 'Daħħal URL remot l-ewwel.',
-      restartingTitle: 'Il-konnessjoni tal-gateway qed terġa\' tibda',
+      restartingTitle: "Il-konnessjoni tal-gateway qed terġa' tibda",
       savedTitle: 'Issettjar tal-gateway salvat',
-      restartingMessage: 'OpenAmer Desktop se jerġa\' jikkonnettja bl-issettjar salvat — ix-shell jibqa\' miftuħ.',
+      restartingMessage: "OpenAmer Desktop se jerġa' jikkonnettja bl-issettjar salvat — ix-shell jibqa' miftuħ.",
       savedMessage: 'Salvat għar-restart li jmiss.',
-      reachableTitle: 'Il-gateway remot jista\' jintlaħaq',
+      reachableTitle: "Il-gateway remot jista' jintlaħaq",
       signedOutTitle: 'Illoggjat barra',
       signedOutMessage: 'Is-sessjoni tal-gateway remot tħassret.',
       failedLoad: 'L-issettjar tal-gateway ma ntagħbix',
@@ -424,9 +440,11 @@ export const mt = defineLocale({
       testFailed: 'It-test tal-gateway remot falla',
       applyFailed: 'L-issettjar tal-gateway ma setax jiġi applikat',
       saveFailed: 'L-issettjar tal-gateway ma setax jiġi salvat',
-      sshTitle: 'Ikkonnettja permezz ta\' SSH',
-      sshDesc: 'OpenAmer jinxtegħel fuq ir-remot permezz ta\' SSH u jiġi tunneljat għal din l-app — xejn m\'għandek tibda jew tesponi int stess. Jeħtieġ aċċess SSH b\'ċavetta li jaħdem għall-host.',
-      sshTrustHint: 'L-ewwel ċavetta tal-host ippreżentata tiġi fdata u pinned; bidliet sussegwenti jfallu b\'mod magħluq.',
+      sshTitle: "Ikkonnettja permezz ta' SSH",
+      sshDesc:
+        "OpenAmer jinxtegħel fuq ir-remot permezz ta' SSH u jiġi tunneljat għal din l-app — xejn m'għandek tibda jew tesponi int stess. Jeħtieġ aċċess SSH b'ċavetta li jaħdem għall-host.",
+      sshTrustHint:
+        "L-ewwel ċavetta tal-host ippreżentata tiġi fdata u pinned; bidliet sussegwenti jfallu b'mod magħluq.",
       sshHostDesc: 'user@host, jew alias tal-Host minn ~/.ssh/config.',
       sshHostPick: 'Agħżel host…',
       sshHostPickDesc: 'Alias tal-Host minn ~/.ssh/config, jew Personalizzat biex tittajpja wieħed.',
@@ -434,25 +452,30 @@ export const mt = defineLocale({
       sshUserTitle: 'Utent',
       sshUserDesc: 'Vojt = ~/.ssh/config jew l-utent attwali tiegħek.',
       sshUserPlaceholder: 'minn ~/.ssh/config',
-      sshPortDesc: 'Vojt = 22 jew il-port ta\' ~/.ssh/config.',
+      sshPortDesc: "Vojt = 22 jew il-port ta' ~/.ssh/config.",
       sshKeyTitle: 'Fajl tal-identità',
       sshKeyDesc: 'Mogħdija tal-muftieħ privat. Vojt = ssh-agent jew ~/.ssh/config.',
-      sshOpenAmerPathTitle: 'Mogħdija ta\' OpenAmer (mhux obbligatorja)',
+      sshOpenAmerPathTitle: "Mogħdija ta' OpenAmer (mhux obbligatorja)",
       sshOpenAmerPathDesc: 'Mogħdija sħiħa għall-binary openamer remot. Vojt = awto-iskopri.',
       sshOpenAmerPathPlaceholder: 'awto-iskopri',
       sshTestConnection: 'Ittestja SSH',
       sshConnect: 'Qabbad',
-      sshButtonsHint: 'Salva japplika fl-istartjar li jmiss. Qabbad jerġa\' jgħaqqad issa.',
+      sshButtonsHint: "Salva japplika fl-istartjar li jmiss. Qabbad jerġa' jgħaqqad issa.",
       sshIncompleteHost: 'Daħħal host SSH qabel ma tqabbad.',
-      sshErrUnreachable: 'Ma setax jilħaq dak il-host permezz ta\' SSH. Iċċekkja l-host, il-port, u n-netwerk tiegħek.',
-      sshErrAuth: 'L-awtentikazzjoni SSH falliet. Għabbi l-muftieħ tiegħek fis-ssh-agent (ssh-add) jew issettja IdentityFile f\'~/.ssh/config — OpenAmer iħaddem ssh b\'mod mhux interattiv.',
-      sshErrHostKey: 'Il-muftieħ tal-host INBIDEL minn meta konnejt l-aħħar. Ivverifika li dan huwa mistenni, imbagħad ħaddem ssh-keygen -R <host> u erġa\' qabbad.',
-      sshErrNotInstalled: 'OpenAmer mhuwiex installat fuq il-host remot. Installah hemm (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) jew issettja l-passa ta\' OpenAmer.',
-      sshErrPlatform: 'Pjattaforma remota mhux appoġġjata. Il-modalità SSH ta\' OpenAmer Desktop tappoġġja hosts remoti Linux, macOS u Windows.',
-      sshErrTimeout: 'Il-konnessjoni SSH skadiet. Il-host jista\' ma jkunx jista\' jintlaħaq jew jista\' jkun rieqed.',
-      sshErrUpdateRequired: 'Aġġorna OpenAmer fuq il-host remot qabel ma tikkonnettja b\'Desktop SSH.',
+      sshErrUnreachable: "Ma setax jilħaq dak il-host permezz ta' SSH. Iċċekkja l-host, il-port, u n-netwerk tiegħek.",
+      sshErrAuth:
+        "L-awtentikazzjoni SSH falliet. Għabbi l-muftieħ tiegħek fis-ssh-agent (ssh-add) jew issettja IdentityFile f'~/.ssh/config — OpenAmer iħaddem ssh b'mod mhux interattiv.",
+      sshErrHostKey:
+        "Il-muftieħ tal-host INBIDEL minn meta konnejt l-aħħar. Ivverifika li dan huwa mistenni, imbagħad ħaddem ssh-keygen -R <host> u erġa' qabbad.",
+      sshErrNotInstalled:
+        "OpenAmer mhuwiex installat fuq il-host remot. Installah hemm (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) jew issettja l-passa ta' OpenAmer.",
+      sshErrPlatform:
+        "Pjattaforma remota mhux appoġġjata. Il-modalità SSH ta' OpenAmer Desktop tappoġġja hosts remoti Linux, macOS u Windows.",
+      sshErrTimeout: "Il-konnessjoni SSH skadiet. Il-host jista' ma jkunx jista' jintlaħaq jew jista' jkun rieqed.",
+      sshErrUpdateRequired: "Aġġorna OpenAmer fuq il-host remot qabel ma tikkonnettja b'Desktop SSH.",
       sshErrUnknown: 'Il-konnessjoni SSH falliet.',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudTitle: 'OpenAmer Cloud',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudOrgRole: role => `Role: ${role}`,
@@ -465,12 +488,12 @@ export const mt = defineLocale({
       sshHostTitle: 'Host',
       sshHostPickTitle: 'Host',
       sshPortTitle: 'Port',
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     keys: {
       loading: 'Qed jitgħabbew iċ-ċwievet API u l-kredenzjali...',
       failedLoad: 'Iċ-ċwievet API naqsu milli jitgħabbew',
-      empty: 'Għadu xejn mhu konfigurat f\'din il-kategorija.',
+      empty: "Għadu xejn mhu konfigurat f'din il-kategorija."
     },
     mcp: {
       loading: 'Qed jitgħabbew is-servers MCP...',
@@ -482,15 +505,15 @@ export const mt = defineLocale({
       saveFailed: 'Salvataġġ falla',
       removeFailed: 'Tneħħija falliet',
       gatewayUnavailableTitle: 'Il-gateway mhux disponibbli',
-      gatewayUnavailableMessage: 'Erġa\' kkonnettja l-gateway qabel ma terġa\' tgħabbi MCP.',
+      gatewayUnavailableMessage: "Erġa' kkonnettja l-gateway qabel ma terġa' tgħabbi MCP.",
       reloadedTitle: 'L-għodod MCP ġew mgħobbija mill-ġdid',
       reloadedMessage: 'Skemi ġodda tal-għodod japplikaw għal dawriet ġodda.',
       reloadFailed: 'Ir-rikarikament tal-MCP falla',
       savedTitle: 'Server MCP salvat',
       newServer: 'Server ġdid',
-      reload: 'Erġa\' għabbi l-MCP',
-      reloading: 'Qed jerġa\' jgħabbi...',
-      emptyTitle: 'M\'hemm l-ebda server MCP',
+      reload: "Erġa' għabbi l-MCP",
+      reloading: "Qed jerġa' jgħabbi...",
+      emptyTitle: "M'hemm l-ebda server MCP",
       emptyDesc: 'Żid server stdio jew HTTP biex tesponi għodod MCP.',
       disabled: 'diżattivat',
       editServer: 'Editja s-server',
@@ -505,7 +528,7 @@ export const mt = defineLocale({
       tabCatalog: 'Katalgu',
       catalogLoading: 'Qed jgħabbi l-katalgu MCP...',
       catalogLoadFailed: 'It-tagħbija tal-katalgu MCP falliet',
-      catalogEmpty: 'M\'hemmx entrati tal-katalgu disponibbli.',
+      catalogEmpty: "M'hemmx entrati tal-katalgu disponibbli.",
       catalogInstalled: 'Installat',
       catalogEnabled: 'Attivat',
       catalogNeedsInstall: 'Irid jinbena',
@@ -521,7 +544,7 @@ export const mt = defineLocale({
       waitingForBrowser: 'Qed jistenna l-browser…',
       authenticate: 'Awtentika',
       unsavedConnect: 'Mhux salvata — salva mcp.json biex tikkonnettja.',
-      noOutput: 'Għad m\'hemmx output.',
+      noOutput: "Għad m'hemmx output.",
       savedMessage: name => `${name} applies after MCP reload.`,
       testOk: count => `Connected — ${count} tool${count === 1 ? '' : 's'} available`,
       enableServer: name => `Enable ${name}`,
@@ -532,10 +555,11 @@ export const mt = defineLocale({
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       authenticatedMessage: (server, count) => `${server}: ${count} tools`,
       enableTool: tool => `Enable ${tool}`,
-      disableTool: tool => `Disable ${tool}`,
+      disableTool: tool => `Disable ${tool}`
     },
     model: {
       model: 'Mudell',
@@ -546,56 +570,59 @@ export const mt = defineLocale({
       defaultsFailed: 'Ma rnexxielux isalva l-predefiniti tal-mudell',
       auxiliaryTitle: 'Mudelli awżiljari',
       resetAllToMain: 'Irrisettja kollha għall-prinċipali',
-      auxiliaryDesc: 'Il-kompiti ta\' għajnuna jaħdmu fuq il-mudell prinċipali b\'mod predefinit. Assenja mudell iddedikat lil kwalunkwe kompitu biex tibdel.',
+      auxiliaryDesc:
+        "Il-kompiti ta' għajnuna jaħdmu fuq il-mudell prinċipali b'mod predefinit. Assenja mudell iddedikat lil kwalunkwe kompitu biex tibdel.",
       setToMain: 'Issettja għall-prinċipali',
       change: 'Ibdel',
       autoUseMain: 'awto · uża l-mudell prinċipali',
       providerDefault: '(predefinit tal-fornitur)',
       fallbackAdd: 'Żid riżerva',
-      fallbackEmpty: 'L-ebda mudell ta\' riżerva — jintuża l-mudell predefinit sakemm ma jfallix.',
-      notInCatalog: 'mhux fil-lista tal-mudelli ta\' dan il-fornitur — is-sejħiet jistgħu jużaw riżerva.',
+      fallbackEmpty: "L-ebda mudell ta' riżerva — jintuża l-mudell predefinit sakemm ma jfallix.",
+      notInCatalog: "mhux fil-lista tal-mudelli ta' dan il-fornitur — is-sejħiet jistgħu jużaw riżerva.",
       tasks: {
         vision: {
           label: 'Viżjoni',
-          hint: 'Analiżi tal-immaġni',
+          hint: 'Analiżi tal-immaġni'
         },
         web_extract: {
           label: 'Estratt web',
-          hint: 'Sommarju tal-paġna',
+          hint: 'Sommarju tal-paġna'
         },
         compression: {
           label: 'Kompressjoni',
-          hint: 'Kompattament tal-kuntest',
+          hint: 'Kompattament tal-kuntest'
         },
         skills_hub: {
           label: 'Ċentru tal-ħiliet',
-          hint: 'Fittxija tal-ħiliet',
+          hint: 'Fittxija tal-ħiliet'
         },
         approval: {
           label: 'Approvazzjoni',
-          hint: 'Approvazzjoni awtomatika intelliġenti',
+          hint: 'Approvazzjoni awtomatika intelliġenti'
         },
         mcp: {
           hint: 'Instradament tal-għodod MCP',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Ġenerazzjoni tat-titlu',
-          hint: 'Titli tas-sessjonijiet',
+          hint: 'Titli tas-sessjonijiet'
         },
         curator: {
           label: 'Kuratur',
-          hint: 'Reviżjoni tal-użu tal-ħiliet',
-        },
+          hint: 'Reviżjoni tal-użu tal-ħiliet'
+        }
       },
       loading: 'Qed jitgħabba l-konfigurazzjoni tal-mudell...',
-      appliesDesc: 'Japplika għas-sessjonijiet ġodda. Uża l-għażla tal-mudell fil-composer biex tbiddel malajr il-chat attiv.',
-      provider: 'Fornitur',
+      appliesDesc:
+        'Japplika għas-sessjonijiet ġodda. Uża l-għażla tal-mudell fil-composer biex tbiddel malajr il-chat attiv.',
+      provider: 'Fornitur'
     },
     providers: {
       connectAccount: 'Qabbad kont',
       haveApiKey: 'Għandek ċavetta API minflok?',
-      intro: 'Idħol b\'sottoskrizzjoni — l-ebda ċavetta API x\'tikkopja. OpenAmer imexxi d-dħul fil-browser għalik, hawn stess fl-app.',
+      intro:
+        "Idħol b'sottoskrizzjoni — l-ebda ċavetta API x'tikkopja. OpenAmer imexxi d-dħul fil-browser għalik, hawn stess fl-app.",
       connected: 'Imqabbad',
       collapse: 'Kollassa',
       connectAnother: 'Qabbad fornitur ieħor',
@@ -603,27 +630,31 @@ export const mt = defineLocale({
       disconnect: 'Skonnettja',
       disconnectInTerminal: 'Iddisconnetti (iħaddem il-kmand tat-tneħħija fit-terminal)',
       removedTitle: 'Kont tneħħa',
-      noProviderKeys: 'M\'hemmx ċwievet API tal-fornitur disponibbli.',
+      noProviderKeys: "M'hemmx ċwievet API tal-fornitur disponibbli.",
       searchKeys: 'Fittex fornituri…',
       noKeysMatch: 'L-ebda fornitur ma jaqbel mat-tfittxija tiegħek.',
       localEndpoint: {
         title: 'Endpoint lokali / personalizzat',
-        description: 'Ipponta OpenAmer lejn kwalunkwe endpoint kompatibbli ma\' OpenAI (Zyphra, vLLM, llama.cpp, Ollama, eċċ).',
+        description:
+          "Ipponta OpenAmer lejn kwalunkwe endpoint kompatibbli ma' OpenAI (Zyphra, vLLM, llama.cpp, Ollama, eċċ)."
       },
       loading: 'Qed jitgħabbew il-fornituri...',
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     sessions: {
       autoArchiveFailed: 'Ma setax jaġġorna l-awto-arkivju',
       defaultDirTitle: 'Direttorju prestabbilit tal-proġett',
-      defaultDirDesc: 'Sessjonijiet ġodda jibdew f\'dan il-folder sakemm ma tagħżilx ieħor. Ħallih mhux issettjat biex tuża d-direttorju tad-dar tiegħek.',
-      defaultDirUpdated: 'Id-direttorju prestabbilit tal-proġett ġie aġġornat — ibda chat ġdid (Ctrl/⌘+N) biex jieħu effett',
+      defaultDirDesc:
+        "Sessjonijiet ġodda jibdew f'dan il-folder sakemm ma tagħżilx ieħor. Ħallih mhux issettjat biex tuża d-direttorju tad-dar tiegħek.",
+      defaultDirUpdated:
+        'Id-direttorju prestabbilit tal-proġett ġie aġġornat — ibda chat ġdid (Ctrl/⌘+N) biex jieħu effett',
       change: 'Biddel',
       choose: 'Agħżel',
       clear: 'Ħassar',
@@ -635,19 +666,21 @@ export const mt = defineLocale({
       clearDirFailed: 'Ma setax iħassar id-direttorju prestabbilit',
       loading: 'Qed jitgħabbew is-sessjonijiet arkivjati…',
       archivedTitle: 'Sessjonijiet arkivjati',
-      archivedIntro: 'Taħditiet arkivjati huma moħbija mill-ġenb iżda jżommu l-messaġġi kollha tagħhom. Ctrl/⌘-click taħdita fil-ġenb biex tarkivjaha.',
+      archivedIntro:
+        'Taħditiet arkivjati huma moħbija mill-ġenb iżda jżommu l-messaġġi kollha tagħhom. Ctrl/⌘-click taħdita fil-ġenb biex tarkivjaha.',
       emptyArchivedTitle: 'Xejn arkivjat',
       emptyArchivedDesc: 'Arkivja taħdita biex taħbiha hawn.',
       unarchive: 'Neħħi mill-arkivju',
-      deletePermanently: 'Ħassar b\'mod permanenti',
+      deletePermanently: "Ħassar b'mod permanenti",
       restored: 'Restawrat',
       autoArchiveTitle: 'Awto-arkivja taħditiet mhux użati',
-      autoArchiveDesc: 'Awtoarkivja taħditiet li ma tkunx messejt għal xi żmien. Taħditiet ippinajati qatt ma jiġu arkivjati, u xejn ma jiġi mħassar — taħditiet arkivjati biss jiċċaqalqu hawn.',
+      autoArchiveDesc:
+        'Awtoarkivja taħditiet li ma tkunx messejt għal xi żmien. Taħditiet ippinajati qatt ma jiġu arkivjati, u xejn ma jiġi mħassar — taħditiet arkivjati biss jiċċaqalqu hawn.',
       autoArchiveDaysLabel: 'Arkivja wara',
-      autoArchiveDaysUnit: 'jiem ta\' inattività',
+      autoArchiveDaysUnit: "jiem ta' inattività",
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
       loadingConfig: 'Qed tiġi llowdjata l-konfigurazzjoni',
@@ -657,8 +690,9 @@ export const mt = defineLocale({
       notSet: 'Mhux issettjat',
       selectedTitle: 'Fornitur magħżul',
       failedLoad: 'Il-konfigurazzjoni tal-għodda ma setgħetx tiġi llowdjata',
-      noProviderOptions: 'Dan is-sett ta\' għodda m\'għandu l-ebda għażliet tal-fornituri — attivah u jaħdem mas-setup attwali tiegħek.',
-      noProviders: 'Bħalissa m\'hemm l-ebda fornitur disponibbli għal dan is-sett ta\' għodda.',
+      noProviderOptions:
+        "Dan is-sett ta' għodda m'għandu l-ebda għażliet tal-fornituri — attivah u jaħdem mas-setup attwali tiegħek.",
+      noProviders: "Bħalissa m'hemm l-ebda fornitur disponibbli għal dan is-sett ta' għodda.",
       ready: 'Lest',
       needsSignIn: 'Jeħtieġ id-dħul',
       needsSetup: 'Jeħtieġ setup',
@@ -668,10 +702,10 @@ export const mt = defineLocale({
       openamerAuthDoneTitle: 'Portal OpenAmer konness',
       openamerAuthDoneMessage: 'Il-backends tal-abbonament tiegħek issa huma attivi.',
       openamerAuthFailed: 'Id-dħul fil-Portal OpenAmer ma tlestiex',
-      noApiKeyRequired: 'M\'hemm bżonn l-ebda API key.',
-      postSetupInstalledHint: 'Installat. Erġa\' mexxi s-setup biss jekk xi ħaġa mhix taħdem.',
+      noApiKeyRequired: "M'hemm bżonn l-ebda API key.",
+      postSetupInstalledHint: "Installat. Erġa' mexxi s-setup biss jekk xi ħaġa mhix taħdem.",
       postSetupRun: 'Mexxi s-setup',
-      postSetupRerun: 'Erġa\' mexxi s-setup',
+      postSetupRerun: "Erġa' mexxi s-setup",
       postSetupInstalled: 'Installat',
       postSetupRunning: 'Qed jinstalla…',
       postSetupStarting: 'Qed jibda…',
@@ -697,9 +731,9 @@ export const mt = defineLocale({
         unavailable: 'Mhux disponibbli',
         inUse: 'Qed jintuża',
         selectedTitle: 'Backend magħżul',
-        needsSetupHint: 'Tista\' tagħżel dan il-backend issa — il-kmandi se jfallu sakemm titlesta l-konfigurazzjoni.',
+        needsSetupHint: "Tista' tagħżel dan il-backend issa — il-kmandi se jfallu sakemm titlesta l-konfigurazzjoni.",
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       savedMessage: key => `${key} updated.`,
       removedMessage: key => `${key} removed.`,
@@ -709,8 +743,10 @@ export const mt = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -720,7 +756,7 @@ export const mt = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     sections: {
       model: 'Model',
@@ -730,7 +766,7 @@ export const mt = defineLocale({
       safety: 'Safety',
       memory: 'Memory & Context',
       voice: 'Voice',
-      advanced: 'Advanced',
+      advanced: 'Advanced'
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -748,8 +784,8 @@ export const mt = defineLocale({
       imported: 'Config imported',
       invalidJson: 'Invalid config JSON',
       keepAwakeTitle: 'Keep computer awake',
-      keepAwakeDesc: 'Stop this machine from sleeping so long or overnight runs keep going. The display can still dim.',
-    },
+      keepAwakeDesc: 'Stop this machine from sleeping so long or overnight runs keep going. The display can still dim.'
+    }
   },
   skills: {
     tabSkills: 'Ħiliet',
@@ -762,14 +798,15 @@ export const mt = defineLocale({
     refreshing: 'Qed jiġu aġġornati l-ħiliet',
     loading: 'Qed jitgħabbew il-kapaċitajiet...',
     noSkillsTitle: 'Ma nstabu ħiliet',
-    noSkillsDesc: 'Ipprova fittex aktar wiesa\' jew kategorija differenti.',
-    noToolsetsTitle: 'Ma nstabu settijiet ta\' għodda',
+    noSkillsDesc: "Ipprova fittex aktar wiesa' jew kategorija differenti.",
+    noToolsetsTitle: "Ma nstabu settijiet ta' għodda",
     noToolsetsDesc: 'Ipprova tfittxija aktar wiesgħa.',
     noDescription: 'L-ebda deskrizzjoni.',
     configured: 'Ikkonfigurat',
     needsKeys: 'Jeħtieġ ċwievet',
-    visionModelHint: 'Il-Viżjoni tuża l-konfigurazzjoni tal-mudell awżiljarju tiegħek — il-mudell li jiflaħ għall-immaġni jintgħażel hemmhekk, mhux għal kull fornitur hawn.',
-    visionModelLink: 'Agħżel mudell tal-viżjoni f\'Impostazzjonijiet → Mudelli',
+    visionModelHint:
+      'Il-Viżjoni tuża l-konfigurazzjoni tal-mudell awżiljarju tiegħek — il-mudell li jiflaħ għall-immaġni jintgħażel hemmhekk, mhux għal kull fornitur hawn.',
+    visionModelLink: "Agħżel mudell tal-viżjoni f'Impostazzjonijiet → Mudelli",
     skillsLoadFailed: 'Il-ħiliet naqsu milli jitgħabbew',
     toolsetsRefreshFailed: 'Is-settijiet tal-għodda ma rnexxielhomx jitġeddu',
     skillEnabled: 'Ħila attivata',
@@ -782,18 +819,18 @@ export const mt = defineLocale({
     enableAll: 'Attiva kollha',
     disableAll: 'Iddiżattiva kollha',
     disableUnused: 'Iddiżattiva mhux użati',
-    bulkNoChange: 'Xejn x\'jinbidel.',
+    bulkNoChange: "Xejn x'jinbidel.",
     provenance: {
       agent: 'Mgħallma',
       bundled: 'Integrat',
-      hub: 'Hub',
+      hub: 'Hub'
     },
     changesApplyNewSessions: 'Il-bidliet japplikaw għal sessjonijiet ġodda.',
     skillUpdated: 'Ħila aġġornata',
     edit: 'Editja',
     archive: 'Arkivja',
     skillArchivedTitle: 'Ħila arkivjata',
-    skillArchivedMessage: 'Jista\' jiġi restawrat permezz ta\' openamer curator restore.',
+    skillArchivedMessage: "Jista' jiġi restawrat permezz ta' openamer curator restore.",
     hub: {
       searchPlaceholder: 'Fittex fil-hub tal-ħiliet',
       search: 'Fittex',
@@ -801,7 +838,8 @@ export const mt = defineLocale({
       connectingHubs: 'Qed tikkonnettja mal-hubs tal-ħiliet...',
       connectedHubs: 'Hubs konnessi:',
       featured: 'Ħiliet prominenti',
-      landingHint: 'Fittex fil-hub biex tissfoglia ħiliet installabbli mill-indiċi uffiċjali, GitHub, u sorsi tal-komunità.',
+      landingHint:
+        'Fittex fil-hub biex tissfoglia ħiliet installabbli mill-indiċi uffiċjali, GitHub, u sorsi tal-komunità.',
       noResults: 'Ma nstabu l-ebda ħiliet li jaqblu fil-hub.',
       installed: 'Installati',
       install: 'Installa',
@@ -815,11 +853,11 @@ export const mt = defineLocale({
       scanning: 'Qed jiskennja...',
       close: 'Agħlaq',
       files: 'Fajls',
-      noReadme: 'Din il-ħila m\'għandhiex preview ta\' SKILL.md.',
+      noReadme: "Din il-ħila m'għandhiex preview ta' SKILL.md.",
       trust: {
         builtin: 'Integrat',
         trusted: 'Fdat',
-        community: 'Komunità',
+        community: 'Komunità'
       },
       verdictSafe: 'Sigur',
       verdictCaution: 'Kawtela',
@@ -827,7 +865,7 @@ export const mt = defineLocale({
       policyAllow: 'Installazzjoni permessa',
       policyAsk: 'Irrevedi qabel tinstalla',
       policyBlock: 'Installazzjoni mblukkata mill-politika',
-      noFindings: 'Ebda sejbiet ta\' sigurtà.',
+      noFindings: "Ebda sejbiet ta' sigurtà.",
       updateStarted: 'Qed jiġu aġġornati l-ħiliet installati...',
       actionFailed: 'Azzjoni tal-ħila falliet',
       actionLog: 'Reġistru tal-azzjonijiet',
@@ -839,7 +877,7 @@ export const mt = defineLocale({
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     tabMcp: 'MCP',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} toolsets enabled`,
@@ -852,7 +890,7 @@ export const mt = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     title: 'Graff tal-Memorja',
@@ -865,10 +903,11 @@ export const mt = defineLocale({
     viewGraph: 'Graff',
     loadFailed: 'Il-graff tal-memorja ma setax jitgħabba',
     loading: 'Qed jitgħabba…',
-    emptyTitle: 'S\'issa xejn mgħallem',
+    emptyTitle: "S'issa xejn mgħallem",
     emptyDesc: 'Hekk kif OpenAmer jibni ħiliet u memorji għax-xogħol tiegħek, dawn jidhru hawn.',
     share: 'Aqsam il-mappa',
-    shareHint: 'Ikkopja l-kodiċi biex taqsam din il-mappa, jew waħħal wieħed biex titgħabba. Jinkludi biss it-tqassim, mhux il-memorja jew it-test tal-ħiliet tiegħek.',
+    shareHint:
+      'Ikkopja l-kodiċi biex taqsam din il-mappa, jew waħħal wieħed biex titgħabba. Jinkludi biss it-tqassim, mhux il-memorja jew it-test tal-ħiliet tiegħek.',
     shareTitle: 'Importa / Esporta l-mappa',
     sharePlaceholder: 'Waħħal kodiċi tal-mappa…',
     copy: 'Ikkopja l-kodiċi tal-mappa',
@@ -879,12 +918,12 @@ export const mt = defineLocale({
     importedBadge: 'mappa importata',
     resetToMine: 'Lura għall-mappa tiegħi',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Agħlaq l-aġenti',
     title: 'Oħloq siġra',
-    subtitle: 'Attività f\'ħin reali tas-subaġenti għad-dawra attwali.',
+    subtitle: "Attività f'ħin reali tas-subaġenti għad-dawra attwali.",
     emptyTitle: 'Ebda subaġenti ħajjin',
     emptyDesc: 'Meta dawra tiddelega xogħol, l-aġenti tfal jistrimjaw il-progress tagħhom hawn.',
     running: 'Qed jaħdem',
@@ -909,7 +948,7 @@ export const mt = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'Agħlaq iċ-ċentru tal-kmand',
@@ -930,7 +969,7 @@ export const mt = defineLocale({
       placeholder: 'Fittex annimali domestiċi…',
       loading: 'Qed titgħabba l-gallerija tal-petdex…',
       error: 'Ma nistax nasal għall-gallerija tal-petdex.',
-      staleBackend: 'Erġa\' ibda OpenAmer biex tuża l-annimali domestiċi — il-backend jiġi qabel din il-karatteristika.',
+      staleBackend: "Erġa' ibda OpenAmer biex tuża l-annimali domestiċi — il-backend jiġi qabel din il-karatteristika.",
       empty: 'Ebda annimali domestiċi li jaqblu.',
       turnOff: 'Itfi',
       turnOn: 'Ixgħel',
@@ -938,7 +977,7 @@ export const mt = defineLocale({
       generatedTag: 'Iġġenerat',
       adoptFailed: 'Ma setax jiġi adottat dak l-annimal domestiku.',
       toggleFailed: 'Ma setax jixgħel/itfi l-annimal domestiku.',
-      noneAvailable: 'Ebda annimali domestiċi disponibbli — agħżel wieħed hawn taħt biex tinstalla.',
+      noneAvailable: 'Ebda annimali domestiċi disponibbli — agħżel wieħed hawn taħt biex tinstalla.'
     },
     generatePet: {
       title: 'Iġġenera pet',
@@ -961,13 +1000,14 @@ export const mt = defineLocale({
       slowProviderHint: 'Dan jista’ jieħu diversi minuti',
       remix: 'Remixja',
       remixConfirmTitle: 'Remixja din id-dehra?',
-      remixConfirmBody: 'Dan jiġġenera sett ġdid ta\' abbozzi billi juża dan bħala punt tat-tluq. Jista\' jieħu diversi minuti.',
-      genericError: 'Ġenerazzjoni falliet — erġa\' pprova jew agħżel suġġeriment.',
-      referenceImageTooLarge: 'L-immaġni ta\' referenza kbira wisq. Uża waħda taħt 16 MB.',
-      referenceImageInvalid: 'Ma setax jinqara dik l-immaġni ta\' referenza. Ipprova PNG, JPG, WebP, jew GIF.',
+      remixConfirmBody:
+        "Dan jiġġenera sett ġdid ta' abbozzi billi juża dan bħala punt tat-tluq. Jista' jieħu diversi minuti.",
+      genericError: "Ġenerazzjoni falliet — erġa' pprova jew agħżel suġġeriment.",
+      referenceImageTooLarge: "L-immaġni ta' referenza kbira wisq. Uża waħda taħt 16 MB.",
+      referenceImageInvalid: "Ma setax jinqara dik l-immaġni ta' referenza. Ipprova PNG, JPG, WebP, jew GIF.",
       adopt: 'Adotta',
       startOver: 'Ibda mill-ġdid',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     installTheme: {
       title: 'Installa tema…',
@@ -979,7 +1019,7 @@ export const mt = defineLocale({
       install: 'Installa',
       installing: 'Qed jinstalla...',
       installed: 'Installat',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Oqsma tal-impostazzjonijiet',
     mcpServers: 'Servers MCP',
@@ -988,49 +1028,49 @@ export const mt = defineLocale({
       maintenance: 'Manutenzjoni',
       sessions: 'Sessjonijiet',
       system: 'Sistema',
-      usage: 'Użu',
+      usage: 'Użu'
     },
     sectionDescriptions: {
-      maintenance: 'Dijanjostika, kopji ta\' sikurezza, kuratur u data tal-memorja',
+      maintenance: "Dijanjostika, kopji ta' sikurezza, kuratur u data tal-memorja",
       sessions: 'Fittex u ġestixxi sessjonijiet',
       system: 'Status, reġistri u azzjonijiet tas-sistema',
-      usage: 'Token, spiża u attività tal-ħiliet maż-żmien',
+      usage: 'Token, spiża u attività tal-ħiliet maż-żmien'
     },
     nav: {
       newChat: {
         title: 'Sessjoni ġdida',
-        detail: 'Ibda sessjoni ġdida',
+        detail: 'Ibda sessjoni ġdida'
       },
       settings: {
         title: 'Impostazzjonijiet',
-        detail: 'Ikkonfigura d-desktop ta\' OpenAmer',
+        detail: "Ikkonfigura d-desktop ta' OpenAmer"
       },
       skills: {
         title: 'Kapaċitajiet',
-        detail: 'Ħiliet, għodod u servers MCP',
+        detail: 'Ħiliet, għodod u servers MCP'
       },
       messaging: {
         title: 'Messaġġi',
-        detail: 'Issettja Telegram, Slack, Discord u aktar',
+        detail: 'Issettja Telegram, Slack, Discord u aktar'
       },
       artifacts: {
         title: 'Artefatti',
-        detail: 'Esplora riżultati ġġenerati',
-      },
+        detail: 'Esplora riżultati ġġenerati'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Pannell tas-sessjonijiet',
-        detail: 'Fittex, waħħal u ġestixxi sessjonijiet',
+        detail: 'Fittex, waħħal u ġestixxi sessjonijiet'
       },
       system: {
         title: 'Pannell tas-sistema',
-        detail: 'Status tal-gateway, reġistri, erġa\' ibda/aġġorna',
+        detail: "Status tal-gateway, reġistri, erġa' ibda/aġġorna"
       },
       usage: {
         title: 'Panel tal-Użu',
-        detail: 'Token, spiża u attività tal-ħiliet',
-      },
+        detail: 'Token, spiża u attività tal-ħiliet'
+      }
     },
     providerNavigate: 'Navigazzjoni',
     providerSessions: 'Sessjonijiet',
@@ -1041,10 +1081,10 @@ export const mt = defineLocale({
     unpinSession: 'Neħħi l-pin tas-sessjoni',
     exportSession: 'Esporta s-sessjoni',
     deleteSession: 'Ħassar is-sessjoni',
-    noSessions: 'Għadhom m\'hemmx sessjonijiet.',
+    noSessions: "Għadhom m'hemmx sessjonijiet.",
     gatewayRunning: 'Il-gateway tal-messaġġi qed jaħdem',
     gatewayStopped: 'Il-gateway tal-messaġġi waqaf',
-    restartGateway: 'Erġa\' ibda l-gateway',
+    restartGateway: "Erġa' ibda l-gateway",
     gatewayRestartFailed: 'It-tħaddim mill-ġdid tal-gateway falla.',
     updateOpenAmer: 'Aġġorna OpenAmer',
     actionRunning: 'qed jaħdem',
@@ -1053,35 +1093,35 @@ export const mt = defineLocale({
     actionStartedWaiting: 'Azzjoni bdiet, qed jistenna l-istatus...',
     loadingStatus: 'Qed jitgħabba l-istatus...',
     recentLogs: 'Logs riċenti',
-    noLogs: 'Għad m\'hemmx logs mgħobbija.',
+    noLogs: "Għad m'hemmx logs mgħobbija.",
     statSessions: 'Sessjonijiet',
     statApiCalls: 'Sejħiet API',
     statTokens: 'Tokens dħul/ħruġ',
     statCost: 'Kost stmat',
     loadingUsage: 'Qed jitgħabba l-użu...',
-    retry: 'Erġa\' pprova',
-    dailyTokens: 'Tokens ta\' kuljum',
+    retry: "Erġa' pprova",
+    dailyTokens: "Tokens ta' kuljum",
     input: 'dħul',
     output: 'ħruġ',
-    noDailyActivity: 'L-ebda attività ta\' kuljum.',
+    noDailyActivity: "L-ebda attività ta' kuljum.",
     topModels: 'Mudelli ewlenin',
-    noModelUsage: 'Għad m\'hemmx użu tal-mudelli.',
+    noModelUsage: "Għad m'hemmx użu tal-mudelli.",
     topSkills: 'Ħiliet ewlenin',
-    noSkillActivity: 'Għad m\'hemmx attività tal-ħiliet.',
+    noSkillActivity: "Għad m'hemmx attività tal-ħiliet.",
     logFile: 'Fajl tal-log',
     logLevel: 'Livell',
     logSearchPlaceholder: 'Iffiltra linji tal-log...',
     maintenance: {
       runOps: 'Dijanjostika',
       doctor: 'Mexxi doctor',
-      doctorDesc: 'Iċċekkja s-saħħa ta\' installazzjoni, konfigurazzjoni u fornituri',
+      doctorDesc: "Iċċekkja s-saħħa ta' installazzjoni, konfigurazzjoni u fornituri",
       securityAudit: 'Awdit tas-sigurtà',
       securityAuditDesc: 'Skennja l-konfigurazzjoni u l-ħiliet għal settings riskjużi',
       backup: 'Oħloq backup',
       backupDesc: 'Iżżippja l-konfigurazzjoni, il-memorji, il-ħiliet u s-sessjonijiet',
       debugShare: 'Qsim tad-debug',
-      debugShareDesc: 'Tella\' rapport redatt + logs, ikseb links kondiviżi (jħassar awtomatikament fi 6h)',
-      debugShareRunning: 'Qed jitella\' rapport tad-debug...',
+      debugShareDesc: "Tella' rapport redatt + logs, ikseb links kondiviżi (jħassar awtomatikament fi 6h)",
+      debugShareRunning: "Qed jitella' rapport tad-debug...",
       debugShareLinks: 'Links tal-qsim',
       debugShareFailed: 'Qsim tad-debug falla',
       copyLink: 'Ikkopja link',
@@ -1096,7 +1136,7 @@ export const mt = defineLocale({
       resume: 'Kompli',
       runNow: 'Mexxi issa',
       memoryData: 'Dejta tal-memorja',
-      memoryDataDesc: 'Fajls tal-memorja integrati jiġu injettati f\'kull sessjoni',
+      memoryDataDesc: "Fajls tal-memorja integrati jiġu injettati f'kull sessjoni",
       builtinMemory: 'integrat',
       memoryFile: 'Memorja tal-aġent (MEMORY.md)',
       userFile: 'Profil tal-utent (USER.md)',
@@ -1113,14 +1153,14 @@ export const mt = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     startInBranch: branch => `New conversation in ${branch}`,
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · Active sessions ${count}`,
     days: count => `${count}d`,
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   messaging: {
     search: 'Fittex fil-messaġġi...',
@@ -1135,10 +1175,10 @@ export const mt = defineLocale({
       not_configured: 'Jeħtieġ konfigurazzjoni',
       pending_restart: 'Jeħtieġ restard',
       retrying: 'Qed jipprova mill-ġdid',
-      startup_failed: 'It-tnedija falliet',
+      startup_failed: 'It-tnedija falliet'
     },
     unknown: 'Mhux magħruf',
-    hintPendingRestart: 'Erġa\' ibda l-gateway mill-bar tal-istatus biex tapplika din il-bidla.',
+    hintPendingRestart: "Erġa' ibda l-gateway mill-bar tal-istatus biex tapplika din il-bidla.",
     hintGatewayStopped: 'Ibda l-gateway mill-bar tal-istatus biex tikkonnettja.',
     credentialsSet: 'Kredenzjali stabbiliti',
     needsSetup: 'Jeħtieġ konfigurazzjoni',
@@ -1147,7 +1187,8 @@ export const mt = defineLocale({
     openSetupGuide: 'Iftaħ il-gwida tal-konfigurazzjoni',
     required: 'Meħtieġ',
     recommended: 'Rakkomandat',
-    noTokenNeeded: 'Din il-pjattaforma m\'għandhiex bżonn token hawn. Uża l-gwida tal-konfigurazzjoni ta\' fuq, imbagħad attivaha hawn taħt.',
+    noTokenNeeded:
+      "Din il-pjattaforma m'għandhiex bżonn token hawn. Uża l-gwida tal-konfigurazzjoni ta' fuq, imbagħad attivaha hawn taħt.",
     enabled: 'Attivat',
     disabled: 'Diżattivat',
     unsavedChanges: 'Bidliet mhux salvati',
@@ -1156,130 +1197,130 @@ export const mt = defineLocale({
     saved: 'Salvat',
     replaceValue: 'Sostitwixxi l-valur attwali',
     openDocs: 'Iftaħ id-dokumentazzjoni',
-    restartToApply: 'Din il-bidla tidħol fis-seħħ wara li jerġa\' jibda l-gateway.',
-    restartToReconnect: 'Kredenzjali ġodda jidħlu fis-seħħ wara li jerġa\' jibda l-gateway.',
+    restartToApply: "Din il-bidla tidħol fis-seħħ wara li jerġa' jibda l-gateway.",
+    restartToReconnect: "Kredenzjali ġodda jidħlu fis-seħħ wara li jerġa' jibda l-gateway.",
     fieldCopy: {
       TELEGRAM_BOT_TOKEN: {
         label: 'Token tal-bot',
-        help: 'Oħloq bot ma\' @BotFather, imbagħad pejstja t-token li jagħtik.',
-        placeholder: 'Pejstja t-token tal-bot Telegram',
+        help: "Oħloq bot ma' @BotFather, imbagħad pejstja t-token li jagħtik.",
+        placeholder: 'Pejstja t-token tal-bot Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'IDs tal-utent Telegram permessi',
-        help: 'Rakkomandat. IDs numeriċi separati bil-virgola minn @userinfobot. Mingħajr dan, kulħadd jista\' jibgħat DM lill-bot tiegħek.',
+        help: "Rakkomandat. IDs numeriċi separati bil-virgola minn @userinfobot. Mingħajr dan, kulħadd jista' jibgħat DM lill-bot tiegħek."
       },
       TELEGRAM_PROXY: {
         label: 'URL tal-proxy',
-        help: 'Meħtieġ biss fuq netwerks fejn Telegram huwa mblukkat.',
+        help: 'Meħtieġ biss fuq netwerks fejn Telegram huwa mblukkat.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token tal-bot',
-        help: 'Oħloq applikazzjoni fil-Portal tal-Iżviluppaturi tad-Discord, żid bot, imbagħad pejstja t-token tiegħu.',
+        help: 'Oħloq applikazzjoni fil-Portal tal-Iżviluppaturi tad-Discord, żid bot, imbagħad pejstja t-token tiegħu.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'IDs tal-utent Discord permessi',
-        help: 'Rakkomandat. IDs tal-utent Discord separati bil-virgola.',
+        help: 'Rakkomandat. IDs tal-utent Discord separati bil-virgola.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Stil tar-risposta',
-        help: 'l-ewwel, kollha, jew mitfi.',
+        help: 'l-ewwel, kollha, jew mitfi.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Ippermetti l-utenti kollha tad-Discord',
-        help: 'Żvilupp biss. Meta veru, kulħadd jista\' jibgħat messaġġ dirett lill-bot mingħajr lista ta\' awtorizzazzjoni.',
+        help: "Żvilupp biss. Meta veru, kulħadd jista' jibgħat messaġġ dirett lill-bot mingħajr lista ta' awtorizzazzjoni."
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID tal-kanal prinċipali',
-        help: 'Kanal fejn il-bot jibgħat messaġġi proattivi (riżultat tal-cron, tfakkiriet).',
+        help: 'Kanal fejn il-bot jibgħat messaġġi proattivi (riżultat tal-cron, tfakkiriet).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Isem il-kanal prinċipali',
-        help: 'Isem muri għall-kanal prinċipali fir-reġistri u fl-output tal-istatus.',
+        help: 'Isem muri għall-kanal prinċipali fir-reġistri u fl-output tal-istatus.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Ippermetti l-utenti kollha tal-iMessage',
-        help: 'Meta veru, aqbeż il-lista ta\' awtorizzazzjoni ta\' BlueBubbles.',
+        help: "Meta veru, aqbeż il-lista ta' awtorizzazzjoni ta' BlueBubbles."
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Ippermetti l-utenti kollha ta\' Mattermost',
+        label: "Ippermetti l-utenti kollha ta' Mattermost"
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Kanal prinċipali',
+        label: 'Kanal prinċipali'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Ippermetti l-utenti kollha ta\' QQ',
+        label: "Ippermetti l-utenti kollha ta' QQ"
       },
       QQBOT_HOME_CHANNEL: {
-        label: 'Kanal prinċipali ta\' QQ',
-        help: 'Kanal jew grupp predefinit għat-twassil tal-cron.',
+        label: "Kanal prinċipali ta' QQ",
+        help: 'Kanal jew grupp predefinit għat-twassil tal-cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Isem il-kanal prinċipali ta\' QQ',
+        label: "Isem il-kanal prinċipali ta' QQ"
       },
       SLACK_BOT_TOKEN: {
-        label: 'Token tal-bot ta\' Slack',
+        label: "Token tal-bot ta' Slack",
         help: 'Uża t-token tal-bot minn OAuth & Permissions wara li tinstalla l-app Slack tiegħek.',
-        placeholder: 'Ippejstja t-token tal-bot ta\' Slack',
+        placeholder: "Ippejstja t-token tal-bot ta' Slack"
       },
       SLACK_APP_TOKEN: {
-        label: 'Token tal-app ta\' Slack',
+        label: "Token tal-app ta' Slack",
         help: 'Uża t-token fil-livell tal-app meħtieġ għall-Modalità Socket.',
-        placeholder: 'Ippejstja t-token tal-app Slack',
+        placeholder: 'Ippejstja t-token tal-app Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'IDs tal-utenti Slack permessi',
-        help: 'Rakkomandat. IDs tal-utenti Slack separati b\'virgola.',
+        help: "Rakkomandat. IDs tal-utenti Slack separati b'virgola."
       },
       MATTERMOST_URL: {
         label: 'URL tas-server',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token tal-bot',
+        label: 'Token tal-bot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'IDs tal-utenti permessi',
-        help: 'Rakkomandat. IDs tal-utenti Mattermost separati b\'virgola.',
+        help: "Rakkomandat. IDs tal-utenti Mattermost separati b'virgola."
       },
       MATRIX_HOMESERVER: {
         label: 'URL tal-homeserver',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token ta\' aċċess',
+        label: "Token ta' aċċess"
       },
       MATRIX_USER_ID: {
         label: 'ID tal-utent tal-bot',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'IDs tal-utenti Matrix permessi',
-        help: 'Rakkomandat. IDs tal-utenti separati b\'virgola fil-format @user:server.',
+        help: "Rakkomandat. IDs tal-utenti separati b'virgola fil-format @user:server."
       },
       SIGNAL_HTTP_URL: {
         label: 'URL tal-pont Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL ta\' pont REST signal-cli li qed jaħdem.',
+        help: "URL ta' pont REST signal-cli li qed jaħdem."
       },
       SIGNAL_ACCOUNT: {
         label: 'Numru tat-telefon',
-        help: 'In-numru rreġistrat mal-pont signal-cli tiegħek.',
+        help: 'In-numru rreġistrat mal-pont signal-cli tiegħek.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Utenti Signal permessi',
-        help: 'Rakkomandat. Identifikaturi Signal separati b\'virgola.',
+        help: "Rakkomandat. Identifikaturi Signal separati b'virgola."
       },
       WHATSAPP_ENABLED: {
         label: 'Ippermetti l-pont WhatsApp',
-        help: 'Imposta awtomatikament mis-swiċċ ta\' hawn taħt. Ħalliha kif inhi sakemm ma tkunx taf li għandek bżonnha.',
+        help: "Imposta awtomatikament mis-swiċċ ta' hawn taħt. Ħalliha kif inhi sakemm ma tkunx taf li għandek bżonnha."
       },
       WHATSAPP_MODE: {
-        label: 'Modalità pont',
+        label: 'Modalità pont'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Utenti WhatsApp permessi',
-        help: 'Rakkomandat. Numri tat-telefon jew IDs WhatsApp separati b\'virgola.',
-      },
+        help: "Rakkomandat. Numri tat-telefon jew IDs WhatsApp separati b'virgola."
+      }
     },
     advanced: count => `Advanced (${count})`,
     clearField: key => `Clear ${key}`,
@@ -1293,21 +1334,21 @@ export const mt = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     deleting: 'Qed jitħassar...',
     deleted: 'Webhook imħassar',
     deleteTitle: 'Ħassar webhook',
-    deleteDescPrefix: 'Dan se jneħħi b\'mod permanenti',
+    deleteDescPrefix: "Dan se jneħħi b'mod permanenti",
     deleteDescSuffix: '. Dan ma jistax jiġi annullat.',
     newSubscription: 'Sottoskrizzjoni ġdida',
-    restarting: 'Gateway qed jerġa\' jibda...',
-    restartNeeded: 'Il-webhooks huma attivati, iżda l-gateway għadu jrid jerġa\' jibda qabel ma r-riċevitur ikun jista\' jiġi online.',
-    restartGateway: 'Erġa\' ibda l-gateway',
-    restartingGateway: 'Qed jerġa\' jibda...',
-    enabledRestarting: 'Webhooks attivati; gateway qed jerġa\' jibda...',
+    restarting: "Gateway qed jerġa' jibda...",
+    restartNeeded:
+      "Il-webhooks huma attivati, iżda l-gateway għadu jrid jerġa' jibda qabel ma r-riċevitur ikun jista' jiġi online.",
+    restartGateway: "Erġa' ibda l-gateway",
+    restartingGateway: "Qed jerġa' jibda...",
+    enabledRestarting: "Webhooks attivati; gateway qed jerġa' jibda...",
     all: '(kollha)',
     deliverOnly: 'ikkonsenja biss',
     createdTitle: 'Sottoskrizzjoni maħluqa',
@@ -1321,16 +1362,17 @@ export const mt = defineLocale({
     loading: 'Qed jitgħabbu l-webhooks...',
     loadFailed: 'Il-webhooks ma rnexxilhomx jitgħabbu',
     hint: 'Bidliet fis-sottoskrizzjonijiet jiġu hot-reload meta r-riċevitur ikun qed jaħdem. Sottoskrizzjonijiet diżattivati jirrifjutaw avvenimenti deħlin.',
-    empty: 'Għadha m\'hemmx sottoskrizzjonijiet tal-webhook.',
+    empty: "Għadha m'hemmx sottoskrizzjonijiet tal-webhook.",
     disabledTitle: 'Riċevitur tal-webhook diżattivat',
-    disabledBody: 'Il-webhooks huma pjattaforma gateway tagħhom stess. Ippermettihom hawn biex jirċievu avvenimenti HTTP deħlin; il-kanali taċ-chat huma meħtieġa biss meta sottoskrizzjoni twassal lil Telegram, Discord, Slack, jew kanal ieħor.',
+    disabledBody:
+      'Il-webhooks huma pjattaforma gateway tagħhom stess. Ippermettihom hawn biex jirċievu avvenimenti HTTP deħlin; il-kanali taċ-chat huma meħtieġa biss meta sottoskrizzjoni twassal lil Telegram, Discord, Slack, jew kanal ieħor.',
     enable: 'Ippermetti l-webhooks',
     enabling: 'Qed jippermetti...',
     enableRow: 'Ippermetti',
     disableRow: 'Iddiżattiva',
     delete: 'Ħassar',
     fieldDescription: 'Deskrizzjoni',
-    fieldDescriptionPlaceholder: 'X\'jagħmel dan il-webhook (mhux obbligatorju)',
+    fieldDescriptionPlaceholder: "X'jagħmel dan il-webhook (mhux obbligatorju)",
     fieldEvents: 'Avvenimenti',
     fieldEventsPlaceholder: 'separati bil-virgola, ħalli vojta għal kollha',
     fieldSkills: 'Ħiliet',
@@ -1350,7 +1392,7 @@ export const mt = defineLocale({
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Email',
+      email: 'Email'
     },
     subscriptions: (count: number) => `Subscriptions (${count})`,
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -1358,11 +1400,11 @@ export const mt = defineLocale({
     deleteFailed: (name: string) => `Failed to delete "${name}"`,
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     close: 'Agħlaq il-profili',
-    nameHint: 'Ittri żgħar, ċifri, sing u sottolinji. Jibda b\'ittra jew ċifra.',
+    nameHint: "Ittri żgħar, ċifri, sing u sottolinji. Jibda b'ittra jew ċifra.",
     title: 'Profili',
     search: 'Fittex profili...',
     loading: 'Qed jitgħabbew il-profili...',
@@ -1372,7 +1414,7 @@ export const mt = defineLocale({
     manageProfiles: 'Ġestixxi l-profili…',
     color: 'Kulur…',
     autoColor: 'Awto',
-    noProfiles: 'Għad m\'hemmx profili.',
+    noProfiles: "Għad m'hemmx profili.",
     selectPrompt: 'Agħżel profil biex tara d-dettalji tiegħu.',
     refresh: 'Aġġorna l-profili',
     refreshing: 'Qed jiġu aġġornati l-profili',
@@ -1406,7 +1448,7 @@ export const mt = defineLocale({
     modelLabel: 'Mudell',
     skillsLabel: 'Ħiliet',
     notSet: 'Mhux stabbilit',
-    soulDesc: 'Il-prompt tas-sistema u l-istruzzjonijiet tal-persona integrati f\'dan il-profil.',
+    soulDesc: "Il-prompt tas-sistema u l-istruzzjonijiet tal-persona integrati f'dan il-profil.",
     soulOptional: 'fakultattiv',
     soulPlaceholderCloned: 'klonat',
     soulPlaceholderEmpty: 'vojt',
@@ -1436,7 +1478,7 @@ export const mt = defineLocale({
     env: 'env',
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   cron: {
     close: 'Agħlaq cron',
@@ -1450,14 +1492,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'pawżat',
       disabled: 'diżattivat',
       error: 'żball',
-      completed: 'kompletat',
+      completed: 'kompletat'
     },
     deliveryLabels: {
       local: 'Dan id-desktop',
       email: 'Posta elettronika',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     scheduleLabels: {
       daily: 'Kuljum',
@@ -1466,16 +1508,16 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Kull xahar',
       hourly: 'Kull siegħa',
       'every-15-minutes': 'Kull 15-il minuta',
-      custom: 'Personalizzat',
+      custom: 'Personalizzat'
     },
     scheduleHints: {
-      daily: 'Kuljum fid-9:00 ta\' filgħodu',
-      weekdays: 'Mit-Tnejn sal-Ġimgħa fid-9:00 ta\' filgħodu',
-      weekly: 'Kull Tnejn fid-9:00 ta\' filgħodu',
-      monthly: 'L-ewwel jum ta\' kull xahar fid-9:00 ta\' filgħodu',
-      hourly: 'Fil-bidu ta\' kull siegħa',
+      daily: "Kuljum fid-9:00 ta' filgħodu",
+      weekdays: "Mit-Tnejn sal-Ġimgħa fid-9:00 ta' filgħodu",
+      weekly: "Kull Tnejn fid-9:00 ta' filgħodu",
+      monthly: "L-ewwel jum ta' kull xahar fid-9:00 ta' filgħodu",
+      hourly: "Fil-bidu ta' kull siegħa",
       'every-15-minutes': 'Kull 15-il minuta',
-      custom: 'Sintassi Cron jew lingwa naturali',
+      custom: 'Sintassi Cron jew lingwa naturali'
     },
     days: {
       '0': 'Il-Ħadd',
@@ -1485,17 +1527,18 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Il-Ħamis',
       '5': 'Il-Ġimgħa',
       '6': 'Is-Sibt',
-      '7': 'Il-Ħadd',
+      '7': 'Il-Ħadd'
     },
-    topOfHour: 'Fil-bidu ta\' kull siegħa',
+    topOfHour: "Fil-bidu ta' kull siegħa",
     newCron: 'Cron ġdid',
-    emptyDescNew: 'Ippjana prompt biex jaħdem fuq espressjoni cron. OpenAmer se jmexxih u jwassal ir-riżultati lid-destinazzjoni li tagħżel.',
+    emptyDescNew:
+      'Ippjana prompt biex jaħdem fuq espressjoni cron. OpenAmer se jmexxih u jwassal ir-riżultati lid-destinazzjoni li tagħżel.',
     emptyDescSearch: 'Ipprova tfittxija aktar wiesgħa.',
-    emptyTitleNew: 'Għad m\'hemmx xogħlijiet skedati',
+    emptyTitleNew: "Għad m'hemmx xogħlijiet skedati",
     emptyTitleSearch: 'Ebda riżultati',
     last: 'L-aħħar:',
     next: 'Li jmiss:',
-    noRuns: 'Għad m\'hemmx eżekuzzjonijiet',
+    noRuns: "Għad m'hemmx eżekuzzjonijiet",
     manage: 'Immaniġġja',
     showRuns: 'Uri l-eżekuzzjonijiet',
     hideRuns: 'Aħbi l-eżekuzzjonijiet',
@@ -1509,7 +1552,7 @@ Leave blank to keep the ${mode} default.`,
     edit: 'Editja cron',
     deleteTitle: 'Tħassar xogħol cron?',
     deleteDescPrefix: 'Dan se jneħħi',
-    deleteDescSuffix: 'b\'mod permanenti. Se jieqaf jaħdem minnufih.',
+    deleteDescSuffix: "b'mod permanenti. Se jieqaf jaħdem minnufih.",
     deleting: 'Qed jitħassar...',
     resumed: 'Cron imkompli',
     paused: 'Cron sospiż',
@@ -1525,9 +1568,10 @@ Leave blank to keep the ${mode} default.`,
     editTitle: 'Editja cron job',
     createTitle: 'Cron job ġdid',
     editDesc: 'Aġġorna l-iskeda, il-messaġġ, jew il-mira tal-kunsinna. Il-bidliet japplikaw fit-tħaddima li jmiss.',
-    createDesc: 'Ippjana messaġġ biex jaħdem awtomatikament. Uża sintassi cron jew frażi naturali bħal "kull 15-il minuta".',
+    createDesc:
+      'Ippjana messaġġ biex jaħdem awtomatikament. Uża sintassi cron jew frażi naturali bħal "kull 15-il minuta".',
     nameLabel: 'Isem',
-    namePlaceholder: 'Briefing ta\' filgħodu',
+    namePlaceholder: "Briefing ta' filgħodu",
     promptLabel: 'Messaġġ',
     promptPlaceholder: 'Agħmel sommarju tal-ħjut Slack mhux moqrija tiegħi u ibgħatli bl-email l-aqwa 5...',
     frequencyLabel: 'Frekwenza',
@@ -1536,18 +1580,18 @@ Leave blank to keep the ${mode} default.`,
     modelLabel: 'Mudell',
     modelDefault: 'Predefinit (mudell globali)',
     customScheduleLabel: 'Skeda personalizzata',
-    customPlaceholder: '0 9 * * * jew fil-jiem tal-ġimgħa fid-9 ta\' filgħodu',
+    customPlaceholder: "0 9 * * * jew fil-jiem tal-ġimgħa fid-9 ta' filgħodu",
     customHint: 'Espressjoni cron, jew frażijiet bħal "kull siegħa" jew "fil-jiem tal-ġimgħa fid-9 ta\' filgħodu".',
     optional: 'Fakultattiv',
     promptRequired: 'Il-messaġġ huwa meħtieġ.',
     promptScheduleRequired: 'Il-messaġġ u l-iskeda huma meħtieġa.',
     scheduleRequired: 'L-iskeda hija meħtieġa.',
-    scriptOnlyEditHint: 'Xogħol ta\' skript biss (mingħajr prompt AI). ID tax-xogħol:',
+    scriptOnlyEditHint: "Xogħol ta' skript biss (mingħajr prompt AI). ID tax-xogħol:",
     saveChanges: 'Issejvja l-bidliet',
     createAction: 'Oħloq cron',
     tabs: {
       jobs: 'Xogħlijiet',
-      blueprints: 'Mudelli',
+      blueprints: 'Mudelli'
     },
     blueprints: {
       tab: 'Mudelli',
@@ -1560,8 +1604,8 @@ Leave blank to keep the ${mode} default.`,
       scheduled: 'Mudell skedat',
       loading: 'Qed jitgħabbu l-mudelli...',
       failedLoad: 'Falliet it-tagħbija tal-mudelli',
-      emptyTitle: 'M\'hemmx mudelli disponibbli',
-      emptyDesc: 'M\'hemmx mudelli ta\' awtomazzjoni disponibbli fuq dan il-backend.',
+      emptyTitle: "M'hemmx mudelli disponibbli",
+      emptyDesc: "M'hemmx mudelli ta' awtomazzjoni disponibbli fuq dan il-backend."
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -1570,7 +1614,7 @@ Leave blank to keep the ${mode} default.`,
     everyDayOfWeekAt: (day, time) => `Every ${day} at ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Monthly on day ${dayOfMonth} at ${time}`,
     everyHourAt: minute => `Every hour at :${minute}`,
-    actionsFor: title => `Actions for ${title}`,
+    actionsFor: title => `Actions for ${title}`
   },
   artifacts: {
     search: 'Fittex l-artifatti...',
@@ -1604,14 +1648,14 @@ Leave blank to keep the ${mode} default.`,
     copyUrl: 'Ikkopja URL',
     copyPath: 'Ikkopja l-mogħdija',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'Sessjoni ġdida',
       skills: 'Kapaċitajiet',
       messaging: 'Messaġġi',
-      artifacts: 'Artefatti',
+      artifacts: 'Artefatti'
     },
     searchAria: 'Fittex sessjonijiet',
     searchPlaceholder: 'Fittex sessjonijiet…',
@@ -1641,11 +1685,11 @@ Leave blank to keep the ${mode} default.`,
       addFolderTitle: 'Żid kartella',
       namePlaceholder: 'eż. Skunkworks',
       foldersLabel: 'Kartelli',
-      ideaPlaceholder: 'Dan il-proġett dwar xiex? (salvat f\'IDEA.md)',
+      ideaPlaceholder: "Dan il-proġett dwar xiex? (salvat f'IDEA.md)",
       ideaGenerate: 'Iġġenera idea',
       ideaGenerating: 'Qed jiġġenera…',
       ideaShuffle: 'Ħawwad il-mudelli',
-      noFolders: 'L-ebda folder ma ġie miżjud s\'issa.',
+      noFolders: "L-ebda folder ma ġie miżjud s'issa.",
       addFolder: 'Żid folder',
       primaryBadge: 'primarju',
       removeFolder: 'Neħħi',
@@ -1661,8 +1705,10 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'Ikkopja l-mogħdija',
       removeFromSidebar: 'Aħbi mill-ġenb',
       createFailed: 'Ma setax joħloq il-proġett',
-      staleBackend: 'Aġġorna l-backend ta\' OpenAmer biex toħloq proġetti — il-backend tiegħek huwa eqdem minn din l-app desktop (Impostazzjonijiet → Aġġornamenti → Backend).',
-      deleteConfirm: 'Dan ineħħi l-proġett salvat minn OpenAmer. Il-fajls, ir-repożitorji git, u l-worktrees jibqgħu intatti.',
+      staleBackend:
+        "Aġġorna l-backend ta' OpenAmer biex toħloq proġetti — il-backend tiegħek huwa eqdem minn din l-app desktop (Impostazzjonijiet → Aġġornamenti → Backend).",
+      deleteConfirm:
+        'Dan ineħħi l-proġett salvat minn OpenAmer. Il-fajls, ir-repożitorji git, u l-worktrees jibqgħu intatti.',
       startWork: 'Worktree ġdid',
       newWorktreeTitle: 'Worktree ġdid',
       newWorktreeDesc: 'Semmi l-fergħa għal dan il-worktree.',
@@ -1682,15 +1728,17 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'Ma nstabux fergħat',
       removeWorktree: 'Neħħi worktree',
       removeWorktreeFailed: 'Ma setax jitneħħa worktree (bidliet mhux ikkummittjati?)',
-      removeWorktreeConfirm: 'Neħħih minn git (iħassar id-direttorju tal-worktree; il-fergħa tibqa’), jew aħbi biss il-lane mis-sidebar u ħalli l-worktree fuq id-disk.',
-      removeWorktreeDirty: 'Dan il-worktree għandu bidliet mhux ikkummittjati. Neħħih bil-forza (jarmi dawk il-bidliet), jew aħbi biss il-lane u ħallih fuq id-disk.',
+      removeWorktreeConfirm:
+        'Neħħih minn git (iħassar id-direttorju tal-worktree; il-fergħa tibqa’), jew aħbi biss il-lane mis-sidebar u ħalli l-worktree fuq id-disk.',
+      removeWorktreeDirty:
+        'Dan il-worktree għandu bidliet mhux ikkummittjati. Neħħih bil-forza (jarmi dawk il-bidliet), jew aħbi biss il-lane u ħallih fuq id-disk.',
       forceRemove: 'Neħħi bil-forza',
       back: 'Il-proġetti kollha',
       ideaLabel: 'Idea',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     loading: 'Qed jitgħabba…',
     loadMore: 'Għabbi aktar',
@@ -1704,7 +1752,7 @@ Leave blank to keep the ${mode} default.`,
       archive: 'Arkkivja',
       newWindow: 'Tieqa ġdida',
       hideTabBar: 'Aħbi l-bar tat-tabs',
-      openInNewTab: 'Iftaħ f\'tab ġdid',
+      openInNewTab: "Iftaħ f'tab ġdid",
       openInSplit: 'Iftaħ fi split',
       copyIdFailed: 'Ma setax jiġi kkopjat l-ID tas-sessjoni',
       sessionActions: 'Azzjonijiet tas-sessjoni',
@@ -1725,24 +1773,24 @@ Leave blank to keep the ${mode} default.`,
       handoffOrigin: platform => `Handed off from ${platform}`,
       ownedByProfile: profile => `Profile: ${profile}`,
       untitledChat: id => `Chat ${id}`,
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Aktar kmieni llum',
       yesterday: 'Ilbieraħ',
       thisWeek: 'Aktar kmieni din il-ġimgħa',
       lastWeek: 'Il-ġimgħa li għaddiet',
-      thisMonth: 'Aktar kmieni dan ix-xahar',
+      thisMonth: 'Aktar kmieni dan ix-xahar'
     },
     noMatch: query => `No sessions match “${query}”.`,
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     message: 'Messaġġ',
     placeholderStarting: 'Qed jibda OpenAmer...',
-    placeholderReconnecting: 'Qed jerġa\' jikkonnettja ma\' OpenAmer…',
+    placeholderReconnecting: "Qed jerġa' jikkonnettja ma' OpenAmer…",
     placeholderFollowUp: 'Ibgħat segwitu',
     startVoice: 'Ibda konversazzjoni bil-vuċi',
     queueMessage: 'Ikkjuwa messaġġ',
@@ -1753,7 +1801,7 @@ Leave blank to keep the ${mode} default.`,
     transcribing: 'Qed jittraskrivi',
     thinking: 'Qed jaħseb',
     muted: 'Mitfi',
-    listening: 'Qed jisma\'',
+    listening: "Qed jisma'",
     muteMic: 'Itfi l-mikrofonu',
     unmuteMic: 'Ixgħel il-mikrofonu',
     stopListening: 'Waqqaf is-smigħ u ibgħat',
@@ -1763,8 +1811,8 @@ Leave blank to keep the ${mode} default.`,
     stopDictation: 'Waqqaf id-dettatura',
     transcribingDictation: 'Traskrizzjoni tad-dettatura',
     voiceDictation: 'Dettatura bil-vuċi',
-    speakReplies: 'Aqra t-tweġibiet b\'leħen għoli',
-    stopSpeakingReplies: 'Waqqaf il-qari tat-tweġibiet b\'leħen għoli',
+    speakReplies: "Aqra t-tweġibiet b'leħen għoli",
+    stopSpeakingReplies: "Waqqaf il-qari tat-tweġibiet b'leħen għoli",
     lookupLoading: 'Qed infittex…',
     lookupNoMatches: 'L-ebda riżultat.',
     lookupTry: 'Prova',
@@ -1773,12 +1821,12 @@ Leave blank to keep the ${mode} default.`,
     hotkeys: 'Tasti rapidi',
     helpFooter: 'jiftaħ il-pannell sħiħ · backspace jagħlaq',
     commandDescs: {
-      '/help': 'lista sħiħa ta\' kmandi + tasti rapidi',
+      '/help': "lista sħiħa ta' kmandi + tasti rapidi",
       '/clear': 'ibda sessjoni ġdida',
       '/resume': 'kompli sessjoni preċedenti',
-      '/details': 'ikkontrolla l-livell ta\' dettall tat-traskrizzjoni',
+      '/details': "ikkontrolla l-livell ta' dettall tat-traskrizzjoni",
       '/copy': 'ikkopja l-għażla jew l-aħħar messaġġ tal-assistent',
-      '/quit': 'oħroġ minn openamer',
+      '/quit': 'oħroġ minn openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'irreferi għal fajls, folders, URLs, git',
@@ -1788,14 +1836,14 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'Ibgħat id-dawra li jmiss fil-kju',
       'keybinds.openPanel': 'Ix-xortkats kollha tat-tastiera',
       'composer.cancel': 'Agħlaq il-popover · ikkanċella l-esekuzzjoni',
-      'composer.history': 'Iċċikla l-popover / l-istorja',
+      'composer.history': 'Iċċikla l-popover / l-istorja'
     },
     attachUrlTitle: 'Ittakka URL',
     attachUrlDesc: 'OpenAmer se jiġbed il-paġna u jinkludiha bħala kuntest għal din id-dawra.',
     urlPlaceholder: 'https://example.com/post',
     urlHintPre: 'Inkludi l-URL sħiħa, eż.',
     attach: 'Ittakka',
-    attachmentOnly: 'Dawra b\'attakkament biss',
+    attachmentOnly: "Dawra b'attakkament biss",
     emptyTurn: 'Dawra vojta',
     editingInComposer: 'Qed teditja fil-kompożitur',
     editingQueuedInComposer: 'Qed teditja dawra fil-kju fil-kompożitur',
@@ -1806,12 +1854,12 @@ Leave blank to keep the ${mode} default.`,
     queueResume: 'Kompli',
     queueResumeTip: 'Imwaqqaf minn Stop — kompli ibgħat id-dawriet fil-kju',
     queueStuckTitle: 'Messaġġ fil-kju ma ntbagħatx',
-    queueStuckBody: 'Dawra fil-kju baqgħet ma tintbagħatx. Għadha fil-kju — erġa\' pprova tibgħatha.',
+    queueStuckBody: "Dawra fil-kju baqgħet ma tintbagħatx. Għadha fil-kju — erġa' pprova tibgħatha.",
     previewUnavailable: 'Dehra minn qabel mhix disponibbli',
     dictating: 'Qed tiddetta',
     preparingAudio: 'Qed jitħejja l-awdjo',
     speakingResponse: 'Qed jitkellem ir-rispons',
-    readingAloud: 'Qed jinqara b\'leħen għoli',
+    readingAloud: "Qed jinqara b'leħen għoli",
     themeSuggestions: 'Suġġerimenti għat-tema tad-desktop',
     noMatchingThemes: 'Ebda tema ma taqbel.',
     themeTryPre: 'Ipprova',
@@ -1831,19 +1879,20 @@ Leave blank to keep the ${mode} default.`,
     snippets: {
       codeReview: {
         label: 'Reviżjoni tal-kodiċi',
-        description: 'Ikkontrolla l-bidla attwali għal regressjonijiet, każijiet ta\' xifer minsija, u testijiet neqsin.',
-        text: 'Jekk jogħġbok irrevedi dan għal żbalji, regressjonijiet, u testijiet neqsin.',
+        description:
+          "Ikkontrolla l-bidla attwali għal regressjonijiet, każijiet ta' xifer minsija, u testijiet neqsin.",
+        text: 'Jekk jogħġbok irrevedi dan għal żbalji, regressjonijiet, u testijiet neqsin.'
       },
       implementationPlan: {
-        label: 'Pjan ta\' implimentazzjoni',
-        description: 'Ippjana approċċ qabel ma tmiss il-kodiċi biex id-diff jibqa\' ffukat.',
-        text: 'Jekk jogħġbok agħmel pjan ta\' implimentazzjoni konċiż qabel ma tibdel il-kodiċi.',
+        label: "Pjan ta' implimentazzjoni",
+        description: "Ippjana approċċ qabel ma tmiss il-kodiċi biex id-diff jibqa' ffukat.",
+        text: "Jekk jogħġbok agħmel pjan ta' implimentazzjoni konċiż qabel ma tibdel il-kodiċi."
       },
       explainThis: {
         label: 'Spjega dan',
         description: 'Spjega kif jaħdem il-kodiċi magħżul u agħmel links għall-fajls ewlenin.',
-        text: 'Jekk jogħġbok spjega kif jaħdem dan u urini l-fajls ewlenin.',
-      },
+        text: 'Jekk jogħġbok spjega kif jaħdem dan u urini l-fajls ewlenin.'
+      }
     },
     wakingProfile: profile => `Waking up ${profile}…`,
     newSessionPlaceholders: [
@@ -1853,7 +1902,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -1862,7 +1911,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
@@ -1870,7 +1919,7 @@ Leave blank to keep the ${mode} default.`,
     previewLabel: label => `Preview ${label}`,
     couldNotPreview: label => `Could not preview ${label}`,
     removeAttachment: label => `Remove ${label}`,
-    url: 'URL…',
+    url: 'URL…'
   },
   statusStack: {
     agents: 'Aġenti',
@@ -1893,12 +1942,13 @@ Leave blank to keep the ${mode} default.`,
       viewAsList: 'Ara bħala lista',
       revert: 'Irreverti',
       revertAll: 'Irreverti kollha',
-      revertConfirm: 'Ħassar il-bidliet f\'dan il-fajl u rrestawrah għall-qagħda kkommessa? Dan ma jistax jiġi annullat.',
+      revertConfirm:
+        "Ħassar il-bidliet f'dan il-fajl u rrestawrah għall-qagħda kkommessa? Dan ma jistax jiġi annullat.",
       revertAllConfirm: 'Ħassar kull bidla u rrestawra l-fajls għall-qagħda kkommessa? Dan ma jistax jiġi annullat.',
       staged: 'Istaġġjat',
       noChanges: 'Ebda bidliet',
       notRepo: 'Mhux repożitorju git',
-      noDiff: 'Ebda diff x\'jintwera',
+      noDiff: "Ebda diff x'jintwera",
       scopeUncommitted: 'Mhux ikkommess',
       scopeBranch: 'Fergħa',
       scopeLastTurn: 'L-aħħar dawra',
@@ -1911,7 +1961,8 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'Iftaħ PR',
       ghMissing: 'Installa l-GitHub CLI (gh) u idħol biex tiftaħ PRs',
       agentShip: 'Staqsi lil OpenAmer biex jiftaħ PR',
-      agentShipPrompt: 'Irrevedi l-bidliet attwali, ikkomettihom b\'messaġġ ċar tal-komett konvenzjonali, imbotta l-fergħa, u iftaħ pull request.',
+      agentShipPrompt:
+        "Irrevedi l-bidliet attwali, ikkomettihom b'messaġġ ċar tal-komett konvenzjonali, imbotta l-fergħa, u iftaħ pull request.",
       newBranch: 'Fergħa ġdida',
       worktrees: 'Siġar tax-xogħol',
       changed: count => `${count} changed`,
@@ -1919,12 +1970,12 @@ Leave blank to keep the ${mode} default.`,
       behind: count => `${count} behind`,
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -1935,55 +1986,62 @@ Leave blank to keep the ${mode} default.`,
       pydeps: 'Qed inlesti…',
       update: 'Qed naġġorna lil OpenAmer…',
       rebuild: 'Qed nibni mill-ġdid l-app tad-desktop…',
-      restart: 'Qed jerġa\' jibda OpenAmer…',
+      restart: "Qed jerġa' jibda OpenAmer…",
       done: 'Aġġornament lest',
       manual: 'Aġġorna mit-terminal tiegħek',
       guiSkew: 'Aġġorna l-app tad-desktop',
-      error: 'Aġġornament sospiż',
+      error: 'Aġġornament sospiż'
     },
     checking: 'Qed nfittxu aġġornamenti…',
     checkFailedTitle: 'Ma stajna niċċekkjaw għal aġġornamenti',
-    tryAgain: 'Erġa\' prova',
+    tryAgain: "Erġa' prova",
     notAvailableTitle: 'Aġġornament mhux disponibbli',
-    unsupportedMessage: 'Din il-verżjoni ta\' OpenAmer ma tistax taġġorna ruħha mill-app.',
-    connectionRetry: 'Iċċekkja l-konnessjoni tiegħek u erġa\' prova.',
+    unsupportedMessage: "Din il-verżjoni ta' OpenAmer ma tistax taġġorna ruħha mill-app.",
+    connectionRetry: "Iċċekkja l-konnessjoni tiegħek u erġa' prova.",
     latestBody: 'Qed tuża l-verżjoni l-aktar reċenti.',
     latestBodyBackend: 'Il-backend qed juża l-verżjoni l-aktar reċenti.',
     allSetTitle: 'Kollox lest',
     availableTitle: 'Aġġornament ġdid disponibbli',
-    availableBody: 'Verżjoni ġdida ta\' OpenAmer hija lesta biex tiġi installata.',
+    availableBody: "Verżjoni ġdida ta' OpenAmer hija lesta biex tiġi installata.",
     availableTitleBackend: 'Aġġornament tal-backend disponibbli',
     availableBodyBackend: 'Verżjoni aktar ġdida tal-backend OpenAmer konness hija lesta biex tiġi installata.',
-    availableBodyNoChangelog: 'Verżjoni aktar ġdida hija lesta. In-noti tar-rilaxx mhumiex disponibbli għal dan it-tip ta\' installazzjoni.',
+    availableBodyNoChangelog:
+      "Verżjoni aktar ġdida hija lesta. In-noti tar-rilaxx mhumiex disponibbli għal dan it-tip ta' installazzjoni.",
     updateNow: 'Aġġorna issa',
     maybeLater: 'Forsi aktar tard',
     manualTitle: 'Aġġorna mit-terminal tiegħek',
-    manualBody: 'Installejt OpenAmer mil-linja tal-kmand, għalhekk l-aġġornamenti jsiru hemmhekk ukoll. Pejstja dan fit-terminal tiegħek:',
+    manualBody:
+      'Installejt OpenAmer mil-linja tal-kmand, għalhekk l-aġġornamenti jsiru hemmhekk ukoll. Pejstja dan fit-terminal tiegħek:',
     manualPickedUp: 'OpenAmer se jieħu l-verżjoni l-ġdida meta tniedih il-ħin li jmiss.',
     guiSkewTitle: 'Aġġorna l-app desktop',
-    guiSkewBody: 'Il-backend ġie aġġornat, iżda dan il-pakkett tal-app desktop ma nbidilx. Aġġorna jew erġa\' instella l-app desktop OpenAmer (l-AppImage / .deb / .rpm tiegħek) biex taqbel.',
+    guiSkewBody:
+      "Il-backend ġie aġġornat, iżda dan il-pakkett tal-app desktop ma nbidilx. Aġġorna jew erġa' instella l-app desktop OpenAmer (l-AppImage / .deb / .rpm tiegħek) biex taqbel.",
     copy: 'Ikkopja',
     copied: 'Ikkupjat',
     done: 'Lest',
-    applyingBody: 'L-aġġornatur ta\' OpenAmer jieħu f\'idejh fi tieqa tiegħu stess u jerġa\' jiftaħ OpenAmer awtomatikament meta jkun lest. Jekk jogħġbok terġax tiftaħ OpenAmer int stess waqt li jkun qed jaġġorna.',
-    applyingBodyBackend: 'Il-backend remot qed japplika l-aġġornament u se jerġa\' jibda. OpenAmer jerġa\' jikkonnettja awtomatikament meta jerġa\' lura.',
-    applyingClose: 'Din it-tieqa se tingħalaq waqt li jkun qed isir l-aġġornament, imbagħad OpenAmer jerġa\' jiftaħ waħdu.',
+    applyingBody:
+      "L-aġġornatur ta' OpenAmer jieħu f'idejh fi tieqa tiegħu stess u jerġa' jiftaħ OpenAmer awtomatikament meta jkun lest. Jekk jogħġbok terġax tiftaħ OpenAmer int stess waqt li jkun qed jaġġorna.",
+    applyingBodyBackend:
+      "Il-backend remot qed japplika l-aġġornament u se jerġa' jibda. OpenAmer jerġa' jikkonnettja awtomatikament meta jerġa' lura.",
+    applyingClose:
+      "Din it-tieqa se tingħalaq waqt li jkun qed isir l-aġġornament, imbagħad OpenAmer jerġa' jiftaħ waħdu.",
     errorTitle: 'L-aġġornament ma tlestiex',
-    errorBody: 'M\'hemm l-ebda problema — ma ntilifx xejn. Tista\' terġa\' tipprova bħalissa.',
+    errorBody: "M'hemm l-ebda problema — ma ntilifx xejn. Tista' terġa' tipprova bħalissa.",
     notNow: 'Mhux bħalissa',
     applyStatus: {
       preparing: 'Qed jaġġorna l-backend…',
       pulling: 'Backend qed jaġġorna…',
-      restarting: 'Il-backend qed jerġa\' jibda biex jgħabbi l-aġġornament…',
+      restarting: "Il-backend qed jerġa' jibda biex jgħabbi l-aġġornament…",
       notAvailable: 'L-aġġornament mhux disponibbli għal dan il-backend.',
       failed: 'L-aġġornament tal-backend falla.',
-      noReturn: 'Il-backend ma reġax online. L-aġġornament jista\' ma jkunx tlest — iċċekkja l-host tal-backend.',
+      noReturn: "Il-backend ma reġax online. L-aġġornament jista' ma jkunx tlest — iċċekkja l-host tal-backend."
     },
     appErrors: {
-      updateLocked: 'L-aġġornament twaqqaf: tieqa oħra ta\' OpenAmer jew terminal li qed iħaddem openamer qed iżomm din l-installazzjoni miftuħa. Agħlaq u erġa\' pprova.',
-      updateFailed: 'L-aġġornament ma tlestiex. Tinkwetax — ma ntilef xejn. Tista\' terġa\' tipprova issa.',
+      updateLocked:
+        "L-aġġornament twaqqaf: tieqa oħra ta' OpenAmer jew terminal li qed iħaddem openamer qed iżomm din l-installazzjoni miftuħa. Agħlaq u erġa' pprova.",
+      updateFailed: "L-aġġornament ma tlestiex. Tinkwetax — ma ntilef xejn. Tista' terġa' tipprova issa."
     },
-    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
+    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`
   },
   install: {
     stageStates: {
@@ -1991,24 +2049,27 @@ Leave blank to keep the ${mode} default.`,
       running: 'Qed jinstalla',
       succeeded: 'Lest',
       skipped: 'Maqbeż',
-      failed: 'Falla',
+      failed: 'Falla'
     },
     oneTimeTitle: 'OpenAmer jeħtieġ installazzjoni darba biss',
     installCommand: 'Kmand tal-installazzjoni',
     copyCommand: 'Ikkopja l-kmand',
     viewDocs: 'Ara d-dokumenti tal-installazzjoni',
-    installTo: 'Se jiġi installat f\'',
-    retryAfterRun: 'Ħaddimtu -- erġa\' pprova',
+    installTo: "Se jiġi installat f'",
+    retryAfterRun: "Ħaddimtu -- erġa' pprova",
     setupChoiceTitle: 'Issettja OpenAmer Desktop',
-    setupChoiceDesc: 'Qabbad din l-app ma\' gateway OpenAmer li diġà qed tmexxi, jew instella OpenAmer lokalment fuq dan il-kompjuter.',
-    connectExistingTitle: 'Qabbad ma\' OpenAmer eżistenti',
+    setupChoiceDesc:
+      "Qabbad din l-app ma' gateway OpenAmer li diġà qed tmexxi, jew instella OpenAmer lokalment fuq dan il-kompjuter.",
+    connectExistingTitle: "Qabbad ma' OpenAmer eżistenti",
     connectExistingShort: 'Qabbad eżistenti',
-    connectExistingDesc: 'Uża backend remot b\'token tas-sessjoni jew dħul fil-browser. Mhux se tibda ebda installazzjoni lokali.',
+    connectExistingDesc:
+      "Uża backend remot b'token tas-sessjoni jew dħul fil-browser. Mhux se tibda ebda installazzjoni lokali.",
     installLocalTitle: 'Instella OpenAmer lokalment',
     installLocalDesc: 'Niżżel OpenAmer, oħloq l-ambjent Python tiegħu, u mexxi l-backend fuq dan il-kompjuter.',
-    localStartUnavailable: 'L-installazzjoni lokali ma setgħetx tibda. Erġa\' ibda OpenAmer Desktop u erġa\' pprova.',
-    remoteSetupTitle: 'Ikkonnettja ma\' OpenAmer eżistenti',
-    remoteSetupDesc: 'Daħħal l-URL tal-gateway tiegħek. OpenAmer Desktop se jiskopri jekk għandux bżonn token jew dħul mill-browser.',
+    localStartUnavailable: "L-installazzjoni lokali ma setgħetx tibda. Erġa' ibda OpenAmer Desktop u erġa' pprova.",
+    remoteSetupTitle: "Ikkonnettja ma' OpenAmer eżistenti",
+    remoteSetupDesc:
+      'Daħħal l-URL tal-gateway tiegħek. OpenAmer Desktop se jiskopri jekk għandux bżonn token jew dħul mill-browser.',
     remoteUrlTitle: 'URL tal-gateway',
     remoteUrlDesc: 'Uża l-URL bażi tal-gateway OpenAmer, inkluż https:// meta remot.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2027,36 +2088,40 @@ Leave blank to keep the ${mode} default.`,
     incompleteSignInTest: 'Idħol qabel ma tittestja dan il-gateway protett bl-OAuth.',
     incompleteTokenTest: 'Daħħal token tas-sessjoni qabel tittestja dan il-gateway.',
     testConnection: 'Ittestja l-konnessjoni',
-    applyRemote: 'Applika u erġa\' qabbad',
+    applyRemote: "Applika u erġa' qabbad",
     backToSetup: 'Lura',
     failedTitle: 'L-installazzjoni falliet',
     settingUpTitle: 'Qed jitwaqqaf OpenAmer Agent',
     finishingTitle: 'Qed jitlesta',
-    failedDesc: 'Wieħed mill-passi tal-installazzjoni falla. Fuq Windows, dan jista\' jiġri jekk ikun qed jaħdem OpenAmer CLI ieħor jew istanza deskop oħra. Waqqaf kwalunkwe istanza OpenAmer li tkun qed taħdem, imbagħad erġa\' pprova. Iċċekkja d-dettalji hawn taħt jew il-log tad-desktop għat-traskrizzjoni sħiħa.',
-    activeDesc: 'Dan huwa setup ta\' darba biss. L-installatur ta\' OpenAmer qed jniżżel id-dipendenzi u jikkonfigura l-magna tiegħek. Il-ftuħiet li jmiss se jaqbżu dan il-pass.',
+    failedDesc:
+      "Wieħed mill-passi tal-installazzjoni falla. Fuq Windows, dan jista' jiġri jekk ikun qed jaħdem OpenAmer CLI ieħor jew istanza deskop oħra. Waqqaf kwalunkwe istanza OpenAmer li tkun qed taħdem, imbagħad erġa' pprova. Iċċekkja d-dettalji hawn taħt jew il-log tad-desktop għat-traskrizzjoni sħiħa.",
+    activeDesc:
+      "Dan huwa setup ta' darba biss. L-installatur ta' OpenAmer qed jniżżel id-dipendenzi u jikkonfigura l-magna tiegħek. Il-ftuħiet li jmiss se jaqbżu dan il-pass.",
     fetchingManifest: 'Qed jittieħed il-manifest tal-installatur...',
     error: 'Żball',
     hideOutput: 'Aħbi l-ħruġ tal-installatur',
     showOutput: 'Uri l-ħruġ tal-installatur',
-    noOutput: 'S\'issa m\'hemmx ħruġ.',
+    noOutput: "S'issa m'hemmx ħruġ.",
     cancelling: 'Qed jiġi kkanċellat...',
     cancelInstall: 'Ikkanċella l-installazzjoni',
     transcriptSaved: 'Traskrizzjoni sħiħa salvata fi',
     copiedOutput: 'Ikkupjat!',
     copyOutput: 'Ikkopja l-ħruġ',
-    reloadRetry: 'Erġa\' tgħabbi u erġa\' pprova',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    reloadRetry: "Erġa' tgħabbi u erġa' pprova",
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
     signInWith: provider => `Sign in with ${provider}`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
-    headerTitle: 'Ejja nissettjawk ma\' OpenAmer Agent',
+    headerTitle: "Ejja nissettjawk ma' OpenAmer Agent",
     headerDesc: 'Qabbad fornitur tal-mudell biex tibda tċċettja. Ħafna għażliet jeħtieġu klikk wieħed.',
-    preparingInstall: 'OpenAmer qed jispiċċa l-installazzjoni. Dan ġeneralment idum inqas minn minuta fl-ewwel tħaddim.',
+    preparingInstall:
+      'OpenAmer qed jispiċċa l-installazzjoni. Dan ġeneralment idum inqas minn minuta fl-ewwel tħaddim.',
     starting: 'Qed jibda OpenAmer…',
     lookingUpProviders: 'Qed infittxu l-fornituri...',
     collapse: 'Iċċekken',
@@ -2067,32 +2132,33 @@ Leave blank to keep the ${mode} default.`,
     connected: 'Konness',
     featuredPitch: 'Abbonament wieħed, 300+ mudelli avvanzati — il-mod rakkomandat biex tħaddem OpenAmer',
     fireworksPitch: 'API diretta tal-mudell — mudelli avvanzati ospitati minn Fireworks',
-    openRouterPitch: 'Ċavetta waħda, mijiet ta\' mudelli — default solidu',
+    openRouterPitch: "Ċavetta waħda, mijiet ta' mudelli — default solidu",
     apiKeyOptions: {
       fireworks: {
         short: 'API diretta tal-mudell',
-        description: 'Aċċess dirett għal mudelli ospitati minn Fireworks AI.',
+        description: 'Aċċess dirett għal mudelli ospitati minn Fireworks AI.'
       },
       openrouter: {
         short: 'ċavetta waħda, ħafna mudelli',
-        description: 'Jospita mijiet ta\' mudelli wara ċavetta waħda. Default tajjeb għal installazzjonijiet ġodda.',
+        description: "Jospita mijiet ta' mudelli wara ċavetta waħda. Default tajjeb għal installazzjonijiet ġodda."
       },
       openai: {
         short: 'Mudelli tal-klassi GPT',
-        description: 'Aċċess dirett għal mudelli OpenAI.',
+        description: 'Aċċess dirett għal mudelli OpenAI.'
       },
       gemini: {
         short: 'Mudelli Gemini',
-        description: 'Aċċess dirett għall-mudelli Google Gemini.',
+        description: 'Aċċess dirett għall-mudelli Google Gemini.'
       },
       xai: {
         short: 'Mudelli Grok',
-        description: 'Aċċess dirett għall-mudelli xAI Grok.',
+        description: 'Aċċess dirett għall-mudelli xAI Grok.'
       },
       local: {
         short: 'ospitat lokalment',
-        description: 'Ipponta OpenAmer lejn endpoint lokali jew ospitat lokalment kompatibbli ma\' OpenAI (vLLM, llama.cpp, Ollama, eċċ).',
-      },
+        description:
+          "Ipponta OpenAmer lejn endpoint lokali jew ospitat lokalment kompatibbli ma' OpenAI (vLLM, llama.cpp, Ollama, eċċ)."
+      }
     },
     backToSignIn: 'Lura għall-idħul',
     getKey: 'Ikseb ċavetta',
@@ -2104,23 +2170,23 @@ Leave blank to keep the ${mode} default.`,
     update: 'Aġġorna',
     flowSubtitles: {
       pkce: 'Jiftaħ il-browser tiegħek biex tidħol, imbagħad ikompli hawn',
-      device_code: 'Jiftaħ paġna ta\' verifikazzjoni fil-browser tiegħek — OpenAmer jikkonnettja awtomatikament',
-      external: 'Idħol darba fit-terminal tiegħek, imbagħad erġa\' lura għaċ-chat',
+      device_code: "Jiftaħ paġna ta' verifikazzjoni fil-browser tiegħek — OpenAmer jikkonnettja awtomatikament",
+      external: "Idħol darba fit-terminal tiegħek, imbagħad erġa' lura għaċ-chat"
     },
-    signInFailed: 'L-idħul falla. Erġa\' pprova.',
+    signInFailed: "L-idħul falla. Erġa' pprova.",
     pickDifferentProvider: 'Agħżel fornitur ieħor',
     authorizeThere: 'Awtorizza lil OpenAmer hemmhekk.',
     copyAuthCode: 'Ikkopja l-kodiċi tal-awtorizzazzjoni u pejstjah hawn taħt.',
     pasteAuthCode: 'Pejstja l-kodiċi tal-awtorizzazzjoni',
-    reopenAuthPage: 'Erġa\' iftaħ il-paġna tal-awtorizzazzjoni',
-    reopenSignInPage: 'Erġa\' iftaħ il-paġna tad-dħul',
+    reopenAuthPage: "Erġa' iftaħ il-paġna tal-awtorizzazzjoni",
+    reopenSignInPage: "Erġa' iftaħ il-paġna tad-dħul",
     waitingAuthorize: 'Qed nistenna li tawtorizza...',
     signedIn: 'Dħalt',
-    reopenVerification: 'Erġa\' iftaħ il-paġna tal-verifika',
+    reopenVerification: "Erġa' iftaħ il-paġna tal-verifika",
     copy: 'Ikkopja',
     defaultModel: 'Mudell predefinit',
-    freeTier: 'Livell b\'xejn',
-    free: 'B\'xejn',
+    freeTier: "Livell b'xejn",
+    free: "B'xejn",
     change: 'Biddel',
     startChatting: 'Ibda',
     startingSignIn: provider => `Starting sign-in for ${provider}...`,
@@ -2129,12 +2195,14 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     pro: 'Pro',
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'Ibdel il-mudell',
@@ -2150,13 +2218,13 @@ Leave blank to keep the ${mode} default.`,
     freeTier: 'Livell bla ħlas',
     priceTitle: 'Prezz input / output għal kull miljun token',
     wasPrice: 'kien',
-    pro: 'Pro',
+    pro: 'Pro'
   },
   modelVisibility: {
     title: 'Mudelli',
     search: 'Fittex mudelli',
     noAuthenticatedProviders: 'Ebda fornitur awtentikat.',
-    addProvider: 'Żid fornitur…',
+    addProvider: 'Żid fornitur…'
   },
   shell: {
     windowControls: 'Kontrolli tat-tieqa',
@@ -2167,7 +2235,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'Ebda mudell misjub',
       editModels: 'Editja Mudelli…',
       refreshModels: 'Aġġorna Mudelli',
-      fast: 'Mgħaġġel',
+      fast: 'Mgħaġġel'
     },
     modelOptions: {
       noOptions: 'L-ebda għażliet għal dan il-mudell',
@@ -2183,7 +2251,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'Massimu',
       updateFailed: 'Aġġornament tal-għażla tal-mudell falla',
       fastFailed: 'Aġġornament tal-modalità mgħaġġla falla',
-      ultra: 'Ultra',
+      ultra: 'Ultra'
     },
     gatewayMenu: {
       gateway: 'Portal',
@@ -2198,21 +2266,21 @@ Leave blank to keep the ${mode} default.`,
       recentActivity: 'Attività reċenti',
       viewAllLogs: 'Ara r-reġistri kollha →',
       messagingPlatforms: 'Pjattaformi tal-messaġġi',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
-      title: 'Modalità ta\' approvazzjoni',
+      title: "Modalità ta' approvazzjoni",
       manual: 'Manwali',
       manualDescription: 'Staqsi qabel azzjonijiet li jeħtieġu approvazzjoni',
       smart: 'Intelliġenti',
       smartDescription: 'Ivvaluta awtomatikament l-azzjonijiet u staqsi meta meħtieġ',
       off: 'Mitfi',
-      offDescription: 'Mexxi mingħajr avviżi ta\' approvazzjoni',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      offDescription: "Mexxi mingħajr avviżi ta' approvazzjoni",
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'mhux magħruf',
-      restart: 'erġa\' ibda',
+      restart: "erġa' ibda",
       update: 'aġġorna',
       updateInProgress: 'Aġġornament għaddej',
       closeCommandCenter: 'Agħlaq iċ-Ċentru tal-Kmand',
@@ -2224,8 +2292,8 @@ Leave blank to keep the ${mode} default.`,
       gatewayChecking: 'Qed iċċekkja',
       gatewayConnecting: 'Qed jikkonnettja',
       gatewayOffline: 'Mhux konness',
-      gatewayRestarting: 'Qed jerġa\' jibda…',
-      gatewayTitle: 'Status tal-gateway tal-inferenza ta\' OpenAmer',
+      gatewayRestarting: "Qed jerġa' jibda…",
+      gatewayTitle: "Status tal-gateway tal-inferenza ta' OpenAmer",
       agents: 'Aġenti',
       closeAgents: 'Agħlaq l-aġenti',
       openAgents: 'Iftaħ l-aġenti',
@@ -2245,19 +2313,21 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'Definizzjonijiet tas-sottoaġenti',
           system_prompt: 'Prompt tas-sistema',
           tool_definitions: 'Definizzjonijiet tal-għodod',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Għadha l-ebda data tal-kuntest',
         loading: 'Qed jillowdja t-tqassim…',
         title: 'Użu tal-Kuntest',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Iftaħ it-tqassim tal-użu tal-kuntest',
       session: 'Sessjoni',
       runtimeSessionElapsed: 'Ħin tas-sessjoni runtime li għadda',
-      yoloOn: 'YOLO mixgħul — japprova awtomatikament kmandi perikolużi. Ikklikkja biex itfi. Shift+click jaqleb dan globalment.',
-      yoloOff: 'YOLO mitfi — ikklikkja biex tapprova awtomatikament kmandi perikolużi. Shift+click jaqleb dan globalment.',
+      yoloOn:
+        'YOLO mixgħul — japprova awtomatikament kmandi perikolużi. Ikklikkja biex itfi. Shift+click jaqleb dan globalment.',
+      yoloOff:
+        'YOLO mitfi — ikklikkja biex tapprova awtomatikament kmandi perikolużi. Shift+click jaqleb dan globalment.',
       modelNone: 'xejn',
       noModel: 'ebda mudell',
       switchModel: 'Ibdel il-mudell',
@@ -2283,8 +2353,8 @@ Leave blank to keep the ${mode} default.`,
       cron: 'Cron',
       webhooks: 'Webhooks',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Sidebar tal-lemin',
@@ -2308,7 +2378,7 @@ Leave blank to keep the ${mode} default.`,
     emptyBody: 'Dan il-folder huwa vojt.',
     treeErrorTitle: 'Żball fis-siġra',
     treeErrorBody: 'Is-siġra tal-fajls sabet żball meta kienet qed turi dan il-folder.',
-    tryAgain: 'Erġa\' pprova',
+    tryAgain: "Erġa' pprova",
     loadingTree: 'Qed titgħabba s-siġra tal-fajls',
     loadingFiles: 'Qed jitgħabbew il-fajls',
     terminalHide: 'Aħbi t-terminal',
@@ -2320,7 +2390,7 @@ Leave blank to keep the ${mode} default.`,
     terminal: 'Terminal',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'Dehra minn qabel',
@@ -2348,9 +2418,10 @@ Leave blank to keep the ${mode} default.`,
     editing: 'Qed teditja',
     unsavedChanges: 'Bidliet mhux salvati',
     diskChangedTitle: 'Il-fajl inbidel fuq id-diska',
-    diskChangedBody: 'Dan il-fajl inbidel minn meta ftaħtu. Issostitwixxih bil-verżjoni tiegħek, jew warrab il-bidliet tiegħek u erġa\' għabbih?',
+    diskChangedBody:
+      "Dan il-fajl inbidel minn meta ftaħtu. Issostitwixxih bil-verżjoni tiegħek, jew warrab il-bidliet tiegħek u erġa' għabbih?",
     overwrite: 'Issostitwixxi',
-    discardReload: 'Tarmix u erġa\' għabbi',
+    discardReload: "Tarmix u erġa' għabbi",
     console: {
       deselect: 'Neħħi l-għażla tad-daħla',
       select: 'Agħżel id-daħla',
@@ -2364,21 +2435,21 @@ Leave blank to keep the ${mode} default.`,
       copyAll: 'Ikkopja kollox fil-clipboard',
       copy: 'Ikkopja',
       clear: 'Naddaf',
-      empty: 'Għad m\'hemmx messaġġi tal-console.',
+      empty: "Għad m'hemmx messaġġi tal-console.",
       promptHeader: 'Console tal-preview:',
       sentTitle: 'Mibgħut lill-chat',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'L-app tal-preview ma rnexxiliex tibda',
       serverNotFound: 'Server ma nstabx',
       failedToLoad: 'Il-preview ma rnexxiliex tgħabbi',
-      tryAgain: 'Erġa\' pprova',
-      restarting: 'OpenAmer qed jerġa\' jibda...',
-      askRestart: 'Itlob lil OpenAmer biex jerġa\' jibda s-server',
-      restartingTitle: 'Qed jerġa\' jibda s-server tal-previżjoni',
+      tryAgain: "Erġa' pprova",
+      restarting: "OpenAmer qed jerġa' jibda...",
+      askRestart: "Itlob lil OpenAmer biex jerġa' jibda s-server",
+      restartingTitle: "Qed jerġa' jibda s-server tal-previżjoni",
       restartingMessage: 'OpenAmer qed jaħdem fil-isfond. Segwi l-console tal-previżjoni għall-progress.',
       restartFailed: 'Ir-restart tas-server falla',
       hideConsole: 'Aħbi l-console tal-previżjoni',
@@ -2387,12 +2458,14 @@ Leave blank to keep the ${mode} default.`,
       openDevTools: 'Iftaħ id-DevTools tal-previżjoni',
       unknownError: 'Żball mhux magħruf',
       restartedTitle: 'Is-server tal-previżjoni ġie restartjat',
-      reloadingNow: 'Qed nerġa\' ngħabbi l-previżjoni issa.',
+      reloadingNow: "Qed nerġa' ngħabbi l-previżjoni issa.",
       restartFailedTitle: 'Ir-restart tal-previżjoni falla',
-      restartFailedMessage: 'OpenAmer ma setax jerġa\' jibda s-server.',
-      stillWorking: 'OpenAmer għadu qed jaħdem, iżda għadha ma waslet ebda riżultat tar-restart. Il-kmand tas-server jista\' jkun qed jaħdem fil-quddiem.',
-      workspaceReloading: 'Il-workspace nbidel, qed nerġa\' ngħabbi l-previżjoni',
-      moduleMimeDescription: 'Skripts tal-moduli qed jiġu servuti bit-tip MIME ħażin. Dan normalment ifisser li server ta\' fajls statiċi qed iservi app Vite/React minflok is-server tal-iżvilupp tal-proġett.',
+      restartFailedMessage: "OpenAmer ma setax jerġa' jibda s-server.",
+      stillWorking:
+        "OpenAmer għadu qed jaħdem, iżda għadha ma waslet ebda riżultat tar-restart. Il-kmand tas-server jista' jkun qed jaħdem fil-quddiem.",
+      workspaceReloading: "Il-workspace nbidel, qed nerġa' ngħabbi l-previżjoni",
+      moduleMimeDescription:
+        "Skripts tal-moduli qed jiġu servuti bit-tip MIME ħażin. Dan normalment ifisser li server ta' fajls statiċi qed iservi app Vite/React minflok is-server tal-iżvilupp tal-proġett.",
       unreachableDescription: 'Il-paġna tal-previżjoni ma setgħetx tiġi aċċessata.',
       fallbackTitle: 'Previżjoni',
       lookingRestart: taskId => `OpenAmer is looking for a preview server to restart (${taskId})`,
@@ -2403,14 +2476,14 @@ Leave blank to keep the ${mode} default.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     closeTab: label => `Close ${label}`,
     diff: 'DIFF',
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   zones: {
     showHeader: 'Uri l-intestatura',
@@ -2418,7 +2491,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Minimiżża',
     restore: 'Irrestawra',
     closeRunningTitle: 'Tagħlaq tab li qed jaħdem?',
-    closeRunningBody: 'Dan ix-chat għadu qed jaħdem (jew qed jistenna l-input tiegħek). L-għeluq tat-tab jaħbih — is-sessjoni żżomm il-progress tagħha u tista\' terġa\' tinfetaħ mill-bar tal-ġenb.',
+    closeRunningBody:
+      "Dan ix-chat għadu qed jaħdem (jew qed jistenna l-input tiegħek). L-għeluq tat-tab jaħbih — is-sessjoni żżomm il-progress tagħha u tista' terġa' tinfetaħ mill-bar tal-ġenb.",
     closeRunningConfirm: 'Agħlaq it-tab',
     closeOthers: 'Agħlaq l-oħrajn',
     closeToRight: 'Agħlaq lejn il-lemin',
@@ -2428,7 +2502,7 @@ Leave blank to keep the ${mode} default.`,
     dirDown: 'isfel',
     dirLeft: 'xellug',
     dirRight: 'lemin',
-    pluginDisabledBody: 'Erġa\' attivah f\'Impostazzjonijiet → Plugins biex il-panew jerġa\' lura.',
+    pluginDisabledBody: "Erġa' attivah f'Impostazzjonijiet → Plugins biex il-panew jerġa' lura.",
     editTitle: 'Tqassimiet',
     editHint: 'Agħżel tqassim, jew iġbed il-panewijiet bejn iż-żoni. Ikklikkja bil-lemin fuq żona biex taqsam.',
     reset: 'Irrisettja',
@@ -2455,7 +2529,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
@@ -2468,57 +2542,60 @@ Leave blank to keep the ${mode} default.`,
       moreActions: 'Aktar azzjonijiet',
       branchNewChat: 'Fergħa fi chat ġdid',
       dismissError: 'Neħħi l-iżball',
-      readAloudFailed: 'Qari b\'leħen għoli falla',
+      readAloudFailed: "Qari b'leħen għoli falla",
       preparingAudio: 'Tħejjija tal-awdjo...',
       stopReading: 'Waqqaf il-qari',
-      readAloud: 'Aqra b\'leħen għoli',
+      readAloud: "Aqra b'leħen għoli",
       editMessage: 'Editja l-messaġġ',
       expandMessage: 'Espandi l-messaġġ',
       scrollToBottom: 'Skrollja sal-qiegħ',
       stop: 'Ieqaf',
-      restorePrevious: 'Irrestawra l-punt ta\' kontroll preċedenti',
-      restoreCheckpoint: 'Irrestawra l-punt ta\' kontroll',
-      restoreFromHere: 'Irrestawra l-punt ta\' kontroll — erġa\' ħaddem minn dan il-messaġġ',
-      restoreTitle: 'Irrestawra għal dan il-punt ta\' kontroll?',
-      restoreBody: 'Kull ħaġa wara dan il-messaġġ titneħħa mill-konversazzjoni, u l-messaġġ jerġa\' jiġi eżegwit minn hawn.',
-      restoreConfirm: 'Irrestawra & erġa\' ħaddem',
-      restoreNext: 'Irrestawra l-punt ta\' kontroll li jmiss',
-      goForward: 'Mur \'il quddiem',
+      restorePrevious: "Irrestawra l-punt ta' kontroll preċedenti",
+      restoreCheckpoint: "Irrestawra l-punt ta' kontroll",
+      restoreFromHere: "Irrestawra l-punt ta' kontroll — erġa' ħaddem minn dan il-messaġġ",
+      restoreTitle: "Irrestawra għal dan il-punt ta' kontroll?",
+      restoreBody:
+        "Kull ħaġa wara dan il-messaġġ titneħħa mill-konversazzjoni, u l-messaġġ jerġa' jiġi eżegwit minn hawn.",
+      restoreConfirm: "Irrestawra & erġa' ħaddem",
+      restoreNext: "Irrestawra l-punt ta' kontroll li jmiss",
+      goForward: "Mur 'il quddiem",
       sendEdited: 'Ibgħat il-messaġġ editjat',
       attachingFile: 'Qed jitwaħħal…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
-      yesterday: time => `Yesterday, ${time}`,
+      yesterday: time => `Yesterday, ${time}`
     },
     approval: {
       gatewayDisconnected: 'Il-gateway OpenAmer mhux konness',
       sendFailed: 'Ir-rispons tal-approvazzjoni ma ntbagħatx',
       run: 'Mexxi',
       command: 'Kmand',
-      moreOptions: 'Aktar għażliet ta\' approvazzjoni',
+      moreOptions: "Aktar għażliet ta' approvazzjoni",
       allowSession: 'Ħalli din is-sessjoni',
       alwaysAllowMenu: 'Dejjem ħalli…',
       jumpToApproval: 'Approvazzjoni meħtieġa',
       reject: 'Irrifjuta',
       alwaysTitle: 'Dejjem ħalli dan il-kmand?',
       alwaysAllow: 'Dejjem ħalli',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
       notReady: 'It-talba għall-kjarifika għadha mhix lesta',
       gatewayDisconnected: 'Il-gateway OpenAmer mhux konness',
-      sendFailed: 'Ir-rispons ta\' kjarifika ma ntbagħatx',
+      sendFailed: "Ir-rispons ta' kjarifika ma ntbagħatx",
       loadingQuestion: 'Qed jillowdja l-mistoqsija…',
       other: 'Oħra (ikteb it-tweġiba tiegħek)',
       placeholder: 'Ikteb it-tweġiba tiegħek…',
       skip: 'Aqbeż',
       skipped: 'Maqbuż',
       continueLabel: 'Kompli',
-      lateAnswerTip: 'Abbozza din it-tweġiba bħala messaġġ ta\' segwitu',
-      lateAnswerHint: 'Dan il-prompt m\'għadux qed jistenna. Agħżel għażla biex tabbozzah bħala messaġġ ta\' segwitu.',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswerTip: "Abbozza din it-tweġiba bħala messaġġ ta' segwitu",
+      lateAnswerHint: "Dan il-prompt m'għadux qed jistenna. Agħżel għażla biex tabbozzah bħala messaġġ ta' segwitu.",
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     tool: {
       code: 'Kodiċi',
@@ -2552,123 +2629,123 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Esegwit',
         running: 'Qed jaħdem',
         ranCode: 'Kodiċi esegwit',
-        runningCode: 'Skriptjar',
+        runningCode: 'Skriptjar'
       },
       prefixes: {
         browser: 'Navigatur',
-        web: 'Il-Web',
+        web: 'Il-Web'
       },
       titles: {
         browser_click: {
           done: 'Element tal-paġna klikkjat',
           pending: 'Qed jikklikkja element tal-paġna',
-          pendingAction: 'Qed jikklikkja',
+          pendingAction: 'Qed jikklikkja'
         },
         browser_fill: {
           done: 'Qasam tal-formola mimli',
           pending: 'Qed jimla qasam tal-formola',
-          pendingAction: 'Qed jimla',
+          pendingAction: 'Qed jimla'
         },
         browser_navigate: {
           done: 'Paġna miftuħa',
           pending: 'Qed tiftaħ paġna',
-          pendingAction: 'Qed tiftaħ',
+          pendingAction: 'Qed tiftaħ'
         },
         browser_snapshot: {
           done: 'Snapshot tal-paġna meħud',
           pending: 'Qed jinqabad snapshot tal-paġna',
-          pendingAction: 'Qed jinqabad',
+          pendingAction: 'Qed jinqabad'
         },
         browser_take_screenshot: {
           done: 'Screenshot meħud',
           pending: 'Qed jinqabad screenshot',
-          pendingAction: 'Qed jinqabad',
+          pendingAction: 'Qed jinqabad'
         },
         browser_type: {
           done: 'Ittajpjat fuq il-paġna',
           pending: 'Qed jittajpja fuq il-paġna',
-          pendingAction: 'Qed jittajpja',
+          pendingAction: 'Qed jittajpja'
         },
         clarify: {
           done: 'Staqsa mistoqsija',
           pending: 'Qed jistaqsi mistoqsija',
-          pendingAction: 'Qed jistaqsi',
+          pendingAction: 'Qed jistaqsi'
         },
         cronjob: {
           done: 'Xogħol cron',
           pending: 'Qed jiġi skedat xogħol cron',
-          pendingAction: 'Qed jiġi skedat',
+          pendingAction: 'Qed jiġi skedat'
         },
         edit_file: {
           done: 'Fajl editjat',
           pending: 'Qed teditja fajl',
-          pendingAction: 'Qed teditja',
+          pendingAction: 'Qed teditja'
         },
         execute_code: {
           done: 'Kodiċi eżegwit',
           pending: 'Skriptjar',
-          pendingAction: 'Skriptjar',
+          pendingAction: 'Skriptjar'
         },
         image_generate: {
           done: 'Immaġni ġġenerata',
           pending: 'Qed tiġi ġġenerata immaġni',
-          pendingAction: 'Qed jiġi ġġenerat',
+          pendingAction: 'Qed jiġi ġġenerat'
         },
         list_files: {
           done: 'Fajls elenkati',
           pending: 'Qed jiġu elenkati fajls',
-          pendingAction: 'Qed jiġi elenkat',
+          pendingAction: 'Qed jiġi elenkat'
         },
         patch: {
           done: 'Fajl ippatchjat',
           pending: 'Qed jiġi ppatchjat fajl',
-          pendingAction: 'Qed jiġi ppatchjat',
+          pendingAction: 'Qed jiġi ppatchjat'
         },
         read_file: {
           done: 'Fajl moqri',
           pending: 'Qed jinqara fajl',
-          pendingAction: 'Qed jinqara',
+          pendingAction: 'Qed jinqara'
         },
         search_files: {
           done: 'Fajls imfittxija',
           pending: 'Qed jiġu mfittxija fajls',
-          pendingAction: 'Qed jiġi mfittex',
+          pendingAction: 'Qed jiġi mfittex'
         },
         session_search_recall: {
           done: 'Fittxejt fl-istorja tas-sessjoni',
           pending: 'Qed infittex fl-istorja tas-sessjoni',
-          pendingAction: 'Qed infittex',
+          pendingAction: 'Qed infittex'
         },
         terminal: {
           done: 'Kmand eżegwit',
           pending: 'Qed jiġi eżegwit kmand',
-          pendingAction: 'Qed jaħdem',
+          pendingAction: 'Qed jaħdem'
         },
         todo: {
           done: 'Attivitajiet aġġornati',
           pending: 'Qed jaġġorna l-attivitajiet',
-          pendingAction: 'Qed jaġġorna',
+          pendingAction: 'Qed jaġġorna'
         },
         vision_analyze: {
           done: 'Immaġni analizzata',
           pending: 'Qed tanalizza immaġni',
-          pendingAction: 'Qed tanalizza',
+          pendingAction: 'Qed tanalizza'
         },
         web_extract: {
           done: 'Paġna web moqrija',
           pending: 'Qed taqra paġna web',
-          pendingAction: 'Qed taqra',
+          pendingAction: 'Qed taqra'
         },
         web_search: {
           done: 'Fittxejt il-web',
           pending: 'Qed infittex il-web',
-          pendingAction: 'Qed infittex',
+          pendingAction: 'Qed infittex'
         },
         write_file: {
           done: 'Fajl editjat',
           pending: 'Qed jeditja fajl',
-          pendingAction: 'Qed teditja',
-        },
+          pendingAction: 'Qed teditja'
+        }
       },
       recoveredMany: count => `Recovered after ${count} failed steps`,
       failedMany: count => `${count} steps failed`,
@@ -2678,20 +2755,21 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
+    }
   },
   prompts: {
-    gatewayDisconnected: 'Il-gateway ta\' OpenAmer mhux konness',
+    gatewayDisconnected: "Il-gateway ta' OpenAmer mhux konness",
     sudoSendFailed: 'Ma setgħetx tintbagħat il-password sudo',
     secretSendFailed: 'Ma setax jintbagħat is-sigriet',
     sudoTitle: 'Password tal-amministratur',
-    sudoDesc: 'OpenAmer jeħtieġ il-password sudo tiegħek biex iħaddem kmand privileġġat. Din tintbagħat biss lill-aġent lokali tiegħek.',
+    sudoDesc:
+      'OpenAmer jeħtieġ il-password sudo tiegħek biex iħaddem kmand privileġġat. Din tintbagħat biss lill-aġent lokali tiegħek.',
     sudoPlaceholder: 'Password sudo',
     secretTitle: 'Sigriet meħtieġ',
-    secretDesc: 'OpenAmer jeħtieġ kredenzjali biex jibqa\' għaddej.',
-    secretPlaceholder: 'Valur tas-sigriet',
+    secretDesc: "OpenAmer jeħtieġ kredenzjali biex jibqa' għaddej.",
+    secretPlaceholder: 'Valur tas-sigriet'
   },
   desktop: {
     audioReadFailed: 'Ma setax jinqara l-awdjo rrekordjat',
@@ -2712,27 +2790,28 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'Modifika falliet',
     resumeFailed: 'Issoktar falla',
     resumeStrandedTitle: 'Ma setgħetx tiġi mgħobbija din is-sessjoni',
-    resumeStrandedBody: 'Il-konnessjoni ma\' din is-sessjoni falliet u l-provi awtomatiċi waqfu. Iċċekkja li l-gateway qed jaħdem, imbagħad erġa\' pprova.',
-    resumeRetry: 'Erġa\' pprova',
-    nothingToBranch: 'M\'hemm xejn biex tifrex',
+    resumeStrandedBody:
+      "Il-konnessjoni ma' din is-sessjoni falliet u l-provi awtomatiċi waqfu. Iċċekkja li l-gateway qed jaħdem, imbagħad erġa' pprova.",
+    resumeRetry: "Erġa' pprova",
+    nothingToBranch: "M'hemm xejn biex tifrex",
     branchNeedsChat: 'Ibda jew issokta chat qabel ma tifrex.',
     sessionBusy: 'Sessjoni okkupata',
     branchStopCurrent: 'Waqqaf id-dawra attwali qabel ma tifrex dan iċ-chat.',
-    branchNoText: 'Dan il-messaġġ m\'għandu l-ebda test biex tifrex minnu.',
+    branchNoText: "Dan il-messaġġ m'għandu l-ebda test biex tifrex minnu.",
     branchFailed: 'Tifrix falla',
     deleteFailed: 'Tħassir falla',
     archived: 'Arkivjat',
     archiveFailed: 'Arkivjar falla',
     cwdChangeFailed: 'Il-bidla fid-direttorju tax-xogħol falliet',
     cwdStagedTitle: 'Direttorju tax-xogħol ippreparat',
-    cwdStagedMessage: 'Erġa\' ibda l-backend tad-desktop biex tapplika l-bidliet ta\' cwd għal din is-sessjoni attiva.',
+    cwdStagedMessage: "Erġa' ibda l-backend tad-desktop biex tapplika l-bidliet ta' cwd għal din is-sessjoni attiva.",
     modelSwitchFailed: 'Il-bidla tal-mudell falliet',
     sessionExported: 'Is-sessjoni ġiet esportata',
     sessionExportFailed: 'Ma setgħetx tiġi esportata s-sessjoni',
     imageSaved: 'L-immaġni ġiet salvata',
     downloadStarted: 'It-tniżżil beda',
-    restartToUseSaveImage: 'Erġa\' ibda OpenAmer Desktop biex tuża l-Iffrankar tal-Immaġni.',
-    restartToSaveImages: 'Erġa\' ibda OpenAmer Desktop biex issalva l-immaġnijiet',
+    restartToUseSaveImage: "Erġa' ibda OpenAmer Desktop biex tuża l-Iffrankar tal-Immaġni.",
+    restartToSaveImages: "Erġa' ibda OpenAmer Desktop biex issalva l-immaġnijiet",
     imageDownloadFailed: 'It-tniżżil tal-immaġni falla',
     openImage: 'Iftaħ l-immaġni',
     downloadImage: 'Niżżel l-immaġni',
@@ -2751,40 +2830,41 @@ Leave blank to keep the ${mode} default.`,
       timedOut: 'Skada l-ħin għall-gateway. Il-`openamer gateway` qed jaħdem?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     skillCommandsAvailable: count => `${count} skill commands available.`,
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
-    branchTitle: n => `Draft: Branch #${n}`,
+    branchTitle: n => `Draft: Branch #${n}`
   },
   errors: {
     genericFailure: 'Xi ħaġa marret ħażin',
     boundaryTitle: 'Xi ħaġa nkissret fl-interfaċċa',
-    boundaryDesc: 'Il-vista ltaqgħet ma\' żball mhux mistenni. Iċ-chats u s-settings tiegħek huma sikuri.',
-    reloadWindow: 'Erġa\' għabbi t-tieqa',
-    openLogs: 'Iftaħ il-logs',
+    boundaryDesc: "Il-vista ltaqgħet ma' żball mhux mistenni. Iċ-chats u s-settings tiegħek huma sikuri.",
+    reloadWindow: "Erġa' għabbi t-tieqa",
+    openLogs: 'Iftaħ il-logs'
   },
   ui: {
     search: {
-      clear: 'Neħħi t-tfittxija',
+      clear: 'Neħħi t-tfittxija'
     },
     pagination: {
       label: 'paġinazzjoni',
       previous: 'Preċ',
       previousAria: 'Mur għall-paġna preċedenti',
       next: 'Li jmiss',
-      nextAria: 'Mur għall-paġna li jmiss',
+      nextAria: 'Mur għall-paġna li jmiss'
     },
     sidebar: {
       title: 'Barra laterali',
       description: 'Juri l-bar laterali tal-mowbajl.',
-      toggle: 'Aqleb il-bar laterali',
-    },
+      toggle: 'Aqleb il-bar laterali'
+    }
   },
   common: {
     apply: 'Apply',
@@ -2825,7 +2905,7 @@ Leave blank to keep the ${mode} default.`,
     update: 'Update',
     tryHint: term => `Try “${term}”`,
     on: 'On',
-    off: 'Off',
+    off: 'Off'
   },
   fileMenu: {
     revealFinder: 'Reveal in Finder',
@@ -2840,7 +2920,7 @@ Leave blank to keep the ${mode} default.`,
     renameLabel: 'New name',
     deleteTitle: name => `Delete ${name}?`,
     deleteBody: 'It will be moved to the Trash — you can restore it from there.',
-    pathCopied: 'Path copied',
+    pathCopied: 'Path copied'
   },
   boot: {
     ready: 'OpenAmer Desktop is ready',
@@ -2850,7 +2930,7 @@ Leave blank to keep the ${mode} default.`,
       loadingSettings: 'Loading OpenAmer settings',
       loadingSessions: 'Loading recent sessions',
       startingDesktopConnection: 'Starting desktop connection',
-      startingOpenAmerDesktop: 'Starting OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Starting OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'OpenAmer background process exited.',
@@ -2859,13 +2939,15 @@ Leave blank to keep the ${mode} default.`,
       desktopBootFailed: 'Desktop boot failed',
       gatewayConnectionLost: 'Lost connection to the gateway',
       gatewaySignInRequired: 'Gateway sign-in required',
-      ipcBridgeUnavailable: 'Desktop IPC bridge is unavailable.',
+      ipcBridgeUnavailable: 'Desktop IPC bridge is unavailable.'
     },
     failure: {
       title: "OpenAmer couldn't start",
-      description: "The background gateway didn't come up. Try one of the recovery steps below. Nothing here deletes your chats or settings.",
+      description:
+        "The background gateway didn't come up. Try one of the recovery steps below. Nothing here deletes your chats or settings.",
       remoteTitle: 'Remote gateway sign-in required',
-      remoteDescription: 'Your remote gateway session has expired. Sign in again to reconnect. Nothing here deletes your chats or settings.',
+      remoteDescription:
+        'Your remote gateway session has expired. Sign in again to reconnect. Nothing here deletes your chats or settings.',
       retry: 'Retry',
       repairInstall: 'Repair install',
       useLocalGateway: 'Use local gateway',
@@ -2873,7 +2955,8 @@ Leave blank to keep the ${mode} default.`,
       back: 'Back',
       openLogs: 'Open logs',
       repairHint: 'Repair re-runs the installer and can take a few minutes on a fresh machine.',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
       signOutAndSignIn: 'Sign out & sign in',
       remoteFailureHint: 'Check the gateway URL and sign-in under Gateway settings, or switch to the local gateway.',
       hideRecentLogs: 'Hide recent logs',
@@ -2885,8 +2968,8 @@ Leave blank to keep the ${mode} default.`,
       signInFailed: 'Sign-in failed',
       signInToRemoteGateway: 'Sign in to remote gateway',
       signInWithProvider: provider => `Sign in with ${provider}`,
-      identityProvider: 'your identity provider',
-    },
+      identityProvider: 'your identity provider'
+    }
   },
   notifications: {
     region: 'Notifications',
@@ -2899,7 +2982,8 @@ Leave blank to keep the ${mode} default.`,
     copyDetail: 'Copy detail',
     copyDetailFailed: 'Could not copy notification detail',
     backendOutOfDateTitle: 'Backend out of date',
-    backendOutOfDateMessage: 'Your OpenAmer backend is older than this desktop build and may not work correctly. Update to align them.',
+    backendOutOfDateMessage:
+      'Your OpenAmer backend is older than this desktop build and may not work correctly. Update to align them.',
     installMethodUnsupportedTitle: 'Unsupported install method',
     updateOpenAmer: 'Update OpenAmer',
     updateReadyTitle: 'Update ready',
@@ -2909,11 +2993,12 @@ Leave blank to keep the ${mode} default.`,
       elevenLabsNeedsKey: 'ElevenLabs STT needs ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs rejected the API key (401).',
       gatewayAuthFailed: 'Gateway authentication failed — check your API_SERVER_KEY.',
-      methodNotAllowed: 'The desktop backend rejected that request (405 Method Not Allowed). Try restarting OpenAmer Desktop.',
+      methodNotAllowed:
+        'The desktop backend rejected that request (405 Method Not Allowed). Try restarting OpenAmer Desktop.',
       microphonePermission: 'Microphone permission was denied.',
       openaiRejectedApiKey: 'OpenAI rejected the API key.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS needs VOICE_TOOLS_OPENAI_KEY or OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS needs VOICE_TOOLS_OPENAI_KEY or OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Configure speech-to-text to use voice mode.',
@@ -2932,7 +3017,7 @@ Leave blank to keep the ${mode} default.`,
       transcriptionFailed: 'Voice transcription failed',
       transcriptionUnavailable: 'Voice transcription is not available yet.',
       tryRecordingAgain: 'Try recording again.',
-      unavailable: 'Voice unavailable',
+      unavailable: 'Voice unavailable'
     },
     native: {
       approvalTitle: 'Approval needed',
@@ -2945,11 +3030,12 @@ Leave blank to keep the ${mode} default.`,
       turnErrorTitle: 'Turn failed',
       backgroundDoneTitle: 'Background task finished',
       backgroundFailedTitle: 'Background task failed',
-      creditsTitle: 'Credits',
-    },
+      creditsTitle: 'Credits'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
   },
   billingBlock: {
     titleOpenamer: 'Out of OpenAmer credits',
@@ -2957,7 +3043,7 @@ Leave blank to keep the ${mode} default.`,
     fallbackMessage: 'Your account is out of credits. Add credits to keep going.',
     openBilling: 'Open billing',
     addCredits: 'Add credits',
-    dismiss: 'Dismiss',
+    dismiss: 'Dismiss'
   },
   titlebar: {
     hideSidebar: 'Hide sidebar',
@@ -2974,6 +3060,6 @@ Leave blank to keep the ${mode} default.`,
     openStarmap: 'Open memory graph',
     openKeybinds: 'Keyboard shortcuts',
     layoutEditor: 'Layout editor',
-    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout',
-  },
+    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout'
+  }
 })

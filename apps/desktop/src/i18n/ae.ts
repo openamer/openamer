@@ -12,17 +12,18 @@ export const ae = defineLocale({
       kinds: {
         bundled: '𐬊𐬌𐬚𐬞𐬍𐬃',
         disk: '𐬧𐬁𐬣𐬃 𐬉𐬁𐬰𐬗𐬥',
-        runtime: '𐬭𐬲𐬧𐬁𐬣𐬃',
+        runtime: '𐬭𐬲𐬧𐬁𐬣𐬃'
       },
       title: 'Desktop plugins',
-      blurb: 'UI extensions loaded into this app — bundled with the build, or dropped into the desktop-plugins folder (including ones OpenAmer writes). Disabling unloads a plugin live and survives restarts.',
+      blurb:
+        'UI extensions loaded into this app — bundled with the build, or dropped into the desktop-plugins folder (including ones OpenAmer writes). Disabling unloads a plugin live and survives restarts.',
       count: n => `${n} installed`,
       openFolder: 'Open plugins folder',
       rescan: 'Rescan',
       reveal: 'Reveal in file manager',
       enable: 'Enable',
       disable: 'Disable',
-      failed: 'failed',
+      failed: 'failed'
     },
     notifications: {
       title: '𐬢𐬰𐬢𐬸𐬧𐬭𐬵𐬃',
@@ -33,28 +34,28 @@ export const ae = defineLocale({
       kinds: {
         approval: {
           label: '𐬀𐬞𐬁𐬯𐬭𐬁𐬢 𐬥𐬁𐬰𐬵𐬃',
-          description: '𐬥𐬁𐬰𐬵𐬃 𐬀𐬞𐬁𐬯𐬭𐬁𐬢 𐬥𐬄𐬭𐬰 𐬗𐬁𐬰𐬌𐬊𐬰𐬥𐬰𐬓𐬭𐬸 𐬥𐬄𐬭𐬰 𐬀𐬞𐬁𐬯𐬭𐬁𐬢𐬗𐬸 𐬥𐬄𐬭𐬰 𐬀𐬤𐬼𐬰𐬣𐬭𐬸',
+          description: '𐬥𐬁𐬰𐬵𐬃 𐬀𐬞𐬁𐬯𐬭𐬁𐬢 𐬥𐬄𐬭𐬰 𐬗𐬁𐬰𐬌𐬊𐬰𐬥𐬰𐬓𐬭𐬸 𐬥𐬄𐬭𐬰 𐬀𐬞𐬁𐬯𐬭𐬁𐬢𐬗𐬸 𐬥𐬄𐬭𐬰 𐬀𐬤𐬼𐬰𐬣𐬭𐬸'
         },
         input: {
           label: '𐬀𐬯𐬁𐬢𐬲𐬢𐬰 𐬥𐬁𐬰𐬵𐬃',
-          description: '𐬀𐬯𐬁𐬢𐬲𐬢𐬰 𐬥𐬁𐬰𐬵𐬃 𐬥𐬄𐬭𐬰 OpenAmer 𐬢𐬁𐬔𐬥𐬉𐬓𐬁𐬢 𐬥𐬄𐬭𐬰 𐬞𐬁𐬣𐬩𐬭𐬁𐬢𐬗𐬸 𐬥𐬄𐬭𐬰 𐬭𐬫𐬧𐬁𐬢𐬗𐬸',
+          description: '𐬀𐬯𐬁𐬢𐬲𐬢𐬰 𐬥𐬁𐬰𐬵𐬃 𐬥𐬄𐬭𐬰 OpenAmer 𐬢𐬁𐬔𐬥𐬉𐬓𐬁𐬢 𐬥𐬄𐬭𐬰 𐬞𐬁𐬣𐬩𐬭𐬁𐬢𐬗𐬸 𐬥𐬄𐬭𐬰 𐬭𐬫𐬧𐬁𐬢𐬗𐬸'
         },
         turnDone: {
           label: '𐬥𐬄𐬭𐬰 𐬀𐬥𐬸𐬛𐬁𐬢𐬰𐬓𐬭𐬸',
-          description: '𐬀𐬥𐬸𐬛𐬁𐬢𐬰𐬓𐬭𐬸 𐬧𐬁𐬢𐬴𐬥𐬃 𐬥𐬁𐬰𐬵𐬃 𐬣𐬁𐬓𐬁𐬗𐬑𐬃𐬓𐬁𐬕𐬓𐬗𐬑𐬃 𐬉𐬁𐬰𐬗𐬥𐬗𐬸 OpenAmer 𐬥𐬄𐬭𐬰 𐬀𐬤𐬽𐬀𐬤𐬰𐬣𐬭𐬸',
+          description: '𐬀𐬥𐬸𐬛𐬁𐬢𐬰𐬓𐬭𐬸 𐬧𐬁𐬢𐬴𐬥𐬃 𐬥𐬁𐬰𐬵𐬃 𐬣𐬁𐬓𐬁𐬗𐬑𐬃𐬓𐬁𐬕𐬓𐬗𐬑𐬃 𐬉𐬁𐬰𐬗𐬥𐬗𐬸 OpenAmer 𐬥𐬄𐬭𐬰 𐬀𐬤𐬽𐬀𐬤𐬰𐬣𐬭𐬸'
         },
         turnError: {
           label: '𐬀𐬥𐬸𐬛𐬁𐬢𐬰𐬓𐬭𐬸 𐬗𐬁𐬰𐬌𐬊𐬰𐬥𐬰𐬓𐬭𐬸',
-          description: '𐬀𐬥𐬸𐬛𐬁𐬢𐬰𐬓𐬭𐬸 𐬧𐬁𐬢𐬴𐬥𐬃 𐬥𐬁𐬰𐬵𐬃 𐬠𐬃𐬪𐬁𐬫𐬇𐬰𐬭𐬁𐬢𐬗𐬸',
+          description: '𐬀𐬥𐬸𐬛𐬁𐬢𐬰𐬓𐬭𐬸 𐬧𐬁𐬢𐬴𐬥𐬃 𐬥𐬁𐬰𐬵𐬃 𐬠𐬃𐬪𐬁𐬫𐬇𐬰𐬭𐬁𐬢𐬗𐬸'
         },
         backgroundDone: {
           label: '𐬀𐬥𐬸𐬛𐬁𐬢𐬰𐬓𐬭𐬸 𐬠𐬁𐬣𐬴𐬥𐬢𐬰𐬓𐬭𐬸',
-          description: '𐬠𐬁𐬣𐬴𐬥𐬢𐬰𐬓𐬭𐬸 𐬗𐬁𐬰𐬌𐬊𐬰𐬥𐬰𐬓𐬭𐬸 𐬗𐬁𐬰𐬌𐬊𐬰𐬗𐬑𐬳𐬁𐬢𐬗𐬸',
+          description: '𐬠𐬁𐬣𐬴𐬥𐬢𐬰𐬓𐬭𐬸 𐬗𐬁𐬰𐬌𐬊𐬰𐬥𐬰𐬓𐬭𐬸 𐬗𐬁𐬰𐬌𐬊𐬰𐬗𐬑𐬳𐬁𐬢𐬗𐬸'
         },
         credits: {
           label: '𐬢𐬰𐬢𐬸𐬧𐬭𐬵𐬃 𐬩𐬁𐬰𐬙𐬰𐬧𐬃',
-          description: 'Axti paiti.gam ništāta vā frā.gaēta.',
-        },
+          description: 'Axti paiti.gam ništāta vā frā.gaēta.'
+        }
       },
       test: 'Frayašta vīčaya xvaētu.',
       testTitle: 'OpenAmer',
@@ -63,7 +64,7 @@ export const ae = defineLocale({
       testUnsupported: 'Aēm dāta nōit paiti.bərəta būmija xvaētava.',
       completionSoundTitle: 'Apa.gaēta sraota',
       completionSoundDesc: 'Vī.raoθe yat agent vī.gaēta. Vīčaya preset ud paiti.vīša aδa.',
-      completionSoundPreview: 'Paiti.vīša',
+      completionSoundPreview: 'Paiti.vīša'
     },
     sections: {
       model: 'Pati.dāta',
@@ -73,7 +74,7 @@ export const ae = defineLocale({
       safety: 'Haurvata',
       memory: 'Aipi.xvafna ud paiti.gaēθa',
       voice: 'Vāxš',
-      advanced: 'Paiti.gaēta',
+      advanced: 'Paiti.gaēta'
     },
     searchPlaceholder: {
       about: 'Paiti OpenAmer Desktop',
@@ -81,21 +82,21 @@ export const ae = defineLocale({
       gateway: 'Dvarəma paiti.band...',
       keys: 'Paiti.pərəsa API kīlā...',
       mcp: 'Paiti.pərəsa MCP servers...',
-      sessions: 'Paiti.pərəsa niθātā hąm.vāxš...',
+      sessions: 'Paiti.pərəsa niθātā hąm.vāxš...'
     },
     modeOptions: {
       light: {
         label: 'Raoxšna',
-        description: 'Raoxšna dastaxš rōiθa',
+        description: 'Raoxšna dastaxš rōiθa'
       },
       dark: {
         label: 'Təma',
-        description: 'Kəm.raoxšna hunar.čaθra',
+        description: 'Kəm.raoxšna hunar.čaθra'
       },
       system: {
         label: 'Dāta',
-        description: 'Paiti.aŋhā OS darsan',
-      },
+        description: 'Paiti.aŋhā OS darsan'
+      }
     },
     appearance: {
       title: 'Darsan',
@@ -110,7 +111,8 @@ export const ae = defineLocale({
       backdropTitle: 'Hąm.vāxš pasaiia',
       backdropDesc: 'Təma kərəti paiti pasaiia hąm.vāxš.',
       embedsTitle: 'Paiti nišāta',
-      embedsDesc: 'Vasō paouruuaēna haca anya dātaŋhąm (YouTube, X, …) baraiti. Pərəsa stāna haca aēta xuasta; Haməm xwātō baraiti; Nōit druxta links.',
+      embedsDesc:
+        'Vasō paouruuaēna haca anya dātaŋhąm (YouTube, X, …) baraiti. Pərəsa stāna haca aēta xuasta; Haməm xwātō baraiti; Nōit druxta links.',
       embedsAsk: 'Pərəsa',
       embedsAlways: 'Haməm',
       embedsOff: 'Nōit',
@@ -121,7 +123,8 @@ export const ae = defineLocale({
       themeTitle: 'Tēma',
       themeDesc: 'Daskarta palettes aēta. Mōda fraxštā paiti nišāta.',
       installTitle: 'Nixšāta haca VS Code',
-      installDesc: 'Nixšā Marketplace extension id (e.g. dracula-theme.theme-dracula) paiti tēma xšnūta daskarta palette.',
+      installDesc:
+        'Nixšā Marketplace extension id (e.g. dracula-theme.theme-dracula) paiti tēma xšnūta daskarta palette.',
       installButton: 'Nixšā',
       installing: 'Nixšāta…',
       installError: 'Nōit nixšāta aēta tēma.',
@@ -129,7 +132,8 @@ export const ae = defineLocale({
       importedBadge: 'Ānīta',
       pet: {
         title: 'Pasu',
-        intro: '𐬞𐬀𐬯𐬎𐬨 petdex 𐬁𐬥𐬌𐬨𐬀𐬙𐬈𐬛 𐬞𐬀𐬭𐬀 𐬀𐬞𐬞𐬀𐬨 𐬟𐬭𐬀𐬎𐬎𐬀𐬭𐬆𐬧𐬙𐬈𐬨 𐬎𐬞𐬀𐬭𐬌 𐬀𐬞𐬞𐬀𐬨 𐬀𐬞𐬀 𐬁𐬥𐬎 OpenAmer 𐬀𐬱𐬀𐬎𐬎𐬀: 𐬞𐬀𐬭𐬀 𐬀𐬞𐬀𐬭𐬆𐬨 𐬀𐬥𐬎 𐬀𐬞𐬀𐬭𐬆𐬨, 𐬎𐬞𐬀𐬭𐬌 𐬀𐬞𐬀𐬭𐬆𐬨, 𐬀𐬞𐬀𐬭𐬆𐬨 𐬀𐬞𐬀𐬭𐬆𐬨.',
+        intro:
+          '𐬞𐬀𐬯𐬎𐬨 petdex 𐬁𐬥𐬌𐬨𐬀𐬙𐬈𐬛 𐬞𐬀𐬭𐬀 𐬀𐬞𐬞𐬀𐬨 𐬟𐬭𐬀𐬎𐬎𐬀𐬭𐬆𐬧𐬙𐬈𐬨 𐬎𐬞𐬀𐬭𐬌 𐬀𐬞𐬞𐬀𐬨 𐬀𐬞𐬀 𐬁𐬥𐬎 OpenAmer 𐬀𐬱𐬀𐬎𐬎𐬀: 𐬞𐬀𐬭𐬀 𐬀𐬞𐬀𐬭𐬆𐬨 𐬀𐬥𐬎 𐬀𐬞𐬀𐬭𐬆𐬨, 𐬎𐬞𐬀𐬭𐬌 𐬀𐬞𐬀𐬭𐬆𐬨, 𐬀𐬞𐬀𐬭𐬆𐬨 𐬀𐬞𐬀𐬭𐬆𐬨.',
         restartHint: '𐬞𐬀𐬯𐬎𐬨 𐬀𐬰𐬀𐬨 𐬞𐬀𐬭𐬀 𐬀𐬞𐬀𐬭𐬆𐬨 — 𐬀𐬞𐬞𐬀𐬨 𐬞𐬀𐬭𐬀 𐬁𐬥𐬎 𐬀𐬞𐬞𐬀𐬨. OpenAmer 𐬀𐬞𐬀𐬭𐬆𐬨 𐬀𐬞𐬀𐬭𐬆𐬨.',
         on: '𐬀𐬥𐬀',
         off: '𐬀𐬞𐬀',
@@ -162,13 +166,14 @@ export const ae = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installPlaceholder: 'publisher.extension',
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     about: {
       heading: 'OpenAmer stāna',
@@ -183,7 +188,7 @@ export const ae = defineLocale({
       installing: 'Nauuō nū niθiieiti.',
       cantUpdate: 'Aēm bild nōit xwə̄ apdēt ap aŋha.',
       cantReach: 'Nōit pairi.gam sērwer apdēt.',
-      tapCheck: 'Tapa \'Nū vīcaya\' nauuā vīcayōi.',
+      tapCheck: "Tapa 'Nū vīcaya' nauuā vīcayōi.",
       justNowSuffix: '· nū',
       automaticUpdates: 'Xwacta nauuā',
       automaticUpdatesDesc: 'OpenAmer nauuā xwacta pasθa vīcaiieiti; yaθa hąm, tūm vīdaiieiti.',
@@ -195,7 +200,7 @@ export const ae = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     config: {
       none: 'naēciš',
@@ -211,7 +216,7 @@ export const ae = defineLocale({
       imported: 'pairi.dāta ānita',
       invalidJson: 'pairi.dāta JSON nōit vərəzta',
       keepAwakeTitle: 'dāra jagarə',
-      keepAwakeDesc: 'mā xʷafa aēm mašiia; xšapā frača; daxšta təmah.',
+      keepAwakeDesc: 'mā xʷafa aēm mašiia; xšapā frača; daxšta təmah.'
     },
     credentials: {
       pasteKey: 'niθāra kəx',
@@ -221,7 +226,7 @@ export const ae = defineLocale({
       remove: 'apa.bara',
       getKey: 'bara kəx',
       saving: '𐬥𐬍𐬰𐬠𐬀𐬭𐬀𐬥𐬙𐬍',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     envActions: {
       credentialActions: '𐬐𐬭𐬉𐬛𐬉𐬥𐬙𐬌𐬀𐬮 𐬀𐬐𐬙𐬌𐬎𐬥𐬀𐬯',
@@ -232,7 +237,7 @@ export const ae = defineLocale({
       replace: '𐬞𐬀𐬙𐬌𐬛𐬀𐬙𐬀',
       set: '𐬛𐬀𐬙𐬀',
       clear: '𐬎𐬞𐬀𐬨𐬀𐬭𐬆𐬰𐬀',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     gateway: {
       loading: '𐬠𐬀𐬭𐬀𐬥𐬙𐬍 𐬔𐬀𐬙𐬈𐬎𐬀𐬌 𐬯𐬀𐬐𐬀𐬭𐬀...',
@@ -240,12 +245,14 @@ export const ae = defineLocale({
       unavailableDesc: '𐬛𐬀𐬐𐬎𐬨𐬉𐬥𐬙𐬀𐬮 IPC 𐬠𐬭𐬌𐬐𐬈 𐬔𐬀𐬙𐬈𐬎𐬀𐬌 𐬯𐬀𐬐𐬀𐬭𐬀 𐬥𐬀 𐬀𐬞𐬀𐬭𐬀𐬌𐬙𐬍',
       title: '𐬔𐬀𐬙𐬈𐬎𐬀𐬌 𐬠𐬀𐬥𐬛𐬀',
       envOverride: 'env 𐬀𐬞𐬀𐬭𐬀𐬙𐬀',
-      intro: 'OpenAmer Desktop 𐬥𐬍𐬰𐬠𐬀𐬭𐬀𐬌𐬙𐬍 𐬀𐬎𐬎𐬀 𐬔𐬀𐬙𐬈𐬎𐬀𐬌 𐬞𐬀𐬭𐬀 𐬛𐬀𐬉𐬥𐬀. 𐬀𐬬𐬀𐬙 𐬔𐬀𐬙𐬈𐬎𐬀𐬌 𐬛𐬎𐬭𐬁𐬝 𐬫𐬀𐬛𐬀 𐬀𐬵𐬨𐬌 𐬀𐬞𐬞𐬀 𐬀𐬌𐬥𐬌𐬔𐬆𐬨 𐬀𐬎𐬎𐬀 OpenAmer 𐬐𐬀𐬭𐬀𐬥𐬙𐬆𐬨 𐬀𐬥𐬫𐬀 𐬨𐬀𐬱𐬌𐬥𐬀 𐬫𐬁 𐬀𐬞𐬀𐬭𐬀 𐬞𐬭𐬀𐬎𐬎𐬀𐬙𐬀 𐬞𐬭𐬞𐬨𐬀 𐬀𐬎𐬎𐬀. 𐬞𐬀𐬭𐬀 𐬞𐬭𐬞𐬌𐬟𐬌𐬌𐬀 𐬀𐬛𐬀𐬐𐬆𐬨 𐬛𐬀𐬙𐬀 𐬀𐬎𐬎𐬀𐬝 𐬛𐬎𐬭𐬁𐬝 𐬵𐬀𐬰𐬀𐬥𐬆𐬨.',
+      intro:
+        'OpenAmer Desktop 𐬥𐬍𐬰𐬠𐬀𐬭𐬀𐬌𐬙𐬍 𐬀𐬎𐬎𐬀 𐬔𐬀𐬙𐬈𐬎𐬀𐬌 𐬞𐬀𐬭𐬀 𐬛𐬀𐬉𐬥𐬀. 𐬀𐬬𐬀𐬙 𐬔𐬀𐬙𐬈𐬎𐬀𐬌 𐬛𐬎𐬭𐬁𐬝 𐬫𐬀𐬛𐬀 𐬀𐬵𐬨𐬌 𐬀𐬞𐬞𐬀 𐬀𐬌𐬥𐬌𐬔𐬆𐬨 𐬀𐬎𐬎𐬀 OpenAmer 𐬐𐬀𐬭𐬀𐬥𐬙𐬆𐬨 𐬀𐬥𐬫𐬀 𐬨𐬀𐬱𐬌𐬥𐬀 𐬫𐬁 𐬀𐬞𐬀𐬭𐬀 𐬞𐬭𐬀𐬎𐬎𐬀𐬙𐬀 𐬞𐬭𐬞𐬨𐬀 𐬀𐬎𐬎𐬀. 𐬞𐬀𐬭𐬀 𐬞𐬭𐬞𐬌𐬟𐬌𐬌𐬀 𐬀𐬛𐬀𐬐𐬆𐬨 𐬛𐬀𐬙𐬀 𐬀𐬎𐬎𐬀𐬝 𐬛𐬎𐬭𐬁𐬝 𐬵𐬀𐬰𐬀𐬥𐬆𐬨.',
       appliesTo: '𐬀𐬞𐬀𐬭𐬀𐬌𐬙𐬍 𐬀𐬥𐬀',
       allProfiles: '𐬎𐬞𐬀𐬨𐬀 𐬞𐬭𐬞𐬌𐬟𐬌𐬌𐬀',
       defaultConnection: '𐬞𐬀𐬭𐬀 𐬠𐬀𐬥𐬛𐬀 𐬞𐬀𐬭𐬀 𐬀𐬞𐬀𐬭𐬀𐬌𐬙𐬍 𐬞𐬭𐬞𐬌𐬟𐬌𐬌𐬀 𐬫𐬀𐬛𐬀 𐬥𐬀 𐬀𐬞𐬀𐬭𐬀𐬙𐬀 𐬀𐬎𐬎𐬀.',
       envOverrideTitle: '𐬀𐬥𐬎𐬎𐬀𐬌𐬭𐬀𐬥𐬨𐬆𐬥𐬙 𐬬𐬀𐬭𐬌𐬀𐬠𐬎𐬮𐬀𐬯 𐬐𐬀𐬭𐬀𐬥𐬙𐬌 𐬀𐬵𐬨𐬌 𐬛𐬀𐬐𐬎𐬨𐬉𐬥𐬙𐬀𐬮 𐬯𐬉𐬱𐬀𐬥𐬆𐬨.',
-      envOverrideDesc: '𐬥𐬀 𐬛𐬀𐬙𐬀 OPENAMER_DESKTOP_REMOTE_URL 𐬁 OPENAMER_DESKTOP_REMOTE_TOKEN 𐬫𐬀𐬛𐬀 𐬀𐬞𐬀𐬭𐬀𐬌𐬙𐬍 𐬀𐬎𐬎𐬀 𐬯𐬀𐬐𐬀𐬭𐬀 𐬀𐬛𐬀𐬐𐬆𐬨.',
+      envOverrideDesc:
+        '𐬥𐬀 𐬛𐬀𐬙𐬀 OPENAMER_DESKTOP_REMOTE_URL 𐬁 OPENAMER_DESKTOP_REMOTE_TOKEN 𐬫𐬀𐬛𐬀 𐬀𐬞𐬀𐬭𐬀𐬌𐬙𐬍 𐬀𐬎𐬎𐬀 𐬯𐬀𐬐𐬀𐬭𐬀 𐬀𐬛𐬀𐬐𐬆𐬨.',
       modeTitle: 'Hambandīh vīθa',
       localTitle: 'Vīsya dvarəm',
       localDesc: 'OpenAmer xvaēpaθya pasō localhost aiwi-āpaya. Aēša paoirya asti uta a-rai varzaiti.',
@@ -267,7 +274,7 @@ export const ae = defineLocale({
       cloudNoAgents: {
         before: 'Nōit āǰentā vīdā ahmāi akāunt. Aēvəm dā andar',
         linkText: 'OpenAmer pōrtal',
-        after: ', pasča rəfrēš.',
+        after: ', pasča rəfrēš.'
       },
       cloudRefresh: 'Rəfrēš',
       cloudConnect: 'Kənekt',
@@ -301,13 +308,15 @@ export const ae = defineLocale({
       applyFailed: 'Gateway dāta nōit vaēδaitī',
       saveFailed: 'Gateway dāta nōit nidāta',
       sshTitle: 'SSH rāδa band',
-      sshDesc: 'OpenAmer SSH rāδa dūra frāǰa, tunnel rāδa īm app — nōit start vā expose. Key-based SSH access rāδa host vaēδaitī.',
+      sshDesc:
+        'OpenAmer SSH rāδa dūra frāǰa, tunnel rāδa īm app — nōit start vā expose. Key-based SSH access rāδa host vaēδaitī.',
       sshTrustHint: 'Paoiriia host key trusted vā pinned; pasāca changes fail closed.',
       sshHostDesc: 'user@host, vā Host alias ~/.ssh/config.',
       sshHostPick: 'Host nišā…',
       signOut: '𐬎𐬰𐬥𐬁𐬨𐬀𐬥',
       authTitle: '𐬀𐬎𐬚𐬈𐬥𐬙𐬌𐬐𐬁𐬯𐬌𐬕𐬥',
-      authSignedInPassword: '𐬈𐬌𐬨 𐬛𐬎𐬎𐬀𐬭𐬆𐬨 𐬥𐬁𐬨𐬀𐬥 𐬎𐬞𐬀𐬌𐬭𐬌 𐬞𐬀𐬭𐬀𐬛𐬀𐬙𐬌. 𐬚𐬎 𐬥𐬁𐬨𐬀𐬥 𐬛𐬁𐬙𐬀 𐬀𐬵𐬌; 𐬯𐬈𐬱𐬥 𐬀𐬎𐬙𐬀𐬨𐬁𐬙𐬌𐬐𐬁𐬨 𐬀𐬞𐬀𐬭𐬀𐬨 𐬐𐬆𐬭𐬆𐬥𐬎𐬎𐬀𐬌𐬙𐬌.',
+      authSignedInPassword:
+        '𐬈𐬌𐬨 𐬛𐬎𐬎𐬀𐬭𐬆𐬨 𐬥𐬁𐬨𐬀𐬥 𐬎𐬞𐬀𐬌𐬭𐬌 𐬞𐬀𐬭𐬀𐬛𐬀𐬙𐬌. 𐬚𐬎 𐬥𐬁𐬨𐬀𐬥 𐬛𐬁𐬙𐬀 𐬀𐬵𐬌; 𐬯𐬈𐬱𐬥 𐬀𐬎𐬙𐬀𐬨𐬁𐬙𐬌𐬐𐬁𐬨 𐬀𐬞𐬀𐬭𐬀𐬨 𐬐𐬆𐬭𐬆𐬥𐬎𐬎𐬀𐬌𐬙𐬌.',
       authSignedInOauth: '𐬈𐬌𐬨 𐬛𐬎𐬎𐬀𐬭𐬆𐬨 OAuth 𐬞𐬀𐬭𐬀𐬛𐬀𐬙𐬌. 𐬚𐬎 𐬥𐬁𐬨𐬀𐬥 𐬛𐬁𐬙𐬀 𐬀𐬵𐬌; 𐬯𐬈𐬱𐬥 𐬀𐬎𐬙𐬀𐬨𐬁𐬙𐬌𐬐𐬁𐬨 𐬀𐬞𐬀𐬭𐬀𐬨 𐬐𐬆𐬭𐬆𐬥𐬎𐬎𐬀𐬌𐬙𐬌.',
       authNeedsPassword: '𐬈𐬌𐬨 𐬛𐬎𐬎𐬀𐬭𐬆𐬨 𐬥𐬁𐬨𐬀𐬥 𐬎𐬞𐬀𐬌𐬭𐬌 𐬞𐬀𐬭𐬀𐬛𐬀𐬙𐬌. 𐬥𐬁𐬨𐬀𐬥 𐬛𐬁 𐬐𐬆𐬭𐬆𐬥𐬎𐬎𐬀𐬌𐬙𐬌 𐬈𐬌𐬨 𐬛𐬈𐬯𐬐𐬙𐬋𐬞 𐬀𐬞𐬀𐬭𐬀𐬨.',
       tokenTitle: '𐬯𐬈𐬱𐬥 𐬙𐬋𐬐𐬆𐬥',
@@ -343,14 +352,17 @@ export const ae = defineLocale({
       sshButtonsHint: 'Dāta pati next launch. Connect pati nūn.',
       sshIncompleteHost: 'Ni SSH vīs pūrva pati.',
       sshErrUnreachable: 'Nōit ras vīs pa SSH. Vīna vīs, duuarə, tava network.',
-      sshErrAuth: 'SSH azdā nōit. Dā tava key andar ssh-agent (ssh-add) vā set IdentityFile in ~/.ssh/config — OpenAmer kar ssh non-interactively.',
+      sshErrAuth:
+        'SSH azdā nōit. Dā tava key andar ssh-agent (ssh-add) vā set IdentityFile in ~/.ssh/config — OpenAmer kar ssh non-interactively.',
       sshErrHostKey: 'Vīs key CHANGED haca tava last connect. Vīna cī expected, aoš run ssh-keygen -R <host> vā pati.',
-      sshErrNotInstalled: 'OpenAmer nōit ništa dāta andar dūra host. Tarō ništa dā (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) vā dā OpenAmer paθa.',
+      sshErrNotInstalled:
+        'OpenAmer nōit ništa dāta andar dūra host. Tarō ništa dā (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) vā dā OpenAmer paθa.',
       sshErrPlatform: 'Dūra platform nōit bərəta. OpenAmer Desktop SSH mode bərəta Linux, macOS, ud Windows dūra host.',
       sshErrTimeout: 'SSH band vīspō būt. Host mā nōit rasāti vā xvāfta asti.',
       sshErrUpdateRequired: 'Nūtā dā OpenAmer andar dūra host paoiri hamband SSH Desktop.',
       sshErrUnknown: 'SSH band nōit būt.',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudTitle: 'OpenAmer Cloud',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudOrgRole: role => `Role: ${role}`,
@@ -361,12 +373,12 @@ export const ae = defineLocale({
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       sshHostTitle: 'Host',
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     keys: {
       loading: 'Bara API keys ud credentials...',
       failedLoad: 'API keys nōit bara būt',
-      empty: 'Nōit dāta andar iθa category.',
+      empty: 'Nōit dāta andar iθa category.'
     },
     mcp: {
       loading: 'Bara MCP servers...',
@@ -428,10 +440,11 @@ export const ae = defineLocale({
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       authenticatedMessage: (server, count) => `${server}: ${count} tools`,
       enableTool: tool => `Enable ${tool}`,
-      disableTool: tool => `Disable ${tool}`,
+      disableTool: tool => `Disable ${tool}`
     },
     model: {
       loading: 'Bəraitē model dātəm...',
@@ -456,37 +469,37 @@ export const ae = defineLocale({
       tasks: {
         vision: {
           label: '𐬬𐬍𐬯𐬌𐬋𐬥',
-          hint: '𐬀𐬥𐬀𐬮𐬌𐬯𐬌𐬯 𐬀𐬌𐬨𐬀𐬔𐬀',
+          hint: '𐬀𐬥𐬀𐬮𐬌𐬯𐬌𐬯 𐬀𐬌𐬨𐬀𐬔𐬀'
         },
         web_extract: {
           label: '𐬬𐬈𐬠 𐬀𐬎𐬑𐬙𐬀',
-          hint: '𐬞𐬁𐬔𐬀 𐬯𐬎𐬨𐬀𐬭𐬌𐬰𐬀𐬙𐬌𐬋𐬥',
+          hint: '𐬞𐬁𐬔𐬀 𐬯𐬎𐬨𐬀𐬭𐬌𐬰𐬀𐬙𐬌𐬋𐬥'
         },
         compression: {
           label: 'ham-graβa',
-          hint: 'hąmąmāna ham-graβa',
+          hint: 'hąmąmāna ham-graβa'
         },
         skills_hub: {
           label: 'hunarąm stāna',
-          hint: 'hunara pōrusō',
+          hint: 'hunara pōrusō'
         },
         approval: {
           label: 'frāwarə',
-          hint: 'xratu-χᵛāstąm frāwarə',
+          hint: 'xratu-χᵛāstąm frāwarə'
         },
         mcp: {
           hint: 'MCP nidąm raθa',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'nāman-jan',
-          hint: 'hąmąmāna nāmąn',
+          hint: 'hąmąmāna nāmąn'
         },
         curator: {
           label: 'paθβąn',
-          hint: 'hunara-brūk dīd',
-        },
-      },
+          hint: 'hunara-brūk dīd'
+        }
+      }
     },
     providers: {
       connectAccount: 'aχša hąm-χšā',
@@ -504,16 +517,17 @@ export const ae = defineLocale({
       noKeysMatch: 'Nōit provider tē search hacənti.',
       localEndpoint: {
         title: 'Nmana / custom endpoint',
-        description: 'OpenAmer paiti harva OpenAI-compatible endpoint (Zyphra, vLLM, llama.cpp, Ollama, etc).',
+        description: 'OpenAmer paiti harva OpenAI-compatible endpoint (Zyphra, vLLM, llama.cpp, Ollama, etc).'
       },
       loading: 'Provider bāra...',
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     sessions: {
       autoArchiveFailed: 'nōit būt auto-archive frāxšnūta',
@@ -536,14 +550,16 @@ export const ae = defineLocale({
       deletePermanently: 'Delete permanent',
       restored: 'Paiti-būta',
       autoArchiveTitle: 'Auto-archive stale chatān',
-      autoArchiveDesc: 'Auto-archive chatān tē nōit tūšta. Pinned chatān nōit archive, nōit či delete — archived chatān adha.',
+      autoArchiveDesc:
+        'Auto-archive chatān tē nōit tūšta. Pinned chatān nōit archive, nōit či delete — archived chatān adha.',
       autoArchiveDaysLabel: 'Archive pasəca',
       autoArchiveDaysUnit: 'dayān inactivity',
-      archivedIntro: 'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
+      archivedIntro:
+        'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
       defaultDirUpdated: 'Default project directory updated — start a new chat (Ctrl/⌘+N) for it to take effect',
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
       loadingConfig: 'configuration baraiti',
@@ -595,7 +611,7 @@ export const ae = defineLocale({
         selectedTitle: 'pasō varəta',
         needsSetupHint: 'aēta pasō nū varəta; hakhšta nōit bara yavat stāitī hāmō.',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       savedMessage: key => `${key} updated.`,
       removedMessage: key => `${key} removed.`,
@@ -605,8 +621,10 @@ export const ae = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -616,7 +634,7 @@ export const ae = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     closeSettings: 'Niyamāni vāray',
     exportConfig: 'Config nirgam',
@@ -640,10 +658,10 @@ export const ae = defineLocale({
       about: 'About',
       billing: 'Billing',
       notifications: 'Notifications',
-      plugins: 'Plugins',
+      plugins: 'Plugins'
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     toolsetsRefreshFailed: 'Hunargōhar nōit frapāta',
@@ -661,7 +679,7 @@ export const ae = defineLocale({
     provenance: {
       agent: 'Hąmōxta',
       bundled: 'Aŋhakaēna',
-      hub: 'Maiδya',
+      hub: 'Maiδya'
     },
     changesApplyNewSessions: 'Vōizdūm nāvəm hąmaranąm aŋhəṇte.',
     skillUpdated: 'Hunar nūtəm',
@@ -693,7 +711,7 @@ export const ae = defineLocale({
       trust: {
         builtin: 'Antar.dātəm',
         trusted: 'Ašāvan',
-        community: 'Gaēθā',
+        community: 'Gaēθā'
       },
       verdictSafe: 'Ašāta',
       verdictCaution: 'Pāiti',
@@ -731,7 +749,7 @@ export const ae = defineLocale({
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     skillArchivedTitle: 'Zānā sārd šud',
     skillArchivedMessage: 'Sārd šudēk ast `openamer curator restore`.',
@@ -746,7 +764,7 @@ export const ae = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     title: 'Cisti nipišt',
@@ -773,7 +791,7 @@ export const ae = defineLocale({
     importedBadge: 'ābarəta map',
     resetToMine: 'apā mana map',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'agents nidā',
@@ -803,7 +821,7 @@ export const ae = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'command center nidā',
@@ -832,7 +850,7 @@ export const ae = defineLocale({
       generatedTag: 'zāta',
       adoptFailed: 'aēta pəšū nōit paiti.gərəpta.',
       toggleFailed: 'pəšū nōit vīvāra.',
-      noneAvailable: 'pəšū nōit asti — aēta niθāta.',
+      noneAvailable: 'pəšū nōit asti — aēta niθāta.'
     },
     generatePet: {
       title: 'Pasu frabara',
@@ -861,7 +879,7 @@ export const ae = defineLocale({
       referenceImageInvalid: 'Nōit aētəm paiti-imāžąm pāiti. PNG, JPG, WebP, vai GIF hakat bī.',
       adopt: 'Paiti-varə',
       startOver: 'Hacā būnāt hakat',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     installTheme: {
       title: 'Tema niδāta…',
@@ -873,7 +891,7 @@ export const ae = defineLocale({
       install: 'Niδāta',
       installing: 'Niδātaiti...',
       installed: 'Niδātəm',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Paiti-varə kərəna',
     mcpServers: 'MCP sērvərā',
@@ -882,49 +900,49 @@ export const ae = defineLocale({
       maintenance: 'Paiti-δrəti',
       sessions: 'Sesiōnā',
       system: 'Dāta',
-      usage: 'Vərəz',
+      usage: 'Vərəz'
     },
     sectionDescriptions: {
       maintenance: 'Vīcāra, paiti.θβah, pəšō.tanu, ud uxδa',
       sessions: 'Vīcāra ud səraoša səšan',
       system: 'Staota, paiti.vacah, ud dāta vərəz',
-      usage: 'Vāxš, arəja, ud hūnara vərəz paiti zrvan',
+      usage: 'Vāxš, arəja, ud hūnara vərəz paiti zrvan'
     },
     nav: {
       newChat: {
         title: 'Nava səšan',
-        detail: 'Paiti.hištā nava səšan',
+        detail: 'Paiti.hištā nava səšan'
       },
       settings: {
         title: 'Framāna',
-        detail: 'Framāna OpenAmer daskart',
+        detail: 'Framāna OpenAmer daskart'
       },
       skills: {
         title: 'Hūnara',
-        detail: 'Hūnara, vərəz, MCP sērvər',
+        detail: 'Hūnara, vərəz, MCP sērvər'
       },
       messaging: {
         title: 'Paiti.vacah',
-        detail: 'Framāna Telegram, Slack, Discord, ud vīspa',
+        detail: 'Framāna Telegram, Slack, Discord, ud vīspa'
       },
       artifacts: {
         title: 'Būta',
-        detail: 'Vīcāra būta vərəz',
-      },
+        detail: 'Vīcāra būta vərəz'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Səšan pānəl',
-        detail: 'Vīcāra, nipišt, ud səraoša səšan',
+        detail: 'Vīcāra, nipišt, ud səraoša səšan'
       },
       system: {
         title: 'Dāta pānəl',
-        detail: 'Darvāza staota, paiti.vacah, paiti.hištā/paiti.nava',
+        detail: 'Darvāza staota, paiti.vacah, paiti.hištā/paiti.nava'
       },
       usage: {
         title: 'Drafša ī frāyazd',
-        detail: 'Tōkən, arəzu, u xratu kāra',
-      },
+        detail: 'Tōkən, arəzu, u xratu kāra'
+      }
     },
     providerNavigate: 'Paiti.ay',
     providerSessions: 'Hąm.paθa',
@@ -1007,14 +1025,14 @@ export const ae = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     startInBranch: branch => `New conversation in ${branch}`,
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · Active sessions ${count}`,
     days: count => `${count}d`,
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   messaging: {
     search: 'paiti.jasa paiti.vāc...',
@@ -1029,7 +1047,7 @@ export const ae = defineLocale({
       not_configured: 'Dāta θβaršt',
       pending_restart: 'Paiti.stāitiš θβaršt',
       retrying: 'Paiti.xšnūta',
-      startup_failed: 'Fra.būt nōit',
+      startup_failed: 'Fra.būt nōit'
     },
     unknown: 'Anaxnūta',
     hintPendingRestart: 'Dvarəm paiti.stāya haca stāti bar, aētąm paiti.dātąm.',
@@ -1056,124 +1074,124 @@ export const ae = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Bōt tōkan',
         help: 'Vīraēθa bōtəm paiti @BotFather, pasča tōkanəm paiti.θβa.',
-        placeholder: 'Paiti.θβa Telegram bōt tōkan',
+        placeholder: 'Paiti.θβa Telegram bōt tōkan'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Afrā̊ Telegram aŋhə̄uš ID',
-        help: 'Paiti.vītarəθa. ID nūmərā paiti komā fram @userinfobot. Apara aēta, harva bōtəm tōi dādāiti.',
+        help: 'Paiti.vītarəθa. ID nūmərā paiti komā fram @userinfobot. Apara aēta, harva bōtəm tōi dādāiti.'
       },
       TELEGRAM_PROXY: {
         help: 'Aēta vīθā nōit vərəziieiti Telegram paiti raθa.',
-        label: 'Proxy URL',
+        label: 'Proxy URL'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Bōt tōkan',
-        help: 'Vīraēθa application paiti Discord Developer Portal, vīraēθa bōtəm, pasča tōkanəm paiti.θβa.',
+        help: 'Vīraēθa application paiti Discord Developer Portal, vīraēθa bōtəm, pasča tōkanəm paiti.θβa.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Afrā̊ Discord aŋhə̄uš ID',
-        help: 'Paiti.vītarəθa. ID nūmərā paiti komā Discord.',
+        help: 'Paiti.vītarəθa. ID nūmərā paiti komā Discord.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Paitivāxš dāta',
-        help: 'paoiriia, vispa, vā nōit',
+        help: 'paoiriia, vispa, vā nōit'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Discord vispa aŋhāx frā',
-        help: 'Development aēva. ka true, vispa DM bot bē allowlist nōit.',
+        help: 'Development aēva. ka true, vispa DM bot bē allowlist nōit.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'nmāna channel ID',
-        help: 'channel yahmā bot cron/reminders frāēše',
+        help: 'channel yahmā bot cron/reminders frāēše'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'nmāna channel nāman',
-        help: 'nmāna channel nāman log/status',
+        help: 'nmāna channel nāman log/status'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'iMessage vispa aŋhāx frā',
-        help: 'ka true, BlueBubbles allowlist parā',
+        help: 'ka true, BlueBubbles allowlist parā'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Mattermost vispa aŋhāx frā',
+        label: 'Mattermost vispa aŋhāx frā'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'nmāna channel',
+        label: 'nmāna channel'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'QQ vispa aŋhāx frā',
+        label: 'QQ vispa aŋhāx frā'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ nmāna channel',
-        help: 'default channel vā group cron delivery',
+        help: 'default channel vā group cron delivery'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ nmāna channel nāman',
+        label: 'QQ nmāna channel nāman'
       },
       SLACK_BOT_TOKEN: {
         help: 'OAuth & Permissions bot token, Slack app install pasča.',
         placeholder: 'Slack bot token paste',
-        label: 'Slack bot token',
+        label: 'Slack bot token'
       },
       SLACK_APP_TOKEN: {
         help: 'Socket Mode rāy app-level token asta upabarā',
         placeholder: 'Slack app token nidā',
-        label: 'Slack app token',
+        label: 'Slack app token'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Slack user ID frāxšnūta',
-        help: 'Framāta. Slack user ID viyāta.',
+        help: 'Framāta. Slack user ID viyāta.'
       },
       MATTERMOST_URL: {
         placeholder: 'https://mattermost.example.com',
-        label: 'Server URL',
+        label: 'Server URL'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'User ID frāxšnūta',
-        help: 'Framāta. Mattermost user ID viyāta.',
+        help: 'Framāta. Mattermost user ID viyāta.'
       },
       MATRIX_HOMESERVER: {
         placeholder: 'https://matrix.org',
-        label: 'Homeserver URL',
+        label: 'Homeserver URL'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Matrix user ID frāxšnūta',
-        help: 'Framāta. User ID viyāta @user:server.',
+        help: 'Framāta. User ID viyāta @user:server.'
       },
       SIGNAL_HTTP_URL: {
         placeholder: 'http://127.0.0.1:8080',
         help: 'signal-cli REST bridge vazāta URL',
-        label: 'Signal bridge URL',
+        label: 'Signal bridge URL'
       },
       SIGNAL_ACCOUNT: {
         help: 'Signal-cli pərətu nāman.',
-        label: 'Phone number',
+        label: 'Phone number'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Signal nara pa-ā̌.',
-        help: 'Fra-ā̌. Signal IDs comma-pa.',
+        help: 'Fra-ā̌. Signal IDs comma-pa.'
       },
       WHATSAPP_ENABLED: {
         label: 'Fra-gar WhatsApp pərətu.',
-        help: 'Varta haxa set. Ni-gar aēta.',
+        help: 'Varta haxa set. Ni-gar aēta.'
       },
       WHATSAPP_MODE: {
-        label: 'Pərətu haxa.',
+        label: 'Pərətu haxa.'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'WhatsApp nara pa-ā̌.',
-        help: 'Fra-ā̌. Phone numbers vā WhatsApp IDs comma-pa.',
+        help: 'Fra-ā̌. Phone numbers vā WhatsApp IDs comma-pa.'
       },
       MATTERMOST_TOKEN: {
-        label: 'Bot token',
+        label: 'Bot token'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Access token',
+        label: 'Access token'
       },
       MATRIX_USER_ID: {
         label: 'Bot user ID',
-        placeholder: '@openamer:example.org',
-      },
+        placeholder: '@openamer:example.org'
+      }
     },
     advanced: count => `Advanced (${count})`,
     clearField: key => `Clear ${key}`,
@@ -1187,8 +1205,7 @@ export const ae = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Paityā webhooks...',
@@ -1197,7 +1214,8 @@ export const ae = defineLocale({
     hint: 'Upa-gar changes hot-reload pa receiver bara. Ni-gar upa-gar reject vāc.',
     empty: 'Ni webhook upa-gar yet.',
     disabledTitle: 'Webhook receiver ni-gar.',
-    disabledBody: 'Webhooks own stāna. Fra-gar here accept HTTP vāc; chat rāz needed when upa-gar delivers to Telegram, Discord, Slack, vā another rāz.',
+    disabledBody:
+      'Webhooks own stāna. Fra-gar here accept HTTP vāc; chat rāz needed when upa-gar delivers to Telegram, Discord, Slack, vā another rāz.',
     enable: 'Fra-gar webhooks.',
     enabling: 'Fra-gar...',
     enableRow: 'Fra-gar.',
@@ -1244,7 +1262,7 @@ export const ae = defineLocale({
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Email',
+      email: 'Email'
     },
     subscriptions: (count: number) => `Subscriptions (${count})`,
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -1252,7 +1270,7 @@ export const ae = defineLocale({
     deleteFailed: (name: string) => `Failed to delete "${name}"`,
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     close: 'nāmā nijām',
@@ -1330,7 +1348,7 @@ export const ae = defineLocale({
     env: 'env',
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   cron: {
     close: 'Cron. nijam',
@@ -1344,14 +1362,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'pausa',
       disabled: 'nōit astavant',
       error: 'xratu',
-      completed: 'hamōxθa',
+      completed: 'hamōxθa'
     },
     deliveryLabels: {
       local: 'Aēša desktop',
       telegram: 'Tēlēgram',
       discord: 'Diskord',
       slack: 'Slak',
-      email: 'Ēmēl',
+      email: 'Ēmēl'
     },
     scheduleLabels: {
       daily: 'Hama aiiar',
@@ -1360,7 +1378,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Måŋhō',
       hourly: 'Hōrō',
       'every-15-minutes': 'Hama 15 minūt',
-      custom: 'Xwāsta',
+      custom: 'Xwāsta'
     },
     scheduleHints: {
       daily: 'Hama aiiar 9:00 AM',
@@ -1369,7 +1387,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Pərəθuia aiiar hama månha 9:00 AM',
       hourly: 'Hama hōrə sarə',
       'every-15-minutes': 'Hama 15 minūt',
-      custom: 'Cron nivišt vā zīvan hizvā',
+      custom: 'Cron nivišt vā zīvan hizvā'
     },
     days: {
       '0': 'Sunday',
@@ -1379,7 +1397,7 @@ Leave blank to keep the ${mode} default.`,
       '4': '𐬗𐬀𐬚𐬎𐬎𐬀𐬭 𐬀𐬌𐬌𐬀𐬭𐬆',
       '5': '𐬞𐬀𐬥𐬗𐬀 𐬀𐬌𐬌𐬀𐬭𐬆',
       '6': '𐬑𐬱𐬎𐬎𐬀𐬱 𐬀𐬌𐬌𐬀𐬭𐬆',
-      '7': '𐬵𐬀𐬞𐬙𐬀 𐬀𐬌𐬌𐬀𐬭𐬆',
+      '7': '𐬵𐬀𐬞𐬙𐬀 𐬀𐬌𐬌𐬀𐬭𐬆'
     },
     topOfHour: '𐬞𐬀𐬭𐬋 𐬵𐬀𐬰𐬀𐬥𐬀𐬵𐬈 𐬵𐬀𐬎𐬎𐬀𐬐𐬆',
     newCron: '𐬥𐬀𐬎𐬎𐬀 𐬐𐬭𐬋𐬥',
@@ -1441,7 +1459,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'cron dāta',
     tabs: {
       jobs: 'Kārə',
-      blueprints: 'Paitidātə',
+      blueprints: 'Paitidātə'
     },
     blueprints: {
       tab: 'Paitidātə',
@@ -1455,7 +1473,7 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Paitidātə ābar...',
       failedLoad: 'Paitidātə nō ābar',
       emptyTitle: 'Paitidātə nō asti',
-      emptyDesc: 'Paitidātə automation nō asti panā backend.',
+      emptyDesc: 'Paitidātə automation nō asti panā backend.'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -1464,7 +1482,7 @@ Leave blank to keep the ${mode} default.`,
     everyDayOfWeekAt: (day, time) => `Every ${day} at ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Monthly on day ${dayOfMonth} at ${time}`,
     everyHourAt: minute => `Every hour at :${minute}`,
-    actionsFor: title => `Actions for ${title}`,
+    actionsFor: title => `Actions for ${title}`
   },
   artifacts: {
     search: 'Artifacts vīcay...',
@@ -1498,14 +1516,14 @@ Leave blank to keep the ${mode} default.`,
     copyUrl: 'URL 𐬞𐬀𐬙𐬌𐬔𐬭𐬀𐬠𐬀',
     copyPath: '𐬞𐬀𐬚𐬀 𐬞𐬀𐬙𐬌𐬔𐬭𐬀𐬠𐬀',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': '𐬥𐬀𐬎𐬀 𐬵𐬀𐬥𐬘𐬀𐬨𐬀𐬥𐬀',
       skills: '𐬙𐬀𐬎𐬁',
       messaging: '𐬞𐬀𐬙𐬌𐬫𐬁𐬙𐬀',
-      artifacts: '𐬛𐬀𐬯𐬙𐬐𐬆𐬭𐬙𐬀',
+      artifacts: '𐬛𐬀𐬯𐬙𐬐𐬆𐬭𐬙𐬀'
     },
     searchAria: '𐬞𐬆𐬭𐬆𐬯𐬀 𐬵𐬀𐬥𐬘𐬀𐬨𐬀𐬥𐬀',
     searchPlaceholder: '𐬞𐬆𐬭𐬆𐬯𐬀 𐬵𐬀𐬥𐬘𐬀𐬨𐬀𐬥𐬀…',
@@ -1555,7 +1573,8 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'Paθ copy',
       removeFromSidebar: 'Sidebar nīdā',
       createFailed: 'Nōit dadā kār',
-      staleBackend: 'OpenAmer bakend rā nūtī kun tā projekta daθa — tō bakend pōrō asti az īm desktop app (Sazmān → Nūtī → Bakend).',
+      staleBackend:
+        'OpenAmer bakend rā nūtī kun tā projekta daθa — tō bakend pōrō asti az īm desktop app (Sazmān → Nūtī → Bakend).',
       deleteConfirm: 'Aēm projekta haxta az OpenAmer vīnaθa. Fāil, git repos, ud worktrees axšta mānəṇte.',
       startWork: 'Nava worktree',
       newWorktreeTitle: 'Nava worktree',
@@ -1575,8 +1594,10 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'Nō branch vīda',
       removeWorktree: 'Vīnaθa worktree',
       removeWorktreeFailed: '𐬥𐬋𐬌𐬙 𐬀𐬞𐬀𐬠𐬀𐬭𐬀𐬌𐬙𐬍 𐬬𐬆𐬭𐬆𐬰𐬀𐬥𐬄𐬨 (𐬞𐬀𐬌𐬙𐬌𐬎𐬎𐬀𐬭𐬆𐬙𐬁𐬥𐬌 𐬀𐬯𐬙𐬌?)',
-      removeWorktreeConfirm: '𐬀𐬞𐬀 𐬠𐬀𐬭𐬀 𐬀𐬥𐬄𐬨 𐬵𐬀𐬗𐬀 `git` (𐬥𐬌𐬘𐬁𐬨𐬀𐬌𐬙𐬍 𐬬𐬆𐬭𐬆𐬰𐬀𐬥𐬄𐬨 𐬛𐬀𐬟𐬙𐬆𐬨; 𐬞𐬀𐬙𐬌𐬱𐬙𐬁 𐬞𐬀𐬭𐬀𐬠𐬀𐬭𐬀𐬌𐬙𐬍), 𐬬𐬁 𐬀𐬬𐬀 𐬥𐬌𐬚𐬀𐬞𐬀𐬌𐬙𐬍 𐬭𐬁𐬰𐬀𐬥𐬆𐬨 𐬵𐬀𐬗𐬀 𐬞𐬁𐬭𐬱𐬬𐬀 𐬛𐬀𐬥𐬎𐬎𐬀 𐬎𐬙𐬀 𐬞𐬀𐬭𐬀𐬠𐬀𐬭𐬀 𐬬𐬆𐬭𐬆𐬰𐬀𐬥𐬄𐬨 𐬞𐬀𐬌𐬙𐬌 𐬛𐬀𐬟𐬙𐬆𐬨.',
-      removeWorktreeDirty: '𐬀𐬉𐬙𐬀 𐬬𐬆𐬭𐬆𐬰𐬀𐬥𐬁 𐬞𐬀𐬌𐬙𐬌𐬎𐬎𐬀𐬭𐬆𐬙𐬁𐬥𐬌 𐬛𐬁𐬌𐬙𐬍. 𐬀𐬰𐬃𐬥𐬆𐬨 𐬀𐬞𐬀𐬠𐬀𐬭𐬀 (𐬥𐬌𐬘𐬁𐬨𐬀𐬌𐬙𐬍 𐬀𐬉𐬙𐬁𐬥𐬌), 𐬬𐬁 𐬀𐬬𐬀 𐬥𐬌𐬚𐬀𐬞𐬀𐬌𐬙𐬍 𐬭𐬁𐬰𐬀𐬥𐬆𐬨 𐬎𐬙𐬀 𐬞𐬀𐬭𐬀𐬠𐬀𐬭𐬀 𐬀𐬥𐬄𐬨 𐬞𐬀𐬌𐬙𐬌 𐬛𐬀𐬟𐬙𐬆𐬨.',
+      removeWorktreeConfirm:
+        '𐬀𐬞𐬀 𐬠𐬀𐬭𐬀 𐬀𐬥𐬄𐬨 𐬵𐬀𐬗𐬀 `git` (𐬥𐬌𐬘𐬁𐬨𐬀𐬌𐬙𐬍 𐬬𐬆𐬭𐬆𐬰𐬀𐬥𐬄𐬨 𐬛𐬀𐬟𐬙𐬆𐬨; 𐬞𐬀𐬙𐬌𐬱𐬙𐬁 𐬞𐬀𐬭𐬀𐬠𐬀𐬭𐬀𐬌𐬙𐬍), 𐬬𐬁 𐬀𐬬𐬀 𐬥𐬌𐬚𐬀𐬞𐬀𐬌𐬙𐬍 𐬭𐬁𐬰𐬀𐬥𐬆𐬨 𐬵𐬀𐬗𐬀 𐬞𐬁𐬭𐬱𐬬𐬀 𐬛𐬀𐬥𐬎𐬎𐬀 𐬎𐬙𐬀 𐬞𐬀𐬭𐬀𐬠𐬀𐬭𐬀 𐬬𐬆𐬭𐬆𐬰𐬀𐬥𐬄𐬨 𐬞𐬀𐬌𐬙𐬌 𐬛𐬀𐬟𐬙𐬆𐬨.',
+      removeWorktreeDirty:
+        '𐬀𐬉𐬙𐬀 𐬬𐬆𐬭𐬆𐬰𐬀𐬥𐬁 𐬞𐬀𐬌𐬙𐬌𐬎𐬎𐬀𐬭𐬆𐬙𐬁𐬥𐬌 𐬛𐬁𐬌𐬙𐬍. 𐬀𐬰𐬃𐬥𐬆𐬨 𐬀𐬞𐬀𐬠𐬀𐬭𐬀 (𐬥𐬌𐬘𐬁𐬨𐬀𐬌𐬙𐬍 𐬀𐬉𐬙𐬁𐬥𐬌), 𐬬𐬁 𐬀𐬬𐬀 𐬥𐬌𐬚𐬀𐬞𐬀𐬌𐬙𐬍 𐬭𐬁𐬰𐬀𐬥𐬆𐬨 𐬎𐬙𐬀 𐬞𐬀𐬭𐬀𐬠𐬀𐬭𐬀 𐬀𐬥𐬄𐬨 𐬞𐬀𐬌𐬙𐬌 𐬛𐬀𐬟𐬙𐬆𐬨.',
       forceRemove: '𐬀𐬰𐬃𐬥𐬆𐬨 𐬀𐬞𐬀𐬠𐬀𐬭𐬀',
       back: '𐬬𐬌𐬯𐬞𐬁 𐬬𐬆𐬭𐬆𐬰𐬁𐬥𐬌',
       namePlaceholder: 'e.g. Skunkworks',
@@ -1584,7 +1605,7 @@ Leave blank to keep the ${mode} default.`,
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     row: {
       sessionRunning: 'hanjamana rava',
@@ -1617,21 +1638,21 @@ Leave blank to keep the ${mode} default.`,
       untitledChat: id => `Chat ${id}`,
       ageDay: 'd',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'aētahmāi aiiarə paoiri',
       yesterday: 'hiiō',
       thisWeek: 'aētahmāi hapta paoiri',
       lastWeek: 'hapta pasča',
-      thisMonth: 'aētahmāi māŋha paoiri',
+      thisMonth: 'aētahmāi māŋha paoiri'
     },
     loading: '𐬟𐬭𐬀𐬠𐬀𐬭𐬀𐬨𐬀𐬵𐬌…',
     loadMore: '𐬟𐬭𐬀𐬠𐬀𐬭𐬀 𐬞𐬀𐬭𐬋',
     noMatch: query => `No sessions match “${query}”.`,
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     message: 'vacah',
@@ -1672,7 +1693,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'paurva haṇdāta paiti-stā',
       '/details': 'nipišt xšaθra',
       '/copy': 'paṭi-bar vīd vā apama assistant vācah',
-      '/quit': 'apa openamer',
+      '/quit': 'apa openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'paṭi-vāc nipištīhā, dəmāna, urls, git',
@@ -1682,7 +1703,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'fraēšt apara vāra paitišta',
       'keybinds.openPanel': 'vispa dastvar shortcuts',
       'composer.cancel': 'nijām popover · nōit run',
-      'composer.history': 'cakra popover / history',
+      'composer.history': 'cakra popover / history'
     },
     attachUrlTitle: 'hąm URL',
     attachUrlDesc: 'OpenAmer āp page u hąm context paiti aētam vāram.',
@@ -1726,18 +1747,18 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'Kōda paiti-varə',
         description: 'Paiti-varə astauuaitīm: regressiōn, vi-θβaršti, test',
-        text: 'Paiti-varə aētąm: bug, regressiōn, test',
+        text: 'Paiti-varə aētąm: bug, regressiōn, test'
       },
       implementationPlan: {
         label: 'Framāna frašna',
         description: 'Frašna paitiš',
-        text: 'Frašna framāna pərəsā',
+        text: 'Frašna framāna pərəsā'
       },
       explainThis: {
         label: 'Paiti-āxš aētąm',
         description: 'Paiti-āxš kōda varətąm; bandə nāmanąm',
-        text: 'Paiti-āxš aētąm; bandə nāmanąm',
-      },
+        text: 'Paiti-āxš aētąm; bandə nāmanąm'
+      }
     },
     wakingProfile: profile => `Waking up ${profile}…`,
     newSessionPlaceholders: [
@@ -1747,7 +1768,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -1756,7 +1777,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
@@ -1764,7 +1785,7 @@ Leave blank to keep the ${mode} default.`,
     previewLabel: label => `Preview ${label}`,
     couldNotPreview: label => `Could not preview ${label}`,
     removeAttachment: label => `Remove ${label}`,
-    url: 'URL…',
+    url: 'URL…'
   },
   statusStack: {
     agents: 'Agənta',
@@ -1804,7 +1825,8 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'višāda PR',
       ghMissing: 'GitHub CLI (gh) nišāda uta haxšāya višāda PRs',
       agentShip: 'pərəsa OpenAmer višāda PR',
-      agentShipPrompt: 'apa.re astauuaiti paiti.kerəti, nišāda hē aša.conventional-commit paiga, nīda vərəzāna, uta višāda PR',
+      agentShipPrompt:
+        'apa.re astauuaiti paiti.kerəti, nišāda hē aša.conventional-commit paiga, nīda vərəzāna, uta višāda PR',
       newBranch: 'nava vərəzāna',
       worktrees: 'kərəna vərəzāna',
       changed: count => `${count} changed`,
@@ -1813,12 +1835,12 @@ Leave blank to keep the ${mode} default.`,
       commitPlaceholder: 'Message (⌘↵ to commit)',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -1833,7 +1855,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'Nauuōdāta husita',
       manual: 'Nauuōdāta haca tava framāna-stāna',
       guiSkew: 'Nauuōdāta desk-top app',
-      error: 'Nauuōdāta aramata',
+      error: 'Nauuōdāta aramata'
     },
     checking: 'Nauuōdāta vīdāiti…',
     checkFailedTitle: 'Nōit vīdāiti nauuōdāta',
@@ -1855,11 +1877,13 @@ Leave blank to keep the ${mode} default.`,
     manualBody: '𐬚𐬏 OpenAmer 𐬀𐬰 command line 𐬟𐬭𐬀𐬛𐬁𐬙𐬀, 𐬥𐬏𐬙𐬌𐬱 𐬀𐬚𐬭𐬀 𐬟𐬭𐬀𐬞𐬀𐬭𐬀. 𐬞𐬀𐬯𐬙𐬈 𐬀𐬌𐬨 𐬀𐬥𐬙𐬀𐬭 terminal 𐬚𐬈:',
     manualPickedUp: 'OpenAmer 𐬥𐬀𐬎𐬎𐬀 𐬀𐬥𐬙𐬀𐬭 𐬰𐬄𐬨𐬀𐬥𐬀 𐬚𐬈 𐬟𐬭𐬀𐬞𐬀𐬭𐬀 𐬀𐬰 𐬥𐬏 𐬀𐬰𐬀𐬥𐬀𐬌𐬙𐬌.',
     guiSkewTitle: '𐬥𐬏𐬙𐬌 desktop app',
-    guiSkewBody: 'backend 𐬥𐬏𐬙𐬌 𐬀𐬯𐬙𐬌, 𐬀𐬚𐬀 𐬀𐬌𐬨 desktop app package 𐬥𐬀 𐬟𐬭𐬀𐬞𐬀𐬭𐬁𐬙𐬀. OpenAmer desktop app (AppImage / .deb / .rpm) 𐬥𐬏𐬙𐬌 𐬀𐬞𐬀 𐬟𐬭𐬀𐬞𐬀𐬭𐬁𐬙𐬀.',
+    guiSkewBody:
+      'backend 𐬥𐬏𐬙𐬌 𐬀𐬯𐬙𐬌, 𐬀𐬚𐬀 𐬀𐬌𐬨 desktop app package 𐬥𐬀 𐬟𐬭𐬀𐬞𐬀𐬭𐬁𐬙𐬀. OpenAmer desktop app (AppImage / .deb / .rpm) 𐬥𐬏𐬙𐬌 𐬀𐬞𐬀 𐬟𐬭𐬀𐬞𐬀𐬭𐬁𐬙𐬀.',
     copy: '𐬞𐬀𐬌𐬙𐬌',
     copied: '𐬞𐬀𐬌𐬙𐬌𐬌𐬁𐬙𐬀',
     done: '𐬀𐬞𐬀𐬭𐬀',
-    applyingBody: 'OpenAmer updater 𐬀𐬥𐬙𐬀𐬭 𐬰𐬄𐬨𐬀𐬥𐬀 𐬚𐬈 𐬟𐬭𐬀𐬞𐬀𐬭𐬁𐬌𐬙𐬌 𐬀𐬥𐬙𐬀𐬭 𐬀𐬞𐬆𐬥𐬆𐬨 𐬚𐬈 𐬀𐬰𐬀𐬥𐬀𐬌𐬙𐬌 OpenAmer 𐬀𐬞𐬀𐬭𐬀 𐬀𐬯𐬙𐬌. 𐬨𐬁 OpenAmer 𐬚𐬏 𐬟𐬭𐬀𐬞𐬀𐬭𐬁 𐬀𐬥𐬙𐬀𐬭 𐬥𐬏𐬙𐬌.',
+    applyingBody:
+      'OpenAmer updater 𐬀𐬥𐬙𐬀𐬭 𐬰𐬄𐬨𐬀𐬥𐬀 𐬚𐬈 𐬟𐬭𐬀𐬞𐬀𐬭𐬁𐬌𐬙𐬌 𐬀𐬥𐬙𐬀𐬭 𐬀𐬞𐬆𐬥𐬆𐬨 𐬚𐬈 𐬀𐬰𐬀𐬥𐬀𐬌𐬙𐬌 OpenAmer 𐬀𐬞𐬀𐬭𐬀 𐬀𐬯𐬙𐬌. 𐬨𐬁 OpenAmer 𐬚𐬏 𐬟𐬭𐬀𐬞𐬀𐬭𐬁 𐬀𐬥𐬙𐬀𐬭 𐬥𐬏𐬙𐬌.',
     applyingBodyBackend: 'remote backend 𐬥𐬏𐬙𐬌 𐬟𐬭𐬀𐬞𐬀𐬭𐬁𐬌𐬙𐬌 𐬀𐬥𐬙𐬀𐬭 𐬀𐬥𐬀𐬞𐬀𐬭𐬁𐬌𐬙𐬌. OpenAmer 𐬀𐬰𐬀𐬥𐬀𐬌𐬙𐬌 𐬀𐬥𐬙𐬀𐬭 𐬞𐬀𐬯𐬗𐬁.',
     applyingClose: '𐬀𐬌𐬨 𐬰𐬄𐬨𐬀𐬥𐬀 𐬥𐬏𐬙𐬌 𐬀𐬥𐬙𐬀𐬭 𐬟𐬭𐬀𐬞𐬀𐬭𐬁𐬌𐬙𐬌, 𐬀𐬚𐬀 OpenAmer 𐬀𐬰𐬀𐬥𐬀𐬌𐬙𐬌 𐬀𐬞𐬀𐬭𐬀.',
     errorTitle: '𐬥𐬏𐬙𐬌 𐬥𐬀 𐬀𐬞𐬀𐬭𐬀',
@@ -1871,13 +1895,13 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'backend 𐬀𐬥𐬀𐬞𐬀𐬭𐬁𐬌𐬙𐬌 𐬥𐬏𐬙𐬌…',
       notAvailable: '𐬥𐬏𐬙𐬌 𐬥𐬀 𐬀𐬥𐬙𐬀𐬭 backend 𐬀𐬯𐬙𐬌.',
       failed: 'backend 𐬥𐬏𐬙𐬌 𐬥𐬀 𐬀𐬞𐬀𐬭𐬀.',
-      noReturn: 'Pasōčihr nōit apaiti onlāyn būt. Nūkerəti mā frāčarət — pasōčihr xšaθra vīčar.',
+      noReturn: 'Pasōčihr nōit apaiti onlāyn būt. Nūkerəti mā frāčarət — pasōčihr xšaθra vīčar.'
     },
     appErrors: {
       updateLocked: 'Nūkerəti abarət: ani OpenAmer vīθa vā openamer vāč ahmi niθāta dāraiieiti. Avōi vīčar.',
-      updateFailed: 'Nūkerəti nōit frāčarət. Mā hakat — nōit cišča nī. Nū paiti vīčar.',
+      updateFailed: 'Nūkerəti nōit frāčarət. Mā hakat — nōit cišča nī. Nū paiti vīčar.'
     },
-    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
+    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`
   },
   install: {
     stageStates: {
@@ -1885,7 +1909,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'Niθāta',
       succeeded: 'Frāčarət',
       skipped: 'Atarət',
-      failed: 'Abarət',
+      failed: 'Abarət'
     },
     oneTimeTitle: 'OpenAmer hakat niθāta dāraiieiti.',
     installCommand: 'Niθāta vāč',
@@ -1922,8 +1946,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Niδāta nōit asti',
     settingUpTitle: 'OpenAmer Agent vīdāi',
     finishingTitle: 'Pati-frašō',
-    failedDesc: 'Aēva niδāta pāda nōit asti. Windows-ai, im aŋhāt, yat anēra OpenAmer CLI vai desktop OpenAmer vīrē. Stō OpenAmer vīrē, pasciia pati-cōšt. Dīdai daēnā bawahi vai desktop log paoiriia full transcript.',
-    activeDesc: 'Im aēva-kərəti vīdāi asti. OpenAmer installer dependencies frā-gərənti ut tō machine vīdāi. Pasciia launch-ai im pāda vī-kərənti.',
+    failedDesc:
+      'Aēva niδāta pāda nōit asti. Windows-ai, im aŋhāt, yat anēra OpenAmer CLI vai desktop OpenAmer vīrē. Stō OpenAmer vīrē, pasciia pati-cōšt. Dīdai daēnā bawahi vai desktop log paoiriia full transcript.',
+    activeDesc:
+      'Im aēva-kərəti vīdāi asti. OpenAmer installer dependencies frā-gərənti ut tō machine vīdāi. Pasciia launch-ai im pāda vī-kərənti.',
     fetchingManifest: 'Installer manifest frā-gərənti...',
     error: 'Irīxta',
     hideOutput: 'Installer output nī-dārai',
@@ -1935,7 +1961,8 @@ Leave blank to keep the ${mode} default.`,
     copiedOutput: 'Pati-niδāta!',
     copyOutput: 'Output pati-niδāta',
     reloadRetry: 'Pati-vīdāi ut pati-cōšt',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     remoteUrlTitle: 'Gateway URL',
     authTitle: 'Authentication',
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
@@ -1945,7 +1972,7 @@ Leave blank to keep the ${mode} default.`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'Tūm OpenAmer Agent rāy vīdārayāmahi',
@@ -1965,28 +1992,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         description: 'Direct access models rāy Fireworks AI.',
-        short: 'direct model API',
+        short: 'direct model API'
       },
       openrouter: {
         short: 'Aēva key, vīspa models',
-        description: 'Sata models paiti aēva key. Vohu default nāvaiia installs rāy.',
+        description: 'Sata models paiti aēva key. Vohu default nāvaiia installs rāy.'
       },
       openai: {
         description: 'Direct access OpenAI models rāy.',
-        short: 'GPT-class models',
+        short: 'GPT-class models'
       },
       gemini: {
         short: 'Gemini mōdalā',
-        description: 'Rāst paiti-aiβi tō Google Gemini mōdaląm.',
+        description: 'Rāst paiti-aiβi tō Google Gemini mōdaląm.'
       },
       xai: {
         short: 'Grok mōdalā',
-        description: 'Rāst paiti-aiβi tō xAI Grok mōdaląm.',
+        description: 'Rāst paiti-aiβi tō xAI Grok mōdaląm.'
       },
       local: {
         short: 'xwǝ̄d-paitištāta',
-        description: 'Nišādaya OpenAmer aŋhō lōkal yā xwǝ̄d-paitištāta OpenAI-compatible endpōint (vLLM, llama.cpp, Ollama, etc).',
-      },
+        description:
+          'Nišādaya OpenAmer aŋhō lōkal yā xwǝ̄d-paitištāta OpenAI-compatible endpōint (vLLM, llama.cpp, Ollama, etc).'
+      }
     },
     backToSignIn: 'Paiti sain-in',
     getKey: 'Kī dāta',
@@ -1999,7 +2027,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'Brāuzar tū vīδāta sain-in, paiti aδa hēr.',
       device_code: 'Pāδa vērīfikātiōn in brāuzar tū — OpenAmer xwǝ̄d hąm-paiti.',
-      external: 'Sain-in ainīm in tǝrmināl tū, paiti čat hēr.',
+      external: 'Sain-in ainīm in tǝrmināl tū, paiti čat hēr.'
     },
     signInFailed: 'Sain-in nōit aŋha. Paiti aŋha.',
     pickDifferentProvider: 'Vīčāraya ainīm prōvīdar',
@@ -2023,12 +2051,14 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     pro: 'Pro',
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'Model bē ward',
@@ -2044,13 +2074,13 @@ Leave blank to keep the ${mode} default.`,
     freeTier: 'Āzāta raθa',
     priceTitle: 'Andər / uz arəxš pa milyōn daxšta',
     wasPrice: 'būt',
-    pro: 'Pro',
+    pro: 'Pro'
   },
   modelVisibility: {
     title: 'Mōdaląn',
     search: 'Mōdaląn pərəsā',
     noAuthenticatedProviders: 'Nōit paityāta dātārąm',
-    addProvider: 'Dātāram nīvēšaya…',
+    addProvider: 'Dātāram nīvēšaya…'
   },
   shell: {
     windowControls: 'Dərəxšā xšnūt',
@@ -2061,7 +2091,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'Nōit mōdaląn vīdāta',
       editModels: 'Mōdaląn patikar…',
       refreshModels: 'Mōdaląn nava bavaya',
-      fast: 'Tąxma',
+      fast: 'Tąxma'
     },
     modelOptions: {
       noOptions: 'nōit vərənā aētahmāi raēθβāi',
@@ -2077,7 +2107,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'mazista',
       ultra: 'parō',
       updateFailed: 'raēθβa vərəna upa-tauruna nōit',
-      fastFailed: 'āsu haṇdāra upa-tauruna nōit',
+      fastFailed: 'āsu haṇdāra upa-tauruna nōit'
     },
     gatewayMenu: {
       gateway: 'duuarə',
@@ -2092,7 +2122,7 @@ Leave blank to keep the ${mode} default.`,
       recentActivity: '𐬥𐬀𐬬𐬀 𐬐𐬁𐬭𐬀',
       viewAllLogs: '𐬛𐬍𐬛 𐬬𐬍𐬯𐬞𐬀 𐬥𐬌𐬞𐬌𐬱𐬙 →',
       messagingPlatforms: '𐬞𐬀𐬙𐬌𐬫𐬁𐬐𐬁 𐬞𐬀𐬌𐬙𐬌',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: '𐬞𐬀𐬌𐬙𐬌-𐬀𐬌𐬌𐬁𐬭𐬀 𐬑𐬱𐬀𐬚𐬭𐬀',
@@ -2102,7 +2132,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: '𐬑𐬭𐬀𐬙𐬎 𐬐𐬁𐬭𐬀 𐬗𐬍𐬥𐬙𐬌 𐬟𐬭𐬀𐬱𐬥𐬁',
       off: '𐬥𐬊𐬌𐬙',
       offDescription: '𐬀𐬌𐬌𐬈𐬯 𐬞𐬀𐬌𐬙𐬌-𐬀𐬌𐬌𐬁𐬭𐬀 𐬥𐬊𐬌𐬙 𐬟𐬭𐬀𐬱𐬥𐬁',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: '𐬀𐬥𐬀𐬑𐬱𐬀𐬉𐬙𐬀',
@@ -2139,13 +2169,13 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'upā.agent nijǰaiti',
           system_prompt: 'sistēm frašna',
           tool_definitions: 'tool nijǰaiti',
-          mcp: 'pārśvaniyama',
+          mcp: 'pārśvaniyama'
         },
         empty: 'nōit hąm.pərəθa dāta ā',
         loading: 'barənti višāda…',
         title: 'hąm.pərəθa upa.barəti',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'višāda hąm.pərəθa upa.barəti',
       session: 'hąm.ahm',
@@ -2177,8 +2207,8 @@ Leave blank to keep the ${mode} default.`,
       running: count => `${count} running`,
       cron: 'Cron',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'dašina pārsū',
@@ -2214,7 +2244,7 @@ Leave blank to keep the ${mode} default.`,
     addToChat: 'chat aδā',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'pēšdī',
@@ -2242,7 +2272,8 @@ Leave blank to keep the ${mode} default.`,
     editing: 'Tāšāti',
     unsavedChanges: 'Ani-huta frāθā',
     diskChangedTitle: 'Nāman frāθa paiti disk',
-    diskChangedBody: 'Aēša nāman frāθa hača vīšāta. Paiti-dāta aēša paiti tava vərəzō, vā apadāta tava tāšāta uta frā-vīšāta?',
+    diskChangedBody:
+      'Aēša nāman frāθa hača vīšāta. Paiti-dāta aēša paiti tava vərəzō, vā apadāta tava tāšāta uta frā-vīšāta?',
     overwrite: 'Paiti-nipiš',
     discardReload: 'Apa-bar uta frā-bar',
     console: {
@@ -2263,7 +2294,7 @@ Leave blank to keep the ${mode} default.`,
       sentTitle: 'Frašta hąm-vāc',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Pašta nōit bavaiti',
@@ -2297,14 +2328,14 @@ Leave blank to keep the ${mode} default.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     closeTab: label => `Close ${label}`,
     linkHint: '⌘/Ctrl-click for preview pane',
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   zones: {
     custom: 'paitiša',
@@ -2325,7 +2356,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: '𐬛𐬭𐬎𐬠𐬫𐬀 𐬈𐬱𐬀',
     restore: '𐬟𐬭𐬀𐬄𐬯𐬙𐬀 𐬀𐬱𐬆𐬨',
     closeRunningTitle: '𐬛𐬭𐬎𐬠𐬫𐬀 𐬞𐬀𐬭𐬆𐬯𐬙𐬆𐬨 𐬀𐬥𐬄𐬨?',
-    closeRunningBody: '𐬀𐬉𐬙𐬀 𐬢𐬵𐬀𐬐𐬀 𐬵𐬁𐬐𐬀 𐬀𐬱𐬙𐬀 𐬀𐬰𐬆𐬨 𐬬𐬁 𐬞𐬀𐬉𐬨𐬀 𐬁𐬌𐬨𐬄𐬨 𐬟𐬭𐬀𐬄𐬯𐬙𐬀 𐬁𐬵𐬎. 𐬞𐬀𐬭𐬆𐬯𐬙𐬆𐬨 𐬥𐬎𐬎𐬀 𐬛𐬀𐬭𐬆𐬯𐬆𐬨 — 𐬀𐬉𐬙𐬀 𐬵𐬁𐬐𐬀 𐬟𐬭𐬀𐬆𐬨𐬀𐬥𐬆𐬨 𐬵𐬎𐬰𐬁𐬥𐬀𐬌𐬙𐬌 𐬀𐬰𐬆𐬨 𐬥𐬎𐬎𐬀 𐬟𐬭𐬀𐬄𐬯𐬙𐬀 𐬀𐬱𐬙𐬀 𐬀𐬰𐬆𐬨 𐬐𐬆𐬨𐬆𐬥𐬁𐬌 𐬟𐬭𐬀𐬄𐬯𐬙𐬀 𐬀𐬱𐬙𐬀.',
+    closeRunningBody:
+      '𐬀𐬉𐬙𐬀 𐬢𐬵𐬀𐬐𐬀 𐬵𐬁𐬐𐬀 𐬀𐬱𐬙𐬀 𐬀𐬰𐬆𐬨 𐬬𐬁 𐬞𐬀𐬉𐬨𐬀 𐬁𐬌𐬨𐬄𐬨 𐬟𐬭𐬀𐬄𐬯𐬙𐬀 𐬁𐬵𐬎. 𐬞𐬀𐬭𐬆𐬯𐬙𐬆𐬨 𐬥𐬎𐬎𐬀 𐬛𐬀𐬭𐬆𐬯𐬆𐬨 — 𐬀𐬉𐬙𐬀 𐬵𐬁𐬐𐬀 𐬟𐬭𐬀𐬆𐬨𐬀𐬥𐬆𐬨 𐬵𐬎𐬰𐬁𐬥𐬀𐬌𐬙𐬌 𐬀𐬰𐬆𐬨 𐬥𐬎𐬎𐬀 𐬟𐬭𐬀𐬄𐬯𐬙𐬀 𐬀𐬱𐬙𐬀 𐬀𐬰𐬆𐬨 𐬐𐬆𐬨𐬆𐬥𐬁𐬌 𐬟𐬭𐬀𐬄𐬯𐬙𐬀 𐬀𐬱𐬙𐬀.',
     closeRunningConfirm: '𐬞𐬀𐬭𐬆𐬯𐬙𐬆𐬨 𐬥𐬎𐬎𐬀 𐬛𐬀𐬭𐬆𐬯𐬆𐬨',
     closeOthers: '𐬀𐬥𐬫𐬁𐬥𐬄𐬨 𐬥𐬎𐬎𐬀 𐬛𐬀𐬭𐬆𐬯𐬆𐬨',
     closeToRight: '𐬛𐬀𐬱𐬌𐬥𐬀 𐬞𐬀𐬭𐬆𐬯𐬙𐬆𐬨 𐬥𐬎𐬎𐬀 𐬛𐬀𐬭𐬆𐬯𐬆𐬨',
@@ -2349,7 +2381,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
@@ -2380,11 +2412,12 @@ Leave blank to keep the ${mode} default.`,
       goForward: '𐬞𐬀𐬭𐬁 𐬞𐬀𐬭𐬁',
       sendEdited: '𐬥𐬀𐬎𐬀 𐬫𐬁𐬗 𐬞𐬀𐬭𐬁',
       attachingFile: '𐬀𐬞𐬀...',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
-      yesterday: time => `Yesterday, ${time}`,
+      yesterday: time => `Yesterday, ${time}`
     },
     approval: {
       gatewayDisconnected: 'OpenAmer dvarəm nōit basta asti',
@@ -2398,7 +2431,8 @@ Leave blank to keep the ${mode} default.`,
       reject: 'nōit aiwi-dā',
       alwaysTitle: 'hamē aiwi-dā ahe fravāk?',
       alwaysAllow: 'hamē aiwi-dā',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
       notReady: 'pərəsa nōit āvō nū',
@@ -2412,7 +2446,7 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'paiti-vərəz',
       lateAnswerTip: '𐬥𐬌𐬞𐬌𐬱𐬙 𐬀𐬉𐬙𐬀𐬙 𐬞𐬀𐬯𐬋𐬑𐬀 𐬞𐬀𐬯𐬗𐬀 𐬞𐬀𐬌𐬔𐬁𐬨',
       lateAnswerHint: '𐬀𐬉𐬙𐬀𐬙 𐬞𐬭𐬋𐬨𐬞𐬙 𐬥𐬋𐬌𐬙 𐬞𐬀𐬉𐬨𐬀. 𐬎𐬞𐬀𐬌𐬙𐬌𐬨 𐬬𐬀𐬭𐬆𐬰𐬀 𐬀𐬉𐬙𐬀𐬙 𐬥𐬌𐬞𐬌𐬱𐬙 𐬞𐬀𐬯𐬗𐬀 𐬞𐬀𐬌𐬔𐬁𐬨.',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     tool: {
       statusRecovered: 'apagatəm',
@@ -2428,123 +2462,123 @@ Leave blank to keep the ${mode} default.`,
         ran: 'kərətəm',
         running: 'kərəti',
         ranCode: 'kərətəm dāta',
-        runningCode: 'nibišti',
+        runningCode: 'nibišti'
       },
       prefixes: {
         browser: 'vīčarəti',
-        web: 'vafra',
+        web: 'vafra'
       },
       titles: {
         browser_click: {
           done: 'tāta paitī astəm',
           pending: 'tāti paitī astəm',
-          pendingAction: 'tāti',
+          pendingAction: 'tāti'
         },
         browser_fill: {
           done: 'pərəxštəm paiti',
           pending: 'pərəxšti paiti',
-          pendingAction: 'Pərənaiti',
+          pendingAction: 'Pərənaiti'
         },
         browser_navigate: {
           done: 'Višāta pāga',
           pending: 'Višāiti pāga',
-          pendingAction: 'Višāiti',
+          pendingAction: 'Višāiti'
         },
         browser_snapshot: {
           done: 'Grəhita pāga citra',
           pending: 'Grəhaiti pāga citra',
-          pendingAction: 'Grəhaiti',
+          pendingAction: 'Grəhaiti'
         },
         browser_take_screenshot: {
           done: 'Grəhita citra',
           pending: 'Grəhaiti citra',
-          pendingAction: 'Grəhaiti',
+          pendingAction: 'Grəhaiti'
         },
         browser_type: {
           done: 'Nipišta paiti pāga',
           pending: 'Nipišaiti paiti pāga',
-          pendingAction: 'Nipišaiti',
+          pendingAction: 'Nipišaiti'
         },
         clarify: {
           done: 'Pərəsaθa frasha',
           pending: 'Pərəsaiti frasha',
-          pendingAction: 'Pərəsaiti',
+          pendingAction: 'Pərəsaiti'
         },
         cronjob: {
           done: 'Cron kāra',
           pending: 'Hākərənaiti Cron kāra',
-          pendingAction: 'Hākərənaiti',
+          pendingAction: 'Hākərənaiti'
         },
         edit_file: {
           done: 'Patikərəta fāyla',
           pending: 'nibišt patitnibišt',
-          pendingAction: 'patitnibišt',
+          pendingAction: 'patitnibišt'
         },
         execute_code: {
           done: 'framāna kərənaot',
           pending: 'nibišt',
-          pendingAction: 'nibišt',
+          pendingAction: 'nibišt'
         },
         image_generate: {
           done: 'āsna dāta',
           pending: 'āsna dāθra',
-          pendingAction: 'dāθra',
+          pendingAction: 'dāθra'
         },
         list_files: {
           done: 'nibišt vīspa dāta',
           pending: 'nibišt vīspa dāθra',
-          pendingAction: 'vīspa dāθra',
+          pendingAction: 'vīspa dāθra'
         },
         patch: {
           done: 'nibišt pačta',
           pending: 'nibišt pačθra',
-          pendingAction: 'pačθra',
+          pendingAction: 'pačθra'
         },
         read_file: {
           done: 'nibišt xšnāta',
           pending: 'nibišt xšnāθra',
-          pendingAction: 'xšnāθra',
+          pendingAction: 'xšnāθra'
         },
         search_files: {
           done: 'nibišt vīcaita',
           pending: 'nibišt vīcaiia',
-          pendingAction: 'vīcaiia',
+          pendingAction: 'vīcaiia'
         },
         session_search_recall: {
           done: '𐬞𐬀𐬊𐬌𐬭𐬌𐬌𐬀 𐬵𐬀𐬈𐬨 𐬞𐬀𐬌𐬙𐬌𐬬𐬌𐬛',
           pending: '𐬞𐬀𐬊𐬌𐬭𐬌𐬌𐬀 𐬵𐬀𐬈𐬨 𐬞𐬀𐬌𐬙𐬌𐬬𐬌𐬛𐬋',
-          pendingAction: '𐬞𐬀𐬌𐬙𐬌𐬬𐬌𐬛𐬋',
+          pendingAction: '𐬞𐬀𐬌𐬙𐬌𐬬𐬌𐬛𐬋'
         },
         terminal: {
           done: '𐬟𐬭𐬀𐬨𐬁𐬥𐬀 𐬀𐬐𐬀𐬭',
           pending: '𐬟𐬭𐬀𐬨𐬁𐬥𐬀 𐬐𐬆𐬭𐬆𐬥𐬙',
-          pendingAction: '𐬐𐬆𐬭𐬆𐬥𐬙',
+          pendingAction: '𐬐𐬆𐬭𐬆𐬥𐬙'
         },
         todo: {
           done: '𐬐𐬁𐬭𐬁 𐬥𐬏𐬙𐬁',
           pending: '𐬐𐬁𐬭𐬁 𐬥𐬏𐬙𐬋',
-          pendingAction: '𐬥𐬏𐬙𐬋',
+          pendingAction: '𐬥𐬏𐬙𐬋'
         },
         vision_analyze: {
           done: '𐬞𐬀𐬌𐬐𐬀𐬭 𐬬𐬍𐬗𐬁𐬭𐬌𐬙𐬀',
           pending: '𐬞𐬀𐬌𐬐𐬀𐬭 𐬬𐬍𐬗𐬁𐬭𐬀𐬫𐬋',
-          pendingAction: '𐬬𐬍𐬗𐬁𐬭𐬀𐬫𐬋',
+          pendingAction: '𐬬𐬍𐬗𐬁𐬭𐬀𐬫𐬋'
         },
         web_extract: {
           done: '𐬬𐬉𐬠 𐬞𐬁𐬌𐬭𐬀 𐬞𐬀𐬝𐬌𐬞𐬀𐬭𐬀𐬯𐬀',
           pending: '𐬬𐬉𐬠 𐬞𐬁𐬌𐬭𐬀 𐬞𐬀𐬝𐬌𐬞𐬀𐬭𐬆𐬯𐬋',
-          pendingAction: '𐬞𐬀𐬝𐬌𐬞𐬀𐬭𐬆𐬯𐬋',
+          pendingAction: '𐬞𐬀𐬝𐬌𐬞𐬀𐬭𐬆𐬯𐬋'
         },
         web_search: {
           done: '𐬬𐬉𐬠 𐬞𐬀𐬌𐬙𐬌𐬬𐬌𐬛',
           pending: '𐬬𐬉𐬠 𐬞𐬀𐬌𐬙𐬌𐬬𐬌𐬛𐬋',
-          pendingAction: '𐬞𐬀𐬌𐬙𐬌𐬬𐬌𐬛𐬋',
+          pendingAction: '𐬞𐬀𐬌𐬙𐬌𐬬𐬌𐬛𐬋'
         },
         write_file: {
           done: '𐬛𐬁𐬙𐬀 𐬞𐬀𐬌𐬙𐬌𐬐𐬆𐬭𐬆𐬙𐬀',
           pending: '𐬛𐬁𐬙𐬀 𐬞𐬀𐬌𐬙𐬌𐬐𐬆𐬭𐬆𐬥𐬙',
-          pendingAction: 'patitīš',
-        },
+          pendingAction: 'patitīš'
+        }
       },
       code: '𐬐𐬋𐬛',
       copyCode: '𐬐𐬋𐬞𐬍 𐬐𐬋𐬛',
@@ -2572,9 +2606,9 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer darəγa nō aiβi.bąnda',
@@ -2585,7 +2619,7 @@ Leave blank to keep the ${mode} default.`,
     sudoPlaceholder: 'sudo parō.vāčah',
     secretTitle: 'rāz āvašta',
     secretDesc: 'OpenAmer rāz āvašta paiti.frāǰaθa',
-    secretPlaceholder: 'rāz vahma',
+    secretPlaceholder: 'rāz vahma'
   },
   desktop: {
     audioReadFailed: 'nō pāitiš gə̄uša',
@@ -2645,40 +2679,41 @@ Leave blank to keep the ${mode} default.`,
       timedOut: 'dūra paitī darəγa. `openamer gateway` raēθa?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     yoloTitle: 'āišxšayāθi',
     skillCommandsAvailable: count => `${count} skill commands available.`,
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
-    branchTitle: n => `Draft: Branch #${n}`,
+    branchTitle: n => `Draft: Branch #${n}`
   },
   errors: {
     genericFailure: 'čiš frāǰa',
     boundaryTitle: 'čiš frāǰa aŋh interfeis',
     boundaryDesc: 'vyū error. čats ut setings asti safe.',
     reloadWindow: 'window nava bara',
-    openLogs: 'logs viδāta',
+    openLogs: 'logs viδāta'
   },
   ui: {
     search: {
-      clear: 'sörč pāδa',
+      clear: 'sörč pāδa'
     },
     pagination: {
       label: 'peidžinešen',
       previous: 'Paurva',
       previousAria: 'paurva peidž gā',
       next: 'Apara',
-      nextAria: 'apara peidž gā',
+      nextAria: 'apara peidž gā'
     },
     sidebar: {
       title: 'Saidbār',
       description: 'mōbail saidbār vīčāraiti.',
-      toggle: 'Saidbār toggl',
-    },
+      toggle: 'Saidbār toggl'
+    }
   },
   common: {
     error: 'druj',
@@ -2719,7 +2754,7 @@ Leave blank to keep the ${mode} default.`,
     delete: 'apanaya',
     docs: 'naska',
     done: 'kṛta',
-    tryHint: term => `Try “${term}”`,
+    tryHint: term => `Try “${term}”`
   },
   fileMenu: {
     revealFinder: 'fra-dīd in Finder',
@@ -2734,7 +2769,7 @@ Leave blank to keep the ${mode} default.`,
     renameLabel: 'nava nāma',
     deleteBody: 'tat āzuišyati fraθβərəta — tū tat aθβa fraθβərəta.',
     pathCopied: 'patha fraθβərəta',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop ārmaiti',
@@ -2743,7 +2778,7 @@ Leave blank to keep the ${mode} default.`,
       loadingSettings: 'baraiti OpenAmer niyaṇhā',
       loadingSessions: 'baraiti nava yāma',
       startingDesktopConnection: 'ārabaiti desktop ham-yaoždā',
-      startingOpenAmerDesktop: 'ārabaiti OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'ārabaiti OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'OpenAmer paṇya yāma āzuit.',
@@ -2752,7 +2787,7 @@ Leave blank to keep the ${mode} default.`,
       desktopBootFailed: 'desktop ārmaiti frazānt',
       gatewayConnectionLost: 'frāz ham-band darana',
       gatewaySignInRequired: 'darana nišā aog',
-      ipcBridgeUnavailable: 'dēza IPC sētu anupalabdha',
+      ipcBridgeUnavailable: 'dēza IPC sētu anupalabdha'
     },
     failure: {
       title: 'OpenAmer na ašā',
@@ -2777,10 +2812,11 @@ Leave blank to keep the ${mode} default.`,
       signInFailed: 'Hąm-aiwi nōit spāyta',
       signInToRemoteGateway: 'Hąm-aiwi aiwi dūrǝm darǝm',
       identityProvider: 'xʷaētu dātār',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   notifications: {
     region: 'Xšnūtī',
@@ -2792,7 +2828,8 @@ Leave blank to keep the ${mode} default.`,
     copyDetail: 'Paṭi-gə̄ vičāra',
     copyDetailFailed: 'Nōit paṭi-gə̄ xšnūtī vičāra',
     backendOutOfDateTitle: 'Paśčadāta nōit nawō',
-    backendOutOfDateMessage: 'OpenAmer paśčadāta ahmākǝm pōstǝm tāšta paśča asti, nōit hąm vīdāiti bavaiti. Nawī dāta tā hąm.',
+    backendOutOfDateMessage:
+      'OpenAmer paśčadāta ahmākǝm pōstǝm tāšta paśča asti, nōit hąm vīdāiti bavaiti. Nawī dāta tā hąm.',
     installMethodUnsupportedTitle: 'Nōit spāyta tāšta',
     updateOpenAmer: 'Nawī dāta OpenAmer',
     updateReadyTitle: 'Nawī frāpta',
@@ -2805,7 +2842,7 @@ Leave blank to keep the ${mode} default.`,
       microphonePermission: 'Vācā-grāha anumati apavṛt',
       openaiRejectedApiKey: 'OpenAI API key fraṇt',
       openaiTtsNeedsKey: 'OpenAI TTS āvṛt VOICE_TOOLS_OPENAI_KEY vā OPENAI_API_KEY',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     voice: {
       transcriptionUnavailable: 'Vāc ni-pišta a-šaya nū aī',
@@ -2824,7 +2861,7 @@ Leave blank to keep the ${mode} default.`,
       noSpeechDetected: 'Vācā na cinā',
       playbackFailed: 'Vācā playback nāṇt',
       recordingFailed: 'Vācā recording nāṇt',
-      transcriptionFailed: 'Vācā transcription nāṇt',
+      transcriptionFailed: 'Vācā transcription nāṇt'
     },
     native: {
       approvalTitle: 'Anumati avā',
@@ -2837,10 +2874,10 @@ Leave blank to keep the ${mode} default.`,
       turnErrorTitle: 'Vāra vi-ṣṭhā',
       backgroundDoneTitle: 'Apa-sthita kṛtya ni-ṣṭhā',
       backgroundFailedTitle: 'Apa-sthita kṛtya vi-ṣṭhā',
-      creditsTitle: 'Ṛṇa',
+      creditsTitle: 'Ṛṇa'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   billingBlock: {
     titleOpenamer: 'Nir OpenAmer ṛṇa',
@@ -2848,7 +2885,7 @@ Leave blank to keep the ${mode} default.`,
     openBilling: 'Gaṇana open',
     addCredits: 'Ṛṇa ā-dā',
     dismiss: 'Vi-ṣṭhā',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Pārśva-bhāga apagū',
@@ -2865,7 +2902,7 @@ Leave blank to keep the ${mode} default.`,
     openStarmap: 'vīra manah graph',
     openKeybinds: 'dastā čikātā',
     layoutEditor: 'bandha karap',
-    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout',
+    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout'
   },
   keybinds: {
     title: 'dastā čikātā',
@@ -2880,7 +2917,7 @@ Leave blank to keep the ${mode} default.`,
       profiles: 'nāmāni',
       session: 'yāma',
       navigation: 'pathi-aya',
-      view: 'dṛšti',
+      view: 'dṛšti'
     },
     actions: {
       'keybinds.openPanel': 'vivaṅh tištā aṅhusa',
@@ -2959,10 +2996,10 @@ Leave blank to keep the ${mode} default.`,
       'composer.queue': 'pankti vacah',
       'composer.sendQueued': 'fra.dā para pankti.vāram',
       'composer.mention': 'fra.mrao nibista, pankti, URL',
-      'composer.slash': 'kərəta ājñā pankti',
+      'composer.slash': 'kərəta ājñā pankti'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   language: {
     label: 'Vacah',
@@ -2971,9 +3008,10 @@ Leave blank to keep the ${mode} default.`,
     saveError: 'Vacah navaṇha abava',
     switchTo: 'Vacah vaŋh',
     searchPlaceholder: 'Vacah huxšayeiti…',
-    noResults: 'Vacah aŋh avastā',
+    noResults: 'Vacah aŋh avastā'
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
-  },
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
+  }
 })

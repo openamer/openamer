@@ -44,7 +44,7 @@ export const sl = defineLocale({
     update: 'Posodobi',
     tryHint: term => `Poskusite „${term}“`,
     on: 'Vklopljeno',
-    off: 'Izklopljeno',
+    off: 'Izklopljeno'
   },
   fileMenu: {
     revealFinder: 'Prikaži v Finderju',
@@ -59,7 +59,7 @@ export const sl = defineLocale({
     renameLabel: 'Novo ime',
     deleteTitle: name => `Želite izbrisati ${name}?`,
     deleteBody: 'Premaknjeno bo v Koš — od tam ga lahko obnovite.',
-    pathCopied: 'Pot je kopirana',
+    pathCopied: 'Pot je kopirana'
   },
   boot: {
     ready: 'OpenAmer Desktop je pripravljen',
@@ -69,7 +69,7 @@ export const sl = defineLocale({
       loadingSettings: 'Nalaganje nastavitev OpenAmer',
       loadingSessions: 'Nalaganje nedavnih sej',
       startingDesktopConnection: 'Zagon namizne povezave',
-      startingOpenAmerDesktop: 'Zaganjanje OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Zaganjanje OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Proces OpenAmer v ozadju se je končal.',
@@ -78,13 +78,15 @@ export const sl = defineLocale({
       desktopBootFailed: 'Zagon namizja ni uspel',
       gatewayConnectionLost: 'Izgubljena povezava s prehodom',
       gatewaySignInRequired: 'Zahtevana je prijava v prehod',
-      ipcBridgeUnavailable: 'Most IPC namizja ni na voljo.',
+      ipcBridgeUnavailable: 'Most IPC namizja ni na voljo.'
     },
     failure: {
-      title: "OpenAmer se ni zagnal",
-      description: "Prehod v ozadju se ni zagnal. Poskusite enega od korakov obnovitve spodaj. Nič tu ne izbriše vaših pogovorov ali nastavitev.",
+      title: 'OpenAmer se ni zagnal',
+      description:
+        'Prehod v ozadju se ni zagnal. Poskusite enega od korakov obnovitve spodaj. Nič tu ne izbriše vaših pogovorov ali nastavitev.',
       remoteTitle: 'Zahtevana je prijava v oddaljeni prehod',
-      remoteDescription: 'Vaša seja oddaljenega prehoda je potekla. Ponovno se prijavite za ponovno povezavo. Nič tu ne izbriše vaših pogovorov ali nastavitev.',
+      remoteDescription:
+        'Vaša seja oddaljenega prehoda je potekla. Ponovno se prijavite za ponovno povezavo. Nič tu ne izbriše vaših pogovorov ali nastavitev.',
       retry: 'Poskusi znova',
       repairInstall: 'Popravi namestitev',
       useLocalGateway: 'Uporabi lokalni prehod',
@@ -92,7 +94,8 @@ export const sl = defineLocale({
       back: 'Nazaj',
       openLogs: 'Odpri dnevnike',
       repairHint: 'Popravljanje znova zažene namestitveni program in lahko traja nekaj minut na novem računalniku.',
-      remoteSignInHint: signInLabel => `Odjavi shranjeno sejo oddaljenega brskalnika in nato odpre ${signInLabel}. Uporabite „Uporabi lokalni prehod“ za vrnitev na vgrajeni zaledni sistem.`,
+      remoteSignInHint: signInLabel =>
+        `Odjavi shranjeno sejo oddaljenega brskalnika in nato odpre ${signInLabel}. Uporabite „Uporabi lokalni prehod“ za vrnitev na vgrajeni zaledni sistem.`,
       signOutAndSignIn: 'Odjava in prijava',
       remoteFailureHint: 'Preverite URL in prijavo v nastavitvah prehoda ali preklopite na lokalni prehod.',
       hideRecentLogs: 'Skrij nedavne dnevnike',
@@ -104,8 +107,8 @@ export const sl = defineLocale({
       signInFailed: 'Prijava ni uspela',
       signInToRemoteGateway: 'Prijavite se v oddaljeni prehod',
       signInWithProvider: provider => `Prijavite se z ${provider}`,
-      identityProvider: 'vaš ponudnik identitete',
-    },
+      identityProvider: 'vaš ponudnik identitete'
+    }
   },
   notifications: {
     region: 'Obvestila',
@@ -118,21 +121,23 @@ export const sl = defineLocale({
     copyDetail: 'Kopiraj podrobnosti',
     copyDetailFailed: 'Podrobnosti obvestila niso mogle biti kopirane',
     backendOutOfDateTitle: 'Zaledni sistem je zastarel',
-    backendOutOfDateMessage: 'Vaš zaledni sistem OpenAmer je starejši od te namizne različice in morda ne deluje pravilno. Posodobite ga za usklajenost.',
+    backendOutOfDateMessage:
+      'Vaš zaledni sistem OpenAmer je starejši od te namizne različice in morda ne deluje pravilno. Posodobite ga za usklajenost.',
     installMethodUnsupportedTitle: 'Nepodprt način namestitve',
     updateOpenAmer: 'Posodobi OpenAmer',
     updateReadyTitle: 'Posodobitev je pripravljena',
     updateReadyMessage: count => `${count} nova sprememba${count === 1 ? 'sprememba' : 'spremembe'} je na voljo.`,
-    seeWhatsNew: "Oglejte si novosti",
+    seeWhatsNew: 'Oglejte si novosti',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT potrebuje ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs je zavrnil ključ API (401).',
       gatewayAuthFailed: 'Overjanje prehoda ni uspelo — preverite svoj API_SERVER_KEY.',
-      methodNotAllowed: 'Namizni zaledni sistem je zavrnil to zahtevo (405 Method Not Allowed). Poskusite znova zagnati OpenAmer Desktop.',
+      methodNotAllowed:
+        'Namizni zaledni sistem je zavrnil to zahtevo (405 Method Not Allowed). Poskusite znova zagnati OpenAmer Desktop.',
       microphonePermission: 'Dovoljenje za mikrofon je bilo zavrnjeno.',
       openaiRejectedApiKey: 'OpenAI je zavrnil ključ API.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI je zavrnil ključ API (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS potrebuje VOICE_TOOLS_OPENAI_KEY ali OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS potrebuje VOICE_TOOLS_OPENAI_KEY ali OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Nastavite pretvorbo govora v besedilo za uporabo glasnega načina.',
@@ -151,7 +156,7 @@ export const sl = defineLocale({
       transcriptionFailed: 'Prepis glasu ni uspel',
       transcriptionUnavailable: 'Prepis glasu še ni na voljo.',
       tryRecordingAgain: 'Poskusite znova posneti.',
-      unavailable: 'Glas ni na voljo',
+      unavailable: 'Glas ni na voljo'
     },
     native: {
       approvalTitle: 'Zahtevana je odobritev',
@@ -164,11 +169,12 @@ export const sl = defineLocale({
       turnErrorTitle: 'Poteza ni uspela',
       backgroundDoneTitle: 'Ozadnja naloga je končana',
       backgroundFailedTitle: 'Ozadnja naloga ni uspela',
-      creditsTitle: 'Krediti',
-    },
+      creditsTitle: 'Krediti'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Aktivno programsko renderiranje — zaznan daljski zaslon (${reason}). Pospeševanje GPU je onemogočeno, da se prepreči utripanje.`,
+    message: reason =>
+      `Aktivno programsko renderiranje — zaznan daljski zaslon (${reason}). Pospeševanje GPU je onemogočeno, da se prepreči utripanje.`
   },
   billingBlock: {
     titleOpenamer: 'Krediti OpenAmer so porabljeni',
@@ -176,7 +182,7 @@ export const sl = defineLocale({
     fallbackMessage: 'Na vašem računu ni več kreditov. Dodajte kredite za nadaljevanje.',
     openBilling: 'Odpri obračun',
     addCredits: 'Dodaj kredite',
-    dismiss: 'Zapri',
+    dismiss: 'Zapri'
   },
   titlebar: {
     hideSidebar: 'Skrij stransko vrstico',
@@ -193,7 +199,7 @@ export const sl = defineLocale({
     openStarmap: 'Odpri graf pomnilnika',
     openKeybinds: 'Tipkovne bližnjice',
     layoutEditor: 'Urejevalnik razporeditve',
-    layoutEditorTitle: 'Urejevalnik razporeditve — Cmd/Ctrl+klik ponastavi razporeditev',
+    layoutEditorTitle: 'Urejevalnik razporeditve — Cmd/Ctrl+klik ponastavi razporeditev'
   },
   keybinds: {
     title: 'Klavjatuurne bližnjice',
@@ -210,7 +216,7 @@ export const sl = defineLocale({
       profiles: 'Profili',
       session: 'Seja',
       navigation: 'Navigacija',
-      view: 'Pogled',
+      view: 'Pogled'
     },
     actions: {
       'keybinds.openPanel': 'Odpri klavjatuurne bližnjice',
@@ -289,8 +295,8 @@ export const sl = defineLocale({
       'composer.slash': 'Paleta poševniških ukazov',
       'composer.help': 'Hitra pomoč',
       'composer.history': 'Preklapljaj pojavno okno / zgodovino',
-      'composer.cancel': 'Zapri pojavno okno · prekliči izvajanje',
-    },
+      'composer.cancel': 'Zapri pojavno okno · prekliči izvajanje'
+    }
   },
   language: {
     label: 'Jezik',
@@ -299,7 +305,7 @@ export const sl = defineLocale({
     saveError: 'Posodobitev jezika ni uspela',
     switchTo: 'Spremeni jezik',
     searchPlaceholder: 'Iskanje jezikov…',
-    noResults: 'Jezikov ni bilo mogoče najti',
+    noResults: 'Jezikov ni bilo mogoče najti'
   },
   settings: {
     closeSettings: 'Zapri nastavitve',
@@ -324,11 +330,12 @@ export const sl = defineLocale({
       about: 'O programu',
       billing: 'Obračunavanje',
       notifications: 'Obvestila',
-      plugins: 'Vtičniki',
+      plugins: 'Vtičniki'
     },
     plugins: {
       title: 'Namizni vtičniki',
-      blurb: 'Razširitve UI, naložene v to aplikacijo — priložene gradnji ali dodane v mapo desktop-plugins (vključno s tistimi, ki jih zapiše OpenAmer). Onemogočanje vtičnik raztovori v živo, nastavitev pa preživi ponovne zagone.',
+      blurb:
+        'Razširitve UI, naložene v to aplikacijo — priložene gradnji ali dodane v mapo desktop-plugins (vključno s tistimi, ki jih zapiše OpenAmer). Onemogočanje vtičnik raztovori v živo, nastavitev pa preživi ponovne zagone.',
       count: n => `${n} nameščenih`,
       openFolder: 'Odpri mapo vtičnikov',
       rescan: 'Ponovno preglej',
@@ -340,40 +347,41 @@ export const sl = defineLocale({
       kinds: {
         bundled: 'vključeno',
         disk: 'na disku',
-        runtime: 'izvajalno okolje',
-      },
+        runtime: 'izvajalno okolje'
+      }
     },
     notifications: {
       title: 'Obvestila',
-      intro: 'Izvorna namizna obvestila, ločena od obvestil v aplikaciji. Ta so lokalna za napravo — vsak računalnik ohrani svoje nastavitve.',
+      intro:
+        'Izvorna namizna obvestila, ločena od obvestil v aplikaciji. Ta so lokalna za napravo — vsak računalnik ohrani svoje nastavitve.',
       enableAll: 'Omogoči obvestila',
       enableAllDesc: 'Glavno stikalo. Izklopite ga, da utišate vsa spodnja obvestila.',
       focusedHint: 'Opozorila o dokončanju se sprožijo le, ko je OpenAmer v ozadju.',
       kinds: {
         approval: {
           label: 'Potrebna odobritev',
-          description: 'Ukaz čaka, da ga odobrite ali zavrnete.',
+          description: 'Ukaz čaka, da ga odobrite ali zavrnete.'
         },
         input: {
           label: 'Potreben vnos',
-          description: 'OpenAmer je postavil vprašanje ali potrebuje geslo ali skrivnost.',
+          description: 'OpenAmer je postavil vprašanje ali potrebuje geslo ali skrivnost.'
         },
         turnDone: {
           label: 'Odgovor je pripravljen',
-          description: 'Krog se je končal, medtem ko je bil OpenAmer v ozadju.',
+          description: 'Krog se je končal, medtem ko je bil OpenAmer v ozadju.'
         },
         turnError: {
           label: 'Krog ni uspel',
-          description: 'Krog se je končal z napako.',
+          description: 'Krog se je končal z napako.'
         },
         backgroundDone: {
           label: 'Opravilo v ozadju je končano',
-          description: 'Ukaz v terminalu v ozadju je dokončan.',
+          description: 'Ukaz v terminalu v ozadju je dokončan.'
         },
         credits: {
           label: 'Opozorila o kreditih',
-          description: 'Dostop do kreditov je začasno ustavljen ali obnovljen.',
-        },
+          description: 'Dostop do kreditov je začasno ustavljen ali obnovljen.'
+        }
       },
       test: 'Pošlji testno obvestilo',
       testTitle: 'OpenAmer',
@@ -382,7 +390,7 @@ export const sl = defineLocale({
       testUnsupported: 'Ta sistem ne podpira sistemskih obvestil.',
       completionSoundTitle: 'Zvok ob dokončanju',
       completionSoundDesc: 'Predvaja se, ko agent zaključi potezo. Izberi prednastavitev in jo tukaj predogledaj.',
-      completionSoundPreview: 'Predogled',
+      completionSoundPreview: 'Predogled'
     },
     sections: {
       model: 'Model',
@@ -392,7 +400,7 @@ export const sl = defineLocale({
       safety: 'Varnost',
       memory: 'Pomnilnik in kontekst',
       voice: 'Glas',
-      advanced: 'Napredno',
+      advanced: 'Napredno'
     },
     searchPlaceholder: {
       about: 'O namizni aplikaciji OpenAmer',
@@ -400,37 +408,40 @@ export const sl = defineLocale({
       gateway: 'Povezava s prehodom...',
       keys: 'Iskanje ključev API...',
       mcp: 'Iskanje strežnikov MCP...',
-      sessions: 'Iskanje arhiviranih sej...',
+      sessions: 'Iskanje arhiviranih sej...'
     },
     modeOptions: {
       light: {
         label: 'Svetlo',
-        description: 'Svetle površine',
+        description: 'Svetle površine'
       },
       dark: {
         label: 'Temno',
-        description: 'Delovni prostor z malo bleščanja',
+        description: 'Delovni prostor z malo bleščanja'
       },
       system: {
         label: 'Sistem',
-        description: 'Sledi videzu sistema',
-      },
+        description: 'Sledi videzu sistema'
+      }
     },
     appearance: {
       title: 'Videz',
-      intro: 'To so nastavitve prikaza samo za namizje. Način nadzoruje svetlost; tema nadzoruje poudarjeno paleto in slog pogovora.',
+      intro:
+        'To so nastavitve prikaza samo za namizje. Način nadzoruje svetlost; tema nadzoruje poudarjeno paleto in slog pogovora.',
       colorMode: 'Barvni način',
       colorModeDesc: 'Izberite fiksni način ali pustite OpenAmer, da sledi sistemskim nastavitvam.',
       toolViewTitle: 'Prikaz klicev orodij',
       toolViewDesc: 'Izdelek skriva surove podatke orodij; Tehnični prikazuje celoten vnos/izhod.',
       uiScaleTitle: 'Merilo vmesnika',
-      uiScaleDesc: (percent: number) => `Povečuje besedilo in kontrole v celotni aplikaciji. Deluje tudi Cmd/Ctrl s +, - in 0. Trenutno: ${percent} %.`,
+      uiScaleDesc: (percent: number) =>
+        `Povečuje besedilo in kontrole v celotni aplikaciji. Deluje tudi Cmd/Ctrl s +, - in 0. Trenutno: ${percent} %.`,
       translucencyTitle: 'Prozornost okna',
       translucencyDesc: 'Vidite svoje namizje skozi celotno okno. Samo macOS in Windows.',
       backdropTitle: 'Ozadje pogovora',
       backdropDesc: 'Bleda slika kipa za pogovorom.',
       embedsTitle: 'Vgrajena vsebina',
-      embedsDesc: 'Bogati predogledi se nalagajo iz strani tretjih oseb (YouTube, X, …). „Vprašaj“ prikaže ograde, dokler vsakega ne dovolite; „Vedno“ jih nalaga samodejno; „Izklopljeno“ ohrani navadne povezave.',
+      embedsDesc:
+        'Bogati predogledi se nalagajo iz strani tretjih oseb (YouTube, X, …). „Vprašaj“ prikaže ograde, dokler vsakega ne dovolite; „Vedno“ jih nalaga samodejno; „Izklopljeno“ ohrani navadne povezave.',
       embedsAsk: 'Vprašaj',
       embedsAlways: 'Vedno',
       embedsOff: 'Izklopljeno',
@@ -443,7 +454,8 @@ export const sl = defineLocale({
       themeDesc: 'Samo namizne palete. Izbrani način se uporabi čez.',
       themeProfileNote: profile => `Shranjeno za profil ${profile} — vsak profil ohranja svojo temo.`,
       installTitle: 'Namesti iz VS Code',
-      installDesc: 'Prilepite ID razširitve iz Marketplace (npr. dracula-theme.theme-dracula), da njegovo barvno temo spremenite v namizno paleto.',
+      installDesc:
+        'Prilepite ID razširitve iz Marketplace (npr. dracula-theme.theme-dracula), da njegovo barvno temo spremenite v namizno paleto.',
       installPlaceholder: 'založnik.razširitev',
       installButton: 'Namesti',
       installing: 'Nameščanje…',
@@ -453,8 +465,10 @@ export const sl = defineLocale({
       importedBadge: 'Uvoženo',
       pet: {
         title: 'Ljubljenček',
-        intro: 'Posvoji animirano maskoto petdex, ki lebdi nad aplikacijo in se odziva na dogajanje v OpenAmeru — teče med izvajanjem orodij, proslavlja ob uspehu in se drži kislo ob napakah.',
-        restartHint: 'Ljubljenčki potrebujejo hiter ponovni zagon — aplikacija se je zagnala, preden je bila dodana ta funkcija. Zapri in znova odpri OpenAmer, nato se vrni sem.',
+        intro:
+          'Posvoji animirano maskoto petdex, ki lebdi nad aplikacijo in se odziva na dogajanje v OpenAmeru — teče med izvajanjem orodij, proslavlja ob uspehu in se drži kislo ob napakah.',
+        restartHint:
+          'Ljubljenčki potrebujejo hiter ponovni zagon — aplikacija se je zagnala, preden je bila dodana ta funkcija. Zapri in znova odpri OpenAmer, nato se vrni sem.',
         on: 'Vklopljeno',
         off: 'Izklopljeno',
         scaleTitle: 'Velikost',
@@ -464,7 +478,7 @@ export const sl = defineLocale({
         chooseTitle: 'Izberi ljubljenčka',
         chooseDesc: 'Ko ga izbereš, se namesti (če je treba) in postane aktiven.',
         searchPlaceholder: 'Iskanje ljubljenčkov…',
-        unreachable: "Galerije petdex ni bilo mogoče doseči. Preveri povezavo in znova odpri to stran.",
+        unreachable: 'Galerije petdex ni bilo mogoče doseči. Preveri povezavo in znova odpri to stran.',
         noMatch: query => `Ni ljubljenčkov, ki bi ustrezali "${query}".`,
         installedTag: 'nameščen',
         generatedTag: 'Ustvarjeno',
@@ -473,7 +487,7 @@ export const sl = defineLocale({
         uninstall: name => `Odstrani ${name}`,
         delete: name => `Izbriši ${name}`,
         deleteTitle: name => `Izbriši ${name}?`,
-        deleteBody: "To trajno izbriše ljubljenčka — znova ga ni mogoče namestiti.",
+        deleteBody: 'To trajno izbriše ljubljenčka — znova ga ni mogoče namestiti.',
         deleteConfirm: 'Izbriši',
         rename: name => `Preimenuj ${name}`,
         renameTitle: 'Preimenuj ljubljenčka',
@@ -486,8 +500,8 @@ export const sl = defineLocale({
         exportFailed: slug => `Ni bilo mogoče izvoziti ${slug}`,
         noneAvailable: 'Trenutno ni ljubljenčkov za vklop.',
         turnOnFailed: 'Ljubljenčka ni bilo mogoče vklopiti.',
-        turnOffFailed: 'Ljubljenčka ni bilo mogoče izklopiti.',
-      },
+        turnOffFailed: 'Ljubljenčka ni bilo mogoče izklopiti.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -498,15 +512,16 @@ export const sl = defineLocale({
       updates: 'Posodobitve',
       checkNow: 'Preveri zdaj',
       checking: 'Preverjanje…',
-      seeWhatsNew: "Oglejte si novosti",
+      seeWhatsNew: 'Oglejte si novosti',
       updateNow: 'Posodobi zdaj',
       releaseNotes: 'Opombe ob izdaji',
-      onLatest: "Imate najnovejšo različico.",
+      onLatest: 'Imate najnovejšo različico.',
       installing: 'Posodobitev se trenutno namešča.',
-      cantUpdate: "Ta zgradba se ne more sama posodobiti iz aplikacije.",
-      cantReach: "Nismo dosegli strežnika za posodobitve.",
+      cantUpdate: 'Ta zgradba se ne more sama posodobiti iz aplikacije.',
+      cantReach: 'Nismo dosegli strežnika za posodobitve.',
       tapCheck: 'Tapnite „Preveri zdaj“ za iskanje posodobitev.',
-      updateReady: count => `Na voljo je nova posodobitev (${count} sprememba${count === 1 ? 'sprememba' : 'spremembe'} vključena).`,
+      updateReady: count =>
+        `Na voljo je nova posodobitev (${count} sprememba${count === 1 ? 'sprememba' : 'spremembe'} vključena).`,
       lastChecked: age => `Zadnjič preverjeno ${age}`,
       justNowSuffix: ' · pravkar',
       automaticUpdates: 'Samodejne posodobitve',
@@ -516,7 +531,7 @@ export const sl = defineLocale({
       justNow: 'pravkar',
       minAgo: count => `pred ${count} min`,
       hoursAgo: count => `pred ${count} urami`,
-      daysAgo: count => `pred ${count} dnevi`,
+      daysAgo: count => `pred ${count} dnevi`
     },
     config: {
       none: 'Brez',
@@ -532,7 +547,8 @@ export const sl = defineLocale({
       imported: 'Konfiguracija uvožena',
       invalidJson: 'Neveljaven JSON konfiguracije',
       keepAwakeTitle: 'Ohrani računalnik buden',
-      keepAwakeDesc: 'Preprečite spanje tega računalnika, da se dolgi ali čeznočni postopki nadaljujejo. Zaslon se lahko še vedno zatenni.',
+      keepAwakeDesc:
+        'Preprečite spanje tega računalnika, da se dolgi ali čeznočni postopki nadaljujejo. Zaslon se lahko še vedno zatenni.'
     },
     credentials: {
       pasteKey: 'Prilepi ključ',
@@ -542,7 +558,7 @@ export const sl = defineLocale({
       couldNotSave: 'Poverilnice ni bilo mogoče shraniti.',
       remove: 'Odstrani',
       getKey: 'Pridobi ključ',
-      saving: 'Shranjevanje',
+      saving: 'Shranjevanje'
     },
     envActions: {
       actionsFor: label => `Dejanja za ${label}`,
@@ -553,7 +569,7 @@ export const sl = defineLocale({
       revealValue: 'Prikaži vrednost',
       replace: 'Zamenjaj',
       set: 'Nastavi',
-      clear: 'Počisti',
+      clear: 'Počisti'
     },
     gateway: {
       loading: 'Nalaganje nastavitev prehoda...',
@@ -561,23 +577,28 @@ export const sl = defineLocale({
       unavailableDesc: 'Namizni most IPC ne izpostavlja nastavitev prehoda.',
       title: 'Povezava prehoda',
       envOverride: 'preglasitev okolja',
-      intro: 'OpenAmer Desktop privzeto zažene svoj lokalni prehod. Uporabite oddaljeni prehod, ko želite, da ta aplikacija nadzoruje že delujoči OpenAmer backend na drugem računalniku ali za zaupanja vrednim posredniškim strežnikom. Spodaj izberite profil, da mu dodelite lastnega oddaljenega gostitelja.',
+      intro:
+        'OpenAmer Desktop privzeto zažene svoj lokalni prehod. Uporabite oddaljeni prehod, ko želite, da ta aplikacija nadzoruje že delujoči OpenAmer backend na drugem računalniku ali za zaupanja vrednim posredniškim strežnikom. Spodaj izberite profil, da mu dodelite lastnega oddaljenega gostitelja.',
       appliesTo: 'Velja za',
       allProfiles: 'Vsi profili',
       defaultConnection: 'Privzeta povezava za vsak profil, ki nima lastne preglasitve.',
-      profileConnection: profile => `Povezava, ki se uporabi samo, ko je “${profile}” dejavni profil. Izberite Uporabi privzeti prehod, da odstranite njeno preglasitev.`,
+      profileConnection: profile =>
+        `Povezava, ki se uporabi samo, ko je “${profile}” dejavni profil. Izberite Uporabi privzeti prehod, da odstranite njeno preglasitev.`,
       envOverrideTitle: 'To namizno sejo nadzorujejo okoljske spremenljivke.',
-      envOverrideDesc: 'Odstranite OPENAMER_DESKTOP_REMOTE_URL in OPENAMER_DESKTOP_REMOTE_TOKEN, da uporabite spodnjo shranjeno nastavitev.',
+      envOverrideDesc:
+        'Odstranite OPENAMER_DESKTOP_REMOTE_URL in OPENAMER_DESKTOP_REMOTE_TOKEN, da uporabite spodnjo shranjeno nastavitev.',
       modeTitle: 'Način povezave',
       localTitle: 'Lokalni prehod',
       localDesc: 'Zaženite zasebni OpenAmer backend na localhostu. To je privzeto in deluje brez povezave.',
       inheritTitle: 'Uporabi privzeti prehod',
-      inheritDesc: "Odstranite preglasitev tega profila in uporabite privzeto povezavo.",
+      inheritDesc: 'Odstranite preglasitev tega profila in uporabite privzeto povezavo.',
       remoteTitle: 'Oddaljeni prehod',
       remoteDesc: 'Povežite to namizno lupino z oddaljenim OpenAmer backendom.',
-      remoteAuthHint: 'Gostovani prehodi uporabljajo OAuth ali uporabniško ime in geslo; samogostovani lahko uporabljajo žeton seje.',
+      remoteAuthHint:
+        'Gostovani prehodi uporabljajo OAuth ali uporabniško ime in geslo; samogostovani lahko uporabljajo žeton seje.',
       cloudTitle: 'OpenAmer Cloud',
-      cloudDesc: 'Prijavite se enkrat v OpenAmer Cloud in izberite med agenti v svojem računu — ni treba prilepiti URL-ja.',
+      cloudDesc:
+        'Prijavite se enkrat v OpenAmer Cloud in izberite med agenti v svojem računu — ni treba prilepiti URL-ja.',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudSignIn: 'Prijavite se v OpenAmer Cloud',
       cloudSignedIn: 'Prijavljeni ste v OpenAmer Cloud',
@@ -592,7 +613,7 @@ export const sl = defineLocale({
       cloudNoAgents: {
         before: 'Na tem računu ni bilo najdenih agentov. Ustvarite enega v ',
         linkText: 'Portal OpenAmer',
-        after: ', nato osvežite.',
+        after: ', nato osvežite.'
       },
       cloudRefresh: 'Osveži',
       cloudConnect: 'Poveži',
@@ -610,18 +631,23 @@ export const sl = defineLocale({
       remoteUrlTitle: 'Oddaljeni URL',
       remoteUrlDesc: 'Osnovni URL za zaledje oddaljene nadzorne plošče. Podprte so predpone poti, na primer /openamer.',
       probing: 'Preverjanje načina overjanja tega prehodnika…',
-      probeError: 'Tega prehodnika še ni mogoče doseči. Preverite URL — način overjanja se bo prikazal, ko se bo odzval.',
+      probeError:
+        'Tega prehodnika še ni mogoče doseči. Preverite URL — način overjanja se bo prikazal, ko se bo odzval.',
       signedIn: 'Prijavljeni',
       signIn: 'Prijava',
       signOut: 'Odjava',
       signInWith: provider => `Prijava z ${provider}`,
       authTitle: 'Overjanje',
-      authSignedInPassword: 'Ta prehodnik uporablja uporabniško ime in geslo. Prijavljeni ste; seja se osveži samodejno.',
+      authSignedInPassword:
+        'Ta prehodnik uporablja uporabniško ime in geslo. Prijavljeni ste; seja se osveži samodejno.',
       authSignedInOauth: 'Ta prehodnik uporablja OAuth. Prijavljeni ste; seja se osveži samodejno.',
-      authNeedsPassword: 'Ta prehodnik uporablja uporabniško ime in geslo. Prijavite se, da overite to namizno aplikacijo.',
-      authNeedsOauth: provider => `Ta prehodnik uporablja OAuth. Prijavite se z ${provider}, da overite to namizno aplikacijo.`,
+      authNeedsPassword:
+        'Ta prehodnik uporablja uporabniško ime in geslo. Prijavite se, da overite to namizno aplikacijo.',
+      authNeedsOauth: provider =>
+        `Ta prehodnik uporablja OAuth. Prijavite se z ${provider}, da overite to namizno aplikacijo.`,
       tokenTitle: 'Žeton seje',
-      tokenDesc: 'Žeton seje nadzorne plošče za dostop do REST in WebSocket. Pustite prazno, da obdržite shranjeni žeton.',
+      tokenDesc:
+        'Žeton seje nadzorne plošče za dostop do REST in WebSocket. Pustite prazno, da obdržite shranjeni žeton.',
       existingToken: value => `Obstoječi žeton ${value}`,
       savedToken: 'shranjeno',
       pasteSessionToken: 'Prilepi žeton seje',
@@ -652,7 +678,8 @@ export const sl = defineLocale({
       applyFailed: 'Nastavitev prehoda ni bilo mogoče uporabiti',
       saveFailed: 'Nastavitev prehoda ni bilo mogoče shraniti',
       sshTitle: 'Poveži se prek SSH',
-      sshDesc: 'OpenAmer se na oddaljenem gostitelju zažene prek SSH in tunelira v to aplikacijo — ničesar ni treba zagnati ali izpostaviti sami. Zahteva delujoč SSH dostop do gostitelja s ključem.',
+      sshDesc:
+        'OpenAmer se na oddaljenem gostitelju zažene prek SSH in tunelira v to aplikacijo — ničesar ni treba zagnati ali izpostaviti sami. Zahteva delujoč SSH dostop do gostitelja s ključem.',
       sshTrustHint: 'Prvi predstavljeni ključ gostitelja se zaupa in pripne; poznejše spremembe se zavrnejo.',
       sshHostTitle: 'Gostitelj',
       sshHostDesc: 'uporabnik@gostitelj ali alias gostitelja iz ~/.ssh/config.',
@@ -676,18 +703,22 @@ export const sl = defineLocale({
       sshReachable: (host, platform) => `Dosegljivo: ${host} (${platform}) — OpenAmer najden`,
       sshIncompleteHost: 'Vnesite SSH gostitelja pred povezavo.',
       sshErrUnreachable: 'Gostitelja ni bilo mogoče doseči prek SSH. Preverite gostitelja, vrata in omrežje.',
-      sshErrAuth: 'Preverjanje pristnosti SSH ni uspelo. Naložite ključ v ssh-agent (ssh-add) ali nastavite IdentityFile v ~/.ssh/config — OpenAmer izvaja ssh neinteraktivno.',
-      sshErrHostKey: 'Ključ gostitelja se je SPREMENIL od zadnje povezave. Preverite, ali je to pričakovano, nato zaženite ssh-keygen -R <host> in se povežite znova.',
-      sshErrNotInstalled: 'OpenAmer ni nameščen na oddaljenem gostitelju. Namestite ga tam (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ali nastavite pot do OpenAmer.',
-      sshErrPlatform: 'Nepodprta oddaljena platforma. Način SSH v OpenAmer Desktop podpira oddaljene gostitelje Linux, macOS in Windows.',
+      sshErrAuth:
+        'Preverjanje pristnosti SSH ni uspelo. Naložite ključ v ssh-agent (ssh-add) ali nastavite IdentityFile v ~/.ssh/config — OpenAmer izvaja ssh neinteraktivno.',
+      sshErrHostKey:
+        'Ključ gostitelja se je SPREMENIL od zadnje povezave. Preverite, ali je to pričakovano, nato zaženite ssh-keygen -R <host> in se povežite znova.',
+      sshErrNotInstalled:
+        'OpenAmer ni nameščen na oddaljenem gostitelju. Namestite ga tam (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ali nastavite pot do OpenAmer.',
+      sshErrPlatform:
+        'Nepodprta oddaljena platforma. Način SSH v OpenAmer Desktop podpira oddaljene gostitelje Linux, macOS in Windows.',
       sshErrTimeout: 'Povezava SSH je potekla. Gostitelj morda ni dosegljiv ali spi.',
       sshErrUpdateRequired: 'Posodobite OpenAmer na oddaljenem gostitelju pred povezavo prek Desktop SSH.',
-      sshErrUnknown: 'Povezava SSH ni uspela.',
+      sshErrUnknown: 'Povezava SSH ni uspela.'
     },
     keys: {
       loading: 'Nalaganje ključev API in poverilnic...',
       failedLoad: 'Nalaganje ključev API ni uspelo',
-      empty: 'V tej kategoriji še ni ničesar nastavljenega.',
+      empty: 'V tej kategoriji še ni ničesar nastavljenega.'
     },
     mcp: {
       loading: 'Nalaganje strežnikov MCP...',
@@ -739,7 +770,8 @@ export const sl = defineLocale({
       catalogInstallFailed: name => `Namestitev ${name} ni uspela`,
       catalogEnvPrompt: name => `${name} zahteva poverilnice`,
       catalogEnvRequired: 'Pred namestitvijo izpolnite zahtevane vrednosti.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} omogočen`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} omogočen`,
       statusConnecting: 'Povezovanje …',
       statusNeedsAuth: 'Potrebna overitev',
       statusError: 'Napaka',
@@ -752,11 +784,12 @@ export const sl = defineLocale({
       unsavedConnect: 'Neshranjeno — za povezavo shranite mcp.json.',
       enableTool: tool => `Omogoči ${tool}`,
       disableTool: tool => `Onemogoči ${tool}`,
-      noOutput: 'Še ni izhoda.',
+      noOutput: 'Še ni izhoda.'
     },
     model: {
       loading: 'Nalaganje konfiguracije modela ...',
-      appliesDesc: 'Velja za nove seje. Za takojšnjo zamenavo modela v aktivnem klepetu uporabite izbirnik modela v vnosnem polju.',
+      appliesDesc:
+        'Velja za nove seje. Za takojšnjo zamenavo modela v aktivnem klepetu uporabite izbirnik modela v vnosnem polju.',
       provider: 'Ponudnik',
       model: 'Model',
       applying: 'Uporabljanje ...',
@@ -773,46 +806,47 @@ export const sl = defineLocale({
       providerDefault: '(privzeto pri ponudniku)',
       fallbackAdd: 'Dodaj nadomestni',
       fallbackEmpty: 'Ni nadomestnih modelov — uporabi se privzeti model, razen če odpove.',
-      notInCatalog: "ni na seznamu modelov tega ponudnika — klici se lahko preusmerijo na rezervni model.",
+      notInCatalog: 'ni na seznamu modelov tega ponudnika — klici se lahko preusmerijo na rezervni model.',
       tasks: {
         vision: {
           label: 'Vid',
-          hint: 'Analiza slik',
+          hint: 'Analiza slik'
         },
         web_extract: {
           label: 'Izvleček spleta',
-          hint: 'Povzemanje strani',
+          hint: 'Povzemanje strani'
         },
         compression: {
           label: 'Stiskanje',
-          hint: 'Stiskanje konteksta',
+          hint: 'Stiskanje konteksta'
         },
         skills_hub: {
           label: 'Središče veščin',
-          hint: 'Iskanje veščin',
+          hint: 'Iskanje veščin'
         },
         approval: {
           label: 'Odobritev',
-          hint: 'Pametno samodejno odobravanje',
+          hint: 'Pametno samodejno odobravanje'
         },
         mcp: {
           label: 'MCP',
-          hint: 'Usmerjanje orodij MCP',
+          hint: 'Usmerjanje orodij MCP'
         },
         title_generation: {
           label: 'Generiranje naslovov',
-          hint: 'Naslovi sej',
+          hint: 'Naslovi sej'
         },
         curator: {
           label: 'Kurator',
-          hint: 'Pregled uporabe veščin',
-        },
-      },
+          hint: 'Pregled uporabe veščin'
+        }
+      }
     },
     providers: {
       connectAccount: 'Poveži račun',
       haveApiKey: 'Imate raje API-ključ?',
-      intro: 'Prijavite se z naročnino — API-ključa ni treba kopirati. OpenAmer za vas izvede prijavo v brskalniku kar tukaj v aplikaciji.',
+      intro:
+        'Prijavite se z naročnino — API-ključa ni treba kopirati. OpenAmer za vas izvede prijavo v brskalniku kar tukaj v aplikaciji.',
       connected: 'Povezano',
       collapse: 'Strni',
       connectAnother: 'Poveži drugega ponudnika',
@@ -822,7 +856,8 @@ export const sl = defineLocale({
       removeConfirm: provider => `Odstranim ${provider}?`,
       removeExternalGeneric: provider => `${provider} se upravlja prek lastnega CLI — odstranite ga tam.`,
       removeKeyManaged: provider => `${provider} se konfigurira z API-ključem. Odstranite ga med API-ključi.`,
-      removeTerminalConfirm: (provider, command) => `Prekiniti povezavo z ${provider}? S tem zaženete "${command}" v terminalu, da počistite poverilnico.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Prekiniti povezavo z ${provider}? S tem zaženete "${command}" v terminalu, da počistite poverilnico.`,
       removeTerminalRunning: provider => `Prekinitev povezave z ${provider} se izvaja v terminalu …`,
       removedTitle: 'Račun odstranjen',
       removedMessage: provider => `${provider} je bil odstranjen.`,
@@ -832,14 +867,16 @@ export const sl = defineLocale({
       noKeysMatch: 'Noben ponudnik ne ustreza iskanju.',
       localEndpoint: {
         title: 'Lokalna / končna točka po meri',
-        description: 'Usmerite OpenAmer na katero koli končno točko, združljivo z OpenAI (Zyphra, vLLM, llama.cpp, Ollama itd.).',
+        description:
+          'Usmerite OpenAmer na katero koli končno točko, združljivo z OpenAI (Zyphra, vLLM, llama.cpp, Ollama itd.).'
       },
-      loading: 'Nalaganje ponudnikov...',
+      loading: 'Nalaganje ponudnikov...'
     },
     sessions: {
       loading: 'Nalaganje arhiviranih sej…',
       archivedTitle: 'Arhivirane seje',
-      archivedIntro: 'Arhivirani klepeti so skriti v stranski vrstici, vendar ohranijo vsa sporočila. S Ctrl/⌘ kliknite klepet v stranski vrstici, da ga arhivirate.',
+      archivedIntro:
+        'Arhivirani klepeti so skriti v stranski vrstici, vendar ohranijo vsa sporočila. S Ctrl/⌘ kliknite klepet v stranski vrstici, da ga arhivirate.',
       emptyArchivedTitle: 'Ni arhiviranih',
       emptyArchivedDesc: 'Arhivirajte klepet, da ga skrijete tukaj.',
       unarchive: 'Odzarhiviraj',
@@ -848,13 +885,16 @@ export const sl = defineLocale({
       restored: 'Obnovljeno',
       deleteConfirm: title => `Trajno izbrisati »${title}«? Tega ni mogoče razveljaviti.`,
       autoArchiveTitle: 'Samodejno arhiviraj zastarele klepete',
-      autoArchiveDesc: "Samodejno arhiviraj klepete, ki jih dlje časa niste uporabljali. Pripeti klepeti se nikoli ne arhivirajo in nič ni izbrisano — arhivirani klepeti se preprosto premaknejo sem.",
+      autoArchiveDesc:
+        'Samodejno arhiviraj klepete, ki jih dlje časa niste uporabljali. Pripeti klepeti se nikoli ne arhivirajo in nič ni izbrisano — arhivirani klepeti se preprosto premaknejo sem.',
       autoArchiveDaysLabel: 'Arhiviraj po',
       autoArchiveDaysUnit: 'dneh neaktivnosti',
       autoArchiveFailed: 'Samodejnega arhiviranja ni bilo mogoče posodobiti',
       defaultDirTitle: 'Privzeta mapa projekta',
-      defaultDirDesc: 'Nove seje se začnejo v tej mapi, razen če izberete drugo. Če pustite nenastavljeno, se uporabi vaša domača mapa.',
-      defaultDirUpdated: 'Privzeta mapa projekta je posodobljena — začnite nov klepet (Ctrl/⌘+N), da bo sprememba začela veljati',
+      defaultDirDesc:
+        'Nove seje se začnejo v tej mapi, razen če izberete drugo. Če pustite nenastavljeno, se uporabi vaša domača mapa.',
+      defaultDirUpdated:
+        'Privzeta mapa projekta je posodobljena — začnite nov klepet (Ctrl/⌘+N), da bo sprememba začela veljati',
       defaultsTo: label => `Privzeto je ${label}.`,
       change: 'Spremeni',
       choose: 'Izberi',
@@ -864,7 +904,7 @@ export const sl = defineLocale({
       unarchiveFailed: 'Odzarhiviranje ni uspelo',
       deleteFailed: 'Brisanje ni uspelo',
       updateDirFailed: 'Privzete mape ni mogoče posodobiti',
-      clearDirFailed: 'Privzete mape ni mogoče počistiti',
+      clearDirFailed: 'Privzete mape ni mogoče počistiti'
     },
     toolsets: {
       loadingConfig: 'Nalaganje konfiguracije',
@@ -882,20 +922,23 @@ export const sl = defineLocale({
       selectedMessage: provider => `${provider} je zdaj aktiven.`,
       failedSelect: provider => `Izbiranje ${provider} ni uspelo`,
       failedLoad: 'Nalaganje konfiguracije orodja ni uspelo',
-      noProviderOptions: 'Ta nabor orodij nima možnosti ponudnikov — omogočite ga in deloval bo z vašo trenutno nastavitvijo.',
+      noProviderOptions:
+        'Ta nabor orodij nima možnosti ponudnikov — omogočite ga in deloval bo z vašo trenutno nastavitvijo.',
       noProviders: 'Za ta nabor orodij trenutno ni na voljo nobenih ponudnikov.',
       ready: 'Pripravljeno',
       needsSignIn: 'Potrebna prijava',
       needsSetup: 'Potrebna nastavitev',
       openamerIncluded: 'Vključeno v naročnino OpenAmer – prijavite se v OpenAmer Portal, da aktivirate.',
       openamerAuthNeededTitle: 'Prijavite se v OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} je shranjeno, vendar se ne bo aktiviralo, dokler se ne prijavite v OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} je shranjeno, vendar se ne bo aktiviralo, dokler se ne prijavite v OpenAmer Portal.`,
       openamerAuthSignIn: 'Prijavite se',
       openamerAuthDoneTitle: 'OpenAmer Portal je povezan',
       openamerAuthDoneMessage: 'Zaledja vaše naročnine so zdaj aktivna.',
       openamerAuthFailed: 'Prijava v OpenAmer Portal ni bila dokončana',
       noApiKeyRequired: 'API ključ ni potreben.',
-      postSetupHint: step => `To zaledje potrebuje enkratno namestitev (${step}). Izvaja se na tem računalniku – lahko traja nekaj minut.`,
+      postSetupHint: step =>
+        `To zaledje potrebuje enkratno namestitev (${step}). Izvaja se na tem računalniku – lahko traja nekaj minut.`,
       postSetupInstalledHint: 'Nameščeno. Znova zaženite nastavitev le, če je kaj narobe.',
       postSetupRun: 'Zaženi nastavitev',
       postSetupRerun: 'Znova zaženi nastavitev',
@@ -936,9 +979,9 @@ export const sl = defineLocale({
         selectedTitle: 'Zaledje izbrano',
         selectedMessage: backend => `Terminalski ukazi se zdaj izvajajo prek ${backend}. Velja za nove seje.`,
         failedSelect: backend => `Izbira ${backend} ni uspela`,
-        needsSetupHint: 'To zaledje lahko izberete zdaj — ukazi ne bodo delovali, dokler nastavitev ni dokončana.',
-      },
-    },
+        needsSetupHint: 'To zaledje lahko izberete zdaj — ukazi ne bodo delovali, dokler nastavitev ni dokončana.'
+      }
+    }
   },
   skills: {
     tabSkills: 'Veščine',
@@ -958,7 +1001,8 @@ export const sl = defineLocale({
     noDescription: 'Ni opisa.',
     configured: 'Konfigurirano',
     needsKeys: 'Potrebuje ključe',
-    visionModelHint: 'Vid uporablja vašo konfiguracijo pomožnega modela — model, ki podpira slike, se izbere tam, ne tukaj ločeno za vsakega ponudnika.',
+    visionModelHint:
+      'Vid uporablja vašo konfiguracijo pomožnega modela — model, ki podpira slike, se izbere tam, ne tukaj ločeno za vsakega ponudnika.',
     visionModelLink: 'Izberite model za vid v Nastavitvah → Modeli',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} omogočenih zbiralnikov`,
     configureToolset: label => `Konfiguriraj ${label}`,
@@ -984,7 +1028,7 @@ export const sl = defineLocale({
     provenance: {
       agent: 'Naučeno',
       bundled: 'Vgrajeno',
-      hub: 'Središče',
+      hub: 'Središče'
     },
     emptyNoneFound: noun => `${noun} ni najdeno`,
     emptyNothingMatches: query => `Nič se ne ujema z “${query}”.`,
@@ -1002,9 +1046,11 @@ export const sl = defineLocale({
       connectingHubs: 'Povezovanje z zvezdišči veščin...',
       connectedHubs: 'Povezana zvezdišča:',
       featured: 'Izpostavljene veščine',
-      landingHint: 'Preišči zvezdišče in brskaj po veščinah, ki jih je mogoče namestiti, iz uradnega indeksa, GitHuba in skupnostnih virov.',
+      landingHint:
+        'Preišči zvezdišče in brskaj po veščinah, ki jih je mogoče namestiti, iz uradnega indeksa, GitHuba in skupnostnih virov.',
       noResults: 'V zvezdišču ni ustreznih veščin.',
-      resultCount: (count, ms) => `${count} rezultat${count === 1 ? 'rezultat' : 'rezultati'}${ms !== null ? ` in ${ms}ms` : ''}`,
+      resultCount: (count, ms) =>
+        `${count} rezultat${count === 1 ? 'rezultat' : 'rezultati'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Čas je potekel: ${sources}`,
       installed: 'Nameščeno',
       install: 'Namesti',
@@ -1022,7 +1068,7 @@ export const sl = defineLocale({
       trust: {
         builtin: 'vgrajeno',
         trusted: 'zaupanja vredno',
-        community: 'skupnost',
+        community: 'skupnost'
       },
       verdictSafe: 'Varno',
       verdictCaution: 'Previdno',
@@ -1040,8 +1086,8 @@ export const sl = defineLocale({
       loadFailed: 'Središče veščin se ni naložilo',
       previewFailed: 'Predogled veščine ni uspel',
       scanFailed: 'Varnostno skeniranje ni uspelo',
-      searchFailed: 'Iskanje v vozlišču ni uspelo',
-    },
+      searchFailed: 'Iskanje v vozlišču ni uspelo'
+    }
   },
   starmap: {
     title: 'Graf spomina',
@@ -1058,7 +1104,8 @@ export const sl = defineLocale({
     emptyTitle: 'Ni še nič naučenega',
     emptyDesc: 'Ko OpenAmer ustvarja veščine in spomine za vaše delo, se prikažejo tukaj.',
     share: 'Deli zemljevid',
-    shareHint: 'Kopirajte kodo za deljenje tega zemljevida ali jo prilepite za nalaganje. Vključuje samo postavitev, ne pa vašega spomina ali besedila veščin.',
+    shareHint:
+      'Kopirajte kodo za deljenje tega zemljevida ali jo prilepite za nalaganje. Vključuje samo postavitev, ne pa vašega spomina ali besedila veščin.',
     shareTitle: 'Uvozi / izvozi zemljevid',
     sharePlaceholder: 'Prilepite kodo zemljevida…',
     copy: 'Kopiraj kodo zemljevida',
@@ -1068,7 +1115,7 @@ export const sl = defineLocale({
     importEmpty: 'Prilepi kodo zemljevida za nalaganje.',
     importSuccess: nodes => `Naložena je bila karta z ${nodes} ${nodes === 1 ? 'vozlišče' : 'vozlišča'}.`,
     importedBadge: 'uvožen zemljevid',
-    resetToMine: 'Nazaj na moj zemljevid',
+    resetToMine: 'Nazaj na moj zemljevid'
   },
   agents: {
     close: 'Zapri agente',
@@ -1098,7 +1145,7 @@ export const sl = defineLocale({
     ageDays: days => `pred ${days} d`,
     durationSeconds: seconds => `${seconds} s`,
     durationMinutes: (minutes, seconds) => `${minutes} min ${seconds} s`,
-    tokens: value => `${value} žetonov`,
+    tokens: value => `${value} žetonov`
   },
   commandCenter: {
     close: 'Zapri ukazno središče',
@@ -1128,7 +1175,7 @@ export const sl = defineLocale({
       generatedTag: 'Ustvarjeno',
       adoptFailed: 'Tega ljubljenčka ni bilo mogoče posvojiti.',
       toggleFailed: 'Ljubljenčka ni bilo mogoče preklopiti.',
-      noneAvailable: 'Ni razpoložljivih ljubljenčkov — spodaj izberite enega za namestitev.',
+      noneAvailable: 'Ni razpoložljivih ljubljenčkov — spodaj izberite enega za namestitev.'
     },
     generatePet: {
       title: 'Ustvari ljubljenčka',
@@ -1157,7 +1204,7 @@ export const sl = defineLocale({
       referenceImageTooLarge: 'Referenčna slika je prevelika. Uporabi sliko, manjšo od 16 MB.',
       referenceImageInvalid: 'Te referenčne slike ni bilo mogoče prebrati. Poskusi s PNG, JPG, WebP ali GIF.',
       adopt: 'Prevzemi',
-      startOver: 'Začni znova',
+      startOver: 'Začni znova'
     },
     installTheme: {
       title: 'Namesti temo…',
@@ -1169,7 +1216,7 @@ export const sl = defineLocale({
       install: 'Namesti',
       installing: 'Nameščanje ...',
       installed: 'Nameščeno',
-      installs: count => `${count} namestitev`,
+      installs: count => `${count} namestitev`
     },
     settingsFields: 'Polja nastavitev',
     mcpServers: 'Strežniki MCP',
@@ -1178,49 +1225,49 @@ export const sl = defineLocale({
       maintenance: 'Vzdrževanje',
       sessions: 'Seje',
       system: 'Sistem',
-      usage: 'Uporaba',
+      usage: 'Uporaba'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostika, varnostne kopije, kurator in podatki spomina',
       sessions: 'Iskanje in upravljanje sej',
       system: 'Status, dnevniki in sistemska dejanja',
-      usage: 'Žetoni, stroški in dejavnost veščin skozi čas',
+      usage: 'Žetoni, stroški in dejavnost veščin skozi čas'
     },
     nav: {
       newChat: {
         title: 'Nova seja',
-        detail: 'Začni novo sejo',
+        detail: 'Začni novo sejo'
       },
       settings: {
         title: 'Nastavitve',
-        detail: 'Konfiguriraj namizni OpenAmer',
+        detail: 'Konfiguriraj namizni OpenAmer'
       },
       skills: {
         title: 'Zmožnosti',
-        detail: 'Veščine, orodja in strežniki MCP',
+        detail: 'Veščine, orodja in strežniki MCP'
       },
       messaging: {
         title: 'Sporočanje',
-        detail: 'Nastavi Telegram, Slack, Discord in več',
+        detail: 'Nastavi Telegram, Slack, Discord in več'
       },
       artifacts: {
         title: 'Artefakti',
-        detail: 'Brskaj po ustvarjenih izhodih',
-      },
+        detail: 'Brskaj po ustvarjenih izhodih'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Plošča sej',
-        detail: 'Iskanje, pripenjanje in upravljanje sej',
+        detail: 'Iskanje, pripenjanje in upravljanje sej'
       },
       system: {
         title: 'Sistemska plošča',
-        detail: 'Stanje prehoda, dnevniki, ponovni zagon/posodobitev',
+        detail: 'Stanje prehoda, dnevniki, ponovni zagon/posodobitev'
       },
       usage: {
         title: 'Plošča uporabe',
-        detail: 'Aktivnost žetonov, stroškov in veščin',
-      },
+        detail: 'Aktivnost žetonov, stroškov in veščin'
+      }
     },
     providerNavigate: 'Navigiraj',
     providerSessions: 'Seje',
@@ -1275,7 +1322,8 @@ export const sl = defineLocale({
       backup: 'Ustvari varnostno kopijo',
       backupDesc: 'Zazipaj konfiguracijo, spomine, veščine in seje',
       debugShare: 'Deljenje razhroščevanja',
-      debugShareDesc: 'Naloži prečiščeno poročilo + dnevnike in pridobi povezave za deljenje (samodejno izbriše po 6 h)',
+      debugShareDesc:
+        'Naloži prečiščeno poročilo + dnevnike in pridobi povezave za deljenje (samodejno izbriše po 6 h)',
       debugShareRunning: 'Nalaganje poročila razhroščevanja...',
       debugShareLinks: 'Povezave za deljenje',
       debugShareFailed: 'Deljenje razhroščevanja ni uspelo',
@@ -1308,8 +1356,8 @@ export const sl = defineLocale({
       actionStarted: name => `${name} zagnano — spremljanje dnevnika...`,
       actionFailed: name => `${name} ni uspelo zagnati`,
       running: 'Deluje...',
-      viewLog: 'Dnevnik dejanj',
-    },
+      viewLog: 'Dnevnik dejanj'
+    }
   },
   messaging: {
     search: 'Iskanje sporočil...',
@@ -1324,7 +1372,7 @@ export const sl = defineLocale({
       not_configured: 'Potrebna je nastavitev',
       pending_restart: 'Potreben je ponovni zagon',
       retrying: 'Ponovni poskus',
-      startup_failed: 'Zagon ni uspel',
+      startup_failed: 'Zagon ni uspel'
     },
     unknown: 'Neznano',
     hintPendingRestart: 'Za uveljavitev te spremembe znova zaženite prehod v vrstici stanja.',
@@ -1337,7 +1385,8 @@ export const sl = defineLocale({
     required: 'Obvezno',
     recommended: 'Priporočeno',
     advanced: count => `Napredno (${count})`,
-    noTokenNeeded: 'Ta platforma tukaj ne potrebuje žetona. Uporabite zgornji vodnik za nastavitev, nato ga omogočite spodaj.',
+    noTokenNeeded:
+      'Ta platforma tukaj ne potrebuje žetona. Uporabite zgornji vodnik za nastavitev, nato ga omogočite spodaj.',
     enabled: 'Omogočeno',
     disabled: 'Onemogočeno',
     unsavedChanges: 'Neshranjene spremembe',
@@ -1363,127 +1412,126 @@ export const sl = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Žeton bota',
         help: 'Ustvarite robota z @BotFather, nato prilepite žeton, ki vam ga da.',
-        placeholder: 'Prilepite žeton robota Telegram',
+        placeholder: 'Prilepite žeton robota Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Dovoljeni ID-ji uporabnikov Telegrama',
-        help: 'Priporočeno. Numerični ID-ji, ločeni z vejicami, iz @userinfobot. Brez tega lahko vsak pošlje vašemu botu zasebno sporočilo.',
+        help: 'Priporočeno. Numerični ID-ji, ločeni z vejicami, iz @userinfobot. Brez tega lahko vsak pošlje vašemu botu zasebno sporočilo.'
       },
       TELEGRAM_PROXY: {
         label: 'URL posrednika',
-        help: 'Potrebno samo v omrežjih, kjer je Telegram blokiran.',
+        help: 'Potrebno samo v omrežjih, kjer je Telegram blokiran.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Žeton bota',
-        help: 'Ustvarite aplikacijo v razvijalskem portalu Discord, dodajte robota, nato prilepite njegov žeton.',
+        help: 'Ustvarite aplikacijo v razvijalskem portalu Discord, dodajte robota, nato prilepite njegov žeton.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Dovoljeni ID-ji uporabnikov Discord',
-        help: 'Priporočeno. ID-ji uporabnikov Discord, ločeni z vejicami.',
+        help: 'Priporočeno. ID-ji uporabnikov Discord, ločeni z vejicami.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Slog odgovora',
-        help: 'prvi, vsi ali izklopljeno.',
+        help: 'prvi, vsi ali izklopljeno.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Dovoli vsem uporabnikom Discorda',
-        help: 'Samo za razvoj. Če je vklopljeno, lahko vsak pošlje botu neposredno sporočilo brez seznama dovoljenih.',
+        help: 'Samo za razvoj. Če je vklopljeno, lahko vsak pošlje botu neposredno sporočilo brez seznama dovoljenih.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID domačega kanala',
-        help: 'Kanal, v katerega bot pošilja proaktivna sporočila (izpis cron, opomniki).',
+        help: 'Kanal, v katerega bot pošilja proaktivna sporočila (izpis cron, opomniki).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Ime domačega kanala',
-        help: 'Prikazno ime domačega kanala v dnevnikih in izpisu stanja.',
+        help: 'Prikazno ime domačega kanala v dnevnikih in izpisu stanja.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Dovoli vsem uporabnikom iMessage',
-        help: 'Če je vklopljeno, preskoči seznam dovoljenih BlueBubbles.',
+        help: 'Če je vklopljeno, preskoči seznam dovoljenih BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Dovoli vsem uporabnikom Mattermosta',
+        label: 'Dovoli vsem uporabnikom Mattermosta'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Domači kanal',
+        label: 'Domači kanal'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Dovoli vsem uporabnikom QQ',
+        label: 'Dovoli vsem uporabnikom QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Domači kanal QQ',
-        help: 'Privzeti kanal ali skupina za dostavo cron.',
+        help: 'Privzeti kanal ali skupina za dostavo cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Ime domačega kanala QQ',
+        label: 'Ime domačega kanala QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Žeton Slack bota',
         help: 'Uporabite žeton bota iz OAuth & Permissions po namestitvi aplikacije Slack.',
-        placeholder: 'Prilepite žeton bota Slack',
+        placeholder: 'Prilepite žeton bota Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Žeton aplikacije Slack',
         help: 'Uporabite žeton na ravni aplikacije, ki je potreben za Socket Mode.',
-        placeholder: 'Prilepi žeton aplikacije Slack',
+        placeholder: 'Prilepi žeton aplikacije Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Dovoljeni ID-ji uporabnikov Slack',
-        help: 'Priporočeno. ID-ji uporabnikov Slack, ločeni z vejicami.',
+        help: 'Priporočeno. ID-ji uporabnikov Slack, ločeni z vejicami.'
       },
       MATTERMOST_URL: {
         label: 'URL strežnika',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Žeton bota',
+        label: 'Žeton bota'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Dovoljeni ID-ji uporabnikov',
-        help: 'Priporočeno. ID-ji uporabnikov Mattermost, ločeni z vejicami.',
+        help: 'Priporočeno. ID-ji uporabnikov Mattermost, ločeni z vejicami.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL domačega strežnika',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Dostopni žeton',
+        label: 'Dostopni žeton'
       },
       MATRIX_USER_ID: {
         label: 'ID uporabnika bota',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Dovoljeni ID-ji uporabnikov Matrix',
-        help: 'Priporočeno. ID-ji uporabnikov, ločeni z vejicami, v obliki @user:server.',
+        help: 'Priporočeno. ID-ji uporabnikov, ločeni z vejicami, v obliki @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL mostu Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL delujočega mostu signal-cli REST.',
+        help: 'URL delujočega mostu signal-cli REST.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Telefonska številka',
-        help: 'Številka, registrirana v vašem mostu signal-cli.',
+        help: 'Številka, registrirana v vašem mostu signal-cli.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Dovoljeni uporabniki Signal',
-        help: 'Priporočeno. Z vejico ločeni identifikatorji Signal.',
+        help: 'Priporočeno. Z vejico ločeni identifikatorji Signal.'
       },
       WHATSAPP_ENABLED: {
         label: 'Omogoči WhatsApp most',
-        help: 'Samodejno ga nastavi spodnje stikalo. Pusti pri miru, razen če veš, da ga potrebuješ.',
+        help: 'Samodejno ga nastavi spodnje stikalo. Pusti pri miru, razen če veš, da ga potrebuješ.'
       },
       WHATSAPP_MODE: {
-        label: 'Način mostu',
+        label: 'Način mostu'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Dovoljeni uporabniki WhatsApp',
-        help: 'Priporočeno. Z vejico ločene telefonske številke ali ID-ji WhatsApp.',
-      },
+        help: 'Priporočeno. Z vejico ločene telefonske številke ali ID-ji WhatsApp.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Iskanje webhookov...',
@@ -1493,7 +1541,8 @@ export const sl = defineLocale({
     hint: 'Spremembe naročnin se samodejno znova naložijo, ko prejemnik deluje. Onemogočene naročnine zavrnejo dohodne dogodke.',
     empty: 'Še ni naročnin na webhooke.',
     disabledTitle: 'Prejemnik webhookov je onemogočen',
-    disabledBody: 'Webhooki so samostojna prehodna platforma. Tu jih omogočite za sprejemanje dohodnih dogodkov HTTP; klepetalni kanali so potrebni le, ko naročnina dostavi v Telegram, Discord, Slack ali drug kanal.',
+    disabledBody:
+      'Webhooki so samostojna prehodna platforma. Tu jih omogočite za sprejemanje dohodnih dogodkov HTTP; klepetalni kanali so potrebni le, ko naročnina dostavi v Telegram, Discord, Slack ali drug kanal.',
     enable: 'Omogoči webhooke',
     enabling: 'Omogočanje...',
     enabled: (name: string) => `Omogočeno: "${name}"`,
@@ -1510,7 +1559,8 @@ export const sl = defineLocale({
     toggleFailed: (name: string) => `Ni bilo mogoče posodobiti »${name}«`,
     newSubscription: 'Nova naročnina',
     restarting: 'Prehod se znova zaganja ...',
-    restartNeeded: 'Spletne kljuke so omogočene, vendar je treba prehod še znova zagnati, preden se sprejemnik lahko poveže.',
+    restartNeeded:
+      'Spletne kljuke so omogočene, vendar je treba prehod še znova zagnati, preden se sprejemnik lahko poveže.',
     restartGateway: 'Znova zaženi prehod',
     restartingGateway: 'Znova zaganjam ...',
     restartFailed: (detail: string) => `Ponovni zagon prehoda ni uspel${detail}`,
@@ -1546,8 +1596,8 @@ export const sl = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'E-pošta',
-      github_comment: 'Komentar na GitHubu',
-    },
+      github_comment: 'Komentar na GitHubu'
+    }
   },
   profiles: {
     close: 'Zapri profile',
@@ -1625,7 +1675,7 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     failedLoadSoul: 'SOUL.md ni bilo mogoče naložiti',
     failedSaveSoul: 'SOUL.md ni bilo mogoče shraniti',
     failedCreate: 'Profila ni bilo mogoče ustvariti',
-    failedRename: 'Profila ni bilo mogoče preimenovati',
+    failedRename: 'Profila ni bilo mogoče preimenovati'
   },
   cron: {
     close: 'Zapri cron',
@@ -1640,14 +1690,14 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       paused: 'vznapavzjeno',
       disabled: 'onemogočeno',
       error: 'napaka',
-      completed: 'zaključeno',
+      completed: 'zaključeno'
     },
     deliveryLabels: {
       local: 'To pisalna miza',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'E-pošta',
+      email: 'E-pošta'
     },
     scheduleLabels: {
       daily: 'Vsak dan',
@@ -1656,7 +1706,7 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       monthly: 'Mesečno',
       hourly: 'Urno',
       'every-15-minutes': 'Vsakih 15 minut',
-      custom: 'Po meri',
+      custom: 'Po meri'
     },
     scheduleHints: {
       daily: 'Vsak dan ob 9:00',
@@ -1665,7 +1715,7 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       monthly: 'Prvi dan v mesecu ob 9:00',
       hourly: 'Na začetku vsake ure',
       'every-15-minutes': 'Vsakih 15 minut',
-      custom: 'Cron sintaksa ali naravni jezik',
+      custom: 'Cron sintaksa ali naravni jezik'
     },
     days: {
       '0': 'nedelja',
@@ -1675,7 +1725,7 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       '4': 'četrtek',
       '5': 'petek',
       '6': 'sobota',
-      '7': 'nedelja',
+      '7': 'nedelja'
     },
     dayFallback: value => `dan ${value}`,
     everyDayAt: time => `Vsak dan ob ${time}`,
@@ -1685,7 +1735,8 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     topOfHour: 'Ob vsaki polni uri',
     everyHourAt: minute => `Vsako uro ob :${minute}`,
     newCron: 'Nov cron',
-    emptyDescNew: 'Načrtuj poziv za izvajanje po cron izrazu. OpenAmer ga bo izvedel in rezultate dostavil na cilj, ki ga izbereš.',
+    emptyDescNew:
+      'Načrtuj poziv za izvajanje po cron izrazu. OpenAmer ga bo izvedel in rezultate dostavil na cilj, ki ga izbereš.',
     emptyDescSearch: 'Poskusi s širšo iskalno poizvedbo.',
     emptyTitleNew: 'Še ni načrtovanih opravil',
     emptyTitleSearch: 'Ni zadetkov',
@@ -1722,7 +1773,8 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     editTitle: 'Uredi cron opravilo',
     createTitle: 'Novo cron opravilo',
     editDesc: 'Posodobite urnik, poziv ali cilj dostave. Spremembe se uveljavijo ob naslednjem izvajanju.',
-    createDesc: 'Načrtujte samodejno izvajanje poziva. Uporabite cron sintakso ali naravni stavek, kot je "vsakih 15 minut".',
+    createDesc:
+      'Načrtujte samodejno izvajanje poziva. Uporabite cron sintakso ali naravni stavek, kot je "vsakih 15 minut".',
     nameLabel: 'Ime',
     namePlaceholder: 'Jutranji povzetek',
     promptLabel: 'Poziv',
@@ -1744,7 +1796,7 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     createAction: 'Ustvari cron',
     tabs: {
       jobs: 'Opravila',
-      blueprints: 'Predloge',
+      blueprints: 'Predloge'
     },
     blueprints: {
       tab: 'Predloge',
@@ -1758,8 +1810,8 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       loading: 'Nalaganje predlog ...',
       failedLoad: 'Predlog ni bilo mogoče naložiti',
       emptyTitle: 'Ni razpoložljivih predlog',
-      emptyDesc: 'Na tem zaledju ni razpoložljivih predlog avtomatizacij.',
-    },
+      emptyDesc: 'Na tem zaledju ni razpoložljivih predlog avtomatizacij.'
+    }
   },
   artifacts: {
     search: 'Iskanje artefaktov ...',
@@ -1793,14 +1845,14 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     kindLink: 'povezava',
     chat: 'Klepet',
     copyUrl: 'Kopiraj URL',
-    copyPath: 'Kopiraj pot',
+    copyPath: 'Kopiraj pot'
   },
   sidebar: {
     nav: {
       'new-session': 'Nova seja',
       skills: 'Zmogljivosti',
       messaging: 'Sporočanje',
-      artifacts: 'Artefakti',
+      artifacts: 'Artefakti'
     },
     searchAria: 'Iskanje sej',
     searchPlaceholder: 'Iskanje sej …',
@@ -1832,7 +1884,7 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       namePlaceholder: 'npr. Skunkworks',
       foldersLabel: 'Mape',
       ideaLabel: 'Ideja',
-      ideaPlaceholder: "O čem je ta projekt? (shranjeno v IDEA.md)",
+      ideaPlaceholder: 'O čem je ta projekt? (shranjeno v IDEA.md)',
       ideaGenerate: 'Ustvari idejo',
       ideaGenerating: 'Generiranje…',
       ideaShuffle: 'Premešaj predloge',
@@ -1852,8 +1904,10 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       copyPath: 'Kopiraj pot',
       removeFromSidebar: 'Skrij iz stranske vrstice',
       createFailed: 'Projekta ni bilo mogoče ustvariti',
-      staleBackend: 'Posodobi zaledje OpenAmer, da bo lahko ustvarjalo projekte — tvoje zaledje je starejše od te namizne aplikacije (Nastavitve → Posodobitve → Zaledje).',
-      deleteConfirm: 'To odstrani shranjeni projekt iz OpenAmer. Datoteke, repozitoriji git in delovna drevesa ostanejo nedotaknjeni.',
+      staleBackend:
+        'Posodobi zaledje OpenAmer, da bo lahko ustvarjalo projekte — tvoje zaledje je starejše od te namizne aplikacije (Nastavitve → Posodobitve → Zaledje).',
+      deleteConfirm:
+        'To odstrani shranjeni projekt iz OpenAmer. Datoteke, repozitoriji git in delovna drevesa ostanejo nedotaknjeni.',
       startWork: 'Novo delovno drevo',
       newWorktreeTitle: 'Novo delovno drevo',
       newWorktreeDesc: 'Poimenujte vejo za to delovno drevo.',
@@ -1874,13 +1928,15 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       noBranches: 'Ni vej',
       removeWorktree: 'Odstrani delovno drevo',
       removeWorktreeFailed: 'Delovnega drevesa ni mogoče odstraniti (necommitane spremembe?)',
-      removeWorktreeConfirm: 'Odstrani ga iz gita (izbriše mapo delovnega drevesa; veja ostane) ali samo skrij pas v stranski vrstici in pusti delovno drevo na disku.',
-      removeWorktreeDirty: 'To delovno drevo ima nepotrjene spremembe. Prisilno ga odstrani (zavrže te spremembe) ali samo skrij pas in ga ohrani na disku.',
+      removeWorktreeConfirm:
+        'Odstrani ga iz gita (izbriše mapo delovnega drevesa; veja ostane) ali samo skrij pas v stranski vrstici in pusti delovno drevo na disku.',
+      removeWorktreeDirty:
+        'To delovno drevo ima nepotrjene spremembe. Prisilno ga odstrani (zavrže te spremembe) ali samo skrij pas in ga ohrani na disku.',
       forceRemove: 'Prisilno odstrani',
       enter: label => `Odpri ${label}`,
       reorder: label => `Preuredi ${label}`,
       toggle: label => `Preklopi seje ${label}`,
-      back: 'Vsi projekti',
+      back: 'Vsi projekti'
     },
     newSessionIn: label => `Nova seja v ${label}`,
     showMoreIn: (count, label) => `Prikaži še ${count} v ${label}`,
@@ -1918,15 +1974,15 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       ageNow: 'zdaj',
       ageDay: 'd',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Prej danes',
       yesterday: 'Včeraj',
       thisWeek: 'Prej v tem tednu',
       lastWeek: 'Prejšnji teden',
-      thisMonth: 'Prej v tem mesecu',
-    },
+      thisMonth: 'Prej v tem mesecu'
+    }
   },
   composer: {
     message: 'Sporočilo',
@@ -1937,20 +1993,20 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     newSessionPlaceholders: [
       'Kaj gradimo?',
       'Dodeli nalogo OpenAmer',
-      "Kaj imaš v mislih?",
+      'Kaj imaš v mislih?',
       'Opiši, kaj potrebuješ',
       'Česa naj se lotimo?',
       'Vprašaj karkoli',
-      'Začni s ciljem',
+      'Začni s ciljem'
     ],
     followUpPlaceholders: [
       'Pošlji dodatno sporočilo',
       'Dodaj več konteksta',
       'Izboljšaj zahtevo',
-      "Kaj sledi?",
+      'Kaj sledi?',
       'Nadaljuj',
       'Pojdi dlje',
-      'Prilagodi ali nadaljuj',
+      'Prilagodi ali nadaljuj'
     ],
     startVoice: 'Začni glasovni pogovor',
     queueMessage: 'Dodaj sporočilo v čakalno vrsto',
@@ -1986,7 +2042,7 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       '/resume': 'nadaljuj prejšnjo sejo',
       '/details': 'nadziraj raven podrobnosti prepisa',
       '/copy': 'kopiraj izbor ali zadnje sporočilo pomočnika',
-      '/quit': 'izhod iz openamer',
+      '/quit': 'izhod iz openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'referenčne datoteke, mape, URL-ji, git',
@@ -1996,7 +2052,7 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       'composer.sendQueued': 'pošlji naslednji čakajoči krog',
       'keybinds.openPanel': 'vse bližnjice na tipkovnici',
       'composer.cancel': 'zapri pojavno okno · prekini izvajanje',
-      'composer.history': 'preklapljaj pojavno okno / zgodovino',
+      'composer.history': 'preklapljaj pojavno okno / zgodovino'
     },
     attachUrlTitle: 'Pripni URL',
     attachUrlDesc: 'OpenAmer bo pridobil stran in jo vključil kot kontekst za ta krog.',
@@ -2017,7 +2073,8 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     queueResume: 'Nadaljuj',
     queueResumeTip: 'Zaustavljeno z Ukazom Ustavi — nadaljuj pošiljanje čakajočih izmenjav',
     queueStuckTitle: 'Čakajoče sporočilo ni bilo poslano',
-    queueStuckBody: 'Čakajoče izmenjave je večkrat spodletelo poslati. Še vedno je v čakalni vrsti — poskusite jo poslati znova.',
+    queueStuckBody:
+      'Čakajoče izmenjave je večkrat spodletelo poslati. Še vedno je v čakalni vrsti — poskusite jo poslati znova.',
     previewUnavailable: 'Predogled ni na voljo',
     previewLabel: label => `Predogled ${label}`,
     couldNotPreview: label => `Predogled ni mogoč ${label}`,
@@ -2047,19 +2104,19 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       codeReview: {
         label: 'Pregled kode',
         description: 'Preverite trenutno spremembo glede regresij, izpuščenih robnih primerov in manjkajočih testov.',
-        text: 'Prosimo, pregledajte to glede hroščev, regresij in manjkajočih testov.',
+        text: 'Prosimo, pregledajte to glede hroščev, regresij in manjkajočih testov.'
       },
       implementationPlan: {
         label: 'Načrt implementacije',
         description: 'Orisujte pristop pred posegom v kodo, da razlika ostane osredotočena.',
-        text: 'Prosimo, pripravite jedrnat načrt implementacije pred spreminjanjem kode.',
+        text: 'Prosimo, pripravite jedrnat načrt implementacije pred spreminjanjem kode.'
       },
       explainThis: {
         label: 'Razloži to',
         description: 'Pokažite, kako deluje izbrana koda, in povežite ključne datoteke.',
-        text: 'Prosimo, pojasnite, kako to deluje, in me usmerite na ključne datoteke.',
-      },
-    },
+        text: 'Prosimo, pojasnite, kako to deluje, in me usmerite na ključne datoteke.'
+      }
+    }
   },
   statusStack: {
     agents: 'Agenti',
@@ -2089,8 +2146,10 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       viewAsList: 'Prikaži kot seznam',
       revert: 'Povrni',
       revertAll: 'Povrni vse',
-      revertConfirm: 'Zavrži spremembe te datoteke in jo obnovi v stanje zadnje potrditve? Tega ni mogoče razveljaviti.',
-      revertAllConfirm: 'Zavrži vse spremembe in obnovi datoteke v stanje zadnje potrditve? Tega ni mogoče razveljaviti.',
+      revertConfirm:
+        'Zavrži spremembe te datoteke in jo obnovi v stanje zadnje potrditve? Tega ni mogoče razveljaviti.',
+      revertAllConfirm:
+        'Zavrži vse spremembe in obnovi datoteke v stanje zadnje potrditve? Tega ni mogoče razveljaviti.',
       staged: 'Pripravljeno',
       noChanges: 'Ni sprememb',
       notRepo: 'Ni git repozitorij',
@@ -2107,13 +2166,14 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       openPr: 'Odpri PR',
       ghMissing: 'Namesti GitHub CLI (gh) in se prijavi za odpiranje PR-jev',
       agentShip: 'Prosi OpenAmer, naj odpre PR',
-      agentShipPrompt: 'Preglej trenutne spremembe, jih zabeleži z jasnim sporočilom po konvenciji commitov, potisni vejo in odpri zahtevek za poteg',
+      agentShipPrompt:
+        'Preglej trenutne spremembe, jih zabeleži z jasnim sporočilom po konvenciji commitov, potisni vejo in odpri zahtevek za poteg',
       newBranch: 'Nova veja',
       branchOffFrom: base => `Nova veja iz ${base}`,
       switchTo: branch => `Preklopi na ${branch}`,
       switchFailed: branch => `Ni bilo mogoče preklopiti na ${branch}`,
-      worktrees: 'Delovna drevesa',
-    },
+      worktrees: 'Delovna drevesa'
+    }
   },
   updates: {
     stages: {
@@ -2128,7 +2188,7 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       done: 'Posodobitev končana',
       manual: 'Posodobi iz terminala',
       guiSkew: 'Posodobi namizno aplikacijo',
-      error: 'Posodobitev je ustavljena',
+      error: 'Posodobitev je ustavljena'
     },
     checking: 'Iskanje posodobitev…',
     checkFailedTitle: 'Posodobitev ni bilo mogoče preveriti',
@@ -2143,7 +2203,8 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     availableBody: 'Nova različica OpenAmer je pripravljena za namestitev.',
     availableTitleBackend: 'Na voljo je posodobitev zaledja',
     availableBodyBackend: 'Novejša različica povezanega zaledja OpenAmer je pripravljena za namestitev.',
-    availableBodyNoChangelog: 'Novejša različica je pripravljena. Opombe ob izdaji niso na voljo za to vrsto namestitve.',
+    availableBodyNoChangelog:
+      'Novejša različica je pripravljena. Opombe ob izdaji niso na voljo za to vrsto namestitve.',
     updateNow: 'Posodobi zdaj',
     maybeLater: 'Morda pozneje',
     moreChanges: count => `+ vključena je še ${count} sprememba${count === 1 ? 'sprememba' : 'spremembe'}.`,
@@ -2151,12 +2212,15 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     manualBody: 'OpenAmer si namestil iz ukazne vrstice, zato se posodobitve izvajajo tam. To prilepi v terminal:',
     manualPickedUp: 'OpenAmer bo novo različico prevzel ob naslednjem zagonu.',
     guiSkewTitle: 'Posodobi namizno aplikacijo',
-    guiSkewBody: 'Zaledje je bilo posodobljeno, paket te namizne aplikacije pa se ni spremenil. Posodobite ali znova namestite namizno aplikacijo OpenAmer (vaš AppImage / .deb / .rpm), da se ujema.',
+    guiSkewBody:
+      'Zaledje je bilo posodobljeno, paket te namizne aplikacije pa se ni spremenil. Posodobite ali znova namestite namizno aplikacijo OpenAmer (vaš AppImage / .deb / .rpm), da se ujema.',
     copy: 'Kopiraj',
     copied: 'Kopirano',
     done: 'Končano',
-    applyingBody: 'Posodabljalnik OpenAmer prevzame nadzor v svojem oknu in po končanju samodejno znova odpre OpenAmer. Med posodabljanjem OpenAmer ne odpirajte sami.',
-    applyingBodyBackend: 'Oddaljeno zaledje izvaja posodobitev in se bo znova zagnalo. OpenAmer se samodejno znova poveže, ko bo spet na voljo.',
+    applyingBody:
+      'Posodabljalnik OpenAmer prevzame nadzor v svojem oknu in po končanju samodejno znova odpre OpenAmer. Med posodabljanjem OpenAmer ne odpirajte sami.',
+    applyingBodyBackend:
+      'Oddaljeno zaledje izvaja posodobitev in se bo znova zagnalo. OpenAmer se samodejno znova poveže, ko bo spet na voljo.',
     applyingClose: 'To okno se bo med posodobitvijo zaprlo, nato pa se OpenAmer sam znova odpre.',
     errorTitle: 'Posodobitev se ni dokončala',
     errorBody: 'Brez skrbi — nič ni bilo izgubljeno. Poskusite lahko znova.',
@@ -2167,12 +2231,14 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       restarting: 'Zaledje se znova zaganja za nalaganje posodobitve…',
       notAvailable: 'Posodobitev za to zaledje ni na voljo.',
       failed: 'Posodobitev zaledja ni uspela.',
-      noReturn: 'Zaledje ni znova postalo dosegljivo. Posodobitev morda ni bila dokončana — preverite gostitelja zaledja.',
+      noReturn:
+        'Zaledje ni znova postalo dosegljivo. Posodobitev morda ni bila dokončana — preverite gostitelja zaledja.'
     },
     appErrors: {
-      updateLocked: 'Posodobitev prekinjena: drugo okno OpenAmer ali terminal, v katerem teče openamer, zadržuje to namestitev odprto. Zaprite ga in poskusite znova.',
-      updateFailed: 'Posodobitev se ni dokončala. Brez skrbi — nič ni bilo izgubljeno. Poskusite lahko znova.',
-    },
+      updateLocked:
+        'Posodobitev prekinjena: drugo okno OpenAmer ali terminal, v katerem teče openamer, zadržuje to namestitev odprto. Zaprite ga in poskusite znova.',
+      updateFailed: 'Posodobitev se ni dokončala. Brez skrbi — nič ni bilo izgubljeno. Poskusite lahko znova.'
+    }
   },
   install: {
     stageStates: {
@@ -2180,25 +2246,30 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       running: 'Namestitev',
       succeeded: 'Končano',
       skipped: 'Preskočeno',
-      failed: 'Neuspešno',
+      failed: 'Neuspešno'
     },
     oneTimeTitle: 'OpenAmer je treba enkrat namestiti',
-    unsupportedDesc: platform => `Samodejna namestitev ob prvem zagonu na ${platform} še ni na voljo. Odprite Terminal in zaženite spodnji ukaz, nato znova zaženite to aplikacijo. Naslednji zagoni bodo ta korak preskočili.`,
+    unsupportedDesc: platform =>
+      `Samodejna namestitev ob prvem zagonu na ${platform} še ni na voljo. Odprite Terminal in zaženite spodnji ukaz, nato znova zaženite to aplikacijo. Naslednji zagoni bodo ta korak preskočili.`,
     installCommand: 'Ukaz za namestitev',
     copyCommand: 'Kopiraj ukaz',
     viewDocs: 'Ogled dokumentacije za namestitev',
     installTo: 'Namestilo se bo v',
     retryAfterRun: 'Zagnal sem ga -- poskusi znova',
     setupChoiceTitle: 'Nastavite OpenAmer Desktop',
-    setupChoiceDesc: 'Povežite to aplikacijo z že delujočim prehodom OpenAmer ali namestite OpenAmer lokalno na tem računalniku.',
+    setupChoiceDesc:
+      'Povežite to aplikacijo z že delujočim prehodom OpenAmer ali namestite OpenAmer lokalno na tem računalniku.',
     connectExistingTitle: 'Poveži z obstoječim OpenAmer',
     connectExistingShort: 'Poveži obstoječe',
-    connectExistingDesc: 'Uporabite oddaljeno zaledje z žetonom seje ali prijavo v brskalniku. Lokalna namestitev se ne bo začela.',
+    connectExistingDesc:
+      'Uporabite oddaljeno zaledje z žetonom seje ali prijavo v brskalniku. Lokalna namestitev se ne bo začela.',
     installLocalTitle: 'Namesti OpenAmer lokalno',
     installLocalDesc: 'Prenesite OpenAmer, ustvarite njegovo okolje Python in zaženite zaledje na tem računalniku.',
-    localStartUnavailable: 'Lokalne namestitve ni bilo mogoče začeti. Znova zaženite OpenAmer Desktop in poskusite znova.',
+    localStartUnavailable:
+      'Lokalne namestitve ni bilo mogoče začeti. Znova zaženite OpenAmer Desktop in poskusite znova.',
     remoteSetupTitle: 'Poveži se z obstoječim OpenAmer',
-    remoteSetupDesc: 'Vnesite URL prehoda. OpenAmer Desktop bo zaznal, ali potrebuje žeton ali prijavo prek brskalnika.',
+    remoteSetupDesc:
+      'Vnesite URL prehoda. OpenAmer Desktop bo zaznal, ali potrebuje žeton ali prijavo prek brskalnika.',
     remoteUrlTitle: 'URL prehoda',
     remoteUrlDesc: 'Uporabite osnovni URL prehoda OpenAmer, vključno s https://, kadar je oddaljen.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2225,8 +2296,10 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     failedTitle: 'Namestitev ni uspela',
     settingUpTitle: 'Nastavljanje OpenAmer Agenta',
     finishingTitle: 'Zaključevanje',
-    failedDesc: 'Eden od korakov namestitve ni uspel. V sistemu Windows se to lahko zgodi, če deluje druga instanca OpenAmer CLI ali namizne aplikacije. Ustavite vse delujoče instance OpenAmer in poskusite znova. Za celoten zapis preverite podrobnosti spodaj ali dnevnik namizne aplikacije.',
-    activeDesc: 'To je enkratna nastavitev. Namestitveni program OpenAmer prenaša odvisnosti in nastavlja vaš računalnik. Naslednji zagoni bodo ta korak preskočili.',
+    failedDesc:
+      'Eden od korakov namestitve ni uspel. V sistemu Windows se to lahko zgodi, če deluje druga instanca OpenAmer CLI ali namizne aplikacije. Ustavite vse delujoče instance OpenAmer in poskusite znova. Za celoten zapis preverite podrobnosti spodaj ali dnevnik namizne aplikacije.',
+    activeDesc:
+      'To je enkratna nastavitev. Namestitveni program OpenAmer prenaša odvisnosti in nastavlja vaš računalnik. Naslednji zagoni bodo ta korak preskočili.',
     progress: (completed, total) => `Opravljenih ${completed} od ${total} korakov`,
     currentStage: stage => ` -- zdaj: ${stage}`,
     fetchingManifest: 'Pridobivanje manifesta namestitvenega programa...',
@@ -2240,10 +2313,10 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     transcriptSaved: 'Celoten zapis shranjen v',
     copiedOutput: 'Kopirano!',
     copyOutput: 'Kopiraj izhod',
-    reloadRetry: 'Ponovno naloži in poskusi znova',
+    reloadRetry: 'Ponovno naloži in poskusi znova'
   },
   onboarding: {
-    headerTitle: "Nastavimo OpenAmer Agent",
+    headerTitle: 'Nastavimo OpenAmer Agent',
     headerDesc: 'Povežite ponudnika modelov za začetek klepeta. Večina možnosti zahteva en klik.',
     preparingInstall: 'OpenAmer dokončuje namestitev. Ob prvem zagonu to običajno traja manj kot minuto.',
     starting: 'OpenAmer se zaganja …',
@@ -2251,7 +2324,7 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     collapse: 'Strni',
     otherProviders: 'Drugi ponudniki',
     haveApiKey: 'Imam API ključ',
-    chooseLater: "Ponudnika izberem pozneje",
+    chooseLater: 'Ponudnika izberem pozneje',
     recommended: 'Priporočeno',
     connected: 'Povezano',
     featuredPitch: 'Ena naročnina, 300+ vrhunskih modelov — priporočen način za uporabo OpenAmer',
@@ -2260,28 +2333,29 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     apiKeyOptions: {
       fireworks: {
         short: 'neposredni API modela',
-        description: 'Neposreden dostop do modelov, ki jih gostuje Fireworks AI.',
+        description: 'Neposreden dostop do modelov, ki jih gostuje Fireworks AI.'
       },
       openrouter: {
         short: 'en ključ, veliko modelov',
-        description: 'Gosti stotine modelov za enim samim ključem. Dobra privzeta izbira za nove namestitve.',
+        description: 'Gosti stotine modelov za enim samim ključem. Dobra privzeta izbira za nove namestitve.'
       },
       openai: {
         short: 'Modeli razreda GPT',
-        description: 'Neposreden dostop do modelov OpenAI.',
+        description: 'Neposreden dostop do modelov OpenAI.'
       },
       gemini: {
         short: 'Modeli Gemini',
-        description: 'Neposreden dostop do modelov Google Gemini.',
+        description: 'Neposreden dostop do modelov Google Gemini.'
       },
       xai: {
         short: 'Modeli Grok',
-        description: 'Neposreden dostop do modelov xAI Grok.',
+        description: 'Neposreden dostop do modelov xAI Grok.'
       },
       local: {
         short: 'lastno gostovanje',
-        description: 'Usmerite OpenAmer na lokalno ali lastno gosteno končno točko, združljivo z OpenAI (vLLM, llama.cpp, Ollama itd.).',
-      },
+        description:
+          'Usmerite OpenAmer na lokalno ali lastno gosteno končno točko, združljivo z OpenAI (vLLM, llama.cpp, Ollama itd.).'
+      }
     },
     backToSignIn: 'Nazaj na prijavo',
     getKey: 'Pridobite ključ',
@@ -2294,7 +2368,7 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     flowSubtitles: {
       pkce: 'Odpre brskalnik za prijavo in nato nadaljuje tukaj',
       device_code: 'Odpre stran za preverjanje v brskalniku — OpenAmer se poveže samodejno',
-      external: 'Prijavite se enkrat v terminalu in se nato vrnite v klepet',
+      external: 'Prijavite se enkrat v terminalu in se nato vrnite v klepet'
     },
     startingSignIn: provider => `Začenjam prijavo za ${provider}...`,
     verifyingCode: provider => `Preverjam vašo kodo z ${provider}...`,
@@ -2308,11 +2382,13 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     copyAuthCode: 'Kopirajte avtorizacijsko kodo in jo prilepite spodaj.',
     pasteAuthCode: 'Prilepite avtorizacijsko kodo',
     reopenAuthPage: 'Ponovno odprite stran za pooblastitev',
-    autoBrowser: provider => `Odprli smo ${provider} v vašem brskalniku. Tam pooblastite OpenAmer in povezava bo vzpostavljena samodejno — ničesar ni treba kopirati ali prilepiti.`,
+    autoBrowser: provider =>
+      `Odprli smo ${provider} v vašem brskalniku. Tam pooblastite OpenAmer in povezava bo vzpostavljena samodejno — ničesar ni treba kopirati ali prilepiti.`,
     reopenSignInPage: 'Ponovno odprite stran za prijavo',
     waitingAuthorize: 'Čakam na vašo pooblastitev...',
-    externalPending: provider => `${provider} se prijavi prek lastnega CLI. Zaženite ta ukaz v terminalu, nato se vrnite in izberite »Prijavil sem se«:`,
-    signedIn: "Prijavljen sem",
+    externalPending: provider =>
+      `${provider} se prijavi prek lastnega CLI. Zaženite ta ukaz v terminalu, nato se vrnite in izberite »Prijavil sem se«:`,
+    signedIn: 'Prijavljen sem',
     deviceCodeOpened: provider => `Odprli smo ${provider} v vašem brisalniku. Vnesite to kodo tja:`,
     reopenVerification: 'Ponovno odpri stran za preverjanje',
     copy: 'Kopiraj',
@@ -2323,7 +2399,7 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     price: (input, output) => `${input} vhod / ${output} izhod na Mtok`,
     change: 'Spremeni',
     startChatting: 'Začni',
-    docs: provider => `${provider} dokumentacija`,
+    docs: provider => `${provider} dokumentacija`
   },
   modelPicker: {
     title: 'Preklopi model',
@@ -2339,13 +2415,13 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     free: 'Brezplačno',
     freeTier: 'Brezplačni načrt',
     priceTitle: 'Cena vhoda / izhoda na milijon žetonov',
-    wasPrice: 'je bil',
+    wasPrice: 'je bil'
   },
   modelVisibility: {
     title: 'Modeli',
     search: 'Išči modele',
     noAuthenticatedProviders: 'Ni overjenih ponudnikov.',
-    addProvider: 'Dodaj ponudnika…',
+    addProvider: 'Dodaj ponudnika…'
   },
   shell: {
     windowControls: 'Krmilniki okna',
@@ -2356,7 +2432,7 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       noModels: 'Ni najdenih modelov',
       editModels: 'Uredi modele…',
       refreshModels: 'Osveži modele',
-      fast: 'Hitro',
+      fast: 'Hitro'
     },
     modelOptions: {
       noOptions: 'Ni možnosti za ta model',
@@ -2372,7 +2448,7 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       max: 'Največ',
       ultra: 'Ultra',
       updateFailed: 'Posodobitev možnosti modela ni uspela',
-      fastFailed: 'Posodobitev hitrega načina ni uspela',
+      fastFailed: 'Posodobitev hitrega načina ni uspela'
     },
     gatewayMenu: {
       gateway: 'Prehod',
@@ -2387,7 +2463,7 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       connection: label => `Povezava: ${label}`,
       recentActivity: 'Zadnja aktivnost',
       viewAllLogs: 'Prikaži vse dnevnike →',
-      messagingPlatforms: 'Platforme za sporočanje',
+      messagingPlatforms: 'Platforme za sporočanje'
     },
     approvalMode: {
       title: 'Način odobritve',
@@ -2397,7 +2473,7 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       smart: 'Pametno',
       smartDescription: 'Samodejno oceni dejanja in vprašaj, ko je potrebno',
       off: 'Izklopljeno',
-      offDescription: 'Deluj brez pozivov za odobritev',
+      offDescription: 'Deluj brez pozivov za odobritev'
     },
     statusbar: {
       unknown: 'neznano',
@@ -2453,18 +2529,19 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
           skills: 'Veščine',
           subagent_definitions: 'Definicije podagentov',
           system_prompt: 'Sistemski poziv',
-          tool_definitions: 'Definicije orodij',
+          tool_definitions: 'Definicije orodij'
         },
         empty: 'Ni še podatkov o kontekstu',
         loading: 'Nalaganje razčlenitve…',
         percentFull: percent => `${percent}% Polno`,
         title: 'Uporaba konteksta',
-        tokenSummary: (used, max) => `${used} / ${max} žetonov`,
+        tokenSummary: (used, max) => `${used} / ${max} žetonov`
       },
       openContextUsage: 'Odpri razčlenitev uporabe konteksta',
       session: 'Seja',
       runtimeSessionElapsed: 'Pretečeni čas izvajanja seje',
-      yoloOn: 'YOLO vklopljen — samodejno odobravanje nevarnih ukazov. Kliknite za izklop. Shift+klik preklopi globalno.',
+      yoloOn:
+        'YOLO vklopljen — samodejno odobravanje nevarnih ukazov. Kliknite za izklop. Shift+klik preklopi globalno.',
       yoloOff: 'YOLO izklopljen — kliknite za samodejno odobravanje nevarnih ukazov. Shift+klik preklopi globalno.',
       modelNone: 'brez',
       noModel: 'brez modela',
@@ -2472,8 +2549,8 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       openModelPicker: 'Odpri izbirnik modelov',
       modelPinned: 'vaša pripeta izbira; novi klepeti uporabijo to namesto privzete nastavitve',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Desna stranska vrstica',
@@ -2509,7 +2586,7 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     terminalNew: 'Nov terminal',
     terminalCloseOthers: 'Zapri ostale',
     terminalCloseAll: 'Zapri vse',
-    addToChat: 'Dodaj v klepet',
+    addToChat: 'Dodaj v klepet'
   },
   preview: {
     tab: 'Predogled',
@@ -2543,7 +2620,8 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     unsavedChanges: 'Neshranjene spremembe',
     saveFailed: message => `Shranjevanje ni bilo mogoče: ${message}`,
     diskChangedTitle: 'Datoteka na disku se je spremenila',
-    diskChangedBody: 'Ta datoteka se je spremenila od odprtja. Prepišite jo s svojo različico ali zavrnite ureditev in ponovno naložite?',
+    diskChangedBody:
+      'Ta datoteka se je spremenila od odprtja. Prepišite jo s svojo različico ali zavrnite ureditev in ponovno naložite?',
     overwrite: 'Prepiši',
     discardReload: 'Zavrni in ponovno naloži',
     console: {
@@ -2564,7 +2642,7 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       empty: 'Ni še sporočil konzole.',
       promptHeader: 'Predogledna konzola:',
       sentTitle: 'Poslano v klepet',
-      sentMessage: count => `${count} vnos dnevnika${count === 1 ? 'y' : 'ies'} dodan v urejevalnik`,
+      sentMessage: count => `${count} vnos dnevnika${count === 1 ? 'y' : 'ies'} dodan v urejevalnik`
     },
     web: {
       appFailedToBoot: 'Predogledna aplikacija se ni zagnala',
@@ -2582,24 +2660,27 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       showConsole: 'Pokaži predogledno konzolo',
       hideDevTools: 'Skrij predogledne DevTools',
       openDevTools: 'Odpri predogledne DevTools',
-      finishedRestarting: message => `OpenAmer je končal ponovni zagon predoglednega strežnika${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer je končal ponovni zagon predoglednega strežnika${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Ponovni zagon strežnika ni uspel: ${message}`,
       unknownError: 'neznana napaka',
       restartedTitle: 'Predogledni strežnik je bil ponovno zagnan',
       reloadingNow: 'Predogled se ponovno nalaga.',
       restartFailedTitle: 'Ponovni zagon predogleda ni uspel',
       restartFailedMessage: 'OpenAmer ni mogel znova zagnati strežnika.',
-      stillWorking: 'OpenAmer še vedno deluje, vendar rezultat ponovnega zagona še ni prispel. Ukaz strežnika se morda izvaja v ospredju.',
+      stillWorking:
+        'OpenAmer še vedno deluje, vendar rezultat ponovnega zagona še ni prispel. Ukaz strežnika se morda izvaja v ospredju.',
       workspaceReloading: 'Delovni prostor se je spremenil, predogled se ponovno nalaga',
       fileChanged: url => `Datoteka se je spremenila, predogled se ponovno nalaga: ${url}`,
       filesChanged: (count, url) => `${count} sprememb datotek, predogled se ponovno nalaga: ${url}`,
       watchFailed: message => `Ni bilo mogoče spremljati datoteke predogleda: ${message}`,
-      moduleMimeDescription: 'Skripti modulov se strežejo z napačnim tipom MIME. To običajno pomeni, da statični strežnik datotek streže aplikacijo Vite/React namesto razvojnega strežnika projekta.',
+      moduleMimeDescription:
+        'Skripti modulov se strežejo z napačnim tipom MIME. To običajno pomeni, da statični strežnik datotek streže aplikacijo Vite/React namesto razvojnega strežnika projekta.',
       loadFailedConsole: (code, message) => `Nalaganje ni uspelo${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Do strani predogleda ni bilo mogoče dostopati.',
       openTarget: url => `Odpri ${url}`,
-      fallbackTitle: 'Predogled',
-    },
+      fallbackTitle: 'Predogled'
+    }
   },
   zones: {
     showHeader: 'Pokaži glavo',
@@ -2607,7 +2688,8 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     minimize: 'Minimiziraj',
     restore: 'Obnovi',
     closeRunningTitle: 'Zapreti dejavni zavihek?',
-    closeRunningBody: 'Ta klepet še vedno deluje (ali čaka na vaš vnos). Zaprtje zavihka ga skrije – seja ohrani napredek in jo lahko znova odprete v stranski vrstici.',
+    closeRunningBody:
+      'Ta klepet še vedno deluje (ali čaka na vaš vnos). Zaprtje zavihka ga skrije – seja ohrani napredek in jo lahko znova odprete v stranski vrstici.',
     closeRunningConfirm: 'Zapri zavihek',
     closeOthers: 'Zapri druge',
     closeToRight: 'Zapri zavihke na desni',
@@ -2633,7 +2715,8 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     deletePreset: name => `Izbriši ${name}`,
     zoneEditorTitle: 'Urejevalnik območij',
     editorHintPre: 'kliknite za razdelitev · ',
-    editorHintPost: ' preobrne črto · povlecite čez območja za združitev · povlecite skupne robove za spremembo velikosti',
+    editorHintPost:
+      ' preobrne črto · povlecite čez območja za združitev · povlecite skupne robove za spremembo velikosti',
     templateColumns: 'Stolpci',
     templateRows: 'Vrstice',
     templateGrid: 'Mreža',
@@ -2644,27 +2727,16 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     layoutNamePlaceholder: fallback => `Ime postavitve (${fallback})`,
     saveApply: 'Shrani in uporabi',
     notExpressible: 'ta razporeditev se prepleta (vetrnica) — še ni mogoče izraziti z gnezdenimi razdelitvami',
-    zoneCount: count => `${count} con`,
+    zoneCount: count => `${count} con`
   },
   assistant: {
     thread: {
       loadingSession: 'Nalaganje seje',
       showEarlier: 'Pokaži prejšnja sporočila',
       loadingResponse: 'OpenAmer nalaga odgovor',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Razmišljanje',
       today: time => `Danes, ${time}`,
@@ -2691,7 +2763,7 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       restoreNext: 'Obnovi naslednjo kontrolno točko',
       goForward: 'Pojdi naprej',
       sendEdited: 'Pošlji urejeno sporočilo',
-      attachingFile: 'Prilaganje…',
+      attachingFile: 'Prilaganje…'
     },
     approval: {
       gatewayDisconnected: 'Prehod OpenAmer ni povezan',
@@ -2704,8 +2776,9 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       jumpToApproval: 'Potrebna odobritev',
       reject: 'Zavrni',
       alwaysTitle: 'Vedno dovoli ta ukaz?',
-      alwaysDescription: pattern => `To doda vzorec “${pattern}” na vaš trajni seznam dovoljenih (~/.openamer/config.yaml). OpenAmer ne bo več vprašal za takšne ukaze — v tej seji ali kateri koli prihodnji.`,
-      alwaysAllow: 'Vedno dovoli',
+      alwaysDescription: pattern =>
+        `To doda vzorec “${pattern}” na vaš trajni seznam dovoljenih (~/.openamer/config.yaml). OpenAmer ne bo več vprašal za takšne ukaze — v tej seji ali kateri koli prihodnji.`,
+      alwaysAllow: 'Vedno dovoli'
     },
     clarify: {
       notReady: 'Zahteva za pojasnilo še ni pripravljena',
@@ -2719,7 +2792,8 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       continueLabel: 'Nadaljuj',
       lateAnswer: (question, choice) => `Re: "${question}" — moj odgovor: ${choice}`,
       lateAnswerTip: 'Pripravi osnutek tega odgovora kot nadaljnje sporočilo',
-      lateAnswerHint: 'To pozivno sporočilo ne čaka več. Izberite možnost, da ga pripravite kot osnutek nadaljnjega sporočila.',
+      lateAnswerHint:
+        'To pozivno sporočilo ne čaka več. Izberite možnost, da ga pripravite kot osnutek nadaljnjega sporočila.'
     },
     tool: {
       code: 'Koda',
@@ -2755,11 +2829,11 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
         ran: 'Zagnano',
         running: 'Izvajanje',
         ranCode: 'Zagnana koda',
-        runningCode: 'Skriptiranje',
+        runningCode: 'Skriptiranje'
       },
       prefixes: {
         browser: 'Brskalnik',
-        web: 'Splet',
+        web: 'Splet'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2767,132 +2841,133 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Izvajanje ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Izvajanje ${action.toLowerCase()}`,
+        runningTool: action => `Izvajanje ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Kliknjen element strani',
           pending: 'Klik elementa strani',
-          pendingAction: 'Klik',
+          pendingAction: 'Klik'
         },
         browser_fill: {
           done: 'Napolnjeno polje obrazca',
           pending: 'Polnjenje polja obrazca',
-          pendingAction: 'Polnjenje',
+          pendingAction: 'Polnjenje'
         },
         browser_navigate: {
           done: 'Odprta stran',
           pending: 'Odpiranje strani',
-          pendingAction: 'Odpiranje',
+          pendingAction: 'Odpiranje'
         },
         browser_snapshot: {
           done: 'Zajet posnetek strani',
           pending: 'Zajemanje posnetka strani',
-          pendingAction: 'Zajemanje',
+          pendingAction: 'Zajemanje'
         },
         browser_take_screenshot: {
           done: 'Zajet posnetek zaslona',
           pending: 'Zajemanje posnetka zaslona',
-          pendingAction: 'Zajemanje',
+          pendingAction: 'Zajemanje'
         },
         browser_type: {
           done: 'Vtipkano na strani',
           pending: 'Tipkanje na strani',
-          pendingAction: 'Tipkanje',
+          pendingAction: 'Tipkanje'
         },
         clarify: {
           done: 'Postavljeno vprašanje',
           pending: 'Postavljanje vprašanja',
-          pendingAction: 'Spraševanje',
+          pendingAction: 'Spraševanje'
         },
         cronjob: {
           done: 'Cron opravilo',
           pending: 'Razporejanje Cron opravila',
-          pendingAction: 'Razporejanje',
+          pendingAction: 'Razporejanje'
         },
         edit_file: {
           done: 'Urejena datoteka',
           pending: 'Urejanje datoteke',
-          pendingAction: 'Urejanje',
+          pendingAction: 'Urejanje'
         },
         execute_code: {
           done: 'Koda izvedena',
           pending: 'Skriptiranje',
-          pendingAction: 'Skriptiranje',
+          pendingAction: 'Skriptiranje'
         },
         image_generate: {
           done: 'Slika ustvarjena',
           pending: 'Ustvarjanje slike',
-          pendingAction: 'Ustvarjanje',
+          pendingAction: 'Ustvarjanje'
         },
         list_files: {
           done: 'Naštete datoteke',
           pending: 'Naštevanje datotek',
-          pendingAction: 'Naštevanje',
+          pendingAction: 'Naštevanje'
         },
         patch: {
           done: 'Datoteka zakrpana',
           pending: 'Krpanje datoteke',
-          pendingAction: 'Krpanje',
+          pendingAction: 'Krpanje'
         },
         read_file: {
           done: 'Datoteka prebrana',
           pending: 'Branje datoteke',
-          pendingAction: 'Branje',
+          pendingAction: 'Branje'
         },
         search_files: {
           done: 'Preiskane datoteke',
           pending: 'Iskanje datotek',
-          pendingAction: 'Iskanje',
+          pendingAction: 'Iskanje'
         },
         session_search_recall: {
           done: 'Preiskana zgodovina seje',
           pending: 'Iskanje po zgodovini seje',
-          pendingAction: 'Iskanje',
+          pendingAction: 'Iskanje'
         },
         terminal: {
           done: 'Ukaz izveden',
           pending: 'Izvajanje ukaza',
-          pendingAction: 'Izvajanje',
+          pendingAction: 'Izvajanje'
         },
         todo: {
           done: 'Opravila posodobljena',
           pending: 'Posodabljanje opravil',
-          pendingAction: 'Posodabljanje',
+          pendingAction: 'Posodabljanje'
         },
         vision_analyze: {
           done: 'Slika analizirana',
           pending: 'Analiziranje slike',
-          pendingAction: 'Analiziranje',
+          pendingAction: 'Analiziranje'
         },
         web_extract: {
           done: 'Spletna stran prebrana',
           pending: 'Branje spletne strani',
-          pendingAction: 'Branje',
+          pendingAction: 'Branje'
         },
         web_search: {
           done: 'Splet preiskan',
           pending: 'Iskanje po spletu',
-          pendingAction: 'Iskanje',
+          pendingAction: 'Iskanje'
         },
         write_file: {
           done: 'Datoteka urejena',
           pending: 'Urejanje datoteke',
-          pendingAction: 'Urejanje',
-        },
-      },
-    },
+          pendingAction: 'Urejanje'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'Prehod OpenAmer ni povezan',
     sudoSendFailed: 'Gesla sudo ni bilo mogoče poslati',
     secretSendFailed: 'Skrivnosti ni bilo mogoče poslati',
     sudoTitle: 'Skrbniško geslo',
-    sudoDesc: 'OpenAmer potrebuje vaše geslo sudo za izvajanje privilegiranega ukaza. Poslano bo samo vašemu lokalnemu agentu.',
+    sudoDesc:
+      'OpenAmer potrebuje vaše geslo sudo za izvajanje privilegiranega ukaza. Poslano bo samo vašemu lokalnemu agentu.',
     sudoPlaceholder: 'geslo sudo',
     secretTitle: 'Skrivnost je obvezna',
     secretDesc: 'OpenAmer za nadaljevanje potrebuje poverilnico.',
-    secretPlaceholder: 'vrednost skrivnosti',
+    secretPlaceholder: 'vrednost skrivnosti'
   },
   desktop: {
     audioReadFailed: 'Ni bilo mogoče prebrati posnetega zvoka',
@@ -2909,7 +2984,8 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     yoloSystem: active => `YOLO ${active ? 'vklopljeno' : 'izklopljeno'} za to sejo`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'YOLO ni bilo mogoče preklopiti',
-    profileStatus: current => `Profil: ${current}. Za začetek klepeta v drugem profilu uporabite /profile <name> ali izbirnik "Nova seja".`,
+    profileStatus: current =>
+      `Profil: ${current}. Za začetek klepeta v drugem profilu uporabite /profile <name> ali izbirnik "Nova seja".`,
     unknownProfile: 'Neznan profil',
     noProfileNamed: (target, available) => `Ni profila z imenom "${target}". Na voljo: ${available}`,
     newChatsProfile: name => `Novi klepeti bodo uporabljali profil ${name}.`,
@@ -2919,8 +2995,9 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
     regenerateFailed: 'Ponovno ustvarjanje ni uspelo',
     editFailed: 'Urejanje ni uspelo',
     resumeFailed: 'Nadaljevanje ni uspelo',
-    resumeStrandedTitle: "Te seje ni bilo mogoče naložiti",
-    resumeStrandedBody: 'Povezava s to sejo ni uspela in samodejno ponavljanje je prenehalo. Preverite, ali je prehod zagnan, nato poskusite znova.',
+    resumeStrandedTitle: 'Te seje ni bilo mogoče naložiti',
+    resumeStrandedBody:
+      'Povezava s to sejo ni uspela in samodejno ponavljanje je prenehalo. Preverite, ali je prehod zagnan, nato poskusite znova.',
     resumeRetry: 'Poskusi znova',
     nothingToBranch: 'Ni česa razvejati',
     branchNeedsChat: 'Začnite ali nadaljujte klepet, preden razvejate.',
@@ -2960,31 +3037,31 @@ Pustite prazno za ohranitev privzete vrednosti ${mode}.`,
       success: platform => `Predano v ${platform}. Tukaj lahko nadaljujete kadar koli.`,
       systemNote: platform => `↻ Predano v ${platform} — tukaj lahko nadaljujete kadar koli.`,
       failed: error => `Predaja ni uspela: ${error}`,
-      timedOut: 'Čakanje na prehod je poteklo. Ali je `openamer gateway` zagnan?',
-    },
+      timedOut: 'Čakanje na prehod je poteklo. Ali je `openamer gateway` zagnan?'
+    }
   },
   errors: {
     genericFailure: 'Nekaj je šlo narobe',
     boundaryTitle: 'V vmesniku se je nekaj zlomilo',
     boundaryDesc: 'Pogled je naletel na nepričakovano napako. Vaši pogovori in nastavitve so varni.',
     reloadWindow: 'Ponovno naloži okno',
-    openLogs: 'Odpri dnevnike',
+    openLogs: 'Odpri dnevnike'
   },
   ui: {
     search: {
-      clear: 'Počisti iskanje',
+      clear: 'Počisti iskanje'
     },
     pagination: {
       label: 'paginacija',
       previous: 'Prejšnja',
       previousAria: 'Pojdi na prejšnjo stran',
       next: 'Naslednja',
-      nextAria: 'Pojdi na naslednjo stran',
+      nextAria: 'Pojdi na naslednjo stran'
     },
     sidebar: {
       title: 'Stranska vrstica',
       description: 'Prikaže mobilno stransko vrstico.',
-      toggle: 'Preklopi stransko vrstico',
-    },
-  },
+      toggle: 'Preklopi stransko vrstico'
+    }
+  }
 })

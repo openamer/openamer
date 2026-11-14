@@ -10,13 +10,16 @@ export const xh = defineLocale({
     gateway: {
       modeTitle: 'Imowudi yoqhagamshelo',
       localTitle: 'Isango lendawo',
-      localDesc: 'Qalisa umva we-OpenAmer wabucala kwi-localhost. Le yeyokungagqibekanga kwaye isebenza ngaphandle kwenethiwekhi.',
+      localDesc:
+        'Qalisa umva we-OpenAmer wabucala kwi-localhost. Le yeyokungagqibekanga kwaye isebenza ngaphandle kwenethiwekhi.',
       inheritTitle: 'Sebenzisa isango elingagqibekanga',
       inheritDesc: 'Susa ugqithiso lwale profayile kwaye usebenzise uqhagamshelo olungagqibekanga.',
       remoteTitle: 'Isango elikude',
       remoteDesc: 'Qhagamshela eli qokobhe ledesktop kumva we-OpenAmer okude.',
-      remoteAuthHint: 'Amasango abanjweyo asebenzisa i-OAuth okanye igama lomsebenzisi negama lokugqitha; awabanjwe ngokwawo anokusebenzisa itokheni yeseshini.',
-      cloudDesc: 'Ngena kanye kwi-OpenAmer Cloud kwaye ukhethe kwii-arhente ezikwiakhawunti yakho — akukho URL yokunamathisela.',
+      remoteAuthHint:
+        'Amasango abanjweyo asebenzisa i-OAuth okanye igama lomsebenzisi negama lokugqitha; awabanjwe ngokwawo anokusebenzisa itokheni yeseshini.',
+      cloudDesc:
+        'Ngena kanye kwi-OpenAmer Cloud kwaye ukhethe kwii-arhente ezikwiakhawunti yakho — akukho URL yokunamathisela.',
       cloudSignIn: 'Ngena kwi-OpenAmer Cloud',
       cloudSignedIn: 'Ungene kwi-OpenAmer Cloud',
       cloudNeedsSignIn: 'Ngena kwi-OpenAmer Cloud ukuze ufumane ii-arhente ezikwiakhawunti yakho.',
@@ -29,7 +32,7 @@ export const xh = defineLocale({
       cloudNoAgents: {
         before: 'Akukho arhente ifunyenweyo kule akhawunti. Yenza enye kwi ',
         linkText: 'iportal ye-OpenAmer',
-        after: ', emva koko uhlaziya.',
+        after: ', emva koko uhlaziya.'
       },
       cloudRefresh: 'Hlaziya',
       cloudConnect: 'Qhagamshela',
@@ -53,13 +56,16 @@ export const xh = defineLocale({
       unavailableDesc: 'Ibhulorho ye-IPC yedesktop ayivezi iisetingi zesango.',
       title: 'Uqhagamshelo lwesango',
       envOverride: 'ukugqitha kwe-env',
-      intro: 'I-OpenAmer Desktop iqalisa isango layo lendawo ngokungagqibekanga. Sebenzisa isango elikude xa ufuna le app ilawule umva we-OpenAmer osele usebenza komnye umatshini okanye emva kweproksi ethenjwayo. Khetha iprofayile ngezantsi ukuyinika umphathi wayo wakude.',
+      intro:
+        'I-OpenAmer Desktop iqalisa isango layo lendawo ngokungagqibekanga. Sebenzisa isango elikude xa ufuna le app ilawule umva we-OpenAmer osele usebenza komnye umatshini okanye emva kweproksi ethenjwayo. Khetha iprofayile ngezantsi ukuyinika umphathi wayo wakude.',
       appliesTo: 'Kusebenza ku',
       allProfiles: 'Zonke iiprofayile',
       defaultConnection: 'Uqhagamshelo olungagqibekanga kuyo yonke iprofayile engenalo ugqithiso lwayo.',
-      profileConnection: profile => `Uqhagamshelo olusetyenziswa kuphela xa “${profile}” iyiprofayile esebenzayo. Khetha Sebenzisa isango elingagqibekanga ukususa ugqithiso lwayo.`,
+      profileConnection: profile =>
+        `Uqhagamshelo olusetyenziswa kuphela xa “${profile}” iyiprofayile esebenzayo. Khetha Sebenzisa isango elingagqibekanga ukususa ugqithiso lwayo.`,
       envOverrideTitle: 'Izinto eziguqukayo zendalo zilawula le seshini yedesktop.',
-      envOverrideDesc: 'Susa i-OPENAMER_DESKTOP_REMOTE_URL ne-OPENAMER_DESKTOP_REMOTE_TOKEN ukuze usebenzise isetingi egciniweyo ngezantsi.',
+      envOverrideDesc:
+        'Susa i-OPENAMER_DESKTOP_REMOTE_URL ne-OPENAMER_DESKTOP_REMOTE_TOKEN ukuze usebenzise isetingi egciniweyo ngezantsi.',
       cloudTitle: 'OpenAmer Cloud',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudOrgRole: role => `Indima: ${role}`,
@@ -68,12 +74,16 @@ export const xh = defineLocale({
       signOut: 'Phuma',
       signInWith: provider => `Ngena nge-${provider}`,
       authTitle: 'Uqinisekiso',
-      authSignedInPassword: 'Eli sango lisebenzisa igama lomsebenzisi negama lokugqitha. Ungenile; iseshini iyahlaziyeka ngokuzenzekelayo.',
+      authSignedInPassword:
+        'Eli sango lisebenzisa igama lomsebenzisi negama lokugqitha. Ungenile; iseshini iyahlaziyeka ngokuzenzekelayo.',
       authSignedInOauth: 'Eli sango lisebenzisa i-OAuth. Ungenile; iseshini iyahlaziyeka ngokuzenzekelayo.',
-      authNeedsPassword: 'Eli sango lisebenzisa igama lomsebenzisi negama lokugqitha. Ngena ukuze ugunyazise le app yedesktop.',
-      authNeedsOauth: provider => `Eli sango lisebenzisa i-OAuth. Ngena nge-${provider} ukuze ugunyazise le app yedesktop.`,
+      authNeedsPassword:
+        'Eli sango lisebenzisa igama lomsebenzisi negama lokugqitha. Ngena ukuze ugunyazise le app yedesktop.',
+      authNeedsOauth: provider =>
+        `Eli sango lisebenzisa i-OAuth. Ngena nge-${provider} ukuze ugunyazise le app yedesktop.`,
       tokenTitle: 'Itokheni yeseshini',
-      tokenDesc: 'Itokheni yeseshini yedashboard esetyenziswa kufikelelo lwe-REST ne-WebSocket. Yiyeke ingenanto ukuze ugcine itokheni egciniweyo.',
+      tokenDesc:
+        'Itokheni yeseshini yedashboard esetyenziswa kufikelelo lwe-REST ne-WebSocket. Yiyeke ingenanto ukuze ugcine itokheni egciniweyo.',
       existingToken: value => `Itokheni ekhoyo ${value}`,
       savedToken: 'igciniwe',
       pasteSessionToken: 'Namathisela itokheni yeseshini',
@@ -91,7 +101,8 @@ export const xh = defineLocale({
       enterUrlFirst: 'Faka i-URL ekude kuqala.',
       restartingTitle: 'Uqhagamshelo lwesango luyaqalisa kwakhona',
       savedTitle: 'Iisetingi zesango zigciniwe',
-      restartingMessage: 'I-OpenAmer Desktop iya kuphinda iqhagamshele isebenzisa iisetingi ezigciniweyo — iqokobhe lihlala livulekile.',
+      restartingMessage:
+        'I-OpenAmer Desktop iya kuphinda iqhagamshele isebenzisa iisetingi ezigciniweyo — iqokobhe lihlala livulekile.',
       savedMessage: 'Kugcinelwe ukuqalisa kwakhona okulandelayo.',
       connectedTo: (baseUrl, version) => `Kuqhagamshelwe ku-${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       reachableTitle: 'Isango elikude liyafikeleleka',
@@ -104,8 +115,10 @@ export const xh = defineLocale({
       applyFailed: 'Ayikwazanga ukusebenzisa iisetingi zesango',
       saveFailed: 'Ayikwazanga ukugcina iisetingi zesango',
       sshTitle: 'Qhagamshela nge-SSH',
-      sshDesc: 'I-OpenAmer iqaliswa kude nge-SSH ize ifakwe kwithumbu ukuya kule app — akukho nto ukuyiqalisa okanye ukuyiveza ngokwakho. Idinga ukufikelela kwe-SSH okusebenzayo okusekelwe kwisitshixo kumphathi.',
-      sshTrustHint: 'Isitshixo somphathi sokuqala esibonisiweyo siyathenjwa kwaye siphiniwe; utshintsho lwamva lusilela luvaliwe.',
+      sshDesc:
+        'I-OpenAmer iqaliswa kude nge-SSH ize ifakwe kwithumbu ukuya kule app — akukho nto ukuyiqalisa okanye ukuyiveza ngokwakho. Idinga ukufikelela kwe-SSH okusebenzayo okusekelwe kwisitshixo kumphathi.',
+      sshTrustHint:
+        'Isitshixo somphathi sokuqala esibonisiweyo siyathenjwa kwaye siphiniwe; utshintsho lwamva lusilela luvaliwe.',
       sshHostTitle: 'Umphathi',
       sshHostDesc: 'user@host, okanye i-alias yomPhathi evela ku ~/.ssh/config.',
       sshHostPick: 'Khetha umphathi…',
@@ -127,14 +140,19 @@ export const xh = defineLocale({
       sshButtonsHint: 'Ugcino lusebenza ekuqaliseni okulandelayo. Uqhagamshelo luphinda luqhagamshele ngoku.',
       sshReachable: (host, platform) => `Kuyafikeleleka: ${host} (${platform}) — i-OpenAmer ifunyenwe`,
       sshIncompleteHost: 'Faka umphathi we-SSH phambi kokuqhagamshela.',
-      sshErrUnreachable: 'Ayikwazanga ukufikelela kulo mphathi nge-SSH. Jonga umphathi, iphothi, kunye nenethiwekhi yakho.',
-      sshErrAuth: 'Uqinisekiso lwe-SSH lusilele. Layisha isitshixo sakho kwi-ssh-agent (ssh-add) okanye misela i-IdentityFile ku ~/.ssh/config — i-OpenAmer iqhuba i-ssh ngaphandle konxibelelwano.',
-      sshErrHostKey: 'Isitshixo somphathi SITSHA TSHINTSHA ukusukela okokugqibela uqhagamshele. Qinisekisa ukuba oku kulindelekile, emva koko qhuba ssh-keygen -R <host> kwaye uqhagamshele kwakhona.',
-      sshErrNotInstalled: 'I-OpenAmer ayifakwanga kumphathi okude. Yifake apho (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) okanye misela umendo we-OpenAmer.',
-      sshErrPlatform: 'Iqonga elikude alixhaswanga. Imowudi ye-SSH ye-OpenAmer Desktop ixhasa iimphathi ezikude ze-Linux, macOS ne-Windows.',
+      sshErrUnreachable:
+        'Ayikwazanga ukufikelela kulo mphathi nge-SSH. Jonga umphathi, iphothi, kunye nenethiwekhi yakho.',
+      sshErrAuth:
+        'Uqinisekiso lwe-SSH lusilele. Layisha isitshixo sakho kwi-ssh-agent (ssh-add) okanye misela i-IdentityFile ku ~/.ssh/config — i-OpenAmer iqhuba i-ssh ngaphandle konxibelelwano.',
+      sshErrHostKey:
+        'Isitshixo somphathi SITSHA TSHINTSHA ukusukela okokugqibela uqhagamshele. Qinisekisa ukuba oku kulindelekile, emva koko qhuba ssh-keygen -R <host> kwaye uqhagamshele kwakhona.',
+      sshErrNotInstalled:
+        'I-OpenAmer ayifakwanga kumphathi okude. Yifake apho (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) okanye misela umendo we-OpenAmer.',
+      sshErrPlatform:
+        'Iqonga elikude alixhaswanga. Imowudi ye-SSH ye-OpenAmer Desktop ixhasa iimphathi ezikude ze-Linux, macOS ne-Windows.',
       sshErrTimeout: 'Uqhagamshelo lwe-SSH luphelelwe lixesha. Umphathi usenokungafikeleleki okanye ulele.',
       sshErrUpdateRequired: 'Hlaziya i-OpenAmer kumphathi okude phambi kokuqhagamshela nge-SSH yedesktop.',
-      sshErrUnknown: 'Uqhagamshelo lwe-SSH lusilele.',
+      sshErrUnknown: 'Uqhagamshelo lwe-SSH lusilele.'
     },
     closeSettings: 'Vala iisetingi',
     exportConfig: 'Khupha i-config',
@@ -158,11 +176,12 @@ export const xh = defineLocale({
       about: 'Malunga',
       billing: 'Intlawulo',
       notifications: 'Izaziso',
-      plugins: 'Iiplagini',
+      plugins: 'Iiplagini'
     },
     plugins: {
       title: 'Iiplagini zedesktop',
-      blurb: 'Izandiso ze-UI ezilayishwe kule app — ezidityaniswe nolwakhiwo, okanye ezifakwe kwifolda yeeplagini zedesktop (kuquka ezo zibhalwa yi-OpenAmer). Ukuzicima kuyayikhulula iplagiini ngoko nangoko kwaye kuhlala kusebenza nangemva kokuqalisa kwakhona.',
+      blurb:
+        'Izandiso ze-UI ezilayishwe kule app — ezidityaniswe nolwakhiwo, okanye ezifakwe kwifolda yeeplagini zedesktop (kuquka ezo zibhalwa yi-OpenAmer). Ukuzicima kuyayikhulula iplagiini ngoko nangoko kwaye kuhlala kusebenza nangemva kokuqalisa kwakhona.',
       count: n => `${n} ifakiwe`,
       openFolder: 'Vula ifolda yeeplagini',
       rescan: 'Khangela kwakhona',
@@ -174,49 +193,51 @@ export const xh = defineLocale({
       kinds: {
         bundled: 'edityanisiweyo',
         disk: 'kwiDisk',
-        runtime: 'ixesha lokusebenza',
-      },
+        runtime: 'ixesha lokusebenza'
+      }
     },
     notifications: {
       title: 'Izaziso',
-      intro: 'Izaziso zedesktop zomthonyama, ezahlukileyo kwiitoast zangaphakathi kwapp. Ezi zezendawo yesixhobo — ikhompyutha nganye igcina iisetingi zayo.',
+      intro:
+        'Izaziso zedesktop zomthonyama, ezahlukileyo kwiitoast zangaphakathi kwapp. Ezi zezendawo yesixhobo — ikhompyutha nganye igcina iisetingi zayo.',
       enableAll: 'Vula izaziso',
       enableAllDesc: 'Isitshixo esiyintloko. Cima oku ukuze uthule zonke izaziso ezingezantsi.',
       focusedHint: 'Izilumkiso zokugqiba zivakala kuphela xa i-OpenAmer ikwangasemva.',
       kinds: {
         approval: {
           label: 'Kufuneka mvume',
-          description: 'Umyalelo ulindele ukuba uwuvume okanye uwale.',
+          description: 'Umyalelo ulindele ukuba uwuvume okanye uwale.'
         },
         input: {
           label: 'Kufuneka igalelo',
-          description: 'I-OpenAmer ibuza umbuzo okanye idinga igama lokugqitha okanye imfihlo.',
+          description: 'I-OpenAmer ibuza umbuzo okanye idinga igama lokugqitha okanye imfihlo.'
         },
         turnDone: {
           label: 'Impendulo ilungile',
-          description: 'Ijiko lagqiba ngelixa i-OpenAmer yayingasemva.',
+          description: 'Ijiko lagqiba ngelixa i-OpenAmer yayingasemva.'
         },
         turnError: {
           label: 'Ijiko lisilele',
-          description: 'Ijiko laphela ngempazamo.',
+          description: 'Ijiko laphela ngempazamo.'
         },
         backgroundDone: {
           label: 'Umsebenzi wangasemva ugqibile',
-          description: 'Umyalelo wetheminali wangasemva ugqibile.',
+          description: 'Umyalelo wetheminali wangasemva ugqibile.'
         },
         credits: {
           label: 'Izilumkiso zeekhredithi',
-          description: 'Ukufikelela kwiikhredithi kumisiwe okanye kubuyiselwe.',
-        },
+          description: 'Ukufikelela kwiikhredithi kumisiwe okanye kubuyiselwe.'
+        }
       },
       test: 'Thumela isaziso sovavanyo',
       testTitle: 'OpenAmer',
       testBody: 'Izaziso ziyasebenza.',
-      testSent: 'Uvavanyo luthunyelwe. Ukuba akukho nto ivela, jonga iimvume zezaziso ze-OS yakho kunye neFocus/Do Not Disturb.',
+      testSent:
+        'Uvavanyo luthunyelwe. Ukuba akukho nto ivela, jonga iimvume zezaziso ze-OS yakho kunye neFocus/Do Not Disturb.',
       testUnsupported: 'Le nkqubo ayixhasi izaziso zomthonyama.',
       completionSoundTitle: 'Isandi sokugqiba',
       completionSoundDesc: 'Sidlalwa xa ijiko le-arhente ligqiba. Khetha ipreset kwaye uyibone apha.',
-      completionSoundPreview: 'Umboniso',
+      completionSoundPreview: 'Umboniso'
     },
     sections: {
       model: 'Imodeli',
@@ -226,7 +247,7 @@ export const xh = defineLocale({
       safety: 'Ukhuseleko',
       memory: 'Imemori nomxholo',
       voice: 'Ilizwi',
-      advanced: 'Okuphezulu',
+      advanced: 'Okuphezulu'
     },
     searchPlaceholder: {
       about: 'Malunga ne-OpenAmer Desktop',
@@ -234,37 +255,40 @@ export const xh = defineLocale({
       gateway: 'Uqhagamshelo lwesango...',
       keys: 'Khangela izitshixo ze-API...',
       mcp: 'Khangela iiseva ze-MCP...',
-      sessions: 'Khangela iiseshini ezigciniweyo...',
+      sessions: 'Khangela iiseshini ezigciniweyo...'
     },
     modeOptions: {
       light: {
         label: 'Ukukhanya',
-        description: 'Imiphezulu yedesktop eqaqambileyo',
+        description: 'Imiphezulu yedesktop eqaqambileyo'
       },
       dark: {
         label: 'Ubumnyama',
-        description: 'Indawo yokusebenza engakhanyisi kakhulu',
+        description: 'Indawo yokusebenza engakhanyisi kakhulu'
       },
       system: {
         label: 'Inkqubo',
-        description: 'Landela inkangeleko ye-OS',
-      },
+        description: 'Landela inkangeleko ye-OS'
+      }
     },
     appearance: {
       title: 'Inkangeleko',
-      intro: 'Ezi ziintandokazi zokubonisa zedesktop kuphela. Imowudi ilawula ukuqaqamba; itimu ilawula iphalethi ye-accent kunye nesimbo somphezulu wencoko.',
+      intro:
+        'Ezi ziintandokazi zokubonisa zedesktop kuphela. Imowudi ilawula ukuqaqamba; itimu ilawula iphalethi ye-accent kunye nesimbo somphezulu wencoko.',
       colorMode: 'Imowudi yemibala',
       colorModeDesc: 'Khetha imowudi esisigxina okanye vumela i-OpenAmer ilandele isetingi senkqubo yakho.',
       toolViewTitle: 'Umboniso wokufowuna kwezixhobo',
       toolViewDesc: 'I-Product ifihla imithwalo yezixhobo ekrwada; i-Technical ibonisa igalelo/imvelaphi epheleleyo.',
       uiScaleTitle: 'Isikali se-UI',
-      uiScaleDesc: (percent: number) => `Ikala umbhalo nezilawuli kuyo yonke iapp. I-Cmd/Ctrl kunye no +, - no 0 nayo iyasebenza. Okwangoku: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Ikala umbhalo nezilawuli kuyo yonke iapp. I-Cmd/Ctrl kunye no +, - no 0 nayo iyasebenza. Okwangoku: ${percent}%.`,
       translucencyTitle: 'Ukukhanya kwefestile',
       translucencyDesc: 'Jonga idesktop yakho kwifestile yonke. I-macOS ne-Windows kuphela.',
       backdropTitle: 'Umva wencoko',
       backdropDesc: 'Umfanekiso omfiliba wesithombe emva kwencoko.',
       embedsTitle: 'Izifakelo ezingaphakathi',
-      embedsDesc: 'Umboniso otyebileyo ulayishwa kwiiwebhusayithi zomntu wesithathu (YouTube, X, …). I-Ask ibonisa indawo ebambeleyo de uvume nganye; i-Always izilayisha ngokuzenzekelayo; i-Off igcina amakhonkco alula.',
+      embedsDesc:
+        'Umboniso otyebileyo ulayishwa kwiiwebhusayithi zomntu wesithathu (YouTube, X, …). I-Ask ibonisa indawo ebambeleyo de uvume nganye; i-Always izilayisha ngokuzenzekelayo; i-Off igcina amakhonkco alula.',
       embedsAsk: 'Buza',
       embedsAlways: 'Soloko',
       embedsOff: 'Icimile',
@@ -277,7 +301,8 @@ export const xh = defineLocale({
       themeDesc: 'Iiphalethi zedesktop kuphela. Imowudi ekhethiweyo isetyenziswa ngaphezulu.',
       themeProfileNote: profile => `Igcinelwe iprofayile ${profile} — iprofayile nganye igcina itimu yayo.`,
       installTitle: 'Faka ku-VS Code',
-      installDesc: 'Namathisela i-id yesandiso se-Marketplace (umz. dracula-theme.theme-dracula) ukuguqula itimu yayo yemibala ibe yiphalethi yedesktop.',
+      installDesc:
+        'Namathisela i-id yesandiso se-Marketplace (umz. dracula-theme.theme-dracula) ukuguqula itimu yayo yemibala ibe yiphalethi yedesktop.',
       installPlaceholder: 'publisher.extension',
       installButton: 'Faka',
       installing: 'Iyafaka…',
@@ -287,8 +312,10 @@ export const xh = defineLocale({
       importedBadge: 'Ingenisiwe',
       pet: {
         title: 'Isilwanyana',
-        intro: 'Yamkela umascot we-petdex ophilayo ondanda phezu kweapp kwaye usabela koko i-OpenAmer ikwenzayo — ubaleka xa izixhobo zisebenza, uvuyisana xa kuphumelele, ukhathazeka xa kukho iimpazamo.',
-        restartHint: 'Izilwanyana zidinga ukuqalisa kwakhona ngokukhawuleza — iapp esebenzayo yaqala phambi kokuba lo msebenzi wongezwe. Phuma kwaye uvule kwakhona i-OpenAmer, emva koko ubuyele apha.',
+        intro:
+          'Yamkela umascot we-petdex ophilayo ondanda phezu kweapp kwaye usabela koko i-OpenAmer ikwenzayo — ubaleka xa izixhobo zisebenza, uvuyisana xa kuphumelele, ukhathazeka xa kukho iimpazamo.',
+        restartHint:
+          'Izilwanyana zidinga ukuqalisa kwakhona ngokukhawuleza — iapp esebenzayo yaqala phambi kokuba lo msebenzi wongezwe. Phuma kwaye uvule kwakhona i-OpenAmer, emva koko ubuyele apha.',
         on: 'Ivuliwe',
         off: 'Icimile',
         scaleTitle: 'Ubungakanani',
@@ -298,7 +325,8 @@ export const xh = defineLocale({
         chooseTitle: 'Khetha isilwanyana',
         chooseDesc: 'Ukukhetha esinye kuyasifaka (ukuba kuyimfuneko) kwaye kusenze sisebenze.',
         searchPlaceholder: 'Khangela izilwanyana…',
-        unreachable: "Ayikwazanga ukufikelela kwigalari ye-petdex. Jonga uqhagamshelo lwakho kwaye uvule kwakhona eli phepha.",
+        unreachable:
+          'Ayikwazanga ukufikelela kwigalari ye-petdex. Jonga uqhagamshelo lwakho kwaye uvule kwakhona eli phepha.',
         noMatch: query => `Akukho zilwanyana ezihambelana no "${query}".`,
         installedTag: 'ifakiwe',
         generatedTag: 'Yenziwe',
@@ -307,7 +335,7 @@ export const xh = defineLocale({
         uninstall: name => `Susa ${name}`,
         delete: name => `Cima ${name}`,
         deleteTitle: name => `Cima ${name}?`,
-        deleteBody: "Oku kucima isilwanyana ngonaphakade — asinakufakwa kwakhona.",
+        deleteBody: 'Oku kucima isilwanyana ngonaphakade — asinakufakwa kwakhona.',
         deleteConfirm: 'Cima',
         rename: name => `Thiya igama ${name}`,
         renameTitle: 'Thiya igama lesilwanyana',
@@ -320,8 +348,8 @@ export const xh = defineLocale({
         exportFailed: slug => `Ayikwazanga ukukhupha ${slug}`,
         noneAvailable: 'Akukho zilwanyana zikhoyo ukuze zivulwe ngoku.',
         turnOnFailed: 'Ayikwazanga ukuvula isilwanyana.',
-        turnOffFailed: 'Ayikwazanga ukucima isilwanyana.',
-      },
+        turnOffFailed: 'Ayikwazanga ukucima isilwanyana.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -332,13 +360,13 @@ export const xh = defineLocale({
       updates: 'Uhlaziyo',
       checkNow: 'Jonga ngoku',
       checking: 'Iyajonga…',
-      seeWhatsNew: "Jonga okutsha",
+      seeWhatsNew: 'Jonga okutsha',
       updateNow: 'Hlaziya ngoku',
       releaseNotes: 'Amanqaku okukhutshwa',
-      onLatest: "Usebenzisa eyona nguqulo intsha.",
+      onLatest: 'Usebenzisa eyona nguqulo intsha.',
       installing: 'Uhlaziyo luyafakwa ngoku.',
-      cantUpdate: "Olu lwakhiwo alunakuzihlaziya ngokwalo ngaphakathi kweapp.",
-      cantReach: "Asikwazanga ukufikelela kwiseva yohlaziyo.",
+      cantUpdate: 'Olu lwakhiwo alunakuzihlaziya ngokwalo ngaphakathi kweapp.',
+      cantReach: 'Asikwazanga ukufikelela kwiseva yohlaziyo.',
       tapCheck: 'Cofa "Jonga ngoku" ukuze ukhangele uhlaziyo.',
       updateReady: count => `Uhlaziyo olutsha lulungile (${count} change${count === 1 ? '' : 's'} included).`,
       lastChecked: age => `Kwajongwa okokugqibela ${age}`,
@@ -350,7 +378,7 @@ export const xh = defineLocale({
       justNow: 'ngoku kanye',
       minAgo: count => `${count} min ezidlulileyo`,
       hoursAgo: count => `${count} iiyure ezidlulileyo`,
-      daysAgo: count => `${count} iintsuku ezidlulileyo`,
+      daysAgo: count => `${count} iintsuku ezidlulileyo`
     },
     config: {
       none: 'Akukho',
@@ -366,7 +394,8 @@ export const xh = defineLocale({
       imported: 'I-config ingenisiwe',
       invalidJson: 'I-JSON ye-config ayisebenzi',
       keepAwakeTitle: 'Gcina ikhompyutha iphaphile',
-      keepAwakeDesc: 'Yeka lo matshini ukulala ukuze imisebenzi emide okanye yasebusuku iqhubeke. Isiboniso sisengafipala.',
+      keepAwakeDesc:
+        'Yeka lo matshini ukulala ukuze imisebenzi emide okanye yasebusuku iqhubeke. Isiboniso sisengafipala.'
     },
     credentials: {
       pasteKey: 'Namathisela isitshixo',
@@ -376,7 +405,7 @@ export const xh = defineLocale({
       couldNotSave: 'Ayikwazanga ukugcina isiqinisekiso.',
       remove: 'Susa',
       getKey: 'Fumana isitshixo',
-      saving: 'Iyagcina',
+      saving: 'Iyagcina'
     },
     envActions: {
       actionsFor: label => `Izenzo ze-${label}`,
@@ -387,12 +416,12 @@ export const xh = defineLocale({
       revealValue: 'Bonisa ixabiso',
       replace: 'Faka endaweni',
       set: 'Misela',
-      clear: 'Cima',
+      clear: 'Cima'
     },
     keys: {
       loading: 'Iyalayisha izitshixo ze-API neziqinisekiso...',
       failedLoad: 'Izitshixo ze-API zasilela ukulayisha',
-      empty: 'Akukho nto ilungiselelweyo kolu candelo okwangoku.',
+      empty: 'Akukho nto ilungiselelweyo kolu candelo okwangoku.'
     },
     mcp: {
       loading: 'Iyalayisha iiseva ze-MCP...',
@@ -444,7 +473,8 @@ export const xh = defineLocale({
       catalogInstallFailed: name => `Kwehlulekile ukufaka ${name}`,
       catalogEnvPrompt: name => `${name} idinga iziqinisekiso`,
       catalogEnvRequired: 'Gcwalisa amaxabiso afunekayo phambi kokufaka.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ivuliwe`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ivuliwe`,
       statusConnecting: 'Iyaqhagamshela…',
       statusNeedsAuth: 'Idinga uqinisekiso',
       statusError: 'Impazamo',
@@ -457,11 +487,12 @@ export const xh = defineLocale({
       unsavedConnect: 'Akugcinwanga — gcina i-mcp.json ukuze uqhagamshele.',
       enableTool: tool => `Vula ${tool}`,
       disableTool: tool => `Cima ${tool}`,
-      noOutput: 'Akukho mvelaphi okwangoku.',
+      noOutput: 'Akukho mvelaphi okwangoku.'
     },
     model: {
       loading: 'Iyalayisha i-config yemodeli...',
-      appliesDesc: 'Isebenza kwiiseshini ezintsha. Sebenzisa umkhethi wemodeli kumbhali ukutshintsha incoko esebenzayo ngokukhawuleza.',
+      appliesDesc:
+        'Isebenza kwiiseshini ezintsha. Sebenzisa umkhethi wemodeli kumbhali ukutshintsha incoko esebenzayo ngokukhawuleza.',
       provider: 'Umnikezeli',
       model: 'Imodeli',
       applying: 'Iyasebenzisa...',
@@ -471,53 +502,55 @@ export const xh = defineLocale({
       defaultsFailed: 'Kwehlulekile ukugcina okuqhelekileyo kwemodeli',
       auxiliaryTitle: 'Iimodeli ezincedisayo',
       resetAllToMain: 'Seta konke kwimodeli eyintloko',
-      auxiliaryDesc: 'Imisebenzi encedisayo isebenza kwimodeli eyintloko ngokungagqibekanga. Yabela imodeli ezineleyo kuwuphi na umsebenzi ukuze ugqithe.',
+      auxiliaryDesc:
+        'Imisebenzi encedisayo isebenza kwimodeli eyintloko ngokungagqibekanga. Yabela imodeli ezineleyo kuwuphi na umsebenzi ukuze ugqithe.',
       setToMain: 'Misela kwimodeli eyintloko',
       change: 'Tshintsha',
       autoUseMain: 'okuzenzekelayo · sebenzisa imodeli eyintloko',
       providerDefault: '(okungagqibekanga kommikezeli)',
       fallbackAdd: 'Yongeza indlela yokubuyela',
       fallbackEmpty: 'Akukho modeli zokubuyela — kusetyenziswa imodeli engagqibekanga ngaphandle kokuba isilele.',
-      notInCatalog: "ayikho kuluhlu lweemodeli zalo mnikezeli — iifowuni zisenokubuyela kugcino.",
+      notInCatalog: 'ayikho kuluhlu lweemodeli zalo mnikezeli — iifowuni zisenokubuyela kugcino.',
       tasks: {
         vision: {
           label: 'Umbono',
-          hint: 'Uhlalutyo lomfanekiso',
+          hint: 'Uhlalutyo lomfanekiso'
         },
         web_extract: {
           label: 'Ukukhupha iwebhu',
-          hint: 'Ukushwankathela iphepha',
+          hint: 'Ukushwankathela iphepha'
         },
         compression: {
           label: 'Uxinzelelo',
-          hint: 'Ukudibanisa umxholo',
+          hint: 'Ukudibanisa umxholo'
         },
         skills_hub: {
           label: 'Iziko lezakhono',
-          hint: 'Ukukhangela izakhono',
+          hint: 'Ukukhangela izakhono'
         },
         approval: {
           label: 'Imvume',
-          hint: 'Ukuvuma okuzenzekelayo okukrelekrele',
+          hint: 'Ukuvuma okuzenzekelayo okukrelekrele'
         },
         mcp: {
           label: 'MCP',
-          hint: 'Ukuhambisa izixhobo ze-MCP',
+          hint: 'Ukuhambisa izixhobo ze-MCP'
         },
         title_generation: {
           label: 'Ukuvelisa isihloko',
-          hint: 'Izihloko zeeseshini',
+          hint: 'Izihloko zeeseshini'
         },
         curator: {
           label: 'Umlondolozi',
-          hint: 'Ukuphonononga ukusetyenziswa kwezakhono',
-        },
-      },
+          hint: 'Ukuphonononga ukusetyenziswa kwezakhono'
+        }
+      }
     },
     providers: {
       connectAccount: 'Qhagamshela iakhawunti',
       haveApiKey: 'Unesitshixo se-API endaweni yoko?',
-      intro: 'Ngena ngomrhumo — akukho sitshixo se-API sokukhuphela. I-OpenAmer iqhuba ukungena kwebhrawuza yakho, apha kule app.',
+      intro:
+        'Ngena ngomrhumo — akukho sitshixo se-API sokukhuphela. I-OpenAmer iqhuba ukungena kwebhrawuza yakho, apha kule app.',
       connected: 'Kuqhagamshelwe',
       collapse: 'Songa',
       connectAnother: 'Qhagamshela omnye umnikezeli',
@@ -527,7 +560,8 @@ export const xh = defineLocale({
       removeConfirm: provider => `Susa ${provider}?`,
       removeExternalGeneric: provider => `${provider} ilawulwa yi-CLI yayo — yisuse apho.`,
       removeKeyManaged: provider => `${provider} ilungiselelwe kwisitshixo se-API. Yisuse kwiZitshixo ze-API.`,
-      removeTerminalConfirm: (provider, command) => `Qhawula ${provider}? Oku kuqhuba "${command}" kwitheminali ukucima isiqinisekiso.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Qhawula ${provider}? Oku kuqhuba "${command}" kwitheminali ukucima isiqinisekiso.`,
       removeTerminalRunning: provider => `Iqhuba ukuqhawula kwe-${provider} kwitheminali…`,
       removedTitle: 'Iakhawunti isusiwe',
       removedMessage: provider => `${provider} isusiwe.`,
@@ -537,14 +571,16 @@ export const xh = defineLocale({
       noKeysMatch: 'Akukho mnikezeli uhambelana nokukhangela kwakho.',
       localEndpoint: {
         title: 'Indawo yokugqibela yendawo / eyeqhelekileyo',
-        description: 'Jonga i-OpenAmer kuyo nayiphi na indawo yokugqibela ehambelana ne-OpenAI (Zyphra, vLLM, llama.cpp, Ollama, njl).',
+        description:
+          'Jonga i-OpenAmer kuyo nayiphi na indawo yokugqibela ehambelana ne-OpenAI (Zyphra, vLLM, llama.cpp, Ollama, njl).'
       },
-      loading: 'Iyalayisha abanikezeli...',
+      loading: 'Iyalayisha abanikezeli...'
     },
     sessions: {
       loading: 'Iyalayisha iiseshini ezigciniweyo…',
       archivedTitle: 'Iiseshini ezigciniweyo',
-      archivedIntro: 'Iincoko ezigciniweyo zifihliwe kwibha esecaleni kodwa zigcina yonke imiyalezo yazo. Ctrl/⌘-cofa incoko kwibha esecaleni ukuyigcina.',
+      archivedIntro:
+        'Iincoko ezigciniweyo zifihliwe kwibha esecaleni kodwa zigcina yonke imiyalezo yazo. Ctrl/⌘-cofa incoko kwibha esecaleni ukuyigcina.',
       emptyArchivedTitle: 'Akukho nto igciniweyo',
       emptyArchivedDesc: 'Gcina incoko ukuyifihla apha.',
       unarchive: 'Susa ukugcinwa',
@@ -553,13 +589,16 @@ export const xh = defineLocale({
       restored: 'Kubuyiselwe',
       deleteConfirm: title => `Cima ngonaphakade "${title}"? Oku akunakubuyiselwa.`,
       autoArchiveTitle: 'Gcina ngokuzenzekelayo iincoko ezindala',
-      autoArchiveDesc: "Gcina ngokuzenzekelayo iincoko ongazange uzichukumise ixesha. Iincoko eziphiniweyo azikaze zigcinwe, kwaye akukho nto icinywayo — iincoko ezigciniweyo zifudukela apha.",
+      autoArchiveDesc:
+        'Gcina ngokuzenzekelayo iincoko ongazange uzichukumise ixesha. Iincoko eziphiniweyo azikaze zigcinwe, kwaye akukho nto icinywayo — iincoko ezigciniweyo zifudukela apha.',
       autoArchiveDaysLabel: 'Gcina emva kwe',
       autoArchiveDaysUnit: 'iintsuku zokungasebenzi',
       autoArchiveFailed: 'Ayikwazanga ukuhlaziya ukugcina okuzenzekelayo',
       defaultDirTitle: 'Ifolda yeprojekthi engagqibekanga',
-      defaultDirDesc: 'Iiseshini ezintsha ziqala kule folda ngaphandle kokuba ukhetha enye. Yiyeke ingamiselwanga ukuze usebenzise ifolda yasekhaya.',
-      defaultDirUpdated: 'Ifolda yeprojekthi engagqibekanga ihlaziyiwe — qalisa incoko entsha (Ctrl/⌘+N) ukuze isebenze',
+      defaultDirDesc:
+        'Iiseshini ezintsha ziqala kule folda ngaphandle kokuba ukhetha enye. Yiyeke ingamiselwanga ukuze usebenzise ifolda yasekhaya.',
+      defaultDirUpdated:
+        'Ifolda yeprojekthi engagqibekanga ihlaziyiwe — qalisa incoko entsha (Ctrl/⌘+N) ukuze isebenze',
       defaultsTo: label => `Kukungagqibekanga ${label}.`,
       change: 'Tshintsha',
       choose: 'Khetha',
@@ -569,7 +608,7 @@ export const xh = defineLocale({
       unarchiveFailed: 'Ukususa ukugcinwa kusilele',
       deleteFailed: 'Ukucima kusilele',
       updateDirFailed: 'Ayikwazanga ukuhlaziya ifolda engagqibekanga',
-      clearDirFailed: 'Ayikwazanga ukucima ifolda engagqibekanga',
+      clearDirFailed: 'Ayikwazanga ukucima ifolda engagqibekanga'
     },
     toolsets: {
       loadingConfig: 'Iyalayisha i-config',
@@ -587,20 +626,23 @@ export const xh = defineLocale({
       selectedMessage: provider => `${provider} iyasebenza ngoku.`,
       failedSelect: provider => `Kwehlulekile ukukhetha ${provider}`,
       failedLoad: 'I-config yezixhobo yasilela ukulayisha',
-      noProviderOptions: 'Eli seti lezixhobo alinazo iinketho zomnikezeli — livule kwaye lisebenza noluseto lwakho lwangoku.',
+      noProviderOptions:
+        'Eli seti lezixhobo alinazo iinketho zomnikezeli — livule kwaye lisebenza noluseto lwakho lwangoku.',
       noProviders: 'Akukho banikezeli bakhoyo kule seti yezixhobo ngoku.',
       ready: 'Ilungile',
       needsSignIn: 'Idinga ukungena',
       needsSetup: 'Idinga useto',
       openamerIncluded: 'Kubandakanyiwe nomrhumo we-OpenAmer — ngena kwiPortal ye-OpenAmer ukuyisebenzisa.',
       openamerAuthNeededTitle: 'Ngena kwiPortal ye-OpenAmer',
-      openamerAuthNeededMessage: provider => `${provider} igciniwe kodwa ayiyi kusebenza de ungene kwiPortal ye-OpenAmer.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} igciniwe kodwa ayiyi kusebenza de ungene kwiPortal ye-OpenAmer.`,
       openamerAuthSignIn: 'Ngena',
       openamerAuthDoneTitle: 'IPortal ye-OpenAmer iqhagamshelwe',
       openamerAuthDoneMessage: 'Imva yakho yomrhumo iyasebenza ngoku.',
       openamerAuthFailed: 'Ukungena kwiPortal ye-OpenAmer akuphelelanga',
       noApiKeyRequired: 'Akukho sitshixo se-API sifunekayo.',
-      postSetupHint: step => `Lo mva udinga ufakelo kanye (${step}). Usebenza kulo matshini — kungathatha imizuzu embalwa.`,
+      postSetupHint: step =>
+        `Lo mva udinga ufakelo kanye (${step}). Usebenza kulo matshini — kungathatha imizuzu embalwa.`,
       postSetupInstalledHint: 'Ifakiwe. Phinda uqhube useto kuphela ukuba kukho into eyaphukileyo.',
       postSetupRun: 'Qhuba useto',
       postSetupRerun: 'Phinda uqhube useto',
@@ -639,11 +681,12 @@ export const xh = defineLocale({
         unavailable: 'Ayifumaneki',
         inUse: 'Iyasebenza',
         selectedTitle: 'Umva ukhethiwe',
-        selectedMessage: backend => `Imiyalelo yetheminali isebenza ngoku nge-${backend}. Isebenza kwiiseshini ezintsha.`,
+        selectedMessage: backend =>
+          `Imiyalelo yetheminali isebenza ngoku nge-${backend}. Isebenza kwiiseshini ezintsha.`,
         failedSelect: backend => `Kwehlulekile ukukhetha ${backend}`,
-        needsSetupHint: 'Ungakhetha lo mva ngoku — imiyalelo iya kusilela de useto luphele.',
-      },
-    },
+        needsSetupHint: 'Ungakhetha lo mva ngoku — imiyalelo iya kusilela de useto luphele.'
+      }
+    }
   },
   commandCenter: {
     branches: 'Amasebe',
@@ -666,7 +709,7 @@ export const xh = defineLocale({
       generatedTag: 'Yenziwe',
       adoptFailed: 'Ayikwazanga ukwamkela eso silwanyana.',
       toggleFailed: 'Ayikwazanga ukuguqula isilwanyana.',
-      noneAvailable: 'Akukho zilwanyana zikhoyo — khetha esinye ngezantsi ukuze ufake.',
+      noneAvailable: 'Akukho zilwanyana zikhoyo — khetha esinye ngezantsi ukuze ufake.'
     },
     generatePet: {
       title: 'Yenza isilwanyana',
@@ -693,9 +736,10 @@ export const xh = defineLocale({
       remixConfirmBody: 'Oku kwenza imizobo emitsha kusetyenziswa lo mzobo njengesiqalo. Kungathatha imizuzu eliqela.',
       genericError: 'Ukwenza kusilele — phinda uzame okanye ukhethe icebiso.',
       referenceImageTooLarge: 'Umfanekiso wesalathiso mkhulu kakhulu. Sebenzisa ongaphantsi kwe-16 MB.',
-      referenceImageInvalid: 'Akukwazekanga ukufunda loo mfanekiso wesalathiso. Zama i-PNG, i-JPG, i-WebP okanye i-GIF.',
+      referenceImageInvalid:
+        'Akukwazekanga ukufunda loo mfanekiso wesalathiso. Zama i-PNG, i-JPG, i-WebP okanye i-GIF.',
       adopt: 'Yamkela',
-      startOver: 'Qala kwakhona',
+      startOver: 'Qala kwakhona'
     },
     close: 'Vala iziko lemiyalelo',
     paletteTitle: 'Iphalethi yemiyalelo',
@@ -714,7 +758,7 @@ export const xh = defineLocale({
       install: 'Faka',
       installing: 'Kuyafakwa...',
       installed: 'Ifakiwe',
-      installs: count => `Kufakwe izihlandlo ezi-${count}`,
+      installs: count => `Kufakwe izihlandlo ezi-${count}`
     },
     settingsFields: 'Iindawo zeesetingi',
     mcpServers: 'Iiseva ze-MCP',
@@ -723,49 +767,49 @@ export const xh = defineLocale({
       maintenance: 'Ulondolozo',
       sessions: 'Iiseshoni',
       system: 'Inkqubo',
-      usage: 'Ukusetyenziswa',
+      usage: 'Ukusetyenziswa'
     },
     sectionDescriptions: {
       maintenance: 'Uxilongo, iikopi zogcino, umlondolozi kunye nedatha yememori',
       sessions: 'Khangela uze ulawule iiseshoni',
       system: 'Isimo, iilog kunye nezenzo zenkqubo',
-      usage: 'Ukusetyenziswa kweethokheni, iindleko kunye nomsebenzi wezakhono ekuhambeni kwexesha',
+      usage: 'Ukusetyenziswa kweethokheni, iindleko kunye nomsebenzi wezakhono ekuhambeni kwexesha'
     },
     nav: {
       newChat: {
         title: 'Iseshoni entsha',
-        detail: 'Qala iseshoni entsha',
+        detail: 'Qala iseshoni entsha'
       },
       settings: {
         title: 'Iisetingi',
-        detail: 'Lungiselela i-OpenAmer Desktop',
+        detail: 'Lungiselela i-OpenAmer Desktop'
       },
       skills: {
         title: 'Izakhono',
-        detail: 'Izakhono, izixhobo kunye neeseva ze-MCP',
+        detail: 'Izakhono, izixhobo kunye neeseva ze-MCP'
       },
       messaging: {
         title: 'Imiyalezo',
-        detail: 'Lungiselela i-Telegram, i-Slack, i-Discord nezinye',
+        detail: 'Lungiselela i-Telegram, i-Slack, i-Discord nezinye'
       },
       artifacts: {
         title: 'Iziphumo ezenziweyo',
-        detail: 'Khangela kwiziphumo ezenziweyo',
-      },
+        detail: 'Khangela kwiziphumo ezenziweyo'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Iphaneli yeeseshoni',
-        detail: 'Khangela, phina uze ulawule iiseshoni',
+        detail: 'Khangela, phina uze ulawule iiseshoni'
       },
       system: {
         title: 'Iphaneli yenkqubo',
-        detail: 'Isimo sesango, iilog, ukuqala kwakhona nokuhlaziya',
+        detail: 'Isimo sesango, iilog, ukuqala kwakhona nokuhlaziya'
       },
       usage: {
         title: 'Iphaneli yokusetyenziswa',
-        detail: 'Ukusetyenziswa kweethokheni, iindleko kunye nomsebenzi wezakhono',
-      },
+        detail: 'Ukusetyenziswa kweethokheni, iindleko kunye nomsebenzi wezakhono'
+      }
     },
     providerNavigate: 'Yiya',
     providerSessions: 'Iiseshoni',
@@ -853,8 +897,8 @@ export const xh = defineLocale({
       actionStarted: name => `${name} started — tailing log...`,
       actionFailed: name => `${name} failed to start`,
       running: 'Running...',
-      viewLog: 'Action log',
-    },
+      viewLog: 'Action log'
+    }
   },
   profiles: {
     renameMenu: 'Qhaqa…',
@@ -932,7 +976,7 @@ Leave blank to keep the ${mode} default.`,
     failedLoadSoul: 'Failed to load SOUL.md',
     failedSaveSoul: 'Failed to save SOUL.md',
     failedCreate: 'Failed to create profile',
-    failedRename: 'Failed to rename profile',
+    failedRename: 'Failed to rename profile'
   },
   statusStack: {
     coding: {
@@ -965,7 +1009,8 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'Vutela i-PR',
       ghMissing: 'Faka i-GitHub CLI (gh) kwaye ungene ngaphakathi ukuze uvule i-PRs',
       agentShip: 'Cela i-OpenAmer ivule i-PR',
-      agentShipPrompt: 'Phokupha utshintsho lwangoku, uwamkele ngomlayezo olucacileyo wokwamkela, uphushele i-brashi, uze uvule i-pull request.',
+      agentShipPrompt:
+        'Phokupha utshintsho lwangoku, uwamkele ngomlayezo olucacileyo wokwamkela, uphushele i-brashi, uze uvule i-pull request.',
       newBranch: 'Brashi entsha',
       worktrees: 'Itahegi zomsebenzi',
       title: 'Working tree',
@@ -977,7 +1022,7 @@ Leave blank to keep the ${mode} default.`,
       close: 'Close',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     agents: 'Agents',
     background: count => `${count} Background`,
@@ -986,7 +1031,7 @@ Leave blank to keep the ${mode} default.`,
     running: 'Running',
     stop: 'Stop',
     dismiss: 'Dismiss',
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -1001,7 +1046,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'Update complete',
       manual: 'Update from your terminal',
       guiSkew: 'Update the desktop app',
-      error: 'Update paused',
+      error: 'Update paused'
     },
     checking: 'Looking for updates…',
     checkFailedTitle: 'Couldn’t check for updates',
@@ -1021,15 +1066,19 @@ Leave blank to keep the ${mode} default.`,
     maybeLater: 'Maybe later',
     moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
     manualTitle: 'Update from your terminal',
-    manualBody: 'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
+    manualBody:
+      'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
     manualPickedUp: 'OpenAmer will pick up the new version next time you launch it.',
     guiSkewTitle: 'Update the desktop app',
-    guiSkewBody: 'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
+    guiSkewBody:
+      'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
     copy: 'Copy',
     copied: 'Copied',
     done: 'Done',
-    applyingBody: 'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
-    applyingBodyBackend: 'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
+    applyingBody:
+      'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
+    applyingBodyBackend:
+      'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
     applyingClose: 'This window will close while the update runs, then OpenAmer reopens on its own.',
     errorTitle: 'Update didn’t finish',
     errorBody: 'No worries — nothing was lost. You can try again now.',
@@ -1040,12 +1089,13 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'Backend restarting to load the update…',
       notAvailable: 'Update not available for this backend.',
       failed: 'Backend update failed.',
-      noReturn: 'Backend didn’t come back online. The update may not have completed — check the backend host.',
+      noReturn: 'Backend didn’t come back online. The update may not have completed — check the backend host.'
     },
     appErrors: {
-      updateLocked: 'Update aborted: another OpenAmer window or a terminal running openamer is holding this install open. Close it and retry.',
-      updateFailed: 'The update didn’t complete. No worries — nothing was lost. You can try again now.',
-    },
+      updateLocked:
+        'Update aborted: another OpenAmer window or a terminal running openamer is holding this install open. Close it and retry.',
+      updateFailed: 'The update didn’t complete. No worries — nothing was lost. You can try again now.'
+    }
   },
   zones: {
     showHeader: 'Bonisa iheader',
@@ -1053,7 +1103,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Yenza mncincizo',
     restore: 'Phumisa kwakhona',
     closeRunningTitle: 'Uvala ithebhu elisebenzayo?',
-    closeRunningBody: 'Ichat esisebenzayo, okanye ilinde igxinputo yakho. Ukuvala ithebhu kuyifihla—iseshini sisalela intuthuko yalo futhi singavulwa kwakhona kwisidebar.',
+    closeRunningBody:
+      'Ichat esisebenzayo, okanye ilinde igxinputo yakho. Ukuvala ithebhu kuyifihla—iseshini sisalela intuthuko yalo futhi singavulwa kwakhona kwisidebar.',
     closeRunningConfirm: 'Vala ithebhu',
     closeOthers: 'Vala ezinye',
     closeToRight: 'Vala ngakunene',
@@ -1074,7 +1125,8 @@ Leave blank to keep the ${mode} default.`,
     nameLayoutPlaceholder: 'Biza esi ukuhleleko…',
     zoneEditorTitle: 'Umhleli wezinda',
     editorHintPre: 'Cofa ukuze uyahlule ·',
-    editorHintPost: 'uguqula umgqibelo · uhambise kuzinda ukuze udibanise · uhambise imiphetho efanayo ukuze ulungise usayizi',
+    editorHintPost:
+      'uguqula umgqibelo · uhambise kuzinda ukuze udibanise · uhambise imiphetho efanayo ukuze ulungise usayizi',
     templateColumns: 'Amatshintshi',
     templateRows: 'Imigqa',
     templateGrid: 'Igridi',
@@ -1090,7 +1142,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
@@ -1101,7 +1153,8 @@ Leave blank to keep the ${mode} default.`,
       copy: 'Kopisha',
       refresh: 'Hlaziya',
       moreActions: 'Ezinye izenzo',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
@@ -1120,12 +1173,13 @@ Leave blank to keep the ${mode} default.`,
       restoreCheckpoint: 'Restore checkpoint',
       restoreFromHere: 'Restore checkpoint — rerun from this prompt',
       restoreTitle: 'Restore to this checkpoint?',
-      restoreBody: 'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
+      restoreBody:
+        'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
       restoreConfirm: 'Restore & rerun',
       restoreNext: 'Restore next checkpoint',
       goForward: 'Go forward',
       sendEdited: 'Send edited message',
-      attachingFile: 'Attaching…',
+      attachingFile: 'Attaching…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -1138,8 +1192,9 @@ Leave blank to keep the ${mode} default.`,
       jumpToApproval: 'Approval needed',
       reject: 'Reject',
       alwaysTitle: 'Always allow this command?',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
-      alwaysAllow: 'Always allow',
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysAllow: 'Always allow'
     },
     clarify: {
       notReady: 'Clarify request is not ready yet',
@@ -1153,7 +1208,7 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'Continue',
       lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
       lateAnswerTip: 'Draft this answer as a follow-up message',
-      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.',
+      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.'
     },
     tool: {
       code: 'Code',
@@ -1189,11 +1244,11 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Ran',
         running: 'Running',
         ranCode: 'Ran code',
-        runningCode: 'Scripting',
+        runningCode: 'Scripting'
       },
       prefixes: {
         browser: 'Browser',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -1201,121 +1256,121 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
+        runningTool: action => `Running ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Clicked page element',
           pending: 'Clicking page element',
-          pendingAction: 'Clicking',
+          pendingAction: 'Clicking'
         },
         browser_fill: {
           done: 'Filled form field',
           pending: 'Filling form field',
-          pendingAction: 'Filling',
+          pendingAction: 'Filling'
         },
         browser_navigate: {
           done: 'Opened page',
           pending: 'Opening page',
-          pendingAction: 'Opening',
+          pendingAction: 'Opening'
         },
         browser_snapshot: {
           done: 'Captured page snapshot',
           pending: 'Capturing page snapshot',
-          pendingAction: 'Capturing',
+          pendingAction: 'Capturing'
         },
         browser_take_screenshot: {
           done: 'Captured screenshot',
           pending: 'Capturing screenshot',
-          pendingAction: 'Capturing',
+          pendingAction: 'Capturing'
         },
         browser_type: {
           done: 'Typed on page',
           pending: 'Typing on page',
-          pendingAction: 'Typing',
+          pendingAction: 'Typing'
         },
         clarify: {
           done: 'Asked a question',
           pending: 'Asking a question',
-          pendingAction: 'Asking',
+          pendingAction: 'Asking'
         },
         cronjob: {
           done: 'Cron job',
           pending: 'Scheduling cron job',
-          pendingAction: 'Scheduling',
+          pendingAction: 'Scheduling'
         },
         edit_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
+          pendingAction: 'Editing'
         },
         execute_code: {
           done: 'Ran code',
           pending: 'Scripting',
-          pendingAction: 'Scripting',
+          pendingAction: 'Scripting'
         },
         image_generate: {
           done: 'Generated image',
           pending: 'Generating image',
-          pendingAction: 'Generating',
+          pendingAction: 'Generating'
         },
         list_files: {
           done: 'Listed files',
           pending: 'Listing files',
-          pendingAction: 'Listing',
+          pendingAction: 'Listing'
         },
         patch: {
           done: 'Patched file',
           pending: 'Patching file',
-          pendingAction: 'Patching',
+          pendingAction: 'Patching'
         },
         read_file: {
           done: 'Read file',
           pending: 'Reading file',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         search_files: {
           done: 'Searched files',
           pending: 'Searching files',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         session_search_recall: {
           done: 'Searched session history',
           pending: 'Searching session history',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         terminal: {
           done: 'Ran command',
           pending: 'Running command',
-          pendingAction: 'Running',
+          pendingAction: 'Running'
         },
         todo: {
           done: 'Updated todos',
           pending: 'Updating todos',
-          pendingAction: 'Updating',
+          pendingAction: 'Updating'
         },
         vision_analyze: {
           done: 'Analyzed image',
           pending: 'Analyzing image',
-          pendingAction: 'Analyzing',
+          pendingAction: 'Analyzing'
         },
         web_extract: {
           done: 'Read webpage',
           pending: 'Reading webpage',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         web_search: {
           done: 'Searched web',
           pending: 'Searching web',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         write_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
-        },
-      },
-    },
+          pendingAction: 'Editing'
+        }
+      }
+    }
   },
   common: {
     apply: 'Sebenzisa',
@@ -1356,7 +1411,7 @@ Leave blank to keep the ${mode} default.`,
     update: 'Hlaziya',
     tryHint: term => `Zama “${term}”`,
     on: 'Ivuliwe',
-    off: 'Icimile',
+    off: 'Icimile'
   },
   fileMenu: {
     revealFinder: 'Bonisa kwi-Finder',
@@ -1371,7 +1426,7 @@ Leave blank to keep the ${mode} default.`,
     renameLabel: 'Igama elitsha',
     deleteTitle: name => `Cima ${name}?`,
     deleteBody: 'Iya kusiwa kuMgodlo — unokuyibuyisela ukusuka apho.',
-    pathCopied: 'Umendo ukhutshelwe',
+    pathCopied: 'Umendo ukhutshelwe'
   },
   boot: {
     ready: 'I-OpenAmer Desktop ilungile',
@@ -1381,7 +1436,7 @@ Leave blank to keep the ${mode} default.`,
       loadingSettings: 'Iyalayisha iisetingi ze-OpenAmer',
       loadingSessions: 'Iyalayisha iiseshini zamva nje',
       startingDesktopConnection: 'Iqalisa uqhagamshelo lwedesktop',
-      startingOpenAmerDesktop: 'Iqalisa i-OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Iqalisa i-OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Inkqubo yangasemva ye-OpenAmer iphumile.',
@@ -1390,13 +1445,15 @@ Leave blank to keep the ${mode} default.`,
       desktopBootFailed: 'Ukuqalisa iDesktop kusilele',
       gatewayConnectionLost: 'Uqhagamshelo kwisango lulahlekile',
       gatewaySignInRequired: 'Kufuneka ungene kwisango',
-      ipcBridgeUnavailable: 'Ibhulorho ye-IPC yedesktop ayifumaneki.',
+      ipcBridgeUnavailable: 'Ibhulorho ye-IPC yedesktop ayifumaneki.'
     },
     failure: {
-      title: "I-OpenAmer ayikwazanga ukuqalisa",
-      description: "Isango langasemva alizange livuke. Zama elinye lamanyathelo okubuyisela ngezantsi. Akukho nto apha ecima iincoko okanye iisetingi zakho.",
+      title: 'I-OpenAmer ayikwazanga ukuqalisa',
+      description:
+        'Isango langasemva alizange livuke. Zama elinye lamanyathelo okubuyisela ngezantsi. Akukho nto apha ecima iincoko okanye iisetingi zakho.',
       remoteTitle: 'Kufuneka ungene kwisango elikude',
-      remoteDescription: 'Iseshini yakho yesango elikude iphelile. Ngena kwakhona ukuze uqhagamshele. Akukho nto apha ecima iincoko okanye iisetingi zakho.',
+      remoteDescription:
+        'Iseshini yakho yesango elikude iphelile. Ngena kwakhona ukuze uqhagamshele. Akukho nto apha ecima iincoko okanye iisetingi zakho.',
       retry: 'Phinda uzame',
       repairInstall: 'Lungisa ufakelo',
       useLocalGateway: 'Sebenzisa isango lendawo',
@@ -1404,9 +1461,11 @@ Leave blank to keep the ${mode} default.`,
       back: 'Emva',
       openLogs: 'Vula iilog',
       repairHint: 'Ukulungisa kuphinda kuqalise isifakeli kwaye kungathatha imizuzu embalwa kumatshini omtsha.',
-      remoteSignInHint: signInLabel => `Iphuma kwiseshini yebhrawuza ekude egciniweyo, ize ivule ${signInLabel}. Sebenzisa isango lendawo ukutshintshela kumva odityanisiweyo endaweni yoko.`,
+      remoteSignInHint: signInLabel =>
+        `Iphuma kwiseshini yebhrawuza ekude egciniweyo, ize ivule ${signInLabel}. Sebenzisa isango lendawo ukutshintshela kumva odityanisiweyo endaweni yoko.`,
       signOutAndSignIn: 'Phuma & ngena',
-      remoteFailureHint: 'Jonga i-URL yesango nokungena phantsi kweeSethingi zesango, okanye tshintshela kwisango lendawo.',
+      remoteFailureHint:
+        'Jonga i-URL yesango nokungena phantsi kweeSethingi zesango, okanye tshintshela kwisango lendawo.',
       hideRecentLogs: 'Fihla iilog zamva nje',
       showRecentLogs: 'Bonisa iilog zamva nje',
       signedInTitle: 'Ungenile',
@@ -1416,8 +1475,8 @@ Leave blank to keep the ${mode} default.`,
       signInFailed: 'Ukungena kusilele',
       signInToRemoteGateway: 'Ngena kwisango elikude',
       signInWithProvider: provider => `Ngena nge-${provider}`,
-      identityProvider: 'umnikezeli wesazisi sakho',
-    },
+      identityProvider: 'umnikezeli wesazisi sakho'
+    }
   },
   notifications: {
     region: 'Izaziso',
@@ -1430,21 +1489,23 @@ Leave blank to keep the ${mode} default.`,
     copyDetail: 'Khuphela inkcukacha',
     copyDetailFailed: 'Ayikwazanga ukukhuphela iinkcukacha zesaziso',
     backendOutOfDateTitle: 'Umva uphelelwe lixesha',
-    backendOutOfDateMessage: 'Umva wakho we-OpenAmer mdala kunolu lwakhiwo lwedesktop kwaye usenokungasebenzi ngokuchanekileyo. Hlaziya ukuze uhambelane.',
+    backendOutOfDateMessage:
+      'Umva wakho we-OpenAmer mdala kunolu lwakhiwo lwedesktop kwaye usenokungasebenzi ngokuchanekileyo. Hlaziya ukuze uhambelane.',
     installMethodUnsupportedTitle: 'Indlela yofakelo engaxhaswanga',
     updateOpenAmer: 'Hlaziya i-OpenAmer',
     updateReadyTitle: 'Uhlaziyo lulungile',
     updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
-    seeWhatsNew: "Jonga okutsha",
+    seeWhatsNew: 'Jonga okutsha',
     errors: {
       elevenLabsNeedsKey: 'I-ElevenLabs STT idinga i-ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'I-ElevenLabs yalile isitshixo se-API (401).',
       gatewayAuthFailed: 'Uqinisekiso lwesango lusilele — jonga i-API_SERVER_KEY yakho.',
-      methodNotAllowed: 'Umva wedesktop wasikhaba eso sicelo (405 Method Not Allowed). Zama ukuqalisa kwakhona i-OpenAmer Desktop.',
+      methodNotAllowed:
+        'Umva wedesktop wasikhaba eso sicelo (405 Method Not Allowed). Zama ukuqalisa kwakhona i-OpenAmer Desktop.',
       microphonePermission: 'Imvume yemakrofoni yaliwe.',
       openaiRejectedApiKey: 'I-OpenAI yalile isitshixo se-API.',
       openaiRejectedApiKeyWithStatus: status => `I-OpenAI yalile isitshixo se-API (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'I-OpenAI TTS idinga i-VOICE_TOOLS_OPENAI_KEY okanye i-OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'I-OpenAI TTS idinga i-VOICE_TOOLS_OPENAI_KEY okanye i-OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Lungiselela intetho-kuya-kumbhalo ukuze usebenzise imowudi yelizwi.',
@@ -1463,7 +1524,7 @@ Leave blank to keep the ${mode} default.`,
       transcriptionFailed: 'Ukubhala ilizwi kusilele',
       transcriptionUnavailable: 'Ukubhala ilizwi akukafumaneki.',
       tryRecordingAgain: 'Zama ukurekhoda kwakhona.',
-      unavailable: 'Ilizwi alifumaneki',
+      unavailable: 'Ilizwi alifumaneki'
     },
     native: {
       approvalTitle: 'Kufuneka mvume',
@@ -1476,11 +1537,12 @@ Leave blank to keep the ${mode} default.`,
       turnErrorTitle: 'Ijiko lisilele',
       backgroundDoneTitle: 'Umsebenzi wangasemva ugqibile',
       backgroundFailedTitle: 'Umsebenzi wangasemva usilele',
-      creditsTitle: 'Iikhredithi',
-    },
+      creditsTitle: 'Iikhredithi'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Ukuzoba ngesoftware kuyasebenza — isiboniso esikude sifunyenwe (${reason}). Ukukhawulezisa kwe-GPU kucinyiwe ukuthintela ukudanyaza.`,
+    message: reason =>
+      `Ukuzoba ngesoftware kuyasebenza — isiboniso esikude sifunyenwe (${reason}). Ukukhawulezisa kwe-GPU kucinyiwe ukuthintela ukudanyaza.`
   },
   billingBlock: {
     titleOpenamer: 'Iikhredithi ze-OpenAmer ziphelile',
@@ -1488,7 +1550,7 @@ Leave blank to keep the ${mode} default.`,
     fallbackMessage: 'Iakhawunti yakho iphelelwe ziikhredithi. Yongeza iikhredithi ukuze uqhubeke.',
     openBilling: 'Vula intlawulo',
     addCredits: 'Yongeza iikhredithi',
-    dismiss: 'Susa',
+    dismiss: 'Susa'
   },
   titlebar: {
     hideSidebar: 'Fihla ibha esecaleni',
@@ -1505,7 +1567,7 @@ Leave blank to keep the ${mode} default.`,
     openStarmap: 'Vula igrafu yememori',
     openKeybinds: 'Iindlela ezimfutshane zebhodi yezitshixo',
     layoutEditor: 'Umhleli wokuhlelwa',
-    layoutEditorTitle: 'Umhleli wokuhlelwa — ⌘-cofa kuseta ngokutsha ukuhlelwa',
+    layoutEditorTitle: 'Umhleli wokuhlelwa — ⌘-cofa kuseta ngokutsha ukuhlelwa'
   },
   keybinds: {
     title: 'Iindlela ezimfutshane zebhodi yezitshixo',
@@ -1522,7 +1584,7 @@ Leave blank to keep the ${mode} default.`,
       profiles: 'Iiprofayile',
       session: 'Iseshini',
       navigation: 'Ukuhamba',
-      view: 'Umbono',
+      view: 'Umbono'
     },
     actions: {
       'keybinds.openPanel': 'Vula iindlela ezimfutshane zebhodi yezitshixo',
@@ -1601,8 +1663,8 @@ Leave blank to keep the ${mode} default.`,
       'composer.slash': 'Iphalethi yemiyalelo yeslash',
       'composer.help': 'Uncedo olukhawulezayo',
       'composer.history': 'Jikeleza ipopover / imbali',
-      'composer.cancel': 'Vala ipopover · rhoxisa ukuqhuba',
-    },
+      'composer.cancel': 'Vala ipopover · rhoxisa ukuqhuba'
+    }
   },
   language: {
     label: 'Ulwimi',
@@ -1611,7 +1673,7 @@ Leave blank to keep the ${mode} default.`,
     saveError: 'Uhlaziyo lolwimi lusilele',
     switchTo: 'Tshintsha ulwimi',
     searchPlaceholder: 'Khangela iilwimi…',
-    noResults: 'Akukho lwimi lufunyenweyo',
+    noResults: 'Akukho lwimi lufunyenweyo'
   },
   skills: {
     tabSkills: 'Izakhono',
@@ -1631,7 +1693,8 @@ Leave blank to keep the ${mode} default.`,
     noDescription: 'Akukho nkcazo.',
     configured: 'Ilungiselelwe',
     needsKeys: 'Idinga izitshixo',
-    visionModelHint: 'Umbono usebenzisa i-config yakho yemodeli encedisayo — imodeli ekwaziyo imifanekiso ikhethwa apho, hayi kumnikezeli ngamnye apha.',
+    visionModelHint:
+      'Umbono usebenzisa i-config yakho yemodeli encedisayo — imodeli ekwaziyo imifanekiso ikhethwa apho, hayi kumnikezeli ngamnye apha.',
     visionModelLink: 'Khetha imodeli yombono kwiSethingi → Iimodeli',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} seti zezixhobo zivuliwe`,
     configureToolset: label => `Lungiselela ${label}`,
@@ -1657,7 +1720,7 @@ Leave blank to keep the ${mode} default.`,
     provenance: {
       agent: 'Kufundiwe',
       bundled: 'Kwakhelwe ngaphakathi',
-      hub: 'Iziko',
+      hub: 'Iziko'
     },
     emptyNoneFound: noun => `Akukho ${noun} ifunyenweyo`,
     emptyNothingMatches: query => `Akukho nto ihambelana no “${query}”.`,
@@ -1675,7 +1738,8 @@ Leave blank to keep the ${mode} default.`,
       connectingHubs: 'Iqhagamshela kwiziko lezakhono...',
       connectedHubs: 'Iziko eziqhagamshelweyo:',
       featured: 'Izakhono ezikhethiweyo',
-      landingHint: 'Khangela kwiziko ukukhangela izakhono ezinokufakwa kwisalathiso esisemthethweni, GitHub nemithombo yoluntu.',
+      landingHint:
+        'Khangela kwiziko ukukhangela izakhono ezinokufakwa kwisalathiso esisemthethweni, GitHub nemithombo yoluntu.',
       noResults: 'Akukho zakhono zihambelanayo zifunyenwe kwiziko.',
       resultCount: (count, ms) => `${count} result${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Kuphelelwe lixesha: ${sources}`,
@@ -1695,7 +1759,7 @@ Leave blank to keep the ${mode} default.`,
       trust: {
         builtin: 'eyakhelweyo',
         trusted: 'ithenjwayo',
-        community: 'uluntu',
+        community: 'uluntu'
       },
       verdictSafe: 'Kukhuselekile',
       verdictCaution: 'Qaphela',
@@ -1713,8 +1777,8 @@ Leave blank to keep the ${mode} default.`,
       loadFailed: 'Iziko lezakhono lasilela ukulayisha',
       previewFailed: 'Umboniso wesakhono usilele',
       scanFailed: 'Ukuskena ukhuseleko kusilele',
-      searchFailed: 'Ukukhangela kwiziko kusilele',
-    },
+      searchFailed: 'Ukukhangela kwiziko kusilele'
+    }
   },
   starmap: {
     title: 'Igrafu yememori',
@@ -1731,7 +1795,8 @@ Leave blank to keep the ${mode} default.`,
     emptyTitle: 'Akukho nto ifundiweyo okwangoku',
     emptyDesc: 'Njengoko i-OpenAmer yakha izakhono neememori zomsebenzi wakho, ziyavela apha.',
     share: 'Yabelana ngemephu',
-    shareHint: 'Khuphela ikhowudi ukuze wabelane ngale mephu, okanye namathisela enye ukuyilayisha. Iquka kuphela ukuhlelwa, hayi imemori yakho okanye umbhalo wesakhono.',
+    shareHint:
+      'Khuphela ikhowudi ukuze wabelane ngale mephu, okanye namathisela enye ukuyilayisha. Iquka kuphela ukuhlelwa, hayi imemori yakho okanye umbhalo wesakhono.',
     shareTitle: 'Ngenisa / khupha imephu',
     sharePlaceholder: 'Namathisela ikhowudi yemephu…',
     copy: 'Khuphela ikhowudi yemephu',
@@ -1741,7 +1806,7 @@ Leave blank to keep the ${mode} default.`,
     importEmpty: 'Namathisela ikhowudi yemephu ukuyilayisha.',
     importSuccess: nodes => `Kulayishwe imephu ene-${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'imephu engenisiweyo',
-    resetToMine: 'Buyela kwimephu yam',
+    resetToMine: 'Buyela kwimephu yam'
   },
   agents: {
     close: 'Vala ii-arhente',
@@ -1771,7 +1836,7 @@ Leave blank to keep the ${mode} default.`,
     ageDays: days => `${days}d ezidlulileyo`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   messaging: {
     search: 'Search messaging...',
@@ -1786,7 +1851,7 @@ Leave blank to keep the ${mode} default.`,
       not_configured: 'Needs setup',
       pending_restart: 'Restart needed',
       retrying: 'Retrying',
-      startup_failed: 'Startup failed',
+      startup_failed: 'Startup failed'
     },
     unknown: 'Unknown',
     hintPendingRestart: 'Restart the gateway from the status bar to apply this change.',
@@ -1825,127 +1890,126 @@ Leave blank to keep the ${mode} default.`,
       TELEGRAM_BOT_TOKEN: {
         label: 'Bot token',
         help: 'Create a bot with @BotFather, then paste the token it gives you.',
-        placeholder: 'Paste Telegram bot token',
+        placeholder: 'Paste Telegram bot token'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Allowed Telegram user IDs',
-        help: 'Recommended. Comma-separated numeric IDs from @userinfobot. Without this, anyone can DM your bot.',
+        help: 'Recommended. Comma-separated numeric IDs from @userinfobot. Without this, anyone can DM your bot.'
       },
       TELEGRAM_PROXY: {
         label: 'Proxy URL',
-        help: 'Only needed on networks where Telegram is blocked.',
+        help: 'Only needed on networks where Telegram is blocked.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Bot token',
-        help: 'Create an application in the Discord Developer Portal, add a bot, then paste its token.',
+        help: 'Create an application in the Discord Developer Portal, add a bot, then paste its token.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Allowed Discord user IDs',
-        help: 'Recommended. Comma-separated Discord user IDs.',
+        help: 'Recommended. Comma-separated Discord user IDs.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Reply style',
-        help: 'first, all, or off.',
+        help: 'first, all, or off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Allow all Discord users',
-        help: 'Development only. When true, anyone can DM the bot without an allowlist.',
+        help: 'Development only. When true, anyone can DM the bot without an allowlist.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Home channel ID',
-        help: 'Channel where the bot sends proactive messages (cron output, reminders).',
+        help: 'Channel where the bot sends proactive messages (cron output, reminders).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Home channel name',
-        help: 'Display name for the home channel in logs and status output.',
+        help: 'Display name for the home channel in logs and status output.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Allow all iMessage users',
-        help: 'When true, skip the BlueBubbles allowlist.',
+        help: 'When true, skip the BlueBubbles allowlist.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Allow all Mattermost users',
+        label: 'Allow all Mattermost users'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Home channel',
+        label: 'Home channel'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Allow all QQ users',
+        label: 'Allow all QQ users'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ home channel',
-        help: 'Default channel or group for cron delivery.',
+        help: 'Default channel or group for cron delivery.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ home channel name',
+        label: 'QQ home channel name'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack bot token',
         help: 'Use the bot token from OAuth & Permissions after installing your Slack app.',
-        placeholder: 'Paste Slack bot token',
+        placeholder: 'Paste Slack bot token'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack app token',
         help: 'Use the app-level token required for Socket Mode.',
-        placeholder: 'Paste Slack app token',
+        placeholder: 'Paste Slack app token'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Allowed Slack user IDs',
-        help: 'Recommended. Comma-separated Slack user IDs.',
+        help: 'Recommended. Comma-separated Slack user IDs.'
       },
       MATTERMOST_URL: {
         label: 'Server URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Bot token',
+        label: 'Bot token'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Allowed user IDs',
-        help: 'Recommended. Comma-separated Mattermost user IDs.',
+        help: 'Recommended. Comma-separated Mattermost user IDs.'
       },
       MATRIX_HOMESERVER: {
         label: 'Homeserver URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Access token',
+        label: 'Access token'
       },
       MATRIX_USER_ID: {
         label: 'Bot user ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Allowed Matrix user IDs',
-        help: 'Recommended. Comma-separated user IDs in @user:server format.',
+        help: 'Recommended. Comma-separated user IDs in @user:server format.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal bridge URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL of a running signal-cli REST bridge.',
+        help: 'URL of a running signal-cli REST bridge.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Phone number',
-        help: 'The number registered with your signal-cli bridge.',
+        help: 'The number registered with your signal-cli bridge.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Allowed Signal users',
-        help: 'Recommended. Comma-separated Signal identifiers.',
+        help: 'Recommended. Comma-separated Signal identifiers.'
       },
       WHATSAPP_ENABLED: {
         label: 'Enable WhatsApp bridge',
-        help: 'Set automatically by the toggle below. Leave alone unless you know you need it.',
+        help: 'Set automatically by the toggle below. Leave alone unless you know you need it.'
       },
       WHATSAPP_MODE: {
-        label: 'Bridge mode',
+        label: 'Bridge mode'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Allowed WhatsApp users',
-        help: 'Recommended. Comma-separated phone numbers or WhatsApp IDs.',
-      },
+        help: 'Recommended. Comma-separated phone numbers or WhatsApp IDs.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Search webhooks...',
@@ -1955,7 +2019,8 @@ Leave blank to keep the ${mode} default.`,
     hint: 'Subscription changes hot-reload once the receiver is running. Disabled subscriptions reject incoming events.',
     empty: 'No webhook subscriptions yet.',
     disabledTitle: 'Webhook receiver disabled',
-    disabledBody: 'Webhooks are their own gateway platform. Enable them here to accept incoming HTTP events; chat channels are only needed when a subscription delivers to Telegram, Discord, Slack, or another channel.',
+    disabledBody:
+      'Webhooks are their own gateway platform. Enable them here to accept incoming HTTP events; chat channels are only needed when a subscription delivers to Telegram, Discord, Slack, or another channel.',
     enable: 'Enable webhooks',
     enabling: 'Enabling...',
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -2008,8 +2073,8 @@ Leave blank to keep the ${mode} default.`,
       discord: 'Discord',
       slack: 'Slack',
       email: 'Email',
-      github_comment: 'GitHub comment',
-    },
+      github_comment: 'GitHub comment'
+    }
   },
   cron: {
     close: 'Close cron',
@@ -2024,14 +2089,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'paused',
       disabled: 'disabled',
       error: 'error',
-      completed: 'completed',
+      completed: 'completed'
     },
     deliveryLabels: {
       local: 'This desktop',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Email',
+      email: 'Email'
     },
     scheduleLabels: {
       daily: 'Daily',
@@ -2040,7 +2105,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Monthly',
       hourly: 'Hourly',
       'every-15-minutes': 'Every 15 minutes',
-      custom: 'Custom',
+      custom: 'Custom'
     },
     scheduleHints: {
       daily: 'Every day at 9:00 AM',
@@ -2049,7 +2114,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'The first day of each month at 9:00 AM',
       hourly: 'At the top of every hour',
       'every-15-minutes': 'Every 15 minutes',
-      custom: 'Cron syntax or natural language',
+      custom: 'Cron syntax or natural language'
     },
     days: {
       '0': 'Sunday',
@@ -2059,7 +2124,7 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Thursday',
       '5': 'Friday',
       '6': 'Saturday',
-      '7': 'Sunday',
+      '7': 'Sunday'
     },
     dayFallback: value => `day ${value}`,
     everyDayAt: time => `Every day at ${time}`,
@@ -2069,7 +2134,8 @@ Leave blank to keep the ${mode} default.`,
     topOfHour: 'At the top of every hour',
     everyHourAt: minute => `Every hour at :${minute}`,
     newCron: 'New cron',
-    emptyDescNew: 'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
+    emptyDescNew:
+      'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
     emptyDescSearch: 'Try a broader search query.',
     emptyTitleNew: 'No scheduled jobs yet',
     emptyTitleSearch: 'No matches',
@@ -2128,7 +2194,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Create cron',
     tabs: {
       jobs: 'Jobs',
-      blueprints: 'Blueprints',
+      blueprints: 'Blueprints'
     },
     blueprints: {
       tab: 'Blueprints',
@@ -2142,8 +2208,8 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Loading blueprints...',
       failedLoad: 'Failed to load blueprints',
       emptyTitle: 'No blueprints available',
-      emptyDesc: 'No automation blueprints are available on this backend.',
-    },
+      emptyDesc: 'No automation blueprints are available on this backend.'
+    }
   },
   artifacts: {
     search: 'Search artifacts...',
@@ -2177,14 +2243,14 @@ Leave blank to keep the ${mode} default.`,
     kindLink: 'link',
     chat: 'Chat',
     copyUrl: 'Copy URL',
-    copyPath: 'Copy path',
+    copyPath: 'Copy path'
   },
   sidebar: {
     nav: {
       'new-session': 'New session',
       skills: 'Capabilities',
       messaging: 'Messaging',
-      artifacts: 'Artifacts',
+      artifacts: 'Artifacts'
     },
     searchAria: 'Search sessions',
     searchPlaceholder: 'Search sessions…',
@@ -2236,7 +2302,8 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'Copy path',
       removeFromSidebar: 'Hide from sidebar',
       createFailed: 'Could not create project',
-      staleBackend: 'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
+      staleBackend:
+        'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
       deleteConfirm: 'This removes the saved project from OpenAmer. Files, git repos, and worktrees stay untouched.',
       startWork: 'New worktree',
       newWorktreeTitle: 'New worktree',
@@ -2258,13 +2325,15 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'No branches found',
       removeWorktree: 'Remove worktree',
       removeWorktreeFailed: 'Could not remove worktree (uncommitted changes?)',
-      removeWorktreeConfirm: 'Remove it from git (deletes the worktree directory; the branch stays), or just hide the lane from the sidebar and leave the worktree on disk.',
-      removeWorktreeDirty: 'This worktree has uncommitted changes. Force-remove it (discards those changes), or just hide the lane and keep it on disk.',
+      removeWorktreeConfirm:
+        'Remove it from git (deletes the worktree directory; the branch stays), or just hide the lane from the sidebar and leave the worktree on disk.',
+      removeWorktreeDirty:
+        'This worktree has uncommitted changes. Force-remove it (discards those changes), or just hide the lane and keep it on disk.',
       forceRemove: 'Force remove',
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
       toggle: label => `Toggle ${label} sessions`,
-      back: 'All projects',
+      back: 'All projects'
     },
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
@@ -2302,15 +2371,15 @@ Leave blank to keep the ${mode} default.`,
       ageNow: 'now',
       ageDay: 'd',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Earlier today',
       yesterday: 'Yesterday',
       thisWeek: 'Earlier this week',
       lastWeek: 'Last week',
-      thisMonth: 'Earlier this month',
-    },
+      thisMonth: 'Earlier this month'
+    }
   },
   composer: {
     message: 'Message',
@@ -2325,7 +2394,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -2334,7 +2403,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     startVoice: 'Start voice conversation',
     queueMessage: 'Queue message',
@@ -2370,7 +2439,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'resume a prior session',
       '/details': 'control transcript detail level',
       '/copy': 'copy selection or last assistant message',
-      '/quit': 'exit openamer',
+      '/quit': 'exit openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'reference files, folders, urls, git',
@@ -2380,7 +2449,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'send next queued turn',
       'keybinds.openPanel': 'all keyboard shortcuts',
       'composer.cancel': 'close popover · cancel run',
-      'composer.history': 'cycle popover / history',
+      'composer.history': 'cycle popover / history'
     },
     attachUrlTitle: 'Attach a URL',
     attachUrlDesc: 'OpenAmer will fetch the page and include it as context for this turn.',
@@ -2431,19 +2500,19 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'Code review',
         description: 'Audit the current change for regressions, dropped edge cases, and missing tests.',
-        text: 'Please review this for bugs, regressions, and missing tests.',
+        text: 'Please review this for bugs, regressions, and missing tests.'
       },
       implementationPlan: {
         label: 'Implementation plan',
         description: 'Outline an approach before touching code so the diff stays focused.',
-        text: 'Please make a concise implementation plan before changing code.',
+        text: 'Please make a concise implementation plan before changing code.'
       },
       explainThis: {
         label: 'Explain this',
         description: 'Walk through how the selected code works and link to the key files.',
-        text: 'Please explain how this works and point me to the key files.',
-      },
-    },
+        text: 'Please explain how this works and point me to the key files.'
+      }
+    }
   },
   install: {
     stageStates: {
@@ -2451,17 +2520,19 @@ Leave blank to keep the ${mode} default.`,
       running: 'Installing',
       succeeded: 'Done',
       skipped: 'Skipped',
-      failed: 'Failed',
+      failed: 'Failed'
     },
     oneTimeTitle: 'OpenAmer needs a one-time install',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     installCommand: 'Install command',
     copyCommand: 'Copy command',
     viewDocs: 'View install docs',
     installTo: 'Will install to',
     retryAfterRun: 'I’ve run it -- retry',
     setupChoiceTitle: 'Set up OpenAmer Desktop',
-    setupChoiceDesc: 'Connect this app to a OpenAmer gateway you already run, or install OpenAmer locally on this computer.',
+    setupChoiceDesc:
+      'Connect this app to a OpenAmer gateway you already run, or install OpenAmer locally on this computer.',
     connectExistingTitle: 'Connect to existing OpenAmer',
     connectExistingShort: 'Connect existing',
     connectExistingDesc: 'Use a remote backend with a session token or browser sign-in. No local install will start.',
@@ -2469,7 +2540,8 @@ Leave blank to keep the ${mode} default.`,
     installLocalDesc: 'Download OpenAmer, create its Python environment, and run the backend on this computer.',
     localStartUnavailable: 'Local installation could not start. Restart OpenAmer Desktop and try again.',
     remoteSetupTitle: 'Connect to existing OpenAmer',
-    remoteSetupDesc: 'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
+    remoteSetupDesc:
+      'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
     remoteUrlTitle: 'Gateway URL',
     remoteUrlDesc: 'Use the base URL of the OpenAmer gateway, including https:// when remote.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2496,8 +2568,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Installation failed',
     settingUpTitle: 'Setting up OpenAmer Agent',
     finishingTitle: 'Finishing up',
-    failedDesc: 'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
-    activeDesc: 'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
+    failedDesc:
+      'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
+    activeDesc:
+      'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
     fetchingManifest: 'Fetching installer manifest...',
@@ -2511,7 +2585,7 @@ Leave blank to keep the ${mode} default.`,
     transcriptSaved: 'Full transcript saved to',
     copiedOutput: 'Copied!',
     copyOutput: 'Copy output',
-    reloadRetry: 'Reload and retry',
+    reloadRetry: 'Reload and retry'
   },
   onboarding: {
     headerTitle: "Let's get you setup with OpenAmer Agent",
@@ -2531,28 +2605,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'direct model API',
-        description: 'Direct access to models hosted by Fireworks AI.',
+        description: 'Direct access to models hosted by Fireworks AI.'
       },
       openrouter: {
         short: 'one key, many models',
-        description: 'Hosts hundreds of models behind a single key. Good default for new installs.',
+        description: 'Hosts hundreds of models behind a single key. Good default for new installs.'
       },
       openai: {
         short: 'GPT-class models',
-        description: 'Direct access to OpenAI models.',
+        description: 'Direct access to OpenAI models.'
       },
       gemini: {
         short: 'Gemini models',
-        description: 'Direct access to Google Gemini models.',
+        description: 'Direct access to Google Gemini models.'
       },
       xai: {
         short: 'Grok models',
-        description: 'Direct access to xAI Grok models.',
+        description: 'Direct access to xAI Grok models.'
       },
       local: {
         short: 'self-hosted',
-        description: 'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).',
-      },
+        description:
+          'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).'
+      }
     },
     backToSignIn: 'Back to sign in',
     getKey: 'Get a key',
@@ -2565,7 +2640,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'Opens your browser to sign in, then continues here',
       device_code: 'Opens a verification page in your browser — OpenAmer connects automatically',
-      external: 'Sign in once in your terminal, then come back to chat',
+      external: 'Sign in once in your terminal, then come back to chat'
     },
     startingSignIn: provider => `Starting sign-in for ${provider}...`,
     verifyingCode: provider => `Verifying your code with ${provider}...`,
@@ -2579,10 +2654,12 @@ Leave blank to keep the ${mode} default.`,
     copyAuthCode: 'Copy the authorization code and paste it below.',
     pasteAuthCode: 'Paste authorization code',
     reopenAuthPage: 'Re-open authorization page',
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
     reopenSignInPage: 'Re-open sign-in page',
     waitingAuthorize: 'Waiting for you to authorize...',
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     signedIn: "I've signed in",
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     reopenVerification: 'Re-open verification page',
@@ -2594,7 +2671,7 @@ Leave blank to keep the ${mode} default.`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
     change: 'Change',
     startChatting: 'Begin',
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'Switch model',
@@ -2610,13 +2687,13 @@ Leave blank to keep the ${mode} default.`,
     free: 'Free',
     freeTier: 'Free tier',
     priceTitle: 'Input / Output price per million tokens',
-    wasPrice: 'was',
+    wasPrice: 'was'
   },
   modelVisibility: {
     title: 'Models',
     search: 'Search models',
     noAuthenticatedProviders: 'No authenticated providers.',
-    addProvider: 'Add provider…',
+    addProvider: 'Add provider…'
   },
   shell: {
     windowControls: 'Window controls',
@@ -2627,7 +2704,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'No models found',
       editModels: 'Edit Models…',
       refreshModels: 'Refresh Models',
-      fast: 'Fast',
+      fast: 'Fast'
     },
     modelOptions: {
       noOptions: 'No options for this model',
@@ -2643,7 +2720,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'Max',
       ultra: 'Ultra',
       updateFailed: 'Model option update failed',
-      fastFailed: 'Fast mode update failed',
+      fastFailed: 'Fast mode update failed'
     },
     gatewayMenu: {
       gateway: 'Gateway',
@@ -2658,7 +2735,7 @@ Leave blank to keep the ${mode} default.`,
       connection: label => `Connection: ${label}`,
       recentActivity: 'Recent activity',
       viewAllLogs: 'View all logs →',
-      messagingPlatforms: 'Messaging platforms',
+      messagingPlatforms: 'Messaging platforms'
     },
     approvalMode: {
       title: 'Approval mode',
@@ -2668,7 +2745,7 @@ Leave blank to keep the ${mode} default.`,
       smart: 'Smart',
       smartDescription: 'Automatically assess actions and ask when needed',
       off: 'Off',
-      offDescription: 'Run without approval prompts',
+      offDescription: 'Run without approval prompts'
     },
     statusbar: {
       unknown: 'unknown',
@@ -2724,13 +2801,13 @@ Leave blank to keep the ${mode} default.`,
           skills: 'Skills',
           subagent_definitions: 'Subagent definitions',
           system_prompt: 'System prompt',
-          tool_definitions: 'Tool definitions',
+          tool_definitions: 'Tool definitions'
         },
         empty: 'No context data yet',
         loading: 'Loading breakdown…',
         percentFull: percent => `${percent}% Full`,
         title: 'Context Usage',
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Open context usage breakdown',
       session: 'Session',
@@ -2743,8 +2820,8 @@ Leave blank to keep the ${mode} default.`,
       openModelPicker: 'Open model picker',
       modelPinned: 'pinned by you; new chats use this instead of the Settings default',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Right sidebar',
@@ -2780,7 +2857,7 @@ Leave blank to keep the ${mode} default.`,
     terminalNew: 'New terminal',
     terminalCloseOthers: 'Close others',
     terminalCloseAll: 'Close all',
-    addToChat: 'Add to chat',
+    addToChat: 'Add to chat'
   },
   preview: {
     tab: 'Preview',
@@ -2814,7 +2891,8 @@ Leave blank to keep the ${mode} default.`,
     unsavedChanges: 'Unsaved changes',
     saveFailed: message => `Couldn't save: ${message}`,
     diskChangedTitle: 'File changed on disk',
-    diskChangedBody: 'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
+    diskChangedBody:
+      'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
     overwrite: 'Overwrite',
     discardReload: 'Discard & reload',
     console: {
@@ -2835,7 +2913,7 @@ Leave blank to keep the ${mode} default.`,
       empty: 'No console messages yet.',
       promptHeader: 'Preview console:',
       sentTitle: 'Sent to chat',
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Preview app failed to boot',
@@ -2860,17 +2938,19 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'Reloading the preview now.',
       restartFailedTitle: 'Preview restart failed',
       restartFailedMessage: 'OpenAmer could not restart the server.',
-      stillWorking: 'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
+      stillWorking:
+        'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
       workspaceReloading: 'Workspace changed, reloading preview',
       fileChanged: url => `File changed, reloading preview: ${url}`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
-      moduleMimeDescription: 'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
+      moduleMimeDescription:
+        'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'The preview page could not be reached.',
       openTarget: url => `Open ${url}`,
-      fallbackTitle: 'Preview',
-    },
+      fallbackTitle: 'Preview'
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2881,7 +2961,7 @@ Leave blank to keep the ${mode} default.`,
     sudoPlaceholder: 'sudo password',
     secretTitle: 'Secret required',
     secretDesc: 'OpenAmer needs a credential to continue.',
-    secretPlaceholder: 'secret value',
+    secretPlaceholder: 'secret value'
   },
   desktop: {
     audioReadFailed: 'Could not read recorded audio',
@@ -2898,7 +2978,8 @@ Leave blank to keep the ${mode} default.`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Could not toggle YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     unknownProfile: 'Unknown profile',
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
@@ -2909,7 +2990,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'Edit failed',
     resumeFailed: 'Resume failed',
     resumeStrandedTitle: "Couldn't load this session",
-    resumeStrandedBody: 'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
+    resumeStrandedBody:
+      'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
     resumeRetry: 'Retry',
     nothingToBranch: 'Nothing to branch',
     branchNeedsChat: 'Start or resume a chat before branching.',
@@ -2949,31 +3031,31 @@ Leave blank to keep the ${mode} default.`,
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
       failed: error => `Handoff failed: ${error}`,
-      timedOut: 'Timed out waiting for the gateway. Is `openamer gateway` running?',
-    },
+      timedOut: 'Timed out waiting for the gateway. Is `openamer gateway` running?'
+    }
   },
   errors: {
     genericFailure: 'Something went wrong',
     boundaryTitle: 'Something broke in the interface',
     boundaryDesc: 'The view hit an unexpected error. Your chats and settings are safe.',
     reloadWindow: 'Reload window',
-    openLogs: 'Open logs',
+    openLogs: 'Open logs'
   },
   ui: {
     search: {
-      clear: 'Clear search',
+      clear: 'Clear search'
     },
     pagination: {
       label: 'pagination',
       previous: 'Prev',
       previousAria: 'Go to previous page',
       next: 'Next',
-      nextAria: 'Go to next page',
+      nextAria: 'Go to next page'
     },
     sidebar: {
       title: 'Sidebar',
       description: 'Displays the mobile sidebar.',
-      toggle: 'Toggle Sidebar',
-    },
-  },
+      toggle: 'Toggle Sidebar'
+    }
+  }
 })

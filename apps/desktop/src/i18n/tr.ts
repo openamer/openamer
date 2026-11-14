@@ -44,7 +44,7 @@ export const tr = defineLocale({
     update: 'Güncelle',
     tryHint: term => `“${term}” deneyin`,
     on: 'Açık',
-    off: 'Kapalı',
+    off: 'Kapalı'
   },
   fileMenu: {
     revealFinder: 'Finder’da göster',
@@ -59,7 +59,7 @@ export const tr = defineLocale({
     renameLabel: 'Yeni ad',
     deleteTitle: name => `${name} silinsin mi?`,
     deleteBody: 'Geri Dönüşüm Kutusu’na taşınacak — oradan geri alabilirsiniz.',
-    pathCopied: 'Yol kopyalandı',
+    pathCopied: 'Yol kopyalandı'
   },
   boot: {
     ready: 'OpenAmer Desktop hazır',
@@ -69,7 +69,7 @@ export const tr = defineLocale({
       loadingSettings: 'OpenAmer ayarları yükleniyor',
       loadingSessions: 'Son oturumlar yükleniyor',
       startingDesktopConnection: 'Masaüstü bağlantısı başlatılıyor',
-      startingOpenAmerDesktop: 'OpenAmer Desktop başlatılıyor…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop başlatılıyor…'
     },
     errors: {
       backgroundExited: 'OpenAmer arka plan süreci sonlandı.',
@@ -78,13 +78,15 @@ export const tr = defineLocale({
       desktopBootFailed: 'Masaüstü başlatılamadı',
       gatewayConnectionLost: 'Ağ geçidi bağlantısı kayboldu',
       gatewaySignInRequired: 'Ağ geçidi girişi gerekli',
-      ipcBridgeUnavailable: 'Masaüstü IPC köprüsü kullanılamıyor.',
+      ipcBridgeUnavailable: 'Masaüstü IPC köprüsü kullanılamıyor.'
     },
     failure: {
-      title: "OpenAmer başlatılamadı",
-      description: "Arka plandaki ağ geçidi başlamadı. Aşağıdaki kurtarma adımlarından birini deneyin. Buradaki hiçbir şey sohbetlerinizi veya ayarlarınızı silmez.",
+      title: 'OpenAmer başlatılamadı',
+      description:
+        'Arka plandaki ağ geçidi başlamadı. Aşağıdaki kurtarma adımlarından birini deneyin. Buradaki hiçbir şey sohbetlerinizi veya ayarlarınızı silmez.',
       remoteTitle: 'Uzak ağ geçidi girişi gerekli',
-      remoteDescription: 'Uzak ağ geçidi oturumunuzun süresi doldu. Yeniden bağlanmak için tekrar giriş yapın. Buradaki hiçbir şey sohbetlerinizi veya ayarlarınızı silmez.',
+      remoteDescription:
+        'Uzak ağ geçidi oturumunuzun süresi doldu. Yeniden bağlanmak için tekrar giriş yapın. Buradaki hiçbir şey sohbetlerinizi veya ayarlarınızı silmez.',
       retry: 'Tekrar dene',
       repairInstall: 'Kurulumu onar',
       useLocalGateway: 'Yerel ağ geçidini kullan',
@@ -92,7 +94,8 @@ export const tr = defineLocale({
       back: 'Geri',
       openLogs: 'Günlükleri aç',
       repairHint: 'Onarım, yükleyiciyi yeniden çalıştırır ve yeni bir makinede birkaç dakika sürebilir.',
-      remoteSignInHint: signInLabel => `Kayıtlı uzak tarayıcı oturumunun çıkışını yapar, sonra ${signInLabel} açar. Dahili arka uca dönmek için "Yerel ağ geçidini kullan" seçeneğini kullanın.`,
+      remoteSignInHint: signInLabel =>
+        `Kayıtlı uzak tarayıcı oturumunun çıkışını yapar, sonra ${signInLabel} açar. Dahili arka uca dönmek için "Yerel ağ geçidini kullan" seçeneğini kullanın.`,
       signOutAndSignIn: 'Çıkış yap ve giriş yap',
       remoteFailureHint: 'Ağ geçidi ayarlarında URL’yi ve girişi kontrol edin ya da yerel ağ geçidine geçin.',
       hideRecentLogs: 'Son günlükleri gizle',
@@ -104,8 +107,8 @@ export const tr = defineLocale({
       signInFailed: 'Giriş başarısız',
       signInToRemoteGateway: 'Uzak ağ geçidine giriş yap',
       signInWithProvider: provider => `${provider} ile giriş yap`,
-      identityProvider: 'kimlik sağlayıcınız',
-    },
+      identityProvider: 'kimlik sağlayıcınız'
+    }
   },
   notifications: {
     region: 'Bildirimler',
@@ -118,21 +121,23 @@ export const tr = defineLocale({
     copyDetail: 'Ayrıntıyı kopyala',
     copyDetailFailed: 'Bildirim ayrıntısı kopyalanamadı',
     backendOutOfDateTitle: 'Arka uç güncel değil',
-    backendOutOfDateMessage: 'OpenAmer arka ucunuz bu masaüstü sürümünden daha eski ve düzgün çalışmayabilir. Hizalamak için güncelleyin.',
+    backendOutOfDateMessage:
+      'OpenAmer arka ucunuz bu masaüstü sürümünden daha eski ve düzgün çalışmayabilir. Hizalamak için güncelleyin.',
     installMethodUnsupportedTitle: 'Desteklenmeyen kurulum yöntemi',
     updateOpenAmer: 'OpenAmer’ı güncelle',
     updateReadyTitle: 'Güncelleme hazır',
     updateReadyMessage: count => `${count} yeni değişiklik${count === 1 ? 'değişiklik' : 'değişiklikler'} mevcut.`,
-    seeWhatsNew: "Yenilikleri görün",
+    seeWhatsNew: 'Yenilikleri görün',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT, ELEVENLABS_API_KEY gerektirir.',
       elevenLabsRejectedKey: 'ElevenLabs API anahtarını reddetti (401).',
       gatewayAuthFailed: 'Ağ geçidi kimlik doğrulaması başarısız — API_SERVER_KEY dosyanızı kontrol edin.',
-      methodNotAllowed: 'Masaüstü arka ucu bu isteği reddetti (405 Method Not Allowed). OpenAmer Desktop’ı yeniden başlatmayı deneyin.',
+      methodNotAllowed:
+        'Masaüstü arka ucu bu isteği reddetti (405 Method Not Allowed). OpenAmer Desktop’ı yeniden başlatmayı deneyin.',
       microphonePermission: 'Mikrofon izni reddedildi.',
       openaiRejectedApiKey: 'OpenAI API anahtarını reddetti.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI API anahtarını reddetti (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS, VOICE_TOOLS_OPENAI_KEY veya OPENAI_API_KEY gerektirir.',
+      openaiTtsNeedsKey: 'OpenAI TTS, VOICE_TOOLS_OPENAI_KEY veya OPENAI_API_KEY gerektirir.'
     },
     voice: {
       configureSpeechToText: 'Sesli modu kullanmak için konuşma tanımayı yapılandırın.',
@@ -151,7 +156,7 @@ export const tr = defineLocale({
       transcriptionFailed: 'Ses transkripsiyonu başarısız',
       transcriptionUnavailable: 'Ses transkripsiyonu henüz kullanılamıyor.',
       tryRecordingAgain: 'Tekrar kaydetmeyi deneyin.',
-      unavailable: 'Ses kullanılamıyor',
+      unavailable: 'Ses kullanılamıyor'
     },
     native: {
       approvalTitle: 'Onay gerekli',
@@ -164,11 +169,12 @@ export const tr = defineLocale({
       turnErrorTitle: 'Tur başarısız oldu',
       backgroundDoneTitle: 'Arka plan görevi tamamlandı',
       backgroundFailedTitle: 'Arka plan görevi başarısız oldu',
-      creditsTitle: 'Krediler',
-    },
+      creditsTitle: 'Krediler'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Yazılım işleme etkin — uzak ekran algılandı (${reason}). Titremeyi önlemek için GPU hızlandırma devre dışı.`,
+    message: reason =>
+      `Yazılım işleme etkin — uzak ekran algılandı (${reason}). Titremeyi önlemek için GPU hızlandırma devre dışı.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer kredisi bitti',
@@ -176,7 +182,7 @@ export const tr = defineLocale({
     fallbackMessage: 'Hesabınızda kredi kalmadı. Devam etmek için kredi ekleyin.',
     openBilling: 'Faturalandırmayı aç',
     addCredits: 'Kredi ekle',
-    dismiss: 'Kapat',
+    dismiss: 'Kapat'
   },
   titlebar: {
     hideSidebar: 'Kenar çubuğunu gizle',
@@ -193,7 +199,7 @@ export const tr = defineLocale({
     openStarmap: 'Bellek grafiğini aç',
     openKeybinds: 'Klavye kısayolları',
     layoutEditor: 'Düzen düzenleyici',
-    layoutEditorTitle: 'Düzen düzenleyici — Cmd/Ctrl+tıklama düzeni sıfırlar',
+    layoutEditorTitle: 'Düzen düzenleyici — Cmd/Ctrl+tıklama düzeni sıfırlar'
   },
   keybinds: {
     title: 'Klavye kısayolları',
@@ -210,7 +216,7 @@ export const tr = defineLocale({
       profiles: 'Profiller',
       session: 'Oturum',
       navigation: 'Gezinme',
-      view: 'Görünüm',
+      view: 'Görünüm'
     },
     actions: {
       'keybinds.openPanel': 'Klavye kısayollarını aç',
@@ -228,15 +234,15 @@ export const tr = defineLocale({
       'session.newWindow': 'Yeni pencere',
       'session.next': 'Sonraki oturum',
       'session.prev': 'Önceki oturum',
-      'session.slot.1': 'Son oturum 1\'e geç',
-      'session.slot.2': 'Son oturum 2\'ye geç',
-      'session.slot.3': 'Son oturum 3\'e geç',
-      'session.slot.4': 'Son oturum 4\'e geç',
-      'session.slot.5': 'Son oturum 5\'e geç',
-      'session.slot.6': 'Son oturum 6\'ya geç',
-      'session.slot.7': 'Son oturum 7\'ye geç',
-      'session.slot.8': 'Son oturum 8\'e geç',
-      'session.slot.9': 'Son oturum 9\'a geç',
+      'session.slot.1': "Son oturum 1'e geç",
+      'session.slot.2': "Son oturum 2'ye geç",
+      'session.slot.3': "Son oturum 3'e geç",
+      'session.slot.4': "Son oturum 4'e geç",
+      'session.slot.5': "Son oturum 5'e geç",
+      'session.slot.6': "Son oturum 6'ya geç",
+      'session.slot.7': "Son oturum 7'ye geç",
+      'session.slot.8': "Son oturum 8'e geç",
+      'session.slot.9': "Son oturum 9'a geç",
       'session.focusSearch': 'Oturumlarda ara',
       'session.togglePin': 'Geçerli oturumu sabitle / sabitlemeyi kaldır',
       'workspace.newWorktree': 'Yeni çalışma ağacı',
@@ -258,24 +264,24 @@ export const tr = defineLocale({
       'view.flipPanes': 'Kenar çubuğu taraflarını değiştir',
       'appearance.toggleMode': 'Açık / koyu arasında geçiş yap',
       'profile.default': 'Varsayılan profile geç',
-      'profile.switch.1': 'Profil 1\'e geç',
-      'profile.switch.2': 'Profil 2\'ye geç',
-      'profile.switch.3': 'Profil 3\'e geç',
-      'profile.switch.4': 'Profil 4\'e geç',
-      'profile.switch.5': 'Profil 5\'e geç',
-      'profile.switch.6': 'Profil 6\'ya geç',
-      'profile.switch.7': 'Profil 7\'ye geç',
-      'profile.switch.8': 'Profil 8\'e geç',
-      'profile.switch.9': 'Profil 9\'a geç',
-      'profile.switch.10': 'Profil 10\'a geç',
-      'profile.switch.11': 'Profil 11\'e geç',
-      'profile.switch.12': 'Profil 12\'ye geç',
-      'profile.switch.13': 'Profil 13\'e geç',
-      'profile.switch.14': 'Profil 14\'e geç',
-      'profile.switch.15': 'Profil 15\'e geç',
-      'profile.switch.16': 'Profil 16\'ya geç',
-      'profile.switch.17': 'Profil 17\'ye geç',
-      'profile.switch.18': 'Profil 18\'e geç',
+      'profile.switch.1': "Profil 1'e geç",
+      'profile.switch.2': "Profil 2'ye geç",
+      'profile.switch.3': "Profil 3'e geç",
+      'profile.switch.4': "Profil 4'e geç",
+      'profile.switch.5': "Profil 5'e geç",
+      'profile.switch.6': "Profil 6'ya geç",
+      'profile.switch.7': "Profil 7'ye geç",
+      'profile.switch.8': "Profil 8'e geç",
+      'profile.switch.9': "Profil 9'a geç",
+      'profile.switch.10': "Profil 10'a geç",
+      'profile.switch.11': "Profil 11'e geç",
+      'profile.switch.12': "Profil 12'ye geç",
+      'profile.switch.13': "Profil 13'e geç",
+      'profile.switch.14': "Profil 14'e geç",
+      'profile.switch.15': "Profil 15'e geç",
+      'profile.switch.16': "Profil 16'ya geç",
+      'profile.switch.17': "Profil 17'ye geç",
+      'profile.switch.18': "Profil 18'e geç",
       'profile.next': 'Sonraki profil',
       'profile.prev': 'Önceki profil',
       'profile.toggleAll': 'Tüm profiller görünümünü aç/kapat',
@@ -285,12 +291,12 @@ export const tr = defineLocale({
       'composer.steer': 'Çalışan turu yönlendir',
       'composer.queue': 'Mesajı kuyruğa al',
       'composer.sendQueued': 'Sıradaki kuyruklu turu gönder',
-      'composer.mention': 'Dosyalara, klasörlere, URL\'lere başvur',
+      'composer.mention': "Dosyalara, klasörlere, URL'lere başvur",
       'composer.slash': 'Eğik çizgi komut paleti',
       'composer.help': 'Hızlı yardım',
       'composer.history': 'Açılır pencere / geçmiş arasında geçiş yap',
-      'composer.cancel': 'Açılır pencereyi kapat · çalıştırmayı iptal et',
-    },
+      'composer.cancel': 'Açılır pencereyi kapat · çalıştırmayı iptal et'
+    }
   },
   language: {
     label: 'Dil',
@@ -299,7 +305,7 @@ export const tr = defineLocale({
     saveError: 'Dil güncellemesi başarısız',
     switchTo: 'Dili değiştir',
     searchPlaceholder: 'Dil ara…',
-    noResults: 'Dil bulunamadı',
+    noResults: 'Dil bulunamadı'
   },
   settings: {
     closeSettings: 'Ayarları kapat',
@@ -324,11 +330,12 @@ export const tr = defineLocale({
       about: 'Hakkında',
       billing: 'Faturalandırma',
       notifications: 'Bildirimler',
-      plugins: 'Eklentiler',
+      plugins: 'Eklentiler'
     },
     plugins: {
       title: 'Masaüstü eklentileri',
-      blurb: 'Bu uygulamaya yüklenen UI uzantıları — derlemeyle birlikte gelir veya desktop-plugins klasörüne bırakılır (OpenAmer\'ın yazdıkları dahil). Devre dışı bırakmak bir eklentiyi anında kaldırır ve yeniden başlatmalarda da kalıcıdır.',
+      blurb:
+        "Bu uygulamaya yüklenen UI uzantıları — derlemeyle birlikte gelir veya desktop-plugins klasörüne bırakılır (OpenAmer'ın yazdıkları dahil). Devre dışı bırakmak bir eklentiyi anında kaldırır ve yeniden başlatmalarda da kalıcıdır.",
       count: n => `${n} yüklü`,
       openFolder: 'Eklentiler klasörünü aç',
       rescan: 'Yeniden tara',
@@ -340,49 +347,51 @@ export const tr = defineLocale({
       kinds: {
         bundled: 'pakete dahil',
         disk: 'diskte',
-        runtime: 'çalışma zamanı',
-      },
+        runtime: 'çalışma zamanı'
+      }
     },
     notifications: {
       title: 'Bildirimler',
-      intro: 'Yerel masaüstü bildirimleri, uygulama içi açılır bildirimlerden ayrıdır. Cihaza özeldir — her bilgisayar kendi ayarlarını tutar.',
+      intro:
+        'Yerel masaüstü bildirimleri, uygulama içi açılır bildirimlerden ayrıdır. Cihaza özeldir — her bilgisayar kendi ayarlarını tutar.',
       enableAll: 'Bildirimleri etkinleştir',
       enableAllDesc: 'Ana anahtar. Aşağıdaki tüm bildirimleri susturmak için bunu kapatın.',
       focusedHint: 'Tamamlanma uyarıları yalnızca OpenAmer arka plandayken gösterilir.',
       kinds: {
         approval: {
           label: 'Onay gerekli',
-          description: 'Bir komut onayınızı veya reddinizi bekliyor.',
+          description: 'Bir komut onayınızı veya reddinizi bekliyor.'
         },
         input: {
           label: 'Girdi gerekli',
-          description: 'OpenAmer bir soru sordu veya parola ya da gizli bilgi istiyor.',
+          description: 'OpenAmer bir soru sordu veya parola ya da gizli bilgi istiyor.'
         },
         turnDone: {
           label: 'Yanıt hazır',
-          description: 'OpenAmer arka plandayken bir tur tamamlandı.',
+          description: 'OpenAmer arka plandayken bir tur tamamlandı.'
         },
         turnError: {
           label: 'Tur başarısız',
-          description: 'Bir tur hatayla sona erdi.',
+          description: 'Bir tur hatayla sona erdi.'
         },
         backgroundDone: {
           label: 'Arka plan görevi tamamlandı',
-          description: 'Arka planda çalışan bir terminal komutu tamamlandı.',
+          description: 'Arka planda çalışan bir terminal komutu tamamlandı.'
         },
         credits: {
           label: 'Kredi uyarıları',
-          description: 'Kredi erişimi duraklatıldı veya geri açıldı.',
-        },
+          description: 'Kredi erişimi duraklatıldı veya geri açıldı.'
+        }
       },
       test: 'Test bildirimi gönder',
       testTitle: 'OpenAmer',
       testBody: 'Bildirimler çalışıyor.',
-      testSent: 'Test gönderildi. Hiçbir şey görünmüyorsa işletim sistemi bildirim izinlerinizi ve Odak/Rahatsız Etmeyin ayarlarınızı kontrol edin.',
+      testSent:
+        'Test gönderildi. Hiçbir şey görünmüyorsa işletim sistemi bildirim izinlerinizi ve Odak/Rahatsız Etmeyin ayarlarınızı kontrol edin.',
       testUnsupported: 'Bu sistem yerel bildirimleri desteklemiyor.',
       completionSoundTitle: 'Tamamlanma Sesi',
       completionSoundDesc: 'Bir ajan turu bittiğinde çalar. Bir hazır ayar seçin ve burada önizleyin.',
-      completionSoundPreview: 'Önizle',
+      completionSoundPreview: 'Önizle'
     },
     sections: {
       model: 'Model',
@@ -392,7 +401,7 @@ export const tr = defineLocale({
       safety: 'Güvenlik',
       memory: 'Bellek ve Bağlam',
       voice: 'Ses',
-      advanced: 'Gelişmiş',
+      advanced: 'Gelişmiş'
     },
     searchPlaceholder: {
       about: 'OpenAmer Masaüstü Hakkında',
@@ -400,37 +409,40 @@ export const tr = defineLocale({
       gateway: 'Ağ geçidi bağlantısı...',
       keys: 'API anahtarlarında ara...',
       mcp: 'MCP sunucularında ara...',
-      sessions: 'Arşivlenmiş oturumlarda ara...',
+      sessions: 'Arşivlenmiş oturumlarda ara...'
     },
     modeOptions: {
       light: {
         label: 'Açık',
-        description: 'Parlak yüzeyler',
+        description: 'Parlak yüzeyler'
       },
       dark: {
         label: 'Koyu',
-        description: 'Az parlaklık',
+        description: 'Az parlaklık'
       },
       system: {
         label: 'Sistem',
-        description: 'Sistem görünümünü takip et',
-      },
+        description: 'Sistem görünümünü takip et'
+      }
     },
     appearance: {
       title: 'Görünüm',
-      intro: 'Bunlar yalnızca masaüstüne özel görüntüleme tercihleri. Mod parlaklığı kontrol eder; tema vurgu paletini ve sohbet yüzeyi stilini kontrol eder.',
+      intro:
+        'Bunlar yalnızca masaüstüne özel görüntüleme tercihleri. Mod parlaklığı kontrol eder; tema vurgu paletini ve sohbet yüzeyi stilini kontrol eder.',
       colorMode: 'Renk Modu',
       colorModeDesc: 'Sabit bir mod seçin veya OpenAmer’ın sistem ayarınızı takip etmesine izin verin.',
       toolViewTitle: 'Araç Çağrısı Görünümü',
       toolViewDesc: 'Ürün, araç ham verilerini gizler; Teknik, tüm giriş/çıkışı gösterir.',
       uiScaleTitle: 'Arayüz Ölçeği',
-      uiScaleDesc: (percent: number) => `Uygulama genelinde metni ve kontrolleri ölçekler. Cmd/Ctrl ile +, - ve 0 da çalışır. Şu an: %${percent}.`,
+      uiScaleDesc: (percent: number) =>
+        `Uygulama genelinde metni ve kontrolleri ölçekler. Cmd/Ctrl ile +, - ve 0 da çalışır. Şu an: %${percent}.`,
       translucencyTitle: 'Pencere Saydamlığı',
       translucencyDesc: 'Masaüstünüzü tüm pencereden görün. Yalnızca macOS ve Windows.',
       backdropTitle: 'Sohbet Arka Planı',
       backdropDesc: 'Konuşmanın arkasındaki soluk heykel görüntüsü.',
       embedsTitle: 'Gömülü İçerikler',
-      embedsDesc: 'Zengin önizlemeler üçüncü taraf sitelerden yüklenir (YouTube, X, …). Sor, her birine izin verene kadar yer tutucu gösterir; Her Zaman otomatik yükler; Kapalı yalnızca bağlantıları tutar.',
+      embedsDesc:
+        'Zengin önizlemeler üçüncü taraf sitelerden yüklenir (YouTube, X, …). Sor, her birine izin verene kadar yer tutucu gösterir; Her Zaman otomatik yükler; Kapalı yalnızca bağlantıları tutar.',
       embedsAsk: 'Sor',
       embedsAlways: 'Her Zaman',
       embedsOff: 'Kapalı',
@@ -443,7 +455,8 @@ export const tr = defineLocale({
       themeDesc: 'Yalnızca masaüstü paletleri. Seçilen mod üzerinde uygulanır.',
       themeProfileNote: profile => `${profile} profili için kaydedildi — her profil kendi temasını tutar.`,
       installTitle: 'VS Code’dan yükle',
-      installDesc: 'Marketplace uzantı kimliğini (örn. dracula-theme.theme-dracula) yapıştırın; renk teması masaüstü paletine dönüştürülsün.',
+      installDesc:
+        'Marketplace uzantı kimliğini (örn. dracula-theme.theme-dracula) yapıştırın; renk teması masaüstü paletine dönüştürülsün.',
       installPlaceholder: 'yayıncı.uzantı',
       installButton: 'Yükle',
       installing: 'Yükleniyor…',
@@ -453,8 +466,10 @@ export const tr = defineLocale({
       importedBadge: 'İçe aktarıldı',
       pet: {
         title: 'Evcil Hayvan',
-        intro: 'Uygulamanın üzerinde yüzen ve OpenAmer\'in yaptıklarına tepki veren animasyonlu bir petdex maskotu edinin — araçlar çalışırken koşar, başarıda kutlar, hatalarda küser.',
-        restartHint: 'Evcil hayvanlar için hızlı bir yeniden başlatma gerekiyor — çalışan uygulama bu özellik eklenmeden önce başlatılmış. OpenAmer\'i kapatıp yeniden açın, sonra buraya dönün.',
+        intro:
+          "Uygulamanın üzerinde yüzen ve OpenAmer'in yaptıklarına tepki veren animasyonlu bir petdex maskotu edinin — araçlar çalışırken koşar, başarıda kutlar, hatalarda küser.",
+        restartHint:
+          "Evcil hayvanlar için hızlı bir yeniden başlatma gerekiyor — çalışan uygulama bu özellik eklenmeden önce başlatılmış. OpenAmer'i kapatıp yeniden açın, sonra buraya dönün.",
         on: 'Açık',
         off: 'Kapalı',
         scaleTitle: 'Boyut',
@@ -464,7 +479,7 @@ export const tr = defineLocale({
         chooseTitle: 'Bir evcil hayvan seç',
         chooseDesc: 'Birini seçmek, gerekirse kurar ve etkinleştirir.',
         searchPlaceholder: 'Evcil hayvan ara…',
-        unreachable: "petdex galerisine ulaşılamadı. Bağlantını kontrol edip bu sayfayı yeniden aç.",
+        unreachable: 'petdex galerisine ulaşılamadı. Bağlantını kontrol edip bu sayfayı yeniden aç.',
         noMatch: query => `"${query}" ile eşleşen evcil hayvan yok.`,
         installedTag: 'kurulu',
         generatedTag: 'Oluşturuldu',
@@ -473,7 +488,7 @@ export const tr = defineLocale({
         uninstall: name => `${name} kaldır`,
         delete: name => `${name} sil`,
         deleteTitle: name => `${name} silinsin mi?`,
-        deleteBody: "Bu, evcil hayvanı kalıcı olarak siler — yeniden yüklenemez.",
+        deleteBody: 'Bu, evcil hayvanı kalıcı olarak siler — yeniden yüklenemez.',
         deleteConfirm: 'Sil',
         rename: name => `${name} adını değiştir`,
         renameTitle: 'Evcil hayvanın adını değiştir',
@@ -486,8 +501,8 @@ export const tr = defineLocale({
         exportFailed: slug => `${slug} dışa aktarılamadı`,
         noneAvailable: 'Şu anda açılacak evcil hayvan yok.',
         turnOnFailed: 'Evcil hayvan açılamadı.',
-        turnOffFailed: 'Evcil hayvan kapatılamadı.',
-      },
+        turnOffFailed: 'Evcil hayvan kapatılamadı.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -498,25 +513,27 @@ export const tr = defineLocale({
       updates: 'Güncellemeler',
       checkNow: 'Şimdi kontrol et',
       checking: 'Kontrol ediliyor…',
-      seeWhatsNew: "Yenilikleri görün",
+      seeWhatsNew: 'Yenilikleri görün',
       updateNow: 'Şimdi güncelle',
       releaseNotes: 'Sürüm notları',
-      onLatest: "En son sürümdesiniz.",
+      onLatest: 'En son sürümdesiniz.',
       installing: 'Şu anda bir güncelleme yükleniyor.',
-      cantUpdate: "Bu derleme uygulama içinden kendi kendini güncelleyemez.",
-      cantReach: "Güncelleme sunucusuna ulaşılamadı.",
+      cantUpdate: 'Bu derleme uygulama içinden kendi kendini güncelleyemez.',
+      cantReach: 'Güncelleme sunucusuna ulaşılamadı.',
       tapCheck: 'Güncellemeleri aramak için "Şimdi kontrol et"e dokunun.',
-      updateReady: count => `Yeni bir güncelleme hazır (${count} değişiklik${count === 1 ? 'değişiklik' : 'değişiklikler'} dahil).`,
+      updateReady: count =>
+        `Yeni bir güncelleme hazır (${count} değişiklik${count === 1 ? 'değişiklik' : 'değişiklikler'} dahil).`,
       lastChecked: age => `Son kontrol: ${age}`,
       justNowSuffix: ' · şu anda',
       automaticUpdates: 'Otomatik güncellemeler',
-      automaticUpdatesDesc: 'OpenAmer, güncellemeleri arka planda otomatik kontrol eder ve biri hazır olduğunda sizi bilgilendirir.',
+      automaticUpdatesDesc:
+        'OpenAmer, güncellemeleri arka planda otomatik kontrol eder ve biri hazır olduğunda sizi bilgilendirir.',
       branchCommit: (branch, commit) => `Dal ${branch} · Gönderim ${commit}`,
       never: 'asla',
       justNow: 'şu anda',
       minAgo: count => `${count} dk önce`,
       hoursAgo: count => `${count} saat önce`,
-      daysAgo: count => `${count} gün önce`,
+      daysAgo: count => `${count} gün önce`
     },
     config: {
       none: 'Hiçbiri',
@@ -532,7 +549,8 @@ export const tr = defineLocale({
       imported: 'Yapılandırma içe aktarıldı',
       invalidJson: 'Geçersiz yapılandırma JSON',
       keepAwakeTitle: 'Bilgisayarı uyanık tut',
-      keepAwakeDesc: 'Bu makinenin uyumasını engelle; uzun veya gece boyu çalışmalar devam etsin. Ekran yine de kararabilir.',
+      keepAwakeDesc:
+        'Bu makinenin uyumasını engelle; uzun veya gece boyu çalışmalar devam etsin. Ekran yine de kararabilir.'
     },
     credentials: {
       pasteKey: 'Anahtarı yapıştır',
@@ -542,18 +560,18 @@ export const tr = defineLocale({
       couldNotSave: 'Kimlik bilgisi kaydedilemedi.',
       remove: 'Kaldır',
       getKey: 'Anahtar al',
-      saving: 'Kaydediliyor',
+      saving: 'Kaydediliyor'
     },
     envActions: {
       actionsFor: label => `${label} için işlemler`,
       credentialActions: 'Kimlik bilgisi işlemleri',
-      manageInKeys: 'API Anahtarları\'nda yönet',
+      manageInKeys: "API Anahtarları'nda yönet",
       docs: 'Belgeler',
       hideValue: 'Değeri gizle',
       revealValue: 'Değeri göster',
       replace: 'Değiştir',
       set: 'Ayarla',
-      clear: 'Temizle',
+      clear: 'Temizle'
     },
     gateway: {
       loading: 'Ağ geçidi ayarları yükleniyor...',
@@ -561,27 +579,31 @@ export const tr = defineLocale({
       unavailableDesc: 'Masaüstü IPC köprüsü ağ geçidi ayarlarını sunmuyor.',
       title: 'Ağ Geçidi Bağlantısı',
       envOverride: 'ortam değişkeni geçersiz kılması',
-      intro: 'OpenAmer Desktop varsayılan olarak kendi yerel ağ geçidini başlatır. Bu uygulamanın başka bir makinede veya güvenilir bir proxy arkasında zaten çalışan bir OpenAmer arka ucunu kontrol etmesini istediğinizde uzak ağ geçidi kullanın. Aşağıdan bir profil seçerek ona kendi uzak ana bilgisayarını atayın.',
+      intro:
+        'OpenAmer Desktop varsayılan olarak kendi yerel ağ geçidini başlatır. Bu uygulamanın başka bir makinede veya güvenilir bir proxy arkasında zaten çalışan bir OpenAmer arka ucunu kontrol etmesini istediğinizde uzak ağ geçidi kullanın. Aşağıdan bir profil seçerek ona kendi uzak ana bilgisayarını atayın.',
       appliesTo: 'Şunlara uygulanır',
       allProfiles: 'Tüm profiller',
       defaultConnection: 'Kendi geçersiz kılması olmayan her profil için varsayılan bağlantı.',
-      profileConnection: profile => `Yalnızca “${profile}” etkin profil olduğunda kullanılan bağlantı. Geçersiz kılmasını kaldırmak için Varsayılan ağ geçidini kullan seçeneğini seçin.`,
+      profileConnection: profile =>
+        `Yalnızca “${profile}” etkin profil olduğunda kullanılan bağlantı. Geçersiz kılmasını kaldırmak için Varsayılan ağ geçidini kullan seçeneğini seçin.`,
       envOverrideTitle: 'Bu masaüstü oturumunu ortam değişkenleri kontrol ediyor.',
-      envOverrideDesc: 'Aşağıdaki kayıtlı ayarı kullanmak için OPENAMER_DESKTOP_REMOTE_URL ve OPENAMER_DESKTOP_REMOTE_TOKEN değişkenlerini kaldırın.',
+      envOverrideDesc:
+        'Aşağıdaki kayıtlı ayarı kullanmak için OPENAMER_DESKTOP_REMOTE_URL ve OPENAMER_DESKTOP_REMOTE_TOKEN değişkenlerini kaldırın.',
       modeTitle: 'Bağlantı modu',
       localTitle: 'Yerel ağ geçidi',
       localDesc: 'localhost üzerinde özel bir OpenAmer arka ucu başlatın. Bu varsayılandır ve çevrimdışı çalışır.',
       inheritTitle: 'Varsayılan ağ geçidini kullan',
-      inheritDesc: "Bu profilin geçersiz kılmasını kaldırın ve varsayılan bağlantıyı kullanın.",
+      inheritDesc: 'Bu profilin geçersiz kılmasını kaldırın ve varsayılan bağlantıyı kullanın.',
       remoteTitle: 'Uzak ağ geçidi',
       remoteDesc: 'Bu masaüstü kabuğunu uzak bir OpenAmer arka ucuna bağlayın.',
-      remoteAuthHint: 'Barındırılan ağ geçitleri OAuth ya da kullanıcı adı ve parola kullanır; kendi barındırılanlar oturum belirteci kullanabilir.',
+      remoteAuthHint:
+        'Barındırılan ağ geçitleri OAuth ya da kullanıcı adı ve parola kullanır; kendi barındırılanlar oturum belirteci kullanabilir.',
       cloudTitle: 'OpenAmer Bulut',
-      cloudDesc: 'OpenAmer Cloud\'a bir kez giriş yapın ve hesabınızdaki ajanlardan seçin — yapıştırılacak URL yok.',
+      cloudDesc: "OpenAmer Cloud'a bir kez giriş yapın ve hesabınızdaki ajanlardan seçin — yapıştırılacak URL yok.",
       cloudSignInTitle: 'OpenAmer Bulut',
-      cloudSignIn: 'OpenAmer Cloud\'a giriş yapın',
-      cloudSignedIn: 'OpenAmer Cloud\'a giriş yapıldı',
-      cloudNeedsSignIn: 'Hesabınızdaki ajanları keşfetmek için OpenAmer Cloud\'a giriş yapın.',
+      cloudSignIn: "OpenAmer Cloud'a giriş yapın",
+      cloudSignedIn: "OpenAmer Cloud'a giriş yapıldı",
+      cloudNeedsSignIn: "Hesabınızdaki ajanları keşfetmek için OpenAmer Cloud'a giriş yapın.",
       cloudSignedInDesc: 'Giriş yaptınız. Aşağıdan bir ajan seçin; oturum otomatik olarak yenilenir.',
       cloudAgentsTitle: 'Ajanlarınız',
       cloudOrgPickerTitle: 'Bir kuruluş seçin',
@@ -592,7 +614,7 @@ export const tr = defineLocale({
       cloudNoAgents: {
         before: 'Bu hesapta ajan bulunamadı. Şurada bir tane oluşturun: ',
         linkText: 'OpenAmer portalı',
-        after: ', ardından yenileyin.',
+        after: ', ardından yenileyin.'
       },
       cloudRefresh: 'Yenile',
       cloudConnect: 'Bağlan',
@@ -610,18 +632,23 @@ export const tr = defineLocale({
       remoteUrlTitle: 'Uzak URL',
       remoteUrlDesc: 'Uzak kontrol paneli arka ucu için temel URL. Yol önekleri desteklenir, örneğin /openamer.',
       probing: 'Bu ağ geçidinin kimlik doğrulama yöntemi denetleniyor…',
-      probeError: 'Bu ağ geçidine henüz ulaşılamadı. URL\'yi kontrol edin — yanıt verdiğinde kimlik doğrulama yöntemi görünecek.',
+      probeError:
+        "Bu ağ geçidine henüz ulaşılamadı. URL'yi kontrol edin — yanıt verdiğinde kimlik doğrulama yöntemi görünecek.",
       signedIn: 'Oturum açıldı',
       signIn: 'Oturum aç',
       signOut: 'Oturum kapat',
       signInWith: provider => `${provider} ile oturum aç`,
       authTitle: 'Kimlik doğrulama',
-      authSignedInPassword: 'Bu ağ geçidi kullanıcı adı ve parola kullanır. Oturum açtınız; oturum otomatik olarak yenilenir.',
+      authSignedInPassword:
+        'Bu ağ geçidi kullanıcı adı ve parola kullanır. Oturum açtınız; oturum otomatik olarak yenilenir.',
       authSignedInOauth: 'Bu ağ geçidi OAuth kullanır. Oturum açtınız; oturum otomatik olarak yenilenir.',
-      authNeedsPassword: 'Bu ağ geçidi kullanıcı adı ve parola kullanır. Bu masaüstü uygulamasını yetkilendirmek için oturum açın.',
-      authNeedsOauth: provider => `Bu ağ geçidi OAuth kullanır. Bu masaüstü uygulamasını yetkilendirmek için ${provider} ile oturum açın.`,
+      authNeedsPassword:
+        'Bu ağ geçidi kullanıcı adı ve parola kullanır. Bu masaüstü uygulamasını yetkilendirmek için oturum açın.',
+      authNeedsOauth: provider =>
+        `Bu ağ geçidi OAuth kullanır. Bu masaüstü uygulamasını yetkilendirmek için ${provider} ile oturum açın.`,
       tokenTitle: 'Oturum belirteci',
-      tokenDesc: 'REST ve WebSocket erişimi için kullanılan kontrol paneli oturum belirteci. Kayıtlı belirteci korumak için boş bırakın.',
+      tokenDesc:
+        'REST ve WebSocket erişimi için kullanılan kontrol paneli oturum belirteci. Kayıtlı belirteci korumak için boş bırakın.',
       existingToken: value => `Mevcut belirteç ${value}`,
       savedToken: 'kaydedildi',
       pasteSessionToken: 'Oturum belirtecini yapıştır',
@@ -652,8 +679,10 @@ export const tr = defineLocale({
       applyFailed: 'Ağ geçidi ayarları uygulanamadı',
       saveFailed: 'Ağ geçidi ayarları kaydedilemedi',
       sshTitle: 'SSH üzerinden bağlan',
-      sshDesc: 'OpenAmer, SSH üzerinden uzakta başlatılır ve bu uygulamaya tünellenir — başlatmanız veya dışa açmanız gereken bir şey yoktur. Sunucuya çalışan anahtar tabanlı SSH erişimi gerektirir.',
-      sshTrustHint: 'İlk sunulan sunucu anahtarına güvenilir ve sabitlenir; sonraki değişiklikler güvenli şekilde reddedilir.',
+      sshDesc:
+        'OpenAmer, SSH üzerinden uzakta başlatılır ve bu uygulamaya tünellenir — başlatmanız veya dışa açmanız gereken bir şey yoktur. Sunucuya çalışan anahtar tabanlı SSH erişimi gerektirir.',
+      sshTrustHint:
+        'İlk sunulan sunucu anahtarına güvenilir ve sabitlenir; sonraki değişiklikler güvenli şekilde reddedilir.',
       sshHostTitle: 'Sunucu',
       sshHostDesc: 'kullanıcı@sunucu veya ~/.ssh/config içinden bir Sunucu takma adı.',
       sshHostPick: 'Bir sunucu seçin…',
@@ -670,24 +699,29 @@ export const tr = defineLocale({
       sshOpenAmerPathTitle: 'OpenAmer yolu (isteğe bağlı)',
       sshOpenAmerPathDesc: 'Uzak openamer ikili dosyasının tam yolu. Boş = otomatik algıla.',
       sshOpenAmerPathPlaceholder: 'otomatik algıla',
-      sshTestConnection: 'SSH\'yi Test Et',
+      sshTestConnection: "SSH'yi Test Et",
       sshConnect: 'Bağlan',
       sshButtonsHint: 'Kaydet, sonraki açılışta uygulanır. Bağlan, hemen yeniden bağlanır.',
       sshReachable: (host, platform) => `Erişilebilir: ${host} (${platform}) — OpenAmer bulundu`,
       sshIncompleteHost: 'Bağlanmadan önce bir SSH sunucusu girin.',
-      sshErrUnreachable: 'Bu ana bilgisayara SSH üzerinden ulaşılamadı. Ana bilgisayarı, bağlantı noktasını ve ağınızı kontrol edin.',
-      sshErrAuth: 'SSH kimlik doğrulaması başarısız oldu. Anahtarınızı ssh-agent\'a yükleyin (ssh-add) veya ~/.ssh/config içinde bir IdentityFile ayarlayın — OpenAmer ssh\'ı etkileşimsiz çalıştırır.',
-      sshErrHostKey: 'Ana bilgisayar anahtarı son bağlantınızdan beri DEĞİŞTİ. Bunun beklenen bir durum olduğunu doğrulayın, ardından ssh-keygen -R <host> çalıştırıp yeniden bağlanın.',
-      sshErrNotInstalled: 'OpenAmer uzak ana bilgisayarda yüklü değil. Orada yükleyin (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) veya OpenAmer yolunu ayarlayın.',
-      sshErrPlatform: 'Desteklenmeyen uzak platform. OpenAmer Desktop SSH modu Linux, macOS ve Windows uzak ana bilgisayarlarını destekler.',
+      sshErrUnreachable:
+        'Bu ana bilgisayara SSH üzerinden ulaşılamadı. Ana bilgisayarı, bağlantı noktasını ve ağınızı kontrol edin.',
+      sshErrAuth:
+        "SSH kimlik doğrulaması başarısız oldu. Anahtarınızı ssh-agent'a yükleyin (ssh-add) veya ~/.ssh/config içinde bir IdentityFile ayarlayın — OpenAmer ssh'ı etkileşimsiz çalıştırır.",
+      sshErrHostKey:
+        'Ana bilgisayar anahtarı son bağlantınızdan beri DEĞİŞTİ. Bunun beklenen bir durum olduğunu doğrulayın, ardından ssh-keygen -R <host> çalıştırıp yeniden bağlanın.',
+      sshErrNotInstalled:
+        'OpenAmer uzak ana bilgisayarda yüklü değil. Orada yükleyin (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) veya OpenAmer yolunu ayarlayın.',
+      sshErrPlatform:
+        'Desteklenmeyen uzak platform. OpenAmer Desktop SSH modu Linux, macOS ve Windows uzak ana bilgisayarlarını destekler.',
       sshErrTimeout: 'SSH bağlantısı zaman aşımına uğradı. Ana bilgisayara ulaşılamıyor veya uyku modunda olabilir.',
-      sshErrUpdateRequired: 'Desktop SSH ile bağlanmadan önce OpenAmer\'ı uzak ana bilgisayarda güncelleyin.',
-      sshErrUnknown: 'SSH bağlantısı başarısız oldu.',
+      sshErrUpdateRequired: "Desktop SSH ile bağlanmadan önce OpenAmer'ı uzak ana bilgisayarda güncelleyin.",
+      sshErrUnknown: 'SSH bağlantısı başarısız oldu.'
     },
     keys: {
       loading: 'API anahtarları ve kimlik bilgileri yükleniyor...',
       failedLoad: 'API anahtarları yüklenemedi',
-      empty: 'Bu kategoride henüz yapılandırılmış bir şey yok.',
+      empty: 'Bu kategoride henüz yapılandırılmış bir şey yok.'
     },
     mcp: {
       loading: 'MCP sunucuları yükleniyor...',
@@ -699,14 +733,14 @@ export const tr = defineLocale({
       saveFailed: 'Kaydetme başarısız oldu',
       removeFailed: 'Kaldırma başarısız oldu',
       gatewayUnavailableTitle: 'Ağ geçidi kullanılamıyor',
-      gatewayUnavailableMessage: 'MCP\'yi yeniden yüklemeden önce ağ geçidini yeniden bağlayın.',
+      gatewayUnavailableMessage: "MCP'yi yeniden yüklemeden önce ağ geçidini yeniden bağlayın.",
       reloadedTitle: 'MCP araçları yeniden yüklendi',
       reloadedMessage: 'Yeni araç şemaları yeni turlarda geçerli olur.',
       reloadFailed: 'MCP yeniden yükleme başarısız',
       savedTitle: 'MCP sunucusu kaydedildi',
       savedMessage: name => `${name}, MCP yeniden yüklendikten sonra geçerli olur.`,
       newServer: 'Yeni sunucu',
-      reload: 'MCP\'yi yeniden yükle',
+      reload: "MCP'yi yeniden yükle",
       reloading: 'Yeniden yükleniyor...',
       emptyTitle: 'MCP sunucusu yok',
       emptyDesc: 'MCP araçlarını kullanıma açmak için bir stdio veya HTTP sunucusu ekleyin.',
@@ -739,7 +773,8 @@ export const tr = defineLocale({
       catalogInstallFailed: name => `${name} kurulamadı`,
       catalogEnvPrompt: name => `${name} kimlik bilgileri gerektiriyor`,
       catalogEnvRequired: 'Kurmadan önce gerekli değerleri doldurun.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} etkin`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} etkin`,
       statusConnecting: 'Bağlanıyor…',
       statusNeedsAuth: 'Kimlik doğrulama gerekli',
       statusError: 'Hata',
@@ -749,14 +784,15 @@ export const tr = defineLocale({
       authenticatedMessage: (server, count) => `${server}: ${count} araç`,
       waitingForBrowser: 'Tarayıcı bekleniyor…',
       authenticate: 'Kimlik doğrula',
-      unsavedConnect: 'Kaydedilmedi — bağlanmak için mcp.json\'u kaydedin.',
+      unsavedConnect: "Kaydedilmedi — bağlanmak için mcp.json'u kaydedin.",
       enableTool: tool => `${tool} etkinleştir`,
       disableTool: tool => `${tool} devre dışı bırak`,
-      noOutput: 'Henüz çıktı yok.',
+      noOutput: 'Henüz çıktı yok.'
     },
     model: {
       loading: 'Model yapılandırması yükleniyor...',
-      appliesDesc: 'Yeni oturumlar için geçerlidir. Etkin sohbeti anında değiştirmek için mesaj oluşturucudaki model seçiciyi kullanın.',
+      appliesDesc:
+        'Yeni oturumlar için geçerlidir. Etkin sohbeti anında değiştirmek için mesaj oluşturucudaki model seçiciyi kullanın.',
       provider: 'Sağlayıcı',
       model: 'Model',
       applying: 'Uygulanıyor...',
@@ -766,53 +802,55 @@ export const tr = defineLocale({
       defaultsFailed: 'Model varsayılanları kaydedilemedi',
       auxiliaryTitle: 'Yardımcı modeller',
       resetAllToMain: 'Tümünü ana modele sıfırla',
-      auxiliaryDesc: 'Yardımcı görevler varsayılan olarak ana modelde çalışır. Geçersiz kılmak için herhangi bir göreve özel bir model atayın.',
+      auxiliaryDesc:
+        'Yardımcı görevler varsayılan olarak ana modelde çalışır. Geçersiz kılmak için herhangi bir göreve özel bir model atayın.',
       setToMain: 'Ana modele ayarla',
       change: 'Değiştir',
       autoUseMain: 'otomatik · ana modeli kullan',
       providerDefault: '(sağlayıcı varsayılanı)',
       fallbackAdd: 'Yedek ekle',
       fallbackEmpty: 'Yedek model yok — varsayılan model, başarısız olmadıkça kullanılır.',
-      notInCatalog: "bu sağlayıcının model listesinde değil — çağrılar bir yedeğe dönebilir.",
+      notInCatalog: 'bu sağlayıcının model listesinde değil — çağrılar bir yedeğe dönebilir.',
       tasks: {
         vision: {
           label: 'Görüntü',
-          hint: 'Görüntü analizi',
+          hint: 'Görüntü analizi'
         },
         web_extract: {
           label: 'Web çıkarma',
-          hint: 'Sayfa özetleme',
+          hint: 'Sayfa özetleme'
         },
         compression: {
           label: 'Sıkıştırma',
-          hint: 'Bağlam sıkıştırma',
+          hint: 'Bağlam sıkıştırma'
         },
         skills_hub: {
           label: 'Beceri merkezi',
-          hint: 'Beceri arama',
+          hint: 'Beceri arama'
         },
         approval: {
           label: 'Onay',
-          hint: 'Akıllı otomatik onay',
+          hint: 'Akıllı otomatik onay'
         },
         mcp: {
           label: 'MCP',
-          hint: 'MCP araç yönlendirmesi',
+          hint: 'MCP araç yönlendirmesi'
         },
         title_generation: {
           label: 'Başlık oluşturma',
-          hint: 'Oturum başlıkları',
+          hint: 'Oturum başlıkları'
         },
         curator: {
           label: 'Küratör',
-          hint: 'Beceri kullanımı incelemesi',
-        },
-      },
+          hint: 'Beceri kullanımı incelemesi'
+        }
+      }
     },
     providers: {
       connectAccount: 'Hesap bağla',
       haveApiKey: 'Bunun yerine API anahtarınız mı var?',
-      intro: 'Abonelikle giriş yapın — kopyalanacak API anahtarı yok. OpenAmer tarayıcı girişini sizin için tam burada, uygulamada yürütür.',
+      intro:
+        'Abonelikle giriş yapın — kopyalanacak API anahtarı yok. OpenAmer tarayıcı girişini sizin için tam burada, uygulamada yürütür.',
       connected: 'Bağlı',
       collapse: 'Daralt',
       connectAnother: 'Başka bir sağlayıcı bağla',
@@ -822,7 +860,8 @@ export const tr = defineLocale({
       removeConfirm: provider => `${provider} kaldırılsın mı?`,
       removeExternalGeneric: provider => `${provider} kendi CLI'sı tarafından yönetilir — oradan kaldırın.`,
       removeKeyManaged: provider => `${provider} bir API anahtarıyla yapılandırılmış. API Anahtarları'ndan kaldırın.`,
-      removeTerminalConfirm: (provider, command) => `${provider} bağlantısı kesilsin mi? Bu, kimlik bilgisini temizlemek için terminalde "${command}" komutunu çalıştırır.`,
+      removeTerminalConfirm: (provider, command) =>
+        `${provider} bağlantısı kesilsin mi? Bu, kimlik bilgisini temizlemek için terminalde "${command}" komutunu çalıştırır.`,
       removeTerminalRunning: provider => `Terminalde ${provider} bağlantısı kesiliyor…`,
       removedTitle: 'Hesap kaldırıldı',
       removedMessage: provider => `${provider} kaldırıldı.`,
@@ -832,14 +871,16 @@ export const tr = defineLocale({
       noKeysMatch: 'Aramanızla eşleşen sağlayıcı yok.',
       localEndpoint: {
         title: 'Yerel / özel uç nokta',
-        description: 'OpenAmer\'ı OpenAI uyumlu herhangi bir uç noktaya yönlendirin (Zyphra, vLLM, llama.cpp, Ollama vb.).',
+        description:
+          "OpenAmer'ı OpenAI uyumlu herhangi bir uç noktaya yönlendirin (Zyphra, vLLM, llama.cpp, Ollama vb.)."
       },
-      loading: 'Sağlayıcılar yükleniyor...',
+      loading: 'Sağlayıcılar yükleniyor...'
     },
     sessions: {
       loading: 'Arşivlenmiş oturumlar yükleniyor…',
       archivedTitle: 'Arşivlenmiş oturumlar',
-      archivedIntro: 'Arşivlenmiş sohbetler kenar çubuğunda gizlenir ancak tüm mesajlarını korur. Arşivlemek için kenar çubuğunda bir sohbete Ctrl/⌘-tıklayın.',
+      archivedIntro:
+        'Arşivlenmiş sohbetler kenar çubuğunda gizlenir ancak tüm mesajlarını korur. Arşivlemek için kenar çubuğunda bir sohbete Ctrl/⌘-tıklayın.',
       emptyArchivedTitle: 'Arşivlenmiş öğe yok',
       emptyArchivedDesc: 'Burada gizlemek için bir sohbeti arşivleyin.',
       unarchive: 'Arşivden çıkar',
@@ -848,12 +889,14 @@ export const tr = defineLocale({
       restored: 'Geri yüklendi',
       deleteConfirm: title => `"${title}" kalıcı olarak silinsin mi? Bu işlem geri alınamaz.`,
       autoArchiveTitle: 'Eski sohbetleri otomatik arşivle',
-      autoArchiveDesc: "Bir süredir dokunmadığınız sohbetleri otomatik olarak arşivleyin. Sabitlenmiş sohbetler asla arşivlenmez ve hiçbir şey silinmez — arşivlenen sohbetler yalnızca buraya taşınır.",
+      autoArchiveDesc:
+        'Bir süredir dokunmadığınız sohbetleri otomatik olarak arşivleyin. Sabitlenmiş sohbetler asla arşivlenmez ve hiçbir şey silinmez — arşivlenen sohbetler yalnızca buraya taşınır.',
       autoArchiveDaysLabel: 'Arşivle',
       autoArchiveDaysUnit: 'gün işlem yoksa',
       autoArchiveFailed: 'Otomatik arşiv güncellenemedi',
       defaultDirTitle: 'Varsayılan proje dizini',
-      defaultDirDesc: 'Yeni oturumlar, başka bir klasör seçmezseniz bu klasörde başlar. Ev dizininizi kullanmak için boş bırakın.',
+      defaultDirDesc:
+        'Yeni oturumlar, başka bir klasör seçmezseniz bu klasörde başlar. Ev dizininizi kullanmak için boş bırakın.',
       defaultDirUpdated: 'Varsayılan proje dizini güncellendi — etkili olması için yeni bir sohbet başlatın (Ctrl/⌘+N)',
       defaultsTo: label => `Varsayılan: ${label}.`,
       change: 'Değiştir',
@@ -864,7 +907,7 @@ export const tr = defineLocale({
       unarchiveFailed: 'Arşivden çıkarma başarısız',
       deleteFailed: 'Silme başarısız',
       updateDirFailed: 'Varsayılan dizin güncellenemedi',
-      clearDirFailed: 'Varsayılan dizin temizlenemedi',
+      clearDirFailed: 'Varsayılan dizin temizlenemedi'
     },
     toolsets: {
       loadingConfig: 'Yapılandırma yükleniyor',
@@ -887,15 +930,17 @@ export const tr = defineLocale({
       ready: 'Hazır',
       needsSignIn: 'Giriş gerekli',
       needsSetup: 'Kurulum gerekli',
-      openamerIncluded: 'OpenAmer aboneliğine dahildir — etkinleştirmek için OpenAmer Portal\'da oturum açın.',
-      openamerAuthNeededTitle: 'OpenAmer Portal\'da oturum açın',
-      openamerAuthNeededMessage: provider => `${provider} kaydedildi ancak OpenAmer Portal'da oturum açana kadar etkinleşmeyecek.`,
+      openamerIncluded: "OpenAmer aboneliğine dahildir — etkinleştirmek için OpenAmer Portal'da oturum açın.",
+      openamerAuthNeededTitle: "OpenAmer Portal'da oturum açın",
+      openamerAuthNeededMessage: provider =>
+        `${provider} kaydedildi ancak OpenAmer Portal'da oturum açana kadar etkinleşmeyecek.`,
       openamerAuthSignIn: 'Oturum aç',
       openamerAuthDoneTitle: 'OpenAmer Portal bağlandı',
       openamerAuthDoneMessage: 'Abonelik arka uçlarınız artık etkin.',
       openamerAuthFailed: 'OpenAmer Portal oturum açma tamamlanmadı',
       noApiKeyRequired: 'API anahtarı gerekli değil.',
-      postSetupHint: step => `Bu arka uç tek seferlik kurulum gerektirir (${step}). Bu makinede çalışır — birkaç dakika sürebilir.`,
+      postSetupHint: step =>
+        `Bu arka uç tek seferlik kurulum gerektirir (${step}). Bu makinede çalışır — birkaç dakika sürebilir.`,
       postSetupInstalledHint: 'Kuruldu. Yalnızca bir sorun varsa kurulumu yeniden çalıştırın.',
       postSetupRun: 'Kurulumu çalıştır',
       postSetupRerun: 'Kurulumu yeniden çalıştır',
@@ -934,17 +979,18 @@ export const tr = defineLocale({
         unavailable: 'Kullanılamıyor',
         inUse: 'Kullanımda',
         selectedTitle: 'Arka uç seçildi',
-        selectedMessage: backend => `Terminal komutları artık ${backend} üzerinden çalışır. Yeni oturumlar için geçerlidir.`,
+        selectedMessage: backend =>
+          `Terminal komutları artık ${backend} üzerinden çalışır. Yeni oturumlar için geçerlidir.`,
         failedSelect: backend => `${backend} seçilemedi`,
-        needsSetupHint: 'Bu arka ucu şimdi seçebilirsiniz — kurulum tamamlanmadan komutlar çalışmaz.',
-      },
-    },
+        needsSetupHint: 'Bu arka ucu şimdi seçebilirsiniz — kurulum tamamlanmadan komutlar çalışmaz.'
+      }
+    }
   },
   skills: {
     tabSkills: 'Yetenekler',
     tabToolsets: 'Araçlar',
     tabMcp: 'MCP',
-    tabHub: 'Hub\'a Göz At',
+    tabHub: "Hub'a Göz At",
     all: 'Tümü',
     searchSkills: 'Yetenek ara...',
     searchToolsets: 'Araç ara...',
@@ -958,8 +1004,9 @@ export const tr = defineLocale({
     noDescription: 'Açıklama yok.',
     configured: 'Yapılandırıldı',
     needsKeys: 'Anahtar gerekli',
-    visionModelHint: 'Görüntü, yardımcı model yapılandırmanızı kullanır — görüntü işleyebilen model orada seçilir, burada sağlayıcı başına değil.',
-    visionModelLink: 'Görüntü modelini Ayarlar → Modeller\'de seçin',
+    visionModelHint:
+      'Görüntü, yardımcı model yapılandırmanızı kullanır — görüntü işleyebilen model orada seçilir, burada sağlayıcı başına değil.',
+    visionModelLink: "Görüntü modelini Ayarlar → Modeller'de seçin",
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} araç seti etkin`,
     configureToolset: label => `${label} yapılandır`,
     toggleToolset: label => `${label} araç setini aç/kapat`,
@@ -984,7 +1031,7 @@ export const tr = defineLocale({
     provenance: {
       agent: 'Öğrenildi',
       bundled: 'Yerleşik',
-      hub: 'Merkez',
+      hub: 'Merkez'
     },
     emptyNoneFound: noun => `${noun} bulunamadı`,
     emptyNothingMatches: query => `“${query}” ile eşleşen bir şey yok.`,
@@ -1002,9 +1049,11 @@ export const tr = defineLocale({
       connectingHubs: 'Beceri merkezlerine bağlanılıyor...',
       connectedHubs: 'Bağlı merkezler:',
       featured: 'Öne çıkan beceriler',
-      landingHint: 'Resmi dizin, GitHub ve topluluk kaynaklarından yüklenebilir becerilere göz atmak için merkezde arayın.',
+      landingHint:
+        'Resmi dizin, GitHub ve topluluk kaynaklarından yüklenebilir becerilere göz atmak için merkezde arayın.',
       noResults: 'Merkezde eşleşen beceri bulunamadı.',
-      resultCount: (count, ms) => `${count} sonuç${count === 1 ? 'sonuç' : 'sonuçlar'}${ms !== null ? ` in ${ms}ms` : ''}`,
+      resultCount: (count, ms) =>
+        `${count} sonuç${count === 1 ? 'sonuç' : 'sonuçlar'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Zaman aşımı: ${sources}`,
       installed: 'Kurulu',
       install: 'Kur',
@@ -1022,7 +1071,7 @@ export const tr = defineLocale({
       trust: {
         builtin: 'yerleşik',
         trusted: 'güvenilir',
-        community: 'topluluk',
+        community: 'topluluk'
       },
       verdictSafe: 'Güvenli',
       verdictCaution: 'Dikkat',
@@ -1040,8 +1089,8 @@ export const tr = defineLocale({
       loadFailed: 'Beceri merkezi yüklenemedi',
       previewFailed: 'Beceri önizlemesi başarısız',
       scanFailed: 'Güvenlik taraması başarısız',
-      searchFailed: 'Merkez araması başarısız',
-    },
+      searchFailed: 'Merkez araması başarısız'
+    }
   },
   starmap: {
     title: 'Bellek Grafiği',
@@ -1058,7 +1107,8 @@ export const tr = defineLocale({
     emptyTitle: 'Henüz bir şey öğrenilmedi',
     emptyDesc: 'OpenAmer işiniz için beceriler ve bellekler oluşturdukça burada görünürler.',
     share: 'Haritayı paylaş',
-    shareHint: 'Bu haritayı paylaşmak için kodu kopyalayın ya da yüklemek için kod yapıştırın. Yalnızca düzeni içerir, bellek veya beceri metninizi değil.',
+    shareHint:
+      'Bu haritayı paylaşmak için kodu kopyalayın ya da yüklemek için kod yapıştırın. Yalnızca düzeni içerir, bellek veya beceri metninizi değil.',
     shareTitle: 'Haritayı içe / dışa aktar',
     sharePlaceholder: 'Harita kodu yapıştır…',
     copy: 'Harita kodunu kopyala',
@@ -1068,7 +1118,7 @@ export const tr = defineLocale({
     importEmpty: 'Yüklemek için harita kodu yapıştır.',
     importSuccess: nodes => `${nodes} ${nodes === 1 ? 'düğüm' : 'düğümler'} içeren bir harita yüklendi.`,
     importedBadge: 'içe aktarılan harita',
-    resetToMine: 'Haritama dön',
+    resetToMine: 'Haritama dön'
   },
   agents: {
     close: 'Ajanları kapat',
@@ -1098,7 +1148,7 @@ export const tr = defineLocale({
     ageDays: days => `${days} gün önce`,
     durationSeconds: seconds => `${seconds} sn`,
     durationMinutes: (minutes, seconds) => `${minutes} dk ${seconds} sn`,
-    tokens: value => `${value} jeton`,
+    tokens: value => `${value} jeton`
   },
   commandCenter: {
     close: 'Komut merkezini kapat',
@@ -1120,7 +1170,7 @@ export const tr = defineLocale({
       placeholder: 'Evcil hayvan ara…',
       loading: 'Petdex galerisi yükleniyor…',
       error: 'Petdex galerisine ulaşılamadı.',
-      staleBackend: 'Evcil hayvanlar için OpenAmer\'i yeniden başlatın — arka uç bu özellikten eski.',
+      staleBackend: "Evcil hayvanlar için OpenAmer'i yeniden başlatın — arka uç bu özellikten eski.",
       empty: 'Eşleşen evcil hayvan yok.',
       turnOff: 'Kapat',
       turnOn: 'Aç',
@@ -1128,13 +1178,13 @@ export const tr = defineLocale({
       generatedTag: 'Oluşturuldu',
       adoptFailed: 'Bu evcil hayvan sahiplenilemedi.',
       toggleFailed: 'Evcil hayvan açılıp kapatılamadı.',
-      noneAvailable: 'Kullanılabilir evcil hayvan yok — kurmak için aşağıdan birini seçin.',
+      noneAvailable: 'Kullanılabilir evcil hayvan yok — kurmak için aşağıdan birini seçin.'
     },
     generatePet: {
       title: 'Evcil hayvan oluştur',
       placeholder: 'Oluşturmak için bir evcil hayvan tarif edin…',
-      promptHint: 'Bir açıklama yazın, dört görünüm taslağı için Enter\'a basın.',
-      readyHint: 'Açıklamanızdan dört görünüm taslağı için Enter\'a basın.',
+      promptHint: "Bir açıklama yazın, dört görünüm taslağı için Enter'a basın.",
+      readyHint: "Açıklamanızdan dört görünüm taslağı için Enter'a basın.",
       generate: 'Oluştur',
       generating: 'Oluşturuluyor…',
       retry: 'Yeniden dene',
@@ -1147,7 +1197,7 @@ export const tr = defineLocale({
       hatchComposing: 'Parçalar birleştiriliyor…',
       hatchSaving: 'Az kaldı…',
       namePlaceholder: 'Evcil hayvanı adlandır',
-      staleBackend: 'Evcil hayvan oluşturmak için OpenAmer\'ı güncelleyin.',
+      staleBackend: "Evcil hayvan oluşturmak için OpenAmer'ı güncelleyin.",
       backgroundHint: 'Bunu kapatabilirsiniz — tamamlandığında OpenAmer size bildirecek.',
       slowProviderHint: 'Bu birkaç dakika sürebilir',
       remix: 'Remiks',
@@ -1157,19 +1207,19 @@ export const tr = defineLocale({
       referenceImageTooLarge: 'Referans görseli çok büyük. 16 MB altında bir görsel kullanın.',
       referenceImageInvalid: 'Bu referans görseli okunamadı. PNG, JPG, WebP veya GIF deneyin.',
       adopt: 'Benimse',
-      startOver: 'Baştan başla',
+      startOver: 'Baştan başla'
     },
     installTheme: {
       title: 'Tema yükle…',
       pageTitle: 'Tema yükle',
-      placeholder: 'VS Code Marketplace\'te ara...',
-      loading: 'Marketplace\'te aranıyor...',
-      error: 'Marketplace\'e ulaşılamadı.',
+      placeholder: "VS Code Marketplace'te ara...",
+      loading: "Marketplace'te aranıyor...",
+      error: "Marketplace'e ulaşılamadı.",
       empty: 'Eşleşen tema yok.',
       install: 'Yükle',
       installing: 'Yükleniyor...',
       installed: 'Yüklendi',
-      installs: count => `${count} yükleme`,
+      installs: count => `${count} yükleme`
     },
     settingsFields: 'Ayar alanları',
     mcpServers: 'MCP sunucuları',
@@ -1178,49 +1228,49 @@ export const tr = defineLocale({
       maintenance: 'Bakım',
       sessions: 'Oturumlar',
       system: 'Sistem',
-      usage: 'Kullanım',
+      usage: 'Kullanım'
     },
     sectionDescriptions: {
       maintenance: 'Tanılama, yedeklemeler, küratör ve bellek verileri',
       sessions: 'Oturumları arayın ve yönetin',
       system: 'Durum, günlükler ve sistem eylemleri',
-      usage: 'Zaman içinde token, maliyet ve beceri etkinliği',
+      usage: 'Zaman içinde token, maliyet ve beceri etkinliği'
     },
     nav: {
       newChat: {
         title: 'Yeni oturum',
-        detail: 'Yeni bir oturum başlatın',
+        detail: 'Yeni bir oturum başlatın'
       },
       settings: {
         title: 'Ayarlar',
-        detail: 'OpenAmer masaüstünü yapılandırın',
+        detail: 'OpenAmer masaüstünü yapılandırın'
       },
       skills: {
         title: 'Yetenekler',
-        detail: 'Beceriler, araçlar ve MCP sunucuları',
+        detail: 'Beceriler, araçlar ve MCP sunucuları'
       },
       messaging: {
         title: 'Mesajlaşma',
-        detail: 'Telegram, Slack, Discord ve daha fazlasını ayarlayın',
+        detail: 'Telegram, Slack, Discord ve daha fazlasını ayarlayın'
       },
       artifacts: {
         title: 'Yapıtlar',
-        detail: 'Oluşturulan çıktılara göz atın',
-      },
+        detail: 'Oluşturulan çıktılara göz atın'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Oturumlar paneli',
-        detail: 'Oturumları ara, sabitle ve yönet',
+        detail: 'Oturumları ara, sabitle ve yönet'
       },
       system: {
         title: 'Sistem paneli',
-        detail: 'Ağ geçidi durumu, günlükler, yeniden başlatma/güncelleme',
+        detail: 'Ağ geçidi durumu, günlükler, yeniden başlatma/güncelleme'
       },
       usage: {
         title: 'Kullanım paneli',
-        detail: 'Token, maliyet ve beceri etkinliği',
-      },
+        detail: 'Token, maliyet ve beceri etkinliği'
+      }
     },
     providerNavigate: 'Gezin',
     providerSessions: 'Oturumlar',
@@ -1237,7 +1287,7 @@ export const tr = defineLocale({
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · Etkin oturumlar ${count}`,
     restartGateway: 'Ağ geçidini yeniden başlat',
     gatewayRestartFailed: 'Ağ geçidi yeniden başlatılamadı.',
-    updateOpenAmer: 'OpenAmer\'ı güncelle',
+    updateOpenAmer: "OpenAmer'ı güncelle",
     actionRunning: 'çalışıyor',
     actionDone: 'tamamlandı',
     actionFailed: 'başarısız',
@@ -1275,7 +1325,8 @@ export const tr = defineLocale({
       backup: 'Yedek oluştur',
       backupDesc: 'Yapılandırma, anılar, beceriler ve oturumları sıkıştır',
       debugShare: 'Hata ayıklama paylaşımı',
-      debugShareDesc: 'Sansürlenmiş rapor + günlükleri yükle, paylaşılabilir bağlantılar al (6 saatte otomatik silinir)',
+      debugShareDesc:
+        'Sansürlenmiş rapor + günlükleri yükle, paylaşılabilir bağlantılar al (6 saatte otomatik silinir)',
       debugShareRunning: 'Hata ayıklama raporu yükleniyor...',
       debugShareLinks: 'Paylaşım bağlantıları',
       debugShareFailed: 'Hata ayıklama paylaşımı başarısız',
@@ -1308,8 +1359,8 @@ export const tr = defineLocale({
       actionStarted: name => `${name} başlatıldı — günlük izleniyor...`,
       actionFailed: name => `${name} başlatılamadı`,
       running: 'Çalışıyor...',
-      viewLog: 'Eylem günlüğü',
-    },
+      viewLog: 'Eylem günlüğü'
+    }
   },
   messaging: {
     search: 'Mesajlaşmada ara...',
@@ -1324,7 +1375,7 @@ export const tr = defineLocale({
       not_configured: 'Kurulum gerekli',
       pending_restart: 'Yeniden başlatma gerekli',
       retrying: 'Yeniden deneniyor',
-      startup_failed: 'Başlatma başarısız',
+      startup_failed: 'Başlatma başarısız'
     },
     unknown: 'Bilinmiyor',
     hintPendingRestart: 'Bu değişikliği uygulamak için ağ geçidini durum çubuğundan yeniden başlatın.',
@@ -1337,7 +1388,8 @@ export const tr = defineLocale({
     required: 'Gerekli',
     recommended: 'Önerilen',
     advanced: count => `Gelişmiş (${count})`,
-    noTokenNeeded: 'Bu platform burada token gerektirmez. Yukarıdaki kurulum kılavuzunu kullanın, sonra aşağıda etkinleştirin.',
+    noTokenNeeded:
+      'Bu platform burada token gerektirmez. Yukarıdaki kurulum kılavuzunu kullanın, sonra aşağıda etkinleştirin.',
     enabled: 'Etkin',
     disabled: 'Devre dışı',
     unsavedChanges: 'Kaydedilmemiş değişiklikler',
@@ -1363,138 +1415,138 @@ export const tr = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Bot belirteci',
         help: '@BotFather ile bir bot oluşturun, ardından size verdiği belirteci yapıştırın.',
-        placeholder: 'Telegram bot belirtecini yapıştırın',
+        placeholder: 'Telegram bot belirtecini yapıştırın'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'İzin verilen Telegram kullanıcı kimlikleri',
-        help: 'Önerilir. @userinfobot\'tan alınan virgülle ayrılmış sayısal kimlikler. Bu olmazsa herkes botunuza DM gönderebilir.',
+        help: "Önerilir. @userinfobot'tan alınan virgülle ayrılmış sayısal kimlikler. Bu olmazsa herkes botunuza DM gönderebilir."
       },
       TELEGRAM_PROXY: {
-        label: 'Vekil sunucu URL\'si',
-        help: 'Yalnızca Telegram\'ın engellendiği ağlarda gereklidir.',
+        label: "Vekil sunucu URL'si",
+        help: "Yalnızca Telegram'ın engellendiği ağlarda gereklidir."
       },
       DISCORD_BOT_TOKEN: {
         label: 'Bot belirteci',
-        help: 'Discord Geliştirici Portalı\'nda bir uygulama oluşturun, bir bot ekleyin ve ardından belirtecini yapıştırın.',
+        help: "Discord Geliştirici Portalı'nda bir uygulama oluşturun, bir bot ekleyin ve ardından belirtecini yapıştırın."
       },
       DISCORD_ALLOWED_USERS: {
         label: 'İzin verilen Discord kullanıcı kimlikleri',
-        help: 'Önerilir. Virgülle ayrılmış Discord kullanıcı kimlikleri.',
+        help: 'Önerilir. Virgülle ayrılmış Discord kullanıcı kimlikleri.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Yanıt stili',
-        help: 'first, all veya off.',
+        help: 'first, all veya off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Tüm Discord kullanıcılarına izin ver',
-        help: 'Yalnızca geliştirme için. Doğru olduğunda, herkes izin listesi olmadan bota DM gönderebilir.',
+        help: 'Yalnızca geliştirme için. Doğru olduğunda, herkes izin listesi olmadan bota DM gönderebilir.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Ana kanal kimliği',
-        help: 'Botun proaktif mesajlar (cron çıktısı, hatırlatıcılar) gönderdiği kanal.',
+        help: 'Botun proaktif mesajlar (cron çıktısı, hatırlatıcılar) gönderdiği kanal.'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Ana kanal adı',
-        help: 'Günlüklerde ve durum çıktısında ana kanal için görünen ad.',
+        help: 'Günlüklerde ve durum çıktısında ana kanal için görünen ad.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Tüm iMessage kullanıcılarına izin ver',
-        help: 'Doğru olduğunda, BlueBubbles izin listesini atla.',
+        help: 'Doğru olduğunda, BlueBubbles izin listesini atla.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Tüm Mattermost kullanıcılarına izin ver',
+        label: 'Tüm Mattermost kullanıcılarına izin ver'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Ana kanal',
+        label: 'Ana kanal'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Tüm QQ kullanıcılarına izin ver',
+        label: 'Tüm QQ kullanıcılarına izin ver'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ ana kanalı',
-        help: 'Cron teslimatı için varsayılan kanal veya grup.',
+        help: 'Cron teslimatı için varsayılan kanal veya grup.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ ana kanal adı',
+        label: 'QQ ana kanal adı'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack bot belirteci',
         help: 'Slack uygulamanızı kurduktan sonra OAuth & Permissions bölümündeki bot belirtecini kullanın.',
-        placeholder: 'Slack bot belirtecini yapıştır',
+        placeholder: 'Slack bot belirtecini yapıştır'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack uygulama belirteci',
         help: 'Socket Mode için gereken uygulama düzeyi belirtecini kullanın.',
-        placeholder: 'Slack uygulama belirtecini yapıştır',
+        placeholder: 'Slack uygulama belirtecini yapıştır'
       },
       SLACK_ALLOWED_USERS: {
         label: 'İzin verilen Slack kullanıcı kimlikleri',
-        help: 'Önerilir. Virgülle ayrılmış Slack kullanıcı kimlikleri.',
+        help: 'Önerilir. Virgülle ayrılmış Slack kullanıcı kimlikleri.'
       },
       MATTERMOST_URL: {
-        label: 'Sunucu URL\'si',
-        placeholder: 'https://mattermost.example.com',
+        label: "Sunucu URL'si",
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Bot belirteci',
+        label: 'Bot belirteci'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'İzin verilen kullanıcı kimlikleri',
-        help: 'Önerilir. Virgülle ayrılmış Mattermost kullanıcı kimlikleri.',
+        help: 'Önerilir. Virgülle ayrılmış Mattermost kullanıcı kimlikleri.'
       },
       MATRIX_HOMESERVER: {
-        label: 'Ana sunucu URL\'si',
-        placeholder: 'https://matrix.org',
+        label: "Ana sunucu URL'si",
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Erişim belirteci',
+        label: 'Erişim belirteci'
       },
       MATRIX_USER_ID: {
         label: 'Bot kullanıcı kimliği',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'İzin verilen Matrix kullanıcı kimlikleri',
-        help: 'Önerilir. @user:server biçiminde virgülle ayrılmış kullanıcı kimlikleri.',
+        help: 'Önerilir. @user:server biçiminde virgülle ayrılmış kullanıcı kimlikleri.'
       },
       SIGNAL_HTTP_URL: {
-        label: 'Signal köprü URL\'si',
+        label: "Signal köprü URL'si",
         placeholder: 'http://127.0.0.1:8080',
-        help: 'Çalışan bir signal-cli REST köprüsünün URL\'si.',
+        help: "Çalışan bir signal-cli REST köprüsünün URL'si."
       },
       SIGNAL_ACCOUNT: {
         label: 'Telefon numarası',
-        help: 'signal-cli köprünüze kayıtlı numara.',
+        help: 'signal-cli köprünüze kayıtlı numara.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'İzin verilen Signal kullanıcıları',
-        help: 'Önerilir. Virgülle ayrılmış Signal tanımlayıcıları.',
+        help: 'Önerilir. Virgülle ayrılmış Signal tanımlayıcıları.'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp köprüsünü etkinleştir',
-        help: 'Aşağıdaki anahtar tarafından otomatik ayarlanır. İhtiyacınız olduğundan emin değilseniz dokunmayın.',
+        help: 'Aşağıdaki anahtar tarafından otomatik ayarlanır. İhtiyacınız olduğundan emin değilseniz dokunmayın.'
       },
       WHATSAPP_MODE: {
-        label: 'Köprü modu',
+        label: 'Köprü modu'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'İzin verilen WhatsApp kullanıcıları',
-        help: 'Önerilir. Virgülle ayrılmış telefon numaraları veya WhatsApp kimlikleri.',
-      },
+        help: 'Önerilir. Virgülle ayrılmış telefon numaraları veya WhatsApp kimlikleri.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
-    search: 'Webhook\'ları ara...',
-    loading: 'Webhook\'lar yükleniyor...',
-    loadFailed: 'Webhook\'lar yüklenemedi',
+    search: "Webhook'ları ara...",
+    loading: "Webhook'lar yükleniyor...",
+    loadFailed: "Webhook'lar yüklenemedi",
     subscriptions: (count: number) => `Abonelikler (${count})`,
     hint: 'Alıcı çalışırken abonelik değişiklikleri anında yeniden yüklenir. Devre dışı abonelikler gelen olayları reddeder.',
     empty: 'Henüz webhook aboneliği yok.',
     disabledTitle: 'Webhook alıcısı devre dışı',
-    disabledBody: 'Webhook\'lar kendi ağ geçidi platformlarıdır. Gelen HTTP olaylarını kabul etmek için burada etkinleştirin; sohbet kanalları yalnızca bir abonelik Telegram, Discord, Slack veya başka bir kanala ilettiğinde gerekir.',
-    enable: 'Webhook\'ları etkinleştir',
+    disabledBody:
+      "Webhook'lar kendi ağ geçidi platformlarıdır. Gelen HTTP olaylarını kabul etmek için burada etkinleştirin; sohbet kanalları yalnızca bir abonelik Telegram, Discord, Slack veya başka bir kanala ilettiğinde gerekir.",
+    enable: "Webhook'ları etkinleştir",
     enabling: 'Etkinleştiriliyor...',
     enabled: (name: string) => `Etkin: "${name}"`,
     disabled: (name: string) => `Devre dışı: "${name}"`,
@@ -1510,7 +1562,8 @@ export const tr = defineLocale({
     toggleFailed: (name: string) => `"${name}" güncellenemedi`,
     newSubscription: 'Yeni abonelik',
     restarting: 'Ağ geçidi yeniden başlatılıyor...',
-    restartNeeded: 'Web kancaları etkin, ancak alıcının çevrimiçi olabilmesi için ağ geçidinin hâlâ yeniden başlatılması gerekiyor.',
+    restartNeeded:
+      'Web kancaları etkin, ancak alıcının çevrimiçi olabilmesi için ağ geçidinin hâlâ yeniden başlatılması gerekiyor.',
     restartGateway: 'Ağ geçidini yeniden başlat',
     restartingGateway: 'Yeniden başlatılıyor...',
     restartFailed: (detail: string) => `Ağ geçidi yeniden başlatılamadı${detail}`,
@@ -1519,13 +1572,13 @@ export const tr = defineLocale({
     deliverOnly: 'yalnızca teslim et',
     createdTitle: 'Abonelik oluşturuldu',
     createdSecretHint: 'Gizli anahtarı şimdi kopyalayın — yalnızca bir kez gösterilir.',
-    webhookUrl: 'Web kancası URL\'si',
+    webhookUrl: "Web kancası URL'si",
     secretOnce: 'Gizli anahtar (bir kez gösterilir)',
     done: 'Bitti',
     fieldName: 'Ad',
     fieldNamePlaceholder: 'örn. github-push',
     fieldDescription: 'Açıklama',
-    fieldDescriptionPlaceholder: 'Bu webhook\'un ne yaptığı (isteğe bağlı)',
+    fieldDescriptionPlaceholder: "Bu webhook'un ne yaptığı (isteğe bağlı)",
     fieldEvents: 'Olaylar',
     fieldEventsPlaceholder: 'virgülle ayrılmış, tümü için boş bırakın',
     fieldSkills: 'Yetenekler',
@@ -1546,8 +1599,8 @@ export const tr = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'E-posta',
-      github_comment: 'GitHub yorumu',
-    },
+      github_comment: 'GitHub yorumu'
+    }
   },
   profiles: {
     close: 'Profilleri kapat',
@@ -1602,9 +1655,9 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     nameLabel: 'Ad',
     cloneFrom: 'Kopyala',
     cloneFromNone: 'Yok (boş)',
-    cloneFromDesc: 'Seçilen kaynak profilden yapılandırmayı, yetenekleri ve SOUL.md\'yi kopyalar.',
+    cloneFromDesc: "Seçilen kaynak profilden yapılandırmayı, yetenekleri ve SOUL.md'yi kopyalar.",
     cloneFromDefault: 'Varsayılandan kopyala',
-    cloneFromDefaultDesc: 'Varsayılan profilinizden yapılandırmayı, yetenekleri ve SOUL.md\'yi kopyalayın.',
+    cloneFromDefaultDesc: "Varsayılan profilinizden yapılandırmayı, yetenekleri ve SOUL.md'yi kopyalayın.",
     invalidName: hint => `Geçersiz isim. ${hint}`,
     nameRequired: 'İsim gereklidir.',
     creating: 'Oluşturuluyor...',
@@ -1625,10 +1678,10 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     failedLoadSoul: 'SOUL.md yüklenemedi',
     failedSaveSoul: 'SOUL.md kaydedilemedi',
     failedCreate: 'Profil oluşturulamadı',
-    failedRename: 'Profil yeniden adlandırılamadı',
+    failedRename: 'Profil yeniden adlandırılamadı'
   },
   cron: {
-    close: 'Cron\'u kapat',
+    close: "Cron'u kapat",
     title: 'Zamanlanmış görevler',
     count: count => `${count} ${count === 1 ? 'iş' : 'işler'}`,
     search: 'Cron görevlerinde ara...',
@@ -1640,14 +1693,14 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       paused: 'duraklatıldı',
       disabled: 'devre dışı',
       error: 'hata',
-      completed: 'tamamlandı',
+      completed: 'tamamlandı'
     },
     deliveryLabels: {
       local: 'Bu masaüstü',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'E-posta',
+      email: 'E-posta'
     },
     scheduleLabels: {
       daily: 'Günlük',
@@ -1656,16 +1709,16 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       monthly: 'Aylık',
       hourly: 'Saatlik',
       'every-15-minutes': 'Her 15 dakikada bir',
-      custom: 'Özel',
+      custom: 'Özel'
     },
     scheduleHints: {
-      daily: 'Her gün 09:00\'da',
-      weekdays: 'Pazartesi–Cuma 09:00\'da',
-      weekly: 'Her Pazartesi 09:00\'da',
-      monthly: 'Her ayın ilk günü 09:00\'da',
+      daily: "Her gün 09:00'da",
+      weekdays: "Pazartesi–Cuma 09:00'da",
+      weekly: "Her Pazartesi 09:00'da",
+      monthly: "Her ayın ilk günü 09:00'da",
       hourly: 'Her saatin başında',
       'every-15-minutes': 'Her 15 dakikada bir',
-      custom: 'Cron sözdizimi veya doğal dil',
+      custom: 'Cron sözdizimi veya doğal dil'
     },
     days: {
       '0': 'Pazar',
@@ -1675,7 +1728,7 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       '4': 'Perşembe',
       '5': 'Cuma',
       '6': 'Cumartesi',
-      '7': 'Pazar',
+      '7': 'Pazar'
     },
     dayFallback: value => `gün ${value}`,
     everyDayAt: time => `Her gün saat ${time}`,
@@ -1685,7 +1738,8 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     topOfHour: 'Her saatin başında',
     everyHourAt: minute => `Her saat :${minute}`,
     newCron: 'Yeni cron',
-    emptyDescNew: 'Bir istemi cron ifadesine göre çalışacak şekilde zamanlayın. OpenAmer bunu çalıştırır ve sonuçları seçtiğiniz hedefe iletir.',
+    emptyDescNew:
+      'Bir istemi cron ifadesine göre çalışacak şekilde zamanlayın. OpenAmer bunu çalıştırır ve sonuçları seçtiğiniz hedefe iletir.',
     emptyDescSearch: 'Daha geniş bir arama sorgusu deneyin.',
     emptyTitleNew: 'Henüz zamanlanmış görev yok',
     emptyTitleSearch: 'Eşleşme yok',
@@ -1698,12 +1752,12 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     runHistory: 'Çalıştırma geçmişi',
     actionsFor: title => `${title} için işlemler`,
     actionsTitle: 'Cron görevi işlemleri',
-    resume: 'Cron\'u devam ettir',
-    pause: 'Cron\'u duraklat',
+    resume: "Cron'u devam ettir",
+    pause: "Cron'u duraklat",
     resumeTitle: 'Devam ettir',
     pauseTitle: 'Duraklat',
     triggerNow: 'Şimdi tetikle',
-    edit: 'Cron\'u düzenle',
+    edit: "Cron'u düzenle",
     deleteTitle: 'Cron görevi silinsin mi?',
     deleteDescPrefix: 'Bu, ',
     deleteDescSuffix: ' kalıcı olarak kaldırılacak. Hemen tetiklenmeyi durduracak.',
@@ -1721,8 +1775,10 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     failedSave: 'Cron işi kaydedilemedi',
     editTitle: 'Cron işini düzenle',
     createTitle: 'Yeni cron işi',
-    editDesc: 'Zamanlamayı, istemi veya teslimat hedefini güncelleyin. Değişiklikler bir sonraki çalıştırmada uygulanır.',
-    createDesc: 'Bir istemin otomatik olarak çalışmasını planlayın. Cron sözdizimini veya "her 15 dakikada bir" gibi doğal bir ifadeyi kullanın.',
+    editDesc:
+      'Zamanlamayı, istemi veya teslimat hedefini güncelleyin. Değişiklikler bir sonraki çalıştırmada uygulanır.',
+    createDesc:
+      'Bir istemin otomatik olarak çalışmasını planlayın. Cron sözdizimini veya "her 15 dakikada bir" gibi doğal bir ifadeyi kullanın.',
     nameLabel: 'Ad',
     namePlaceholder: 'Sabah özeti',
     promptLabel: 'İstem',
@@ -1744,7 +1800,7 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     createAction: 'Cron oluştur',
     tabs: {
       jobs: 'Görevler',
-      blueprints: 'Şablonlar',
+      blueprints: 'Şablonlar'
     },
     blueprints: {
       tab: 'Şablonlar',
@@ -1758,8 +1814,8 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       loading: 'Şablonlar yükleniyor...',
       failedLoad: 'Şablonlar yüklenemedi',
       emptyTitle: 'Kullanılabilir şablon yok',
-      emptyDesc: 'Bu arka uçta kullanılabilir otomasyon şablonu yok.',
-    },
+      emptyDesc: 'Bu arka uçta kullanılabilir otomasyon şablonu yok.'
+    }
   },
   artifacts: {
     search: 'Yapıtları ara...',
@@ -1792,15 +1848,15 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     kindFile: 'dosya',
     kindLink: 'bağlantı',
     chat: 'Sohbet',
-    copyUrl: 'URL\'yi kopyala',
-    copyPath: 'Yolu kopyala',
+    copyUrl: "URL'yi kopyala",
+    copyPath: 'Yolu kopyala'
   },
   sidebar: {
     nav: {
       'new-session': 'Yeni oturum',
       skills: 'Yetenekler',
       messaging: 'Mesajlaşma',
-      artifacts: 'Çıktılar',
+      artifacts: 'Çıktılar'
     },
     searchAria: 'Oturumları ara',
     searchPlaceholder: 'Oturumları ara…',
@@ -1852,8 +1908,10 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       copyPath: 'Yolu kopyala',
       removeFromSidebar: 'Kenar çubuğundan gizle',
       createFailed: 'Proje oluşturulamadı',
-      staleBackend: 'Proje oluşturmak için OpenAmer arka ucunu güncelleyin — arka ucunuz bu masaüstü uygulamasından daha eski (Ayarlar → Güncellemeler → Arka Uç).',
-      deleteConfirm: 'Bu, kaydedilen projeyi OpenAmer\'den kaldırır. Dosyalar, git depoları ve çalışma ağaçları olduğu gibi kalır.',
+      staleBackend:
+        'Proje oluşturmak için OpenAmer arka ucunu güncelleyin — arka ucunuz bu masaüstü uygulamasından daha eski (Ayarlar → Güncellemeler → Arka Uç).',
+      deleteConfirm:
+        "Bu, kaydedilen projeyi OpenAmer'den kaldırır. Dosyalar, git depoları ve çalışma ağaçları olduğu gibi kalır.",
       startWork: 'Yeni çalışma ağacı',
       newWorktreeTitle: 'Yeni çalışma ağacı',
       newWorktreeDesc: 'Bu çalışma ağacı için dalı adlandırın.',
@@ -1874,13 +1932,15 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       noBranches: 'Dal bulunamadı',
       removeWorktree: 'Çalışma ağacını kaldır',
       removeWorktreeFailed: 'Çalışma ağacı kaldırılamadı (işlenmemiş değişiklikler?)',
-      removeWorktreeConfirm: 'Git\'ten kaldırın (çalışma ağacı dizinini siler; dal kalır) veya şeridi kenar çubuğundan gizleyip çalışma ağacını diskte bırakın.',
-      removeWorktreeDirty: 'Bu çalışma ağacında işlenmemiş değişiklikler var. Zorla kaldırın (bu değişiklikler atılır) veya şeridi gizleyip diskte tutun.',
+      removeWorktreeConfirm:
+        "Git'ten kaldırın (çalışma ağacı dizinini siler; dal kalır) veya şeridi kenar çubuğundan gizleyip çalışma ağacını diskte bırakın.",
+      removeWorktreeDirty:
+        'Bu çalışma ağacında işlenmemiş değişiklikler var. Zorla kaldırın (bu değişiklikler atılır) veya şeridi gizleyip diskte tutun.',
       forceRemove: 'Zorla kaldır',
       enter: label => `Aç ${label}`,
       reorder: label => `${label} yeniden sırala`,
       toggle: label => `${label} oturumlarını aç/kapat`,
-      back: 'Tüm projeler',
+      back: 'Tüm projeler'
     },
     newSessionIn: label => `${label} içinde yeni oturum`,
     showMoreIn: (count, label) => `${count} tane daha ${label} içinde göster`,
@@ -1918,39 +1978,39 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       ageNow: 'şimdi',
       ageDay: 'g',
       ageHour: 's',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Bugün erken saatlerde',
       yesterday: 'Dün',
       thisWeek: 'Bu hafta başlarında',
       lastWeek: 'Geçen hafta',
-      thisMonth: 'Bu ay başlarında',
-    },
+      thisMonth: 'Bu ay başlarında'
+    }
   },
   composer: {
     message: 'Mesaj',
     wakingProfile: profile => `Uyandırılıyor ${profile}…`,
     placeholderStarting: 'OpenAmer başlatılıyor...',
-    placeholderReconnecting: 'OpenAmer\'e yeniden bağlanılıyor…',
+    placeholderReconnecting: "OpenAmer'e yeniden bağlanılıyor…",
     placeholderFollowUp: 'Takip mesajı gönder',
     newSessionPlaceholders: [
       'Ne yapıyoruz?',
-      'OpenAmer\'e bir görev ver',
-      "Aklında ne var?",
+      "OpenAmer'e bir görev ver",
+      'Aklında ne var?',
       'İhtiyacını açıkla',
       'Ne üzerinde çalışalım?',
       'Her şeyi sor',
-      'Bir hedefle başla',
+      'Bir hedefle başla'
     ],
     followUpPlaceholders: [
       'Takip mesajı gönder',
       'Daha fazla bağlam ekle',
       'İsteği netleştir',
-      "Sırada ne var?",
+      'Sırada ne var?',
       'Devam et',
       'Daha ileri götür',
-      'Düzenle veya devam et',
+      'Düzenle veya devam et'
     ],
     startVoice: 'Sesli sohbeti başlat',
     queueMessage: 'Mesajı kuyruğa al',
@@ -1986,7 +2046,7 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       '/resume': 'önceki oturuma devam et',
       '/details': 'transkript ayrıntı düzeyini kontrol et',
       '/copy': 'seçimi veya son asistan mesajını kopyala',
-      '/quit': 'openamer\'dan çık',
+      '/quit': "openamer'dan çık"
     },
     hotkeyDescs: {
       'composer.mention': 'dosya, klasör, URL ve git referansı',
@@ -1996,20 +2056,20 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       'composer.sendQueued': 'kuyruktaki sonraki turu gönder',
       'keybinds.openPanel': 'tüm klavye kısayolları',
       'composer.cancel': 'açılır pencereyi kapat · çalıştırmayı iptal et',
-      'composer.history': 'açılır pencere / geçmiş arasında geçiş',
+      'composer.history': 'açılır pencere / geçmiş arasında geçiş'
     },
     attachUrlTitle: 'URL ekle',
     attachUrlDesc: 'OpenAmer sayfayı getirecek ve bu tur için bağlam olarak ekleyecektir.',
     urlPlaceholder: 'https://example.com/post',
-    urlHintPre: 'Tam URL\'yi ekleyin, örn. ',
+    urlHintPre: "Tam URL'yi ekleyin, örn. ",
     attach: 'Ekle',
     queued: count => `${count} Sırada`,
     queuedPaused: count => `${count} Sırada — duraklatıldı`,
     attachmentOnly: 'Sadece ek içeren tur',
     emptyTurn: 'Boş tur',
     attachments: count => `${count} ek${count === 1 ? 'ek' : 'ekler'}`,
-    editingInComposer: 'Composer\'da düzenleniyor',
-    editingQueuedInComposer: 'Sıradaki tur Composer\'da düzenleniyor',
+    editingInComposer: "Composer'da düzenleniyor",
+    editingQueuedInComposer: "Sıradaki tur Composer'da düzenleniyor",
     queueEdit: 'Düzenle',
     queueSendNext: 'İleri',
     queueSend: 'Gönder',
@@ -2047,19 +2107,19 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       codeReview: {
         label: 'Kod incelemesi',
         description: 'Mevcut değişikliği regresyonlar, atlanan uç durumlar ve eksik testler açısından denetleyin.',
-        text: 'Lütfen bunu hatalar, regresyonlar ve eksik testler açısından inceleyin.',
+        text: 'Lütfen bunu hatalar, regresyonlar ve eksik testler açısından inceleyin.'
       },
       implementationPlan: {
         label: 'Uygulama planı',
         description: 'Koda dokunmadan önce bir yaklaşımın ana hatlarını çizin ki değişiklik farkı odaklı kalsın.',
-        text: 'Lütfen kodu değiştirmeden önce kısa bir uygulama planı yapın.',
+        text: 'Lütfen kodu değiştirmeden önce kısa bir uygulama planı yapın.'
       },
       explainThis: {
         label: 'Bunu açıklayın',
         description: 'Seçili kodun nasıl çalıştığını adım adım anlatın ve temel dosyalara bağlantı verin.',
-        text: 'Lütfen bunun nasıl çalıştığını açıklayın ve temel dosyaları gösterin.',
-      },
-    },
+        text: 'Lütfen bunun nasıl çalıştığını açıklayın ve temel dosyaları gösterin.'
+      }
+    }
   },
   statusStack: {
     agents: 'Ajanlar',
@@ -2089,7 +2149,8 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       viewAsList: 'Liste olarak görüntüle',
       revert: 'Geri Al',
       revertAll: 'Tümünü Geri Al',
-      revertConfirm: 'Bu dosyadaki değişiklikler atılsın ve dosya işlenmiş duruma geri getirilsin mi? Bu geri alınamaz.',
+      revertConfirm:
+        'Bu dosyadaki değişiklikler atılsın ve dosya işlenmiş duruma geri getirilsin mi? Bu geri alınamaz.',
       revertAllConfirm: 'Tüm değişiklikler atılsın ve dosyalar işlenmiş duruma geri getirilsin mi? Bu geri alınamaz.',
       staged: 'Sahnelendi',
       noChanges: 'Değişiklik yok',
@@ -2105,15 +2166,16 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       stopGenerating: 'Oluşturmayı durdur',
       createPr: 'PR oluştur',
       openPr: 'PR aç',
-      ghMissing: 'PR açmak için GitHub CLI\'yi (gh) kurun ve oturum açın',
-      agentShip: 'OpenAmer\'dan PR açmasını iste',
-      agentShipPrompt: 'Mevcut değişiklikleri inceleyin, bunları açık bir geleneksel işleme mesajıyla işleyin, dalı gönderin ve bir PR açın.',
+      ghMissing: "PR açmak için GitHub CLI'yi (gh) kurun ve oturum açın",
+      agentShip: "OpenAmer'dan PR açmasını iste",
+      agentShipPrompt:
+        'Mevcut değişiklikleri inceleyin, bunları açık bir geleneksel işleme mesajıyla işleyin, dalı gönderin ve bir PR açın.',
       newBranch: 'Yeni dal',
       branchOffFrom: base => `${base} dalından yeni dal`,
       switchTo: branch => `${branch} dalına geç`,
       switchFailed: branch => `${branch} dalına geçilemedi`,
-      worktrees: 'Çalışma ağaçları',
-    },
+      worktrees: 'Çalışma ağaçları'
+    }
   },
   updates: {
     stages: {
@@ -2128,19 +2190,19 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       done: 'Güncelleme tamamlandı',
       manual: 'Terminalinizden güncelleyin',
       guiSkew: 'Masaüstü uygulamasını güncelle',
-      error: 'Güncelleme duraklatıldı',
+      error: 'Güncelleme duraklatıldı'
     },
     checking: 'Güncellemeler aranıyor…',
     checkFailedTitle: 'Güncellemeler kontrol edilemedi',
     tryAgain: 'Tekrar dene',
     notAvailableTitle: 'Güncelleme kullanılamıyor',
-    unsupportedMessage: 'OpenAmer\'ın bu sürümü uygulama içinden kendini güncelleyemiyor.',
+    unsupportedMessage: "OpenAmer'ın bu sürümü uygulama içinden kendini güncelleyemiyor.",
     connectionRetry: 'Bağlantınızı kontrol edip tekrar deneyin.',
     latestBody: 'En son sürümü kullanıyorsunuz.',
     latestBodyBackend: 'Arka uç en son sürümü çalıştırıyor.',
     allSetTitle: 'Her şey hazır',
     availableTitle: 'Yeni güncelleme mevcut',
-    availableBody: 'OpenAmer\'ın yeni bir sürümü yüklenmeye hazır.',
+    availableBody: "OpenAmer'ın yeni bir sürümü yüklenmeye hazır.",
     availableTitleBackend: 'Arka uç güncellemesi mevcut',
     availableBodyBackend: 'Bağlı OpenAmer arka ucunun daha yeni bir sürümü yüklenmeye hazır.',
     availableBodyNoChangelog: 'Daha yeni bir sürüm hazır. Bu yükleme türü için sürüm notları mevcut değil.',
@@ -2148,15 +2210,19 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     maybeLater: 'Belki daha sonra',
     moreChanges: count => `+ ${count} daha fazla değişiklik${count === 1 ? 'değişiklik' : 'değişiklikler'} dahil.`,
     manualTitle: 'Terminalinizden güncelleyin',
-    manualBody: 'OpenAmer\'ı komut satırından yüklediniz, bu yüzden güncellemeler de orada çalışır. Bunu terminalinize yapıştırın:',
+    manualBody:
+      "OpenAmer'ı komut satırından yüklediniz, bu yüzden güncellemeler de orada çalışır. Bunu terminalinize yapıştırın:",
     manualPickedUp: 'OpenAmer bir sonraki açılışınızda yeni sürümü alacak.',
     guiSkewTitle: 'Masaüstü uygulamasını güncelleyin',
-    guiSkewBody: 'Arka uç güncellendi, ancak bu masaüstü uygulaması paketi değişmedi. Eşleşmesi için OpenAmer masaüstü uygulamasını güncelleyin veya yeniden yükleyin (AppImage / .deb / .rpm dosyanız).',
+    guiSkewBody:
+      'Arka uç güncellendi, ancak bu masaüstü uygulaması paketi değişmedi. Eşleşmesi için OpenAmer masaüstü uygulamasını güncelleyin veya yeniden yükleyin (AppImage / .deb / .rpm dosyanız).',
     copy: 'Kopyala',
     copied: 'Kopyalandı',
     done: 'Tamamlandı',
-    applyingBody: 'OpenAmer güncelleyicisi kendi penceresinde devreye girer ve işi bitince OpenAmer’ı otomatik olarak yeniden açar. Güncelleme sürerken lütfen OpenAmer’ı kendiniz yeniden açmayın.',
-    applyingBodyBackend: 'Uzak arka uç güncellemeyi uyguluyor ve yeniden başlayacak. Arka uç geri geldiğinde OpenAmer otomatik olarak yeniden bağlanır.',
+    applyingBody:
+      'OpenAmer güncelleyicisi kendi penceresinde devreye girer ve işi bitince OpenAmer’ı otomatik olarak yeniden açar. Güncelleme sürerken lütfen OpenAmer’ı kendiniz yeniden açmayın.',
+    applyingBodyBackend:
+      'Uzak arka uç güncellemeyi uyguluyor ve yeniden başlayacak. Arka uç geri geldiğinde OpenAmer otomatik olarak yeniden bağlanır.',
     applyingClose: 'Güncelleme çalışırken bu pencere kapanacak, ardından OpenAmer kendiliğinden yeniden açılacak.',
     errorTitle: 'Güncelleme tamamlanmadı',
     errorBody: 'Sorun yok — hiçbir şey kaybolmadı. Şimdi yeniden deneyebilirsiniz.',
@@ -2167,12 +2233,13 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       restarting: 'Güncellemeyi yüklemek için arka uç yeniden başlatılıyor…',
       notAvailable: 'Bu arka uç için güncelleme yok.',
       failed: 'Arka uç güncellemesi başarısız oldu.',
-      noReturn: 'Arka uç yeniden çevrimiçi olmadı. Güncelleme tamamlanmamış olabilir — arka uç sunucusunu kontrol edin.',
+      noReturn: 'Arka uç yeniden çevrimiçi olmadı. Güncelleme tamamlanmamış olabilir — arka uç sunucusunu kontrol edin.'
     },
     appErrors: {
-      updateLocked: 'Güncelleme iptal edildi: başka bir OpenAmer penceresi veya openamer çalıştıran bir terminal bu kurulumu açık tutuyor. Kapatıp yeniden deneyin.',
-      updateFailed: 'Güncelleme tamamlanmadı. Sorun yok — hiçbir şey kaybolmadı. Şimdi yeniden deneyebilirsiniz.',
-    },
+      updateLocked:
+        'Güncelleme iptal edildi: başka bir OpenAmer penceresi veya openamer çalıştıran bir terminal bu kurulumu açık tutuyor. Kapatıp yeniden deneyin.',
+      updateFailed: 'Güncelleme tamamlanmadı. Sorun yok — hiçbir şey kaybolmadı. Şimdi yeniden deneyebilirsiniz.'
+    }
   },
   install: {
     stageStates: {
@@ -2180,27 +2247,31 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       running: 'Yükleniyor',
       succeeded: 'Tamamlandı',
       skipped: 'Atlandı',
-      failed: 'Başarısız',
+      failed: 'Başarısız'
     },
     oneTimeTitle: 'OpenAmer tek seferlik kurulum gerektiriyor',
-    unsupportedDesc: platform => `Otomatik ilk açılış kurulumu henüz ${platform} üzerinde kullanılamıyor. Uçbirim'i açıp aşağıdaki komutu çalıştırın, ardından bu uygulamayı yeniden başlatın. Sonraki açılışlarda bu adım atlanır.`,
+    unsupportedDesc: platform =>
+      `Otomatik ilk açılış kurulumu henüz ${platform} üzerinde kullanılamıyor. Uçbirim'i açıp aşağıdaki komutu çalıştırın, ardından bu uygulamayı yeniden başlatın. Sonraki açılışlarda bu adım atlanır.`,
     installCommand: 'Kurulum komutu',
     copyCommand: 'Komutu kopyala',
     viewDocs: 'Kurulum belgelerini görüntüle',
     installTo: 'Şuraya kurulacak',
     retryAfterRun: 'Çalıştırdım -- yeniden dene',
-    setupChoiceTitle: 'OpenAmer Masaüstü\'nü ayarla',
-    setupChoiceDesc: 'Bu uygulamayı zaten çalıştırdığınız bir OpenAmer ağ geçidine bağlayın veya OpenAmer\'ı bu bilgisayara yerel olarak kurun.',
-    connectExistingTitle: 'Mevcut OpenAmer\'a bağlan',
+    setupChoiceTitle: "OpenAmer Masaüstü'nü ayarla",
+    setupChoiceDesc:
+      "Bu uygulamayı zaten çalıştırdığınız bir OpenAmer ağ geçidine bağlayın veya OpenAmer'ı bu bilgisayara yerel olarak kurun.",
+    connectExistingTitle: "Mevcut OpenAmer'a bağlan",
     connectExistingShort: 'Mevcut olana bağlan',
-    connectExistingDesc: 'Oturum belirteci veya tarayıcı oturum açma ile uzak bir arka uç kullanın. Yerel kurulum başlatılmaz.',
-    installLocalTitle: 'OpenAmer\'ı yerel olarak kur',
-    installLocalDesc: 'OpenAmer\'i indirin, Python ortamını oluşturun ve arka ucu bu bilgisayarda çalıştırın.',
-    localStartUnavailable: 'Yerel kurulum başlatılamadı. OpenAmer Desktop\'u yeniden başlatıp tekrar deneyin.',
-    remoteSetupTitle: 'Mevcut OpenAmer\'e bağlan',
-    remoteSetupDesc: 'Ağ geçidi URL\'sini girin. OpenAmer Desktop, belirteç mi yoksa tarayıcıyla oturum açma mı gerektiğini algılar.',
-    remoteUrlTitle: 'Ağ geçidi URL\'si',
-    remoteUrlDesc: 'OpenAmer ağ geçidinin temel URL\'sini kullanın; uzak bağlantıda https:// ekleyin.',
+    connectExistingDesc:
+      'Oturum belirteci veya tarayıcı oturum açma ile uzak bir arka uç kullanın. Yerel kurulum başlatılmaz.',
+    installLocalTitle: "OpenAmer'ı yerel olarak kur",
+    installLocalDesc: "OpenAmer'i indirin, Python ortamını oluşturun ve arka ucu bu bilgisayarda çalıştırın.",
+    localStartUnavailable: "Yerel kurulum başlatılamadı. OpenAmer Desktop'u yeniden başlatıp tekrar deneyin.",
+    remoteSetupTitle: "Mevcut OpenAmer'e bağlan",
+    remoteSetupDesc:
+      "Ağ geçidi URL'sini girin. OpenAmer Desktop, belirteç mi yoksa tarayıcıyla oturum açma mı gerektiğini algılar.",
+    remoteUrlTitle: "Ağ geçidi URL'si",
+    remoteUrlDesc: "OpenAmer ağ geçidinin temel URL'sini kullanın; uzak bağlantıda https:// ekleyin.",
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
     probing: 'Ağ geçidi kimlik doğrulaması algılanıyor...',
     probeError: 'Bu OpenAmer ağ geçidine ulaşılamadı.',
@@ -2211,7 +2282,7 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     connected: 'Bağlandı',
     signIn: 'Oturum aç',
     signInWith: provider => `${provider} ile oturum aç`,
-    enterUrlFirst: 'Önce bir ağ geçidi URL\'si girin.',
+    enterUrlFirst: "Önce bir ağ geçidi URL'si girin.",
     signInIncomplete: 'Kimlik doğrulama tamamlanmadan oturum açma penceresi kapandı.',
     tokenTitle: 'Oturum belirteci',
     tokenDesc: 'Uzak ağ geçidinin .env dosyasındaki oturum belirtecini yapıştırın.',
@@ -2225,8 +2296,10 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     failedTitle: 'Kurulum başarısız oldu',
     settingUpTitle: 'OpenAmer Agent kuruluyor',
     finishingTitle: 'Tamamlanıyor',
-    failedDesc: 'Kurulum adımlarından biri başarısız oldu. Windows\'ta bu, başka bir OpenAmer CLI veya masaüstü örneği çalışıyorsa olabilir. Çalışan tüm OpenAmer örneklerini durdurun, ardından yeniden deneyin. Tam kayıt için aşağıdaki ayrıntılara veya masaüstü günlüğüne bakın.',
-    activeDesc: 'Bu tek seferlik bir kurulumdur. OpenAmer yükleyicisi bağımlılıkları indiriyor ve makinenizi yapılandırıyor. Sonraki başlatmalarda bu adım atlanır.',
+    failedDesc:
+      "Kurulum adımlarından biri başarısız oldu. Windows'ta bu, başka bir OpenAmer CLI veya masaüstü örneği çalışıyorsa olabilir. Çalışan tüm OpenAmer örneklerini durdurun, ardından yeniden deneyin. Tam kayıt için aşağıdaki ayrıntılara veya masaüstü günlüğüne bakın.",
+    activeDesc:
+      'Bu tek seferlik bir kurulumdur. OpenAmer yükleyicisi bağımlılıkları indiriyor ve makinenizi yapılandırıyor. Sonraki başlatmalarda bu adım atlanır.',
     progress: (completed, total) => `${completed} / ${total} adım tamamlandı`,
     currentStage: stage => ` -- şimdi: ${stage}`,
     fetchingManifest: 'Yükleyici bildirimi alınıyor...',
@@ -2240,10 +2313,10 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     transcriptSaved: 'Tam kayıt şuraya kaydedildi',
     copiedOutput: 'Kopyalandı!',
     copyOutput: 'Çıktıyı kopyala',
-    reloadRetry: 'Yeniden yükle ve dene',
+    reloadRetry: 'Yeniden yükle ve dene'
   },
   onboarding: {
-    headerTitle: "OpenAmer Agent kurulumuna başlayalım",
+    headerTitle: 'OpenAmer Agent kurulumuna başlayalım',
     headerDesc: 'Sohbete başlamak için bir model sağlayıcısı bağlayın. Çoğu seçenek tek tıklamayla yapılır.',
     preparingInstall: 'OpenAmer kurulumu tamamlıyor. İlk çalıştırmada genellikle bir dakikadan az sürer.',
     starting: 'OpenAmer başlatılıyor…',
@@ -2251,37 +2324,38 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     collapse: 'Daralt',
     otherProviders: 'Diğer sağlayıcılar',
     haveApiKey: 'API anahtarım var',
-    chooseLater: "Sağlayıcıyı sonra seçeceğim",
+    chooseLater: 'Sağlayıcıyı sonra seçeceğim',
     recommended: 'Önerilen',
     connected: 'Bağlandı',
-    featuredPitch: 'Tek abonelik, 300+ öncü model — OpenAmer\'ı çalıştırmanın önerilen yolu',
-    fireworksPitch: 'Doğrudan model API\'si — Fireworks tarafından barındırılan öncü modeller',
+    featuredPitch: "Tek abonelik, 300+ öncü model — OpenAmer'ı çalıştırmanın önerilen yolu",
+    fireworksPitch: "Doğrudan model API'si — Fireworks tarafından barındırılan öncü modeller",
     openRouterPitch: 'Tek anahtar, yüzlerce model — sağlam bir varsayılan',
     apiKeyOptions: {
       fireworks: {
-        short: 'doğrudan model API\'si',
-        description: 'Fireworks AI tarafından barındırılan modellere doğrudan erişim.',
+        short: "doğrudan model API'si",
+        description: 'Fireworks AI tarafından barındırılan modellere doğrudan erişim.'
       },
       openrouter: {
         short: 'tek anahtar, birçok model',
-        description: 'Tek anahtar arkasında yüzlerce model barındırır. Yeni kurulumlar için iyi bir varsayılan.',
+        description: 'Tek anahtar arkasında yüzlerce model barındırır. Yeni kurulumlar için iyi bir varsayılan.'
       },
       openai: {
         short: 'GPT sınıfı modeller',
-        description: 'OpenAI modellerine doğrudan erişim.',
+        description: 'OpenAI modellerine doğrudan erişim.'
       },
       gemini: {
         short: 'Gemini modelleri',
-        description: 'Google Gemini modellerine doğrudan erişim.',
+        description: 'Google Gemini modellerine doğrudan erişim.'
       },
       xai: {
         short: 'Grok modelleri',
-        description: 'xAI Grok modellerine doğrudan erişim.',
+        description: 'xAI Grok modellerine doğrudan erişim.'
       },
       local: {
         short: 'Kendi sunucunda barındırılan',
-        description: 'OpenAmer\'ı yerel veya kendi sunucunda barındırılan OpenAI uyumlu bir uç noktaya yönlendir (vLLM, llama.cpp, Ollama, vb.).',
-      },
+        description:
+          "OpenAmer'ı yerel veya kendi sunucunda barındırılan OpenAI uyumlu bir uç noktaya yönlendir (vLLM, llama.cpp, Ollama, vb.)."
+      }
     },
     backToSignIn: 'Oturum açmaya dön',
     getKey: 'Anahtar al',
@@ -2294,7 +2368,7 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     flowSubtitles: {
       pkce: 'Oturum açmak için tarayıcınızı açar, ardından burada devam eder',
       device_code: 'Tarayıcınızda bir doğrulama sayfası açar — OpenAmer otomatik olarak bağlanır',
-      external: 'Terminalde bir kez oturum açın, ardından sohbete dönün',
+      external: 'Terminalde bir kez oturum açın, ardından sohbete dönün'
     },
     startingSignIn: provider => `${provider} için oturum açma başlatılıyor...`,
     verifyingCode: provider => `Kodunuz ${provider} ile doğrulanıyor...`,
@@ -2304,15 +2378,17 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     pickDifferentProvider: 'Farklı bir sağlayıcı seçin',
     signInWith: provider => `${provider} ile oturum aç`,
     openedBrowser: provider => `${provider} tarayıcınızda açıldı.`,
-    authorizeThere: 'Orada OpenAmer\'a izin verin.',
+    authorizeThere: "Orada OpenAmer'a izin verin.",
     copyAuthCode: 'Yetkilendirme kodunu kopyalayıp aşağıya yapıştırın.',
     pasteAuthCode: 'Yetkilendirme kodunu yapıştır',
     reopenAuthPage: 'Yetkilendirme sayfasını yeniden aç',
-    autoBrowser: provider => `${provider} tarayıcınızda açıldı. Orada OpenAmer'a izin verin, otomatik olarak bağlanacaksınız — kopyalama veya yapıştırma gerekmez.`,
+    autoBrowser: provider =>
+      `${provider} tarayıcınızda açıldı. Orada OpenAmer'a izin verin, otomatik olarak bağlanacaksınız — kopyalama veya yapıştırma gerekmez.`,
     reopenSignInPage: 'Oturum açma sayfasını yeniden aç',
     waitingAuthorize: 'İzin vermeniz bekleniyor...',
-    externalPending: provider => `${provider} kendi CLI'ı üzerinden oturum açar. Bu komutu terminalde çalıştırın, ardından geri dönün ve "Oturum açtım" seçeneğini seçin:`,
-    signedIn: "Oturum açtım",
+    externalPending: provider =>
+      `${provider} kendi CLI'ı üzerinden oturum açar. Bu komutu terminalde çalıştırın, ardından geri dönün ve "Oturum açtım" seçeneğini seçin:`,
+    signedIn: 'Oturum açtım',
     deviceCodeOpened: provider => `Tarayıcında ${provider} açtık. Bu kodu oraya gir:`,
     reopenVerification: 'Doğrulama sayfasını yeniden aç',
     copy: 'Kopyala',
@@ -2323,7 +2399,7 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     price: (input, output) => `Mtok başına ${input} giriş / ${output} çıkış`,
     change: 'Değiştir',
     startChatting: 'Başla',
-    docs: provider => `${provider} belgeleri`,
+    docs: provider => `${provider} belgeleri`
   },
   modelPicker: {
     title: 'Modeli değiştir',
@@ -2339,13 +2415,13 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     free: 'Ücretsiz',
     freeTier: 'Ücretsiz katman',
     priceTitle: 'Milyon token başına giriş / çıkış fiyatı',
-    wasPrice: 'idi',
+    wasPrice: 'idi'
   },
   modelVisibility: {
     title: 'Modeller',
     search: 'Model ara',
     noAuthenticatedProviders: 'Kimliği doğrulanmış sağlayıcı yok.',
-    addProvider: 'Sağlayıcı ekle…',
+    addProvider: 'Sağlayıcı ekle…'
   },
   shell: {
     windowControls: 'Pencere kontrolleri',
@@ -2356,7 +2432,7 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       noModels: 'Model bulunamadı',
       editModels: 'Modelleri Düzenle…',
       refreshModels: 'Modelleri Yenile',
-      fast: 'Hızlı',
+      fast: 'Hızlı'
     },
     modelOptions: {
       noOptions: 'Bu model için seçenek yok',
@@ -2372,7 +2448,7 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       max: 'Maks',
       ultra: 'Ultra',
       updateFailed: 'Model seçeneği güncellenemedi',
-      fastFailed: 'Hızlı mod güncellenemedi',
+      fastFailed: 'Hızlı mod güncellenemedi'
     },
     gatewayMenu: {
       gateway: 'Ağ geçidi',
@@ -2387,7 +2463,7 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       connection: label => `Bağlantı: ${label}`,
       recentActivity: 'Son etkinlik',
       viewAllLogs: 'Tüm günlükleri görüntüle →',
-      messagingPlatforms: 'Mesajlaşma platformları',
+      messagingPlatforms: 'Mesajlaşma platformları'
     },
     approvalMode: {
       title: 'Onay modu',
@@ -2397,7 +2473,7 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       smart: 'Akıllı',
       smartDescription: 'Eylemleri otomatik değerlendir ve gerektiğinde sor',
       off: 'Kapalı',
-      offDescription: 'Onay istemleri olmadan çalıştır',
+      offDescription: 'Onay istemleri olmadan çalıştır'
     },
     statusbar: {
       unknown: 'bilinmiyor',
@@ -2453,27 +2529,29 @@ ${mode} varsayılanını korumak için boş bırakın.`,
           skills: 'Beceriler',
           subagent_definitions: 'Alt ajan tanımları',
           system_prompt: 'Sistem istemi',
-          tool_definitions: 'Araç tanımları',
+          tool_definitions: 'Araç tanımları'
         },
         empty: 'Henüz bağlam verisi yok',
         loading: 'Dağılım yükleniyor…',
         percentFull: percent => `${percent}% Dolu`,
         title: 'Bağlam Kullanımı',
-        tokenSummary: (used, max) => `${used} / ${max} Token`,
+        tokenSummary: (used, max) => `${used} / ${max} Token`
       },
       openContextUsage: 'Bağlam kullanım dağılımını aç',
       session: 'Oturum',
       runtimeSessionElapsed: 'Çalışma oturumu süresi',
-      yoloOn: 'YOLO açık — tehlikeli komutları otomatik onaylıyor. Kapatmak için tıklayın. Shift+tıklama genel ayarı değiştirir.',
-      yoloOff: 'YOLO kapalı — tehlikeli komutları otomatik onaylamak için tıklayın. Shift+tıklama genel ayarı değiştirir.',
+      yoloOn:
+        'YOLO açık — tehlikeli komutları otomatik onaylıyor. Kapatmak için tıklayın. Shift+tıklama genel ayarı değiştirir.',
+      yoloOff:
+        'YOLO kapalı — tehlikeli komutları otomatik onaylamak için tıklayın. Shift+tıklama genel ayarı değiştirir.',
       modelNone: 'yok',
       noModel: 'model yok',
       switchModel: 'Model değiştir',
       openModelPicker: 'Model seçiciyi aç',
       modelPinned: 'sizin tarafınızdan sabitlendi; yeni sohbetler Ayarlar varsayılanı yerine bunu kullanır',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Sağ kenar çubuğu',
@@ -2509,7 +2587,7 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     terminalNew: 'Yeni uçbirim',
     terminalCloseOthers: 'Diğerlerini kapat',
     terminalCloseAll: 'Tümünü kapat',
-    addToChat: 'Sohbete ekle',
+    addToChat: 'Sohbete ekle'
   },
   preview: {
     tab: 'Önizle',
@@ -2543,7 +2621,8 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     unsavedChanges: 'Kaydedilmemiş değişiklikler',
     saveFailed: message => `Kaydedilemedi: ${message}`,
     diskChangedTitle: 'Dosya diskte değişti',
-    diskChangedBody: 'Bu dosya siz açtıktan sonra değişti. Kendi sürümünüzle üzerine yazılsın mı, yoksa düzenlemeleriniz atılıp yeniden mi yüklensin?',
+    diskChangedBody:
+      'Bu dosya siz açtıktan sonra değişti. Kendi sürümünüzle üzerine yazılsın mı, yoksa düzenlemeleriniz atılıp yeniden mi yüklensin?',
     overwrite: 'Üzerine yaz',
     discardReload: 'At ve yeniden yükle',
     console: {
@@ -2564,7 +2643,7 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       empty: 'Henüz konsol mesajı yok.',
       promptHeader: 'Önizleme konsolu:',
       sentTitle: 'Sohbete gönderildi',
-      sentMessage: count => `${count} günlük kayd${count === 1 ? 'y' : 'ies'} düzenleyiciye eklendi`,
+      sentMessage: count => `${count} günlük kayd${count === 1 ? 'y' : 'ies'} düzenleyiciye eklendi`
     },
     web: {
       appFailedToBoot: 'Önizleme uygulaması başlatılamadı',
@@ -2572,7 +2651,7 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       failedToLoad: 'Önizleme yüklenemedi',
       tryAgain: 'Tekrar dene',
       restarting: 'OpenAmer yeniden başlatılıyor...',
-      askRestart: 'OpenAmer\'dan sunucuyu yeniden başlatmasını iste',
+      askRestart: "OpenAmer'dan sunucuyu yeniden başlatmasını iste",
       lookingRestart: taskId => `OpenAmer yeniden başlatılacak bir önizleme sunucusu arıyor (${taskId})`,
       restartingTitle: 'Önizleme sunucusu yeniden başlatılıyor',
       restartingMessage: 'OpenAmer arka planda çalışıyor. İlerlemeyi önizleme konsolundan izleyin.',
@@ -2580,26 +2659,29 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       restartFailed: 'Sunucu yeniden başlatma başarısız',
       hideConsole: 'Önizleme konsolunu gizle',
       showConsole: 'Önizleme konsolunu göster',
-      hideDevTools: 'Önizleme DevTools\'unu gizle',
-      openDevTools: 'Önizleme DevTools\'unu aç',
-      finishedRestarting: message => `OpenAmer önizleme sunucusunu yeniden başlatmayı tamamladı${message ? `: ${message}` : ''}`,
+      hideDevTools: "Önizleme DevTools'unu gizle",
+      openDevTools: "Önizleme DevTools'unu aç",
+      finishedRestarting: message =>
+        `OpenAmer önizleme sunucusunu yeniden başlatmayı tamamladı${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Sunucu yeniden başlatma başarısız: ${message}`,
       unknownError: 'bilinmeyen hata',
       restartedTitle: 'Önizleme sunucusu yeniden başlatıldı',
       reloadingNow: 'Önizleme şimdi yeniden yükleniyor.',
       restartFailedTitle: 'Önizleme yeniden başlatılamadı',
       restartFailedMessage: 'OpenAmer sunucuyu yeniden başlatamadı.',
-      stillWorking: 'OpenAmer hâlâ çalışıyor, ancak henüz yeniden başlatma sonucu gelmedi. Sunucu komutu ön planda çalışıyor olabilir.',
+      stillWorking:
+        'OpenAmer hâlâ çalışıyor, ancak henüz yeniden başlatma sonucu gelmedi. Sunucu komutu ön planda çalışıyor olabilir.',
       workspaceReloading: 'Çalışma alanı değişti, önizleme yeniden yükleniyor',
       fileChanged: url => `Dosya değişti, önizleme yeniden yükleniyor: ${url}`,
       filesChanged: (count, url) => `${count} dosya değişikliği, önizleme yeniden yükleniyor: ${url}`,
       watchFailed: message => `Önizleme dosyası izlenemedi: ${message}`,
-      moduleMimeDescription: 'Modül betikleri yanlış MIME türüyle sunuluyor. Bu genellikle bir statik dosya sunucusunun, proje geliştirme sunucusu yerine bir Vite/React uygulamasını sunduğu anlamına gelir.',
+      moduleMimeDescription:
+        'Modül betikleri yanlış MIME türüyle sunuluyor. Bu genellikle bir statik dosya sunucusunun, proje geliştirme sunucusu yerine bir Vite/React uygulamasını sunduğu anlamına gelir.',
       loadFailedConsole: (code, message) => `Yükleme başarısız${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Önizleme sayfasına ulaşılamadı.',
       openTarget: url => `Aç ${url}`,
-      fallbackTitle: 'Önizleme',
-    },
+      fallbackTitle: 'Önizleme'
+    }
   },
   zones: {
     showHeader: 'Başlığı göster',
@@ -2607,7 +2689,8 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     minimize: 'Küçült',
     restore: 'Geri yükle',
     closeRunningTitle: 'Çalışan sekme kapatılsın mı?',
-    closeRunningBody: 'Bu sohbet hâlâ çalışıyor (veya girdinizi bekliyor). Sekmeyi kapatmak onu gizler — oturum ilerlemesini korur ve kenar çubuğundan yeniden açılabilir.',
+    closeRunningBody:
+      'Bu sohbet hâlâ çalışıyor (veya girdinizi bekliyor). Sekmeyi kapatmak onu gizler — oturum ilerlemesini korur ve kenar çubuğundan yeniden açılabilir.',
     closeRunningConfirm: 'Sekmeyi kapat',
     closeOthers: 'Diğerlerini kapat',
     closeToRight: 'Sağdakileri kapat',
@@ -2620,7 +2703,7 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     dirLeft: 'sol',
     dirRight: 'sağ',
     pluginDisabled: pluginId => `Eklenti "${pluginId}" devre dışı`,
-    pluginDisabledBody: 'Paneli geri getirmek için Ayarlar → Eklentiler\'den yeniden etkinleştirin.',
+    pluginDisabledBody: "Paneli geri getirmek için Ayarlar → Eklentiler'den yeniden etkinleştirin.",
     missingPane: paneId => `Eksik panel: ${paneId}`,
     editTitle: 'Düzenler',
     editHint: 'Bir düzen seçin veya panelleri bölgeler arasında sürükleyin. Bölmek için bir bölgeye sağ tıklayın.',
@@ -2633,7 +2716,8 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     deletePreset: name => `Sil ${name}`,
     zoneEditorTitle: 'Bölge düzenleyici',
     editorHintPre: 'bölmek için tıklayın · ',
-    editorHintPost: ' çizgiyi ters çevirir · birleştirmek için bölgeler arasında sürükle · yeniden boyutlandırmak için ortak kenarları sürükle',
+    editorHintPost:
+      ' çizgiyi ters çevirir · birleştirmek için bölgeler arasında sürükle · yeniden boyutlandırmak için ortak kenarları sürükle',
     templateColumns: 'Sütunlar',
     templateRows: 'Satırlar',
     templateGrid: 'Izgara',
@@ -2644,27 +2728,16 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     layoutNamePlaceholder: fallback => `Düzen adı (${fallback})`,
     saveApply: 'Kaydet ve uygula',
     notExpressible: 'bu düzen birbirine geçer (fırıldak) — henüz iç içe bölmelerle ifade edilemez',
-    zoneCount: count => `${count} bölge`,
+    zoneCount: count => `${count} bölge`
   },
   assistant: {
     thread: {
       loadingSession: 'Oturum yükleniyor',
       showEarlier: 'Önceki mesajları göster',
       loadingResponse: 'OpenAmer bir yanıt yüklüyor',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Düşünüyor',
       today: time => `Bugün, ${time}`,
@@ -2691,7 +2764,7 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       restoreNext: 'Sonraki kontrol noktasını geri yükle',
       goForward: 'İleri git',
       sendEdited: 'Düzenlenen mesajı gönder',
-      attachingFile: 'Ekleniyor…',
+      attachingFile: 'Ekleniyor…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer ağ geçidi bağlı değil',
@@ -2704,8 +2777,9 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       jumpToApproval: 'Onay gerekli',
       reject: 'Reddet',
       alwaysTitle: 'Bu komuta her zaman izin verilsin mi?',
-      alwaysDescription: pattern => `Bu, “${pattern}” desenini kalıcı izin listenize (~/.openamer/config.yaml) ekler. OpenAmer bu tür komutlar için bir daha sormaz — bu oturumda da gelecekteki oturumlarda da.`,
-      alwaysAllow: 'Her zaman izin ver',
+      alwaysDescription: pattern =>
+        `Bu, “${pattern}” desenini kalıcı izin listenize (~/.openamer/config.yaml) ekler. OpenAmer bu tür komutlar için bir daha sormaz — bu oturumda da gelecekteki oturumlarda da.`,
+      alwaysAllow: 'Her zaman izin ver'
     },
     clarify: {
       notReady: 'Netleştirme isteği henüz hazır değil',
@@ -2719,7 +2793,7 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       continueLabel: 'Devam',
       lateAnswer: (question, choice) => `Re: "${question}" — yanıtım: ${choice}`,
       lateAnswerTip: 'Bu yanıtı takip mesajı olarak taslakla',
-      lateAnswerHint: 'Bu istem artık beklemiyor. Takip mesajı olarak taslaklamak için bir seçenek belirleyin.',
+      lateAnswerHint: 'Bu istem artık beklemiyor. Takip mesajı olarak taslaklamak için bir seçenek belirleyin.'
     },
     tool: {
       code: 'Kod',
@@ -2728,7 +2802,7 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       copyOutput: 'Çıktıyı kopyala',
       copyCommand: 'Komutu kopyala',
       copyContent: 'İçeriği kopyala',
-      copyUrl: 'URL\'yi kopyala',
+      copyUrl: "URL'yi kopyala",
       copyResults: 'Sonuçları kopyala',
       copyQuery: 'Sorguyu kopyala',
       copyFile: 'Dosyayı kopyala',
@@ -2755,11 +2829,11 @@ ${mode} varsayılanını korumak için boş bırakın.`,
         ran: 'Çalıştırıldı',
         running: 'Çalışıyor',
         ranCode: 'Kod çalıştırıldı',
-        runningCode: 'Betikleme',
+        runningCode: 'Betikleme'
       },
       prefixes: {
         browser: 'Tarayıcı',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2767,132 +2841,133 @@ ${mode} varsayılanını korumak için boş bırakın.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Çalışıyor ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Çalışıyor ${action.toLowerCase()}`,
+        runningTool: action => `Çalışıyor ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Sayfa öğesine tıklandı',
           pending: 'Sayfa öğesine tıklanıyor',
-          pendingAction: 'Tıklanıyor',
+          pendingAction: 'Tıklanıyor'
         },
         browser_fill: {
           done: 'Form alanı dolduruldu',
           pending: 'Form alanı dolduruluyor',
-          pendingAction: 'Dolduruluyor',
+          pendingAction: 'Dolduruluyor'
         },
         browser_navigate: {
           done: 'Sayfa açıldı',
           pending: 'Sayfa açılıyor',
-          pendingAction: 'Açılıyor',
+          pendingAction: 'Açılıyor'
         },
         browser_snapshot: {
           done: 'Sayfa anlık görüntüsü alındı',
           pending: 'Sayfa anlık görüntüsü alınıyor',
-          pendingAction: 'Yakalanıyor',
+          pendingAction: 'Yakalanıyor'
         },
         browser_take_screenshot: {
           done: 'Ekran görüntüsü alındı',
           pending: 'Ekran görüntüsü alınıyor',
-          pendingAction: 'Yakalanıyor',
+          pendingAction: 'Yakalanıyor'
         },
         browser_type: {
           done: 'Sayfaya yazıldı',
           pending: 'Sayfaya yazılıyor',
-          pendingAction: 'Yazılıyor',
+          pendingAction: 'Yazılıyor'
         },
         clarify: {
           done: 'Soru soruldu',
           pending: 'Soru soruluyor',
-          pendingAction: 'Soruluyor',
+          pendingAction: 'Soruluyor'
         },
         cronjob: {
           done: 'Cron görevi',
           pending: 'Cron görevi planlanıyor',
-          pendingAction: 'Planlama',
+          pendingAction: 'Planlama'
         },
         edit_file: {
           done: 'Dosya düzenlendi',
           pending: 'Dosya düzenleniyor',
-          pendingAction: 'Düzenleniyor',
+          pendingAction: 'Düzenleniyor'
         },
         execute_code: {
           done: 'Kod çalıştırıldı',
           pending: 'Betikleme',
-          pendingAction: 'Betikleme',
+          pendingAction: 'Betikleme'
         },
         image_generate: {
           done: 'Görsel oluşturuldu',
           pending: 'Görsel oluşturuluyor',
-          pendingAction: 'Oluşturuluyor',
+          pendingAction: 'Oluşturuluyor'
         },
         list_files: {
           done: 'Dosyalar listelendi',
           pending: 'Dosyalar listeleniyor',
-          pendingAction: 'Listeleniyor',
+          pendingAction: 'Listeleniyor'
         },
         patch: {
           done: 'Dosya yamalandı',
           pending: 'Dosya yamalanıyor',
-          pendingAction: 'Yamalanıyor',
+          pendingAction: 'Yamalanıyor'
         },
         read_file: {
           done: 'Dosya okundu',
           pending: 'Dosya okunuyor',
-          pendingAction: 'Okunuyor',
+          pendingAction: 'Okunuyor'
         },
         search_files: {
           done: 'Dosyalar arandı',
           pending: 'Dosyalar aranıyor',
-          pendingAction: 'Aranıyor',
+          pendingAction: 'Aranıyor'
         },
         session_search_recall: {
           done: 'Oturum geçmişi arandı',
           pending: 'Oturum geçmişi aranıyor',
-          pendingAction: 'Aranıyor',
+          pendingAction: 'Aranıyor'
         },
         terminal: {
           done: 'Komut çalıştırıldı',
           pending: 'Komut çalıştırılıyor',
-          pendingAction: 'Çalışıyor',
+          pendingAction: 'Çalışıyor'
         },
         todo: {
           done: 'Yapılacaklar güncellendi',
           pending: 'Yapılacaklar güncelleniyor',
-          pendingAction: 'Güncelleniyor',
+          pendingAction: 'Güncelleniyor'
         },
         vision_analyze: {
           done: 'Görsel analiz edildi',
           pending: 'Görsel analiz ediliyor',
-          pendingAction: 'Analiz ediliyor',
+          pendingAction: 'Analiz ediliyor'
         },
         web_extract: {
           done: 'Web sayfası okundu',
           pending: 'Web sayfası okunuyor',
-          pendingAction: 'Okunuyor',
+          pendingAction: 'Okunuyor'
         },
         web_search: {
-          done: 'Web\'de arandı',
-          pending: 'Web\'de aranıyor',
-          pendingAction: 'Aranıyor',
+          done: "Web'de arandı",
+          pending: "Web'de aranıyor",
+          pendingAction: 'Aranıyor'
         },
         write_file: {
           done: 'Dosya düzenlendi',
           pending: 'Dosya düzenleniyor',
-          pendingAction: 'Düzenleniyor',
-        },
-      },
-    },
+          pendingAction: 'Düzenleniyor'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer ağ geçidi bağlı değil',
     sudoSendFailed: 'sudo parolası gönderilemedi',
     secretSendFailed: 'Gizli bilgi gönderilemedi',
     sudoTitle: 'Yönetici parolası',
-    sudoDesc: 'OpenAmer\'ın ayrıcalıklı bir komut çalıştırmak için sudo parolanıza ihtiyacı var. Yalnızca yerel ajanınıza gönderilir.',
+    sudoDesc:
+      "OpenAmer'ın ayrıcalıklı bir komut çalıştırmak için sudo parolanıza ihtiyacı var. Yalnızca yerel ajanınıza gönderilir.",
     sudoPlaceholder: 'sudo parolası',
     secretTitle: 'Gizli bilgi gerekli',
-    secretDesc: 'OpenAmer\'ın devam etmek için bir kimlik bilgisine ihtiyacı var.',
-    secretPlaceholder: 'gizli değer',
+    secretDesc: "OpenAmer'ın devam etmek için bir kimlik bilgisine ihtiyacı var.",
+    secretPlaceholder: 'gizli değer'
   },
   desktop: {
     audioReadFailed: 'Kaydedilen ses okunamadı',
@@ -2909,7 +2984,8 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     yoloSystem: active => `Bu oturum için YOLO ${active ? 'açık' : 'kapalı'}`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'YOLO değiştirilemedi',
-    profileStatus: current => `Profil: ${current}. Başka bir profilde sohbet başlatmak için /profile <name> veya "Yeni oturum" seçicisini kullanın.`,
+    profileStatus: current =>
+      `Profil: ${current}. Başka bir profilde sohbet başlatmak için /profile <name> veya "Yeni oturum" seçicisini kullanın.`,
     unknownProfile: 'Bilinmeyen profil',
     noProfileNamed: (target, available) => `"${target}" adlı profil yok. Kullanılabilir: ${available}`,
     newChatsProfile: name => `Yeni sohbetler ${name} profilini kullanacak.`,
@@ -2919,8 +2995,9 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     regenerateFailed: 'Yeniden oluşturma başarısız',
     editFailed: 'Düzenleme başarısız',
     resumeFailed: 'Devam ettirme başarısız',
-    resumeStrandedTitle: "Bu oturum yüklenemedi",
-    resumeStrandedBody: 'Bu oturuma bağlantı başarısız oldu ve otomatik yeniden denemeler durdu. Ağ geçidinin çalıştığını kontrol edip yeniden deneyin.',
+    resumeStrandedTitle: 'Bu oturum yüklenemedi',
+    resumeStrandedBody:
+      'Bu oturuma bağlantı başarısız oldu ve otomatik yeniden denemeler durdu. Ağ geçidinin çalıştığını kontrol edip yeniden deneyin.',
     resumeRetry: 'Yeniden dene',
     nothingToBranch: 'Dallandırılacak bir şey yok',
     branchNeedsChat: 'Dallandırmadan önce bir sohbet başlatın veya devam ettirin.',
@@ -2934,14 +3011,15 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     archiveFailed: 'Arşivleme başarısız',
     cwdChangeFailed: 'Çalışma dizini değişikliği başarısız',
     cwdStagedTitle: 'Çalışma dizini hazırlandı',
-    cwdStagedMessage: 'Çalışma dizini değişikliklerini bu etkin oturuma uygulamak için masaüstü arka ucunu yeniden başlatın.',
+    cwdStagedMessage:
+      'Çalışma dizini değişikliklerini bu etkin oturuma uygulamak için masaüstü arka ucunu yeniden başlatın.',
     modelSwitchFailed: 'Model değiştirme başarısız',
     sessionExported: 'Oturum dışa aktarıldı',
     sessionExportFailed: 'Oturum dışa aktarılamadı',
     imageSaved: 'Görsel kaydedildi',
     downloadStarted: 'İndirme başladı',
-    restartToUseSaveImage: 'Görseli Kaydet\'i kullanmak için OpenAmer Desktop\'ı yeniden başlatın.',
-    restartToSaveImages: 'Görselleri kaydetmek için OpenAmer Desktop\'ı yeniden başlatın',
+    restartToUseSaveImage: "Görseli Kaydet'i kullanmak için OpenAmer Desktop'ı yeniden başlatın.",
+    restartToSaveImages: "Görselleri kaydetmek için OpenAmer Desktop'ı yeniden başlatın",
     imageDownloadFailed: 'Görsel indirilemedi',
     openImage: 'Görseli aç',
     downloadImage: 'Görseli indir',
@@ -2960,31 +3038,31 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       success: platform => `${platform} konumuna devredildi. İstediğiniz zaman buradan devam edebilirsiniz.`,
       systemNote: platform => `↻ ${platform} konumuna devredildi — istediğiniz zaman buradan devam edebilirsiniz.`,
       failed: error => `Devretme başarısız: ${error}`,
-      timedOut: 'Ağ geçidi beklenirken zaman aşımına uğradı. `openamer gateway` çalışıyor mu?',
-    },
+      timedOut: 'Ağ geçidi beklenirken zaman aşımına uğradı. `openamer gateway` çalışıyor mu?'
+    }
   },
   errors: {
     genericFailure: 'Bir şeyler ters gitti',
     boundaryTitle: 'Arayüzde bir şeyler bozuldu',
     boundaryDesc: 'Görünüm beklenmeyen bir hatayla karşılaştı. Sohbetleriniz ve ayarlarınız güvende.',
     reloadWindow: 'Pencereyi yeniden yükle',
-    openLogs: 'Günlükleri aç',
+    openLogs: 'Günlükleri aç'
   },
   ui: {
     search: {
-      clear: 'Aramayı temizle',
+      clear: 'Aramayı temizle'
     },
     pagination: {
       label: 'sayfalama',
       previous: 'Önceki',
       previousAria: 'Önceki sayfaya git',
       next: 'Sonraki',
-      nextAria: 'Sonraki sayfaya git',
+      nextAria: 'Sonraki sayfaya git'
     },
     sidebar: {
       title: 'Kenar çubuğu',
       description: 'Mobil kenar çubuğunu görüntüler.',
-      toggle: 'Kenar Çubuğunu Aç/Kapat',
-    },
-  },
+      toggle: 'Kenar Çubuğunu Aç/Kapat'
+    }
+  }
 })

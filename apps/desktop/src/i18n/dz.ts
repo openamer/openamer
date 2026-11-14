@@ -45,7 +45,7 @@ export const dz = defineLocale({
     update: 'གསར་དངུལ་བྱེད།',
     tryHint: term => `Try “${term}”`,
     on: 'སོང་ཚོགས',
-    off: 'བཅུལ་སོང',
+    off: 'བཅུལ་སོང'
   },
   fileMenu: {
     revealFinder: 'Finder ནང་མཚོན་གསལ།',
@@ -60,7 +60,7 @@ export const dz = defineLocale({
     renameLabel: 'མཚན་གསར་པ་',
     deleteTitle: name => `Delete ${name}?`,
     deleteBody: 'སེལ་ཤིང་ཁུའི་ནང་དུ་འཇོལ་དུ་ཕེབས་ཡོད། དེ་ནས་སླར་ཡོད་པར་གསོལ་བཏང་ཐུབ།',
-    pathCopied: 'ལམ་བཞག་ཟིན།',
+    pathCopied: 'ལམ་བཞག་ཟིན།'
   },
   boot: {
     ready: 'OpenAmer དེ་བཞིན་སྤྲོ་འགྲེལ་ཆེན་སྤྱོད་ཟིན།',
@@ -70,7 +70,7 @@ export const dz = defineLocale({
       loadingSettings: 'OpenAmer ནང་དོན་བསྒྲུབ་སྣོན་བསྐྱེད་བཞུགས།',
       loadingSessions: 'རྒྱུན་ཟིན་སྐར་ཚོགས་ཤིག་སྣོན་བསྐྱེད་བཞུགས།',
       startingDesktopConnection: 'དེ་བཞིན་འབྲེལ་བ་འགོ་བཞུགས།',
-      startingOpenAmerDesktop: 'OpenAmer དེ་བཞིན་སྤྲོ་འགྲེལ་ཆེན་འགོ་བཞུགས།',
+      startingOpenAmerDesktop: 'OpenAmer དེ་བཞིན་སྤྲོ་འགྲེལ་ཆེན་འགོ་བཞུགས།'
     },
     errors: {
       backgroundExited: 'OpenAmer ནང་ཁུལ་ལས་ཀ་བཞག་ཟིན།',
@@ -79,23 +79,28 @@ export const dz = defineLocale({
       desktopBootFailed: 'དེ་བཞིན་གཞུང་འགྲོ་མ་ཐུབ།',
       gatewayConnectionLost: 'གོ་ལྷན་ལ་མི་འབྲེལ་བ།',
       gatewaySignInRequired: 'གོ་ལྷན་ལ་ལག་འབུལ་ཞིན་དགོས།',
-      ipcBridgeUnavailable: 'དེ་བུ་IPC bridge མི་འབྲེལ་བ།',
+      ipcBridgeUnavailable: 'དེ་བུ་IPC bridge མི་འབྲེལ་བ།'
     },
     failure: {
-      title: "OpenAmer འགྱུར་མི་ཐུབ།",
-      description: "གོ་ལྷན་མི་འབྲེལ་བ། མུ་མོར་འགྱུར་བྱ་བའི་ཐབས་ལ་མུ་མོར་བྱས། འདི་གི་བྱེས་བྲེས་གཟུགས་གཞིན་གཟུགས་གཞིན་གཟུགས་གཞིན་མི་འབྲེལ་བ།",
+      title: 'OpenAmer འགྱུར་མི་ཐུབ།',
+      description:
+        'གོ་ལྷན་མི་འབྲེལ་བ། མུ་མོར་འགྱུར་བྱ་བའི་ཐབས་ལ་མུ་མོར་བྱས། འདི་གི་བྱེས་བྲེས་གཟུགས་གཞིན་གཟུགས་གཞིན་གཟུགས་གཞིན་མི་འབྲེལ་བ།',
       remoteTitle: 'དུས་མཐོད་གོ་ལྷན་ལ་ལག་འབུལ་ཞིན་དགོས།',
-      remoteDescription: 'ངོས་ཀྱི་དུས་མཐོད་གོ་ལྷན་གི་སེཤིན་བྱུང་བ། མི་འབྲེལ་བའི་ཐབས་ལ་ལག་འབུལ་བ། འདི་གི་བྱེས་བྲེས་གཟུགས་གཞིན་གཟུགས་གཞིན་གཟུགས་གཞིན་མི་འབྲེལ་བ།',
+      remoteDescription:
+        'ངོས་ཀྱི་དུས་མཐོད་གོ་ལྷན་གི་སེཤིན་བྱུང་བ། མི་འབྲེལ་བའི་ཐབས་ལ་ལག་འབུལ་བ། འདི་གི་བྱེས་བྲེས་གཟུགས་གཞིན་གཟུགས་གཞིན་གཟུགས་གཞིན་མི་འབྲེལ་བ།',
       retry: 'མུ་མོར་བྱས།',
       repairInstall: 'ལག་འབུལ་གཟུགས་གཞིན་གཟུགས་གཞིན་གཟུགས་གཞིན་འགྱུར།',
       useLocalGateway: 'དེ་བུ་གོ་ལྷན་ལ་ཉོད་བྱས།',
       gatewaySettings: 'གོ་ལྷན་གི་བྱེས་བྲེས་གཟུགས་གཞིན།',
       back: 'ལོ་འདི་ལ',
       openLogs: 'ལོག་སོ་སོ་བྱས།',
-      repairHint: 'ལག་འབུལ་གཟུགས་གཞིན་གཟུགས་གཞིན་གཟུགས་གཞིན་འགྱུར་བའི་ཐབས་ལ་ལག་འབུལ་གཟུགས་གཞིན་གཟུགས་གཞིན་གཟུགས་གཞིན་འགྱུར། དེ་ནི་ཉིན་མོ་གཟུགས་གཞིན་གཟུགས་གཞིན་གཟུགས་གཞིན་འགྱུར་བའི་ཐབས་ལ་ཉིན་མོ་གཟུགས་གཞིན་གཟུགས་གཞིན་གཟུགས་གཞིན་འགྱུར།',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      repairHint:
+        'ལག་འབུལ་གཟུགས་གཞིན་གཟུགས་གཞིན་གཟུགས་གཞིན་འགྱུར་བའི་ཐབས་ལ་ལག་འབུལ་གཟུགས་གཞིན་གཟུགས་གཞིན་གཟུགས་གཞིན་འགྱུར། དེ་ནི་ཉིན་མོ་གཟུགས་གཞིན་གཟུགས་གཞིན་གཟུགས་གཞིན་འགྱུར་བའི་ཐབས་ལ་ཉིན་མོ་གཟུགས་གཞིན་གཟུགས་གཞིན་གཟུགས་གཞིན་འགྱུར།',
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
       signOutAndSignIn: 'ལག་འབུལ་ཤོར་བ། ལག་འབུལ་བ།',
-      remoteFailureHint: 'གོ་ལྷན་གི་URL བྱེས་བྲེས་གཟུགས་གཞིན་གཟུགས་གཞིན་གཟུགས་གཞིན་ལ་ལག་འབུལ་བ། དེ་བུ་གོ་ལྷན་ལ་ལག་འབུལ་བ།',
+      remoteFailureHint:
+        'གོ་ལྷན་གི་URL བྱེས་བྲེས་གཟུགས་གཞིན་གཟུགས་གཞིན་གཟུགས་གཞིན་ལ་ལག་འབུལ་བ། དེ་བུ་གོ་ལྷན་ལ་ལག་འབུལ་བ།',
       hideRecentLogs: 'ལོག་སོ་སོ་བྱས་སུ་འགྱུར།',
       showRecentLogs: 'ལོག་སོ་སོ་བྱས་སུ་འགྱུར།',
       signedInTitle: 'ལག་འབུལ་བྱུང་།',
@@ -105,8 +110,8 @@ export const dz = defineLocale({
       signInFailed: 'ལྷོད་མིང་མ་སྐྱེས།',
       signInToRemoteGateway: 'རྣམ་གྲོལ་གཞིའི་གཅེར་རྟེན་དུ་ལྷོད་མིང་བསྡུས།',
       signInWithProvider: provider => `Sign in with ${provider}`,
-      identityProvider: 'ཁྱེད་ཀྱི་མིང་རྱུད་སྤྲོ་གཉེན་བསྡུས།',
-    },
+      identityProvider: 'ཁྱེད་ཀྱི་མིང་རྱུད་སྤྲོ་གཉེན་བསྡུས།'
+    }
   },
   notifications: {
     region: 'བསྐུར་བའི་བྱང་རྟགས།',
@@ -119,21 +124,23 @@ export const dz = defineLocale({
     copyDetail: 'ཞིབ་བཤེར་འཕྲུལ་བྱས།',
     copyDetailFailed: 'བྱང་རྟགས་ཞིབ་བཤེར་འཕྲུལ་མ་ཐུབ་པས།',
     backendOutOfDateTitle: 'ཁུག་མའི་རྟེན་སྦྱང་བའི་པ་ལས་རིང་བ།',
-    backendOutOfDateMessage: 'ཁྱེད་ཀྱི་`OpenAmer`་ཁུག་མའི་རྟེན་འདི་དང་འདི་དརྒྱུད་ཀྱི་བསྡུར་ན་རིང་བ་ཡོད་པས་འགྲིག་ལེན་མིན་ཐུབ་སྲིད་སྟེང་། དེ་གཉིས་མཐུན་སྦྱོར་ཏུ་གསོའི་བྱེད་ནས།',
+    backendOutOfDateMessage:
+      'ཁྱེད་ཀྱི་`OpenAmer`་ཁུག་མའི་རྟེན་འདི་དང་འདི་དརྒྱུད་ཀྱི་བསྡུར་ན་རིང་བ་ཡོད་པས་འགྲིག་ལེན་མིན་ཐུབ་སྲིད་སྟེང་། དེ་གཉིས་མཐུན་སྦྱོར་ཏུ་གསོའི་བྱེད་ནས།',
     installMethodUnsupportedTitle: 'གཞིའི་བསྐར་ཐབས་མིན་འཆད་པ།',
     updateOpenAmer: '`OpenAmer` གསར་སྤོས་བྱས།',
     updateReadyTitle: 'གསར་སྤོས་སྒྲུབ་ཟིན།',
     updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
-    seeWhatsNew: "གསར་དངོས་དེ་གང་ཡིན་ལྟ་བ།",
+    seeWhatsNew: 'གསར་དངོས་དེ་གང་ཡིན་ལྟ་བ།',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT ལ་ ELEVENLABS_API_KEY དགོས།',
       elevenLabsRejectedKey: 'ElevenLabs ཀྱིས་ API ཀློག་མི་བསྡོད་པ་ (401)།',
       gatewayAuthFailed: 'Gateway ངོ་འཕྲོད་ཉམས་ལ་སྟོད་དོན་ཡོད་བ་དང་། API_SERVER_KEY བརྟག་པ་བྱེད་དགོས།',
-      methodNotAllowed: 'དཔེར་ཀྲུང་སྤྱི་གླིང་གིས་དེའི་རེའུ་ཀེར་མི་འདོད་པ་ (405 ཚན་ཉེན་མི་བཅོས་པ)། OpenAmer Desktop ཡར་འབྲས་འགོ་བསྐྱོད་བྱེད་ཐུབ་རྗེས་བརྟག་དགོས།',
+      methodNotAllowed:
+        'དཔེར་ཀྲུང་སྤྱི་གླིང་གིས་དེའི་རེའུ་ཀེར་མི་འདོད་པ་ (405 ཚན་ཉེན་མི་བཅོས་པ)། OpenAmer Desktop ཡར་འབྲས་འགོ་བསྐྱོད་བྱེད་ཐུབ་རྗེས་བརྟག་དགོས།',
       microphonePermission: 'མཛེས་མཁན་དོན་ལུགས་སྤྱོད་མེད།',
       openaiRejectedApiKey: 'OpenAI ཀྱིས་ API ཀློག་མི་བསྡོད་པ།',
       openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS ལ་ VOICE_TOOLS_OPENAI_KEY ཡང་ན་ OPENAI_API_KEY དགོས།',
+      openaiTtsNeedsKey: 'OpenAI TTS ལ་ VOICE_TOOLS_OPENAI_KEY ཡང་ན་ OPENAI_API_KEY དགོས།'
     },
     voice: {
       configureSpeechToText: 'སྐད་ཡིག་འགྲེམས་བསྐྱེད་ནས་སྐད་སྒྲགས་གནང་གི་རྣམ་ལ་བཀོད་དགོས།',
@@ -152,7 +159,7 @@ export const dz = defineLocale({
       transcriptionFailed: 'སྐད་ཡིག་འགྲེམས་བསྐྱེད་མི་ཐུབ་པ།',
       transcriptionUnavailable: 'སྐད་བསྒྱུར་མེད་པ།',
       tryRecordingAgain: 'ཡང་བསྒྱུར་གནང་བྱེད་ཐབས།',
-      unavailable: 'སྐད་འབྱེད་མེད།',
+      unavailable: 'སྐད་འབྱེད་མེད།'
     },
     native: {
       approvalTitle: 'མནན་བཀའ་དགོས།',
@@ -165,11 +172,12 @@ export const dz = defineLocale({
       turnErrorTitle: 'འཁོར་ཡུག་མ་སྒྲུབ་པ།',
       backgroundDoneTitle: 'ནང་ཞུགས་ཀྱི་ལས་ཀྱིས་བགྲུབ་ཟིན།',
       backgroundFailedTitle: 'ནང་ཞུགས་ཀྱི་ལས་ཀྱིས་མ་སྒྲུབ་པ།',
-      creditsTitle: 'ཁུངས་ཀ།',
-    },
+      creditsTitle: 'ཁུངས་ཀ།'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer ཀྱི་ཁུངས་ཀ་ཉམས་ཟིན།',
@@ -177,7 +185,7 @@ export const dz = defineLocale({
     fallbackMessage: 'ཁྱེད་ཀྱི་ཁུངས་ཀ་ཉམས་ཟིན། མུ་ཉེན་མཐའ་བརྩམས་ཕྱིར་ཁུངས་ཀ་བསྐལ།',
     openBilling: 'ཁུངས་ཀའི་དོ་དམ་ཁ་བཞག',
     addCredits: 'ཁུངས་ཀ་བསྐལ།',
-    dismiss: 'འཇོམས་པ།',
+    dismiss: 'འཇོམས་པ།'
   },
   titlebar: {
     hideSidebar: 'བཞག་མེད་འཇོམས་པ།',
@@ -194,7 +202,7 @@ export const dz = defineLocale({
     openStarmap: 'དྲན་གཞི་རྟེན་གྲུབ་ཐེབས།',
     openKeybinds: 'ཀྱི་རྟག་མཐའ་ཐད་ལུག།',
     layoutEditor: 'ཐད་ཀྱི་བཟོ་བཅོས་པ།',
-    layoutEditorTitle: 'ཐད་ཀྱི་བཟོ་བཅོས་པ། — ⌘-click ནས་ཐད་ཀྱི་བཟོ་བཅོས་བསྲེག་པ།',
+    layoutEditorTitle: 'ཐད་ཀྱི་བཟོ་བཅོས་པ། — ⌘-click ནས་ཐད་ཀྱི་བཟོ་བཅོས་བསྲེག་པ།'
   },
   keybinds: {
     title: 'ཀྱི་རྟག་མཐའ་ཐད་ལུག།',
@@ -211,7 +219,7 @@ export const dz = defineLocale({
       profiles: 'རྣམ་གཞག',
       session: 'ལས་ཚོལ',
       navigation: 'འགྲོ་བཞུགས',
-      view: 'ལྟ་ཚུལ',
+      view: 'ལྟ་ཚུལ'
     },
     actions: {
       'keybinds.openPanel': 'ཁེ་དོན་སྤྱོད་ཡུལ་མསྟེན',
@@ -290,8 +298,8 @@ export const dz = defineLocale({
       'composer.slash': 'སྐར་དངོས་མཚོན་མཛོད་མཚོན',
       'composer.help': 'རྒྱུག་གཞིག་བྱམས་པ',
       'composer.history': 'རྩིས་མོ་རི་ལོ་',
-      'composer.cancel': 'རྩིས་མོ་བཟོད། ། མི་རུ་བྱེད་',
-    },
+      'composer.cancel': 'རྩིས་མོ་བཟོད། ། མི་རུ་བྱེད་'
+    }
   },
   language: {
     label: 'སྐད་',
@@ -300,7 +308,7 @@ export const dz = defineLocale({
     saveError: 'སྐད་སྐྱོད་བྱེད་བྱེད་ལ་མི་ཐུབ།',
     switchTo: 'སྐད་སྐྱོད་བྱེད་བྱེད་',
     searchPlaceholder: 'སྐད་སྐྱོད་བྱེད་བྱེད་...',
-    noResults: 'སྐད་སྐྱོད་བྱེད་བྱེད་མི་འོང་',
+    noResults: 'སྐད་སྐྱོད་བྱེད་བྱེད་མི་འོང་'
   },
   settings: {
     closeSettings: 'སྐོར་བཟོད།',
@@ -325,11 +333,12 @@ export const dz = defineLocale({
       about: 'བརྒྱུད་ཀྱི་གནས་ཚུལ་',
       billing: 'དངུལ་མི་རྒྱུན་',
       notifications: 'བརྡ་དངོས་གསལ་ཚན་',
-      plugins: 'དབྱར་མཚོན་',
+      plugins: 'དབྱར་མཚོན་'
     },
     plugins: {
       title: 'དབྱར་མཚོན་དེ་རེའི་ལས་ཡོན་',
-      blurb: 'འདི་ལས་ཡོན་ནང་དུ་བརྙེད་དཔེ་མཁར་བཤར་གྱི་UI་མི་རྟག་བསྐར་བ་—དེ་དག་བསྡད་དུ་ཡོད་པའམ་ `desktop-plugins` ལྟ་བུའི་ཡིག་ཆའི་ནང་ནས་བཙོང་སྟེ་(`OpenAmer` ཀྱིས་བསྐྱེད་པ་ཡིན་མིན་ལ་ཡོད་ཀྱང་)། བཅག་བསྐུར་བྱས་ན་དབྱར་མཚོན་དེ་དེ་དག་འདིར་ཟོན་འདུག དེ་ནས་བསྐྱེད་ཀྱང་བཅོས་པའི་ནང་གིས་བྱུང་།',
+      blurb:
+        'འདི་ལས་ཡོན་ནང་དུ་བརྙེད་དཔེ་མཁར་བཤར་གྱི་UI་མི་རྟག་བསྐར་བ་—དེ་དག་བསྡད་དུ་ཡོད་པའམ་ `desktop-plugins` ལྟ་བུའི་ཡིག་ཆའི་ནང་ནས་བཙོང་སྟེ་(`OpenAmer` ཀྱིས་བསྐྱེད་པ་ཡིན་མིན་ལ་ཡོད་ཀྱང་)། བཅག་བསྐུར་བྱས་ན་དབྱར་མཚོན་དེ་དེ་དག་འདིར་ཟོན་འདུག དེ་ནས་བསྐྱེད་ཀྱང་བཅོས་པའི་ནང་གིས་བྱུང་།',
       count: n => `${n} installed`,
       openFolder: 'དབྱར་མཚོན་གྱི་ཡིག་ཆ་བཀོད་སྟེ།',
       rescan: 'ཡོངས་སུ་བརྙེད་དཔེ།',
@@ -341,49 +350,51 @@ export const dz = defineLocale({
       kinds: {
         bundled: 'བླངས་བུལ།',
         disk: 'དེ་བྱད་སོགས་གཞིན་།',
-        runtime: 'རི་ཐོར་བྱེད་བྱེད།',
-      },
+        runtime: 'རི་ཐོར་བྱེད་བྱེད།'
+      }
     },
     notifications: {
       title: 'འགྲིག་བསྐྱོད།',
-      intro: 'དེ་བྱད་མེ་ཟུམ་འབོད་བྱེད་གླེང་གཞིན་དེ་བྱད་ལས་འབོད་བྱེད་ལ་འབྲེལ་བ་མེད། དེ་བྱད་ནི་དགུང་ལ་སོགས་སུ་འདུག་པ་ཞི་ལས་དེ་བྱད་རིགས་སུ་འདུག་པ་རེ་རེ་འདུག།',
+      intro:
+        'དེ་བྱད་མེ་ཟུམ་འབོད་བྱེད་གླེང་གཞིན་དེ་བྱད་ལས་འབོད་བྱེད་ལ་འབྲེལ་བ་མེད། དེ་བྱད་ནི་དགུང་ལ་སོགས་སུ་འདུག་པ་ཞི་ལས་དེ་བྱད་རིགས་སུ་འདུག་པ་རེ་རེ་འདུག།',
       enableAll: 'འགྲིག་བསྐྱོད་འབོད་བྱེད།',
       enableAllDesc: 'མཐུལ་འབོད་བྱེད། དེ་བྱད་བྱེད་ཤིལ་ལ་ཤིལ་བ་ལས་དེ་བྱད་ལ་གླེང་གཞིན་རེ་རེ་ཤིལ་བར་འགྱུར།',
       focusedHint: 'མུག་འབོད་བྱེད་གླེང་གཞིན་ `OpenAmer` ལ་འབོད་བྱེད་ལ་བརྟེན་པའི་སྐབས་སུ་ཤིལ་བར་འགྱུར།',
       kinds: {
         approval: {
           label: 'འབོད་བྱེད་ཤིལ་བ་འདུག།',
-          description: 'འབོད་བྱེད་ཤིལ་བ་བྱེད་འདུག་པའི་གཞིན་གྱི་ཤིལ་བ་ཤིལ་བར་འགྱུར།',
+          description: 'འབོད་བྱེད་ཤིལ་བ་བྱེད་འདུག་པའི་གཞིན་གྱི་ཤིལ་བ་ཤིལ་བར་འགྱུར།'
         },
         input: {
           label: 'འགྲིག་བསྐྱོད་ཤིལ་བ་འདུག།',
-          description: '`OpenAmer` ལ་གཞིན་གྱི་བྱེད་ཤིལ་བ་ཤིལ་བར་འགྱུར། ལོ་འབྲེལ་བ་ཤིལ་བ་ཤིལ་བར་འགྱུར།',
+          description: '`OpenAmer` ལ་གཞིན་གྱི་བྱེད་ཤིལ་བ་ཤིལ་བར་འགྱུར། ལོ་འབྲེལ་བ་ཤིལ་བ་ཤིལ་བར་འགྱུར།'
         },
         turnDone: {
           label: 'འབོད་བྱེད་ཤིལ་བ་འདུག།',
-          description: '`OpenAmer` ལ་འབོད་བྱེད་ལ་བརྟེན་པའི་སྐབས་སུ་གཞིན་གྱི་བྱེད་ཤིལ་བ་ཤིལ་བར་འགྱུར།',
+          description: '`OpenAmer` ལ་འབོད་བྱེད་ལ་བརྟེན་པའི་སྐབས་སུ་གཞིན་གྱི་བྱེད་ཤིལ་བ་ཤིལ་བར་འགྱུར།'
         },
         turnError: {
           label: 'གཞིན་གྱི་བྱེད་ཤིལ་བ་ཤིལ་བ་མེད།',
-          description: 'གཞིན་གྱི་བྱེད་ཤིལ་བ་ཤིལ་བ་ལ་འབྲེལ་བ་ཤིལ་བ་ཤིལ་བར་འགྱུར།',
+          description: 'གཞིན་གྱི་བྱེད་ཤིལ་བ་ཤིལ་བ་ལ་འབྲེལ་བ་ཤིལ་བ་ཤིལ་བར་འགྱུར།'
         },
         backgroundDone: {
           label: 'འབོད་བྱེད་ལ་བརྟེན་པའི་བྱེད་ཤིལ་བ་ཤིལ་བར་འགྱུར།',
-          description: 'འབོད་བྱེད་ལ་བརྟེན་པའི་ཐེར་མིནལ་འབོད་བྱེད་ཤིལ་བ་ཤིལ་བར་འགྱུར།',
+          description: 'འབོད་བྱེད་ལ་བརྟེན་པའི་ཐེར་མིནལ་འབོད་བྱེད་ཤིལ་བ་ཤིལ་བར་འགྱུར།'
         },
         credits: {
           label: 'ཀྲེད་བུལ་གྱི་མོན་ཐེ་རིང་།',
-          description: 'ཀྲེད་བུལ་གྱི་འབྲེག་ཐབས་བྱམས་པ་དོ་བྱས་ཤིག་པ་ཞིག་འོད་ཟེར།',
-        },
+          description: 'ཀྲེད་བུལ་གྱི་འབྲེག་ཐབས་བྱམས་པ་དོ་བྱས་ཤིག་པ་ཞིག་འོད་ཟེར།'
+        }
       },
       test: 'མོན་ཐེ་རིང་ལ་བྱ་གཞི་བླངས།',
       testTitle: 'OpenAmer',
       testBody: 'མོན་ཐེ་རིང་གི་བྱ་བ་བྱིན་པ་བྱུང་།',
-      testSent: 'བྱ་གཞི་བླངས་བྱུང་། གཟུགས་མེད་ཤིག་ན་བྱུང་ན་，ཉེ་རིང་གི་ལོ་སོར་གྱི་མོན་ཐེ་རིང་འབྲེག་ཐབས་དང་། Focus/Do Not Disturb ལ་བྱིན།',
+      testSent:
+        'བྱ་གཞི་བླངས་བྱུང་། གཟུགས་མེད་ཤིག་ན་བྱུང་ན་，ཉེ་རིང་གི་ལོ་སོར་གྱི་མོན་ཐེ་རིང་འབྲེག་ཐབས་དང་། Focus/Do Not Disturb ལ་བྱིན།',
       testUnsupported: 'སེ་བྷེ་སེ་ལུ་མོན་ཐེ་རིང་གི་རིགས་མེད་བྱིན་པ་བྱུང་།',
       completionSoundTitle: 'མོར་ཐོན་མོའི་སྒྲ།',
       completionSoundDesc: 'ཨེ་ஜེན་ཐོར་ཟླུལ་བུར་འགྱུར་བའི་སྐེན་ལ་བྱེ་བྱུང་། རིགས་སོགས་བསྐྱེས་ཤིག་ལ་བྱིན།',
-      completionSoundPreview: 'མོན་ལ་བྱིན།',
+      completionSoundPreview: 'མོན་ལ་བྱིན།'
     },
     sections: {
       model: 'མོདེལ།',
@@ -393,7 +404,7 @@ export const dz = defineLocale({
       safety: 'སྲུང་བཤིག',
       memory: 'མེ་མོ་རིགས་སོགས་དང་། ལོ་སོར་སོགས།',
       voice: 'སྒྲ།',
-      advanced: 'སྒོར་བརྒྱུད།',
+      advanced: 'སྒོར་བརྒྱུད།'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop སྐེ་རིགས་སོགས།',
@@ -401,37 +412,40 @@ export const dz = defineLocale({
       gateway: 'གེ་ཌྭེ་བྱེ་བྲག་།',
       keys: 'API གཟིགས་བྱེ་བྲག་།',
       mcp: 'MCP གཟིགས་བྱེ་བྲག་།',
-      sessions: 'སོགས་གསར་འོར་གྱི་སེབ་བྱེ་བྲག་།',
+      sessions: 'སོགས་གསར་འོར་གྱི་སེབ་བྱེ་བྲག་།'
     },
     modeOptions: {
       light: {
         label: 'ལེ་བྱེད་།',
-        description: 'ལེ་བྱེད་ཟུག་གཟིགས་གཟུགས་བྱེ་བྲག་།',
+        description: 'ལེ་བྱེད་ཟུག་གཟིགས་གཟུགས་བྱེ་བྲག་།'
       },
       dark: {
         label: 'ནུག་མོ།',
-        description: 'ལེ་བྱེད་ཤིལ་བའི་ཟུག་གཟིགས་གཟུགས་བྱེ་བྲག་།',
+        description: 'ལེ་བྱེད་ཤིལ་བའི་ཟུག་གཟིགས་གཟུགས་བྱེ་བྲག་།'
       },
       system: {
         label: 'སེ་སྟེམ།',
-        description: 'སེ་སྟེམ་གྱི་ཤིལ་བར་ལོ་བྱེ་བྲག་།',
-      },
+        description: 'སེ་སྟེམ་གྱི་ཤིལ་བར་ལོ་བྱེ་བྲག་།'
+      }
     },
     appearance: {
       title: 'ཤིལ་བར།',
-      intro: 'ཤིལ་བར་གྱི་སེབ་བྱེ་བྲག་དེ་གཞིན་དེ་ལ་དེ་གཞིན་འོད་མེད་བྱེ་བྲག་། མོད་ལ་ཤིལ་བར་བྱེ་བྲག་། ཐོད་མོ་ལ་ཤིལ་བར་བྱེ་བྲག་།',
+      intro:
+        'ཤིལ་བར་གྱི་སེབ་བྱེ་བྲག་དེ་གཞིན་དེ་ལ་དེ་གཞིན་འོད་མེད་བྱེ་བྲག་། མོད་ལ་ཤིལ་བར་བྱེ་བྲག་། ཐོད་མོ་ལ་ཤིལ་བར་བྱེ་བྲག་།',
       colorMode: 'རིག་མོ་མོད་ལ།',
       colorModeDesc: 'སྒྲུབ་པའི་མོད་ལ་འོད་མེད་བྱེ་བྲག་། གཞིན་མོད་ལ་OpenAmer ལ་ལོ་བྱེ་བྲག་།',
       toolViewTitle: 'ལེགས་སྐྱོད་ཤིལ་བར།',
       toolViewDesc: 'ཉེར་འོར་གྱི་ཐོན་མོ་ལེགས་སྐྱོད་ཤིལ་བར་བྱེ་བྲག་། ཐོན་མོ་ལེགས་སྐྱོད་ཤིལ་བར་བྱེ་བྲག་།',
       uiScaleTitle: 'UI ཤིལ་བར།',
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       translucencyTitle: 'མོད་ལ་ཤིལ་བར་བྱེ་བྲག་།',
       translucencyDesc: 'མོད་ལ་གང་ཟག་གི་ཤིལ་བར་མི་འོད་མེད་བྱེ་བྲག་། macOS དང་Windows མི་འོད་མེད་བྱེ་བྲག་།',
       backdropTitle: 'ཐོད་མོ་ཤིལ་བར་བྱེ་བྲག་།',
       backdropDesc: 'The faint statue image behind the conversation.',
       embedsTitle: 'Inline Embeds',
-      embedsDesc: 'Rich previews load from third-party sites (YouTube, X, …). Ask shows a placeholder until you allow each one; Always loads them automatically; Off keeps plain links.',
+      embedsDesc:
+        'Rich previews load from third-party sites (YouTube, X, …). Ask shows a placeholder until you allow each one; Always loads them automatically; Off keeps plain links.',
       embedsAsk: 'Ask',
       embedsAlways: 'Always',
       embedsOff: 'Off',
@@ -444,7 +458,8 @@ export const dz = defineLocale({
       themeDesc: 'Desktop palettes only. The selected mode is applied on top.',
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installTitle: 'Install from VS Code',
-      installDesc: 'Paste a Marketplace extension id (e.g. dracula-theme.theme-dracula) to convert its color theme into a desktop palette.',
+      installDesc:
+        'Paste a Marketplace extension id (e.g. dracula-theme.theme-dracula) to convert its color theme into a desktop palette.',
       installPlaceholder: 'publisher.extension',
       installButton: 'Install',
       installing: 'Installing…',
@@ -454,8 +469,10 @@ export const dz = defineLocale({
       importedBadge: 'མཐུན་འགྱུར་བྱས།',
       pet: {
         title: 'དོད་མ།',
-        intro: 'ཨེ་ལོར་བྱ་བའི་ པེ་ཊེ་རྩེད་ལོངས་སུ་ དོད་མ། ཨོ་པེ་ཨེ་མེར་གྱི་བྱ་བ་ཐམས་ཆད་ལ་རིགས་པར་འགྱུར་བ། གྲོས་བྱེད་ལ་ཤིར་བའི་སྐེ་ལ་ནི་འགྲོས་པའི་སྐེ་ལ་ཤིར་བ།',
-        restartHint: 'དོད་མ་རིན་མེད་ལ་བྱ་བའི་ མོད་འགྱུར་བྱ་དགོས། ཨོ་པེ་ཨེ་མེར་བྱ་བ་མོད་འགྱུར་བྱ་ཤིར་བ། དེ་ནས་བྱིངས་སུ་བྱིངས་སུ་བླངས་བྱ་དགོས།',
+        intro:
+          'ཨེ་ལོར་བྱ་བའི་ པེ་ཊེ་རྩེད་ལོངས་སུ་ དོད་མ། ཨོ་པེ་ཨེ་མེར་གྱི་བྱ་བ་ཐམས་ཆད་ལ་རིགས་པར་འགྱུར་བ། གྲོས་བྱེད་ལ་ཤིར་བའི་སྐེ་ལ་ནི་འགྲོས་པའི་སྐེ་ལ་ཤིར་བ།',
+        restartHint:
+          'དོད་མ་རིན་མེད་ལ་བྱ་བའི་ མོད་འགྱུར་བྱ་དགོས། ཨོ་པེ་ཨེ་མེར་བྱ་བ་མོད་འགྱུར་བྱ་ཤིར་བ། དེ་ནས་བྱིངས་སུ་བྱིངས་སུ་བླངས་བྱ་དགོས།',
         on: 'སོན།',
         off: 'མེད།',
         scaleTitle: 'སེམ་འདོད།',
@@ -465,7 +482,8 @@ export const dz = defineLocale({
         chooseTitle: 'དོད་མ་འོན།',
         chooseDesc: 'དོད་མ་འོན་པ་ནི་དེ་ལ་བྱ་བའི་ མོད་འགྱུར་བྱ་བ། དེ་ནས་འོན་པའི་བྱ་བ།',
         searchPlaceholder: 'དོད་མ་བྱེས་འོན།',
-        unreachable: "པེ་ཊེ་རྩེད་ལོངས་སུ་ མཐུན་འགྱུར་བྱ་བར་མི་ཤིར་བ། ཤིག་གཟིགས་བྱ་བའི་ ཤིག་གཟིགས་བྱ་བ། དེ་ནས་བྱིངས་སུ་བྱིངས་སུ་བླངས་བྱ་དགོས།",
+        unreachable:
+          'པེ་ཊེ་རྩེད་ལོངས་སུ་ མཐུན་འགྱུར་བྱ་བར་མི་ཤིར་བ། ཤིག་གཟིགས་བྱ་བའི་ ཤིག་གཟིགས་བྱ་བ། དེ་ནས་བྱིངས་སུ་བྱིངས་སུ་བླངས་བྱ་དགོས།',
         noMatch: query => `No pets match "${query}".`,
         installedTag: 'མཐུན་འགྱུར་བྱས།',
         generatedTag: 'མོད་འགྱུར་བྱས།',
@@ -474,7 +492,7 @@ export const dz = defineLocale({
         uninstall: name => `Uninstall ${name}`,
         delete: name => `Delete ${name}`,
         deleteTitle: name => `Delete ${name}?`,
-        deleteBody: "ཨོ་གོ་བྱ་བ་ནི་དོད་མ་དེ་ལ་ཤིར་བ། དེ་ནས་མཐུན་འགྱུར་བྱ་བར་མི་ཤིར་བ།",
+        deleteBody: 'ཨོ་གོ་བྱ་བ་ནི་དོད་མ་དེ་ལ་ཤིར་བ། དེ་ནས་མཐུན་འགྱུར་བྱ་བར་མི་ཤིར་བ།',
         deleteConfirm: 'ཤིར་བ།',
         rename: name => `Rename ${name}`,
         renameTitle: 'དོད་མ་མིན་མོད་འགྱུར་བྱེད།',
@@ -487,8 +505,8 @@ export const dz = defineLocale({
         exportFailed: slug => `Could not export ${slug}`,
         noneAvailable: 'ད་བྱ་བ་སེམས་དུ་བྱ་བ་མེད།',
         turnOnFailed: 'མི་ཐུ་སེམས་བྱ་བ་མེད།',
-        turnOffFailed: 'མི་ཐུ་སེམས་མེ་བྱ་བ་མེད།',
-      },
+        turnOffFailed: 'མི་ཐུ་སེམས་མེ་བྱ་བ་མེད།'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -499,13 +517,13 @@ export const dz = defineLocale({
       updates: 'འགྱུར་བ་',
       checkNow: 'ད་བྱ་བལ་',
       checking: 'བལ་བུ་...',
-      seeWhatsNew: "གཟིགས་སུ་གསར་བ་",
+      seeWhatsNew: 'གཟིགས་སུ་གསར་བ་',
       updateNow: 'ད་བྱ་འགྱུར་',
       releaseNotes: 'རེ་ལེས་མེམོ་',
-      onLatest: "ཉོད་ལ་བོགས་ཤིགས་",
+      onLatest: 'ཉོད་ལ་བོགས་ཤིགས་',
       installing: 'ད་བྱ་འགྱུར་བ་ཐོག་',
-      cantUpdate: "བྱ་བ་འདི་རང་འགྱུར་མི་ཐུ་ནེ་བུ་ནང་",
-      cantReach: "ཉོད་རྣམས་འགྱུར་བ་སེར་བུ་ལ་མི་ཐུ་",
+      cantUpdate: 'བྱ་བ་འདི་རང་འགྱུར་མི་ཐུ་ནེ་བུ་ནང་',
+      cantReach: 'ཉོད་རྣམས་འགྱུར་བ་སེར་བུ་ལ་མི་ཐུ་',
       tapCheck: 'ད་བྱ་བལ་བྱས་འགྱུར་བ་ལ་བྱ་',
       updateReady: count => `A new update is ready (${count} change${count === 1 ? '' : 's'} included).`,
       lastChecked: age => `Last checked ${age}`,
@@ -517,7 +535,7 @@ export const dz = defineLocale({
       justNow: 'བྱ་བུས་',
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     config: {
       none: 'མེད་',
@@ -533,7 +551,7 @@ export const dz = defineLocale({
       imported: 'གོ་རིམ་མོ་བྱ་བུས་',
       invalidJson: 'མི་དོན་སྐྱེ་བའི་གོ་རིམ་',
       keepAwakeTitle: 'རོགས་པའི་ཉེ་བྱ་བུས་',
-      keepAwakeDesc: 'འདི་ལ་རོགས་པའི་ཉེ་བྱ་བུས་མི་བྱ་བུས་',
+      keepAwakeDesc: 'འདི་ལ་རོགས་པའི་ཉེ་བྱ་བུས་མི་བྱ་བུས་'
     },
     credentials: {
       pasteKey: 'བྱོགས་བརྒྱུད་',
@@ -543,7 +561,7 @@ export const dz = defineLocale({
       couldNotSave: 'ཉེ་བྱ་བུས་',
       remove: 'བྱོགས་བརྒྱུད་',
       getKey: 'གེ་བླུས་ཐོབ།',
-      saving: 'ཉིན་བདག',
+      saving: 'ཉིན་བདག'
     },
     envActions: {
       actionsFor: label => `Actions for ${label}`,
@@ -554,7 +572,7 @@ export const dz = defineLocale({
       revealValue: 'ཚིག་མཚོན་པོ',
       replace: 'བརྗེད་པ',
       set: 'བསྟར་བ',
-      clear: 'གཙང་བ',
+      clear: 'གཙང་བ'
     },
     gateway: {
       loading: 'གཇུག་འདུས་ཀྱི་བསྒྲུབ་སྒྲིག་ལྟ་བུ་བསྐྱེད་བཞུགས།',
@@ -562,18 +580,22 @@ export const dz = defineLocale({
       unavailableDesc: 'དེབ་ནས་ཀློག་ཞིབ་ཀྱི་`IPC` འདུས་སྡེའི་བར་ཁ་ནས་གཇུག་འདུས་ཀྱི་བསྒྲུབ་སྒྲིག་མཚོན་མིན།',
       title: 'གཇུག་འདུས་འབྲེལ་ལམ།',
       envOverride: 'ཁོར་ཡུལ་འདུག་སྤུས།',
-      intro: 'དེང་སྐྱོང་བྱེད་ནས་`OpenAmer Desktop` ཀྱིས་རང་ཉིད་ཀྱི་ནང་གཇུག་འདུས་འདུག་བསྟར་བྱེད། འདི་ལྷ་སློབ་གྱིས་གཞན་ནས་རྩོལ་བྱེད་མང་མཛད་གཞན་ནས་ཡོད་པའམ་མཐར་ཚད་མི་འདངས་པའི་`OpenAmer` ནསྡུད་པ་ངང་དེ་བར་རྒྱུད་ཀྱི་འདུས་སྡེ་ལ་དགོངས་ནས་སྤྱོད་དགོས་སྟབས་ལ་གཞན་ནས་གཇུག་འདུས་གྱིས་བེད་སྤྱོད་གནང་རྟགས། རང་ཉིད་ཀྱི་གཞན་ནས་གཞི་གཅིག་ཐོབ་ནས་གཞི་འོད་མའི་རྒྱུ་མཚན་ཤིག་འོད་ཕྱིར་འདི་འོད་མ།',
+      intro:
+        'དེང་སྐྱོང་བྱེད་ནས་`OpenAmer Desktop` ཀྱིས་རང་ཉིད་ཀྱི་ནང་གཇུག་འདུས་འདུག་བསྟར་བྱེད། འདི་ལྷ་སློབ་གྱིས་གཞན་ནས་རྩོལ་བྱེད་མང་མཛད་གཞན་ནས་ཡོད་པའམ་མཐར་ཚད་མི་འདངས་པའི་`OpenAmer` ནསྡུད་པ་ངང་དེ་བར་རྒྱུད་ཀྱི་འདུས་སྡེ་ལ་དགོངས་ནས་སྤྱོད་དགོས་སྟབས་ལ་གཞན་ནས་གཇུག་འདུས་གྱིས་བེད་སྤྱོད་གནང་རྟགས། རང་ཉིད་ཀྱི་གཞན་ནས་གཞི་གཅིག་ཐོབ་ནས་གཞི་འོད་མའི་རྒྱུ་མཚན་ཤིག་འོད་ཕྱིར་འདི་འོད་མ།',
       appliesTo: 'ཕན་སུ་བཀོལ།',
       allProfiles: 'རང་བྱུང་སྡེ་ཀྱི་བཀོད་མཆོག',
       defaultConnection: 'རང་ཉིད་ཀྱི་འདུག་སྤུས་མེད་པའི་རང་བྱུང་སྡེ་རྣམས་ཀྱི་སྔོན་འགྲོའི་འབྲེལ་ལམ།',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       envOverrideTitle: 'ཁོར་ཡུལ་ཀྱི་མཚན་ཉིན་གྱིས་དེབ་ནས་ཀློག་ཞིབ་འདིའི་ཚོགས་ལམ་ངང་བསྐྱེད་ཡོད།',
-      envOverrideDesc: '`OPENAMER_DESKTOP_REMOTE_URL` དང་`OPENAMER_DESKTOP_REMOTE_TOKEN` གཉིས་ཀྱི་ཉིན་ཟིན་བཅོས་ནས་འདི་འོད་ཀྱི་ཉིན་ཟིན་བེད་སྤྱོད་ཆེན་མོར་སྒྲུབས།',
+      envOverrideDesc:
+        '`OPENAMER_DESKTOP_REMOTE_URL` དང་`OPENAMER_DESKTOP_REMOTE_TOKEN` གཉིས་ཀྱི་ཉིན་ཟིན་བཅོས་ནས་འདི་འོད་ཀྱི་ཉིན་ཟིན་བེད་སྤྱོད་ཆེན་མོར་སྒྲུབས།',
       modeTitle: 'འབྲེལ་སྟབས་སེམས་བཟུང་།',
       localTitle: 'ས་གཞི་བླངས་སྒོ།',
-      localDesc: 'ས་གཞི་ localhost ན་ OpenAmer backend མི་རུལ་མེད་པར་བྱེ་བྲིས།. དེ་ནི་རེ་བླུས་སུ་བྱེ་བྲིས་ཤིང་། མི་བླུང་བའི་ཐོབ་ཐོན་ལ་བརྟེན་བྱེ་བྲིས་ཤིང་།',
+      localDesc:
+        'ས་གཞི་ localhost ན་ OpenAmer backend མི་རུལ་མེད་པར་བྱེ་བྲིས།. དེ་ནི་རེ་བླུས་སུ་བྱེ་བྲིས་ཤིང་། མི་བླུང་བའི་ཐོབ་ཐོན་ལ་བརྟེན་བྱེ་བྲིས་ཤིང་།',
       inheritTitle: 'རེ་བླུས་སུ་བྱེ་བྲིས་ཤིང་།',
-      inheritDesc: "དེ་རིགས་ཀྱི་སེམས་བཟུང་། རེ་བླུས་སུ་བྱེ་བྲིས་ཤིང་།",
+      inheritDesc: 'དེ་རིགས་ཀྱི་སེམས་བཟུང་། རེ་བླུས་སུ་བྱེ་བྲིས་ཤིང་།',
       remoteTitle: 'དུས་བྱེ་བླངས་སྒོ།',
       remoteDesc: 'དེ་རིགས་ desktop shell ལ་ OpenAmer backend དུས་བྱེ་བླངས་སུ་འབྲེལ་བྱེས།',
       remoteAuthHint: 'གཉིས་མི་རུལ་མེད་པར་བྱེ་བྲིས་ཤིང་། གཞན་ལ་བྱེ་བྲིས་ཤིང་།',
@@ -593,7 +615,7 @@ export const dz = defineLocale({
       cloudNoAgents: {
         before: 'དངུལ་ཁང་འདིར་འབྲེལ་བུ་མ་རྙེད་པ། གསར་པ་བསྐྲུན་པའི་ས་གནས་',
         linkText: 'OpenAmer དྲ་ལམ་',
-        after: 'གསར་དུ་སྤྲོད།',
+        after: 'གསར་དུ་སྤྲོད།'
       },
       cloudRefresh: 'སྤྲོད་དུ་བསྐྱེད།',
       cloudConnect: 'སྦྲེལ་བཞག',
@@ -617,12 +639,14 @@ export const dz = defineLocale({
       signOut: 'ལོག་འབུར།',
       signInWith: provider => `Sign in with ${provider}`,
       authTitle: 'འབྲུས་ཤེས།',
-      authSignedInPassword: 'དེ་གི་གཟུག་ལོ་ནི་མི་མེད་ཞུན་མེད་རིང་བ་ཤིན་བྱེད། ཤོས་བྱེད་ལ་བྷཱ་སེ... སེས་ཤིན་རིང་བ་ཤིན་བྱེད།',
+      authSignedInPassword:
+        'དེ་གི་གཟུག་ལོ་ནི་མི་མེད་ཞུན་མེད་རིང་བ་ཤིན་བྱེད། ཤོས་བྱེད་ལ་བྷཱ་སེ... སེས་ཤིན་རིང་བ་ཤིན་བྱེད།',
       authSignedInOauth: 'དེ་གི་གཟུག་ལོ་ནི་OAuth ཤིན་བྱེད། ཤོས་བྱེད་ལ་བྷཱ་སེ... སེས་ཤིན་རིང་བ་ཤིན་བྱེད།',
       authNeedsPassword: 'དེ་གི་གཟུག་ལོ་ནི་མི་མེད་ཞུན་མེད་རིང་བ་ཤིན་བྱེད། ཤོས་བྱེད་ལ་བྷཱ་སེ... སེས་ཤིན་རིང་བ་ཤིན་བྱེད།',
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
       tokenTitle: 'སེས་ཤིན་རིང་བ་ཤིན་བྱེད།',
-      tokenDesc: 'དེ་གི་གཟུག་ལོ་ནི་མི་མེད་ཞུན་མེད་རིང་བ་ཤིན་བྱེད། REST ཨེ་ཝེ་ཤིན་བྱེད། ཤོས་བྱེད་ལ་བྷཱ་སེ... སེས་ཤིན་རིང་བ་ཤིན་བྱེད།',
+      tokenDesc:
+        'དེ་གི་གཟུག་ལོ་ནི་མི་མེད་ཞུན་མེད་རིང་བ་ཤིན་བྱེད། REST ཨེ་ཝེ་ཤིན་བྱེད། ཤོས་བྱེད་ལ་བྷཱ་སེ... སེས་ཤིན་རིང་བ་ཤིན་བྱེད།',
       existingToken: value => `Existing token ${value}`,
       savedToken: 'སོན་བྱས།',
       pasteSessionToken: 'སེས་ཤིན་རིང་བ་ཤིན་བྱེད།',
@@ -640,7 +664,8 @@ export const dz = defineLocale({
       enterUrlFirst: 'དང་པོས་དབྱིའི་ཡིག་ཁྲིལ་ཏུ་འཇུག་ནས།',
       restartingTitle: 'གཞི་འདུས་འབྲེལ་བ་འགོ་བསྐྱེད་བཞུགས།',
       savedTitle: 'གཞི་འདུས་ནང་བཤེར་ཞུགས།',
-      restartingMessage: 'OpenAmer Desktop ནི་ཞུགས་ཟིན་གྱི་ནང་བཤེར་བསྟེན་ནས་ཡང་འབྲེལ་བ་བསྐྱེད་རྒྱག — སྤྱོ་ནི་ཀྱི་སར་བཞག',
+      restartingMessage:
+        'OpenAmer Desktop ནི་ཞུགས་ཟིན་གྱི་ནང་བཤེར་བསྟེན་ནས་ཡང་འབྲེལ་བ་བསྐྱེད་རྒྱག — སྤྱོ་ནི་ཀྱི་སར་བཞག',
       savedMessage: 'གོངས་སུ་འགོ་བསྐྱེད་སྐབས་ལ་ཞུགས།',
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       reachableTitle: 'དབྱིའི་གཞི་འདུས་འབྱུང་ཐུབ།',
@@ -653,7 +678,8 @@ export const dz = defineLocale({
       applyFailed: 'གཞི་འདུས་ནང་བཤེར་བསྟེན་ཐུབ་མ་ཐོབ།',
       saveFailed: 'གཞི་འདུས་ནང་བཤེར་ཞུགས་ཐུབ་མ་ཐོབ།',
       sshTitle: 'SSH བརྒྱུད་ནས་འབྲེལ་བ།',
-      sshDesc: 'OpenAmer ནི་དབྱིའི་མཛེས་གླིང་དུ་ SSH བརྒྱུད་ནས་འགོ་བསྐྱེད་དང་འདི་ལྟར་སྦི་ཐང་བཞུགས — འགོ་བསྐྱེད་དགོས་མེད། རང་ཉིད་བསྟེན་དགོས་མེད། འགྲོམ་ཁྲིམས་ལ་དངོས་མཚོག་ལྟར་གྱིས་ SSH ལྡན་པའི་འབྱུང་སྤྱོ་དགོས།',
+      sshDesc:
+        'OpenAmer ནི་དབྱིའི་མཛེས་གླིང་དུ་ SSH བརྒྱུད་ནས་འགོ་བསྐྱེད་དང་འདི་ལྟར་སྦི་ཐང་བཞུགས — འགོ་བསྐྱེད་དགོས་མེད། རང་ཉིད་བསྟེན་དགོས་མེད། འགྲོམ་ཁྲིམས་ལ་དངོས་མཚོག་ལྟར་གྱིས་ SSH ལྡན་པའི་འབྱུང་སྤྱོ་དགོས།',
       sshTrustHint: 'དང་པོས་མཚོན་གྱི་འགྲོམ་ཁྲིམས་ཀྱི་དངོས་མཚོག་བདེན་པར་གསོན་དང་བཏབ་པ། རྗེས་ནས་བསྡུས་མ་ཆོད།',
       sshHostTitle: 'འགྲོམ་ཁྲིམས།',
       sshHostDesc: 'user@host, ཡང་ན་ ~/.ssh/config ཀྱི་ Host ལས་བཟོས་པ།',
@@ -677,18 +703,23 @@ export const dz = defineLocale({
       sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
       sshIncompleteHost: 'འབྲེལ་བ་མཛད་སྔོན་ SSH འགྲོམ་ཁྲིམས་ཤིག་ཏུ་འཇུག་ནས།',
       sshErrUnreachable: 'དེ་འགྲོམ་ཁྲིམས་ལ་ SSH བརྒྱུད་ནས་འབྱུང་མ་ཐོབ། འགྲོམ་ཁྲིམས་དང་སྒོ་ཚད་དང་ཁེ་རྟེན་བརྟག་ནས།',
-      sshErrAuth: 'SSH ངོ་མཚར་མ་རེན། ལྷུན་ཞིའི་དངོས་མཚོག་ ssh-agent ནང་ཏུ་ཡལ་ནས (ssh-add) ཡང་ན་ ~/.ssh/config ནང་ IdentityFile བཟོ་ནས — OpenAmer ནི་ ssh ཀྱིས་མཐུན་མཐུན་མིན་གྱིས་འགོ་བསྐྱེད།',
-      sshErrHostKey: 'དབྱིས་མཁན་ལྡིག་གི་མགོ་ཚིག་སྟེ་དང་ཁྱད་ལས་དང་འབྱུང་། འདི་ནི་དགོས་མེད་ཡིན་བཏང་དཔྱད་ནས་ `ssh-keygen -R <host>` དང་ཡར་འབྲེལ་བཅོས།',
-      sshErrNotInstalled: 'འབྲི་མཁན་དུ་OpenAmer མིན་བསྔགས་ཟིན། དེང་ན་འདིར་བསྔགས་བསྟན་ (`curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh`) ཡང་ན་OpenAmer ལམ་གྱི་ཞིབ་བཤེར་བཅོས།',
-      sshErrPlatform: 'འབྲི་མཁན་ཀྱི་ལས་སྒྲོམ་སྤྱོད་བསྒྲུབ་མི་ཐད། OpenAmer Desktop የSSH མན་མཐའ་ལ་Linux། macOS། དང་Windows འབྲི་མཁན་ལ་བརྒྱུད་སྒྲུབ་གནང་།',
-      sshErrTimeout: 'འབྲི་མཁན་གྱི་འབྲེལ་བཅོས་ཀྱི་དུས་ཡོད་དུས་བཀག་འདུག དབྱིས་མཁན་འདི་འདུག་པའང་ཡང་ན་ནང་བཅུང་བའི་གནས་སྲིད།',
+      sshErrAuth:
+        'SSH ངོ་མཚར་མ་རེན། ལྷུན་ཞིའི་དངོས་མཚོག་ ssh-agent ནང་ཏུ་ཡལ་ནས (ssh-add) ཡང་ན་ ~/.ssh/config ནང་ IdentityFile བཟོ་ནས — OpenAmer ནི་ ssh ཀྱིས་མཐུན་མཐུན་མིན་གྱིས་འགོ་བསྐྱེད།',
+      sshErrHostKey:
+        'དབྱིས་མཁན་ལྡིག་གི་མགོ་ཚིག་སྟེ་དང་ཁྱད་ལས་དང་འབྱུང་། འདི་ནི་དགོས་མེད་ཡིན་བཏང་དཔྱད་ནས་ `ssh-keygen -R <host>` དང་ཡར་འབྲེལ་བཅོས།',
+      sshErrNotInstalled:
+        'འབྲི་མཁན་དུ་OpenAmer མིན་བསྔགས་ཟིན། དེང་ན་འདིར་བསྔགས་བསྟན་ (`curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh`) ཡང་ན་OpenAmer ལམ་གྱི་ཞིབ་བཤེར་བཅོས།',
+      sshErrPlatform:
+        'འབྲི་མཁན་ཀྱི་ལས་སྒྲོམ་སྤྱོད་བསྒྲུབ་མི་ཐད། OpenAmer Desktop የSSH མན་མཐའ་ལ་Linux། macOS། དང་Windows འབྲི་མཁན་ལ་བརྒྱུད་སྒྲུབ་གནང་།',
+      sshErrTimeout:
+        'འབྲི་མཁན་གྱི་འབྲེལ་བཅོས་ཀྱི་དུས་ཡོད་དུས་བཀག་འདུག དབྱིས་མཁན་འདི་འདུག་པའང་ཡང་ན་ནང་བཅུང་བའི་གནས་སྲིད།',
       sshErrUpdateRequired: 'OpenAmer Desktop የSSH མན་མཐའ་ནས་འབྲེལ་བཅོས་སྔོན་འབྲི་མཁན་དུ་OpenAmer གསར་དང་བཅོས།',
-      sshErrUnknown: 'འབྲི་མཁན་གྱི་འབྲེལ་བཅོས་མ་སྐྱེས།',
+      sshErrUnknown: 'འབྲི་མཁན་གྱི་འབྲེལ་བཅོས་མ་སྐྱེས།'
     },
     keys: {
       loading: 'API ལྡིག་རྟགས་དང་རྒྱུ་འཇུག་བསྣ་འཛིན་བྱེད་སྟེས།',
       failedLoad: 'API ལྡིག་རྟགས་བསྣ་འཛིན་མ་སྐྱེས།',
-      empty: 'འདི་རིགས་ཆའི་ནང་དུ་གང་ཡང་བཀོད་མེད།',
+      empty: 'འདི་རིགས་ཆའི་ནང་དུ་གང་ཡང་བཀོད་མེད།'
     },
     mcp: {
       loading: 'MCP སརྒྱུད་པ་བསྣ་འཛིན་བྱེད་སྟེས།',
@@ -740,7 +771,8 @@ export const dz = defineLocale({
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
       catalogEnvRequired: 'Install ngaan khang khung yoden phrang gi dzong kha bzhag.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       statusConnecting: 'Jug pa...',
       statusNeedsAuth: 'Authentication yong.',
       statusError: 'Nyam',
@@ -753,7 +785,7 @@ export const dz = defineLocale({
       unsavedConnect: 'Bzhang ma — `mcp.json` save tsheg jug.',
       enableTool: tool => `Enable ${tool}`,
       disableTool: tool => `Disable ${tool}`,
-      noOutput: 'Output yod ma.',
+      noOutput: 'Output yod ma.'
     },
     model: {
       loading: 'Model configuration load ja...',
@@ -767,53 +799,55 @@ export const dz = defineLocale({
       defaultsFailed: 'Model defaults save na meyong.',
       auxiliaryTitle: 'Auxiliary models',
       resetAllToMain: 'Kun zhu bzhag la main du reset.',
-      auxiliaryDesc: 'Helper tasks default par main model gyi nang gi rung. Task yod na dedicated model bzhag gyal ntshan.',
+      auxiliaryDesc:
+        'Helper tasks default par main model gyi nang gi rung. Task yod na dedicated model bzhag gyal ntshan.',
       setToMain: 'Main du bzhag',
       change: 'Gyaltsab',
       autoUseMain: 'auto · main model nge',
       providerDefault: '(provider default)',
       fallbackAdd: 'Fallback add',
       fallbackEmpty: 'Fallback model yod ma — default model nge, fail tsheg backup la phel.',
-      notInCatalog: "Provider gyi model list la ma yod — calls backup la phel nga rung.",
+      notInCatalog: 'Provider gyi model list la ma yod — calls backup la phel nga rung.',
       tasks: {
         vision: {
           label: 'Migon',
-          hint: 'Image analysis',
+          hint: 'Image analysis'
         },
         web_extract: {
           label: 'Web extract',
-          hint: 'Page summarization',
+          hint: 'Page summarization'
         },
         compression: {
           label: 'Compression',
-          hint: 'Context compaction',
+          hint: 'Context compaction'
         },
         skills_hub: {
           label: 'Skills hub',
-          hint: 'Skill search',
+          hint: 'Skill search'
         },
         approval: {
           label: 'Approval',
-          hint: 'Smart auto-approve',
+          hint: 'Smart auto-approve'
         },
         mcp: {
           label: 'MCP',
-          hint: 'MCP tool routing',
+          hint: 'MCP tool routing'
         },
         title_generation: {
           label: 'Title gen',
-          hint: 'Session titles',
+          hint: 'Session titles'
         },
         curator: {
           label: 'ཀྲུ་རེ་རེ',
-          hint: 'སྐྱེས་བུའི་སྤྱོད་ལས་བྱས་པའི་སོལ་འབུལ།',
-        },
-      },
+          hint: 'སྐྱེས་བུའི་སྤྱོད་ལས་བྱས་པའི་སོལ་འབུལ།'
+        }
+      }
     },
     providers: {
       connectAccount: 'ལོག་འབུལ་ལ་བརྒྱབ།',
       haveApiKey: 'ཨེ་པི་མི་འདུག་པའི་ལོག་འབུལ་བྱེད་པ་ལེན་པ།',
-      intro: 'ལོག་འབུལ་ལ་བརྒྱབ། — ཨེ་པི་མི་འདུག་པའི་ལོག་འབུལ་བྱེད་པ་མི་འདུག། OpenAmer ནི་བྲོབ་ཐོབ་ལོག་འབུལ་བྱེད་པ་ཤིང་རི་བྲོབ་ཐོབ་ལོག་འབུལ་བྱེད་པ་བྱེད།',
+      intro:
+        'ལོག་འབུལ་ལ་བརྒྱབ། — ཨེ་པི་མི་འདུག་པའི་ལོག་འབུལ་བྱེད་པ་མི་འདུག། OpenAmer ནི་བྲོབ་ཐོབ་ལོག་འབུལ་བྱེད་པ་ཤིང་རི་བྲོབ་ཐོབ་ལོག་འབུལ་བྱེད་པ་བྱེད།',
       connected: 'ལོག་འབུལ་བྱས་པ།',
       collapse: 'ལྷོམ་བྱེད།',
       connectAnother: 'ལོག་འབུལ་བྱེད་ལ་བརྒྱབ།',
@@ -823,7 +857,8 @@ export const dz = defineLocale({
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedTitle: 'ལོག་འབུལ་བྱེད་བྱས་པ།',
       removedMessage: provider => `${provider} was removed.`,
@@ -833,14 +868,16 @@ export const dz = defineLocale({
       noKeysMatch: 'ལོག་འབུལ་བྱེད་རིགས་གཞིན་ཤིང་རི་བྲོབ་ཐོབ་ལོག་འབུལ་བྱེད་རིགས་གཞིན་མི་འདུག།',
       localEndpoint: {
         title: 'ལོག་འབུལ་བྱེད་ལོག་འབུལ་བྱེད་རིགས་གཞིན་ལོག་འབུལ་བྱེད་རིགས་གཞིན།',
-        description: 'OpenAmer ནི་བྲོབ་ཐོབ་ལོག་འབུལ་བྱེད་རིགས་གཞིན་ཤིང་རི་བྲོབ་ཐོབ་ལོག་འབུལ་བྱེད་རིགས་གཞིན་ལོག་འབུལ་བྱེད་རིགས་གཞིན་བྱེད།',
+        description:
+          'OpenAmer ནི་བྲོབ་ཐོབ་ལོག་འབུལ་བྱེད་རིགས་གཞིན་ཤིང་རི་བྲོབ་ཐོབ་ལོག་འབུལ་བྱེད་རིགས་གཞིན་ལོག་འབུལ་བྱེད་རིགས་གཞིན་བྱེད།'
       },
-      loading: 'ལོག་འབུལ་བྱེད་རིགས་གཞིན་བྱེད་ཤིང་...',
+      loading: 'ལོག་འབུལ་བྱེད་རིགས་གཞིན་བྱེད་ཤིང་...'
     },
     sessions: {
       loading: 'ལོག་འབུལ་བྱེད་རིགས་གཞིན་བྱེད་ཤིང་...',
       archivedTitle: 'ལོག་འབུལ་བྱེད་རིགས་གཞིན་བྱེད་ཤིང་...',
-      archivedIntro: 'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
+      archivedIntro:
+        'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
       emptyArchivedTitle: 'Nothing archived',
       emptyArchivedDesc: 'Archive a chat to hide it here.',
       unarchive: 'Unarchive',
@@ -849,13 +886,15 @@ export const dz = defineLocale({
       restored: 'Restored',
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
       autoArchiveTitle: 'Auto-archive stale chats',
-      autoArchiveDesc: "Automatically archive chats you haven't touched in a while. Pinned chats are never archived, and nothing is deleted — archived chats just move here.",
+      autoArchiveDesc:
+        "Automatically archive chats you haven't touched in a while. Pinned chats are never archived, and nothing is deleted — archived chats just move here.",
       autoArchiveDaysLabel: 'Archive after',
       autoArchiveDaysUnit: 'འཇུག་མེད་ཀྱི་ཉིན་',
       autoArchiveFailed: 'རང་འགྲོ་བསྐར་བློས་བསྡུས་མི་ཐུབ་པ།',
       defaultDirTitle: 'སྤྱིའི་གཞི་རྩའི་མཐའ་སྔོན།',
       defaultDirDesc: 'གཞན་མཐའ་སྔོན་མ་བསྟེན་ན། རང་ཉིན་གསར་པ་ཚང་མ་འདིར་འགྲོ་། ཁྱིམ་གཞིར་བསྟེན་ན་མཐའ་སྔོན་འདིས་མེད་ན།',
-      defaultDirUpdated: 'སྤྱིའི་གཞི་རྩའི་མཐའ་སྔོན་བསྡུས་ཟིན། ཡིན་ནས་བརྗོད་ཆ་སྟེན་དགོས་བསྟེན་དུ་(Ctrl/⌘+N)འགྲོ་བཞུགས་གསར་པ་བསྟེན།',
+      defaultDirUpdated:
+        'སྤྱིའི་གཞི་རྩའི་མཐའ་སྔོན་བསྡུས་ཟིན། ཡིན་ནས་བརྗོད་ཆ་སྟེན་དགོས་བསྟེན་དུ་(Ctrl/⌘+N)འགྲོ་བཞུགས་གསར་པ་བསྟེན།',
       defaultsTo: label => `Defaults to ${label}.`,
       change: 'བསྟེན།',
       choose: 'འདེས་བསྟེན།',
@@ -865,7 +904,7 @@ export const dz = defineLocale({
       unarchiveFailed: 'བསྐར་བློས་འདོད་མི་ཐུབ་པ།',
       deleteFailed: 'བསྐར་འགྲོ་མི་ཐུབ་པ།',
       updateDirFailed: 'སྤྱིའི་གཞི་རྩའི་མཐའ་སྔོན་བསྡུས་མི་ཐུབ་པ།',
-      clearDirFailed: 'སྤྱིའི་གཞི་རྩའི་མཐའ་སྔོན་གཙང་མི་ཐུབ་པ།',
+      clearDirFailed: 'སྤྱིའི་གཞི་རྩའི་མཐའ་སྔོན་གཙང་མི་ཐུབ་པ།'
     },
     toolsets: {
       loadingConfig: 'བསྒྲུབ་སྒྲུབ་ཀྱི་རྒྱུ་མ་འགྲོ་བཞུགས་གི་ཡོད།',
@@ -883,20 +922,24 @@ export const dz = defineLocale({
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
       failedLoad: 'ལས་ཡོན་གྱི་བསྒྲུབ་སྒྲུབ་ལ་ནང་འཁོར་མི་ཐུབ་པ།',
-      noProviderOptions: 'འདིའི་ལས་ཚན་ལ་ཞབས་འདེབས་ཁང་གི་རྣམས་མེད། འདང་ངེས་གསོལ་བའི་ད་ལྟའི་བཀོད་སྒྲིག་ལ་ལས་ཀྱིས་འགྲོ་ཐུབ།',
+      noProviderOptions:
+        'འདིའི་ལས་ཚན་ལ་ཞབས་འདེབས་ཁང་གི་རྣམས་མེད། འདང་ངེས་གསོལ་བའི་ད་ལྟའི་བཀོད་སྒྲིག་ལ་ལས་ཀྱིས་འགྲོ་ཐུབ།',
       noProviders: 'འདིར་ཞབས་འདེབས་ཁང་གཅིག་ཀྱང་མེད།',
       ready: 'ཡོངས་སུ་གྲ་ཚང་ཡིན།',
       needsSignIn: 'སྤྱི་འཇུག་དགོས།',
       needsSetup: 'བཀོད་སྒྲིག་དགོས།',
-      openamerIncluded: 'ཨོཾ་ཨ་མེར་རྒྱལ་ཡོད་ཀྱིས་བཅུག་ཡིན། — སྐར་འགྱོད་ཆེན་བྱེད་པར་ཨོཾ་ཨ་མེར་པརྟལ་ལ་སྤྱི་འཇུག་གིས་སྤྱོད་དགོས།',
+      openamerIncluded:
+        'ཨོཾ་ཨ་མེར་རྒྱལ་ཡོད་ཀྱིས་བཅུག་ཡིན། — སྐར་འགྱོད་ཆེན་བྱེད་པར་ཨོཾ་ཨ་མེར་པརྟལ་ལ་སྤྱི་འཇུག་གིས་སྤྱོད་དགོས།',
       openamerAuthNeededTitle: 'ཨོཾ་ཨ་མེར་པརྟལ་ལ་སྤྱི་འཇུག',
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
       openamerAuthSignIn: 'སྤྱི་འཇུག',
       openamerAuthDoneTitle: 'ཨོཾ་ཨ་མེར་པརྟལ་མཐུན་སྦྱོར་བྱས་ཡོད།',
       openamerAuthDoneMessage: 'ཨོཾ་ཨ་མེར་རྒྱལ་ཡོད་ཀྱི་ནང་གི་བསྡུར་མཉེས་ཚང་འདུག་བྱེད་ཡོད།',
       openamerAuthFailed: 'ཨོཾ་ཨ་མེར་པརྟལ་ལ་སྤྱི་འཇུག་མཐར་ཐུག་མཛད་མ་ཐུབ།',
       noApiKeyRequired: 'API ཉེ་གནས་མི་དགོས།',
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupInstalledHint: 'བསྡུག་ཟིན་པ། གསལ་མི་འབྱུང་བ་ཙམ་བཀོད་སྒྲིག་བསྐྱར་འགྲོ་དགོས།',
       postSetupRun: 'བཀོད་སྒྲིག་འགྲོ',
       postSetupRerun: 'བཀོད་སྒྲིག་བསྐྱར་འགྲོ',
@@ -937,9 +980,10 @@ export const dz = defineLocale({
         selectedTitle: 'མཚན་སྦལ་ཁུག་གསུངས་ཟིན',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
         failedSelect: backend => `Failed to select ${backend}`,
-        needsSetupHint: 'ད་ལྟའི་མཚན་སྦལ་ཁུག་འདུག གསུངས་ཐུབ་ཀྱིས— བསྒྲུབ་ཅན་ཚོགས་མཇོག་མི་ཐུབ་བར་ཁང་གི་བསྟེན་ནས་འགྲོ་མི་ནུས།',
-      },
-    },
+        needsSetupHint:
+          'ད་ལྟའི་མཚན་སྦལ་ཁུག་འདུག གསུངས་ཐུབ་ཀྱིས— བསྒྲུབ་ཅན་ཚོགས་མཇོག་མི་ཐུབ་བར་ཁང་གི་བསྟེན་ནས་འགྲོ་མི་ནུས།'
+      }
+    }
   },
   skills: {
     tabSkills: 'ལས་ཡོན་ཚན་རིགས།',
@@ -959,7 +1003,8 @@ export const dz = defineLocale({
     noDescription: 'འདུས་ཞིག་བསྟན་བཅོས་མེད།',
     configured: 'བསྒྲུབ་ཟིན།',
     needsKeys: 'དབུག་སྒྲུལ་དགོས་ཡོད།',
-    visionModelHint: 'ལྟ་རྒྱེ་ཡོན་ལ་ཁྱེད་ཀྱི་དངོས་འགྲུལ་སྟེན་བསྒྲུབ་སྒྲུབ་འོས་སྤྱོད། མིང་མཐའ་འདོད་མཁན་གྱི་རིགས་འདིར་མིན་པར་འདིར་འདེས་གསུམས་གཏོང་བ་ཡིན།',
+    visionModelHint:
+      'ལྟ་རྒྱེ་ཡོན་ལ་ཁྱེད་ཀྱི་དངོས་འགྲུལ་སྟེན་བསྒྲུབ་སྒྲུབ་འོས་སྤྱོད། མིང་མཐའ་འདོད་མཁན་གྱི་རིགས་འདིར་མིན་པར་འདིར་འདེས་གསུམས་གཏོང་བ་ཡིན།',
     visionModelLink: 'བསྒྲུབ་སྒྲུབ་ནང་ལྟ་རྒྱེ་ཡོན་འདེས་བསྟེན།',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} toolsets enabled`,
     configureToolset: label => `Configure ${label}`,
@@ -985,7 +1030,7 @@ export const dz = defineLocale({
     provenance: {
       agent: 'Learned',
       bundled: 'Built-in',
-      hub: 'Hub',
+      hub: 'Hub'
     },
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
@@ -1003,7 +1048,8 @@ export const dz = defineLocale({
       connectingHubs: 'Connecting to skill hubs...',
       connectedHubs: 'Connected hubs:',
       featured: 'Featured skills',
-      landingHint: 'Search the hub to browse installable skills from the official index, GitHub, and community sources.',
+      landingHint:
+        'Search the hub to browse installable skills from the official index, GitHub, and community sources.',
       noResults: 'No matching skills found in the hub.',
       resultCount: (count, ms) => `${count} result${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Timed out: ${sources}`,
@@ -1023,7 +1069,7 @@ export const dz = defineLocale({
       trust: {
         builtin: 'ནང་འཁོར་ཡིག',
         trusted: 'རྟག་བརྟན་',
-        community: 'སྤྱི་ཚོགས་',
+        community: 'སྤྱི་ཚོགས་'
       },
       verdictSafe: 'བདེ་ཐང་',
       verdictCaution: 'ཞུགས་ལས་བསྟན་དུས་',
@@ -1041,8 +1087,8 @@ export const dz = defineLocale({
       loadFailed: 'ཀུན་སློབ་ལྟ་གནས་ཚིག་སྐྱོད་མ་གྲུབ།',
       previewFailed: 'ཀུན་སློབ་མངོན་སྟོན་མ་གྲུབ།',
       scanFailed: 'བདེ་ཐང་བསྟར་མ་གྲུབ།',
-      searchFailed: 'ལྟ་གནས་བསྟར་མ་གྲུབ།',
-    },
+      searchFailed: 'ལྟ་གནས་བསྟར་མ་གྲུབ།'
+    }
   },
   starmap: {
     title: 'སློབ་ཡིག་མཐུན་སྦྱོར',
@@ -1059,7 +1105,8 @@ export const dz = defineLocale({
     emptyTitle: 'ད་དུང་སློབ་པ་མེད',
     emptyDesc: '`OpenAmer` ཁྱོད་ཀྱི་ལས་ཀྱིས་ནུས་ཤུགས་དང་ཡིག་སློབ་བསྐྱེད་ན་འདིར་སྣ་ཚོགས།',
     share: 'མཐུན་སྦྱོར་མཉམ་བརྗེད',
-    shareHint: 'འདི་མཐུན་སྦྱོར་མཉམ་བརྗེད་བྱེད་པར་ཀོཊ་ཀ་བཤུ་བསྐུར་བྱེད། ཡང་ན་བསྣུན་པར་ཀོཊ་ཀ་ཞིག་བཤུའི་དུས་བསྐུར་བྱེད། འདིས་བསྡུས་པ་མཐུན་སྦྱོར་ཀྱི་བཀོད་སྒྲུབ་ཙམ་ཡིན་པས་ཁྱོད་ཀྱི་ཡིག་ཡང་ནུས་ཤུགས་ཀྱི་ཡིག་ཡིན་མིན།',
+    shareHint:
+      'འདི་མཐུན་སྦྱོར་མཉམ་བརྗེད་བྱེད་པར་ཀོཊ་ཀ་བཤུ་བསྐུར་བྱེད། ཡང་ན་བསྣུན་པར་ཀོཊ་ཀ་ཞིག་བཤུའི་དུས་བསྐུར་བྱེད། འདིས་བསྡུས་པ་མཐུན་སྦྱོར་ཀྱི་བཀོད་སྒྲུབ་ཙམ་ཡིན་པས་ཁྱོད་ཀྱི་ཡིག་ཡང་ནུས་ཤུགས་ཀྱི་ཡིག་ཡིན་མིན།',
     shareTitle: 'མཐུན་སྦྱོར་ནང་འཇུག་/ཕྱི་འདོན',
     sharePlaceholder: 'མཐུན་སྦྱོར་ཀོཊ་ཀ་བཤུའི་དུས་བསྐུར…',
     copy: 'མཐུན་སྦྱོར་ཀོཊ་ཀ་བཤུ་བསྐུར',
@@ -1069,7 +1116,7 @@ export const dz = defineLocale({
     importEmpty: 'ས་ཁམས་ཀོཊ་འདིར་བསྐྱེད་ནས་ལྷག་ཡོད།',
     importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'བསྐོར་བྱུང་བའི་ས་ཁམས།',
-    resetToMine: 'ངའི་ས་ཁམས་ལ་ལོག',
+    resetToMine: 'ངའི་ས་ཁམས་ལ་ལོག'
   },
   agents: {
     close: 'ལས་བྱུང་གི་ཡོད་མཁན་སྒྲོལ་མོ',
@@ -1099,7 +1146,7 @@ export const dz = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'སྐད་འགངས་ལྟ་གནས་སྒྲོལ་མོ',
@@ -1129,7 +1176,7 @@ export const dz = defineLocale({
       generatedTag: 'སྐྱེད་ཟིན་པ།',
       adoptFailed: 'དེ་ནི་ཆུང་སྐྱེ་འཇུག་ཐབས་མེད།',
       toggleFailed: 'ཆུང་སྐྱེ་བཅོས་ཐབས་མེད།',
-      noneAvailable: 'ཆུང་སྐྱེ་ཡོད་མེད་ཀྱང་བསྒྲུབས་ཏུ་འདོད་ན་གང་ཞིག་འོད་གསུམ་གྱིས་འཛུགས་རོག།',
+      noneAvailable: 'ཆུང་སྐྱེ་ཡོད་མེད་ཀྱང་བསྒྲུབས་ཏུ་འདོད་ན་གང་ཞིག་འོད་གསུམ་གྱིས་འཛུགས་རོག།'
     },
     generatePet: {
       title: 'རྣམ་ཁྲིམ་བཟོས་',
@@ -1149,7 +1196,8 @@ export const dz = defineLocale({
       hatchSaving: 'ཉིན་བདེན་ཐོབ་ཐོང་།…',
       namePlaceholder: 'ཁྱེད་ཀྱི་རྣམ་ཁྲིམ་མཚན་སྟོད་དང་།',
       staleBackend: 'རྣམ་ཁྲིམ་བཟོས་པར་ OpenAmer གསར་དུ་བསྐོར་བ།',
-      backgroundHint: 'འདི་བསྡུས་ནས་ཁྱེད་ལ་གསར་སུ་འཁོར་སྲིད་ཆེན་མོ་བཏང་— OpenAmer ལྟར་འདུས་ཟིན་ན་ཁྱེད་ལ་བཤད་པ་འདེབས་གཏན་ནས།',
+      backgroundHint:
+        'འདི་བསྡུས་ནས་ཁྱེད་ལ་གསར་སུ་འཁོར་སྲིད་ཆེན་མོ་བཏང་— OpenAmer ལྟར་འདུས་ཟིན་ན་ཁྱེད་ལ་བཤད་པ་འདེབས་གཏན་ནས།',
       slowProviderHint: 'འདིར་སྐར་མང་པོ་དགོས་སྲང་',
       remix: 'བསྐྱར་བཟོ་',
       remixConfirmTitle: 'འདི་མཛེས་མདོག་བསྐྱར་བཟོ་དགོས་སམ?',
@@ -1158,7 +1206,7 @@ export const dz = defineLocale({
       referenceImageTooLarge: 'ལྟ་མདོའི་རིས་མོ་ཧ་ཅང་ཆེ། 16 MB ལས་ཉུང་བའི་མེ་ཤེས་ཞ཯ན་གཞག་ལ་སྤྱོད།',
       referenceImageInvalid: 'ལྟ་མདོའི་རིས་མོ་འདི་བསྐལ་མི་ཐུབ། PNG, JPG, WebP, ཡང་ནས་ GIF ལ་སྤྱོད་ལོ།',
       adopt: 'ལུས་ལ་འཇུག་བསྟེན།',
-      startOver: 'ཡསྐྱར་འགོ།',
+      startOver: 'ཡསྐྱར་འགོ།'
     },
     installTheme: {
       title: 'རྣམ་གཞག་བསྐར་བཏང་…',
@@ -1170,7 +1218,7 @@ export const dz = defineLocale({
       install: 'བསྐར་བཏང་།',
       installing: 'བསྐར་བཏང་བྱེད་སྟེན།',
       installed: 'བསྐར་བཏང་ཟིན།',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'ནང་སྡོམས་ཀྱི་ཁུངས་སོ།',
     mcpServers: 'MCP སར་བར་སར།',
@@ -1179,49 +1227,49 @@ export const dz = defineLocale({
       maintenance: 'གསོ་འགུས།',
       sessions: 'ལས་རིམ་བཅས།',
       system: 'ལམ་སྒྲོན',
-      usage: 'སྤྱོད་འགྲོ',
+      usage: 'སྤྱོད་འགྲོ'
     },
     sectionDescriptions: {
       maintenance: 'ཉམས་བསྟན་དང་སྡེ་སྲུང་དང་གཙོ་སྲོག་དང་དེ་བཞག་གནས་ཀྱི་གཞི་གསུམ',
       sessions: 'གསར་འདེབས་བཤེར་དང་དོ་དམ།',
       system: 'གནས་ཚུལ་དང་རྟག་ཐོ་དང་ལམ་སྒྲོན་གཉེན་ལས་བྱ་སྤྱོད་སྐབས།',
-      usage: 'སྤྱིར་ཚོགས་དང་རིན་གོང་དང་མཁས་ཤེས་གཉེན་ལས་བྱའི་ལོ་རིང་བཞུན་ཐོ།',
+      usage: 'སྤྱིར་ཚོགས་དང་རིན་གོང་དང་མཁས་ཤེས་གཉེན་ལས་བྱའི་ལོ་རིང་བཞུན་ཐོ།'
     },
     nav: {
       newChat: {
         title: 'ལས་གནས་གསར་པ',
-        detail: 'ལས་གནས་གསར་པ་འགོ་བྱེད',
+        detail: 'ལས་གནས་གསར་པ་འགོ་བྱེད'
       },
       settings: {
         title: 'བསྒྲུབ་བྱ་བཞག',
-        detail: 'OpenAmer དཀར་མཚོ་བསྒྲུབ་བྱ་བཞག',
+        detail: 'OpenAmer དཀར་མཚོ་བསྒྲུབ་བྱ་བཞག'
       },
       skills: {
         title: 'ནུས་པ',
-        detail: 'མཁས་ཤེས་དང་ཡོ་ཆས་དང་MCP སང་རྒྱན་ཁང་།',
+        detail: 'མཁས་ཤེས་དང་ཡོ་ཆས་དང་MCP སང་རྒྱན་ཁང་།'
       },
       messaging: {
         title: 'འཕྲིན་ལམ་འགྲེལ',
-        detail: 'Telegram, Slack, Discord དེ་བཞི་ཙམ་བཅས་བསྒྲུབ་བྱ་བཞག',
+        detail: 'Telegram, Slack, Discord དེ་བཞི་ཙམ་བཅས་བསྒྲུབ་བྱ་བཞག'
       },
       artifacts: {
         title: 'འབྲས་རྫས',
-        detail: 'འབྲས་རྫས་བཟོས་པ་ལྟ་སྟེན',
-      },
+        detail: 'འབྲས་རྫས་བཟོས་པ་ལྟ་སྟེན'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'ལས་གནས་སྦྲུལ་ཁང',
-        detail: 'ལས་གནས་བཤེར་དང་བཀག་དང་དོ་དམ',
+        detail: 'ལས་གནས་བཤེར་དང་བཀག་དང་དོ་དམ'
       },
       system: {
         title: 'ལམ་སྒྲོན་སྦྲུལ་ཁང',
-        detail: 'སྒྲོན་ཁང་གནས་ཚུལ་དང་རྟག་ཐོ་དང་འགོ་བསྐྱར་དང་བཅོས་བཅོས',
+        detail: 'སྒྲོན་ཁང་གནས་ཚུལ་དང་རྟག་ཐོ་དང་འགོ་བསྐྱར་དང་བཅོས་བཅོས'
       },
       usage: {
         title: 'ལས་སྤྱོད་ཀ་ཆས།',
-        detail: 'རྟོག་རྒྱུ་དང་རིན་གོང་དང་ནུས་ལེན་ལས་སྤྱོད་ཀ་ཆས།',
-      },
+        detail: 'རྟོག་རྒྱུ་དང་རིན་གོང་དང་ནུས་ལེན་ལས་སྤྱོད་ཀ་ཆས།'
+      }
     },
     providerNavigate: 'ལམ་འགྲོ།',
     providerSessions: 'སྐབས་ལ་བཀོད།',
@@ -1309,8 +1357,8 @@ export const dz = defineLocale({
       actionStarted: name => `${name} started — tailing log...`,
       actionFailed: name => `${name} failed to start`,
       running: 'གསོལ་བཞུགས་...',
-      viewLog: 'ལས་སྲོལ་ཐོ་རྒྱུད',
-    },
+      viewLog: 'ལས་སྲོལ་ཐོ་རྒྱུད'
+    }
   },
   messaging: {
     search: 'བཤེར་འཕྲིན...',
@@ -1325,7 +1373,7 @@ export const dz = defineLocale({
       not_configured: 'མཇུག་སྒྲིག་དགོས།',
       pending_restart: 'སྐྱེད་བསྡུས་དགོས།',
       retrying: 'ཡང་ཡང་ཚོགས་པ',
-      startup_failed: 'འགོ་བཟོ་མ་སོང་།',
+      startup_failed: 'འགོ་བཟོ་མ་སོང་།'
     },
     unknown: 'མི་ཤེས།',
     hintPendingRestart: 'འདི་ལ་བཅོས་ནས་སྐྱེད་བསྡུས་དགོས་པར་གཙོ་རིམ་སྟེནས་གཙོ་བོ་སྐྱེད་བསྡུས།',
@@ -1338,7 +1386,8 @@ export const dz = defineLocale({
     required: 'ངེས་དགོས།',
     recommended: 'འཆད་ཐུབ་སྦྱོར།',
     advanced: count => `Advanced (${count})`,
-    noTokenNeeded: 'འདི་ལམ་རྟེན་སུ་ཐོན་ཀྱི་མཚོན་སྤྱི་དགོས་མེད། སྔོན་གྱིཋནས་མཇུག་སྒྲིག་ལམ་ཚོན་བཟོས་ནས་དེ་འོན་ནང་སྤོས་བྱེད།',
+    noTokenNeeded:
+      'འདི་ལམ་རྟེན་སུ་ཐོན་ཀྱི་མཚོན་སྤྱི་དགོས་མེད། སྔོན་གྱིཋནས་མཇུག་སྒྲིག་ལམ་ཚོན་བཟོས་ནས་དེ་འོན་ནང་སྤོས་བྱེད།',
     enabled: 'སྤོས་ཟིན།',
     disabled: 'བཀག་སྤྲོད།',
     unsavedChanges: 'ཞུས་མེད་བསྲེལ་བྱས་མེད།',
@@ -1364,127 +1413,126 @@ export const dz = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'བོད་ཀློག་པའི་རྗེས་འབྲེལ་མཚོན་ཕྲེངས།',
         help: '@BotFather ནས་བོད་ཀློག་པ་གསར་དུ་བསྐྱེད་དེས་མཚོན་ཕྲེངས་བསྟར་བའི་ཡིན།',
-        placeholder: 'Telegram བོད་ཀློག་པའི་རྗེས་འབྲེལ་མཚོན་ཕྲེངས་བསྟར་བ།',
+        placeholder: 'Telegram བོད་ཀློག་པའི་རྗེས་འབྲེལ་མཚོན་ཕྲེངས་བསྟར་བ།'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'ཁུག་བསྡུས་ཆོས་ཀྱིས་བཅོས་ནས་བྱང་མཐུན་གྲངས་ཀྱི་ཆ་རྗེས།',
-        help: 'མཐུན་ཐུགས། @userinfobot ནས་ལོག་གྲངས་ཀྱི་ཆ་རྗེས། འདི་མེད་ན་གང་ཞིག་ཀྱང་བོད་ཀློག་པ་ལ་ཐད་ཀྱིས་ཁ་འཕྲིན་གཏོང་ཐུབ།',
+        help: 'མཐུན་ཐུགས། @userinfobot ནས་ལོག་གྲངས་ཀྱི་ཆ་རྗེས། འདི་མེད་ན་གང་ཞིག་ཀྱང་བོད་ཀློག་པ་ལ་ཐད་ཀྱིས་ཁ་འཕྲིན་གཏོང་ཐུབ།'
       },
       TELEGRAM_PROXY: {
         label: 'བར་བསྒྱུར་གྱི་ཡིག་ཆ་བེད།',
-        help: 'Telegram བཀག་སྤྲོད་བྱས་པའི་ཁུག་བསྡུས་ཐོག་ནས་དགོས་ངལ།',
+        help: 'Telegram བཀག་སྤྲོད་བྱས་པའི་ཁུག་བསྡུས་ཐོག་ནས་དགོས་ངལ།'
       },
       DISCORD_BOT_TOKEN: {
         label: 'བོད་ཀློག་པའི་རྗེས་འབྲེལ་མཚོན་ཕྲེངས།',
-        help: 'Discord རྒྱལ་སྤྱོད་མཁན་ཁང་ལ་ཁུག་ཆས་གསར་དུ་བསྐྱེད་དེར་བོད་ཀློག་པ་བསྣན་ནས་རྗེས་འབྲེལ་མཚོན་ཕྲེངས་བསྟར་བ།',
+        help: 'Discord རྒྱལ་སྤྱོད་མཁན་ཁང་ལ་ཁུག་ཆས་གསར་དུ་བསྐྱེད་དེར་བོད་ཀློག་པ་བསྣན་ནས་རྗེས་འབྲེལ་མཚོན་ཕྲེངས་བསྟར་བ།'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'ཁུག་བསྡུས་ཆོས་ཀྱིས་བཅོས་ནས་བྱང་མཐུན་གྲངས་ཀྱི་ཆ་རྗེས།',
-        help: 'མཐུན་ཐུགས། Discord ཡིག་ཆ་བྱས་གྲངས་ཀྱི་ཆ་རྗེས།',
+        help: 'མཐུན་ཐུགས། Discord ཡིག་ཆ་བྱས་གྲངས་ཀྱི་ཆ་རྗེས།'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'ལན་སྤྱོད་ཚུལ།',
-        help: 'དང་པོ། ཚང་མ། ཡང་ན་སོྂ།',
+        help: 'དང་པོ། ཚང་མ། ཡང་ན་སོྂ།'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Discord ཡོད་མང་ཚང་མ་ཁོང་སོང་རྒྱང་བཏང་།',
-        help: 'རིགས་གནས་ཙམ། ཡོད་ཚེ། གང་ཞིག་ཀྱང་བྱོན་ཁར་ལ་ཐད་ཀར་འདོད་འདུག་གི་སྒྲུབ་ཡིན།',
+        help: 'རིགས་གནས་ཙམ། ཡོད་ཚེ། གང་ཞིག་ཀྱང་བྱོན་ཁར་ལ་ཐད་ཀར་འདོད་འདུག་གི་སྒྲུབ་ཡིན།'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ཁོང་གཞིའི་ཁོང་སྦྲེལ་ཀྱི་ཡིག་ཆ་བཛྲ།',
-        help: 'བྱོན་ཁར་གནང་འདོད་འདུག་གི་འདོད་དོན་དང་དྲན་འཆི་ཞིབ་བྱོན་ཁར་གནང་བྱེད་པའི་ཁོང་སྦྲེལ།',
+        help: 'བྱོན་ཁར་གནང་འདོད་འདུག་གི་འདོད་དོན་དང་དྲན་འཆི་ཞིབ་བྱོན་ཁར་གནང་བྱེད་པའི་ཁོང་སྦྲེལ།'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'ཁོང་གཞིའི་ཁོང་སྦྲེལ་མཚན་སྟོན།',
-        help: 'ཁོང་གཞིའི་ཁོང་སྦྲེལ་ཀྱི་མཚན་སྟོན་ཚོན་རྐྱེན་དང་གནས་ཚུལ་འདོད་དོན་སོགས་སུ་མཚོན་པ།',
+        help: 'ཁོང་གཞིའི་ཁོང་སྦྲེལ་ཀྱི་མཚན་སྟོན་ཚོན་རྐྱེན་དང་གནས་ཚུལ་འདོད་དོན་སོགས་སུ་མཚོན་པ།'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'iMessage ཡོད་མང་ཚང་མ་ཁོང་སོང་རྒྱང་བཏང་།',
-        help: 'ཡོད་ཚེ་ BlueBubbles ཁོང་སོང་རྒྱང་དམ་ཚིག་ལུས་སྦྱོར།',
+        help: 'ཡོད་ཚེ་ BlueBubbles ཁོང་སོང་རྒྱང་དམ་ཚིག་ལུས་སྦྱོར།'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Mattermost ཡོད་མང་ཚང་མ་ཁོང་སོང་རྒྱང་བཏང་།',
+        label: 'Mattermost ཡོད་མང་ཚང་མ་ཁོང་སོང་རྒྱང་བཏང་།'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'ཁོང་གཞི།',
+        label: 'ཁོང་གཞི།'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'QQ ཡོད་མང་ཚང་མ་ཁོང་སོང་རྒྱང་བཏང་།',
+        label: 'QQ ཡོད་མང་ཚང་མ་ཁོང་སོང་རྒྱང་བཏང་།'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ ཁོང་གཞི།',
-        help: 'དེ་རྒྱུན་འདོད་དོན་བསྐེན་སྐྱེད་ཀྱི་སྔ་མོ་ཁོང་སྦྲེལ་ཡང་ན་མཛད་སྡེ།',
+        help: 'དེ་རྒྱུན་འདོད་དོན་བསྐེན་སྐྱེད་ཀྱི་སྔ་མོ་ཁོང་སྦྲེལ་ཡང་ན་མཛད་སྡེ།'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ ཁོང་གཞིའི་མཚན་སྟོན།',
+        label: 'QQ ཁོང་གཞིའི་མཚན་སྟོན།'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack བྱོན་ཁར་ཐོན་ཡིན།',
         help: 'ཁྱེད་ཀྱིས་ Slack ལག་འགྱེད་བསྐར་བྱས་རྗེས་ OAuth & Permissions ནས་བྱོན་ཁར་ཐོན་ཡིན་བེད་སྒྱུར།',
-        placeholder: 'Slack བྱོན་ཁར་ཐོན་ཡིན་བསླེབས།',
+        placeholder: 'Slack བྱོན་ཁར་ཐོན་ཡིན་བསླེབས།'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack ལག་འགྱེད་ཐོན་ཡིན།',
         help: 'OpenAmer ལས་ཀློང་ཀྱི་ Socket Mode ལ་ངོ་མཚོན་པའི་ token དགོས།',
-        placeholder: 'Slack ལས་ཀློང་ཀྱི་ token བཀོལ་འཇུག',
+        placeholder: 'Slack ལས་ཀློང་ཀྱི་ token བཀོལ་འཇུག'
       },
       SLACK_ALLOWED_USERS: {
         label: 'ཁག་ཆས་སྟབས་པའི་ Slack ལས་མཚོན་ཀྱི་ ID',
-        help: 'མཛོན་ཐུབ་སྟབས། རྐྱང་ཆེན་བཀག་པའི་ Slack ལས་མཚོན་ཀྱི་ ID',
+        help: 'མཛོན་ཐུབ་སྟབས། རྐྱང་ཆེན་བཀག་པའི་ Slack ལས་མཚོན་ཀྱི་ ID'
       },
       MATTERMOST_URL: {
         label: 'སརྗེའི་ URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'བྱོན་སྤྱོད་ཀྱི་ token',
+        label: 'བྱོན་སྤྱོད་ཀྱི་ token'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'ཁག་ཆས་སྟབས་པའི་ ལས་མཚོན་ཀྱི་ ID',
-        help: 'མཛོན་ཐུབ་སྟབས། རྐྱང་ཆེན་བཀག་པའི་ Mattermost ལས་མཚོན་ཀྱི་ ID',
+        help: 'མཛོན་ཐུབ་སྟབས། རྐྱང་ཆེན་བཀག་པའི་ Mattermost ལས་མཚོན་ཀྱི་ ID'
       },
       MATRIX_HOMESERVER: {
         label: 'ཁང་མཚོན་སརྗེའི་ URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'འཛུལ་སྤྱོད་ཀྱི་ token',
+        label: 'འཛུལ་སྤྱོད་ཀྱི་ token'
       },
       MATRIX_USER_ID: {
         label: 'བྱོན་སྤྱོད་ཀྱི་ ལས་མཚོན་ཀྱི་ ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'ཁག་ཆས་སྟབས་པའི་ Matrix ལས་མཚོན་ཀྱི་ ID',
-        help: 'མཛོན་ཐུབ་སྟབས། @user:server རྒྱལ་བསྒྲུབ་གྱི་ རྐྱང་ཆེན་བཀག་པའི་ ལས་མཚོན་ཀྱི་ ID',
+        help: 'མཛོན་ཐུབ་སྟབས། @user:server རྒྱལ་བསྒྲུབ་གྱི་ རྐྱང་ཆེན་བཀག་པའི་ ལས་མཚོན་ཀྱི་ ID'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal སྡོད་མཚོན་འདུག་པའི་ URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'འགྲོ་བཞུགས་བའི་ signal-cli REST སྡོད་མཚོན་འདུག་པའི་ URL',
+        help: 'འགྲོ་བཞུགས་བའི་ signal-cli REST སྡོད་མཚོན་འདུག་པའི་ URL'
       },
       SIGNAL_ACCOUNT: {
         label: 'རྒྱུ་གོང་ནང་གྲགས་ཚང',
-        help: 'ཁོབ་ཡུལ་ལ་སྤྱོད་མཚན་དང་བསྡུར་བྱེད་པའི་ signal-cli འབྲེལ་སྤུངས་དང་བསྡུར་བྱེད་ནས་གཞན་ཟས་མིན་པའི་ཁོབ་ཡུལ་གཙང་ངེས་འཛིན།',
+        help: 'ཁོབ་ཡུལ་ལ་སྤྱོད་མཚན་དང་བསྡུར་བྱེད་པའི་ signal-cli འབྲེལ་སྤུངས་དང་བསྡུར་བྱེད་ནས་གཞན་ཟས་མིན་པའི་ཁོབ་ཡུལ་གཙང་ངེས་འཛིན།'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Signal ལྷུང་སྤྱོད་ཁ་ཕྱིར་འདོད་མཁན་གྱི',
-        help: 'འོས་འཚོས་བྱེད་རུང་། Signal ངོས་འཛིན་སྦྲོལ་བརྗིད་བསྡུར་བྱེད་དགོས།',
+        help: 'འོས་འཚོས་བྱེད་རུང་། Signal ངོས་འཛིན་སྦྲོལ་བརྗིད་བསྡུར་བྱེད་དགོས།'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp འབྲེལ་སྤུངས་འགོ་བཅོས་པ་སྤོས',
-        help: 'གོའདུར་མའི་རྟགས་ཚད་འོག་ནས་རང་འབྱུང་གིས་བསྡུར་བྱེད། དགོས་མེད་ན་མི་བཅོས་ན།',
+        help: 'གོའདུར་མའི་རྟགས་ཚད་འོག་ནས་རང་འབྱུང་གིས་བསྡུར་བྱེད། དགོས་མེད་ན་མི་བཅོས་ན།'
       },
       WHATSAPP_MODE: {
-        label: 'འབྲེལ་སྤུངས་སྤྱོད་ཚུལ',
+        label: 'འབྲེལ་སྤུངས་སྤྱོད་ཚུལ'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'WhatsApp ལྷུང་སྤྱོད་ཁ་ཕྱིར་འདོད་མཁན་གྱི',
-        help: 'འོས་འཚོས་བྱེད་རུང་། ཁོབ་ཡུལ་ཡང་ནང་ WhatsApp ID གྱི་ཐོན་ལུས་སྦྲོལ་བརྗིད་བསྡུར་བྱེད་དགོས།',
-      },
+        help: 'འོས་འཚོས་བྱེད་རུང་། ཁོབ་ཡུལ་ཡང་ནང་ WhatsApp ID གྱི་ཐོན་ལུས་སྦྲོལ་བརྗིད་བསྡུར་བྱེད་དགོས།'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'ཝེབ་ཧུཀ་བསྡུར་བྱེད...',
@@ -1494,7 +1542,8 @@ export const dz = defineLocale({
     hint: 'འགྲེལ་མཉེན་ལྷུང་བཞུགས་ནས་སྦྲོལ་ཐད་ཀྱི་བཅོས་ཐོབ་མིང་ལྷག་ཏུ་བསྣངས་ཐུབ། སྦྲོལ་ཐད་བཀག་ན་ལྷག་འབྱུང་བྱེད་རྒྱུན་མིན་ལ་འཁོར་བསྐྱོད།',
     empty: 'སྦྲོལ་ཐད་ཝེབ་ཧུཀ་གང་ཞིག་ཀྱང་མེད།',
     disabledTitle: 'ཝེབ་ཧུཀ་འགྲེལ་མཉེན་བཀག་ཡོད།',
-    disabledBody: 'ཝེབ་ཧུཀ་ནི་རང་ཉིད་ཀྱི་སྒོ་བསྡུས་ཀློག་ཡིན། ལྷག་འབྱུང་ HTTP བྱེད་རྒྱུན་མཁན་འདོད་པར་འདིར་འོད་སྤོས། དཔེ་གྲོག་ཐོན་ལུས་སྐར་མཉེན་ནི་སྦྲོལ་ཐད་ཀྱིས་ Telegram, Discord, Slack ཡང་ནང་ལུས་སྐར་མཉེན་གཞན་ཞིག་ལ་ཕུལ་བའི་སྐབས་དགོས།',
+    disabledBody:
+      'ཝེབ་ཧུཀ་ནི་རང་ཉིད་ཀྱི་སྒོ་བསྡུས་ཀློག་ཡིན། ལྷག་འབྱུང་ HTTP བྱེད་རྒྱུན་མཁན་འདོད་པར་འདིར་འོད་སྤོས། དཔེ་གྲོག་ཐོན་ལུས་སྐར་མཉེན་ནི་སྦྲོལ་ཐད་ཀྱིས་ Telegram, Discord, Slack ཡང་ནང་ལུས་སྐར་མཉེན་གཞན་ཞིག་ལ་ཕུལ་བའི་སྐབས་དགོས།',
     enable: 'ཝེབ་ཧུཀ་འོད་སྤོས',
     enabling: 'འོད་སྤོས་བྱེད་རྒྱུང་།...',
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -1547,8 +1596,8 @@ export const dz = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'དཔར་འབྲིན།',
-      github_comment: 'GitHub བསྡུས་འཕྲིན།',
-    },
+      github_comment: 'GitHub བསྡུས་འཕྲིན།'
+    }
   },
   profiles: {
     close: 'རྣམ་གཞག་སྒོ་བསྔལ།',
@@ -1626,7 +1675,7 @@ Leave blank to keep the ${mode} default.`,
     failedLoadSoul: 'Failed to load SOUL.md',
     failedSaveSoul: 'Failed to save SOUL.md',
     failedCreate: 'Failed to create profile',
-    failedRename: 'Failed to rename profile',
+    failedRename: 'Failed to rename profile'
   },
   cron: {
     close: 'Close cron',
@@ -1641,14 +1690,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'paused',
       disabled: 'disabled',
       error: 'error',
-      completed: 'completed',
+      completed: 'completed'
     },
     deliveryLabels: {
       local: 'This desktop',
       telegram: 'ཏེ་ལི་གྲམ',
       discord: 'དིས་ཀོརཌ',
       slack: 'སླག',
-      email: 'ཡི་མེལ',
+      email: 'ཡི་མེལ'
     },
     scheduleLabels: {
       daily: 'ཉིན་རེར',
@@ -1657,7 +1706,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'ཟླཝ་རེ',
       hourly: 'ཆུ་ཚོད་རེ',
       'every-15-minutes': 'ཆུ་ཚོད་བཅུ་གང་རེ',
-      custom: 'སྒྲུབ་མོ',
+      custom: 'སྒྲུབ་མོ'
     },
     scheduleHints: {
       daily: 'ཉིན་རེར་མཉེ་སྐར་༩:༠༠་ལ།',
@@ -1666,7 +1715,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'ཟླཝ་རེར་ནང་གི་དཔལ་རྩམ་པ་ལ་མཉེ་སྐར་༩:༠༠་ལ།',
       hourly: 'ཆུ་ཚོད་རེའི་རྒྱུ་མཚར་ལ།',
       'every-15-minutes': 'ཆུ་ཚོད་བཅུ་གང་རེ',
-      custom: 'ཀྲོན་སྐད་ཡང་ནི་རང་བཞིན་གྱི་སྐད',
+      custom: 'ཀྲོན་སྐད་ཡང་ནི་རང་བཞིན་གྱི་སྐད'
     },
     days: {
       '0': 'ཉིན་རྩའི་བདུད་ཕྲག',
@@ -1676,7 +1725,7 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Thursday',
       '5': 'Friday',
       '6': 'Saturday',
-      '7': 'Sunday',
+      '7': 'Sunday'
     },
     dayFallback: value => `day ${value}`,
     everyDayAt: time => `Every day at ${time}`,
@@ -1686,7 +1735,8 @@ Leave blank to keep the ${mode} default.`,
     topOfHour: 'At the top of every hour',
     everyHourAt: minute => `Every hour at :${minute}`,
     newCron: 'New cron',
-    emptyDescNew: 'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
+    emptyDescNew:
+      'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
     emptyDescSearch: 'Try a broader search query.',
     emptyTitleNew: 'No scheduled jobs yet',
     emptyTitleSearch: 'No matches',
@@ -1723,11 +1773,13 @@ Leave blank to keep the ${mode} default.`,
     editTitle: 'ཁྲན་རྩལ་བཅོས་འདི།',
     createTitle: 'ཁྲན་རྩལ་གསར་པ།',
     editDesc: 'དུས་ཐེང་འདི། དེ་ནས་ལས་རྩོལ་རྗེས་མཚོན་ཐུབ།',
-    createDesc: 'དེང་འབྲེལ་བསྐྱེད་ཐུབ་པར་ཁྲན་རྩལ་བཀོད། “ཡིག་ཆ་བཅབ་པ་བཅས་པ” ཡིན་ན་“ཆ་ཚང་ད་གོང་༡༥” ལྟར་གླིང་ཡིག་གཟུགས་ཀྱང་གོས་ནས།',
+    createDesc:
+      'དེང་འབྲེལ་བསྐྱེད་ཐུབ་པར་ཁྲན་རྩལ་བཀོད། “ཡིག་ཆ་བཅབ་པ་བཅས་པ” ཡིན་ན་“ཆ་ཚང་ད་གོང་༡༥” ལྟར་གླིང་ཡིག་གཟུགས་ཀྱང་གོས་ནས།',
     nameLabel: 'མཚན།',
     namePlaceholder: 'དཔོ་སྔ་མའི་བཤད་གཏོད།',
     promptLabel: 'དེང་འབྲེལ་བསྐྱོད།',
-    promptPlaceholder: 'ངའི་མཇུག་མེད་ཀྱི་Slack ཐད་ཀར་མཚོན་དང་ཁྱེད་ཀྱི་དྲན་ཤོག་གི་ལས་ཀྱི་སྤྱིས་དངོས་གྲགས་པའི་ཁ་ཤས་གསུམ་བཅས་དཔར་འདོན་གཟིགས།',
+    promptPlaceholder:
+      'ངའི་མཇུག་མེད་ཀྱི་Slack ཐད་ཀར་མཚོན་དང་ཁྱེད་ཀྱི་དྲན་ཤོག་གི་ལས་ཀྱི་སྤྱིས་དངོས་གྲགས་པའི་ཁ་ཤས་གསུམ་བཅས་དཔར་འདོན་གཟིགས།',
     frequencyLabel: 'ཡིག་ཚད།',
     deliverLabel: 'འདོན་མཚོན་གནས།',
     deliverNeedsHomeChannel: 'གནས་ཁང་ཁྱེད་ཀྱི་དངོས་མཚོན་གནས་སྔོན་ནས་བསྲི་བྱེད་དགོས།',
@@ -1745,7 +1797,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'ཁྲན་རྩལ་གསར་པ་བསྐྱེད།',
     tabs: {
       jobs: 'རྩལ་ལས་རྩོལ།',
-      blueprints: 'འཆར་གཞི་དཔེ།',
+      blueprints: 'འཆར་གཞི་དཔེ།'
     },
     blueprints: {
       tab: 'འཆར་གཞི་དཔེ།',
@@ -1759,8 +1811,8 @@ Leave blank to keep the ${mode} default.`,
       loading: 'འཆར་གཞི་དཔེ་ལྟ་བ་བཞིན་པ།',
       failedLoad: 'བོད་འབྲེལ་མཚོན་སྤྱི་མ་ཐག་པ།',
       emptyTitle: 'བོད་འབྲེལ་མཚོན་སྤྱི་མ་ཡོད།',
-      emptyDesc: 'འདི་ཁྱབ་ལ་རང་བའི་འབྲེལ་མཚོན་སྤྱི་མ་ཡོད།',
-    },
+      emptyDesc: 'འདི་ཁྱབ་ལ་རང་བའི་འབྲེལ་མཚོན་སྤྱི་མ་ཡོད།'
+    }
   },
   artifacts: {
     search: 'རྒྱུ་མཚན་བཤེར་བ...',
@@ -1794,14 +1846,14 @@ Leave blank to keep the ${mode} default.`,
     kindLink: 'དྲིས་པ',
     chat: 'བརྡ་ཁྱད',
     copyUrl: 'དྲིས་པའི་ས་གནས་བཤུས་པ།',
-    copyPath: 'ལམ་འགྲེམ་བཤུས་པ།',
+    copyPath: 'ལམ་འགྲེམ་བཤུས་པ།'
   },
   sidebar: {
     nav: {
       'new-session': 'ལས་སྐབས་གསར་པ',
       skills: 'ནུས་ལམ་ལྷག',
       messaging: 'བརྡ་འཕྲི་འབྲེལ་བ',
-      artifacts: 'རྒྱུ་མཚན',
+      artifacts: 'རྒྱུ་མཚན'
     },
     searchAria: 'ལས་སྐབས་བཤེར་བ',
     searchPlaceholder: 'ལས་སྐབས་བཤེར་བ…',
@@ -1833,7 +1885,7 @@ Leave blank to keep the ${mode} default.`,
       namePlaceholder: 'དཔེ་ན། སྐར་ལས་ཁང་',
       foldersLabel: 'དངོས་མིག་ཁང་ཁྲོད།',
       ideaLabel: 'བསམ་དཔོ།',
-      ideaPlaceholder: "འདི་འགས་ལས་ཀྱི་སྐྱེས་གནས་གང་ཡིན། (IDEA.md ནས་བསྡུས།)",
+      ideaPlaceholder: 'འདི་འགས་ལས་ཀྱི་སྐྱེས་གནས་གང་ཡིན། (IDEA.md ནས་བསྡུས།)',
       ideaGenerate: 'སྐྱེས་གནས་བསྐར།',
       ideaGenerating: 'བསྐར་བཞིན་ཡོད།',
       ideaShuffle: 'དཔེ་མཚོན་བསྐར་བཤར།',
@@ -1853,7 +1905,8 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'ལམ་ཕྲེང་བཤུས།',
       removeFromSidebar: 'སྐྱེས་གནས་སྟེགས་ནས་བསྐྱོང་བཀག',
       createFailed: 'འགས་ལས་བསྐྱེད་མི་ཐུབ།',
-      staleBackend: '`OpenAmer` ནས་རྩལ་ཐུབ་སྤྱོད་འཛུགས་བྱེད་པར་ཁྱེད་ཀྱི་རྒྱུ་གཞི་དེ་ནི་དེ་རིགས་གྱི་རྟག་ཐུན་ལས་ལས་གནས་ལྗོངས་ཡིན་ཏེ་བསྒྱུར་དགོས། (ནང་ཚོང་ནས་བསྒྱུར་བཟོ་ནས་རྒྱུ་གཞི་བསྒྱུར་བཟོ་བ)',
+      staleBackend:
+        '`OpenAmer` ནས་རྩལ་ཐུབ་སྤྱོད་འཛུགས་བྱེད་པར་ཁྱེད་ཀྱི་རྒྱུ་གཞི་དེ་ནི་དེ་རིགས་གྱི་རྟག་ཐུན་ལས་ལས་གནས་ལྗོངས་ཡིན་ཏེ་བསྒྱུར་དགོས། (ནང་ཚོང་ནས་བསྒྱུར་བཟོ་ནས་རྒྱུ་གཞི་བསྒྱུར་བཟོ་བ)',
       deleteConfirm: 'བསྡད་པའི་རྩལ་ཐུབ་འདོན་པ་འདི་ལ་ཡོད་ཀྱང་ཡིག་ཆ་དང་གིཏ་རྡོ་མེད་དང་སབྲོན་ཡུལ་གྱི་ལས་སྲིད་ཡོད་མེད།',
       startWork: 'སབྲོན་ཡུལ་གསར་པ།',
       newWorktreeTitle: 'སབྲོན་ཡུལ་གསར་པ།',
@@ -1875,13 +1928,15 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'སྐྱེས་རིང་མ་རྙམས།',
       removeWorktree: 'སབྲོན་ཡུལ་འདོན་པ།',
       removeWorktreeFailed: 'ལས་རྩི་བསྐྱོད་ཐབ་མེད་པ་བསྟན་འགྲུབ་ཡོད་སྲིད།',
-      removeWorktreeConfirm: 'གིཊ་ནས་འདི་བསྐྱོད་ན་ལས་རྩི་ཁང་དངོས་མིག་ཁང་དེ་དག་དུས་སུ་འཇུག་ཡོད། ཡང་ན་སྒྲོན་མཐའ་ནས་ལས་རྩི་ཁང་བཅུག་ཏེ་དངོས་མིག་ཁང་དེའི་ནང་དུ་བསྐྱེད།',
-      removeWorktreeDirty: 'འདི་ལས་རྩི་ལ་མ་འཇུགས་པའི་བསྒྱུར་བཅོས་ཡོད། འདེབས་བསྐྱོད་ན་དེ་དག་ལས་སུ་འཇུག ཡང་ན་སྒྲོན་མཐའ་ནས་ལས་རྩི་ཁང་བཅུག་ཏེ་དངོས་མིག་ཁང་དེར་བསྐྱེད།',
+      removeWorktreeConfirm:
+        'གིཊ་ནས་འདི་བསྐྱོད་ན་ལས་རྩི་ཁང་དངོས་མིག་ཁང་དེ་དག་དུས་སུ་འཇུག་ཡོད། ཡང་ན་སྒྲོན་མཐའ་ནས་ལས་རྩི་ཁང་བཅུག་ཏེ་དངོས་མིག་ཁང་དེའི་ནང་དུ་བསྐྱེད།',
+      removeWorktreeDirty:
+        'འདི་ལས་རྩི་ལ་མ་འཇུགས་པའི་བསྒྱུར་བཅོས་ཡོད། འདེབས་བསྐྱོད་ན་དེ་དག་ལས་སུ་འཇུག ཡང་ན་སྒྲོན་མཐའ་ནས་ལས་རྩི་ཁང་བཅུག་ཏེ་དངོས་མིག་ཁང་དེར་བསྐྱེད།',
       forceRemove: 'འདེབས་བསྐྱོད།',
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
       toggle: label => `Toggle ${label} sessions`,
-      back: 'ལས་འགོམས་ཀུན།',
+      back: 'ལས་འགོམས་ཀུན།'
     },
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
@@ -1919,15 +1974,15 @@ Leave blank to keep the ${mode} default.`,
       ageNow: 'now',
       ageDay: 'd',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Earlier today',
       yesterday: 'Yesterday',
       thisWeek: 'Earlier this week',
       lastWeek: 'Last week',
-      thisMonth: 'Earlier this month',
-    },
+      thisMonth: 'Earlier this month'
+    }
   },
   composer: {
     message: 'Message',
@@ -1942,7 +1997,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -1951,7 +2006,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     startVoice: 'ཡིག་སྐད་ལྟ་འགྲོའི་ཚོགས་འགོ་སྐྱེད་པ',
     queueMessage: 'འགྲིག་སྐད་འཁིལ་བ',
@@ -1987,7 +2042,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'སྔོན་གྲུབ་ལས་གཞི་སྐྱེད་བྱེད།',
       '/details': 'དྲི་བརྗོད་སྤྱིའི་ཞིབ་རིམ་ཚད་ལྟར་བསྟོན།',
       '/copy': 'འདམ་བསའ་ཡང་ན་ལས་ཀྱི་བཤེས་པའི་མཇུག་སྲིད་དང་བཤུལ།',
-      '/quit': 'OpenAmer ལས་འདོན་འགྲོ།',
+      '/quit': 'OpenAmer ལས་འདོན་འགྲོ།'
     },
     hotkeyDescs: {
       'composer.mention': 'ཡིག་ཆ། འདུག་སྡེ། urls, `git` སྲ་བརྒྱུད་སྒྲུབ་ལ་དྲངས་ཡོད།',
@@ -1997,7 +2052,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'send next queued turn',
       'keybinds.openPanel': 'all keyboard shortcuts',
       'composer.cancel': 'close popover · cancel run',
-      'composer.history': 'cycle popover / history',
+      'composer.history': 'cycle popover / history'
     },
     attachUrlTitle: 'Attach a URL',
     attachUrlDesc: 'OpenAmer will fetch the page and include it as context for this turn.',
@@ -2048,19 +2103,19 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'Code review',
         description: 'Audit the current change for regressions, dropped edge cases, and missing tests.',
-        text: 'Please review this for bugs, regressions, and missing tests.',
+        text: 'Please review this for bugs, regressions, and missing tests.'
       },
       implementationPlan: {
         label: 'Implementation plan',
         description: 'Outline an approach before touching code so the diff stays focused.',
-        text: 'Please make a concise implementation plan before changing code.',
+        text: 'Please make a concise implementation plan before changing code.'
       },
       explainThis: {
         label: 'Explain this',
         description: 'Walk through how the selected code works and link to the key files.',
-        text: 'Please explain how this works and point me to the key files.',
-      },
-    },
+        text: 'Please explain how this works and point me to the key files.'
+      }
+    }
   },
   statusStack: {
     agents: 'Agents',
@@ -2108,13 +2163,14 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'PR བསྐྱོར',
       ghMissing: 'GitHub CLI (gh) བསྐྱུར་བཅོས་དང་ PR བསྐྱོར་ཡོད་པར་ཐོབ་སྤྱོད་འཇུག',
       agentShip: 'OpenAmer ལ PR བསྐྱོར་ཞུ',
-      agentShipPrompt: 'ད་ལྟའི་བསྐྱུར་བཅོས་བལྟ་ཏེ་གསལ་པའི་བོད་སྐྱོད་འཛོམས་ཀྱི་འགྲིས་མིང་བཅས་འཛོམས་དང་ཁུངས་ཐོན་ཏེ་སྤོ་འགྲོ་འདེབས་བསྐྱོར།',
+      agentShipPrompt:
+        'ད་ལྟའི་བསྐྱུར་བཅོས་བལྟ་ཏེ་གསལ་པའི་བོད་སྐྱོད་འཛོམས་ཀྱི་འགྲིས་མིང་བཅས་འཛོམས་དང་ཁུངས་ཐོན་ཏེ་སྤོ་འགྲོ་འདེབས་བསྐྱོར།',
       newBranch: 'ཁུངས་གསར',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
       switchFailed: branch => `Could not switch to ${branch}`,
-      worktrees: 'ཡོད་ཟིན་མེད་ཀྱི་སྡོང་ཆ',
-    },
+      worktrees: 'ཡོད་ཟིན་མེད་ཀྱི་སྡོང་ཆ'
+    }
   },
   updates: {
     stages: {
@@ -2129,7 +2185,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'Update complete',
       manual: 'Update from your terminal',
       guiSkew: 'Update the desktop app',
-      error: 'Update paused',
+      error: 'Update paused'
     },
     checking: 'Looking for updates…',
     checkFailedTitle: 'Couldn’t check for updates',
@@ -2149,16 +2205,21 @@ Leave blank to keep the ${mode} default.`,
     maybeLater: 'ད་ལྟའི་རྗེས་སུ',
     moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
     manualTitle: 'མཉེ་སྤྲོ་ནས་བསྐྱར་བཤེར་བྱེད་པ',
-    manualBody: 'ཁྱེད་ཀྱིས་བསྟ་བཅོའི་ལམ་ཁང་ནས་OpenAmer་བཙོངས་པ་ཡིན་པས་བསྐྱར་བཤེར་ཀྱང་དེར་གནས་སུ་འབྱེད། འདི་མཉེ་སྤྲོའི་ནང་དུ་འཇུག་བཀོལ།',
+    manualBody:
+      'ཁྱེད་ཀྱིས་བསྟ་བཅོའི་ལམ་ཁང་ནས་OpenAmer་བཙོངས་པ་ཡིན་པས་བསྐྱར་བཤེར་ཀྱང་དེར་གནས་སུ་འབྱེད། འདི་མཉེ་སྤྲོའི་ནང་དུ་འཇུག་བཀོལ།',
     manualPickedUp: 'OpenAmer་གཞན་ཟད་བསྐྱར་བཤེར་ནས་སྔ་སྐབས་འགས་སྐབས་སུ་གཞན་ཟད་ཀྱི་ཡོན་ཏན་འཛུགས་བྱེད།',
     guiSkewTitle: 'དེབ་ཀྲུའུ་ལག་མཚོ་བསྐྱར་བཤེར་བྱེད་པ',
-    guiSkewBody: 'ཁལ་འབེན་བསྐྱར་བཤེར་ཟིན་པར་སྟོང་པ་ཡིན། འོན་ཀྱང་དེབ་ཀྲུའུ་ལག་མཚོའི་བཅོམ་བཅོས་མ་བསྐྱར་བཤེར་བྱས། ཁྱེད་ཀྱི་OpenAmer་དེབ་ཀྲུའུ་ལག་མཚོ (AppImage / .deb / .rpm) བསྐྱར་བཤེར་བྱ་ཡང་ཡང་བཙོངས་སྒྲུབ་བྱེད་ནས་མཐུན་སྦྱོར་བྱེད་དགོས།',
+    guiSkewBody:
+      'ཁལ་འབེན་བསྐྱར་བཤེར་ཟིན་པར་སྟོང་པ་ཡིན། འོན་ཀྱང་དེབ་ཀྲུའུ་ལག་མཚོའི་བཅོམ་བཅོས་མ་བསྐྱར་བཤེར་བྱས། ཁྱེད་ཀྱི་OpenAmer་དེབ་ཀྲུའུ་ལག་མཚོ (AppImage / .deb / .rpm) བསྐྱར་བཤེར་བྱ་ཡང་ཡང་བཙོངས་སྒྲུབ་བྱེད་ནས་མཐུན་སྦྱོར་བྱེད་དགོས།',
     copy: 'འཇུག་བཀོལ',
     copied: 'འཇུག་བཀོལ་ཟིན',
     done: 'ཟིན',
-    applyingBody: 'OpenAmer་བསྐྱར་བཤེར་པའི་སྤྲོ་ཚིག་རིག་ལས་ཆེན་པོའི་སྒོ་ཁང་འདིར་བདག་རྒྱུན་འདུག་སོང་བསྟེན་ཏེ་བཅས་ཐོང་སྟངས་སུ་OpenAmer་རང་ཉིད་འགས་སྐབས་ཀྱིས་སྐྱེད་རྒྱུགས་བྱེད། བསྐྱར་བཤེར་བྱེད་སྟེན་OpenAmer་རང་ཉིད་གསར་དུ་མ་འགས་ཤིག་གང་བསྐྱར་འགས་སྐབས་ཀྱིས་གནང་བརྗེད་ཉིན།',
-    applyingBodyBackend: 'དེ་རྗེས་གྲོལ་ཁལ་འབེན་བསྐྱར་བཤེར་བྱེད་དང་སྐྱེད་རྒྱུགས་ཀྱིས་སྐྱེད་རྒྱུགས་བྱེད། སྐྱེད་རྒྱུགས་ནས་གོང་ལ་སྲིད་པའི་རྗེས་OpenAmer་རང་ཉིད་འབྱེད་དུ་འབྱུང་།',
-    applyingClose: 'བསྐྱར་བཤེར་བྱེད་སྟེན་འདི་སྒོ་ཁང་ཁྱད་ཐོབ་ཀྱི་རྗེས་OpenAmer་རང་ཉིད་གསར་དུ་འགས་སྐབས་ཀྱིས་སྐྱེད་རྒྱུགས་བྱེད།',
+    applyingBody:
+      'OpenAmer་བསྐྱར་བཤེར་པའི་སྤྲོ་ཚིག་རིག་ལས་ཆེན་པོའི་སྒོ་ཁང་འདིར་བདག་རྒྱུན་འདུག་སོང་བསྟེན་ཏེ་བཅས་ཐོང་སྟངས་སུ་OpenAmer་རང་ཉིད་འགས་སྐབས་ཀྱིས་སྐྱེད་རྒྱུགས་བྱེད། བསྐྱར་བཤེར་བྱེད་སྟེན་OpenAmer་རང་ཉིད་གསར་དུ་མ་འགས་ཤིག་གང་བསྐྱར་འགས་སྐབས་ཀྱིས་གནང་བརྗེད་ཉིན།',
+    applyingBodyBackend:
+      'དེ་རྗེས་གྲོལ་ཁལ་འབེན་བསྐྱར་བཤེར་བྱེད་དང་སྐྱེད་རྒྱུགས་ཀྱིས་སྐྱེད་རྒྱུགས་བྱེད། སྐྱེད་རྒྱུགས་ནས་གོང་ལ་སྲིད་པའི་རྗེས་OpenAmer་རང་ཉིད་འབྱེད་དུ་འབྱུང་།',
+    applyingClose:
+      'བསྐྱར་བཤེར་བྱེད་སྟེན་འདི་སྒོ་ཁང་ཁྱད་ཐོབ་ཀྱི་རྗེས་OpenAmer་རང་ཉིད་གསར་དུ་འགས་སྐབས་ཀྱིས་སྐྱེད་རྒྱུགས་བྱེད།',
     errorTitle: 'བསྐྱར་བཤེར་མ་ཕྱིན།',
     errorBody: 'དག་ག་མེད་ཅན་མེད་ཐམས་ཅད་མ་བརྗེད་སོང་། ཁྱེད་ཀྱིས་ད་ལྟའི་རྗེས་སུ་ཡང་བསྐྱར་ཚོགས་བྱེད་ཐུབ།',
     notNow: 'ད་ལྟའི་རྗེས་སུ',
@@ -2168,12 +2229,13 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'བསྐྱར་བཤེར་ལྷགས་སུ་འཇུག་པར་ཁལ་འབེན་སྐྱེད་རྒྱུགས་བྱེད…',
       notAvailable: 'འདི་ཁལ་འབེན་ལ་བསྐྱར་བཤེར་གཞན་ཟད་མེད།',
       failed: 'ཁལ་འབེན་བསྐྱར་བཤེར་ནུས་མ་ཐོབ།',
-      noReturn: 'མཐའ་སྒོའི་སྣང་ཚད་མ་བསྐྱེད། བཅོས་མས་ཚད་འབྲེལ་མ་ཕབ་སྟེ། མཐའ་སྒོའི་གཞི་འདྲིས་ལ་ལྟ་བ།',
+      noReturn: 'མཐའ་སྒོའི་སྣང་ཚད་མ་བསྐྱེད། བཅོས་མས་ཚད་འབྲེལ་མ་ཕབ་སྟེ། མཐའ་སྒོའི་གཞི་འདྲིས་ལ་ལྟ་བ།'
     },
     appErrors: {
-      updateLocked: 'བཅོས་མས་བཅུག་སྟངས། གཞན་ཞིག་གི OpenAmer ཡིག་ཆའི་སྒོ་ཁམས་འམ་ openamer འདུས་གསང་བའི་མཇུག་སྡེ་ཚང་གིས་འདིའི་སྒོ་ཆེན་འཆར་སྟེས། དེ་བསྡུས་ནས་ཡང་བསྉར་བྱེད་ལ།',
-      updateFailed: 'བཅོས་མས་མ་ཕབ། དོགས་དྲག་མེད། — གང་ཡང་བརྡུས་མ་བྱུར། ད་ལྟར་ཡང་བསྐྱར་བྱེད་ཐུབ།',
-    },
+      updateLocked:
+        'བཅོས་མས་བཅུག་སྟངས། གཞན་ཞིག་གི OpenAmer ཡིག་ཆའི་སྒོ་ཁམས་འམ་ openamer འདུས་གསང་བའི་མཇུག་སྡེ་ཚང་གིས་འདིའི་སྒོ་ཆེན་འཆར་སྟེས། དེ་བསྡུས་ནས་ཡང་བསྉར་བྱེད་ལ།',
+      updateFailed: 'བཅོས་མས་མ་ཕབ། དོགས་དྲག་མེད། — གང་ཡང་བརྡུས་མ་བྱུར། ད་ལྟར་ཡང་བསྐྱར་བྱེད་ཐུབ།'
+    }
   },
   install: {
     stageStates: {
@@ -2181,25 +2243,29 @@ Leave blank to keep the ${mode} default.`,
       running: 'སྒྲུབ་བཅུག་སྟངས།',
       succeeded: 'བྱུར་ཟིན།',
       skipped: 'བསྣངས་མེད།',
-      failed: 'ནམ་སྦྱིན།',
+      failed: 'ནམ་སྦྱིན།'
     },
     oneTimeTitle: 'OpenAmer ལ་དེ་བཞིན་སྒྲུབ་བྱེད་དགོས།',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     installCommand: 'སྒྲུབ་སྡོད་བྱེད་སྐད་ལུགས།',
     copyCommand: 'བཤུགས་ལེན་སྐད་ལུགས།',
     viewDocs: 'སྒྲུབ་སྡོད་གྲགས་ལུགས་ལ་ལྟ་བ།',
     installTo: 'འདིར་སྒྲུབ་བྱེད་ནས།',
     retryAfterRun: 'ང་ལས་བསྐྱར་བྱས་ཟིན -- ཡང་བསྉར་བྱེད་ལ།',
     setupChoiceTitle: 'OpenAmer Desktop བསྒྲུབ་སྒྲིལ།',
-    setupChoiceDesc: 'འདི་ལྷུ་སྦྱོར་ལ་དེ་ལས་འདོད་མཁན་གཞིར་ཡོད་པའི OpenAmer འབྲེལ་ཐབས་ལ་སྦྱོར་དང་། ཡང་ན་འདི་གླངས་སྣང་གི་ནང་དུ OpenAmer སྒྲུབ་བྱེད་ཐུབ།',
+    setupChoiceDesc:
+      'འདི་ལྷུ་སྦྱོར་ལ་དེ་ལས་འདོད་མཁན་གཞིར་ཡོད་པའི OpenAmer འབྲེལ་ཐབས་ལ་སྦྱོར་དང་། ཡང་ན་འདི་གླངས་སྣང་གི་ནང་དུ OpenAmer སྒྲུབ་བྱེད་ཐུབ།',
     connectExistingTitle: 'དེ་ལས་ཡོད་པའི OpenAmer ལ་སྦྱོར།',
     connectExistingShort: 'ཡོད་པའི་ལ་སྦྱོར།',
-    connectExistingDesc: 'ཐོག་སར་ལུས་སྒྲོན་འགྲོ་མཐའ་སྒོའི་དང་སྡུད་ལས་ཐེབས་ཀྱི་མཚོན་ཐོག་ཡང་ན་འདྲི་བའི་ནང་འཛུལ་བྱེད། ནང་དུའི་སྒྲུབ་བྱེད་མང་མི་འགོག།',
+    connectExistingDesc:
+      'ཐོག་སར་ལུས་སྒྲོན་འགྲོ་མཐའ་སྒོའི་དང་སྡུད་ལས་ཐེབས་ཀྱི་མཚོན་ཐོག་ཡང་ན་འདྲི་བའི་ནང་འཛུལ་བྱེད། ནང་དུའི་སྒྲུབ་བྱེད་མང་མི་འགོག།',
     installLocalTitle: 'OpenAmer ནང་དུ་སྒྲུབ་བྱེད།',
     installLocalDesc: 'Download OpenAmer, create its Python environment, and run the backend on this computer.',
     localStartUnavailable: 'Local installation could not start. Restart OpenAmer Desktop and try again.',
     remoteSetupTitle: 'Connect to existing OpenAmer',
-    remoteSetupDesc: 'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
+    remoteSetupDesc:
+      'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
     remoteUrlTitle: 'Gateway URL',
     remoteUrlDesc: 'Use the base URL of the OpenAmer gateway, including https:// when remote.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2226,8 +2292,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Installation failed',
     settingUpTitle: 'Setting up OpenAmer Agent',
     finishingTitle: 'Finishing up',
-    failedDesc: 'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
-    activeDesc: 'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
+    failedDesc:
+      'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
+    activeDesc:
+      'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
     fetchingManifest: 'Fetching installer manifest...',
@@ -2241,7 +2309,7 @@ Leave blank to keep the ${mode} default.`,
     transcriptSaved: 'Full transcript saved to',
     copiedOutput: 'Copied!',
     copyOutput: 'Copy output',
-    reloadRetry: 'Reload and retry',
+    reloadRetry: 'Reload and retry'
   },
   onboarding: {
     headerTitle: "Let's get you setup with OpenAmer Agent",
@@ -2261,28 +2329,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'direct model API',
-        description: 'Direct access to models hosted by Fireworks AI.',
+        description: 'Direct access to models hosted by Fireworks AI.'
       },
       openrouter: {
         short: 'one key, many models',
-        description: 'Hosts hundreds of models behind a single key. Good default for new installs.',
+        description: 'Hosts hundreds of models behind a single key. Good default for new installs.'
       },
       openai: {
         short: 'GPT-class models',
-        description: 'Direct access to OpenAI models.',
+        description: 'Direct access to OpenAI models.'
       },
       gemini: {
         short: 'ཇེ་མི་ནི་མོ་ཌེལ།',
-        description: 'Google Gemini མོ་ཌེལ་ལ་ཐད་ཀར་འཕྱེད་ཐུབ།',
+        description: 'Google Gemini མོ་ཌེལ་ལ་ཐད་ཀར་འཕྱེད་ཐུབ།'
       },
       xai: {
         short: 'གྲོཀ་མོ་ཌེལ།',
-        description: 'xAI Grok མོ་ཌེལ་ལ་ཐད་ཀར་འཕྱེད་ཐུབ།',
+        description: 'xAI Grok མོ་ཌེལ་ལ་ཐད་ཀར་འཕྱེད་ཐུབ།'
       },
       local: {
         short: 'རང་བཞིན་མཛད་པ།',
-        description: 'OpenAmer ལ་ནང་ཁུལ་ཡང་ནི་རང་བཞིན་མཛད་པའི་ OpenAI-འདྲ་མཐུན་འཇུག་སྡེལ་ལ་འཇུག་གནང་། (vLLM, llama.cpp, Ollama, སོག)',
-      },
+        description:
+          'OpenAmer ལ་ནང་ཁུལ་ཡང་ནི་རང་བཞིན་མཛད་པའི་ OpenAI-འདྲ་མཐུན་འཇུག་སྡེལ་ལ་འཇུག་གནང་། (vLLM, llama.cpp, Ollama, སོག)'
+      }
     },
     backToSignIn: 'ལྷག་སེལ་ལ་ལོག',
     getKey: 'ཉུང་ཐོབ་ཚོགས་ཤོག',
@@ -2295,7 +2364,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'ལྷག་སེལ་འཇུག་གནང་སྟང་གི་རྒྱུན་ཡོད་པའི་བརྒྱུད་འཚོལ་འདེ་སྟེང་ལ་མུ་མཐུད།',
       device_code: 'འདྲ་བཅོས་བཤད་ལས་འདེ་སྟེང་ལ་གསར་བརྒྱུད་འཚོལ་འདེ་བཞག — OpenAmer རང་འགྱོད་འབྲེལ་བ་འབྱུང་།',
-      external: 'ཁུང་མཚར་ལྷག་སེལ་དགུལ་བསྟར་གནང་ནས་སྐད་འཆད་ལ་ལོག',
+      external: 'ཁུང་མཚར་ལྷག་སེལ་དགུལ་བསྟར་གནང་ནས་སྐད་འཆད་ལ་ལོག'
     },
     startingSignIn: provider => `Starting sign-in for ${provider}...`,
     verifyingCode: provider => `Verifying your code with ${provider}...`,
@@ -2309,10 +2378,12 @@ Leave blank to keep the ${mode} default.`,
     copyAuthCode: 'Copy the authorization code and paste it below.',
     pasteAuthCode: 'Paste authorization code',
     reopenAuthPage: 'Re-open authorization page',
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
     reopenSignInPage: 'Re-open sign-in page',
     waitingAuthorize: 'Waiting for you to authorize...',
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     signedIn: "I've signed in",
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     reopenVerification: 'Re-open verification page',
@@ -2324,7 +2395,7 @@ Leave blank to keep the ${mode} default.`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
     change: 'Change',
     startChatting: 'Begin',
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'Switch model',
@@ -2340,13 +2411,13 @@ Leave blank to keep the ${mode} default.`,
     free: 'རིན་མེད།',
     freeTier: 'རིན་མེད་ཚད་རིམ།',
     priceTitle: 'བཀྲ་ཤིས་བུ་ཞིག་ལ་ནང་འཇུག / འདོན་འདུགས་ཀྱི་གནས་ཚད།',
-    wasPrice: 'ཡོངས་སུ',
+    wasPrice: 'ཡོངས་སུ'
   },
   modelVisibility: {
     title: 'མས་བསྟན་གྱི་མདོ།',
     search: 'མས་བསྟན་གྱི་མདོ་འཚོལ་བཤེར།',
     noAuthenticatedProviders: 'དབུས་དཔོན་གྱི་ངོ་འཛིན་མེད།',
-    addProvider: 'སྤྱི་བཅོལ་ཁང་མངས་སྣང་…',
+    addProvider: 'སྤྱི་བཅོལ་ཁང་མངས་སྣང་…'
   },
   shell: {
     windowControls: 'སྒྲོམ་ཁང་གི་ཚད་ཡུག།',
@@ -2357,7 +2428,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'མས་བསྟན་གྱི་མདོ་མ་རྙཱབས།',
       editModels: 'མས་བསྟན་གྱི་མདོ་བཅོས་…',
       refreshModels: 'མས་བསྟན་གྱི་མདོ་གས་གསོ།',
-      fast: 'མྱུར་ཅན།',
+      fast: 'མྱུར་ཅན།'
     },
     modelOptions: {
       noOptions: 'No options for this model',
@@ -2373,7 +2444,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'Max',
       ultra: 'Ultra',
       updateFailed: 'Model option update failed',
-      fastFailed: 'Fast mode update failed',
+      fastFailed: 'Fast mode update failed'
     },
     gatewayMenu: {
       gateway: 'Gateway',
@@ -2388,7 +2459,7 @@ Leave blank to keep the ${mode} default.`,
       connection: label => `Connection: ${label}`,
       recentActivity: 'Recent activity',
       viewAllLogs: 'View all logs →',
-      messagingPlatforms: 'Messaging platforms',
+      messagingPlatforms: 'Messaging platforms'
     },
     approvalMode: {
       title: 'Approval mode',
@@ -2398,7 +2469,7 @@ Leave blank to keep the ${mode} default.`,
       smart: 'Smart',
       smartDescription: 'Automatically assess actions and ask when needed',
       off: 'Off',
-      offDescription: 'Run without approval prompts',
+      offDescription: 'Run without approval prompts'
     },
     statusbar: {
       unknown: 'unknown',
@@ -2454,27 +2525,29 @@ Leave blank to keep the ${mode} default.`,
           skills: 'Skills',
           subagent_definitions: 'Subagent definitions',
           system_prompt: 'System prompt',
-          tool_definitions: 'Tool definitions',
+          tool_definitions: 'Tool definitions'
         },
         empty: 'No context data yet',
         loading: 'Loading breakdown…',
         percentFull: percent => `${percent}% Full`,
         title: 'Context Usage',
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Open context usage breakdown',
       session: 'Session',
       runtimeSessionElapsed: 'Runtime session elapsed',
-      yoloOn: 'YOLO སྤྲོད་ཟེར། — འདའ་འཇཚོལ་ལམ་སྲོག་སྒོ་མ་དགོས་པར་རིན་ལེན། གནས་འགྲོ་ལ་བསྟེན་ནས་བསྐྱོད་ཐུབ། Shift+click ནས་འགྲོ་ལའི་སྤྲོན་འགྲོ་སྤོར་བསྐྱོད་ཐུབ།',
-      yoloOff: 'YOLO བཅོས། — འདའ་འཇཚོལ་ལམ་སྲོག་སྒོ་མ་དགོས་པར་རིན་ལེན་ལ་གནས་འགྲོ་ལ་བསྟེན། Shift+click ནས་འགྲོ་ལའི་སྤྲོན་འགྲོ་སྤོར་བསྐྱོད་ཐུབ།',
+      yoloOn:
+        'YOLO སྤྲོད་ཟེར། — འདའ་འཇཚོལ་ལམ་སྲོག་སྒོ་མ་དགོས་པར་རིན་ལེན། གནས་འགྲོ་ལ་བསྟེན་ནས་བསྐྱོད་ཐུབ། Shift+click ནས་འགྲོ་ལའི་སྤྲོན་འགྲོ་སྤོར་བསྐྱོད་ཐུབ།',
+      yoloOff:
+        'YOLO བཅོས། — འདའ་འཇཚོལ་ལམ་སྲོག་སྒོ་མ་དགོས་པར་རིན་ལེན་ལ་གནས་འགྲོ་ལ་བསྟེན། Shift+click ནས་འགྲོ་ལའི་སྤྲོན་འགྲོ་སྤོར་བསྐྱོད་ཐུབ།',
       modelNone: 'གང་ཡང་མེད',
       noModel: 'དཔལ་མེད',
       switchModel: 'དཔལ་བསྐྱོད',
       openModelPicker: 'དཔལ་བསྐྱོད་ཟོག་བསྟེན',
       modelPinned: 'ཁྱེད་ཀྱིས་བསྩི་བཀོད་བསོད། ལྟ་དཔྱད་གསར་པ་ལ་ནང་བསྒྲུབ་གཞིར་བསྟེན་བཏབ།',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'གཡས་མཚོན',
@@ -2510,7 +2583,7 @@ Leave blank to keep the ${mode} default.`,
     terminalNew: 'དྲིལ་ཁང་གསར་པ',
     terminalCloseOthers: 'གཞན་ལུས་བསྒྲུབ',
     terminalCloseAll: 'ཀུན་བསྒྲུབ',
-    addToChat: 'ལྟ་དཔྱད་ལ་བསྣུར',
+    addToChat: 'ལྟ་དཔྱད་ལ་བསྣུར'
   },
   preview: {
     tab: 'མཐའ་སྟོན',
@@ -2544,7 +2617,8 @@ Leave blank to keep the ${mode} default.`,
     unsavedChanges: 'Unsaved changes',
     saveFailed: message => `Couldn't save: ${message}`,
     diskChangedTitle: 'File changed on disk',
-    diskChangedBody: 'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
+    diskChangedBody:
+      'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
     overwrite: 'Overwrite',
     discardReload: 'Discard & reload',
     console: {
@@ -2565,7 +2639,7 @@ Leave blank to keep the ${mode} default.`,
       empty: 'No console messages yet.',
       promptHeader: 'Preview console:',
       sentTitle: 'Sent to chat',
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Preview app failed to boot',
@@ -2590,17 +2664,19 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'Reloading the preview now.',
       restartFailedTitle: 'Preview restart failed',
       restartFailedMessage: 'OpenAmer could not restart the server.',
-      stillWorking: 'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
+      stillWorking:
+        'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
       workspaceReloading: 'Workspace changed, reloading preview',
       fileChanged: url => `File changed, reloading preview: ${url}`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
-      moduleMimeDescription: 'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
+      moduleMimeDescription:
+        'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'The preview page could not be reached.',
       openTarget: url => `Open ${url}`,
-      fallbackTitle: 'Preview',
-    },
+      fallbackTitle: 'Preview'
+    }
   },
   zones: {
     showHeader: 'Show header',
@@ -2608,7 +2684,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Minimize',
     restore: 'Restore',
     closeRunningTitle: 'Close running tab?',
-    closeRunningBody: 'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
+    closeRunningBody:
+      'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
     closeRunningConfirm: 'Close tab',
     closeOthers: 'Close others',
     closeToRight: 'Close to the right',
@@ -2645,14 +2722,15 @@ Leave blank to keep the ${mode} default.`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
     saveApply: 'གཙོས་དང་ལག་བསྟར',
     notExpressible: 'འདི་བཀོད་སྦྱོར་ཚིག་འཕེལ་བྱེད (འཁོར་ཤར) — ད་ལྟའི་བསྲུག་གསར་བ་ནང་ནས་མི་ཐུབ་ངག',
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
       loadingSession: 'ལས་ལྟའི་འབྲེལ་ཚིགས་ལྟར་བསྟར',
       showEarlier: 'སྔོན་དུས་གཡིག་སྟོན་བཞུགས',
       loadingResponse: 'OpenAmer ལས་ལུགས་ཞིབ་བྱེད་ཐུབ་ཐུབ',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'རིན་འཇུག',
@@ -2675,12 +2753,13 @@ Leave blank to keep the ${mode} default.`,
       restoreCheckpoint: 'Restore checkpoint',
       restoreFromHere: 'Restore checkpoint — rerun from this prompt',
       restoreTitle: 'Restore to this checkpoint?',
-      restoreBody: 'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
+      restoreBody:
+        'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
       restoreConfirm: 'Restore & rerun',
       restoreNext: 'Restore next checkpoint',
       goForward: 'Go forward',
       sendEdited: 'Send edited message',
-      attachingFile: 'Attaching…',
+      attachingFile: 'Attaching…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer གཏེར་ཁེ་སྦྱོར་བ་མེད།',
@@ -2693,8 +2772,9 @@ Leave blank to keep the ${mode} default.`,
       jumpToApproval: 'དགོས་འདེབས་དགོས་འདོན།',
       reject: 'འཚོས་མེད།',
       alwaysTitle: 'བརྡོད་འདི་ཡོངས་སུ་ཁང་བཅོས་བས།',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
-      alwaysAllow: 'ཡོངས་སུ་ཁང་བཅོས།',
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysAllow: 'ཡོངས་སུ་ཁང་བཅོས།'
     },
     clarify: {
       notReady: 'བསྟན་འགྲེལ་ཞུ་བཞག་ཡོད་མེད་པར་མ་ཟད།',
@@ -2708,7 +2788,7 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'མུ་ཉེན་མི་མང་བཅོས།',
       lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
       lateAnswerTip: 'དེ་ལྟར་བསད་པ་སྟེང་འཕྲིན་གྱི་མཉེན་ཐུབ་སྐྱེད་དང་།',
-      lateAnswerHint: 'ངོ་འཕྲོད་འདི་དེ་ལྟར་མི་བསྒྲུབས་ཟིན། སྟེང་འཕྲིན་གྱི་མཉེན་ཐུབ་སྐྱེད་དང་།',
+      lateAnswerHint: 'ངོ་འཕྲོད་འདི་དེ་ལྟར་མི་བསྒྲུབས་ཟིན། སྟེང་འཕྲིན་གྱི་མཉེན་ཐུབ་སྐྱེད་དང་།'
     },
     tool: {
       code: 'ཀོཊ་ཀེ',
@@ -2744,11 +2824,11 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Ran',
         running: 'Running',
         ranCode: 'Ran code',
-        runningCode: 'Scripting',
+        runningCode: 'Scripting'
       },
       prefixes: {
         browser: 'Browser',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2756,132 +2836,133 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
+        runningTool: action => `Running ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'དྲིས་པའི་ཡིག་ཆའི་སྦྱོར་བ་གསོས་སོང་།',
           pending: 'དྲིས་པའི་ཡིག་ཆའི་སྦྱོར་བ་གསོས་སོང་འདུག',
-          pendingAction: 'གསོས་སོང་འདུག',
+          pendingAction: 'གསོས་སོང་འདུག'
         },
         browser_fill: {
           done: 'རྩིས་འབྲེལ་ཁུལ་འབུས་བསྟན།',
           pending: 'རྩིས་འབྲེལ་ཁུལ་འབུས་བསྟན་འདུག',
-          pendingAction: 'ཆ་འཇོག',
+          pendingAction: 'ཆ་འཇོག'
         },
         browser_navigate: {
           done: 'ཡིག་ཁེལ་བཀོལ',
           pending: 'ཡིག་ཁེལ་འགྲེམས་པ',
-          pendingAction: 'འགྲེམས་པ',
+          pendingAction: 'འགྲེམས་པ'
         },
         browser_snapshot: {
           done: 'ཡིག་ཁེལ་བསྡུས་ཤིག་འཛུགས',
           pending: 'ཡིག་ཁེལ་བསྡུས་ཤིག་འཛུགས་པ',
-          pendingAction: 'འཛུགས་པ',
+          pendingAction: 'འཛུགས་པ'
         },
         browser_take_screenshot: {
           done: 'ལྟ་བ་བསྡུས་ཤིག་འཛུགས',
           pending: 'ལྟ་བ་བསྡུས་ཤིག་འཛུགས་པ',
-          pendingAction: 'འཛུགས་པ',
+          pendingAction: 'འཛུགས་པ'
         },
         browser_type: {
           done: 'ཡིག་ཁེལ་དེར་ཕྱག་འཚལ',
           pending: 'ཡིག་ཁེལ་དེར་ཕྱག་འཚལ་བཞིན',
-          pendingAction: 'ཕྱག་འཚལ་བཞིན',
+          pendingAction: 'ཕྱག་འཚལ་བཞིན'
         },
         clarify: {
           done: 'བྱམས་པ་འདོད་བ་བསྐྱར',
           pending: 'བྱམས་པ་འདོད་བ་གསུང་བཞིན',
-          pendingAction: 'བྱམས་པ་འདོད་བཞིན',
+          pendingAction: 'བྱམས་པ་འདོད་བཞིན'
         },
         cronjob: {
           done: 'དུས་ངེས་འགྲོ་ལས',
           pending: 'དུས་ངེས་འགྲོ་ལས་འཇོག་པ',
-          pendingAction: 'འཇོག་པ',
+          pendingAction: 'འཇོག་པ'
         },
         edit_file: {
           done: 'ནང་བ་བཅོས',
           pending: 'ཡིག་ཆ་བཅོས་འགྲེང་བྱེད།',
-          pendingAction: 'བཅོས་འགྲེང་བྱེད་འདུག',
+          pendingAction: 'བཅོས་འགྲེང་བྱེད་འདུག'
         },
         execute_code: {
           done: 'ཀོཌ་མཚོན་བསྟར་བྱས།',
           pending: 'ཀོཌ་མཚོན་བཅོས་མོང་འདུག',
-          pendingAction: 'ཀོཌ་མཚོན་བཅོས་མོང་འདུག',
+          pendingAction: 'ཀོཌ་མཚོན་བཅོས་མོང་འདུག'
         },
         image_generate: {
           done: 'མཚོན་རྒྱག་བཅོས་འདུག',
           pending: 'མཚོན་རྒྱག་བཅོས་འདུག',
-          pendingAction: 'བཅོས་འདུག',
+          pendingAction: 'བཅོས་འདུག'
         },
         list_files: {
           done: 'ཡིག་ཆ་སྒྲགས་སོང་།',
           pending: 'ཡིག་ཆ་སྒྲགས་བྱེད་འདུག',
-          pendingAction: 'སྒྲགས་བྱེད་འདུག',
+          pendingAction: 'སྒྲགས་བྱེད་འདུག'
         },
         patch: {
           done: 'ཡིག་ཆ་བཅོས་བསྟེན།',
           pending: 'ཡིག་ཆ་བཅོས་བསྟེན་འདུག',
-          pendingAction: 'བཅོས་བསྟེན་འདུག',
+          pendingAction: 'བཅོས་བསྟེན་འདུག'
         },
         read_file: {
           done: 'ཡིག་ཆ་ལྟས།',
           pending: 'ཡིག་ཆ་ལྟེས་འདུག',
-          pendingAction: 'ལྟེས་འདུག',
+          pendingAction: 'ལྟེས་འདུག'
         },
         search_files: {
           done: 'ཡིག་ཆ་ལྟེས་སོང་།',
           pending: 'ཡིག་ཆ་ལྟེས་བྱེད་འདུག',
-          pendingAction: 'ལྟེས་བྱེད་འདུག',
+          pendingAction: 'ལྟེས་བྱེད་འདུག'
         },
         session_search_recall: {
           done: 'སྡོངས་དཔྱད་གྲགས་ཐོག་ལེན་ཟིན།',
           pending: 'སྡོངས་དཔྱད་གྲགས་ཐོག་ལེན་བཞུགས།',
-          pendingAction: 'ལེན་བཞུགས།',
+          pendingAction: 'ལེན་བཞུགས།'
         },
         terminal: {
           done: 'སྟེང་ཐབས་བཀོལ།',
           pending: 'སྟེང་ཐབས་འབྲེལ་བཞུགས།',
-          pendingAction: 'འབྲེལ་བཞུགས།',
+          pendingAction: 'འབྲེལ་བཞུགས།'
         },
         todo: {
           done: 'བྱ་ཐབས་ཐོན་ལས་སྤེལ་ཟིན།',
           pending: 'བྱ་ཐབས་ཐོན་ལས་སྤེལ་བཞུགས།',
-          pendingAction: 'སྤེལ་བཞུགས།',
+          pendingAction: 'སྤེལ་བཞུགས།'
         },
         vision_analyze: {
           done: 'རྣམ་འབྱེད་བརྟག་ཅན།',
           pending: 'རྣམ་འབྱེད་བརྟག་བཞུགས།',
-          pendingAction: 'བརྟག་བཞུགས།',
+          pendingAction: 'བརྟག་བཞུགས།'
         },
         web_extract: {
           done: 'ཡིག་ཆའི་དྲ་ཚིག་བལྟས།',
           pending: 'ཡིག་ཆའི་དྲ་ཚིག་བལྟས་བཞུགས།',
-          pendingAction: 'བལྟས་བཞུགས།',
+          pendingAction: 'བལྟས་བཞུགས།'
         },
         web_search: {
           done: 'དྲ་ཚིག་ལེན་ཟིན།',
           pending: 'དྲ་ཚིག་ལེན་བཞུགས།',
-          pendingAction: 'ལེན་བཞུགས།',
+          pendingAction: 'ལེན་བཞུགས།'
         },
         write_file: {
           done: 'ཡིག་ཆ་བཅོས་ཟིན།',
           pending: 'ཡིག་ཆ་བཅོས་བཞུགས།',
-          pendingAction: 'བསྐྱར་བ་',
-        },
-      },
-    },
+          pendingAction: 'བསྐྱར་བ་'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer gateway ཁེ་དག་མེད།',
     sudoSendFailed: 'sudo གསང་ཚོག་གཏོང་ཐབ་མི་ཐུབ།',
     secretSendFailed: 'གསང་ཚོག་གཏོང་ཐབ་མི་ཐུབ།',
     sudoTitle: 'དམ་དབུགས་པའི་གསང་ཚོག',
-    sudoDesc: 'OpenAmer ལ་ཆེ་ཤོས་ཀྱི་བླ་མ་འདྲི་ནས་ sudo གསང་ཚོག་དགོས། དེའི་གསང་ཚོག་ཁྱོད་ཀྱི་ནང་ཁྲོམ་ལས་བྱེད་སྡེ་ཁང་ཙམ་ལ་གཏོང་བ་ཡིན།',
+    sudoDesc:
+      'OpenAmer ལ་ཆེ་ཤོས་ཀྱི་བླ་མ་འདྲི་ནས་ sudo གསང་ཚོག་དགོས། དེའི་གསང་ཚོག་ཁྱོད་ཀྱི་ནང་ཁྲོམ་ལས་བྱེད་སྡེ་ཁང་ཙམ་ལ་གཏོང་བ་ཡིན།',
     sudoPlaceholder: 'sudo གསང་ཚོག',
     secretTitle: 'གསང་ཚོག་དགོས།',
     secretDesc: 'OpenAmer ལ་མུན་སྦྱོར་བཏང་སྟེ་ཡིག་ཆའི་རྟག་མཆོག་ཞིག་དགོས།',
-    secretPlaceholder: 'གསང་ཚོག་ཀྱི་རྟག་མཆོག',
+    secretPlaceholder: 'གསང་ཚོག་ཀྱི་རྟག་མཆོག'
   },
   desktop: {
     audioReadFailed: 'བཟོས་བཅོས་པའི་སྒྲ་ཡིག་ཀྱིས་མི་ཐུབ།',
@@ -2898,7 +2979,8 @@ Leave blank to keep the ${mode} default.`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'YOLO བསྟེན་ཐབས་མེད།',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     unknownProfile: 'ཕྲོ།་ཕའི་མཚོན་མེད།',
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
@@ -2908,8 +2990,9 @@ Leave blank to keep the ${mode} default.`,
     regenerateFailed: 'ཡིག་ཆ་གསར་བསྐྱེད་མེད།',
     editFailed: 'བཅོས་མེད།',
     resumeFailed: 'ཆོས་མེད།',
-    resumeStrandedTitle: "འདི་སེཤན་ལྷོག་མེད།",
-    resumeStrandedBody: 'འདི་སེཤན་དང་འབྲེལ་བ་ལྟར་མ་ཚོངས་པས་བསྐྱེད་ཐབས་བཀོད། གཞུང་ཁྱེར་ལས་འགྲོ་བའི་རིགས་ངོ་ཤེས་བརྟན་པར་དང་བསྟེན་ནས་ཡང་བསྐྱོན་བྱེད།',
+    resumeStrandedTitle: 'འདི་སེཤན་ལྷོག་མེད།',
+    resumeStrandedBody:
+      'འདི་སེཤན་དང་འབྲེལ་བ་ལྟར་མ་ཚོངས་པས་བསྐྱེད་ཐབས་བཀོད། གཞུང་ཁྱེར་ལས་འགྲོ་བའི་རིགས་ངོ་ཤེས་བརྟན་པར་དང་བསྟེན་ནས་ཡང་བསྐྱོན་བྱེད།',
     resumeRetry: 'ཡང་བསྐྱོན་བྱེད།',
     nothingToBranch: 'འབྲེལ་བའི་ཡོད་མེད།',
     branchNeedsChat: 'འབྲེལ་བའི་སྔོན་དུ་ཁྱད་རྒྱུད་འཕྲིན་འཛུལ་བ་མང་བ་ཆོས་ལ་སྐྱེད།',
@@ -2923,7 +3006,8 @@ Leave blank to keep the ${mode} default.`,
     archiveFailed: 'དངུལ་བསྟན་མེད།',
     cwdChangeFailed: 'ཡོད་ཟིན་གྱི་ཐིག་ཚིག་བཅོས་མས་སྦྱིན་ཚད།',
     cwdStagedTitle: 'ཡོད་ཟིན་གྱི་ཐིག་ཚིག་སྦྱོར་བསྟན་ཟིན།',
-    cwdStagedMessage: 'ཡོད་ཟིན་གྱི་ཐིག་ཚིག་འགྲེང་བཅོས་འདུག་འདི་འདུན་བཀོད་དུ་དལྡན་པར་བྱེད་ནས། རྒྱལ་འབྱིངས་ཀྱི་མཉེ་བཤད་སྟངས་བསྐྱར་འགོ་དགོས།',
+    cwdStagedMessage:
+      'ཡོད་ཟིན་གྱི་ཐིག་ཚིག་འགྲེང་བཅོས་འདུག་འདི་འདུན་བཀོད་དུ་དལྡན་པར་བྱེད་ནས། རྒྱལ་འབྱིངས་ཀྱི་མཉེ་བཤད་སྟངས་བསྐྱར་འགོ་དགོས།',
     modelSwitchFailed: 'མཚོན་རྒྱག་བཅོས་མས་སྦྱིན་ཚད།',
     sessionExported: 'ཚོགས་འདུས་རེར་ཕུལ་ཟིན།',
     sessionExportFailed: 'ཚོགས་འདུས་རེར་ཕུལ་མས་མི་ཐུབ་རྫོགས།',
@@ -2949,31 +3033,31 @@ Leave blank to keep the ${mode} default.`,
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
       failed: error => `Handoff failed: ${error}`,
-      timedOut: 'མགོ་སྒོ་སོགས་པར་དེ་བསྟན་དུས་ཀྱིས་རེད་པས། སྒོ་མཚན་ `openamer gateway` འདུག་ཡིན་ནམ།',
-    },
+      timedOut: 'མགོ་སྒོ་སོགས་པར་དེ་བསྟན་དུས་ཀྱིས་རེད་པས། སྒོ་མཚན་ `openamer gateway` འདུག་ཡིན་ནམ།'
+    }
   },
   errors: {
     genericFailure: 'ཅིས་འདུག་འདུག་བྱུང་།',
     boundaryTitle: 'དངོས་གཞིའི་ནང་ཅིས་འདུག་འདུག་བྱུང་།',
     boundaryDesc: 'ལྟ་སྣང་ལ་མི་འདངས་པའི་འཁྱད་སྐྱོད་བྱུང་། ཁྱོད་ཀྱི་བཤད་རྒྱུད་དང་བསྒྲུབ་བཅས་བདེ་གཡོག།',
     reloadWindow: 'དེ་དབུར་ཡར་བསྐྱར་བསྟན།',
-    openLogs: 'ཟིན་ཐོ་འབྱེད།',
+    openLogs: 'ཟིན་ཐོ་འབྱེད།'
   },
   ui: {
     search: {
-      clear: 'བསྟེན་འཚོས་བཙམས་ཉིན།',
+      clear: 'བསྟེན་འཚོས་བཙམས་ཉིན།'
     },
     pagination: {
       label: 'ཤོག་ཐོ་རྐྱེད་',
       previous: 'སྔོན་',
       previousAria: 'སྔོན་ཤོག་ཐོར་གདོང་',
       next: 'རྗེས་',
-      nextAria: 'རྗེས་ཤོག་ཐོར་གདོང་',
+      nextAria: 'རྗེས་ཤོག་ཐོར་གདོང་'
     },
     sidebar: {
       title: 'ཕྱོགས་ཁོའི་མཐའ།',
       description: 'རྒྱལ་ལམ་སྤྱོད་ཀྱི་ཕྱོགས་ཁོའི་མཐའ་མཚོན།',
-      toggle: 'ཕྱོགས་ཁོའི་མཐའ་བསྟེན་འཇུག',
-    },
-  },
+      toggle: 'ཕྱོགས་ཁོའི་མཐའ་བསྟེན་འཇུག'
+    }
+  }
 })

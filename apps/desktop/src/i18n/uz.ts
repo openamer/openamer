@@ -8,53 +8,57 @@ import { defineLocale } from './define-locale'
 export const uz = defineLocale({
   fileMenu: {
     revealFileManager: 'Joylashgan papkani ochish',
-    revealInSidebar: 'Fayl daraxtida ko\'rsatish',
-    copyPath: 'Yo\'lni nusxalash',
-    copyRelativePath: 'Nisbiy yo\'lni nusxalash',
-    rename: 'Nomini o\'zgartirish…',
-    delete: 'O\'chirish',
-    renameTitle: 'Nomini o\'zgartirish',
+    revealInSidebar: "Fayl daraxtida ko'rsatish",
+    copyPath: "Yo'lni nusxalash",
+    copyRelativePath: "Nisbiy yo'lni nusxalash",
+    rename: "Nomini o'zgartirish…",
+    delete: "O'chirish",
+    renameTitle: "Nomini o'zgartirish",
     renameLabel: 'Yangi nom',
-    deleteBody: 'U Axlat qutisiga ko\'chiriladi — u yerdan tiklab olishingiz mumkin.',
-    pathCopied: 'Yo\'l nusxalandi',
+    deleteBody: "U Axlat qutisiga ko'chiriladi — u yerdan tiklab olishingiz mumkin.",
+    pathCopied: "Yo'l nusxalandi",
     revealFinder: 'Reveal in Finder',
     revealExplorer: 'Reveal in File Explorer',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop tayyor',
     steps: {
       connectingGateway: 'Jonli ish stoli shlyuziga ulanmoqda',
       loadingSettings: 'OpenAmer sozlamalari yuklanmoqda',
-      loadingSessions: 'So\'nggi seanslar yuklanmoqda',
+      loadingSessions: "So'nggi seanslar yuklanmoqda",
       startingDesktopConnection: 'Ish stoli ulanishi boshlanmoqda',
-      startingOpenAmerDesktop: 'OpenAmer Desktop ishga tushirilmoqda…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop ishga tushirilmoqda…'
     },
     errors: {
-      backgroundExited: 'OpenAmer fon jarayoni to\'xtadi.',
-      backgroundExitedDuringStartup: 'OpenAmer fon jarayoni ishga tushish paytida to\'xtadi.',
-      backendStopped: 'Backend to\'xtadi',
-      desktopBootFailed: 'Ish stoli yuklanishi muvaffaqiyatsiz bo\'ldi',
+      backgroundExited: "OpenAmer fon jarayoni to'xtadi.",
+      backgroundExitedDuringStartup: "OpenAmer fon jarayoni ishga tushish paytida to'xtadi.",
+      backendStopped: "Backend to'xtadi",
+      desktopBootFailed: "Ish stoli yuklanishi muvaffaqiyatsiz bo'ldi",
       gatewayConnectionLost: 'Shlyuz bilan ulanish uzildi',
       gatewaySignInRequired: 'Shlyuzga kirish talab qilinadi',
-      ipcBridgeUnavailable: 'Ish stoli IPC ko\'prigi mavjud emas.',
+      ipcBridgeUnavailable: "Ish stoli IPC ko'prigi mavjud emas."
     },
     failure: {
       title: 'OpenAmer ishga tushmadi',
-      description: 'Fon shlyuzi ishga tushmadi. Quyidagi tiklash qadamlaridan birini sinab ko\'ring. Bu yerda hech narsa suhbatlaringiz yoki sozlamalaringizni o\'chirmaydi.',
+      description:
+        "Fon shlyuzi ishga tushmadi. Quyidagi tiklash qadamlaridan birini sinab ko'ring. Bu yerda hech narsa suhbatlaringiz yoki sozlamalaringizni o'chirmaydi.",
       remoteTitle: 'Masofaviy shlyuzga kirish talab qilinadi',
-      remoteDescription: 'Masofaviy shlyuz seansingiz muddati tugadi. Qayta ulanish uchun yana kiring. Bu yerda hech narsa suhbatlaringiz yoki sozlamalaringizni o\'chirmaydi.',
+      remoteDescription:
+        "Masofaviy shlyuz seansingiz muddati tugadi. Qayta ulanish uchun yana kiring. Bu yerda hech narsa suhbatlaringiz yoki sozlamalaringizni o'chirmaydi.",
       retry: 'Qayta urinish',
-      repairInstall: 'O\'rnatishni tuzatish',
+      repairInstall: "O'rnatishni tuzatish",
       useLocalGateway: 'Mahalliy shlyuzdan foydalanish',
       gatewaySettings: 'Shlyuz sozlamalari',
       back: 'Orqaga',
       openLogs: 'Jurnallarni ochish',
-      repairHint: 'Tuzatish o\'rnatuvchini qayta ishga tushiradi va yangi qurilmada bir necha daqiqa vaqt olishi mumkin.',
+      repairHint:
+        "Tuzatish o'rnatuvchini qayta ishga tushiradi va yangi qurilmada bir necha daqiqa vaqt olishi mumkin.",
       signOutAndSignIn: 'Chiqish va qayta kirish',
-      remoteFailureHint: 'Shlyuz URL manzili va kirishni Shlyuz sozlamalarida tekshiring yoki mahalliy shlyuzga o\'ting.',
-      hideRecentLogs: 'So\'nggi jurnallarni yashirish',
-      showRecentLogs: 'So\'nggi jurnallarni ko\'rsatish',
+      remoteFailureHint:
+        "Shlyuz URL manzili va kirishni Shlyuz sozlamalarida tekshiring yoki mahalliy shlyuzga o'ting.",
+      hideRecentLogs: "So'nggi jurnallarni yashirish",
+      showRecentLogs: "So'nggi jurnallarni ko'rsatish",
       signedInTitle: 'Kirilgan',
       signedInMessage: 'Masofaviy shlyuzga qayta ulanmoqda…',
       signInIncompleteTitle: 'Kirish bajarilmadi',
@@ -62,10 +66,11 @@ export const uz = defineLocale({
       signInFailed: 'Kirish amalga oshmadi',
       signInToRemoteGateway: 'Remote gatewayga kirish',
       identityProvider: 'identifikatsiya provayderingiz',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   settings: {
     providers: {
@@ -76,12 +81,14 @@ export const uz = defineLocale({
       noKeysMatch: 'Qidiruvingizga mos provayder yo‘q.',
       localEndpoint: {
         title: 'Mahalliy / maxsus endpoint',
-        description: 'OpenAmer’ni istalgan OpenAI-mos endpointga yo‘naltiring (Zyphra, vLLM, llama.cpp, Ollama va boshqalar).',
+        description:
+          'OpenAmer’ni istalgan OpenAI-mos endpointga yo‘naltiring (Zyphra, vLLM, llama.cpp, Ollama va boshqalar).'
       },
       loading: 'Provayderlar yuklanmoqda...',
       connectAccount: 'Connect an account',
       haveApiKey: 'Have an API key instead?',
-      intro: 'Sign in with a subscription — no API key to copy. OpenAmer runs the browser sign-in for you, right here in the app.',
+      intro:
+        'Sign in with a subscription — no API key to copy. OpenAmer runs the browser sign-in for you, right here in the app.',
       connected: 'Connected',
       collapse: 'Collapse',
       connectAnother: 'Connect another provider',
@@ -90,27 +97,31 @@ export const uz = defineLocale({
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     sessions: {
       loading: 'Arxivlangan seanslar yuklanmoqda…',
       archivedTitle: 'Arxivlangan seanslar',
-      archivedIntro: 'Arxivlangan chatlar yon paneldan yashiriladi, lekin barcha xabarlari saqlanadi. Arxivlash uchun yon paneldagi chatni Ctrl/⌘-click qiling.',
+      archivedIntro:
+        'Arxivlangan chatlar yon paneldan yashiriladi, lekin barcha xabarlari saqlanadi. Arxivlash uchun yon paneldagi chatni Ctrl/⌘-click qiling.',
       emptyArchivedTitle: 'Hech narsa arxivlanmagan',
       emptyArchivedDesc: 'Chatni shu yerda yashirish uchun arxivlang.',
       unarchive: 'Arxivdan chiqarish',
       deletePermanently: 'Butunlay o‘chirish',
       restored: 'Tiklandi',
       autoArchiveTitle: 'Eskirgan chatlarni avtomatik arxivlash',
-      autoArchiveDesc: 'Bir muddat tegmagan chatlaringizni avtomatik arxivlang. Qadalgan chatlar hech qachon arxivlanmaydi va hech narsa o‘chirilmaydi — arxivlangan chatlar shu yerga ko‘chadi.',
+      autoArchiveDesc:
+        'Bir muddat tegmagan chatlaringizni avtomatik arxivlang. Qadalgan chatlar hech qachon arxivlanmaydi va hech narsa o‘chirilmaydi — arxivlangan chatlar shu yerga ko‘chadi.',
       autoArchiveDaysLabel: 'Arxivlash:',
       autoArchiveDaysUnit: 'kun harakatsizlikdan keyin',
       autoArchiveFailed: 'Avtoarxivni yangilab bo‘lmadi',
       defaultDirTitle: 'Standart loyiha katalogi',
-      defaultDirDesc: 'Yangi seanslar boshqa joy tanlamasangiz, shu jildda boshlanadi. Uy katalogingizdan foydalanish uchun uni o‘rnatilmagan qoldiring.',
+      defaultDirDesc:
+        'Yangi seanslar boshqa joy tanlamasangiz, shu jildda boshlanadi. Uy katalogingizdan foydalanish uchun uni o‘rnatilmagan qoldiring.',
       defaultDirUpdated: 'Standart loyiha katalogi yangilandi — kuchga kirishi uchun yangi chat boshlang (Ctrl/⌘+N)',
       change: 'O‘zgartirish',
       choose: 'Tanlash',
@@ -123,7 +134,7 @@ export const uz = defineLocale({
       clearDirFailed: 'Standart katalogni tozalab bo‘lmadi',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
       loadingConfig: 'Konfiguratsiya yuklanmoqda',
@@ -148,13 +159,15 @@ export const uz = defineLocale({
       needsSetup: 'Needs setup',
       openamerIncluded: 'Included with a OpenAmer subscription — sign in to OpenAmer Portal to activate.',
       openamerAuthNeededTitle: 'Sign in to OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
       openamerAuthSignIn: 'Sign in',
       openamerAuthDoneTitle: 'OpenAmer Portal connected',
       openamerAuthDoneMessage: 'Your subscription backends are now active.',
       openamerAuthFailed: 'OpenAmer Portal sign-in did not complete',
       noApiKeyRequired: 'No API key required.',
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupInstalledHint: 'Installed. Re-run setup only if something is broken.',
       postSetupRun: 'Run setup',
       postSetupRerun: 'Re-run setup',
@@ -195,17 +208,20 @@ export const uz = defineLocale({
         selectedTitle: 'Backend selected',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
         failedSelect: backend => `Failed to select ${backend}`,
-        needsSetupHint: 'You can select this backend now — commands will fail until setup is complete.',
-      },
+        needsSetupHint: 'You can select this backend now — commands will fail until setup is complete.'
+      }
     },
     gateway: {
       signOut: 'Chiqish',
       authTitle: 'Autentifikatsiya',
-      authSignedInPassword: 'Bu gateway foydalanuvchi nomi va paroldan foydalanadi. Siz tizimga kiringiz; sessiya avtomatik yangilanadi.',
+      authSignedInPassword:
+        'Bu gateway foydalanuvchi nomi va paroldan foydalanadi. Siz tizimga kiringiz; sessiya avtomatik yangilanadi.',
       authSignedInOauth: 'Bu gateway OAuth’dan foydalanadi. Siz tizimga kiringiz; sessiya avtomatik yangilanadi.',
-      authNeedsPassword: 'Bu gateway foydalanuvchi nomi va paroldan foydalanadi. Ushbu desktop ilovasiga ruxsat berish uchun tizimga kiring.',
+      authNeedsPassword:
+        'Bu gateway foydalanuvchi nomi va paroldan foydalanadi. Ushbu desktop ilovasiga ruxsat berish uchun tizimga kiring.',
       tokenTitle: 'Sessiya tokeni',
-      tokenDesc: 'REST va WebSocket’ga kirish uchun ishlatiladigan dashboard sessiya tokeni. Saqlangan tokenni saqlash uchun bo‘sh qoldiring.',
+      tokenDesc:
+        'REST va WebSocket’ga kirish uchun ishlatiladigan dashboard sessiya tokeni. Saqlangan tokenni saqlash uchun bo‘sh qoldiring.',
       savedToken: 'saqlangan',
       pasteSessionToken: 'Sessiya tokenini joylashtiring',
       testRemote: 'Remotani tekshirish',
@@ -234,8 +250,10 @@ export const uz = defineLocale({
       applyFailed: 'Gateway sozlamalarini qo‘llab bo‘lmadi',
       saveFailed: 'Gateway sozlamalarini saqlab bo‘lmadi',
       sshTitle: 'SSH orqali ulanish',
-      sshDesc: 'OpenAmer remote hostda SSH orqali ishga tushiriladi va tunel orqali ushbu ilovaga ulanadi — boshqariladigan yoki ochiladigan narsa yo‘q. Hostga kalit asosidagi SSH kirish talab qilinadi.',
-      sshTrustHint: 'Birinchi ko‘rsatilgan host kaliti ishonchli deb belgilanadi va qattiqlanadi; keyingi o‘zgarishlar rad qilinadi.',
+      sshDesc:
+        'OpenAmer remote hostda SSH orqali ishga tushiriladi va tunel orqali ushbu ilovaga ulanadi — boshqariladigan yoki ochiladigan narsa yo‘q. Hostga kalit asosidagi SSH kirish talab qilinadi.',
+      sshTrustHint:
+        'Birinchi ko‘rsatilgan host kaliti ishonchli deb belgilanadi va qattiqlanadi; keyingi o‘zgarishlar rad qilinadi.',
       sshHostDesc: 'user@host yoki ~/.ssh/config dagi Host taxallusi.',
       sshHostPick: 'Hostni tanlang…',
       signIn: 'Tizimga kirish',
@@ -257,11 +275,16 @@ export const uz = defineLocale({
       sshButtonsHint: 'Saqlash keyingi ishga tushirishda qo‘llaniladi. Ulanish hozir qayta ulanadi.',
       sshIncompleteHost: 'Ulanishdan oldin SSH serverini kiriting.',
       sshErrUnreachable: 'SSH orqali serverga ulanib bo‘lmadi. Server, port va tarmoqni tekshiring.',
-      sshErrAuth: 'SSH autentifikatsiyasi muvaffaqiyatsiz bo‘ldi. Kalitni ssh-agent ga yuklang (ssh-add) yoki ~/.ssh/config da IdentityFile belgilang — OpenAmer ssh ni interaktiv rejimsiz ishga tushiradi.',
-      sshErrHostKey: 'Oxirgi ulanishdan beri server kaliti O‘ZGARDI. Bu kutilganini tasdiqlang, keyin ssh-keygen -R <host> ni ishga tushirib, qayta ulaning.',
-      sshErrNotInstalled: 'Masalan serverda OpenAmer o‘rnatilmagan. Uni o‘shanda o‘rnating (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) yoki OpenAmer yo‘lini belgilang.',
-      sshErrPlatform: 'Masalan platformasi qo‘llab-quvvatlanmaydi. OpenAmer Desktop SSH rejimi Linux, macOS va Windows serverlarini qo‘llab-quvvatlaydi.',
-      sshErrTimeout: 'SSH ulanish vaqti tugadi. Serverga yetib borib bo‘lmasligi yoki uni kutilgan holicha yotganligi mumkin.',
+      sshErrAuth:
+        'SSH autentifikatsiyasi muvaffaqiyatsiz bo‘ldi. Kalitni ssh-agent ga yuklang (ssh-add) yoki ~/.ssh/config da IdentityFile belgilang — OpenAmer ssh ni interaktiv rejimsiz ishga tushiradi.',
+      sshErrHostKey:
+        'Oxirgi ulanishdan beri server kaliti O‘ZGARDI. Bu kutilganini tasdiqlang, keyin ssh-keygen -R <host> ni ishga tushirib, qayta ulaning.',
+      sshErrNotInstalled:
+        'Masalan serverda OpenAmer o‘rnatilmagan. Uni o‘shanda o‘rnating (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) yoki OpenAmer yo‘lini belgilang.',
+      sshErrPlatform:
+        'Masalan platformasi qo‘llab-quvvatlanmaydi. OpenAmer Desktop SSH rejimi Linux, macOS va Windows serverlarini qo‘llab-quvvatlaydi.',
+      sshErrTimeout:
+        'SSH ulanish vaqti tugadi. Serverga yetib borib bo‘lmasligi yoki uni kutilgan holicha yotganligi mumkin.',
       sshErrUpdateRequired: 'Desktop SSH bilan ulanishdan oldin masalandagi OpenAmer ni yangilang.',
       sshErrUnknown: 'SSH ulanishi muvaffaqiyatsiz bo‘ldi.',
       loading: 'Loading gateway settings...',
@@ -269,13 +292,16 @@ export const uz = defineLocale({
       unavailableDesc: 'The desktop IPC bridge does not expose gateway settings.',
       title: 'Gateway Connection',
       envOverride: 'env override',
-      intro: 'OpenAmer Desktop starts its own local gateway by default. Use a remote gateway when you want this app to control an already-running OpenAmer backend on another machine or behind a trusted proxy. Pick a profile below to give it its own remote host.',
+      intro:
+        'OpenAmer Desktop starts its own local gateway by default. Use a remote gateway when you want this app to control an already-running OpenAmer backend on another machine or behind a trusted proxy. Pick a profile below to give it its own remote host.',
       appliesTo: 'Applies to',
       allProfiles: 'All profiles',
       defaultConnection: 'Default connection for every profile that has no override of its own.',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       envOverrideTitle: 'Environment variables are controlling this desktop session.',
-      envOverrideDesc: 'Unset OPENAMER_DESKTOP_REMOTE_URL and OPENAMER_DESKTOP_REMOTE_TOKEN to use the saved setting below.',
+      envOverrideDesc:
+        'Unset OPENAMER_DESKTOP_REMOTE_URL and OPENAMER_DESKTOP_REMOTE_TOKEN to use the saved setting below.',
       modeTitle: 'Connection mode',
       localTitle: 'Local gateway',
       localDesc: 'Start a private OpenAmer backend on localhost. This is the default and works offline.',
@@ -300,7 +326,7 @@ export const uz = defineLocale({
       cloudNoAgents: {
         before: 'No agents found on this account. Create one in the ',
         linkText: 'OpenAmer portal',
-        after: ', then refresh.',
+        after: ', then refresh.'
       },
       cloudRefresh: 'Refresh',
       cloudConnect: 'Connect',
@@ -325,15 +351,15 @@ export const uz = defineLocale({
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       sshPortTitle: 'Port',
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     closeSettings: 'Sozlamalarni yopish',
     exportConfig: 'Sozlamalarni eksport qilish',
     importConfig: 'Sozlamalarni import qilish',
     resetToDefaults: 'Standart holatga qaytarish',
     resetConfirm: 'Barcha sozlamalarni OpenAmer standartlariga qaytarish?',
-    exportFailed: 'Eksport muvaffaqiyatsiz bo\'ldi',
-    resetFailed: 'Qayta tiklash muvaffaqiyatsiz bo\'ldi',
+    exportFailed: "Eksport muvaffaqiyatsiz bo'ldi",
+    resetFailed: "Qayta tiklash muvaffaqiyatsiz bo'ldi",
     nav: {
       providers: 'Provayderlar',
       providerAccounts: 'Hisoblar',
@@ -346,32 +372,33 @@ export const uz = defineLocale({
       keysSettings: 'Sozlamalar',
       archivedChats: 'Arxivlangan suhbatlar',
       about: 'Haqqida',
-      billing: 'To\'lov',
+      billing: "To'lov",
       notifications: 'Bildirishnomalar',
       plugins: 'Plaginlar',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'Desktop plaginlari',
-      blurb: 'Ushbu ilovaga yuklangan UI kengaytmalar — qurilma bilan birga paketlangan yoki desktop-plugins papkasiga qo\'yilgan (OpenAmer yozganlar ham). O\'chirish pluginni real vaqt rejimida o\'chiradi va qayta ishga tushirishdan saqlaydi.',
+      blurb:
+        "Ushbu ilovaga yuklangan UI kengaytmalar — qurilma bilan birga paketlangan yoki desktop-plugins papkasiga qo'yilgan (OpenAmer yozganlar ham). O'chirish pluginni real vaqt rejimida o'chiradi va qayta ishga tushirishdan saqlaydi.",
       openFolder: 'Plaginlar papkasini ochish',
       rescan: 'Qayta skaner qilish',
-      reveal: 'Fayl menejerida ko\'rsatish',
+      reveal: "Fayl menejerida ko'rsatish",
       enable: 'Faollashtirish',
-      disable: 'O\'chirish',
+      disable: "O'chirish",
       failed: 'Muvaffaqiyatsiz',
       count: n => `${n} installed`,
       empty: 'No desktop plugins installed yet.',
       kinds: {
         bundled: 'bundled',
         disk: 'on disk',
-        runtime: 'runtime',
-      },
+        runtime: 'runtime'
+      }
     },
     keys: {
       loading: 'API kalitlari va hisob ma’lumotlari yuklanmoqda...',
       failedLoad: 'API kalitlarini yuklab bo‘lmadi',
-      empty: 'Bu kategoriyada hali hech narsa sozlanmagan.',
+      empty: 'Bu kategoriyada hali hech narsa sozlanmagan.'
     },
     mcp: {
       loading: 'MCP serverlari yuklanmoqda...',
@@ -423,7 +450,8 @@ export const uz = defineLocale({
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
       catalogEnvRequired: 'Fill in the required values before installing.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       statusConnecting: 'Connecting…',
       statusNeedsAuth: 'Needs authentication',
       statusError: 'Error',
@@ -436,39 +464,40 @@ export const uz = defineLocale({
       unsavedConnect: 'Unsaved — save mcp.json to connect.',
       enableTool: tool => `Enable ${tool}`,
       disableTool: tool => `Disable ${tool}`,
-      noOutput: 'No output yet.',
+      noOutput: 'No output yet.'
     },
     notifications: {
       title: 'Notifications',
-      intro: 'Native desktop notifications, separate from in-app toasts. These are device-local — each computer keeps its own settings.',
+      intro:
+        'Native desktop notifications, separate from in-app toasts. These are device-local — each computer keeps its own settings.',
       enableAll: 'Enable notifications',
       enableAllDesc: 'Master switch. Turn this off to silence every notification below.',
       focusedHint: 'Completion alerts only fire while OpenAmer is in the background.',
       kinds: {
         approval: {
           label: 'Approval needed',
-          description: 'A command is waiting for you to approve or reject it.',
+          description: 'A command is waiting for you to approve or reject it.'
         },
         input: {
           label: 'Input needed',
-          description: 'OpenAmer asked a question or needs a password or secret.',
+          description: 'OpenAmer asked a question or needs a password or secret.'
         },
         turnDone: {
           label: 'Response ready',
-          description: 'A turn finished while OpenAmer was in the background.',
+          description: 'A turn finished while OpenAmer was in the background.'
         },
         turnError: {
           label: 'Turn failed',
-          description: 'A turn ended with an error.',
+          description: 'A turn ended with an error.'
         },
         backgroundDone: {
           label: 'Background task finished',
-          description: 'A backgrounded terminal command completed.',
+          description: 'A backgrounded terminal command completed.'
         },
         credits: {
           label: 'Credit alerts',
-          description: 'Credit access is paused or restored.',
-        },
+          description: 'Credit access is paused or restored.'
+        }
       },
       test: 'Send test notification',
       testTitle: 'OpenAmer',
@@ -477,7 +506,7 @@ export const uz = defineLocale({
       testUnsupported: 'This system does not support native notifications.',
       completionSoundTitle: 'Completion Sound',
       completionSoundDesc: 'Plays when an agent turn finishes. Pick a preset and preview it here.',
-      completionSoundPreview: 'Preview',
+      completionSoundPreview: 'Preview'
     },
     sections: {
       model: 'Model',
@@ -487,7 +516,7 @@ export const uz = defineLocale({
       safety: 'Safety',
       memory: 'Memory & Context',
       voice: 'Voice',
-      advanced: 'Advanced',
+      advanced: 'Advanced'
     },
     searchPlaceholder: {
       about: 'About OpenAmer Desktop',
@@ -495,37 +524,40 @@ export const uz = defineLocale({
       gateway: 'Gateway connection...',
       keys: 'Search API keys...',
       mcp: 'Search MCP servers...',
-      sessions: 'Search archived sessions...',
+      sessions: 'Search archived sessions...'
     },
     modeOptions: {
       light: {
         label: 'Light',
-        description: 'Bright desktop surfaces',
+        description: 'Bright desktop surfaces'
       },
       dark: {
         label: 'Dark',
-        description: 'Low-glare workspace',
+        description: 'Low-glare workspace'
       },
       system: {
         label: 'System',
-        description: 'Follow OS appearance',
-      },
+        description: 'Follow OS appearance'
+      }
     },
     appearance: {
       title: 'Appearance',
-      intro: 'These are desktop-only display preferences. Mode controls brightness; theme controls the accent palette and chat surface styling.',
+      intro:
+        'These are desktop-only display preferences. Mode controls brightness; theme controls the accent palette and chat surface styling.',
       colorMode: 'Color Mode',
       colorModeDesc: 'Pick a fixed mode or let OpenAmer follow your system setting.',
       toolViewTitle: 'Tool Call Display',
       toolViewDesc: 'Product hides raw tool payloads; Technical shows full input/output.',
       uiScaleTitle: 'UI Scale',
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       translucencyTitle: 'Window Translucency',
       translucencyDesc: 'See your desktop through the whole window. macOS and Windows only.',
       backdropTitle: 'Chat Backdrop',
       backdropDesc: 'The faint statue image behind the conversation.',
       embedsTitle: 'Inline Embeds',
-      embedsDesc: 'Rich previews load from third-party sites (YouTube, X, …). Ask shows a placeholder until you allow each one; Always loads them automatically; Off keeps plain links.',
+      embedsDesc:
+        'Rich previews load from third-party sites (YouTube, X, …). Ask shows a placeholder until you allow each one; Always loads them automatically; Off keeps plain links.',
       embedsAsk: 'Ask',
       embedsAlways: 'Always',
       embedsOff: 'Off',
@@ -538,7 +570,8 @@ export const uz = defineLocale({
       themeDesc: 'Desktop palettes only. The selected mode is applied on top.',
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installTitle: 'Install from VS Code',
-      installDesc: 'Paste a Marketplace extension id (e.g. dracula-theme.theme-dracula) to convert its color theme into a desktop palette.',
+      installDesc:
+        'Paste a Marketplace extension id (e.g. dracula-theme.theme-dracula) to convert its color theme into a desktop palette.',
       installPlaceholder: 'publisher.extension',
       installButton: 'Install',
       installing: 'Installing…',
@@ -548,8 +581,10 @@ export const uz = defineLocale({
       importedBadge: 'Imported',
       pet: {
         title: 'Pet',
-        intro: 'Adopt an animated petdex mascot that floats over the app and reacts to what OpenAmer is doing — running while tools execute, celebrating on success, sulking on errors.',
-        restartHint: 'Pets need a quick restart — the running app started before this feature was added. Quit and reopen OpenAmer, then come back here.',
+        intro:
+          'Adopt an animated petdex mascot that floats over the app and reacts to what OpenAmer is doing — running while tools execute, celebrating on success, sulking on errors.',
+        restartHint:
+          'Pets need a quick restart — the running app started before this feature was added. Quit and reopen OpenAmer, then come back here.',
         on: 'On',
         off: 'Off',
         scaleTitle: 'Size',
@@ -581,8 +616,8 @@ export const uz = defineLocale({
         exportFailed: slug => `Could not export ${slug}`,
         noneAvailable: 'No pets available to turn on right now.',
         turnOnFailed: 'Could not turn the pet on.',
-        turnOffFailed: 'Could not turn the pet off.',
-      },
+        turnOffFailed: 'Could not turn the pet off.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -605,13 +640,14 @@ export const uz = defineLocale({
       lastChecked: age => `Last checked ${age}`,
       justNowSuffix: ' · just now',
       automaticUpdates: 'Automatic updates',
-      automaticUpdatesDesc: 'OpenAmer checks for updates automatically in the background and lets you know when one is ready.',
+      automaticUpdatesDesc:
+        'OpenAmer checks for updates automatically in the background and lets you know when one is ready.',
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       never: 'never',
       justNow: 'just now',
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     config: {
       none: 'None',
@@ -627,7 +663,7 @@ export const uz = defineLocale({
       imported: 'Config imported',
       invalidJson: 'Invalid config JSON',
       keepAwakeTitle: 'Keep computer awake',
-      keepAwakeDesc: 'Stop this machine from sleeping so long or overnight runs keep going. The display can still dim.',
+      keepAwakeDesc: 'Stop this machine from sleeping so long or overnight runs keep going. The display can still dim.'
     },
     credentials: {
       pasteKey: 'Paste key',
@@ -637,7 +673,7 @@ export const uz = defineLocale({
       couldNotSave: 'Could not save credential.',
       remove: 'Remove',
       getKey: 'Get a key',
-      saving: 'Saving',
+      saving: 'Saving'
     },
     envActions: {
       actionsFor: label => `Actions for ${label}`,
@@ -648,7 +684,7 @@ export const uz = defineLocale({
       revealValue: 'Reveal value',
       replace: 'Replace',
       set: 'Set',
-      clear: 'Clear',
+      clear: 'Clear'
     },
     model: {
       loading: 'Loading model configuration...',
@@ -673,74 +709,76 @@ export const uz = defineLocale({
       tasks: {
         vision: {
           label: 'Vision',
-          hint: 'Image analysis',
+          hint: 'Image analysis'
         },
         web_extract: {
           label: 'Web extract',
-          hint: 'Page summarization',
+          hint: 'Page summarization'
         },
         compression: {
           label: 'Compression',
-          hint: 'Context compaction',
+          hint: 'Context compaction'
         },
         skills_hub: {
           label: 'Skills hub',
-          hint: 'Skill search',
+          hint: 'Skill search'
         },
         approval: {
           label: 'Approval',
-          hint: 'Smart auto-approve',
+          hint: 'Smart auto-approve'
         },
         mcp: {
           label: 'MCP',
-          hint: 'MCP tool routing',
+          hint: 'MCP tool routing'
         },
         title_generation: {
           label: 'Title gen',
-          hint: 'Session titles',
+          hint: 'Session titles'
         },
         curator: {
           label: 'Curator',
-          hint: 'Skill-usage review',
-        },
-      },
-    },
+          hint: 'Skill-usage review'
+        }
+      }
+    }
   },
   notifications: {
     region: 'Bildirishnomalar',
     hide: 'Yashirish',
-    show: 'Ko\'rsatish',
+    show: "Ko'rsatish",
     clearAll: 'Hammasini tozalash',
     dismiss: 'Bildirishnomani rad etish',
     details: 'Tafsilotlar',
     copyDetail: 'Tafsilotni nusxalash',
-    copyDetailFailed: 'Bildirishnoma tafsilotini nusxalab bo\'lmadi',
+    copyDetailFailed: "Bildirishnoma tafsilotini nusxalab bo'lmadi",
     backendOutOfDateTitle: 'Backend yangilanmagan',
-    backendOutOfDateMessage: 'OpenAmer backendingiz desktop versiyasidan eski va to\'g\'ri ishlamasligi mumkin. Moslashtirish uchun yangilang.',
-    installMethodUnsupportedTitle: 'Qo\'llab-quvvatlanmaydigan o\'rnatish usuli',
-    updateOpenAmer: 'OpenAmer\'ni yangilash',
+    backendOutOfDateMessage:
+      "OpenAmer backendingiz desktop versiyasidan eski va to'g'ri ishlamasligi mumkin. Moslashtirish uchun yangilang.",
+    installMethodUnsupportedTitle: "Qo'llab-quvvatlanmaydigan o'rnatish usuli",
+    updateOpenAmer: "OpenAmer'ni yangilash",
     updateReadyTitle: 'Yangilanish tayyor',
-    seeWhatsNew: 'Yangi nimalarni ko\'rish',
+    seeWhatsNew: "Yangi nimalarni ko'rish",
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT uchun ELEVENLABS_API_KEY kerak.',
       elevenLabsRejectedKey: 'ElevenLabs API kalitni rad etdi (401).',
       gatewayAuthFailed: 'Gateway autentifikatsiyasi amalga oshmadi — API_SERVER_KEY ni tekshiring.',
-      methodNotAllowed: 'Desktop backend so\'rovni rad etdi (405 Usul ruxsat etilmagan). OpenAmer Desktop\'ni qayta ishga tushirib ko\'ring.',
+      methodNotAllowed:
+        "Desktop backend so'rovni rad etdi (405 Usul ruxsat etilmagan). OpenAmer Desktop'ni qayta ishga tushirib ko'ring.",
       microphonePermission: 'Mikrofonga ruxsat berilmadi.',
       openaiRejectedApiKey: 'OpenAI API kalitni rad etdi.',
       openaiTtsNeedsKey: 'OpenAI TTS uchun VOICE_TOOLS_OPENAI_KEY yoki OPENAI_API_KEY kerak.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Ovoz rejimidan foydalanish uchun nutqdan matnga aylantirishni sozlang.',
-      couldNotStartSession: 'Ovoz sessiyasini boshlab bo\'lmadi',
+      couldNotStartSession: "Ovoz sessiyasini boshlab bo'lmadi",
       microphoneAccessDenied: 'Mikrofonga kirish rad etildi.',
-      microphoneConstraintsUnsupported: 'Bu qurilma mikrofon cheklovlarini qo\'llab-quvvatlamaydi.',
+      microphoneConstraintsUnsupported: "Bu qurilma mikrofon cheklovlarini qo'llab-quvvatlamaydi.",
       microphoneFailed: 'Mikrofon ishlamadi',
       microphoneInUse: 'Mikrofon boshqa dastur tomonidan allaqachon ishlatilmoqda.',
       microphonePermissionDenied: 'Mikrofonga ruxsat berilmadi.',
-      microphoneStartFailed: 'Mikrofon yozuvini boshlab bo\'lmadi.',
-      microphoneUnsupported: 'Bu ish vaqti muhitida mikrofon yozuvi qo\'llab-quvvatlanmaydi.',
+      microphoneStartFailed: "Mikrofon yozuvini boshlab bo'lmadi.",
+      microphoneUnsupported: "Bu ish vaqti muhitida mikrofon yozuvi qo'llab-quvvatlanmaydi.",
       noMicrophone: 'Mikrofon topilmadi.',
       noSpeechDetected: 'Nutq aniqlanmadi',
       playbackFailed: 'Ovozni ijro etish amalga oshmadi',
@@ -748,7 +786,7 @@ export const uz = defineLocale({
       transcriptionFailed: 'Ovozni matnga aylantirish amalga oshmadi',
       transcriptionUnavailable: 'Ovozli transkripsiya hali mavjud emas.',
       tryRecordingAgain: 'Qayta yozib ko‘ring.',
-      unavailable: 'Ovoz mavjud emas',
+      unavailable: 'Ovoz mavjud emas'
     },
     native: {
       approvalTitle: 'Tasdiqlash talab qilinadi',
@@ -761,25 +799,25 @@ export const uz = defineLocale({
       turnErrorTitle: 'Navbat muvaffaqiyatsiz bo‘ldi',
       backgroundDoneTitle: 'Orqa fonda vazifa tugadi',
       backgroundFailedTitle: 'Orqa fonda vazifa muvaffaqiyatsiz bo‘ldi',
-      creditsTitle: 'Kredilar',
+      creditsTitle: 'Kredilar'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   commandCenter: {
     sectionEntries: {
       usage: {
         title: 'Foydalanish paneli',
-        detail: 'Token, xarajat va ko‘nikma faoliyati',
+        detail: 'Token, xarajat va ko‘nikma faoliyati'
       },
       system: {
         title: 'Tizim paneli',
-        detail: 'Gateway holati, jurnallar, qayta ishga tushirish/yangilash',
+        detail: 'Gateway holati, jurnallar, qayta ishga tushirish/yangilash'
       },
       sessions: {
         title: 'Sessions panel',
-        detail: 'Search, pin, and manage sessions',
-      },
+        detail: 'Search, pin, and manage sessions'
+      }
     },
     providerNavigate: 'Yandexirish',
     providerSessions: 'Seanslar',
@@ -795,7 +833,7 @@ export const uz = defineLocale({
     gatewayStopped: 'Xabarlash gatewayi to‘xtatilgan',
     restartGateway: 'Gatewayni qayta ishga tushirish',
     gatewayRestartFailed: 'Gatewayni qayta ishga tushirish failed.',
-    updateOpenAmer: 'OpenAmer\'ni yangilash',
+    updateOpenAmer: "OpenAmer'ni yangilash",
     actionRunning: 'ishlayapti',
     actionDone: 'bajarildi',
     actionStartedWaiting: 'Harakat boshlandi, holat kutilmoqda...',
@@ -828,33 +866,34 @@ export const uz = defineLocale({
     maintenance: {
       runOps: 'Diagnostika',
       doctor: 'Doctorni ishga tushirish',
-      doctorDesc: 'O\'rnatish, konfiguratsiya va provayderlarni sog\'liq tekshiruvi',
+      doctorDesc: "O'rnatish, konfiguratsiya va provayderlarni sog'liq tekshiruvi",
       securityAudit: 'Xavfsizlik auditi',
-      securityAuditDesc: 'Xavfli sozlamalar uchun konfiguratsiya va ko\'nikmalarni skanerlash',
+      securityAuditDesc: "Xavfli sozlamalar uchun konfiguratsiya va ko'nikmalarni skanerlash",
       backup: 'Zaxira nusxa yaratish',
-      backupDesc: 'Konfiguratsiya, xotiralar, ko\'nikmalar va sessiyalarni zip qilish',
+      backupDesc: "Konfiguratsiya, xotiralar, ko'nikmalar va sessiyalarni zip qilish",
       debugShare: 'Debug ulashish',
-      debugShareDesc: 'Tahrirlangan hisobot + jurnallarni yuklang, ulashish havolalarini oling (6 soatda avtomatik o\'chadi)',
+      debugShareDesc:
+        "Tahrirlangan hisobot + jurnallarni yuklang, ulashish havolalarini oling (6 soatda avtomatik o'chadi)",
       debugShareRunning: 'Debug hisoboti yuklanmoqda...',
       debugShareLinks: 'Ulashish havolalari',
       debugShareFailed: 'Debug ulashish muvaffaqiyatsiz',
       copyLink: 'Havolani nusxalash',
       linkCopied: 'Havola nusxalandi',
-      curator: 'Ko\'nikmalar kuratori',
-      curatorDesc: 'Eskirgan agent yaratgan ko\'nikmalarni arxivlaydigan fon tekshiruvi',
-      curatorPaused: 'To\'xtatilgan',
+      curator: "Ko'nikmalar kuratori",
+      curatorDesc: "Eskirgan agent yaratgan ko'nikmalarni arxivlaydigan fon tekshiruvi",
+      curatorPaused: "To'xtatilgan",
       curatorActive: 'Faol',
-      curatorDisabled: 'O\'chirilgan',
+      curatorDisabled: "O'chirilgan",
       curatorNeverRan: 'Hech qachon ishlamagan',
-      pause: 'To\'xtatish',
+      pause: "To'xtatish",
       resume: 'Davom ettirish',
       runNow: 'Hozir ishga tushirish',
-      memoryData: 'Xotira ma\'lumotlari',
-      memoryDataDesc: 'Har bir sessiyaga kiritilgan o\'rnatilgan xotira fayllari',
-      builtinMemory: 'o\'rnatilgan',
+      memoryData: "Xotira ma'lumotlari",
+      memoryDataDesc: "Har bir sessiyaga kiritilgan o'rnatilgan xotira fayllari",
+      builtinMemory: "o'rnatilgan",
       memoryFile: 'Agent xotirasi (MEMORY.md)',
       userFile: 'Foydalanuvchi profili (USER.md)',
-      empty: 'bo\'sh',
+      empty: "bo'sh",
       resetMemory: 'Xotirani tiklash',
       resetUser: 'Profilni tiklash',
       resetAll: 'Ikkalasini tiklash',
@@ -867,7 +906,7 @@ export const uz = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     goToSession: 'Go to session',
     branches: 'Branches',
@@ -891,7 +930,7 @@ export const uz = defineLocale({
       generatedTag: 'Generated',
       adoptFailed: 'Could not adopt that pet.',
       toggleFailed: 'Could not toggle the pet.',
-      noneAvailable: 'No pets available — pick one below to install.',
+      noneAvailable: 'No pets available — pick one below to install.'
     },
     generatePet: {
       title: 'Generate a pet',
@@ -915,12 +954,13 @@ export const uz = defineLocale({
       slowProviderHint: 'This can take several minutes',
       remix: 'Remix',
       remixConfirmTitle: 'Remix this look?',
-      remixConfirmBody: 'This generates a fresh set of drafts using this one as the starting point. It can take several minutes.',
+      remixConfirmBody:
+        'This generates a fresh set of drafts using this one as the starting point. It can take several minutes.',
       genericError: 'Generation failed — try again or pick a suggestion.',
       referenceImageTooLarge: 'Reference image is too large. Use one under 16 MB.',
       referenceImageInvalid: 'Could not read that reference image. Try a PNG, JPG, WebP, or GIF.',
       adopt: 'Adopt',
-      startOver: 'Start over',
+      startOver: 'Start over'
     },
     installTheme: {
       title: 'Install theme…',
@@ -932,7 +972,7 @@ export const uz = defineLocale({
       install: 'Install',
       installing: 'Installing...',
       installed: 'Installed',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Settings fields',
     mcpServers: 'MCP servers',
@@ -941,91 +981,92 @@ export const uz = defineLocale({
       maintenance: 'Maintenance',
       sessions: 'Sessions',
       system: 'System',
-      usage: 'Usage',
+      usage: 'Usage'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostics, backups, curator, and memory data',
       sessions: 'Search and manage sessions',
       system: 'Status, logs, and system actions',
-      usage: 'Token, cost, and skill activity over time',
+      usage: 'Token, cost, and skill activity over time'
     },
     nav: {
       newChat: {
         title: 'New session',
-        detail: 'Start a fresh session',
+        detail: 'Start a fresh session'
       },
       settings: {
         title: 'Settings',
-        detail: 'Configure OpenAmer desktop',
+        detail: 'Configure OpenAmer desktop'
       },
       skills: {
         title: 'Capabilities',
-        detail: 'Skills, tools, and MCP servers',
+        detail: 'Skills, tools, and MCP servers'
       },
       messaging: {
         title: 'Messaging',
-        detail: 'Set up Telegram, Slack, Discord, and more',
+        detail: 'Set up Telegram, Slack, Discord, and more'
       },
       artifacts: {
         title: 'Artifacts',
-        detail: 'Browse generated outputs',
-      },
+        detail: 'Browse generated outputs'
+      }
     },
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · Active sessions ${count}`,
     days: count => `${count}d`,
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   skills: {
-    skillArchivedTitle: 'Ko\'nikma arxivlandi',
+    skillArchivedTitle: "Ko'nikma arxivlandi",
     skillArchivedMessage: '`openamer curator restore` orqali tiklanadi.',
     hub: {
-      searchPlaceholder: 'Ko\'nikma markazida qidiruv',
+      searchPlaceholder: "Ko'nikma markazida qidiruv",
       search: 'Qidirish',
       searching: 'Qidirilmoqda...',
-      connectingHubs: 'Ko\'nikma markazlariga ulanmoqda...',
+      connectingHubs: "Ko'nikma markazlariga ulanmoqda...",
       connectedHubs: 'Ulangan markazlar:',
-      featured: 'Tavsiya etilgan ko\'nikmalar',
-      landingHint: 'O\'rnatiladigan ko\'nikmalarni rasmiy indeks, GitHub va jamoa manbalaridan ko\'rish uchun markazda qidiring.',
-      noResults: 'Markazda mos ko\'nikmalar topilmadi.',
-      installed: 'O\'rnatilgan',
-      install: 'O\'rnatish',
-      installing: 'O\'rnatilmoqda...',
-      uninstall: 'O\'chirish',
-      uninstalling: 'O\'chirilmoqda...',
-      updateAll: 'O\'rnatilganini yangilash',
+      featured: "Tavsiya etilgan ko'nikmalar",
+      landingHint:
+        "O'rnatiladigan ko'nikmalarni rasmiy indeks, GitHub va jamoa manbalaridan ko'rish uchun markazda qidiring.",
+      noResults: "Markazda mos ko'nikmalar topilmadi.",
+      installed: "O'rnatilgan",
+      install: "O'rnatish",
+      installing: "O'rnatilmoqda...",
+      uninstall: "O'chirish",
+      uninstalling: "O'chirilmoqda...",
+      updateAll: "O'rnatilganini yangilash",
       updating: 'Yangilanmoqda...',
-      preview: 'Ko\'rish',
+      preview: "Ko'rish",
       scan: 'Tekshirish',
       scanning: 'Tekshirilmoqda...',
       close: 'Yopish',
       files: 'Fayllar',
-      noReadme: 'Bu ko\'nikmaning `SKILL.md` ko\'rinishi yo\'q.',
+      noReadme: "Bu ko'nikmaning `SKILL.md` ko'rinishi yo'q.",
       trust: {
         builtin: 'ichki',
         trusted: 'ishonchli',
-        community: 'jamoa',
+        community: 'jamoa'
       },
       verdictSafe: 'Xavfsiz',
       verdictCaution: 'Ehtiyotlik',
       verdictDangerous: 'Xavfli',
-      policyAllow: 'O\'rnatishga ruxsat berilgan',
-      policyAsk: 'O\'rnatishdan oldin ko\'rib chiqing',
-      policyBlock: 'Siyosat tufayli o\'rnatishga to\'sqinlik qilindi',
+      policyAllow: "O'rnatishga ruxsat berilgan",
+      policyAsk: "O'rnatishdan oldin ko'rib chiqing",
+      policyBlock: "Siyosat tufayli o'rnatishga to'sqinlik qilindi",
       noFindings: 'Xavfsizlik muammolari topilmadi.',
-      updateStarted: 'O\'rnatilgan ko\'nikmalar yangilanmoqda...',
-      actionFailed: 'Ko\'nikma harakati bajarilmadi',
+      updateStarted: "O'rnatilgan ko'nikmalar yangilanmoqda...",
+      actionFailed: "Ko'nikma harakati bajarilmadi",
       actionLog: 'Harakatlar jurnali',
-      loadFailed: 'Ko\'nikma markazini yuklab bo\'lmadi',
-      previewFailed: 'Ko\'nikmani ko\'rib bo\'lmadi',
-      scanFailed: 'Xavfsizlik tekshiruvini bajarib bo\'lmadi',
-      searchFailed: 'Markazda qidiruvni bajarib bo\'lmadi',
+      loadFailed: "Ko'nikma markazini yuklab bo'lmadi",
+      previewFailed: "Ko'nikmani ko'rib bo'lmadi",
+      scanFailed: "Xavfsizlik tekshiruvini bajarib bo'lmadi",
+      searchFailed: "Markazda qidiruvni bajarib bo'lmadi",
       resultCount: (count, ms) => `${count} result${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     archive: 'Arxiv',
     tabSkills: 'Skills',
@@ -1045,7 +1086,8 @@ export const uz = defineLocale({
     noDescription: 'No description.',
     configured: 'Configured',
     needsKeys: 'Needs keys',
-    visionModelHint: 'Vision uses your auxiliary model configuration — the image-capable model is picked there, not per-provider here.',
+    visionModelHint:
+      'Vision uses your auxiliary model configuration — the image-capable model is picked there, not per-provider here.',
     visionModelLink: 'Choose vision model in Settings → Models',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} toolsets enabled`,
     configureToolset: label => `Configure ${label}`,
@@ -1071,14 +1113,14 @@ export const uz = defineLocale({
     provenance: {
       agent: 'Learned',
       bundled: 'Built-in',
-      hub: 'Hub',
+      hub: 'Hub'
     },
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
     emptyNoneAvailable: noun => `No ${noun} available yet.`,
     changesApplyNewSessions: 'Changes apply to new sessions.',
     skillUpdated: 'Skill updated',
-    edit: 'Edit',
+    edit: 'Edit'
   },
   cron: {
     days: {
@@ -1089,42 +1131,43 @@ export const uz = defineLocale({
       '4': 'Payshanba',
       '5': 'Juma',
       '6': 'Shanba',
-      '7': 'Yakshanba',
+      '7': 'Yakshanba'
     },
     topOfHour: 'Har soatning boshida',
     newCron: 'Yangi cron',
-    emptyDescNew: 'Cron ifodasi bo\'yicha ishga tushirish uchun promptni rejalashtiring. OpenAmer uni ishga tushiradi va natijalarni tanlagan manzilingizga yuboradi.',
-    emptyDescSearch: 'Broader qidiruv so\'rovini sinab ko\'ring.',
-    emptyTitleNew: 'Hali rejalashtirilgan vazifalar yo\'q',
-    emptyTitleSearch: 'Mosliklar yo\'q',
+    emptyDescNew:
+      "Cron ifodasi bo'yicha ishga tushirish uchun promptni rejalashtiring. OpenAmer uni ishga tushiradi va natijalarni tanlagan manzilingizga yuboradi.",
+    emptyDescSearch: "Broader qidiruv so'rovini sinab ko'ring.",
+    emptyTitleNew: "Hali rejalashtirilgan vazifalar yo'q",
+    emptyTitleSearch: "Mosliklar yo'q",
     last: 'Oxirgisi:',
     next: 'Keyingisi:',
     noRuns: 'Hali ishga tushirilmagan',
     manage: 'Boshqarish',
-    showRuns: 'Ishga tushirishlarni ko\'rsatish',
+    showRuns: "Ishga tushirishlarni ko'rsatish",
     hideRuns: 'Ishga tushirishlarni yashirish',
     runHistory: 'Ishga tushirish tarixi',
     actionsTitle: 'Cron vazifalari amallari',
     resume: 'Cronni davom ettirish',
-    pause: 'Cronni vaqtincha to\'xtatish',
+    pause: "Cronni vaqtincha to'xtatish",
     resumeTitle: 'Davom ettirish',
-    pauseTitle: 'To\'xtatish',
+    pauseTitle: "To'xtatish",
     triggerNow: 'Hozir ishga tushirish',
     edit: 'Crontni tahrirlash',
-    deleteTitle: 'Cron vazifasi o\'chirilsinmi?',
+    deleteTitle: "Cron vazifasi o'chirilsinmi?",
     deleteDescPrefix: 'Bu',
-    deleteDescSuffix: 'doimiy olib tashlaydi. U darhol ishga tushirilishdan to\'xtaydi.',
-    deleting: 'O\'chirilmoqda...',
+    deleteDescSuffix: "doimiy olib tashlaydi. U darhol ishga tushirilishdan to'xtaydi.",
+    deleting: "O'chirilmoqda...",
     resumed: 'Cron davom ettirildi',
-    paused: 'Cron to\'xtatildi',
+    paused: "Cron to'xtatildi",
     triggered: 'Cron ishga tushirildi',
-    deleted: 'Cron o\'chirildi',
+    deleted: "Cron o'chirildi",
     created: 'Cron yaratildi',
     updated: 'Cron yangilandi',
-    failedLoad: 'Cron vazifalarini yuklab bo\'lmadi',
-    failedUpdate: 'Cron vazifasini yangilab bo\'lmadi',
-    failedTrigger: 'Cron vazifasini ishga tushirib bo\'lmadi',
-    failedDelete: 'Cron vazifasini o\'chirib bo\'lmadi',
+    failedLoad: "Cron vazifalarini yuklab bo'lmadi",
+    failedUpdate: "Cron vazifasini yangilab bo'lmadi",
+    failedTrigger: "Cron vazifasini ishga tushirib bo'lmadi",
+    failedDelete: "Cron vazifasini o'chirib bo'lmadi",
     close: 'Cron-ni yopish',
     title: 'Rejalashtirilgan vazifalar',
     search: 'Cron vazifalarini qidirish...',
@@ -1136,14 +1179,14 @@ export const uz = defineLocale({
       paused: 'to‘xtatilgan',
       disabled: 'o‘chirilgan',
       error: 'xato',
-      completed: 'bajarildi',
+      completed: 'bajarildi'
     },
     deliveryLabels: {
       local: 'Ushbu kompyuter',
       email: 'Elektron pochta',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     scheduleLabels: {
       daily: 'Kunlik',
@@ -1152,7 +1195,7 @@ export const uz = defineLocale({
       monthly: 'Oylik',
       hourly: 'Soatlik',
       'every-15-minutes': 'Har 15 daqiqada',
-      custom: 'Maxsus',
+      custom: 'Maxsus'
     },
     scheduleHints: {
       daily: 'Har kuni soat 9:00 da',
@@ -1161,17 +1204,20 @@ export const uz = defineLocale({
       monthly: 'Har oyning birinchi kuni soat 9:00 da',
       hourly: 'Har soatning boshida',
       'every-15-minutes': 'Har 15 daqiqada',
-      custom: 'Cron sintaksisi yoki tabiiy til',
+      custom: 'Cron sintaksisi yoki tabiiy til'
     },
     failedSave: 'Cron ishini saqlash muvaffaqiyatsiz',
     editTitle: 'Cron ishini tahrirlash',
     createTitle: 'Yangi cron işi',
-    editDesc: 'Jadval, so\'rov yoki yetkazib berish maqsadini yangilang. O\'zgarishlar keyingi ishga tushirishda qo\'llaniladi.',
-    createDesc: 'So\'rovni avtomatik ravishda ishga tushirishni rejalashtiring. Cron sintaksisini yoki "har 15 daqiqa" kabi tabiiy iborani ishlating.',
+    editDesc:
+      "Jadval, so'rov yoki yetkazib berish maqsadini yangilang. O'zgarishlar keyingi ishga tushirishda qo'llaniladi.",
+    createDesc:
+      'So\'rovni avtomatik ravishda ishga tushirishni rejalashtiring. Cron sintaksisini yoki "har 15 daqiqa" kabi tabiiy iborani ishlating.',
     nameLabel: 'Nomi',
     namePlaceholder: 'Ertalabki xulosalar',
-    promptLabel: 'So\'rov',
-    promptPlaceholder: 'O\'qilmagan Slack mavzularimni qisqacha bayon qiling va eng yaxshi 5 ni elektron pochta orqali yuboring...',
+    promptLabel: "So'rov",
+    promptPlaceholder:
+      "O'qilmagan Slack mavzularimni qisqacha bayon qiling va eng yaxshi 5 ni elektron pochta orqali yuboring...",
     frequencyLabel: 'Frekans',
     deliverLabel: 'Yetkazib berish',
     deliverNeedsHomeChannel: 'Avval uy kanalini belgilang',
@@ -1180,29 +1226,29 @@ export const uz = defineLocale({
     customPlaceholder: '0 9 * * * yoki ish kunlari 9:00 da',
     customHint: 'Cron ifodasi, yoki "har soat" yoki "ish kunlari 9:00 da" kabi iboralar.',
     optional: 'Ixtiyoriy',
-    promptRequired: 'So\'rov talab qilinadi.',
-    promptScheduleRequired: 'So\'rov va jadval talab qilinadi.',
+    promptRequired: "So'rov talab qilinadi.",
+    promptScheduleRequired: "So'rov va jadval talab qilinadi.",
     scheduleRequired: 'Jadval talab qilinadi.',
-    scriptOnlyEditHint: 'Faqat skriptli ish (AI so\'rov yo\'q). Ish ID:',
-    saveChanges: 'O\'zgarishlarni saqlash',
+    scriptOnlyEditHint: "Faqat skriptli ish (AI so'rov yo'q). Ish ID:",
+    saveChanges: "O'zgarishlarni saqlash",
     createAction: 'Cron yaratish',
     tabs: {
       jobs: 'Ishlar',
-      blueprints: 'Noktalash',
+      blueprints: 'Noktalash'
     },
     blueprints: {
       tab: 'Noktalash',
       startFrom: 'Bundan boshlang',
       custom: 'Maxsus',
       subtitle: 'Tayyor avtomatlashtirishlar',
-      dialogDesc: 'Tafsilotlarni to\'ldiring va jadvalga qo\'ying.',
-      scheduleIt: 'Jadvalga qo\'ying',
-      scheduling: 'Jadvalga qo\'yilmoqda...',
-      scheduled: 'Nokta jadvalga qo\'yildi',
+      dialogDesc: "Tafsilotlarni to'ldiring va jadvalga qo'ying.",
+      scheduleIt: "Jadvalga qo'ying",
+      scheduling: "Jadvalga qo'yilmoqda...",
+      scheduled: "Nokta jadvalga qo'yildi",
       loading: 'Noktalash yuklanmoqda...',
       failedLoad: 'Failed to load blueprints',
       emptyTitle: 'No blueprints available',
-      emptyDesc: 'No automation blueprints are available on this backend.',
+      emptyDesc: 'No automation blueprints are available on this backend.'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -1212,7 +1258,7 @@ export const uz = defineLocale({
     monthlyOnDayAt: (dayOfMonth, time) => `Monthly on day ${dayOfMonth} at ${time}`,
     everyHourAt: minute => `Every hour at :${minute}`,
     actionsFor: title => `Actions for ${title}`,
-    modelLabel: 'Model',
+    modelLabel: 'Model'
   },
   profiles: {
     soulSaved: 'SOUL.md saqlandi',
@@ -1223,8 +1269,8 @@ export const uz = defineLocale({
     failedSaveSoul: 'SOUL.md faylini saqlab bo‘lmadi',
     failedCreate: 'Profil yaratib bo‘lmadi',
     failedRename: 'Profilni qayta nomlab bo‘lmadi',
-    deleted: 'Profil o\'chirildi',
-    setupCopied: 'Sozlash buyrug\'i nusxa ko\'chirildi',
+    deleted: "Profil o'chirildi",
+    setupCopied: "Sozlash buyrug'i nusxa ko'chirildi",
     close: 'Profillarni yopish',
     nameHint: 'Kichik harflar, raqamlar, chiziqchalar va pastki chiziqchalar. Harf yoki raqamdan boshlanishi kerak.',
     title: 'Profillar',
@@ -1290,41 +1336,44 @@ Leave blank to keep the ${mode} default.`,
     newNameLabel: 'New name',
     renaming: 'Renaming...',
     created: 'Profile created',
-    renamed: 'Profile renamed',
+    renamed: 'Profile renamed'
   },
   statusStack: {
     coding: {
       clean: 'Tozalash',
-      review: 'Ko\'rib chiqish',
+      review: "Ko'rib chiqish",
       close: 'Yopish',
-      openChanges: 'O\'zgarishlarni ochish',
+      openChanges: "O'zgarishlarni ochish",
       openFile: 'Faylni ochish',
       stage: 'Sahifalash',
       unstage: 'Sahifadan chiqarish',
       stageAll: 'Hammasini sahifalash',
-      viewAsTree: 'Daraxt ko\'rinishida',
-      viewAsList: 'Ro\'yxat ko\'rinishida',
+      viewAsTree: "Daraxt ko'rinishida",
+      viewAsList: "Ro'yxat ko'rinishida",
       revert: 'Qaytarish',
       revertAll: 'Hammasini qaytarish',
-      revertConfirm: 'Bu fayldagi o\'zgarishlar bekor qilinib, u qo\'mitlangan holatga tiklansinmi? Bu amalni bekor qilish mumkin emas.',
-      revertAllConfirm: 'Barcha o\'zgarishlar bekor qilinib, fayllar qo\'mitlangan holatga tiklansinmi? Bu amalni bekor qilish mumkin emas.',
+      revertConfirm:
+        "Bu fayldagi o'zgarishlar bekor qilinib, u qo'mitlangan holatga tiklansinmi? Bu amalni bekor qilish mumkin emas.",
+      revertAllConfirm:
+        "Barcha o'zgarishlar bekor qilinib, fayllar qo'mitlangan holatga tiklansinmi? Bu amalni bekor qilish mumkin emas.",
       staged: 'Sahifalangan',
-      noChanges: 'O\'zgarishlar yo\'q',
+      noChanges: "O'zgarishlar yo'q",
       notRepo: 'Git ombori emas',
-      noDiff: 'Ko\'rsatish uchun farq yo\'q',
-      scopeUncommitted: 'Qo\'mitlanmagan',
+      noDiff: "Ko'rsatish uchun farq yo'q",
+      scopeUncommitted: "Qo'mitlanmagan",
       scopeBranch: 'Tarmoq',
       scopeLastTurn: 'Oxirgi qadam',
-      commit: 'Qo\'mitlash',
-      commitAndPush: 'Qo\'mitlash va yuborish',
-      commitPlaceholder: 'Xabar (⌘↵ bilan qo\'mitlash)',
-      generateCommitMessage: 'Qo\'mit xabarini yaratish',
-      stopGenerating: 'Yaratishni to\'xtatish',
+      commit: "Qo'mitlash",
+      commitAndPush: "Qo'mitlash va yuborish",
+      commitPlaceholder: "Xabar (⌘↵ bilan qo'mitlash)",
+      generateCommitMessage: "Qo'mit xabarini yaratish",
+      stopGenerating: "Yaratishni to'xtatish",
       createPr: 'PR yaratish',
       openPr: 'PR ochish',
-      ghMissing: 'GitHub CLI (gh)ni o\'rnatib, PR ochish uchun tizimga kiring',
-      agentShip: 'OpenAmer\'dan PR ochishni so\'rang',
-      agentShipPrompt: 'Joriy o\'zgarishlarni ko\'rib chiqing, ularni aniq conventional-commit xabari bilan qo\'mitlang, tarmoqni yuboring va pull request oching.',
+      ghMissing: "GitHub CLI (gh)ni o'rnatib, PR ochish uchun tizimga kiring",
+      agentShip: "OpenAmer'dan PR ochishni so'rang",
+      agentShipPrompt:
+        "Joriy o'zgarishlarni ko'rib chiqing, ularni aniq conventional-commit xabari bilan qo'mitlang, tarmoqni yuboring va pull request oching.",
       newBranch: 'Yangi tarmoq',
       worktrees: 'Ish tarmoqlari',
       title: 'Working tree',
@@ -1335,7 +1384,7 @@ Leave blank to keep the ${mode} default.`,
       behind: count => `${count} behind`,
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     agents: 'Agents',
     background: count => `${count} Background`,
@@ -1344,7 +1393,7 @@ Leave blank to keep the ${mode} default.`,
     running: 'Running',
     stop: 'Stop',
     dismiss: 'Dismiss',
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -1359,13 +1408,15 @@ Leave blank to keep the ${mode} default.`,
       done: 'Update complete',
       manual: 'Update from your terminal',
       guiSkew: 'Update the desktop app',
-      error: 'Update paused',
+      error: 'Update paused'
     },
     copy: 'Nusxalash',
     copied: 'Nusxalandi',
     done: 'Tayyor',
-    applyingBody: 'OpenAmer yangilanishi alohida oynada davom etadi va tugagach OpenAmer avtomatik qayta ochiladi. Yangilanish davomida OpenAmer’ni o‘zingiz qayta ochmang.',
-    applyingBodyBackend: 'Masofaviy backend yangilanyapti va qayta ishga tushadi. Qaytganda OpenAmer avtomatik qayta ulanadi.',
+    applyingBody:
+      'OpenAmer yangilanishi alohida oynada davom etadi va tugagach OpenAmer avtomatik qayta ochiladi. Yangilanish davomida OpenAmer’ni o‘zingiz qayta ochmang.',
+    applyingBodyBackend:
+      'Masofaviy backend yangilanyapti va qayta ishga tushadi. Qaytganda OpenAmer avtomatik qayta ulanadi.',
     applyingClose: 'Bu oyna yangilanish davomida yopiladi, keyin OpenAmer o‘z-o‘zidan qayta ochiladi.',
     errorTitle: 'Yangilanish tugamadi',
     errorBody: 'Xavot yo‘q — hech narsa yo‘qolmadi. Endi yana urinish mumkin.',
@@ -1376,11 +1427,13 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'Yangilanishni yuklash uchun backend qayta ishga tushmoqda…',
       notAvailable: 'Bu backend uchun yangilanish mavjud emas.',
       failed: 'Backend yangilanishida xatolik yuz berdi.',
-      noReturn: 'Backend qayta onlayn holatga kirmadi. Yangilanish tugagan bo‘lishi mumkin — backend hostini tekshiring.',
+      noReturn:
+        'Backend qayta onlayn holatga kirmadi. Yangilanish tugagan bo‘lishi mumkin — backend hostini tekshiring.'
     },
     appErrors: {
-      updateLocked: 'Yangilanish bekor qilindi: boshqa OpenAmer oynasi yoki openamer ishlayotgan terminal ushbu o‘rnatishni band qilib turibdi. Uni yopib, qayta urinib ko‘ring.',
-      updateFailed: 'Yangilanish tugamadi. Xavot yo‘q — hech narsa yo‘qolmadi. Endi yana urinish mumkin.',
+      updateLocked:
+        'Yangilanish bekor qilindi: boshqa OpenAmer oynasi yoki openamer ishlayotgan terminal ushbu o‘rnatishni band qilib turibdi. Uni yopib, qayta urinib ko‘ring.',
+      updateFailed: 'Yangilanish tugamadi. Xavot yo‘q — hech narsa yo‘qolmadi. Endi yana urinish mumkin.'
     },
     checking: 'Looking for updates…',
     checkFailedTitle: 'Couldn’t check for updates',
@@ -1400,10 +1453,12 @@ Leave blank to keep the ${mode} default.`,
     maybeLater: 'Maybe later',
     moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
     manualTitle: 'Update from your terminal',
-    manualBody: 'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
+    manualBody:
+      'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
     manualPickedUp: 'OpenAmer will pick up the new version next time you launch it.',
     guiSkewTitle: 'Update the desktop app',
-    guiSkewBody: 'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
+    guiSkewBody:
+      'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.'
   },
   install: {
     incompleteTokenTest: 'Ushbu gatewayni sinashdan oldin sessiya tokenini kiriting.',
@@ -1413,8 +1468,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'O‘rnatish amalga oshmadi',
     settingUpTitle: 'OpenAmer Agent sozlanmoqda',
     finishingTitle: 'Yakunlanmoqda',
-    failedDesc: 'O‘rnatish bosqichlaridan biri amalga oshmadi. Windows’da bu boshqa OpenAmer CLI yoki desktop ilovasi ishlayotgan bo‘lishi mumkin. Ishlayotgan OpenAmer ilovalarini to‘xtatib, qayta urinib ko‘ring. To‘liq matn uchun quyidagi tafsilotlarni yoki desktop jurnalini ko‘ring.',
-    activeDesc: 'Bu bir martalik sozlash. OpenAmer o‘rnatuvchisi bog‘lanishlarni yuklab olmoqda va mashinangizni sozlamoqda. Keyingi ishga tushirishlarda bu bosqich o‘tkaziladi.',
+    failedDesc:
+      'O‘rnatish bosqichlaridan biri amalga oshmadi. Windows’da bu boshqa OpenAmer CLI yoki desktop ilovasi ishlayotgan bo‘lishi mumkin. Ishlayotgan OpenAmer ilovalarini to‘xtatib, qayta urinib ko‘ring. To‘liq matn uchun quyidagi tafsilotlarni yoki desktop jurnalini ko‘ring.',
+    activeDesc:
+      'Bu bir martalik sozlash. OpenAmer o‘rnatuvchisi bog‘lanishlarni yuklab olmoqda va mashinangizni sozlamoqda. Keyingi ishga tushirishlarda bu bosqich o‘tkaziladi.',
     fetchingManifest: 'O‘rnatuvchi manifesti olinmoqda...',
     error: 'Xatolik',
     hideOutput: 'O‘rnatuvchi natijasini yashirish',
@@ -1431,7 +1488,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'O‘rnatilmoqda',
       succeeded: 'Tayyor',
       skipped: 'O‘tkazildi',
-      failed: 'Muvaffaqiyatsiz',
+      failed: 'Muvaffaqiyatsiz'
     },
     oneTimeTitle: 'OpenAmer’ni bir marta o‘rnatish kerak',
     installCommand: 'O‘rnatish buyrug‘i',
@@ -1440,17 +1497,23 @@ Leave blank to keep the ${mode} default.`,
     installTo: 'Qayeriga o‘rnatiladi',
     retryAfterRun: 'Uni bajardim — qayta urinish',
     setupChoiceTitle: 'OpenAmer Desktop’ni sozlash',
-    setupChoiceDesc: 'Ushbu ilovani allaqachon ishlatayotgan OpenAmer gateway’iga ulang yoki OpenAmer’ni shu kompyuterda mahalliy o‘rnating.',
+    setupChoiceDesc:
+      'Ushbu ilovani allaqachon ishlatayotgan OpenAmer gateway’iga ulang yoki OpenAmer’ni shu kompyuterda mahalliy o‘rnating.',
     connectExistingTitle: 'Mavjud OpenAmer’ga ulanish',
     connectExistingShort: 'Mavjudiga ulanish',
-    connectExistingDesc: 'Sessiya tokeni yoki brauzer orqali kirish bilan masofaviy backenddan foydalaning. Mahalliy o‘rnatish boshlanmaydi.',
+    connectExistingDesc:
+      'Sessiya tokeni yoki brauzer orqali kirish bilan masofaviy backenddan foydalaning. Mahalliy o‘rnatish boshlanmaydi.',
     installLocalTitle: 'OpenAmer’ni mahalliy o‘rnatish',
-    installLocalDesc: 'OpenAmer’ni yuklab oling, Python muhitini yarating va backendni shu kompyuterda ishga tushiring.',
-    localStartUnavailable: 'Mahalliy o‘rnatishni boshlab bo‘lmadi. OpenAmer Desktop’ni qayta ishga tushirib, yana urinib ko‘ring.',
+    installLocalDesc:
+      'OpenAmer’ni yuklab oling, Python muhitini yarating va backendni shu kompyuterda ishga tushiring.',
+    localStartUnavailable:
+      'Mahalliy o‘rnatishni boshlab bo‘lmadi. OpenAmer Desktop’ni qayta ishga tushirib, yana urinib ko‘ring.',
     remoteSetupTitle: 'Mavjud OpenAmer’ga ulanish',
-    remoteSetupDesc: 'Gateway URL manzilini kiriting. OpenAmer Desktop token yoki brauzer orqali kirish kerakligini aniqlaydi.',
+    remoteSetupDesc:
+      'Gateway URL manzilini kiriting. OpenAmer Desktop token yoki brauzer orqali kirish kerakligini aniqlaydi.',
     remoteUrlDesc: 'OpenAmer gateway’ining asosiy URL manzilini kiriting; masofaviy bo‘lsa https:// ni ham qo‘shing.',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     remoteUrlTitle: 'Gateway URL',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
     probing: 'Detecting gateway authentication...',
@@ -1471,12 +1534,14 @@ Leave blank to keep the ${mode} default.`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'OpenAmer Agent bilan ishlashga tayyorlaymiz',
-    headerDesc: 'Chatlashishni boshlash uchun model provayderini ulang. Ko‘p variantlarni tanlash bir marta bosish bilan amalga oshadi.',
-    preparingInstall: 'OpenAmer o‘rnatishni yakunlamoqda. Birinchi ishga tushirishda bu odatda bir daqiqadan kam vaqt oladi.',
+    headerDesc:
+      'Chatlashishni boshlash uchun model provayderini ulang. Ko‘p variantlarni tanlash bir marta bosish bilan amalga oshadi.',
+    preparingInstall:
+      'OpenAmer o‘rnatishni yakunlamoqda. Birinchi ishga tushirishda bu odatda bir daqiqadan kam vaqt oladi.',
     starting: 'OpenAmer ishga tushirilmoqda…',
     lookingUpProviders: 'Provalyderlar aniqlanmoqda...',
     collapse: 'Yopish',
@@ -1491,28 +1556,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'to‘g‘ridan-to‘g‘ri model API',
-        description: 'Fireworks AI tomonidan joylashgan modellarga to‘g‘ridan-to‘g‘ri kirish.',
+        description: 'Fireworks AI tomonidan joylashgan modellarga to‘g‘ridan-to‘g‘ri kirish.'
       },
       openrouter: {
         short: 'bitta kalit, ko‘plab model',
-        description: 'Yuzlab modelni bitta kalit orqali joylaydi. Yangi o‘rnatishlar uchun yaxshi standart tanlov.',
+        description: 'Yuzlab modelni bitta kalit orqali joylaydi. Yangi o‘rnatishlar uchun yaxshi standart tanlov.'
       },
       openai: {
         short: 'GPT darajasidagi modellar',
-        description: 'OpenAI modellariga to‘g‘ridan-to‘g‘ri kirish.',
+        description: 'OpenAI modellariga to‘g‘ridan-to‘g‘ri kirish.'
       },
       gemini: {
         short: 'Gemini models',
-        description: 'Direct access to Google Gemini models.',
+        description: 'Direct access to Google Gemini models.'
       },
       xai: {
         short: 'Grok models',
-        description: 'Direct access to xAI Grok models.',
+        description: 'Direct access to xAI Grok models.'
       },
       local: {
         short: 'self-hosted',
-        description: 'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).',
-      },
+        description:
+          'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).'
+      }
     },
     backToSignIn: 'Back to sign in',
     getKey: 'Get a key',
@@ -1525,7 +1591,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'Opens your browser to sign in, then continues here',
       device_code: 'Opens a verification page in your browser — OpenAmer connects automatically',
-      external: 'Sign in once in your terminal, then come back to chat',
+      external: 'Sign in once in your terminal, then come back to chat'
     },
     startingSignIn: provider => `Starting sign-in for ${provider}...`,
     verifyingCode: provider => `Verifying your code with ${provider}...`,
@@ -1539,10 +1605,12 @@ Leave blank to keep the ${mode} default.`,
     copyAuthCode: 'Copy the authorization code and paste it below.',
     pasteAuthCode: 'Paste authorization code',
     reopenAuthPage: 'Re-open authorization page',
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
     reopenSignInPage: 'Re-open sign-in page',
     waitingAuthorize: 'Waiting for you to authorize...',
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     signedIn: "I've signed in",
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     reopenVerification: 'Re-open verification page',
@@ -1554,7 +1622,7 @@ Leave blank to keep the ${mode} default.`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
     change: 'Change',
     startChatting: 'Begin',
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   shell: {
     statusbar: {
@@ -1564,35 +1632,37 @@ Leave blank to keep the ${mode} default.`,
           conversation: 'Suhbat',
           memory: 'Xotira',
           rules: 'Qoidalar',
-          skills: 'Ko\'nikmalar',
-          subagent_definitions: 'Subagent ta\'riflari',
+          skills: "Ko'nikmalar",
+          subagent_definitions: "Subagent ta'riflari",
           system_prompt: 'Tizim prompti',
-          tool_definitions: 'Vosita ta\'riflari',
-          mcp: 'MCP',
+          tool_definitions: "Vosita ta'riflari",
+          mcp: 'MCP'
         },
-        empty: 'Kontekst ma\'lumotlari yo\'q',
+        empty: "Kontekst ma'lumotlari yo'q",
         loading: 'Kontekstdan foydalanish tarkibi yuklanmoqda…',
         title: 'Kontekstdan foydalanish',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Kontekstdan foydalanish tarkibini ochish',
       session: 'Sessiya',
-      runtimeSessionElapsed: 'Ishga tushirish sessiyasidan o\'tgan vaqt',
-      yoloOn: 'YOLO yoqilgan — xavfli buyruqlar avtomatik tasdiqlanmoqda. O\'chirish uchun bosing. Shift+click uni global yoqadi.',
-      yoloOff: 'YOLO o\'chirilgan — xavfli buyruqlarni avtomatik tasdiqlash uchun bosing. Shift+click uni global yoqadi.',
-      modelNone: 'yo\'q',
-      noModel: 'model yo\'q',
+      runtimeSessionElapsed: "Ishga tushirish sessiyasidan o'tgan vaqt",
+      yoloOn:
+        "YOLO yoqilgan — xavfli buyruqlar avtomatik tasdiqlanmoqda. O'chirish uchun bosing. Shift+click uni global yoqadi.",
+      yoloOff:
+        "YOLO o'chirilgan — xavfli buyruqlarni avtomatik tasdiqlash uchun bosing. Shift+click uni global yoqadi.",
+      modelNone: "yo'q",
+      noModel: "model yo'q",
       switchModel: 'Modelni almashtirish',
       openModelPicker: 'Model tanlovchini ochish',
       modelPinned: 'siz tomonidan biriktirilgan; yangi suhbatlar bunda Sozlamalar standartidan foydalanadi',
-      unknown: 'noma\'lum',
+      unknown: "noma'lum",
       restart: 'qayta ishga tushurish',
       update: 'yangilash',
       updateInProgress: 'Yangilash davom etmoqda',
       closeCommandCenter: 'Buyruq markazini yopish',
       openCommandCenter: 'Buyruq markazini ochish',
-      showTerminal: 'Terminalni ko\'rsatish',
+      showTerminal: "Terminalni ko'rsatish",
       hideTerminal: 'Terminalni yashirish',
       gateway: 'Shluz',
       gatewayReady: 'tayyor',
@@ -1630,7 +1700,7 @@ Leave blank to keep the ${mode} default.`,
       turnRunning: 'Running',
       currentTurnElapsed: 'Current turn elapsed',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
     },
     windowControls: 'Oyna boshqaruvlari',
     paneControls: 'Panel boshqaruvlari',
@@ -1640,7 +1710,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'Modellar topilmadi',
       editModels: 'Modellarni tahrirlash…',
       refreshModels: 'Modellarni yangilash',
-      fast: 'Tez',
+      fast: 'Tez'
     },
     modelOptions: {
       noOptions: 'Bu model uchun variantlar yo‘q',
@@ -1656,7 +1726,7 @@ Leave blank to keep the ${mode} default.`,
       updateFailed: 'Model varianti yangilanmadi',
       fastFailed: 'Tez rejim yangilanmadi',
       minimal: 'Minimal',
-      ultra: 'Ultra',
+      ultra: 'Ultra'
     },
     gatewayMenu: {
       gateway: 'Kirish nuqtasi',
@@ -1668,40 +1738,40 @@ Leave blank to keep the ${mode} default.`,
       checkingInference: 'Taqdimot tekshirilmoqda',
       disconnected: 'Ulanmagan',
       openSystem: 'Tizim panelini ochish',
-      recentActivity: 'So\'nggi faoliyat',
-      viewAllLogs: 'Barcha loglarni ko\'rish →',
+      recentActivity: "So'nggi faoliyat",
+      viewAllLogs: "Barcha loglarni ko'rish →",
       messagingPlatforms: 'Xabar almashish platformalari',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'Ruxsat rejimi',
-      manual: 'Qo\'lda',
-      manualDescription: 'Ruxsat talab qiladigan harakatlardan oldin so\'rang',
-      smartDescription: 'Harakatlarni avtomatik baholab, kerak bo\'lganda so\'rang',
-      off: 'O\'chirilgan',
-      offDescription: 'Ruxsat so\'rovlarini ko\'rsatmasdan ishga tushurish',
+      manual: "Qo'lda",
+      manualDescription: "Ruxsat talab qiladigan harakatlardan oldin so'rang",
+      smartDescription: "Harakatlarni avtomatik baholab, kerak bo'lganda so'rang",
+      off: "O'chirilgan",
+      offDescription: "Ruxsat so'rovlarini ko'rsatmasdan ishga tushurish",
       ariaLabel: mode => `Approval mode: ${mode}`,
-      smart: 'Smart',
-    },
+      smart: 'Smart'
+    }
   },
   rightSidebar: {
-    aria: 'O\'ng yon panel',
-    panelsAria: 'O\'ng yon panel panellari',
+    aria: "O'ng yon panel",
+    panelsAria: "O'ng yon panel panellari",
     files: 'Fayl tizimi',
     noFolderSelected: 'Papka tanlanmagan',
-    changeCwdTitle: 'Ishlash katalogini o\'zgartirish',
+    changeCwdTitle: "Ishlash katalogini o'zgartirish",
     remotePickerTitle: 'Masofaviy papkani tanlash',
-    remotePickerDescription: 'Ulangan backenddagi papkalarni ko\'rib chiqing.',
+    remotePickerDescription: "Ulangan backenddagi papkalarni ko'rib chiqing.",
     remotePickerSelect: 'Papkani tanlash',
     openFolder: 'Papkani ochish',
     refreshTree: 'Daraxtni yangilash',
     collapseAll: 'Barcha papkalarni yopish',
-    previewUnavailable: 'Ko\'rish mumkin emas',
-    noProjectTitle: 'Loyiha yo\'q',
-    noProjectBody: 'Loyihani ochib, uning fayllarini ko\'ring va o\'zgarishlarni tekshiring.',
+    previewUnavailable: "Ko'rish mumkin emas",
+    noProjectTitle: "Loyiha yo'q",
+    noProjectBody: "Loyihani ochib, uning fayllarini ko'ring va o'zgarishlarni tekshiring.",
     noProjectOpen: 'Loyiha ochilmagan',
-    noDiffs: 'Farqlar yo\'q',
-    unreadableTitle: 'O\'qib bo\'lmaydi',
+    noDiffs: "Farqlar yo'q",
+    unreadableTitle: "O'qib bo'lmaydi",
     terminal: 'Terminal',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
@@ -1718,7 +1788,7 @@ Leave blank to keep the ${mode} default.`,
     terminalNew: 'New terminal',
     terminalCloseOthers: 'Close others',
     terminalCloseAll: 'Close all',
-    addToChat: 'Add to chat',
+    addToChat: 'Add to chat'
   },
   modelPicker: {
     loadFailed: 'Modellarni yuklab bo‘lmadi',
@@ -1729,18 +1799,18 @@ Leave blank to keep the ${mode} default.`,
     priceTitle: 'Million token uchun kiritish / chiqarish narxi',
     wasPrice: 'edi',
     current: 'joriy:',
-    unknown: '(noma\'lum)',
-    search: 'Provayderlar va modellarga filtr qo\'ying...',
+    unknown: "(noma'lum)",
+    search: "Provayderlar va modellarga filtr qo'ying...",
     noModels: 'Model topilmadi.',
-    addProvider: 'Provayder qo\'shish',
+    addProvider: "Provayder qo'shish",
     title: 'Switch model',
-    pro: 'Pro',
+    pro: 'Pro'
   },
   modelVisibility: {
     title: 'Modellar',
     search: 'Modellarni qidirish',
     noAuthenticatedProviders: 'Autentifikatsiyalangan provayderlar yo‘q.',
-    addProvider: 'Provayder qo‘shish…',
+    addProvider: 'Provayder qo‘shish…'
   },
   assistant: {
     thread: {
@@ -1758,7 +1828,8 @@ Leave blank to keep the ${mode} default.`,
       restoreCheckpoint: 'Nazorat nuqtasini tiklash',
       restoreFromHere: 'Nazorat nuqtasini tiklash — bu so‘rovdan qayta ishga tushirish',
       restoreTitle: 'Bu nazorat nuqtasiga tiklansinmi?',
-      restoreBody: 'Bu so‘rovdan keyingi barcha ma’lumotlar suhbatdan olib tashlanadi va so‘rov shu yeridan qayta ishga tushadi.',
+      restoreBody:
+        'Bu so‘rovdan keyingi barcha ma’lumotlar suhbatdan olib tashlanadi va so‘rov shu yeridan qayta ishga tushadi.',
       restoreConfirm: 'Tiklash va qayta ishga tushirish',
       restoreNext: 'Keyingi nazorat nuqtasini tiklash',
       goForward: 'Keyingiga o‘tish',
@@ -1767,7 +1838,8 @@ Leave blank to keep the ${mode} default.`,
       loadingSession: 'Loading session',
       showEarlier: 'Show earlier messages',
       loadingResponse: 'OpenAmer is loading a response',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Thinking',
@@ -1775,7 +1847,7 @@ Leave blank to keep the ${mode} default.`,
       yesterday: time => `Yesterday, ${time}`,
       copy: 'Copy',
       refresh: 'Refresh',
-      moreActions: 'More actions',
+      moreActions: 'More actions'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gateway ulanmagan',
@@ -1789,7 +1861,8 @@ Leave blank to keep the ${mode} default.`,
       reject: 'Rad etish',
       alwaysTitle: 'Bu buyruqqa doim ruxsat berilsinmi?',
       alwaysAllow: 'Doim ruxsat berish',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
       notReady: 'Aniqlash so‘rovi hali tayyor emas',
@@ -1803,120 +1876,120 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'Davom etish',
       lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
       lateAnswerTip: 'Draft this answer as a follow-up message',
-      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.',
+      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.'
     },
     tool: {
       titles: {
         session_search_recall: {
           done: 'Sessiya tarixi qidirildi',
           pending: 'Sessiya tarixi qidirilmoqda',
-          pendingAction: 'Qidirilmoqda',
+          pendingAction: 'Qidirilmoqda'
         },
         terminal: {
           done: 'Buyruq bajarildi',
           pending: 'Buyruq bajarilmoqda',
-          pendingAction: 'Bajarilmoqda',
+          pendingAction: 'Bajarilmoqda'
         },
         todo: {
           done: 'Vazifalar yangilandi',
           pending: 'Vazifalar yangilanmoqda',
-          pendingAction: 'Yangilanmoqda',
+          pendingAction: 'Yangilanmoqda'
         },
         vision_analyze: {
           done: 'Rasm tahlil qilindi',
           pending: 'Rasm tahlil qilinmoqda',
-          pendingAction: 'Tahlil qilinmoqda',
+          pendingAction: 'Tahlil qilinmoqda'
         },
         web_extract: {
-          done: 'Veb-sahifa o\'qildi',
-          pending: 'Veb-sahifa o\'qilmoqda',
-          pendingAction: 'O\'qilmoqda',
+          done: "Veb-sahifa o'qildi",
+          pending: "Veb-sahifa o'qilmoqda",
+          pendingAction: "O'qilmoqda"
         },
         web_search: {
           done: 'Veb qidirildi',
           pending: 'Veb qidirilmoqda',
-          pendingAction: 'Qidirilmoqda',
+          pendingAction: 'Qidirilmoqda'
         },
         write_file: {
           done: 'Fayl tahrirlendi',
           pending: 'Fayl tahrirlanmoqda',
-          pendingAction: 'Tahrirlanmoqda',
+          pendingAction: 'Tahrirlanmoqda'
         },
         browser_click: {
           done: 'Element bosildi',
           pending: 'Element bosish',
-          pendingAction: 'Bosish',
+          pendingAction: 'Bosish'
         },
         browser_fill: {
-          done: 'Maydon to\'ldirildi',
-          pending: 'Maydon to\'ldirish',
-          pendingAction: 'To\'ldirish',
+          done: "Maydon to'ldirildi",
+          pending: "Maydon to'ldirish",
+          pendingAction: "To'ldirish"
         },
         browser_navigate: {
           done: 'Sahifa ochildi',
           pending: 'Sahifa ochilmoqda',
-          pendingAction: 'Ochilmoqda',
+          pendingAction: 'Ochilmoqda'
         },
         browser_snapshot: {
           done: 'Sahifa surati qabul qilindi',
           pending: 'Sahifa surati qabul qilinmoqda',
-          pendingAction: 'Qabul qilinmoqda',
+          pendingAction: 'Qabul qilinmoqda'
         },
         browser_take_screenshot: {
           done: 'Ekran surati qabul qilindi',
           pending: 'Ekran surati qabul qilinmoqda',
-          pendingAction: 'Qabul qilinmoqda',
+          pendingAction: 'Qabul qilinmoqda'
         },
         browser_type: {
           done: 'Sahifada yozildi',
           pending: 'Sahifada yozish',
-          pendingAction: 'Yozish',
+          pendingAction: 'Yozish'
         },
         clarify: {
-          done: 'Savol so\'raldi',
-          pending: 'Savol so\'rash',
-          pendingAction: 'So\'rash',
+          done: "Savol so'raldi",
+          pending: "Savol so'rash",
+          pendingAction: "So'rash"
         },
         cronjob: {
           done: 'Cron ish',
           pending: 'Cron ishni rejalashtirish',
-          pendingAction: 'Rejalashtirish',
+          pendingAction: 'Rejalashtirish'
         },
         edit_file: {
           done: 'Fayl tahrirlandi',
           pending: 'Faylni tahrirlash',
-          pendingAction: 'Tahrirlash',
+          pendingAction: 'Tahrirlash'
         },
         execute_code: {
           done: 'Kod bajarildi',
           pending: 'Skript',
-          pendingAction: 'Skript',
+          pendingAction: 'Skript'
         },
         image_generate: {
           done: 'Rasm yaratildi',
           pending: 'Rasm yaratilmoqda',
-          pendingAction: 'Yaratilmoqda',
+          pendingAction: 'Yaratilmoqda'
         },
         list_files: {
-          done: 'Fayllar ro\'yxatga solindi',
-          pending: 'Fayllarni ro\'yxatga olish',
-          pendingAction: 'Ro\'yxat',
+          done: "Fayllar ro'yxatga solindi",
+          pending: "Fayllarni ro'yxatga olish",
+          pendingAction: "Ro'yxat"
         },
         patch: {
           done: 'Patchlangan fayl',
           pending: 'Fayl patchlanmoqda',
-          pendingAction: 'Patchlanmoqda',
+          pendingAction: 'Patchlanmoqda'
         },
         read_file: {
-          done: 'Faylni o\'qish',
-          pending: 'Fayl o\'qilyapti',
-          pendingAction: 'O\'qilyapti',
+          done: "Faylni o'qish",
+          pending: "Fayl o'qilyapti",
+          pendingAction: "O'qilyapti"
         },
         search_files: {
           done: 'Qidirilgan fayllar',
           pending: 'Fayllar qidirilmoqda',
-          pendingAction: 'Qidirilmoqda',
-        },
+          pendingAction: 'Qidirilmoqda'
+        }
       },
       actions: {
         running: 'Ishlayapti',
@@ -1929,11 +2002,11 @@ Leave blank to keep the ${mode} default.`,
         failedToOpen: 'Failed to open',
         searched: 'Searched',
         searching: 'Searching',
-        ran: 'Ran',
+        ran: 'Ran'
       },
       prefixes: {
         browser: 'Brauzer',
-        web: 'Veb',
+        web: 'Veb'
       },
       code: 'Code',
       copyCode: 'Copy code',
@@ -1963,31 +2036,32 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer shaffofligi ulanmagan',
-    sudoSendFailed: 'sudo parolini yuborib bo\'lmadi',
-    secretSendFailed: 'Maxfiy ma\'lumotni yuborib bo\'lmadi',
+    sudoSendFailed: "sudo parolini yuborib bo'lmadi",
+    secretSendFailed: "Maxfiy ma'lumotni yuborib bo'lmadi",
     sudoTitle: 'Administrator paroli',
-    sudoDesc: 'OpenAmer maxsus buyruqni bajarish uchun sudo parolingizga muhtoj. U faqat mahalliy agentingizga yuboriladi.',
+    sudoDesc:
+      'OpenAmer maxsus buyruqni bajarish uchun sudo parolingizga muhtoj. U faqat mahalliy agentingizga yuboriladi.',
     sudoPlaceholder: 'sudo paroli',
-    secretTitle: 'Maxfiy ma\'lumot talab qilinadi',
-    secretDesc: 'OpenAmer davom etish uchun kirish ma\'lumotiga muhtoj.',
-    secretPlaceholder: 'maxfiy ma\'lumot qiymati',
+    secretTitle: "Maxfiy ma'lumot talab qilinadi",
+    secretDesc: "OpenAmer davom etish uchun kirish ma'lumotiga muhtoj.",
+    secretPlaceholder: "maxfiy ma'lumot qiymati"
   },
   desktop: {
-    audioReadFailed: 'Yozib olingan audioni o\'qib bo\'lmadi',
+    audioReadFailed: "Yozib olingan audioni o'qib bo'lmadi",
     sessionUnavailable: 'Sessiya mavjud emas',
-    createSessionFailed: 'Yangi sessiya yaratib bo\'lmadi',
+    createSessionFailed: "Yangi sessiya yaratib bo'lmadi",
     promptFailed: 'Prompt bajarilmadi',
-    providerCredentialRequired: 'Birinchi xabaringizni yuborishdan oldin provayder kirish ma\'lumotini qo\'shing.',
-    emptySlashCommand: 'bo\'sh slash buyrug\'i',
+    providerCredentialRequired: "Birinchi xabaringizni yuborishdan oldin provayder kirish ma'lumotini qo'shing.",
+    emptySlashCommand: "bo'sh slash buyrug'i",
     desktopCommands: 'Ish stoli buyruqlari',
     yoloArmed: 'YOLO ushbu suhbat uchun yoqilgan',
-    yoloOff: 'YOLO o\'chirilgan',
+    yoloOff: "YOLO o'chirilgan",
     noClipboardImage: 'Buferda rasm topilmadi',
     clipboardPasteFailed: 'Buferga nusxa olish amalga oshmadi',
     dropFiles: 'Fayllarni tashlang',
@@ -1996,34 +2070,36 @@ Leave blank to keep the ${mode} default.`,
       timedOut: 'Gateway kutish vaqti tugadi. `openamer gateway` ishlayaptimi?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     yoloToggleFailed: 'YOLO yoqilmaydi',
-    unknownProfile: 'Noma\'lum profil',
-    setProfileFailed: 'Profilni o\'rnatib bo\'lmadi',
-    sttDisabled: 'So\'zdan matnga o\'zgartirish sozlamalarda o\'chirilgan.',
-    stopFailed: 'To\'xtatish muvaffaqiyatsiz',
+    unknownProfile: "Noma'lum profil",
+    setProfileFailed: "Profilni o'rnatib bo'lmadi",
+    sttDisabled: "So'zdan matnga o'zgartirish sozlamalarda o'chirilgan.",
+    stopFailed: "To'xtatish muvaffaqiyatsiz",
     regenerateFailed: 'Qayta yaratish muvaffaqiyatsiz',
     editFailed: 'Tahrirlash muvaffaqiyatsiz',
     resumeFailed: 'Davom ettirish muvaffaqiyatsiz',
-    resumeStrandedTitle: 'Ushbu sessiyani yuklab bo\'lmadi',
-    resumeStrandedBody: 'Ushbu sessiya bilan bog\'lanish muvaffaqiyatsiz bo\'ldi va avtomatik qayta urinishlar to\'xtatildi. Gateway ishga tushganini tekshirib, qayta urinib ko\'ring.',
-    resumeRetry: 'Qayta urinib ko\'rish',
-    nothingToBranch: 'Boshqa yo\'l yo\'q',
-    branchNeedsChat: 'Boshqa yo\'lga o\'tishdan oldin suhbatni boshlang yoki davom ettiring.',
+    resumeStrandedTitle: "Ushbu sessiyani yuklab bo'lmadi",
+    resumeStrandedBody:
+      "Ushbu sessiya bilan bog'lanish muvaffaqiyatsiz bo'ldi va avtomatik qayta urinishlar to'xtatildi. Gateway ishga tushganini tekshirib, qayta urinib ko'ring.",
+    resumeRetry: "Qayta urinib ko'rish",
+    nothingToBranch: "Boshqa yo'l yo'q",
+    branchNeedsChat: "Boshqa yo'lga o'tishdan oldin suhbatni boshlang yoki davom ettiring.",
     sessionBusy: 'Sessiya band',
-    branchStopCurrent: 'Suhbatni boshqa yo\'lga o\'tkazishdan oldin joriy navbatni to\'xtating.',
-    branchNoText: 'Ushbu xabarda boshqa yo\'lga o\'tish uchun matn yo\'q.',
-    branchFailed: 'Boshqa yo\'lga o\'tish muvaffaqiyatsiz',
-    deleteFailed: 'O\'chirish muvaffaqiyatsiz',
+    branchStopCurrent: "Suhbatni boshqa yo'lga o'tkazishdan oldin joriy navbatni to'xtating.",
+    branchNoText: "Ushbu xabarda boshqa yo'lga o'tish uchun matn yo'q.",
+    branchFailed: "Boshqa yo'lga o'tish muvaffaqiyatsiz",
+    deleteFailed: "O'chirish muvaffaqiyatsiz",
     archived: 'Arxivlangan',
     archiveFailed: 'Arxivlash muvaffaqiyatsiz',
-    cwdChangeFailed: 'Ishchi katalogni o\'zgartirish muvaffaqiyatsiz',
+    cwdChangeFailed: "Ishchi katalogni o'zgartirish muvaffaqiyatsiz",
     cwdStagedTitle: 'Ishchi katalog tayyor',
-    cwdStagedMessage: 'Ushbu faol sessiyaga cwd o\'zgarishlarini qo\'llash uchun ish stoli backendini qayta ishga tushiring.',
+    cwdStagedMessage:
+      "Ushbu faol sessiyaga cwd o'zgarishlarini qo'llash uchun ish stoli backendini qayta ishga tushiring.",
     modelSwitchFailed: 'Modelni almashtirish muvaffaqiyatsiz',
     sessionExported: 'Sessiya eksport qilindi',
-    sessionExportFailed: 'Sessiyani eksport qilib bo\'lmadi',
+    sessionExportFailed: "Sessiyani eksport qilib bo'lmadi",
     imageSaved: 'Rasm saqlandi',
     downloadStarted: 'Yuklab olish boshlanmoqda',
     restartToUseSaveImage: 'Rasmni saqlash uchun OpenAmer Desktopni qayta ishga tushiring.',
@@ -2031,7 +2107,8 @@ Leave blank to keep the ${mode} default.`,
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
     branchTitle: n => `Draft: Branch #${n}`,
@@ -2045,31 +2122,31 @@ Leave blank to keep the ${mode} default.`,
     imageWriteFailed: 'Failed to write image to disk.',
     imageAttachFailed: 'Image attach failed',
     attachImages: 'Attach images',
-    clipboard: 'Clipboard',
+    clipboard: 'Clipboard'
   },
   errors: {
     genericFailure: 'Nimadir noto‘g‘ri ketdi',
     boundaryTitle: 'Interfeysda nosozlik yuz berdi',
     boundaryDesc: 'Ko‘rinishda kutilmagan xatolik yuz berdi. Chatlar va sozlamalaringiz xavfsiz.',
     reloadWindow: 'Oynani qayta yuklash',
-    openLogs: 'Loglarni ochish',
+    openLogs: 'Loglarni ochish'
   },
   ui: {
     search: {
-      clear: 'Qidiruvni tozalash',
+      clear: 'Qidiruvni tozalash'
     },
     pagination: {
       label: 'Sahifalash',
       previous: 'Oldingi',
       previousAria: 'Oldingi sahifaga o‘tish',
       next: 'Keyingi',
-      nextAria: 'Keyingi sahifaga o‘tish',
+      nextAria: 'Keyingi sahifaga o‘tish'
     },
     sidebar: {
       title: 'Yon panel',
       description: 'Mobil yon panelni ko‘rsatadi.',
-      toggle: 'Yon panelni almashtirish',
-    },
+      toggle: 'Yon panelni almashtirish'
+    }
   },
   keybinds: {
     actions: {
@@ -2149,7 +2226,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.queue': 'Queue message',
       'composer.sendQueued': 'Send next queued turn',
       'composer.mention': 'Reference files, folders, URLs',
-      'composer.slash': 'Slash command palette',
+      'composer.slash': 'Slash command palette'
     },
     title: 'Klaviatura tezkorligi',
     search: 'Tezkorliklarni qidiring…',
@@ -2165,17 +2242,17 @@ Leave blank to keep the ${mode} default.`,
       profiles: 'Profiles',
       session: 'Session',
       navigation: 'Navigation',
-      view: 'View',
-    },
+      view: 'View'
+    }
   },
   language: {
     label: 'Til',
     description: 'Dastur interfeysi uchun tilni tanlang.',
     saving: 'Til saqlanmoqda…',
-    saveError: 'Til yangilash muvaffaqiyatsiz bo\'ldi',
+    saveError: "Til yangilash muvaffaqiyatsiz bo'ldi",
     switchTo: 'Tilni almashtirish',
     searchPlaceholder: 'Tillarga qidirish…',
-    noResults: 'Hech qanday til topilmadi',
+    noResults: 'Hech qanday til topilmadi'
   },
   starmap: {
     title: 'Xotira Grafi',
@@ -2191,7 +2268,8 @@ Leave blank to keep the ${mode} default.`,
     emptyTitle: 'Hozircha hech narsa o‘rgatilmagan',
     emptyDesc: 'OpenAmer sizning ishlaringiz uchun ko‘nikma va xotiralarni yaratgan sari, ular bu yerda paydo bo‘ladi.',
     share: 'Xaritani bo‘lish',
-    shareHint: 'Ushbu xaritani bo‘lishish uchun kodni nusxa ko‘chiring, yoki yuklash uchun birini joylashtiring. Bu faqat joylashuvni o‘z ichiga oladi, sizning xotirangiz yoki ko‘nikma matningizni emas.',
+    shareHint:
+      'Ushbu xaritani bo‘lishish uchun kodni nusxa ko‘chiring, yoki yuklash uchun birini joylashtiring. Bu faqat joylashuvni o‘z ichiga oladi, sizning xotirangiz yoki ko‘nikma matningizni emas.',
     shareTitle: 'Xaritani import / eksport qilish',
     sharePlaceholder: 'Xarita kodini joylashtiring…',
     copy: 'Xarita kodini nusxa ko‘chirish',
@@ -2202,7 +2280,7 @@ Leave blank to keep the ${mode} default.`,
     importedBadge: 'import qilingan xarita',
     resetToMine: 'Mening xaritamga qaytish',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Agentlarni yopish',
@@ -2232,7 +2310,7 @@ Leave blank to keep the ${mode} default.`,
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   messaging: {
     search: 'Xabarlarni qidirish...',
@@ -2247,7 +2325,7 @@ Leave blank to keep the ${mode} default.`,
       not_configured: 'Needs setup',
       pending_restart: 'Restart needed',
       retrying: 'Retrying',
-      startup_failed: 'Startup failed',
+      startup_failed: 'Startup failed'
     },
     unknown: 'Unknown',
     hintPendingRestart: 'Restart the gateway from the status bar to apply this change.',
@@ -2286,127 +2364,126 @@ Leave blank to keep the ${mode} default.`,
       TELEGRAM_BOT_TOKEN: {
         label: 'Bot token',
         help: 'Create a bot with @BotFather, then paste the token it gives you.',
-        placeholder: 'Paste Telegram bot token',
+        placeholder: 'Paste Telegram bot token'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Allowed Telegram user IDs',
-        help: 'Recommended. Comma-separated numeric IDs from @userinfobot. Without this, anyone can DM your bot.',
+        help: 'Recommended. Comma-separated numeric IDs from @userinfobot. Without this, anyone can DM your bot.'
       },
       TELEGRAM_PROXY: {
         label: 'Proxy URL',
-        help: 'Only needed on networks where Telegram is blocked.',
+        help: 'Only needed on networks where Telegram is blocked.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Bot token',
-        help: 'Create an application in the Discord Developer Portal, add a bot, then paste its token.',
+        help: 'Create an application in the Discord Developer Portal, add a bot, then paste its token.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Allowed Discord user IDs',
-        help: 'Recommended. Comma-separated Discord user IDs.',
+        help: 'Recommended. Comma-separated Discord user IDs.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Reply style',
-        help: 'first, all, or off.',
+        help: 'first, all, or off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Allow all Discord users',
-        help: 'Development only. When true, anyone can DM the bot without an allowlist.',
+        help: 'Development only. When true, anyone can DM the bot without an allowlist.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Home channel ID',
-        help: 'Channel where the bot sends proactive messages (cron output, reminders).',
+        help: 'Channel where the bot sends proactive messages (cron output, reminders).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Home channel name',
-        help: 'Display name for the home channel in logs and status output.',
+        help: 'Display name for the home channel in logs and status output.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Allow all iMessage users',
-        help: 'When true, skip the BlueBubbles allowlist.',
+        help: 'When true, skip the BlueBubbles allowlist.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Allow all Mattermost users',
+        label: 'Allow all Mattermost users'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Home channel',
+        label: 'Home channel'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Allow all QQ users',
+        label: 'Allow all QQ users'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ home channel',
-        help: 'Default channel or group for cron delivery.',
+        help: 'Default channel or group for cron delivery.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ home channel name',
+        label: 'QQ home channel name'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack bot token',
         help: 'Use the bot token from OAuth & Permissions after installing your Slack app.',
-        placeholder: 'Paste Slack bot token',
+        placeholder: 'Paste Slack bot token'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack app token',
         help: 'Use the app-level token required for Socket Mode.',
-        placeholder: 'Paste Slack app token',
+        placeholder: 'Paste Slack app token'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Allowed Slack user IDs',
-        help: 'Recommended. Comma-separated Slack user IDs.',
+        help: 'Recommended. Comma-separated Slack user IDs.'
       },
       MATTERMOST_URL: {
         label: 'Server URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Bot token',
+        label: 'Bot token'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Allowed user IDs',
-        help: 'Recommended. Comma-separated Mattermost user IDs.',
+        help: 'Recommended. Comma-separated Mattermost user IDs.'
       },
       MATRIX_HOMESERVER: {
         label: 'Homeserver URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Access token',
+        label: 'Access token'
       },
       MATRIX_USER_ID: {
         label: 'Bot user ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Allowed Matrix user IDs',
-        help: 'Recommended. Comma-separated user IDs in @user:server format.',
+        help: 'Recommended. Comma-separated user IDs in @user:server format.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal bridge URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL of a running signal-cli REST bridge.',
+        help: 'URL of a running signal-cli REST bridge.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Phone number',
-        help: 'The number registered with your signal-cli bridge.',
+        help: 'The number registered with your signal-cli bridge.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Allowed Signal users',
-        help: 'Recommended. Comma-separated Signal identifiers.',
+        help: 'Recommended. Comma-separated Signal identifiers.'
       },
       WHATSAPP_ENABLED: {
         label: 'Enable WhatsApp bridge',
-        help: 'Set automatically by the toggle below. Leave alone unless you know you need it.',
+        help: 'Set automatically by the toggle below. Leave alone unless you know you need it.'
       },
       WHATSAPP_MODE: {
-        label: 'Bridge mode',
+        label: 'Bridge mode'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Allowed WhatsApp users',
-        help: 'Recommended. Comma-separated phone numbers or WhatsApp IDs.',
-      },
+        help: 'Recommended. Comma-separated phone numbers or WhatsApp IDs.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   sidebar: {
     row: {
@@ -2440,20 +2517,20 @@ Leave blank to keep the ${mode} default.`,
       actionsFor: title => `Actions for ${title}`,
       handoffOrigin: platform => `Handed off from ${platform}`,
       ownedByProfile: profile => `Profile: ${profile}`,
-      untitledChat: id => `Chat ${id}`,
+      untitledChat: id => `Chat ${id}`
     },
     dateDivider: {
       today: 'Bugun ertaroq',
       yesterday: 'Kecha',
       thisWeek: 'Shu hafta boshida',
       lastWeek: 'O‘tgan hafta',
-      thisMonth: 'Shu oy boshida',
+      thisMonth: 'Shu oy boshida'
     },
     nav: {
       'new-session': 'New session',
       skills: 'Capabilities',
       messaging: 'Messaging',
-      artifacts: 'Artifacts',
+      artifacts: 'Artifacts'
     },
     searchAria: 'Search sessions',
     searchPlaceholder: 'Search sessions…',
@@ -2505,7 +2582,8 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'Copy path',
       removeFromSidebar: 'Hide from sidebar',
       createFailed: 'Could not create project',
-      staleBackend: 'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
+      staleBackend:
+        'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
       deleteConfirm: 'This removes the saved project from OpenAmer. Files, git repos, and worktrees stay untouched.',
       startWork: 'New worktree',
       newWorktreeTitle: 'New worktree',
@@ -2527,19 +2605,21 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'No branches found',
       removeWorktree: 'Remove worktree',
       removeWorktreeFailed: 'Could not remove worktree (uncommitted changes?)',
-      removeWorktreeConfirm: 'Remove it from git (deletes the worktree directory; the branch stays), or just hide the lane from the sidebar and leave the worktree on disk.',
-      removeWorktreeDirty: 'This worktree has uncommitted changes. Force-remove it (discards those changes), or just hide the lane and keep it on disk.',
+      removeWorktreeConfirm:
+        'Remove it from git (deletes the worktree directory; the branch stays), or just hide the lane from the sidebar and leave the worktree on disk.',
+      removeWorktreeDirty:
+        'This worktree has uncommitted changes. Force-remove it (discards those changes), or just hide the lane and keep it on disk.',
       forceRemove: 'Force remove',
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
       toggle: label => `Toggle ${label} sessions`,
-      back: 'All projects',
+      back: 'All projects'
     },
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
     loading: 'Loading…',
     loadMore: 'Load more',
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     message: 'Xabar',
@@ -2561,7 +2641,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -2570,7 +2650,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     thinking: 'Thinking',
     muted: 'Muted',
@@ -2599,7 +2679,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'resume a prior session',
       '/details': 'control transcript detail level',
       '/copy': 'copy selection or last assistant message',
-      '/quit': 'exit openamer',
+      '/quit': 'exit openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'reference files, folders, urls, git',
@@ -2609,7 +2689,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'send next queued turn',
       'keybinds.openPanel': 'all keyboard shortcuts',
       'composer.cancel': 'close popover · cancel run',
-      'composer.history': 'cycle popover / history',
+      'composer.history': 'cycle popover / history'
     },
     attachUrlTitle: 'Attach a URL',
     attachUrlDesc: 'OpenAmer will fetch the page and include it as context for this turn.',
@@ -2660,19 +2740,19 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'Code review',
         description: 'Audit the current change for regressions, dropped edge cases, and missing tests.',
-        text: 'Please review this for bugs, regressions, and missing tests.',
+        text: 'Please review this for bugs, regressions, and missing tests.'
       },
       implementationPlan: {
         label: 'Implementation plan',
         description: 'Outline an approach before touching code so the diff stays focused.',
-        text: 'Please make a concise implementation plan before changing code.',
+        text: 'Please make a concise implementation plan before changing code.'
       },
       explainThis: {
         label: 'Explain this',
         description: 'Walk through how the selected code works and link to the key files.',
-        text: 'Please explain how this works and point me to the key files.',
-      },
-    },
+        text: 'Please explain how this works and point me to the key files.'
+      }
+    }
   },
   preview: {
     web: {
@@ -2691,9 +2771,11 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'Ko‘rib chiqish hozir qayta yuklanmoqda.',
       restartFailedTitle: 'Ko‘rib chiqishni qayta ishga tushirish muvaffaqiyatsiz bo‘ldi',
       restartFailedMessage: 'OpenAmer serverni qayta ishga tushira olmadi.',
-      stillWorking: 'OpenAmer hali ham ishlayapti, lekin qayta ishga tushirish natijasi hali kelmadi. Server buyrug‘i oldingi planda ishlayotgan bo‘lishi mumkin.',
+      stillWorking:
+        'OpenAmer hali ham ishlayapti, lekin qayta ishga tushirish natijasi hali kelmadi. Server buyrug‘i oldingi planda ishlayotgan bo‘lishi mumkin.',
       workspaceReloading: 'Ish maydoni o‘zgardi, ko‘rib chiqish qayta yuklanmoqda',
-      moduleMimeDescription: 'Modul skriptlari noto‘g‘ri MIME turi bilan taqdim etilmoqda. Odatda bu statik fayl serveri loyihaning dev serveri o‘rniga Vite/React ilovasini taqdim etayotganini bildiradi.',
+      moduleMimeDescription:
+        'Modul skriptlari noto‘g‘ri MIME turi bilan taqdim etilmoqda. Odatda bu statik fayl serveri loyihaning dev serveri o‘rniga Vite/React ilovasini taqdim etayotganini bildiradi.',
       unreachableDescription: 'Ko‘rib chiqish sahifasiga ulanib bo‘lmadi.',
       fallbackTitle: 'Ko‘rib chiqish',
       appFailedToBoot: 'Preview app failed to boot',
@@ -2707,7 +2789,7 @@ Leave blank to keep the ${mode} default.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     tab: 'Preview',
     closeTab: label => `Close ${label}`,
@@ -2740,7 +2822,8 @@ Leave blank to keep the ${mode} default.`,
     unsavedChanges: 'Unsaved changes',
     saveFailed: message => `Couldn't save: ${message}`,
     diskChangedTitle: 'File changed on disk',
-    diskChangedBody: 'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
+    diskChangedBody:
+      'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
     overwrite: 'Overwrite',
     discardReload: 'Discard & reload',
     console: {
@@ -2761,8 +2844,8 @@ Leave blank to keep the ${mode} default.`,
       empty: 'No console messages yet.',
       promptHeader: 'Preview console:',
       sentTitle: 'Sent to chat',
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
-    },
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
+    }
   },
   zones: {
     showHeader: 'Sarlavhani ko‘rsatish',
@@ -2770,7 +2853,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Kichraytirish',
     restore: 'Tiklash',
     closeRunningTitle: 'Ishlayotgan varaq yopilsinmi?',
-    closeRunningBody: 'Bu suhbat hali ham ishlayapti (yoki sizning javobingizni kutmoqda). Varaqni yopish uni yashiradi — sessiya o‘z jarayonini saqlaydi va yon paneldan qayta ochilishi mumkin.',
+    closeRunningBody:
+      'Bu suhbat hali ham ishlayapti (yoki sizning javobingizni kutmoqda). Varaqni yopish uni yashiradi — sessiya o‘z jarayonini saqlaydi va yon paneldan qayta ochilishi mumkin.',
     closeRunningConfirm: 'Varaqni yopish',
     closeOthers: 'Boshqalarini yopish',
     closeToRight: 'O‘ngdagilarni yopish',
@@ -2782,7 +2866,8 @@ Leave blank to keep the ${mode} default.`,
     dirRight: 'o‘ngga',
     pluginDisabledBody: 'Panelni qaytarish uchun uni Sozlamalar → Plaginlar bo‘limida qayta yoqing.',
     editTitle: 'Tartiblar',
-    editHint: 'Tartibni tanlang yoki panellarni zonalar orasida sudrab o‘tkazing. Zonani bo‘lish uchun unga o‘ng tugmani bosing.',
+    editHint:
+      'Tartibni tanlang yoki panellarni zonalar orasida sudrab o‘tkazing. Zonani bo‘lish uchun unga o‘ng tugmani bosing.',
     reset: 'Asliga qaytarish',
     templates: 'Shablonlar',
     split: dir => `Split ${dir}`,
@@ -2807,7 +2892,7 @@ Leave blank to keep the ${mode} default.`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
     saveApply: 'Save & apply',
     notExpressible: 'this arrangement interlocks (pinwheel) — not expressible as nested splits yet',
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer kredilari tugadi',
@@ -2815,7 +2900,7 @@ Leave blank to keep the ${mode} default.`,
     openBilling: 'To‘lov sahifasini ochish',
     addCredits: 'Kredit qo‘shish',
     dismiss: 'Yopish',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Yon panelni yashirish',
@@ -2832,7 +2917,7 @@ Leave blank to keep the ${mode} default.`,
     openStarmap: 'Xotira grafigini ochish',
     openKeybinds: 'Klaviatura tezkorligi',
     layoutEditor: 'Joylashuv muharriri',
-    layoutEditorTitle: 'Joylashuv muharriri — ⌘-click bilan joylashuvni tiklash mumkin',
+    layoutEditorTitle: 'Joylashuv muharriri — ⌘-click bilan joylashuvni tiklash mumkin'
   },
   webhooks: {
     done: 'Tayyor',
@@ -2859,7 +2944,7 @@ Leave blank to keep the ${mode} default.`,
       github_comment: 'GitHub izohi',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     search: 'Search webhooks...',
     loading: 'Loading webhooks...',
@@ -2868,7 +2953,8 @@ Leave blank to keep the ${mode} default.`,
     hint: 'Subscription changes hot-reload once the receiver is running. Disabled subscriptions reject incoming events.',
     empty: 'No webhook subscriptions yet.',
     disabledTitle: 'Webhook receiver disabled',
-    disabledBody: 'Webhooks are their own gateway platform. Enable them here to accept incoming HTTP events; chat channels are only needed when a subscription delivers to Telegram, Discord, Slack, or another channel.',
+    disabledBody:
+      'Webhooks are their own gateway platform. Enable them here to accept incoming HTTP events; chat channels are only needed when a subscription delivers to Telegram, Discord, Slack, or another channel.',
     enable: 'Enable webhooks',
     enabling: 'Enabling...',
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -2896,7 +2982,7 @@ Leave blank to keep the ${mode} default.`,
     createdSecretHint: 'Copy the secret now — it is only shown once.',
     webhookUrl: 'Webhook URL',
     secretOnce: 'Secret (shown once)',
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   common: {
     apply: 'Apply',
@@ -2937,10 +3023,11 @@ Leave blank to keep the ${mode} default.`,
     update: 'Update',
     tryHint: term => `Try “${term}”`,
     on: 'On',
-    off: 'Off',
+    off: 'Off'
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
   },
   artifacts: {
     search: 'Search artifacts...',
@@ -2974,6 +3061,6 @@ Leave blank to keep the ${mode} default.`,
     kindLink: 'link',
     chat: 'Chat',
     copyUrl: 'Copy URL',
-    copyPath: 'Copy path',
-  },
+    copyPath: 'Copy path'
+  }
 })

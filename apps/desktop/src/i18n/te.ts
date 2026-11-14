@@ -19,7 +19,7 @@ export const te = defineLocale({
     pathCopied: 'మార్గం కాపీ చేయబడింది',
     revealFinder: 'Reveal in Finder',
     revealExplorer: 'Reveal in File Explorer',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop సిద్ధంగా ఉంది',
@@ -28,7 +28,7 @@ export const te = defineLocale({
       loadingSettings: 'OpenAmer సెట్టింగ్లు లోడ్ అవుతున్నాయి',
       loadingSessions: 'ఇటీవలి సెషన్లు లోడ్ అవుతున్నాయి',
       startingDesktopConnection: 'డెస్క్టాప్ కనెక్షన్ ప్రారంభమవుతోంది',
-      startingOpenAmerDesktop: 'OpenAmer Desktop ప్రారంభమవుతోంది…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop ప్రారంభమవుతోంది…'
     },
     errors: {
       backgroundExited: 'OpenAmer నేపథ్య ప్రక్రియ నిష్క్రమించింది.',
@@ -37,7 +37,7 @@ export const te = defineLocale({
       desktopBootFailed: 'డెస్క్టాప్ బూట్ విఫలమైంది',
       gatewayConnectionLost: 'Lost connection to the gateway',
       gatewaySignInRequired: 'Gateway sign-in required',
-      ipcBridgeUnavailable: 'Desktop IPC bridge is unavailable.',
+      ipcBridgeUnavailable: 'Desktop IPC bridge is unavailable.'
     },
     failure: {
       signInIncompleteTitle: 'సైన్-ఇన్ అసంపూర్ణం',
@@ -46,9 +46,11 @@ export const te = defineLocale({
       signInToRemoteGateway: 'రిమోట్ గేట్‌వేకు సైన్ ఇన్ చేయండి',
       identityProvider: 'మీ ఐడెంటిటీ ప్రొవైడర్',
       title: "OpenAmer couldn't start",
-      description: "The background gateway didn't come up. Try one of the recovery steps below. Nothing here deletes your chats or settings.",
+      description:
+        "The background gateway didn't come up. Try one of the recovery steps below. Nothing here deletes your chats or settings.",
       remoteTitle: 'Remote gateway sign-in required',
-      remoteDescription: 'Your remote gateway session has expired. Sign in again to reconnect. Nothing here deletes your chats or settings.',
+      remoteDescription:
+        'Your remote gateway session has expired. Sign in again to reconnect. Nothing here deletes your chats or settings.',
       retry: 'Retry',
       repairInstall: 'Repair install',
       useLocalGateway: 'Use local gateway',
@@ -56,16 +58,17 @@ export const te = defineLocale({
       back: 'Back',
       openLogs: 'Open logs',
       repairHint: 'Repair re-runs the installer and can take a few minutes on a fresh machine.',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
       signOutAndSignIn: 'Sign out & sign in',
       remoteFailureHint: 'Check the gateway URL and sign-in under Gateway settings, or switch to the local gateway.',
       hideRecentLogs: 'Hide recent logs',
       showRecentLogs: 'Show recent logs',
       signedInTitle: 'Signed in',
       signedInMessage: 'Reconnecting to the remote gateway…',
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   notifications: {
     region: 'నోటిఫికేషన్లు',
@@ -77,7 +80,8 @@ export const te = defineLocale({
     copyDetail: 'వివరాన్ని కాపీ చేయండి',
     copyDetailFailed: 'నోటిఫికేషన్ వివరాన్ని కాపీ చేయలేకపోయాము',
     backendOutOfDateTitle: 'బ్యాకెండ్ పాతది',
-    backendOutOfDateMessage: 'మీ OpenAmer బ్యాకెండ్ ఈ డెస్క్‌టాప్ బిల్డ్ కంటే పాతది మరియు సరిగ్గా పనిచేయకపోవచ్చు. వాటిని సమం చేయడానికి అప్‌డేట్ చేయండి.',
+    backendOutOfDateMessage:
+      'మీ OpenAmer బ్యాకెండ్ ఈ డెస్క్‌టాప్ బిల్డ్ కంటే పాతది మరియు సరిగ్గా పనిచేయకపోవచ్చు. వాటిని సమం చేయడానికి అప్‌డేట్ చేయండి.',
     installMethodUnsupportedTitle: 'మద్దతు లేని ఇన్‌స్టాల్ పద్ధతి',
     updateOpenAmer: 'OpenAmerని అప్‌డేట్ చేయండి',
     updateReadyTitle: 'అప్‌డేట్ సిద్ధంగా ఉంది',
@@ -86,11 +90,12 @@ export const te = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STTకి ELEVENLABS_API_KEY అవసరం.',
       elevenLabsRejectedKey: 'ElevenLabs API కీని తిరస్కరించింది (401).',
       gatewayAuthFailed: 'గేట్‌వే ప్రామాణీకరణ విఫలమైంది — మీ API_SERVER_KEYని తనిఖీ చేయండి.',
-      methodNotAllowed: 'డెస్క్‌టాప్ బ్యాకెండ్ ఆ అభ్యర్థనను తిరస్కరించింది (405 Method Not Allowed). OpenAmer Desktop ను పునఃప్రారంభించి ప్రయత్నించండి.',
+      methodNotAllowed:
+        'డెస్క్‌టాప్ బ్యాకెండ్ ఆ అభ్యర్థనను తిరస్కరించింది (405 Method Not Allowed). OpenAmer Desktop ను పునఃప్రారంభించి ప్రయత్నించండి.',
       microphonePermission: 'మైక్రోఫోన్ అనుమతి నిరాకరించబడింది.',
       openaiRejectedApiKey: 'OpenAI API కీని తిరస్కరించింది.',
       openaiTtsNeedsKey: 'OpenAI TTS కి VOICE_TOOLS_OPENAI_KEY లేదా OPENAI_API_KEY అవసరం.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'వాయిస్ మోడ్‌ను ఉపయోగించడానికి స్పీచ్-టు-టెక్స్ట్‌ను కాన్ఫిగర్ చేయండి.',
@@ -109,7 +114,7 @@ export const te = defineLocale({
       transcriptionFailed: 'వాయిస్ ట్రాన్స్‌క్రిప్షన్ విఫలమైంది',
       transcriptionUnavailable: 'Voice transcription is not available yet.',
       tryRecordingAgain: 'Try recording again.',
-      unavailable: 'Voice unavailable',
+      unavailable: 'Voice unavailable'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
     updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
@@ -124,8 +129,8 @@ export const te = defineLocale({
       turnErrorTitle: 'Turn failed',
       backgroundDoneTitle: 'Background task finished',
       backgroundFailedTitle: 'Background task failed',
-      creditsTitle: 'Credits',
-    },
+      creditsTitle: 'Credits'
+    }
   },
   titlebar: {
     showSidebar: 'సైడ్‌బార్‌ను చూపించు',
@@ -142,7 +147,7 @@ export const te = defineLocale({
     openKeybinds: 'కీబోర్డ్ షార్ట్‌కట్లు',
     layoutEditor: 'లేఅవుట్ ఎడిటర్',
     layoutEditorTitle: 'లేఅవుట్ ఎడిటర్ — ⌘-click లేఅవుట్‌ను రీసెట్ చేస్తుంది',
-    hideSidebar: 'Hide sidebar',
+    hideSidebar: 'Hide sidebar'
   },
   keybinds: {
     title: 'కీబోర్డ్ షార్ట్‌కట్లు',
@@ -228,7 +233,7 @@ export const te = defineLocale({
       'composer.queue': 'Queue message',
       'composer.sendQueued': 'Send next queued turn',
       'composer.mention': 'Reference files, folders, URLs',
-      'composer.slash': 'Slash command palette',
+      'composer.slash': 'Slash command palette'
     },
     set: 'సెట్',
     categories: {
@@ -236,10 +241,10 @@ export const te = defineLocale({
       profiles: 'ప్రొఫైల్స్',
       session: 'సెషన్',
       navigation: 'నావిగేషన్',
-      view: 'వీక్షణ',
+      view: 'వీక్షణ'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   language: {
     label: 'భాష',
@@ -248,7 +253,7 @@ export const te = defineLocale({
     saveError: 'భాష నవీకరణ విఫలమైంది',
     switchTo: 'భాషను మార్చండి',
     searchPlaceholder: 'భాషలను వెతకండి…',
-    noResults: 'భాషలు ఏవీ కనుగొనబడలేదు',
+    noResults: 'భాషలు ఏవీ కనుగొనబడలేదు'
   },
   settings: {
     closeSettings: 'సెట్టింగ్‌లను మూసివేయి',
@@ -273,48 +278,50 @@ export const te = defineLocale({
       about: 'About',
       billing: 'Billing',
       notifications: 'Notifications',
-      plugins: 'Plugins',
+      plugins: 'Plugins'
     },
     notifications: {
       kinds: {
         credits: {
           description: 'క్రెడిట్ యాక్సెస్ నిలిపివేయబడింది లేదా పునరుద్ధరించబడింది.',
-          label: 'క్రెడిట్ హెచ్చరికలు',
+          label: 'క్రెడిట్ హెచ్చరికలు'
         },
         approval: {
           label: 'ఆమోదం అవసరం',
-          description: 'ఒక కమాండ్ మీ ఆమోదం లేదా తిరస్కరణ కోసం వేచి ఉంది.',
+          description: 'ఒక కమాండ్ మీ ఆమోదం లేదా తిరస్కరణ కోసం వేచి ఉంది.'
         },
         input: {
           label: 'ఇన్పుట్ అవసరం',
-          description: 'OpenAmer ఒక ప్రశ్న అడిగింది లేదా పాస్వర్డ్ లేదా రహస్యం అవసరం.',
+          description: 'OpenAmer ఒక ప్రశ్న అడిగింది లేదా పాస్వర్డ్ లేదా రహస్యం అవసరం.'
         },
         turnDone: {
           label: 'ప్రతిస్పందన సిద్ధంగా ఉంది',
-          description: 'OpenAmer నేపథ్యంలో ఉన్నప్పుడు ఒక టర్న్ పూర్తయింది.',
+          description: 'OpenAmer నేపథ్యంలో ఉన్నప్పుడు ఒక టర్న్ పూర్తయింది.'
         },
         turnError: {
           label: 'టర్న్ విఫలమైంది',
-          description: 'ఒక టర్న్ లోపంతో ముగిసింది.',
+          description: 'ఒక టర్న్ లోపంతో ముగిసింది.'
         },
         backgroundDone: {
           label: 'నేపథ్య పని పూర్తయింది',
-          description: 'నేపథ్యంలోని టెర్మినల్ కమాండ్ పూర్తయింది.',
-        },
+          description: 'నేపథ్యంలోని టెర్మినల్ కమాండ్ పూర్తయింది.'
+        }
       },
       test: 'పరీక్ష నోటిఫికేషన్ పంపండి',
       testTitle: 'OpenAmer',
       testBody: 'నోటిఫికేషన్లు పనిచేస్తున్నాయి.',
-      testSent: 'పరీక్ష పంపబడింది. ఏదీ కనిపించకపోతే, మీ OS నోటిఫికేషన్ అనుమతులు మరియు ఫోకస్/డు నాట్ డిస్టర్బ్‌ని తనిఖీ చేయండి.',
+      testSent:
+        'పరీక్ష పంపబడింది. ఏదీ కనిపించకపోతే, మీ OS నోటిఫికేషన్ అనుమతులు మరియు ఫోకస్/డు నాట్ డిస్టర్బ్‌ని తనిఖీ చేయండి.',
       testUnsupported: 'ఈ సిస్టమ్ స్థానిక నోటిఫికేషన్లను మద్దతు ఇవ్వదు.',
       completionSoundTitle: 'పూర్తి ధ్వని',
       completionSoundDesc: 'ఏజెంట్ టర్న్ ముగిసినప్పుడు ప్లే అవుతుంది. ఒక ప్రీసెట్‌ను ఎంచుకుని ఇక్కడ ప్రివ్యూ చేయండి.',
       completionSoundPreview: 'ప్రివ్యూ',
       title: 'నోటిఫికేషన్లు',
-      intro: 'యాప్లోని టోస్ట్లకు భిన్నంగా స్థానిక డెస్క్టాప్ నోటిఫికేషన్లు. ఇవి పరికరానికి స్థానికం — ప్రతి కంప్యూటర్ దాని సెట్టింగ్లను ఉంచుకుంటుంది.',
+      intro:
+        'యాప్లోని టోస్ట్లకు భిన్నంగా స్థానిక డెస్క్టాప్ నోటిఫికేషన్లు. ఇవి పరికరానికి స్థానికం — ప్రతి కంప్యూటర్ దాని సెట్టింగ్లను ఉంచుకుంటుంది.',
       enableAll: 'నోటిఫికేషన్లు ఆన్ చేయండి',
       enableAllDesc: 'మాస్టర్ స్విచ్. క్రింది అన్ని నోటిఫికేషన్లను నిశ్శబ్దం చేయడానికి దీన్ని ఆఫ్ చేయండి.',
-      focusedHint: 'OpenAmer నేపథ్యంలో ఉన్నప్పుడే పూర్తి హెచ్చరికలు వస్తాయి.',
+      focusedHint: 'OpenAmer నేపథ్యంలో ఉన్నప్పుడే పూర్తి హెచ్చరికలు వస్తాయి.'
     },
     sections: {
       model: 'మోడల్',
@@ -324,7 +331,7 @@ export const te = defineLocale({
       safety: 'భద్రత',
       memory: 'మెమరీ & కాంటెక్స్ట్',
       voice: 'వాయిస్',
-      advanced: 'అడ్వాన్స్‌డ్',
+      advanced: 'అడ్వాన్స్‌డ్'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop గురించి',
@@ -332,42 +339,44 @@ export const te = defineLocale({
       gateway: 'గేట్‌వే కనెక్షన్...',
       keys: 'API కీలను వెతకండి...',
       mcp: 'MCP సర్వర్‌లను వెతకండి...',
-      sessions: 'ఆర్కైవ్ చేసిన సెషన్‌లను వెతకండి...',
+      sessions: 'ఆర్కైవ్ చేసిన సెషన్‌లను వెతకండి...'
     },
     plugins: {
       empty: 'ఇంకా డెస్క్టాప్ ప్లగిన్లు ఇన్స్టాల్ చేయబడలేదు.',
       kinds: {
         bundled: 'బండిల్ చేయబడినది',
         disk: 'డిస్క్లో',
-        runtime: 'రన్టైమ్',
+        runtime: 'రన్టైమ్'
       },
       title: 'Desktop plugins',
-      blurb: 'UI extensions loaded into this app — bundled with the build, or dropped into the desktop-plugins folder (including ones OpenAmer writes). Disabling unloads a plugin live and survives restarts.',
+      blurb:
+        'UI extensions loaded into this app — bundled with the build, or dropped into the desktop-plugins folder (including ones OpenAmer writes). Disabling unloads a plugin live and survives restarts.',
       count: n => `${n} installed`,
       openFolder: 'Open plugins folder',
       rescan: 'Rescan',
       reveal: 'Reveal in file manager',
       enable: 'Enable',
       disable: 'Disable',
-      failed: 'failed',
+      failed: 'failed'
     },
     modeOptions: {
       light: {
         label: 'లైట్',
-        description: 'ప్రకాశవంతమైన డెస్క్‌టాప్ ఉపరితలాలు',
+        description: 'ప్రకాశవంతమైన డెస్క్‌టాప్ ఉపరితలాలు'
       },
       dark: {
         label: 'డార్క్',
-        description: 'తక్కువ ప్రకాశం వర్క్‌స్పేస్',
+        description: 'తక్కువ ప్రకాశం వర్క్‌స్పేస్'
       },
       system: {
         label: 'సిస్టమ్',
-        description: 'OS రూపాన్ని అనుసరించండి',
-      },
+        description: 'OS రూపాన్ని అనుసరించండి'
+      }
     },
     appearance: {
       title: 'రూపం',
-      intro: 'ఇవి డెస్క్‌టాప్‌కు మాత్రమే ప్రదర్శన ప్రాధాన్యతలు. మోడ్ ప్రకాశాన్ని నియంత్రిస్తుంది; థీమ్ యాక్సెంట్ ప్యాలెట్ మరియు చాట్ ఉపరితల స్టైలింగ్‌ను నియంత్రిస్తుంది.',
+      intro:
+        'ఇవి డెస్క్‌టాప్‌కు మాత్రమే ప్రదర్శన ప్రాధాన్యతలు. మోడ్ ప్రకాశాన్ని నియంత్రిస్తుంది; థీమ్ యాక్సెంట్ ప్యాలెట్ మరియు చాట్ ఉపరితల స్టైలింగ్‌ను నియంత్రిస్తుంది.',
       colorMode: 'రంగు మోడ్',
       colorModeDesc: 'స్థిర మోడ్‌ను ఎంచుకోండి లేదా OpenAmer మీ సిస్టమ్ సెట్టింగ్‌ను అనుసరించనివ్వండి.',
       toolViewTitle: 'టూల్ కాల్ ప్రదర్శన',
@@ -378,7 +387,8 @@ export const te = defineLocale({
       backdropTitle: 'చాట్ నేపథ్యం',
       backdropDesc: 'సంభాషణ వెనుక ఉన్న మసక విగ్రహ చిత్రం.',
       embedsTitle: 'ఇన్‌లైన్ ఎంబెడ్‌లు',
-      embedsDesc: 'సమృద్ధి ప్రివ్యూలు మూడవ పక్ష సైట్ల (YouTube, X, …) నుండి లోడ్ అవుతాయి. అడగండి ఎంపిక ప్రతి దానిని అనుమతించే వరకు ప్లేస్‌హోల్డర్‌ను చూపుతుంది; ఎల్లప్పుడూ వాటిని స్వయంచాలకంగా లోడ్ చేస్తుంది; ఆఫ్ సాధారణ లింకులను ఉంచుతుంది.',
+      embedsDesc:
+        'సమృద్ధి ప్రివ్యూలు మూడవ పక్ష సైట్ల (YouTube, X, …) నుండి లోడ్ అవుతాయి. అడగండి ఎంపిక ప్రతి దానిని అనుమతించే వరకు ప్లేస్‌హోల్డర్‌ను చూపుతుంది; ఎల్లప్పుడూ వాటిని స్వయంచాలకంగా లోడ్ చేస్తుంది; ఆఫ్ సాధారణ లింకులను ఉంచుతుంది.',
       embedsAsk: 'అడగండి',
       embedsAlways: 'ఎల్లప్పుడూ',
       embedsOff: 'ఆఫ్',
@@ -389,7 +399,8 @@ export const te = defineLocale({
       themeTitle: 'థీమ్',
       themeDesc: 'డెస్క్‌టాప్ పాలెట్లు మాత్రమే. ఎంచుకున్న మోడ్ పైన వర్తించబడుతుంది.',
       installTitle: 'VS Code నుండి ఇన్‌స్టాల్ చేయండి',
-      installDesc: 'దాని రంగు థీమ్‌ను డెస్క్‌టాప్ పాలెట్‌గా మార్చడానికి Marketplace ఎక్స్‌టెన్షన్ id (ఉదా. dracula-theme.theme-dracula) పేస్ట్ చేయండి.',
+      installDesc:
+        'దాని రంగు థీమ్‌ను డెస్క్‌టాప్ పాలెట్‌గా మార్చడానికి Marketplace ఎక్స్‌టెన్షన్ id (ఉదా. dracula-theme.theme-dracula) పేస్ట్ చేయండి.',
       installButton: 'ఇన్‌స్టాల్',
       installing: 'ఇన్‌స్టాల్ అవుతోంది…',
       installError: 'ఆ థీమ్‌ను ఇన్‌స్టాల్ చేయలేకపోయాం.',
@@ -399,8 +410,10 @@ export const te = defineLocale({
         title: 'పెట్',
         turnOnFailed: 'పెట్ను ఆన్ చేయలేకపోయాం.',
         turnOffFailed: 'పెట్ను ఆఫ్ చేయలేకపోయాం.',
-        intro: 'యాప్‌పై తేలియాడుతూ, OpenAmer ఏమి చేస్తుందో దానికి స్పందించే యానిమేటెడ్ petdex మాస్కాట్‌ను స్వీకరించండి — టూల్స్ అమలవుతున్నప్పుడు పరుగెత్తుతుంది, విజయంపై జరుపుకుంటుంది, లోపాలపై విచారిస్తుంది.',
-        restartHint: 'పెట్స్‌కు త్వరిత పునఃప్రారంభం అవసరం — ఈ ఫీచర్ జోడించకముందే యాప్ ప్రారంభమైంది. OpenAmerను నిష్క్రమించి మళ్లీ తెరవండి, ఆపై ఇక్కడికి తిరిగి రండి.',
+        intro:
+          'యాప్‌పై తేలియాడుతూ, OpenAmer ఏమి చేస్తుందో దానికి స్పందించే యానిమేటెడ్ petdex మాస్కాట్‌ను స్వీకరించండి — టూల్స్ అమలవుతున్నప్పుడు పరుగెత్తుతుంది, విజయంపై జరుపుకుంటుంది, లోపాలపై విచారిస్తుంది.',
+        restartHint:
+          'పెట్స్‌కు త్వరిత పునఃప్రారంభం అవసరం — ఈ ఫీచర్ జోడించకముందే యాప్ ప్రారంభమైంది. OpenAmerను నిష్క్రమించి మళ్లీ తెరవండి, ఆపై ఇక్కడికి తిరిగి రండి.',
         on: 'ఆన్',
         off: 'ఆఫ్',
         scaleTitle: 'పరిమాణం',
@@ -430,13 +443,14 @@ export const te = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installPlaceholder: 'publisher.extension',
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     about: {
       heading: 'OpenAmer డెస్క్టాప్',
@@ -454,7 +468,8 @@ export const te = defineLocale({
       tapCheck: 'నవీకరణల కోసం "ఇప్పుడు తనిఖీ చేయండి" నొక్కండి.',
       justNowSuffix: '· ఇప్పుడే',
       automaticUpdates: 'స్వయంచాలక నవీకరణలు',
-      automaticUpdatesDesc: 'OpenAmer నేపథ్యంలో స్వయంచాలకంగా నవీకరణలను తనిఖీ చేసి, ఒకటి సిద్ధమైనప్పుడు మీకు తెలియజేస్తుంది.',
+      automaticUpdatesDesc:
+        'OpenAmer నేపథ్యంలో స్వయంచాలకంగా నవీకరణలను తనిఖీ చేసి, ఒకటి సిద్ధమైనప్పుడు మీకు తెలియజేస్తుంది.',
       never: 'ఎప్పుడూ లేదు',
       justNow: 'ఇప్పుడే',
       version: value => `Version ${value}`,
@@ -463,7 +478,7 @@ export const te = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     config: {
       none: 'ఏదీ లేదు',
@@ -479,7 +494,7 @@ export const te = defineLocale({
       imported: 'కాన్ఫిగ్ దిగుమతి అయింది',
       invalidJson: 'చెల్లని కాన్ఫిగ్ JSON',
       keepAwakeTitle: 'కంప్యూటర్‌ను మేల్కొని ఉంచండి',
-      keepAwakeDesc: 'దీర్ఘ లేదా రాత్రిపూట రన్‌లు కొనసాగేలా ఈ మెషీన్ నిద్రించకుండా ఉంచండి. డిస్‌ప్లే ఇంకా మందగించవచ్చు.',
+      keepAwakeDesc: 'దీర్ఘ లేదా రాత్రిపూట రన్‌లు కొనసాగేలా ఈ మెషీన్ నిద్రించకుండా ఉంచండి. డిస్‌ప్లే ఇంకా మందగించవచ్చు.'
     },
     credentials: {
       pasteKey: 'కీని పేస్ట్ చేయండి',
@@ -489,7 +504,7 @@ export const te = defineLocale({
       remove: 'తొలగించు',
       getKey: 'కీని పొందండి',
       saving: 'సేవ్ చేస్తోంది',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     envActions: {
       credentialActions: 'క్రెడెన్షియల్ చర్యలు',
@@ -500,7 +515,7 @@ export const te = defineLocale({
       replace: 'భర్తీ చేయండి',
       set: 'సెట్ చేయండి',
       clear: 'క్లియర్ చేయండి',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     gateway: {
       loading: 'గేట్‌వే సెట్టింగ్‌లు లోడ్ అవుతున్నాయి...',
@@ -508,21 +523,26 @@ export const te = defineLocale({
       unavailableDesc: 'డెస్క్‌టాప్ IPC బ్రిడ్జ్ గేట్‌వే సెట్టింగ్‌లను బహిర్గతం చేయదు.',
       title: 'గేట్‌వే కనెక్షన్',
       envOverride: 'env ఓవర్‌రైడ్',
-      intro: 'OpenAmer Desktop డిఫాల్ట్‌గా తన స్వంత లోకల్ గేట్‌వేను ప్రారంభిస్తుంది. మరో మెషీన్‌లో లేదా విశ్వసనీయ ప్రాక్సీ వెనుక ఇప్పటికే నడుస్తున్న OpenAmer బ్యాకెండ్‌ను ఈ యాప్ నియంత్రించాలనుకున్నప్పుడు రిమోట్ గేట్‌వేను ఉపయోగించండి. దానికి స్వంత రిమోట్ హోస్ట్ ఇవ్వడానికి క్రింద ప్రొఫైల్‌ను ఎంచుకోండి.',
+      intro:
+        'OpenAmer Desktop డిఫాల్ట్‌గా తన స్వంత లోకల్ గేట్‌వేను ప్రారంభిస్తుంది. మరో మెషీన్‌లో లేదా విశ్వసనీయ ప్రాక్సీ వెనుక ఇప్పటికే నడుస్తున్న OpenAmer బ్యాకెండ్‌ను ఈ యాప్ నియంత్రించాలనుకున్నప్పుడు రిమోట్ గేట్‌వేను ఉపయోగించండి. దానికి స్వంత రిమోట్ హోస్ట్ ఇవ్వడానికి క్రింద ప్రొఫైల్‌ను ఎంచుకోండి.',
       appliesTo: 'వర్తిస్తుంది',
       allProfiles: 'అన్ని ప్రొఫైల్‌లు',
       defaultConnection: 'తన స్వంత ఓవర్‌రైడ్ లేని ప్రతి ప్రొఫైల్‌కు డిఫాల్ట్ కనెక్షన్.',
       envOverrideTitle: 'పర్యావరణ వేరియబుల్స్ ఈ డెస్క్‌టాప్ సెషన్‌ను నియంత్రిస్తున్నాయి.',
-      envOverrideDesc: 'క్రింద సేవ్ చేసిన సెట్టింగ్‌ను ఉపయోగించడానికి OPENAMER_DESKTOP_REMOTE_URL మరియు OPENAMER_DESKTOP_REMOTE_TOKEN ను అన్‌సెట్ చేయండి.',
+      envOverrideDesc:
+        'క్రింద సేవ్ చేసిన సెట్టింగ్‌ను ఉపయోగించడానికి OPENAMER_DESKTOP_REMOTE_URL మరియు OPENAMER_DESKTOP_REMOTE_TOKEN ను అన్‌సెట్ చేయండి.',
       modeTitle: 'కనెక్షన్ మోడ్',
       localTitle: 'స్థానిక గేట్‌వే',
-      localDesc: 'localhostలో ప్రైవేట్ OpenAmer బ్యాకెండ్‌ను ప్రారంభించండి. ఇది డిఫాల్ట్ మరియు ఆఫ్‌లైన్‌లో పనిచేస్తుంది.',
+      localDesc:
+        'localhostలో ప్రైవేట్ OpenAmer బ్యాకెండ్‌ను ప్రారంభించండి. ఇది డిఫాల్ట్ మరియు ఆఫ్‌లైన్‌లో పనిచేస్తుంది.',
       inheritTitle: 'డిఫాల్ట్ గేట్‌వేను ఉపయోగించండి',
       inheritDesc: 'ఈ ప్రొఫైల్ ఓవర్‌రైడ్‌ను తొలగించి డిఫాల్ట్ కనెక్షన్‌ను ఉపయోగించండి.',
       remoteTitle: 'రిమోట్ గేట్‌వే',
       remoteDesc: 'ఈ డెస్క్‌టాప్ షెల్‌ను రిమోట్ OpenAmer బ్యాకెండ్‌కు కనెక్ట్ చేయండి.',
-      remoteAuthHint: 'హోస్టెడ్ గేట్‌వేలు OAuth లేదా యూజర్‌నేమ్ మరియు పాస్‌వర్డ్‌ను ఉపయోగిస్తాయి; సెల్ఫ్-హోస్టెడ్ గేట్‌వేలు సెషన్ టోకెన్‌ను ఉపయోగించవచ్చు.',
-      cloudDesc: 'OpenAmer Cloudకు ఒకసారి సైన్ ఇన్ చేసి, మీ ఖాతాలోని ఏజెంట్‌ల నుండి ఎంచుకోండి — URL పేస్ట్ చేయాల్సిన అవసరం లేదు.',
+      remoteAuthHint:
+        'హోస్టెడ్ గేట్‌వేలు OAuth లేదా యూజర్‌నేమ్ మరియు పాస్‌వర్డ్‌ను ఉపయోగిస్తాయి; సెల్ఫ్-హోస్టెడ్ గేట్‌వేలు సెషన్ టోకెన్‌ను ఉపయోగించవచ్చు.',
+      cloudDesc:
+        'OpenAmer Cloudకు ఒకసారి సైన్ ఇన్ చేసి, మీ ఖాతాలోని ఏజెంట్‌ల నుండి ఎంచుకోండి — URL పేస్ట్ చేయాల్సిన అవసరం లేదు.',
       cloudSignIn: 'OpenAmer Cloudకు సైన్ ఇన్ చేయండి',
       cloudSignedIn: 'OpenAmer Cloudకు సైన్ ఇన్ అయ్యారు',
       cloudNeedsSignIn: 'మీ ఖాతాలోని ఏజెంట్‌లను కనుగొనడానికి OpenAmer Cloudకు సైన్ ఇన్ చేయండి.',
@@ -535,7 +555,7 @@ export const te = defineLocale({
       cloudNoAgents: {
         before: 'ఈ ఖాతాలో ఏ ఏజెంట్లు కనుగొనబడలేదు. ఒకదాన్ని ఇక్కడ సృష్టించండి',
         linkText: 'OpenAmer పోర్టల్',
-        after: ', ఆపై రిఫ్రెష్ చేయండి.',
+        after: ', ఆపై రిఫ్రెష్ చేయండి.'
       },
       cloudRefresh: 'రిఫ్రెష్',
       cloudConnect: 'కనెక్ట్',
@@ -551,16 +571,20 @@ export const te = defineLocale({
       remoteUrlTitle: 'రిమోట్ URL',
       remoteUrlDesc: 'రిమోట్ డాష్‌బోర్డ్ బ్యాకెండ్ కోసం బేస్ URL. పాత్ ప్రిఫిక్స్‌లకు మద్దతు ఉంది, ఉదా. /openamer.',
       probing: 'ఈ గేట్‌వే ఎలా ప్రామాణీకరిస్తుందో తనిఖీ చేస్తోంది…',
-      probeError: 'ఈ గేట్‌వేను ఇంకా చేరుకోలేకపోయాము. URL తనిఖీ చేయండి — అది ప్రతిస్పందించిన తర్వాత ప్రామాణీకరణ పద్ధతి కనిపిస్తుంది.',
+      probeError:
+        'ఈ గేట్‌వేను ఇంకా చేరుకోలేకపోయాము. URL తనిఖీ చేయండి — అది ప్రతిస్పందించిన తర్వాత ప్రామాణీకరణ పద్ధతి కనిపిస్తుంది.',
       signedIn: 'సైన్ ఇన్ అయ్యారు',
       signIn: 'సైన్ ఇన్',
       signOut: 'సైన్ అవుట్',
       authTitle: 'ప్రామాణీకరణ',
-      authSignedInPassword: 'ఈ గేట్‌వే వినియోగదారు పేరు మరియు పాస్‌వర్డ్‌ను ఉపయోగిస్తుంది. మీరు సైన్ ఇన్ చేశారు; సెషన్ స్వయంచాలకంగా రిఫ్రెష్ అవుతుంది.',
+      authSignedInPassword:
+        'ఈ గేట్‌వే వినియోగదారు పేరు మరియు పాస్‌వర్డ్‌ను ఉపయోగిస్తుంది. మీరు సైన్ ఇన్ చేశారు; సెషన్ స్వయంచాలకంగా రిఫ్రెష్ అవుతుంది.',
       authSignedInOauth: 'ఈ గేట్‌వే OAuth ఉపయోగిస్తుంది. మీరు సైన్ ఇన్ చేశారు; సెషన్ స్వయంచాలకంగా రిఫ్రెష్ అవుతుంది.',
-      authNeedsPassword: 'ఈ గేట్‌వే వినియోగదారు పేరు మరియు పాస్‌వర్డ్‌ను ఉపయోగిస్తుంది. ఈ డెస్క్‌టాప్ యాప్‌ను అధికారం ఇవ్వడానికి సైన్ ఇన్ చేయండి.',
+      authNeedsPassword:
+        'ఈ గేట్‌వే వినియోగదారు పేరు మరియు పాస్‌వర్డ్‌ను ఉపయోగిస్తుంది. ఈ డెస్క్‌టాప్ యాప్‌ను అధికారం ఇవ్వడానికి సైన్ ఇన్ చేయండి.',
       tokenTitle: 'సెషన్ టోకెన్',
-      tokenDesc: 'REST మరియు WebSocket యాక్సెస్ కోసం ఉపయోగించే డాష్‌బోర్డ్ సెషన్ టోకెన్. సేవ్ చేసిన టోకెన్‌ను ఉంచడానికి ఖాళీగా వదిలేయండి.',
+      tokenDesc:
+        'REST మరియు WebSocket యాక్సెస్ కోసం ఉపయోగించే డాష్‌బోర్డ్ సెషన్ టోకెన్. సేవ్ చేసిన టోకెన్‌ను ఉంచడానికి ఖాళీగా వదిలేయండి.',
       savedToken: 'సేవ్ చేయబడింది',
       pasteSessionToken: 'సెషన్ టోకెన్‌ను పేస్ట్ చేయండి',
       testRemote: 'రిమోట్‌ను పరీక్షించండి',
@@ -589,8 +613,10 @@ export const te = defineLocale({
       applyFailed: 'గేట్‌వే సెట్టింగ్‌లను అప్లై చేయలేకపోయింది',
       saveFailed: 'గేట్‌వే సెట్టింగ్‌లను సేవ్ చేయలేకపోయింది',
       sshTitle: 'SSH ద్వారా కనెక్ట్ చేయండి',
-      sshDesc: 'OpenAmer రిమోట్‌లో SSH ద్వారా ప్రారంభించబడి, ఈ యాప్‌కు టన్నెల్ చేయబడుతుంది — మీరు స్వయంగా ఏదీ ప్రారంభించాల్సిన లేదా బహిర్గతం చేయాల్సిన అవసరం లేదు. హోస్ట్‌కు పని చేసే కీ ఆధారిత SSH యాక్సెస్ అవసరం.',
-      sshTrustHint: 'మొదట ప్రదర్శించిన హోస్ట్ కీ నమ్మదగినదిగా పిన్ చేయబడుతుంది; తరువాత మార్పులు ఫెయిల్ క్లోజ్డ్ అవుతాయి.',
+      sshDesc:
+        'OpenAmer రిమోట్‌లో SSH ద్వారా ప్రారంభించబడి, ఈ యాప్‌కు టన్నెల్ చేయబడుతుంది — మీరు స్వయంగా ఏదీ ప్రారంభించాల్సిన లేదా బహిర్గతం చేయాల్సిన అవసరం లేదు. హోస్ట్‌కు పని చేసే కీ ఆధారిత SSH యాక్సెస్ అవసరం.',
+      sshTrustHint:
+        'మొదట ప్రదర్శించిన హోస్ట్ కీ నమ్మదగినదిగా పిన్ చేయబడుతుంది; తరువాత మార్పులు ఫెయిల్ క్లోజ్డ్ అవుతాయి.',
       sshHostTitle: 'హోస్ట్',
       sshHostDesc: 'user@host, లేదా ~/.ssh/config నుండి Host అలియాస్.',
       sshHostPick: 'హోస్ట్‌ను ఎంచుకోండి…',
@@ -612,14 +638,19 @@ export const te = defineLocale({
       sshButtonsHint: 'సేవ్ తదుపరి ప్రారంభంలో వర్తిస్తుంది. కనెక్ట్ ఇప్పుడే మళ్లీ కనెక్ట్ చేస్తుంది.',
       sshIncompleteHost: 'కనెక్ట్ చేయడానికి ముందు SSH హోస్ట్ను నమోదు చేయండి.',
       sshErrUnreachable: 'SSH ద్వారా ఆ హోస్ట్ను చేరుకోలేకపోయాము. హోస్ట్, పోర్ట్ మరియు మీ నెట్వర్క్ను తనిఖీ చేయండి.',
-      sshErrAuth: 'SSH ప్రామాణీకరణ విఫలమైంది. మీ కీని ssh-agent (ssh-add) లో లోడ్ చేయండి లేదా ~/.ssh/configలో IdentityFile సెట్ చేయండి — OpenAmer sshను ఇంటరాక్టివ్ కాకుండా అమలు చేస్తుంది.',
-      sshErrHostKey: 'మీరు చివరిసారి కనెక్ట్ అయినప్పటి నుండి హోస్ట్ కీ మారింది. ఇది ఆశించినదేనా నిర్ధారించుకుని, ఆపై ssh-keygen -R <host> అమలు చేసి మళ్లీ కనెక్ట్ చేయండి.',
-      sshErrNotInstalled: 'రిమోట్ హోస్ట్‌లో OpenAmer ఇన్‌స్టాల్ చేయబడలేదు. అక్కడ దాన్ని ఇన్‌స్టాల్ చేయండి (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) లేదా OpenAmer పాత్‌ను సెట్ చేయండి.',
-      sshErrPlatform: 'మద్దతు లేని రిమోట్ ప్లాట్‌ఫారమ్. OpenAmer Desktop SSH మోడ్ Linux, macOS, మరియు Windows రిమోట్ హోస్ట్‌లను సపోర్ట్ చేస్తుంది.',
+      sshErrAuth:
+        'SSH ప్రామాణీకరణ విఫలమైంది. మీ కీని ssh-agent (ssh-add) లో లోడ్ చేయండి లేదా ~/.ssh/configలో IdentityFile సెట్ చేయండి — OpenAmer sshను ఇంటరాక్టివ్ కాకుండా అమలు చేస్తుంది.',
+      sshErrHostKey:
+        'మీరు చివరిసారి కనెక్ట్ అయినప్పటి నుండి హోస్ట్ కీ మారింది. ఇది ఆశించినదేనా నిర్ధారించుకుని, ఆపై ssh-keygen -R <host> అమలు చేసి మళ్లీ కనెక్ట్ చేయండి.',
+      sshErrNotInstalled:
+        'రిమోట్ హోస్ట్‌లో OpenAmer ఇన్‌స్టాల్ చేయబడలేదు. అక్కడ దాన్ని ఇన్‌స్టాల్ చేయండి (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) లేదా OpenAmer పాత్‌ను సెట్ చేయండి.',
+      sshErrPlatform:
+        'మద్దతు లేని రిమోట్ ప్లాట్‌ఫారమ్. OpenAmer Desktop SSH మోడ్ Linux, macOS, మరియు Windows రిమోట్ హోస్ట్‌లను సపోర్ట్ చేస్తుంది.',
       sshErrTimeout: 'SSH కనెక్షన్ సమయం ముగిసింది. హోస్ట్ అందుబాటులో లేకపోవచ్చు లేదా నిద్రావస్థలో ఉండవచ్చు.',
       sshErrUpdateRequired: 'Desktop SSHతో కనెక్ట్ చేయడానికి ముందు రిమోట్ హోస్ట్‌లో OpenAmer ను అప్‌డేట్ చేయండి.',
       sshErrUnknown: 'SSH కనెక్షన్ విఫలమైంది.',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudTitle: 'OpenAmer Cloud',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudOrgRole: role => `Role: ${role}`,
@@ -629,12 +660,12 @@ export const te = defineLocale({
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     keys: {
       loading: 'API కీలు మరియు క్రెడెన్షియల్స్ లోడ్ అవుతున్నాయి...',
       failedLoad: 'API కీలు లోడ్ విఫలమైంది',
-      empty: 'ఈ వర్గంలో ఇంకా ఏమీ కాన్ఫిగర్ చేయలేదు.',
+      empty: 'ఈ వర్గంలో ఇంకా ఏమీ కాన్ఫిగర్ చేయలేదు.'
     },
     mcp: {
       loading: 'MCP సర్వర్లు లోడ్ అవుతున్నాయి...',
@@ -696,14 +727,16 @@ export const te = defineLocale({
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       authenticatedMessage: (server, count) => `${server}: ${count} tools`,
       enableTool: tool => `Enable ${tool}`,
-      disableTool: tool => `Disable ${tool}`,
+      disableTool: tool => `Disable ${tool}`
     },
     model: {
       loading: 'మోడల్ కాన్ఫిగరేషన్ లోడ్ అవుతోంది...',
-      appliesDesc: 'కొత్త సెషన్లకు వర్తిస్తుంది. యాక్టివ్ చాట్‌ను హాట్-స్వాప్ చేయడానికి కంపోజర్‌లోని మోడల్ పికర్‌ను ఉపయోగించండి.',
+      appliesDesc:
+        'కొత్త సెషన్లకు వర్తిస్తుంది. యాక్టివ్ చాట్‌ను హాట్-స్వాప్ చేయడానికి కంపోజర్‌లోని మోడల్ పికర్‌ను ఉపయోగించండి.',
       provider: 'ప్రొవైడర్',
       model: 'మోడల్',
       applying: 'వర్తింపజేస్తోంది...',
@@ -713,7 +746,8 @@ export const te = defineLocale({
       defaultsFailed: 'మోడల్ డిఫాల్ట్లను సేవ్ చేయడం విఫలమైంది',
       auxiliaryTitle: 'సహాయక మోడల్లు',
       resetAllToMain: 'అన్నీ ప్రధాన మోడల్కు రీసెట్ చేయి',
-      auxiliaryDesc: 'సహాయక పనులు డిఫాల్ట్గా ప్రధాన మోడల్పై నడుస్తాయి. ఏదైనా పనిని ఓవర్రైడ్ చేయడానికి దానికి ప్రత్యేక మోడల్ను కేటాయించండి.',
+      auxiliaryDesc:
+        'సహాయక పనులు డిఫాల్ట్గా ప్రధాన మోడల్పై నడుస్తాయి. ఏదైనా పనిని ఓవర్రైడ్ చేయడానికి దానికి ప్రత్యేక మోడల్ను కేటాయించండి.',
       setToMain: 'ప్రధాన మోడల్కు సెట్ చేయి',
       change: 'మార్చు',
       autoUseMain: 'ఆటో · ప్రధాన మోడల్ను ఉపయోగించు',
@@ -724,42 +758,43 @@ export const te = defineLocale({
       tasks: {
         vision: {
           label: 'విజన్',
-          hint: 'ఇమేజ్ విశ్లేషణ',
+          hint: 'ఇమేజ్ విశ్లేషణ'
         },
         web_extract: {
           label: 'వెబ్ ఎక్స్ట్రాక్షన్',
-          hint: 'పేజీ సారాంశం',
+          hint: 'పేజీ సారాంశం'
         },
         compression: {
           label: 'కుదింపు',
-          hint: 'సందర్భ కుదింపు',
+          hint: 'సందర్భ కుదింపు'
         },
         skills_hub: {
           label: 'నైపుణ్యాల హబ్',
-          hint: 'నైపుణ్య శోధన',
+          hint: 'నైపుణ్య శోధన'
         },
         approval: {
           label: 'ఆమోదం',
-          hint: 'స్మార్ట్ ఆటో-ఆమోదం',
+          hint: 'స్మార్ట్ ఆటో-ఆమోదం'
         },
         mcp: {
           hint: 'MCP సాధన రూటింగ్',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'శీర్షిక జనరేషన్',
-          hint: 'సెషన్ శీర్షికలు',
+          hint: 'సెషన్ శీర్షికలు'
         },
         curator: {
           label: 'క్యూరేటర్',
-          hint: 'నైపుణ్య-వినియోగ సమీక్ష',
-        },
-      },
+          hint: 'నైపుణ్య-వినియోగ సమీక్ష'
+        }
+      }
     },
     providers: {
       connectAccount: 'ఖాతాను కనెక్ట్ చేయండి',
       haveApiKey: 'బదులుగా API కీ ఉందా?',
-      intro: 'సబ్‌స్క్రిప్షన్‌తో సైన్ ఇన్ చేయండి — కాపీ చేయాల్సిన API కీ లేదు. OpenAmer మీ కోసం బ్రౌజర్ సైన్-ఇన్‌ను ఇక్కడే యాప్‌లో అమలు చేస్తుంది.',
+      intro:
+        'సబ్‌స్క్రిప్షన్‌తో సైన్ ఇన్ చేయండి — కాపీ చేయాల్సిన API కీ లేదు. OpenAmer మీ కోసం బ్రౌజర్ సైన్-ఇన్‌ను ఇక్కడే యాప్‌లో అమలు చేస్తుంది.',
       connected: 'కనెక్ట్ చేయబడింది',
       collapse: 'కుదించండి',
       connectAnother: 'మరొక ప్రొవైడర్‌ను కనెక్ట్ చేయండి',
@@ -772,22 +807,26 @@ export const te = defineLocale({
       noKeysMatch: 'మీ శోధనకు సరిపోయే ప్రొవైడర్లు లేరు.',
       localEndpoint: {
         title: 'లోకల్ / కస్టమ్ ఎండ్‌పాయింట్',
-        description: 'OpenAmerను ఏదైనా OpenAI-అనుకూల ఎండ్‌పాయింట్‌కు మళ్లించండి (Zyphra, vLLM, llama.cpp, Ollama, మొదలైనవి).',
+        description:
+          'OpenAmerను ఏదైనా OpenAI-అనుకూల ఎండ్‌పాయింట్‌కు మళ్లించండి (Zyphra, vLLM, llama.cpp, Ollama, మొదలైనవి).'
       },
       loading: 'ప్రొవైడర్లు లోడ్ అవుతున్నాయి...',
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     sessions: {
       autoArchiveFailed: 'ఆటో-ఆర్కైవ్‌ను నవీకరించలేకపోయాము',
       defaultDirTitle: 'డిఫాల్ట్ ప్రాజెక్ట్ డైరెక్టరీ',
-      defaultDirDesc: 'మీరు మరొకటి ఎంచుకోకపోతే కొత్త సెషన్‌లు ఈ ఫోల్డర్‌లో ప్రారంభమవుతాయి. మీ హోమ్ డైరెక్టరీని ఉపయోగించాలంటే దీన్ని సెట్ చేయకండి.',
-      defaultDirUpdated: 'డిఫాల్ట్ ప్రాజెక్ట్ డైరెక్టరీ నవీకరించబడింది — ఇది అమల్లోకి రావడానికి కొత్త చాట్ (Ctrl/⌘+N) ప్రారంభించండి',
+      defaultDirDesc:
+        'మీరు మరొకటి ఎంచుకోకపోతే కొత్త సెషన్‌లు ఈ ఫోల్డర్‌లో ప్రారంభమవుతాయి. మీ హోమ్ డైరెక్టరీని ఉపయోగించాలంటే దీన్ని సెట్ చేయకండి.',
+      defaultDirUpdated:
+        'డిఫాల్ట్ ప్రాజెక్ట్ డైరెక్టరీ నవీకరించబడింది — ఇది అమల్లోకి రావడానికి కొత్త చాట్ (Ctrl/⌘+N) ప్రారంభించండి',
       change: 'మార్చు',
       choose: 'ఎంచుకోండి',
       clear: 'క్లియర్',
@@ -799,19 +838,21 @@ export const te = defineLocale({
       clearDirFailed: 'డిఫాల్ట్ డైరెక్టరీని క్లియర్ చేయలేకపోయాము',
       loading: 'ఆర్కైవ్ చేసిన సెషన్లు లోడ్ అవుతున్నాయి…',
       archivedTitle: 'ఆర్కైవ్ చేసిన సెషన్లు',
-      archivedIntro: 'ఆర్కైవ్ చేసిన చాట్లు సైడ్‌బార్ నుండి దాచబడతాయి కానీ అవి తమ సందేశాలన్నింటినీ ఉంచుకుంటాయి. ఆర్కైవ్ చేయడానికి సైడ్‌బార్‌లో చాట్‌పై Ctrl/⌘-click చేయండి.',
+      archivedIntro:
+        'ఆర్కైవ్ చేసిన చాట్లు సైడ్‌బార్ నుండి దాచబడతాయి కానీ అవి తమ సందేశాలన్నింటినీ ఉంచుకుంటాయి. ఆర్కైవ్ చేయడానికి సైడ్‌బార్‌లో చాట్‌పై Ctrl/⌘-click చేయండి.',
       emptyArchivedTitle: 'ఏదీ ఆర్కైవ్ చేయబడలేదు',
       emptyArchivedDesc: 'ఇక్కడ దాచడానికి చాట్‌ను ఆర్కైవ్ చేయండి.',
       unarchive: 'ఆర్కైవ్ నుండి తీసివేయి',
       deletePermanently: 'శాశ్వతంగా తొలగించు',
       restored: 'పునరుద్ధరించబడింది',
       autoArchiveTitle: 'పాత చాట్లను స్వయంచాలకంగా ఆర్కైవ్ చేయి',
-      autoArchiveDesc: 'మీరు కొంతకాలంగా తాకని చాట్లను స్వయంచాలకంగా ఆర్కైవ్ చేయండి. పిన్ చేసిన చాట్లు ఎప్పుడూ ఆర్కైవ్ చేయబడవు, ఏదీ తొలగించబడదు — ఆర్కైవ్ చేసిన చాట్లు ఇక్కడికి మాత్రమే మారుతాయి.',
+      autoArchiveDesc:
+        'మీరు కొంతకాలంగా తాకని చాట్లను స్వయంచాలకంగా ఆర్కైవ్ చేయండి. పిన్ చేసిన చాట్లు ఎప్పుడూ ఆర్కైవ్ చేయబడవు, ఏదీ తొలగించబడదు — ఆర్కైవ్ చేసిన చాట్లు ఇక్కడికి మాత్రమే మారుతాయి.',
       autoArchiveDaysLabel: 'తర్వాత ఆర్కైవ్ చేయి',
       autoArchiveDaysUnit: 'నిష్క్రియ రోజులు',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
       loadingConfig: 'కాన్ఫిగరేషన్ లోడ్ అవుతోంది',
@@ -821,12 +862,14 @@ export const te = defineLocale({
       notSet: 'సెట్ చేయలేదు',
       selectedTitle: 'ప్రొవైడర్ ఎంచుకోబడింది',
       failedLoad: 'టూల్ కాన్ఫిగరేషన్ లోడ్ విఫలమైంది',
-      noProviderOptions: 'ఈ టూల్‌సెట్‌కు ప్రొవైడర్ ఎంపికలు లేవు — దీన్ని ప్రారంభించండి, మీ ప్రస్తుత సెటప్‌తో ఇది పనిచేస్తుంది.',
+      noProviderOptions:
+        'ఈ టూల్‌సెట్‌కు ప్రొవైడర్ ఎంపికలు లేవు — దీన్ని ప్రారంభించండి, మీ ప్రస్తుత సెటప్‌తో ఇది పనిచేస్తుంది.',
       noProviders: 'ఈ టూల్‌సెట్ కోసం ప్రస్తుతం ప్రొవైడర్లు అందుబాటులో లేరు.',
       ready: 'సిద్ధంగా',
       needsSignIn: 'సైన్-ఇన్ అవసరం',
       needsSetup: 'సెటప్ అవసరం',
-      openamerIncluded: 'OpenAmer సబ్‌స్క్రిప్షన్‌లో చేర్చబడింది — సక్రియం చేయడానికి OpenAmer Portalలో సైన్ ఇన్ చేయండి.',
+      openamerIncluded:
+        'OpenAmer సబ్‌స్క్రిప్షన్‌లో చేర్చబడింది — సక్రియం చేయడానికి OpenAmer Portalలో సైన్ ఇన్ చేయండి.',
       openamerAuthNeededTitle: 'OpenAmer Portalలో సైన్ ఇన్ చేయండి',
       openamerAuthSignIn: 'సైన్ ఇన్',
       openamerAuthDoneTitle: 'OpenAmer Portal కనెక్ట్ అయింది',
@@ -863,7 +906,7 @@ export const te = defineLocale({
         selectedTitle: 'బ్యాకెండ్ ఎంచుకోబడింది',
         needsSetupHint: 'మీరు ఇప్పుడు ఈ బ్యాకెండ్‌ను ఎంచుకోవచ్చు — సెటప్ పూర్తయ్యే వరకు కమాండ్‌లు విఫలమవుతాయి.',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       savedMessage: key => `${key} updated.`,
       removedMessage: key => `${key} removed.`,
@@ -873,8 +916,10 @@ export const te = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -884,10 +929,10 @@ export const te = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     tabSkills: 'నైపుణ్యాలు',
@@ -906,7 +951,8 @@ export const te = defineLocale({
     noDescription: 'వివరణ లేదు.',
     configured: 'కాన్ఫిగర్ చేయబడింది',
     needsKeys: 'కీలు అవసరం',
-    visionModelHint: 'విజన్ మీ సహాయక మోడల్ కాన్ఫిగరేషన్‌ను ఉపయోగిస్తుంది — ఇమేజ్ సామర్థ్యం ఉన్న మోడల్ అక్కడే ఎంచుకోబడుతుంది, ఇక్కడ ప్రతి ప్రొవైడర్‌కు కాదు.',
+    visionModelHint:
+      'విజన్ మీ సహాయక మోడల్ కాన్ఫిగరేషన్‌ను ఉపయోగిస్తుంది — ఇమేజ్ సామర్థ్యం ఉన్న మోడల్ అక్కడే ఎంచుకోబడుతుంది, ఇక్కడ ప్రతి ప్రొవైడర్‌కు కాదు.',
     visionModelLink: 'సెట్టింగ్‌లు → మోడల్స్‌లో విజన్ మోడల్‌ను ఎంచుకోండి',
     skillsLoadFailed: 'నైపుణ్యాలు లోడ్ చేయడంలో విఫలమయ్యాయి',
     toolsetsRefreshFailed: 'సాధన సెట్లు రిఫ్రెష్ చేయలేకపోయాయి',
@@ -924,7 +970,7 @@ export const te = defineLocale({
     provenance: {
       agent: 'నేర్చుకున్నవి',
       bundled: 'అంతర్నిర్మిత',
-      hub: 'హబ్',
+      hub: 'హబ్'
     },
     changesApplyNewSessions: 'మార్పులు కొత్త సెషన్లకు వర్తిస్తాయి.',
     skillUpdated: 'నైపుణ్యం నవీకరించబడింది',
@@ -937,7 +983,7 @@ export const te = defineLocale({
       trust: {
         builtin: 'బిల్టిన్',
         trusted: 'విశ్వసనీయ',
-        community: 'కమ్యూనిటీ',
+        community: 'కమ్యూనిటీ'
       },
       verdictSafe: 'సురక్షితం',
       verdictCaution: 'జాగ్రత్త',
@@ -959,7 +1005,8 @@ export const te = defineLocale({
       connectingHubs: 'నైపుణ్య హబ్‌లకు కనెక్ట్ అవుతోంది...',
       connectedHubs: 'కనెక్ట్ అయిన హబ్‌లు:',
       featured: 'ప్రత్యేక నైపుణ్యాలు',
-      landingHint: 'అధికారిక ఇండెక్స్, GitHub మరియు కమ్యూనిటీ మూలాల నుండి ఇన్‌స్టాల్ చేయగల నైపుణ్యాలను బ్రౌజ్ చేయడానికి హబ్‌ను వెతకండి.',
+      landingHint:
+        'అధికారిక ఇండెక్స్, GitHub మరియు కమ్యూనిటీ మూలాల నుండి ఇన్‌స్టాల్ చేయగల నైపుణ్యాలను బ్రౌజ్ చేయడానికి హబ్‌ను వెతకండి.',
       noResults: 'హబ్‌లో సరిపోలే నైపుణ్యాలు ఏవీ కనుగొనబడలేదు.',
       installed: 'ఇన్‌స్టాల్ చేయబడింది',
       install: 'ఇన్‌స్టాల్ చేయండి',
@@ -975,7 +1022,7 @@ export const te = defineLocale({
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     skillArchivedTitle: 'నైపుణ్యం ఆర్కైవ్ చేయబడింది',
     skillArchivedMessage: 'openamer curator restore ద్వారా పునరుద్ధరించవచ్చు',
@@ -990,7 +1037,7 @@ export const te = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     title: 'మెమరీ గ్రాఫ్',
@@ -1006,7 +1053,8 @@ export const te = defineLocale({
     emptyTitle: 'ఇంకా ఏమీ నేర్చుకోలేదు',
     emptyDesc: 'OpenAmer మీ పని కోసం నైపుణ్యాలు మరియు మెమరీలను నిర్మించే కొద్దీ, అవి ఇక్కడ కనిపిస్తాయి.',
     share: 'మ్యాప్ షేర్ చేయి',
-    shareHint: 'ఈ మ్యాప్‌ను షేర్ చేయడానికి కోడ్‌ను కాపీ చేయండి, లేదా లోడ్ చేయడానికి ఒకదాన్ని పేస్ట్ చేయండి. ఇది లేఅవుట్‌ను మాత్రమే కలిగి ఉంటుంది, మీ మెమరీ లేదా నైపుణ్యం టెక్స్ట్‌ను కాదు.',
+    shareHint:
+      'ఈ మ్యాప్‌ను షేర్ చేయడానికి కోడ్‌ను కాపీ చేయండి, లేదా లోడ్ చేయడానికి ఒకదాన్ని పేస్ట్ చేయండి. ఇది లేఅవుట్‌ను మాత్రమే కలిగి ఉంటుంది, మీ మెమరీ లేదా నైపుణ్యం టెక్స్ట్‌ను కాదు.',
     shareTitle: 'మ్యాప్ దిగుమతి / ఎగుమతి',
     sharePlaceholder: 'మ్యాప్ కోడ్‌ను పేస్ట్ చేయండి…',
     copy: 'మ్యాప్ కోడ్ కాపీ చేయి',
@@ -1017,7 +1065,7 @@ export const te = defineLocale({
     importedBadge: 'దిగుమతి చేసిన మ్యాప్',
     resetToMine: 'నా మ్యాప్‌కి తిరిగి',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'ఏజెంట్లను మూసివేయి',
@@ -1047,7 +1095,7 @@ export const te = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'కమాండ్ సెంటర్‌ను మూసివేయి',
@@ -1077,13 +1125,14 @@ export const te = defineLocale({
       slowProviderHint: 'ఇది కొన్ని నిమిషాలు పట్టవచ్చు',
       remix: 'రీమిక్స్',
       remixConfirmTitle: 'ఈ రూపాన్ని రీమిక్స్ చేయాలా?',
-      remixConfirmBody: 'ఇది దీన్ని ప్రారంభ బిందువుగా ఉపయోగించి కొత్త డ్రాఫ్ట్‌ల సమూహాన్ని రూపొందిస్తుంది. దీనికి కొన్ని నిమిషాలు పట్టవచ్చు.',
+      remixConfirmBody:
+        'ఇది దీన్ని ప్రారంభ బిందువుగా ఉపయోగించి కొత్త డ్రాఫ్ట్‌ల సమూహాన్ని రూపొందిస్తుంది. దీనికి కొన్ని నిమిషాలు పట్టవచ్చు.',
       genericError: 'జనరేషన్ విఫలమైంది — మళ్లీ ప్రయత్నించండి లేదా సూచనను ఎంచుకోండి.',
       referenceImageTooLarge: 'సూచన చిత్రం చాలా పెద్దది. 16 MB కంటే తక్కువ ఉన్నదాన్ని ఉపయోగించండి.',
       referenceImageInvalid: 'ఆ సూచన చిత్రాన్ని చదవలేకపోయాం. PNG, JPG, WebP, లేదా GIF ప్రయత్నించండి.',
       adopt: 'స్వీకరించు',
       startOver: 'మళ్లీ ప్రారంభించు',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     branches: 'శాఖలు',
     commands: 'ఆదేశాలు',
@@ -1105,7 +1154,7 @@ export const te = defineLocale({
       generatedTag: 'రూపొందించబడింది',
       adoptFailed: 'ఆ పెట్ను దత్తత తీసుకోలేకపోయాము.',
       toggleFailed: 'పెట్ను టోగుల్ చేయలేకపోయాము.',
-      noneAvailable: 'పెట్లు అందుబాటులో లేవు — ఇన్స్టాల్ చేయడానికి కింద ఒకటి ఎంచుకోండి.',
+      noneAvailable: 'పెట్లు అందుబాటులో లేవు — ఇన్స్టాల్ చేయడానికి కింద ఒకటి ఎంచుకోండి.'
     },
     installTheme: {
       title: 'థీమ్‌ను ఇన్‌స్టాల్ చేయి…',
@@ -1117,7 +1166,7 @@ export const te = defineLocale({
       install: 'ఇన్‌స్టాల్ చేయి',
       installing: 'ఇన్‌స్టాల్ చేస్తోంది...',
       installed: 'ఇన్‌స్టాల్ చేయబడింది',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'సెట్టింగ్‌ల ఫీల్డ్‌లు',
     mcpServers: 'MCP సర్వర్‌లు',
@@ -1126,49 +1175,49 @@ export const te = defineLocale({
       maintenance: 'నిర్వహణ',
       sessions: 'సెషన్‌లు',
       system: 'వ్యవస్థ',
-      usage: 'వినియోగం',
+      usage: 'వినియోగం'
     },
     sectionDescriptions: {
       maintenance: 'డయాగ్నస్టిక్స్, బ్యాకప్లు, క్యూరేటర్ మరియు మెమరీ డేటా',
       sessions: 'సెషన్లను వెతకండి మరియు నిర్వహించండి',
       system: 'స్థితి, లాగ్లు మరియు వ్యవస్థ చర్యలు',
-      usage: 'కాలక్రమేణా టోకెన్, ఖర్చు మరియు నైపుణ్య కార్యకలాపం',
+      usage: 'కాలక్రమేణా టోకెన్, ఖర్చు మరియు నైపుణ్య కార్యకలాపం'
     },
     nav: {
       newChat: {
         title: 'కొత్త సెషన్',
-        detail: 'కొత్త సెషన్ ప్రారంభించండి',
+        detail: 'కొత్త సెషన్ ప్రారంభించండి'
       },
       settings: {
         title: 'సెట్టింగ్లు',
-        detail: 'OpenAmer డెస్క్టాప్ను కాన్ఫిగర్ చేయండి',
+        detail: 'OpenAmer డెస్క్టాప్ను కాన్ఫిగర్ చేయండి'
       },
       skills: {
         title: 'సామర్థ్యాలు',
-        detail: 'నైపుణ్యాలు, సాధనాలు మరియు MCP సర్వర్లు',
+        detail: 'నైపుణ్యాలు, సాధనాలు మరియు MCP సర్వర్లు'
       },
       messaging: {
         title: 'మెసేజింగ్',
-        detail: 'Telegram, Slack, Discord మరియు మరిన్నింటిని సెటప్ చేయండి',
+        detail: 'Telegram, Slack, Discord మరియు మరిన్నింటిని సెటప్ చేయండి'
       },
       artifacts: {
         title: 'ఆర్టిఫాక్ట్లు',
-        detail: 'రూపొందించిన అవుట్పుట్లను బ్రౌజ్ చేయండి',
-      },
+        detail: 'రూపొందించిన అవుట్పుట్లను బ్రౌజ్ చేయండి'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'సెషన్ల ప్యానెల్',
-        detail: 'సెషన్లను వెతకండి, పిన్ చేయండి మరియు నిర్వహించండి',
+        detail: 'సెషన్లను వెతకండి, పిన్ చేయండి మరియు నిర్వహించండి'
       },
       system: {
         title: 'వ్యవస్థ ప్యానెల్',
-        detail: 'గేట్వే స్థితి, లాగ్లు, రీస్టార్ట్/అప్డేట్',
+        detail: 'గేట్వే స్థితి, లాగ్లు, రీస్టార్ట్/అప్డేట్'
       },
       usage: {
         title: 'వినియోగ ప్యానెల్',
-        detail: 'టోకెన్, ఖర్చు మరియు నైపుణ్య కార్యకలాపం',
-      },
+        detail: 'టోకెన్, ఖర్చు మరియు నైపుణ్య కార్యకలాపం'
+      }
     },
     providerNavigate: 'నావిగేట్',
     providerSessions: 'సెషన్లు',
@@ -1251,14 +1300,14 @@ export const te = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     startInBranch: branch => `New conversation in ${branch}`,
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · Active sessions ${count}`,
     days: count => `${count}d`,
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   messaging: {
     search: 'మెసేజింగ్‌ను వెతకండి...',
@@ -1273,7 +1322,7 @@ export const te = defineLocale({
       not_configured: 'సెటప్ అవసరం',
       pending_restart: 'రీస్టార్ట్ అవసరం',
       retrying: 'మళ్లీ ప్రయత్నిస్తోంది',
-      startup_failed: 'ప్రారంభం విఫలమైంది',
+      startup_failed: 'ప్రారంభం విఫలమైంది'
     },
     unknown: 'తెలియదు',
     hintPendingRestart: 'ఈ మార్పును వర్తించేందుకు స్టేటస్ బార్ నుండి గేట్‌వేను రీస్టార్ట్ చేయండి.',
@@ -1285,7 +1334,8 @@ export const te = defineLocale({
     openSetupGuide: 'సెటప్ గైడ్ తెరవండి',
     required: 'అవసరం',
     recommended: 'సిఫార్సు చేయబడింది',
-    noTokenNeeded: 'ఈ ప్లాట్‌ఫారమ్‌కు ఇక్కడ టోకెన్ అవసరం లేదు. పైన ఉన్న సెటప్ గైడ్‌ను ఉపయోగించి, దిగువన దాన్ని ప్రారంభించండి.',
+    noTokenNeeded:
+      'ఈ ప్లాట్‌ఫారమ్‌కు ఇక్కడ టోకెన్ అవసరం లేదు. పైన ఉన్న సెటప్ గైడ్‌ను ఉపయోగించి, దిగువన దాన్ని ప్రారంభించండి.',
     enabled: 'ప్రారంభించబడింది',
     disabled: 'నిలిపివేయబడింది',
     unsavedChanges: 'సేవ్ చేయని మార్పులు',
@@ -1300,124 +1350,124 @@ export const te = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'బాట్ టోకెన్',
         help: '@BotFatherతో బాట్‌ను సృష్టించి, అది ఇచ్చే టోకెన్‌ను పేస్ట్ చేయండి.',
-        placeholder: 'Telegram బాట్ టోకెన్‌ను పేస్ట్ చేయండి',
+        placeholder: 'Telegram బాట్ టోకెన్‌ను పేస్ట్ చేయండి'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'అనుమతించిన Telegram వినియోగదారు IDలు',
-        help: 'సిఫార్సు చేయబడింది. @userinfobot నుండి కామాతో వేరు చేసిన సంఖ్యా IDలు. ఇది లేకుంటే ఎవరైనా మీ బాట్‌కు DM చేయవచ్చు.',
+        help: 'సిఫార్సు చేయబడింది. @userinfobot నుండి కామాతో వేరు చేసిన సంఖ్యా IDలు. ఇది లేకుంటే ఎవరైనా మీ బాట్‌కు DM చేయవచ్చు.'
       },
       TELEGRAM_PROXY: {
         label: 'ప్రాక్సీ URL',
-        help: 'Telegram బ్లాక్ చేయబడిన నెట్‌వర్క్‌లలో మాత్రమే అవసరం.',
+        help: 'Telegram బ్లాక్ చేయబడిన నెట్‌వర్క్‌లలో మాత్రమే అవసరం.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'బాట్ టోకెన్',
-        help: 'Discord Developer Portalలో అప్లికేషన్‌ను సృష్టించి, బాట్‌ను జోడించి, దాని టోకెన్‌ను పేస్ట్ చేయండి.',
+        help: 'Discord Developer Portalలో అప్లికేషన్‌ను సృష్టించి, బాట్‌ను జోడించి, దాని టోకెన్‌ను పేస్ట్ చేయండి.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'అనుమతించిన Discord వినియోగదారు IDలు',
-        help: 'సిఫార్సు చేయబడింది. కామాతో వేరు చేసిన Discord వినియోగదారు IDలు.',
+        help: 'సిఫార్సు చేయబడింది. కామాతో వేరు చేసిన Discord వినియోగదారు IDలు.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'ప్రతిస్పందన శైలి',
-        help: 'మొదటి, అన్నీ, లేదా ఆఫ్.',
+        help: 'మొదటి, అన్నీ, లేదా ఆఫ్.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'అందరు Discord వినియోగదారులను అనుమతించండి',
-        help: 'అభివృద్ధి మాత్రమే. true అయినప్పుడు, ఎవరైనా అనుమతిజాబితా లేకుండా బాట్కు DM చేయవచ్చు.',
+        help: 'అభివృద్ధి మాత్రమే. true అయినప్పుడు, ఎవరైనా అనుమతిజాబితా లేకుండా బాట్కు DM చేయవచ్చు.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'హోమ్ ఛానెల్ ID',
-        help: 'బాట్ ముందస్తు సందేశాలు (cron అవుట్పుట్, రిమైండర్లు) పంపే ఛానెల్.',
+        help: 'బాట్ ముందస్తు సందేశాలు (cron అవుట్పుట్, రిమైండర్లు) పంపే ఛానెల్.'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'హోమ్ ఛానెల్ పేరు',
-        help: 'లాగ్లు మరియు స్థితి అవుట్పుట్లో హోమ్ ఛానెల్ కోసం ప్రదర్శన పేరు.',
+        help: 'లాగ్లు మరియు స్థితి అవుట్పుట్లో హోమ్ ఛానెల్ కోసం ప్రదర్శన పేరు.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'అందరు iMessage వినియోగదారులను అనుమతించండి',
-        help: 'true అయినప్పుడు, BlueBubbles అనుమతిజాబితాను దాటవేయండి.',
+        help: 'true అయినప్పుడు, BlueBubbles అనుమతిజాబితాను దాటవేయండి.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'అందరు Mattermost వినియోగదారులను అనుమతించండి',
+        label: 'అందరు Mattermost వినియోగదారులను అనుమతించండి'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'హోమ్ ఛానెల్',
+        label: 'హోమ్ ఛానెల్'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'అందరు QQ వినియోగదారులను అనుమతించండి',
+        label: 'అందరు QQ వినియోగదారులను అనుమతించండి'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ హోమ్ ఛానెల్',
-        help: 'cron డెలివరీ కోసం డిఫాల్ట్ ఛానెల్ లేదా గ్రూప్.',
+        help: 'cron డెలివరీ కోసం డిఫాల్ట్ ఛానెల్ లేదా గ్రూప్.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ హోమ్ ఛానెల్ పేరు',
+        label: 'QQ హోమ్ ఛానెల్ పేరు'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack బాట్ టోకెన్',
         help: 'మీ Slack యాప్ను ఇన్స్టాల్ చేసిన తర్వాత OAuth & Permissions నుండి బాట్ టోకెన్ను ఉపయోగించండి.',
-        placeholder: 'Slack బాట్ టోకెన్ను పేస్ట్ చేయండి',
+        placeholder: 'Slack బాట్ టోకెన్ను పేస్ట్ చేయండి'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack యాప్ టోకెన్',
         help: 'Socket Mode కోసం అవసరమైన యాప్-స్థాయి టోకెన్‌ను ఉపయోగించండి.',
-        placeholder: 'Slack యాప్ టోకెన్‌ను పేస్ట్ చేయండి',
+        placeholder: 'Slack యాప్ టోకెన్‌ను పేస్ట్ చేయండి'
       },
       SLACK_ALLOWED_USERS: {
         label: 'అనుమతించిన Slack వినియోగదారు IDలు',
-        help: 'సిఫార్సు చేయబడింది. కామాతో వేరు చేసిన Slack వినియోగదారు IDలు.',
+        help: 'సిఫార్సు చేయబడింది. కామాతో వేరు చేసిన Slack వినియోగదారు IDలు.'
       },
       MATTERMOST_URL: {
         label: 'సర్వర్ URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'బాట్ టోకెన్',
+        label: 'బాట్ టోకెన్'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'అనుమతించిన వినియోగదారు IDలు',
-        help: 'సిఫార్సు చేయబడింది. కామాతో వేరు చేసిన Mattermost వినియోగదారు IDలు.',
+        help: 'సిఫార్సు చేయబడింది. కామాతో వేరు చేసిన Mattermost వినియోగదారు IDలు.'
       },
       MATRIX_HOMESERVER: {
         label: 'హోమ్‌సర్వర్ URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'యాక్సెస్ టోకెన్',
+        label: 'యాక్సెస్ టోకెన్'
       },
       MATRIX_USER_ID: {
         label: 'బాట్ వినియోగదారు ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'అనుమతించిన Matrix వినియోగదారు IDలు',
-        help: 'సిఫార్సు చేయబడింది. @user:server ఫార్మాట్‌లో కామాతో వేరు చేసిన వినియోగదారు IDలు.',
+        help: 'సిఫార్సు చేయబడింది. @user:server ఫార్మాట్‌లో కామాతో వేరు చేసిన వినియోగదారు IDలు.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal బ్రిడ్జ్ URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'నడుస్తున్న signal-cli REST బ్రిడ్జ్ యొక్క URL.',
+        help: 'నడుస్తున్న signal-cli REST బ్రిడ్జ్ యొక్క URL.'
       },
       SIGNAL_ACCOUNT: {
         label: 'ఫోన్ నంబర్',
-        help: 'మీ signal-cli బ్రిడ్జ్‌తో నమోదు చేసిన నంబర్.',
+        help: 'మీ signal-cli బ్రిడ్జ్‌తో నమోదు చేసిన నంబర్.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'అనుమతించిన Signal వినియోగదారులు',
-        help: 'సిఫార్సు చేయబడింది. కామాతో వేరు చేసిన Signal ఐడెంటిఫైయర్లు.',
+        help: 'సిఫార్సు చేయబడింది. కామాతో వేరు చేసిన Signal ఐడెంటిఫైయర్లు.'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp బ్రిడ్జ్‌ను ప్రారంభించండి',
-        help: 'క్రింది టోగుల్ ద్వారా స్వయంచాలకంగా సెట్ అవుతుంది. మీకు అవసరమని తెలిస్తే తప్ప మార్చవద్దు.',
+        help: 'క్రింది టోగుల్ ద్వారా స్వయంచాలకంగా సెట్ అవుతుంది. మీకు అవసరమని తెలిస్తే తప్ప మార్చవద్దు.'
       },
       WHATSAPP_MODE: {
-        label: 'బ్రిడ్జ్ మోడ్',
+        label: 'బ్రిడ్జ్ మోడ్'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'అనుమతించిన WhatsApp వినియోగదారులు',
-        help: 'సిఫార్సు చేయబడింది. కామాతో వేరు చేసిన ఫోన్ నంబర్లు లేదా WhatsApp IDలు.',
-      },
+        help: 'సిఫార్సు చేయబడింది. కామాతో వేరు చేసిన ఫోన్ నంబర్లు లేదా WhatsApp IDలు.'
+      }
     },
     advanced: count => `Advanced (${count})`,
     clearField: key => `Clear ${key}`,
@@ -1431,8 +1481,7 @@ export const te = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'వెబ్‌హుక్‌లను వెతకండి...',
@@ -1441,7 +1490,8 @@ export const te = defineLocale({
     hint: 'రిసీవర్ నడుస్తున్నప్పుడు సబ్‌స్క్రిప్షన్ మార్పులు హాట్-రీలోడ్ అవుతాయి. నిలిపివేసిన సబ్‌స్క్రిప్షన్లు వచ్చే ఈవెంట్‌లను తిరస్కరిస్తాయి.',
     empty: 'ఇంకా వెబ్‌హుక్ సబ్‌స్క్రిప్షన్‌లు లేవు.',
     disabledTitle: 'వెబ్‌హుక్ రిసీవర్ నిలిపివేయబడింది',
-    disabledBody: 'వెబ్‌హుక్‌లు వాటి స్వంత గేట్‌వే ప్లాట్‌ఫారమ్. వచ్చే HTTP ఈవెంట్‌లను స్వీకరించడానికి వాటిని ఇక్కడ ప్రారంభించండి; సబ్‌స్క్రిప్షన్ Telegram, Discord, Slack లేదా మరో ఛానెల్‌కు పంపినప్పుడు మాత్రమే చాట్ ఛానెల్స్ అవసరం.',
+    disabledBody:
+      'వెబ్‌హుక్‌లు వాటి స్వంత గేట్‌వే ప్లాట్‌ఫారమ్. వచ్చే HTTP ఈవెంట్‌లను స్వీకరించడానికి వాటిని ఇక్కడ ప్రారంభించండి; సబ్‌స్క్రిప్షన్ Telegram, Discord, Slack లేదా మరో ఛానెల్‌కు పంపినప్పుడు మాత్రమే చాట్ ఛానెల్స్ అవసరం.',
     enable: 'వెబ్‌హుక్‌లను ప్రారంభించండి',
     enabling: 'ప్రారంభిస్తోంది...',
     enableRow: 'ప్రారంభించండి',
@@ -1488,7 +1538,7 @@ export const te = defineLocale({
       discord: 'డిస్కార్డ్',
       slack: 'స్లాక్',
       email: 'ఇమెయిల్',
-      github_comment: 'GitHub వ్యాఖ్య',
+      github_comment: 'GitHub వ్యాఖ్య'
     },
     subscriptions: (count: number) => `Subscriptions (${count})`,
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -1496,7 +1546,7 @@ export const te = defineLocale({
     deleteFailed: (name: string) => `Failed to delete "${name}"`,
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     renameMenu: 'పేరు మార్చు…',
@@ -1574,7 +1624,7 @@ export const te = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   cron: {
     close: 'cron మూసివేయి',
@@ -1588,14 +1638,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'నిలిపివేయబడింది',
       disabled: 'నిష్క్రియం',
       error: 'లోపం',
-      completed: 'పూర్తయింది',
+      completed: 'పూర్తయింది'
     },
     deliveryLabels: {
       local: 'ఈ డెస్క్టాప్',
       telegram: 'టెలిగ్రామ్',
       discord: 'డిస్కార్డ్',
       slack: 'స్లాక్',
-      email: 'ఇమెయిల్',
+      email: 'ఇమెయిల్'
     },
     scheduleLabels: {
       daily: 'రోజువారీ',
@@ -1604,7 +1654,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'నెలవారీ',
       hourly: 'గంటకు',
       'every-15-minutes': 'ప్రతి 15 నిమిషాలకు',
-      custom: 'అనుకూల',
+      custom: 'అనుకూల'
     },
     scheduleHints: {
       daily: 'రోజూ ఉదయం 9:00కి',
@@ -1613,7 +1663,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'ప్రతి నెల మొదటి రోజు ఉదయం 9:00కి',
       hourly: 'ప్రతి గంట ప్రారంభంలో',
       'every-15-minutes': 'ప్రతి 15 నిమిషాలకు',
-      custom: 'Cron సింటాక్స్ లేదా సహజ భాష',
+      custom: 'Cron సింటాక్స్ లేదా సహజ భాష'
     },
     days: {
       '0': 'ఆదివారం',
@@ -1623,11 +1673,12 @@ Leave blank to keep the ${mode} default.`,
       '4': 'గురువారం',
       '5': 'శుక్రవారం',
       '6': 'శనివారం',
-      '7': 'ఆదివారం',
+      '7': 'ఆదివారం'
     },
     topOfHour: 'ప్రతి గంట ప్రారంభంలో',
     newCron: 'కొత్త క్రాన్',
-    emptyDescNew: 'క్రాన్ ఎక్స్‌ప్రెషన్‌పై ప్రాంప్ట్‌ను షెడ్యూల్ చేయండి. OpenAmer దాన్ని రన్ చేసి, మీరు ఎంచుకున్న గమ్యానికి ఫలితాలను పంపుతుంది.',
+    emptyDescNew:
+      'క్రాన్ ఎక్స్‌ప్రెషన్‌పై ప్రాంప్ట్‌ను షెడ్యూల్ చేయండి. OpenAmer దాన్ని రన్ చేసి, మీరు ఎంచుకున్న గమ్యానికి ఫలితాలను పంపుతుంది.',
     emptyDescSearch: 'విస్తృత శోధన ప్రశ్నను ప్రయత్నించండి.',
     emptyTitleNew: 'ఇంకా షెడ్యూల్ చేసిన జాబ్‌లు లేవు',
     emptyTitleSearch: 'సరిపోలికలు లేవు',
@@ -1663,7 +1714,8 @@ Leave blank to keep the ${mode} default.`,
     editTitle: 'క్రాన్ జాబ్ను సవరించండి',
     createTitle: 'కొత్త క్రాన్ జాబ్',
     editDesc: 'షెడ్యూల్, ప్రాంప్ట్ లేదా డెలివరీ లక్ష్యాన్ని నవీకరించండి. మార్పులు తదుపరి అమలులో వర్తిస్తాయి.',
-    createDesc: 'ప్రాంప్ట్ ఆటోమేటిక్గా రన్ అయ్యేలా షెడ్యూల్ చేయండి. క్రాన్ సింటాక్స్ లేదా “ప్రతి 15 నిమిషాలకు” వంటి సహజ పదబంధాన్ని ఉపయోగించండి.',
+    createDesc:
+      'ప్రాంప్ట్ ఆటోమేటిక్గా రన్ అయ్యేలా షెడ్యూల్ చేయండి. క్రాన్ సింటాక్స్ లేదా “ప్రతి 15 నిమిషాలకు” వంటి సహజ పదబంధాన్ని ఉపయోగించండి.',
     nameLabel: 'పేరు',
     namePlaceholder: 'ఉదయపు బ్రీఫింగ్',
     promptLabel: 'ప్రాంప్ట్',
@@ -1685,7 +1737,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'క్రాన్ సృష్టించండి',
     tabs: {
       jobs: 'జాబ్లు',
-      blueprints: 'బ్లూప్రింట్లు',
+      blueprints: 'బ్లూప్రింట్లు'
     },
     blueprints: {
       tab: 'బ్లూప్రింట్లు',
@@ -1699,7 +1751,7 @@ Leave blank to keep the ${mode} default.`,
       loading: 'బ్లూప్రింట్లు లోడ్ అవుతున్నాయి...',
       failedLoad: 'బ్లూప్రింట్లను లోడ్ చేయడం విఫలమైంది',
       emptyTitle: 'బ్లూప్రింట్లు అందుబాటులో లేవు',
-      emptyDesc: 'ఈ బ్యాకెండ్‌లో ఆటోమేషన్ బ్లూప్రింట్లు అందుబాటులో లేవు.',
+      emptyDesc: 'ఈ బ్యాకెండ్‌లో ఆటోమేషన్ బ్లూప్రింట్లు అందుబాటులో లేవు.'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -1708,7 +1760,7 @@ Leave blank to keep the ${mode} default.`,
     everyDayOfWeekAt: (day, time) => `Every ${day} at ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Monthly on day ${dayOfMonth} at ${time}`,
     everyHourAt: minute => `Every hour at :${minute}`,
-    actionsFor: title => `Actions for ${title}`,
+    actionsFor: title => `Actions for ${title}`
   },
   artifacts: {
     search: 'ఆర్టిఫ్యాక్ట్‌లను శోధించండి...',
@@ -1742,14 +1794,14 @@ Leave blank to keep the ${mode} default.`,
     copyUrl: 'URL కాపీ చేయండి',
     copyPath: 'పాత్ కాపీ చేయండి',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'కొత్త సెషన్',
       skills: 'సామర్థ్యాలు',
       messaging: 'మెసేజింగ్',
-      artifacts: 'ఆర్టిఫాక్ట్లు',
+      artifacts: 'ఆర్టిఫాక్ట్లు'
     },
     searchAria: 'సెషన్లను వెతకండి',
     searchPlaceholder: 'సెషన్లను వెతకండి…',
@@ -1800,8 +1852,10 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'పాత్ కాపీ చేయండి',
       removeFromSidebar: 'సైడ్‌బార్ నుండి దాచండి',
       createFailed: 'ప్రాజెక్ట్‌ను సృష్టించలేకపోయాము',
-      staleBackend: 'ప్రాజెక్ట్‌లను సృష్టించడానికి OpenAmer బ్యాకెండ్‌ను నవీకరించండి — మీ బ్యాకెండ్ ఈ డెస్క్‌టాప్ యాప్ కంటే పాతది (సెట్టింగ్‌లు → నవీకరణలు → బ్యాకెండ్).',
-      deleteConfirm: 'ఇది సేవ్ చేసిన ప్రాజెక్ట్‌ను OpenAmer నుండి తీసివేస్తుంది. ఫైల్‌లు, git రిపోలు మరియు వర్క్‌ట్రీలు మారకుండా ఉంటాయి.',
+      staleBackend:
+        'ప్రాజెక్ట్‌లను సృష్టించడానికి OpenAmer బ్యాకెండ్‌ను నవీకరించండి — మీ బ్యాకెండ్ ఈ డెస్క్‌టాప్ యాప్ కంటే పాతది (సెట్టింగ్‌లు → నవీకరణలు → బ్యాకెండ్).',
+      deleteConfirm:
+        'ఇది సేవ్ చేసిన ప్రాజెక్ట్‌ను OpenAmer నుండి తీసివేస్తుంది. ఫైల్‌లు, git రిపోలు మరియు వర్క్‌ట్రీలు మారకుండా ఉంటాయి.',
       startWork: 'కొత్త వర్క్‌ట్రీ',
       newWorktreeTitle: 'కొత్త వర్క్‌ట్రీ',
       newWorktreeDesc: 'ఈ వర్క్‌ట్రీ కోసం బ్రాంచ్‌కు పేరు పెట్టండి.',
@@ -1811,7 +1865,8 @@ Leave blank to keep the ${mode} default.`,
       startWorkFailed: 'వర్క్‌ట్రీని సృష్టించలేకపోయాము',
       convertBranch: 'బ్రాంచ్‌ను కన్వర్ట్ చేయండి…',
       convertBranchTitle: 'బ్రాంచ్‌ను కన్వర్ట్ చేయండి',
-      convertBranchDesc: 'చెక్ అవుట్ చేసిన బ్రాంచ్‌లను తెరవండి, లేదా అందుబాటులో ఉన్న బ్రాంచ్ కోసం వర్క్‌ట్రీని సృష్టించండి.',
+      convertBranchDesc:
+        'చెక్ అవుట్ చేసిన బ్రాంచ్‌లను తెరవండి, లేదా అందుబాటులో ఉన్న బ్రాంచ్ కోసం వర్క్‌ట్రీని సృష్టించండి.',
       convertBranchPlaceholder: 'బ్రాంచ్‌లను వెతకండి…',
       convertBranchInstead: 'ఇప్పటికే ఉన్న బ్రాంచ్‌ను కన్వర్ట్ చేయండి',
       branchOpenExisting: 'తెరవండి',
@@ -1822,13 +1877,15 @@ Leave blank to keep the ${mode} default.`,
       removeWorktree: 'వర్క్‌ట్రీని తీసివేయండి',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       removeWorktreeFailed: 'Could not remove worktree (uncommitted changes?)',
-      removeWorktreeConfirm: 'Remove it from git (deletes the worktree directory; the branch stays), or just hide the lane from the sidebar and leave the worktree on disk.',
-      removeWorktreeDirty: 'This worktree has uncommitted changes. Force-remove it (discards those changes), or just hide the lane and keep it on disk.',
+      removeWorktreeConfirm:
+        'Remove it from git (deletes the worktree directory; the branch stays), or just hide the lane from the sidebar and leave the worktree on disk.',
+      removeWorktreeDirty:
+        'This worktree has uncommitted changes. Force-remove it (discards those changes), or just hide the lane and keep it on disk.',
       forceRemove: 'Force remove',
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
       toggle: label => `Toggle ${label} sessions`,
-      back: 'All projects',
+      back: 'All projects'
     },
     row: {
       sessionRunning: 'సెషన్ నడుస్తోంది',
@@ -1861,21 +1918,21 @@ Leave blank to keep the ${mode} default.`,
       sessionActions: 'Session actions',
       handoffOrigin: platform => `Handed off from ${platform}`,
       ownedByProfile: profile => `Profile: ${profile}`,
-      untitledChat: id => `Chat ${id}`,
+      untitledChat: id => `Chat ${id}`
     },
     dateDivider: {
       today: 'ఈరోజు మునుపు',
       yesterday: 'నిన్న',
       thisWeek: 'ఈ వారం మునుపు',
       lastWeek: 'గత వారం',
-      thisMonth: 'ఈ నెల మునుపు',
+      thisMonth: 'ఈ నెల మునుపు'
     },
     noMatch: query => `No sessions match “${query}”.`,
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
     loading: 'Loading…',
     loadMore: 'Load more',
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     message: 'సందేశం',
@@ -1916,7 +1973,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'మునుపటి సెషన్ను కొనసాగించండి',
       '/details': 'ట్రాన్స్క్రిప్ట్ వివరాల స్థాయిని నియంత్రించండి',
       '/copy': 'ఎంపికను లేదా చివరి అసిస్టెంట్ సందేశాన్ని కాపీ చేయండి',
-      '/quit': 'openamer నుండి నిష్క్రమించండి',
+      '/quit': 'openamer నుండి నిష్క్రమించండి'
     },
     hotkeyDescs: {
       'composer.mention': 'ఫైళ్లు, ఫోల్డర్లు, urls, gitను సూచించండి',
@@ -1926,7 +1983,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'send next queued turn',
       'keybinds.openPanel': 'all keyboard shortcuts',
       'composer.cancel': 'close popover · cancel run',
-      'composer.history': 'cycle popover / history',
+      'composer.history': 'cycle popover / history'
     },
     queueStuckTitle: 'క్యూలో ఉన్న సందేశం పంపబడలేదు',
     queueStuckBody: 'క్యూలో ఉన్న టర్న్ పంపడం పదే పదే విఫలమైంది. అది ఇంకా క్యూలో ఉంది — మళ్లీ పంపడానికి ప్రయత్నించండి.',
@@ -1955,7 +2012,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -1964,7 +2021,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     attachUrlTitle: 'Attach a URL',
     attachUrlDesc: 'OpenAmer will fetch the page and include it as context for this turn.',
@@ -1996,19 +2053,19 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'Code review',
         description: 'Audit the current change for regressions, dropped edge cases, and missing tests.',
-        text: 'Please review this for bugs, regressions, and missing tests.',
+        text: 'Please review this for bugs, regressions, and missing tests.'
       },
       implementationPlan: {
         label: 'Implementation plan',
         description: 'Outline an approach before touching code so the diff stays focused.',
-        text: 'Please make a concise implementation plan before changing code.',
+        text: 'Please make a concise implementation plan before changing code.'
       },
       explainThis: {
         label: 'Explain this',
         description: 'Walk through how the selected code works and link to the key files.',
-        text: 'Please explain how this works and point me to the key files.',
-      },
-    },
+        text: 'Please explain how this works and point me to the key files.'
+      }
+    }
   },
   statusStack: {
     coding: {
@@ -2042,7 +2099,8 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'PR తెరవండి',
       ghMissing: 'PRలు తెరవడానికి GitHub CLI (gh) ఇన్‌స్టాల్ చేసి సైన్ ఇన్ అవ్వండి',
       agentShip: 'PR తెరవమని OpenAmerను అడగండి',
-      agentShipPrompt: 'ప్రస్తుత మార్పులను సమీక్షించి, స్పష్టమైన కన్వెన్షనల్-కమిట్ సందేశంతో వాటిని కమిట్ చేసి, బ్రాంచ్‌ను పుష్ చేసి, పుల్ రిక్వెస్ట్ తెరవండి.',
+      agentShipPrompt:
+        'ప్రస్తుత మార్పులను సమీక్షించి, స్పష్టమైన కన్వెన్షనల్-కమిట్ సందేశంతో వాటిని కమిట్ చేసి, బ్రాంచ్‌ను పుష్ చేసి, పుల్ రిక్వెస్ట్ తెరవండి.',
       newBranch: 'కొత్త బ్రాంచ్',
       worktrees: 'వర్క్‌ట్రీలు',
       title: 'Working tree',
@@ -2053,7 +2111,7 @@ Leave blank to keep the ${mode} default.`,
       behind: count => `${count} behind`,
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     agents: 'Agents',
     background: count => `${count} Background`,
@@ -2062,7 +2120,7 @@ Leave blank to keep the ${mode} default.`,
     running: 'Running',
     stop: 'Stop',
     dismiss: 'Dismiss',
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -2077,7 +2135,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'అప్డేట్ పూర్తయింది',
       manual: 'మీ టెర్మినల్ నుండి అప్డేట్ చేయండి',
       guiSkew: 'డెస్క్టాప్ యాప్‌ను అప్డేట్ చేయండి',
-      error: 'అప్డేట్ నిలిపివేయబడింది',
+      error: 'అప్డేట్ నిలిపివేయబడింది'
     },
     checking: 'అప్డేట్‌లు వెతుకుతోంది…',
     checkFailedTitle: 'అప్డేట్‌ల కోసం చెక్ చేయలేకపోయాం',
@@ -2096,15 +2154,19 @@ Leave blank to keep the ${mode} default.`,
     updateNow: 'ఇప్పుడే అప్డేట్ చేయండి',
     maybeLater: 'తర్వాత కావచ్చు',
     manualTitle: 'మీ టెర్మినల్ నుండి అప్డేట్ చేయండి',
-    manualBody: 'మీరు OpenAmerని కమాండ్ లైన్ నుండి ఇన్స్టాల్ చేశారు, కాబట్టి అప్డేట్లు కూడా అక్కడే నడుస్తాయి. దీన్ని మీ టెర్మినల్లో పేస్ట్ చేయండి:',
+    manualBody:
+      'మీరు OpenAmerని కమాండ్ లైన్ నుండి ఇన్స్టాల్ చేశారు, కాబట్టి అప్డేట్లు కూడా అక్కడే నడుస్తాయి. దీన్ని మీ టెర్మినల్లో పేస్ట్ చేయండి:',
     manualPickedUp: 'తదుపరిసారి ప్రారంభించినప్పుడు OpenAmer కొత్త వెర్షన్ను తీసుకుంటుంది.',
     guiSkewTitle: 'డెస్క్టాప్ యాప్ను అప్డేట్ చేయండి',
-    guiSkewBody: 'బ్యాకెండ్ అప్డేట్ అయింది, కానీ ఈ డెస్క్టాప్ యాప్ ప్యాకేజీ మారలేదు. సరిపోయేలా OpenAmer డెస్క్టాప్ యాప్ను (మీ AppImage / .deb / .rpm) అప్డేట్ చేయండి లేదా మళ్లీ ఇన్స్టాల్ చేయండి.',
+    guiSkewBody:
+      'బ్యాకెండ్ అప్డేట్ అయింది, కానీ ఈ డెస్క్టాప్ యాప్ ప్యాకేజీ మారలేదు. సరిపోయేలా OpenAmer డెస్క్టాప్ యాప్ను (మీ AppImage / .deb / .rpm) అప్డేట్ చేయండి లేదా మళ్లీ ఇన్స్టాల్ చేయండి.',
     copy: 'కాపీ',
     copied: 'కాపీ అయింది',
     done: 'పూర్తయింది',
-    applyingBody: 'OpenAmer అప్డేటర్ దాని స్వంత విండోలో పని చేపట్టి, పూర్తయ్యాక OpenAmerని స్వయంచాలకంగా తిరిగి తెరుస్తుంది. అప్డేట్ జరుగుతున్నప్పుడు మీరే OpenAmerని తిరిగి తెరవద్దు.',
-    applyingBodyBackend: 'రిమోట్ బ్యాకెండ్ అప్డేట్ను వర్తింపజేస్తోంది మరియు పునఃప్రారంభమవుతుంది. అది తిరిగి వచ్చాక OpenAmer స్వయంచాలకంగా మళ్లీ కనెక్ట్ అవుతుంది.',
+    applyingBody:
+      'OpenAmer అప్డేటర్ దాని స్వంత విండోలో పని చేపట్టి, పూర్తయ్యాక OpenAmerని స్వయంచాలకంగా తిరిగి తెరుస్తుంది. అప్డేట్ జరుగుతున్నప్పుడు మీరే OpenAmerని తిరిగి తెరవద్దు.',
+    applyingBodyBackend:
+      'రిమోట్ బ్యాకెండ్ అప్డేట్ను వర్తింపజేస్తోంది మరియు పునఃప్రారంభమవుతుంది. అది తిరిగి వచ్చాక OpenAmer స్వయంచాలకంగా మళ్లీ కనెక్ట్ అవుతుంది.',
     applyingClose: 'అప్డేట్ నడుస్తున్నప్పుడు ఈ విండో మూసుకుంటుంది, ఆ తర్వాత OpenAmer తనంతట తానే తిరిగి తెరుచుకుంటుంది.',
     errorTitle: 'అప్డేట్ పూర్తి కాలేదు',
     errorBody: 'చింతించకండి — ఏమీ పోలేదు. మీరు ఇప్పుడు మళ్లీ ప్రయత్నించవచ్చు.',
@@ -2115,13 +2177,14 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'అప్డేట్ను లోడ్ చేయడానికి బ్యాకెండ్ పునఃప్రారంభమవుతోంది…',
       notAvailable: 'ఈ బ్యాకెండ్కు అప్డేట్ అందుబాటులో లేదు.',
       failed: 'బ్యాకెండ్ అప్డేట్ విఫలమైంది.',
-      noReturn: 'బ్యాకెండ్ తిరిగి ఆన్లైన్లోకి రాలేదు. అప్డేట్ పూర్తి కాకపోవచ్చు — బ్యాకెండ్ హోస్ట్ను తనిఖీ చేయండి.',
+      noReturn: 'బ్యాకెండ్ తిరిగి ఆన్లైన్లోకి రాలేదు. అప్డేట్ పూర్తి కాకపోవచ్చు — బ్యాకెండ్ హోస్ట్ను తనిఖీ చేయండి.'
     },
     appErrors: {
-      updateLocked: 'అప్డేట్ నిలిపివేయబడింది: మరో OpenAmer విండో లేదా openamer నడుపుతున్న టెర్మినల్ ఈ ఇన్స్టాల్ను తెరిచి ఉంచుతోంది. దాన్ని మూసి మళ్లీ ప్రయత్నించండి.',
-      updateFailed: 'అప్డేట్ పూర్తి కాలేదు. చింతించకండి — ఏదీ పోలేదు. మీరు ఇప్పుడు మళ్లీ ప్రయత్నించవచ్చు.',
+      updateLocked:
+        'అప్డేట్ నిలిపివేయబడింది: మరో OpenAmer విండో లేదా openamer నడుపుతున్న టెర్మినల్ ఈ ఇన్స్టాల్ను తెరిచి ఉంచుతోంది. దాన్ని మూసి మళ్లీ ప్రయత్నించండి.',
+      updateFailed: 'అప్డేట్ పూర్తి కాలేదు. చింతించకండి — ఏదీ పోలేదు. మీరు ఇప్పుడు మళ్లీ ప్రయత్నించవచ్చు.'
     },
-    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
+    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`
   },
   install: {
     stageStates: {
@@ -2129,7 +2192,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'ఇన్స్టాల్ అవుతోంది',
       succeeded: 'పూర్తయింది',
       skipped: 'దాటవేయబడింది',
-      failed: 'విఫలమైంది',
+      failed: 'విఫలమైంది'
     },
     oneTimeTitle: 'OpenAmer కు ఒకసారి ఇన్స్టాల్ అవసరం',
     installCommand: 'ఇన్స్టాల్ కమాండ్',
@@ -2138,15 +2201,20 @@ Leave blank to keep the ${mode} default.`,
     installTo: 'ఇన్స్టాల్ గమ్యం',
     retryAfterRun: 'నేను దాన్ని అమలు చేశాను -- మళ్లీ ప్రయత్నించండి',
     setupChoiceTitle: 'OpenAmer Desktop ను సెటప్ చేయండి',
-    setupChoiceDesc: 'ఈ యాప్ను మీరు ఇప్పటికే నడుపుతున్న OpenAmer గేట్వేకు కనెక్ట్ చేయండి, లేదా ఈ కంప్యూటర్లోనే OpenAmer ను లోకల్గా ఇన్స్టాల్ చేయండి.',
+    setupChoiceDesc:
+      'ఈ యాప్ను మీరు ఇప్పటికే నడుపుతున్న OpenAmer గేట్వేకు కనెక్ట్ చేయండి, లేదా ఈ కంప్యూటర్లోనే OpenAmer ను లోకల్గా ఇన్స్టాల్ చేయండి.',
     connectExistingTitle: 'ఇప్పటికే ఉన్న OpenAmer కు కనెక్ట్ చేయండి',
     connectExistingShort: 'ఇప్పటికే ఉన్నదానికి కనెక్ట్ చేయండి',
-    connectExistingDesc: 'సెషన్ టోకెన్ లేదా బ్రౌజర్ సైన్-ఇన్తో రిమోట్ బ్యాకెండ్ను ఉపయోగించండి. లోకల్ ఇన్స్టాల్ ప్రారంభం కాదు.',
+    connectExistingDesc:
+      'సెషన్ టోకెన్ లేదా బ్రౌజర్ సైన్-ఇన్తో రిమోట్ బ్యాకెండ్ను ఉపయోగించండి. లోకల్ ఇన్స్టాల్ ప్రారంభం కాదు.',
     installLocalTitle: 'OpenAmer ను లోకల్గా ఇన్స్టాల్ చేయండి',
-    installLocalDesc: 'OpenAmer ను డౌన్లోడ్ చేయండి, దాని Python వాతావరణాన్ని సృష్టించండి, మరియు ఈ కంప్యూటర్లో బ్యాకెండ్ను అమలు చేయండి.',
-    localStartUnavailable: 'స్థానిక ఇన్స్టాలేషన్ ప్రారంభం కాలేదు. OpenAmer Desktop ను పునఃప్రారంభించి మళ్లీ ప్రయత్నించండి.',
+    installLocalDesc:
+      'OpenAmer ను డౌన్లోడ్ చేయండి, దాని Python వాతావరణాన్ని సృష్టించండి, మరియు ఈ కంప్యూటర్లో బ్యాకెండ్ను అమలు చేయండి.',
+    localStartUnavailable:
+      'స్థానిక ఇన్స్టాలేషన్ ప్రారంభం కాలేదు. OpenAmer Desktop ను పునఃప్రారంభించి మళ్లీ ప్రయత్నించండి.',
     remoteSetupTitle: 'ఇప్పటికే ఉన్న OpenAmer కు కనెక్ట్ అవ్వండి',
-    remoteSetupDesc: 'మీ గేట్వే URL ను నమోదు చేయండి. టోకెన్ లేదా బ్రౌజర్ సైన్-ఇన్ అవసరమా అని OpenAmer Desktop గుర్తిస్తుంది.',
+    remoteSetupDesc:
+      'మీ గేట్వే URL ను నమోదు చేయండి. టోకెన్ లేదా బ్రౌజర్ సైన్-ఇన్ అవసరమా అని OpenAmer Desktop గుర్తిస్తుంది.',
     remoteUrlTitle: 'గేట్వే URL',
     remoteUrlDesc: 'OpenAmer గేట్వే యొక్క బేస్ URL ను ఉపయోగించండి; రిమోట్ అయినప్పుడు https:// కూడా చేర్చండి.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2170,8 +2238,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'ఇన్‌స్టాలేషన్ విఫలమైంది',
     settingUpTitle: 'OpenAmer ఏజెంట్ సెటప్ అవుతోంది',
     finishingTitle: 'ముగుస్తోంది',
-    failedDesc: 'ఇన్‌స్టాల్ దశల్లో ఒకటి విఫలమైంది. Windowsలో, మరో OpenAmer CLI లేదా డెస్క్‌టాప్ ఇన్‌స్టాన్స్ నడుస్తుంటే ఇది జరగవచ్చు. నడుస్తున్న OpenAmer ఇన్‌స్టాన్స్‌లను ఆపి, మళ్లీ ప్రయత్నించండి. పూర్తి ట్రాన్స్‌క్రిప్ట్ కోసం క్రింది వివరాలు లేదా డెస్క్‌టాప్ లాగ్ చూడండి.',
-    activeDesc: 'ఇది ఒకసారి చేసే సెటప్. OpenAmer ఇన్‌స్టాలర్ డిపెండెన్సీలను డౌన్‌లోడ్ చేస్తూ మీ మెషీన్‌ను కాన్ఫిగర్ చేస్తోంది. తర్వాతి లాంచ్‌లు ఈ దశను దాటవేస్తాయి.',
+    failedDesc:
+      'ఇన్‌స్టాల్ దశల్లో ఒకటి విఫలమైంది. Windowsలో, మరో OpenAmer CLI లేదా డెస్క్‌టాప్ ఇన్‌స్టాన్స్ నడుస్తుంటే ఇది జరగవచ్చు. నడుస్తున్న OpenAmer ఇన్‌స్టాన్స్‌లను ఆపి, మళ్లీ ప్రయత్నించండి. పూర్తి ట్రాన్స్‌క్రిప్ట్ కోసం క్రింది వివరాలు లేదా డెస్క్‌టాప్ లాగ్ చూడండి.',
+    activeDesc:
+      'ఇది ఒకసారి చేసే సెటప్. OpenAmer ఇన్‌స్టాలర్ డిపెండెన్సీలను డౌన్‌లోడ్ చేస్తూ మీ మెషీన్‌ను కాన్ఫిగర్ చేస్తోంది. తర్వాతి లాంచ్‌లు ఈ దశను దాటవేస్తాయి.',
     fetchingManifest: 'ఇన్‌స్టాలర్ మానిఫెస్ట్‌ను పొందుతోంది...',
     error: 'లోపం',
     hideOutput: 'ఇన్‌స్టాలర్ అవుట్‌పుట్ దాచండి',
@@ -2183,13 +2253,14 @@ Leave blank to keep the ${mode} default.`,
     copiedOutput: 'కాపీ అయింది!',
     copyOutput: 'అవుట్‌పుట్ కాపీ చేయండి',
     reloadRetry: 'మళ్లీ లోడ్ చేసి ప్రయత్నించండి',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
     signInWith: provider => `Sign in with ${provider}`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'OpenAmer Agentతో మిమ్మల్ని సెటప్ చేద్దాం',
@@ -2209,28 +2280,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'డైరెక్ట్ మోడల్ API',
-        description: 'Fireworks AI హోస్ట్ చేసిన మోడల్‌లకు నేరుగా యాక్సెస్.',
+        description: 'Fireworks AI హోస్ట్ చేసిన మోడల్‌లకు నేరుగా యాక్సెస్.'
       },
       openrouter: {
         short: 'ఒక కీ, అనేక మోడల్‌లు',
-        description: 'ఒకే కీ వెనుక వందల మోడల్‌లను హోస్ట్ చేస్తుంది. కొత్త ఇన్‌స్టాల్‌లకు మంచి డిఫాల్ట్.',
+        description: 'ఒకే కీ వెనుక వందల మోడల్‌లను హోస్ట్ చేస్తుంది. కొత్త ఇన్‌స్టాల్‌లకు మంచి డిఫాల్ట్.'
       },
       openai: {
         short: 'GPT-తరగతి మోడల్‌లు',
-        description: 'OpenAI మోడల్‌లకు నేరుగా యాక్సెస్.',
+        description: 'OpenAI మోడల్‌లకు నేరుగా యాక్సెస్.'
       },
       gemini: {
         short: 'Gemini మోడళ్లు',
-        description: 'Google Gemini మోడళ్లకు నేరుగా యాక్సెస్.',
+        description: 'Google Gemini మోడళ్లకు నేరుగా యాక్సెస్.'
       },
       xai: {
         short: 'Grok మోడళ్లు',
-        description: 'xAI Grok మోడళ్లకు నేరుగా యాక్సెస్.',
+        description: 'xAI Grok మోడళ్లకు నేరుగా యాక్సెస్.'
       },
       local: {
         short: 'స్వీయ-హోస్టెడ్',
-        description: 'OpenAmerను స్థానిక లేదా స్వీయ-హోస్టెడ్ OpenAI-అనుకూల ఎండ్పాయింట్ (vLLM, llama.cpp, Ollama, మొదలైనవి) వైపు చూపించండి.',
-      },
+        description:
+          'OpenAmerను స్థానిక లేదా స్వీయ-హోస్టెడ్ OpenAI-అనుకూల ఎండ్పాయింట్ (vLLM, llama.cpp, Ollama, మొదలైనవి) వైపు చూపించండి.'
+      }
     },
     backToSignIn: 'సైన్ ఇన్కు తిరిగి వెళ్లండి',
     getKey: 'కీ పొందండి',
@@ -2243,7 +2315,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'సైన్ ఇన్ చేయడానికి మీ బ్రౌజర్ను తెరుస్తుంది, తర్వాత ఇక్కడ కొనసాగుతుంది',
       device_code: 'మీ బ్రౌజర్లో ధృవీకరణ పేజీని తెరుస్తుంది — OpenAmer స్వయంచాలకంగా కనెక్ట్ అవుతుంది',
-      external: 'మీ టెర్మినల్లో ఒకసారి సైన్ ఇన్ చేయండి, తర్వాత చాట్కు తిరిగి రండి',
+      external: 'మీ టెర్మినల్లో ఒకసారి సైన్ ఇన్ చేయండి, తర్వాత చాట్కు తిరిగి రండి'
     },
     signInFailed: 'సైన్-ఇన్ విఫలమైంది. మళ్లీ ప్రయత్నించండి.',
     pickDifferentProvider: 'వేరే ప్రొవైడర్ను ఎంచుకోండి',
@@ -2268,11 +2340,13 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'మోడల్ మార్చండి',
@@ -2288,13 +2362,13 @@ Leave blank to keep the ${mode} default.`,
     free: 'ఉచిత',
     freeTier: 'ఉచిత టియర్',
     priceTitle: 'మిలియన్ టోకెన్లకు ఇన్‌పుట్ / అవుట్‌పుట్ ధర',
-    wasPrice: 'ఉండేది',
+    wasPrice: 'ఉండేది'
   },
   modelVisibility: {
     title: 'మోడల్స్',
     search: 'మోడల్స్ వెతకండి',
     noAuthenticatedProviders: 'ధృవీకరించిన ప్రొవైడర్లు లేరు.',
-    addProvider: 'ప్రొవైడర్‌ను జోడించండి…',
+    addProvider: 'ప్రొవైడర్‌ను జోడించండి…'
   },
   shell: {
     windowControls: 'విండో నియంత్రణలు',
@@ -2305,7 +2379,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'మోడల్స్ ఏవీ కనుగొనబడలేదు',
       editModels: 'మోడల్స్‌ను సవరించండి…',
       refreshModels: 'మోడల్స్‌ను రిఫ్రెష్ చేయండి',
-      fast: 'వేగవంతం',
+      fast: 'వేగవంతం'
     },
     modelOptions: {
       noOptions: 'ఈ మోడల్‌కు ఎంపికలు లేవు',
@@ -2321,7 +2395,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'గరిష్ఠం',
       ultra: 'అల్ట్రా',
       updateFailed: 'మోడల్ ఎంపిక నవీకరణ విఫలమైంది',
-      fastFailed: 'వేగవంత మోడ్ నవీకరణ విఫలమైంది',
+      fastFailed: 'వేగవంత మోడ్ నవీకరణ విఫలమైంది'
     },
     gatewayMenu: {
       gateway: 'గేట్‌వే',
@@ -2336,7 +2410,7 @@ Leave blank to keep the ${mode} default.`,
       recentActivity: 'ఇటీవలి కార్యకలాపం',
       viewAllLogs: 'అన్ని లాగ్లను చూడండి →',
       messagingPlatforms: 'మెసేజింగ్ ప్లాట్ఫారమ్‌లు',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'ఆమోద మోడ్',
@@ -2346,7 +2420,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'చర్యలను స్వయంచాలకంగా అంచనా వేసి, అవసరమైనప్పుడు అడగండి',
       off: 'ఆఫ్',
       offDescription: 'ఆమోద ప్రాంప్ట్‌లు లేకుండా అమలు చేయండి',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'తెలియదు',
@@ -2386,19 +2460,21 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'సబ్ఏజెంట్ నిర్వచనాలు',
           system_prompt: 'సిస్టమ్ ప్రాంప్ట్',
           tool_definitions: 'టూల్ నిర్వచనాలు',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'ఇంకా కాంటెక్స్ట్ డేటా లేదు',
         loading: 'బ్రేక్డౌన్ లోడ్ అవుతోంది…',
         title: 'కాంటెక్స్ట్ వినియోగం',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'కాంటెక్స్ట్ వినియోగ బ్రేక్డౌన్ తెరవండి',
       session: 'సెషన్',
       runtimeSessionElapsed: 'రన్టైమ్ సెషన్ గడిచిన సమయం',
-      yoloOn: 'YOLO ఆన్ — ప్రమాదకర ఆదేశాలను స్వయంచాలకంగా ఆమోదిస్తోంది. ఆఫ్ చేయడానికి క్లిక్ చేయండి. Shift+click దాన్ని గ్లోబల్గా టోగుల్ చేస్తుంది.',
-      yoloOff: 'YOLO ఆఫ్ — ప్రమాదకర ఆదేశాలను స్వయంచాలకంగా ఆమోదించడానికి క్లిక్ చేయండి. Shift+click దాన్ని గ్లోబల్గా టోగుల్ చేస్తుంది.',
+      yoloOn:
+        'YOLO ఆన్ — ప్రమాదకర ఆదేశాలను స్వయంచాలకంగా ఆమోదిస్తోంది. ఆఫ్ చేయడానికి క్లిక్ చేయండి. Shift+click దాన్ని గ్లోబల్గా టోగుల్ చేస్తుంది.',
+      yoloOff:
+        'YOLO ఆఫ్ — ప్రమాదకర ఆదేశాలను స్వయంచాలకంగా ఆమోదించడానికి క్లిక్ చేయండి. Shift+click దాన్ని గ్లోబల్గా టోగుల్ చేస్తుంది.',
       modelNone: 'ఏదీ లేదు',
       noModel: 'మోడల్ లేదు',
       switchModel: 'మోడల్ మార్చండి',
@@ -2421,8 +2497,8 @@ Leave blank to keep the ${mode} default.`,
       failed: count => `${count} failed`,
       running: count => `${count} running`,
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'కుడి సైడ్‌బార్',
@@ -2458,7 +2534,7 @@ Leave blank to keep the ${mode} default.`,
     addToChat: 'చాట్‌కు జోడించండి',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'ప్రివ్యూ',
@@ -2487,7 +2563,8 @@ Leave blank to keep the ${mode} default.`,
     editing: 'సవరిస్తోంది',
     unsavedChanges: 'సేవ్ చేయని మార్పులు',
     diskChangedTitle: 'డిస్క్‌లో ఫైల్ మారింది',
-    diskChangedBody: 'మీరు తెరిచిన తర్వాత ఈ ఫైల్ మారింది. మీ వెర్షన్‌తో దాన్ని ఓవర్‌రైట్ చేయాలా, లేదా మీ సవరణలను విస్మరించి మళ్లీ లోడ్ చేయాలా?',
+    diskChangedBody:
+      'మీరు తెరిచిన తర్వాత ఈ ఫైల్ మారింది. మీ వెర్షన్‌తో దాన్ని ఓవర్‌రైట్ చేయాలా, లేదా మీ సవరణలను విస్మరించి మళ్లీ లోడ్ చేయాలా?',
     overwrite: 'ఓవర్‌రైట్ చేయి',
     discardReload: 'విస్మరించి & మళ్లీ లోడ్ చేయి',
     console: {
@@ -2508,7 +2585,7 @@ Leave blank to keep the ${mode} default.`,
       sentTitle: 'చాట్‌కు పంపబడింది',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'ప్రివ్యూ యాప్ బూట్ కాలేదు',
@@ -2529,9 +2606,11 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'ప్రివ్యూను ఇప్పుడు మళ్లీ లోడ్ చేస్తోంది.',
       restartFailedTitle: 'ప్రివ్యూ పునఃప్రారంభం విఫలమైంది',
       restartFailedMessage: 'OpenAmer సర్వర్ను పునఃప్రారంభించలేకపోయింది.',
-      stillWorking: 'OpenAmer ఇప్పటికీ పని చేస్తోంది, కానీ పునఃప్రారంభ ఫలితం ఇంకా రాలేదు. సర్వర్ ఆదేశం ఫోర్గ్రౌండ్లో నడుస్తూ ఉండవచ్చు.',
+      stillWorking:
+        'OpenAmer ఇప్పటికీ పని చేస్తోంది, కానీ పునఃప్రారంభ ఫలితం ఇంకా రాలేదు. సర్వర్ ఆదేశం ఫోర్గ్రౌండ్లో నడుస్తూ ఉండవచ్చు.',
       workspaceReloading: 'వర్క్స్పేస్ మారింది, ప్రివ్యూను మళ్లీ లోడ్ చేస్తోంది',
-      moduleMimeDescription: 'మాడ్యూల్ స్క్రిప్ట్లు తప్పు MIME రకంతో అందించబడుతున్నాయి. సాధారణంగా ఇది ప్రాజెక్ట్ డెవ్ సర్వర్కు బదులుగా స్టాటిక్ ఫైల్ సర్వర్ Vite/React యాప్ను అందిస్తున్నట్లు అర్థం.',
+      moduleMimeDescription:
+        'మాడ్యూల్ స్క్రిప్ట్లు తప్పు MIME రకంతో అందించబడుతున్నాయి. సాధారణంగా ఇది ప్రాజెక్ట్ డెవ్ సర్వర్కు బదులుగా స్టాటిక్ ఫైల్ సర్వర్ Vite/React యాప్ను అందిస్తున్నట్లు అర్థం.',
       unreachableDescription: 'ప్రివ్యూ పేజీకి చేరుకోవడం సాధ్యపడలేదు.',
       fallbackTitle: 'ప్రివ్యూ',
       lookingRestart: taskId => `OpenAmer is looking for a preview server to restart (${taskId})`,
@@ -2542,13 +2621,13 @@ Leave blank to keep the ${mode} default.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     closeTab: label => `Close ${label}`,
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   assistant: {
     thread: {
@@ -2566,7 +2645,8 @@ Leave blank to keep the ${mode} default.`,
       restoreCheckpoint: 'చెక్‌పాయింట్‌ను పునరుద్ధరించు',
       restoreFromHere: 'చెక్‌పాయింట్‌ను పునరుద్ధరించు — ఈ ప్రాంప్ట్ నుండి మళ్లీ అమలు చేయి',
       restoreTitle: 'ఈ చెక్‌పాయింట్‌కు పునరుద్ధరించాలా?',
-      restoreBody: 'ఈ ప్రాంప్ట్ తర్వాత ఉన్నదంతా సంభాషణ నుండి తీసివేయబడుతుంది, మరియు ప్రాంప్ట్ ఇక్కడి నుండి మళ్లీ అమలవుతుంది.',
+      restoreBody:
+        'ఈ ప్రాంప్ట్ తర్వాత ఉన్నదంతా సంభాషణ నుండి తీసివేయబడుతుంది, మరియు ప్రాంప్ట్ ఇక్కడి నుండి మళ్లీ అమలవుతుంది.',
       restoreConfirm: 'పునరుద్ధరించి మళ్లీ అమలు చేయి',
       restoreNext: 'తదుపరి చెక్‌పాయింట్‌ను పునరుద్ధరించు',
       goForward: 'ముందుకు వెళ్లు',
@@ -2575,7 +2655,8 @@ Leave blank to keep the ${mode} default.`,
       loadingSession: 'Loading session',
       showEarlier: 'Show earlier messages',
       loadingResponse: 'OpenAmer is loading a response',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Thinking',
@@ -2583,7 +2664,7 @@ Leave blank to keep the ${mode} default.`,
       yesterday: time => `Yesterday, ${time}`,
       copy: 'Copy',
       refresh: 'Refresh',
-      moreActions: 'More actions',
+      moreActions: 'More actions'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer గేట్‌వే కనెక్ట్ కాలేదు',
@@ -2597,7 +2678,8 @@ Leave blank to keep the ${mode} default.`,
       reject: 'తిరస్కరించు',
       alwaysTitle: 'ఈ కమాండ్‌ను ఎల్లప్పుడూ అనుమతించాలా?',
       alwaysAllow: 'ఎల్లప్పుడూ అనుమతించు',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
       notReady: 'స్పష్టీకరణ అభ్యర్థన ఇంకా సిద్ధంగా లేదు',
@@ -2611,7 +2693,7 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'కొనసాగించు',
       lateAnswerTip: 'ఈ సమాధానాన్ని తదుపరి సందేశంగా ముసాయిదా చేయండి',
       lateAnswerHint: 'ఈ ప్రాంప్ట్ ఇక వేచి లేదు. దీన్ని తదుపరి సందేశంగా ముసాయిదా చేయడానికి ఎంపికను ఎంచుకోండి.',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     tool: {
       code: 'కోడ్',
@@ -2636,113 +2718,113 @@ Leave blank to keep the ${mode} default.`,
         browser_fill: {
           pendingAction: 'నింపుతోంది',
           done: 'Filled form field',
-          pending: 'Filling form field',
+          pending: 'Filling form field'
         },
         browser_navigate: {
           done: 'పేజీ తెరవబడింది',
           pending: 'పేజీ తెరుస్తోంది',
-          pendingAction: 'తెరుస్తోంది',
+          pendingAction: 'తెరుస్తోంది'
         },
         browser_snapshot: {
           done: 'పేజీ స్నాప్షాట్ క్యాప్చర్ అయింది',
           pending: 'పేజీ స్నాప్షాట్ క్యాప్చర్ చేస్తోంది',
-          pendingAction: 'క్యాప్చర్ చేస్తోంది',
+          pendingAction: 'క్యాప్చర్ చేస్తోంది'
         },
         browser_take_screenshot: {
           done: 'స్క్రీన్షాట్ క్యాప్చర్ అయింది',
           pending: 'స్క్రీన్షాట్ క్యాప్చర్ చేస్తోంది',
-          pendingAction: 'క్యాప్చర్ చేస్తోంది',
+          pendingAction: 'క్యాప్చర్ చేస్తోంది'
         },
         browser_type: {
           done: 'పేజీలో టైప్ చేయబడింది',
           pending: 'పేజీలో టైప్ చేస్తోంది',
-          pendingAction: 'టైప్ చేస్తోంది',
+          pendingAction: 'టైప్ చేస్తోంది'
         },
         clarify: {
           done: 'ప్రశ్న అడిగారు',
           pending: 'ప్రశ్న అడుగుతోంది',
-          pendingAction: 'అడుగుతోంది',
+          pendingAction: 'అడుగుతోంది'
         },
         cronjob: {
           done: 'క్రాన్ జాబ్',
           pending: 'క్రాన్ జాబ్ను షెడ్యూల్ చేస్తోంది',
-          pendingAction: 'షెడ్యూల్ చేస్తోంది',
+          pendingAction: 'షెడ్యూల్ చేస్తోంది'
         },
         edit_file: {
           done: 'ఫైల్ సవరించబడింది',
           pending: 'ఫైల్ సవరిస్తోంది',
-          pendingAction: 'సవరిస్తోంది',
+          pendingAction: 'సవరిస్తోంది'
         },
         execute_code: {
           done: 'కోడ్ అమలైంది',
           pending: 'స్క్రిప్ట్ రాయడం',
-          pendingAction: 'స్క్రిప్ట్ రాయడం',
+          pendingAction: 'స్క్రిప్ట్ రాయడం'
         },
         image_generate: {
           done: 'చిత్రం సృష్టించబడింది',
           pending: 'చిత్రం సృష్టిస్తోంది',
-          pendingAction: 'సృష్టిస్తోంది',
+          pendingAction: 'సృష్టిస్తోంది'
         },
         list_files: {
           done: 'ఫైల్‌లు జాబితా చేయబడ్డాయి',
           pending: 'ఫైల్‌లు జాబితా చేస్తోంది',
-          pendingAction: 'జాబితా చేస్తోంది',
+          pendingAction: 'జాబితా చేస్తోంది'
         },
         patch: {
           done: 'ఫైల్ ప్యాచ్ చేయబడింది',
           pending: 'ఫైల్ ప్యాచ్ చేస్తోంది',
-          pendingAction: 'ప్యాచ్ చేస్తోంది',
+          pendingAction: 'ప్యాచ్ చేస్తోంది'
         },
         read_file: {
           done: 'ఫైల్ చదవబడింది',
           pending: 'ఫైల్ చదువుతోంది',
-          pendingAction: 'చదువుతోంది',
+          pendingAction: 'చదువుతోంది'
         },
         search_files: {
           done: 'ఫైల్‌లు శోధించబడ్డాయి',
           pending: 'ఫైల్‌లు శోధిస్తోంది',
-          pendingAction: 'శోధిస్తోంది',
+          pendingAction: 'శోధిస్తోంది'
         },
         write_file: {
           pendingAction: 'సవరణ',
           done: 'Edited file',
-          pending: 'Editing file',
+          pending: 'Editing file'
         },
         browser_click: {
           done: 'Clicked page element',
           pending: 'Clicking page element',
-          pendingAction: 'Clicking',
+          pendingAction: 'Clicking'
         },
         session_search_recall: {
           done: 'Searched session history',
           pending: 'Searching session history',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         terminal: {
           done: 'Ran command',
           pending: 'Running command',
-          pendingAction: 'Running',
+          pendingAction: 'Running'
         },
         todo: {
           done: 'Updated todos',
           pending: 'Updating todos',
-          pendingAction: 'Updating',
+          pendingAction: 'Updating'
         },
         vision_analyze: {
           done: 'Analyzed image',
           pending: 'Analyzing image',
-          pendingAction: 'Analyzing',
+          pendingAction: 'Analyzing'
         },
         web_extract: {
           done: 'Read webpage',
           pending: 'Reading webpage',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         web_search: {
           done: 'Searched web',
           pending: 'Searching web',
-          pendingAction: 'Searching',
-        },
+          pendingAction: 'Searching'
+        }
       },
       recoveredMany: count => `Recovered after ${count} failed steps`,
       failedMany: count => `${count} steps failed`,
@@ -2759,11 +2841,11 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Ran',
         running: 'Running',
         ranCode: 'Ran code',
-        runningCode: 'Scripting',
+        runningCode: 'Scripting'
       },
       prefixes: {
         browser: 'Browser',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2771,20 +2853,21 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer గేట్‌వే కనెక్ట్ చేయబడలేదు',
     sudoSendFailed: 'sudo పాస్‌వర్డ్ పంపడం సాధ్యపడలేదు',
     secretSendFailed: 'రహస్యం పంపడం సాధ్యపడలేదు',
     sudoTitle: 'నిర్వాహక పాస్‌వర్డ్',
-    sudoDesc: 'అధికారిక ఆదేశాన్ని అమలు చేయడానికి OpenAmer కి మీ sudo పాస్‌వర్డ్ అవసరం. ఇది మీ స్థానిక ఏజెంట్‌కు మాత్రమే పంపబడుతుంది.',
+    sudoDesc:
+      'అధికారిక ఆదేశాన్ని అమలు చేయడానికి OpenAmer కి మీ sudo పాస్‌వర్డ్ అవసరం. ఇది మీ స్థానిక ఏజెంట్‌కు మాత్రమే పంపబడుతుంది.',
     sudoPlaceholder: 'sudo పాస్‌వర్డ్',
     secretTitle: 'రహస్యం అవసరం',
     secretDesc: 'కొనసాగడానికి OpenAmer కి క్రెడెన్షియల్ అవసరం.',
-    secretPlaceholder: 'రహస్య విలువ',
+    secretPlaceholder: 'రహస్య విలువ'
   },
   desktop: {
     audioReadFailed: 'రికార్డ్ చేసిన ఆడియో చదవడం సాధ్యపడలేదు',
@@ -2824,14 +2907,15 @@ Leave blank to keep the ${mode} default.`,
       timedOut: 'గేట్‌వే కోసం వేచి ఉండే సమయం ముగిసింది. `openamer gateway` నడుస్తోందా?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     skillCommandsAvailable: count => `${count} skill commands available.`,
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Could not toggle YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     unknownProfile: 'Unknown profile',
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
@@ -2842,7 +2926,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'Edit failed',
     resumeFailed: 'Resume failed',
     resumeStrandedTitle: "Couldn't load this session",
-    resumeStrandedBody: 'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
+    resumeStrandedBody:
+      'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
     resumeRetry: 'Retry',
     nothingToBranch: 'Nothing to branch',
     branchNeedsChat: 'Start or resume a chat before branching.',
@@ -2853,31 +2938,31 @@ Leave blank to keep the ${mode} default.`,
     branchFailed: 'Branch failed',
     deleteFailed: 'Delete failed',
     archived: 'Archived',
-    archiveFailed: 'Archive failed',
+    archiveFailed: 'Archive failed'
   },
   errors: {
     genericFailure: 'ఏదో తప్పు జరిగింది',
     boundaryTitle: 'ఇంటర్‌ఫేస్‌లో ఏదో విరిగింది',
     boundaryDesc: 'వీక్షణలో ఊహించని లోపం ఎదురైంది. మీ చాట్‌లు మరియు సెట్టింగ్‌లు సురక్షితంగా ఉన్నాయి.',
     reloadWindow: 'విండోను మళ్లీ లోడ్ చేయండి',
-    openLogs: 'లాగ్‌లను తెరవండి',
+    openLogs: 'లాగ్‌లను తెరవండి'
   },
   ui: {
     search: {
-      clear: 'శోధనను క్లియర్ చేయండి',
+      clear: 'శోధనను క్లియర్ చేయండి'
     },
     pagination: {
       label: 'పేజినేషన్',
       previous: 'మునుపటి',
       previousAria: 'మునుపటి పేజీకి వెళ్లండి',
       next: 'తదుపరి',
-      nextAria: 'తదుపరి పేజీకి వెళ్లండి',
+      nextAria: 'తదుపరి పేజీకి వెళ్లండి'
     },
     sidebar: {
       title: 'సైడ్‌బార్',
       description: 'మొబైల్ సైడ్‌బార్‌ను చూపిస్తుంది.',
-      toggle: 'సైడ్‌బార్‌ను టోగుల్ చేయండి',
-    },
+      toggle: 'సైడ్‌బార్‌ను టోగుల్ చేయండి'
+    }
   },
   common: {
     apply: 'Apply',
@@ -2918,10 +3003,11 @@ Leave blank to keep the ${mode} default.`,
     update: 'Update',
     tryHint: term => `Try “${term}”`,
     on: 'On',
-    off: 'Off',
+    off: 'Off'
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
   },
   billingBlock: {
     titleOpenamer: 'Out of OpenAmer credits',
@@ -2929,7 +3015,7 @@ Leave blank to keep the ${mode} default.`,
     fallbackMessage: 'Your account is out of credits. Add credits to keep going.',
     openBilling: 'Open billing',
     addCredits: 'Add credits',
-    dismiss: 'Dismiss',
+    dismiss: 'Dismiss'
   },
   zones: {
     showHeader: 'Show header',
@@ -2937,7 +3023,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Minimize',
     restore: 'Restore',
     closeRunningTitle: 'Close running tab?',
-    closeRunningBody: 'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
+    closeRunningBody:
+      'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
     closeRunningConfirm: 'Close tab',
     closeOthers: 'Close others',
     closeToRight: 'Close to the right',
@@ -2974,6 +3061,6 @@ Leave blank to keep the ${mode} default.`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
     saveApply: 'Save & apply',
     notExpressible: 'this arrangement interlocks (pinwheel) — not expressible as nested splits yet',
-    zoneCount: count => `${count} zones`,
-  },
+    zoneCount: count => `${count} zones`
+  }
 })

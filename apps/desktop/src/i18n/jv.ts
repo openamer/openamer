@@ -45,7 +45,7 @@ export const jv = defineLocale({
     update: 'Update',
     tryHint: term => `Coba “${term}”`,
     on: 'Urip',
-    off: 'Mati',
+    off: 'Mati'
   },
   boot: {
     failure: {
@@ -54,10 +54,12 @@ export const jv = defineLocale({
       signInFailed: 'Masuk gagal',
       signInToRemoteGateway: 'Masuk menyang gateway adoh',
       identityProvider: 'penyedia identitas sampeyan',
-      title: "OpenAmer ora bisa miwiti",
-      description: "Gateway latar ora urip. Coba salah siji langkah pemulihan ing ngisor iki. Ora ana sing mbusak obrolan utawa setelanmu.",
+      title: 'OpenAmer ora bisa miwiti',
+      description:
+        'Gateway latar ora urip. Coba salah siji langkah pemulihan ing ngisor iki. Ora ana sing mbusak obrolan utawa setelanmu.',
       remoteTitle: 'Kudu mlebu menyang gateway adoh',
-      remoteDescription: 'Sesi gateway adohmu wis entek. Mlebu maneh supaya bisa nyambung. Ora ana sing mbusak obrolan utawa setelanmu.',
+      remoteDescription:
+        'Sesi gateway adohmu wis entek. Mlebu maneh supaya bisa nyambung. Ora ana sing mbusak obrolan utawa setelanmu.',
       retry: 'Coba maneh',
       repairInstall: 'Ndandani instalasi',
       useLocalGateway: 'Gunakake gateway lokal',
@@ -65,14 +67,16 @@ export const jv = defineLocale({
       back: 'Balik',
       openLogs: 'Bukak log',
       repairHint: 'Ndandani bakal nglakokake installer maneh lan bisa butuh sawetara menit ing mesin anyar.',
-      remoteSignInHint: signInLabel => `Metu saka sesi browser adoh sing disimpen, banjur mbukak ${signInLabel}. Gunakake gateway lokal yen pengin pindhah menyang backend bawaan.`,
+      remoteSignInHint: signInLabel =>
+        `Metu saka sesi browser adoh sing disimpen, banjur mbukak ${signInLabel}. Gunakake gateway lokal yen pengin pindhah menyang backend bawaan.`,
       signOutAndSignIn: 'Metu & mlebu',
-      remoteFailureHint: 'Priksa URL gateway lan status mlebu ing Setelan gateway, utawa pindhah menyang gateway lokal.',
+      remoteFailureHint:
+        'Priksa URL gateway lan status mlebu ing Setelan gateway, utawa pindhah menyang gateway lokal.',
       hideRecentLogs: 'Ndhelikake log pungkasan',
       showRecentLogs: 'Tampilake log pungkasan',
       signedInTitle: 'Wis mlebu',
       signedInMessage: 'Nyambung maneh menyang gateway adoh…',
-      signInWithProvider: provider => `Mlebu nganggo ${provider}`,
+      signInWithProvider: provider => `Mlebu nganggo ${provider}`
     },
     ready: 'OpenAmer Desktop wis siyap',
     desktopBootFailedWithMessage: message => `Desktop gagal miwiti: ${message}`,
@@ -81,7 +85,7 @@ export const jv = defineLocale({
       loadingSettings: 'Ngemot setelan OpenAmer',
       loadingSessions: 'Ngemot sesi pungkasan',
       startingDesktopConnection: 'Miwiti sambungan desktop',
-      startingOpenAmerDesktop: 'Miwiti OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Miwiti OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Proses latar OpenAmer wis mandheg.',
@@ -90,8 +94,8 @@ export const jv = defineLocale({
       desktopBootFailed: 'Desktop gagal miwiti',
       gatewayConnectionLost: 'Sambungan menyang gateway ilang',
       gatewaySignInRequired: 'Kudu mlebu menyang gateway',
-      ipcBridgeUnavailable: 'Jembatan IPC desktop ora kasedhiya.',
-    },
+      ipcBridgeUnavailable: 'Jembatan IPC desktop ora kasedhiya.'
+    }
   },
   notifications: {
     region: 'Pemberitahuan',
@@ -103,7 +107,8 @@ export const jv = defineLocale({
     copyDetail: 'Salin rincian',
     copyDetailFailed: 'Ora bisa nyalin rincian pemberitahuan',
     backendOutOfDateTitle: 'Backend wis ketinggalan jaman',
-    backendOutOfDateMessage: 'Backend OpenAmer sampeyan luwih lawas tinimbang versi desktop iki lan bisa uga ora bisa digunakake kanthi bener. Update supaya padha.',
+    backendOutOfDateMessage:
+      'Backend OpenAmer sampeyan luwih lawas tinimbang versi desktop iki lan bisa uga ora bisa digunakake kanthi bener. Update supaya padha.',
     installMethodUnsupportedTitle: 'Metode instalasi ora didhukung',
     updateReadyTitle: 'Update siap',
     seeWhatsNew: 'Deleng apa sing anyar',
@@ -111,11 +116,12 @@ export const jv = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT butuh ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs nolak API key (401).',
       gatewayAuthFailed: 'Autentikasi gateway gagal — priksa API_SERVER_KEY.',
-      methodNotAllowed: 'Backend desktop nolak panjaluk kasebut (405 Method Not Allowed). Coba restart OpenAmer Desktop.',
+      methodNotAllowed:
+        'Backend desktop nolak panjaluk kasebut (405 Method Not Allowed). Coba restart OpenAmer Desktop.',
       microphonePermission: 'Idin mikropon ditolak.',
       openaiRejectedApiKey: 'OpenAI nolak API key.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI nolak API key (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS butuh VOICE_TOOLS_OPENAI_KEY utawa OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS butuh VOICE_TOOLS_OPENAI_KEY utawa OPENAI_API_KEY.'
     },
     more: count => `${count} maneh ${count === 1 ? 'notification' : 'notifications'}`,
     updateOpenAmer: 'Anyari OpenAmer',
@@ -137,7 +143,7 @@ export const jv = defineLocale({
       transcriptionFailed: 'Transkripsi swara gagal',
       transcriptionUnavailable: 'Transkripsi swara durung kasedhiya.',
       tryRecordingAgain: 'Coba ngrekam maneh.',
-      unavailable: 'Swara ora kasedhiya',
+      unavailable: 'Swara ora kasedhiya'
     },
     native: {
       approvalTitle: 'Butuh persetujuan',
@@ -150,8 +156,8 @@ export const jv = defineLocale({
       turnErrorTitle: 'Giliran gagal',
       backgroundDoneTitle: 'Tugas latar wis rampung',
       backgroundFailedTitle: 'Tugas latar gagal',
-      creditsTitle: 'Kredit',
-    },
+      creditsTitle: 'Kredit'
+    }
   },
   keybinds: {
     actions: {
@@ -231,7 +237,7 @@ export const jv = defineLocale({
       'session.new': 'Sesi anyar',
       'session.newTab': 'Tab sesi anyar',
       'session.newWindow': 'Jendhela anyar',
-      'session.next': 'Sesi sabanjure',
+      'session.next': 'Sesi sabanjure'
     },
     title: 'Pintasan papan tombol',
     subtitle: open => `Klik pintasan kanggo ngganti · ${open} mbukak panel iki maneh.`,
@@ -247,8 +253,8 @@ export const jv = defineLocale({
       profiles: 'Profil',
       session: 'Sesi',
       navigation: 'Navigasi',
-      view: 'Tampilan',
-    },
+      view: 'Tampilan'
+    }
   },
   language: {
     label: 'Basa',
@@ -257,7 +263,7 @@ export const jv = defineLocale({
     saveError: 'Gagal nganyari basa',
     switchTo: 'Ganti basa',
     searchPlaceholder: 'Golek basa…',
-    noResults: 'Ora ana basa sing ditemokake',
+    noResults: 'Ora ana basa sing ditemokake'
   },
   settings: {
     closeSettings: 'Tutup setelan',
@@ -282,56 +288,58 @@ export const jv = defineLocale({
       about: 'Babagan',
       billing: 'Tagihan',
       notifications: 'Pemberitahuan',
-      plugins: 'Plugin',
+      plugins: 'Plugin'
     },
     plugins: {
       empty: 'Ora ana plugin desktop sing wis dipasang.',
       kinds: {
         bundled: 'terkumpul',
         disk: 'pada disk',
-        runtime: 'runtime',
+        runtime: 'runtime'
       },
       title: 'Plugin desktop',
-      blurb: 'Ekstensi UI sing dimuat ing aplikasi iki — digawa saka build, utawa diselehake ing folder desktop-plugins (kalebu sing ditulis OpenAmer). Menawa dipateni, plugin langsung dibusak saka memori lan tetep mengkono sawise restart.',
+      blurb:
+        'Ekstensi UI sing dimuat ing aplikasi iki — digawa saka build, utawa diselehake ing folder desktop-plugins (kalebu sing ditulis OpenAmer). Menawa dipateni, plugin langsung dibusak saka memori lan tetep mengkono sawise restart.',
       count: n => `${n} kepasang`,
       openFolder: 'Bukak folder plugin',
       rescan: 'Pindai maneh',
       reveal: 'Tampilake ing file manager',
       enable: 'Uripake',
       disable: 'Pateni',
-      failed: 'gagal',
+      failed: 'gagal'
     },
     notifications: {
       title: 'Pemberitahuan',
-      intro: 'Pemberitahuan desktop asli, terpisah saka toast aplikasi. Iki lokal piranti — saben komputer njaga setelan dhewe.',
+      intro:
+        'Pemberitahuan desktop asli, terpisah saka toast aplikasi. Iki lokal piranti — saben komputer njaga setelan dhewe.',
       enableAll: 'Aktifake pemberitahuan',
       enableAllDesc: 'Switch utama. Mateni iki kanggo ngendheg kabeh pemberitahuan ing ngisor.',
       focusedHint: 'Pemberitahuan rampung mung aktif nalika OpenAmer ana ing latar mburi.',
       kinds: {
         approval: {
           label: 'Butuh persetujuan',
-          description: 'Ana perintah sing nunggu persetujuan utawa penolakan sampeyan.',
+          description: 'Ana perintah sing nunggu persetujuan utawa penolakan sampeyan.'
         },
         input: {
           label: 'Butuh input',
-          description: 'OpenAmer takon pitakon utawa butuh sandhi utawa rahasia.',
+          description: 'OpenAmer takon pitakon utawa butuh sandhi utawa rahasia.'
         },
         turnDone: {
           label: 'Tanggapan siap',
-          description: 'Giliran rampung nalika OpenAmer ana ing latar mburi.',
+          description: 'Giliran rampung nalika OpenAmer ana ing latar mburi.'
         },
         turnError: {
           label: 'Giliran gagal',
-          description: 'Giliran rampung kanthi kesalahan.',
+          description: 'Giliran rampung kanthi kesalahan.'
         },
         backgroundDone: {
           label: 'Tugas latar mburi rampung',
-          description: 'Perintah terminal latar mburi rampung',
+          description: 'Perintah terminal latar mburi rampung'
         },
         credits: {
           label: 'Pemberitahuan kredit',
-          description: 'Akses kredit wis diparingi utawa dipulihake.',
-        },
+          description: 'Akses kredit wis diparingi utawa dipulihake.'
+        }
       },
       test: 'Kirim notifikasi tes',
       testTitle: 'OpenAmer',
@@ -340,7 +348,7 @@ export const jv = defineLocale({
       testUnsupported: 'Sistem iki ora ndhukung notifikasi asli.',
       completionSoundTitle: 'Sinyal Selesai',
       completionSoundDesc: 'Diputer nalika giliran agen rampung. Pilih preset lan pratinjau ing kene.',
-      completionSoundPreview: 'Pratinjau',
+      completionSoundPreview: 'Pratinjau'
     },
     sections: {
       chat: 'Obrolan',
@@ -350,7 +358,7 @@ export const jv = defineLocale({
       memory: 'Memori & Konteks',
       voice: 'Suara',
       advanced: 'Lanjutan',
-      model: 'Model',
+      model: 'Model'
     },
     searchPlaceholder: {
       about: 'Babagan OpenAmer Desktop',
@@ -358,25 +366,26 @@ export const jv = defineLocale({
       gateway: 'Koneksi Gateway...',
       keys: 'Golek kunci API...',
       mcp: 'Golek server MCP...',
-      sessions: 'Golek sesi arsip...',
+      sessions: 'Golek sesi arsip...'
     },
     modeOptions: {
       light: {
         label: 'Cahya',
-        description: 'Latar desktop cerah',
+        description: 'Latar desktop cerah'
       },
       dark: {
         label: 'Peteng',
-        description: 'Ruang kerja low-glare',
+        description: 'Ruang kerja low-glare'
       },
       system: {
         label: 'Sistem',
-        description: 'Tindakake tampilan OS',
-      },
+        description: 'Tindakake tampilan OS'
+      }
     },
     appearance: {
       title: 'Tampilan',
-      intro: 'Iki mung preferensi tampilan desktop. Mode ngontrol kecerahan; tema ngontrol palet aksen lan gaya permukaan obrolan.',
+      intro:
+        'Iki mung preferensi tampilan desktop. Mode ngontrol kecerahan; tema ngontrol palet aksen lan gaya permukaan obrolan.',
       colorMode: 'Mode Warna',
       colorModeDesc: 'Pilih mode tetep utawa ngidini OpenAmer ngetutake setelan sistem sampeyan.',
       toolViewTitle: 'Tampilan Panggilan Alat',
@@ -390,8 +399,10 @@ export const jv = defineLocale({
         turnOnFailed: 'Ora bisa nguripake pet.',
         turnOffFailed: 'Ora bisa mateni pet.',
         title: 'Pet ingon-ingon',
-        intro: 'Angkat maskot petdex animasi sing ngambang ing ndhuwur aplikasi lan nanggapi apa sing ditindakake OpenAmer — mlayu nalika piranti mlaku, bungah nalika sukses, mbesengut nalika ana kasalahan.',
-        restartHint: 'Pet butuh restart cepet — aplikasi sing lagi mlaku diwiwiti sadurunge fitur iki ditambahake. Tutup banjur bukak maneh OpenAmer, banjur bali mrene.',
+        intro:
+          'Angkat maskot petdex animasi sing ngambang ing ndhuwur aplikasi lan nanggapi apa sing ditindakake OpenAmer — mlayu nalika piranti mlaku, bungah nalika sukses, mbesengut nalika ana kasalahan.',
+        restartHint:
+          'Pet butuh restart cepet — aplikasi sing lagi mlaku diwiwiti sadurunge fitur iki ditambahake. Tutup banjur bukak maneh OpenAmer, banjur bali mrene.',
         on: 'Urip',
         off: 'Mati',
         scaleTitle: 'Ukuran',
@@ -401,7 +412,7 @@ export const jv = defineLocale({
         chooseTitle: 'Pilih pet',
         chooseDesc: 'Milih siji bakal nginstal (yen perlu) lan langsung ngaktifake.',
         searchPlaceholder: 'Golek pet…',
-        unreachable: "Ora bisa nyedhaki galeri petdex. Priksa sambunganmu banjur bukak kaca iki maneh.",
+        unreachable: 'Ora bisa nyedhaki galeri petdex. Priksa sambunganmu banjur bukak kaca iki maneh.',
         noMatch: query => `Ora ana pet sing cocog karo "${query}".`,
         installedTag: 'kepasang',
         generatedTag: 'Digawe',
@@ -410,7 +421,7 @@ export const jv = defineLocale({
         uninstall: name => `Copot instalasi ${name}`,
         delete: name => `Hapus ${name}`,
         deleteTitle: name => `Hapus ${name}?`,
-        deleteBody: "Iki mbusak pet kanthi permanen — ora bisa diinstal maneh.",
+        deleteBody: 'Iki mbusak pet kanthi permanen — ora bisa diinstal maneh.',
         deleteConfirm: 'Hapus',
         rename: name => `Ganti jeneng ${name}`,
         renameTitle: 'Ganti jeneng pet',
@@ -421,11 +432,13 @@ export const jv = defineLocale({
         uninstallFailed: slug => `Ora bisa nyopot instalasi ${slug}`,
         renameFailed: slug => `Ora bisa ngganti jeneng ${slug}`,
         exportFailed: slug => `Ora bisa ngekspor ${slug}`,
-        noneAvailable: 'Saiki ora ana pet sing bisa diuripake.',
+        noneAvailable: 'Saiki ora ana pet sing bisa diuripake.'
       },
-      uiScaleDesc: (percent: number) => `Ngatur ukuran teks lan kontrol ing kabeh aplikasi. Cmd/Ctrl karo +, - lan 0 uga bisa. Saiki: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Ngatur ukuran teks lan kontrol ing kabeh aplikasi. Cmd/Ctrl karo +, - lan 0 uga bisa. Saiki: ${percent}%.`,
       embedsTitle: 'Embed Inline',
-      embedsDesc: 'Pratinjau sugih dimuat saka situs pihak katelu (YouTube, X, …). Takon nuduhake placeholder nganti kowe ngidini siji-sijine; Tansah memuat otomatis; Pati mung nuduhake pranala biasa.',
+      embedsDesc:
+        'Pratinjau sugih dimuat saka situs pihak katelu (YouTube, X, …). Takon nuduhake placeholder nganti kowe ngidini siji-sijine; Tansah memuat otomatis; Pati mung nuduhake pranala biasa.',
       embedsAsk: 'Takon',
       embedsAlways: 'Tansah',
       embedsOff: 'Pati',
@@ -438,14 +451,15 @@ export const jv = defineLocale({
       themeDesc: 'Mung palet desktop. Mode sing dipilih ditrapake ing ndhuwur.',
       themeProfileNote: profile => `Disimpen kanggo profil ${profile} — saben profil duwe tema dhewe.`,
       installTitle: 'Instal saka VS Code',
-      installDesc: 'Tempelake id ekstensi Marketplace (contone dracula-theme.theme-dracula) kanggo ngowahi tema warnane dadi palet desktop.',
+      installDesc:
+        'Tempelake id ekstensi Marketplace (contone dracula-theme.theme-dracula) kanggo ngowahi tema warnane dadi palet desktop.',
       installPlaceholder: 'publisher.extension',
       installButton: 'Instal',
       installing: 'Nginstal…',
       installError: 'Ora bisa nginstal tema kasebut.',
       installed: name => `Wis diinstal “${name}”.`,
       removeTheme: 'Copot tema',
-      importedBadge: 'Diimpor',
+      importedBadge: 'Diimpor'
     },
     config: {
       none: 'Ora ana',
@@ -461,7 +475,7 @@ export const jv = defineLocale({
       imported: 'Konfigurasi wis diimpor',
       invalidJson: 'JSON konfigurasi ora sah',
       keepAwakeTitle: 'Jaga komputer tetep awake',
-      keepAwakeDesc: 'Aja nganti mesin turu supaya operasi overnight tetep mlaku. Tampilan bisa tetep redup.',
+      keepAwakeDesc: 'Aja nganti mesin turu supaya operasi overnight tetep mlaku. Tampilan bisa tetep redup.'
     },
     credentials: {
       pasteKey: 'Tempel kunci',
@@ -471,7 +485,7 @@ export const jv = defineLocale({
       remove: 'Singkirake',
       getKey: 'Entuk kunci',
       pasteLabelKey: label => `Tempelake kunci ${label}`,
-      saving: 'Nyimpen',
+      saving: 'Nyimpen'
     },
     about: {
       versionUnavailable: 'Versi ora kasedhiya',
@@ -488,7 +502,8 @@ export const jv = defineLocale({
       tapCheck: 'Ketuk "Priksa saiki" kanggo nggoleki pembaruan.',
       justNowSuffix: '· sakdurunge',
       automaticUpdates: 'Pembaruan otomatis',
-      automaticUpdatesDesc: 'OpenAmer mriksa pembaruan kanthi otomatis ing latar mburi lan ngandhani sampeyan nalika ana sing siap.',
+      automaticUpdatesDesc:
+        'OpenAmer mriksa pembaruan kanthi otomatis ing latar mburi lan ngandhani sampeyan nalika ana sing siap.',
       never: 'ora tau',
       justNow: 'sakdurunge',
       heading: 'OpenAmer Desktop',
@@ -498,13 +513,13 @@ export const jv = defineLocale({
       branchCommit: (branch, commit) => `Cabang ${branch} · Commit ${commit}`,
       minAgo: count => `${count} menit kepungkur`,
       hoursAgo: count => `${count} jam kepungkur`,
-      daysAgo: count => `${count} dina kepungkur`,
+      daysAgo: count => `${count} dina kepungkur`
     },
     gateway: {
       cloudNoAgents: {
         before: 'Ora ana agen sing ditemokake ing akun iki. Gawe siji ing',
         linkText: 'Portal OpenAmer',
-        after: ', banjur segar maneh.',
+        after: ', banjur segar maneh.'
       },
       cloudRefresh: 'Segar',
       cloudConnect: 'Sambung',
@@ -525,11 +540,14 @@ export const jv = defineLocale({
       signIn: 'Mlebu',
       signOut: 'Keluar',
       authTitle: 'Autentikasi',
-      authSignedInPassword: 'Gateway iki nggunakake jeneng pangguna lan sandhi. Sampeyan wis mlebu; sesi bakal otomatis dianyari.',
+      authSignedInPassword:
+        'Gateway iki nggunakake jeneng pangguna lan sandhi. Sampeyan wis mlebu; sesi bakal otomatis dianyari.',
       authSignedInOauth: 'Gateway iki nggunakake OAuth. Sampeyan wis mlebu; sesi bakal otomatis dianyari.',
-      authNeedsPassword: 'Gateway iki nggunakake jeneng pangguna lan sandhi. Mlebu kanggo ngidini aplikasi desktop iki.',
+      authNeedsPassword:
+        'Gateway iki nggunakake jeneng pangguna lan sandhi. Mlebu kanggo ngidini aplikasi desktop iki.',
       tokenTitle: 'Token sesi',
-      tokenDesc: 'Token sesi dashboard sing digunakake kanggo akses REST lan WebSocket. Kosongake supaya tetep token sing disimpen.',
+      tokenDesc:
+        'Token sesi dashboard sing digunakake kanggo akses REST lan WebSocket. Kosongake supaya tetep token sing disimpen.',
       savedToken: 'disimpen',
       pasteSessionToken: 'Tempel token sesi',
       testRemote: 'Uji jarak jauh',
@@ -546,7 +564,8 @@ export const jv = defineLocale({
       enterUrlFirst: 'Lebokake URL jarak adoh dhisik.',
       restartingTitle: 'Koneksi gateway lagi diwiwiti.',
       savedTitle: 'Setelan gateway wis disimpen.',
-      restartingMessage: 'OpenAmer Desktop bakal nyambung maneh nganggo setelan sing wis disimpen — shell tetep mbukak.',
+      restartingMessage:
+        'OpenAmer Desktop bakal nyambung maneh nganggo setelan sing wis disimpen — shell tetep mbukak.',
       savedMessage: 'Disimpen kanggo restart sabanjure.',
       reachableTitle: 'Gateway jarak adoh bisa diakses.',
       signedOutTitle: 'Wis metu.',
@@ -558,7 +577,8 @@ export const jv = defineLocale({
       applyFailed: 'Ora bisa nerapake setelan gateway.',
       saveFailed: 'Ora bisa nyimpen setelan gateway.',
       sshTitle: 'Sambung liwat SSH.',
-      sshDesc: 'OpenAmer diluncurake ing jarak adoh liwat SSH lan ditunnel menyang aplikasi iki — ora ana sing kudu diwiwiti utawa nampilake awakmu. Mbutuhake akses SSH adhedhasar kunci sing bisa digunakake menyang host.',
+      sshDesc:
+        'OpenAmer diluncurake ing jarak adoh liwat SSH lan ditunnel menyang aplikasi iki — ora ana sing kudu diwiwiti utawa nampilake awakmu. Mbutuhake akses SSH adhedhasar kunci sing bisa digunakake menyang host.',
       sshTrustHint: 'Kunci host sing ditampilake kapisan dipercaya lan dipasang; owah-owahan sabanjure gagal ditutup.',
       sshHostDesc: 'user@host, utawa alias Host saka ~/.ssh/config.',
       sshHostPick: 'Pilih host…',
@@ -567,21 +587,25 @@ export const jv = defineLocale({
       unavailableDesc: 'Jembatan IPC desktop ora nyedhiyakake setelan gateway.',
       title: 'Sambungan Gateway',
       envOverride: 'override env',
-      intro: 'OpenAmer Desktop miwiti gateway lokal dhewe minangka standar. Gunakake gateway adoh yen kowe pengin aplikasi iki ngontrol backend OpenAmer sing wis mlaku ing mesin liya utawa ing mburi proxy sing dipercaya. Pilih profil ing ngisor iki supaya duwe host adoh dhewe.',
+      intro:
+        'OpenAmer Desktop miwiti gateway lokal dhewe minangka standar. Gunakake gateway adoh yen kowe pengin aplikasi iki ngontrol backend OpenAmer sing wis mlaku ing mesin liya utawa ing mburi proxy sing dipercaya. Pilih profil ing ngisor iki supaya duwe host adoh dhewe.',
       appliesTo: 'Ditrapake kanggo',
       allProfiles: 'Kabeh profil',
       defaultConnection: 'Sambungan standar kanggo saben profil sing ora duwe override dhewe.',
-      profileConnection: profile => `Sambungan sing mung dipigunakake nalika “${profile}” dadi profil aktif. Pilih Gunakake gateway standar kanggo mbusak override.`,
+      profileConnection: profile =>
+        `Sambungan sing mung dipigunakake nalika “${profile}” dadi profil aktif. Pilih Gunakake gateway standar kanggo mbusak override.`,
       envOverrideTitle: 'Variabel lingkungan sing ngontrol sesi desktop iki.',
-      envOverrideDesc: 'Busak OPENAMER_DESKTOP_REMOTE_URL lan OPENAMER_DESKTOP_REMOTE_TOKEN supaya setelan sing disimpen ing ngisor iki dipigunakake.',
+      envOverrideDesc:
+        'Busak OPENAMER_DESKTOP_REMOTE_URL lan OPENAMER_DESKTOP_REMOTE_TOKEN supaya setelan sing disimpen ing ngisor iki dipigunakake.',
       modeTitle: 'Mode sambungan',
       localTitle: 'Gateway lokal',
       localDesc: 'Miwiti backend OpenAmer pribadi ing localhost. Iki standar lan bisa digunakake offline.',
       inheritTitle: 'Gunakake gateway standar',
-      inheritDesc: "Busak override profil iki lan gunakake sambungan standar.",
+      inheritDesc: 'Busak override profil iki lan gunakake sambungan standar.',
       remoteTitle: 'Gateway adoh',
       remoteDesc: 'Sambungake cangkang desktop iki menyang backend OpenAmer sing adoh.',
-      remoteAuthHint: 'Gateway hosted nganggo OAuth utawa jeneng panganggo lan sandhi; sing self-hosted bisa nganggo session token.',
+      remoteAuthHint:
+        'Gateway hosted nganggo OAuth utawa jeneng panganggo lan sandhi; sing self-hosted bisa nganggo session token.',
       cloudTitle: 'OpenAmer Cloud',
       cloudDesc: 'Mlebu sepisan menyang OpenAmer Cloud lan pilih agen ing akunmu — ora perlu tempel URL.',
       cloudSignInTitle: 'OpenAmer Cloud',
@@ -598,7 +622,8 @@ export const jv = defineLocale({
       cloudConnectedTo: name => `Wis nyambung menyang ${name}.`,
       cloudStatusLabel: status => `Status: ${status}`,
       signInWith: provider => `Mlebu nganggo ${provider}`,
-      authNeedsOauth: provider => `Gateway iki nganggo OAuth. Mlebu nganggo ${provider} kanggo menehi wewenang aplikasi desktop iki.`,
+      authNeedsOauth: provider =>
+        `Gateway iki nganggo OAuth. Mlebu nganggo ${provider} kanggo menehi wewenang aplikasi desktop iki.`,
       existingToken: value => `Token sing wis ana ${value}`,
       connectedTo: (baseUrl, version) => `Wis nyambung menyang ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       sshHostTitle: 'Host',
@@ -621,13 +646,16 @@ export const jv = defineLocale({
       sshReachable: (host, platform) => `Bisa digayuh: ${host} (${platform}) — OpenAmer ditemokake`,
       sshIncompleteHost: 'Isi host SSH sadurunge nyambung.',
       sshErrUnreachable: 'Ora bisa nyedhaki host kasebut liwat SSH. Priksa host, port, lan jaringanmu.',
-      sshErrAuth: 'Autentikasi SSH gagal. Muat kunci menyang ssh-agent (ssh-add) utawa setel IdentityFile ing ~/.ssh/config — OpenAmer nglakokake ssh kanthi non-interaktif.',
-      sshErrHostKey: 'Host key wis OWAH wiwit pungkasan kowe nyambung. Priksa yen iki pancen bener, banjur lakokake ssh-keygen -R <host> lan nyambung maneh.',
-      sshErrNotInstalled: 'OpenAmer ora kepasang ing host adoh. Instal ing kana (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) utawa setel path OpenAmer.',
+      sshErrAuth:
+        'Autentikasi SSH gagal. Muat kunci menyang ssh-agent (ssh-add) utawa setel IdentityFile ing ~/.ssh/config — OpenAmer nglakokake ssh kanthi non-interaktif.',
+      sshErrHostKey:
+        'Host key wis OWAH wiwit pungkasan kowe nyambung. Priksa yen iki pancen bener, banjur lakokake ssh-keygen -R <host> lan nyambung maneh.',
+      sshErrNotInstalled:
+        'OpenAmer ora kepasang ing host adoh. Instal ing kana (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) utawa setel path OpenAmer.',
       sshErrPlatform: 'Platform adoh ora didhukung. Mode SSH OpenAmer Desktop ndhukung host Linux, macOS, lan Windows.',
       sshErrTimeout: 'Sambungan SSH entek wektu. Host bisa uga ora bisa digayuh utawa lagi turu.',
       sshErrUpdateRequired: 'Anyari OpenAmer ing host adoh sadurunge nyambung nganggo Desktop SSH.',
-      sshErrUnknown: 'Sambungan SSH gagal.',
+      sshErrUnknown: 'Sambungan SSH gagal.'
     },
     mcp: {
       reloadFailed: 'MCP muat ulang gagal',
@@ -689,10 +717,11 @@ export const jv = defineLocale({
       catalogInstallStarted: name => `Nginstal ${name}... ditrapake kanggo sesi anyar yen rampung.`,
       catalogInstallFailed: name => `Gagal nginstal ${name}`,
       catalogEnvPrompt: name => `${name} butuh kredensial`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} diuripake`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} diuripake`,
       authenticatedMessage: (server, count) => `${server}: ${count} piranti`,
       enableTool: tool => `Uripake ${tool}`,
-      disableTool: tool => `Pateni ${tool}`,
+      disableTool: tool => `Pateni ${tool}`
     },
     model: {
       loading: 'Ngload konfigurasi model...',
@@ -706,48 +735,49 @@ export const jv = defineLocale({
       defaultsFailed: 'Gagal nyimpen standar model',
       auxiliaryTitle: 'Model tambahan',
       resetAllToMain: 'Balekake kabeh menyang utama',
-      auxiliaryDesc: 'Tugas pembantu mlaku ing model utama minangka standar. Setel model khusus kanggo tugas tartamtu yen pengin ngowahi.',
+      auxiliaryDesc:
+        'Tugas pembantu mlaku ing model utama minangka standar. Setel model khusus kanggo tugas tartamtu yen pengin ngowahi.',
       setToMain: 'Setel menyang utama',
       change: 'Ganti',
       autoUseMain: 'otomatis · nganggo model utama',
       providerDefault: '(standar provider)',
       fallbackAdd: 'Tambah fallback',
       fallbackEmpty: 'Ora ana model fallback — model standar sing dipigunakake kajaba gagal.',
-      notInCatalog: "ora ana ing dhaptar model provider iki — panggilan bisa uga pindhah menyang cadangan.",
+      notInCatalog: 'ora ana ing dhaptar model provider iki — panggilan bisa uga pindhah menyang cadangan.',
       tasks: {
         vision: {
           label: 'Vision',
-          hint: 'Analisis gambar',
+          hint: 'Analisis gambar'
         },
         web_extract: {
           label: 'Ekstrak web',
-          hint: 'Ringkesan kaca',
+          hint: 'Ringkesan kaca'
         },
         compression: {
           label: 'Kompresi',
-          hint: 'Pemadatan konteks',
+          hint: 'Pemadatan konteks'
         },
         skills_hub: {
           label: 'Hub skill',
-          hint: 'Golek skill',
+          hint: 'Golek skill'
         },
         approval: {
           label: 'Persetujuan',
-          hint: 'Persetujuan otomatis pinter',
+          hint: 'Persetujuan otomatis pinter'
         },
         mcp: {
           label: 'MCP',
-          hint: 'Routing piranti MCP',
+          hint: 'Routing piranti MCP'
         },
         title_generation: {
           label: 'Gen judhul',
-          hint: 'Judhul sesi',
+          hint: 'Judhul sesi'
         },
         curator: {
           label: 'Kurator',
-          hint: 'Review panggunaan skill',
-        },
-      },
+          hint: 'Review panggunaan skill'
+        }
+      }
     },
     providers: {
       disconnectInTerminal: 'Putus (mbukak perintah hapus ing terminal)',
@@ -757,12 +787,13 @@ export const jv = defineLocale({
       noKeysMatch: 'Ora ana penyedia sing cocog karo panjalukanmu.',
       localEndpoint: {
         title: 'Endpoint lokal / khusus',
-        description: 'Tuduhake OpenAmer menyang endpoint sing kompatibel OpenAI (Zyphra, vLLM, llama.cpp, Ollama, lsp).',
+        description: 'Tuduhake OpenAmer menyang endpoint sing kompatibel OpenAI (Zyphra, vLLM, llama.cpp, Ollama, lsp).'
       },
       loading: 'Ngrampungake penyedia…',
       connectAccount: 'Sambungake akun',
       haveApiKey: 'Duwe API key wae?',
-      intro: 'Mlebu nganggo langganan — ora perlu nyalin API key. OpenAmer nglakokake proses mlebu ing browser kanggo kowe, ing kene wae.',
+      intro:
+        'Mlebu nganggo langganan — ora perlu nyalin API key. OpenAmer nglakokake proses mlebu ing browser kanggo kowe, ing kene wae.',
       connected: 'Wis nyambung',
       collapse: 'Ciut',
       connectAnother: 'Sambungake provider liya',
@@ -771,29 +802,33 @@ export const jv = defineLocale({
       removeConfirm: provider => `Copot ${provider}?`,
       removeExternalGeneric: provider => `${provider} diatur dening CLI dhewe — copot saka kana.`,
       removeKeyManaged: provider => `${provider} disetel saka API key. Copot saka API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Putusake ${provider}? Iki bakal nglakokake "${command}" ing terminal kanggo mbusak kredensial.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Putusake ${provider}? Iki bakal nglakokake "${command}" ing terminal kanggo mbusak kredensial.`,
       removeTerminalRunning: provider => `Nglakokake putusake ${provider} ing terminal…`,
       removedMessage: provider => `${provider} wis dicopot.`,
-      failedRemove: provider => `Ora bisa nyopot ${provider}`,
+      failedRemove: provider => `Ora bisa nyopot ${provider}`
     },
     sessions: {
       loading: 'Ngrampungake sesi sing diarsipake…',
       archivedTitle: 'Sesi sing diarsipake',
-      archivedIntro: 'Obrolan sing diarsipake disumputake saka sidebar nanging tetep nyimpen kabeh pesen. Ctrl/⌘-klik obrolan ing sidebar kanggo ngarsipake.',
+      archivedIntro:
+        'Obrolan sing diarsipake disumputake saka sidebar nanging tetep nyimpen kabeh pesen. Ctrl/⌘-klik obrolan ing sidebar kanggo ngarsipake.',
       emptyArchivedTitle: 'Ora ana sing diarsipake',
       emptyArchivedDesc: 'Arsipake obrolan kanggo nyumputake ing kene.',
       unarchive: 'Batal arsip',
       deletePermanently: 'Hapus permanen',
       restored: 'Dikembalikan',
       autoArchiveTitle: 'Arsip otomatis obrolan sing wis kadaluwarsa',
-      autoArchiveDesc: 'Arsip otomatis obrolan sing wis suwe ora diowahi. Obrolan sing dipin pin ora bakal diarsipake, lan ora ana sing dihapus — obrolan sing diarsipake mung dipindhah menyang kene.',
+      autoArchiveDesc:
+        'Arsip otomatis obrolan sing wis suwe ora diowahi. Obrolan sing dipin pin ora bakal diarsipake, lan ora ana sing dihapus — obrolan sing diarsipake mung dipindhah menyang kene.',
       autoArchiveDaysLabel: 'Arsipake sawise',
       autoArchiveDaysUnit: 'poé ora aktif',
       messages: count => `${count} pesen (${count === 1 ? 'message' : 'messages'})`,
       deleteConfirm: title => `Hapus "${title}" kanthi permanen? Ora bisa dibatalake.`,
       autoArchiveFailed: 'Ora bisa nganyari arsip otomatis',
       defaultDirTitle: 'Direktori proyek standar',
-      defaultDirDesc: 'Sesi anyar diwiwiti ing folder iki kajaba kowe milih liya. Yen ora disetel, direktori ngarep (home) sing dipigunakake.',
+      defaultDirDesc:
+        'Sesi anyar diwiwiti ing folder iki kajaba kowe milih liya. Yen ora disetel, direktori ngarep (home) sing dipigunakake.',
       defaultDirUpdated: 'Direktori proyek standar wis dianyari — wiwitna obrolan anyar (Ctrl/⌘+N) supaya ditrapake',
       defaultsTo: label => `Standar: ${label}.`,
       change: 'Ganti',
@@ -804,10 +839,11 @@ export const jv = defineLocale({
       unarchiveFailed: 'Mbukak arsip gagal',
       deleteFailed: 'Mbusak gagal',
       updateDirFailed: 'Ora bisa nganyari direktori standar',
-      clearDirFailed: 'Ora bisa ngosongake direktori standar',
+      clearDirFailed: 'Ora bisa ngosongake direktori standar'
     },
     toolsets: {
-      noProviderOptions: 'Set alat iki ora duwe pilihan panyedhiya — aktifake lan bakal bisa digunakake karo setelan saiki.',
+      noProviderOptions:
+        'Set alat iki ora duwe pilihan panyedhiya — aktifake lan bakal bisa digunakake karo setelan saiki.',
       noProviders: 'Ora ana panyedhiya sing kasedhiya kanggo set alat iki saiki.',
       ready: 'Siap',
       needsSignIn: 'Butuh mlebu',
@@ -842,8 +878,10 @@ export const jv = defineLocale({
       selectedMessage: provider => `${provider} saiki aktif.`,
       failedSelect: provider => `Gagal milih ${provider}`,
       failedLoad: 'Konfigurasi piranti gagal dimuat',
-      openamerAuthNeededMessage: provider => `${provider} wis disimpen nanging ora bakal aktif nganti kowe mlebu menyang OpenAmer Portal.`,
-      postSetupHint: step => `Backend iki butuh instalasi sepisan (${step}). Mlaku ing mesin iki — bisa butuh sawetara menit.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} wis disimpen nanging ora bakal aktif nganti kowe mlebu menyang OpenAmer Portal.`,
+      postSetupHint: step =>
+        `Backend iki butuh instalasi sepisan (${step}). Mlaku ing mesin iki — bisa butuh sawetara menit.`,
       postSetupCompleteMessage: step => `${step} wis diinstal.`,
       postSetupErrorMessage: step => `Priksa log ${step}.`,
       postSetupFailed: step => `Gagal nglakokake setup ${step}`,
@@ -876,8 +914,8 @@ export const jv = defineLocale({
         selectedTitle: 'Backend dipilih',
         selectedMessage: backend => `Perintah terminal saiki mlaku liwat ${backend}. Ditrapake kanggo sesi anyar.`,
         failedSelect: backend => `Gagal milih ${backend}`,
-        needsSetupHint: 'Kowe bisa milih backend iki saiki — perintah bakal gagal nganti setup rampung.',
-      },
+        needsSetupHint: 'Kowe bisa milih backend iki saiki — perintah bakal gagal nganti setup rampung.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -890,13 +928,13 @@ export const jv = defineLocale({
       revealValue: 'Tampilake nilai',
       replace: 'Ganti',
       set: 'Setel',
-      clear: 'Kosongake',
+      clear: 'Kosongake'
     },
     keys: {
       loading: 'Ngemot API key lan kredensial...',
       failedLoad: 'API key gagal dimuat',
-      empty: 'Durung ana sing disetel ing kategori iki.',
-    },
+      empty: 'Durung ana sing disetel ing kategori iki.'
+    }
   },
   skills: {
     tabSkills: 'Ketrampilan',
@@ -915,7 +953,8 @@ export const jv = defineLocale({
     noDescription: 'Ora ana deskripsi.',
     configured: 'Dikonfigurasi',
     needsKeys: 'Butuh kunci',
-    visionModelHint: 'Vision nggunakake konfigurasi model tambahan sampeyan — model sing bisa ngolah gambar dipilih ing kono, dudu per-pengguna ing kene.',
+    visionModelHint:
+      'Vision nggunakake konfigurasi model tambahan sampeyan — model sing bisa ngolah gambar dipilih ing kono, dudu per-pengguna ing kene.',
     visionModelLink: 'Pilih model vision ing Setelan → Model',
     skillsLoadFailed: 'Ketrampilan gagal dimuat',
     skillArchivedTitle: 'Ketrampilan arsip',
@@ -927,7 +966,8 @@ export const jv = defineLocale({
       connectingHubs: 'Nyambung menyang hub ketrampilan...',
       connectedHubs: 'Hub sing disambungake:',
       featured: 'Ketrampilan unggulan',
-      landingHint: 'Golek hub kanggo nliti ketrampilan sing bisa dipasang saka indeks resmi, GitHub, lan sumber komunitas.',
+      landingHint:
+        'Golek hub kanggo nliti ketrampilan sing bisa dipasang saka indeks resmi, GitHub, lan sumber komunitas.',
       noResults: 'Ora ana ketrampilan sing cocog ing hub.',
       installed: 'Dipasang',
       install: 'Pasang',
@@ -945,7 +985,7 @@ export const jv = defineLocale({
       trust: {
         builtin: 'bawaan',
         trusted: 'dipercaya',
-        community: 'komunitas',
+        community: 'komunitas'
       },
       verdictSafe: 'aman',
       verdictCaution: 'waspada',
@@ -965,7 +1005,7 @@ export const jv = defineLocale({
       timedOut: sources => `Entek wektu: ${sources}`,
       findings: count => `${count} temuan${count === 1 ? '' : 's'}`,
       installStarted: name => `Nginstal ${name}...`,
-      uninstallStarted: name => `Nyopot instalasi ${name}...`,
+      uninstallStarted: name => `Nyopot instalasi ${name}...`
     },
     toolsetsRefreshFailed: 'Toolsets gagal nganyari',
     skillEnabled: 'Skill aktif',
@@ -982,7 +1022,7 @@ export const jv = defineLocale({
     provenance: {
       agent: 'Dikembangake',
       bundled: 'Bawaan',
-      hub: 'Pusat',
+      hub: 'Pusat'
     },
     changesApplyNewSessions: 'Perubahan diterapake ing sesi anyar.',
     skillUpdated: 'Skill dianyari',
@@ -999,7 +1039,7 @@ export const jv = defineLocale({
     usageCount: count => `dipigunakake ${count}×`,
     emptyNoneFound: noun => `Ora ana ${noun} sing ditemokake`,
     emptyNothingMatches: query => `Ora ana sing cocog karo “${query}”.`,
-    emptyNoneAvailable: noun => `Durung ana ${noun} sing kasedhiya.`,
+    emptyNoneAvailable: noun => `Durung ana ${noun} sing kasedhiya.`
   },
   starmap: {
     title: 'Grafik Memori',
@@ -1015,7 +1055,8 @@ export const jv = defineLocale({
     emptyTitle: 'Durung ana sing dipelajari',
     emptyDesc: 'Nalika OpenAmer ngembangake katrampilan lan memori kanggo karya sampeyan, padha katon ing kene.',
     share: 'Bagikan peta',
-    shareHint: 'Salin kode kanggo nuduhake peta iki, utawa tempel siji kanggo muat. Iku mung kalebu tata letak, ora kalebu memori utawa teks katrampilan sampeyan.',
+    shareHint:
+      'Salin kode kanggo nuduhake peta iki, utawa tempel siji kanggo muat. Iku mung kalebu tata letak, ora kalebu memori utawa teks katrampilan sampeyan.',
     shareTitle: 'Impor / Ekspor peta',
     sharePlaceholder: 'Tempel kode peta…',
     copy: 'Salin kode peta',
@@ -1026,7 +1067,7 @@ export const jv = defineLocale({
     importEmpty: 'Tempelake kode peta kanggo memuat.',
     importSuccess: nodes => `Peta dimuat kanthi ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'peta diimpor',
-    resetToMine: 'Bali menyang petaku',
+    resetToMine: 'Bali menyang petaku'
   },
   commandCenter: {
     generatePet: {
@@ -1056,7 +1097,7 @@ export const jv = defineLocale({
       adopt: 'Nampa',
       startOver: 'Miwi maneh',
       hatchRow: (_state, done, total) => `Nggawe sketsa frame ${done} saka ${total}…`,
-      remix: 'Gawe variasi',
+      remix: 'Gawe variasi'
     },
     installTheme: {
       title: 'Pasang tema…',
@@ -1068,7 +1109,7 @@ export const jv = defineLocale({
       install: 'Pasang',
       installing: 'Nginstal…',
       installed: 'Pasang',
-      installs: count => `${count} instal`,
+      installs: count => `${count} instal`
     },
     settingsFields: 'Kolom setelan',
     mcpServers: 'Server MCP',
@@ -1077,7 +1118,7 @@ export const jv = defineLocale({
       maintenance: 'Perawatan',
       sessions: 'Sesi',
       system: 'Sistem',
-      usage: 'Panggunaan',
+      usage: 'Panggunaan'
     },
     close: 'Tutup pusat perintah',
     paletteTitle: 'Palet perintah',
@@ -1106,49 +1147,49 @@ export const jv = defineLocale({
       generatedTag: 'Digawe',
       adoptFailed: 'Ora bisa ngangkat pet kasebut.',
       toggleFailed: 'Ora bisa ngowahi pet.',
-      noneAvailable: 'Ora ana pet sing kasedhiya — pilih siji ing ngisor iki kanggo nginstal.',
+      noneAvailable: 'Ora ana pet sing kasedhiya — pilih siji ing ngisor iki kanggo nginstal.'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostik, cadangan, kurator, lan data memori',
       sessions: 'Golek lan atur sesi',
       system: 'Status, log, lan tumindak sistem',
-      usage: 'Token, biaya, lan aktivitas skill sajrone wektu',
+      usage: 'Token, biaya, lan aktivitas skill sajrone wektu'
     },
     nav: {
       newChat: {
         title: 'Sesi anyar',
-        detail: 'Miwiti sesi anyar',
+        detail: 'Miwiti sesi anyar'
       },
       settings: {
         title: 'Setelan',
-        detail: 'Setel OpenAmer desktop',
+        detail: 'Setel OpenAmer desktop'
       },
       skills: {
         title: 'Kapabilitas',
-        detail: 'Skill, piranti, lan server MCP',
+        detail: 'Skill, piranti, lan server MCP'
       },
       messaging: {
         title: 'Olah pesen',
-        detail: 'Setel Telegram, Slack, Discord, lan liya-liyane',
+        detail: 'Setel Telegram, Slack, Discord, lan liya-liyane'
       },
       artifacts: {
         title: 'Artefak',
-        detail: 'Deleng asil sing digawe',
-      },
+        detail: 'Deleng asil sing digawe'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Panel sesi',
-        detail: 'Golek, sematake, lan atur sesi',
+        detail: 'Golek, sematake, lan atur sesi'
       },
       system: {
         title: 'Panel sistem',
-        detail: 'Status gateway, log, restart/update',
+        detail: 'Status gateway, log, restart/update'
       },
       usage: {
         title: 'Panel panggunaan',
-        detail: 'Token, biaya, lan aktivitas skill',
-      },
+        detail: 'Token, biaya, lan aktivitas skill'
+      }
     },
     providerNavigate: 'Navigasi',
     providerSessions: 'Sesi',
@@ -1236,8 +1277,8 @@ export const jv = defineLocale({
       actionStarted: name => `${name} diwiwiti — ngintip log...`,
       actionFailed: name => `${name} gagal diwiwiti`,
       running: 'Mlaku...',
-      viewLog: 'Log tumindak',
-    },
+      viewLog: 'Log tumindak'
+    }
   },
   webhooks: {
     deliverOptions: {
@@ -1246,7 +1287,7 @@ export const jv = defineLocale({
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Email',
+      email: 'Email'
     },
     search: 'Telusuri webhook...',
     loading: 'Loading webhook...',
@@ -1255,7 +1296,8 @@ export const jv = defineLocale({
     subscriptions: (count: number) => `Langganan (${count})`,
     empty: 'Durung ana langganan webhook.',
     disabledTitle: 'Panampa webhook dipateni',
-    disabledBody: 'Webhook iku platform gateway dhewe. Uripake ing kene supaya bisa nampa acara HTTP sing mlebu; saluran obrolan mung perlu yen langganan ngirim menyang Telegram, Discord, Slack, utawa saluran liya.',
+    disabledBody:
+      'Webhook iku platform gateway dhewe. Uripake ing kene supaya bisa nampa acara HTTP sing mlebu; saluran obrolan mung perlu yen langganan ngirim menyang Telegram, Discord, Slack, utawa saluran liya.',
     enable: 'Uripake webhook',
     enabling: 'Nguripake...',
     enabled: (name: string) => `Diuripake: "${name}"`,
@@ -1301,7 +1343,7 @@ export const jv = defineLocale({
     creating: 'Nggawe...',
     created: 'Wis digawe',
     createFailed: (detail: string) => `Gagal nggawe: ${detail}`,
-    copy: 'Salin',
+    copy: 'Salin'
   },
   profiles: {
     close: 'Tutup profil',
@@ -1379,7 +1421,7 @@ Kosongake kanggo njaga standar ${mode}.`,
     failedLoadSoul: 'Gagal ngemot SOUL.md',
     failedSaveSoul: 'Gagal nyimpen SOUL.md',
     failedCreate: 'Gagal nggawe profil',
-    failedRename: 'Gagal ngganti jeneng profil',
+    failedRename: 'Gagal ngganti jeneng profil'
   },
   artifacts: {
     colLocationDefault: 'Lokasi',
@@ -1413,14 +1455,14 @@ Kosongake kanggo njaga standar ${mode}.`,
     colTitleFile: 'Jeneng',
     colTitleDefault: 'Judhul / jeneng',
     colLocationLink: 'URL',
-    colLocationFile: 'Lokasi',
+    colLocationFile: 'Lokasi'
   },
   sidebar: {
     nav: {
       'new-session': 'Sesi anyar',
       skills: 'Kemampuan',
       messaging: 'Pesan',
-      artifacts: 'Artefak',
+      artifacts: 'Artefak'
     },
     searchAria: 'Golek sesi',
     searchPlaceholder: 'Golek sesi…',
@@ -1459,8 +1501,10 @@ Kosongake kanggo njaga standar ${mode}.`,
       copyPath: 'Salin path',
       removeFromSidebar: 'Sembunyikan saka sidebar',
       createFailed: 'Ora bisa nggawe proyek',
-      staleBackend: 'Anyarake backend OpenAmer kanggo nggawe proyek — backendmu lawas Dibanding app desktop iki (Setelan → Nganyaran → Backend).',
-      deleteConfirm: 'Iki mbusak proyek sing wis disimpen saka OpenAmer. File, repositori git, lan worktree tetep ora kepentuh.',
+      staleBackend:
+        'Anyarake backend OpenAmer kanggo nggawe proyek — backendmu lawas Dibanding app desktop iki (Setelan → Nganyaran → Backend).',
+      deleteConfirm:
+        'Iki mbusak proyek sing wis disimpen saka OpenAmer. File, repositori git, lan worktree tetep ora kepentuh.',
       startWork: 'Worktree anyar',
       newWorktreeTitle: 'Worktree anyar',
       newWorktreeDesc: 'Weneksa jeneng cabang kanggo worktree iki.',
@@ -1482,13 +1526,15 @@ Kosongake kanggo njaga standar ${mode}.`,
       noBranches: 'Ora ana branch',
       removeWorktree: 'Copot worktree',
       removeWorktreeFailed: 'Ora bisa nyopot worktree (isih ana owah-owahan sing durung di-commit?)',
-      removeWorktreeConfirm: 'Copot saka git (direktori worktree dibusak; branche tetep), utawa mung ndhelikake lane saka sidebar lan ninggalake worktree ing disk.',
-      removeWorktreeDirty: 'Worktree iki isih duwe owah-owahan sing durung di-commit. Copot kanthi paksa (owah-owahan kasebut dibuwang), utawa mung ndhelikake lane lan tetep ana ing disk.',
+      removeWorktreeConfirm:
+        'Copot saka git (direktori worktree dibusak; branche tetep), utawa mung ndhelikake lane saka sidebar lan ninggalake worktree ing disk.',
+      removeWorktreeDirty:
+        'Worktree iki isih duwe owah-owahan sing durung di-commit. Copot kanthi paksa (owah-owahan kasebut dibuwang), utawa mung ndhelikake lane lan tetep ana ing disk.',
       forceRemove: 'Copot kanthi paksa',
       enter: label => `Bukak ${label}`,
       reorder: label => `Atur urutan ${label}`,
       toggle: label => `Uripake utawa pateni sesi ${label}`,
-      back: 'Kabeh proyek',
+      back: 'Kabeh proyek'
     },
     noMatch: query => `Ora ana sesi sing cocog karo “${query}”.`,
     groupAriaUngrouped: 'Klompokake sesi miturut workspace',
@@ -1538,15 +1584,15 @@ Kosongake kanggo njaga standar ${mode}.`,
       ageNow: 'saiki',
       ageDay: 'd',
       ageHour: 'h',
-      ageMin: 'mnt',
+      ageMin: 'mnt'
     },
     dateDivider: {
       today: 'Mau esuk iki',
       yesterday: 'Wingi',
       thisWeek: 'Awal minggu iki',
       lastWeek: 'Minggu wingi',
-      thisMonth: 'Awal wulan iki',
-    },
+      thisMonth: 'Awal wulan iki'
+    }
   },
   composer: {
     queueStuckTitle: 'Pesan antrian ora dikirim',
@@ -1575,20 +1621,20 @@ Kosongake kanggo njaga standar ${mode}.`,
     newSessionPlaceholders: [
       'Apa sing arep dibangun?',
       'Wenehi tugas marang OpenAmer',
-      "Apa sing ana ing pikiranmu?",
+      'Apa sing ana ing pikiranmu?',
       'Critakna apa sing dibutuhake',
       'Apa sing arep dirampungake?',
       'Takon apa wae',
-      'Wiwiti saka tujuan',
+      'Wiwiti saka tujuan'
     ],
     followUpPlaceholders: [
       'Kirim susulan',
       'Tambah konteks',
       'Perjelas panjaluke',
-      "Apa sabanjure?",
+      'Apa sabanjure?',
       'Terusake',
       'Terusake luwih adoh',
-      'Atur utawa terusake',
+      'Atur utawa terusake'
     ],
     startVoice: 'Miwiti obrolan swara',
     queueMessage: 'Antriake pesen',
@@ -1624,7 +1670,7 @@ Kosongake kanggo njaga standar ${mode}.`,
       '/resume': 'nerusake sesi sadurunge',
       '/details': 'ngatur tingkat rincian transkrip',
       '/copy': 'nyalin pilihan utawa pesen asisten pungkasan',
-      '/quit': 'metu saka openamer',
+      '/quit': 'metu saka openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'rujuk file, folder, url, git',
@@ -1634,7 +1680,7 @@ Kosongake kanggo njaga standar ${mode}.`,
       'composer.sendQueued': 'kirim giliran antrian sabanjure',
       'keybinds.openPanel': 'kabeh pintasan papan tombol',
       'composer.cancel': 'tutup popover · batalake lakune',
-      'composer.history': 'siklus popover / riwayat',
+      'composer.history': 'siklus popover / riwayat'
     },
     attachUrlTitle: 'Lampirake URL',
     attachUrlDesc: 'OpenAmer bakal njupuk kaca kasebut lan nyakup minangka konteks kanggo giliran iki.',
@@ -1667,19 +1713,19 @@ Kosongake kanggo njaga standar ${mode}.`,
       codeReview: {
         label: 'Review kode',
         description: 'Priksa owah-owahan saiki kanggo regresi, kasus pinggir sing kelewat, lan tes sing kurang.',
-        text: 'Tulung priksa iki kanggo bug, regresi, lan tes sing kurang.',
+        text: 'Tulung priksa iki kanggo bug, regresi, lan tes sing kurang.'
       },
       implementationPlan: {
         label: 'Rencana implementasi',
         description: 'Gawea garis gedhe pendekatan sadurunge ngowahi kode supaya diff tetep fokus.',
-        text: 'Tulung gawe rencana implementasi sing ringkes sadurunge ngowahi kode.',
+        text: 'Tulung gawe rencana implementasi sing ringkes sadurunge ngowahi kode.'
       },
       explainThis: {
         label: 'Terangna iki',
         description: 'Jelasna carane kode sing dipilih bisa mlaku lan tuduhake file-file utama.',
-        text: 'Tulung terangna carane iki bisa mlaku lan tuduhna file utama.',
-      },
-    },
+        text: 'Tulung terangna carane iki bisa mlaku lan tuduhna file utama.'
+      }
+    }
   },
   updates: {
     applyStatus: {
@@ -1688,11 +1734,12 @@ Kosongake kanggo njaga standar ${mode}.`,
       pulling: 'Backend lagi dianyari…',
       restarting: 'Backend restart kanggo memuat update…',
       notAvailable: 'Update ora kasedhiya kanggo backend iki.',
-      failed: 'Update backend gagal.',
+      failed: 'Update backend gagal.'
     },
     appErrors: {
-      updateLocked: 'Pembaruan dibatal: jendhela OpenAmer liyane utawa terminal sing mlaku openamer lagi mbukak instalasi iki. Tutup lan coba maneh.',
-      updateFailed: 'Pembaruan ora rampung. Ora usah kuwatir — ora ana sing ilang. Sampeyan bisa nyoba maneh saiki.',
+      updateLocked:
+        'Pembaruan dibatal: jendhela OpenAmer liyane utawa terminal sing mlaku openamer lagi mbukak instalasi iki. Tutup lan coba maneh.',
+      updateFailed: 'Pembaruan ora rampung. Ora usah kuwatir — ora ana sing ilang. Sampeyan bisa nyoba maneh saiki.'
     },
     stages: {
       idle: 'Niki disiyap…',
@@ -1706,7 +1753,7 @@ Kosongake kanggo njaga standar ${mode}.`,
       done: 'Anyaran rampung',
       manual: 'Anyar saka terminal',
       guiSkew: 'Anyar app desktop',
-      error: 'Anyaran dihenti',
+      error: 'Anyaran dihenti'
     },
     checking: 'Nggoleki anyaran…',
     checkFailedTitle: 'Ora bisa mriksa anyaran',
@@ -1725,20 +1772,24 @@ Kosongake kanggo njaga standar ${mode}.`,
     updateNow: 'Anyar saiki',
     maybeLater: 'Mengko wae',
     manualTitle: 'Anyar saka terminal',
-    manualBody: 'Sampe nginstal OpenAmer saka command line, mula anyaran uga ditindakake ana. Tempel iki ing terminal sampe:',
+    manualBody:
+      'Sampe nginstal OpenAmer saka command line, mula anyaran uga ditindakake ana. Tempel iki ing terminal sampe:',
     manualPickedUp: 'OpenAmer bakal nj taken versi anyar nalika sabanjure dibuka.',
     guiSkewTitle: 'Anyar app desktop',
-    guiSkewBody: 'Backend wis dianyar, nanging paket app desktop iki ora owah. Anyar utawa instal maneh app desktop OpenAmer (AppImage / .deb / .rpm) supaya cocok.',
+    guiSkewBody:
+      'Backend wis dianyar, nanging paket app desktop iki ora owah. Anyar utawa instal maneh app desktop OpenAmer (AppImage / .deb / .rpm) supaya cocok.',
     copy: 'Nyalin',
     copied: 'Disalin',
     done: 'Rampung',
-    applyingBody: 'Pembaruan OpenAmer njagur ing window dhewe lan mbuka maneh OpenAmer otomatis nalika rampung. Jawa ora mbuka maneh OpenAmer dhewe nalika lagi anyar.',
+    applyingBody:
+      'Pembaruan OpenAmer njagur ing window dhewe lan mbuka maneh OpenAmer otomatis nalika rampung. Jawa ora mbuka maneh OpenAmer dhewe nalika lagi anyar.',
     moreChanges: count => `+ ${count} owah-owahan${count === 1 ? '' : 's'} maneh kalebu.`,
-    applyingBodyBackend: 'Backend adoh lagi nerapake update lan bakal restart. OpenAmer nyambung maneh kanthi otomatis yen wis urip.',
+    applyingBodyBackend:
+      'Backend adoh lagi nerapake update lan bakal restart. OpenAmer nyambung maneh kanthi otomatis yen wis urip.',
     applyingClose: 'Jendhela iki bakal ditutup nalika update mlaku, banjur OpenAmer mbukak maneh dhewe.',
     errorTitle: 'Update ora rampung',
     errorBody: 'Aja kuwatir — ora ana sing ilang. Kowe isih bisa nyoba maneh saiki.',
-    notNow: 'Ora saiki',
+    notNow: 'Ora saiki'
   },
   install: {
     stageStates: {
@@ -1746,7 +1797,7 @@ Kosongake kanggo njaga standar ${mode}.`,
       running: 'Masang',
       succeeded: 'Rampung',
       skipped: 'Dilewati',
-      failed: 'Gagal',
+      failed: 'Gagal'
     },
     oneTimeTitle: 'OpenAmer butuh instalasi sakwiji',
     installCommand: 'Perintah instal',
@@ -1755,12 +1806,15 @@ Kosongake kanggo njaga standar ${mode}.`,
     installTo: 'Bakak masang menyang',
     retryAfterRun: 'Aku wis mlaku -- coba maneh',
     setupChoiceTitle: 'Setel OpenAmer Desktop',
-    setupChoiceDesc: 'Sambungake aplikasi iki menyang gateway OpenAmer sing wis sampeyan jalankan, utawa pasang OpenAmer lokal ing komputer iki.',
+    setupChoiceDesc:
+      'Sambungake aplikasi iki menyang gateway OpenAmer sing wis sampeyan jalankan, utawa pasang OpenAmer lokal ing komputer iki.',
     connectExistingTitle: 'Sambungake menyang OpenAmer sing wis ana',
     connectExistingShort: 'Sambungake sing wis ana',
-    connectExistingDesc: 'Gunakake backend adoh nganggo token sesi utawa mlebu browser. Instalasi lokal ora bakal diwiwiti.',
+    connectExistingDesc:
+      'Gunakake backend adoh nganggo token sesi utawa mlebu browser. Instalasi lokal ora bakal diwiwiti.',
     installLocalTitle: 'Pasang OpenAmer lokal',
-    unsupportedDesc: platform => `Instalasi otomatis nalika mbukak pisanan durung kasedhiya ing ${platform}. Bukak Terminal lan lakokake perintah ing ngisor iki, banjur bukak maneh aplikasi iki. Pambukan sabanjure bakal nglewati langkah iki.`,
+    unsupportedDesc: platform =>
+      `Instalasi otomatis nalika mbukak pisanan durung kasedhiya ing ${platform}. Bukak Terminal lan lakokake perintah ing ngisor iki, banjur bukak maneh aplikasi iki. Pambukan sabanjure bakal nglewati langkah iki.`,
     installLocalDesc: 'Ngundhuh OpenAmer, nggawe lingkungan Python, lan nglakokake backend ing komputer iki.',
     localStartUnavailable: 'Instalasi lokal ora bisa diwiwiti. Restart OpenAmer Desktop banjur coba maneh.',
     remoteSetupTitle: 'Sambungake menyang OpenAmer sing wis ana',
@@ -1791,8 +1845,10 @@ Kosongake kanggo njaga standar ${mode}.`,
     failedTitle: 'Instalasi gagal',
     settingUpTitle: 'Nyiyapake OpenAmer Agent',
     finishingTitle: 'Ngrampungake',
-    failedDesc: 'Salah siji langkah instalasi gagal. Ing Windows, iki bisa kedadeyan yen ana OpenAmer CLI utawa desktop liya sing lagi mlaku. Mandhegake kabeh OpenAmer sing mlaku, banjur coba maneh. Priksa rincian ing ngisor iki utawa log desktop kanggo transkrip lengkap.',
-    activeDesc: 'Iki setup sepisanan. Installer OpenAmer lagi ngundhuh dependensi lan nyetel mesinmu. Pambukan sabanjure bakal nglewati langkah iki.',
+    failedDesc:
+      'Salah siji langkah instalasi gagal. Ing Windows, iki bisa kedadeyan yen ana OpenAmer CLI utawa desktop liya sing lagi mlaku. Mandhegake kabeh OpenAmer sing mlaku, banjur coba maneh. Priksa rincian ing ngisor iki utawa log desktop kanggo transkrip lengkap.',
+    activeDesc:
+      'Iki setup sepisanan. Installer OpenAmer lagi ngundhuh dependensi lan nyetel mesinmu. Pambukan sabanjure bakal nglewati langkah iki.',
     progress: (completed, total) => `${completed} saka ${total} langkah rampung`,
     currentStage: stage => `  -- saiki: ${stage}`,
     fetchingManifest: 'Njupuk manifes installer...',
@@ -1806,7 +1862,7 @@ Kosongake kanggo njaga standar ${mode}.`,
     transcriptSaved: 'Transkrip lengkap disimpen ing',
     copiedOutput: 'Wis disalin!',
     copyOutput: 'Salin output',
-    reloadRetry: 'Muat ulang lan coba maneh',
+    reloadRetry: 'Muat ulang lan coba maneh'
   },
   assistant: {
     tool: {
@@ -1814,113 +1870,113 @@ Kosongake kanggo njaga standar ${mode}.`,
         browser_fill: {
           pendingAction: 'Ngisi',
           done: 'Form isian diisi',
-          pending: 'Nggarap form isian',
+          pending: 'Nggarap form isian'
         },
         browser_navigate: {
           done: 'Kaca dibuka',
           pending: 'Mbuka kaca',
-          pendingAction: 'Mbuka',
+          pendingAction: 'Mbuka'
         },
         browser_snapshot: {
           done: 'Gambar kaca',
           pending: 'Nangkap gambar kaca',
-          pendingAction: 'Nangkap',
+          pendingAction: 'Nangkap'
         },
         browser_take_screenshot: {
           done: 'Gambar layar',
           pending: 'Nangkap gambar layar',
-          pendingAction: 'Nangkap',
+          pendingAction: 'Nangkap'
         },
         browser_type: {
           done: 'Tulis ing kaca',
           pending: 'Nulis ing kaca',
-          pendingAction: 'Nulis',
+          pendingAction: 'Nulis'
         },
         clarify: {
           done: 'Njaluk pitakon',
           pending: 'Njaluk pitakon',
-          pendingAction: 'Njaluk',
+          pendingAction: 'Njaluk'
         },
         cronjob: {
           done: 'Tugas cron',
           pending: 'Jadwal tugas cron',
-          pendingAction: 'Jadwal',
+          pendingAction: 'Jadwal'
         },
         edit_file: {
           done: 'File wis diowahi',
           pending: 'Nyunting file',
-          pendingAction: 'Nyunting',
+          pendingAction: 'Nyunting'
         },
         browser_click: {
           done: 'Klik elemen kaca',
           pending: 'Klik elemen kaca',
-          pendingAction: 'Klik',
+          pendingAction: 'Klik'
         },
         session_search_recall: {
           done: 'Riwayat sesi digoleki',
           pending: 'Nggolek riwayat sesi',
-          pendingAction: 'Nggolek',
+          pendingAction: 'Nggolek'
         },
         terminal: {
           done: 'Perintah mlaku',
           pending: 'Nglakokake perintah',
-          pendingAction: 'Nglakokake',
+          pendingAction: 'Nglakokake'
         },
         todo: {
           done: 'Todo dianyari',
           pending: 'Nganyari todo',
-          pendingAction: 'Nganyari',
+          pendingAction: 'Nganyari'
         },
         vision_analyze: {
           done: 'Gambar dianalisis',
           pending: 'Nganalisis gambar',
-          pendingAction: 'Nganalisis',
+          pendingAction: 'Nganalisis'
         },
         web_extract: {
           done: 'Kaca web diwaca',
           pending: 'Maca kaca web',
-          pendingAction: 'Maca',
+          pendingAction: 'Maca'
         },
         web_search: {
           done: 'Web digoleki',
           pending: 'Nggolek web',
-          pendingAction: 'Nggolek',
+          pendingAction: 'Nggolek'
         },
         write_file: {
           done: 'File diowahi',
           pending: 'Ngowahi file',
-          pendingAction: 'Ngedit',
+          pendingAction: 'Ngedit'
         },
         execute_code: {
           done: 'Nglakokake kode',
           pending: 'Nulis skrip',
-          pendingAction: 'Nulis skrip',
+          pendingAction: 'Nulis skrip'
         },
         image_generate: {
           done: 'Nggawe gambar',
           pending: 'Nggawe gambar',
-          pendingAction: 'Nggawe',
+          pendingAction: 'Nggawe'
         },
         list_files: {
           done: 'Ndhaptar file',
           pending: 'Ndhaptar file',
-          pendingAction: 'Ndhaptar',
+          pendingAction: 'Ndhaptar'
         },
         patch: {
           done: 'Nambal file',
           pending: 'Nambal file',
-          pendingAction: 'Nambal',
+          pendingAction: 'Nambal'
         },
         read_file: {
           done: 'Maca file',
           pending: 'Maca file',
-          pendingAction: 'Maca',
+          pendingAction: 'Maca'
         },
         search_files: {
           done: 'Nggoleki file',
           pending: 'Nggoleki file',
-          pendingAction: 'Nggoleki',
-        },
+          pendingAction: 'Nggoleki'
+        }
       },
       statusRecovered: 'Dikandhakake',
       statusDone: 'Rampung',
@@ -1935,11 +1991,11 @@ Kosongake kanggo njaga standar ${mode}.`,
         ran: 'Dijalankan',
         running: 'Njalankan',
         ranCode: 'Kode dijalankan',
-        runningCode: 'Skrip',
+        runningCode: 'Skrip'
       },
       prefixes: {
         browser: 'Peramban',
-        web: 'Situs',
+        web: 'Situs'
       },
       code: 'Kode',
       copyCode: 'Salin kode',
@@ -1967,14 +2023,15 @@ Kosongake kanggo njaga standar ${mode}.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Lagi ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Lagi ${action.toLowerCase()}`,
-      },
+        runningTool: action => `Lagi ${action.toLowerCase()}`
+      }
     },
     thread: {
       loadingSession: 'Ngemot sesi',
       showEarlier: 'Tampilake pesen sadurunge',
       loadingResponse: 'OpenAmer lagi ngemot wangsulan',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Mikirake',
@@ -2002,7 +2059,7 @@ Kosongake kanggo njaga standar ${mode}.`,
       restoreNext: 'Balekake checkpoint sabanjure',
       goForward: 'Maju',
       sendEdited: 'Kirim pesen sing wis disunting',
-      attachingFile: 'Nglampirake…',
+      attachingFile: 'Nglampirake…'
     },
     approval: {
       gatewayDisconnected: 'Gateway OpenAmer durung nyambung',
@@ -2015,8 +2072,9 @@ Kosongake kanggo njaga standar ${mode}.`,
       jumpToApproval: 'Butuh persetujuan',
       reject: 'Tolak',
       alwaysTitle: 'Tansah idini perintah iki?',
-      alwaysDescription: pattern => `Iki nambahake pola “${pattern}” menyang allowlist permanenmu (~/.openamer/config.yaml). OpenAmer ora bakal takon maneh kanggo perintah kaya iki — ing sesi iki utawa sesi sabanjure.`,
-      alwaysAllow: 'Tansah idini',
+      alwaysDescription: pattern =>
+        `Iki nambahake pola “${pattern}” menyang allowlist permanenmu (~/.openamer/config.yaml). OpenAmer ora bakal takon maneh kanggo perintah kaya iki — ing sesi iki utawa sesi sabanjure.`,
+      alwaysAllow: 'Tansah idini'
     },
     clarify: {
       notReady: 'Panjaluk klarifikasi durung siyap',
@@ -2030,8 +2088,8 @@ Kosongake kanggo njaga standar ${mode}.`,
       continueLabel: 'Terus',
       lateAnswer: (question, choice) => `Bab: "${question}" — wangsulanku: ${choice}`,
       lateAnswerTip: 'Gawe draf wangsulan iki minangka pesen susulan',
-      lateAnswerHint: 'Prompt iki wis ora ngenteni maneh. Pilih siji pilihan kanggo nggawe draf minangka pesen susulan.',
-    },
+      lateAnswerHint: 'Prompt iki wis ora ngenteni maneh. Pilih siji pilihan kanggo nggawe draf minangka pesen susulan.'
+    }
   },
   desktop: {
     yoloToggleFailed: 'Ora bisa ngowahi YOLO',
@@ -2043,7 +2101,8 @@ Kosongake kanggo njaga standar ${mode}.`,
     editFailed: 'Gagal nyunting',
     resumeFailed: 'Gagal nerusake',
     resumeStrandedTitle: 'Ora bisa muat sesi iki',
-    resumeStrandedBody: 'Koneksi menyang sesi iki gagal lan percobaan otomatis wis mandheg. Priksa manawa gateway lagi mlaku, banjur coba maneh.',
+    resumeStrandedBody:
+      'Koneksi menyang sesi iki gagal lan percobaan otomatis wis mandheg. Priksa manawa gateway lagi mlaku, banjur coba maneh.',
     resumeRetry: 'Coba maneh',
     nothingToBranch: 'Ora ana sing kudu diparakan',
     branchNeedsChat: 'Miwi utawa nerusake obrolan sadurunge diparakan.',
@@ -2091,51 +2150,53 @@ Kosongake kanggo njaga standar ${mode}.`,
       timedOut: 'Wektu entek ngenteni gateway. Apa `openamer gateway` lagi mlaku?',
       success: platform => `Dialihake menyang ${platform}. Terusake ing kene kapan wae.`,
       systemNote: platform => `↻ Dialihake menyang ${platform} — terusake ing kene kapan wae.`,
-      failed: error => `Pengalihan gagal: ${error}`,
+      failed: error => `Pengalihan gagal: ${error}`
     },
     skillCommandsAvailable: count => `${count} perintah skill kasedhiya.`,
     warningLine: message => `peringatan: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} kanggo sesi iki`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profil: ${current}. Gunakake /profile <name> utawa pemilih "Sesi anyar" kanggo miwiti obrolan ing profil liya.`,
+    profileStatus: current =>
+      `Profil: ${current}. Gunakake /profile <name> utawa pemilih "Sesi anyar" kanggo miwiti obrolan ing profil liya.`,
     noProfileNamed: (target, available) => `Ora ana profil sing jenenge "${target}". Sing kasedhiya: ${available}`,
     newChatsProfile: name => `Obrolan anyar bakal nganggo profil ${name}.`,
-    branchTitle: n => `Draf: Branch #${n}`,
+    branchTitle: n => `Draf: Branch #${n}`
   },
   prompts: {
     gatewayDisconnected: 'Gateway OpenAmer ora nyambung',
     sudoSendFailed: 'Ora bisa ngirim sandhi sudo',
     secretSendFailed: 'Ora bisa ngirim rahasia',
     sudoTitle: 'Sandhi Administrator',
-    sudoDesc: 'OpenAmer butuh sandhi sudo sampeyan kanggo nglakokake perintah istimewa. Iku dikirim mung menyang agen lokal sampeyan.',
+    sudoDesc:
+      'OpenAmer butuh sandhi sudo sampeyan kanggo nglakokake perintah istimewa. Iku dikirim mung menyang agen lokal sampeyan.',
     sudoPlaceholder: 'Sandhi sudo',
     secretTitle: 'Rahasia dibutuhake',
     secretDesc: 'OpenAmer butuh kredensial kanggo nerusake.',
-    secretPlaceholder: 'Nilai rahasia',
+    secretPlaceholder: 'Nilai rahasia'
   },
   errors: {
     genericFailure: 'Ana sing salah',
     boundaryTitle: 'Ana sing rusak ing antarmuka',
     boundaryDesc: 'Layar nemokake kesalahan ora dikarepake. Chat lan setelan aman.',
     reloadWindow: 'Muat ulang jendhela',
-    openLogs: 'Bukak log',
+    openLogs: 'Bukak log'
   },
   ui: {
     search: {
-      clear: 'Bersihake telusuran',
+      clear: 'Bersihake telusuran'
     },
     pagination: {
       label: 'paginasi',
       previous: 'Sadur',
       previousAria: 'Pindhah menyang kaca sadurunge',
       next: 'Sabanjure',
-      nextAria: 'Pindhah menyang kaca sabanjure',
+      nextAria: 'Pindhah menyang kaca sabanjure'
     },
     sidebar: {
       title: 'Sider',
       description: 'Nampilake sider mobile.',
-      toggle: 'Alihake sider',
-    },
+      toggle: 'Alihake sider'
+    }
   },
   messaging: {
     needsSetup: 'Kudu disiyapi',
@@ -2144,7 +2205,8 @@ Kosongake kanggo njaga standar ${mode}.`,
     openSetupGuide: 'Buka panduan setup',
     required: 'Wajib',
     recommended: 'Dianjrake',
-    noTokenNeeded: 'Platform iki ora mbutuh token ing kene. Gunakake panduan setup ing ndhuwur, banjur aktifake ing ngisor.',
+    noTokenNeeded:
+      'Platform iki ora mbutuh token ing kene. Gunakake panduan setup ing ndhuwur, banjur aktifake ing ngisor.',
     enabled: 'Aktif',
     disabled: 'Nonaktif',
     unsavedChanges: 'Owah sing ora disimpen',
@@ -2159,124 +2221,124 @@ Kosongake kanggo njaga standar ${mode}.`,
       TELEGRAM_BOT_TOKEN: {
         label: 'Token bot',
         help: 'Nggawe bot karo @BotFather, banjur tempel token sing dikrake.',
-        placeholder: 'Tempel token bot Telegram',
+        placeholder: 'Tempel token bot Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'ID pangguna Telegram sing diijolake',
-        help: 'Dianjrake. ID angka sing kapisah koma saka @userinfobot. Tanpa iki, sapa wae bisa ngirim DM menyang bot.',
+        help: 'Dianjrake. ID angka sing kapisah koma saka @userinfobot. Tanpa iki, sapa wae bisa ngirim DM menyang bot.'
       },
       TELEGRAM_PROXY: {
         label: 'URL proxy',
-        help: 'Cuma dibutuhake ing jaringan sing Telegram diblokir.',
+        help: 'Cuma dibutuhake ing jaringan sing Telegram diblokir.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token bot',
-        help: 'Nggawe aplikasi ing Discord Developer Portal, tambah bot, banjur tempel token-e.',
+        help: 'Nggawe aplikasi ing Discord Developer Portal, tambah bot, banjur tempel token-e.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'ID pangguna Discord sing diijolake',
-        help: 'Dianjrake. ID pangguna Discord sing kapisah koma.',
+        help: 'Dianjrake. ID pangguna Discord sing kapisah koma.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Gaya balesan',
-        help: 'kapisan, kabeh, utawa mati.',
+        help: 'kapisan, kabeh, utawa mati.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Izini kabeh pangguna Discord',
-        help: 'Kanggo pangembangan mung. Nalika bener, sapa wae bisa ngirim DM menyang bot tanpa daftar sing diijolake.',
+        help: 'Kanggo pangembangan mung. Nalika bener, sapa wae bisa ngirim DM menyang bot tanpa daftar sing diijolake.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID kanal utama',
-        help: 'Kanal ing ngendi bot ngirim pesen kanthi inisiatif (cron, pengingat).',
+        help: 'Kanal ing ngendi bot ngirim pesen kanthi inisiatif (cron, pengingat).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Jeneng kanal utama',
-        help: 'Jeneng tampilan kanggo kanal utama ing log lan output status.',
+        help: 'Jeneng tampilan kanggo kanal utama ing log lan output status.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Izini kabeh pangguna iMessage',
-        help: 'Nalika bener, lewati daftar sing diijolake BlueBubbles.',
+        help: 'Nalika bener, lewati daftar sing diijolake BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Izini kabeh pangguna Mattermost',
+        label: 'Izini kabeh pangguna Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Kanal utama',
+        label: 'Kanal utama'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Izinkan semua pangguna QQ',
+        label: 'Izinkan semua pangguna QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Saluran utama QQ',
-        help: 'Saluran utawa grup default kanggo dh Deliveri cron.',
+        help: 'Saluran utawa grup default kanggo dh Deliveri cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Jeneng saluran utama QQ',
+        label: 'Jeneng saluran utama QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token bot Slack',
         help: 'Gunakake token bot saka OAuth & Permissions sawise nginstall app Slack.',
-        placeholder: 'Tempel token bot Slack',
+        placeholder: 'Tempel token bot Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token app Slack',
         help: 'Gunakake token tingkat app sing dibutuhake kanggo Socket Mode.',
-        placeholder: 'Tempel token app Slack',
+        placeholder: 'Tempel token app Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'ID pangguna Slack sing diizinkan',
-        help: 'Disaranake. ID pangguna Slack sing dipisah koma.',
+        help: 'Disaranake. ID pangguna Slack sing dipisah koma.'
       },
       MATTERMOST_URL: {
         label: 'URL server',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token bot',
+        label: 'Token bot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'ID pangguna sing diizinkan',
-        help: 'Disaranake. ID pangguna Mattermost sing dipisah koma.',
+        help: 'Disaranake. ID pangguna Mattermost sing dipisah koma.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL homeserver',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token akses',
+        label: 'Token akses'
       },
       MATRIX_USER_ID: {
         label: 'ID pangguna bot',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'ID pangguna Matrix sing diizinkan',
-        help: 'Disaranake. ID pangguna sing dipisah koma ing format @user:server.',
+        help: 'Disaranake. ID pangguna sing dipisah koma ing format @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL bridge Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL bridge REST signal-cli sing lagi mlaku.',
+        help: 'URL bridge REST signal-cli sing lagi mlaku.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Nomer telepon',
-        help: 'Nomer sing didaftarake karo bridge signal-cli.',
+        help: 'Nomer sing didaftarake karo bridge signal-cli.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Pangguna Signal sing diizinkan',
-        help: 'Disaranake. Identifier Signal sing dipisah koma.',
+        help: 'Disaranake. Identifier Signal sing dipisah koma.'
       },
       WHATSAPP_ENABLED: {
         label: 'Aktifake bridge WhatsApp',
-        help: 'Otomatis disetel dening toggle ing ngisor. Aja owahake yen ora ngerti yen perlu.',
+        help: 'Otomatis disetel dening toggle ing ngisor. Aja owahake yen ora ngerti yen perlu.'
       },
       WHATSAPP_MODE: {
-        label: 'Mode bridge',
+        label: 'Mode bridge'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Pangguna WhatsApp sing diizinkan',
-        help: 'Disaranake. Nomer telepon utawa ID WhatsApp sing dipisah koma.',
-      },
+        help: 'Disaranake. Nomer telepon utawa ID WhatsApp sing dipisah koma.'
+      }
     },
     search: 'Golek olah pesen...',
     loading: 'Ngemot platform olah pesen...',
@@ -2290,7 +2352,7 @@ Kosongake kanggo njaga standar ${mode}.`,
       not_configured: 'Butuh setup',
       pending_restart: 'Kudu restart',
       retrying: 'Nyoba maneh',
-      startup_failed: 'Gagal miwiti',
+      startup_failed: 'Gagal miwiti'
     },
     unknown: 'Ora dingerteni',
     hintPendingRestart: 'Restart gateway saka status bar supaya owah-owahan iki ditrapake.',
@@ -2308,12 +2370,12 @@ Kosongake kanggo njaga standar ${mode}.`,
     failedUpdate: name => `Gagal nganyari ${name}`,
     failedSave: name => `Gagal nyimpen ${name}`,
     failedClear: key => `Gagal ngosongake ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   statusStack: {
     coding: {
-      agentShipPrompt: 'Tinjang owah-owah saiki, commit nganggo pesan commit konvensionyal, push branch, lan buka pull request.',
+      agentShipPrompt:
+        'Tinjang owah-owah saiki, commit nganggo pesan commit konvensionyal, push branch, lan buka pull request.',
       newBranch: 'Branch anyar',
       worktrees: 'Pranatara kerja',
       title: 'Wit kerja',
@@ -2334,8 +2396,10 @@ Kosongake kanggo njaga standar ${mode}.`,
       viewAsList: 'Deleng minangka dhaptar',
       revert: 'Balekake',
       revertAll: 'Balekake kabeh',
-      revertConfirm: 'Buang owah-owahan ing file iki lan balekake menyang kahanan sing wis di-commit? Ora bisa dibatalake.',
-      revertAllConfirm: 'Buang kabeh owah-owahan lan balekake file menyang kahanan sing wis di-commit? Ora bisa dibatalake.',
+      revertConfirm:
+        'Buang owah-owahan ing file iki lan balekake menyang kahanan sing wis di-commit? Ora bisa dibatalake.',
+      revertAllConfirm:
+        'Buang kabeh owah-owahan lan balekake file menyang kahanan sing wis di-commit? Ora bisa dibatalake.',
       staged: 'Wis di-stage',
       noChanges: 'Ora ana owah-owahan',
       notRepo: 'Dudu repositori git',
@@ -2354,7 +2418,7 @@ Kosongake kanggo njaga standar ${mode}.`,
       agentShip: 'Jaluk OpenAmer mbukak PR',
       branchOffFrom: base => `Branch anyar saka ${base}`,
       switchTo: branch => `Pindhah menyang ${branch}`,
-      switchFailed: branch => `Ora bisa pindhah menyang ${branch}`,
+      switchFailed: branch => `Ora bisa pindhah menyang ${branch}`
     },
     agents: 'Agen',
     background: count => `${count} Latar`,
@@ -2363,7 +2427,7 @@ Kosongake kanggo njaga standar ${mode}.`,
     running: 'Mlaku',
     stop: 'Mandheg',
     dismiss: 'Tutup',
-    exit: code => `metu ${code}`,
+    exit: code => `metu ${code}`
   },
   fileMenu: {
     revealFinder: 'Tampilake ing Finder',
@@ -2378,10 +2442,11 @@ Kosongake kanggo njaga standar ${mode}.`,
     renameLabel: 'Jeneng anyar',
     deleteTitle: name => `Hapus ${name}?`,
     deleteBody: 'Bakal dipindhah menyang Trash — kowe isih bisa mbalekake saka kana.',
-    pathCopied: 'Path wis disalin',
+    pathCopied: 'Path wis disalin'
   },
   remoteDisplayBanner: {
-    message: reason => `Rendering software aktif — tampilan adoh terdeteksi (${reason}). Akselerasi GPU dipateni supaya ora kedhep.`,
+    message: reason =>
+      `Rendering software aktif — tampilan adoh terdeteksi (${reason}). Akselerasi GPU dipateni supaya ora kedhep.`
   },
   billingBlock: {
     titleOpenamer: 'Kredit OpenAmer entek',
@@ -2389,7 +2454,7 @@ Kosongake kanggo njaga standar ${mode}.`,
     fallbackMessage: 'Kredit akunmu wis entek. Tambahna kredit supaya bisa nerusake.',
     openBilling: 'Bukak tagihan',
     addCredits: 'Tambah kredit',
-    dismiss: 'Tutup',
+    dismiss: 'Tutup'
   },
   titlebar: {
     hideSidebar: 'Ndhelikake sidebar',
@@ -2406,7 +2471,7 @@ Kosongake kanggo njaga standar ${mode}.`,
     openStarmap: 'Bukak grafik memori',
     openKeybinds: 'Pintasan papan tombol',
     layoutEditor: 'Editor tata letak',
-    layoutEditorTitle: 'Editor tata letak — ⌘-klik kanggo ngreset tata letak',
+    layoutEditorTitle: 'Editor tata letak — ⌘-klik kanggo ngreset tata letak'
   },
   agents: {
     close: 'Tutup agen',
@@ -2436,7 +2501,7 @@ Kosongake kanggo njaga standar ${mode}.`,
     ageDays: days => `${days} dina kepungkur`,
     durationSeconds: seconds => `${seconds} dtk`,
     durationMinutes: (minutes, seconds) => `${minutes} mnt ${seconds} dtk`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   cron: {
     close: 'Tutup cron',
@@ -2451,14 +2516,14 @@ Kosongake kanggo njaga standar ${mode}.`,
       paused: 'mandheg sedhela',
       disabled: 'dipateni',
       error: 'kasalahan',
-      completed: 'rampung',
+      completed: 'rampung'
     },
     deliveryLabels: {
       local: 'Desktop iki',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Email',
+      email: 'Email'
     },
     scheduleLabels: {
       daily: 'Saben dina',
@@ -2467,7 +2532,7 @@ Kosongake kanggo njaga standar ${mode}.`,
       monthly: 'Saben wulan',
       hourly: 'Saben jam',
       'every-15-minutes': 'Saben 15 menit',
-      custom: 'Kustom',
+      custom: 'Kustom'
     },
     scheduleHints: {
       daily: 'Saben dina jam 9:00 esuk',
@@ -2476,7 +2541,7 @@ Kosongake kanggo njaga standar ${mode}.`,
       monthly: 'Dina kapisan saben wulan jam 9:00 esuk',
       hourly: 'Ing wiwitan saben jam',
       'every-15-minutes': 'Saben 15 menit',
-      custom: 'Sintaks cron utawa basa alami',
+      custom: 'Sintaks cron utawa basa alami'
     },
     days: {
       '0': 'Ahad',
@@ -2486,7 +2551,7 @@ Kosongake kanggo njaga standar ${mode}.`,
       '4': 'Kemis',
       '5': 'Jemuwah',
       '6': 'Setu',
-      '7': 'Ahad',
+      '7': 'Ahad'
     },
     dayFallback: value => `dina ${value}`,
     everyDayAt: time => `Saben dina jam ${time}`,
@@ -2496,7 +2561,8 @@ Kosongake kanggo njaga standar ${mode}.`,
     topOfHour: 'Ing wiwitan saben jam',
     everyHourAt: minute => `Saben jam ing :${minute}`,
     newCron: 'Cron anyar',
-    emptyDescNew: 'Jadwalake prompt supaya mlaku miturut ekspresi cron. OpenAmer bakal nglakokake lan ngirim asile menyang tujuan sing kowe pilih.',
+    emptyDescNew:
+      'Jadwalake prompt supaya mlaku miturut ekspresi cron. OpenAmer bakal nglakokake lan ngirim asile menyang tujuan sing kowe pilih.',
     emptyDescSearch: 'Coba tembung golekan sing luwih jembar.',
     emptyTitleNew: 'Durung ana tugas terjadwal',
     emptyTitleSearch: 'Ora ana sing cocog',
@@ -2533,7 +2599,8 @@ Kosongake kanggo njaga standar ${mode}.`,
     editTitle: 'Sunting tugas cron',
     createTitle: 'Tugas cron anyar',
     editDesc: 'Anyari jadwal, prompt, utawa tujuan pangiriman. Owah-owahan ditrapake ing giliran sabanjure.',
-    createDesc: 'Jadwalake prompt supaya mlaku otomatis. Gunakake sintaks cron utawa ukara alami kaya "saben 15 menit".',
+    createDesc:
+      'Jadwalake prompt supaya mlaku otomatis. Gunakake sintaks cron utawa ukara alami kaya "saben 15 menit".',
     nameLabel: 'Jeneng',
     namePlaceholder: 'Briefing esuk',
     promptLabel: 'Prompt',
@@ -2555,7 +2622,7 @@ Kosongake kanggo njaga standar ${mode}.`,
     createAction: 'Gawe cron',
     tabs: {
       jobs: 'Tugas',
-      blueprints: 'Cithakan',
+      blueprints: 'Cithakan'
     },
     blueprints: {
       tab: 'Cithakan',
@@ -2569,11 +2636,11 @@ Kosongake kanggo njaga standar ${mode}.`,
       loading: 'Ngemot cithakan...',
       failedLoad: 'Gagal ngemot cithakan',
       emptyTitle: 'Ora ana cithakan',
-      emptyDesc: 'Ora ana cithakan otomatisasi ing backend iki.',
-    },
+      emptyDesc: 'Ora ana cithakan otomatisasi ing backend iki.'
+    }
   },
   onboarding: {
-    headerTitle: "Ayo nyiyapake OpenAmer Agent",
+    headerTitle: 'Ayo nyiyapake OpenAmer Agent',
     headerDesc: 'Sambungake provider model supaya bisa wiwit ngobrol. Umume pilihan mung butuh siji klik.',
     preparingInstall: 'OpenAmer lagi ngrampungake instalasi. Biasane kurang saka semenit nalika sepisanan.',
     starting: 'Miwiti OpenAmer…',
@@ -2581,7 +2648,7 @@ Kosongake kanggo njaga standar ${mode}.`,
     collapse: 'Ciut',
     otherProviders: 'Provider liya',
     haveApiKey: 'Aku duwe API key',
-    chooseLater: "Aku bakal milih provider mengko",
+    chooseLater: 'Aku bakal milih provider mengko',
     recommended: 'Disaranake',
     connected: 'Wis nyambung',
     featuredPitch: 'Siji langganan, 300+ model paling anyar — cara sing disaranake kanggo nganggo OpenAmer',
@@ -2590,28 +2657,29 @@ Kosongake kanggo njaga standar ${mode}.`,
     apiKeyOptions: {
       fireworks: {
         short: 'API model langsung',
-        description: 'Akses langsung menyang model sing di-host Fireworks AI.',
+        description: 'Akses langsung menyang model sing di-host Fireworks AI.'
       },
       openrouter: {
         short: 'siji kunci, akeh model',
-        description: 'Ngasilake atusan model ing mburi siji kunci. Pilihan standar sing apik kanggo instalasi anyar.',
+        description: 'Ngasilake atusan model ing mburi siji kunci. Pilihan standar sing apik kanggo instalasi anyar.'
       },
       openai: {
         short: 'model kelas GPT',
-        description: 'Akses langsung menyang model OpenAI.',
+        description: 'Akses langsung menyang model OpenAI.'
       },
       gemini: {
         short: 'model Gemini',
-        description: 'Akses langsung menyang model Google Gemini.',
+        description: 'Akses langsung menyang model Google Gemini.'
       },
       xai: {
         short: 'model Grok',
-        description: 'Akses langsung menyang model xAI Grok.',
+        description: 'Akses langsung menyang model xAI Grok.'
       },
       local: {
         short: 'mandhiri',
-        description: 'Arahake OpenAmer menyang endpoint sing kompatibel karo OpenAI, lokal utawa self-hosted (vLLM, llama.cpp, Ollama, lan liya-liyane).',
-      },
+        description:
+          'Arahake OpenAmer menyang endpoint sing kompatibel karo OpenAI, lokal utawa self-hosted (vLLM, llama.cpp, Ollama, lan liya-liyane).'
+      }
     },
     backToSignIn: 'Bali menyang mlebu',
     getKey: 'Entuk kunci',
@@ -2624,7 +2692,7 @@ Kosongake kanggo njaga standar ${mode}.`,
     flowSubtitles: {
       pkce: 'Mbukak browser kanggo mlebu, banjur nerusake ing kene',
       device_code: 'Mbukak kaca verifikasi ing browser — OpenAmer nyambung kanthi otomatis',
-      external: 'Mlebu sepisan ing terminal, banjur bali mrene kanggo ngobrol',
+      external: 'Mlebu sepisan ing terminal, banjur bali mrene kanggo ngobrol'
     },
     startingSignIn: provider => `Miwiti mlebu kanggo ${provider}...`,
     verifyingCode: provider => `Verifikasi kode karo ${provider}...`,
@@ -2638,11 +2706,13 @@ Kosongake kanggo njaga standar ${mode}.`,
     copyAuthCode: 'Salin kode wewenang banjur tempelake ing ngisor iki.',
     pasteAuthCode: 'Tempelake kode wewenang',
     reopenAuthPage: 'Bukak maneh kaca wewenang',
-    autoBrowser: provider => `Kita wis mbukak ${provider} ing browser-mu. Wenehi wewenang marang OpenAmer ing kana lan kowe bakal nyambung otomatis — ora perlu nyalin utawa nempel.`,
+    autoBrowser: provider =>
+      `Kita wis mbukak ${provider} ing browser-mu. Wenehi wewenang marang OpenAmer ing kana lan kowe bakal nyambung otomatis — ora perlu nyalin utawa nempel.`,
     reopenSignInPage: 'Bukak maneh kaca mlebu',
     waitingAuthorize: 'Ngenteni kowe menehi wewenang...',
-    externalPending: provider => `${provider} mlebu liwat CLI dhewe. Lakokake perintah iki ing terminal, banjur bali lan pilih "Aku wis mlebu":`,
-    signedIn: "Aku wis mlebu",
+    externalPending: provider =>
+      `${provider} mlebu liwat CLI dhewe. Lakokake perintah iki ing terminal, banjur bali lan pilih "Aku wis mlebu":`,
+    signedIn: 'Aku wis mlebu',
     deviceCodeOpened: provider => `Kita wis mbukak ${provider} ing browser-mu. Lebokake kode iki ing kana:`,
     reopenVerification: 'Bukak maneh kaca verifikasi',
     copy: 'Salin',
@@ -2653,7 +2723,7 @@ Kosongake kanggo njaga standar ${mode}.`,
     price: (input, output) => `${input} mlebu / ${output} metu saben Mtok`,
     change: 'Ganti',
     startChatting: 'Wiwiti',
-    docs: provider => `Dok ${provider}`,
+    docs: provider => `Dok ${provider}`
   },
   modelPicker: {
     title: 'Ganti model',
@@ -2669,13 +2739,13 @@ Kosongake kanggo njaga standar ${mode}.`,
     free: 'Gratis',
     freeTier: 'Tingkat gratis',
     priceTitle: 'Rega mlebu / metu saben yuta token',
-    wasPrice: 'sadurunge',
+    wasPrice: 'sadurunge'
   },
   modelVisibility: {
     title: 'Model',
     search: 'Golek model',
     noAuthenticatedProviders: 'Ora ana provider sing wis mlebu.',
-    addProvider: 'Tambah provider…',
+    addProvider: 'Tambah provider…'
   },
   shell: {
     windowControls: 'Kontrol jendhela',
@@ -2686,7 +2756,7 @@ Kosongake kanggo njaga standar ${mode}.`,
       noModels: 'Ora ana model sing ditemokake',
       editModels: 'Sunting Model…',
       refreshModels: 'Anyari Model',
-      fast: 'Cepet',
+      fast: 'Cepet'
     },
     modelOptions: {
       noOptions: 'Ora ana pilihan kanggo model iki',
@@ -2702,7 +2772,7 @@ Kosongake kanggo njaga standar ${mode}.`,
       max: 'Maksimal',
       ultra: 'Ultra',
       updateFailed: 'Nganyari pilihan model gagal',
-      fastFailed: 'Nganyari mode cepet gagal',
+      fastFailed: 'Nganyari mode cepet gagal'
     },
     gatewayMenu: {
       gateway: 'Gateway',
@@ -2717,7 +2787,7 @@ Kosongake kanggo njaga standar ${mode}.`,
       connection: label => `Sambungan: ${label}`,
       recentActivity: 'Aktivitas pungkasan',
       viewAllLogs: 'Deleng kabeh log →',
-      messagingPlatforms: 'Platform olah pesen',
+      messagingPlatforms: 'Platform olah pesen'
     },
     approvalMode: {
       title: 'Mode persetujuan',
@@ -2727,7 +2797,7 @@ Kosongake kanggo njaga standar ${mode}.`,
       smart: 'Pinter',
       smartDescription: 'Nilai tumindak kanthi otomatis lan takon yen perlu',
       off: 'Mati',
-      offDescription: 'Mlaku tanpa panjaluk persetujuan',
+      offDescription: 'Mlaku tanpa panjaluk persetujuan'
     },
     statusbar: {
       unknown: 'ora dingerteni',
@@ -2783,18 +2853,19 @@ Kosongake kanggo njaga standar ${mode}.`,
           skills: 'Skill',
           subagent_definitions: 'Definisi subagen',
           system_prompt: 'Prompt sistem',
-          tool_definitions: 'Definisi piranti',
+          tool_definitions: 'Definisi piranti'
         },
         empty: 'Durung ana data konteks',
         loading: 'Ngemot rinciane…',
         percentFull: percent => `${percent}% Kebak`,
         title: 'Panggunaan Konteks',
-        tokenSummary: (used, max) => `${used} / ${max} Token`,
+        tokenSummary: (used, max) => `${used} / ${max} Token`
       },
       openContextUsage: 'Bukak rincian panggunaan konteks',
       session: 'Sesi',
       runtimeSessionElapsed: 'Wektu sesi runtime',
-      yoloOn: 'YOLO urip — menehi idin otomatis kanggo perintah mbebayani. Klik kanggo mateni. Shift-klik ngowahi global.',
+      yoloOn:
+        'YOLO urip — menehi idin otomatis kanggo perintah mbebayani. Klik kanggo mateni. Shift-klik ngowahi global.',
       yoloOff: 'YOLO mati — klik kanggo menehi idin otomatis perintah mbebayani. Shift-klik ngowahi global.',
       modelNone: 'ora ana',
       noModel: 'ora ana model',
@@ -2802,8 +2873,8 @@ Kosongake kanggo njaga standar ${mode}.`,
       openModelPicker: 'Bukak pemilih model',
       modelPinned: 'disematake dening kowe; obrolan anyar nganggo iki tinimbang standar ing Setelan',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Sidebar tengen',
@@ -2839,7 +2910,7 @@ Kosongake kanggo njaga standar ${mode}.`,
     terminalNew: 'Terminal anyar',
     terminalCloseOthers: 'Tutup liyane',
     terminalCloseAll: 'Tutup kabeh',
-    addToChat: 'Tambah menyang obrolan',
+    addToChat: 'Tambah menyang obrolan'
   },
   preview: {
     tab: 'Pratinjau',
@@ -2873,7 +2944,8 @@ Kosongake kanggo njaga standar ${mode}.`,
     unsavedChanges: 'Owah-owahan durung disimpen',
     saveFailed: message => `Ora bisa nyimpen: ${message}`,
     diskChangedTitle: 'File owah ing disk',
-    diskChangedBody: 'File iki wis owah wiwit kowe mbukak. Timpah nganggo versimu, utawa buwang suntinganmu lan muat ulang?',
+    diskChangedBody:
+      'File iki wis owah wiwit kowe mbukak. Timpah nganggo versimu, utawa buwang suntinganmu lan muat ulang?',
     overwrite: 'Timpah',
     discardReload: 'Buang & muat ulang',
     console: {
@@ -2894,7 +2966,7 @@ Kosongake kanggo njaga standar ${mode}.`,
       empty: 'Durung ana pesen konsol.',
       promptHeader: 'Konsol pratinjau:',
       sentTitle: 'Dikirim menyang obrolan',
-      sentMessage: count => `${count} entri log${count === 1 ? 'y' : 'ies'} ditambahake ing komposer`,
+      sentMessage: count => `${count} entri log${count === 1 ? 'y' : 'ies'} ditambahake ing komposer`
     },
     web: {
       appFailedToBoot: 'Aplikasi pratinjau gagal urip',
@@ -2919,17 +2991,19 @@ Kosongake kanggo njaga standar ${mode}.`,
       reloadingNow: 'Muat ulang pratinjau saiki.',
       restartFailedTitle: 'Restart pratinjau gagal',
       restartFailedMessage: 'OpenAmer ora bisa restart server.',
-      stillWorking: 'OpenAmer isih kerja, nanging asil restart durung teka. Perintah server bisa uga mlaku ing foreground.',
+      stillWorking:
+        'OpenAmer isih kerja, nanging asil restart durung teka. Perintah server bisa uga mlaku ing foreground.',
       workspaceReloading: 'Workspace owah, muat ulang pratinjau',
       fileChanged: url => `File owah, muat ulang pratinjau: ${url}`,
       filesChanged: (count, url) => `${count} owah-owahan file, muat ulang pratinjau: ${url}`,
       watchFailed: message => `Ora bisa ngawasi file pratinjau: ${message}`,
-      moduleMimeDescription: 'Skrip modul diladeni nganggo jinis MIME sing salah. Biasane iki ateges server file statis ngladeni aplikasi Vite/React, dudu server dev proyeke.',
+      moduleMimeDescription:
+        'Skrip modul diladeni nganggo jinis MIME sing salah. Biasane iki ateges server file statis ngladeni aplikasi Vite/React, dudu server dev proyeke.',
       loadFailedConsole: (code, message) => `Muat gagal${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Kaca pratinjau ora bisa digayuh.',
       openTarget: url => `Bukak ${url}`,
-      fallbackTitle: 'Pratinjau',
-    },
+      fallbackTitle: 'Pratinjau'
+    }
   },
   zones: {
     showHeader: 'Tampilake header',
@@ -2937,7 +3011,8 @@ Kosongake kanggo njaga standar ${mode}.`,
     minimize: 'Ciutake',
     restore: 'Balekake',
     closeRunningTitle: 'Tutup tab sing lagi mlaku?',
-    closeRunningBody: 'Obrolan iki isih kerja (utawa ngenteni input saka kowe). Nutup tab mung ndhelikake — sesi tetep nyimpen kemajuane lan bisa dibukak maneh saka sidebar.',
+    closeRunningBody:
+      'Obrolan iki isih kerja (utawa ngenteni input saka kowe). Nutup tab mung ndhelikake — sesi tetep nyimpen kemajuane lan bisa dibukak maneh saka sidebar.',
     closeRunningConfirm: 'Tutup tab',
     closeOthers: 'Tutup liyane',
     closeToRight: 'Tutup ing sisih tengen',
@@ -2963,7 +3038,8 @@ Kosongake kanggo njaga standar ${mode}.`,
     deletePreset: name => `Hapus ${name}`,
     zoneEditorTitle: 'Editor zona',
     editorHintPre: 'klik kanggo misah · ',
-    editorHintPost: ' mbalik baris · seret ngliwati zona kanggo nggabungake · seret pinggir bebarengan kanggo ngatur ukuran',
+    editorHintPost:
+      ' mbalik baris · seret ngliwati zona kanggo nggabungake · seret pinggir bebarengan kanggo ngatur ukuran',
     templateColumns: 'Kolom',
     templateRows: 'Baris',
     templateGrid: 'Kothak',
@@ -2974,6 +3050,6 @@ Kosongake kanggo njaga standar ${mode}.`,
     layoutNamePlaceholder: fallback => `Jeneng tata letak (${fallback})`,
     saveApply: 'Simpen & terapake',
     notExpressible: 'susunan iki saling ngunci (pinwheel) — durung bisa dituduhake minangka pamisahan bersarang',
-    zoneCount: count => `${count} zona`,
-  },
+    zoneCount: count => `${count} zona`
+  }
 })

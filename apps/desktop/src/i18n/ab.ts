@@ -45,7 +45,7 @@ export const ab = defineLocale({
     delete: 'Аныхра',
     docs: 'Адокументқәа',
     done: 'Иҵоуп',
-    tryHint: term => `Try “${term}”`,
+    tryHint: term => `Try “${term}”`
   },
   fileMenu: {
     revealFinder: 'Finder аҟны аарԥшра',
@@ -60,7 +60,7 @@ export const ab = defineLocale({
     renameLabel: 'Ахьӡ ҿыц',
     deleteBody: 'Аҭаҟаҟа ииасит — иара аҭаҟаҟа иҿыхра уҟаҵап.',
     pathCopied: 'Амҿы копиа ҟаҵан',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop ихадароуп',
@@ -69,7 +69,7 @@ export const ab = defineLocale({
       loadingSettings: 'OpenAmer ашьақәыргыларақәа рҭагалара',
       loadingSessions: 'Аҵыхәтәантәи сессиақәа рҭагалара',
       startingDesktopConnection: 'Десктоп аимаҭра аҿаҧхьара',
-      startingOpenAmerDesktop: 'OpenAmer Desktop аҿаҧхьара…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop аҿаҧхьара…'
     },
     errors: {
       backgroundExited: 'OpenAmer аҵаҟатәи процесс иҭыҵит.',
@@ -78,13 +78,15 @@ export const ab = defineLocale({
       desktopBootFailed: 'Десктоп аҿаҧхьара аҽыуит',
       gatewayConnectionLost: 'Ашлюз ахь аимадара ҵәыҭхеит',
       gatewaySignInRequired: 'Ашлюз ахь аҭалара аҭахуп',
-      ipcBridgeUnavailable: 'Desktop IPC аимадара ыҟам.',
+      ipcBridgeUnavailable: 'Desktop IPC аимадара ыҟам.'
     },
     failure: {
       title: 'OpenAmer аҿакра алымҵит',
-      description: 'Фонтәи ашлюз аҿакра алымҵит. Аҵаҟа иҟоу аиҭашьақәыргылара аҿиарақәа рҿы иҭааԥши. Арахьтәи шәчатрақәа ма шәиҿкаарақәа ианырҭәгом.',
+      description:
+        'Фонтәи ашлюз аҿакра алымҵит. Аҵаҟа иҟоу аиҭашьақәыргылара аҿиарақәа рҿы иҭааԥши. Арахьтәи шәчатрақәа ма шәиҿкаарақәа ианырҭәгом.',
       remoteTitle: 'Дистанционтәи ашлюз ахь аҭалара аҭахуп',
-      remoteDescription: 'Шәдистанционтәи ашлюз асессиа аҵыхәан. Еиҭаҩажьуа аҭалара ҟәыш, аимадара еиҭаҟаҵразы. Арахьтәи шәчатрақәа ма шәиҿкаарақәа ианырҭәгом.',
+      remoteDescription:
+        'Шәдистанционтәи ашлюз асессиа аҵыхәан. Еиҭаҩажьуа аҭалара ҟәыш, аимадара еиҭаҟаҵразы. Арахьтәи шәчатрақәа ма шәиҿкаарақәа ианырҭәгом.',
       retry: 'Еиҭаҩажь',
       repairInstall: 'Аҭаргылара аиҭашьақәыргыла',
       useLocalGateway: 'Локалтәи ашлюз ахархәа',
@@ -103,10 +105,11 @@ export const ab = defineLocale({
       signInFailed: 'Аҭалара аҟәыҭхеит',
       signInToRemoteGateway: 'Аҩадаратә аҭаларҭа аҭалара',
       identityProvider: 'уидентификациа аԥҟара',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   notifications: {
     region: 'Аҳәамҭақәа',
@@ -118,7 +121,8 @@ export const ab = defineLocale({
     copyDetail: 'Адаҟьа акопиатәуп',
     copyDetailFailed: 'Аҳәамҭа адаҟьа акопиа ҟаҵам',
     backendOutOfDateTitle: 'Абекенд аамҭа иаҵанакуеит',
-    backendOutOfDateMessage: 'УOpenAmer абекенд ари desktop-аԥҭыра аасҭа ижәыҵуеит, иашамкәа аус ауауеит. Еиқәыршәаразы ирҿыцтәуп.',
+    backendOutOfDateMessage:
+      'УOpenAmer абекенд ари desktop-аԥҭыра аасҭа ижәыҵуеит, иашамкәа аус ауауеит. Еиқәыршәаразы ирҿыцтәуп.',
     installMethodUnsupportedTitle: 'Аиҭырҭараз аметод аԥҟара амам',
     updateOpenAmer: 'OpenAmer ирҿыцтәуп',
     updateReadyTitle: 'Аирҿыцра дазхиоуп',
@@ -131,7 +135,7 @@ export const ab = defineLocale({
       microphonePermission: 'Микрофон аразрешение аҭгауп.',
       openaiRejectedApiKey: 'OpenAI API ацаҟьа иаҭгаит.',
       openaiTtsNeedsKey: 'OpenAI TTS VOICE_TOOLS_OPENAI_KEY ма OPENAI_API_KEY иаҭахуп.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Абжьы режим ахархәара азы speech-to-text шьаҿ.',
@@ -150,7 +154,7 @@ export const ab = defineLocale({
       transcriptionFailed: 'Абжьы атранскрипциа аԥызахеит.',
       transcriptionUnavailable: 'Абжьы атекст аҭара ыҟам.',
       tryRecordingAgain: 'Аҭаҩра даҽаџьара аҽаҩ.',
-      unavailable: 'Абжьы ыҟам',
+      unavailable: 'Абжьы ыҟам'
     },
     native: {
       approvalTitle: 'Ашьақәырӷәӷәара аҭахуп',
@@ -163,10 +167,10 @@ export const ab = defineLocale({
       turnErrorTitle: 'Ашьҭра ауит',
       backgroundDoneTitle: 'Аҩадаратә ус ихьчхеит',
       backgroundFailedTitle: 'Аҩадаратә ус ауит',
-      creditsTitle: 'Акредитқәа',
+      creditsTitle: 'Акредитқәа'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   titlebar: {
     showSidebar: 'Асайдбар аарԥшра',
@@ -183,7 +187,7 @@ export const ab = defineLocale({
     openKeybinds: 'Клавиатура ашорткатқәа',
     layoutEditor: 'Амакет аредактор',
     hideSidebar: 'Агантә панель аԥшәа',
-    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout',
+    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout'
   },
   keybinds: {
     title: 'Клавиатура ашорткатқәа',
@@ -198,7 +202,7 @@ export const ab = defineLocale({
       profiles: 'Апрофильқәа',
       session: 'Асессиа',
       navigation: 'Анавигациа',
-      view: 'Ахәаҧшра',
+      view: 'Ахәаҧшра'
     },
     actions: {
       'keybinds.openPanel': 'Иаарт клавиатуратә шорткатқәа',
@@ -277,10 +281,10 @@ export const ab = defineLocale({
       'composer.slash': 'Slash-командақәа рпалитра',
       'composer.help': 'Лассы ацхыраара',
       'composer.history': 'Поповер / аҭоурых аиҭарҭара',
-      'composer.cancel': 'Поповер арк · ашьаҟаҵара аԥыхра',
+      'composer.cancel': 'Поповер арк · ашьаҟаҵара аԥыхра'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer акредитқәа ыҟам',
@@ -288,7 +292,7 @@ export const ab = defineLocale({
     openBilling: 'Абиллинг ааркәа',
     addCredits: 'Акредитқәа ацҵа',
     dismiss: 'Иаԥых',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   language: {
     label: 'Абызшәа',
@@ -297,7 +301,7 @@ export const ab = defineLocale({
     saveError: 'Абызшәа арҿыцра ауам',
     switchTo: 'Абызшәа аиҭарҭара',
     searchPlaceholder: 'Абызшәақәа рыԥшаара…',
-    noResults: 'Абызшәақәа ԥшаам',
+    noResults: 'Абызшәақәа ԥшаам'
   },
   settings: {
     closeSettings: 'Ақәыргыларақәа арк',
@@ -322,11 +326,12 @@ export const ab = defineLocale({
       billing: 'Аԥарҭа',
       notifications: 'Аҭакрақәа',
       plugins: 'Аплагинқәа',
-      mcp: 'МЦП',
+      mcp: 'МЦП'
     },
     plugins: {
       title: 'Адесктоп аплагинқәа',
-      blurb: 'Ари аԥшьгаӡара аҟны иҭаргылоу UI аҿиаарақәа — build аҿы иалоу, мамзар desktop-plugins атәыҩ аҟны иҭаргоу (OpenAmer иҩуақәа рнаҩсгьы). Аплагин аԥыхаара иаку аҟынтә иунагӡоит, насгьы аҿыцратә аҿаршьҭра аан иҟалоит.',
+      blurb:
+        'Ари аԥшьгаӡара аҟны иҭаргылоу UI аҿиаарақәа — build аҿы иалоу, мамзар desktop-plugins атәыҩ аҟны иҭаргоу (OpenAmer иҩуақәа рнаҩсгьы). Аплагин аԥыхаара иаку аҟынтә иунагӡоит, насгьы аҿыцратә аҿаршьҭра аан иҟалоит.',
       openFolder: 'Аплагинқәа ртәыҩ аарты',
       rescan: 'Аԥшаара ҿыц',
       reveal: 'Афайл менеджер аҟны аарԥш',
@@ -337,41 +342,42 @@ export const ab = defineLocale({
       kinds: {
         bundled: 'иалоу',
         disk: 'адиск аҿы',
-        runtime: 'арантаим',
+        runtime: 'арантаим'
       },
-      count: n => `${n} installed`,
+      count: n => `${n} installed`
     },
     notifications: {
       title: 'Анотификациақәа',
-      intro: 'Адесктоптә нотификациақәа, априложениаҿы иалоу тостқәа иаҭәашьаны. Урҭ аустройство аҿы иҟоуп — компьютер зегьы иара иаԥҵарақәа иаԥызазааит.',
+      intro:
+        'Адесктоптә нотификациақәа, априложениаҿы иалоу тостқәа иаҭәашьаны. Урҭ аустройство аҿы иҟоуп — компьютер зегьы иара иаԥҵарақәа иаԥызазааит.',
       enableAll: 'Анотификациақәа аҽаҿар',
       enableAllDesc: 'Ахадаратә переключатель. Ари аҿыхрала аҵаҟатәи анотификациақәа зегьы иауадаҩырц.',
       focusedHint: 'Ахыркәшара иазку аԥсҳарақәа OpenAmer афон аҿы иҟоу рзы мацара иақәырԥшлоит.',
       kinds: {
         approval: {
           label: 'Ашьаҭаркьара аҭахуп',
-          description: 'Акоманда ашьаҭаркьара ма аԥырра уаԥшлоит.',
+          description: 'Акоманда ашьаҭаркьара ма аԥырра уаԥшлоит.'
         },
         input: {
           label: 'Аҭагалара аҭахуп',
-          description: 'OpenAmer аҳәара ҟаҵан, апароль ма асекрет аҭахуп.',
+          description: 'OpenAmer аҳәара ҟаҵан, апароль ма асекрет аҭахуп.'
         },
         turnDone: {
           label: 'Аҭак ихиауп',
-          description: 'Атур ахыркәшахеит OpenAmer афон аҿы иҟаны.',
+          description: 'Атур ахыркәшахеит OpenAmer афон аҿы иҟаны.'
         },
         turnError: {
           label: 'Атур аҵахеит',
-          description: 'Атур агхала ихыркәшахеит.',
+          description: 'Атур агхала ихыркәшахеит.'
         },
         backgroundDone: {
           label: 'Афонтә азадача ахыркәшахеит',
-          description: 'Афонтә терминалтә команда ахыркәшахеит.',
+          description: 'Афонтә терминалтә команда ахыркәшахеит.'
         },
         credits: {
           label: 'Акредиттә ԥсҳарақәа',
-          description: 'Акредит ахь аҭалара иаанкылоуп ма иаиҭашьақәыргылеит.',
-        },
+          description: 'Акредит ахь аҭалара иаанкылоуп ма иаиҭашьақәыргылеит.'
+        }
       },
       test: 'Атест аҳабарҭга идәықәҵара',
       testTitle: 'OpenAmer',
@@ -380,7 +386,7 @@ export const ab = defineLocale({
       testUnsupported: 'Ари асистема аҭыԥантәи аҳабарҭгақәа рзы ацхраара иҟаӡам.',
       completionSoundTitle: 'Ахьылаҵара абз',
       completionSoundDesc: 'Аагент иҭаҵара ашьҭахь иҳәалоит. Апресет алхәа, нас абра иахәаԥш.',
-      completionSoundPreview: 'Ахәаԥшра',
+      completionSoundPreview: 'Ахәаԥшра'
     },
     sections: {
       model: 'Амодель',
@@ -390,7 +396,7 @@ export const ab = defineLocale({
       safety: 'Ашәарҭадара',
       memory: 'Аиҵәыга & Аконтекст',
       voice: 'Абз',
-      advanced: 'Иҭаҵу',
+      advanced: 'Иҭаҵу'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop иазкны',
@@ -398,21 +404,21 @@ export const ab = defineLocale({
       gateway: 'Gateway аимадара...',
       keys: 'API аключқәа рыҧшаа...',
       mcp: 'MCP асерверқәа рыҧшаа...',
-      sessions: 'Архивтә сессиақәа рыҧшаа...',
+      sessions: 'Архивтә сессиақәа рыҧшаа...'
     },
     modeOptions: {
       light: {
         label: 'Илаш',
-        description: 'Илаш астол аҭыԥқәа',
+        description: 'Илаш астол аҭыԥқәа'
       },
       dark: {
         label: 'Илакә',
-        description: 'Илакә аусура аҭыԥ',
+        description: 'Илакә аусура аҭыԥ'
       },
       system: {
         label: 'Асистема',
-        description: 'ОС аԥшра иаҵаҭ',
-      },
+        description: 'ОС аԥшра иаҵаҭ'
+      }
     },
     appearance: {
       title: 'Аԥшра',
@@ -427,7 +433,8 @@ export const ab = defineLocale({
       backdropTitle: 'Ачат аҭаҧш',
       backdropDesc: 'Аицҵаашьа аҭаҧшҟа иҿыцу статуя асахьа.',
       embedsTitle: 'Инадыркылоу аҭаркқәа',
-      embedsDesc: 'Ибеиоу аԥшрақәа хԥатәи асаитқәа рҟынтә иаагоуп (YouTube, X, …). Аазҵаара иаанагоит аҭыԥ маҭәа, уара зегьы рзы аҳәара анаҭаанӡа; Аангылара иаагалоит урт автоматикала; Аҿыхуп иаанхоит иаарту ассигнарақәа.',
+      embedsDesc:
+        'Ибеиоу аԥшрақәа хԥатәи асаитқәа рҟынтә иаагоуп (YouTube, X, …). Аазҵаара иаанагоит аҭыԥ маҭәа, уара зегьы рзы аҳәара анаҭаанӡа; Аангылара иаагалоит урт автоматикала; Аҿыхуп иаанхоит иаарту ассигнарақәа.',
       embedsAsk: 'Аазҵаара',
       embedsAlways: 'Аангылара',
       embedsOff: 'Аҿыхуп',
@@ -438,7 +445,8 @@ export const ab = defineLocale({
       themeTitle: 'Атема',
       themeDesc: 'Адесктоптә палитрақәа мацара. Иалкаау арежим аҿы иаҭоуп.',
       installTitle: 'VS Code аҟынтә аҭагалара',
-      installDesc: 'Marketplace арасширение аидентификатор аҭарҭәа (e.g. dracula-theme.theme-dracula), уи аԥштәыз атема адесктоптә палитрахь иахьӡырхәарц.',
+      installDesc:
+        'Marketplace арасширение аидентификатор аҭарҭәа (e.g. dracula-theme.theme-dracula), уи аԥштәыз атема адесктоптә палитрахь иахьӡырхәарц.',
       installButton: 'Аҭагалара',
       installing: 'Аҭагалоуп…',
       installError: 'Уи атема аҭагалар алшым.',
@@ -446,8 +454,10 @@ export const ab = defineLocale({
       importedBadge: 'Иаагауп',
       pet: {
         title: 'Аҵыс',
-        intro: 'Иаауит анимациатә petdex-маскот, OpenAmer аҿы иҟалоит, аус аҟаҵара ашәҟәыӷра, амшә аҟны ахьӡырҳәаа, аҟаҵаракә аҟны ахьыҭыҵ.',
-        restartHint: 'Аԥстәықәа рзы иаҩыза аԥхьаҟаҵара хәҭаҩуп — аусура аҟны иҟоу априложение ари афункциа ахьаҭаӡаз аԥхьа иаԥҵан. OpenAmer ианыхтәуп, ԥахьы иаартәуп, усҟан абра иаауит.',
+        intro:
+          'Иаауит анимациатә petdex-маскот, OpenAmer аҿы иҟалоит, аус аҟаҵара ашәҟәыӷра, амшә аҟны ахьӡырҳәаа, аҟаҵаракә аҟны ахьыҭыҵ.',
+        restartHint:
+          'Аԥстәықәа рзы иаҩыза аԥхьаҟаҵара хәҭаҩуп — аусура аҟны иҟоу априложение ари афункциа ахьаҭаӡаз аԥхьа иаԥҵан. OpenAmer ианыхтәуп, ԥахьы иаартәуп, усҟан абра иаауит.',
         on: 'Аҿы',
         off: 'Иаҟәуп',
         scaleTitle: 'Ашәага',
@@ -479,13 +489,14 @@ export const ab = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
       installPlaceholder: 'издатель.расширение',
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     about: {
       versionUnavailable: 'Аверсиа иҟаӡам.',
@@ -502,7 +513,8 @@ export const ab = defineLocale({
       tapCheck: 'Аҿыцрақәа рыԥшаара азы "Иахьа ишәыхьча" шәыҵәы.',
       justNowSuffix: '· аҵыхәтәан',
       automaticUpdates: 'Автоматикатә аҿыцрақәа',
-      automaticUpdatesDesc: 'OpenAmer аҿыцрақәа автоматикатә ала аҿныхәҭаҟны ишәыхьчоит, нас аҿыцра зхьаҵаразы шәызгәаҭоит.',
+      automaticUpdatesDesc:
+        'OpenAmer аҿыцрақәа автоматикатә ала аҿныхәҭаҟны ишәыхьчоит, нас аҿыцра зхьаҵаразы шәызгәаҭоит.',
       never: 'аҽазыҟаҵам',
       justNow: 'аҵыхәтәан',
       heading: 'OpenAmer Астол',
@@ -512,7 +524,7 @@ export const ab = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     config: {
       none: 'Иҟам',
@@ -528,7 +540,8 @@ export const ab = defineLocale({
       imported: 'Аконфигурациа аимпорт ҟалоуп',
       invalidJson: 'Иашам аконфигурациа JSON',
       keepAwakeTitle: 'Акомпиутер ацәаҩара аанкыла',
-      keepAwakeDesc: 'Ари амашьына ацәаҩара аанкыла, иааӡа еиҵаҩыз мамзаар аҵхәы иаԥхьаӡа аусурақәа рҵаҵәарц азы. Адисплей иааӡа алакәаауа иҟалоит.',
+      keepAwakeDesc:
+        'Ари амашьына ацәаҩара аанкыла, иааӡа еиҵаҩыз мамзаар аҵхәы иаԥхьаӡа аусурақәа рҵаҵәарц азы. Адисплей иааӡа алакәаауа иҟалоит.'
     },
     credentials: {
       pasteKey: 'Ацаҭа иҭаҩӡа',
@@ -538,7 +551,7 @@ export const ab = defineLocale({
       getKey: 'Ацаҭа иаԥшаа',
       saving: 'Ахьчара',
       enterValueFirst: 'Ԥхьаҟа аҵак иҭаҭ.',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     envActions: {
       credentialActions: 'Акреденциақәа рҟазарақәа',
@@ -549,7 +562,7 @@ export const ab = defineLocale({
       replace: 'Аиҭагара',
       set: 'Ашьақәыргылара',
       clear: 'Аҵәаӡара',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     gateway: {
       loading: 'Gateway ашьақәыргыларақәа рҭагалара...',
@@ -557,12 +570,14 @@ export const ab = defineLocale({
       unavailableDesc: 'Десктоптә IPC bridge Gateway ашьақәыргыларақәа иаарԥшӡам.',
       title: 'Gateway аимаҭара',
       envOverride: 'env аиҭагара',
-      intro: 'OpenAmer Desktop ихатәы локальтә gateway аԥхьаӡатәла иалагоит. Адистантә gateway хархәа, ари app иаҭаху аҟәшала иҟоу OpenAmer backend анапхгара азы, егьырҭ амашьынаҿы ма ибзианы иаҵәаӡоу proxy иҭаҵаны. Алаҵәа апрофиль алх, уи ихатәы дистантә host аҭара.',
+      intro:
+        'OpenAmer Desktop ихатәы локальтә gateway аԥхьаӡатәла иалагоит. Адистантә gateway хархәа, ари app иаҭаху аҟәшала иҟоу OpenAmer backend анапхгара азы, егьырҭ амашьынаҿы ма ибзианы иаҵәаӡоу proxy иҭаҵаны. Алаҵәа апрофиль алх, уи ихатәы дистантә host аҭара.',
       appliesTo: 'Иаҵанакуеит',
       allProfiles: 'Апрофильқәа зегьы',
       defaultConnection: 'Апрофиль зегьы рзы аԥхьаӡатә аимаҭара, ихатәы аиҭагара змам.',
       envOverrideTitle: 'Аԥсҭазааратә ҵакырацәақәа ари десктоптә сеанс анапхгара аагоит.',
-      envOverrideDesc: 'OPENAMER_DESKTOP_REMOTE_URL и OPENAMER_DESKTOP_REMOTE_TOKEN аҵәаӡтәуп, аҵаҟа ахьчара ҟаҵоу ашьақәыргылара хархәара аҭазарц.',
+      envOverrideDesc:
+        'OPENAMER_DESKTOP_REMOTE_URL и OPENAMER_DESKTOP_REMOTE_TOKEN аҵәаӡтәуп, аҵаҟа ахьчара ҟаҵоу ашьақәыргылара хархәара аҭазарц.',
       modeTitle: 'Аимаҵра арежим',
       localTitle: 'Аҭыҧтәи ашлюз',
       localDesc: 'localhost аҿы OpenAmer иаҭәаану априваттә бекенд иаҿаҵа. Уи астандарт апҭыс ауп, офлайн аусуеит.',
@@ -570,8 +585,10 @@ export const ab = defineLocale({
       inheritDesc: 'Ари апрефиль иаҭәаану аиҭаҵра ықәга, астандарт аимаҵра хархәа.',
       remoteTitle: 'Араҕьтәи ашлюз',
       remoteDesc: 'Ари десктоптәи ашьел OpenAmer иараҕьтәи абекенд иаимаҵар.',
-      remoteAuthHint: 'Ахостингтәи ашлюзқәа OAuth ма ахархәаҩ ихьӡи апарольи хархәоит; селф-хостингтәи ашлюзқәа асессиатә токен хархәауеит.',
-      cloudDesc: 'OpenAmer Cloud иаҿы актәи аҭалара ҟаҵа, шәакаунт аҿы иҟоу агентқәа рҟынтәи алх — URL аҭагалара хәҭаӡам.',
+      remoteAuthHint:
+        'Ахостингтәи ашлюзқәа OAuth ма ахархәаҩ ихьӡи апарольи хархәоит; селф-хостингтәи ашлюзқәа асессиатә токен хархәауеит.',
+      cloudDesc:
+        'OpenAmer Cloud иаҿы актәи аҭалара ҟаҵа, шәакаунт аҿы иҟоу агентқәа рҟынтәи алх — URL аҭагалара хәҭаӡам.',
       cloudSignIn: 'OpenAmer Cloud иаҿы аҭалара',
       cloudSignedIn: 'OpenAmer Cloud иаҿы аҭалара ҟаҵоуп',
       cloudNeedsSignIn: 'Шәакаунт аҿы иҟоу агентқәа рыԥшааразы OpenAmer Cloud иаҿы аҭалара.',
@@ -584,7 +601,7 @@ export const ab = defineLocale({
       cloudNoAgents: {
         before: 'Ари аккаунт аҿы агентқәа ыҟам. Иаԥҵатеи',
         linkText: 'OpenAmer апортал',
-        after: 'аҿы, нас ирҿыц.',
+        after: 'аҿы, нас ирҿыц.'
       },
       cloudRefresh: 'Ирҿыц',
       cloudConnect: 'Иаҭаҵ',
@@ -617,7 +634,8 @@ export const ab = defineLocale({
       applyFailed: 'Агеитуэи апараметрқәа рхархәара алымшеит',
       saveFailed: 'Агеитуэи апараметрқәа рыхьчара алымшеит',
       sshTitle: 'Аимадара SSH ала',
-      sshDesc: 'OpenAmer адаҟьа SSH ала иаҭаҭыԥуп, нас ари априложение ахь атуннель аҭаҭыԥуп — иаҿупҭатә амам, иаԥшаатә амам. Иаҭахуп ахост ахь ацала SSH аҭалара аусура.',
+      sshDesc:
+        'OpenAmer адаҟьа SSH ала иаҭаҭыԥуп, нас ари априложение ахь атуннель аҭаҭыԥуп — иаҿупҭатә амам, иаԥшаатә амам. Иаҭахуп ахост ахь ацала SSH аҭалара аусура.',
       sshTrustHint: 'Раԥхьа ахьарбоу ахост аца ишәыԥшуп, нас иаркуп; инаҽшьҭахь аԥсахрақәа аҭахра алымшозар.',
       sshHostTitle: 'Ахост',
       sshHostDesc: 'user@host, мамзаар ~/.ssh/config аҟнытә Host алиас.',
@@ -638,8 +656,10 @@ export const ab = defineLocale({
       diagnosticsDesc: '`desktop.log` апкъаф ыҟоуп афайым ахъапшәа ажәы — аԥсшәа аԥсуа мыхьаӷ дыдеи.',
       openLogs: 'Журнал ащә',
       incompleteTitle: 'Ҭыԥ аԥсшәа дук',
-      sshErrNotInstalled: 'OpenAmer араҟатәи ахост аҟны иҭырҵаӡам. Иахь иҭырҵа (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ма OpenAmer амҩа ишьҭы.',
-      sshErrPlatform: 'Араҟатәи аплатформа иаԥшӡам. OpenAmer Desktop SSH режим Linux, macOS, Windows араҟатәи ахостқәа ирыдгылоит.',
+      sshErrNotInstalled:
+        'OpenAmer араҟатәи ахост аҟны иҭырҵаӡам. Иахь иҭырҵа (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ма OpenAmer амҩа ишьҭы.',
+      sshErrPlatform:
+        'Араҟатәи аплатформа иаԥшӡам. OpenAmer Desktop SSH режим Linux, macOS, Windows араҟатәи ахостқәа ирыдгылоит.',
       sshErrTimeout: 'SSH аимадара аамҭа ахәит. Ахост инаӡамзартәуп ма иҭыҵуазартәуп.',
       sshErrUpdateRequired: 'Desktop SSH ала иаҿагылара разы араҟатәи ахост аҟны OpenAmer ирҿыц.',
       sshErrUnknown: 'SSH аимадара алымшәит.',
@@ -660,8 +680,10 @@ export const ab = defineLocale({
       sshConnect: 'Бжыхьара',
       sshButtonsHint: 'АSave применится уи кӏазам. Бжыхьара — уи аҩы.',
       sshErrUnreachable: 'Ауаҩ а хост SSH-ик еибашьрауаит. Хост, порт епс уи сеть хаҵара.',
-      sshErrAuth: 'SSH аутентификация прокъогъуаит. Уи ключ ssh-agent-ыз ssh-add аусзу епс ~/.ssh/config-ыз IdentityFile ыкъуа — OpenAmer ssh аинтерактивнӕй ргьыл.',
-      sshErrHostKey: 'Хост ключ уи зыбжьара ажы ажәлазгъауеитchanged. Ауаҩ ыҟоуп иажәа, икӏа ssh-keygen -R <host> ашәыр епс зыбжьар.',
+      sshErrAuth:
+        'SSH аутентификация прокъогъуаит. Уи ключ ssh-agent-ыз ssh-add аусзу епс ~/.ssh/config-ыз IdentityFile ыкъуа — OpenAmer ssh аинтерактивнӕй ргьыл.',
+      sshErrHostKey:
+        'Хост ключ уи зыбжьара ажы ажәлазгъауеитchanged. Ауаҩ ыҟоуп иажәа, икӏа ssh-keygen -R <host> ашәыр епс зыбжьар.',
       enterUrlFirst: 'Иҭагала раԥхьа адаҟьатә URL.',
       incompleteSignIn: 'Ҭыԥ URL ахьа ажәы анапхьа кӏигӏа аԥс афак.',
       incompleteToken: 'Ҭыԥ URL ана сессиа токен ахьа ажәы анапхьа кӏигӏа аԥс афак.',
@@ -670,7 +692,8 @@ export const ab = defineLocale({
       sshIncompleteHost: 'Бжыхьарына SSH хост аусзу.',
       cloudTitle: 'OpenAmer Аҧсшьа',
       cloudSignInTitle: 'OpenAmer Аҧсшьа',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudOrgRole: role => `Role: ${role}`,
       cloudConnectedTo: name => `Connected to ${name}.`,
       cloudStatusLabel: status => `Status: ${status}`,
@@ -678,12 +701,12 @@ export const ab = defineLocale({
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     keys: {
       loading: 'API ацаҟьақәеи аԥышәқәеи рыҭагалара...',
       failedLoad: 'API ацаҟьақәа рыҭагалара алымшәит',
-      empty: 'Ари акатегориа аҟны иаԥҵаӡам.',
+      empty: 'Ари акатегориа аҟны иаԥҵаӡам.'
     },
     mcp: {
       loading: 'MCP асерверқәа рыҭагалара...',
@@ -745,10 +768,11 @@ export const ab = defineLocale({
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       authenticatedMessage: (server, count) => `${server}: ${count} tools`,
       enableTool: tool => `Enable ${tool}`,
-      disableTool: tool => `Disable ${tool}`,
+      disableTool: tool => `Disable ${tool}`
     },
     model: {
       loading: 'Амодель аконфигурациа аҭалоуп...',
@@ -773,37 +797,37 @@ export const ab = defineLocale({
       tasks: {
         vision: {
           label: 'Аԥшра',
-          hint: 'Асахьа аанализ',
+          hint: 'Асахьа аанализ'
         },
         web_extract: {
           label: 'Веб аҭыҵра',
-          hint: 'Адаҟьа аҵаҩра',
+          hint: 'Адаҟьа аҵаҩра'
         },
         title_generation: {
           label: 'Азагьыра аҳәаҩра',
-          hint: 'Сессие азагьыра',
+          hint: 'Сессие азагьыра'
         },
         curator: {
           label: 'Куратор',
-          hint: 'Навык аҵра аԥсраа',
+          hint: 'Навык аҵра аԥсраа'
         },
         compression: {
           label: 'Аҳацәа',
-          hint: 'Контекст аҳацәа',
+          hint: 'Контекст аҳацәа'
         },
         skills_hub: {
           label: 'Абзыара ахыҧхьа',
-          hint: 'Абзыара аҧшәа',
+          hint: 'Абзыара аҧшәа'
         },
         approval: {
           label: 'Аҳаҧсыра',
-          hint: 'Акылны автоматик аҳаҧсыра',
+          hint: 'Акылны автоматик аҳаҧсыра'
         },
         mcp: {
           hint: 'MCP алабара маршрутизация',
-          label: 'МЦП',
-        },
-      },
+          label: 'МЦП'
+        }
+      }
     },
     providers: {
       connectAccount: 'Акаунт аҳәыҟара',
@@ -821,16 +845,17 @@ export const ab = defineLocale({
       noKeysMatch: 'Аҧровайдерҳа уиҳаҧ, уара шәыҟара уиҳаҧ.',
       localEndpoint: {
         title: 'Топуа / аҧсуа endpoint',
-        description: 'OpenAmer-и аҧсуа OpenAI-совместимый endpoint-и аҳәыҟара (Zyphra, vLLM, llama.cpp, Ollama, аҧха).',
+        description: 'OpenAmer-и аҧсуа OpenAI-совместимый endpoint-и аҳәыҟара (Zyphra, vLLM, llama.cpp, Ollama, аҧха).'
       },
       loading: 'Аҧровайдерҳа аҧхәыҟара...',
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     sessions: {
       loading: 'Архивированные сессии загружаются…',
@@ -841,12 +866,14 @@ export const ab = defineLocale({
       deletePermanently: 'Удалить навсегда',
       restored: 'Восстановлено',
       autoArchiveTitle: 'Авто-архивация старых чатов',
-      autoArchiveDesc: 'Автоматически архивировать чаты, которые вы не открывали давно. Закрепленные чаты никогда не архивируются, и ничего не удаляется — архивированные чаты просто перемещаются сюда.',
+      autoArchiveDesc:
+        'Автоматически архивировать чаты, которые вы не открывали давно. Закрепленные чаты никогда не архивируются, и ничего не удаляется — архивированные чаты просто перемещаются сюда.',
       autoArchiveDaysLabel: 'Архивировать после',
       autoArchiveDaysUnit: 'дней неактивности',
       autoArchiveFailed: 'Не удалось обновить авто-архивацию',
       defaultDirTitle: 'Папка проекта по умолчанию',
-      defaultDirDesc: 'Новые сессии начинаются в этой папке, если вы не выберете другую. Оставьте не заданной, чтобы использовать домашнюю директорию.',
+      defaultDirDesc:
+        'Новые сессии начинаются в этой папке, если вы не выберете другую. Оставьте не заданной, чтобы использовать домашнюю директорию.',
       change: 'Изменить',
       choose: 'Выбрать',
       clear: 'Очистить',
@@ -856,11 +883,12 @@ export const ab = defineLocale({
       deleteFailed: 'Удаление уиуаз аҳаҩра',
       updateDirFailed: 'Каталог по умолчанию уиуаз аҳәыҩра',
       clearDirFailed: 'Каталог по умолчанию уиуаз аҳәыҩра',
-      archivedIntro: 'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
+      archivedIntro:
+        'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
       defaultDirUpdated: 'Default project directory updated — start a new chat (Ctrl/⌘+N) for it to take effect',
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
       openamerAuthDoneTitle: 'OpenAmer Portal аҳәыҧхьаҟы',
@@ -912,7 +940,7 @@ export const ab = defineLocale({
         selectedTitle: 'Backend selected',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
         failedSelect: backend => `Failed to select ${backend}`,
-        needsSetupHint: 'You can select this backend now — commands will fail until setup is complete.',
+        needsSetupHint: 'You can select this backend now — commands will fail until setup is complete.'
       },
       savedMessage: key => `${key} updated.`,
       removedMessage: key => `${key} removed.`,
@@ -922,8 +950,10 @@ export const ab = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -933,10 +963,10 @@ export const ab = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   desktop: {
     noClipboardImage: 'Клипборд дызэ изображение шъхьэ шIэ',
@@ -947,7 +977,7 @@ export const ab = defineLocale({
       timedOut: 'ШIофIэм ира шъхьэ гъэт. `openamer gateway` псэуит?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     audioReadFailed: 'Аудио иуаҟны иҳап уаҟны',
     sessionUnavailable: 'Сессия иуаҟны иҳап',
@@ -988,7 +1018,8 @@ export const ab = defineLocale({
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Could not toggle YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     unknownProfile: 'Unknown profile',
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
@@ -999,37 +1030,38 @@ export const ab = defineLocale({
     editFailed: 'Edit failed',
     resumeFailed: 'Resume failed',
     resumeStrandedTitle: "Couldn't load this session",
-    resumeStrandedBody: 'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
+    resumeStrandedBody:
+      'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
     resumeRetry: 'Retry',
     nothingToBranch: 'Nothing to branch',
     branchNeedsChat: 'Start or resume a chat before branching.',
     sessionBusy: 'Session busy',
     branchStopCurrent: 'Stop the current turn before branching this chat.',
-    branchTitle: n => `Draft: Branch #${n}`,
+    branchTitle: n => `Draft: Branch #${n}`
   },
   errors: {
     genericFailure: 'ЦIыхьэ шъхьэ',
     boundaryTitle: 'Интерфейс дызэ цIыхьэ шъхьэ',
     boundaryDesc: 'Анӏа дызэ ишъхьэкIэ хэпкъыру. Чатхэр ва настройкэхэр шъхьэ гъэплъы.',
     reloadWindow: 'Окно дызэ зеиУеит',
-    openLogs: 'Журналхэр дызэмыкI',
+    openLogs: 'Журналхэр дызэмыкI'
   },
   ui: {
     search: {
-      clear: 'Изгъэрыхьэ дызэ щIэ',
+      clear: 'Изгъэрыхьэ дызэ щIэ'
     },
     pagination: {
       label: 'Страницахэр',
       previous: 'Къэдгъу',
       previousAria: 'Къэдгъу страница дызэкIэ',
       next: 'Дызэгъу',
-      nextAria: 'Дызэгъу страница дызэкIэ',
+      nextAria: 'Дызэгъу страница дызэкIэ'
     },
     sidebar: {
       title: 'Аплъэпкъ',
       description: 'Мобильнӏ аплъэпкъыр кIаза.',
-      toggle: 'Аплъэпкъыр хэмыкI',
-    },
+      toggle: 'Аплъэпкъыр хэмыкI'
+    }
   },
   skills: {
     refreshing: 'Аԥсны аҳәаҧшра',
@@ -1060,7 +1092,7 @@ export const ab = defineLocale({
     provenance: {
       agent: 'Аԥсҩа',
       bundled: 'Аҳаҧҳара',
-      hub: 'Хаб',
+      hub: 'Хаб'
     },
     changesApplyNewSessions: 'Аҳаҧҳаҩра аҧхаҭ ахәыҩс сессиеҭа.',
     skillUpdated: 'Умцҩа аҳаҧҳаҩра',
@@ -1093,7 +1125,7 @@ export const ab = defineLocale({
       trust: {
         builtin: 'Атәыҧхьа',
         trusted: 'Аҳаҧсҧа',
-        community: 'Аҳара',
+        community: 'Аҳара'
       },
       verdictSafe: 'Аҧсҧа',
       verdictCaution: 'Ахәаҧшра',
@@ -1113,7 +1145,7 @@ export const ab = defineLocale({
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     tabSkills: 'Skills',
     tabToolsets: 'Tools',
@@ -1132,7 +1164,7 @@ export const ab = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     loadFailed: 'Амшын ахыҧхьара аҧсра уиҳауеи',
@@ -1140,7 +1172,8 @@ export const ab = defineLocale({
     emptyTitle: 'Ахыҧхьара ари уиҳауеи',
     emptyDesc: 'OpenAmer уара унҩы лҩыжьы да амшын аҧсра, уара унды хьаҧы.',
     share: 'Ахыҧхьара аҳаҧҩра',
-    shareHint: 'Код аҳаҧҩра унды ахыҧхьара аҳаҧҩра, ё аҧсра аҳаҧҩра. Уара ахыҧхьара аҧсра, уиҳауеи унҩы амшын ё лҩыжьы.',
+    shareHint:
+      'Код аҳаҧҩра унды ахыҧхьара аҳаҧҩра, ё аҧсра аҳаҧҩра. Уара ахыҧхьара аҧсра, уиҳауеи унҩы амшын ё лҩыжьы.',
     shareTitle: 'Аҧсра / аҳаҧҩра ахыҧхьара',
     sharePlaceholder: 'Ахыҧхьара код аҧсра…',
     copy: 'Ахыҧхьара код аҳаҧҩра',
@@ -1159,7 +1192,7 @@ export const ab = defineLocale({
     filterLearned: 'Аҳаҧсыра',
     viewGraph: 'Граф',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Агентҳа аҧҳаҧҩра',
@@ -1189,7 +1222,7 @@ export const ab = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'Командный центр ахәыҵра',
@@ -1218,7 +1251,7 @@ export const ab = defineLocale({
       generatedTag: 'Аҳаҧҳаҧш',
       adoptFailed: 'Уи ахәы аҧҳаҧс ари аҧшәы.',
       toggleFailed: 'Ахәы аҧҳаҧш ари аҧшәы.',
-      noneAvailable: 'Ахәыҩра аҧҳаҧс — аҧҳаҧш аҧҳаҧс аҳәаҧҳаҧш.',
+      noneAvailable: 'Ахәыҩра аҧҳаҧс — аҧҳаҧш аҧҳаҧс аҳәаҧҳаҧш.'
     },
     generatePet: {
       title: 'Ахәы аҳаҧҳаҧш',
@@ -1247,7 +1280,7 @@ export const ab = defineLocale({
       referenceImageInvalid: 'Аҧсра аҧхьа аҧхьаҩыҟаҩы аҧхьа. PNG, JPG, WebP, GIF уиҳаҧш.',
       adopt: 'Аҳәаҩра',
       startOver: 'Аҧхьаҩыҟаҩы аҧхьа',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     installTheme: {
       placeholder: 'VS Code Marketplace-ы ишәыҧ...',
@@ -1259,7 +1292,7 @@ export const ab = defineLocale({
       installed: 'Аҳаҧшәа',
       title: 'Аҳәаҩра аҧсра…',
       pageTitle: 'Аҳәаҩра аҧсра',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Анастройка ахәаҧшара',
     mcpServers: 'MCP серверҭа',
@@ -1268,49 +1301,49 @@ export const ab = defineLocale({
       maintenance: 'Ахәаҧшара',
       sessions: 'Сессиҭа',
       system: 'Система',
-      usage: 'Аҧшәаҧшара',
+      usage: 'Аҧшәаҧшара'
     },
     sectionDescriptions: {
       maintenance: 'Диагностика, резервные копии, куратор, да память данныҭа',
       sessions: 'Сессиҭа ишәыҧ да уҧхаҧшара',
       system: 'Статус, логи, да система аҧшәаҧшара',
-      usage: 'Токен, ахыҧ, да скилл активность акыҧс',
+      usage: 'Токен, ахыҧ, да скилл активность акыҧс'
     },
     nav: {
       newChat: {
         title: 'Аҧру сессия',
-        detail: 'Аҧру сессия аҧхәаҧшара',
+        detail: 'Аҧру сессия аҧхәаҧшара'
       },
       settings: {
         title: 'Аԥсра',
-        detail: 'OpenAmer аԥсра аҳаҧшра',
+        detail: 'OpenAmer аԥсра аҳаҧшра'
       },
       skills: {
         title: 'Аҳәыҧшра',
-        detail: 'Аҳәыҧшра, аҧхаҭра, MCP асерверҭа',
+        detail: 'Аҳәыҧшра, аҧхаҭра, MCP асерверҭа'
       },
       messaging: {
         title: 'Аҧсуаара',
-        detail: 'Telegram, Slack, Discord аҧшара аҧхҭра, итҭаа',
+        detail: 'Telegram, Slack, Discord аҧшара аҧхҭра, итҭаа'
       },
       artifacts: {
         title: 'Артефактҭа',
-        detail: 'Аҧшәаҵра аҧҳацәаҭра',
-      },
+        detail: 'Аҧшәаҵра аҧҳацәаҭра'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Сессиҭа панел',
-        detail: 'Аҧҳаҭра, аҧҳәаҭра, сессиҭа аԥсра',
+        detail: 'Аҧҳаҭра, аҧҳәаҭра, сессиҭа аԥсра'
       },
       system: {
         title: 'Аҳәаҧшра панел',
-        detail: 'Шлюз статус, логҭа, аҧҳаҧшра/аҧҳаҧхҭра',
+        detail: 'Шлюз статус, логҭа, аҧҳаҧшра/аҧҳаҧхҭра'
       },
       usage: {
         title: 'Аҧҳаҧшра панел',
-        detail: 'Токен, аҧшәаҵра, аҳәыҧшра аҧҳаҧшра',
-      },
+        detail: 'Токен, аҧшәаҵра, аҳәыҧшра аҧҳаҧшра'
+      }
     },
     providerNavigate: 'Аҧҳаҭра',
     providerSessions: 'Сессиҭа',
@@ -1380,7 +1413,7 @@ export const ab = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     loadingUsage: 'Иҳаҧшара зараҳәаара...',
     retry: 'Аҳаҧшара',
@@ -1400,7 +1433,7 @@ export const ab = defineLocale({
     days: count => `${count}d`,
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   messaging: {
     unknown: 'Ауаҩны',
@@ -1435,130 +1468,130 @@ export const ab = defineLocale({
       not_configured: 'Аҧҳаҧшра иҳаҧшра',
       pending_restart: 'Перезапуск иҳаҧшра',
       retrying: 'Иҳаҧшраит...',
-      startup_failed: 'Аҧҳаҧшра аҧсра аҧхьаҵра',
+      startup_failed: 'Аҧҳаҧшра аҧсра аҧхьаҵра'
     },
     fieldCopy: {
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Аҧсуа iMessage ахраҧш аҳаҧсра',
-        help: 'Иҳаҧсы, BlueBubbles ахраҧш иҳаҧсра.',
+        help: 'Иҳаҧсы, BlueBubbles ахраҧш иҳаҧсра.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Аҧсуа Mattermost ахраҧш аҳаҧсра',
+        label: 'Аҧсуа Mattermost ахраҧш аҳаҧсра'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Аҧхьара канал',
+        label: 'Аҧхьара канал'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Аҧсуа QQ ахраҧш аҳаҧсра',
+        label: 'Аҧсуа QQ ахраҧш аҳаҧсра'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ аҧхьара канал',
-        help: 'Аҧсра канал иҳаҧс агрупп cron аҧсра иҳа.',
+        help: 'Аҧсра канал иҳаҧс агрупп cron аҧсра иҳа.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ аҧхьара канал аҧсра',
+        label: 'QQ аҧхьара канал аҧсра'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack бот токен',
         help: 'Аҧсра бот токен OAuth & Permissions-иҳа уара Slack апп иҳаҧсра.',
-        placeholder: 'Slack бот токен аҧсра',
+        placeholder: 'Slack бот токен аҧсра'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack апп токен',
         help: 'Аҧсра апп-уровень токен Socket Mode-иҳа иҳаҧсра.',
-        placeholder: 'Slack апп токен аҧсра',
+        placeholder: 'Slack апп токен аҧсра'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Аҧсра Slack ахраҧш IDs',
-        help: 'Аҧсра. Запятая-разделенный Slack ахраҧш IDs.',
+        help: 'Аҧсра. Запятая-разделенный Slack ахраҧш IDs.'
       },
       MATTERMOST_URL: {
         label: 'Сервер URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Бот токен',
+        label: 'Бот токен'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Аҧсра ахраҧш IDs',
-        help: 'Recommended. Comma-separated Mattermost user IDs.',
+        help: 'Recommended. Comma-separated Mattermost user IDs.'
       },
       TELEGRAM_BOT_TOKEN: {
         label: 'Бот токен',
         help: '@BotFather ила бот акҭа, иҳаы токен аҧсҭа.',
-        placeholder: 'Telegram бот токен аҧсҭа',
+        placeholder: 'Telegram бот токен аҧсҭа'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Telegram аҳаҧсуҭа ID-ҭа',
-        help: 'Рекомендуется. @userinfobot-иҳаы зарла ID-ҭа. Ари аҧҳаҭыԥсырра, хьаҭы бот DM аҧсҭа.',
+        help: 'Рекомендуется. @userinfobot-иҳаы зарла ID-ҭа. Ари аҧҳаҭыԥсырра, хьаҭы бот DM аҧсҭа.'
       },
       TELEGRAM_PROXY: {
         label: 'Прокси URL',
-        help: 'Аҧсны хьаҭы сетьҭа, иҳа Telegram аҧҳаҭыԥсырра.',
+        help: 'Аҧсны хьаҭы сетьҭа, иҳа Telegram аҧҳаҭыԥсырра.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Бот токен',
-        help: 'Discord Developer Portal-ы приложение акҭа, бот аҧҳаҭа, токен аҧсҭа.',
+        help: 'Discord Developer Portal-ы приложение акҭа, бот аҧҳаҭа, токен аҧсҭа.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Discord аҳаҧсуҭа ID-ҭа',
-        help: 'Рекомендуется. Запятаҭа аҧҳаҭыԥсырра Discord ID-ҭа.',
+        help: 'Рекомендуется. Запятаҭа аҧҳаҭыԥсырра Discord ID-ҭа.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Аҧсҭа стиль',
-        help: 'Ыҳа, хьаҭы, или аҧҳаҭыԥсырра.',
+        help: 'Ыҳа, хьаҭы, или аҧҳаҭыԥсырра.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Хьаҭы Discord аҳаҧсуҭа аҧҳаҭа',
-        help: 'Аҧсны разработка. Истинный иҳа, хьаҭы бот DM аҧсҭа allowlist-ыҭы.',
+        help: 'Аҧсны разработка. Истинный иҳа, хьаҭы бот DM аҧсҭа allowlist-ыҭы.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Аҧсра канал ID',
-        help: 'Канал, иҳа бот проактивные сообщения аҧсҭа (cron вывод, напоминания).',
+        help: 'Канал, иҳа бот проактивные сообщения аҧсҭа (cron вывод, напоминания).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Аҧсра канал имя',
-        help: 'Аҧсҭа имя аҧсра канал логҭа и статус аҧсҭа.',
+        help: 'Аҧсҭа имя аҧсра канал логҭа и статус аҧсҭа.'
       },
       MATRIX_ALLOWED_USERS: {
         help: 'Рекомендуа. @user:server форматта, аԥсуаара идентификаторҳәа, аԥшәыҟа рҩыԥа.',
-        label: 'Allowed Matrix user IDs',
+        label: 'Allowed Matrix user IDs'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal моста URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'Аработа signal-cli REST моста URL.',
+        help: 'Аработа signal-cli REST моста URL.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Ателефон номера',
-        help: 'Ара номера, аԥсуаара signal-cli моста рҳәаҟа.',
+        help: 'Ара номера, аԥсуаара signal-cli моста рҳәаҟа.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Аразрешен Signal аԥсуааҳәа',
-        help: 'Рекомендуа. Signal идентификаторҳәа, аԥшәыҟа рҩыԥа.',
+        help: 'Рекомендуа. Signal идентификаторҳәа, аԥшәыҟа рҩыԥа.'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp моста аҳаҭа',
-        help: 'Аунара ахәыҟа ахәаҧра аԥшәаҟа. Аҳаҧшара, ахәаҧш аԥсҳа ари аԥшәа.',
+        help: 'Аунара ахәыҟа ахәаҧра аԥшәаҟа. Аҳаҧшара, ахәаҧш аԥсҳа ари аԥшәа.'
       },
       WHATSAPP_MODE: {
-        label: 'Мост аҧсра',
+        label: 'Мост аҧсра'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Аразрешен WhatsApp аԥсуааҳәа',
-        help: 'Рекомендуа. Ателефон номераҳәа иҳа WhatsApp идентификаторҳәа, аԥшәыҟа рҩыԥа.',
+        help: 'Рекомендуа. Ателефон номераҳәа иҳа WhatsApp идентификаторҳәа, аԥшәыҟа рҩыԥа.'
       },
       MATRIX_HOMESERVER: {
         label: 'Homeserver URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Access token',
+        label: 'Access token'
       },
       MATRIX_USER_ID: {
         label: 'Bot user ID',
-        placeholder: '@openamer:example.org',
-      },
+        placeholder: '@openamer:example.org'
+      }
     },
     restartToReconnect: 'Аҩны креденциалҭа гәыла шлюз аҧхаҭа иҳаҧсырра.',
     advanced: count => `Advanced (${count})`,
@@ -1573,8 +1606,7 @@ export const ab = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Ауеиҳа вебхук...',
@@ -1583,7 +1615,8 @@ export const ab = defineLocale({
     hint: 'Абонемент аҧсҵаҩҵа хот-релоад иҳаҧш аҧхаҧш иҳаҧш. Аҧсхара абонемент ахәыҧшара аҧхьара.',
     empty: 'Вебхук абонемент арыҧхьаҧш.',
     disabledTitle: 'Вебхук аҧхьара аҧсхара',
-    disabledBody: 'Вебхук ары шәы шлюз платформа. Аҧсхара аҧш аҧхьара HTTP иҳаҧш; чат канал ахәа иҳаҧш абонемент иҳаҧш Telegram, Discord, Slack, аиҳа канал.',
+    disabledBody:
+      'Вебхук ары шәы шлюз платформа. Аҧсхара аҧш аҧхьара HTTP иҳаҧш; чат канал ахәа иҳаҧш абонемент иҳаҧш Telegram, Discord, Slack, аиҳа канал.',
     enable: 'Аҧсхара вебхук',
     enabling: 'Аҧсхара...',
     enableRow: 'Аҧсхара',
@@ -1630,7 +1663,7 @@ export const ab = defineLocale({
       discord: 'Дискорд',
       slack: 'Слэк',
       email: 'Электронная почта',
-      github_comment: 'Комментарий GitHub',
+      github_comment: 'Комментарий GitHub'
     },
     subscriptions: (count: number) => `Subscriptions (${count})`,
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -1638,7 +1671,7 @@ export const ab = defineLocale({
     deleteFailed: (name: string) => `Failed to delete "${name}"`,
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     showAllProfiles: 'Аԥсуа апрофилҳа ашара',
@@ -1716,7 +1749,7 @@ export const ab = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   cron: {
     scheduleLabels: {
@@ -1726,7 +1759,7 @@ Leave blank to keep the ${mode} default.`,
       daily: 'Ҭхьӡаҧс',
       weekdays: 'Апшызгәы',
       weekly: 'Ҭхьӡапшыз',
-      monthly: 'Мзы',
+      monthly: 'Мзы'
     },
     scheduleHints: {
       daily: 'Аҧшра аҳәа 9:00 АМ',
@@ -1735,7 +1768,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Аҧшра аҳама орш аҳәа 9:00 АМ',
       hourly: 'Аҧшра саат иҳап',
       'every-15-minutes': 'Аҧшра 15 минут',
-      custom: 'Крон синтаксис иҳа аԥсуа лыҭва',
+      custom: 'Крон синтаксис иҳа аԥсуа лыҭва'
     },
     days: {
       '0': 'Аҳәа',
@@ -1745,7 +1778,7 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Аҳәапҳ',
       '5': 'Аҳәаҳәы',
       '6': 'Аҳәафҳ',
-      '7': 'Аҳәа',
+      '7': 'Аҳәа'
     },
     topOfHour: 'Аҧшра саат иҳап',
     newCron: 'Аҧсуа крон',
@@ -1785,7 +1818,8 @@ Leave blank to keep the ${mode} default.`,
     editTitle: 'Крон аҳаҧшара ахыҧшара',
     createTitle: 'Аҳаҧшара крон',
     editDesc: 'Ахыҧшара аҳаҧшара, аҳаҧшара, или аҳаҧшара ахыҧшара. Аҳаҧшара ахыҧшара аҳаҧшара.',
-    createDesc: 'Аҳаҧшара ахыҧшара аҳаҧшара ахыҧшара. Аҳаҧшара крон ахыҧшара или аҳаҧшара ахыҧшара иҳаҧшара \'аҳаҧшара 15 минут\'.',
+    createDesc:
+      "Аҳаҧшара ахыҧшара аҳаҧшара ахыҧшара. Аҳаҧшара крон ахыҧшара или аҳаҧшара ахыҧшара иҳаҧшара 'аҳаҧшара 15 минут'.",
     nameLabel: 'Арга',
     namePlaceholder: 'Аҳаҧшара аҳаҧшара',
     promptLabel: 'Аҳаҧшара',
@@ -1807,7 +1841,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Cron иԥҵап',
     tabs: {
       jobs: 'Аусқәа',
-      blueprints: 'Ачертежқәа',
+      blueprints: 'Ачертежқәа'
     },
     blueprints: {
       tab: 'Ачертежқәа',
@@ -1821,7 +1855,7 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Аплан аҧшра...',
       failedLoad: 'Аплан аҧшра аҧхара',
       emptyTitle: 'Аплан аркьы',
-      emptyDesc: 'Аавтоматизацие аплан аркьы аҳаҧсра аҧны бэкенд.',
+      emptyDesc: 'Аавтоматизацие аплан аркьы аҳаҧсра аҧны бэкенд.'
     },
     close: 'Ахьып крон',
     title: 'Иухыбжь задачхэр',
@@ -1834,14 +1868,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'Аԥсуа',
       disabled: 'Аԥыԥш',
       error: 'Ахъа',
-      completed: 'Акәып',
+      completed: 'Акәып'
     },
     deliveryLabels: {
       local: 'Ауаҩы маҭ',
       telegram: 'Телеграм',
       discord: 'Дискорд',
       slack: 'Слак',
-      email: 'Электрон почта',
+      email: 'Электрон почта'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -1850,7 +1884,7 @@ Leave blank to keep the ${mode} default.`,
     everyDayOfWeekAt: (day, time) => `Every ${day} at ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Monthly on day ${dayOfMonth} at ${time}`,
     everyHourAt: minute => `Every hour at :${minute}`,
-    actionsFor: title => `Actions for ${title}`,
+    actionsFor: title => `Actions for ${title}`
   },
   artifacts: {
     search: 'Аартефакт аҳаҧшра...',
@@ -1884,14 +1918,14 @@ Leave blank to keep the ${mode} default.`,
     copyUrl: 'URL акәыҟара',
     copyPath: 'Аҧшәа акәыҟара',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'Аҧсра ахыҧхьа',
       skills: 'Аҳәыла',
       messaging: 'Аҧхаҧш',
-      artifacts: 'Аҧшра',
+      artifacts: 'Аҧшра'
     },
     searchAria: 'Ахыҧхьа аҧҳаҧш',
     searchPlaceholder: 'Ахыҧхьа аҧҳаҧш…',
@@ -1935,7 +1969,8 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'Ахҭысра аҧш',
       removeFromSidebar: 'Аҳаҭра асайдбар',
       createFailed: 'Апроект аҳаҭра ари',
-      staleBackend: 'OpenAmer backend аҳаҭра апроектра аҳаҭра — уара backend уара desktop app иҳаҭныҭа (Settings → Updates → Backend).',
+      staleBackend:
+        'OpenAmer backend аҳаҭра апроектра аҳаҭра — уара backend уара desktop app иҳаҭныҭа (Settings → Updates → Backend).',
       deleteConfirm: 'Уара аҳаҭра апроект OpenAmer иҳаҭра. Файлра, git репора, worktreeра аҳаҭра ари.',
       startWork: 'Аҳыҭныҭа worktree',
       newWorktreeTitle: 'Аҳыҭныҭа worktree',
@@ -1956,8 +1991,10 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'ахыҧхьаҭа ари зг°ауеит',
       removeWorktree: 'ахыҧхьа аҧшҩы аҳаҧсра',
       removeWorktreeFailed: 'ахыҧхьа аҧшҩы аҳаҧсра ари зг°ауеит (аҳаҧсра аҧшҩа?)',
-      removeWorktreeConfirm: 'git-ы аҳаҧсра (ахыҧхьа аҧшҩы аҳаҧсра; ахыҧхьа зараҭа), аиҳа ахыҧхьа аҧшҩы аҳаҧсра аҧсра аҧшҩа аҧсра.',
-      removeWorktreeDirty: 'ахыҧхьа аҧшҩы аҳаҧсра аҧшҩа ари. аҳаҧсра аҧшҩа (аҧшҩа аҳаҧсра), аиҳа ахыҧхьа аҧшҩы аҳаҧсра аҧсра аҧшҩа аҧсра.',
+      removeWorktreeConfirm:
+        'git-ы аҳаҧсра (ахыҧхьа аҧшҩы аҳаҧсра; ахыҧхьа зараҭа), аиҳа ахыҧхьа аҧшҩы аҳаҧсра аҧсра аҧшҩа аҧсра.',
+      removeWorktreeDirty:
+        'ахыҧхьа аҧшҩы аҳаҧсра аҧшҩа ари. аҳаҧсра аҧшҩа (аҧшҩа аҳаҧсра), аиҳа ахыҧхьа аҧшҩы аҳаҧсра аҧсра аҧшҩа аҧсра.',
       forceRemove: 'аҳаҧсра аҧшҩа',
       back: 'ахҭа апроектҭа',
       create: 'Аҭыр',
@@ -1970,7 +2007,7 @@ Leave blank to keep the ${mode} default.`,
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     loading: 'зараҭа…',
     loadMore: 'аҧшҩа зараҭа',
@@ -2005,19 +2042,19 @@ Leave blank to keep the ${mode} default.`,
       actionsFor: title => `Actions for ${title}`,
       handoffOrigin: platform => `Handed off from ${platform}`,
       ownedByProfile: profile => `Profile: ${profile}`,
-      untitledChat: id => `Chat ${id}`,
+      untitledChat: id => `Chat ${id}`
     },
     dateDivider: {
       today: 'Аҩны аҧхьаҭа',
       yesterday: 'Аҧхьара',
       thisWeek: 'Аҧсра ахшҭа аҧхьара',
       lastWeek: 'Аҧсра ахшҭа',
-      thisMonth: 'Аҧсра ахьы аҧхьара',
+      thisMonth: 'Аҧсра ахьы аҧхьара'
     },
     noMatch: query => `No sessions match “${query}”.`,
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     message: 'Аҧсуа',
@@ -2058,7 +2095,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'аҧсра аҧсҳа аҧсра',
       '/details': 'аҧсра аҧсҳа аҧсра аҧсҳа',
       '/copy': 'авыҳаԥшра аԥсуа иҳаҧша иҳаҧша ассистент-и ахыҧшара',
-      '/quit': 'OpenAmer-ит аҳаҧшара',
+      '/quit': 'OpenAmer-ит аҳаҧшара'
     },
     hotkeyDescs: {
       'composer.mention': 'файлҭа, папкаҭа, URLҭа, git-и аҧхаҧшара',
@@ -2068,7 +2105,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'аҧхаҧшара ахыҧшара иҳаҧшара очередь-и',
       'keybinds.openPanel': 'аҧсуа клавиатура-и ярҭаҭа',
       'composer.cancel': 'поповер-и аҳаҧшара · запуск-и аҳаҧшара',
-      'composer.history': 'поповер / история-и цикл',
+      'composer.history': 'поповер / история-и цикл'
     },
     attachUrlTitle: 'URL-и аҧхаҧшара',
     attachUrlDesc: 'OpenAmer аҧшәы аҧхаҧшәит аҧхаҧшәит ахыҧшара иҳаҧшара контекст-и аҧхаҧшара.',
@@ -2108,7 +2145,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -2117,7 +2154,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
@@ -2138,19 +2175,19 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'Code review',
         description: 'Audit the current change for regressions, dropped edge cases, and missing tests.',
-        text: 'Please review this for bugs, regressions, and missing tests.',
+        text: 'Please review this for bugs, regressions, and missing tests.'
       },
       implementationPlan: {
         label: 'Implementation plan',
         description: 'Outline an approach before touching code so the diff stays focused.',
-        text: 'Please make a concise implementation plan before changing code.',
+        text: 'Please make a concise implementation plan before changing code.'
       },
       explainThis: {
         label: 'Explain this',
         description: 'Walk through how the selected code works and link to the key files.',
-        text: 'Please explain how this works and point me to the key files.',
-      },
-    },
+        text: 'Please explain how this works and point me to the key files.'
+      }
+    }
   },
   statusStack: {
     stop: 'Аҳаҭа',
@@ -2197,14 +2234,14 @@ Leave blank to keep the ${mode} default.`,
       commitPlaceholder: 'Message (⌘↵ to commit)',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     agents: 'Agents',
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
     running: 'Running',
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -2219,7 +2256,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'Аҧхаҧшра аҳаҵара',
       manual: 'Аҧхаҧшра уара терминал иҳа',
       guiSkew: 'Астол аҧхаҧшра аҧхаҧсра',
-      error: 'Аҧхаҧшра аҧхыҵара',
+      error: 'Аҧхаҧшра аҧхыҵара'
     },
     checking: 'Аҧхаҧшра аҧхьара…',
     checkFailedTitle: 'Аҧхаҧшра аҧхьара аҧҳаҧс',
@@ -2237,11 +2274,12 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'Бэкенд аҧхаҧш аҳаҧшара иҳапҵара…',
       notAvailable: 'Аҳаҧшара ари аҧшҵа ари бэкенд иҳапҵа.',
       failed: 'Бэкенд аҳаҧшара аҧсҵа раҭ.',
-      noReturn: 'Бэкенд онлайн аҧсҵа аҧхаҧш. Аҳаҧшара аҧсҵа ари аҧхҵара — бэкенд хост иҳаҧшҵа.',
+      noReturn: 'Бэкенд онлайн аҧсҵа аҧхаҧш. Аҳаҧшара аҧсҵа ари аҧхҵара — бэкенд хост иҳаҧшҵа.'
     },
     appErrors: {
-      updateLocked: 'Аҳаҧшара аҧсҵа: аиҳа OpenAmer аҳна аҧсуа терминал openamer аҧсра иҳапҵа инсталляция аҧхҵара. Аҧсҵа аҧха аҧсҵа.',
-      updateFailed: 'Аҳаҧшара аҧсҵа ари аҧхҵара. Амшҵа ари — ари аҧсҵа аҧхҵара. Уара аиҳа аҧсҵа аҧха.',
+      updateLocked:
+        'Аҳаҧшара аҧсҵа: аиҳа OpenAmer аҳна аҧсуа терминал openamer аҧсра иҳапҵа инсталляция аҧхҵара. Аҧсҵа аҧха аҧсҵа.',
+      updateFailed: 'Аҳаҧшара аҧсҵа ари аҧхҵара. Амшҵа ари — ари аҧсҵа аҧхҵара. Уара аиҳа аҧсҵа аҧха.'
     },
     availableBody: 'OpenAmer-и аҧша иҳаҧсыра ахыҧхьара.',
     availableTitleBackend: 'Backend-и аҧша иҳаҧсыра.',
@@ -2253,17 +2291,19 @@ Leave blank to keep the ${mode} default.`,
     manualBody: 'Уи OpenAmer уи командной строке иҳаҧсыра, аҧсуа иҳаҧсыра иҳаҧсыра. Уи терминал-иҭы иҳаҧсыра:',
     manualPickedUp: 'OpenAmer аҧша иҳаҧсыра иҳаҧсыра уи аҧсуа иҳаҧсыра.',
     guiSkewTitle: 'Desktop app-и аҧсуа.',
-    guiSkewBody: 'Backend аҧсуа иҳаҧсыра, аҧсра desktop app пакет иҳаҧсыра иҳаҧсыра. OpenAmer desktop app (уи AppImage / .deb / .rpm) аҧсуа иҳаҧсыра иҳаҧсыра.',
+    guiSkewBody:
+      'Backend аҧсуа иҳаҧсыра, аҧсра desktop app пакет иҳаҧсыра иҳаҧсыра. OpenAmer desktop app (уи AppImage / .deb / .rpm) аҧсуа иҳаҧсыра иҳаҧсыра.',
     copy: 'Аҳаҧсыра.',
     copied: 'Аҳаҧсыра иҳаҧсыра.',
     done: 'Иҳаҧсыра.',
-    applyingBody: 'OpenAmer updater-и уи аҧсра иҳаҧсыра иҳаҧсыра иҳаҧсыра OpenAmer иҳаҧсыра иҳаҧсыра. Уи OpenAmer иҳаҧсыра иҳаҧсыра иҳаҧсыра аҧсуа иҳаҧсыра.',
+    applyingBody:
+      'OpenAmer updater-и уи аҧсра иҳаҧсыра иҳаҧсыра иҳаҧсыра OpenAmer иҳаҧсыра иҳаҧсыра. Уи OpenAmer иҳаҧсыра иҳаҧсыра иҳаҧсыра аҧсуа иҳаҧсыра.',
     applyingBodyBackend: 'Remote backend аҧсуа иҳаҧсыра иҳаҧсыра иҳаҧсыра. OpenAmer иҳаҧсыра иҳаҧсыра иҳаҧсыра.',
     applyingClose: 'Уи аҧсра иҳаҧсыра аҧсуа иҳаҧсыра, иҳаҧсыра OpenAmer иҳаҧсыра иҳаҧсыра.',
     errorTitle: 'Аҧсуа иҳаҧсыра иҳаҧсыра.',
     errorBody: 'Аҧсра иҳаҧсыра — иҳаҧсыра иҳаҧсыра. Уи аҧсра иҳаҧсыра иҳаҧсыра.',
     notNow: 'Аиҳа иҳаҧсыра.',
-    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
+    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`
   },
   install: {
     stageStates: {
@@ -2271,7 +2311,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'Инсталляция',
       succeeded: 'Аҧхҵара',
       skipped: 'Аҧсҵа аҧхҵара',
-      failed: 'Аҧсҵа раҭ',
+      failed: 'Аҧсҵа раҭ'
     },
     oneTimeTitle: 'OpenAmer аҧсҵа аҧха инсталляция',
     installCommand: 'Инсталляция команда',
@@ -2283,7 +2323,8 @@ Leave blank to keep the ${mode} default.`,
     setupChoiceDesc: 'Апп-и OpenAmer гейтвей-и ахҭа иҳаҵра, аиҳа OpenAmer локально а컴пьютер-и ахҭа иҳаҵра.',
     connectExistingTitle: 'Иҳаҵра кыифыс OpenAmer-ы',
     connectExistingShort: 'Иҳаҵра кыифыс',
-    connectExistingDesc: 'Удаленныи бэкенд-и сессия токен-ит аиҳа браузер-и аҳәыҵра иҳаҵра. Локальный инсталляция иҳаҵра збара.',
+    connectExistingDesc:
+      'Удаленныи бэкенд-и сессия токен-ит аиҳа браузер-и аҳәыҵра иҳаҵра. Локальный инсталляция иҳаҵра збара.',
     installLocalTitle: 'OpenAmer локально иҳаҵра',
     installLocalDesc: 'OpenAmer-и аҳаҭа, Python окружение-и аҳаҭа, абы бэкенд-и а컴пьютер-и ахҭа иҳаҵра.',
     localStartUnavailable: 'Локальный инсталляция иҳаҵра збара. OpenAmer Desktop-и аҳәыҵра аҳаҭа аиҳа иҳаҵра.',
@@ -2317,21 +2358,24 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Аԥсуаа ахәыҩра',
     settingUpTitle: 'Аԥсуаа ахәыҩра OpenAmer Agent',
     finishingTitle: 'Аԥсуаа ахәыҩра',
-    failedDesc: 'Аԥсуаа ахәыҩра аԥсра ахәыҩра аԥсра. Windows аԥсра аԥсуаа ахәыҩра аԥсра ахәыҩра аԥсра OpenAmer CLI аԥсра desktop instance аԥсра аԥсра. Аԥсра аԥсуаа ахәыҩра аԥсра ахәыҩра аԥсра, аԥсра аԥсра. Аԥсра аԥсуаа ахәыҩра аԥсра ахәыҩра аԥсра аԥсра аԥсра.',
-    activeDesc: 'Аԥсуаа ахәыҩра аԥсра ахәыҩра аԥсра. OpenAmer installer аԥсра аԥсуаа ахәыҩра аԥсра ахәыҩра аԥсра аԥсра. Аԥсра аԥсуаа ахәыҩра аԥсра аԥсра.',
+    failedDesc:
+      'Аԥсуаа ахәыҩра аԥсра ахәыҩра аԥсра. Windows аԥсра аԥсуаа ахәыҩра аԥсра ахәыҩра аԥсра OpenAmer CLI аԥсра desktop instance аԥсра аԥсра. Аԥсра аԥсуаа ахәыҩра аԥсра ахәыҩра аԥсра, аԥсра аԥсра. Аԥсра аԥсуаа ахәыҩра аԥсра ахәыҩра аԥсра аԥсра аԥсра.',
+    activeDesc:
+      'Аԥсуаа ахәыҩра аԥсра ахәыҩра аԥсра. OpenAmer installer аԥсра аԥсуаа ахәыҩра аԥсра ахәыҩра аԥсра аԥсра. Аԥсра аԥсуаа ахәыҩра аԥсра аԥсра.',
     fetchingManifest: 'Аԥсуаа ахәыҩра аԥсра...',
     error: 'Аԥсуаа',
     hideOutput: 'Аԥсуаа ахәыҩра аԥсра',
     showOutput: 'Аԥсуаа ахәыҩра аԥсра',
     noOutput: 'Аԥсуаа ахәыҩра аԥсра.',
     cancelling: 'Аԥсуаа ахәыҩра...',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
     signInWith: provider => `Sign in with ${provider}`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'Ахҭаара шәы OpenAmer Agent',
@@ -2351,28 +2395,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'апрямой модель API',
-        description: 'Fireworks AI-и моделаҳәаҩыԥшара аԥсуаара.',
+        description: 'Fireworks AI-и моделаҳәаҩыԥшара аԥсуаара.'
       },
       openrouter: {
         short: 'Аҳәаҟа клавш, акҩыла моделаҳәа',
-        description: 'Аҳәаҟа клавш иҳапӏ ашәыҧхьаҵра моделаҳәа. Аҧсҩы ахыҧшара аҧҳаҧш иаҳаҭыԥрра.',
+        description: 'Аҳәаҟа клавш иҳапӏ ашәыҧхьаҵра моделаҳәа. Аҧсҩы ахыҧшара аҧҳаҧш иаҳаҭыԥрра.'
       },
       openai: {
         short: 'GPT-класс моделаҳәа',
-        description: 'OpenAI-и моделаҳәаҩыԥшара аԥсуаара.',
+        description: 'OpenAI-и моделаҳәаҩыԥшара аԥсуаара.'
       },
       gemini: {
         short: 'Gemini моделаҳәа',
-        description: 'Google Gemini-и моделаҳәаҩыԥшара аԥсуаара.',
+        description: 'Google Gemini-и моделаҳәаҩыԥшара аԥсуаара.'
       },
       xai: {
         short: 'Grok моделаҳәа',
-        description: 'xAI Grok-и моделаҳәаҩыԥшара аԥсуаара.',
+        description: 'xAI Grok-и моделаҳәаҩыԥшара аԥсуаара.'
       },
       local: {
         short: 'Аԥсны ахәаҭра',
-        description: 'OpenAmer-и ахыҧшәыҟа аԥсны ахәаҭра аҧҳа OpenAI-совместимый endpoint (vLLM, llama.cpp, Ollama, иҳаҭ.)',
-      },
+        description:
+          'OpenAmer-и ахыҧшәыҟа аԥсны ахәаҭра аҧҳа OpenAI-совместимый endpoint (vLLM, llama.cpp, Ollama, иҳаҭ.)'
+      }
     },
     backToSignIn: 'Аҳаҭҵра аҧҳа аԥсҳәаҭра',
     getKey: 'Клавш аҳаҭҵра',
@@ -2385,7 +2430,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'Браузер аҳаҭҵра аԥсҳәаҭра, иҳаҭ аҧҳаҧш аҳаҭҵра',
       device_code: 'Абраузер аҿы аҽаԥшратә даҟьа иаартуп — OpenAmer автоматикала еимагоит.',
-      external: 'Шәтерминал аҿы зны шәҭал, нас ачат ахь шәхынҳә.',
+      external: 'Шәтерминал аҿы зны шәҭал, нас ачат ахь шәхынҳә.'
     },
     signInFailed: 'Аҭалара алымҵан. Даҽазны шәԥш.',
     pickDifferentProvider: 'Даҽа апровайдер шәалышә.',
@@ -2410,11 +2455,13 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     current: 'аҳәаҭа:',
@@ -2430,13 +2477,13 @@ Leave blank to keep the ${mode} default.`,
     freeTier: 'Аҧсра уроҭ',
     priceTitle: 'Аҧсуа / Аҧхара ахынҭа миллон токен аҧшра',
     wasPrice: 'аҭа',
-    title: 'Амодель шәыԥсах',
+    title: 'Амодель шәыԥсах'
   },
   modelVisibility: {
     title: 'Модели',
     search: 'Модели аҧшҫра',
     noAuthenticatedProviders: 'Аутентифицирован провайдерҭа ари.',
-    addProvider: 'Провайдер иҳаҭ…',
+    addProvider: 'Провайдер иҳаҭ…'
   },
   shell: {
     windowControls: 'Аҧхра аҧхаҭҭа',
@@ -2447,7 +2494,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'Амоделаҳуа ариҭуа иҳап',
       editModels: 'Амоделаҳуа аҳаҧсра…',
       refreshModels: 'Амоделаҳуа ахәаҧшра',
-      fast: 'Аиҳаҧс',
+      fast: 'Аиҳаҧс'
     },
     modelOptions: {
       noOptions: 'Ара ахәыҧшара аҧсу аамодел иҳап',
@@ -2463,7 +2510,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'Амаксимал',
       ultra: 'Аультра',
       updateFailed: 'Амодел ахәыҧшара аҳаҧшра ариуап',
-      fastFailed: 'Аиҳаҧс раҳаҧшра ариуап',
+      fastFailed: 'Аиҳаҧс раҳаҧшра ариуап'
     },
     gatewayMenu: {
       gateway: 'Ашлюз',
@@ -2478,7 +2525,7 @@ Leave blank to keep the ${mode} default.`,
       recentActivity: 'Аҳаҧсра аҧхаҧш',
       viewAllLogs: 'Аҳәаҭәы логҭа аҧшәыҟара →',
       messagingPlatforms: 'Амассажҭа платформаҭа',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'Аҳаҧсра режим',
@@ -2488,7 +2535,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'Автоматически аҧсҭа аҳаҭәыҟара аҳаҧсра аҧхәа',
       off: 'Аҧсра',
       offDescription: 'Аҳаҧсра збас аҧхәыҟара',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'Аҧсҭа збас',
@@ -2513,7 +2560,8 @@ Leave blank to keep the ${mode} default.`,
       cron: 'Крон',
       openCron: 'Крон аусурақәа раарт',
       webhooks: 'Вебхукқәа',
-      yoloOn: 'YOLO иаҿуп — зыӡбахәу акомандақәа автоматла ашьақәырӷәӷәоит. Иаҭәар аныркра. Shift+click глобалла иаԥсаауеит.',
+      yoloOn:
+        'YOLO иаҿуп — зыӡбахәу акомандақәа автоматла ашьақәырӷәӷәоит. Иаҭәар аныркра. Shift+click глобалла иаԥсаауеит.',
       yoloOff: 'YOLO иаҿым — иаҭәар зыӡбахәу акомандақәа автоматла ршьақәырӷәӷәразы. Shift+click глобалла иаԥсаауеит.',
       modelNone: 'иҟаӡам',
       noModel: 'амодель иҟаӡам',
@@ -2551,20 +2599,20 @@ Leave blank to keep the ${mode} default.`,
           skills: 'Skills',
           subagent_definitions: 'Subagent definitions',
           system_prompt: 'System prompt',
-          tool_definitions: 'Tool definitions',
+          tool_definitions: 'Tool definitions'
         },
         empty: 'No context data yet',
         loading: 'Loading breakdown…',
         percentFull: percent => `${percent}% Full`,
         title: 'Context Usage',
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Open context usage breakdown',
       session: 'Session',
       runtimeSessionElapsed: 'Runtime session elapsed',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     noProjectTitle: 'Проект арыз',
@@ -2600,7 +2648,7 @@ Leave blank to keep the ${mode} default.`,
     previewUnavailable: 'Аԥхьаҳара иҟаӡам',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'Аҳәаҧшра',
@@ -2649,7 +2697,7 @@ Leave blank to keep the ${mode} default.`,
       sentTitle: 'Чатра иҳаҧш',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Апредварительный апп загрузка иҳаҧш дзара',
@@ -2672,7 +2720,8 @@ Leave blank to keep the ${mode} default.`,
       restartFailedMessage: 'OpenAmer сервер аҧсраҧш иҳаҧш дзара.',
       stillWorking: 'OpenAmer акҭа аԥшра, аҧха ахәаҵра аҧҳацәа ахцәыу. Асервер акамаҳәы ахәаҵра аԥшра иҳаҭ.',
       workspaceReloading: 'Аԥсра аҳаҧҳаҭ, ахәаҵра аҧҳацәа аҳаҧҳаҭ',
-      moduleMimeDescription: 'Амодуль аскриптҭа ахәыҳәаҭ аҧҳаҧшәы MIME атип. Аҧха ахцәыу астатик афайл асервер Vite/React аӡԥа аҳаҧҳаҭ аҧроект аdev асервер иҳаҭ.',
+      moduleMimeDescription:
+        'Амодуль аскриптҭа ахәыҳәаҭ аҧҳаҧшәы MIME атип. Аҧха ахцәыу астатик афайл асервер Vite/React аӡԥа аҳаҧҳаҭ аҧроект аdev асервер иҳаҭ.',
       unreachableDescription: 'Ахәаҵра аҧҳаҳәа ахәыҳәаҭ аҧҳацәа аҳаҧҳаҭ.',
       fallbackTitle: 'Ахәаҵра',
       lookingRestart: taskId => `OpenAmer is looking for a preview server to restart (${taskId})`,
@@ -2683,14 +2732,14 @@ Leave blank to keep the ${mode} default.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     closeTab: label => `Close ${label}`,
     linkHint: '⌘/Ctrl-click for preview pane',
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   zones: {
     showHeader: 'Ахәыҳәа ахәаҧҳа',
@@ -2698,7 +2747,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Аҧҳаҧшәы аҧҳацәа',
     restore: 'Аҧҳаҧшәы аҳаҧҳа',
     closeRunningTitle: 'Аҳаҧҳа аԥшра атаб?',
-    closeRunningBody: 'Аҳа чат акҭа аԥшра (иҳа аҧҳа ахәыҳәа аҧҳацәа). Атаб аҳаҧҳа аҳаҧҳаҭ — асессия ахәыҳәа аҧҳацәа аҳаҧҳаҭ аҳа асайдбар иҳаҭ.',
+    closeRunningBody:
+      'Аҳа чат акҭа аԥшра (иҳа аҧҳа ахәыҳәа аҧҳацәа). Атаб аҳаҧҳа аҳаҧҳаҭ — асессия ахәыҳәа аҧҳацәа аҳаҧҳаҭ аҳа асайдбар иҳаҭ.',
     closeRunningConfirm: 'Атаб аҳаҧҳа',
     closeOthers: 'Аҧҳаҧшәы аҳаҧҳа',
     closeToRight: 'Аҧҳаҧшәы аҧҳа аҧҳаҧшәы',
@@ -2735,7 +2785,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
@@ -2766,11 +2816,12 @@ Leave blank to keep the ${mode} default.`,
       restoreFromHere: 'Аҧхаҧшра аҧхаҧш — аҧхаҧшра аҧхаҧш аҧхаҧш',
       restoreTitle: 'Аҧхаҧшра аҧхаҧш аҧхаҧш?',
       restoreBody: 'Аҧхаҧшра аҧхаҧш аҧхаҧш аҧхаҧш аҧхаҧш аҧхаҧш аҧхаҧш аҧхаҧш аҧхаҧш аҧхаҧш.',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
-      yesterday: time => `Yesterday, ${time}`,
+      yesterday: time => `Yesterday, ${time}`
     },
     approval: {
       gatewayDisconnected: 'OpenAmer шлюз ари аҧсҳаҧш',
@@ -2784,7 +2835,8 @@ Leave blank to keep the ${mode} default.`,
       reject: 'Аҧсҳаҧш',
       alwaysTitle: 'Аҧсҳаҧш аҧрҩаҧш аҧрҩа?',
       alwaysAllow: 'Аҧсҳаҧш аҧрҩаҧш',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
       notReady: 'Аҧсшәаҧш аҧрҩаҧш ари аҧсҳаҧш',
@@ -2798,7 +2850,7 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'Аҳаҵра',
       lateAnswerTip: 'Аҵны аԥсуа ахәыҳаҧшара иҳаҧшара аҧсуа',
       lateAnswerHint: 'Аҧсуа аҧҳаҧш аҳаҵра аҧҳаҧш. Аԥсны ахәыҳаҧшара иҳаҧшара аҧсуа.',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     tool: {
       code: 'Аҟод',
@@ -2832,123 +2884,123 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Аҳаҧшра',
         running: 'Аҳаҧшра',
         ranCode: 'Код аҳаҧшра',
-        runningCode: 'Скрипт аҳаҧшра',
+        runningCode: 'Скрипт аҳаҧшра'
       },
       prefixes: {
         browser: 'Браузер',
-        web: 'Веб',
+        web: 'Веб'
       },
       titles: {
         clarify: {
           pendingAction: 'Аԥсыра',
           done: 'Аҧсра аҳаҧсра',
-          pending: 'Аҧсра аҳаҧсрара',
+          pending: 'Аҧсра аҳаҧсрара'
         },
         cronjob: {
           done: 'Крон ажьыра',
           pending: 'Крон ажьыра аԥшра',
-          pendingAction: 'Аԥшра',
+          pendingAction: 'Аԥшра'
         },
         edit_file: {
           done: 'Аԥсуара файл',
           pending: 'Файл аԥсуара',
-          pendingAction: 'Аԥсуара',
+          pendingAction: 'Аԥсуара'
         },
         execute_code: {
           done: 'Аҧхара код',
           pending: 'Скрипт аҳаҧыра',
-          pendingAction: 'Скрипт аҳаҧыра',
+          pendingAction: 'Скрипт аҳаҧыра'
         },
         image_generate: {
           done: 'Аҳаҧыра ифас',
           pending: 'Ифас аҳаҧыра',
-          pendingAction: 'Аҳаҧыра',
+          pendingAction: 'Аҳаҧыра'
         },
         list_files: {
           done: 'Аҳаҧыра файлҭа',
           pending: 'Файлҭа аҳаҧыра',
-          pendingAction: 'Аҳаҧыра',
+          pendingAction: 'Аҳаҧыра'
         },
         patch: {
           done: 'Патч аԥсуара файл',
           pending: 'Файл патчара',
-          pendingAction: 'Патчара',
+          pendingAction: 'Патчара'
         },
         read_file: {
           done: 'Файл аҭыра',
           pending: 'Файл аҩылара',
-          pendingAction: 'Аҩылара',
+          pendingAction: 'Аҩылара'
         },
         browser_click: {
           done: 'Аԥшра элемент аҟакъа',
           pending: 'Аԥшра элемент аҟакъаара',
-          pendingAction: 'Аҟакъаара',
+          pendingAction: 'Аҟакъаара'
         },
         browser_fill: {
           done: 'Форма алакха аҳаҧс',
           pending: 'Форма алакха аҳаҧсрара',
-          pendingAction: 'Аҳаҧсрара',
+          pendingAction: 'Аҳаҧсрара'
         },
         browser_navigate: {
           done: 'Аԥшра аҳаӡра',
           pending: 'Аԥшра аҳаӡрара',
-          pendingAction: 'Аҳаӡрара',
+          pendingAction: 'Аҳаӡрара'
         },
         browser_snapshot: {
           done: 'Аԥшра снимок аҳаҧсра',
           pending: 'Аԥшра снимок аҳаҧсрара',
-          pendingAction: 'Аҳаҧсрара',
+          pendingAction: 'Аҳаҧсрара'
         },
         browser_take_screenshot: {
           done: 'Скриншот аҳаҧсра',
           pending: 'Скриншот аҳаҧсрара',
-          pendingAction: 'Аҳаҧсрара',
+          pendingAction: 'Аҳаҧсрара'
         },
         browser_type: {
           done: 'Аԥшра аҳаҭра',
           pending: 'Аԥшра аҳаҭрара',
-          pendingAction: 'Аҳаҭрара',
+          pendingAction: 'Аҳаҭрара'
         },
         search_files: {
           done: 'Фылара аҧшҩа',
           pending: 'Фылара аҧшҩара',
-          pendingAction: 'Аҧшҩара',
+          pendingAction: 'Аҧшҩара'
         },
         session_search_recall: {
           done: 'Асессиа аҳьаҭа аҧшҩа',
           pending: 'Асессиа аҳьаҭа аҧшҩара',
-          pendingAction: 'Аҧшҩара',
+          pendingAction: 'Аҧшҩара'
         },
         terminal: {
           done: 'Акоманда аҵара',
           pending: 'Акоманда аҵаҩыра',
-          pendingAction: 'Аҵара',
+          pendingAction: 'Аҵара'
         },
         todo: {
           done: 'Азадача аҧхаҭҩа',
           pending: 'Азадача аҧхаҭҩара',
-          pendingAction: 'Аҧхаҭҩара',
+          pendingAction: 'Аҧхаҭҩара'
         },
         vision_analyze: {
           done: 'Аизображение анызҩа',
           pending: 'Аизображение анызҩара',
-          pendingAction: 'Анызҩара',
+          pendingAction: 'Анызҩара'
         },
         web_extract: {
           done: 'Авеб-статья аҩыла',
           pending: 'Авеб-статья аҩылара',
-          pendingAction: 'Аҩылара',
+          pendingAction: 'Аҩылара'
         },
         web_search: {
           done: 'Интернет аԥшраҟа',
           pending: 'Интернет аԥшраҟара',
-          pendingAction: 'Аԥшраҟара',
+          pendingAction: 'Аԥшраҟара'
         },
         write_file: {
           done: 'Файл аҳаҧыра',
           pending: 'Файл аҳаҧырара',
-          pendingAction: 'Аҳаҧырара',
-        },
+          pendingAction: 'Аҳаҧырара'
+        }
       },
       recoveredMany: count => `Recovered after ${count} failed steps`,
       failedMany: count => `${count} steps failed`,
@@ -2958,9 +3010,9 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer шлюз иуаҟны иҳап',
@@ -2971,9 +3023,10 @@ Leave blank to keep the ${mode} default.`,
     sudoPlaceholder: 'sudo апароль',
     secretTitle: 'Аҟны уаҟны',
     secretDesc: 'OpenAmer уара акреденциал уаҟны уаҳаҧшра иҳаҧыра.',
-    secretPlaceholder: 'аҟны аԥсуа',
+    secretPlaceholder: 'аҟны аԥсуа'
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
-  },
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
+  }
 })

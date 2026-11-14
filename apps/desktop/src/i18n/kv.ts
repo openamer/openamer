@@ -45,7 +45,7 @@ export const kv = defineLocale({
     update: 'Update',
     tryHint: term => `Try “${term}”`,
     on: 'On',
-    off: 'Off',
+    off: 'Off'
   },
   fileMenu: {
     revealFileManager: 'Восьтны пыртӧм папка',
@@ -60,7 +60,7 @@ export const kv = defineLocale({
     pathCopied: 'Туй копируйтӧма',
     revealFinder: 'Reveal in Finder',
     revealExplorer: 'Reveal in File Explorer',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop дась',
@@ -69,7 +69,7 @@ export const kv = defineLocale({
       loadingSettings: 'OpenAmer настройкаяс тыртӧм',
       loadingSessions: 'Недыр сайын сессияяс тыртӧм',
       startingDesktopConnection: 'Десктоп йитӧд заводитчӧ',
-      startingOpenAmerDesktop: 'OpenAmer Desktop заводитчӧ…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop заводитчӧ…'
     },
     errors: {
       backgroundExited: 'OpenAmer фон процесс петӧма.',
@@ -78,13 +78,15 @@ export const kv = defineLocale({
       desktopBootFailed: 'Десктоп заводитчӧм абу артмӧма',
       gatewayConnectionLost: 'Йитӧд шлюзкӧд вошӧма',
       gatewaySignInRequired: 'Шлюзӧ пырӧм колӧ',
-      ipcBridgeUnavailable: 'Десктоп IPC-мост абу.',
+      ipcBridgeUnavailable: 'Десктоп IPC-мост абу.'
     },
     failure: {
       title: 'OpenAmer эз вермы стартуйтны',
-      description: 'Фонса шлюз эз стартуйт. Видлы улысь восстановление шагъясысь ӧтисӧ. Тані нинӧм оз вешты тэнад чатъяссӧ либӧ настройкаясӧ.',
+      description:
+        'Фонса шлюз эз стартуйт. Видлы улысь восстановление шагъясысь ӧтисӧ. Тані нинӧм оз вешты тэнад чатъяссӧ либӧ настройкаясӧ.',
       remoteTitle: 'Ылысса шлюзӧ пырӧм колӧ',
-      remoteDescription: 'Тэнад ылысса шлюз сессия помасьӧма. Выльысь пыр, медым выльысь йитчыны. Тані нинӧм оз вешты тэнад чатъяссӧ либӧ настройкаясӧ.',
+      remoteDescription:
+        'Тэнад ылысса шлюз сессия помасьӧма. Выльысь пыр, медым выльысь йитчыны. Тані нинӧм оз вешты тэнад чатъяссӧ либӧ настройкаясӧ.',
       retry: 'Выльысь видлы',
       repairInstall: 'Установкасӧ бурмӧдны',
       useLocalGateway: 'Локальнӧй шлюзӧн вӧдитны',
@@ -103,10 +105,11 @@ export const kv = defineLocale({
       signInFailed: 'Пырӧм эз артмы',
       signInToRemoteGateway: 'Пырны ылыс шлюзӧ',
       identityProvider: 'Тэнад идентификация провайдер',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   notifications: {
     region: 'Юӧртӧмъяс',
@@ -118,7 +121,8 @@ export const kv = defineLocale({
     copyDetail: 'Копируйтны тӧдчӧм',
     copyDetailFailed: 'Эз артмы копируйтны юӧртӧм тӧдчӧмсӧ',
     backendOutOfDateTitle: 'Бэкенд важмис',
-    backendOutOfDateMessage: 'Тэнад OpenAmer бэкенд важджык тайӧ десктоп сборкасьыс да вермас оз уджавны веськыда. Обновитны, медым найӧс ӧтилаӧ воштыны.',
+    backendOutOfDateMessage:
+      'Тэнад OpenAmer бэкенд важджык тайӧ десктоп сборкасьыс да вермас оз уджавны веськыда. Обновитны, медым найӧс ӧтилаӧ воштыны.',
     installMethodUnsupportedTitle: 'Пуктан ног оз лӧсяв',
     updateOpenAmer: 'Обновитны OpenAmer',
     updateReadyTitle: 'Обновление дась',
@@ -127,11 +131,12 @@ export const kv = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT-лы колӧ ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs rejected the API key (401).',
       gatewayAuthFailed: 'Gateway authentication failed — check your API_SERVER_KEY.',
-      methodNotAllowed: 'The desktop backend rejected that request (405 Method Not Allowed). Try restarting OpenAmer Desktop.',
+      methodNotAllowed:
+        'The desktop backend rejected that request (405 Method Not Allowed). Try restarting OpenAmer Desktop.',
       microphonePermission: 'Microphone permission was denied.',
       openaiRejectedApiKey: 'OpenAI rejected the API key.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS needs VOICE_TOOLS_OPENAI_KEY or OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS needs VOICE_TOOLS_OPENAI_KEY or OPENAI_API_KEY.'
     },
     voice: {
       transcriptionUnavailable: 'Голосӧн гижӧм на оз воссьы.',
@@ -150,7 +155,7 @@ export const kv = defineLocale({
       noSpeechDetected: 'No speech detected',
       playbackFailed: 'Voice playback failed',
       recordingFailed: 'Voice recording failed',
-      transcriptionFailed: 'Voice transcription failed',
+      transcriptionFailed: 'Voice transcription failed'
     },
     native: {
       approvalTitle: 'Колӧ вынсьӧдӧм.',
@@ -163,10 +168,10 @@ export const kv = defineLocale({
       turnErrorTitle: 'Ход эз артмы.',
       backgroundDoneTitle: 'Фонса удж помаліс.',
       backgroundFailedTitle: 'Фонса удж эз артмы.',
-      creditsTitle: 'Кредитъяс.',
+      creditsTitle: 'Кредитъяс.'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   titlebar: {
     showSidebar: 'Петкӧдны бок панель',
@@ -183,7 +188,7 @@ export const kv = defineLocale({
     openKeybinds: 'Клавиатура дженьыд туйяс',
     layoutEditor: 'Макет редактор',
     layoutEditorTitle: 'Макет редактор — ⌘-клик бӧр лӧсьӧдӧ макет',
-    hideSidebar: 'Сайдбарсӧ дзебны.',
+    hideSidebar: 'Сайдбарсӧ дзебны.'
   },
   keybinds: {
     title: 'Клавиатура дженьыд туйяс',
@@ -198,7 +203,7 @@ export const kv = defineLocale({
       profiles: 'Профильяс',
       session: 'Сессия',
       navigation: 'Навигация',
-      view: 'Вид',
+      view: 'Вид'
     },
     actions: {
       'keybinds.openPanel': 'Восьтны клавишаяслӧн дженьыдъяс',
@@ -277,10 +282,10 @@ export const kv = defineLocale({
       'composer.slash': 'Слэш командаяс палитра',
       'composer.help': 'Тэрыб отсӧг',
       'composer.history': 'Поповер / история бергӧдлӧм',
-      'composer.cancel': 'Поповерсӧ пӧднавны · запусксӧ дугӧдны',
+      'composer.cancel': 'Поповерсӧ пӧднавны · запусксӧ дугӧдны'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer кредитъяс бырисны.',
@@ -288,7 +293,7 @@ export const kv = defineLocale({
     openBilling: 'Восьты биллинг.',
     addCredits: 'Содтӧй кредитъяс.',
     dismiss: 'Вештыны.',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   language: {
     label: 'Кыв',
@@ -297,7 +302,7 @@ export const kv = defineLocale({
     saveError: 'Кыв выльмӧдӧм эз артмы',
     switchTo: 'Кыв вежны',
     searchPlaceholder: 'Кывъяс корсьны…',
-    noResults: 'Кывъяс эз шедӧй',
+    noResults: 'Кывъяс эз шедӧй'
   },
   settings: {
     closeSettings: 'Настройкаяс пӧднавны',
@@ -322,11 +327,12 @@ export const kv = defineLocale({
       billing: 'Платежъяс',
       notifications: 'Юӧртӧмъяс',
       plugins: 'Плагинъяс',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'Десктоп плагинъяс',
-      blurb: 'UI кыпӧдчӧмъяс, кодъяс пыртӧмаӧсь тайӧ приложениеӧ — сборкакӧд ӧтувтӧмӧсь либӧ desktop-plugins папкаӧ пуктӧмӧсь (OpenAmer гижӧмъяссӧ тшӧтш). Плагинсӧ выключитӧм сійӧс туй вылын лэдзӧ да выльысь заводитӧмъяс бӧрын кольччӧ.',
+      blurb:
+        'UI кыпӧдчӧмъяс, кодъяс пыртӧмаӧсь тайӧ приложениеӧ — сборкакӧд ӧтувтӧмӧсь либӧ desktop-plugins папкаӧ пуктӧмӧсь (OpenAmer гижӧмъяссӧ тшӧтш). Плагинсӧ выключитӧм сійӧс туй вылын лэдзӧ да выльысь заводитӧмъяс бӧрын кольччӧ.',
       openFolder: 'Восьт плагинъяслӧн папка',
       rescan: 'Выльысь сканер',
       reveal: 'Петкӧд файл менеджерын',
@@ -337,36 +343,36 @@ export const kv = defineLocale({
       kinds: {
         bundled: 'Ӧтувтӧм',
         disk: 'Диск вылын',
-        runtime: 'Уджан дыр',
+        runtime: 'Уджан дыр'
       },
-      count: n => `${n} installed`,
+      count: n => `${n} installed`
     },
     notifications: {
       kinds: {
         credits: {
           description: 'Кредит вылӧ пырӧм дугдӧма либӧ бӧр лӧсьӧдӧма.',
-          label: 'Кредитъяс йылысь юӧртӧмъяс',
+          label: 'Кредитъяс йылысь юӧртӧмъяс'
         },
         approval: {
           label: 'Колӧ вынсьӧдӧм',
-          description: 'Команда виччысьӧ тіянӧс — вынсьӧдӧй либӧ отказ сетӧй.',
+          description: 'Команда виччысьӧ тіянӧс — вынсьӧдӧй либӧ отказ сетӧй.'
         },
         input: {
           label: 'Колӧ пыртӧм',
-          description: 'OpenAmer юаліс юалӧм либӧ сылы колӧ пароль либӧ секрет.',
+          description: 'OpenAmer юаліс юалӧм либӧ сылы колӧ пароль либӧ секрет.'
         },
         turnDone: {
           label: 'Вочакыв дась',
-          description: 'Тур помаліс, кор OpenAmer фонса вӧлі.',
+          description: 'Тур помаліс, кор OpenAmer фонса вӧлі.'
         },
         turnError: {
           label: 'Тур эз артмы',
-          description: 'Тур помаліс ошибкаӧн.',
+          description: 'Тур помаліс ошибкаӧн.'
         },
         backgroundDone: {
           label: 'Фонса удж помаліс',
-          description: 'Фонса терминал команда помаліс.',
-        },
+          description: 'Фонса терминал команда помаліс.'
+        }
       },
       test: 'Ыстыны тестовӧй юӧртчӧм',
       testTitle: 'OpenAmer',
@@ -377,10 +383,11 @@ export const kv = defineLocale({
       completionSoundDesc: 'Ворсӧ, кор агентлӧн ход помалӧ. Бӧрйы пресет да видзӧд татысь.',
       completionSoundPreview: 'Видзӧдӧм',
       title: 'Юӧртӧмъяс',
-      intro: 'Ас десктоп юӧртӧмъяс, приложение пытшкӧсса тостъясысь торъя. Найӧ устройство вылын локальнӧйӧсь — быд компьютер аслыс настройкаяссӧ видзӧ.',
+      intro:
+        'Ас десктоп юӧртӧмъяс, приложение пытшкӧсса тостъясысь торъя. Найӧ устройство вылын локальнӧйӧсь — быд компьютер аслыс настройкаяссӧ видзӧ.',
       enableAll: 'Юӧртӧмъясӧс лэдзны',
       enableAllDesc: 'Медшӧр переключатель. Кусӧдӧй тайӧс, медым улысса став юӧртӧмъяссӧ чӧвтӧдны.',
-      focusedHint: 'Помалӧм йылысь юӧртӧмъяс сӧмын сэк петӧны, кор OpenAmer фонса.',
+      focusedHint: 'Помалӧм йылысь юӧртӧмъяс сӧмын сэк петӧны, кор OpenAmer фонса.'
     },
     sections: {
       model: 'Модель',
@@ -390,7 +397,7 @@ export const kv = defineLocale({
       safety: 'Безопасность',
       memory: 'Память да контекст',
       voice: 'Гӧлӧс',
-      advanced: 'Водзвывса',
+      advanced: 'Водзвывса'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop йылысь',
@@ -398,25 +405,26 @@ export const kv = defineLocale({
       gateway: 'Шлюзкӧд йитчӧм...',
       keys: 'Корсьны API ключьяс...',
       mcp: 'Корсьны MCP серверъяс...',
-      sessions: 'Корсьны архив сессияяс...',
+      sessions: 'Корсьны архив сессияяс...'
     },
     modeOptions: {
       light: {
         label: 'Югыд',
-        description: 'Югыд рабочий стол юкӧнъяс',
+        description: 'Югыд рабочий стол юкӧнъяс'
       },
       dark: {
         label: 'Пемыд',
-        description: 'Этша югыт уджалан ин',
+        description: 'Этша югыт уджалан ин'
       },
       system: {
         label: 'Система',
-        description: 'ОС вид серти',
-      },
+        description: 'ОС вид серти'
+      }
     },
     appearance: {
       title: 'Вид',
-      intro: 'Тайӧ сӧмын рабочий стол вылын петкӧдлӧмлӧн видъяс. Режим веськӧдлӧ югыдлунӧн; тема веськӧдлӧ акцент рӧмъясӧн да чат поверхность стильӧн.',
+      intro:
+        'Тайӧ сӧмын рабочий стол вылын петкӧдлӧмлӧн видъяс. Режим веськӧдлӧ югыдлунӧн; тема веськӧдлӧ акцент рӧмъясӧн да чат поверхность стильӧн.',
       colorMode: 'Рӧм режим',
       colorModeDesc: 'Бӧрйы ӧткодя режим либӧ лэдз OpenAmer водзӧ мунны тэнад система индӧд серти.',
       toolViewTitle: 'Инструмент корис петкӧдлӧм',
@@ -427,8 +435,10 @@ export const kv = defineLocale({
       backdropTitle: 'Чат фон',
       backdropDesc: 'Сёрни бӧрсяыс этша статуя серпас.',
       pet: {
-        intro: 'Босьт анимацияа petdex маскот, коді лэбалӧ приложение вылын да вочавидзӧ OpenAmer уджалӧм вылӧ — котралӧ, кор инструментъяс уджалӧны, шудалӧ бурсьӧм вылын, мӧртӧ ошибкаяс вылын.',
-        restartHint: 'Петъяслы колӧ ӧтпырйӧ выльмӧдӧм — уджалысь приложение заводитчис тайӧ функцияысь водзӧ. Пет OpenAmer-ысь да восьт сійӧс выльысь, сэсся лок татчӧ.',
+        intro:
+          'Босьт анимацияа petdex маскот, коді лэбалӧ приложение вылын да вочавидзӧ OpenAmer уджалӧм вылӧ — котралӧ, кор инструментъяс уджалӧны, шудалӧ бурсьӧм вылын, мӧртӧ ошибкаяс вылын.',
+        restartHint:
+          'Петъяслы колӧ ӧтпырйӧ выльмӧдӧм — уджалысь приложение заводитчис тайӧ функцияысь водзӧ. Пет OpenAmer-ысь да восьт сійӧс выльысь, сэсся лок татчӧ.',
         on: 'Включитӧм',
         off: 'Выключитӧм',
         scaleTitle: 'Ыджда',
@@ -461,10 +471,11 @@ export const kv = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
       embedsTitle: 'Строкаӧн пыртӧдъяс',
-      embedsDesc: 'Паськыд видзӧдлӧмъяс пыртсьӧны мӧд сайтъясысь (YouTube, X, …). «Юав» петкӧдӧ инпас, кытчӧдз быдӧсӧ лэдзан; «Ставдыр» пыртӧ найӧс автоматическӧй; «Кусӧдӧм» кольӧ сӧмын сӧстӧм ыстӧдъяс.',
+      embedsDesc:
+        'Паськыд видзӧдлӧмъяс пыртсьӧны мӧд сайтъясысь (YouTube, X, …). «Юав» петкӧдӧ инпас, кытчӧдз быдӧсӧ лэдзан; «Ставдыр» пыртӧ найӧс автоматическӧй; «Кусӧдӧм» кольӧ сӧмын сӧстӧм ыстӧдъяс.',
       embedsAsk: 'Юав',
       embedsAlways: 'Ставдыр',
       embedsOff: 'Кусӧдӧм',
@@ -475,17 +486,19 @@ export const kv = defineLocale({
       themeTitle: 'Тема',
       themeDesc: 'Сӧмын десктоп палитраяс. Бӧрйӧм режим пуктсьӧ вылӧ.',
       installTitle: 'Пуктны VS Code-ысь',
-      installDesc: 'Пырт Marketplace расширение id (шуам, dracula-theme.theme-dracula), медым вежны сылӧн рӧм темасӧ десктоп палитраӧ.',
+      installDesc:
+        'Пырт Marketplace расширение id (шуам, dracula-theme.theme-dracula), медым вежны сылӧн рӧм темасӧ десктоп палитраӧ.',
       installButton: 'Пуктны',
       installing: 'Пуктсьӧ…',
       installError: 'Сійӧ темасӧ пуктыны эз вермы.',
       removeTheme: 'Вештыны тема',
       importedBadge: 'Пыртӧм',
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installPlaceholder: 'publisher.extension',
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     about: {
       heading: 'OpenAmer Десктоп',
@@ -503,7 +516,8 @@ export const kv = defineLocale({
       tapCheck: 'Жмигӧй «Видзӧдӧй ӧні», медым корсьны выльмӧдӧмъяс.',
       justNowSuffix: '· ӧні на',
       automaticUpdates: 'Автоматическӧй выльмӧдӧмъяс',
-      automaticUpdatesDesc: 'OpenAmer автоматическӧй видзӧдӧ выльмӧдӧмъяс вылӧ фон режимын да юӧртӧ тіянлы, кор выльмӧдӧм дась.',
+      automaticUpdatesDesc:
+        'OpenAmer автоматическӧй видзӧдӧ выльмӧдӧмъяс вылӧ фон режимын да юӧртӧ тіянлы, кор выльмӧдӧм дась.',
       never: 'некор',
       justNow: 'ӧні на',
       version: value => `Version ${value}`,
@@ -512,7 +526,7 @@ export const kv = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     config: {
       none: 'Нинӧм',
@@ -528,7 +542,7 @@ export const kv = defineLocale({
       imported: 'Конфигурация пыртӧма',
       invalidJson: 'Конфиг JSON абу лӧсялана',
       keepAwakeTitle: 'Компьютерсӧ видзны садь',
-      keepAwakeDesc: 'Тайӧ машинасӧ эз узь, медым кузь либӧ войся уджалӧм водзӧ муніс. Дисплей вермас на пемдыны.',
+      keepAwakeDesc: 'Тайӧ машинасӧ эз узь, медым кузь либӧ войся уджалӧм водзӧ муніс. Дисплей вермас на пемдыны.'
     },
     credentials: {
       pasteKey: 'Ключ пыртны',
@@ -538,7 +552,7 @@ export const kv = defineLocale({
       remove: 'Босьтны',
       getKey: 'Ключ босьтны',
       saving: 'Видзӧм',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     envActions: {
       credentialActions: 'Удостоверениеяслӧн действиеяс',
@@ -549,7 +563,7 @@ export const kv = defineLocale({
       replace: 'Вежны',
       set: 'Пуктны',
       clear: 'Чиститны',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     gateway: {
       loading: 'Шлюз настройкаяс восьтсьӧны...',
@@ -557,12 +571,14 @@ export const kv = defineLocale({
       unavailableDesc: 'Десктоп IPC вуджӧд оз петкӧдлы шлюз настройкаяс.',
       title: 'Шлюзкӧт йитчӧм',
       envOverride: 'env вежсьӧм',
-      intro: 'OpenAmer Desktop водзвыв кыпӧдӧ аслыс локальнӧй шлюз. Вӧдитчӧй ылын шлюзӧн, кор тіянлы колӧ, мед тайӧ приложение веськӧдлас уже уджалысь OpenAmer backend-ӧн мукӧд машина вылын либӧ эскӧм прокси сайын. Бӧрйӧй улын профиль, мед сійӧ шедас аслыс ылын хост.',
+      intro:
+        'OpenAmer Desktop водзвыв кыпӧдӧ аслыс локальнӧй шлюз. Вӧдитчӧй ылын шлюзӧн, кор тіянлы колӧ, мед тайӧ приложение веськӧдлас уже уджалысь OpenAmer backend-ӧн мукӧд машина вылын либӧ эскӧм прокси сайын. Бӧрйӧй улын профиль, мед сійӧ шедас аслыс ылын хост.',
       appliesTo: 'Лӧсялӧ',
       allProfiles: 'Став профильяс',
       defaultConnection: 'Водзвыв йитчӧм быд профильлы, кодлӧн абу аслыс вежсьӧм.',
       envOverrideTitle: 'Окружение переменнӧйяс веськӧдлӧны тайӧ десктоп сессияӧн.',
-      envOverrideDesc: 'Кыскалӧй OPENAMER_DESKTOP_REMOTE_URL да OPENAMER_DESKTOP_REMOTE_TOKEN, мед вӧдитчыны улын видзӧм настройкаӧн.',
+      envOverrideDesc:
+        'Кыскалӧй OPENAMER_DESKTOP_REMOTE_URL да OPENAMER_DESKTOP_REMOTE_TOKEN, мед вӧдитчыны улын видзӧм настройкаӧн.',
       modeTitle: 'Йитӧд режим',
       localTitle: 'Локальнӧй шлюз',
       localDesc: 'Запуститӧй localhost вылын приватнӧй OpenAmer бэкенд. Тайӧ дефолт да уджалӧ оффлайн.',
@@ -570,7 +586,8 @@ export const kv = defineLocale({
       inheritDesc: 'Тайӧ профильлысь override-сӧ босьтӧй да вӧдитчӧй дефолт йитӧдӧн.',
       remoteTitle: 'Ылысса шлюз',
       remoteDesc: 'Йитӧй тайӧ десктоп shell-сӧ ылысса OpenAmer бэкендкӧд.',
-      remoteAuthHint: 'Хостируйтӧм шлюзъяс вӧдитчӧны OAuth-ӧн либӧ логинӧн да парольӧн; ас вылын хостируйтӧм шлюзъяс вермасны вӧдитчыны сессия токенӧн.',
+      remoteAuthHint:
+        'Хостируйтӧм шлюзъяс вӧдитчӧны OAuth-ӧн либӧ логинӧн да парольӧн; ас вылын хостируйтӧм шлюзъяс вермасны вӧдитчыны сессия токенӧн.',
       cloudDesc: 'Пырӧй OpenAmer Cloud-ӧ ӧтчыд да бӧрйӧй акаунт выланыд агентъяс пӧвстысь — URL пуктны оз ков.',
       cloudSignIn: 'Пырӧй OpenAmer Cloud-ӧ',
       cloudSignedIn: 'OpenAmer Cloud-ӧ пырӧма',
@@ -584,7 +601,7 @@ export const kv = defineLocale({
       cloudNoAgents: {
         before: 'Тайӧ аккаунт вылын агентъяс эз аддзысь. Вӧчӧй ӧти',
         linkText: 'OpenAmer портал',
-        after: ', сэсся выльмӧдӧй.',
+        after: ', сэсся выльмӧдӧй.'
       },
       cloudRefresh: 'Выльмӧдӧй',
       cloudConnect: 'Йитӧдӧй',
@@ -600,7 +617,8 @@ export const kv = defineLocale({
       remoteUrlTitle: 'Ылыся URL',
       remoteUrlDesc: 'Ылыся дашборд бэкендлы подув URL. Путь префиксъяс поддерживайтчӧны, шуам, /openamer.',
       probing: 'Видлалсьӧ, кыдзи тайӧ шлюз аутентификациясӧ вӧчӧ…',
-      probeError: 'Тайӧ шлюзӧдз ӧні эз позьӧ воӧдчыны. URL-сӧ видлӧй — аутентификация метод петас, кор сійӧ вочавидзас.',
+      probeError:
+        'Тайӧ шлюзӧдз ӧні эз позьӧ воӧдчыны. URL-сӧ видлӧй — аутентификация метод петас, кор сійӧ вочавидзас.',
       signedIn: 'Пырӧма',
       signIn: 'Пырӧй',
       signOut: 'Петны',
@@ -609,7 +627,8 @@ export const kv = defineLocale({
       authSignedInOauth: 'Тайӧ шлюз вӧдитчӧ OAuth. Ті пырӧма; сессия ачыс выльмӧдчӧ.',
       authNeedsPassword: 'Тайӧ шлюз вӧдитчӧ нимӧн да парольӧн. Тайӧ десктоп приложениесӧ авторизуйтны понда пырны.',
       tokenTitle: 'Сессия токен',
-      tokenDesc: 'REST да WebSocket доступ понда вӧдитчӧм дашборд сессия токен. Сохранённӧй токен кольны — пустӧй кольӧ.',
+      tokenDesc:
+        'REST да WebSocket доступ понда вӧдитчӧм дашборд сессия токен. Сохранённӧй токен кольны — пустӧй кольӧ.',
       savedToken: 'видзӧма',
       pasteSessionToken: 'Вставтны сессия токен',
       testRemote: 'Проверитны удалённӧй',
@@ -638,7 +657,8 @@ export const kv = defineLocale({
       applyFailed: 'Шлюзлӧн настройкаясӧ оз вермы пуктыны',
       saveFailed: 'Шлюзлӧн настройкаясӧ оз вермы видзны',
       sshTitle: 'SSH пыр йитчы',
-      sshDesc: 'OpenAmer лэдзӧма ылын SSH пыр да туннельӧн йитӧма тайӧ приложениеӧдз — нинӧ оз ков кутны али восьтыны асьтӧ. Ковӧ уджан ключӧн SSH доступ хостӧ.',
+      sshDesc:
+        'OpenAmer лэдзӧма ылын SSH пыр да туннельӧн йитӧма тайӧ приложениеӧдз — нинӧ оз ков кутны али восьтыны асьтӧ. Ковӧ уджан ключӧн SSH доступ хостӧ.',
       sshTrustHint: 'Медводдза петкӧдӧм хостлӧн ключ доверяйтӧма да пиньтӧма; сэсся вежсьӧмъяс оз лэдзсьӧ.',
       sshHostTitle: 'Хост',
       sshHostDesc: 'user@host, али Host алиас ~/.ssh/config-ысь.',
@@ -661,14 +681,19 @@ export const kv = defineLocale({
       sshButtonsHint: 'Сохранитӧм воӧдчӧ мӧд воськовтӧмӧн. Йитчыны выльысь йитчӧ ӧні.',
       sshIncompleteHost: 'Пырт SSH хост йитчӧм водзӧ.',
       sshErrUnreachable: 'Сійӧ хостӧ SSH-ӧн оз вермы шедӧдны. Эскер хост, порт да тэнад сеть.',
-      sshErrAuth: 'SSH аутентификация эз артмы. Пырт тэнад ключ ssh-agent-ӧ (ssh-add) либӧ пукт IdentityFile ~/.ssh/config-ӧ — OpenAmer лэдзӧ ssh неинтерактивнӧя.',
-      sshErrHostKey: 'Хостлӧн ключ ВЕЖСИС бӧръя йитчӧмсянь. Эскер, мый тайӧ виччысьӧма, сэсся лэдз ssh-keygen -R <host> да выльысь йитчы.',
-      sshErrNotInstalled: 'OpenAmer абу пуктӧма ылысса хост вылӧ. Пуктӧй сійӧс сэтчӧ (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) либӧ индӧй OpenAmer-лысь туйсӧ.',
-      sshErrPlatform: 'Ылысса платформа оз весьшӧрт. OpenAmer Desktop SSH режим весьшӧртӧ Linux, macOS да Windows ылысса хостъяс.',
+      sshErrAuth:
+        'SSH аутентификация эз артмы. Пырт тэнад ключ ssh-agent-ӧ (ssh-add) либӧ пукт IdentityFile ~/.ssh/config-ӧ — OpenAmer лэдзӧ ssh неинтерактивнӧя.',
+      sshErrHostKey:
+        'Хостлӧн ключ ВЕЖСИС бӧръя йитчӧмсянь. Эскер, мый тайӧ виччысьӧма, сэсся лэдз ssh-keygen -R <host> да выльысь йитчы.',
+      sshErrNotInstalled:
+        'OpenAmer абу пуктӧма ылысса хост вылӧ. Пуктӧй сійӧс сэтчӧ (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) либӧ индӧй OpenAmer-лысь туйсӧ.',
+      sshErrPlatform:
+        'Ылысса платформа оз весьшӧрт. OpenAmer Desktop SSH режим весьшӧртӧ Linux, macOS да Windows ылысса хостъяс.',
       sshErrTimeout: 'SSH йитӧдлӧн кад помасьӧма. Хост вермас лоны шедйӧдтӧм либӧ узьысь.',
       sshErrUpdateRequired: 'Водзвылын Desktop SSH-ӧн йитчӧм, ылысса хост вылын OpenAmer-сӧ выльмӧдӧй.',
       sshErrUnknown: 'SSH йитӧд абу артмӧма.',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudTitle: 'OpenAmer Cloud',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudOrgRole: role => `Role: ${role}`,
@@ -678,12 +703,12 @@ export const kv = defineLocale({
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     keys: {
       loading: 'API ключьяс да верификацияяс вӧчсьӧны...',
       failedLoad: 'API ключьяс абу вӧчсьӧмаӧсь',
-      empty: 'Тайӧ категорияын на нинӧм абу лӧсьӧдӧма.',
+      empty: 'Тайӧ категорияын на нинӧм абу лӧсьӧдӧма.'
     },
     mcp: {
       loading: 'MCP серверъяс вӧчсьӧны...',
@@ -735,7 +760,8 @@ export const kv = defineLocale({
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
       catalogEnvRequired: 'Fill in the required values before installing.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       statusConnecting: 'Connecting…',
       statusNeedsAuth: 'Needs authentication',
       statusError: 'Error',
@@ -748,7 +774,7 @@ export const kv = defineLocale({
       unsavedConnect: 'Unsaved — save mcp.json to connect.',
       enableTool: tool => `Enable ${tool}`,
       disableTool: tool => `Disable ${tool}`,
-      noOutput: 'No output yet.',
+      noOutput: 'No output yet.'
     },
     providers: {
       disconnectInTerminal: 'Йитӧдсӧ торкны (терминалын вештӧм командасӧ лэдзӧ)',
@@ -758,12 +784,14 @@ export const kv = defineLocale({
       noKeysMatch: 'Тэнад корсьӧмӧн провайдеръяс абу.',
       localEndpoint: {
         title: 'Локальнӧй / аслыспӧлӧс эндпоинт',
-        description: 'OpenAmer-ӧс веськӧдлы кӧть кутшӧм OpenAI-кӧд лӧсялана эндпоинт вылӧ (Zyphra, vLLM, llama.cpp, Ollama, и с.в.).',
+        description:
+          'OpenAmer-ӧс веськӧдлы кӧть кутшӧм OpenAI-кӧд лӧсялана эндпоинт вылӧ (Zyphra, vLLM, llama.cpp, Ollama, и с.в.).'
       },
       loading: 'Провайдеръяс грузитчӧны...',
       connectAccount: 'Connect an account',
       haveApiKey: 'Have an API key instead?',
-      intro: 'Sign in with a subscription — no API key to copy. OpenAmer runs the browser sign-in for you, right here in the app.',
+      intro:
+        'Sign in with a subscription — no API key to copy. OpenAmer runs the browser sign-in for you, right here in the app.',
       connected: 'Connected',
       collapse: 'Collapse',
       connectAnother: 'Connect another provider',
@@ -772,29 +800,33 @@ export const kv = defineLocale({
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     sessions: {
       loading: 'Архивӧ пуктӧм сессияяс грузитчӧны…',
       archivedTitle: 'Архивӧ пуктӧм сессияяс',
-      archivedIntro: 'Архивӧ пуктӧм сёрнияс бок панельысь дзебсьӧны, но став юӧръяссӧ кольӧны. Архивӧ пуктыны — бок панельын сёрни вылӧ Ctrl/⌘-click вӧч.',
+      archivedIntro:
+        'Архивӧ пуктӧм сёрнияс бок панельысь дзебсьӧны, но став юӧръяссӧ кольӧны. Архивӧ пуктыны — бок панельын сёрни вылӧ Ctrl/⌘-click вӧч.',
       emptyArchivedTitle: 'Архивӧ нинӧм пуктӧм абу',
       emptyArchivedDesc: 'Сёрнисӧ архивӧ пукты, медым тані дзебны.',
       unarchive: 'Архивысь босьтны',
       deletePermanently: 'Вештны пыр',
       restored: 'Бӧр выльмӧдӧма',
       autoArchiveTitle: 'Автоархивӧ пуктыны важ сёрниясӧ',
-      autoArchiveDesc: 'Автоматически архивӧ пукты сёрниясӧ, кодъясӧс кымынкӧ кад чӧжӧн эн вӧчлы. Кӧчӧм сёрнияс некор оз архивӧ пуктӧ, да нинӧм оз вешт — архивӧ пуктӧм сёрнияс сӧмын татчӧ вуджӧны.',
+      autoArchiveDesc:
+        'Автоматически архивӧ пукты сёрниясӧ, кодъясӧс кымынкӧ кад чӧжӧн эн вӧчлы. Кӧчӧм сёрнияс некор оз архивӧ пуктӧ, да нинӧм оз вешт — архивӧ пуктӧм сёрнияс сӧмын татчӧ вуджӧны.',
       autoArchiveDaysLabel: 'Архивӧ пуктыны бӧрын',
       autoArchiveDaysUnit: 'вӧчӧмтӧм лунъяс',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
       autoArchiveFailed: 'Could not update auto-archive',
       defaultDirTitle: 'Default project directory',
-      defaultDirDesc: 'New sessions start in this folder unless you pick another. Leave it unset to use your home directory.',
+      defaultDirDesc:
+        'New sessions start in this folder unless you pick another. Leave it unset to use your home directory.',
       defaultDirUpdated: 'Default project directory updated — start a new chat (Ctrl/⌘+N) for it to take effect',
       defaultsTo: label => `Defaults to ${label}.`,
       change: 'Change',
@@ -805,7 +837,7 @@ export const kv = defineLocale({
       unarchiveFailed: 'Unarchive failed',
       deleteFailed: 'Delete failed',
       updateDirFailed: 'Could not update default directory',
-      clearDirFailed: 'Could not clear default directory',
+      clearDirFailed: 'Could not clear default directory'
     },
     toolsets: {
       webCapabilityUnset: 'Абу лӧсьӧдӧма',
@@ -830,7 +862,7 @@ export const kv = defineLocale({
         selectedTitle: 'Бэкенд бӧрйӧма',
         needsSetupHint: 'Тайӧ бэкендсӧ ӧні бӧрйыны верманныд — командаяс оз артмыны, кытчӧдз лӧсьӧдӧм оз помал.',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       loadingConfig: 'Loading configuration',
       savedTitle: 'Credential saved',
@@ -854,13 +886,15 @@ export const kv = defineLocale({
       needsSetup: 'Needs setup',
       openamerIncluded: 'Included with a OpenAmer subscription — sign in to OpenAmer Portal to activate.',
       openamerAuthNeededTitle: 'Sign in to OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
       openamerAuthSignIn: 'Sign in',
       openamerAuthDoneTitle: 'OpenAmer Portal connected',
       openamerAuthDoneMessage: 'Your subscription backends are now active.',
       openamerAuthFailed: 'OpenAmer Portal sign-in did not complete',
       noApiKeyRequired: 'No API key required.',
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupInstalledHint: 'Installed. Re-run setup only if something is broken.',
       postSetupRun: 'Run setup',
       postSetupRerun: 'Re-run setup',
@@ -878,7 +912,7 @@ export const kv = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -905,38 +939,38 @@ export const kv = defineLocale({
       tasks: {
         vision: {
           label: 'Vision',
-          hint: 'Image analysis',
+          hint: 'Image analysis'
         },
         web_extract: {
           label: 'Web extract',
-          hint: 'Page summarization',
+          hint: 'Page summarization'
         },
         compression: {
           label: 'Compression',
-          hint: 'Context compaction',
+          hint: 'Context compaction'
         },
         skills_hub: {
           label: 'Skills hub',
-          hint: 'Skill search',
+          hint: 'Skill search'
         },
         approval: {
           label: 'Approval',
-          hint: 'Smart auto-approve',
+          hint: 'Smart auto-approve'
         },
         mcp: {
           label: 'MCP',
-          hint: 'MCP tool routing',
+          hint: 'MCP tool routing'
         },
         title_generation: {
           label: 'Title gen',
-          hint: 'Session titles',
+          hint: 'Session titles'
         },
         curator: {
           label: 'Curator',
-          hint: 'Skill-usage review',
-        },
-      },
-    },
+          hint: 'Skill-usage review'
+        }
+      }
+    }
   },
   skills: {
     tabSkills: 'Кужанлунъяс',
@@ -955,7 +989,8 @@ export const kv = defineLocale({
     noDescription: 'Описание абу.',
     configured: 'Лӧсьӧдӧма',
     needsKeys: 'Колӧ ключъяс',
-    visionModelHint: 'Видзӧдӧм вӧдитчӧ отсасян модель лӧсьӧдӧмӧн — серпасӧн кужан модель бӧрйӧ сэні, абу провайдер серти тані.',
+    visionModelHint:
+      'Видзӧдӧм вӧдитчӧ отсасян модель лӧсьӧдӧмӧн — серпасӧн кужан модель бӧрйӧ сэні, абу провайдер серти тані.',
     visionModelLink: 'Бӧрйы видзӧдӧм модель Лӧсьӧдӧмъяс → Модельяс',
     skillsLoadFailed: 'Кужанлунъяс эз пыртсьыны',
     hub: {
@@ -965,7 +1000,7 @@ export const kv = defineLocale({
       trust: {
         builtin: 'Пыртӧм',
         trusted: 'Эскӧдан',
-        community: 'Котыр',
+        community: 'Котыр'
       },
       verdictSafe: 'Безопаснӧй',
       verdictCaution: 'Внимание',
@@ -987,7 +1022,8 @@ export const kv = defineLocale({
       connectingHubs: 'Connecting to skill hubs...',
       connectedHubs: 'Connected hubs:',
       featured: 'Featured skills',
-      landingHint: 'Search the hub to browse installable skills from the official index, GitHub, and community sources.',
+      landingHint:
+        'Search the hub to browse installable skills from the official index, GitHub, and community sources.',
       noResults: 'No matching skills found in the hub.',
       resultCount: (count, ms) => `${count} result${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Timed out: ${sources}`,
@@ -1003,7 +1039,7 @@ export const kv = defineLocale({
       scanning: 'Scanning...',
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     tabMcp: 'MCP',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} toolsets enabled`,
@@ -1029,7 +1065,7 @@ export const kv = defineLocale({
     provenance: {
       agent: 'Learned',
       bundled: 'Built-in',
-      hub: 'Hub',
+      hub: 'Hub'
     },
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
@@ -1039,11 +1075,12 @@ export const kv = defineLocale({
     edit: 'Edit',
     archive: 'Archive',
     skillArchivedTitle: 'Skill archived',
-    skillArchivedMessage: 'Restorable via openamer curator restore.',
+    skillArchivedMessage: 'Restorable via openamer curator restore.'
   },
   commandCenter: {
     generatePet: {
-      remixConfirmBody: 'Тайӧ лӧсьӧдӧ выль черновикъяслысь набор, тайӧс заводитчӧм чутӧн босьтӧмӧн. Тайӧ вермас босьтны некымын минут.',
+      remixConfirmBody:
+        'Тайӧ лӧсьӧдӧ выль черновикъяслысь набор, тайӧс заводитчӧм чутӧн босьтӧмӧн. Тайӧ вермас босьтны некымын минут.',
       genericError: 'Генерация эз артмы — нӧшта эскӧд либӧ бӧрйы индӧд.',
       referenceImageTooLarge: 'Индӧд серпасыс тым ыджыд. Вӧдитчы 16 МБ-ысь ичӧт серпасӧн.',
       referenceImageInvalid: 'Тайӧ индӧд серпасӧс эз вермы лыддьыны. Эскӧд PNG, JPG, WebP либӧ GIF.',
@@ -1069,7 +1106,7 @@ export const kv = defineLocale({
       slowProviderHint: 'Тайӧ вермас босьтны некымын минут.',
       remix: 'Выльысь лӧсьӧдны',
       remixConfirmTitle: 'Тайӧ видсӧ выльысь лӧсьӧдны?',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     installTheme: {
       title: 'Пуктны тема…',
@@ -1081,7 +1118,7 @@ export const kv = defineLocale({
       install: 'Пуктны',
       installing: 'Пуктӧ...',
       installed: 'Пуктӧма',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Настройкаяслӧн пӧльяс',
     mcpServers: 'MCP серверъяс',
@@ -1090,49 +1127,49 @@ export const kv = defineLocale({
       maintenance: 'Видзӧм',
       sessions: 'Сессияяс',
       system: 'Система',
-      usage: 'Вӧдитчӧм',
+      usage: 'Вӧдитчӧм'
     },
     sectionDescriptions: {
       maintenance: 'Диагностика, резервнӧй копияяс, куратор да память юӧръяс',
       sessions: 'Сессияяс корсьны да веськӧдлыны',
       system: 'Статус, логъяс да системаса действиеяс',
-      usage: 'Токен, дон да навык активность кад сьӧрті',
+      usage: 'Токен, дон да навык активность кад сьӧрті'
     },
     nav: {
       newChat: {
         title: 'Выль сессия',
-        detail: 'Пондыны выль сессия',
+        detail: 'Пондыны выль сессия'
       },
       settings: {
         title: 'Настройкаяс',
-        detail: 'Настройтны OpenAmer десктоп',
+        detail: 'Настройтны OpenAmer десктоп'
       },
       skills: {
         title: 'Возможностьяс',
-        detail: 'Навыкъяс, инструментъяс да MCP серверъяс',
+        detail: 'Навыкъяс, инструментъяс да MCP серверъяс'
       },
       messaging: {
         title: 'Сообщениеяс',
-        detail: 'Настройтны Telegram, Slack, Discord да мукӧд',
+        detail: 'Настройтны Telegram, Slack, Discord да мукӧд'
       },
       artifacts: {
         title: 'Артефактъяс',
-        detail: 'Видзӧдны лӧсьӧдӧм выводъяс',
-      },
+        detail: 'Видзӧдны лӧсьӧдӧм выводъяс'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Сессияяс панель',
-        detail: 'Сессияяс корсьны, закрепитны да веськӧдлыны',
+        detail: 'Сессияяс корсьны, закрепитны да веськӧдлыны'
       },
       system: {
         title: 'Система панель',
-        detail: 'Шлюз статус, логъяс, выльысь пондыны/обновитны',
+        detail: 'Шлюз статус, логъяс, выльысь пондыны/обновитны'
       },
       usage: {
         title: 'Usage panel',
-        detail: 'Token, cost, and skill activity',
-      },
+        detail: 'Token, cost, and skill activity'
+      }
     },
     close: 'Close command center',
     paletteTitle: 'Command palette',
@@ -1161,7 +1198,7 @@ export const kv = defineLocale({
       generatedTag: 'Generated',
       adoptFailed: 'Could not adopt that pet.',
       toggleFailed: 'Could not toggle the pet.',
-      noneAvailable: 'No pets available — pick one below to install.',
+      noneAvailable: 'No pets available — pick one below to install.'
     },
     providerNavigate: 'Navigate',
     providerSessions: 'Sessions',
@@ -1249,8 +1286,8 @@ export const kv = defineLocale({
       actionStarted: name => `${name} started — tailing log...`,
       actionFailed: name => `${name} failed to start`,
       running: 'Running...',
-      viewLog: 'Action log',
-    },
+      viewLog: 'Action log'
+    }
   },
   messaging: {
     disabled: 'Отключитӧм',
@@ -1266,124 +1303,124 @@ export const kv = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Бот токен',
         help: 'Лӧсьӧдны бот @BotFather-кӧд, сэсся пуктыны сы тэныд сетӧм токен.',
-        placeholder: 'Пуктыны Telegram бот токен',
+        placeholder: 'Пуктыны Telegram бот токен'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Позьдӧм Telegram пользователь ID',
-        help: 'Рекомендуйтӧм. @userinfobot-ысь запятойӧн юкӧм лыд ID. Тайӧтӧг быдӧн вермас гижны тэнад ботлы личнӧ.',
+        help: 'Рекомендуйтӧм. @userinfobot-ысь запятойӧн юкӧм лыд ID. Тайӧтӧг быдӧн вермас гижны тэнад ботлы личнӧ.'
       },
       TELEGRAM_PROXY: {
         label: 'Прокси URL',
-        help: 'Колӧ сӧмын сэтшӧм сетьясын, кытӧн Telegram блокируйтӧм.',
+        help: 'Колӧ сӧмын сэтшӧм сетьясын, кытӧн Telegram блокируйтӧм.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Бот токен',
-        help: 'Лӧсьӧдны приложение Discord Developer Portal-ын, содтыны бот, сэсся пуктыны сылӧн токен.',
+        help: 'Лӧсьӧдны приложение Discord Developer Portal-ын, содтыны бот, сэсся пуктыны сылӧн токен.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Позьдӧм Discord пользователь ID',
-        help: 'Рекомендуйтӧм. Запятойӧн юкӧм Discord пользователь ID.',
+        help: 'Рекомендуйтӧм. Запятойӧн юкӧм Discord пользователь ID.'
       },
       SLACK_APP_TOKEN: {
         help: 'Вӧдитчӧй Socket Mode-лы колӧ приложение токенӧн.',
         placeholder: 'Slack приложение токен пукты',
-        label: 'Slack app token',
+        label: 'Slack app token'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Лӧсялана Slack вӧдитчысь ID-яс',
-        help: 'Рекомендуйтӧ. Slack вӧдитчысь ID-яс, запятӧйӧн торйӧдӧм.',
+        help: 'Рекомендуйтӧ. Slack вӧдитчысь ID-яс, запятӧйӧн торйӧдӧм.'
       },
       MATTERMOST_URL: {
         label: 'Сервер URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Бот токен',
+        label: 'Бот токен'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Лӧсялана вӧдитчысь ID-яс',
-        help: 'Рекомендуйтӧ. Mattermost вӧдитчысь ID-яс, запятӧйӧн торйӧдӧм.',
+        help: 'Рекомендуйтӧ. Mattermost вӧдитчысь ID-яс, запятӧйӧн торйӧдӧм.'
       },
       MATRIX_HOMESERVER: {
         label: 'Вӧтанін сервер URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Пырӧдчӧм токен',
+        label: 'Пырӧдчӧм токен'
       },
       MATRIX_USER_ID: {
         label: 'Бот вӧдитчысь ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Лӧсялана Matrix вӧдитчысь ID-яс',
-        help: 'Рекомендуйтӧ. Вӧдитчысь ID-яс, запятӧйӧн торйӧдӧм, @user:server форматӧн.',
+        help: 'Рекомендуйтӧ. Вӧдитчысь ID-яс, запятӧйӧн торйӧдӧм, @user:server форматӧн.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal йитӧдлӧн URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'Уджалӧ signal-cli REST йитӧдлӧн URL.',
+        help: 'Уджалӧ signal-cli REST йитӧдлӧн URL.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Телефон номер',
-        help: 'The number registered with your signal-cli bridge.',
+        help: 'The number registered with your signal-cli bridge.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Reply style',
-        help: 'first, all, or off.',
+        help: 'first, all, or off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Allow all Discord users',
-        help: 'Development only. When true, anyone can DM the bot without an allowlist.',
+        help: 'Development only. When true, anyone can DM the bot without an allowlist.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Home channel ID',
-        help: 'Channel where the bot sends proactive messages (cron output, reminders).',
+        help: 'Channel where the bot sends proactive messages (cron output, reminders).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Home channel name',
-        help: 'Display name for the home channel in logs and status output.',
+        help: 'Display name for the home channel in logs and status output.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Allow all iMessage users',
-        help: 'When true, skip the BlueBubbles allowlist.',
+        help: 'When true, skip the BlueBubbles allowlist.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Allow all Mattermost users',
+        label: 'Allow all Mattermost users'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Home channel',
+        label: 'Home channel'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Allow all QQ users',
+        label: 'Allow all QQ users'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ home channel',
-        help: 'Default channel or group for cron delivery.',
+        help: 'Default channel or group for cron delivery.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ home channel name',
+        label: 'QQ home channel name'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack bot token',
         help: 'Use the bot token from OAuth & Permissions after installing your Slack app.',
-        placeholder: 'Paste Slack bot token',
+        placeholder: 'Paste Slack bot token'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Allowed Signal users',
-        help: 'Recommended. Comma-separated Signal identifiers.',
+        help: 'Recommended. Comma-separated Signal identifiers.'
       },
       WHATSAPP_ENABLED: {
         label: 'Enable WhatsApp bridge',
-        help: 'Set automatically by the toggle below. Leave alone unless you know you need it.',
+        help: 'Set automatically by the toggle below. Leave alone unless you know you need it.'
       },
       WHATSAPP_MODE: {
-        label: 'Bridge mode',
+        label: 'Bridge mode'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Allowed WhatsApp users',
-        help: 'Recommended. Comma-separated phone numbers or WhatsApp IDs.',
-      },
+        help: 'Recommended. Comma-separated phone numbers or WhatsApp IDs.'
+      }
     },
     search: 'Search messaging...',
     loading: 'Loading messaging platforms...',
@@ -1397,7 +1434,7 @@ export const kv = defineLocale({
       not_configured: 'Needs setup',
       pending_restart: 'Restart needed',
       retrying: 'Retrying',
-      startup_failed: 'Startup failed',
+      startup_failed: 'Startup failed'
     },
     unknown: 'Unknown',
     hintPendingRestart: 'Restart the gateway from the status bar to apply this change.',
@@ -1423,8 +1460,7 @@ export const kv = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     fieldDescription: 'Висьталӧм',
@@ -1448,7 +1484,7 @@ export const kv = defineLocale({
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      github_comment: 'GitHub comment',
+      github_comment: 'GitHub comment'
     },
     search: 'Search webhooks...',
     loading: 'Loading webhooks...',
@@ -1457,7 +1493,8 @@ export const kv = defineLocale({
     hint: 'Subscription changes hot-reload once the receiver is running. Disabled subscriptions reject incoming events.',
     empty: 'No webhook subscriptions yet.',
     disabledTitle: 'Webhook receiver disabled',
-    disabledBody: 'Webhooks are their own gateway platform. Enable them here to accept incoming HTTP events; chat channels are only needed when a subscription delivers to Telegram, Discord, Slack, or another channel.',
+    disabledBody:
+      'Webhooks are their own gateway platform. Enable them here to accept incoming HTTP events; chat channels are only needed when a subscription delivers to Telegram, Discord, Slack, or another channel.',
     enable: 'Enable webhooks',
     enabling: 'Enabling...',
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -1488,7 +1525,7 @@ export const kv = defineLocale({
     done: 'Done',
     fieldName: 'Name',
     fieldNamePlaceholder: 'e.g. github-push',
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     renameMenu: 'Нимсӧ вежӧдны…',
@@ -1566,7 +1603,7 @@ Leave blank to keep the ${mode} default.`,
     created: 'Profile created',
     renamed: 'Profile renamed',
     deleted: 'Profile deleted',
-    setupCopied: 'Setup command copied',
+    setupCopied: 'Setup command copied'
   },
   cron: {
     close: 'Cron тупкыны',
@@ -1580,14 +1617,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'Чӧвтӧма',
       disabled: 'Лэдзтӧм',
       error: 'Ошибка',
-      completed: 'Помавӧма',
+      completed: 'Помавӧма'
     },
     deliveryLabels: {
       local: 'Тайӧ рабочий стол',
       email: 'Электроннӧй почта',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     scheduleLabels: {
       daily: 'Быд лун',
@@ -1596,7 +1633,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Быд тӧлысь',
       hourly: 'Быд час',
       'every-15-minutes': 'Быд 15 минут',
-      custom: 'Аслыспӧлӧс',
+      custom: 'Аслыспӧлӧс'
     },
     scheduleHints: {
       daily: 'Быд лун 9:00',
@@ -1605,7 +1642,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Быд тӧлысьлӧн медводдза лун 9:00',
       hourly: 'Быд час заводитчигӧн',
       'every-15-minutes': 'Быд 15 минут',
-      custom: 'Cron синтаксис либӧ сёрни кыв',
+      custom: 'Cron синтаксис либӧ сёрни кыв'
     },
     days: {
       '0': 'Вежалун',
@@ -1615,11 +1652,12 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Четверг',
       '5': 'Пекнича',
       '6': 'Суббота',
-      '7': 'Вежалун',
+      '7': 'Вежалун'
     },
     topOfHour: 'Быд час заводитчигӧн',
     newCron: 'Выль cron',
-    emptyDescNew: 'Cron выражение серти промптлӧн расписание тӧрт. OpenAmer сійӧ уджалӧдӧ да результатъяссӧ сетӧ тэнад бӧрйӧм инӧ.',
+    emptyDescNew:
+      'Cron выражение серти промптлӧн расписание тӧрт. OpenAmer сійӧ уджалӧдӧ да результатъяссӧ сетӧ тэнад бӧрйӧм инӧ.',
     emptyDescSearch: 'Видзӧд шырокджык корсьӧм запросӧн.',
     emptyTitleNew: 'Расписаниеа уджъяс на абу',
     emptyTitleSearch: 'Нинӧм абу шедӧма',
@@ -1635,7 +1673,8 @@ Leave blank to keep the ${mode} default.`,
     editTitle: 'Крон уджсӧ вежны',
     createTitle: 'Выль крон удж',
     editDesc: 'График, промпт либӧ ыстӧм ин веж. Вежсьӧмъяс воссясны мӧд удж вылын.',
-    createDesc: 'Промптсӧ автоматически петкӧдлӧм вылӧ графикӧ пукты. Крон синтаксисӧн либӧ «быд 15 минут» кодь естественнӧй фразаӧн вӧдит.',
+    createDesc:
+      'Промптсӧ автоматически петкӧдлӧм вылӧ графикӧ пукты. Крон синтаксисӧн либӧ «быд 15 минут» кодь естественнӧй фразаӧн вӧдит.',
     nameLabel: 'Ним',
     namePlaceholder: 'Асывся юӧр',
     promptLabel: 'Промпт',
@@ -1657,7 +1696,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'cron лӧсьӧдны',
     tabs: {
       jobs: 'Уджъяс',
-      blueprints: 'Шаблонъяс',
+      blueprints: 'Шаблонъяс'
     },
     blueprints: {
       tab: 'Шаблонъяс',
@@ -1671,7 +1710,7 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Шаблонъяс загрузитчӧны...',
       failedLoad: 'Шаблонъяс загрузитны эз артмы',
       emptyTitle: 'Шаблонъяс абу',
-      emptyDesc: 'Тайӧ бэкенд вылын автоматизация шаблонъяс абу.',
+      emptyDesc: 'Тайӧ бэкенд вылын автоматизация шаблонъяс абу.'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -1700,7 +1739,7 @@ Leave blank to keep the ${mode} default.`,
     failedLoad: 'Failed to load cron jobs',
     failedUpdate: 'Failed to update cron job',
     failedTrigger: 'Failed to trigger cron job',
-    failedDelete: 'Failed to delete cron job',
+    failedDelete: 'Failed to delete cron job'
   },
   artifacts: {
     refreshing: 'Артефактъяс выльмӧдӧм',
@@ -1734,14 +1773,14 @@ Leave blank to keep the ${mode} default.`,
     copyUrl: 'URL копируйтны',
     copyPath: 'Туй копируйтны',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'Выль сессия',
       skills: 'Могъяс',
       messaging: 'Юӧртчӧм',
-      artifacts: 'Артефактъяс',
+      artifacts: 'Артефактъяс'
     },
     searchAria: 'Сессияяс корсьны',
     searchPlaceholder: 'Сессияяс корсьны…',
@@ -1772,8 +1811,10 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'Туй копируйтны',
       removeFromSidebar: 'Бок панельсянь дзебны',
       createFailed: 'Проект лӧсьӧдны эз артмы',
-      staleBackend: 'OpenAmer бэкендсӧ выльмӧдӧй проектъяс лӧсьӧдӧм вылӧ — тіян бэкенд важджык тайӧ десктоп приложениеысь (Настройкаяс → Выльмӧдӧмьяс → Бэкенд).',
-      deleteConfirm: 'Тайӧ вештӧ видзӧм проектсӧ OpenAmer-ысь. Файлъяс, git репозиторийяс да worktree-яс кольччӧны вежтӧмӧн.',
+      staleBackend:
+        'OpenAmer бэкендсӧ выльмӧдӧй проектъяс лӧсьӧдӧм вылӧ — тіян бэкенд важджык тайӧ десктоп приложениеысь (Настройкаяс → Выльмӧдӧмьяс → Бэкенд).',
+      deleteConfirm:
+        'Тайӧ вештӧ видзӧм проектсӧ OpenAmer-ысь. Файлъяс, git репозиторийяс да worktree-яс кольччӧны вежтӧмӧн.',
       startWork: 'Выль worktree',
       newWorktreeTitle: 'Выль worktree',
       newWorktreeDesc: 'Тайӧ worktree вылӧ веткалы ним сетӧй.',
@@ -1803,13 +1844,15 @@ Leave blank to keep the ${mode} default.`,
       ideaLabel: 'Idea',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       removeWorktreeFailed: 'Could not remove worktree (uncommitted changes?)',
-      removeWorktreeConfirm: 'Remove it from git (deletes the worktree directory; the branch stays), or just hide the lane from the sidebar and leave the worktree on disk.',
-      removeWorktreeDirty: 'This worktree has uncommitted changes. Force-remove it (discards those changes), or just hide the lane and keep it on disk.',
+      removeWorktreeConfirm:
+        'Remove it from git (deletes the worktree directory; the branch stays), or just hide the lane from the sidebar and leave the worktree on disk.',
+      removeWorktreeDirty:
+        'This worktree has uncommitted changes. Force-remove it (discards those changes), or just hide the lane and keep it on disk.',
       forceRemove: 'Force remove',
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
       toggle: label => `Toggle ${label} sessions`,
-      back: 'All projects',
+      back: 'All projects'
     },
     row: {
       sessionRunning: 'Сессия уджалӧ',
@@ -1842,14 +1885,14 @@ Leave blank to keep the ${mode} default.`,
       sessionActions: 'Session actions',
       handoffOrigin: platform => `Handed off from ${platform}`,
       ownedByProfile: profile => `Profile: ${profile}`,
-      untitledChat: id => `Chat ${id}`,
+      untitledChat: id => `Chat ${id}`
     },
     dateDivider: {
       today: 'Талун водзӧ',
       yesterday: 'Тӧрыт',
       thisWeek: 'Тайӧ вежонас водзӧ',
       lastWeek: 'Колим вежон',
-      thisMonth: 'Тайӧ тӧлысьнас водзӧ',
+      thisMonth: 'Тайӧ тӧлысьнас водзӧ'
     },
     noMatch: query => `No sessions match “${query}”.`,
     groupAriaUngrouped: 'Group sessions by workspace',
@@ -1867,7 +1910,7 @@ Leave blank to keep the ${mode} default.`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
     loading: 'Loading…',
     loadMore: 'Load more',
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     message: 'Юӧр',
@@ -1918,7 +1961,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.history': 'бергӧдны поповер / история',
       'composer.mention': 'reference files, folders, urls, git',
       'composer.slash': 'slash command palette',
-      'composer.help': 'this quick help (delete to dismiss)',
+      'composer.help': 'this quick help (delete to dismiss)'
     },
     attachUrlTitle: 'URL ӧтувтны',
     attachUrlDesc: 'OpenAmer босьтас листбоксӧ да пыртас сійӧ тайӧ запрослы контекстӧн.',
@@ -1943,7 +1986,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -1952,7 +1995,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     transcribingDictation: 'Transcribing dictation',
     voiceDictation: 'Voice dictation',
@@ -1971,7 +2014,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'resume a prior session',
       '/details': 'control transcript detail level',
       '/copy': 'copy selection or last assistant message',
-      '/quit': 'exit openamer',
+      '/quit': 'exit openamer'
     },
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
@@ -1988,19 +2031,19 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'Code review',
         description: 'Audit the current change for regressions, dropped edge cases, and missing tests.',
-        text: 'Please review this for bugs, regressions, and missing tests.',
+        text: 'Please review this for bugs, regressions, and missing tests.'
       },
       implementationPlan: {
         label: 'Implementation plan',
         description: 'Outline an approach before touching code so the diff stays focused.',
-        text: 'Please make a concise implementation plan before changing code.',
+        text: 'Please make a concise implementation plan before changing code.'
       },
       explainThis: {
         label: 'Explain this',
         description: 'Walk through how the selected code works and link to the key files.',
-        text: 'Please explain how this works and point me to the key files.',
-      },
-    },
+        text: 'Please explain how this works and point me to the key files.'
+      }
+    }
   },
   statusStack: {
     coding: {
@@ -2016,7 +2059,8 @@ Leave blank to keep the ${mode} default.`,
       viewAsList: 'Список моз видзӧдны',
       revert: 'Бергӧдны',
       revertAll: 'Ставсӧ бергӧдны',
-      revertConfirm: 'Тайӧ файлын вежсьӧмъяссӧ шыбитны да сійӧс коммит состояниеӧ бӧр лӧсьӧдны? Тайӧ оз позь бӧр вӧчны.',
+      revertConfirm:
+        'Тайӧ файлын вежсьӧмъяссӧ шыбитны да сійӧс коммит состояниеӧ бӧр лӧсьӧдны? Тайӧ оз позь бӧр вӧчны.',
       revertAllConfirm: 'Став вежсьӧмсӧ шыбитны да файлъяссӧ коммит состояниеӧ бӧр лӧсьӧдны? Тайӧ оз позь бӧр вӧчны.',
       staged: 'Пуктылӧма',
       noChanges: 'Вежсьӧмъяс абу',
@@ -2034,7 +2078,8 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'PR восьтыны',
       ghMissing: 'GitHub CLI (gh) пуктыны да PR восьтӧм вылӧ пырны',
       agentShip: 'OpenAmerлы PR восьтыны корны',
-      agentShipPrompt: 'Ӧнія вежсьӧмъяссӧ видзӧдны, найӧс яс conventional-commit юӧрӧн коммит вӧчны, веткасӧ пуш вӧчны да pull request восьтыны.',
+      agentShipPrompt:
+        'Ӧнія вежсьӧмъяссӧ видзӧдны, найӧс яс conventional-commit юӧрӧн коммит вӧчны, веткасӧ пуш вӧчны да pull request восьтыны.',
       newBranch: 'Выль ветка',
       worktrees: 'Уджвывъяс',
       title: 'Working tree',
@@ -2045,7 +2090,7 @@ Leave blank to keep the ${mode} default.`,
       behind: count => `${count} behind`,
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     agents: 'Agents',
     background: count => `${count} Background`,
@@ -2054,7 +2099,7 @@ Leave blank to keep the ${mode} default.`,
     running: 'Running',
     stop: 'Stop',
     dismiss: 'Dismiss',
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -2069,7 +2114,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'Выльсӧдӧм помалӧма',
       manual: 'Ас терминалсьысь выльсӧдӧм',
       guiSkew: 'Десктоп приложениесӧ выльсӧдны',
-      error: 'Выльсӧдӧм сувтӧдӧма',
+      error: 'Выльсӧдӧм сувтӧдӧма'
     },
     checking: 'Выльсӧдӧмъяс корся…',
     checkFailedTitle: 'Выльсӧдӧмъяс видзӧдны эз вермы',
@@ -2092,28 +2137,33 @@ Leave blank to keep the ${mode} default.`,
       pulling: 'Backend updating…',
       restarting: 'Backend restarting to load the update…',
       notAvailable: 'Update not available for this backend.',
-      failed: 'Backend update failed.',
+      failed: 'Backend update failed.'
     },
     appErrors: {
-      updateLocked: 'Выльмӧдчӧм дугдӧма: мукӧд OpenAmer ӧшинь либӧ openamer-ӧн уджалысь терминал кутӧ тайӧ установкасӧ восьса. Петырт сійӧ да бӧр видзӧд.',
-      updateFailed: 'Выльмӧдчӧм эз помал. Эн шогсьы — нинӧм эз вош. Ӧні верман бӧр видзӧдны.',
+      updateLocked:
+        'Выльмӧдчӧм дугдӧма: мукӧд OpenAmer ӧшинь либӧ openamer-ӧн уджалысь терминал кутӧ тайӧ установкасӧ восьса. Петырт сійӧ да бӧр видзӧд.',
+      updateFailed: 'Выльмӧдчӧм эз помал. Эн шогсьы — нинӧм эз вош. Ӧні верман бӧр видзӧдны.'
     },
     maybeLater: 'Maybe later',
     moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
     manualTitle: 'Update from your terminal',
-    manualBody: 'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
+    manualBody:
+      'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
     manualPickedUp: 'OpenAmer will pick up the new version next time you launch it.',
     guiSkewTitle: 'Update the desktop app',
-    guiSkewBody: 'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
+    guiSkewBody:
+      'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
     copy: 'Copy',
     copied: 'Copied',
     done: 'Done',
-    applyingBody: 'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
-    applyingBodyBackend: 'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
+    applyingBody:
+      'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
+    applyingBodyBackend:
+      'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
     applyingClose: 'This window will close while the update runs, then OpenAmer reopens on its own.',
     errorTitle: 'Update didn’t finish',
     errorBody: 'No worries — nothing was lost. You can try again now.',
-    notNow: 'Not now',
+    notNow: 'Not now'
   },
   install: {
     stageStates: {
@@ -2121,7 +2171,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'Установитчӧ',
       succeeded: 'Помалӧм',
       skipped: 'Пропуститӧм',
-      failed: 'Эз артмы',
+      failed: 'Эз артмы'
     },
     oneTimeTitle: 'OpenAmerлы колӧ ӧтчыд установка',
     installCommand: 'Установка команда',
@@ -2130,16 +2180,20 @@ Leave blank to keep the ${mode} default.`,
     installTo: 'Установитчӧ татчӧ:',
     retryAfterRun: 'Ме сійӧ лэдзи -- бӧр видзӧд',
     setupChoiceTitle: 'Лӧсьӧдны OpenAmer Desktop',
-    setupChoiceDesc: 'Йит тайӧ приложениесӧ OpenAmer шлюзкӧд, кодӧс ті нин уджавлӧда, либӧ установит OpenAmer тайӧ компьютер вылӧ локально.',
+    setupChoiceDesc:
+      'Йит тайӧ приложениесӧ OpenAmer шлюзкӧд, кодӧс ті нин уджавлӧда, либӧ установит OpenAmer тайӧ компьютер вылӧ локально.',
     connectExistingTitle: 'Йит нин OpenAmerкӧд',
     connectExistingShort: 'Йит нин',
-    connectExistingDesc: 'Вӧдитчӧй удалённӧй бэкендӧн сессия токенкӧд либӧ браузерӧн пырӧмкӧд. Локальнӧй установка оз заводитч.',
+    connectExistingDesc:
+      'Вӧдитчӧй удалённӧй бэкендӧн сессия токенкӧд либӧ браузерӧн пырӧмкӧд. Локальнӧй установка оз заводитч.',
     installLocalTitle: 'Установит OpenAmer локально',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     installLocalDesc: 'Download OpenAmer, create its Python environment, and run the backend on this computer.',
     localStartUnavailable: 'Local installation could not start. Restart OpenAmer Desktop and try again.',
     remoteSetupTitle: 'Connect to existing OpenAmer',
-    remoteSetupDesc: 'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
+    remoteSetupDesc:
+      'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
     remoteUrlTitle: 'Gateway URL',
     remoteUrlDesc: 'Use the base URL of the OpenAmer gateway, including https:// when remote.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2166,8 +2220,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Installation failed',
     settingUpTitle: 'Setting up OpenAmer Agent',
     finishingTitle: 'Finishing up',
-    failedDesc: 'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
-    activeDesc: 'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
+    failedDesc:
+      'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
+    activeDesc:
+      'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
     fetchingManifest: 'Fetching installer manifest...',
@@ -2181,34 +2237,35 @@ Leave blank to keep the ${mode} default.`,
     transcriptSaved: 'Full transcript saved to',
     copiedOutput: 'Copied!',
     copyOutput: 'Copy output',
-    reloadRetry: 'Reload and retry',
+    reloadRetry: 'Reload and retry'
   },
   onboarding: {
     apiKeyOptions: {
       gemini: {
         short: 'Gemini модельяс',
-        description: 'Google Gemini модельясӧ веськыд пырӧдчӧм.',
+        description: 'Google Gemini модельясӧ веськыд пырӧдчӧм.'
       },
       xai: {
         short: 'Grok модельяс',
-        description: 'xAI Grok модельясӧ веськыд пырӧдчӧм.',
+        description: 'xAI Grok модельясӧ веськыд пырӧдчӧм.'
       },
       local: {
         short: 'ас сервер вылын',
-        description: 'OpenAmer-ӧс веськӧд локальнӧй либӧ ас сервер вылын OpenAI-кӧсйысьӧм endpoint вылӧ (vLLM, llama.cpp, Ollama, и с.в.).',
+        description:
+          'OpenAmer-ӧс веськӧд локальнӧй либӧ ас сервер вылын OpenAI-кӧсйысьӧм endpoint вылӧ (vLLM, llama.cpp, Ollama, и с.в.).'
       },
       fireworks: {
         short: 'прямӧй модель API',
-        description: 'Прямӧй доступ Fireworks AI хостинг вылын модельясӧ.',
+        description: 'Прямӧй доступ Fireworks AI хостинг вылын модельясӧ.'
       },
       openrouter: {
         short: 'ӧти ключ, уна модель',
-        description: 'Хостинг вылын сёяс модель ӧти ключ сайын. Бур стандарт выль установкаяс вылӧ.',
+        description: 'Хостинг вылын сёяс модель ӧти ключ сайын. Бур стандарт выль установкаяс вылӧ.'
       },
       openai: {
         short: 'GPT-класс модельяс',
-        description: 'Прямӧй доступ OpenAI модельясӧ.',
-      },
+        description: 'Прямӧй доступ OpenAI модельясӧ.'
+      }
     },
     backToSignIn: 'Пырӧмӧ бергӧдчӧм',
     getKey: 'Ключ босьт',
@@ -2221,7 +2278,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'Тэнад браузерсӧ восьтӧ пырӧм вылӧ, сэсся татчӧ водзӧ мунӧ',
       device_code: 'Браузерын восьтӧ проверка лист — OpenAmer асӧн йитчӧ',
-      external: 'Терминалын ӧтчыд пыр, сэсся чатӧ бергӧдчӧ',
+      external: 'Терминалын ӧтчыд пыр, сэсся чатӧ бергӧдчӧ'
     },
     signInFailed: 'Пырӧм оз артмы. Нӧшта видзӧд.',
     pickDifferentProvider: 'Бӧрйы мукӧд провайдер',
@@ -2260,11 +2317,13 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'Вежны модель',
@@ -2280,7 +2339,7 @@ Leave blank to keep the ${mode} default.`,
     freeTier: 'Мездӧм тшупӧд',
     priceTitle: 'Пыртӧм / Петӧм дон миллион токен вылӧ',
     wasPrice: 'вӧлі',
-    pro: 'Pro',
+    pro: 'Pro'
   },
   shell: {
     modelOptions: {
@@ -2297,7 +2356,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'Максимум',
       ultra: 'Ультра',
       updateFailed: 'Модель опцияяс вежсьӧм оз артмы',
-      fastFailed: 'Ӧдйӧ режим вежсьӧм оз артмы',
+      fastFailed: 'Ӧдйӧ режим вежсьӧм оз артмы'
     },
     gatewayMenu: {
       gateway: 'Шлюз',
@@ -2312,7 +2371,7 @@ Leave blank to keep the ${mode} default.`,
       recentActivity: 'Медбӧръя удж',
       viewAllLogs: 'Став логсӧ видзӧдны →',
       messagingPlatforms: 'Юӧръясӧн вешйысьӧм платформаяс',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     windowControls: 'Ӧшинь веськӧдлӧм',
     paneControls: 'Панель веськӧдлӧм',
@@ -2322,7 +2381,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'Модельяс эз шедӧй',
       editModels: 'Модельясӧс вежны…',
       refreshModels: 'Модельясӧс выльмӧдны',
-      fast: 'Ӧдйӧ',
+      fast: 'Ӧдйӧ'
     },
     approvalMode: {
       title: 'Вынсьӧдӧм режим',
@@ -2332,7 +2391,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'Уджъясӧс автоматически донъялны да юасьны, кор колана',
       off: 'Абу',
       offDescription: 'Уджӧдны вынсьӧдӧм юалӧмъястӧм',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'Тӧдтӧм',
@@ -2371,19 +2430,21 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'Субагентъяслӧн определениеяс',
           system_prompt: 'Система промпт',
           tool_definitions: 'Инструментъяслӧн определениеяс',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Контекст юӧр на абу',
         loading: 'Разбор загружайтчӧ…',
         title: 'Контекст вӧдитчӧм',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Восьтны контекст вӧдитчӧмлӧн разбор',
       session: 'Сессия',
       runtimeSessionElapsed: 'Сессиялӧн кольӧм кад',
-      yoloOn: 'YOLO включитӧм — опаснӧй командаясӧ автоматически сӧгласуйтӧ. Мынтыны — клик. Shift+click — глобально вежӧдӧ.',
-      yoloOff: 'YOLO выключитӧм — клик, медсясӧ опаснӧй командаясӧ автоматически сӧгласуйтны. Shift+click — глобально вежӧдӧ.',
+      yoloOn:
+        'YOLO включитӧм — опаснӧй командаясӧ автоматически сӧгласуйтӧ. Мынтыны — клик. Shift+click — глобально вежӧдӧ.',
+      yoloOff:
+        'YOLO выключитӧм — клик, медсясӧ опаснӧй командаясӧ автоматически сӧгласуйтны. Shift+click — глобально вежӧдӧ.',
       modelNone: 'абу',
       noModel: 'модель абу',
       switchModel: 'Модельсӧ вежны',
@@ -2407,14 +2468,14 @@ Leave blank to keep the ${mode} default.`,
       running: count => `${count} running`,
       cron: 'Cron',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   modelVisibility: {
     title: 'Модельяс',
     search: 'Модельясӧс корсьны',
     noAuthenticatedProviders: 'Аутентификация вӧчӧм провайдеръяс абу.',
-    addProvider: 'Провайдер содтыны…',
+    addProvider: 'Провайдер содтыны…'
   },
   rightSidebar: {
     emptyTitle: 'Пуст',
@@ -2450,7 +2511,7 @@ Leave blank to keep the ${mode} default.`,
     unreadableTitle: 'Лыддьыны позьтӧм',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'Видзӧдӧм',
@@ -2479,7 +2540,8 @@ Leave blank to keep the ${mode} default.`,
     editing: 'Вежӧм',
     unsavedChanges: 'Видзтӧм вежсьӧмъяс',
     diskChangedTitle: 'Файл диск вылын вежсьӧма',
-    diskChangedBody: 'Тайӧ файлыс вежсьӧма, кысянь тэ восьтін сійӧ. Вежла сійӧ ас версияӧн али шыбит ас вежсьӧмъяссӧ да выльысь восьт?',
+    diskChangedBody:
+      'Тайӧ файлыс вежсьӧма, кысянь тэ восьтін сійӧ. Вежла сійӧ ас версияӧн али шыбит ас вежсьӧмъяссӧ да выльысь восьт?',
     overwrite: 'Выльысь гижны',
     discardReload: 'Куштыны да выльысь грузитны',
     console: {
@@ -2500,7 +2562,7 @@ Leave blank to keep the ${mode} default.`,
       sentTitle: 'Чатӧ ыстӧм',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Видзӧдлан приложение оз вермы воссьыны',
@@ -2521,9 +2583,11 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'Ӧні видзӧдӧм выльысь восьтсьӧ.',
       restartFailedTitle: 'Видзӧдӧм выльысь заводитчӧм эз артмы',
       restartFailedMessage: 'OpenAmer эз вермы серверсӧ выльысь заводитны.',
-      stillWorking: 'OpenAmer на уджалӧ, но выльысь заводитчӧмлӧн результат на эз во. Сервер команда вермас уджавны водзвылын.',
+      stillWorking:
+        'OpenAmer на уджалӧ, но выльысь заводитчӧмлӧн результат на эз во. Сервер команда вермас уджавны водзвылын.',
       workspaceReloading: 'Уджтас инаныс вежсьӧма, видзӧдӧм выльысь восьтсьӧ',
-      moduleMimeDescription: 'Модуль скриптъяс сетсьӧны торксьӧм MIME типӧн. Тайӧ тшӧкыда петкӧдӧ: статическӧй файл сервер сетӧ Vite/React приложение, а проектлӧн dev сервер абу.',
+      moduleMimeDescription:
+        'Модуль скриптъяс сетсьӧны торксьӧм MIME типӧн. Тайӧ тшӧкыда петкӧдӧ: статическӧй файл сервер сетӧ Vite/React приложение, а проектлӧн dev сервер абу.',
       unreachableDescription: 'Видзӧдӧм листбокӧ эз позь воны.',
       fallbackTitle: 'Видзӧдӧм',
       lookingRestart: taskId => `OpenAmer is looking for a preview server to restart (${taskId})`,
@@ -2534,13 +2598,13 @@ Leave blank to keep the ${mode} default.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     closeTab: label => `Close ${label}`,
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   zones: {
     showHeader: 'Петкӧдны юркыв',
@@ -2548,7 +2612,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Ичӧтмӧдны',
     restore: 'Бӧр лӧсьӧдны',
     closeRunningTitle: 'Петырны уджалысь таб?',
-    closeRunningBody: 'Тайӧ чат на уджалӧ (либӧ виччысьӧ тэнад вӧзйӧмсӧ). Табсӧ петырӧм дзебӧ сійӧс — сессия кутӧ ассьыс прогресссӧ да сійӧс позьӧ бӧр восьтыны бок панельысь.',
+    closeRunningBody:
+      'Тайӧ чат на уджалӧ (либӧ виччысьӧ тэнад вӧзйӧмсӧ). Табсӧ петырӧм дзебӧ сійӧс — сессия кутӧ ассьыс прогресссӧ да сійӧс позьӧ бӧр восьтыны бок панельысь.',
     closeRunningConfirm: 'Петырны таб',
     closeOthers: 'Петырны мукӧдъяссӧ',
     closeToRight: 'Петырны веськыдвывса табъяс',
@@ -2585,7 +2650,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
@@ -2616,11 +2681,12 @@ Leave blank to keep the ${mode} default.`,
       copy: 'Копируйтны',
       refresh: 'Выльмӧдны',
       moreActions: 'Унджык вӧчӧмъяс',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
-      yesterday: time => `Yesterday, ${time}`,
+      yesterday: time => `Yesterday, ${time}`
     },
     tool: {
       statusRecovered: 'Бӧр лӧсьӧдӧма',
@@ -2636,123 +2702,123 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Запуститӧма',
         running: 'Запускайтчӧ',
         ranCode: 'Кодсӧ запуститӧма',
-        runningCode: 'Скрипт вӧчӧм',
+        runningCode: 'Скрипт вӧчӧм'
       },
       prefixes: {
         browser: 'Браузер',
-        web: 'Веб',
+        web: 'Веб'
       },
       titles: {
         browser_click: {
           done: 'Лист бок элемент вылӧ жмиччӧма',
           pending: 'Лист бок элемент вылӧ жмиччӧм',
-          pendingAction: 'Жмиччӧм',
+          pendingAction: 'Жмиччӧм'
         },
         browser_fill: {
           done: 'Форма поле тыртӧма',
           pending: 'Форма поле тыртӧм',
-          pendingAction: 'Тыртӧм',
+          pendingAction: 'Тыртӧм'
         },
         browser_navigate: {
           done: 'Восьтӧм лист бок',
           pending: 'Лист бок восьтӧм',
-          pendingAction: 'Восьтӧм',
+          pendingAction: 'Восьтӧм'
         },
         browser_snapshot: {
           done: 'Кутӧм лист бок серпас',
           pending: 'Лист бок серпас кутан',
-          pendingAction: 'Кутан',
+          pendingAction: 'Кутан'
         },
         browser_take_screenshot: {
           done: 'Кутӧм экран серпас',
           pending: 'Экран серпас кутан',
-          pendingAction: 'Кутан',
+          pendingAction: 'Кутан'
         },
         browser_type: {
           done: 'Лист бок вылын гижӧм',
           pending: 'Лист бок вылын гижан',
-          pendingAction: 'Гижан',
+          pendingAction: 'Гижан'
         },
         clarify: {
           done: 'Юалӧм пуктӧм',
           pending: 'Юалӧм пуктан',
-          pendingAction: 'Юалан',
+          pendingAction: 'Юалан'
         },
         cronjob: {
           done: 'Cron удж',
           pending: 'Cron удж планӧм',
-          pendingAction: 'Планӧм',
+          pendingAction: 'Планӧм'
         },
         edit_file: {
           done: 'Вежӧм файл',
           pending: 'Editing file',
-          pendingAction: 'Editing',
+          pendingAction: 'Editing'
         },
         execute_code: {
           done: 'Ran code',
           pending: 'Scripting',
-          pendingAction: 'Scripting',
+          pendingAction: 'Scripting'
         },
         image_generate: {
           done: 'Generated image',
           pending: 'Generating image',
-          pendingAction: 'Generating',
+          pendingAction: 'Generating'
         },
         list_files: {
           done: 'Listed files',
           pending: 'Listing files',
-          pendingAction: 'Listing',
+          pendingAction: 'Listing'
         },
         patch: {
           done: 'Patched file',
           pending: 'Patching file',
-          pendingAction: 'Patching',
+          pendingAction: 'Patching'
         },
         read_file: {
           done: 'Read file',
           pending: 'Reading file',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         search_files: {
           done: 'Searched files',
           pending: 'Searching files',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         session_search_recall: {
           done: 'Searched session history',
           pending: 'Searching session history',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         terminal: {
           done: 'Ran command',
           pending: 'Running command',
-          pendingAction: 'Running',
+          pendingAction: 'Running'
         },
         todo: {
           done: 'Updated todos',
           pending: 'Updating todos',
-          pendingAction: 'Updating',
+          pendingAction: 'Updating'
         },
         vision_analyze: {
           done: 'Analyzed image',
           pending: 'Analyzing image',
-          pendingAction: 'Analyzing',
+          pendingAction: 'Analyzing'
         },
         web_extract: {
           done: 'Read webpage',
           pending: 'Reading webpage',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         web_search: {
           done: 'Searched web',
           pending: 'Searching web',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         write_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
-        },
+          pendingAction: 'Editing'
+        }
       },
       code: 'Code',
       copyCode: 'Copy code',
@@ -2780,8 +2846,8 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2794,8 +2860,9 @@ Leave blank to keep the ${mode} default.`,
       jumpToApproval: 'Approval needed',
       reject: 'Reject',
       alwaysTitle: 'Always allow this command?',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
-      alwaysAllow: 'Always allow',
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysAllow: 'Always allow'
     },
     clarify: {
       notReady: 'Clarify request is not ready yet',
@@ -2809,8 +2876,8 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'Continue',
       lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
       lateAnswerTip: 'Draft this answer as a follow-up message',
-      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.',
-    },
+      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.'
+    }
   },
   desktop: {
     noClipboardImage: 'Клипбордӧ серпас абу',
@@ -2821,7 +2888,7 @@ Leave blank to keep the ${mode} default.`,
       timedOut: 'Гейтвей виччысигӧн кад помасьӧма. `openamer gateway` уджалӧ-ӧ?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     audioReadFailed: 'Could not read recorded audio',
     sessionUnavailable: 'Session unavailable',
@@ -2837,7 +2904,8 @@ Leave blank to keep the ${mode} default.`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Could not toggle YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     unknownProfile: 'Unknown profile',
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
@@ -2848,7 +2916,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'Edit failed',
     resumeFailed: 'Resume failed',
     resumeStrandedTitle: "Couldn't load this session",
-    resumeStrandedBody: 'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
+    resumeStrandedBody:
+      'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
     resumeRetry: 'Retry',
     nothingToBranch: 'Nothing to branch',
     branchNeedsChat: 'Start or resume a chat before branching.',
@@ -2879,34 +2948,35 @@ Leave blank to keep the ${mode} default.`,
     imageWriteFailed: 'Failed to write image to disk.',
     imageAttachFailed: 'Image attach failed',
     attachImages: 'Attach images',
-    clipboard: 'Clipboard',
+    clipboard: 'Clipboard'
   },
   errors: {
     genericFailure: 'Мыйкӧ торкисьӧма',
     boundaryTitle: 'Интерфейсын мыйкӧ торкисьӧма',
     boundaryDesc: 'Видзӧдласӧ шедӧма виччысьтӧм ошибка. Тэнад сёрнитанъяс да настройкаяс видзӧмаӧсь.',
     reloadWindow: 'Окно выльысь восьты',
-    openLogs: 'Логъяс восьты',
+    openLogs: 'Логъяс восьты'
   },
   ui: {
     search: {
-      clear: 'Корсьӧм чышкы',
+      clear: 'Корсьӧм чышкы'
     },
     pagination: {
       label: 'Листӧм',
       previous: 'Водз',
       previousAria: 'Водзвывса лист вылӧ вудж',
       next: 'Мӧд',
-      nextAria: 'Мӧд лист вылӧ вудж',
+      nextAria: 'Мӧд лист вылӧ вудж'
     },
     sidebar: {
       title: 'Бок панель',
       description: 'Мобиль бок панель петкӧдӧ.',
-      toggle: 'Бок панель вешты',
-    },
+      toggle: 'Бок панель вешты'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
   },
   starmap: {
     title: 'Memory Graph',
@@ -2923,7 +2993,8 @@ Leave blank to keep the ${mode} default.`,
     emptyTitle: 'Nothing learned yet',
     emptyDesc: 'As OpenAmer builds skills and memories for your work, they appear here.',
     share: 'Share map',
-    shareHint: 'Copy the code to share this map, or paste one to load. It only includes the layout, not your memory or skill text.',
+    shareHint:
+      'Copy the code to share this map, or paste one to load. It only includes the layout, not your memory or skill text.',
     shareTitle: 'Import / export map',
     sharePlaceholder: 'Paste a map code…',
     copy: 'Copy map code',
@@ -2933,7 +3004,7 @@ Leave blank to keep the ${mode} default.`,
     importEmpty: 'Paste a map code to load it.',
     importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'imported map',
-    resetToMine: 'Back to my map',
+    resetToMine: 'Back to my map'
   },
   agents: {
     close: 'Close agents',
@@ -2963,7 +3034,7 @@ Leave blank to keep the ${mode} default.`,
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2974,6 +3045,6 @@ Leave blank to keep the ${mode} default.`,
     sudoPlaceholder: 'sudo password',
     secretTitle: 'Secret required',
     secretDesc: 'OpenAmer needs a credential to continue.',
-    secretPlaceholder: 'secret value',
-  },
+    secretPlaceholder: 'secret value'
+  }
 })

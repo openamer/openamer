@@ -84,7 +84,7 @@ export const ms = defineLocale({
       'composer.queue': 'Bariskan mesej',
       'composer.sendQueued': 'Hantar giliran seterusnya dalam baris',
       'composer.mention': 'Rujuk fail, folder, URL',
-      'composer.slash': 'Palet arahan slash',
+      'composer.slash': 'Palet arahan slash'
     },
     title: 'Pintasan papan kekunci',
     subtitle: open => `Klik pintasan untuk mengikat semula · ${open} membuka semula panel ini.`,
@@ -100,8 +100,8 @@ export const ms = defineLocale({
       profiles: 'Profil',
       session: 'Sesi',
       navigation: 'Navigasi',
-      view: 'Paparan',
-    },
+      view: 'Paparan'
+    }
   },
   language: {
     label: 'Bahasa',
@@ -110,7 +110,7 @@ export const ms = defineLocale({
     saveError: 'Kemas kini bahasa gagal',
     switchTo: 'Tukar bahasa',
     searchPlaceholder: 'Cari bahasa…',
-    noResults: 'Tiada bahasa dijumpai',
+    noResults: 'Tiada bahasa dijumpai'
   },
   settings: {
     closeSettings: 'Tutup tetapan',
@@ -135,11 +135,12 @@ export const ms = defineLocale({
       billing: 'Penagihan',
       notifications: 'Notifikasi',
       plugins: 'Plugin',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'Plugin desktop',
-      blurb: 'Ekstensi UI dimuat ke aplikasi ini — terikat dalam build atau folder desktop-plugins (termasuk yang ditulis OpenAmer). Menonaktifkan memuat turun plugin secara langsung dan bertahan selepas restart.',
+      blurb:
+        'Ekstensi UI dimuat ke aplikasi ini — terikat dalam build atau folder desktop-plugins (termasuk yang ditulis OpenAmer). Menonaktifkan memuat turun plugin secara langsung dan bertahan selepas restart.',
       openFolder: 'Buka folder plugin',
       rescan: 'Sken semula',
       reveal: 'Tunjukkan dalam pengurus fail',
@@ -151,8 +152,8 @@ export const ms = defineLocale({
       kinds: {
         bundled: 'terbina',
         disk: 'pada cakera',
-        runtime: 'masa jalan',
-      },
+        runtime: 'masa jalan'
+      }
     },
     toolsets: {
       noProviderOptions: 'Set alat ini tiada pilihan penyedia — benarkannya dan ia berfungsi dengan set semasa anda.',
@@ -196,7 +197,7 @@ export const ms = defineLocale({
         selectedTitle: 'Backend dipilih',
         needsSetupHint: 'Anda boleh memilih backend ini sekarang — arahan akan gagal sehingga tetapan selesai.',
         selectedMessage: backend => `Arahan terminal kini berjalan melalui ${backend}. Terpakai pada sesi baharu.`,
-        failedSelect: backend => `Gagal memilih ${backend}`,
+        failedSelect: backend => `Gagal memilih ${backend}`
       },
       loadingConfig: 'Memuatkan konfigurasi',
       savedTitle: 'Kelayakan disimpan',
@@ -213,8 +214,10 @@ export const ms = defineLocale({
       selectedMessage: provider => `${provider} kini aktif.`,
       failedSelect: provider => `Gagal memilih ${provider}`,
       failedLoad: 'Konfigurasi alat gagal dimuatkan',
-      openamerAuthNeededMessage: provider => `${provider} disimpan tetapi tidak akan aktif sehingga anda daftar masuk ke OpenAmer Portal.`,
-      postSetupHint: step => `Bahagian belakang ini memerlukan pemasangan sekali (${step}). Berjalan pada mesin ini — mungkin mengambil beberapa minit.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} disimpan tetapi tidak akan aktif sehingga anda daftar masuk ke OpenAmer Portal.`,
+      postSetupHint: step =>
+        `Bahagian belakang ini memerlukan pemasangan sekali (${step}). Berjalan pada mesin ini — mungkin mengambil beberapa minit.`,
       postSetupCompleteMessage: step => `${step} dipasang.`,
       postSetupErrorMessage: step => `Semak log ${step}.`,
       postSetupFailed: step => `Gagal menjalankan pemasangan ${step}`,
@@ -225,39 +228,40 @@ export const ms = defineLocale({
       modelSectionTitle: 'Model',
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} terpakai pada sesi baharu.`,
-      failedSelectModel: model => `Gagal memilih ${model}`,
+      failedSelectModel: model => `Gagal memilih ${model}`
     },
     notifications: {
       title: 'Pemberitahuan',
-      intro: 'Pemberitahuan desktop asli, berasingan daripada roti bakar dalam aplikasi. Ini setempat peranti — setiap komputer menyimpan tetapannya sendiri.',
+      intro:
+        'Pemberitahuan desktop asli, berasingan daripada roti bakar dalam aplikasi. Ini setempat peranti — setiap komputer menyimpan tetapannya sendiri.',
       enableAll: 'Dayakan pemberitahuan',
       enableAllDesc: 'Suis induk. Matikan ini untuk menyenyapkan setiap pemberitahuan di bawah.',
       focusedHint: 'Isyarat penyempurnaan hanya berbunyi semasa OpenAmer berada di latar belakang.',
       kinds: {
         approval: {
           label: 'Kelulusan diperlukan',
-          description: 'Satu arahan menunggu anda meluluskan atau menolaknya.',
+          description: 'Satu arahan menunggu anda meluluskan atau menolaknya.'
         },
         input: {
           label: 'Input diperlukan',
-          description: 'OpenAmer bertanya soalan atau memerlukan kata laluan atau rahsia.',
+          description: 'OpenAmer bertanya soalan atau memerlukan kata laluan atau rahsia.'
         },
         turnDone: {
           label: 'Jawapan sedia',
-          description: 'Satu giliran selesai semasa OpenAmer berada di latar belakang.',
+          description: 'Satu giliran selesai semasa OpenAmer berada di latar belakang.'
         },
         turnError: {
           label: 'Giliran gagal',
-          description: 'Satu giliran berakhir dengan ralat.',
+          description: 'Satu giliran berakhir dengan ralat.'
         },
         backgroundDone: {
           label: 'Tugas latar belakang selesai',
-          description: 'Arahan terminal latar belakang telah selesai.',
+          description: 'Arahan terminal latar belakang telah selesai.'
         },
         credits: {
           label: 'Isyarat kredit',
-          description: 'Akses kredit dijeda atau dipulihkan.',
-        },
+          description: 'Akses kredit dijeda atau dipulihkan.'
+        }
       },
       test: 'Hantar pemberitahuan ujian',
       testTitle: 'OpenAmer',
@@ -266,7 +270,7 @@ export const ms = defineLocale({
       testUnsupported: 'Sistem ini tidak menyokong pemberitahuan asli.',
       completionSoundTitle: 'Bunyi Penyempurnaan',
       completionSoundDesc: 'Dimainkan apabila giliran agen selesai. Pilih pratetap dan pratontonnya di sini.',
-      completionSoundPreview: 'Pratonton',
+      completionSoundPreview: 'Pratonton'
     },
     sections: {
       model: 'Model',
@@ -276,7 +280,7 @@ export const ms = defineLocale({
       safety: 'Keselamatan',
       memory: 'Memori & Konteks',
       voice: 'Suara',
-      advanced: 'Lanjutan',
+      advanced: 'Lanjutan'
     },
     searchPlaceholder: {
       about: 'Perihal OpenAmer Desktop',
@@ -284,37 +288,40 @@ export const ms = defineLocale({
       gateway: 'Sambungan get laluan...',
       keys: 'Cari kunci API...',
       mcp: 'Cari pelayan MCP...',
-      sessions: 'Cari sesi diarkibkan...',
+      sessions: 'Cari sesi diarkibkan...'
     },
     modeOptions: {
       light: {
         label: 'Cerah',
-        description: 'Permukaan desktop cerah',
+        description: 'Permukaan desktop cerah'
       },
       dark: {
         label: 'Gelap',
-        description: 'Ruang kerja kurang silau',
+        description: 'Ruang kerja kurang silau'
       },
       system: {
         label: 'Sistem',
-        description: 'Ikut penampilan OS',
-      },
+        description: 'Ikut penampilan OS'
+      }
     },
     appearance: {
       title: 'Penampilan',
-      intro: 'Ini keutamaan paparan desktop sahaja. Mod mengawal kecerahan; tema mengawal palet aksen dan gaya permukaan sembang.',
+      intro:
+        'Ini keutamaan paparan desktop sahaja. Mod mengawal kecerahan; tema mengawal palet aksen dan gaya permukaan sembang.',
       colorMode: 'Mod Warna',
       colorModeDesc: 'Pilih mod tetap atau biarkan OpenAmer mengikut tetapan sistem anda.',
       toolViewTitle: 'Paparan Panggilan Alat',
       toolViewDesc: 'Product menyembunyikan muatan alat mentah; Technical menunjukkan input/output penuh.',
       uiScaleTitle: 'Skala UI',
-      uiScaleDesc: (percent: number) => `Menskalakan teks dan kawalan dalam seluruh aplikasi. Cmd/Ctrl dengan +, - dan 0 juga berfungsi. Semasa: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Menskalakan teks dan kawalan dalam seluruh aplikasi. Cmd/Ctrl dengan +, - dan 0 juga berfungsi. Semasa: ${percent}%.`,
       translucencyTitle: 'Ketelusan Tetingkap',
       translucencyDesc: 'Lihat desktop anda melalui seluruh tetingkap. macOS dan Windows sahaja.',
       backdropTitle: 'Latar Sembang',
       backdropDesc: 'Imej patung samar di belakang perbualan.',
       embedsTitle: 'Benaman Sebaris',
-      embedsDesc: 'Pratonton kaya dimuatkan dari tapak pihak ketiga (YouTube, X, …). Ask menunjukkan pemegang tempat sehingga anda membenarkan setiap satu; Always memuatkannya secara automatik; Off mengekalkan pautan biasa.',
+      embedsDesc:
+        'Pratonton kaya dimuatkan dari tapak pihak ketiga (YouTube, X, …). Ask menunjukkan pemegang tempat sehingga anda membenarkan setiap satu; Always memuatkannya secara automatik; Off mengekalkan pautan biasa.',
       embedsAsk: 'Tanya',
       embedsAlways: 'Sentiasa',
       embedsOff: 'Mati',
@@ -327,7 +334,8 @@ export const ms = defineLocale({
       themeDesc: 'Palet desktop sahaja. Mod yang dipilih digunakan di atasnya.',
       themeProfileNote: profile => `Disimpan untuk profil ${profile} — setiap profil menyimpan temanya sendiri.`,
       installTitle: 'Pasang dari VS Code',
-      installDesc: 'Tampal id sambungan Marketplace (cth. dracula-theme.theme-dracula) untuk menukar tema warnanya menjadi palet desktop.',
+      installDesc:
+        'Tampal id sambungan Marketplace (cth. dracula-theme.theme-dracula) untuk menukar tema warnanya menjadi palet desktop.',
       installPlaceholder: 'penerbit.ekstensi',
       installButton: 'Pasang',
       installing: 'Memasang…',
@@ -337,8 +345,10 @@ export const ms = defineLocale({
       importedBadge: 'Diimport',
       pet: {
         title: 'Haiwan peliharaan',
-        intro: 'Ambil maskot petdex animasi yang terapung di atas aplikasi dan bertindak balas terhadap apa yang OpenAmer lakukan — berlari semasa alat dijalankan, meraikan kejayaan, merajuk pada ralat.',
-        restartHint: 'Haiwan peliharaan memerlukan mula semula pantas — aplikasi yang berjalan bermula sebelum ciri ini ditambah. Keluar dan buka semula OpenAmer, kemudian kembali ke sini.',
+        intro:
+          'Ambil maskot petdex animasi yang terapung di atas aplikasi dan bertindak balas terhadap apa yang OpenAmer lakukan — berlari semasa alat dijalankan, meraikan kejayaan, merajuk pada ralat.',
+        restartHint:
+          'Haiwan peliharaan memerlukan mula semula pantas — aplikasi yang berjalan bermula sebelum ciri ini ditambah. Keluar dan buka semula OpenAmer, kemudian kembali ke sini.',
         on: 'Hidup',
         off: 'Mati',
         scaleTitle: 'Saiz',
@@ -348,7 +358,7 @@ export const ms = defineLocale({
         chooseTitle: 'Pilih haiwan peliharaan',
         chooseDesc: 'Memilih satu akan memasangnya (jika perlu) dan menjadikannya aktif.',
         searchPlaceholder: 'Cari haiwan peliharaan…',
-        unreachable: "Tidak dapat mencapai galeri petdex. Semak sambungan anda dan buka semula halaman ini.",
+        unreachable: 'Tidak dapat mencapai galeri petdex. Semak sambungan anda dan buka semula halaman ini.',
         noMatch: query => `Tiada haiwan peliharaan sepadan dengan "${query}".`,
         installedTag: 'dipasang',
         generatedTag: 'Dijana',
@@ -357,7 +367,7 @@ export const ms = defineLocale({
         uninstall: name => `Nyahpasang ${name}`,
         delete: name => `Padam ${name}`,
         deleteTitle: name => `Padam ${name}?`,
-        deleteBody: "Ini memadam haiwan peliharaan secara kekal — ia tidak boleh dipasang semula.",
+        deleteBody: 'Ini memadam haiwan peliharaan secara kekal — ia tidak boleh dipasang semula.',
         deleteConfirm: 'Padam',
         rename: name => `Namakan semula ${name}`,
         renameTitle: 'Namakan semula haiwan peliharaan',
@@ -370,8 +380,8 @@ export const ms = defineLocale({
         exportFailed: slug => `Tidak dapat mengeksport ${slug}`,
         noneAvailable: 'Tiada haiwan peliharaan tersedia untuk dihidupkan sekarang.',
         turnOnFailed: 'Tidak dapat menghidupkan haiwan peliharaan.',
-        turnOffFailed: 'Tidak dapat mematikan haiwan peliharaan.',
-      },
+        turnOffFailed: 'Tidak dapat mematikan haiwan peliharaan.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -382,25 +392,26 @@ export const ms = defineLocale({
       updates: 'Kemas kini',
       checkNow: 'Semak sekarang',
       checking: 'Menyemak…',
-      seeWhatsNew: "Lihat apa yang baharu",
+      seeWhatsNew: 'Lihat apa yang baharu',
       updateNow: 'Kemas kini sekarang',
       releaseNotes: 'Nota keluaran',
-      onLatest: "Anda menggunakan versi terkini.",
+      onLatest: 'Anda menggunakan versi terkini.',
       installing: 'Satu kemas kini sedang dipasang.',
-      cantUpdate: "Binaan ini tidak boleh mengemas kini dirinya dari dalam aplikasi.",
-      cantReach: "Kami tidak dapat mencapai pelayan kemas kini.",
+      cantUpdate: 'Binaan ini tidak boleh mengemas kini dirinya dari dalam aplikasi.',
+      cantReach: 'Kami tidak dapat mencapai pelayan kemas kini.',
       tapCheck: 'Ketik "Semak sekarang" untuk mencari kemas kini.',
       updateReady: count => `Kemas kini baharu sedia (${count} change${count === 1 ? '' : 's'} disertakan).`,
       lastChecked: age => `Terakhir disemak ${age}`,
       justNowSuffix: ' · baru sahaja',
       automaticUpdates: 'Kemas kini automatik',
-      automaticUpdatesDesc: 'OpenAmer menyemak kemas kini secara automatik di latar belakang dan memberitahu anda apabila satu sedia.',
+      automaticUpdatesDesc:
+        'OpenAmer menyemak kemas kini secara automatik di latar belakang dan memberitahu anda apabila satu sedia.',
       branchCommit: (branch, commit) => `Cawangan ${branch} · Komit ${commit}`,
       never: 'tidak pernah',
       justNow: 'baru sahaja',
       minAgo: count => `${count} min lalu`,
       hoursAgo: count => `${count} jam lalu`,
-      daysAgo: count => `${count} hari lalu`,
+      daysAgo: count => `${count} hari lalu`
     },
     config: {
       none: 'Tiada',
@@ -416,7 +427,8 @@ export const ms = defineLocale({
       imported: 'Konfigurasi diimport',
       invalidJson: 'JSON konfigurasi tidak sah',
       keepAwakeTitle: 'Kekalkan komputer terjaga',
-      keepAwakeDesc: 'Hentikan mesin ini daripada tidur supaya jalankan panjang atau semalaman diteruskan. Paparan masih boleh malap.',
+      keepAwakeDesc:
+        'Hentikan mesin ini daripada tidur supaya jalankan panjang atau semalaman diteruskan. Paparan masih boleh malap.'
     },
     credentials: {
       pasteKey: 'Tampal kunci',
@@ -426,7 +438,7 @@ export const ms = defineLocale({
       couldNotSave: 'Tidak dapat menyimpan kelayakan.',
       remove: 'Buang',
       getKey: 'Dapatkan kunci',
-      saving: 'Menyimpan',
+      saving: 'Menyimpan'
     },
     envActions: {
       actionsFor: label => `Tindakan untuk ${label}`,
@@ -437,7 +449,7 @@ export const ms = defineLocale({
       revealValue: 'Tunjukkan nilai',
       replace: 'Ganti',
       set: 'Tetapkan',
-      clear: 'Kosongkan',
+      clear: 'Kosongkan'
     },
     gateway: {
       loading: 'Memuatkan tetapan get laluan...',
@@ -445,23 +457,29 @@ export const ms = defineLocale({
       unavailableDesc: 'Jambatan IPC desktop tidak mendedahkan tetapan get laluan.',
       title: 'Sambungan Get Laluan',
       envOverride: 'ganti env',
-      intro: 'OpenAmer Desktop memulakan get laluan setempatnya sendiri secara lalai. Gunakan get laluan jauh apabila anda mahu aplikasi ini mengawal bahagian belakang OpenAmer yang sudah berjalan pada mesin lain atau di belakang proksi dipercayai. Pilih profil di bawah untuk memberikannya hos jauh sendiri.',
+      intro:
+        'OpenAmer Desktop memulakan get laluan setempatnya sendiri secara lalai. Gunakan get laluan jauh apabila anda mahu aplikasi ini mengawal bahagian belakang OpenAmer yang sudah berjalan pada mesin lain atau di belakang proksi dipercayai. Pilih profil di bawah untuk memberikannya hos jauh sendiri.',
       appliesTo: 'Terpakai kepada',
       allProfiles: 'Semua profil',
       defaultConnection: 'Sambungan lalai untuk setiap profil yang tiada ganti sendiri.',
-      profileConnection: profile => `Sambungan digunakan hanya apabila “${profile}” ialah profil aktif. Pilih Guna get laluan lalai untuk membuang gantinya.`,
+      profileConnection: profile =>
+        `Sambungan digunakan hanya apabila “${profile}” ialah profil aktif. Pilih Guna get laluan lalai untuk membuang gantinya.`,
       envOverrideTitle: 'Pemboleh ubah persekitaran mengawal sesi desktop ini.',
-      envOverrideDesc: 'Nyahset OPENAMER_DESKTOP_REMOTE_URL dan OPENAMER_DESKTOP_REMOTE_TOKEN untuk menggunakan tetapan tersimpan di bawah.',
+      envOverrideDesc:
+        'Nyahset OPENAMER_DESKTOP_REMOTE_URL dan OPENAMER_DESKTOP_REMOTE_TOKEN untuk menggunakan tetapan tersimpan di bawah.',
       modeTitle: 'Mod sambungan',
       localTitle: 'Get laluan setempat',
-      localDesc: 'Mulakan bahagian belakang OpenAmer peribadi pada localhost. Ini ialah lalai dan berfungsi di luar talian.',
+      localDesc:
+        'Mulakan bahagian belakang OpenAmer peribadi pada localhost. Ini ialah lalai dan berfungsi di luar talian.',
       inheritTitle: 'Guna get laluan lalai',
-      inheritDesc: "Buang ganti profil ini dan gunakan sambungan lalai.",
+      inheritDesc: 'Buang ganti profil ini dan gunakan sambungan lalai.',
       remoteTitle: 'Get laluan jauh',
       remoteDesc: 'Sambungkan cangkerang desktop ini ke bahagian belakang OpenAmer jauh.',
-      remoteAuthHint: 'Get laluan dihoskan menggunakan OAuth atau nama pengguna dan kata laluan; yang dihos sendiri mungkin menggunakan token sesi.',
+      remoteAuthHint:
+        'Get laluan dihoskan menggunakan OAuth atau nama pengguna dan kata laluan; yang dihos sendiri mungkin menggunakan token sesi.',
       cloudTitle: 'OpenAmer Cloud',
-      cloudDesc: 'Daftar masuk sekali ke OpenAmer Cloud dan pilih daripada agen dalam akaun anda — tiada URL untuk ditampal.',
+      cloudDesc:
+        'Daftar masuk sekali ke OpenAmer Cloud dan pilih daripada agen dalam akaun anda — tiada URL untuk ditampal.',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudSignIn: 'Daftar masuk ke OpenAmer Cloud',
       cloudSignedIn: 'Telah daftar masuk ke OpenAmer Cloud',
@@ -476,7 +494,7 @@ export const ms = defineLocale({
       cloudNoAgents: {
         before: 'Tiada agen ditemui dalam akaun ini. Cipta satu di ',
         linkText: 'portal OpenAmer',
-        after: ', kemudian muat semula.',
+        after: ', kemudian muat semula.'
       },
       cloudRefresh: 'Muat semula',
       cloudConnect: 'Sambung',
@@ -494,18 +512,24 @@ export const ms = defineLocale({
       remoteUrlTitle: 'URL Jauh',
       remoteUrlDesc: 'URL asas untuk bahagian belakang papan pemuka jauh. Awalan laluan disokong, contohnya /openamer.',
       probing: 'Menyemak cara get laluan ini mengesahkan…',
-      probeError: 'Belum dapat mencapai get laluan ini. Semak URL — kaedah pengesahan akan muncul apabila ia bertindak balas.',
+      probeError:
+        'Belum dapat mencapai get laluan ini. Semak URL — kaedah pengesahan akan muncul apabila ia bertindak balas.',
       signedIn: 'Telah daftar masuk',
       signIn: 'Daftar masuk',
       signOut: 'Daftar keluar',
       signInWith: provider => `Daftar masuk dengan ${provider}`,
       authTitle: 'Pengesahan',
-      authSignedInPassword: 'Get laluan ini menggunakan nama pengguna dan kata laluan. Anda telah daftar masuk; sesi dimuat semula secara automatik.',
-      authSignedInOauth: 'Get laluan ini menggunakan OAuth. Anda telah daftar masuk; sesi dimuat semula secara automatik.',
-      authNeedsPassword: 'Get laluan ini menggunakan nama pengguna dan kata laluan. Daftar masuk untuk membenarkan aplikasi desktop ini.',
-      authNeedsOauth: provider => `Get laluan ini menggunakan OAuth. Daftar masuk dengan ${provider} untuk membenarkan aplikasi desktop ini.`,
+      authSignedInPassword:
+        'Get laluan ini menggunakan nama pengguna dan kata laluan. Anda telah daftar masuk; sesi dimuat semula secara automatik.',
+      authSignedInOauth:
+        'Get laluan ini menggunakan OAuth. Anda telah daftar masuk; sesi dimuat semula secara automatik.',
+      authNeedsPassword:
+        'Get laluan ini menggunakan nama pengguna dan kata laluan. Daftar masuk untuk membenarkan aplikasi desktop ini.',
+      authNeedsOauth: provider =>
+        `Get laluan ini menggunakan OAuth. Daftar masuk dengan ${provider} untuk membenarkan aplikasi desktop ini.`,
       tokenTitle: 'Token sesi',
-      tokenDesc: 'Token sesi papan pemuka yang digunakan untuk akses REST dan WebSocket. Biarkan kosong untuk mengekalkan token tersimpan.',
+      tokenDesc:
+        'Token sesi papan pemuka yang digunakan untuk akses REST dan WebSocket. Biarkan kosong untuk mengekalkan token tersimpan.',
       existingToken: value => `Token sedia ada ${value}`,
       savedToken: 'tersimpan',
       pasteSessionToken: 'Tampal token sesi',
@@ -523,7 +547,8 @@ export const ms = defineLocale({
       enterUrlFirst: 'Masukkan URL jauh dahulu.',
       restartingTitle: 'Sambungan get laluan dimulakan semula',
       savedTitle: 'Tetapan get laluan disimpan',
-      restartingMessage: 'OpenAmer Desktop akan menyambung semula menggunakan tetapan tersimpan — cangkerang kekal terbuka.',
+      restartingMessage:
+        'OpenAmer Desktop akan menyambung semula menggunakan tetapan tersimpan — cangkerang kekal terbuka.',
       savedMessage: 'Disimpan untuk mula semula seterusnya.',
       connectedTo: (baseUrl, version) => `Bersambung ke ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       reachableTitle: 'Get laluan jauh boleh dicapai',
@@ -536,7 +561,8 @@ export const ms = defineLocale({
       applyFailed: 'Tidak dapat menggunakan tetapan get laluan',
       saveFailed: 'Tidak dapat menyimpan tetapan get laluan',
       sshTitle: 'Sambung melalui SSH',
-      sshDesc: 'OpenAmer dilancarkan pada mesin jauh melalui SSH dan ditalinkan ke aplikasi ini — tiada apa untuk dimulakan atau didedahkan sendiri. Memerlukan akses SSH berasaskan kunci yang berfungsi ke hos.',
+      sshDesc:
+        'OpenAmer dilancarkan pada mesin jauh melalui SSH dan ditalinkan ke aplikasi ini — tiada apa untuk dimulakan atau didedahkan sendiri. Memerlukan akses SSH berasaskan kunci yang berfungsi ke hos.',
       sshTrustHint: 'Kunci hos pertama yang dibentangkan dipercayai dan dipin; perubahan kemudian gagal tertutup.',
       sshHostTitle: 'Hos',
       sshHostDesc: 'user@host, atau alias Hos dari ~/.ssh/config.',
@@ -560,18 +586,22 @@ export const ms = defineLocale({
       sshReachable: (host, platform) => `Boleh dicapai: ${host} (${platform}) — OpenAmer ditemui`,
       sshIncompleteHost: 'Masukkan hos SSH sebelum menyambung.',
       sshErrUnreachable: 'Tidak dapat mencapai hos itu melalui SSH. Semak hos, port dan rangkaian anda.',
-      sshErrAuth: 'Pengesahan SSH gagal. Muatkan kunci anda ke dalam ssh-agent (ssh-add) atau tetapkan IdentityFile dalam ~/.ssh/config — OpenAmer menjalankan ssh tanpa interaktif.',
-      sshErrHostKey: 'Kunci hos telah BERUBAH sejak anda menyambung kali terakhir. Sahkan ini dijangka, kemudian jalankan ssh-keygen -R <host> dan sambung semula.',
-      sshErrNotInstalled: 'OpenAmer tidak dipasang pada hos jauh. Pasang di sana (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) atau tetapkan laluan OpenAmer.',
-      sshErrPlatform: 'Platform jauh tidak disokong. Mod SSH OpenAmer Desktop menyokong hos jauh Linux, macOS dan Windows.',
+      sshErrAuth:
+        'Pengesahan SSH gagal. Muatkan kunci anda ke dalam ssh-agent (ssh-add) atau tetapkan IdentityFile dalam ~/.ssh/config — OpenAmer menjalankan ssh tanpa interaktif.',
+      sshErrHostKey:
+        'Kunci hos telah BERUBAH sejak anda menyambung kali terakhir. Sahkan ini dijangka, kemudian jalankan ssh-keygen -R <host> dan sambung semula.',
+      sshErrNotInstalled:
+        'OpenAmer tidak dipasang pada hos jauh. Pasang di sana (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) atau tetapkan laluan OpenAmer.',
+      sshErrPlatform:
+        'Platform jauh tidak disokong. Mod SSH OpenAmer Desktop menyokong hos jauh Linux, macOS dan Windows.',
       sshErrTimeout: 'Sambungan SSH tamat masa. Hos mungkin tidak dapat dicapai atau tidur.',
       sshErrUpdateRequired: 'Kemas kini OpenAmer pada hos jauh sebelum menyambung dengan SSH Desktop.',
-      sshErrUnknown: 'Sambungan SSH gagal.',
+      sshErrUnknown: 'Sambungan SSH gagal.'
     },
     keys: {
       loading: 'Memuatkan kunci API dan kelayakan...',
       failedLoad: 'Kunci API gagal dimuatkan',
-      empty: 'Tiada apa dikonfigurasikan dalam kategori ini lagi.',
+      empty: 'Tiada apa dikonfigurasikan dalam kategori ini lagi.'
     },
     mcp: {
       loading: 'Memuatkan pelayan MCP...',
@@ -623,7 +653,8 @@ export const ms = defineLocale({
       catalogInstallFailed: name => `Gagal memasang ${name}`,
       catalogEnvPrompt: name => `${name} memerlukan kelayakan`,
       catalogEnvRequired: 'Isi nilai yang diperlukan sebelum memasang.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} didayakan`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} didayakan`,
       statusConnecting: 'Menyambung…',
       statusNeedsAuth: 'Perlu pengesahan',
       statusError: 'Ralat',
@@ -636,11 +667,12 @@ export const ms = defineLocale({
       unsavedConnect: 'Tidak disimpan — simpan mcp.json untuk menyambung.',
       enableTool: tool => `Dayakan ${tool}`,
       disableTool: tool => `Lumpuhkan ${tool}`,
-      noOutput: 'Tiada output lagi.',
+      noOutput: 'Tiada output lagi.'
     },
     model: {
       loading: 'Memuatkan konfigurasi model...',
-      appliesDesc: 'Terpakai pada sesi baharu. Gunakan pemilih model dalam penggubah untuk menukar sembang aktif dengan pantas.',
+      appliesDesc:
+        'Terpakai pada sesi baharu. Gunakan pemilih model dalam penggubah untuk menukar sembang aktif dengan pantas.',
       provider: 'Penyedia',
       model: 'Model',
       applying: 'Menggunakan...',
@@ -650,53 +682,55 @@ export const ms = defineLocale({
       defaultsFailed: 'Gagal menyimpan lalai model',
       auxiliaryTitle: 'Model tambahan',
       resetAllToMain: 'Tetapkan semula semua ke utama',
-      auxiliaryDesc: 'Tugas pembantu berjalan pada model utama secara lalai. Tetapkan model khusus untuk mana-mana tugas untuk menggantikannya.',
+      auxiliaryDesc:
+        'Tugas pembantu berjalan pada model utama secara lalai. Tetapkan model khusus untuk mana-mana tugas untuk menggantikannya.',
       setToMain: 'Tetapkan ke utama',
       change: 'Tukar',
       autoUseMain: 'auto · guna model utama',
       providerDefault: '(lalai penyedia)',
       fallbackAdd: 'Tambah sandaran',
       fallbackEmpty: 'Tiada model sandaran — model lalai digunakan melainkan ia gagal.',
-      notInCatalog: "tiada dalam senarai model penyedia ini — panggilan mungkin beralih ke sandaran.",
+      notInCatalog: 'tiada dalam senarai model penyedia ini — panggilan mungkin beralih ke sandaran.',
       tasks: {
         vision: {
           label: 'Penglihatan',
-          hint: 'Analisis imej',
+          hint: 'Analisis imej'
         },
         web_extract: {
           label: 'Ekstrak web',
-          hint: 'Ringkasan halaman',
+          hint: 'Ringkasan halaman'
         },
         compression: {
           label: 'Pemampatan',
-          hint: 'Pemadatan konteks',
+          hint: 'Pemadatan konteks'
         },
         skills_hub: {
           label: 'Hab kemahiran',
-          hint: 'Carian kemahiran',
+          hint: 'Carian kemahiran'
         },
         approval: {
           label: 'Kelulusan',
-          hint: 'Kelulusan automatik pintar',
+          hint: 'Kelulusan automatik pintar'
         },
         mcp: {
           label: 'MCP',
-          hint: 'Penghalaan alat MCP',
+          hint: 'Penghalaan alat MCP'
         },
         title_generation: {
           label: 'Penjanaan tajuk',
-          hint: 'Tajuk sesi',
+          hint: 'Tajuk sesi'
         },
         curator: {
           label: 'Kurator',
-          hint: 'Semakan penggunaan kemahiran',
-        },
-      },
+          hint: 'Semakan penggunaan kemahiran'
+        }
+      }
     },
     providers: {
       connectAccount: 'Sambung akaun',
       haveApiKey: 'Ada kunci API sebaliknya?',
-      intro: 'Daftar masuk dengan langganan — tiada kunci API untuk disalin. OpenAmer menjalankan daftar masuk pelayar untuk anda, di sini dalam aplikasi.',
+      intro:
+        'Daftar masuk dengan langganan — tiada kunci API untuk disalin. OpenAmer menjalankan daftar masuk pelayar untuk anda, di sini dalam aplikasi.',
       connected: 'Bersambung',
       collapse: 'Runtuhkan',
       connectAnother: 'Sambung penyedia lain',
@@ -706,7 +740,8 @@ export const ms = defineLocale({
       removeConfirm: provider => `Buang ${provider}?`,
       removeExternalGeneric: provider => `${provider} diurus oleh CLI sendiri — buang di sana.`,
       removeKeyManaged: provider => `${provider} dikonfigurasikan daripada kunci API. Buang dari Kunci API.`,
-      removeTerminalConfirm: (provider, command) => `Putuskan sambungan ${provider}? Ini menjalankan "${command}" dalam terminal untuk mengosongkan kelayakan.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Putuskan sambungan ${provider}? Ini menjalankan "${command}" dalam terminal untuk mengosongkan kelayakan.`,
       removeTerminalRunning: provider => `Menjalankan pemutusan sambungan ${provider} dalam terminal…`,
       removedTitle: 'Akaun dibuang',
       removedMessage: provider => `${provider} telah dibuang.`,
@@ -716,14 +751,15 @@ export const ms = defineLocale({
       noKeysMatch: 'Tiada penyedia sepadan dengan carian anda.',
       localEndpoint: {
         title: 'Titik akhir setempat / tersuai',
-        description: 'Halakan OpenAmer ke mana-mana titik akhir serasi OpenAI (Zyphra, vLLM, llama.cpp, Ollama, dll).',
+        description: 'Halakan OpenAmer ke mana-mana titik akhir serasi OpenAI (Zyphra, vLLM, llama.cpp, Ollama, dll).'
       },
-      loading: 'Memuatkan penyedia...',
+      loading: 'Memuatkan penyedia...'
     },
     sessions: {
       loading: 'Memuatkan sesi diarkibkan…',
       archivedTitle: 'Sesi diarkibkan',
-      archivedIntro: 'Sembang diarkibkan disembunyikan daripada bar sisi tetapi menyimpan semua mesejnya. Ctrl/⌘-klik sembang dalam bar sisi untuk mengarkibkannya.',
+      archivedIntro:
+        'Sembang diarkibkan disembunyikan daripada bar sisi tetapi menyimpan semua mesejnya. Ctrl/⌘-klik sembang dalam bar sisi untuk mengarkibkannya.',
       emptyArchivedTitle: 'Tiada apa diarkibkan',
       emptyArchivedDesc: 'Arkibkan sembang untuk menyembunyikannya di sini.',
       unarchive: 'Nyaharkib',
@@ -732,13 +768,16 @@ export const ms = defineLocale({
       restored: 'Dipulihkan',
       deleteConfirm: title => `Padam secara kekal "${title}"? Ini tidak boleh dibatalkan.`,
       autoArchiveTitle: 'Arkib automatik sembang lapuk',
-      autoArchiveDesc: "Arkibkan secara automatik sembang yang tidak disentuh untuk seketika. Sembang dipin tidak pernah diarkibkan, dan tiada apa dipadam — sembang diarkibkan hanya berpindah ke sini.",
+      autoArchiveDesc:
+        'Arkibkan secara automatik sembang yang tidak disentuh untuk seketika. Sembang dipin tidak pernah diarkibkan, dan tiada apa dipadam — sembang diarkibkan hanya berpindah ke sini.',
       autoArchiveDaysLabel: 'Arkib selepas',
       autoArchiveDaysUnit: 'hari tidak aktif',
       autoArchiveFailed: 'Tidak dapat mengemas kini arkib automatik',
       defaultDirTitle: 'Direktori projek lalai',
-      defaultDirDesc: 'Sesi baharu bermula dalam folder ini melainkan anda memilih yang lain. Biarkan tidak ditetapkan untuk menggunakan direktori rumah anda.',
-      defaultDirUpdated: 'Direktori projek lalai dikemas kini — mulakan sembang baharu (Ctrl/⌘+N) untuk ia berkuat kuasa',
+      defaultDirDesc:
+        'Sesi baharu bermula dalam folder ini melainkan anda memilih yang lain. Biarkan tidak ditetapkan untuk menggunakan direktori rumah anda.',
+      defaultDirUpdated:
+        'Direktori projek lalai dikemas kini — mulakan sembang baharu (Ctrl/⌘+N) untuk ia berkuat kuasa',
       defaultsTo: label => `Lalai kepada ${label}.`,
       change: 'Tukar',
       choose: 'Pilih',
@@ -748,8 +787,8 @@ export const ms = defineLocale({
       unarchiveFailed: 'Nyaharkib gagal',
       deleteFailed: 'Padam gagal',
       updateDirFailed: 'Tidak dapat mengemas kini direktori lalai',
-      clearDirFailed: 'Tidak dapat mengosongkan direktori lalai',
-    },
+      clearDirFailed: 'Tidak dapat mengosongkan direktori lalai'
+    }
   },
   starmap: {
     title: 'Graf Memori',
@@ -765,7 +804,8 @@ export const ms = defineLocale({
     emptyTitle: 'Belum ada yang dipelajari',
     emptyDesc: 'Semasa OpenAmer membina kemahiran dan memori untuk kerja anda, ia muncul di sini.',
     share: 'Kongsi peta',
-    shareHint: 'Salin kod untuk berkongsi peta ini, atau tampal satu untuk memuat. Ia hanya mengandungi susun atur, bukan memori atau teks kemahiran anda.',
+    shareHint:
+      'Salin kod untuk berkongsi peta ini, atau tampal satu untuk memuat. Ia hanya mengandungi susun atur, bukan memori atau teks kemahiran anda.',
     shareTitle: 'Import / eksport peta',
     sharePlaceholder: 'Tampal kod peta…',
     copy: 'Salin kod peta',
@@ -776,7 +816,7 @@ export const ms = defineLocale({
     importedBadge: 'peta diimport',
     resetToMine: 'Kembali ke peta saya',
     subtitle: (nodes, clusters) => `${nodes} kemahiran merentas ${clusters} kategori`,
-    importSuccess: nodes => `Dimuatkan peta dengan ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Dimuatkan peta dengan ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Tutup agen',
@@ -806,7 +846,7 @@ export const ms = defineLocale({
     ageDays: days => `${days}h lalu`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'Tutup pusat arahan',
@@ -828,7 +868,8 @@ export const ms = defineLocale({
       placeholder: 'Cari haiwan peliharaan…',
       loading: 'Memuatkan galeri petdex…',
       error: 'Tidak dapat mencapai galeri petdex.',
-      staleBackend: 'Mulakan semula OpenAmer untuk menggunakan haiwan peliharaan — bahagian belakang mendahului ciri ini.',
+      staleBackend:
+        'Mulakan semula OpenAmer untuk menggunakan haiwan peliharaan — bahagian belakang mendahului ciri ini.',
       empty: 'Tiada haiwan peliharaan sepadan.',
       turnOff: 'Matikan',
       turnOn: 'Hidupkan',
@@ -836,7 +877,7 @@ export const ms = defineLocale({
       generatedTag: 'Dijana',
       adoptFailed: 'Tidak dapat mengambil haiwan peliharaan itu.',
       toggleFailed: 'Tidak dapat menogol haiwan peliharaan.',
-      noneAvailable: 'Tiada haiwan peliharaan tersedia — pilih satu di bawah untuk memasang.',
+      noneAvailable: 'Tiada haiwan peliharaan tersedia — pilih satu di bawah untuk memasang.'
     },
     generatePet: {
       title: 'Jana haiwan peliharaan',
@@ -860,12 +901,13 @@ export const ms = defineLocale({
       slowProviderHint: 'Ini mungkin mengambil beberapa minit',
       remix: 'Adun semula',
       remixConfirmTitle: 'Adun semula rupa ini?',
-      remixConfirmBody: 'Ini menjana set draf baharu menggunakan yang ini sebagai titik permulaan. Ia mungkin mengambil beberapa minit.',
+      remixConfirmBody:
+        'Ini menjana set draf baharu menggunakan yang ini sebagai titik permulaan. Ia mungkin mengambil beberapa minit.',
       genericError: 'Penjanaan gagal — cuba lagi atau pilih cadangan.',
       referenceImageTooLarge: 'Imej rujukan terlalu besar. Gunakan yang bawah 16 MB.',
       referenceImageInvalid: 'Tidak dapat membaca imej rujukan itu. Cuba PNG, JPG, WebP atau GIF.',
       adopt: 'Ambil',
-      startOver: 'Mula semula',
+      startOver: 'Mula semula'
     },
     installTheme: {
       title: 'Pasang tema…',
@@ -877,7 +919,7 @@ export const ms = defineLocale({
       install: 'Pasang',
       installing: 'Memasang...',
       installed: 'Dipasang',
-      installs: count => `${count} pemasangan`,
+      installs: count => `${count} pemasangan`
     },
     settingsFields: 'Medan tetapan',
     mcpServers: 'Pelayan MCP',
@@ -886,49 +928,49 @@ export const ms = defineLocale({
       maintenance: 'Penyelenggaraan',
       sessions: 'Sesi',
       system: 'Sistem',
-      usage: 'Penggunaan',
+      usage: 'Penggunaan'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostik, sandaran, kurator dan data memori',
       sessions: 'Cari dan urus sesi',
       system: 'Status, log dan tindakan sistem',
-      usage: 'Token, kos dan aktiviti kemahiran dari semasa ke semasa',
+      usage: 'Token, kos dan aktiviti kemahiran dari semasa ke semasa'
     },
     nav: {
       newChat: {
         title: 'Sesi baharu',
-        detail: 'Mulakan sesi baharu',
+        detail: 'Mulakan sesi baharu'
       },
       settings: {
         title: 'Tetapan',
-        detail: 'Konfigurasikan OpenAmer desktop',
+        detail: 'Konfigurasikan OpenAmer desktop'
       },
       skills: {
         title: 'Keupayaan',
-        detail: 'Kemahiran, alat dan pelayan MCP',
+        detail: 'Kemahiran, alat dan pelayan MCP'
       },
       messaging: {
         title: 'Pemesejan',
-        detail: 'Sediakan Telegram, Slack, Discord dan banyak lagi',
+        detail: 'Sediakan Telegram, Slack, Discord dan banyak lagi'
       },
       artifacts: {
         title: 'Artifak',
-        detail: 'Layari output yang dijana',
-      },
+        detail: 'Layari output yang dijana'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Panel sesi',
-        detail: 'Cari, pin dan urus sesi',
+        detail: 'Cari, pin dan urus sesi'
       },
       system: {
         title: 'Panel sistem',
-        detail: 'Status get laluan, log, mula semula/kemas kini',
+        detail: 'Status get laluan, log, mula semula/kemas kini'
       },
       usage: {
         title: 'Panel penggunaan',
-        detail: 'Token, kos dan aktiviti kemahiran',
-      },
+        detail: 'Token, kos dan aktiviti kemahiran'
+      }
     },
     providerNavigate: 'Navigasi',
     providerSessions: 'Sesi',
@@ -1016,8 +1058,8 @@ export const ms = defineLocale({
       actionStarted: name => `${name} dimulakan — menjejak log...`,
       actionFailed: name => `${name} gagal dimulakan`,
       running: 'Berjalan...',
-      viewLog: 'Log tindakan',
-    },
+      viewLog: 'Log tindakan'
+    }
   },
   profiles: {
     renameMenu: 'Tukar nama…',
@@ -1095,7 +1137,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     failedLoadSoul: 'Gagal memuatkan SOUL.md',
     failedSaveSoul: 'Gagal menyimpan SOUL.md',
     failedCreate: 'Gagal mencipta profil',
-    failedRename: 'Gagal menamakan semula profil',
+    failedRename: 'Gagal menamakan semula profil'
   },
   common: {
     apply: 'Guna',
@@ -1136,7 +1178,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     update: 'Kemas kini',
     tryHint: term => `Cuba “${term}”`,
     on: 'Hidup',
-    off: 'Mati',
+    off: 'Mati'
   },
   fileMenu: {
     revealFinder: 'Tunjukkan dalam Finder',
@@ -1151,7 +1193,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     renameLabel: 'Nama baharu',
     deleteTitle: name => `Padam ${name}?`,
     deleteBody: 'Ia akan dipindahkan ke Tong Sampah — anda boleh memulihkannya dari sana.',
-    pathCopied: 'Laluan disalin',
+    pathCopied: 'Laluan disalin'
   },
   boot: {
     ready: 'OpenAmer Desktop sudah sedia',
@@ -1161,7 +1203,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       loadingSettings: 'Memuatkan tetapan OpenAmer',
       loadingSessions: 'Memuatkan sesi terkini',
       startingDesktopConnection: 'Memulakan sambungan desktop',
-      startingOpenAmerDesktop: 'Memulakan OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Memulakan OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Proses latar belakang OpenAmer telah keluar.',
@@ -1170,13 +1212,15 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       desktopBootFailed: 'Permulaan Desktop gagal',
       gatewayConnectionLost: 'Sambungan ke get laluan terputus',
       gatewaySignInRequired: 'Perlu daftar masuk get laluan',
-      ipcBridgeUnavailable: 'Jambatan IPC Desktop tidak tersedia.',
+      ipcBridgeUnavailable: 'Jambatan IPC Desktop tidak tersedia.'
     },
     failure: {
-      title: "OpenAmer tidak dapat dimulakan",
-      description: "Get laluan latar belakang tidak bermula. Cuba salah satu langkah pemulihan di bawah. Tiada apa di sini yang memadam sembang atau tetapan anda.",
+      title: 'OpenAmer tidak dapat dimulakan',
+      description:
+        'Get laluan latar belakang tidak bermula. Cuba salah satu langkah pemulihan di bawah. Tiada apa di sini yang memadam sembang atau tetapan anda.',
       remoteTitle: 'Perlu daftar masuk get laluan jauh',
-      remoteDescription: 'Sesi get laluan jauh anda telah tamat. Daftar masuk semula untuk menyambung semula. Tiada apa di sini yang memadam sembang atau tetapan anda.',
+      remoteDescription:
+        'Sesi get laluan jauh anda telah tamat. Daftar masuk semula untuk menyambung semula. Tiada apa di sini yang memadam sembang atau tetapan anda.',
       retry: 'Cuba lagi',
       repairInstall: 'Baiki pemasangan',
       useLocalGateway: 'Guna get laluan setempat',
@@ -1184,9 +1228,11 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       back: 'Kembali',
       openLogs: 'Buka log',
       repairHint: 'Pembaikan menjalankan semula pemasang dan boleh mengambil beberapa minit pada mesin baharu.',
-      remoteSignInHint: signInLabel => `Daftar keluar dari sesi pelayar jauh yang disimpan, kemudian membuka ${signInLabel}. Guna get laluan setempat untuk beralih ke bahagian belakang terbina sebaliknya.`,
+      remoteSignInHint: signInLabel =>
+        `Daftar keluar dari sesi pelayar jauh yang disimpan, kemudian membuka ${signInLabel}. Guna get laluan setempat untuk beralih ke bahagian belakang terbina sebaliknya.`,
       signOutAndSignIn: 'Daftar keluar & daftar masuk',
-      remoteFailureHint: 'Semak URL get laluan dan daftar masuk di bawah Tetapan get laluan, atau beralih ke get laluan setempat.',
+      remoteFailureHint:
+        'Semak URL get laluan dan daftar masuk di bawah Tetapan get laluan, atau beralih ke get laluan setempat.',
       hideRecentLogs: 'Sembunyikan log terkini',
       showRecentLogs: 'Tunjukkan log terkini',
       signedInTitle: 'Telah daftar masuk',
@@ -1196,8 +1242,8 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       signInFailed: 'Daftar masuk gagal',
       signInToRemoteGateway: 'Daftar masuk ke get laluan jauh',
       signInWithProvider: provider => `Daftar masuk dengan ${provider}`,
-      identityProvider: 'penyedia identiti anda',
-    },
+      identityProvider: 'penyedia identiti anda'
+    }
   },
   notifications: {
     region: 'Pemberitahuan',
@@ -1210,21 +1256,23 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     copyDetail: 'Salin butiran',
     copyDetailFailed: 'Tidak dapat menyalin butiran pemberitahuan',
     backendOutOfDateTitle: 'Bahagian belakang ketinggalan zaman',
-    backendOutOfDateMessage: 'Bahagian belakang OpenAmer anda lebih lama daripada binaan desktop ini dan mungkin tidak berfungsi dengan betul. Kemas kini untuk menyelaraskannya.',
+    backendOutOfDateMessage:
+      'Bahagian belakang OpenAmer anda lebih lama daripada binaan desktop ini dan mungkin tidak berfungsi dengan betul. Kemas kini untuk menyelaraskannya.',
     installMethodUnsupportedTitle: 'Kaedah pemasangan tidak disokong',
     updateOpenAmer: 'Kemas kini OpenAmer',
     updateReadyTitle: 'Kemas kini sedia',
     updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} tersedia.`,
-    seeWhatsNew: "Lihat apa yang baharu",
+    seeWhatsNew: 'Lihat apa yang baharu',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT memerlukan ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs menolak kunci API (401).',
       gatewayAuthFailed: 'Pengesahan get laluan gagal — semak API_SERVER_KEY anda.',
-      methodNotAllowed: 'Bahagian belakang desktop menolak permintaan itu (405 Method Not Allowed). Cuba mulakan semula OpenAmer Desktop.',
+      methodNotAllowed:
+        'Bahagian belakang desktop menolak permintaan itu (405 Method Not Allowed). Cuba mulakan semula OpenAmer Desktop.',
       microphonePermission: 'Kebenaran mikrofon ditolak.',
       openaiRejectedApiKey: 'OpenAI menolak kunci API.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI menolak kunci API (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS memerlukan VOICE_TOOLS_OPENAI_KEY atau OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS memerlukan VOICE_TOOLS_OPENAI_KEY atau OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Konfigurasikan pertuturan-ke-teks untuk menggunakan mod suara.',
@@ -1243,7 +1291,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       transcriptionFailed: 'Transkripsi suara gagal',
       transcriptionUnavailable: 'Transkripsi suara belum tersedia.',
       tryRecordingAgain: 'Cuba rakam lagi.',
-      unavailable: 'Suara tidak tersedia',
+      unavailable: 'Suara tidak tersedia'
     },
     native: {
       approvalTitle: 'Kelulusan diperlukan',
@@ -1256,11 +1304,12 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       turnErrorTitle: 'Giliran gagal',
       backgroundDoneTitle: 'Tugas latar belakang selesai',
       backgroundFailedTitle: 'Tugas latar belakang gagal',
-      creditsTitle: 'Kredit',
-    },
+      creditsTitle: 'Kredit'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Paparan perisian aktif — paparan jauh dikesan (${reason}). Pecutan GPU dilumpuhkan untuk mengelakkan kelipan.`,
+    message: reason =>
+      `Paparan perisian aktif — paparan jauh dikesan (${reason}). Pecutan GPU dilumpuhkan untuk mengelakkan kelipan.`
   },
   billingBlock: {
     titleOpenamer: 'Kredit OpenAmer habis',
@@ -1268,7 +1317,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     fallbackMessage: 'Akaun anda kehabisan kredit. Tambah kredit untuk meneruskan.',
     openBilling: 'Buka bil',
     addCredits: 'Tambah kredit',
-    dismiss: 'Buang',
+    dismiss: 'Buang'
   },
   titlebar: {
     hideSidebar: 'Sembunyikan bar sisi',
@@ -1285,7 +1334,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     openStarmap: 'Buka graf memori',
     openKeybinds: 'Pintasan papan kekunci',
     layoutEditor: 'Editor susun atur',
-    layoutEditorTitle: 'Editor susun atur — ⌘-klik menetapkan semula susun atur',
+    layoutEditorTitle: 'Editor susun atur — ⌘-klik menetapkan semula susun atur'
   },
   skills: {
     tabSkills: 'Kemahiran',
@@ -1305,7 +1354,8 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     noDescription: 'Tiada penerangan.',
     configured: 'Dikonfigurasikan',
     needsKeys: 'Perlu kunci',
-    visionModelHint: 'Penglihatan menggunakan konfigurasi model tambahan anda — model berkemampuan imej dipilih di sana, bukan setiap penyedia di sini.',
+    visionModelHint:
+      'Penglihatan menggunakan konfigurasi model tambahan anda — model berkemampuan imej dipilih di sana, bukan setiap penyedia di sini.',
     visionModelLink: 'Pilih model penglihatan dalam Tetapan → Model',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} set alat didayakan`,
     configureToolset: label => `Konfigurasikan ${label}`,
@@ -1331,7 +1381,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     provenance: {
       agent: 'Dipelajari',
       bundled: 'Terbina',
-      hub: 'Hab',
+      hub: 'Hab'
     },
     emptyNoneFound: noun => `Tiada ${noun} ditemui`,
     emptyNothingMatches: query => `Tiada apa sepadan dengan “${query}”.`,
@@ -1349,7 +1399,8 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       connectingHubs: 'Menyambung ke hab kemahiran...',
       connectedHubs: 'Hab bersambung:',
       featured: 'Kemahiran pilihan',
-      landingHint: 'Cari dalam hab untuk melayari kemahiran boleh pasang daripada indeks rasmi, GitHub dan sumber komuniti.',
+      landingHint:
+        'Cari dalam hab untuk melayari kemahiran boleh pasang daripada indeks rasmi, GitHub dan sumber komuniti.',
       noResults: 'Tiada kemahiran sepadan ditemui dalam hab.',
       resultCount: (count, ms) => `${count} result${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Tamat masa: ${sources}`,
@@ -1369,7 +1420,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       trust: {
         builtin: 'terbina',
         trusted: 'dipercayai',
-        community: 'komuniti',
+        community: 'komuniti'
       },
       verdictSafe: 'Selamat',
       verdictCaution: 'Awas',
@@ -1387,8 +1438,8 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       loadFailed: 'Hab kemahiran gagal dimuatkan',
       previewFailed: 'Pratonton kemahiran gagal',
       scanFailed: 'Imbasan keselamatan gagal',
-      searchFailed: 'Carian hab gagal',
-    },
+      searchFailed: 'Carian hab gagal'
+    }
   },
   messaging: {
     search: 'Cari pemesejan...',
@@ -1403,7 +1454,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       not_configured: 'Perlu persediaan',
       pending_restart: 'Perlu mula semula',
       retrying: 'Mencuba semula',
-      startup_failed: 'Permulaan gagal',
+      startup_failed: 'Permulaan gagal'
     },
     unknown: 'Tidak diketahui',
     hintPendingRestart: 'Mulakan semula get laluan dari bar status untuk menggunakan perubahan ini.',
@@ -1416,7 +1467,8 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     required: 'Diperlukan',
     recommended: 'Disyorkan',
     advanced: count => `Lanjutan (${count})`,
-    noTokenNeeded: 'Platform ini tidak memerlukan token di sini. Gunakan panduan persediaan di atas, kemudian dayakannya di bawah.',
+    noTokenNeeded:
+      'Platform ini tidak memerlukan token di sini. Gunakan panduan persediaan di atas, kemudian dayakannya di bawah.',
     enabled: 'Didayakan',
     disabled: 'Dilumpuhkan',
     unsavedChanges: 'Perubahan tidak disimpan',
@@ -1442,127 +1494,126 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       TELEGRAM_BOT_TOKEN: {
         label: 'Token bot',
         help: 'Cipta bot dengan @BotFather, kemudian tampal token yang diberikannya.',
-        placeholder: 'Tampal token bot Telegram',
+        placeholder: 'Tampal token bot Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'ID pengguna Telegram yang dibenarkan',
-        help: 'Disyorkan. ID numerik dipisahkan koma daripada @userinfobot. Tanpanya, sesiapa boleh menghantar mesej terus kepada bot anda.',
+        help: 'Disyorkan. ID numerik dipisahkan koma daripada @userinfobot. Tanpanya, sesiapa boleh menghantar mesej terus kepada bot anda.'
       },
       TELEGRAM_PROXY: {
         label: 'URL proksi',
-        help: 'Diperlukan hanya pada rangkaian yang menyekat Telegram.',
+        help: 'Diperlukan hanya pada rangkaian yang menyekat Telegram.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token bot',
-        help: 'Cipta aplikasi dalam Portal Pembangun Discord, tambah bot, kemudian tampal tokennya.',
+        help: 'Cipta aplikasi dalam Portal Pembangun Discord, tambah bot, kemudian tampal tokennya.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'ID pengguna Discord yang dibenarkan',
-        help: 'Disyorkan. ID pengguna Discord dipisahkan koma.',
+        help: 'Disyorkan. ID pengguna Discord dipisahkan koma.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Gaya balasan',
-        help: 'first, all, atau off.',
+        help: 'first, all, atau off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Benarkan semua pengguna Discord',
-        help: 'Untuk pembangunan sahaja. Apabila benar, sesiapa boleh menghantar mesej kepada bot tanpa senarai kebenaran.',
+        help: 'Untuk pembangunan sahaja. Apabila benar, sesiapa boleh menghantar mesej kepada bot tanpa senarai kebenaran.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID saluran rumah',
-        help: 'Saluran tempat bot menghantar mesej proaktif (output cron, peringatan).',
+        help: 'Saluran tempat bot menghantar mesej proaktif (output cron, peringatan).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Nama saluran rumah',
-        help: 'Nama paparan untuk saluran rumah dalam log dan output status.',
+        help: 'Nama paparan untuk saluran rumah dalam log dan output status.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Benarkan semua pengguna iMessage',
-        help: 'Apabila benar, langkau senarai kebenaran BlueBubbles.',
+        help: 'Apabila benar, langkau senarai kebenaran BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Benarkan semua pengguna Mattermost',
+        label: 'Benarkan semua pengguna Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Saluran rumah',
+        label: 'Saluran rumah'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Benarkan semua pengguna QQ',
+        label: 'Benarkan semua pengguna QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Saluran rumah QQ',
-        help: 'Saluran atau kumpulan lalai untuk penghantaran cron.',
+        help: 'Saluran atau kumpulan lalai untuk penghantaran cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Nama saluran rumah QQ',
+        label: 'Nama saluran rumah QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token bot Slack',
         help: 'Gunakan token bot daripada OAuth & Permissions selepas memasang aplikasi Slack anda.',
-        placeholder: 'Tampal token bot Slack',
+        placeholder: 'Tampal token bot Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token aplikasi Slack',
         help: 'Gunakan token peringkat aplikasi yang diperlukan untuk Mod Socket.',
-        placeholder: 'Tampal token aplikasi Slack',
+        placeholder: 'Tampal token aplikasi Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'ID pengguna Slack yang dibenarkan',
-        help: 'Disyorkan. ID pengguna Slack dipisahkan koma.',
+        help: 'Disyorkan. ID pengguna Slack dipisahkan koma.'
       },
       MATTERMOST_URL: {
         label: 'URL pelayan',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token bot',
+        label: 'Token bot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'ID pengguna yang dibenarkan',
-        help: 'Disyorkan. ID pengguna Mattermost dipisahkan koma.',
+        help: 'Disyorkan. ID pengguna Mattermost dipisahkan koma.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL pelayan rumah',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token akses',
+        label: 'Token akses'
       },
       MATRIX_USER_ID: {
         label: 'ID pengguna bot',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'ID pengguna Matrix yang dibenarkan',
-        help: 'Disyorkan. ID pengguna dipisahkan koma dalam format @user:server.',
+        help: 'Disyorkan. ID pengguna dipisahkan koma dalam format @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL jambatan Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL jambatan REST signal-cli yang berjalan.',
+        help: 'URL jambatan REST signal-cli yang berjalan.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Nombor telefon',
-        help: 'Nombor yang didaftarkan dengan jambatan signal-cli anda.',
+        help: 'Nombor yang didaftarkan dengan jambatan signal-cli anda.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Pengguna Signal yang dibenarkan',
-        help: 'Disyorkan. Pengecam Signal dipisahkan koma.',
+        help: 'Disyorkan. Pengecam Signal dipisahkan koma.'
       },
       WHATSAPP_ENABLED: {
         label: 'Dayakan jambatan WhatsApp',
-        help: 'Ditetapkan secara automatik oleh togol di bawah. Biarkan melainkan anda tahu anda memerlukannya.',
+        help: 'Ditetapkan secara automatik oleh togol di bawah. Biarkan melainkan anda tahu anda memerlukannya.'
       },
       WHATSAPP_MODE: {
-        label: 'Mod jambatan',
+        label: 'Mod jambatan'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Pengguna WhatsApp yang dibenarkan',
-        help: 'Disyorkan. Nombor telefon atau ID WhatsApp dipisahkan koma.',
-      },
+        help: 'Disyorkan. Nombor telefon atau ID WhatsApp dipisahkan koma.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Cari webhook...',
@@ -1572,7 +1623,8 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     hint: 'Perubahan langganan dimuat semula secara langsung setelah penerima berjalan. Langganan yang dilumpuhkan menolak acara masuk.',
     empty: 'Tiada langganan webhook lagi.',
     disabledTitle: 'Penerima webhook dilumpuhkan',
-    disabledBody: 'Webhook ialah platform get laluan tersendiri. Dayakannya di sini untuk menerima acara HTTP masuk; saluran sembang hanya diperlukan apabila langganan menghantar ke Telegram, Discord, Slack atau saluran lain.',
+    disabledBody:
+      'Webhook ialah platform get laluan tersendiri. Dayakannya di sini untuk menerima acara HTTP masuk; saluran sembang hanya diperlukan apabila langganan menghantar ke Telegram, Discord, Slack atau saluran lain.',
     enable: 'Dayakan webhook',
     enabling: 'Mendayakan...',
     enabled: (name: string) => `Didayakan: "${name}"`,
@@ -1589,7 +1641,8 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     toggleFailed: (name: string) => `Gagal mengemas kini "${name}"`,
     newSubscription: 'Langganan baharu',
     restarting: 'Get laluan dimulakan semula...',
-    restartNeeded: 'Webhook didayakan, tetapi get laluan masih perlu dimulakan semula sebelum penerima boleh dalam talian.',
+    restartNeeded:
+      'Webhook didayakan, tetapi get laluan masih perlu dimulakan semula sebelum penerima boleh dalam talian.',
     restartGateway: 'Mulakan semula get laluan',
     restartingGateway: 'Memulakan semula...',
     restartFailed: (detail: string) => `Mula semula get laluan gagal${detail}`,
@@ -1625,8 +1678,8 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       discord: 'Discord',
       slack: 'Slack',
       email: 'E-mel',
-      github_comment: 'Komen GitHub',
-    },
+      github_comment: 'Komen GitHub'
+    }
   },
   cron: {
     close: 'Tutup cron',
@@ -1641,14 +1694,14 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       paused: 'dijeda',
       disabled: 'dilumpuhkan',
       error: 'ralat',
-      completed: 'selesai',
+      completed: 'selesai'
     },
     deliveryLabels: {
       local: 'Desktop ini',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'E-mel',
+      email: 'E-mel'
     },
     scheduleLabels: {
       daily: 'Harian',
@@ -1657,7 +1710,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       monthly: 'Bulanan',
       hourly: 'Setiap jam',
       'every-15-minutes': 'Setiap 15 minit',
-      custom: 'Tersuai',
+      custom: 'Tersuai'
     },
     scheduleHints: {
       daily: 'Setiap hari pada 9:00 pagi',
@@ -1666,7 +1719,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       monthly: 'Hari pertama setiap bulan pada 9:00 pagi',
       hourly: 'Pada awal setiap jam',
       'every-15-minutes': 'Setiap 15 minit',
-      custom: 'Sintaks cron atau bahasa semula jadi',
+      custom: 'Sintaks cron atau bahasa semula jadi'
     },
     days: {
       '0': 'Ahad',
@@ -1676,7 +1729,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       '4': 'Khamis',
       '5': 'Jumaat',
       '6': 'Sabtu',
-      '7': 'Ahad',
+      '7': 'Ahad'
     },
     dayFallback: value => `hari ${value}`,
     everyDayAt: time => `Setiap hari pada ${time}`,
@@ -1686,7 +1739,8 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     topOfHour: 'Pada awal setiap jam',
     everyHourAt: minute => `Setiap jam pada :${minute}`,
     newCron: 'Cron baharu',
-    emptyDescNew: 'Jadualkan prompt untuk dijalankan mengikut ungkapan cron. OpenAmer akan menjalankannya dan menghantar hasil ke destinasi yang anda pilih.',
+    emptyDescNew:
+      'Jadualkan prompt untuk dijalankan mengikut ungkapan cron. OpenAmer akan menjalankannya dan menghantar hasil ke destinasi yang anda pilih.',
     emptyDescSearch: 'Cuba carian lebih luas.',
     emptyTitleNew: 'Tiada tugas berjadual lagi',
     emptyTitleSearch: 'Tiada padanan',
@@ -1723,7 +1777,8 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     editTitle: 'Edit tugas cron',
     createTitle: 'Tugas cron baharu',
     editDesc: 'Kemas kini jadual, prompt atau sasaran penghantaran. Perubahan terpakai pada jalankan seterusnya.',
-    createDesc: 'Jadualkan prompt untuk berjalan secara automatik. Gunakan sintaks cron atau frasa semula jadi seperti "setiap 15 minit".',
+    createDesc:
+      'Jadualkan prompt untuk berjalan secara automatik. Gunakan sintaks cron atau frasa semula jadi seperti "setiap 15 minit".',
     nameLabel: 'Nama',
     namePlaceholder: 'Taklimat pagi',
     promptLabel: 'Prom',
@@ -1745,7 +1800,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     createAction: 'Cipta cron',
     tabs: {
       jobs: 'Tugas',
-      blueprints: 'Cetak biru',
+      blueprints: 'Cetak biru'
     },
     blueprints: {
       tab: 'Cetak biru',
@@ -1759,8 +1814,8 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       loading: 'Memuatkan cetak biru...',
       failedLoad: 'Gagal memuatkan cetak biru',
       emptyTitle: 'Tiada cetak biru tersedia',
-      emptyDesc: 'Tiada cetak biru automasi tersedia pada bahagian belakang ini.',
-    },
+      emptyDesc: 'Tiada cetak biru automasi tersedia pada bahagian belakang ini.'
+    }
   },
   artifacts: {
     search: 'Cari artifak...',
@@ -1794,14 +1849,14 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     kindLink: 'pautan',
     chat: 'Sembang',
     copyUrl: 'Salin URL',
-    copyPath: 'Salin laluan',
+    copyPath: 'Salin laluan'
   },
   sidebar: {
     nav: {
       'new-session': 'Sesi baharu',
       skills: 'Keupayaan',
       messaging: 'Pemesejan',
-      artifacts: 'Artifak',
+      artifacts: 'Artifak'
     },
     searchAria: 'Cari sesi',
     searchPlaceholder: 'Cari sesi…',
@@ -1833,7 +1888,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       namePlaceholder: 'cth. Skunkworks',
       foldersLabel: 'Folder',
       ideaLabel: 'Idea',
-      ideaPlaceholder: "Apa projek ini tentang? (disimpan ke IDEA.md)",
+      ideaPlaceholder: 'Apa projek ini tentang? (disimpan ke IDEA.md)',
       ideaGenerate: 'Jana idea',
       ideaGenerating: 'Menjana…',
       ideaShuffle: 'Kocok templat',
@@ -1853,8 +1908,10 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       copyPath: 'Salin laluan',
       removeFromSidebar: 'Sembunyikan dari bar sisi',
       createFailed: 'Tidak dapat mencipta projek',
-      staleBackend: 'Kemas kini bahagian belakang OpenAmer untuk mencipta projek — bahagian belakang anda lebih lama daripada aplikasi desktop ini (Tetapan → Kemas kini → Bahagian belakang).',
-      deleteConfirm: 'Ini membuang projek tersimpan dari OpenAmer. Fail, repo git dan pokok kerja kekal tidak disentuh.',
+      staleBackend:
+        'Kemas kini bahagian belakang OpenAmer untuk mencipta projek — bahagian belakang anda lebih lama daripada aplikasi desktop ini (Tetapan → Kemas kini → Bahagian belakang).',
+      deleteConfirm:
+        'Ini membuang projek tersimpan dari OpenAmer. Fail, repo git dan pokok kerja kekal tidak disentuh.',
       startWork: 'Pokok kerja baharu',
       newWorktreeTitle: 'Pokok kerja baharu',
       newWorktreeDesc: 'Namakan cawangan untuk pokok kerja ini.',
@@ -1875,13 +1932,15 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       noBranches: 'Tiada cawangan ditemui',
       removeWorktree: 'Buang pokok kerja',
       removeWorktreeFailed: 'Tidak dapat membuang pokok kerja (perubahan tidak dikomit?)',
-      removeWorktreeConfirm: 'Buang dari git (memadam direktori pokok kerja; cawangan kekal), atau hanya sembunyikan lorong dari bar sisi dan biarkan pokok kerja pada cakera.',
-      removeWorktreeDirty: 'Pokok kerja ini mempunyai perubahan tidak dikomit. Buang secara paksa (membuang perubahan itu), atau hanya sembunyikan lorong dan kekalkannya pada cakera.',
+      removeWorktreeConfirm:
+        'Buang dari git (memadam direktori pokok kerja; cawangan kekal), atau hanya sembunyikan lorong dari bar sisi dan biarkan pokok kerja pada cakera.',
+      removeWorktreeDirty:
+        'Pokok kerja ini mempunyai perubahan tidak dikomit. Buang secara paksa (membuang perubahan itu), atau hanya sembunyikan lorong dan kekalkannya pada cakera.',
       forceRemove: 'Buang secara paksa',
       enter: label => `Buka ${label}`,
       reorder: label => `Susun semula ${label}`,
       toggle: label => `Togol sesi ${label}`,
-      back: 'Semua projek',
+      back: 'Semua projek'
     },
     newSessionIn: label => `Sesi baharu dalam ${label}`,
     showMoreIn: (count, label) => `Tunjukkan ${count} lagi dalam ${label}`,
@@ -1919,15 +1978,15 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       ageNow: 'sekarang',
       ageDay: 'h',
       ageHour: 'j',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Awal hari ini',
       yesterday: 'Semalam',
       thisWeek: 'Awal minggu ini',
       lastWeek: 'Minggu lepas',
-      thisMonth: 'Awal bulan ini',
-    },
+      thisMonth: 'Awal bulan ini'
+    }
   },
   composer: {
     message: 'Mesej',
@@ -1938,20 +1997,20 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     newSessionPlaceholders: [
       'Apa yang kita bina?',
       'Beri OpenAmer satu tugas',
-      "Apa dalam fikiran anda?",
+      'Apa dalam fikiran anda?',
       'Terangkan apa yang anda perlukan',
       'Apa yang patut kita tangani?',
       'Tanya apa sahaja',
-      'Mulakan dengan matlamat',
+      'Mulakan dengan matlamat'
     ],
     followUpPlaceholders: [
       'Hantar susulan',
       'Tambah lebih konteks',
       'Perhalusi permintaan',
-      "Apa seterusnya?",
+      'Apa seterusnya?',
       'Teruskan',
       'Dorong lebih jauh',
-      'Laras atau teruskan',
+      'Laras atau teruskan'
     ],
     startVoice: 'Mula perbualan suara',
     queueMessage: 'Bariskan mesej',
@@ -1987,7 +2046,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       '/resume': 'sambung sesi terdahulu',
       '/details': 'kawal tahap butiran transkrip',
       '/copy': 'salin pilihan atau mesej pembantu terakhir',
-      '/quit': 'keluar openamer',
+      '/quit': 'keluar openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'rujuk fail, folder, url, git',
@@ -1997,7 +2056,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       'composer.sendQueued': 'hantar giliran seterusnya dalam baris',
       'keybinds.openPanel': 'semua pintasan papan kekunci',
       'composer.cancel': 'tutup popover · batalkan jalankan',
-      'composer.history': 'kitar popover / sejarah',
+      'composer.history': 'kitar popover / sejarah'
     },
     attachUrlTitle: 'Lampirkan URL',
     attachUrlDesc: 'OpenAmer akan mengambil halaman itu dan memasukkannya sebagai konteks untuk giliran ini.',
@@ -2048,19 +2107,19 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       codeReview: {
         label: 'Semakan kod',
         description: 'Audit perubahan semasa untuk regresi, kes tepi yang tercicir dan ujian yang hilang.',
-        text: 'Sila semak ini untuk pepijat, regresi dan ujian yang hilang.',
+        text: 'Sila semak ini untuk pepijat, regresi dan ujian yang hilang.'
       },
       implementationPlan: {
         label: 'Pelan pelaksanaan',
         description: 'Gariskan pendekatan sebelum menyentuh kod supaya diff kekal fokus.',
-        text: 'Sila buat pelan pelaksanaan yang padat sebelum mengubah kod.',
+        text: 'Sila buat pelan pelaksanaan yang padat sebelum mengubah kod.'
       },
       explainThis: {
         label: 'Terangkan ini',
         description: 'Terangkan cara kod yang dipilih berfungsi dan pautkan ke fail utama.',
-        text: 'Sila terangkan cara ini berfungsi dan tunjukkan fail utama.',
-      },
-    },
+        text: 'Sila terangkan cara ini berfungsi dan tunjukkan fail utama.'
+      }
+    }
   },
   statusStack: {
     agents: 'Agen',
@@ -2108,13 +2167,14 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       openPr: 'Buka PR',
       ghMissing: 'Pasang GitHub CLI (gh) dan daftar masuk untuk membuka PR',
       agentShip: 'Minta OpenAmer membuka PR',
-      agentShipPrompt: 'Semak perubahan semasa, komit dengan mesej conventional-commit yang jelas, tolak cawangan dan buka pull request.',
+      agentShipPrompt:
+        'Semak perubahan semasa, komit dengan mesej conventional-commit yang jelas, tolak cawangan dan buka pull request.',
       newBranch: 'Cawangan baharu',
       branchOffFrom: base => `Cawangan baharu daripada ${base}`,
       switchTo: branch => `Tukar ke ${branch}`,
       switchFailed: branch => `Tidak dapat menukar ke ${branch}`,
-      worktrees: 'Pokok kerja',
-    },
+      worktrees: 'Pokok kerja'
+    }
   },
   updates: {
     stages: {
@@ -2129,7 +2189,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       done: 'Kemas kini selesai',
       manual: 'Kemas kini dari terminal anda',
       guiSkew: 'Kemas kini aplikasi desktop',
-      error: 'Kemas kini dijeda',
+      error: 'Kemas kini dijeda'
     },
     checking: 'Mencari kemas kini…',
     checkFailedTitle: 'Tidak dapat menyemak kemas kini',
@@ -2149,15 +2209,19 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     maybeLater: 'Mungkin nanti',
     moreChanges: count => `+ ${count} change${count === 1 ? '' : 's'} lagi disertakan.`,
     manualTitle: 'Kemas kini dari terminal anda',
-    manualBody: 'Anda memasang OpenAmer dari baris arahan, jadi kemas kini juga berjalan di sana. Tampal ini ke terminal anda:',
+    manualBody:
+      'Anda memasang OpenAmer dari baris arahan, jadi kemas kini juga berjalan di sana. Tampal ini ke terminal anda:',
     manualPickedUp: 'OpenAmer akan mengambil versi baharu pada pelancaran seterusnya.',
     guiSkewTitle: 'Kemas kini aplikasi desktop',
-    guiSkewBody: 'Bahagian belakang telah dikemas kini, tetapi pakej aplikasi desktop ini tidak berubah. Kemas kini atau pasang semula aplikasi desktop OpenAmer (AppImage / .deb / .rpm anda) untuk memadankan.',
+    guiSkewBody:
+      'Bahagian belakang telah dikemas kini, tetapi pakej aplikasi desktop ini tidak berubah. Kemas kini atau pasang semula aplikasi desktop OpenAmer (AppImage / .deb / .rpm anda) untuk memadankan.',
     copy: 'Salin',
     copied: 'Disalin',
     done: 'Selesai',
-    applyingBody: 'Pengemas kini OpenAmer mengambil alih dalam tetingkapnya sendiri dan membuka semula OpenAmer secara automatik apabila selesai. Jangan buka semula OpenAmer sendiri semasa ia mengemas kini.',
-    applyingBodyBackend: 'Bahagian belakang jauh sedang menggunakan kemas kini dan akan dimulakan semula. OpenAmer menyambung semula secara automatik apabila ia kembali.',
+    applyingBody:
+      'Pengemas kini OpenAmer mengambil alih dalam tetingkapnya sendiri dan membuka semula OpenAmer secara automatik apabila selesai. Jangan buka semula OpenAmer sendiri semasa ia mengemas kini.',
+    applyingBodyBackend:
+      'Bahagian belakang jauh sedang menggunakan kemas kini dan akan dimulakan semula. OpenAmer menyambung semula secara automatik apabila ia kembali.',
     applyingClose: 'Tetingkap ini akan ditutup semasa kemas kini berjalan, kemudian OpenAmer terbuka sendiri.',
     errorTitle: 'Kemas kini tidak selesai',
     errorBody: 'Jangan risau — tiada apa hilang. Anda boleh cuba lagi sekarang.',
@@ -2168,12 +2232,14 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       restarting: 'Bahagian belakang dimulakan semula untuk memuatkan kemas kini…',
       notAvailable: 'Kemas kini tidak tersedia untuk bahagian belakang ini.',
       failed: 'Kemas kini bahagian belakang gagal.',
-      noReturn: 'Bahagian belakang tidak kembali dalam talian. Kemas kini mungkin tidak selesai — semak hos bahagian belakang.',
+      noReturn:
+        'Bahagian belakang tidak kembali dalam talian. Kemas kini mungkin tidak selesai — semak hos bahagian belakang.'
     },
     appErrors: {
-      updateLocked: 'Kemas kini dibatalkan: tetingkap OpenAmer lain atau terminal yang menjalankan openamer memegang pemasangan ini. Tutupnya dan cuba lagi.',
-      updateFailed: 'Kemas kini tidak selesai. Jangan risau — tiada apa hilang. Anda boleh cuba lagi sekarang.',
-    },
+      updateLocked:
+        'Kemas kini dibatalkan: tetingkap OpenAmer lain atau terminal yang menjalankan openamer memegang pemasangan ini. Tutupnya dan cuba lagi.',
+      updateFailed: 'Kemas kini tidak selesai. Jangan risau — tiada apa hilang. Anda boleh cuba lagi sekarang.'
+    }
   },
   install: {
     stageStates: {
@@ -2181,25 +2247,30 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       running: 'Memasang',
       succeeded: 'Selesai',
       skipped: 'Dilangkau',
-      failed: 'Gagal',
+      failed: 'Gagal'
     },
     oneTimeTitle: 'OpenAmer memerlukan pemasangan sekali',
-    unsupportedDesc: platform => `Pemasangan automatik pada pelancaran pertama belum tersedia pada ${platform}. Buka Terminal dan jalankan arahan di bawah, kemudian lancarkan semula aplikasi ini. Pelancaran seterusnya akan melangkau langkah ini.`,
+    unsupportedDesc: platform =>
+      `Pemasangan automatik pada pelancaran pertama belum tersedia pada ${platform}. Buka Terminal dan jalankan arahan di bawah, kemudian lancarkan semula aplikasi ini. Pelancaran seterusnya akan melangkau langkah ini.`,
     installCommand: 'Arahan pemasangan',
     copyCommand: 'Salin arahan',
     viewDocs: 'Lihat dokumen pemasangan',
     installTo: 'Akan memasang ke',
     retryAfterRun: 'Saya sudah menjalankannya -- cuba lagi',
     setupChoiceTitle: 'Sediakan OpenAmer Desktop',
-    setupChoiceDesc: 'Sambungkan aplikasi ini ke get laluan OpenAmer yang anda sudah jalankan, atau pasang OpenAmer secara setempat pada komputer ini.',
+    setupChoiceDesc:
+      'Sambungkan aplikasi ini ke get laluan OpenAmer yang anda sudah jalankan, atau pasang OpenAmer secara setempat pada komputer ini.',
     connectExistingTitle: 'Sambung ke OpenAmer sedia ada',
     connectExistingShort: 'Sambung yang sedia ada',
-    connectExistingDesc: 'Gunakan bahagian belakang jauh dengan token sesi atau daftar masuk pelayar. Tiada pemasangan setempat akan bermula.',
+    connectExistingDesc:
+      'Gunakan bahagian belakang jauh dengan token sesi atau daftar masuk pelayar. Tiada pemasangan setempat akan bermula.',
     installLocalTitle: 'Pasang OpenAmer secara setempat',
-    installLocalDesc: 'Muat turun OpenAmer, cipta persekitaran Pythonnya dan jalankan bahagian belakang pada komputer ini.',
+    installLocalDesc:
+      'Muat turun OpenAmer, cipta persekitaran Pythonnya dan jalankan bahagian belakang pada komputer ini.',
     localStartUnavailable: 'Pemasangan setempat tidak dapat dimulakan. Mulakan semula OpenAmer Desktop dan cuba lagi.',
     remoteSetupTitle: 'Sambung ke OpenAmer sedia ada',
-    remoteSetupDesc: 'Masukkan URL get laluan anda. OpenAmer Desktop akan mengesan sama ada ia memerlukan token atau daftar masuk pelayar.',
+    remoteSetupDesc:
+      'Masukkan URL get laluan anda. OpenAmer Desktop akan mengesan sama ada ia memerlukan token atau daftar masuk pelayar.',
     remoteUrlTitle: 'URL get laluan',
     remoteUrlDesc: 'Gunakan URL asas get laluan OpenAmer, termasuk https:// apabila jauh.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2226,8 +2297,10 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     failedTitle: 'Pemasangan gagal',
     settingUpTitle: 'Menyediakan OpenAmer Agent',
     finishingTitle: 'Menyelesaikan',
-    failedDesc: 'Satu langkah pemasangan gagal. Pada Windows, ini boleh berlaku jika instans OpenAmer CLI atau desktop lain sedang berjalan. Hentikan mana-mana instans OpenAmer yang berjalan, kemudian cuba lagi. Semak butiran di bawah atau log desktop untuk transkrip penuh.',
-    activeDesc: 'Ini persediaan sekali sahaja. Pemasang OpenAmer sedang memuat turun kebergantungan dan mengkonfigurasi mesin anda. Pelancaran seterusnya akan melangkau langkah ini.',
+    failedDesc:
+      'Satu langkah pemasangan gagal. Pada Windows, ini boleh berlaku jika instans OpenAmer CLI atau desktop lain sedang berjalan. Hentikan mana-mana instans OpenAmer yang berjalan, kemudian cuba lagi. Semak butiran di bawah atau log desktop untuk transkrip penuh.',
+    activeDesc:
+      'Ini persediaan sekali sahaja. Pemasang OpenAmer sedang memuat turun kebergantungan dan mengkonfigurasi mesin anda. Pelancaran seterusnya akan melangkau langkah ini.',
     progress: (completed, total) => `${completed} daripada ${total} langkah selesai`,
     currentStage: stage => ` -- kini: ${stage}`,
     fetchingManifest: 'Mengambil manifes pemasang...',
@@ -2241,18 +2314,19 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     transcriptSaved: 'Transkrip penuh disimpan ke',
     copiedOutput: 'Disalin!',
     copyOutput: 'Salin output',
-    reloadRetry: 'Muat semula dan cuba lagi',
+    reloadRetry: 'Muat semula dan cuba lagi'
   },
   onboarding: {
-    headerTitle: "Mari kita sediakan anda dengan OpenAmer Agent",
+    headerTitle: 'Mari kita sediakan anda dengan OpenAmer Agent',
     headerDesc: 'Sambungkan penyedia model untuk mula bersembang. Kebanyakan pilihan hanya perlu satu klik.',
-    preparingInstall: 'OpenAmer sedang menyelesaikan pemasangan. Ini biasanya mengambil masa kurang seminit pada jalankan pertama.',
+    preparingInstall:
+      'OpenAmer sedang menyelesaikan pemasangan. Ini biasanya mengambil masa kurang seminit pada jalankan pertama.',
     starting: 'Memulakan OpenAmer…',
     lookingUpProviders: 'Mencari penyedia...',
     collapse: 'Runtuhkan',
     otherProviders: 'Penyedia lain',
     haveApiKey: 'Saya ada kunci API',
-    chooseLater: "Saya akan pilih penyedia kemudian",
+    chooseLater: 'Saya akan pilih penyedia kemudian',
     recommended: 'Disyorkan',
     connected: 'Bersambung',
     featuredPitch: 'Satu langganan, 300+ model termaju — cara disyorkan untuk menjalankan OpenAmer',
@@ -2261,28 +2335,29 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     apiKeyOptions: {
       fireworks: {
         short: 'api model terus',
-        description: 'Akses terus ke model yang dihoskan oleh Fireworks AI.',
+        description: 'Akses terus ke model yang dihoskan oleh Fireworks AI.'
       },
       openrouter: {
         short: 'satu kunci, banyak model',
-        description: 'Menghoskan ratusan model di belakang satu kunci. Lalai yang baik untuk pemasangan baharu.',
+        description: 'Menghoskan ratusan model di belakang satu kunci. Lalai yang baik untuk pemasangan baharu.'
       },
       openai: {
         short: 'model kelas GPT',
-        description: 'Akses terus ke model OpenAI.',
+        description: 'Akses terus ke model OpenAI.'
       },
       gemini: {
         short: 'model Gemini',
-        description: 'Akses terus ke model Google Gemini.',
+        description: 'Akses terus ke model Google Gemini.'
       },
       xai: {
         short: 'model Grok',
-        description: 'Akses terus ke model xAI Grok.',
+        description: 'Akses terus ke model xAI Grok.'
       },
       local: {
         short: 'dihos sendiri',
-        description: 'Halakan OpenAmer ke titik akhir serasi OpenAI setempat atau dihos sendiri (vLLM, llama.cpp, Ollama, dll).',
-      },
+        description:
+          'Halakan OpenAmer ke titik akhir serasi OpenAI setempat atau dihos sendiri (vLLM, llama.cpp, Ollama, dll).'
+      }
     },
     backToSignIn: 'Kembali ke daftar masuk',
     getKey: 'Dapatkan kunci',
@@ -2295,7 +2370,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     flowSubtitles: {
       pkce: 'Membuka pelayar anda untuk daftar masuk, kemudian meneruskan di sini',
       device_code: 'Membuka halaman pengesahan dalam pelayar anda — OpenAmer menyambung secara automatik',
-      external: 'Daftar masuk sekali dalam terminal anda, kemudian kembali ke sembang',
+      external: 'Daftar masuk sekali dalam terminal anda, kemudian kembali ke sembang'
     },
     startingSignIn: provider => `Memulakan daftar masuk untuk ${provider}...`,
     verifyingCode: provider => `Mengesahkan kod anda dengan ${provider}...`,
@@ -2309,11 +2384,13 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     copyAuthCode: 'Salin kod kebenaran dan tampal di bawah.',
     pasteAuthCode: 'Tampal kod kebenaran',
     reopenAuthPage: 'Buka semula halaman kebenaran',
-    autoBrowser: provider => `Kami membuka ${provider} dalam pelayar anda. Benarkan OpenAmer di sana dan anda akan bersambung secara automatik — tiada apa untuk disalin atau ditampal.`,
+    autoBrowser: provider =>
+      `Kami membuka ${provider} dalam pelayar anda. Benarkan OpenAmer di sana dan anda akan bersambung secara automatik — tiada apa untuk disalin atau ditampal.`,
     reopenSignInPage: 'Buka semula halaman daftar masuk',
     waitingAuthorize: 'Menunggu anda membenarkan...',
-    externalPending: provider => `${provider} mendaftar masuk melalui CLI sendiri. Jalankan arahan ini dalam terminal, kemudian kembali dan pilih "Saya telah daftar masuk":`,
-    signedIn: "Saya telah daftar masuk",
+    externalPending: provider =>
+      `${provider} mendaftar masuk melalui CLI sendiri. Jalankan arahan ini dalam terminal, kemudian kembali dan pilih "Saya telah daftar masuk":`,
+    signedIn: 'Saya telah daftar masuk',
     deviceCodeOpened: provider => `Kami membuka ${provider} dalam pelayar anda. Masukkan kod ini di sana:`,
     reopenVerification: 'Buka semula halaman pengesahan',
     copy: 'Salin',
@@ -2324,7 +2401,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
     change: 'Tukar',
     startChatting: 'Mula',
-    docs: provider => `dokumen ${provider}`,
+    docs: provider => `dokumen ${provider}`
   },
   modelPicker: {
     title: 'Tukar model',
@@ -2340,13 +2417,13 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     free: 'Percuma',
     freeTier: 'Peringkat percuma',
     priceTitle: 'Harga input / output per juta token',
-    wasPrice: 'sebelum ini',
+    wasPrice: 'sebelum ini'
   },
   modelVisibility: {
     title: 'Model',
     search: 'Cari model',
     noAuthenticatedProviders: 'Tiada penyedia disahkan.',
-    addProvider: 'Tambah penyedia…',
+    addProvider: 'Tambah penyedia…'
   },
   shell: {
     windowControls: 'Kawalan tetingkap',
@@ -2357,7 +2434,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       noModels: 'Tiada model ditemui',
       editModels: 'Edit Model…',
       refreshModels: 'Muat semula Model',
-      fast: 'Pantas',
+      fast: 'Pantas'
     },
     modelOptions: {
       noOptions: 'Tiada pilihan untuk model ini',
@@ -2373,7 +2450,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       max: 'Maks',
       ultra: 'Ultra',
       updateFailed: 'Kemas kini pilihan model gagal',
-      fastFailed: 'Kemas kini mod pantas gagal',
+      fastFailed: 'Kemas kini mod pantas gagal'
     },
     gatewayMenu: {
       gateway: 'Get laluan',
@@ -2388,7 +2465,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       connection: label => `Sambungan: ${label}`,
       recentActivity: 'Aktiviti terkini',
       viewAllLogs: 'Lihat semua log →',
-      messagingPlatforms: 'Platform pemesejan',
+      messagingPlatforms: 'Platform pemesejan'
     },
     approvalMode: {
       title: 'Mod kelulusan',
@@ -2398,7 +2475,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       smart: 'Pintar',
       smartDescription: 'Menilai tindakan secara automatik dan bertanya apabila perlu',
       off: 'Mati',
-      offDescription: 'Jalankan tanpa gesaan kelulusan',
+      offDescription: 'Jalankan tanpa gesaan kelulusan'
     },
     statusbar: {
       unknown: 'tidak diketahui',
@@ -2454,27 +2531,29 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
           skills: 'Kemahiran',
           subagent_definitions: 'Definisi subagen',
           system_prompt: 'Prompt sistem',
-          tool_definitions: 'Definisi alat',
+          tool_definitions: 'Definisi alat'
         },
         empty: 'Tiada data konteks lagi',
         loading: 'Memuatkan pecahan…',
         percentFull: percent => `${percent}% Penuh`,
         title: 'Penggunaan Konteks',
-        tokenSummary: (used, max) => `${used} / ${max} Token`,
+        tokenSummary: (used, max) => `${used} / ${max} Token`
       },
       openContextUsage: 'Buka pecahan penggunaan konteks',
       session: 'Sesi',
       runtimeSessionElapsed: 'Masa berlalu sesi masa jalan',
-      yoloOn: 'YOLO hidup — meluluskan arahan berbahaya secara automatik. Klik untuk mematikan. Shift+klik menogolnya secara global.',
-      yoloOff: 'YOLO mati — klik untuk meluluskan arahan berbahaya secara automatik. Shift+klik menogolnya secara global.',
+      yoloOn:
+        'YOLO hidup — meluluskan arahan berbahaya secara automatik. Klik untuk mematikan. Shift+klik menogolnya secara global.',
+      yoloOff:
+        'YOLO mati — klik untuk meluluskan arahan berbahaya secara automatik. Shift+klik menogolnya secara global.',
       modelNone: 'tiada',
       noModel: 'tiada model',
       switchModel: 'Tukar model',
       openModelPicker: 'Buka pemilih model',
       modelPinned: 'dipin oleh anda; sembang baharu menggunakan ini dan bukan lalai Tetapan',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Bar sisi kanan',
@@ -2510,7 +2589,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     terminalNew: 'Terminal baharu',
     terminalCloseOthers: 'Tutup yang lain',
     terminalCloseAll: 'Tutup semua',
-    addToChat: 'Tambah ke sembang',
+    addToChat: 'Tambah ke sembang'
   },
   preview: {
     tab: 'Pratonton',
@@ -2544,7 +2623,8 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     unsavedChanges: 'Perubahan tidak disimpan',
     saveFailed: message => `Tidak dapat menyimpan: ${message}`,
     diskChangedTitle: 'Fail berubah pada cakera',
-    diskChangedBody: 'Fail ini berubah sejak anda membukanya. Tulis ganti dengan versi anda, atau buang suntingan anda dan muat semula?',
+    diskChangedBody:
+      'Fail ini berubah sejak anda membukanya. Tulis ganti dengan versi anda, atau buang suntingan anda dan muat semula?',
     overwrite: 'Tulis ganti',
     discardReload: 'Buang & muat semula',
     console: {
@@ -2565,7 +2645,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       empty: 'Tiada mesej konsol lagi.',
       promptHeader: 'Konsol pratonton:',
       sentTitle: 'Dihantar ke sembang',
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Aplikasi pratonton gagal dimulakan',
@@ -2583,24 +2663,27 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       showConsole: 'Tunjukkan konsol pratonton',
       hideDevTools: 'Sembunyikan DevTools pratonton',
       openDevTools: 'Buka DevTools pratonton',
-      finishedRestarting: message => `OpenAmer selesai memulakan semula pelayan pratonton${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer selesai memulakan semula pelayan pratonton${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Mula semula pelayan gagal: ${message}`,
       unknownError: 'ralat tidak diketahui',
       restartedTitle: 'Pelayan pratonton dimulakan semula',
       reloadingNow: 'Memuat semula pratonton sekarang.',
       restartFailedTitle: 'Mula semula pratonton gagal',
       restartFailedMessage: 'OpenAmer tidak dapat memulakan semula pelayan.',
-      stillWorking: 'OpenAmer masih bekerja, tetapi tiada hasil mula semula diterima lagi. Arahan pelayan mungkin berjalan di latar depan.',
+      stillWorking:
+        'OpenAmer masih bekerja, tetapi tiada hasil mula semula diterima lagi. Arahan pelayan mungkin berjalan di latar depan.',
       workspaceReloading: 'Ruang kerja berubah, memuat semula pratonton',
       fileChanged: url => `Fail berubah, memuat semula pratonton: ${url}`,
       filesChanged: (count, url) => `${count} perubahan fail, memuat semula pratonton: ${url}`,
       watchFailed: message => `Tidak dapat memantau fail pratonton: ${message}`,
-      moduleMimeDescription: 'Skrip modul dihidangkan dengan jenis MIME yang salah. Ini biasanya bermakna pelayan fail statik menghidangkan aplikasi Vite/React dan bukan pelayan pembangunan projek.',
+      moduleMimeDescription:
+        'Skrip modul dihidangkan dengan jenis MIME yang salah. Ini biasanya bermakna pelayan fail statik menghidangkan aplikasi Vite/React dan bukan pelayan pembangunan projek.',
       loadFailedConsole: (code, message) => `Muat gagal${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Halaman pratonton tidak dapat dicapai.',
       openTarget: url => `Buka ${url}`,
-      fallbackTitle: 'Pratonton',
-    },
+      fallbackTitle: 'Pratonton'
+    }
   },
   zones: {
     showHeader: 'Tunjukkan kepala',
@@ -2608,7 +2691,8 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     minimize: 'Minimumkan',
     restore: 'Pulihkan',
     closeRunningTitle: 'Tutup tab yang berjalan?',
-    closeRunningBody: 'Sembang ini masih bekerja (atau menunggu input anda). Menutup tab menyembunyikannya — sesi menyimpan kemajuannya dan boleh dibuka semula dari bar sisi.',
+    closeRunningBody:
+      'Sembang ini masih bekerja (atau menunggu input anda). Menutup tab menyembunyikannya — sesi menyimpan kemajuannya dan boleh dibuka semula dari bar sisi.',
     closeRunningConfirm: 'Tutup tab',
     closeOthers: 'Tutup yang lain',
     closeToRight: 'Tutup ke kanan',
@@ -2645,14 +2729,15 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     layoutNamePlaceholder: fallback => `Nama susun atur (${fallback})`,
     saveApply: 'Simpan & guna',
     notExpressible: 'susunan ini saling mengunci (roda) — belum boleh diungkapkan sebagai pecahan bersarang',
-    zoneCount: count => `${count} zon`,
+    zoneCount: count => `${count} zon`
   },
   assistant: {
     thread: {
       loadingSession: 'Memuatkan sesi',
       showEarlier: 'Tunjukkan mesej terdahulu',
       loadingResponse: 'OpenAmer memuatkan balasan',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Berfikir',
@@ -2680,7 +2765,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       restoreNext: 'Pulihkan pusat pemeriksaan seterusnya',
       goForward: 'Pergi ke hadapan',
       sendEdited: 'Hantar mesej yang diedit',
-      attachingFile: 'Melampirkan…',
+      attachingFile: 'Melampirkan…'
     },
     approval: {
       gatewayDisconnected: 'Get laluan OpenAmer tidak bersambung',
@@ -2693,8 +2778,9 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       jumpToApproval: 'Kelulusan diperlukan',
       reject: 'Tolak',
       alwaysTitle: 'Sentiasa benarkan arahan ini?',
-      alwaysDescription: pattern => `Ini menambah corak “${pattern}” ke senarai kebenaran kekal anda (~/.openamer/config.yaml). OpenAmer tidak akan bertanya lagi untuk arahan seperti ini — dalam sesi ini atau mana-mana yang akan datang.`,
-      alwaysAllow: 'Sentiasa benarkan',
+      alwaysDescription: pattern =>
+        `Ini menambah corak “${pattern}” ke senarai kebenaran kekal anda (~/.openamer/config.yaml). OpenAmer tidak akan bertanya lagi untuk arahan seperti ini — dalam sesi ini atau mana-mana yang akan datang.`,
+      alwaysAllow: 'Sentiasa benarkan'
     },
     clarify: {
       notReady: 'Permintaan penjelasan belum sedia',
@@ -2708,7 +2794,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       continueLabel: 'Teruskan',
       lateAnswer: (question, choice) => `Re: "${question}" — jawapan saya: ${choice}`,
       lateAnswerTip: 'Draf jawapan ini sebagai mesej susulan',
-      lateAnswerHint: 'Prompt ini tidak lagi menunggu. Pilih pilihan untuk mendrafnya sebagai mesej susulan.',
+      lateAnswerHint: 'Prompt ini tidak lagi menunggu. Pilih pilihan untuk mendrafnya sebagai mesej susulan.'
     },
     tool: {
       code: 'Kod',
@@ -2744,11 +2830,11 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
         ran: 'Dijalankan',
         running: 'Berjalan',
         ranCode: 'Menjalankan kod',
-        runningCode: 'Membuat skrip',
+        runningCode: 'Membuat skrip'
       },
       prefixes: {
         browser: 'Pelayar',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2756,132 +2842,133 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Menjalankan ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Menjalankan ${action.toLowerCase()}`,
+        runningTool: action => `Menjalankan ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Mengklik elemen halaman',
           pending: 'Mengklik elemen halaman',
-          pendingAction: 'Mengklik',
+          pendingAction: 'Mengklik'
         },
         browser_fill: {
           done: 'Mengisi medan borang',
           pending: 'Mengisi medan borang',
-          pendingAction: 'Mengisi',
+          pendingAction: 'Mengisi'
         },
         browser_navigate: {
           done: 'Membuka halaman',
           pending: 'Membuka halaman',
-          pendingAction: 'Membuka',
+          pendingAction: 'Membuka'
         },
         browser_snapshot: {
           done: 'Mengambil snapshot halaman',
           pending: 'Mengambil snapshot halaman',
-          pendingAction: 'Mengambil',
+          pendingAction: 'Mengambil'
         },
         browser_take_screenshot: {
           done: 'Mengambil tangkapan skrin',
           pending: 'Mengambil tangkapan skrin',
-          pendingAction: 'Mengambil',
+          pendingAction: 'Mengambil'
         },
         browser_type: {
           done: 'Menaip pada halaman',
           pending: 'Menaip pada halaman',
-          pendingAction: 'Menaip',
+          pendingAction: 'Menaip'
         },
         clarify: {
           done: 'Bertanya soalan',
           pending: 'Bertanya soalan',
-          pendingAction: 'Bertanya',
+          pendingAction: 'Bertanya'
         },
         cronjob: {
           done: 'Tugas cron',
           pending: 'Menjadualkan tugas cron',
-          pendingAction: 'Menjadualkan',
+          pendingAction: 'Menjadualkan'
         },
         edit_file: {
           done: 'Mengedit fail',
           pending: 'Mengedit fail',
-          pendingAction: 'Mengedit',
+          pendingAction: 'Mengedit'
         },
         execute_code: {
           done: 'Menjalankan kod',
           pending: 'Membuat skrip',
-          pendingAction: 'Membuat skrip',
+          pendingAction: 'Membuat skrip'
         },
         image_generate: {
           done: 'Menjana imej',
           pending: 'Menjana imej',
-          pendingAction: 'Menjana',
+          pendingAction: 'Menjana'
         },
         list_files: {
           done: 'Menyenaraikan fail',
           pending: 'Menyenaraikan fail',
-          pendingAction: 'Menyenaraikan',
+          pendingAction: 'Menyenaraikan'
         },
         patch: {
           done: 'Menampal fail',
           pending: 'Menampal fail',
-          pendingAction: 'Menampal',
+          pendingAction: 'Menampal'
         },
         read_file: {
           done: 'Membaca fail',
           pending: 'Membaca fail',
-          pendingAction: 'Membaca',
+          pendingAction: 'Membaca'
         },
         search_files: {
           done: 'Mencari fail',
           pending: 'Mencari fail',
-          pendingAction: 'Mencari',
+          pendingAction: 'Mencari'
         },
         session_search_recall: {
           done: 'Mencari sejarah sesi',
           pending: 'Mencari sejarah sesi',
-          pendingAction: 'Mencari',
+          pendingAction: 'Mencari'
         },
         terminal: {
           done: 'Menjalankan arahan',
           pending: 'Menjalankan arahan',
-          pendingAction: 'Menjalankan',
+          pendingAction: 'Menjalankan'
         },
         todo: {
           done: 'Mengemas kini tugasan',
           pending: 'Mengemas kini tugasan',
-          pendingAction: 'Mengemas kini',
+          pendingAction: 'Mengemas kini'
         },
         vision_analyze: {
           done: 'Menganalisis imej',
           pending: 'Menganalisis imej',
-          pendingAction: 'Menganalisis',
+          pendingAction: 'Menganalisis'
         },
         web_extract: {
           done: 'Membaca halaman web',
           pending: 'Membaca halaman web',
-          pendingAction: 'Membaca',
+          pendingAction: 'Membaca'
         },
         web_search: {
           done: 'Mencari di web',
           pending: 'Mencari di web',
-          pendingAction: 'Mencari',
+          pendingAction: 'Mencari'
         },
         write_file: {
           done: 'Mengedit fail',
           pending: 'Mengedit fail',
-          pendingAction: 'Mengedit',
-        },
-      },
-    },
+          pendingAction: 'Mengedit'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'Get laluan OpenAmer tidak bersambung',
     sudoSendFailed: 'Tidak dapat menghantar kata laluan sudo',
     secretSendFailed: 'Tidak dapat menghantar rahsia',
     sudoTitle: 'Kata laluan pentadbir',
-    sudoDesc: 'OpenAmer memerlukan kata laluan sudo anda untuk menjalankan arahan istimewa. Ia hanya dihantar kepada agen setempat anda.',
+    sudoDesc:
+      'OpenAmer memerlukan kata laluan sudo anda untuk menjalankan arahan istimewa. Ia hanya dihantar kepada agen setempat anda.',
     sudoPlaceholder: 'kata laluan sudo',
     secretTitle: 'Rahsia diperlukan',
     secretDesc: 'OpenAmer memerlukan kelayakan untuk meneruskan.',
-    secretPlaceholder: 'nilai rahsia',
+    secretPlaceholder: 'nilai rahsia'
   },
   desktop: {
     audioReadFailed: 'Tidak dapat membaca audio yang dirakam',
@@ -2898,7 +2985,8 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} untuk sesi ini`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Tidak dapat menogol YOLO',
-    profileStatus: current => `Profil: ${current}. Gunakan /profile <name> atau pemilih "Sesi baharu" untuk memulakan sembang dalam profil lain.`,
+    profileStatus: current =>
+      `Profil: ${current}. Gunakan /profile <name> atau pemilih "Sesi baharu" untuk memulakan sembang dalam profil lain.`,
     unknownProfile: 'Profil tidak diketahui',
     noProfileNamed: (target, available) => `Tiada profil bernama "${target}". Tersedia: ${available}`,
     newChatsProfile: name => `Sembang baharu akan menggunakan profil ${name}.`,
@@ -2908,8 +2996,9 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     regenerateFailed: 'Jana semula gagal',
     editFailed: 'Edit gagal',
     resumeFailed: 'Sambung gagal',
-    resumeStrandedTitle: "Tidak dapat memuatkan sesi ini",
-    resumeStrandedBody: 'Sambungan ke sesi ini gagal dan cubaan semula automatik telah berhenti. Semak bahawa get laluan berjalan, kemudian cuba lagi.',
+    resumeStrandedTitle: 'Tidak dapat memuatkan sesi ini',
+    resumeStrandedBody:
+      'Sambungan ke sesi ini gagal dan cubaan semula automatik telah berhenti. Semak bahawa get laluan berjalan, kemudian cuba lagi.',
     resumeRetry: 'Cuba lagi',
     nothingToBranch: 'Tiada apa untuk dicawangkan',
     branchNeedsChat: 'Mulakan atau sambung sembang sebelum mencawangkan.',
@@ -2949,31 +3038,31 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
       success: platform => `Diserahkan kepada ${platform}. Sambung di sini bila-bila masa.`,
       systemNote: platform => `↻ Diserahkan kepada ${platform} — sambung di sini bila-bila masa.`,
       failed: error => `Serahan gagal: ${error}`,
-      timedOut: 'Tamat masa menunggu get laluan. Adakah `openamer gateway` berjalan?',
-    },
+      timedOut: 'Tamat masa menunggu get laluan. Adakah `openamer gateway` berjalan?'
+    }
   },
   errors: {
     genericFailure: 'Ada sesuatu yang tidak kena',
     boundaryTitle: 'Ada sesuatu yang rosak dalam antara muka',
     boundaryDesc: 'Paparan menghadapi ralat tidak dijangka. Sembang dan tetapan anda selamat.',
     reloadWindow: 'Muat semula tetingkap',
-    openLogs: 'Buka log',
+    openLogs: 'Buka log'
   },
   ui: {
     search: {
-      clear: 'Kosongkan carian',
+      clear: 'Kosongkan carian'
     },
     pagination: {
       label: 'penomboran',
       previous: 'Sebelum',
       previousAria: 'Pergi ke halaman sebelumnya',
       next: 'Seterusnya',
-      nextAria: 'Pergi ke halaman seterusnya',
+      nextAria: 'Pergi ke halaman seterusnya'
     },
     sidebar: {
       title: 'Bar sisi',
       description: 'Memaparkan bar sisi mudah alih.',
-      toggle: 'Togol Bar sisi',
-    },
-  },
+      toggle: 'Togol Bar sisi'
+    }
+  }
 })

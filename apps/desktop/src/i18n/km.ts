@@ -45,7 +45,7 @@ export const km = defineLocale({
     update: 'ធ្វើបច្ចុប្បវើកិច្ច',
     on: 'បើក',
     off: 'បិទ',
-    tryHint: term => `Try “${term}”`,
+    tryHint: term => `Try “${term}”`
   },
   fileMenu: {
     revealFinder: 'បង្ហាញក្នុង Finder',
@@ -60,7 +60,7 @@ export const km = defineLocale({
     renameLabel: 'ឈ្មោះថ្មី',
     deleteBody: 'វានឹងត្រូវបានផ្លាស់ទីទៅប្រព័ន្ធចូលដ្ឋាន — អ្នកអាចស្តារវាពីទីនោះ។',
     pathCopied: 'ផ្លូវត្រូវបានចម្លង',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop រួចរាល់',
@@ -69,7 +69,7 @@ export const km = defineLocale({
       loadingSettings: 'កំពុងផ្ទុកការកំណត់ OpenAmer',
       loadingSessions: 'កំពុងផ្ទុកវគ្គសម្ភាពីថ្ងៃមុន',
       startingDesktopConnection: 'កំពុងចាប់ផ្ដើមការតាមដាប់ដែលផ្ទាល់',
-      startingOpenAmerDesktop: 'កំពុងចាប់ផ្ដើម OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'កំពុងចាប់ផ្ដើម OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'ដំណើរការផ្ទៃក្រោយ OpenAmer បានបញ្ចប់។',
@@ -78,13 +78,15 @@ export const km = defineLocale({
       desktopBootFailed: 'ការចាប់ផ្ដើមដែលផ្ទាល់បានបរាជ័យ',
       gatewayConnectionLost: 'បាត់ការតភ្ជាប់ទៅផ្នាក់',
       gatewaySignInRequired: 'ត្រូវចូលក្នុងផ្នាក់',
-      ipcBridgeUnavailable: 'ស្ពាន IPC សម្រាប់កុំព្យាបាលមិនអាចប្រើបាន។',
+      ipcBridgeUnavailable: 'ស្ពាន IPC សម្រាប់កុំព្យាបាលមិនអាចប្រើបាន។'
     },
     failure: {
       title: 'OpenAmer មិនអាចចាប់ផ្តើមបាន',
-      description: 'ផ្នាក់ផ្ទៃក្រោយមិនបានដំឡើងឡើង។ សូមសាកល្បងវិធីស្តារសង្គ្រោះណាមួយខាងក្រោម។ ការនេះមិនលុបដំឡើងការជជែកឬការកំណត់របស់អ្នកទេ។',
+      description:
+        'ផ្នាក់ផ្ទៃក្រោយមិនបានដំឡើងឡើង។ សូមសាកល្បងវិធីស្តារសង្គ្រោះណាមួយខាងក្រោម។ ការនេះមិនលុបដំឡើងការជជែកឬការកំណត់របស់អ្នកទេ។',
       remoteTitle: 'ត្រូវចូលក្នុងផ្នាក់ចម្ងាយ',
-      remoteDescription: 'សម័យផ្នាក់ចម្ងាយរបស់អ្នកបានផុតកំណត់។ សូមចូលម្តងទៀតដើម្បីតភ្ជាប់ឡើងវិញ។ ការនេះមិនលុបដំឡើងការជជែកឬការកំណត់របស់អ្នកទេ។',
+      remoteDescription:
+        'សម័យផ្នាក់ចម្ងាយរបស់អ្នកបានផុតកំណត់។ សូមចូលម្តងទៀតដើម្បីតភ្ជាប់ឡើងវិញ។ ការនេះមិនលុបដំឡើងការជជែកឬការកំណត់របស់អ្នកទេ។',
       retry: 'សាកល្បងម្តងទៀត',
       repairInstall: 'កែល្បងការដំឡើង',
       useLocalGateway: 'ប្រើផ្នាក់ក្នុងមូលដ្ឋាន',
@@ -103,10 +105,11 @@ export const km = defineLocale({
       signInFailed: 'ការចូលបានមិនសម្រេច',
       signInToRemoteGateway: 'ចូលទៅផ្ទ្រកម្មវេសាយាមាន',
       identityProvider: 'អ្នកផ្តល់អត្តសញ្ញាណរបស់អ្នក',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   notifications: {
     region: 'ការជូនដំណឹង',
@@ -118,7 +121,8 @@ export const km = defineLocale({
     copyDetail: 'ចម្លងព័ត៌មានលម្អិត',
     copyDetailFailed: 'មិនអាចចម្លងព័ត៌មានលម្អិតនៃការជូនដំណឹងបានទេ',
     backendOutOfDateTitle: 'ប្រព័ន្ធក្រោយការបានបុព្វថ្ងៃ',
-    backendOutOfDateMessage: 'ប្រព័ន្ធក្រោយការ OpenAmer របស់អ្នកមានអាយុចាស់ជាងកម្មវិធីកុំព្រោះបានបង្កើតនៅលើកុំព្រោះ ហើយអាចមិនដំណើរការត្រឹមត្រូវ។ សូមធ្វើបច្ចុប្បន្នភាពដើម្បីឱ្យពាក្យគ្នាគ្នា។',
+    backendOutOfDateMessage:
+      'ប្រព័ន្ធក្រោយការ OpenAmer របស់អ្នកមានអាយុចាស់ជាងកម្មវិធីកុំព្រោះបានបង្កើតនៅលើកុំព្រោះ ហើយអាចមិនដំណើរការត្រឹមត្រូវ។ សូមធ្វើបច្ចុប្បន្នភាពដើម្បីឱ្យពាក្យគ្នាគ្នា។',
     installMethodUnsupportedTitle: 'វិធីដំឡើងមិនត្រូវបានគាំទ្រ',
     updateOpenAmer: 'ធ្វើបច្ចុប្បន្នភាព OpenAmer',
     updateReadyTitle: 'បច្ចុប្បន្នភាពរួចរាល់',
@@ -127,11 +131,12 @@ export const km = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT ត្រូវការ ELEVENLABS_API_KEY។',
       elevenLabsRejectedKey: 'ElevenLabs បានបដិសេធគន្លោះ API (401)។',
       gatewayAuthFailed: 'ការផ្ទៀងផ្ទាត់ Gateway បានបរាជ័យ — ពិនិត្យ `API_SERVER_KEY`។',
-      methodNotAllowed: 'មជ្ឈមណ្ឌលដែលប្រព័ន្ធតាមបានបដិសេធសំណើនេះ (405 Method Not Allowed)។ ព្យាយាមចាប់ផ្ដើមវិញ OpenAmer Desktop។',
+      methodNotAllowed:
+        'មជ្ឈមណ្ឌលដែលប្រព័ន្ធតាមបានបដិសេធសំណើនេះ (405 Method Not Allowed)។ ព្យាយាមចាប់ផ្ដើមវិញ OpenAmer Desktop។',
       microphonePermission: 'សិទ្ធិប្រើម៉៉ាឃ្បុក្រង់ត្រូវបានបដិសេធ។',
       openaiRejectedApiKey: 'OpenAI បានបដិសេធគន្លោះ API។',
       openaiTtsNeedsKey: 'OpenAI TTS ត្រូវការ `VOICE_TOOLS_OPENAI_KEY` ឬ `OPENAI_API_KEY`។',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'កំណត់ការបង្កើតអត្ថបទទៅជារបៀបសំឡេង។',
@@ -150,7 +155,7 @@ export const km = defineLocale({
       transcriptionFailed: 'ការបង្កើតអត្ថបទសំឡេងបានបរាជ័យ',
       transcriptionUnavailable: 'មិនទាន់មានអំឡុងសំឡេងជាអក្សរ',
       tryRecordingAgain: 'សូមព្យាយាមថ្មីម្តងទៀត',
-      unavailable: 'សំឡេងមិនអាចប្រើបាន',
+      unavailable: 'សំឡេងមិនអាចប្រើបាន'
     },
     native: {
       approvalTitle: 'ត្រូវការការអនុម័ត',
@@ -163,10 +168,10 @@ export const km = defineLocale({
       turnErrorTitle: 'ការបង្កើតមិនបានសម្រេច',
       backgroundDoneTitle: 'ការងារខាងក្រោយបានបញ្ចប់',
       backgroundFailedTitle: 'ការងារខាងក្រោយបានបរាជ័យ',
-      creditsTitle: 'កន្លោះ',
+      creditsTitle: 'កន្លោះ'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   billingBlock: {
     titleOpenamer: 'កន្លោះ OpenAmer អស់',
@@ -174,7 +179,7 @@ export const km = defineLocale({
     openBilling: 'បើកការចុចគិតថ្លៃ',
     addCredits: 'បន្ថែមកន្លោះ',
     dismiss: 'បោះបង់',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   titlebar: {
     hideSidebar: 'លាក់របាឆ្នោត',
@@ -191,7 +196,7 @@ export const km = defineLocale({
     openStarmap: 'បើកគំនិតទស្ទាន់ចិត្ត',
     openKeybinds: 'ផ្លូវកាត់ក្តារចុច',
     layoutEditor: 'កម្មវិធីរៀបចំផ្ទាំង',
-    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout',
+    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout'
   },
   keybinds: {
     title: 'ផ្លូវកាត់ក្តារចុច',
@@ -206,7 +211,7 @@ export const km = defineLocale({
       profiles: 'ប្រវត្តិ',
       session: 'សម័យ',
       navigation: 'ការរុកដើរ',
-      view: 'មើល',
+      view: 'មើល'
     },
     actions: {
       'keybinds.openPanel': 'បើកផ្លូវកាត់កំណត់ក្តារចុច',
@@ -285,10 +290,10 @@ export const km = defineLocale({
       'composer.slash': 'ផ្ទាំងពាក្យបញ្ជាមានស្លាក',
       'composer.help': 'ជំនួយរហូស',
       'composer.history': 'ប្ដូរផ្ទាំងលេខ / ប្រវត្តិ',
-      'composer.cancel': 'បិទផ្ទាំងលេខ · បោះបង់ការដំណើរការ',
+      'composer.cancel': 'បិទផ្ទាំងលេខ · បោះបង់ការដំណើរការ'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   language: {
     label: 'ភាសា',
@@ -297,7 +302,7 @@ export const km = defineLocale({
     saveError: 'ការធ្វើបច្ចុប្បន្នភាសាមិនបានសម្រេច',
     switchTo: 'ប្ដូរភាសា',
     searchPlaceholder: 'ស្វែងរកភាសា…',
-    noResults: 'រកមិនឃើញភាសាទេ',
+    noResults: 'រកមិនឃើញភាសាទេ'
   },
   settings: {
     closeSettings: 'បិទការកំណត់',
@@ -322,11 +327,12 @@ export const km = defineLocale({
       billing: 'ការគិតថ្លៃ',
       notifications: 'ការជូនដំណឹង',
       plugins: 'កម្មវិធីបន្ថែម',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'កម្មវិធីបន្ថែមលើកុំព្យាបទាត់',
-      blurb: 'ការបង្ហាញវេសន្តិតមុខទៅក្នុងកម្មវិធីនេះ — រួមបញ្ចូលជាមួយការបង្កើត ឬដាក់ក្នុងថត `desktop-plugins` (រួមទាំងកម្មវិធីបន្ថែមដែល OpenAmer បង្កើត)។ ការបិទ នឹងផ្ទុកកម្មវិធីបន្ថែមចេញភ្លាម ហើយនៅតែក្នុងការចាប់ផ្ដើមឡើងវិញ។',
+      blurb:
+        'ការបង្ហាញវេសន្តិតមុខទៅក្នុងកម្មវិធីនេះ — រួមបញ្ចូលជាមួយការបង្កើត ឬដាក់ក្នុងថត `desktop-plugins` (រួមទាំងកម្មវិធីបន្ថែមដែល OpenAmer បង្កើត)។ ការបិទ នឹងផ្ទុកកម្មវិធីបន្ថែមចេញភ្លាម ហើយនៅតែក្នុងការចាប់ផ្ដើមឡើងវិញ។',
       openFolder: 'បើកថតកម្មវិធីបន្ថែម',
       rescan: 'ស្កែសមើលឡើងវិញ',
       reveal: 'បង្ហាញក្នុងកម្មវិធីគ្រប់គ្រប់ឯកសារ',
@@ -337,50 +343,52 @@ export const km = defineLocale({
       kinds: {
         bundled: 'បានភ្ជាប់មកជាមួយ',
         disk: 'នៅលើថ្នាក់',
-        runtime: 'ពេលកម្មវិធីដំណើរការ',
+        runtime: 'ពេលកម្មវិធីដំណើរការ'
       },
-      count: n => `${n} installed`,
+      count: n => `${n} installed`
     },
     notifications: {
       title: 'ការជូនដំណឹង',
-      intro: 'ការជូនដំណឹងសាធារណៈនៃកុំព្យូប្រព័ន្ធឡេក ដាច់ពី toast ក្នុងកម្មវិធី។ ទាំងនេះជាកម្មវិធីក្នុងមូលដ្ឋាន — មានកុំព្យូប្រព័ន្ធឡេកនីមួយៗរក្សាការកំណត់ផ្ទាល់ខ្លួន។',
+      intro:
+        'ការជូនដំណឹងសាធារណៈនៃកុំព្យូប្រព័ន្ធឡេក ដាច់ពី toast ក្នុងកម្មវិធី។ ទាំងនេះជាកម្មវិធីក្នុងមូលដ្ឋាន — មានកុំព្យូប្រព័ន្ធឡេកនីមួយៗរក្សាការកំណត់ផ្ទាល់ខ្លួន។',
       enableAll: 'បើកការជូនដំណឹង',
       enableAllDesc: 'ការបិទចំនាំមក្រុម។ បិទវាដើម្បីសម្ងាត់ការជូនដំណឹងទាំងអស់ខាងក្រោម។',
       focusedHint: 'ការជូនដំណឹងពេលបញ្ចប់មានតែកើតឡើងពេល OpenAmer ស្ថិតនៅផ្ទៃខាងក្រោម។',
       kinds: {
         approval: {
           label: 'ត្រូវការអនុម័ត',
-          description: 'ពាក្យបញ្ជាមួយកំពុងរង់ចាំឱ្យអ្នកអនុម័ត ឬបដិសេធ។',
+          description: 'ពាក្យបញ្ជាមួយកំពុងរង់ចាំឱ្យអ្នកអនុម័ត ឬបដិសេធ។'
         },
         input: {
           label: 'ត្រូវការទិន្នន័យ',
-          description: 'OpenAmer បានសួរសំណួរ ឬត្រូវការពាក្យសម្ងាត់ ឬអស្នាក់សម្ងាត់។',
+          description: 'OpenAmer បានសួរសំណួរ ឬត្រូវការពាក្យសម្ងាត់ ឬអស្នាក់សម្ងាត់។'
         },
         turnDone: {
           label: 'ការឆ្លើយតបរួចរាល់',
-          description: 'ជំពូកបានបញ្ចប់ពេល OpenAmer ស្ថិតនៅផ្ទៃខាងក្រោម។',
+          description: 'ជំពូកបានបញ្ចប់ពេល OpenAmer ស្ថិតនៅផ្ទៃខាងក្រោម។'
         },
         turnError: {
           label: 'ជំពូកបានបរាជ័យ',
-          description: 'ជំពូកបានបញ្ចប់ដោយកំហុស។',
+          description: 'ជំពូកបានបញ្ចប់ដោយកំហុស។'
         },
         backgroundDone: {
           label: 'ការងារផ្ទៃខាងក្រោមបានបញ្ចប់',
-          description: 'ពាក្យបញ្ជាសាកល្បងក្នុងផ្ទៃខាងក្រោយបានបញ្ចប់។',
+          description: 'ពាក្យបញ្ជាសាកល្បងក្នុងផ្ទៃខាងក្រោយបានបញ្ចប់។'
         },
         credits: {
           label: 'ការជូនដំណឹងថ្លឹៀង',
-          description: 'ការចូលប្រើឥណទានត្រូវបានផ្អាក ឬបានស្ដារឡើងវិញ។',
-        },
+          description: 'ការចូលប្រើឥណទានត្រូវបានផ្អាក ឬបានស្ដារឡើងវិញ។'
+        }
       },
       test: 'ផ្ញើការជូនដំណឹងសាកល្បង',
       testTitle: 'OpenAmer',
       testBody: 'ការជូនដំណឹងកំពុងដំណើរការ។',
-      testSent: 'បានផ្ញើការសាកល្បង។ ប្រសិនបើមិនមានអ្វីបង្ហាញ សូមពិនិត្យសិទ្ធិការជូនដំណឹងនៃ OS និង Focus/Do Not Disturb។',
+      testSent:
+        'បានផ្ញើការសាកល្បង។ ប្រសិនបើមិនមានអ្វីបង្ហាញ សូមពិនិត្យសិទ្ធិការជូនដំណឹងនៃ OS និង Focus/Do Not Disturb។',
       testUnsupported: 'ប្រព័ន្ធនេះមិនគាំទ្រការជូនដំណឹងផ្លូវកាត់។',
       completionSoundTitle: 'សំឡេងបញ្ចប់',
       completionSoundDesc: 'លេងនៅពេលវាងរបស់ភ្នែកការងារចប្រុងចាំ។ ជ្រើសរើសសំឡេងដែលបានកំណត់ និងសាកល្បងវានៅទីនេះ។',
-      completionSoundPreview: 'សាកល្បង',
+      completionSoundPreview: 'សាកល្បង'
     },
     sections: {
       model: 'ម៉ូឌឹល',
@@ -390,7 +398,7 @@ export const km = defineLocale({
       safety: 'សុវត្ថិភាព',
       memory: 'ម៉េម៉ូរី និងបរិស្ថាន្វ',
       voice: 'សំឡេង',
-      advanced: 'កម្រិត�advanced',
+      advanced: 'កម្រិត�advanced'
     },
     searchPlaceholder: {
       about: 'អំពី OpenAmer Desktop',
@@ -398,25 +406,26 @@ export const km = defineLocale({
       gateway: 'ការតភ្ជាប់ Gateway...',
       keys: 'ស្វែងរកលេខសម្គាល់ API...',
       mcp: 'ស្វែងរកម៉ាស៊ីន MCP...',
-      sessions: 'ស្វែងរកសម័យដែលបានរក្សាកាន់...',
+      sessions: 'ស្វែងរកសម័យដែលបានរក្សាកាន់...'
     },
     modeOptions: {
       light: {
         label: 'ភ្លឺ',
-        description: 'ផ្ទៃកម្មវិធីពន្លឺភាព',
+        description: 'ផ្ទៃកម្មវិធីពន្លឺភាព'
       },
       dark: {
         label: 'ងងឹត',
-        description: 'កន្លែងធ្វើការដែលមានភ្លឺភាពតិច',
+        description: 'កន្លែងធ្វើការដែលមានភ្លឺភាពតិច'
       },
       system: {
         label: 'ប្រព័ន្ធ',
-        description: 'តាមការរួមមានរបស់ OS',
-      },
+        description: 'តាមការរួមមានរបស់ OS'
+      }
     },
     appearance: {
       title: 'រូបរាង',
-      intro: 'ទាំងនេះជាចម្បងនៃការកំណត់បង្ហាញតែនៅផ្ទៃកម្មវិធី។ របៀបគ្រប់គ្រងពន្លឺ; ម៉ែមគ្រប់គ្រងក្រឡាពណ៌ពិន្ទី និងរូបរាងផ្ទៃជម្រើសជម្រើស។',
+      intro:
+        'ទាំងនេះជាចម្បងនៃការកំណត់បង្ហាញតែនៅផ្ទៃកម្មវិធី។ របៀបគ្រប់គ្រងពន្លឺ; ម៉ែមគ្រប់គ្រងក្រឡាពណ៌ពិន្ទី និងរូបរាងផ្ទៃជម្រើសជម្រើស។',
       colorMode: 'របៀបពណ៌',
       colorModeDesc: 'ជ្រើសរបៀបថ្នាក់ ឬឲ្យ OpenAmer តាមការកំណត់ប្រព័ន្ធរបស់អ្នក។',
       toolViewTitle: 'ការបង្ហាញការហៅឧបករណ៍',
@@ -427,7 +436,8 @@ export const km = defineLocale({
       backdropTitle: 'ផ្ទៃខាងក្រោយជម្រើសជាទំនាក់',
       backdropDesc: 'រូបភាពស្តែងព្រួញចុងក្រោយការសន្ទនា។',
       embedsTitle: 'ការបង្កប់ក្នុងតាម',
-      embedsDesc: 'បង្ហាញជាមុនសម្រាប់ផ្ទាំងសំបុត្រពីគេហទីកម្មភាពទីកន្លែង (YouTube, X, …)។ Ask បង្ហាញកន្លែងកត់សិនរហូតដល់អ្នកអនុញ្ញាតឱ្យមានតាមទីនេះ; Always ផ្ទាំងទាំងអស់ត្រូវបានផ្ទាំងដោយស្វ័យដោយមិនបាច់សួរ; Off រក្សាតំណភ្ជាប់ធម្មតា។',
+      embedsDesc:
+        'បង្ហាញជាមុនសម្រាប់ផ្ទាំងសំបុត្រពីគេហទីកម្មភាពទីកន្លែង (YouTube, X, …)។ Ask បង្ហាញកន្លែងកត់សិនរហូតដល់អ្នកអនុញ្ញាតឱ្យមានតាមទីនេះ; Always ផ្ទាំងទាំងអស់ត្រូវបានផ្ទាំងដោយស្វ័យដោយមិនបាច់សួរ; Off រក្សាតំណភ្ជាប់ធម្មតា។',
       embedsAsk: 'សួរ',
       embedsAlways: 'ទាំងអស់',
       embedsOff: 'បិទ',
@@ -438,7 +448,8 @@ export const km = defineLocale({
       themeTitle: 'ម៉ោន',
       themeDesc: 'មានតែក្រឡប់ផ្ទាំងកុំព្រោះ។ របៀបដែលបានជ្រើសរើសត្រូវបានអនុវត្តលើវា។',
       installTitle: 'ដំឡើងពី VS Code',
-      installDesc: 'បិទភ្ជាប់អារម្មណ៍ម៉ោនពី Marketplace (ឧទាហរណ៍ dracula-theme.theme-dracula) ដើម្បីបង្កើតម៉ោនក្រឡប់ផ្ទាំងកុំព្រោះ។',
+      installDesc:
+        'បិទភ្ជាប់អារម្មណ៍ម៉ោនពី Marketplace (ឧទាហរណ៍ dracula-theme.theme-dracula) ដើម្បីបង្កើតម៉ោនក្រឡប់ផ្ទាំងកុំព្រោះ។',
       installButton: 'ដំឡើង',
       installing: 'កំពុងដំឡើង…',
       installError: 'មិនអាចដំឡើងម៉ោននេះបានទេ។',
@@ -448,8 +459,10 @@ export const km = defineLocale({
         title: 'សត្វចិញ្ចឹម',
         turnOnFailed: 'មិនអាចបើកសត្វចិនំបាន។',
         turnOffFailed: 'មិនអាចបិទសត្វចិនំបាន។',
-        intro: 'ប្រើម៉ាស៉ាក់ petdex ជីវចម្លោះ ដែលហូរលើកម្មវិធី ហើយឆ្លើយតបទៅនឹងអ្វីៗដែល OpenAmer កំពុងធ្វើ — រត់ពេលឧបកប្រយោជន៍ដំណើរការ ប្រគ្រាហ្ស់ពេលជាទូរស័ព័ និងខកខាន់ពេលមានកំហុស។',
-        restartHint: 'សត្វចិញ្ចឹមត្រូវការចាប់ផ្ដើមឡើងវិញ — កម្មវិធីដែលកំពុងរត់បានចាប់ផ្ដើមមុនពេលបន្ថែមមុខង្គលនេះ។ ចាកចេញ ហើយបើក OpenAmer ម្តងទៀត រួចត្រឡប់មកទីនេះ។',
+        intro:
+          'ប្រើម៉ាស៉ាក់ petdex ជីវចម្លោះ ដែលហូរលើកម្មវិធី ហើយឆ្លើយតបទៅនឹងអ្វីៗដែល OpenAmer កំពុងធ្វើ — រត់ពេលឧបកប្រយោជន៍ដំណើរការ ប្រគ្រាហ្ស់ពេលជាទូរស័ព័ និងខកខាន់ពេលមានកំហុស។',
+        restartHint:
+          'សត្វចិញ្ចឹមត្រូវការចាប់ផ្ដើមឡើងវិញ — កម្មវិធីដែលកំពុងរត់បានចាប់ផ្ដើមមុនពេលបន្ថែមមុខង្គលនេះ។ ចាកចេញ ហើយបើក OpenAmer ម្តងទៀត រួចត្រឡប់មកទីនេះ។',
         on: 'បើក',
         off: 'បិទ',
         scaleTitle: 'ទំហំ',
@@ -479,13 +492,14 @@ export const km = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installPlaceholder: 'publisher.extension',
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     about: {
       heading: 'OpenAmer កម្មវិធីកុំព្យាបាយ',
@@ -512,7 +526,7 @@ export const km = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     config: {
       none: 'គ្មាន',
@@ -528,7 +542,7 @@ export const km = defineLocale({
       imported: 'បាននាំចូលការច្រោះ',
       invalidJson: 'JSON ការច្រោះមិនត្រឹមត្រូវ',
       keepAwakeTitle: 'រក្សាកុំថ្នាក់គ្រួសដើម្បីដោយគ្មាន',
-      keepAwakeDesc: 'រារាំងកុំថ្នាក់គ្រួសដើម្បីដោយគ្មាន ដើម្បីឱ្យការដំណើររស់រាយបន្តវែង។ អេក្រង់នៅតែអាចងងឹតបាន។',
+      keepAwakeDesc: 'រារាំងកុំថ្នាក់គ្រួសដើម្បីដោយគ្មាន ដើម្បីឱ្យការដំណើររស់រាយបន្តវែង។ អេក្រង់នៅតែអាចងងឹតបាន។'
     },
     credentials: {
       pasteKey: 'បិទភ្លឺកូដ',
@@ -538,7 +552,7 @@ export const km = defineLocale({
       remove: 'ដកចេញ',
       getKey: 'យកកូដ',
       saving: 'កំពុងរក្សាទុក',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     envActions: {
       credentialActions: 'សកម្មភាពសម្ងាត់',
@@ -549,7 +563,7 @@ export const km = defineLocale({
       replace: 'ជំនួស',
       set: 'កំណត់',
       clear: 'សម្អាត',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     gateway: {
       loading: 'កំពុងផ្ទុកការកំណត់ Gateway...',
@@ -557,12 +571,14 @@ export const km = defineLocale({
       unavailableDesc: 'ស្ពាន IPC របស់ Desktop មិនផ្តល់ការកំណត់ Gateway។',
       title: 'ការតភ្ជាប់ Gateway',
       envOverride: 'ការកំណត់ពី env',
-      intro: 'OpenAmer Desktop ចាប់ផ្តើមដោយខ្លួនឯងជាតម្រុង Gateway ក្នុងមូលដ្ឋាន។ ប្រើ Gateway ពីចម្ងាយ នៅពេលចង់ឱ្យកម្មវិធីនេះគ្រប់គ្រង OpenAmer backend ដែលកំពុងដំណើរការនៅម៉ាស៊ីនផ្សេងទៀ ឬនៅពីរំលើ Proxy ដែលអានខួរទុកចិត្ត។ ជ្រើសរើស Profile ខាងក្រោម ដើម្បីផ្តល់ Host ពីចម្ងាយផ្ទាល់ខ្លួនឯង។',
+      intro:
+        'OpenAmer Desktop ចាប់ផ្តើមដោយខ្លួនឯងជាតម្រុង Gateway ក្នុងមូលដ្ឋាន។ ប្រើ Gateway ពីចម្ងាយ នៅពេលចង់ឱ្យកម្មវិធីនេះគ្រប់គ្រង OpenAmer backend ដែលកំពុងដំណើរការនៅម៉ាស៊ីនផ្សេងទៀ ឬនៅពីរំលើ Proxy ដែលអានខួរទុកចិត្ត។ ជ្រើសរើស Profile ខាងក្រោម ដើម្បីផ្តល់ Host ពីចម្ងាយផ្ទាល់ខ្លួនឯង។',
       appliesTo: 'អនុវត្តចំពោះ',
       allProfiles: 'ប្រវត្តិរូបទាំងអស់',
       defaultConnection: 'ការតភ្ជាប់លំនាំដោយស្មោះ សម្រាប់គ្រប់ Profile ដែលគ្មានការកំណត់ផ្ទាល់ខ្លួនឯង។',
       envOverrideTitle: 'អថ្ឃីតាមបរិយាកាសបរិយាកាសកំពុងគ្រប់គ្រងសម័យ Desktop នេះ។',
-      envOverrideDesc: 'ដក OPENAMER_DESKTOP_REMOTE_URL និង OPENAMER_DESKTOP_REMOTE_TOKEN ដើម្បីប្រើការកំណត់ដែលបានរក្សាទុកខាងក្រោម។',
+      envOverrideDesc:
+        'ដក OPENAMER_DESKTOP_REMOTE_URL និង OPENAMER_DESKTOP_REMOTE_TOKEN ដើម្បីប្រើការកំណត់ដែលបានរក្សាទុកខាងក្រោម។',
       modeTitle: 'របៀបតភ្ជាប់',
       localTitle: 'ហ្វ្រីវេកន្លែង',
       localDesc: 'ចាប់ផ្តើងម៉ាឃិនខាងក្រោយ OpenAmer ឯកជននៅ localhost។ នេះជាលម្អដើម ហើយដំណើរការក្រៅបណ្តាញ។',
@@ -570,7 +586,8 @@ export const km = defineLocale({
       inheritDesc: 'ដកការកំណត់ជំនួសរបស់ប្រវត្តិនេះ ហើយប្រើតភ្ជាប់លម្អដើម។',
       remoteTitle: 'ហ្វ្រីវេចម្ងាយ',
       remoteDesc: 'តភ្ជាប់ស្រាក់កម្មនេះទៅម៉ាឃិនខាងក្រោយ OpenAmer ចម្ងាយ។',
-      remoteAuthHint: 'ហ្វ្រីវេដែលផ្តល់ដោយអភិបាលប្រើ OAuth ឬឈ្មោះអ្នកប្រើ និងពាក្យសម្ងាត់។ ហ្វ្រីវេដែលទទួលម៉ាឃិនខាងក្រោយដោយខ្លួនឯង អាចប្រើនិមាត្រសម័យ។',
+      remoteAuthHint:
+        'ហ្វ្រីវេដែលផ្តល់ដោយអភិបាលប្រើ OAuth ឬឈ្មោះអ្នកប្រើ និងពាក្យសម្ងាត់។ ហ្វ្រីវេដែលទទួលម៉ាឃិនខាងក្រោយដោយខ្លួនឯង អាចប្រើនិមាត្រសម័យ។',
       cloudDesc: 'ចូល OpenAmer Cloud ម្ដង ហើយជ្រើសរើសក្រុមការងារក្នុងគណនីរបស់អ្នក — មិនចាំបាច់ដាក់ URL។',
       cloudSignIn: 'ចូល OpenAmer Cloud',
       cloudSignedIn: 'បានចូលទៅ OpenAmer Cloud',
@@ -584,7 +601,7 @@ export const km = defineLocale({
       cloudNoAgents: {
         before: 'រកមិនឃើញមនុស្សណា នៅក្នុងគណនីនេះ។ បង្កើតមួយនៅក្នុង',
         linkText: 'ផ្ទាំង OpenAmer',
-        after: 'បន្ទាប់មកផ្លាស់ប្ដូរ។',
+        after: 'បន្ទាប់មកផ្លាស់ប្ដូរ។'
       },
       cloudRefresh: 'ផ្លាស់ប្ដូរ',
       cloudConnect: 'ភ្ជាប់',
@@ -605,18 +622,21 @@ export const km = defineLocale({
       signIn: 'ចូល',
       signOut: 'ចាកចេញ',
       authTitle: 'ការផ្ទៀងផ្ទាត់',
-      authSignedInPassword: 'ហ្វ្រីវេនេះប្រើឈ្មោះអ្នកប្រើ និងពាក្យសម្ងាត់។ អ្នកបានចូល ហើយសម័យនឹងផ្ទាត់ស្វាគមន៍ដោយស្វិតច្រើន។',
+      authSignedInPassword:
+        'ហ្វ្រីវេនេះប្រើឈ្មោះអ្នកប្រើ និងពាក្យសម្ងាត់។ អ្នកបានចូល ហើយសម័យនឹងផ្ទាត់ស្វាគមន៍ដោយស្វិតច្រើន។',
       authSignedInOauth: 'ហ្វ្រីវេនេះប្រើ OAuth។ អ្នកបានចូល ហើយសម័យនឹងផ្ទាត់ស្វាគមន៍ដោយស្វិតច្រើន។',
       authNeedsPassword: 'ហ្វ្រីវេនេះប្រើឈ្មោះអ្នកប្រើ និងពាក្យសម្ងាត់។ ចូល ដើម្បីអនុញ្ញាតកម្មវិធីកុំព្យាបាលនេះ។',
       tokenTitle: 'និមិត្តសញ្ញាសម័យ',
-      tokenDesc: 'និមិត្តសញ្ញាសម័យសម្រាប់ផ្ទាំងគ្រប់គ្រង ដែលប្រើសម្រាប់ REST និង WebSocket។ ទុកទទេ ដើម្បីរក្សាទុកនិមិត្តសញ្ញាដែលបានរក្សាទុក។',
+      tokenDesc:
+        'និមិត្តសញ្ញាសម័យសម្រាប់ផ្ទាំងគ្រប់គ្រង ដែលប្រើសម្រាប់ REST និង WebSocket។ ទុកទទេ ដើម្បីរក្សាទុកនិមិត្តសញ្ញាដែលបានរក្សាទុក។',
       savedToken: 'បានរក្សាទុក',
       pasteSessionToken: 'បិទភ្ជាប់និមិត្តសញ្ញាសម័យ',
       testRemote: 'សាកល្បងចម្ងាយ',
       saveForRestart: 'រក្សាទុកសម្រាប់ការចាប់ផ្ដើមបន្ទាប់',
       saveAndReconnect: 'រក្សាទុក និងតភ្ជាប់ឡើងវិញ',
       diagnostics: 'ការវិនិច្ឆ័យ',
-      diagnosticsDesc: 'បង្ហាញ desktop.log ក្នុងកម្មវិធីគ្រប់គ្រងឯកសាររបស់អ្នក — មានប្រយោជន៍ពេលហ្វ្រីវេមិនអាចចាប់ផ្ដើមបាន។',
+      diagnosticsDesc:
+        'បង្ហាញ desktop.log ក្នុងកម្មវិធីគ្រប់គ្រងឯកសាររបស់អ្នក — មានប្រយោជន៍ពេលហ្វ្រីវេមិនអាចចាប់ផ្ដើមបាន។',
       openLogs: 'បើកកំណត់ត្រា',
       incompleteTitle: 'ហ្វ្រីវេចម្ងាយមិនពេញលេញ',
       incompleteSignIn: 'បញ្ចូល URL ចម្ងាយ និងចូល មុនពេលផ្លាស់ទៅចម្ងាយ។',
@@ -638,8 +658,10 @@ export const km = defineLocale({
       applyFailed: 'មិនអាចអនុវត្តការកំណត់ Gateway បានទេ',
       saveFailed: 'មិនអាចរក្សាទុកការកំណត់ Gateway បានទេ',
       sshTitle: 'តភ្ជាប់តាម SSH',
-      sshDesc: 'OpenAmer ត្រូវបានបើកនៅជួងតាម SSH ហើយប្រូលទៅកម្មវិធីនេះ — មិនត្រូវចាប់ផ្ដារ ឬបង្ហាញខ្លួនអ្នកឡើយ។ ត្រូវការសិទ្ធិ SSH ដោយផ្អែកដែលដំណើរការជាមួយម៉ាស៊ីនប៉ាណ។',
-      sshTrustHint: 'ម៉ាស៊ីនដែលផ្តល់ជាលើកដំបូងត្រូវបានទុកចិត្ត និងខួរចែករក្សាទុក — ការផ្លាស់ប្ដូរក្រោយកាន់នោះនឹងបរាជ័យ។',
+      sshDesc:
+        'OpenAmer ត្រូវបានបើកនៅជួងតាម SSH ហើយប្រូលទៅកម្មវិធីនេះ — មិនត្រូវចាប់ផ្ដារ ឬបង្ហាញខ្លួនអ្នកឡើយ។ ត្រូវការសិទ្ធិ SSH ដោយផ្អែកដែលដំណើរការជាមួយម៉ាស៊ីនប៉ាណ។',
+      sshTrustHint:
+        'ម៉ាស៊ីនដែលផ្តល់ជាលើកដំបូងត្រូវបានទុកចិត្ត និងខួរចែករក្សាទុក — ការផ្លាស់ប្ដូរក្រោយកាន់នោះនឹងបរាជ័យ។',
       sshHostTitle: 'ម៉ាស៊ីន',
       sshHostDesc: 'user@host, ឬឈ្មោះម៉ាស៊ីនមួយពី ~/.ssh/config។',
       sshHostPick: 'ជ្រើសរើសម៉ាស៊ីន…',
@@ -661,14 +683,19 @@ export const km = defineLocale({
       sshButtonsHint: 'ការរក្សាទុកនឹងអនុម័តនៅការចាប់ផ្តើងបន្ទាប់។ ការតភ្ជាប់ឡើងវិញធ្វើឡើងឥឡូវនេះ។',
       sshIncompleteHost: 'សូមបញ្ចូលម៉ាស៊ីន SSH មុនពេលតភ្ជាប់។',
       sshErrUnreachable: 'មិនអាចទទួលម៉ាស៊ីននោះតាម SSH បានទេ។ សូមពិនិត្យម៉ាស៊ីន ច្រក និងបណ្ដាញរបស់អ្នក។',
-      sshErrAuth: 'ការផ្ទៀងផ្ទាត់ SSH បរាជ័យបាន។ សូមផ្ទុកកូនសម្គាល់របស់អ្នកទៅក្នុង ssh-agent (ssh-add) ឬកំណត់ IdentityFile ក្នុង ~/.ssh/config — OpenAmer ដំណើរការ ssh ដោយមិនប្រកាសសួរតប។',
-      sshErrHostKey: 'កូនសម្គាល់ម៉ាស៊ីនបានប្តូរប្តូរចង់ពីពេលអ្នកតភ្ជាប់ចុងក្រោយ។ សូមផ្ទៀងផ្ទាត់ថានេះជាការរំពឹងទុក រួចម្តងនឹងរត់ ssh-keygen -R <host> ហើយតភ្ជាប់ឡើងវិញ។',
-      sshErrNotInstalled: 'OpenAmer មិនបានដំឡើងនៅម៉ាស៊ីនកម្មង់។ ដំឡើងវានៅទីនោះ (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ឬកំណត់ផ្លូវ OpenAmer។',
-      sshErrPlatform: 'កម្មវិធីកម្មារកម្មដោយមិនគាំទ្រ។ របៀប SSH នៃ OpenAmer Desktop គាំទ្រម៉ាស៊ីនកម្មង់ Linux, macOS និង Windows។',
+      sshErrAuth:
+        'ការផ្ទៀងផ្ទាត់ SSH បរាជ័យបាន។ សូមផ្ទុកកូនសម្គាល់របស់អ្នកទៅក្នុង ssh-agent (ssh-add) ឬកំណត់ IdentityFile ក្នុង ~/.ssh/config — OpenAmer ដំណើរការ ssh ដោយមិនប្រកាសសួរតប។',
+      sshErrHostKey:
+        'កូនសម្គាល់ម៉ាស៊ីនបានប្តូរប្តូរចង់ពីពេលអ្នកតភ្ជាប់ចុងក្រោយ។ សូមផ្ទៀងផ្ទាត់ថានេះជាការរំពឹងទុក រួចម្តងនឹងរត់ ssh-keygen -R <host> ហើយតភ្ជាប់ឡើងវិញ។',
+      sshErrNotInstalled:
+        'OpenAmer មិនបានដំឡើងនៅម៉ាស៊ីនកម្មង់។ ដំឡើងវានៅទីនោះ (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ឬកំណត់ផ្លូវ OpenAmer។',
+      sshErrPlatform:
+        'កម្មវិធីកម្មារកម្មដោយមិនគាំទ្រ។ របៀប SSH នៃ OpenAmer Desktop គាំទ្រម៉ាស៊ីនកម្មង់ Linux, macOS និង Windows។',
       sshErrTimeout: 'ការតភ្ជាប់ SSH បានផុតកំណត់ពេល។ ម៉ាស៊ីនកម្មង់អាចមិនអាចចូលប្រើ ឬកំពុងដល់។',
       sshErrUpdateRequired: 'ធ្វើបច្ចុប្បន្នភាព OpenAmer នៅម៉ាស៊ីនកម្មង់ មុននឹងភ្ជាប់ដោយ Desktop SSH។',
       sshErrUnknown: 'ការតភ្ជាប់ SSH បានបរាជ័យ។',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudTitle: 'OpenAmer Cloud',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudOrgRole: role => `Role: ${role}`,
@@ -678,12 +705,12 @@ export const km = defineLocale({
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     keys: {
       loading: 'កំពុងផ្ទុកច្រកមាន API និងពាក្យសម្ងាត់...',
       failedLoad: 'ការផ្ទុកច្រកមាន API បានបរាជ័យ',
-      empty: 'មិនទាន់មានអ្វីត្រូវបានកំណត់ក្នុងប្រភេទនេះទេ។',
+      empty: 'មិនទាន់មានអ្វីត្រូវបានកំណត់ក្នុងប្រភេទនេះទេ។'
     },
     mcp: {
       loading: 'កំពុងផ្ទុកម៉ាស៊ីនមេរ MCP...',
@@ -745,14 +772,16 @@ export const km = defineLocale({
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       authenticatedMessage: (server, count) => `${server}: ${count} tools`,
       enableTool: tool => `Enable ${tool}`,
-      disableTool: tool => `Disable ${tool}`,
+      disableTool: tool => `Disable ${tool}`
     },
     model: {
       loading: 'កំពុងផ្ទុកការច្រោះម៉ូដែល...',
-      appliesDesc: 'អនុវត្តចំពោះវគ្គថ្មីៗ ប្រើការជ្រើសរើសម៉ូដែលនៅក្នុងកម្មវិធីបង្កើតសារ ដើម្បីប្តូរសជ្គាប់ជុតាភាពជូនសន្ទនាដែលកំពុងប្រើ។',
+      appliesDesc:
+        'អនុវត្តចំពោះវគ្គថ្មីៗ ប្រើការជ្រើសរើសម៉ូដែលនៅក្នុងកម្មវិធីបង្កើតសារ ដើម្បីប្តូរសជ្គាប់ជុតាភាពជូនសន្ទនាដែលកំពុងប្រើ។',
       provider: 'អ្នកផ្តល់សេវា',
       model: 'ម៉ូឌែល',
       applying: 'កំពុងអនុវត្ត...',
@@ -762,7 +791,8 @@ export const km = defineLocale({
       defaultsFailed: 'មិនបានរក្សាទុកលំនាំដើមម៉ូឌែលទេ',
       auxiliaryTitle: 'ម៉ូឌែលជំនួយ',
       resetAllToMain: 'កំណត់ឡើងវិញទាំងអស់ទៅម៉ូឌែលមូលដ្ឋាន',
-      auxiliaryDesc: 'ការងារជំនួយត្រូវបានដំណើរការនៅលើម៉ូឌែលមូលដ្ឋានតាមលំនាំដើម។ កំណត់ម៉ូឌែលដែលបានយកចិត្តសម្រាប់ការងារណាមួយ ដើម្បីបង្ហាញចំណួរបរិស្ថារ។',
+      auxiliaryDesc:
+        'ការងារជំនួយត្រូវបានដំណើរការនៅលើម៉ូឌែលមូលដ្ឋានតាមលំនាំដើម។ កំណត់ម៉ូឌែលដែលបានយកចិត្តសម្រាប់ការងារណាមួយ ដើម្បីបង្ហាញចំណួរបរិស្ថារ។',
       setToMain: 'កំណត់ទៅម៉ូឌែលមូលដ្ឋាន',
       change: 'ផ្លាស់ប្តូរ',
       autoUseMain: 'ស្វ័យប្រវត្តិ · ប្រើម៉ូឌែលមូលដ្ឋាន',
@@ -773,42 +803,43 @@ export const km = defineLocale({
       tasks: {
         vision: {
           label: 'ចក្រមង្គល',
-          hint: 'វិាល័យរូបភាព',
+          hint: 'វិាល័យរូបភាព'
         },
         web_extract: {
           label: 'ស្រាវជាតិពីគេហទំព័រ',
-          hint: 'សេចក្តីសង្ខេបទំព័រ',
+          hint: 'សេចក្តីសង្ខេបទំព័រ'
         },
         compression: {
           label: 'កាត់បង្ហាញ',
-          hint: 'បង្រំសង្វាក់ទិន្នន័យ',
+          hint: 'បង្រំសង្វាក់ទិន្នន័យ'
         },
         skills_hub: {
           label: 'មជ្ឈមណ្ឌលជំនាញ',
-          hint: 'ស្វែងជំនាញ',
+          hint: 'ស្វែងជំនាញ'
         },
         approval: {
           label: 'ការអនុម័ត',
-          hint: 'អនុម័តស្វ័យដោយឆ្លាត',
+          hint: 'អនុម័តស្វ័យដោយឆ្លាត'
         },
         mcp: {
           hint: 'ការផ្លូវឧបកប់ MCP',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'បង្កើតចំណង',
-          hint: 'ចំណងវគ្គ',
+          hint: 'ចំណងវគ្គ'
         },
         curator: {
           label: 'អ្នកថែទាំ',
-          hint: 'ការពិនិត្យការប្រើជំនាញ',
-        },
-      },
+          hint: 'ការពិនិត្យការប្រើជំនាញ'
+        }
+      }
     },
     providers: {
       connectAccount: 'ភ្ជាប់គណនី',
       haveApiKey: 'មាន API key ជំនួសម្នោះទេ?',
-      intro: 'ចូលជាមួយការសម្គាល់ — មិនចាំបាច់ API key ដើម្បីចម្លង។ OpenAmer ដំណើរការចូលក្នុងម៉ាហ្វ្មប៊្រាហ់សម្រាប់អ្នក នៅទីនេះក្នុងកម្មវិធី។',
+      intro:
+        'ចូលជាមួយការសម្គាល់ — មិនចាំបាច់ API key ដើម្បីចម្លង។ OpenAmer ដំណើរការចូលក្នុងម៉ាហ្វ្មប៊្រាហ់សម្រាប់អ្នក នៅទីនេះក្នុងកម្មវិធី។',
       connected: 'បានភ្ជាប់',
       collapse: 'បង្រួម',
       connectAnother: 'ភ្ជាប់ផ្តាំងផ្សេងទៀត',
@@ -821,16 +852,18 @@ export const km = defineLocale({
       noKeysMatch: 'អ្នកផ្តល់ណាមួយមិនត្រូវនឹងការស្វែងរករបស់អ្នកទេ។',
       localEndpoint: {
         title: 'ចំណុចបញ្ចប់មូលដ្ឋាន / ផ្ទាល់ខ្លួន',
-        description: 'ប្រាប់ OpenAmer ឱ្យចង្សំទៅចំណុចបញ្ចប់ណាមួយដែលស្របជា OpenAI (Zyphra, vLLM, llama.cpp, Ollama, ជាដូច្នេះ)។',
+        description:
+          'ប្រាប់ OpenAmer ឱ្យចង្សំទៅចំណុចបញ្ចប់ណាមួយដែលស្របជា OpenAI (Zyphra, vLLM, llama.cpp, Ollama, ជាដូច្នេះ)។'
       },
       loading: 'កំពុងផ្ទុកអ្នកផ្តល់...',
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     sessions: {
       loading: 'កំពុងផ្ទុកសម័យបានរក្សាការក្នុងប័ណ្ណី…',
@@ -841,7 +874,8 @@ export const km = defineLocale({
       deletePermanently: 'លុបជាអស្មត្រ',
       restored: 'បានស្ដាសឡើងវិញ',
       autoArchiveTitle: 'រក្សាការក្នុងប័ណ្ណីជម្រាបជទាន់មិនសកម្មដោយស្វ័យប្រវត្តិ',
-      autoArchiveDesc: 'រក្សាការក្នុងប័ណ្ណីជម្រាបជទាន់ដែលអ្នកមិនបានចូលចិត្តប្រើប្រាស់ម្ដាលមិនសកម្ម។ ជម្រាបជទាន់ដែលបានកម្មោរតែមិនត្រូវបានរក្សាការក្នុងប័ណ្ណីទេ ហើយគ្មានអ្វីត្រូវបានលុប — ជម្រាបជទាន់ដែលបានរក្សាការក្នុងប័ណ្ណីគ្រាន់តែផ្លាស់ទីមកទីនេះ។',
+      autoArchiveDesc:
+        'រក្សាការក្នុងប័ណ្ណីជម្រាបជទាន់ដែលអ្នកមិនបានចូលចិត្តប្រើប្រាស់ម្ដាលមិនសកម្ម។ ជម្រាបជទាន់ដែលបានកម្មោរតែមិនត្រូវបានរក្សាការក្នុងប័ណ្ណីទេ ហើយគ្មានអ្វីត្រូវបានលុប — ជម្រាបជទាន់ដែលបានរក្សាការក្នុងប័ណ្ណីគ្រាន់តែផ្លាស់ទីមកទីនេះ។',
       autoArchiveDaysLabel: 'រក្សាការក្នុងប័ណ្ណីបន្ទាប់ពី',
       autoArchiveDaysUnit: 'ថ្ងៃនៃអំឡរសកម្ម',
       autoArchiveFailed: 'មិនអាចធ្វើបច្ចុប្បន្នភាពអត្ថបទស្វ័យប្រគល្អបានទេ',
@@ -856,11 +890,12 @@ export const km = defineLocale({
       deleteFailed: 'ការលុបបានបរាជ័យ',
       updateDirFailed: 'មិនអាចធ្វើបច្ចុប្បន្នភាពថតលំនាំដើមបានទេ',
       clearDirFailed: 'មិនអាចសម្អាតថតលំនាំដើមបានទេ',
-      archivedIntro: 'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
+      archivedIntro:
+        'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
       defaultDirUpdated: 'Default project directory updated — start a new chat (Ctrl/⌘+N) for it to take effect',
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
       loadingConfig: 'កំពុងផ្ទុកការកំណត់',
@@ -870,7 +905,8 @@ export const km = defineLocale({
       notSet: 'មិនបានកំណត់',
       selectedTitle: 'បានជ្រើសរើសម៉្ងនៅ',
       failedLoad: 'មិនអាចផ្ទុកការកំណត់ឧបករណ៍បានទេ',
-      noProviderOptions: 'ឧបករណ៍នេះមិនមានជម្រើសអ្នកផ្តល់សេវា — បើកវា ហើយវានឹងដំណើរការជាមួយការរៀបចំបច្ចេកទេសបច្ចុប្បន្នរបស់អ្នក។',
+      noProviderOptions:
+        'ឧបករណ៍នេះមិនមានជម្រើសអ្នកផ្តល់សេវា — បើកវា ហើយវានឹងដំណើរការជាមួយការរៀបចំបច្ចេកទេសបច្ចុប្បន្នរបស់អ្នក។',
       noProviders: 'ហាន់មិនមានអ្នកផ្តល់សេវាសម្រាប់ឧបករណ៍នេះទេ។',
       ready: 'រួចរាល់',
       needsSignIn: 'ត្រូវចូលប្រព័ន្ធ',
@@ -912,7 +948,7 @@ export const km = defineLocale({
         selectedTitle: 'បានជ្រើសរើសម៉ាស៊ីនខាងក្រោយ',
         needsSetupHint: 'អ្នកអាចជ្រើសរើសម៉ាស៊ីនខាងក្រោយនេះឥឡូវនេះ — ពាក្យបញ្ជានឹងបរាជ័យរហូតដល់ការរៀបចំបានបញ្ចប់។',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       savedMessage: key => `${key} updated.`,
       removedMessage: key => `${key} removed.`,
@@ -922,8 +958,10 @@ export const km = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -933,10 +971,10 @@ export const km = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     tabSkills: 'ជំនាញ',
@@ -955,7 +993,8 @@ export const km = defineLocale({
     noDescription: 'គ្មានការពិពណ៌នា។',
     configured: 'បានកំណត់',
     needsKeys: 'ត្រូវការកូញ',
-    visionModelHint: 'ការវាស់ចិត្តប្រើការកំណត់ម៉ូដែលជំនួយ — ម៉ូដែលអាចមើលរូបភាពត្រូវបានជ្រើសរើសនៅទីនេះ មិនមែនតាមអ្នកផ្តល់សេវានៅទីនេះទេ។',
+    visionModelHint:
+      'ការវាស់ចិត្តប្រើការកំណត់ម៉ូដែលជំនួយ — ម៉ូដែលអាចមើលរូបភាពត្រូវបានជ្រើសរើសនៅទីនេះ មិនមែនតាមអ្នកផ្តល់សេវានៅទីនេះទេ។',
     visionModelLink: 'ជ្រើសរើសម៉ូដែលវាស់ចិត្តនៅ ការកំណត់ → ម៉ូដែល',
     skillsLoadFailed: 'ជំនាញបរាជ័យក្នុងការផ្ទុក',
     toolsetsRefreshFailed: 'ឈុត្តឧបករណ៍មិនបានផ្លាស់ប្តូរទេ',
@@ -974,7 +1013,7 @@ export const km = defineLocale({
     provenance: {
       agent: 'បានរៀន',
       bundled: 'បានបង្កប់ក្នុង',
-      hub: 'មជ្ឈមណ្ឌល',
+      hub: 'មជ្ឈមណ្ឌល'
     },
     changesApplyNewSessions: 'ការផ្លាស់ប្តូរត្រូវបានអនុវត្តចំពោះសម័យថ្មីៗ។',
     skillUpdated: 'ជំនាញត្រូវបានធ្វើបច្ចុប្បន្នភាព',
@@ -1007,7 +1046,7 @@ export const km = defineLocale({
       trust: {
         builtin: 'បានបញ្ចូលក្នុង',
         trusted: 'ទុកចិត្ត',
-        community: 'សហគមន៍',
+        community: 'សហគមន៍'
       },
       verdictSafe: 'សុវត្ថិភាព',
       verdictCaution: 'ប្រុងប្រយ័ត្ន',
@@ -1027,7 +1066,7 @@ export const km = defineLocale({
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     tabMcp: 'MCP',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} toolsets enabled`,
@@ -1039,7 +1078,7 @@ export const km = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     title: 'ក្រាត់ភាពស្មារត្រ',
@@ -1055,7 +1094,8 @@ export const km = defineLocale({
     emptyTitle: 'មិនទាន់មានអ្វីត្រូវបានរៀន',
     emptyDesc: 'នៅពេល OpenAmer បង្កើតជំនាញ និងភាពស្មារត្រសម្រាប់ការងាររបស់អ្នក ពួកគេនឹងបង្ហាញនៅទីនេះ។',
     share: 'ចែករំលែកផែនទី',
-    shareHint: 'ចម្លងកូដដើម្បីចែករំលែកផែនទីនេះ ឬបិទភ្ជាប់កូដមួយដើម្បីផ្ទុក។ វាមានតែប្រកាសកម្ម មិនមានភាពស្មារត្រ ឬអត្ថបទជំនាញរបស់អ្នកទេ។',
+    shareHint:
+      'ចម្លងកូដដើម្បីចែករំលែកផែនទីនេះ ឬបិទភ្ជាប់កូដមួយដើម្បីផ្ទុក។ វាមានតែប្រកាសកម្ម មិនមានភាពស្មារត្រ ឬអត្ថបទជំនាញរបស់អ្នកទេ។',
     shareTitle: 'នាំចូល / បង្ហាញផែនទី',
     sharePlaceholder: 'បិទភ្ជាប់កូដផែនទី…',
     copy: 'ចម្លងកូដផែនទី',
@@ -1066,7 +1106,7 @@ export const km = defineLocale({
     importedBadge: 'ផែនទីដើមត្រូវបាននាំចូល',
     resetToMine: 'ត្រឡប់ទៅផែនទីរបស់ខ្ញុំ',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'បិទភ្ជួនកម្ម',
@@ -1096,7 +1136,7 @@ export const km = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'បិទមជ្ដាន់ពាក្យកាត់',
@@ -1125,7 +1165,7 @@ export const km = defineLocale({
       generatedTag: 'បានបង្កើត',
       adoptFailed: 'មិនអាចទទួលយកសត្វចិញ្ចឹមនេះបានទេ។',
       toggleFailed: 'មិនអាចបើកឬបិទសត្វចិញ្ចឹមបានទេ។',
-      noneAvailable: 'គ្មានសត្វចិញ្ចឹមដែលអាចប្រើបាន — ជ្រើសរើសមួយខាងក្រោមដើម្បីដំឡើង។',
+      noneAvailable: 'គ្មានសត្វចិញ្ចឹមដែលអាចប្រើបាន — ជ្រើសរើសមួយខាងក្រោមដើម្បីដំឡើង។'
     },
     generatePet: {
       title: 'បង្កើតសត្វទាហាន',
@@ -1154,7 +1194,7 @@ export const km = defineLocale({
       referenceImageInvalid: 'មិនអាចអានរូបភាពយោងក្រូចឺនេះបានទេ។ សាកល្បង PNG, JPG, WebP ឬ GIF។',
       adopt: 'ទទួល',
       startOver: 'ចាប់ផ្តើមឡើងវិញ',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     installTheme: {
       title: 'ដំឡើងប្រភព…',
@@ -1166,7 +1206,7 @@ export const km = defineLocale({
       install: 'ដំឡើង',
       installing: 'កំពុងដំឡើង...',
       installed: 'បានដំឡើង',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'វាលកំណត់',
     mcpServers: 'ម៉ាស៊ីន MCP',
@@ -1175,49 +1215,49 @@ export const km = defineLocale({
       maintenance: 'ការថែទារ',
       sessions: 'វគ្គល',
       system: 'ប្រព័ន្ធ',
-      usage: 'ការប្រើប្រាស់',
+      usage: 'ការប្រើប្រាស់'
     },
     sectionDescriptions: {
       maintenance: 'ស្ថានភាព ការបម្រុងទុក អ្នកថែរក្សា និងទិន្នន័យអ្នកចេត្តសម្រាប់',
       sessions: 'ស្វែង និងគ្រប់គ្រងសម័យ',
       system: 'ស្ថានភាព កំណត់ហេតុផ្លូវ និងសកម្មភាពប្រព័ន្ធ',
-      usage: 'សកម្មភាពនៃថូខិត ថ្លៃដង និងជំនាញតាមពេលវេលា',
+      usage: 'សកម្មភាពនៃថូខិត ថ្លៃដង និងជំនាញតាមពេលវេលា'
     },
     nav: {
       newChat: {
         title: 'សម័យថ្មី',
-        detail: 'ចាប់ផ្ដើមសម័យថ្មី',
+        detail: 'ចាប់ផ្ដើមសម័យថ្មី'
       },
       settings: {
         title: 'ការកំណត់',
-        detail: 'កំណត់កម្មវិធី OpenAmer លើកុំព្យារយ៉ាត',
+        detail: 'កំណត់កម្មវិធី OpenAmer លើកុំព្យារយ៉ាត'
       },
       skills: {
         title: 'សមត្រឡប់',
-        detail: 'ជំនាញ ឧបករណ៍ និងម៉ាស៊ីនមេហ្វូ MCP',
+        detail: 'ជំនាញ ឧបករណ៍ និងម៉ាស៊ីនមេហ្វូ MCP'
       },
       messaging: {
         title: 'សារ',
-        detail: 'រៀបចំ Telegram, Slack, Discord និងផ្សេងៗ',
+        detail: 'រៀបចំ Telegram, Slack, Discord និងផ្សេងៗ'
       },
       artifacts: {
         title: 'សំណង់ចំនួន',
-        detail: 'រុកចម្លងផលិតផលដែលបានបង្កើត',
-      },
+        detail: 'រុកចម្លងផលិតផលដែលបានបង្កើត'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'ផ្ទាំងសម័យ',
-        detail: 'ស្វែង កំពុង និងគ្រប់គ្រងសម័យ',
+        detail: 'ស្វែង កំពុង និងគ្រប់គ្រងសម័យ'
       },
       system: {
         title: 'ផ្ទាំងប្រព័ន្ធ',
-        detail: 'ស្ថានភាព កំណត់ហេតុផ្លូវ និងចាប់ផ្ដើមឡើងវិញ/ធ្វើបច្ចុប្បន្នភាពនៃ Gateway',
+        detail: 'ស្ថានភាព កំណត់ហេតុផ្លូវ និងចាប់ផ្ដើមឡើងវិញ/ធ្វើបច្ចុប្បន្នភាពនៃ Gateway'
       },
       usage: {
         title: 'ផ្ទាំងប្រើប្រាស់',
-        detail: 'សកខ្លាំង Token ការចំណាយ និងជំនាញ',
-      },
+        detail: 'សកខ្លាំង Token ការចំណាយ និងជំនាញ'
+      }
     },
     providerNavigate: 'រំពុក',
     providerSessions: 'សម័យ',
@@ -1282,7 +1322,8 @@ export const km = defineLocale({
       backup: 'បង្កើតបម្រុងទុក',
       backupDesc: 'បង្ហាន config, memories, skills និង sessions ក្នុងឯកសារ zip',
       debugShare: 'ចែករំលែកដំណើរការបញ្ហា',
-      debugShareDesc: 'ផ្ទុកឡើងរបាយការណ៍ដែលបានកែសម្រួល និងកំណត់ចំណាំ ដើម្បីទទួលតំណដែលអាចចែករំលែក (លុបដោយស្វ័យក្នុង 6 ម៉ោង)',
+      debugShareDesc:
+        'ផ្ទុកឡើងរបាយការណ៍ដែលបានកែសម្រួល និងកំណត់ចំណាំ ដើម្បីទទួលតំណដែលអាចចែករំលែក (លុបដោយស្វ័យក្នុង 6 ម៉ោង)',
       debugShareRunning: 'កំពុងផ្ទុកឡើងរបាយការណ៍បញ្ហា...',
       debugShareLinks: 'តំណចែករំលែក',
       debugShareFailed: 'ការចែករំលែកបញ្ហាបានបរាជ័យ',
@@ -1299,7 +1340,7 @@ export const km = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     logSearchPlaceholder: 'ច្រោះប្រាក់សំបុត្រកំណត់ចំណាំ...',
     startInBranch: branch => `New conversation in ${branch}`,
@@ -1307,7 +1348,7 @@ export const km = defineLocale({
     days: count => `${count}d`,
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   messaging: {
     search: 'ស្វែងរកសារមន្ត...',
@@ -1322,7 +1363,7 @@ export const km = defineLocale({
       not_configured: 'ត្រូវកំណត់',
       pending_restart: 'ត្រូវចាប់ផ្ដើមឡើងវិញ',
       retrying: 'កំពុងព្យាយាមម្តងទៀត',
-      startup_failed: 'ការចាប់ផ្ដើមមិនបានសម្រេច',
+      startup_failed: 'ការចាប់ផ្ដើមមិនបានសម្រេច'
     },
     unknown: 'មិនស្គាល់',
     hintPendingRestart: 'ចាប់ផ្ដើមម៉ះសាស្ត្រសារដ្ឋានឡើងវិញពីរបារស្ថានភាព ដើម្បីអនុវត្តការផ្លាស់ប្ដូរនេះ។',
@@ -1343,130 +1384,132 @@ export const km = defineLocale({
     saved: 'បានរក្សាទុក',
     replaceValue: 'ជំនួសតម្លៃបច្ចុប្បន្ន',
     openDocs: 'បើកឯកសារ',
-    restartToApply: 'ការផ្លាស់ប្តូរនេះនឹងមានឥទ្ធិសម្រាប់ប្រសិទ្ធិប្រាប់ចាប់ផ្តើមម្តងទៀតបន្ទាប់ពីការចាប់ផ្តើមម៉ាស៊ីនផ្លូវឡើងវិញ។',
-    restartToReconnect: 'ពាក្យសម្ងាត់ថ្មីនឹងមានឥទ្ធិសម្រាប់ប្រសិទ្ធិប្រាប់ចាប់ផ្តើមម្តងទៀតបន្ទាប់ពីការចាប់ផ្តើមម៉ាស៊ីនផ្លូវឡើងវិញ។',
+    restartToApply:
+      'ការផ្លាស់ប្តូរនេះនឹងមានឥទ្ធិសម្រាប់ប្រសិទ្ធិប្រាប់ចាប់ផ្តើមម្តងទៀតបន្ទាប់ពីការចាប់ផ្តើមម៉ាស៊ីនផ្លូវឡើងវិញ។',
+    restartToReconnect:
+      'ពាក្យសម្ងាត់ថ្មីនឹងមានឥទ្ធិសម្រាប់ប្រសិទ្ធិប្រាប់ចាប់ផ្តើមម្តងទៀតបន្ទាប់ពីការចាប់ផ្តើមម៉ាស៊ីនផ្លូវឡើងវិញ។',
     fieldCopy: {
       TELEGRAM_BOT_TOKEN: {
         label: 'និមិត្ត Bot',
         help: 'បង្កើត bot ជាមួយ @BotFather រួចវាយតម្លៃដែលវាផ្តល់ឱ្យអ្នក។',
-        placeholder: 'បិទភ្ជាប់និមិត្ត bot របស់ Telegram',
+        placeholder: 'បិទភ្ជាប់និមិត្ត bot របស់ Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'លេខអ្នកប្រើ Telegram ដែលអនុញ្ញាត',
-        help: 'ណែនាំ។ លេខអ្នកប្រើជាលេខដែលបំបែកដោយសញ្ញាពណ៌ ពី @userinfobot។ បើកទាំងអស់គ្នាអាចផ្ញើ DM ទៅ bot របស់អ្នក។',
+        help: 'ណែនាំ។ លេខអ្នកប្រើជាលេខដែលបំបែកដោយសញ្ញាពណ៌ ពី @userinfobot។ បើកទាំងអស់គ្នាអាចផ្ញើ DM ទៅ bot របស់អ្នក។'
       },
       TELEGRAM_PROXY: {
         label: 'អាសយដ្ឋាន Proxy',
-        help: 'ត្រូវការតែនៅលើប្រព័ន្ធដែល Telegram ត្រូវបានបិទ។',
+        help: 'ត្រូវការតែនៅលើប្រព័ន្ធដែល Telegram ត្រូវបានបិទ។'
       },
       DISCORD_BOT_TOKEN: {
         label: 'និមិត្ត Bot',
-        help: 'បង្កើតកម្មវិធីនៅផ្ទាំងអ្នកអភិវឌ្ឍន៍ Discord បន្ថែម bot រួចវាយតម្លៃរបស់វា។',
+        help: 'បង្កើតកម្មវិធីនៅផ្ទាំងអ្នកអភិវឌ្ឍន៍ Discord បន្ថែម bot រួចវាយតម្លៃរបស់វា។'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'លេខអ្នកប្រើ Discord ដែលអនុញ្ញាត',
-        help: 'ណែនាំ។ លេខអ្នកប្រើ Discord ដែលបំបែកដោយសញ្ញាពណ៌។',
+        help: 'ណែនាំ។ លេខអ្នកប្រើ Discord ដែលបំបែកដោយសញ្ញាពណ៌។'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'ទម្រង់សម្រាប់ឆ្លើយ',
-        help: 'ដំបូង, ទាំងអស់, ឬបិទ។',
+        help: 'ដំបូង, ទាំងអស់, ឬបិទ។'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'អនុញ្ញាតអ្នកប្រើ Discord ទាំងអស់',
-        help: 'តែនៅក្នុងការអភិវឌ្ឍន៍។ ពេលបើក, អ្នកណាម្នាក់អាចផ្ញើសារឯកជាមួយប៉ូតដោយមិនត្រូវមានបញ្ជីអនុញ្ញាត។',
+        help: 'តែនៅក្នុងការអភិវឌ្ឍន៍។ ពេលបើក, អ្នកណាម្នាក់អាចផ្ញើសារឯកជាមួយប៉ូតដោយមិនត្រូវមានបញ្ជីអនុញ្ញាត។'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'លេខសម្គាល់ឆ្នាំកម្មកន្លែងដើម',
-        help: 'ឆ្នាំកម្មដែលប៉ូតផ្ញើសារជាមុនការ (លទ្ធផល cron, ការរំលឹក)។',
+        help: 'ឆ្នាំកម្មដែលប៉ូតផ្ញើសារជាមុនការ (លទ្ធផល cron, ការរំលឹក)។'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'ឈ្មោះឆ្នាំកម្មកន្លែងដើម',
-        help: 'ឈ្មោះបង្ហាញសម្រាប់ឆ្នាំកម្មកន្លែងដើមនៅក្នុងកំណត់ត្រា និងលទ្ធផលស្ថានភាព។',
+        help: 'ឈ្មោះបង្ហាញសម្រាប់ឆ្នាំកម្មកន្លែងដើមនៅក្នុងកំណត់ត្រា និងលទ្ធផលស្ថានភាព។'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'អនុញ្ញាតអ្នកប្រើ iMessage ទាំងអស់',
-        help: 'ពេលបើក, រំលងបញ្ជីអនុញ្ញាត BlueBubbles។',
+        help: 'ពេលបើក, រំលងបញ្ជីអនុញ្ញាត BlueBubbles។'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'អនុញ្ញាតអ្នកប្រើ Mattermost ទាំងអស់',
+        label: 'អនុញ្ញាតអ្នកប្រើ Mattermost ទាំងអស់'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'ឆ្នាំកម្មដើម',
+        label: 'ឆ្នាំកម្មដើម'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'អនុញ្ញាតអ្នកប្រើ QQ ទាំងអស់',
+        label: 'អនុញ្ញាតអ្នកប្រើ QQ ទាំងអស់'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'ឆ្នាំកម្មដើម QQ',
-        help: 'ឆ្នាំកម្មឬក្រុមលំនាំដើមសម្រាប់ការផ្ញើតាម cron។',
+        help: 'ឆ្នាំកម្មឬក្រុមលំនាំដើមសម្រាប់ការផ្ញើតាម cron។'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'ឈ្មោះឆ្នាំកម្មកន្លែងដើម QQ',
+        label: 'ឈ្មោះឆ្នាំកម្មកន្លែងដើម QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'និមិត្តប៉ូត Slack',
         help: 'ប្រើនិមិត្តប៉ូតពី OAuth & Permissions បន្ទាប់ពីដំឡើងកម្មវិធី Slack របស់អ្នក។',
-        placeholder: 'បិទភ្ជាប់និមិត្តប៉ូត Slack',
+        placeholder: 'បិទភ្ជាប់និមិត្តប៉ូត Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'និមិត្តកម្មវិធី Slack',
         help: 'ប្រើនិម័តកម្រិតកម្មវិធីដែលត្រូវបានសម្រាប់ Socket Mode។',
-        placeholder: 'បិទភ្ជាប់ Slack app token',
+        placeholder: 'បិទភ្ជាប់ Slack app token'
       },
       SIGNAL_ACCOUNT: {
         help: 'លេខដែលបានចុះឈ្មោះជាមួយស្ពាទ់ signal-cli។',
-        label: 'លេខទូរស័ព្ទ',
+        label: 'លេខទូរស័ព្ទ'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'អ្នកប្រើ Signal ដែលអនុញ្ញាត',
-        help: 'ណែនាំ។ អត្តសញ្ញា Signal ដែលបំបែកដោយសញ្ញាក្បៀស។',
+        help: 'ណែនាំ។ អត្តសញ្ញា Signal ដែលបំបែកដោយសញ្ញាក្បៀស។'
       },
       WHATSAPP_ENABLED: {
         label: 'បើកស្ពាទ់ WhatsApp',
-        help: 'កំណត់ដោយស្លាក់ខាងក្រោម។ កុំប៉ះបោះ លុះត្រាថ្នាក់ត្រូវនឹងវា។',
+        help: 'កំណត់ដោយស្លាក់ខាងក្រោម។ កុំប៉ះបោះ លុះត្រាថ្នាក់ត្រូវនឹងវា។'
       },
       WHATSAPP_MODE: {
-        label: 'របៀបស្ពាទ់',
+        label: 'របៀបស្ពាទ់'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'អ្នកប្រើ WhatsApp ដែលអនុញ្ញាត',
-        help: 'ណែនាំ។ លេខទូរស័ព្ទ ឬអត្តសញ្ញា WhatsApp ដែលបំបែកដោយសញ្ញាក្បៀស។',
+        help: 'ណែនាំ។ លេខទូរស័ព្ទ ឬអត្តសញ្ញា WhatsApp ដែលបំបែកដោយសញ្ញាក្បៀស។'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Slack user IDs ដែលអនុញ្ញាត',
-        help: 'ណែនាំ។ Slack user IDs បំបែកដោយសញ្ញាក្បៀស។',
+        help: 'ណែនាំ។ Slack user IDs បំបែកដោយសញ្ញាក្បៀស។'
       },
       MATTERMOST_URL: {
         label: 'URL ម៉ាស៊ីន',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'User IDs ដែលអនុញ្ញាត',
-        help: 'ណែនាំ។ Mattermost user IDs បំបែកដោយសញ្ញាក្បៀស។',
+        help: 'ណែនាំ។ Mattermost user IDs បំបែកដោយសញ្ញាក្បៀស។'
       },
       MATRIX_HOMESERVER: {
         placeholder: 'https://matrix.org',
-        label: 'Homeserver URL',
+        label: 'Homeserver URL'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Matrix user IDs ដែលអនុញ្ញាត',
-        help: 'ណែនាំ។ User IDs បំបែកដោយសញ្ញាក្បៀស ក្នុងទម្រង់ @user:server។',
+        help: 'ណែនាំ។ User IDs បំបែកដោយសញ្ញាក្បៀស ក្នុងទម្រង់ @user:server។'
       },
       SIGNAL_HTTP_URL: {
         placeholder: 'http://127.0.0.1:8080',
         help: 'URL នៃ signal-cli REST bridge ដែលកំពុងដំណើរការ។',
-        label: 'Signal bridge URL',
+        label: 'Signal bridge URL'
       },
       MATTERMOST_TOKEN: {
-        label: 'Bot token',
+        label: 'Bot token'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Access token',
+        label: 'Access token'
       },
       MATRIX_USER_ID: {
         label: 'Bot user ID',
-        placeholder: '@openamer:example.org',
-      },
+        placeholder: '@openamer:example.org'
+      }
     },
     advanced: count => `Advanced (${count})`,
     clearField: key => `Clear ${key}`,
@@ -1480,8 +1523,7 @@ export const km = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'ស្វែងរកវើក្វ...',
@@ -1490,7 +1532,8 @@ export const km = defineLocale({
     hint: 'ការផ្លាស់ប្ដូរសម្ភាសន៍នឹងផ្ទុកឡើងវិញដោយស្វ័យបន្ត នៅពេលអ្នកទទួលកំពុងដំណើរការ។ សម្ភាសន៍ដែលបានបិទ នឹងបដិសេធកម្មចូលមក។',
     empty: 'មិនទាន់មានសម្ភាសន៍វើក្វទេ។',
     disabledTitle: 'អ្នកទទួលវើក្វបានបិទ',
-    disabledBody: 'វើក្វជាវេទិកស្ពាទ់ផ្ទាល់ខ្លួន។ បើកវានៅទីនេះ ដើម្បីទទួលកម្មវិធី HTTP ចូលមក។ ក្រុមជុទាវ ត្រូវតែបានប្រើនៅពេលសម្ភាសន៍បញ្ជូនទៅ Telegram, Discord, Slack ឬក្រុមជុទាវផ្សេងៗ។',
+    disabledBody:
+      'វើក្វជាវេទិកស្ពាទ់ផ្ទាល់ខ្លួន។ បើកវានៅទីនេះ ដើម្បីទទួលកម្មវិធី HTTP ចូលមក។ ក្រុមជុទាវ ត្រូវតែបានប្រើនៅពេលសម្ភាសន៍បញ្ជូនទៅ Telegram, Discord, Slack ឬក្រុមជុទាវផ្សេងៗ។',
     enable: 'បើកវើក្វ',
     enabling: 'កំពុងបើក...',
     enableRow: 'បើក',
@@ -1537,7 +1580,7 @@ export const km = defineLocale({
       github_comment: 'មតិយោបល់ GitHub',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     subscriptions: (count: number) => `Subscriptions (${count})`,
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -1545,7 +1588,7 @@ export const km = defineLocale({
     deleteFailed: (name: string) => `Failed to delete "${name}"`,
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     close: 'បិទម្រោះ',
@@ -1623,7 +1666,7 @@ export const km = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   cron: {
     close: 'បិទ cron',
@@ -1637,14 +1680,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'ផ្អាក',
       disabled: 'បានបង្ហាន',
       error: 'កំហុស',
-      completed: 'បានបញ្ចប់',
+      completed: 'បានបញ្ចប់'
     },
     deliveryLabels: {
       local: 'ដេស់ធ្យូនេះ',
       telegram: 'តេលេលំហ្គ្រាម',
       discord: 'ឌីសកូរ៑',
       slack: 'ស្លាក',
-      email: 'អ៊ីមែល',
+      email: 'អ៊ីមែល'
     },
     scheduleLabels: {
       daily: 'ប្រចាំថ្ងៃ',
@@ -1653,7 +1696,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'ប្រចាំខែ',
       hourly: 'រាល់ម៉ោង',
       'every-15-minutes': 'រាល់ 15 នាទី',
-      custom: 'តាមតម្រូវ',
+      custom: 'តាមតម្រូវ'
     },
     scheduleHints: {
       daily: 'រាល់ថ្ងៃម៉ោង 9:00 AM',
@@ -1662,7 +1705,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'ថ្ងៃទីមួយនៃខែនីមួយៗ ម៉ោង 9:00 AM',
       hourly: 'នៅចុចនៃម៉ោងនីមួយៗ',
       'every-15-minutes': 'រាល់ 15 នាទី',
-      custom: 'វាក្សា Cron ឬភាសាធម្មតា',
+      custom: 'វាក្សា Cron ឬភាសាធម្មតា'
     },
     days: {
       '0': 'ថ្ងៃអាទិត្យ',
@@ -1672,7 +1715,7 @@ Leave blank to keep the ${mode} default.`,
       '4': 'ព្រហស្បតិ៍',
       '5': 'សុក្រ',
       '6': 'សៅរ៍',
-      '7': 'អាទិត្យ',
+      '7': 'អាទិត្យ'
     },
     topOfHour: 'នៅចុន្លោមម៉ោងនីមួយៗ',
     newCron: 'កាល់គ្រុនថ្មី',
@@ -1734,7 +1777,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'បង្កើត cron',
     tabs: {
       jobs: 'ជីវកម្ម',
-      blueprints: 'គំរូ',
+      blueprints: 'គំរូ'
     },
     blueprints: {
       tab: 'គំរូ',
@@ -1748,7 +1791,7 @@ Leave blank to keep the ${mode} default.`,
       loading: 'កំពុងផ្ទុកគំរូ...',
       failedLoad: 'បរាជ័យក្នុងការផ្ទុកគំរូ',
       emptyTitle: 'គ្មានគំរូទំនេរ',
-      emptyDesc: 'មិនមានគំរូសាវកម្មទំនេរនៅលើ backend នេះទេ។',
+      emptyDesc: 'មិនមានគំរូសាវកម្មទំនេរនៅលើ backend នេះទេ។'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -1757,7 +1800,7 @@ Leave blank to keep the ${mode} default.`,
     everyDayOfWeekAt: (day, time) => `Every ${day} at ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Monthly on day ${dayOfMonth} at ${time}`,
     everyHourAt: minute => `Every hour at :${minute}`,
-    actionsFor: title => `Actions for ${title}`,
+    actionsFor: title => `Actions for ${title}`
   },
   artifacts: {
     refreshing: 'កំពុងផ្ទុកផល្តិកឡើយវិញ',
@@ -1791,14 +1834,14 @@ Leave blank to keep the ${mode} default.`,
     copyUrl: 'ចម្លង URL',
     copyPath: 'ចម្លងផ្លូវ',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'សម័យថ្មី',
       skills: 'សមត្រភាព',
       messaging: 'ការផ្ញើសារ',
-      artifacts: 'សម្ភាសន៍បង្កើត',
+      artifacts: 'សម្ភាសន៍បង្កើត'
     },
     searchAria: 'ស្វែងរកសម័យ',
     searchPlaceholder: 'ស្វែងរកសម័យ…',
@@ -1849,7 +1892,8 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'ចម្លងផ្លូវ',
       removeFromSidebar: 'លាក់ពីរបាតដែល',
       createFailed: 'មិនអាចបង្កើតគម្រោះបានទេ',
-      staleBackend: 'ធ្វើបច្ចុប្បន្នភាព backend នៃ OpenAmer ដើម្បីបង្កើតគម្រោះ — backend របស់អ្នកមានចម្ណុចជាង desktop app នេះ (ការកំណត់ → ការបច្ចុប្បន្នភាព → Backend)',
+      staleBackend:
+        'ធ្វើបច្ចុប្បន្នភាព backend នៃ OpenAmer ដើម្បីបង្កើតគម្រោះ — backend របស់អ្នកមានចម្ណុចជាង desktop app នេះ (ការកំណត់ → ការបច្ចុប្បន្នភាព → Backend)',
       deleteConfirm: 'វានឹងយកគម្រោះដែលបានរក្សាទុកចេញពី OpenAmer។ ឯកសារ ឃ្លាំង git និង worktree នៅស្ថានាពេលដែរ។',
       startWork: 'worktree ថ្មី',
       newWorktreeTitle: 'worktree ថ្មី',
@@ -1871,13 +1915,14 @@ Leave blank to keep the ${mode} default.`,
       removeWorktree: 'ដកចេញ worktree',
       removeWorktreeFailed: 'មិនអាចដកចេញដំណើរការបាន (មានការផ្លាស់ប្តូរមិនបានរក្សាក្នុងនោះ?)',
       removeWorktreeConfirm: 'ដកចេញវាពី git (លុបផ្ទាំងដំណើរការ; សាខានៅតែ) ឬលាក់ផ្ទាំងខាងស៊ីឌារ ហើយទុកដំណើរការនៅលើថានំ',
-      removeWorktreeDirty: 'ដំណើរការនេះមានការផ្លាស់ប្តូរមិនបានរក្សាក្នុង។ ដកចេញដោយបង្ខំ (បោះចោលការផ្លាស់ប្តូរទាំងនោះ) ឬលាក់ផ្ទាំងខាងស៊ីឌារ ហើយទុកវានៅលើថានំ',
+      removeWorktreeDirty:
+        'ដំណើរការនេះមានការផ្លាស់ប្តូរមិនបានរក្សាក្នុង។ ដកចេញដោយបង្ខំ (បោះចោលការផ្លាស់ប្តូរទាំងនោះ) ឬលាក់ផ្ទាំងខាងស៊ីឌារ ហើយទុកវានៅលើថានំ',
       forceRemove: 'ដកចេញដោយបង្ខំ',
       back: 'គម្រោះទាំងអស់',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     loading: 'កំពុងផ្ទុក…',
     loadMore: 'ផ្ទុកបន្ថែម',
@@ -1912,19 +1957,19 @@ Leave blank to keep the ${mode} default.`,
       actionsFor: title => `Actions for ${title}`,
       handoffOrigin: platform => `Handed off from ${platform}`,
       ownedByProfile: profile => `Profile: ${profile}`,
-      untitledChat: id => `Chat ${id}`,
+      untitledChat: id => `Chat ${id}`
     },
     dateDivider: {
       today: 'នៅមុននេះថ្ងៃនេះ',
       yesterday: 'ម្សិលមិញ',
       thisWeek: 'នៅមុនសប្តាហ៍នេះ',
       lastWeek: 'សប្តាហ៍មុន',
-      thisMonth: 'នៅមុនខែនេះ',
+      thisMonth: 'នៅមុនខែនេះ'
     },
     noMatch: query => `No sessions match “${query}”.`,
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     message: 'សារ',
@@ -1965,7 +2010,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'បន្តសម័យមុន',
       '/details': 'គ្រប់គ្រងកម្រិតលម្អិតសរសេរ',
       '/copy': 'ចម្លងការជ្រើសរើស ឬសារជម្រាបចុង្រៀមចុងសិក្សា',
-      '/quit': 'ចាកចេញពី OpenAmer',
+      '/quit': 'ចាកចេញពី OpenAmer'
     },
     hotkeyDescs: {
       'composer.mention': 'ឯកសារយោង ថត់ ថត់ដាក់ និង git',
@@ -1975,7 +2020,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'ផ្ញើវាល្បងក្នុងកាត់ជាក់បន្ទាត់ក្រោយ',
       'keybinds.openPanel': 'ផ្លូវកាត់គ្រប់ម៉ឺឌាត',
       'composer.cancel': 'បិទផ្ទាំងលើ · បោះបង់ការដំណើរការ',
-      'composer.history': 'ប្ដូរផ្ទាំងលើ / ប្រវត្តិឡើងវិញ',
+      'composer.history': 'ប្ដូរផ្ទាំងលើ / ប្រវត្តិឡើងវិញ'
     },
     attachUrlTitle: 'ភ្ជាប់ URL',
     attachUrlDesc: '`OpenAmer` នឹងផ្អែកទំព័រ ហើយរួមបញ្ចូលវាជាប្រយ័ត្នសម្រាប់វាល្បងនេះ។',
@@ -1993,7 +2038,8 @@ Leave blank to keep the ${mode} default.`,
     queueResume: 'បន្ត',
     queueResumeTip: 'បានផ្អាកដោយការឈប់ — បន្តផ្ញើវាល្បងក្នុងកាត់ជាក់',
     queueStuckTitle: 'សារក្នុងការជាន់មិនបានផ្ញើ',
-    queueStuckBody: 'ជួនដែលបាននៅក្នុងការជាន់បានបរាជ័យក្នុងការផ្ញើម្តងហើយ។ វានៅតែក្នុងការជាន់ — សូមព្យាយាមផ្ញើវាម្តងទៀត។',
+    queueStuckBody:
+      'ជួនដែលបាននៅក្នុងការជាន់បានបរាជ័យក្នុងការផ្ញើម្តងហើយ។ វានៅតែក្នុងការជាន់ — សូមព្យាយាមផ្ញើវាម្តងទៀត។',
     previewUnavailable: 'មិនអាចមើលជាមុនបាន',
     dictating: 'កំពុងបញ្ចេញពាក្យ',
     preparingAudio: 'កំពុងរៀបចំសំឡេង',
@@ -2018,19 +2064,20 @@ Leave blank to keep the ${mode} default.`,
     snippets: {
       codeReview: {
         label: 'ការពិនិត្យកូដ',
-        description: 'សវ្ដាក់ការផ្លាស់ប្ដូរបច្ចុប្បន្នសម្រាប់ការថយក្រោយ ករណីពិសោធន៍ដែលបានទុកចោល និងការសាកល្បងដែលបានខ្សោយ',
-        text: 'សូមពិនិត្យវាសម្រាប់កំហុស ការថយក្រោយ និងការសាកល្បងដែលបានខ្សោយ',
+        description:
+          'សវ្ដាក់ការផ្លាស់ប្ដូរបច្ចុប្បន្នសម្រាប់ការថយក្រោយ ករណីពិសោធន៍ដែលបានទុកចោល និងការសាកល្បងដែលបានខ្សោយ',
+        text: 'សូមពិនិត្យវាសម្រាប់កំហុស ការថយក្រោយ និងការសាកល្បងដែលបានខ្សោយ'
       },
       implementationPlan: {
         label: 'ផែនការអនុវត្តកម្ម',
         description: 'គ្រោះផ្លូវអនុវត្តកម្មមុនពេលកែកូដ ដើម្បីឱ្យការផ្លាស់ប្ដូរនៅត្រឹមតែច្បាញ់',
-        text: 'សូមគ្រោះផែនការអនុវត្តកម្មសង្ខេបមុនពេលកែកូដ',
+        text: 'សូមគ្រោះផែនការអនុវត្តកម្មសង្ខេបមុនពេលកែកូដ'
       },
       explainThis: {
         label: 'ពន្យល់វា',
         description: 'ពន្យល់ពីរបៀបការដំណើរការកូដដែលបានជ្រើសរើស និងផ្តាស់ទៅឯកសារគ្រឿង',
-        text: 'សូមពន្យល់ពីរបៀបការដំណើរការនេះ និងចង់ឱ្យខ្ញុំចូលមើលឯកសារគ្រឿង',
-      },
+        text: 'សូមពន្យល់ពីរបៀបការដំណើរការនេះ និងចង់ឱ្យខ្ញុំចូលមើលឯកសារគ្រឿង'
+      }
     },
     wakingProfile: profile => `Waking up ${profile}…`,
     newSessionPlaceholders: [
@@ -2040,7 +2087,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -2049,7 +2096,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
@@ -2057,7 +2104,7 @@ Leave blank to keep the ${mode} default.`,
     previewLabel: label => `Preview ${label}`,
     couldNotPreview: label => `Could not preview ${label}`,
     removeAttachment: label => `Remove ${label}`,
-    url: 'URL…',
+    url: 'URL…'
   },
   statusStack: {
     agents: 'ភ្នៀបរិក្ឌា',
@@ -2097,7 +2144,8 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'បើក PR',
       ghMissing: 'ដំឡើង GitHub CLI (gh) ហើយចូលគណនីដើម្បីបើក PR',
       agentShip: 'ស្នើឱ្យ OpenAmer បើក PR',
-      agentShipPrompt: 'ពិនិត្យការផ្លាស់ប្តូរបច្ចុប្បន្ន បញ្ជូនជាមួយសារបញ្ជូន conventional-commit ដ៏ច្បាស់ល្អ ផ្ញើសាខា ហើយបើក pull request។',
+      agentShipPrompt:
+        'ពិនិត្យការផ្លាស់ប្តូរបច្ចុប្បន្ន បញ្ជូនជាមួយសារបញ្ជូន conventional-commit ដ៏ច្បាស់ល្អ ផ្ញើសាខា ហើយបើក pull request។',
       newBranch: 'សាខាថ្មី',
       worktrees: 'ដំណើរការ',
       changed: count => `${count} changed`,
@@ -2106,12 +2154,12 @@ Leave blank to keep the ${mode} default.`,
       commitPlaceholder: 'Message (⌘↵ to commit)',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -2126,7 +2174,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'បានធ្វើបច្ចុប្បន្នភាព',
       manual: 'ធ្វើបច្ចុប្បន្នភាពពីស្ថាប័នរបស់អ្នក',
       guiSkew: 'ធ្វើបច្ចុប្បន្នភាពកម្មវិធីកុំព្យា',
-      error: 'បានផ្អាកការធ្វើបច្ចុប្បន្នភាព',
+      error: 'បានផ្អាកការធ្វើបច្ចុប្បន្នភាព'
     },
     checking: 'កំពុងស្វែងរកការធ្វើបច្ចុប្បន្នភាព…',
     checkFailedTitle: 'មិនអាចស្វែងរកការធ្វើបច្ចុប្បន្នភាពបានទេ',
@@ -2149,28 +2197,34 @@ Leave blank to keep the ${mode} default.`,
       pulling: 'ម៉ាឃិនកំពុងធ្វើបច្ចុប្បន្នភាព…',
       restarting: 'ម៉ាឃិនកំពុងចាប់ផ្ដើងឡើងវិញ ដើម្បីផ្ទុកការធ្វើបច្ចុប្បន្នភាព…',
       notAvailable: 'មិនមានការធ្វើបច្ចុប្បន្នភាពសម្រាប់ម៉ាឃិននេះទេ។',
-      failed: 'ការធ្វើបច្ចុប្បន្នភាពម៉ាឃិនបានបរាជ័យ។',
+      failed: 'ការធ្វើបច្ចុប្បន្នភាពម៉ាឃិនបានបរាជ័យ។'
     },
     appErrors: {
-      updateLocked: 'ការធ្វើបច្ចុប្បន្នភាពត្រូវបានបោះបង់៖ វីនដៅ OpenAmer ផ្សេងទៀត ឬស្ថាប័នដែលកំពុងដំណើរការ openamer កំពុងបើកការដំឡើងនេះ។ បិទវីនដៅ ហើយព្យាយាមម្តងទៀត។',
-      updateFailed: 'ការធ្វើបច្ចុប្បន្នភាពមិនបានបញ្ចប់។ មិនអាចរំលោះទេ — គ្មានអ្វីបានបាត់ឡើង។ អ្នកអាចព្យាយាមម្តងទៀតឥឡូវនេះ។',
+      updateLocked:
+        'ការធ្វើបច្ចុប្បន្នភាពត្រូវបានបោះបង់៖ វីនដៅ OpenAmer ផ្សេងទៀត ឬស្ថាប័នដែលកំពុងដំណើរការ openamer កំពុងបើកការដំឡើងនេះ។ បិទវីនដៅ ហើយព្យាយាមម្តងទៀត។',
+      updateFailed:
+        'ការធ្វើបច្ចុប្បន្នភាពមិនបានបញ្ចប់។ មិនអាចរំលោះទេ — គ្មានអ្វីបានបាត់ឡើង។ អ្នកអាចព្យាយាមម្តងទៀតឥឡូវនេះ។'
     },
     maybeLater: 'ប្រហែលវេលាយក្រោយ',
     manualTitle: 'ធ្វើបច្ចុប្បន្នភាពពីធីម៉ីនាល របស់អ្នក',
-    manualBody: 'អ្នកបានដំឡើង OpenAmer តាមពាក្យកម្មទេ ដូច្នេះការធ្វើបច្ចុប្បន្នភាពក៏ដំណើរការនៅទីនេះដែរ។ បិទភ្ជាប់វាក្នុងធីម៉ីនាលរបស់អ្នក៖',
+    manualBody:
+      'អ្នកបានដំឡើង OpenAmer តាមពាក្យកម្មទេ ដូច្នេះការធ្វើបច្ចុប្បន្នភាពក៏ដំណើរការនៅទីនេះដែរ។ បិទភ្ជាប់វាក្នុងធីម៉ីនាលរបស់អ្នក៖',
     manualPickedUp: 'OpenAmer នឹងទាក់ទងជំនិត្រថ្មីនៅពេលបើកវាលើកទីឡើងបន្ទាប់បន្ទាប់។',
     guiSkewTitle: 'ធ្វើបច្ចុប្បន្នភាពកម្មវិធីស៊េក្រប្រទ័រ',
-    guiSkewBody: 'ម៉ាឃិនបានបច្ចុប្បន្នភាព ប៉ុន្តែកម្មវិធីស៊េក្រប្រទ័រនេះមិនត្រូវបានប្ដូរទេ។ ធ្វើបច្ចុប្បន្នភាព ឬដំឡើងម្តងទៀតកម្មវិធីស៊េក្រប្រទ័រ OpenAmer (AppImage / .deb / .rpm របស់អ្នក) ដើម្បីឱ្យស្មើនឹងម៉ាឃិន។',
+    guiSkewBody:
+      'ម៉ាឃិនបានបច្ចុប្បន្នភាព ប៉ុន្តែកម្មវិធីស៊េក្រប្រទ័រនេះមិនត្រូវបានប្ដូរទេ។ ធ្វើបច្ចុប្បន្នភាព ឬដំឡើងម្តងទៀតកម្មវិធីស៊េក្រប្រទ័រ OpenAmer (AppImage / .deb / .rpm របស់អ្នក) ដើម្បីឱ្យស្មើនឹងម៉ាឃិន។',
     copy: 'ចម្លង',
     copied: 'បានចម្លង',
     done: 'បានរួច',
-    applyingBody: 'ឧបកប្រព័ន្ធបច្ចុប្បន្នភាពនៃ OpenAmer នឹងទទួលការគ្រប់គ្រងនៅក្នុងប្រអប់ផ្ទាំងផ្ទាល់ខ្នួស ហើយបើក OpenAmer វិញដោយស្វ័យប្រវត្តិពេលរួចរាល់។ សូមកុំបើក OpenAmer ដោយខ្លួនឯងឡើយខណៈវាកំពុងធ្វើបច្ចុប្បន្នភាព។',
-    applyingBodyBackend: 'ម៉ាឃិនទ្រង់ក្រោយកំពុងអនុវត្តការធ្វើបច្ចុប្បន្នភាព នឹងចាប់ផ្ដើងឡើងវិញ។ OpenAmer នឹងតាស់មកភ្ជាប់ដោយស្វ័យប្រវត្តិ នៅពេលម៉ាឃិនមានក្រោយវិញ។',
+    applyingBody:
+      'ឧបកប្រព័ន្ធបច្ចុប្បន្នភាពនៃ OpenAmer នឹងទទួលការគ្រប់គ្រងនៅក្នុងប្រអប់ផ្ទាំងផ្ទាល់ខ្នួស ហើយបើក OpenAmer វិញដោយស្វ័យប្រវត្តិពេលរួចរាល់។ សូមកុំបើក OpenAmer ដោយខ្លួនឯងឡើយខណៈវាកំពុងធ្វើបច្ចុប្បន្នភាព។',
+    applyingBodyBackend:
+      'ម៉ាឃិនទ្រង់ក្រោយកំពុងអនុវត្តការធ្វើបច្ចុប្បន្នភាព នឹងចាប់ផ្ដើងឡើងវិញ។ OpenAmer នឹងតាស់មកភ្ជាប់ដោយស្វ័យប្រវត្តិ នៅពេលម៉ាឃិនមានក្រោយវិញ។',
     applyingClose: 'ប្រអប់ផ្ទាំងនេះនឹងបិទនៅពេលការធ្វើបច្ចុប្បន្នភាពកំពុងដំណើរការ រួចជាក់ OpenAmer នឹងបើកវិញដោយខ្លួនឯង។',
     errorTitle: 'ការធ្វើបច្ចុប្បន្នភាពមិនបានបញ្ចប់',
     errorBody: 'មិនចាំបាច់ទេ — គ្មានអ្វីបានបាត់ទេ។ អ្នកអាចព្យាយាមម្តងទៀតឥឡូវនេះ។',
     notNow: 'មិនមែនឥឡូវនេះ',
-    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
+    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`
   },
   install: {
     stageStates: {
@@ -2178,7 +2232,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'កំពុងដំឡើង',
       succeeded: 'បានបញ្ចប់',
       skipped: 'បានរំលង',
-      failed: 'បរាជ័យ',
+      failed: 'បរាជ័យ'
     },
     oneTimeTitle: 'OpenAmer ត្រូវការការដំឡើងមួយដង',
     installCommand: 'ពាក្យគ្រប់គ្រឿងដំឡើង',
@@ -2190,7 +2244,8 @@ Leave blank to keep the ${mode} default.`,
     setupChoiceDesc: 'ភ្ជាប់កម្មវិធីនេះទៅច្រក OpenAmer gateway ដែលអ្នកកំពុងដំណើរការ ឬដំឡើង OpenAmer នៅលើម៉ែរនេះ។',
     connectExistingTitle: 'ភ្ជាប់ទៅ OpenAmer ដែលមាន',
     connectExistingShort: 'ភ្ជាប់ទៅប្រព័ន្ធដែលមាន',
-    connectExistingDesc: 'ប្រើមិន្នប្រព័ន្ធផ្ទៃក្រៅជាមួយសញ្ញាសម្គាល់សម័យ ឬចូលតាមកម្មវិធីរុករក។ ការដំឡើងនៅមូលដ្ឋាននឹងមិនចាប់ផ្តើម។',
+    connectExistingDesc:
+      'ប្រើមិន្នប្រព័ន្ធផ្ទៃក្រៅជាមួយសញ្ញាសម្គាល់សម័យ ឬចូលតាមកម្មវិធីរុករក។ ការដំឡើងនៅមូលដ្ឋាននឹងមិនចាប់ផ្តើម។',
     installLocalTitle: 'ដំឡើង OpenAmer នៅមូលដ្ឋាន',
     incompleteTokenTest: 'បញ្ចូលនិមិតូសម្ងាត់ម៉ោនមុនពេលសាកល្បងហ្វាងមេនេ៉។',
     testConnection: 'សាកល្បងការតភ្ជាប់',
@@ -2199,8 +2254,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'ការដំឡើងបរាជ័យ',
     settingUpTitle: 'កំពុងរៀបចំ OpenAmer Agent',
     finishingTitle: 'កំពុងបញ្ចប់',
-    failedDesc: 'មួយក្នុងជំហានការដំឡើងបរាជ័យ។ នៅលើ Windows វាអាចកើតឡើងបើមាន OpenAmer CLI ឬកម្មវិធីដែលកំពុងដំឡើងដំឡើងផ្សេងទៀតកំពុងដំណើរការ។ សូមបញ្ឈប់ដំណើរការ OpenAmer ទាំងអស់ រួចសាកល្បងម្តងទៀត។ សូមពិនិត្យព័ត៌មានខាងក្រោម ឬកំណត់កំណត់កម្មវិធីតាមរដ្ឋានសម្រាប់អត្ថបទពេញ។',
-    activeDesc: 'នេះជាការរៀបចំម្តងតែ។ អ្នកដំឡើង OpenAmer កំពុងទាញយកកម្មវិធីចាំង និងរៀបចំម៉ោនរបស់អ្នក។ ការចាប់ផ្តើងនាពីរួចនេះនឹងរំលងជំហាននេះ។',
+    failedDesc:
+      'មួយក្នុងជំហានការដំឡើងបរាជ័យ។ នៅលើ Windows វាអាចកើតឡើងបើមាន OpenAmer CLI ឬកម្មវិធីដែលកំពុងដំឡើងដំឡើងផ្សេងទៀតកំពុងដំណើរការ។ សូមបញ្ឈប់ដំណើរការ OpenAmer ទាំងអស់ រួចសាកល្បងម្តងទៀត។ សូមពិនិត្យព័ត៌មានខាងក្រោម ឬកំណត់កំណត់កម្មវិធីតាមរដ្ឋានសម្រាប់អត្ថបទពេញ។',
+    activeDesc:
+      'នេះជាការរៀបចំម្តងតែ។ អ្នកដំឡើង OpenAmer កំពុងទាញយកកម្មវិធីចាំង និងរៀបចំម៉ោនរបស់អ្នក។ ការចាប់ផ្តើងនាពីរួចនេះនឹងរំលងជំហាននេះ។',
     fetchingManifest: 'កំពុងទាញយកបញ្ជីអ្នកដំឡើង...',
     error: 'កំហុស',
     hideOutput: 'លាក់លទ្ធផ្លូវអ្នកដំឡើង',
@@ -2213,9 +2270,11 @@ Leave blank to keep the ${mode} default.`,
     copyOutput: 'ចម្លងលទ្ធផ្លូវ',
     reloadRetry: 'ផ្ទុកឡើងវិញ និងសាកល្បងម្តងទៀត',
     installLocalDesc: 'ទាញយក OpenAmer បង្កើតបរិយ័ព្យ Python ហើយដំណើរការ backend នៅម៉ាស៊ីននេះ។',
-    localStartUnavailable: 'ការដំឡើងក្នុងម៉ាស៊ីនមិនអាចចាប់ផ្តើមបាន។ ចាប់ផ្តើម OpenAmer Desktop ម្តងទៀត ហើយព្យាយាមម្តងទៀត។',
+    localStartUnavailable:
+      'ការដំឡើងក្នុងម៉ាស៊ីនមិនអាចចាប់ផ្តើមបាន។ ចាប់ផ្តើម OpenAmer Desktop ម្តងទៀត ហើយព្យាយាមម្តងទៀត។',
     remoteSetupTitle: 'ភ្ជាក់ទៅ OpenAmer ដែលមាន',
-    remoteSetupDesc: 'បញ្ចូល URL ម៉ាស៊ីនច្រករបស់អ្នក។ OpenAmer Desktop នឹងរកឃើញថាតើត្រូវប្រើនិមិត្តសញ្ញា ឬចូលតាមកម្មវិធីអ្នកសាក់រោគ។',
+    remoteSetupDesc:
+      'បញ្ចូល URL ម៉ាស៊ីនច្រករបស់អ្នក។ OpenAmer Desktop នឹងរកឃើញថាតើត្រូវប្រើនិមិត្តសញ្ញា ឬចូលតាមកម្មវិធីអ្នកសាក់រោគ។',
     remoteUrlTitle: 'URL ម៉ាស៊ីនច្រក',
     remoteUrlDesc: 'ប្រើ URL មូលដ្ឋានរបស់ម៉ាស៊ីនច្រក OpenAmer រួមមាន https:// ពេលប្រើពីចម្ងាយ។',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2232,13 +2291,14 @@ Leave blank to keep the ${mode} default.`,
     tokenDesc: 'បិទភ្ជាក់និមិត្តសញ្ញាសម្រាប់សម័យពីឯកសារ .env របស់ម៉ាស៊ីនច្រកពីចម្ងាយ។',
     pasteSessionToken: 'បិទភ្ជាក់និមិត្តសញ្ញាសម្រាប់សម័យ',
     incompleteSignInTest: 'សូមចូលមុនពេលសាកល្បងម៉ាស៊ីនច្រកដែលការពារដោយ OAuth។',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
     signInWith: provider => `Sign in with ${provider}`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'សូមរៀបចំ OpenAmer Agent',
@@ -2258,28 +2318,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'ផ្ទាល់ API ម៉ូឌែល',
-        description: 'ចូលម៉ូឌែលដោយផ្ទាល់ដែលផ្ទាល់ដោយ Fireworks AI។',
+        description: 'ចូលម៉ូឌែលដោយផ្ទាល់ដែលផ្ទាល់ដោយ Fireworks AI។'
       },
       openrouter: {
         short: 'កូនិមួយ ម៉ូឌែលច្រើន',
-        description: 'ផ្តល់ម៉ូឌែលរាប់សរុបដោយកូនិតែមួយ។ លំនាំសម្រាប់ការដំឡើងថ្មី។',
+        description: 'ផ្តល់ម៉ូឌែលរាប់សរុបដោយកូនិតែមួយ។ លំនាំសម្រាប់ការដំឡើងថ្មី។'
       },
       openai: {
         short: 'ម៉ូឌែលកម្រិត GPT',
-        description: 'ចូលម៉ូឌែល OpenAI ដោយផ្ទាល់។',
+        description: 'ចូលម៉ូឌែល OpenAI ដោយផ្ទាល់។'
       },
       gemini: {
         short: 'ម៉ូដែល Gemini',
-        description: 'ចូលប្រើម៉ូដែល Google Gemini ដោយផ្ទាល់។',
+        description: 'ចូលប្រើម៉ូដែល Google Gemini ដោយផ្ទាល់។'
       },
       xai: {
         short: 'ម៉ូដែល Grok',
-        description: 'ចូលប្រើម៉ូដែល xAI Grok ដោយផ្ទាល់។',
+        description: 'ចូលប្រើម៉ូដែល xAI Grok ដោយផ្ទាល់។'
       },
       local: {
         short: 'បង្កើតដោយខ្លួន',
-        description: 'បង្រែពីត្រឹម OpenAmer ទៅចុច OpenAI-compatible ក្នុងមូលដ្ឋាន ឬបង្កើតដោយខ្លួន (vLLM, llama.cpp, Ollama, ជាដូច្នេះ)។',
-      },
+        description:
+          'បង្រែពីត្រឹម OpenAmer ទៅចុច OpenAI-compatible ក្នុងមូលដ្ឋាន ឬបង្កើតដោយខ្លួន (vLLM, llama.cpp, Ollama, ជាដូច្នេះ)។'
+      }
     },
     copyAuthCode: 'ចម្លងលេខកូដផ្តល់សិទ្ធិ រួចបិទភ្ជាប់ខាងក្រោម។',
     pasteAuthCode: 'បិទភ្ជាប់លេខកូដផ្តល់សិទ្ធិ',
@@ -2306,7 +2367,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'បើកកម្មវិធីរុករករបស់អ្នកដើម្បីចូលប្រើ រួចបន្តនៅទីនេះ',
       device_code: 'បើកទំព័រផ្ទៀងផ្ទាត់ក្នុងកម្មវិធីរុករករបស់អ្នក — OpenAmer ភ្ជាប់ដោយស្វ័យប្រវត្តិ',
-      external: 'ចូលប្រើម្ដងនៅក្នុងស្ថ្រីអ្នក រួចត្រឡប់មកដើម្បីជជែក',
+      external: 'ចូលប្រើម្ដងនៅក្នុងស្ថ្រីអ្នក រួចត្រឡប់មកដើម្បីជជែក'
     },
     signInFailed: 'ការចូលប្រើបរាជ័យ។ សូមព្យាយាមម្តងទៀត។',
     pickDifferentProvider: 'ជ្រើសរើសម៉្យាងផ្សេងទៀត',
@@ -2317,11 +2378,13 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'ប្តូរម៉ូដ',
@@ -2337,13 +2400,13 @@ Leave blank to keep the ${mode} default.`,
     free: 'ឥតគិតថ្លៃ',
     freeTier: 'កម្រិតឥតគិតថ្លៃ',
     priceTitle: 'តម្លៃបញ្ចូល / បង្ហាញក្នុងមួយលានថ្ងៃ',
-    wasPrice: 'ត្រូវបាន',
+    wasPrice: 'ត្រូវបាន'
   },
   modelVisibility: {
     title: 'ម៉ាស៊ីន',
     search: 'ស្វែងរកម៉ាស៊ីន',
     noAuthenticatedProviders: 'មិនមានអ្នកផ្តល់សេវាដែលបានផ្ទៀងផ្ទាត។',
-    addProvider: 'បន្ថែមអ្នកផ្តល់សេវា…',
+    addProvider: 'បន្ថែមអ្នកផ្តល់សេវា…'
   },
   shell: {
     windowControls: 'ការត្រួតពិនិត្យវីនដោ',
@@ -2354,7 +2417,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'រកមិនឃើញម៉ាស៊ីន',
       editModels: 'កែសម្រួលម៉ាស៊ីន…',
       refreshModels: 'ផ្ទាក់ម៉ាស៊ីនឡើងវិញ',
-      fast: 'លឿន',
+      fast: 'លឿន'
     },
     modelOptions: {
       noOptions: 'គ្មានជម្រើសសម្រាប់ម៉ូដឺលនេះ',
@@ -2370,7 +2433,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'អតិបរមា',
       ultra: 'អស្ឆាម',
       updateFailed: 'បរាជ័យក្នុងការផ្លាស់ប្តូរជម្រើសម៉ូដឺល',
-      fastFailed: 'បរាជ័យក្នុងការផ្លាស់ប្តូររបៀបលឿន',
+      fastFailed: 'បរាជ័យក្នុងការផ្លាស់ប្តូររបៀបលឿន'
     },
     gatewayMenu: {
       gateway: 'ផ្ទ្រង់ហ្មែា',
@@ -2385,7 +2448,7 @@ Leave blank to keep the ${mode} default.`,
       recentActivity: 'សកម្មភាពថ្មីៗ',
       viewAllLogs: 'មើលកំណត់ត្រាទាំងអស់ →',
       messagingPlatforms: 'វេទិការផ្សាយោគ',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'របៀបអនុម័ត',
@@ -2395,7 +2458,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'វាស់ស្មានសកម្មភាពដោយស្វ័យប្រវត្តិ និងសួរពេលចាំបាច់',
       off: 'បិទ',
       offDescription: 'ដំណើរការដោយមិនមានការស្នើសុំអនុម័ត',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'មិនស្គាល់',
@@ -2435,13 +2498,13 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'ការកំណត់អនុគ្រោះ',
           system_prompt: 'ពាក្យបញ្ជាប្រព័ន្ធ',
           tool_definitions: 'ការកំណត់ឧបកប្រុង',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'មិនទាន់មានទិន្នន័យបរិបរមាទេ',
         loading: 'កំពុងផ្ទុកព័ត៌មានបរិបរមា…',
         title: 'ការប្រើប្រាស់ទិន្នន័យ',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'បើកព័ត៌មានបរិបរមាការបំបែក',
       session: 'សម័យ',
@@ -2470,8 +2533,8 @@ Leave blank to keep the ${mode} default.`,
       failed: count => `${count} failed`,
       running: count => `${count} running`,
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'សប្តាត់សាខាស្តាំ',
@@ -2507,7 +2570,7 @@ Leave blank to keep the ${mode} default.`,
     addToChat: 'បញ្ចូលទៅក្នុងជម្រើសសន្ទនា',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'មើលជាមុន',
@@ -2553,7 +2616,7 @@ Leave blank to keep the ${mode} default.`,
       empty: 'No console messages yet.',
       promptHeader: 'Preview console:',
       sentTitle: 'Sent to chat',
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     closeTab: label => `Close ${label}`,
     opening: 'Opening...',
@@ -2587,17 +2650,19 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'Reloading the preview now.',
       restartFailedTitle: 'Preview restart failed',
       restartFailedMessage: 'OpenAmer could not restart the server.',
-      stillWorking: 'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
+      stillWorking:
+        'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
       workspaceReloading: 'Workspace changed, reloading preview',
       fileChanged: url => `File changed, reloading preview: ${url}`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
-      moduleMimeDescription: 'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
+      moduleMimeDescription:
+        'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'The preview page could not be reached.',
       openTarget: url => `Open ${url}`,
-      fallbackTitle: 'Preview',
-    },
+      fallbackTitle: 'Preview'
+    }
   },
   assistant: {
     approval: {
@@ -2612,7 +2677,8 @@ Leave blank to keep the ${mode} default.`,
       reject: 'បដិសេធ',
       alwaysTitle: 'តើត្រូវអនុញ្ញាតពាក្យកើតនេះជានិចរាប់ទេ?',
       alwaysAllow: 'អនុញ្ញាតជានិចរាប់',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
       notReady: 'សំណើស្អាតមិនទាន់រួចរាល់ទេ',
@@ -2626,120 +2692,120 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'បន្ត',
       lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
       lateAnswerTip: 'Draft this answer as a follow-up message',
-      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.',
+      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.'
     },
     tool: {
       titles: {
         session_search_recall: {
           done: 'បានស្វែងរកប្រវត្តិសម័យ',
           pending: 'កំពុងស្វែងរកប្រវត្តិសម័យ',
-          pendingAction: 'កំពុងស្វែង',
+          pendingAction: 'កំពុងស្វែង'
         },
         terminal: {
           done: 'បានដំណើរការពាក្យបញ្ជា',
           pending: 'កំពុងដំណើរការពាក្យបញ្ជា',
-          pendingAction: 'កំពុងបង្កើត',
+          pendingAction: 'កំពុងបង្កើត'
         },
         todo: {
           done: 'បានធ្វើបច្ចុប្បន្នភាពបញ្ជីការងារ',
           pending: 'កំពុងធ្វើបច្ចុប្បន្នភាពបញ្ជីការងារ',
-          pendingAction: 'កំពុងធ្វើបច្ចុប្បន្នភាព',
+          pendingAction: 'កំពុងធ្វើបច្ចុប្បន្នភាព'
         },
         vision_analyze: {
           done: 'បានវិភាគរូបភាព',
           pending: 'កំពុងវិភាគរូបភាព',
-          pendingAction: 'កំពុងវិភាគ',
+          pendingAction: 'កំពុងវិភាគ'
         },
         web_extract: {
           done: 'បានអានទំព័របំពុងត្រូវ',
           pending: 'កំពុងអានទំព័របំពុងត្រូវ',
-          pendingAction: 'កំពុងអាន',
+          pendingAction: 'កំពុងអាន'
         },
         web_search: {
           done: 'បានស្វែងរកលើវែហទំព័រ',
           pending: 'កំពុងស្វែងរកលើវែហទំព័រ',
-          pendingAction: 'កំពុងស្វែង',
+          pendingAction: 'កំពុងស្វែង'
         },
         write_file: {
           done: 'បានកែសម្រួលឯកសារ',
           pending: 'កំពុងកែសម្រួលឯកសារ',
-          pendingAction: 'ស្រម្រើ',
+          pendingAction: 'ស្រម្រើ'
         },
         execute_code: {
           pending: 'សិរិទេរ',
           pendingAction: 'សិរិទេរ',
-          done: 'Ran code',
+          done: 'Ran code'
         },
         image_generate: {
           done: 'ស្រម្រើ ថេរ',
           pending: 'ស្រម្រើ ថេរ',
-          pendingAction: 'ស្រម្រើ',
+          pendingAction: 'ស្រម្រើ'
         },
         list_files: {
           done: 'ស្រម្រើ ថេរ',
           pending: 'ស្រម្រើ ថេរ',
-          pendingAction: 'ស្រម្រើ',
+          pendingAction: 'ស្រម្រើ'
         },
         patch: {
           done: 'ស្រម្រើ ថេរ',
           pending: 'ស្រម្រើ',
-          pendingAction: 'ស្រម្រើ',
+          pendingAction: 'ស្រម្រើ'
         },
         read_file: {
           done: 'ស្រម្រើ ថេរ',
           pending: 'ស្រម្រើ',
-          pendingAction: 'ស្រម្រើ',
+          pendingAction: 'ស្រម្រើ'
         },
         search_files: {
           done: 'ស្រម្រើ ថេរ',
           pending: 'ស្រម្រើ',
-          pendingAction: 'ស្រម្រើ',
+          pendingAction: 'ស្រម្រើ'
         },
         browser_click: {
           done: 'Clicked page element',
           pending: 'Clicking page element',
-          pendingAction: 'Clicking',
+          pendingAction: 'Clicking'
         },
         browser_fill: {
           done: 'Filled form field',
           pending: 'Filling form field',
-          pendingAction: 'Filling',
+          pendingAction: 'Filling'
         },
         browser_navigate: {
           done: 'Opened page',
           pending: 'Opening page',
-          pendingAction: 'Opening',
+          pendingAction: 'Opening'
         },
         browser_snapshot: {
           done: 'Captured page snapshot',
           pending: 'Capturing page snapshot',
-          pendingAction: 'Capturing',
+          pendingAction: 'Capturing'
         },
         browser_take_screenshot: {
           done: 'Captured screenshot',
           pending: 'Capturing screenshot',
-          pendingAction: 'Capturing',
+          pendingAction: 'Capturing'
         },
         browser_type: {
           done: 'Typed on page',
           pending: 'Typing on page',
-          pendingAction: 'Typing',
+          pendingAction: 'Typing'
         },
         clarify: {
           done: 'Asked a question',
           pending: 'Asking a question',
-          pendingAction: 'Asking',
+          pendingAction: 'Asking'
         },
         cronjob: {
           done: 'Cron job',
           pending: 'Scheduling cron job',
-          pendingAction: 'Scheduling',
+          pendingAction: 'Scheduling'
         },
         edit_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
-        },
+          pendingAction: 'Editing'
+        }
       },
       copyCode: 'Copy โค้ด',
       renderingImage: 'กำลังแสดงรูป',
@@ -2770,7 +2836,7 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Ran',
         running: 'Running',
         ranCode: 'Ran code',
-        runningCode: 'Scripting',
+        runningCode: 'Scripting'
       },
       code: 'Code',
       copyUrl: 'Copy URL',
@@ -2778,7 +2844,7 @@ Leave blank to keep the ${mode} default.`,
       failedMany: count => `${count} steps failed`,
       prefixes: {
         browser: 'Browser',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2786,8 +2852,8 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
     },
     thread: {
       loadingSession: 'สession ขณะโหลด',
@@ -2800,7 +2866,8 @@ Leave blank to keep the ${mode} default.`,
       branchNewChat: 'สร้างกิ่งในแชทใหม่',
       dismissError: 'ปิดข้อผิดพลาด',
       readAloudFailed: 'อ่านเสียงล้มเหลว',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
@@ -2816,13 +2883,14 @@ Leave blank to keep the ${mode} default.`,
       restoreCheckpoint: 'Restore checkpoint',
       restoreFromHere: 'Restore checkpoint — rerun from this prompt',
       restoreTitle: 'Restore to this checkpoint?',
-      restoreBody: 'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
+      restoreBody:
+        'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
       restoreConfirm: 'Restore & rerun',
       restoreNext: 'Restore next checkpoint',
       goForward: 'Go forward',
       sendEdited: 'Send edited message',
-      attachingFile: 'Attaching…',
-    },
+      attachingFile: 'Attaching…'
+    }
   },
   desktop: {
     cwdChangeFailed: 'បរាជ័យក្នុងការប្ដូរថតការងារ',
@@ -2854,7 +2922,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'កែសម្រួលបរាជ័យមិនបាន',
     resumeFailed: 'បន្តបរាជ័យមិនបាន',
     resumeStrandedTitle: 'មិនអាចផ្ទុកសម្ទាប់នេះបាន',
-    resumeStrandedBody: 'ការតភ្ជាប់ទៅសម្ទាប់នេះបរាជ័យមិនបាន ហើយការព្យាយាមដោយស្វ័យប្តូរបានឈប់ហើយ។ សូមពិនិត្យថាឧបកប្រព័ន្ធម៉េតហ្វ្កហ្វេយកំពុងដំណើរការ រួចព្យាយាមម្តងទៀត។',
+    resumeStrandedBody:
+      'ការតភ្ជាប់ទៅសម្ទាប់នេះបរាជ័យមិនបាន ហើយការព្យាយាមដោយស្វ័យប្តូរបានឈប់ហើយ។ សូមពិនិត្យថាឧបកប្រព័ន្ធម៉េតហ្វ្កហ្វេយកំពុងដំណើរការ រួចព្យាយាមម្តងទៀត។',
     resumeRetry: 'ព្យាយាមម្តងទៀត',
     nothingToBranch: 'មិនមានអ្វីសម្រាប់បង្កើតសម្ទាប់',
     branchNeedsChat: 'ចាប់ផ្ដើម ឬបន្តជម្រោរមុននឹងបង្កើតសម្ទាប់។',
@@ -2870,7 +2939,7 @@ Leave blank to keep the ${mode} default.`,
       timedOut: '等待网关超时。`openamer gateway` 是否正在运行？',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     audioReadFailed: 'Could not read recorded audio',
     sessionUnavailable: 'Session unavailable',
@@ -2885,13 +2954,14 @@ Leave blank to keep the ${mode} default.`,
     yoloOff: 'YOLO off',
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
     branchTitle: n => `Draft: Branch #${n}`,
     noClipboardImage: 'No image found in clipboard',
     clipboardPasteFailed: 'Clipboard paste failed',
-    dropFiles: 'Drop files',
+    dropFiles: 'Drop files'
   },
   zones: {
     nameLayoutPlaceholder: 'กำหนดชื่อ_layout…',
@@ -2909,7 +2979,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Minimize',
     restore: 'Restore',
     closeRunningTitle: 'Close running tab?',
-    closeRunningBody: 'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
+    closeRunningBody:
+      'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
     closeRunningConfirm: 'Close tab',
     closeOthers: 'Close others',
     closeToRight: 'Close to the right',
@@ -2936,7 +3007,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer ភីដូเวីត់ មិនត្រូវការស្រម្រើ',
@@ -2947,33 +3018,34 @@ Leave blank to keep the ${mode} default.`,
     sudoPlaceholder: 'sudo password',
     secretTitle: 'Secret required',
     secretDesc: 'OpenAmer needs a credential to continue.',
-    secretPlaceholder: 'secret value',
+    secretPlaceholder: 'secret value'
   },
   errors: {
     genericFailure: '出现错误',
     boundaryTitle: '界面故障',
     boundaryDesc: '视图出现意外错误。你的聊天和设置是安全的。',
     reloadWindow: '重新加载窗口',
-    openLogs: '打开日志',
+    openLogs: '打开日志'
   },
   ui: {
     search: {
-      clear: '清除搜索',
+      clear: '清除搜索'
     },
     pagination: {
       label: '分页',
       previous: '上一步',
       previousAria: '前往上一页',
       next: '下一步',
-      nextAria: '前往下一页',
+      nextAria: '前往下一页'
     },
     sidebar: {
       title: '侧边栏',
       description: '显示移动侧边栏。',
-      toggle: '切换侧边栏',
-    },
+      toggle: '切换侧边栏'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
-  },
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
+  }
 })

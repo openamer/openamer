@@ -13,13 +13,20 @@ afterEach(() => vi.useRealTimers())
 test('workers finish naturally before update proceeds', async () => {
   let reads = 0
   const waits: number[][] = []
-  await waitForUpdateWorkers({ inspect: async () => ++reads === 1 ? [42] : [], onWait: pids => waits.push(pids), pollMs: 1 })
+  await waitForUpdateWorkers({
+    inspect: async () => (++reads === 1 ? [42] : []),
+    onWait: pids => waits.push(pids),
+    pollMs: 1
+  })
   assert.deepEqual(waits, [[42]])
   assert.equal(reads, 2)
 })
 
 test('bounded wait fails closed and does not terminate a worker', async () => {
-  await assert.rejects(waitForUpdateWorkers({ inspect: async () => [42], onWait: () => {}, timeoutMs: 0 }), /deferred without stopping/)
+  await assert.rejects(
+    waitForUpdateWorkers({ inspect: async () => [42], onWait: () => {}, timeoutMs: 0 }),
+    /deferred without stopping/
+  )
 })
 
 test('inventory failure is not interpreted as no active workers', async () => {
@@ -34,19 +41,42 @@ test('production update waits before any backup or backend teardown', async () =
   const events: string[] = []
 
   const context = {
-    updateInFlight: false, IS_WINDOWS: true, IS_MAC: false, process: { pid: 1, env: {} }, path,
-    resolveUpdaterBinary: () => 'updater', emitUpdateProgress: () => {}, repairMacUpdaterHelper: () => {},
-    resolveUpdateRoot: () => 'root', readDesktopUpdateConfig: () => ({}), resolveHealedBranch: async () => 'main',
-    DEFAULT_UPDATE_BRANCH: 'main', OPENAMER_HOME: 'home',
-    readLiveUpdateMarker: () => null, writeUpdateMarker: () => {},
-    claimUpdateWorkerDrain: () => { events.push('claim') },
-    releaseUpdateWorkerDrain: () => { events.push('release') },
-    activeUpdateWorkers: async () => [42], windowsPowerShellPath: () => 'powershell',
-    waitForUpdateWorkers: async () => { events.push('wait'); throw new Error('still working') },
-    preflightStateDb: () => { events.push('backup'); throw new Error('backup should not run') },
-    releaseBackendLockForUpdate: async () => { events.push('teardown');
+    updateInFlight: false,
+    IS_WINDOWS: true,
+    IS_MAC: false,
+    process: { pid: 1, env: {} },
+    path,
+    resolveUpdaterBinary: () => 'updater',
+    emitUpdateProgress: () => {},
+    repairMacUpdaterHelper: () => {},
+    resolveUpdateRoot: () => 'root',
+    readDesktopUpdateConfig: () => ({}),
+    resolveHealedBranch: async () => 'main',
+    DEFAULT_UPDATE_BRANCH: 'main',
+    OPENAMER_HOME: 'home',
+    readLiveUpdateMarker: () => null,
+    writeUpdateMarker: () => {},
+    claimUpdateWorkerDrain: () => {
+      events.push('claim')
+    },
+    releaseUpdateWorkerDrain: () => {
+      events.push('release')
+    },
+    activeUpdateWorkers: async () => [42],
+    windowsPowerShellPath: () => 'powershell',
+    waitForUpdateWorkers: async () => {
+      events.push('wait')
+      throw new Error('still working')
+    },
+    preflightStateDb: () => {
+      events.push('backup')
+      throw new Error('backup should not run')
+    },
+    releaseBackendLockForUpdate: async () => {
+      events.push('teardown')
 
- return { unlocked: true } },
+      return { unlocked: true }
+    },
     rememberLog: () => {}
   }
 

@@ -45,7 +45,7 @@ export const yi = defineLocale({
     update: 'דערהײַנטיקן',
     tryHint: term => `פּרוּווט “${term}”`,
     on: 'אַקטיוו',
-    off: 'אָפּגעשטעלט',
+    off: 'אָפּגעשטעלט'
   },
   fileMenu: {
     revealFinder: 'ווײַזן אין Finder',
@@ -60,7 +60,7 @@ export const yi = defineLocale({
     renameLabel: 'נײַער נאָמען',
     deleteTitle: name => `אויסמעקן ${name}?`,
     deleteBody: 'ער וועט געלייגט ווערן אין אָפּפֿאַל — איר קענט אים דאָ צוריקבאַקומען.',
-    pathCopied: 'וועג אָפּגעשריבן',
+    pathCopied: 'וועג אָפּגעשריבן'
   },
   boot: {
     ready: 'OpenAmer Desktop איז גרייט',
@@ -70,7 +70,7 @@ export const yi = defineLocale({
       loadingSettings: 'לאָדן די OpenAmer־איינשטעלונגען',
       loadingSessions: 'לאָדן די לעצטע סעסיעס',
       startingDesktopConnection: 'אָנהייבן די Desktop־פֿאַרבינדונג',
-      startingOpenAmerDesktop: 'אָנהייבן OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'אָנהייבן OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'דער הינטערגרונט־פּראָצעס פֿון OpenAmer איז אַרויס.',
@@ -79,34 +79,40 @@ export const yi = defineLocale({
       desktopBootFailed: 'דער אויפֿשטאַנד פֿון Desktop איז דורכגעפֿאַלן',
       gatewayConnectionLost: 'פֿאַרבינדונג צו דעם שער פֿאַרלאָרן',
       gatewaySignInRequired: 'פֿאַרבינדונג צו דעם שער פֿאָדערט אַרײַנלאָגירן',
-      ipcBridgeUnavailable: 'די IPC־בריק פֿון Desktop איז נישט פֿאַראַן.',
+      ipcBridgeUnavailable: 'די IPC־בריק פֿון Desktop איז נישט פֿאַראַן.'
     },
     failure: {
-      title: "OpenAmer האָט נישט געקענט אָנהייבן",
-      description: "דער הינטערגרונט־שער איז נישט אַרויף. פּרוּווט איינעם פֿון די אָפּטראָגן אונטן. גאָרנישט דאָ מעקט נישט אויס אייערע שמועסן אָדער איינשטעלונגען.",
+      title: 'OpenAmer האָט נישט געקענט אָנהייבן',
+      description:
+        'דער הינטערגרונט־שער איז נישט אַרויף. פּרוּווט איינעם פֿון די אָפּטראָגן אונטן. גאָרנישט דאָ מעקט נישט אויס אייערע שמועסן אָדער איינשטעלונגען.',
       remoteTitle: 'פֿאַרבינדונג צו דעם ווײַטן שער פֿאָדערט אַרײַנלאָגירן',
-      remoteDescription: 'אייער סעסיע מיטן ווײַטן שער איז אָפּגעלאָפֿן. פֿאַרבינדט זיך ווידער צו באַשטעטיקן. גאָרנישט דאָ מעקט נישט אויס אייערע שמועסן אָדער איינשטעלונגען.',
+      remoteDescription:
+        'אייער סעסיע מיטן ווײַטן שער איז אָפּגעלאָפֿן. פֿאַרבינדט זיך ווידער צו באַשטעטיקן. גאָרנישט דאָ מעקט נישט אויס אייערע שמועסן אָדער איינשטעלונגען.',
       retry: 'נאָכאַמאָל פּרוּוון',
       repairInstall: 'פֿאַרריכטן די אינסטאַלאַציע',
       useLocalGateway: 'באַנוצן דעם לאָקאַלן שער',
       gatewaySettings: 'שער־איינשטעלונגען',
       back: 'צוריק',
       openLogs: 'עפֿענען די פּראָטאָקאָלן',
-      repairHint: 'די פֿאַרריכטונג פֿירט ווידער אויס דעם אינסטאַלירער און קען דויערן עטלעכע מינוט אויף אַ נײַער מאַשין.',
-      remoteSignInHint: signInLabel => `שרײַבט אויס די געהיטענע ווײַטע בראַוזער־סעסיע, דערנאָך עפֿענט ${signInLabel}. באַנוצט דעם לאָקאַלן שער צו ווײַטערן מיטן איינגעבויעטן סערווירער.`,
+      repairHint:
+        'די פֿאַרריכטונג פֿירט ווידער אויס דעם אינסטאַלירער און קען דויערן עטלעכע מינוט אויף אַ נײַער מאַשין.',
+      remoteSignInHint: signInLabel =>
+        `שרײַבט אויס די געהיטענע ווײַטע בראַוזער־סעסיע, דערנאָך עפֿענט ${signInLabel}. באַנוצט דעם לאָקאַלן שער צו ווײַטערן מיטן איינגעבויעטן סערווירער.`,
       signOutAndSignIn: 'אויסשרײַבן און פֿאַרבינדן זיך',
-      remoteFailureHint: 'פּרוּווט די שער־URL און די פֿאַרבינדונג אין די שער־איינשטעלונגען, אָדער ווײַטערט מיטן לאָקאַלן שער.',
+      remoteFailureHint:
+        'פּרוּווט די שער־URL און די פֿאַרבינדונג אין די שער־איינשטעלונגען, אָדער ווײַטערט מיטן לאָקאַלן שער.',
       hideRecentLogs: 'באַהאַלטן די לעצטע פּראָטאָקאָלן',
       showRecentLogs: 'ווײַזן די לעצטע פּראָטאָקאָלן',
       signedInTitle: 'פֿאַרבונדן',
       signedInMessage: 'פֿאַרבינדונג ווידער מיטן ווײַטן שער…',
       signInIncompleteTitle: 'אומפֿאַרענדיקטע פֿאַרבינדונג',
-      signInIncompleteMessage: 'דאָס פֿענצטער פֿון אַרײַנלאָגירן האָט זיך פֿאַרמאַכט פֿאַר דער פֿאַרענדיקונג פֿון דער אויטענטיפֿיקאַציע.',
+      signInIncompleteMessage:
+        'דאָס פֿענצטער פֿון אַרײַנלאָגירן האָט זיך פֿאַרמאַכט פֿאַר דער פֿאַרענדיקונג פֿון דער אויטענטיפֿיקאַציע.',
       signInFailed: 'די פֿאַרבינדונג איז דורכגעפֿאַלן',
       signInToRemoteGateway: 'פֿאַרבינדן זיך צום ווײַטן שער',
       signInWithProvider: provider => `פֿאַרבינדן זיך מיט ${provider}`,
-      identityProvider: 'אייער אידענטיטעט־פֿאַרזאָרגער',
-    },
+      identityProvider: 'אייער אידענטיטעט־פֿאַרזאָרגער'
+    }
   },
   notifications: {
     region: 'מעלדונגען',
@@ -119,21 +125,23 @@ export const yi = defineLocale({
     copyDetail: 'אָפּשרײַבן דעם פּרט',
     copyDetailFailed: 'נישט געקענט אָפּשרײַבן דעם פּרט פֿון דער מעלדונג',
     backendOutOfDateTitle: 'אַלטער סערווירער',
-    backendOutOfDateMessage: 'אייער OpenAmer־סערווירער איז עלטער ווי די ווערסיע פֿון Desktop און קען נישט אַרבעטן ריכטיק. דערהײַנטיקט אים צו פֿאַראייניקן.',
+    backendOutOfDateMessage:
+      'אייער OpenAmer־סערווירער איז עלטער ווי די ווערסיע פֿון Desktop און קען נישט אַרבעטן ריכטיק. דערהײַנטיקט אים צו פֿאַראייניקן.',
     installMethodUnsupportedTitle: 'אומגעשטיצטער אינסטאַלאַציע־אופֿן',
     updateOpenAmer: 'דערהײַנטיקן OpenAmer',
     updateReadyTitle: 'דערהײַנטיקונג גרייט',
     updateReadyMessage: count => `${count} נײַע ענדערונג ${count === 1 ? '' : 's'} פֿאַראַן.`,
-    seeWhatsNew: "זען וואָס איז נײַ",
+    seeWhatsNew: 'זען וואָס איז נײַ',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT דאַרף ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs האָט אָפּגעוואָרפֿן דעם API־שליסל (401).',
       gatewayAuthFailed: 'די אויטענטיפֿיקאַציע פֿון שער איז דורכגעפֿאַלן — פּרוּווט אייער API_SERVER_KEY.',
-      methodNotAllowed: 'דער Desktop־סערווירער האָט אָפּגעוואָרפֿן די בקשה (405 Method Not Allowed). פּרוּווט אָנהייבן OpenAmer Desktop פֿון נײַ.',
+      methodNotAllowed:
+        'דער Desktop־סערווירער האָט אָפּגעוואָרפֿן די בקשה (405 Method Not Allowed). פּרוּווט אָנהייבן OpenAmer Desktop פֿון נײַ.',
       microphonePermission: 'די רשות פֿאַרן מיקראָפֿאָן איז אָפּגעוואָרפֿן.',
       openaiRejectedApiKey: 'OpenAI האָט אָפּגעוואָרפֿן דעם API־שליסל.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI האָט אָפּגעוואָרפֿן דעם API־שליסל (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS דאַרף VOICE_TOOLS_OPENAI_KEY אָדער OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS דאַרף VOICE_TOOLS_OPENAI_KEY אָדער OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'באַשטימט די רעדע־צו־טעקסט אַרבעט צו באַנוצן דעם קול־מאָדוס.',
@@ -152,7 +160,7 @@ export const yi = defineLocale({
       transcriptionFailed: 'רעדע־טראַנסקריפּציע איז דורכגעפֿאַלן',
       transcriptionUnavailable: 'רעדע־טראַנסקריפּציע איז נאָך נישט פֿאַראַן.',
       tryRecordingAgain: 'פּרוּווט ווידער אויפֿנעמען.',
-      unavailable: 'קול נישט פֿאַראַן',
+      unavailable: 'קול נישט פֿאַראַן'
     },
     native: {
       approvalTitle: 'באַשטעטיקונג נויטיק',
@@ -165,11 +173,12 @@ export const yi = defineLocale({
       turnErrorTitle: 'דער איבערגאַנג איז דורכגעפֿאַלן',
       backgroundDoneTitle: 'די הינטערגרונט־אַרבעט איז פֿאַרטיק',
       backgroundFailedTitle: 'די הינטערגרונט־אַרבעט איז דורכגעפֿאַלן',
-      creditsTitle: 'קרעדיטן',
-    },
+      creditsTitle: 'קרעדיטן'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `סאָפֿטווער־רינדערונג אַקטיוו — ווײַטער עקראַן דערקענט (${reason}). GPU־באַשווינדיקונג איז אָפּגעשטעלט צו פֿאַרמיידן צעשפּאַלטונג.`,
+    message: reason =>
+      `סאָפֿטווער־רינדערונג אַקטיוו — ווײַטער עקראַן דערקענט (${reason}). GPU־באַשווינדיקונג איז אָפּגעשטעלט צו פֿאַרמיידן צעשפּאַלטונג.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer־קרעדיטן פֿאַרנוצט',
@@ -177,7 +186,7 @@ export const yi = defineLocale({
     fallbackMessage: 'אייער קאָנטאָ האָט נישט מער קרעדיטן. לייגט צו מער צו ממשיך זיין.',
     openBilling: 'עפֿענען אָפּרעכענונג',
     addCredits: 'צולייגן קרעדיטן',
-    dismiss: 'אָפּוואַרפֿן',
+    dismiss: 'אָפּוואַרפֿן'
   },
   titlebar: {
     hideSidebar: 'באַהאַלטן די זײַט־לײַסטע',
@@ -194,7 +203,7 @@ export const yi = defineLocale({
     openStarmap: 'עפֿענען די זכּרון־גראַפֿיק',
     openKeybinds: 'קלאַוויאַטור־קירצלעך',
     layoutEditor: 'אויסלייג־רעדאַקטאָר',
-    layoutEditorTitle: 'אויסלייג־רעדאַקטאָר — ⌘-קליק שטעלט צוריק דעם אויסלייג',
+    layoutEditorTitle: 'אויסלייג־רעדאַקטאָר — ⌘-קליק שטעלט צוריק דעם אויסלייג'
   },
   keybinds: {
     title: 'קלאַוויאַטור־קירצלעך',
@@ -211,7 +220,7 @@ export const yi = defineLocale({
       profiles: 'פּראָפֿילן',
       session: 'סעסיע',
       navigation: 'נאַוויגאַציע',
-      view: 'אַנזיכט',
+      view: 'אַנזיכט'
     },
     actions: {
       'keybinds.openPanel': 'עפֿענען קלאַוויאַטור־קירצלעך',
@@ -290,8 +299,8 @@ export const yi = defineLocale({
       'composer.slash': 'באַפֿעלן־פּאַליטרע מיט /',
       'composer.help': 'גיך־הילף',
       'composer.history': 'דרייען דעם פּאָפּאָווער / די היסטאָריע',
-      'composer.cancel': 'פֿאַרמאַכן דעם פּאָפּאָווער · אָפּזאָגן דעם לויף',
-    },
+      'composer.cancel': 'פֿאַרמאַכן דעם פּאָפּאָווער · אָפּזאָגן דעם לויף'
+    }
   },
   language: {
     label: 'שפּראַך',
@@ -300,7 +309,7 @@ export const yi = defineLocale({
     saveError: 'דערהײַנטיקן פֿון דער שפּראַך איז דורכגעפֿאַלן',
     switchTo: 'ענדערן שפּראַך',
     searchPlaceholder: 'זוכן שפּראַכן…',
-    noResults: 'קיין שפּראַך נישט געפֿונען',
+    noResults: 'קיין שפּראַך נישט געפֿונען'
   },
   settings: {
     closeSettings: 'פֿאַרמאַכן איינשטעלונגען',
@@ -325,11 +334,12 @@ export const yi = defineLocale({
       about: 'וועגן',
       billing: 'אָפּרעכענונג',
       notifications: 'מעלדונגען',
-      plugins: 'פּלוגינען',
+      plugins: 'פּלוגינען'
     },
     plugins: {
       title: 'Desktop־פּלוגינען',
-      blurb: 'אינטערפֿייס־פֿאַרברייטונגען וואָס ווערן געלאָדן אין דער אַפּ — איינגעבויט אין דער ווערסיע, אָדער געלייגט אין דעם desktop-plugins פּאַפּקע (אַרײַנגערעכנט די וואָס OpenAmer שרײַבט). אָפּשטעלן לאָדט זיי באַלד אָפּ און איבערלעבט אַ ווידער־אָנהייב.',
+      blurb:
+        'אינטערפֿייס־פֿאַרברייטונגען וואָס ווערן געלאָדן אין דער אַפּ — איינגעבויט אין דער ווערסיע, אָדער געלייגט אין דעם desktop-plugins פּאַפּקע (אַרײַנגערעכנט די וואָס OpenAmer שרײַבט). אָפּשטעלן לאָדט זיי באַלד אָפּ און איבערלעבט אַ ווידער־אָנהייב.',
       count: n => `${n} אינסטאַלירט`,
       openFolder: 'עפֿענען דעם פּלוגין־פּאַפּקע',
       rescan: 'ווידער סרקענען',
@@ -341,49 +351,51 @@ export const yi = defineLocale({
       kinds: {
         bundled: 'איינגעבויט',
         disk: 'אויף דיסק',
-        runtime: 'אין לויפֿנדיקער צײַט',
-      },
+        runtime: 'אין לויפֿנדיקער צײַט'
+      }
     },
     notifications: {
       title: 'מעלדונגען',
-      intro: 'נאַטיווע Desktop־מעלדונגען, אַנדערש פֿון די אינלייג־טאָסטן. זיי זענען לאָקאַל צום געצייג — יעדער קאָמפּיוטער האָט זיינע אייגענע איינשטעלונגען.',
+      intro:
+        'נאַטיווע Desktop־מעלדונגען, אַנדערש פֿון די אינלייג־טאָסטן. זיי זענען לאָקאַל צום געצייג — יעדער קאָמפּיוטער האָט זיינע אייגענע איינשטעלונגען.',
       enableAll: 'אַקטיווירן מעלדונגען',
       enableAllDesc: 'הויפּט־שלטער. שטעלט אים אָפּ צו פֿאַרשטומען אַלע מעלדונגען אונטן.',
       focusedHint: 'ענדיקונג־אָנזאָגן צינדן זיך נאָר ווען OpenAmer איז אין הינטערגרונט.',
       kinds: {
         approval: {
           label: 'באַשטעטיקונג נויטיק',
-          description: 'אַ באַפֿעל וואַרט איר זאָלט באַשטעטיקן אָדער אָפּוואַרפֿן.',
+          description: 'אַ באַפֿעל וואַרט איר זאָלט באַשטעטיקן אָדער אָפּוואַרפֿן.'
         },
         input: {
           label: 'ענטפֿער נויטיק',
-          description: 'OpenAmer האָט געפֿרעגט אַ פֿראַגע אָדער דאַרף אַ געהיימען וואָרט.',
+          description: 'OpenAmer האָט געפֿרעגט אַ פֿראַגע אָדער דאַרף אַ געהיימען וואָרט.'
         },
         turnDone: {
           label: 'ענטפֿער גרייט',
-          description: 'אַן איבערגאַנג איז פֿאַרענדיקט געוואָרן בעת OpenAmer איז געווען אין הינטערגרונט.',
+          description: 'אַן איבערגאַנג איז פֿאַרענדיקט געוואָרן בעת OpenAmer איז געווען אין הינטערגרונט.'
         },
         turnError: {
           label: 'דער איבערגאַנג איז דורכגעפֿאַלן',
-          description: 'אַן איבערגאַנג איז פֿאַרענדיקט מיט אַ טעות.',
+          description: 'אַן איבערגאַנג איז פֿאַרענדיקט מיט אַ טעות.'
         },
         backgroundDone: {
           label: 'די הינטערגרונט־אַרבעט איז פֿאַרטיק',
-          description: 'אַ הינטערגרונט־טערמינאַל־באַפֿעל איז פֿאַרענדיקט.',
+          description: 'אַ הינטערגרונט־טערמינאַל־באַפֿעל איז פֿאַרענדיקט.'
         },
         credits: {
           label: 'קרעדיט־אָנזאָגן',
-          description: 'דער צוטריט צו קרעדיטן איז אָפּגעשטעלט אָדער צוריקגעשטעלט.',
-        },
+          description: 'דער צוטריט צו קרעדיטן איז אָפּגעשטעלט אָדער צוריקגעשטעלט.'
+        }
       },
       test: 'שיקן אַ פּרובירמעלדונג',
       testTitle: 'OpenAmer',
       testBody: 'די מעלדונגען אַרבעטן.',
-      testSent: 'פּרוּווע געשיקט. אויב גאָרנישט דערשיינט זיך, פּרוּווט די מעלדונג־רשות פֿון אייער סיסטעם און Focus / Do Not Disturb.',
+      testSent:
+        'פּרוּווע געשיקט. אויב גאָרנישט דערשיינט זיך, פּרוּווט די מעלדונג־רשות פֿון אייער סיסטעם און Focus / Do Not Disturb.',
       testUnsupported: 'דאָס סיסטעם שטיצט נישט נאַטיווע מעלדונגען.',
       completionSoundTitle: 'ענדיקונג־קלאַנג',
       completionSoundDesc: 'קלינגען ווען אַן אַגענט־איבערגאַנג ענדיקט זיך. קליקט אַ פֿאַרבאַשטימטן און הערט אים דאָ.',
-      completionSoundPreview: 'הערן',
+      completionSoundPreview: 'הערן'
     },
     sections: {
       model: 'מאָדעל',
@@ -393,7 +405,7 @@ export const yi = defineLocale({
       safety: 'זיכערקייט',
       memory: 'זכּרון און קאָנטעקסט',
       voice: 'קול',
-      advanced: 'פֿאָרגעשריטן',
+      advanced: 'פֿאָרגעשריטן'
     },
     searchPlaceholder: {
       about: 'וועגן OpenAmer Desktop',
@@ -401,37 +413,41 @@ export const yi = defineLocale({
       gateway: 'פֿאַרבינדונג צום שער...',
       keys: 'זוכן API־שליסלען...',
       mcp: 'זוכן MCP־סערווירער...',
-      sessions: 'זוכן אין אַרכיווירטע סעסיעס...',
+      sessions: 'זוכן אין אַרכיווירטע סעסיעס...'
     },
     modeOptions: {
       light: {
         label: 'ליכטיק',
-        description: 'ליכטיקע Desktop־אייבערפֿלאַך',
+        description: 'ליכטיקע Desktop־אייבערפֿלאַך'
       },
       dark: {
         label: 'טונקל',
-        description: 'אַרבעטספּלאַץ אָן בליִענדיקייט',
+        description: 'אַרבעטספּלאַץ אָן בליִענדיקייט'
       },
       system: {
         label: 'סיסטעם',
-        description: 'נאָכגיין דעם סיסטעם־אויסזען',
-      },
+        description: 'נאָכגיין דעם סיסטעם־אויסזען'
+      }
     },
     appearance: {
       title: 'אויסזען',
-      intro: 'דאָס זענען נאָר Desktop־וויזועלע פּרעפֿערענצן. דער מאָדוס קאָנטראָלירט די ליכטיקייט; דער טעמע קאָנטראָלירט די אַקצענט־פּאַליטרע און דעם שמועס־סטיל.',
+      intro:
+        'דאָס זענען נאָר Desktop־וויזועלע פּרעפֿערענצן. דער מאָדוס קאָנטראָלירט די ליכטיקייט; דער טעמע קאָנטראָלירט די אַקצענט־פּאַליטרע און דעם שמועס־סטיל.',
       colorMode: 'קאָליר־מאָדוס',
       colorModeDesc: 'קליקט אַ פֿעסטן מאָדוס אָדער לאָזט OpenAmer נאָכגיין אייער סיסטעם.',
       toolViewTitle: 'אַנזיכט פֿון געצייג־אויפֿרופֿן',
-      toolViewDesc: 'Product פֿלאַכט די רוי דאַטן פֿון די געצייג; Technical ווײַזט דעם גאַנצן אַרײַנגאַנג און אַרויסגאַנג.',
+      toolViewDesc:
+        'Product פֿלאַכט די רוי דאַטן פֿון די געצייג; Technical ווײַזט דעם גאַנצן אַרײַנגאַנג און אַרויסגאַנג.',
       uiScaleTitle: 'אינטערפֿייס־סקאַלע',
-      uiScaleDesc: (percent: number) => `פֿאַרגרעסערט טעקסט און קאָנטראָלן אין דער גאַנצער אַפּ. Cmd/Ctrl מיט +, - און 0 אַרבעט אויך. איצטיק: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `פֿאַרגרעסערט טעקסט און קאָנטראָלן אין דער גאַנצער אַפּ. Cmd/Ctrl מיט +, - און 0 אַרבעט אויך. איצטיק: ${percent}%.`,
       translucencyTitle: 'דורכזיכטיקייט פֿונעם פֿענצטער',
       translucencyDesc: 'זעט אייער ארבעטספּלאַץ דורך דעם גאַנצן פֿענצטער. נאָר macOS און Windows.',
       backdropTitle: 'הינטערגרונט פֿונעם שמועס',
       backdropDesc: 'דאָס שטילע סטאַטוע־בילד הינטער דעם שמועס.',
       embedsTitle: 'אַרײַנגעלייגטע אין דער שורה',
-      embedsDesc: 'רײַכע פֿאָרויסקוקן געלאָדן פֿון דריטע פּלאַצן (YouTube, X, …). Ask ווײַזט אַ ליידיקן אָרט ביז איר דערלויבט יעדן; Always לאָדט זיי אויטאָמאַטיש; Off ווײַזט פּשוטע לינקען.',
+      embedsDesc:
+        'רײַכע פֿאָרויסקוקן געלאָדן פֿון דריטע פּלאַצן (YouTube, X, …). Ask ווײַזט אַ ליידיקן אָרט ביז איר דערלויבט יעדן; Always לאָדט זיי אויטאָמאַטיש; Off ווײַזט פּשוטע לינקען.',
       embedsAsk: 'פֿרעגן',
       embedsAlways: 'שטענדיק',
       embedsOff: 'אָפּגעשטעלט',
@@ -444,7 +460,8 @@ export const yi = defineLocale({
       themeDesc: 'נאָר Desktop־פּאַליטרע. דער אויסגעקליבענער מאָדוס ווערט געלייגט דערויף.',
       themeProfileNote: profile => `געהיט פֿאַרן פּראָפֿיל ${profile} — יעדער פּראָפֿיל האָט זיין אייגענע טעמע.`,
       installTitle: 'אינסטאַלירן פֿון VS Code',
-      installDesc: 'לייגט אַרײַן אַ Marketplace־פֿאַרברייטונג־ID (למשל dracula-theme.theme-dracula) צו פֿאַרוואַנדלען זיין קאָליר־טעמע אין אַ Desktop־פּאַליטרע.',
+      installDesc:
+        'לייגט אַרײַן אַ Marketplace־פֿאַרברייטונג־ID (למשל dracula-theme.theme-dracula) צו פֿאַרוואַנדלען זיין קאָליר־טעמע אין אַ Desktop־פּאַליטרע.',
       installPlaceholder: 'publisher.extension',
       installButton: 'אינסטאַלירן',
       installing: 'אינסטאַלירט…',
@@ -454,8 +471,10 @@ export const yi = defineLocale({
       importedBadge: 'אימפּאָרטירט',
       pet: {
         title: 'חיה',
-        intro: 'באַשטימט אַ באַלעבאָס־חיה פֿון petdex וואָס שוועבט אויף דער אַפּ און רעאַגירט אויף וואָס OpenAmer טוט — עס לויפֿט בשעת געצייג אַרבעטן, פֿײַערט בײַ הצלחה, און אָנקלאָגט זיך בײַ טעותן.',
-        restartHint: 'די חיות דאַרפֿן אַ גיכן ווידער־אָנהייב — די לויפֿנדיקע אַפּ איז אַרויף פֿאַר דער פֿונקציע. פֿאַרמאַכט און עפֿענט OpenAmer ווידער, דערנאָך קומט צוריק אַהער.',
+        intro:
+          'באַשטימט אַ באַלעבאָס־חיה פֿון petdex וואָס שוועבט אויף דער אַפּ און רעאַגירט אויף וואָס OpenAmer טוט — עס לויפֿט בשעת געצייג אַרבעטן, פֿײַערט בײַ הצלחה, און אָנקלאָגט זיך בײַ טעותן.',
+        restartHint:
+          'די חיות דאַרפֿן אַ גיכן ווידער־אָנהייב — די לויפֿנדיקע אַפּ איז אַרויף פֿאַר דער פֿונקציע. פֿאַרמאַכט און עפֿענט OpenAmer ווידער, דערנאָך קומט צוריק אַהער.',
         on: 'אַקטיוו',
         off: 'אָפּגעשטעלט',
         scaleTitle: 'גרייס',
@@ -465,7 +484,8 @@ export const yi = defineLocale({
         chooseTitle: 'אויסקלייבן אַ חיה',
         chooseDesc: 'קליקט איינעם — ער ווערט אינסטאַלירט (אויב נייטיק) און אַקטיווירט.',
         searchPlaceholder: 'זוכן חיות…',
-        unreachable: "נישט געקענט דערגרייכן די petdex־גאַלעריע. פּרוּווט אייער פֿאַרבינדונג און עפֿענט דעם בלאַט ווידער.",
+        unreachable:
+          'נישט געקענט דערגרייכן די petdex־גאַלעריע. פּרוּווט אייער פֿאַרבינדונג און עפֿענט דעם בלאַט ווידער.',
         noMatch: query => `קיין חיה פּאַסט נישט צו "${query}".`,
         installedTag: 'אינסטאַלירט',
         generatedTag: 'דערצייגט',
@@ -474,7 +494,7 @@ export const yi = defineLocale({
         uninstall: name => `אָפּאינסטאַלירן ${name}`,
         delete: name => `אויסמעקן ${name}`,
         deleteTitle: name => `אויסמעקן ${name}?`,
-        deleteBody: "דאָס מעקט אויס די חיה סופֿיקע — מען קען זי נישט ווידער אינסטאַלירן.",
+        deleteBody: 'דאָס מעקט אויס די חיה סופֿיקע — מען קען זי נישט ווידער אינסטאַלירן.',
         deleteConfirm: 'אויסמעקן',
         rename: name => `באַנייען ${name}`,
         renameTitle: 'באַנייען די חיה',
@@ -487,8 +507,8 @@ export const yi = defineLocale({
         exportFailed: slug => `נישט געקענט עקספּאָרטירן ${slug}`,
         noneAvailable: 'קיין חיה נישט פֿאַראַן צו אַקטיווירן איצט.',
         turnOnFailed: 'נישט געקענט אַקטיווירן די חיה.',
-        turnOffFailed: 'נישט געקענט אָפּשטעלן די חיה.',
-      },
+        turnOffFailed: 'נישט געקענט אָפּשטעלן די חיה.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -499,25 +519,26 @@ export const yi = defineLocale({
       updates: 'דערהײַנטיקונגען',
       checkNow: 'איצט פּרוּוון',
       checking: 'פּרוּווט…',
-      seeWhatsNew: "זען וואָס איז נײַ",
+      seeWhatsNew: 'זען וואָס איז נײַ',
       updateNow: 'איצט דערהײַנטיקן',
       releaseNotes: 'ווערסיע־באַמערקונגען',
-      onLatest: "איר האָט די נײַסטע ווערסיע.",
+      onLatest: 'איר האָט די נײַסטע ווערסיע.',
       installing: 'אַ דערהײַנטיקונג ווערט אינסטאַלירט.',
-      cantUpdate: "די ווערסיע קען זיך נישט דערהײַנטיקן פֿון אין דער אַפּ.",
-      cantReach: "מיר קענען נישט דערגרייכן דעם דערהײַנטיקונג־סערווירער.",
+      cantUpdate: 'די ווערסיע קען זיך נישט דערהײַנטיקן פֿון אין דער אַפּ.',
+      cantReach: 'מיר קענען נישט דערגרייכן דעם דערהײַנטיקונג־סערווירער.',
       tapCheck: 'קליקט "איצט פּרוּוון" צו זוכן דערהײַנטיקונגען.',
       updateReady: count => `אַ נײַע דערהײַנטיקונג איז גרייט (${count} ענדערונג ${count === 1 ? '' : 's'} אַרײַן).`,
       lastChecked: age => `לעצטע פּרוּוונג ${age}`,
       justNowSuffix: ' · איצט',
       automaticUpdates: 'אויטאָמאַטישע דערהײַנטיקונגען',
-      automaticUpdatesDesc: 'OpenAmer פּרוּווט דערהײַנטיקונגען אויטאָמאַטיש אין הינטערגרונט און מעלדט ווען איינע איז גרייט.',
+      automaticUpdatesDesc:
+        'OpenAmer פּרוּווט דערהײַנטיקונגען אויטאָמאַטיש אין הינטערגרונט און מעלדט ווען איינע איז גרייט.',
       branchCommit: (branch, commit) => `צווייג ${branch} · קאָמיט ${commit}`,
       never: 'קיינמאָל',
       justNow: 'איצט',
       minAgo: count => `${count} מין צוריק`,
       hoursAgo: count => `${count} שעה צוריק`,
-      daysAgo: count => `${count} טעג צוריק`,
+      daysAgo: count => `${count} טעג צוריק`
     },
     config: {
       none: 'קיין',
@@ -533,7 +554,8 @@ export const yi = defineLocale({
       imported: 'קאָנפֿיגוראַציע אימפּאָרטירט',
       invalidJson: 'אומגילטיקער קאָנפֿיגוראַציע־JSON',
       keepAwakeTitle: 'האַלטן דעם קאָמפּיוטער וואַך',
-      keepAwakeDesc: 'פֿאַרהיט דעם קאָמפּיוטער פֿון שלאָפֿן כּדי לאַנגע אָדער נאַכט־לויפֿן זאָלן ממשיך זיין. דער עקראַן קען זיך נאָך אַלץ אָפּשטעלן.',
+      keepAwakeDesc:
+        'פֿאַרהיט דעם קאָמפּיוטער פֿון שלאָפֿן כּדי לאַנגע אָדער נאַכט־לויפֿן זאָלן ממשיך זיין. דער עקראַן קען זיך נאָך אַלץ אָפּשטעלן.'
     },
     credentials: {
       pasteKey: 'אַרײַנלייגן דעם שליסל',
@@ -543,7 +565,7 @@ export const yi = defineLocale({
       couldNotSave: 'נישט געקענט אויפֿהיטן די באַשײַנונג.',
       remove: 'אַוועקנעמען',
       getKey: 'באַקומען אַ שליסל',
-      saving: 'היט אויף',
+      saving: 'היט אויף'
     },
     envActions: {
       actionsFor: label => `אַקציעס פֿאַר ${label}`,
@@ -554,7 +576,7 @@ export const yi = defineLocale({
       revealValue: 'ווײַזן דעם ווערט',
       replace: 'פֿאַרבײַטן',
       set: 'באַשטימען',
-      clear: 'ליידיקן',
+      clear: 'ליידיקן'
     },
     gateway: {
       loading: 'לאָדן די שער־איינשטעלונגען...',
@@ -562,23 +584,29 @@ export const yi = defineLocale({
       unavailableDesc: 'די IPC־בריק פֿון Desktop שטעלט נישט צו די שער־איינשטעלונגען.',
       title: 'פֿאַרבינדונג צום שער',
       envOverride: 'ענדערונג דורך env',
-      intro: 'OpenAmer Desktop הויבט אָן זיין אייגענעם לאָקאַלן שער פֿאַרבאַשטימט. באַנוצט אַ ווײַטן שער ווען איר ווילט די אַפּ זאָל פֿירן אַן OpenAmer־סערווירער וואָס לויפֿט שוין אויף אַן אַנדערר מאַשין אָדער הינטער אַ פֿאַרלאָזלעכן פּראָקסי. קליקט אַ פּראָפֿיל אונטן צו געבן אים זיין אייגענעם ווײַטן סערווירער.',
+      intro:
+        'OpenAmer Desktop הויבט אָן זיין אייגענעם לאָקאַלן שער פֿאַרבאַשטימט. באַנוצט אַ ווײַטן שער ווען איר ווילט די אַפּ זאָל פֿירן אַן OpenAmer־סערווירער וואָס לויפֿט שוין אויף אַן אַנדערר מאַשין אָדער הינטער אַ פֿאַרלאָזלעכן פּראָקסי. קליקט אַ פּראָפֿיל אונטן צו געבן אים זיין אייגענעם ווײַטן סערווירער.',
       appliesTo: 'גילט פֿאַר',
       allProfiles: 'אַלע פּראָפֿילן',
       defaultConnection: 'פֿאַרבאַשטימטע פֿאַרבינדונג פֿאַר יעדן פּראָפֿיל אָן זיין אייגענער ענדערונג.',
-      profileConnection: profile => `פֿאַרבינדונג באַנוצט נאָר ווען “${profile}” איז דער אַקטיווער פּראָפֿיל. קליקט באַנוצן דעם פֿאַרבאַשטימטן שער צו אַוועקנעמען זיין ענדערונג.`,
+      profileConnection: profile =>
+        `פֿאַרבינדונג באַנוצט נאָר ווען “${profile}” איז דער אַקטיווער פּראָפֿיל. קליקט באַנוצן דעם פֿאַרבאַשטימטן שער צו אַוועקנעמען זיין ענדערונג.`,
       envOverrideTitle: 'סבֿיבֿה־וואַריאַבלען פֿירן די Desktop־סעסיע.',
-      envOverrideDesc: 'נעמט אַוועק OPENAMER_DESKTOP_REMOTE_URL און OPENAMER_DESKTOP_REMOTE_TOKEN צו באַנוצן די אויפֿגעהיטענע איינשטעלונג אונטן.',
+      envOverrideDesc:
+        'נעמט אַוועק OPENAMER_DESKTOP_REMOTE_URL און OPENAMER_DESKTOP_REMOTE_TOKEN צו באַנוצן די אויפֿגעהיטענע איינשטעלונג אונטן.',
       modeTitle: 'פֿאַרבינדונג־מאָדוס',
       localTitle: 'לאָקאַלער שער',
-      localDesc: 'אָנהייבן אַ פּריוואַטן OpenAmer־סערווירער אויף localhost. דאָס איז דער פֿאַרבאַשטימטער און אַרבעט אָן נעצווערק.',
+      localDesc:
+        'אָנהייבן אַ פּריוואַטן OpenAmer־סערווירער אויף localhost. דאָס איז דער פֿאַרבאַשטימטער און אַרבעט אָן נעצווערק.',
       inheritTitle: 'באַנוצן דעם פֿאַרבאַשטימטן שער',
-      inheritDesc: "אַוועקנעמען די ענדערונג פֿון דעם פּראָפֿיל און באַנוצן די פֿאַרבאַשטימטע פֿאַרבינדונג.",
+      inheritDesc: 'אַוועקנעמען די ענדערונג פֿון דעם פּראָפֿיל און באַנוצן די פֿאַרבאַשטימטע פֿאַרבינדונג.',
       remoteTitle: 'ווײַטער שער',
       remoteDesc: 'פֿאַרבינדן די Desktop־שאַלע צו אַ ווײַטן OpenAmer־סערווירער.',
-      remoteAuthHint: 'געהאָסטעטע שערן באַנוצן OAuth אָדער אַ באַנוצער־נאָמען מיט אַ פּאַראָל; זעלבסט־געהאָסטעטע קענען באַנוצן אַ סעסיע־טאָקען.',
+      remoteAuthHint:
+        'געהאָסטעטע שערן באַנוצן OAuth אָדער אַ באַנוצער־נאָמען מיט אַ פּאַראָל; זעלבסט־געהאָסטעטע קענען באַנוצן אַ סעסיע־טאָקען.',
       cloudTitle: 'OpenAmer Cloud',
-      cloudDesc: 'פֿאַרבינדט זיך איין מאָל מיט OpenAmer Cloud און קליקט צווישן די אַגענטן פֿון אייער קאָנטאָ — קיין URL צו אַרײַנלייגן.',
+      cloudDesc:
+        'פֿאַרבינדט זיך איין מאָל מיט OpenAmer Cloud און קליקט צווישן די אַגענטן פֿון אייער קאָנטאָ — קיין URL צו אַרײַנלייגן.',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudSignIn: 'פֿאַרבינדן זיך מיט OpenAmer Cloud',
       cloudSignedIn: 'פֿאַרבונדן מיט OpenAmer Cloud',
@@ -593,7 +621,7 @@ export const yi = defineLocale({
       cloudNoAgents: {
         before: 'קיין אַגענטן נישט געפֿונען אויף דעם קאָנטאָ. שאַפֿט איינעם אין ',
         linkText: 'OpenAmer־פּאָרטאַל',
-        after: ', דערנאָך דערפֿרישט.',
+        after: ', דערנאָך דערפֿרישט.'
       },
       cloudRefresh: 'דערפֿרישן',
       cloudConnect: 'פֿאַרבינדן',
@@ -611,18 +639,23 @@ export const yi = defineLocale({
       remoteUrlTitle: 'ווײַטע URL',
       remoteUrlDesc: 'באַזיס־URL פֿאַרן ווײַטן דאַשבאָרד־סערווירער. וועג־פּרעפֿיקסן ווערן געשטיצט, למשל /openamer.',
       probing: 'פּרוּווט ווי אַזוי דער שער אויטענטיפֿיצירט זיך…',
-      probeError: 'נאָך נישט געקענט דערגרייכן דעם שער. פּרוּווט די URL — דער אויטענטיפֿיקאַציע־אופֿן וועט דערשיינען ווי נאָר ער ענטפֿערט.',
+      probeError:
+        'נאָך נישט געקענט דערגרייכן דעם שער. פּרוּווט די URL — דער אויטענטיפֿיקאַציע־אופֿן וועט דערשיינען ווי נאָר ער ענטפֿערט.',
       signedIn: 'אַרײַנגעלאָגירט',
       signIn: 'אַרײַנלאָגירן זיך',
       signOut: 'אויסשרײַבן זיך',
       signInWith: provider => `אַרײַנלאָגירן זיך מיט ${provider}`,
       authTitle: 'אויטענטיפֿיקאַציע',
-      authSignedInPassword: 'דער שער באַנוצט אַ באַנוצער־נאָמען מיט אַ פּאַראָל. איר זענט אַרײַנגעלאָגירט; די סעסיע דערפֿרישט זיך אויטאָמאַטיש.',
+      authSignedInPassword:
+        'דער שער באַנוצט אַ באַנוצער־נאָמען מיט אַ פּאַראָל. איר זענט אַרײַנגעלאָגירט; די סעסיע דערפֿרישט זיך אויטאָמאַטיש.',
       authSignedInOauth: 'דער שער באַנוצט OAuth. איר זענט אַרײַנגעלאָגירט; די סעסיע דערפֿרישט זיך אויטאָמאַטיש.',
-      authNeedsPassword: 'דער שער באַנוצט אַ באַנוצער־נאָמען מיט אַ פּאַראָל. לאָגירט זיך אַרײַן צו דערלויבן די Desktop־אַפּ.',
-      authNeedsOauth: provider => `דער שער באַנוצט OAuth. לאָגירט זיך אַרײַן מיט ${provider} צו דערלויבן די Desktop־אַפּ.`,
+      authNeedsPassword:
+        'דער שער באַנוצט אַ באַנוצער־נאָמען מיט אַ פּאַראָל. לאָגירט זיך אַרײַן צו דערלויבן די Desktop־אַפּ.',
+      authNeedsOauth: provider =>
+        `דער שער באַנוצט OAuth. לאָגירט זיך אַרײַן מיט ${provider} צו דערלויבן די Desktop־אַפּ.`,
       tokenTitle: 'סעסיע־טאָקען',
-      tokenDesc: 'דער דאַשבאָרד־סעסיע־טאָקען וואָס ווערט באַנוצט פֿאַר REST און WebSocket. לאָזט ליידיק צו האַלטן דעם געהיטענעם טאָקען.',
+      tokenDesc:
+        'דער דאַשבאָרד־סעסיע־טאָקען וואָס ווערט באַנוצט פֿאַר REST און WebSocket. לאָזט ליידיק צו האַלטן דעם געהיטענעם טאָקען.',
       existingToken: value => `באַשטייענדיקער טאָקען ${value}`,
       savedToken: 'געהיט',
       pasteSessionToken: 'אַרײַנלייגן דעם סעסיע־טאָקען',
@@ -640,7 +673,8 @@ export const yi = defineLocale({
       enterUrlFirst: 'לייגט קודם אַרײַן אַ ווײַטע URL.',
       restartingTitle: 'שער־פֿאַרבינדונג הויבט ווידער אָן',
       savedTitle: 'שער־איינשטעלונגען געהיט',
-      restartingMessage: 'OpenAmer Desktop וועט זיך ווידער פֿאַרבינדן מיט די געהיטענע איינשטעלונגען — די שאַלע בלײַבט אָפֿן.',
+      restartingMessage:
+        'OpenAmer Desktop וועט זיך ווידער פֿאַרבינדן מיט די געהיטענע איינשטעלונגען — די שאַלע בלײַבט אָפֿן.',
       savedMessage: 'געהיט פֿאַרן קומענדיקן ווידער־אָנהייב.',
       connectedTo: (baseUrl, version) => `פֿאַרבונדן מיט ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       reachableTitle: 'ווײַטער שער דערגרייכבאַר',
@@ -653,8 +687,10 @@ export const yi = defineLocale({
       applyFailed: 'נישט געקענט אָנווענדן די שער־איינשטעלונגען',
       saveFailed: 'נישט געקענט אויפֿהיטן די שער־איינשטעלונגען',
       sshTitle: 'פֿאַרבינדן דורך SSH',
-      sshDesc: 'OpenAmer ווערט אָנגעהויבן אויף דער ווײַטער מאַשין דורך SSH און געטונעלט צו דער אַפּ — גאָרנישט אַליין אָנצוהייבן אָדער אַנטדעקן. פֿאָדערט אַרבעטנדיקן שליסל־באַזירטן SSH־צוטריט צו דער מאַשין.',
-      sshTrustHint: 'דער ערשטער אָנגעבאָטענער וירט־שליסל ווערט פֿאַרלאָזט און אָנגעהעפֿט; שפּעטערדיקע ענדערונגען שלאָגן פֿײַל.',
+      sshDesc:
+        'OpenAmer ווערט אָנגעהויבן אויף דער ווײַטער מאַשין דורך SSH און געטונעלט צו דער אַפּ — גאָרנישט אַליין אָנצוהייבן אָדער אַנטדעקן. פֿאָדערט אַרבעטנדיקן שליסל־באַזירטן SSH־צוטריט צו דער מאַשין.',
+      sshTrustHint:
+        'דער ערשטער אָנגעבאָטענער וירט־שליסל ווערט פֿאַרלאָזט און אָנגעהעפֿט; שפּעטערדיקע ענדערונגען שלאָגן פֿײַל.',
       sshHostTitle: 'וירט',
       sshHostDesc: 'user@host, אָדער אַ Host־אַליאַס פֿון ~/.ssh/config.',
       sshHostPick: 'קליקט אַ וירט…',
@@ -677,18 +713,21 @@ export const yi = defineLocale({
       sshReachable: (host, platform) => `דערגרייכבאַר: ${host} (${platform}) — OpenAmer געפֿונען`,
       sshIncompleteHost: 'לייגט אַרײַן אַ SSH־וירט פֿאַר איר פֿאַרבינדט זיך.',
       sshErrUnreachable: 'נישט געקענט דערגרייכן יענעם וירט דורך SSH. פּרוּווט דעם וירט, דעם פּאָרט און אייער נעצווערק.',
-      sshErrAuth: 'SSH־אויטענטיפֿיקאַציע איז דורכגעפֿאַלן. לאָדט אייער שליסל אין ssh-agent (ssh-add) אָדער באַשטימט אַן IdentityFile אין ~/.ssh/config — OpenAmer פֿירט ssh אָן אַנטעראַקטיווקייט.',
-      sshErrHostKey: 'דער וירט־שליסל האָט זיך געענדערט זינט אייער לעצטער פֿאַרבינדונג. באַשטעטיקט אַז דאָס איז ערוואַרטעט, דערנאָך פֿירט אויס ssh-keygen -R <host> און פֿאַרבינדט זיך ווידער.',
-      sshErrNotInstalled: 'OpenAmer איז נישט אינסטאַלירט אויף דער ווײַטער מאַשין. אינסטאַלירט אים דאָרט (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) אָדער באַשטימט דעם OpenAmer־וועג.',
+      sshErrAuth:
+        'SSH־אויטענטיפֿיקאַציע איז דורכגעפֿאַלן. לאָדט אייער שליסל אין ssh-agent (ssh-add) אָדער באַשטימט אַן IdentityFile אין ~/.ssh/config — OpenAmer פֿירט ssh אָן אַנטעראַקטיווקייט.',
+      sshErrHostKey:
+        'דער וירט־שליסל האָט זיך געענדערט זינט אייער לעצטער פֿאַרבינדונג. באַשטעטיקט אַז דאָס איז ערוואַרטעט, דערנאָך פֿירט אויס ssh-keygen -R <host> און פֿאַרבינדט זיך ווידער.',
+      sshErrNotInstalled:
+        'OpenAmer איז נישט אינסטאַלירט אויף דער ווײַטער מאַשין. אינסטאַלירט אים דאָרט (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) אָדער באַשטימט דעם OpenAmer־וועג.',
       sshErrPlatform: 'אומגעשטיצטע ווײַטע פּלאַטפֿאָרם. דער Desktop SSH־מאָדוס שטיצט Linux, macOS און Windows־וירטן.',
       sshErrTimeout: 'SSH־פֿאַרבינדונג איז אָפּגעלאָפֿן. דער וירט איז מעגלעך נישט דערגרייכבאַר אָדער שלאָופֿט.',
       sshErrUpdateRequired: 'דערהײַנטיקט OpenAmer אויף דער ווײַטער מאַשין פֿאַר איר פֿאַרבינדט זיך מיט Desktop SSH.',
-      sshErrUnknown: 'SSH־פֿאַרבינדונג איז דורכגעפֿאַלן.',
+      sshErrUnknown: 'SSH־פֿאַרבינדונג איז דורכגעפֿאַלן.'
     },
     keys: {
       loading: 'לאָדן API־שליסלען און באַשײַנונגען...',
       failedLoad: 'API־שליסלען האָבן נישט געקענט לאָדן ווערן',
-      empty: 'אין דער קאַטעגאָריע נאָך גאָרנישט באַשטימט.',
+      empty: 'אין דער קאַטעגאָריע נאָך גאָרנישט באַשטימט.'
     },
     mcp: {
       loading: 'לאָדן MCP־סערווירער...',
@@ -740,7 +779,8 @@ export const yi = defineLocale({
       catalogInstallFailed: name => `דורכגעפֿאַלן צו אינסטאַלירן ${name}`,
       catalogEnvPrompt: name => `${name} דאַרף באַשײַנונגען`,
       catalogEnvRequired: 'פֿילט אויס די נייטיקע ווערטן פֿאַר איר אינסטאַלירט.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} אַקטיווירט`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} אַקטיווירט`,
       statusConnecting: 'פֿאַרבינדונג…',
       statusNeedsAuth: 'דאַרף אויטענטיפֿיקאַציע',
       statusError: 'טעות',
@@ -753,11 +793,12 @@ export const yi = defineLocale({
       unsavedConnect: 'נישט געהיט — היט mcp.json צו פֿאַרבינדן.',
       enableTool: tool => `אַקטיווירן ${tool}`,
       disableTool: tool => `אָפּשטעלן ${tool}`,
-      noOutput: 'נאָך קיין אַרויסגאַנג.',
+      noOutput: 'נאָך קיין אַרויסגאַנג.'
     },
     model: {
       loading: 'לאָדן די מאָדעל־קאָנפֿיגוראַציע...',
-      appliesDesc: 'גילט פֿאַר נײַע סעסיעס. באַנוצט די מאָדעל־אויסוואַל אין רעדאַקטאָר צו באַלד פֿאַרבײַטן דעם אַקטיוון שמועס.',
+      appliesDesc:
+        'גילט פֿאַר נײַע סעסיעס. באַנוצט די מאָדעל־אויסוואַל אין רעדאַקטאָר צו באַלד פֿאַרבײַטן דעם אַקטיוון שמועס.',
       provider: 'פֿאַרזאָרגער',
       model: 'מאָדעל',
       applying: 'אָנווענדט...',
@@ -767,53 +808,56 @@ export const yi = defineLocale({
       defaultsFailed: 'דורכגעפֿאַלן צו אויפֿהיטן די מאָדעל־פֿאַרבאַשטימונגען',
       auxiliaryTitle: 'הילף־מאָדעלן',
       resetAllToMain: 'צוריקשטעלן אַלץ אויפֿן הויפּט־מאָדעל',
-      auxiliaryDesc: 'הילף־אַרבעטן לויפֿן פֿאַרבאַשטימט אויפֿן הויפּט־מאָדעל. באַשטימט אַ באַזונדער מאָדעל פֿאַר אַן אַרבעט צו איבערשטייגן.',
+      auxiliaryDesc:
+        'הילף־אַרבעטן לויפֿן פֿאַרבאַשטימט אויפֿן הויפּט־מאָדעל. באַשטימט אַ באַזונדער מאָדעל פֿאַר אַן אַרבעט צו איבערשטייגן.',
       setToMain: 'באַשטימען אויפֿן הויפּט־מאָדעל',
       change: 'ענדערן',
       autoUseMain: 'אויטאָ · באַנוצן דעם הויפּט־מאָדעל',
       providerDefault: '(פֿאַרזאָרגער־פֿאַרבאַשטימונג)',
       fallbackAdd: 'צולייגן אַ פֿאַלבאַק',
       fallbackEmpty: 'קיין פֿאַלבאַק־מאָדעלן — דאָס פֿאַרבאַשטימטע מאָדעל ווערט באַנוצט ביז עס שלאָגט פֿײַל.',
-      notInCatalog: "איז נישט אין דער מאָדעל־ליסטע פֿון דעם פֿאַרזאָרגער — אויפֿרופֿן קענען אַריבערגיין צו אַ באַקאַפּ.",
+      notInCatalog:
+        'איז נישט אין דער מאָדעל־ליסטע פֿון דעם פֿאַרזאָרגער — אויפֿרופֿן קענען אַריבערגיין צו אַ באַקאַפּ.',
       tasks: {
         vision: {
           label: 'זעאונג',
-          hint: 'בילד־אַנאַליז',
+          hint: 'בילד־אַנאַליז'
         },
         web_extract: {
           label: 'וועב־אויסצוג',
-          hint: 'בלאַט־סיכום',
+          hint: 'בלאַט־סיכום'
         },
         compression: {
           label: 'קאָמפּרעסיע',
-          hint: 'קאָנטעקסט־צונויפֿציִען',
+          hint: 'קאָנטעקסט־צונויפֿציִען'
         },
         skills_hub: {
           label: 'פֿעיִקייט־האַב',
-          hint: 'פֿעיִקייט־זוכן',
+          hint: 'פֿעיִקייט־זוכן'
         },
         approval: {
           label: 'באַשטעטיקונג',
-          hint: 'קלוגע אויטאָ־באַשטעטיקונג',
+          hint: 'קלוגע אויטאָ־באַשטעטיקונג'
         },
         mcp: {
           label: 'MCP',
-          hint: 'MCP־געצייג־אויספֿירונג',
+          hint: 'MCP־געצייג־אויספֿירונג'
         },
         title_generation: {
           label: 'טיטל־דערצייגונג',
-          hint: 'סעסיע־טיטלען',
+          hint: 'סעסיע־טיטלען'
         },
         curator: {
           label: 'קוראַטאָר',
-          hint: 'איבערקוק פֿון פֿעיִקייט־באַניץ',
-        },
-      },
+          hint: 'איבערקוק פֿון פֿעיִקייט־באַניץ'
+        }
+      }
     },
     providers: {
       connectAccount: 'פֿאַרבינדן אַ קאָנטאָ',
       haveApiKey: 'האָט איר ענדערש אַן API־שליסל?',
-      intro: 'לאָגירט זיך אַרײַן מיט אַן אַבאָנעמענט — קיין API־שליסל צו קאָפּירן. OpenAmer פֿירט דאָס בראַוזער־אַרײַנלאָגירן פֿאַר אייך, דאָ אין דער אַפּ.',
+      intro:
+        'לאָגירט זיך אַרײַן מיט אַן אַבאָנעמענט — קיין API־שליסל צו קאָפּירן. OpenAmer פֿירט דאָס בראַוזער־אַרײַנלאָגירן פֿאַר אייך, דאָ אין דער אַפּ.',
       connected: 'פֿאַרבונדן',
       collapse: 'אַרײַנציען',
       connectAnother: 'פֿאַרבינדן אַן אַנדער פֿאַרזאָרגער',
@@ -823,7 +867,8 @@ export const yi = defineLocale({
       removeConfirm: provider => `אַוועקנעמען ${provider}?`,
       removeExternalGeneric: provider => `${provider} ווערט געפֿירט פֿון זיין אייגענעם CLI — נעמט אים אַוועק דאָרט.`,
       removeKeyManaged: provider => `${provider} איז באַשטימט פֿון אַן API־שליסל. נעמט אים אַוועק פֿון API־שליסלען.`,
-      removeTerminalConfirm: (provider, command) => `אָפּפֿאַרבינדן ${provider}? דאָס פֿירט אויס "${command}" אין טערמינאַל צו אויסמעקן די באַשײַנונג.`,
+      removeTerminalConfirm: (provider, command) =>
+        `אָפּפֿאַרבינדן ${provider}? דאָס פֿירט אויס "${command}" אין טערמינאַל צו אויסמעקן די באַשײַנונג.`,
       removeTerminalRunning: provider => `פֿירט אויס די ${provider}־אָפּפֿאַרבינדונג אין טערמינאַל…`,
       removedTitle: 'קאָנטאָ אַוועקגענומען',
       removedMessage: provider => `${provider} איז אַוועקגענומען געוואָרן.`,
@@ -833,14 +878,16 @@ export const yi = defineLocale({
       noKeysMatch: 'קיין פֿאַרזאָרגער פּאַסט נישט צו אייער זוך.',
       localEndpoint: {
         title: 'לאָקאַלער / אייגענער ענדפּוינט',
-        description: 'ריכט OpenAmer אויף סיי וועלכן OpenAI־קאָמפּאַטיבלען ענדפּוינט (Zyphra, vLLM, llama.cpp, Ollama, אאז"ו).',
+        description:
+          'ריכט OpenAmer אויף סיי וועלכן OpenAI־קאָמפּאַטיבלען ענדפּוינט (Zyphra, vLLM, llama.cpp, Ollama, אאז"ו).'
       },
-      loading: 'לאָדן פֿאַרזאָרגער...',
+      loading: 'לאָדן פֿאַרזאָרגער...'
     },
     sessions: {
       loading: 'לאָדן אַרכיווירטע סעסיעס…',
       archivedTitle: 'אַרכיווירטע סעסיעס',
-      archivedIntro: 'אַרכיווירטע שמועסן זענען באַהאַלטן פֿון דער לײַסטע אָבער האַלטן אַלע זייערע מעלדונגען. Ctrl/⌘-קליק אויף אַ שמועס אין דער לײַסטע צו אַרכיווירן.',
+      archivedIntro:
+        'אַרכיווירטע שמועסן זענען באַהאַלטן פֿון דער לײַסטע אָבער האַלטן אַלע זייערע מעלדונגען. Ctrl/⌘-קליק אויף אַ שמועס אין דער לײַסטע צו אַרכיווירן.',
       emptyArchivedTitle: 'גאָרנישט אַרכיווירט',
       emptyArchivedDesc: 'אַרכיווירט אַ שמועס צו באַהאַלטן אים דאָ.',
       unarchive: 'אויסאַרכיווירן',
@@ -849,13 +896,16 @@ export const yi = defineLocale({
       restored: 'צוריקגעשטעלט',
       deleteConfirm: title => `אויסמעקן אויף אייביק "${title}"? דאָס קען נישט צוריקגעמאַכט ווערן.`,
       autoArchiveTitle: 'אויטאָ־אַרכיווירן פֿאַרלאָזנע שמועסן',
-      autoArchiveDesc: "אַרכיווירט אויטאָמאַטיש שמועסן וואָס איר האָט נישט אָנגערירט אַ ווײַלע. אָנגעהעפֿטע שמועסן ווערן קיינמאָל נישט אַרכיווירט, און גאָרנישט ווערט נישט אויסגעמעקט — אַרכיווירטע שמועסן צִיִען זיך נאָר אַהער.",
+      autoArchiveDesc:
+        'אַרכיווירט אויטאָמאַטיש שמועסן וואָס איר האָט נישט אָנגערירט אַ ווײַלע. אָנגעהעפֿטע שמועסן ווערן קיינמאָל נישט אַרכיווירט, און גאָרנישט ווערט נישט אויסגעמעקט — אַרכיווירטע שמועסן צִיִען זיך נאָר אַהער.',
       autoArchiveDaysLabel: 'אַרכיווירן נאָך',
       autoArchiveDaysUnit: 'טעג אָן באַניץ',
       autoArchiveFailed: 'נישט געקענט דערהײַנטיקן דאָס אויטאָ־אַרכיווירן',
       defaultDirTitle: 'פֿאַרבאַשטימטער פּראָיעקט־פּאַפּקע',
-      defaultDirDesc: 'נײַע סעסיעס הייבן אָן אין דעם פּאַפּקע ס\'איז נישט איר קליקט אַן אַנדערן. לאָזט אים אומבאַשטימט צו באַנוצן אייער היים־פּאַפּקע.',
-      defaultDirUpdated: 'דער פֿאַרבאַשטימטער פּראָיעקט־פּאַפּקע איז דערהײַנטיקט — הויבט אָן אַ נײַעם שמועס (Ctrl/⌘+N) כּדי עס זאָל גילטן',
+      defaultDirDesc:
+        "נײַע סעסיעס הייבן אָן אין דעם פּאַפּקע ס'איז נישט איר קליקט אַן אַנדערן. לאָזט אים אומבאַשטימט צו באַנוצן אייער היים־פּאַפּקע.",
+      defaultDirUpdated:
+        'דער פֿאַרבאַשטימטער פּראָיעקט־פּאַפּקע איז דערהײַנטיקט — הויבט אָן אַ נײַעם שמועס (Ctrl/⌘+N) כּדי עס זאָל גילטן',
       defaultsTo: label => `פֿאַרבאַשטימט אויף ${label}.`,
       change: 'ענדערן',
       choose: 'אויסקלייבן',
@@ -865,7 +915,7 @@ export const yi = defineLocale({
       unarchiveFailed: 'אויסאַרכיווירן איז דורכגעפֿאַלן',
       deleteFailed: 'אויסמעקן איז דורכגעפֿאַלן',
       updateDirFailed: 'נישט געקענט דערהײַנטיקן דעם פֿאַרבאַשטימטן פּאַפּקע',
-      clearDirFailed: 'נישט געקענט אויסליידיקן דעם פֿאַרבאַשטימטן פּאַפּקע',
+      clearDirFailed: 'נישט געקענט אויסליידיקן דעם פֿאַרבאַשטימטן פּאַפּקע'
     },
     toolsets: {
       loadingConfig: 'לאָדן די קאָנפֿיגוראַציע',
@@ -883,20 +933,24 @@ export const yi = defineLocale({
       selectedMessage: provider => `${provider} איז איצט אַקטיוו.`,
       failedSelect: provider => `דורכגעפֿאַלן צו אויסקלייבן ${provider}`,
       failedLoad: 'געצייג־קאָנפֿיגוראַציע האָט נישט געקענט לאָדן ווערן',
-      noProviderOptions: 'דער געצייג־סעט האָט נישט קיין פֿאַרזאָרגער־אָפּציעס — אַקטיווירט אים און ער אַרבעט מיט אייער איצטיקער איינשטעלונג.',
+      noProviderOptions:
+        'דער געצייג־סעט האָט נישט קיין פֿאַרזאָרגער־אָפּציעס — אַקטיווירט אים און ער אַרבעט מיט אייער איצטיקער איינשטעלונג.',
       noProviders: 'קיין פֿאַרזאָרגער פֿאַראַן פֿאַר דעם סעט איצט.',
       ready: 'גרייט',
       needsSignIn: 'דאַרף אַרײַנלאָגירן',
       needsSetup: 'דאַרף איינשטעלונג',
-      openamerIncluded: 'אַרײַנגערעכנט אין אַן OpenAmer־אַבאָנעמענט — לאָגירט זיך אַרײַן אין OpenAmer Portal צו אַקטיווירן.',
+      openamerIncluded:
+        'אַרײַנגערעכנט אין אַן OpenAmer־אַבאָנעמענט — לאָגירט זיך אַרײַן אין OpenAmer Portal צו אַקטיווירן.',
       openamerAuthNeededTitle: 'לאָגירט זיך אַרײַן אין OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} איז געהיט אָבער וועט נישט אַקטיווירט ווערן ביז איר לאָגירט זיך אַרײַן אין OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} איז געהיט אָבער וועט נישט אַקטיווירט ווערן ביז איר לאָגירט זיך אַרײַן אין OpenAmer Portal.`,
       openamerAuthSignIn: 'אַרײַנלאָגירן זיך',
       openamerAuthDoneTitle: 'OpenAmer Portal פֿאַרבונדן',
       openamerAuthDoneMessage: 'אייערע אַבאָנעמענט־סערווירער זענען איצט אַקטיוו.',
       openamerAuthFailed: 'אַרײַנלאָגירן אין OpenAmer Portal איז נישט פֿאַרענדיקט געוואָרן',
       noApiKeyRequired: 'קיין API־שליסל נייטיק.',
-      postSetupHint: step => `דער סערווירער דאַרף אַן איין־מאָליקע אינסטאַלאַציע (${step}). לויפֿט אויף דער מאַשין — קען דויערן עטלעכע מינוט.`,
+      postSetupHint: step =>
+        `דער סערווירער דאַרף אַן איין־מאָליקע אינסטאַלאַציע (${step}). לויפֿט אויף דער מאַשין — קען דויערן עטלעכע מינוט.`,
       postSetupInstalledHint: 'אינסטאַלירט. פֿירט ווידער אויס די איינשטעלונג נאָר אויב עפּעס איז צעבראָכן.',
       postSetupRun: 'אויספֿירן די איינשטעלונג',
       postSetupRerun: 'ווידער אויספֿירן די איינשטעלונג',
@@ -937,9 +991,10 @@ export const yi = defineLocale({
         selectedTitle: 'סערווירער אויסגעקליבן',
         selectedMessage: backend => `טערמינאַל־באַפֿעלן לויפֿן איצט דורך ${backend}. גילט פֿאַר נײַע סעסיעס.`,
         failedSelect: backend => `דורכגעפֿאַלן צו אויסקלייבן ${backend}`,
-        needsSetupHint: 'איר קענט איצט אויסקלייבן דעם סערווירער — באַפֿעלן וועלן פֿײַלן ביז די איינשטעלונג איז פֿאַרענדיקט.',
-      },
-    },
+        needsSetupHint:
+          'איר קענט איצט אויסקלייבן דעם סערווירער — באַפֿעלן וועלן פֿײַלן ביז די איינשטעלונג איז פֿאַרענדיקט.'
+      }
+    }
   },
   skills: {
     tabSkills: 'פֿעיִקייטן',
@@ -959,7 +1014,8 @@ export const yi = defineLocale({
     noDescription: 'קיין באַשרײַבונג.',
     configured: 'באַשטימט',
     needsKeys: 'דאַרף שליסלען',
-    visionModelHint: 'זעאונג באַנוצט אייער הילף־מאָדעל־קאָנפֿיגוראַציע — דאָס בילד־פֿעיִק מאָדעל ווערט דאָרט אויסגעקליבן, נישט פּער פֿאַרזאָרגער דאָ.',
+    visionModelHint:
+      'זעאונג באַנוצט אייער הילף־מאָדעל־קאָנפֿיגוראַציע — דאָס בילד־פֿעיִק מאָדעל ווערט דאָרט אויסגעקליבן, נישט פּער פֿאַרזאָרגער דאָ.',
     visionModelLink: 'אויסקלייבן דאָס זעאונג־מאָדעל אין איינשטעלונגען → מאָדעלן',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} געצייג־סעטן אַקטיווירט`,
     configureToolset: label => `באַשטימען ${label}`,
@@ -985,7 +1041,7 @@ export const yi = defineLocale({
     provenance: {
       agent: 'געלערנט',
       bundled: 'איינגעבויט',
-      hub: 'האַב',
+      hub: 'האַב'
     },
     emptyNoneFound: noun => `קיין ${noun} נישט געפֿונען`,
     emptyNothingMatches: query => `גאָרנישט פּאַסט נישט צו “${query}”.`,
@@ -1003,7 +1059,8 @@ export const yi = defineLocale({
       connectingHubs: 'פֿאַרבינדונג צו פֿעיִקייט־האַבן...',
       connectedHubs: 'פֿאַרבונדענע האַבן:',
       featured: 'אויסגעקליבענע פֿעיִקייטן',
-      landingHint: 'זוכט אין האַב צו בלעטערן אינסטאַלירבאַרע פֿעיִקייטן פֿונעם אָפֿיציעלן אינדעקס, GitHub און קהילה־מקורים.',
+      landingHint:
+        'זוכט אין האַב צו בלעטערן אינסטאַלירבאַרע פֿעיִקייטן פֿונעם אָפֿיציעלן אינדעקס, GitHub און קהילה־מקורים.',
       noResults: 'קיין פּאַסנדיקע פֿעיִקייטן אין האַב.',
       resultCount: (count, ms) => `${count} result${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `אָפּגעלאָפֿן: ${sources}`,
@@ -1023,7 +1080,7 @@ export const yi = defineLocale({
       trust: {
         builtin: 'איינגעבויט',
         trusted: 'פֿאַרלאָזלעך',
-        community: 'קהילה',
+        community: 'קהילה'
       },
       verdictSafe: 'זיכער',
       verdictCaution: 'כאָשעד',
@@ -1041,8 +1098,8 @@ export const yi = defineLocale({
       loadFailed: 'פֿעיִקייט־האַב האָט נישט געקענט לאָדן ווערן',
       previewFailed: 'פֿעיִקייט־פֿאָרויסקוק דורכגעפֿאַלן',
       scanFailed: 'זיכערקייט־סריקענונג דורכגעפֿאַלן',
-      searchFailed: 'האַב־זוך דורכגעפֿאַלן',
-    },
+      searchFailed: 'האַב־זוך דורכגעפֿאַלן'
+    }
   },
   starmap: {
     title: 'זכּרון־גראַפֿיק',
@@ -1059,7 +1116,8 @@ export const yi = defineLocale({
     emptyTitle: 'נאָך גאָרנישט געלערנט',
     emptyDesc: 'ווי OpenAmer בויט פֿעיִקייטן און זכּרונות פֿאַר אייער אַרבעט, דערשיינען זיי דאָ.',
     share: 'טיילן די מאַפּע',
-    shareHint: 'קאָפּירט דעם קאָד צו טיילן די מאַפּע, אָדער לייגט אַרײַן איינעם צו לאָדן. ער שליסט נאָר דעם אויסלייג, נישט אייער זכּרון אָדער פֿעיִקייט־טעקסט.',
+    shareHint:
+      'קאָפּירט דעם קאָד צו טיילן די מאַפּע, אָדער לייגט אַרײַן איינעם צו לאָדן. ער שליסט נאָר דעם אויסלייג, נישט אייער זכּרון אָדער פֿעיִקייט־טעקסט.',
     shareTitle: 'אימפּאָרטירן / עקספּאָרטירן מאַפּע',
     sharePlaceholder: 'לייגט אַרײַן אַ מאַפּע־קאָד…',
     copy: 'קאָפּירן דעם מאַפּע־קאָד',
@@ -1069,7 +1127,7 @@ export const yi = defineLocale({
     importEmpty: 'לייגט אַרײַן אַ מאַפּע־קאָד צו לאָדן.',
     importSuccess: nodes => `געלאָדן אַ מאַפּע מיט ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'אימפּאָרטירטע מאַפּע',
-    resetToMine: 'צוריק צו מײַן מאַפּע',
+    resetToMine: 'צוריק צו מײַן מאַפּע'
   },
   agents: {
     close: 'פֿאַרמאַכן אַגענטן',
@@ -1099,7 +1157,7 @@ export const yi = defineLocale({
     ageDays: days => `${days}d צוריק`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'פֿאַרמאַכן דאָס באַפֿעלן־צענטער',
@@ -1129,7 +1187,7 @@ export const yi = defineLocale({
       generatedTag: 'דערצייגט',
       adoptFailed: 'נישט געקענט אָננעמען די חיה.',
       toggleFailed: 'נישט געקענט טוישן די חיה.',
-      noneAvailable: 'קיין חיה נישט פֿאַראַן — קליקט איינע אונטן צו אינסטאַלירן.',
+      noneAvailable: 'קיין חיה נישט פֿאַראַן — קליקט איינע אונטן צו אינסטאַלירן.'
     },
     generatePet: {
       title: 'דערצייגן אַ חיה',
@@ -1153,12 +1211,13 @@ export const yi = defineLocale({
       slowProviderHint: 'דאָס קען דויערן עטלעכע מינוט',
       remix: 'איבערמאַכן',
       remixConfirmTitle: 'איבערמאַכן דעם אויסזען?',
-      remixConfirmBody: 'דאָס דערצייגט אַ נײַע סכום אַנטוואַרפן מיט דעם אַלס אָנהייבּפּונקט. עס קען דויערן עטלעכע מינוט.',
+      remixConfirmBody:
+        'דאָס דערצייגט אַ נײַע סכום אַנטוואַרפן מיט דעם אַלס אָנהייבּפּונקט. עס קען דויערן עטלעכע מינוט.',
       genericError: 'דערצייגונג דורכגעפֿאַלן — פּרוּווט ווידער אָדער קליקט אַ פֿאָרשלאָג.',
       referenceImageTooLarge: 'דאָס רעפֿערענץ־בילד איז צו גרויס. באַנוצט איינס אונטער 16 MB.',
       referenceImageInvalid: 'נישט געקענט לייענען דאָס רעפֿערענץ־בילד. פּרוּווט PNG, JPG, WebP אָדער GIF.',
       adopt: 'אָננעמען',
-      startOver: 'אָנהייבן פֿון נײַ',
+      startOver: 'אָנהייבן פֿון נײַ'
     },
     installTheme: {
       title: 'אינסטאַלירן אַ טעמע…',
@@ -1170,7 +1229,7 @@ export const yi = defineLocale({
       install: 'אינסטאַלירן',
       installing: 'אינסטאַלירט...',
       installed: 'אינסטאַלירט',
-      installs: count => `${count} אינסטאַלאַציעס`,
+      installs: count => `${count} אינסטאַלאַציעס`
     },
     settingsFields: 'איינשטעלונג־פֿעלדער',
     mcpServers: 'MCP־סערווירער',
@@ -1179,49 +1238,49 @@ export const yi = defineLocale({
       maintenance: 'אויפֿהאַלטונג',
       sessions: 'סעסיעס',
       system: 'סיסטעם',
-      usage: 'באַניץ',
+      usage: 'באַניץ'
     },
     sectionDescriptions: {
       maintenance: 'דיאַגנאָסטיק, באַקאַפּס, קוראַטאָר און זכּרון־דאַטן',
       sessions: 'זוכן און פֿירן סעסיעס',
       system: 'סטאַטוס, פּראָטאָקאָלן און סיסטעם־אַקציעס',
-      usage: 'טאָקענס, קאָסטן און פֿעיִקייט־אַקטיוויטעט איבער דער צײַט',
+      usage: 'טאָקענס, קאָסטן און פֿעיִקייט־אַקטיוויטעט איבער דער צײַט'
     },
     nav: {
       newChat: {
         title: 'נײַע סעסיע',
-        detail: 'אָנהייבן אַ נײַע סעסיע',
+        detail: 'אָנהייבן אַ נײַע סעסיע'
       },
       settings: {
         title: 'איינשטעלונגען',
-        detail: 'באַשטימען OpenAmer desktop',
+        detail: 'באַשטימען OpenAmer desktop'
       },
       skills: {
         title: 'פֿעיִקייטן',
-        detail: 'פֿעיִקייטן, געצייג און MCP־סערווירער',
+        detail: 'פֿעיִקייטן, געצייג און MCP־סערווירער'
       },
       messaging: {
         title: 'מעלדונגען',
-        detail: 'באַשטימען Telegram, Slack, Discord און מער',
+        detail: 'באַשטימען Telegram, Slack, Discord און מער'
       },
       artifacts: {
         title: 'אַרטעפֿאַקטן',
-        detail: 'בלעטערן דערצייגטע אַרויסגאַבן',
-      },
+        detail: 'בלעטערן דערצייגטע אַרויסגאַבן'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'סעסיע־פּאַנעל',
-        detail: 'זוכן, אָנהעפֿטן און פֿירן סעסיעס',
+        detail: 'זוכן, אָנהעפֿטן און פֿירן סעסיעס'
       },
       system: {
         title: 'סיסטעם־פּאַנעל',
-        detail: 'שער־סטאַטוס, פּראָטאָקאָלן, ווידער־אָנהייבן/דערהײַנטיקן',
+        detail: 'שער־סטאַטוס, פּראָטאָקאָלן, ווידער־אָנהייבן/דערהײַנטיקן'
       },
       usage: {
         title: 'באַניץ־פּאַנעל',
-        detail: 'טאָקענס, קאָסטן און פֿעיִקייט־אַקטיוויטעט',
-      },
+        detail: 'טאָקענס, קאָסטן און פֿעיִקייט־אַקטיוויטעט'
+      }
     },
     providerNavigate: 'נאַוויגירן',
     providerSessions: 'סעסיעס',
@@ -1276,7 +1335,8 @@ export const yi = defineLocale({
       backup: 'שאַפֿן אַ באַקאַפּ',
       backupDesc: 'צִיפּן קאָנפֿיגוראַציע, זכּרונות, פֿעיִקייטן און סעסיעס',
       debugShare: 'דעבוג־טיילן',
-      debugShareDesc: 'אַרויפֿלאָדן אַ רייניקטן באַריכט + פּראָטאָקאָלן, באַקומען טיילבאַרע לינקען (מעקט זיך אַליין אויס אין 6 שעה)',
+      debugShareDesc:
+        'אַרויפֿלאָדן אַ רייניקטן באַריכט + פּראָטאָקאָלן, באַקומען טיילבאַרע לינקען (מעקט זיך אַליין אויס אין 6 שעה)',
       debugShareRunning: 'לאָדט אַרויף דעם דעבוג־באַריכט...',
       debugShareLinks: 'טייל־לינקען',
       debugShareFailed: 'דעבוג־טיילן דורכגעפֿאַלן',
@@ -1309,8 +1369,8 @@ export const yi = defineLocale({
       actionStarted: name => `${name} אָנגעהויבן — נאָכגייט דעם פּראָטאָקאָל...`,
       actionFailed: name => `${name} האָט נישט געקענט אָנהייבן`,
       running: 'לויפֿט...',
-      viewLog: 'אַקציע־פּראָטאָקאָל',
-    },
+      viewLog: 'אַקציע־פּראָטאָקאָל'
+    }
   },
   messaging: {
     search: 'זוכן מעלדונגען...',
@@ -1325,7 +1385,7 @@ export const yi = defineLocale({
       not_configured: 'דאַרף איינשטעלונג',
       pending_restart: 'נייטיק אַ ווידער־אָנהייב',
       retrying: 'פּרוּווט ווידער',
-      startup_failed: 'אָנהייב דורכגעפֿאַלן',
+      startup_failed: 'אָנהייב דורכגעפֿאַלן'
     },
     unknown: 'אומבאַקאַנט',
     hintPendingRestart: 'הויבט דעם שער ווידער אָן פֿון דער סטאַטוס־לײַסטע צו אָנווענדן די ענדערונג.',
@@ -1338,7 +1398,8 @@ export const yi = defineLocale({
     required: 'נייטיק',
     recommended: 'רעקאָמענדירט',
     advanced: count => `פֿאָרגעשריטן (${count})`,
-    noTokenNeeded: 'די פּלאַטפֿאָרם דאַרף נישט קיין טאָקען דאָ. באַנוצט די אָנווײַזונג אויבן, דערנאָך אַקטיווירט זי אונטן.',
+    noTokenNeeded:
+      'די פּלאַטפֿאָרם דאַרף נישט קיין טאָקען דאָ. באַנוצט די אָנווײַזונג אויבן, דערנאָך אַקטיווירט זי אונטן.',
     enabled: 'אַקטיווירט',
     disabled: 'אָפּגעשטעלט',
     unsavedChanges: 'נישט געהיטענע ענדערונגען',
@@ -1364,127 +1425,126 @@ export const yi = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'באָט־טאָקען',
         help: 'שאַפֿט אַ באָט מיט @BotFather, דערנאָך לייגט אַרײַן דעם טאָקען וואָס ער גיט אייך.',
-        placeholder: 'לייגט אַרײַן דעם Telegram־באָט־טאָקען',
+        placeholder: 'לייגט אַרײַן דעם Telegram־באָט־טאָקען'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'דערלויבטע Telegram־באַנוצער־IDס',
-        help: 'רעקאָמענדירט. נומערישע IDס צעשיידט מיט קאָמעס פֿון @userinfobot. אָן דעם קען יעדער שיקן אַ דירעקט־מעלדונג צו אייער באָט.',
+        help: 'רעקאָמענדירט. נומערישע IDס צעשיידט מיט קאָמעס פֿון @userinfobot. אָן דעם קען יעדער שיקן אַ דירעקט־מעלדונג צו אייער באָט.'
       },
       TELEGRAM_PROXY: {
         label: 'פּראָקסי־URL',
-        help: 'נייטיק נאָר אויף נעצן וואו Telegram איז פֿאַרשלאָסן.',
+        help: 'נייטיק נאָר אויף נעצן וואו Telegram איז פֿאַרשלאָסן.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'באָט־טאָקען',
-        help: 'שאַפֿט אַן אַפּליקאַציע אין דעם Discord Developer Portal, לייגט צו אַ באָט, דערנאָך לייגט אַרײַן זיין טאָקען.',
+        help: 'שאַפֿט אַן אַפּליקאַציע אין דעם Discord Developer Portal, לייגט צו אַ באָט, דערנאָך לייגט אַרײַן זיין טאָקען.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'דערלויבטע Discord־באַנוצער־IDס',
-        help: 'רעקאָמענדירט. Discord־באַנוצער־IDס צעשיידט מיט קאָמעס.',
+        help: 'רעקאָמענדירט. Discord־באַנוצער־IDס צעשיידט מיט קאָמעס.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'ענטפֿער־סטיל',
-        help: 'first, all, אָדער off.',
+        help: 'first, all, אָדער off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'דערלויבן אַלע Discord־באַנוצער',
-        help: 'נאָר פֿאַר אַנטוויקלונג. ווען אמת, קען יעדער שיקן צום באָט אָן אַ דערלויבניש־ליסטע.',
+        help: 'נאָר פֿאַר אַנטוויקלונג. ווען אמת, קען יעדער שיקן צום באָט אָן אַ דערלויבניש־ליסטע.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'היים־קאַנאַל־ID',
-        help: 'קאַנאַל וואו דער באָט שיקט פּראָאַקטיווע מעלדונגען (cron־אַרויסגאַנג, דערמאָנונגען).',
+        help: 'קאַנאַל וואו דער באָט שיקט פּראָאַקטיווע מעלדונגען (cron־אַרויסגאַנג, דערמאָנונגען).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'היים־קאַנאַל־נאָמען',
-        help: 'אַנצייג־נאָמען פֿאַרן היים־קאַנאַל אין פּראָטאָקאָלן און סטאַטוס.',
+        help: 'אַנצייג־נאָמען פֿאַרן היים־קאַנאַל אין פּראָטאָקאָלן און סטאַטוס.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'דערלויבן אַלע iMessage־באַנוצער',
-        help: 'ווען אמת, איבערשפּרינגט די BlueBubbles־ליסטע.',
+        help: 'ווען אמת, איבערשפּרינגט די BlueBubbles־ליסטע.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'דערלויבן אַלע Mattermost־באַנוצער',
+        label: 'דערלויבן אַלע Mattermost־באַנוצער'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'היים־קאַנאַל',
+        label: 'היים־קאַנאַל'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'דערלויבן אַלע QQ־באַנוצער',
+        label: 'דערלויבן אַלע QQ־באַנוצער'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ־היים־קאַנאַל',
-        help: 'פֿאַרבאַשטימטער קאַנאַל אָדער גרופּע פֿאַר cron־איבערגאַבע.',
+        help: 'פֿאַרבאַשטימטער קאַנאַל אָדער גרופּע פֿאַר cron־איבערגאַבע.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ־היים־קאַנאַל־נאָמען',
+        label: 'QQ־היים־קאַנאַל־נאָמען'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack־באָט־טאָקען',
         help: 'באַנוצט דעם באָט־טאָקען פֿון OAuth & Permissions נאָך איר האָט אינסטאַלירט אייער Slack־אַפּ.',
-        placeholder: 'לייגט אַרײַן דעם Slack־באָט־טאָקען',
+        placeholder: 'לייגט אַרײַן דעם Slack־באָט־טאָקען'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack־אַפּ־טאָקען',
         help: 'באַנוצט דעם אַפּ־ניוואָ־טאָקען נייטיק פֿאַרן Socket־מאָדוס.',
-        placeholder: 'לייגט אַרײַן דעם Slack־אַפּ־טאָקען',
+        placeholder: 'לייגט אַרײַן דעם Slack־אַפּ־טאָקען'
       },
       SLACK_ALLOWED_USERS: {
         label: 'דערלויבטע Slack־באַנוצער־IDס',
-        help: 'רעקאָמענדירט. Slack־באַנוצער־IDס צעשיידט מיט קאָמעס.',
+        help: 'רעקאָמענדירט. Slack־באַנוצער־IDס צעשיידט מיט קאָמעס.'
       },
       MATTERMOST_URL: {
         label: 'סערווירער־URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'באָט־טאָקען',
+        label: 'באָט־טאָקען'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'דערלויבטע באַנוצער־IDס',
-        help: 'רעקאָמענדירט. Mattermost־באַנוצער־IDס צעשיידט מיט קאָמעס.',
+        help: 'רעקאָמענדירט. Mattermost־באַנוצער־IDס צעשיידט מיט קאָמעס.'
       },
       MATRIX_HOMESERVER: {
         label: 'היים־סערווירער־URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'צוטריט־טאָקען',
+        label: 'צוטריט־טאָקען'
       },
       MATRIX_USER_ID: {
         label: 'באָט־באַנוצער־ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'דערלויבטע Matrix־באַנוצער־IDס',
-        help: 'רעקאָמענדירט. באַנוצער־IDס צעשיידט מיט קאָמעס אין פֿאָרמ @user:server.',
+        help: 'רעקאָמענדירט. באַנוצער־IDס צעשיידט מיט קאָמעס אין פֿאָרמ @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal־בריק־URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL פֿון אַ לויפֿנדיקער signal-cli REST־בריק.',
+        help: 'URL פֿון אַ לויפֿנדיקער signal-cli REST־בריק.'
       },
       SIGNAL_ACCOUNT: {
         label: 'טעלעפֿאָן־נומער',
-        help: 'דער נומער רעגיסטרירט מיט אייער signal-cli־בריק.',
+        help: 'דער נומער רעגיסטרירט מיט אייער signal-cli־בריק.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'דערלויבטע Signal־באַנוצער',
-        help: 'רעקאָמענדירט. Signal־אידענטיפֿיקאַטאָרן צעשיידט מיט קאָמעס.',
+        help: 'רעקאָמענדירט. Signal־אידענטיפֿיקאַטאָרן צעשיידט מיט קאָמעס.'
       },
       WHATSAPP_ENABLED: {
         label: 'אַקטיווירן די WhatsApp־בריק',
-        help: 'באַשטימט אויטאָמאַטיש דורכן שלטער אונטן. לאָזט עס אַזוי ס\'איז ס\'איר ווייסט נישט אַז איר דאַרפֿט עס.',
+        help: "באַשטימט אויטאָמאַטיש דורכן שלטער אונטן. לאָזט עס אַזוי ס'איז ס'איר ווייסט נישט אַז איר דאַרפֿט עס."
       },
       WHATSAPP_MODE: {
-        label: 'בריק־מאָדוס',
+        label: 'בריק־מאָדוס'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'דערלויבטע WhatsApp־באַנוצער',
-        help: 'רעקאָמענדירט. טעלעפֿאָן־נומערן אָדער WhatsApp־IDס צעשיידט מיט קאָמעס.',
-      },
+        help: 'רעקאָמענדירט. טעלעפֿאָן־נומערן אָדער WhatsApp־IDס צעשיידט מיט קאָמעס.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'זוכן webhooks...',
@@ -1494,7 +1554,8 @@ export const yi = defineLocale({
     hint: 'אַבאָנעמענט־ענדערונגען לאָדן זיך איבער באַלד ווי דער אָננעמער לויפֿט. אָפּגעשטעלטע אַבאָנעמענטן וואַרפֿן אָפּ אַרײַנקומענדיקע געשעענישן.',
     empty: 'נאָך קיין webhook־אַבאָנעמענט.',
     disabledTitle: 'Webhook־אָננעמער אָפּגעשטעלט',
-    disabledBody: 'Webhooks זענען אַ באַזונדערע שער־פּלאַטפֿאָרם. אַקטיווירט זיי דאָ צו אָננעמען אַרײַנקומענדיקע HTTP־געשעענישן; שמועס־קאַנאַלן זענען נייטיק נאָר ווען אַן אַבאָנעמענט גיט איבער צו Telegram, Discord, Slack אָדער אַן אַנדער קאַנאַל.',
+    disabledBody:
+      'Webhooks זענען אַ באַזונדערע שער־פּלאַטפֿאָרם. אַקטיווירט זיי דאָ צו אָננעמען אַרײַנקומענדיקע HTTP־געשעענישן; שמועס־קאַנאַלן זענען נייטיק נאָר ווען אַן אַבאָנעמענט גיט איבער צו Telegram, Discord, Slack אָדער אַן אַנדער קאַנאַל.',
     enable: 'אַקטיווירן webhooks',
     enabling: 'אַקטיווירט...',
     enabled: (name: string) => `אַקטיווירט: "${name}"`,
@@ -1511,7 +1572,8 @@ export const yi = defineLocale({
     toggleFailed: (name: string) => `דורכגעפֿאַלן צו דערהײַנטיקן "${name}"`,
     newSubscription: 'נײַער אַבאָנעמענט',
     restarting: 'שער הויבט ווידער אָן...',
-    restartNeeded: 'Webhooks זענען אַקטיווירט, אָבער דער שער דאַרף נאָך אַ ווידער־אָנהייב פֿאַר דער אָננעמער קען אַרויף.',
+    restartNeeded:
+      'Webhooks זענען אַקטיווירט, אָבער דער שער דאַרף נאָך אַ ווידער־אָנהייב פֿאַר דער אָננעמער קען אַרויף.',
     restartGateway: 'ווידער אָנהייבן דעם שער',
     restartingGateway: 'הויבט ווידער אָן...',
     restartFailed: (detail: string) => `ווידער־אָנהייבן פֿונעם שער דורכגעפֿאַלן${detail}`,
@@ -1547,8 +1609,8 @@ export const yi = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'Email',
-      github_comment: 'GitHub־באַמערקונג',
-    },
+      github_comment: 'GitHub־באַמערקונג'
+    }
   },
   profiles: {
     close: 'פֿאַרמאַכן פּראָפֿילן',
@@ -1626,7 +1688,7 @@ export const yi = defineLocale({
     failedLoadSoul: 'דורכגעפֿאַלן צו לאָדן SOUL.md',
     failedSaveSoul: 'דורכגעפֿאַלן צו אויפֿהיטן SOUL.md',
     failedCreate: 'דורכגעפֿאַלן צו שאַפֿן דעם פּראָפֿיל',
-    failedRename: 'דורכגעפֿאַלן צו באַנייען דעם פּראָפֿיל',
+    failedRename: 'דורכגעפֿאַלן צו באַנייען דעם פּראָפֿיל'
   },
   cron: {
     close: 'פֿאַרמאַכן cron',
@@ -1641,14 +1703,14 @@ export const yi = defineLocale({
       paused: 'פּויזירט',
       disabled: 'אָפּגעשטעלט',
       error: 'טעות',
-      completed: 'פֿאַרענדיקט',
+      completed: 'פֿאַרענדיקט'
     },
     deliveryLabels: {
       local: 'דער Desktop',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Email',
+      email: 'Email'
     },
     scheduleLabels: {
       daily: 'טעגלעך',
@@ -1657,7 +1719,7 @@ export const yi = defineLocale({
       monthly: 'חודשלעך',
       hourly: 'שעה־ווײַז',
       'every-15-minutes': 'יעדע 15 מינוט',
-      custom: 'אייגענע',
+      custom: 'אייגענע'
     },
     scheduleHints: {
       daily: 'יעדן טאָג אין 9:00',
@@ -1666,7 +1728,7 @@ export const yi = defineLocale({
       monthly: 'דעם ערשטן טאָג פֿון יעדן חודש אין 9:00',
       hourly: 'אין אָנהייב פֿון יעדער שעה',
       'every-15-minutes': 'יעדע 15 מינוט',
-      custom: 'Cron־סינטאַקס אָדער נאַטירלעכע שפּראַך',
+      custom: 'Cron־סינטאַקס אָדער נאַטירלעכע שפּראַך'
     },
     days: {
       '0': 'זונטיק',
@@ -1676,7 +1738,7 @@ export const yi = defineLocale({
       '4': 'דאָנערשטיק',
       '5': 'פֿרײַטיק',
       '6': 'שבת',
-      '7': 'זונטיק',
+      '7': 'זונטיק'
     },
     dayFallback: value => `טאָג ${value}`,
     everyDayAt: time => `יעדן טאָג אין ${time}`,
@@ -1686,7 +1748,8 @@ export const yi = defineLocale({
     topOfHour: 'אין אָנהייב פֿון יעדער שעה',
     everyHourAt: minute => `יעדע שעה אין :${minute}`,
     newCron: 'נײַער cron',
-    emptyDescNew: 'פּלאַנירט אַ פּראָמפּט צו לויפֿן אויף אַ cron־אויסדרוק. OpenAmer וועט אים אויספֿירן און איבערגעבן די רעזולטאַטן צו דער דעסטינאַציע וואָס איר קליקט.',
+    emptyDescNew:
+      'פּלאַנירט אַ פּראָמפּט צו לויפֿן אויף אַ cron־אויסדרוק. OpenAmer וועט אים אויספֿירן און איבערגעבן די רעזולטאַטן צו דער דעסטינאַציע וואָס איר קליקט.',
     emptyDescSearch: 'פּרוּווט אַ ברייטערן זוך.',
     emptyTitleNew: 'נאָך קיין פּלאַנירטע אַרבעטן',
     emptyTitleSearch: 'קיין פּאַסונג',
@@ -1723,7 +1786,8 @@ export const yi = defineLocale({
     editTitle: 'רעדאַקטירן די cron־אַרבעט',
     createTitle: 'נײַע cron־אַרבעט',
     editDesc: 'דערהײַנטיקט די פּלאַנירונג, דעם פּראָמפּט אָדער די איבערגאַבע. ענדערונגען גילטן בײַם קומענדיקן לויף.',
-    createDesc: 'פּלאַנירט אַ פּראָמפּט צו לויפֿן אויטאָמאַטיש. באַנוצט cron־סינטאַקס אָדער אַ נאַטירלעכן אויסדרוק ווי "יעדע 15 מינוט".',
+    createDesc:
+      'פּלאַנירט אַ פּראָמפּט צו לויפֿן אויטאָמאַטיש. באַנוצט cron־סינטאַקס אָדער אַ נאַטירלעכן אויסדרוק ווי "יעדע 15 מינוט".',
     nameLabel: 'נאָמען',
     namePlaceholder: 'מאָרגן־בריפֿינג',
     promptLabel: 'פּראָמפּט',
@@ -1745,7 +1809,7 @@ export const yi = defineLocale({
     createAction: 'שאַפֿן cron',
     tabs: {
       jobs: 'אַרבעטן',
-      blueprints: 'בלויזדרוקן',
+      blueprints: 'בלויזדרוקן'
     },
     blueprints: {
       tab: 'בלויזדרוקן',
@@ -1759,8 +1823,8 @@ export const yi = defineLocale({
       loading: 'לאָדן בלויזדרוקן...',
       failedLoad: 'דורכגעפֿאַלן צו לאָדן בלויזדרוקן',
       emptyTitle: 'קיין בלויזדרוקן פֿאַראַן',
-      emptyDesc: 'קיין אויטאָמאַציע־בלויזדרוקן פֿאַראַן אויף דעם סערווירער.',
-    },
+      emptyDesc: 'קיין אויטאָמאַציע־בלויזדרוקן פֿאַראַן אויף דעם סערווירער.'
+    }
   },
   artifacts: {
     search: 'זוכן אַרטעפֿאַקטן...',
@@ -1794,14 +1858,14 @@ export const yi = defineLocale({
     kindLink: 'לינק',
     chat: 'שמועס',
     copyUrl: 'קאָפּירן URL',
-    copyPath: 'קאָפּירן דעם וועג',
+    copyPath: 'קאָפּירן דעם וועג'
   },
   sidebar: {
     nav: {
       'new-session': 'נײַע סעסיע',
       skills: 'פֿעיִקייטן',
       messaging: 'מעלדונגען',
-      artifacts: 'אַרטעפֿאַקטן',
+      artifacts: 'אַרטעפֿאַקטן'
     },
     searchAria: 'זוכן סעסיעס',
     searchPlaceholder: 'זוכן סעסיעס…',
@@ -1833,7 +1897,7 @@ export const yi = defineLocale({
       namePlaceholder: 'למשל Skunkworks',
       foldersLabel: 'פּאַפּקעס',
       ideaLabel: 'געדאַנק',
-      ideaPlaceholder: "וועגן וואָס איז דער פּראָיעקט? (געהיט אין IDEA.md)",
+      ideaPlaceholder: 'וועגן וואָס איז דער פּראָיעקט? (געהיט אין IDEA.md)',
       ideaGenerate: 'דערצייגן אַ געדאַנק',
       ideaGenerating: 'דערצייגט…',
       ideaShuffle: 'מישן די מוסטערן',
@@ -1853,8 +1917,10 @@ export const yi = defineLocale({
       copyPath: 'קאָפּירן דעם וועג',
       removeFromSidebar: 'באַהאַלטן פֿון דער לײַסטע',
       createFailed: 'נישט געקענט שאַפֿן דעם פּראָיעקט',
-      staleBackend: 'דערהײַנטיקט דעם OpenAmer־סערווירער צו שאַפֿן פּראָיעקטן — אייער סערווירער איז עלטער ווי די אַפּ (איינשטעלונגען → דערהײַנטיקונגען → סערווירער).',
-      deleteConfirm: 'דאָס נעמט אַוועק דעם געהיטענעם פּראָיעקט פֿון OpenAmer. טעקעס, git־רעפּאָז און אַרבעטסצווייגן בלײַבן אומגערירט.',
+      staleBackend:
+        'דערהײַנטיקט דעם OpenAmer־סערווירער צו שאַפֿן פּראָיעקטן — אייער סערווירער איז עלטער ווי די אַפּ (איינשטעלונגען → דערהײַנטיקונגען → סערווירער).',
+      deleteConfirm:
+        'דאָס נעמט אַוועק דעם געהיטענעם פּראָיעקט פֿון OpenAmer. טעקעס, git־רעפּאָז און אַרבעטסצווייגן בלײַבן אומגערירט.',
       startWork: 'נײַער אַרבעטסצווייג',
       newWorktreeTitle: 'נײַער אַרבעטסצווייג',
       newWorktreeDesc: 'גיט אַ נאָמען צום צווייג פֿאַר דעם אַרבעטסצווייג.',
@@ -1875,13 +1941,15 @@ export const yi = defineLocale({
       noBranches: 'קיין צווייגן נישט געפֿונען',
       removeWorktree: 'אַוועקנעמען דעם אַרבעטסצווייג',
       removeWorktreeFailed: 'נישט געקענט אַוועקנעמען דעם אַרבעטסצווייג (אומגעקאָמיטע ענדערונגען?)',
-      removeWorktreeConfirm: 'אַוועקנעמען אים פֿון git (מעקט אויס דעם אַרבעטסצווייג־פּאַפּקע; דער צווייג בלײַבט), אָדער נאָר באַהאַלטן די שפּור פֿון דער לײַסטע און לאָזן דעם אַרבעטסצווייג אויפֿן דיסק.',
-      removeWorktreeDirty: 'דער אַרבעטסצווייג האָט אומגעקאָמיטע ענדערונגען. אַוועקנעמען מיט גוואַלד (וואַרפֿט אָפּ די ענדערונגען), אָדער נאָר באַהאַלטן די שפּור און אים לאָזן אויפֿן דיסק.',
+      removeWorktreeConfirm:
+        'אַוועקנעמען אים פֿון git (מעקט אויס דעם אַרבעטסצווייג־פּאַפּקע; דער צווייג בלײַבט), אָדער נאָר באַהאַלטן די שפּור פֿון דער לײַסטע און לאָזן דעם אַרבעטסצווייג אויפֿן דיסק.',
+      removeWorktreeDirty:
+        'דער אַרבעטסצווייג האָט אומגעקאָמיטע ענדערונגען. אַוועקנעמען מיט גוואַלד (וואַרפֿט אָפּ די ענדערונגען), אָדער נאָר באַהאַלטן די שפּור און אים לאָזן אויפֿן דיסק.',
       forceRemove: 'אַוועקנעמען מיט גוואַלד',
       enter: label => `עפֿענען ${label}`,
       reorder: label => `איבערסאָרטירן ${label}`,
       toggle: label => `טוישן די ${label}־סעסיעס`,
-      back: 'אַלע פּראָיעקטן',
+      back: 'אַלע פּראָיעקטן'
     },
     newSessionIn: label => `נײַע סעסיע אין ${label}`,
     showMoreIn: (count, label) => `ווײַזן ${count} נאָך אין ${label}`,
@@ -1919,15 +1987,15 @@ export const yi = defineLocale({
       ageNow: 'איצט',
       ageDay: 'ט',
       ageHour: 'ש',
-      ageMin: 'מ',
+      ageMin: 'מ'
     },
     dateDivider: {
       today: 'פֿריִער הײַנט',
       yesterday: 'נעכטן',
       thisWeek: 'פֿריִער די וואָך',
       lastWeek: 'פֿאַרגאַנגענע וואָך',
-      thisMonth: 'פֿריִער דעם חודש',
-    },
+      thisMonth: 'פֿריִער דעם חודש'
+    }
   },
   composer: {
     message: 'מעלדונג',
@@ -1938,20 +2006,20 @@ export const yi = defineLocale({
     newSessionPlaceholders: [
       'וואָס בויען מיר?',
       'גיט OpenAmer אַן אַרבעט',
-      "וואָס האָט איר אין זינען?",
+      'וואָס האָט איר אין זינען?',
       'באַשרײַבט וואָס איר דאַרפֿט',
       'וואָס זאָלן מיר אָננעמען?',
       'פֿרעגט עפּעס',
-      'אָנהייבט מיט אַ ציל',
+      'אָנהייבט מיט אַ ציל'
     ],
     followUpPlaceholders: [
       'שיקט אַ נאָכפֿאָלגע',
       'לייגט צו מער קאָנטעקסט',
       'פֿײַנט אויס די בקשה',
-      "וואָס ווײַטער?",
+      'וואָס ווײַטער?',
       'מאַכט ווײַטער',
       'שטופּט ווײַטער',
-      'פֿאַרבעסערט אָדער פֿירט ווײַטער',
+      'פֿאַרבעסערט אָדער פֿירט ווײַטער'
     ],
     startVoice: 'אָנהייבן אַ קול־שמועס',
     queueMessage: 'שטעלן די מעלדונג אין דער רייע',
@@ -1987,7 +2055,7 @@ export const yi = defineLocale({
       '/resume': 'ממשיך זיין אַ פֿריִערדיקע סעסיע',
       '/details': 'קאָנטראָלירן דעם פּרוט־ניוואָ',
       '/copy': 'קאָפּירן די אויסוואַל אָדער די לעצטע אַסיסטענט־מעלדונג',
-      '/quit': 'אַרויסגיין פֿון openamer',
+      '/quit': 'אַרויסגיין פֿון openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'באַציטירן טעקעס, פּאַפּקעס, URL־ן, git',
@@ -1997,7 +2065,7 @@ export const yi = defineLocale({
       'composer.sendQueued': 'שיקן דעם קומענדיקן איבערגאַנג אין דער רייע',
       'keybinds.openPanel': 'אַלע קלאַוויאַטור־קירצלעך',
       'composer.cancel': 'שליסן דעם פּאָפּאָווער · אָפּזאָגן דעם לויף',
-      'composer.history': 'דרייען דעם פּאָפּאָווער / די היסטאָריע',
+      'composer.history': 'דרייען דעם פּאָפּאָווער / די היסטאָריע'
     },
     attachUrlTitle: 'צולייגן אַ URL',
     attachUrlDesc: 'OpenAmer וועט אָפּרופֿן דעם בלאַט און אים אַרײַננעמען אַלס קאָנטעקסט פֿאַר דעם איבערגאַנג.',
@@ -2018,7 +2086,8 @@ export const yi = defineLocale({
     queueResume: 'ממשיך זיין',
     queueResumeTip: 'פּויזירט דורך אָפּשטעלן — מאַכט ווײַטער שיקן די רייע־איבערגאַנגען',
     queueStuckTitle: 'רייע־מעלדונג נישט געשיקט',
-    queueStuckBody: 'אַ רייע־איבערגאַנג האָט אָנגעהאַלטן פֿײַלן צו שיקן. ער איז נאָך אין דער רייע — פּרוּווט אים ווידער שיקן.',
+    queueStuckBody:
+      'אַ רייע־איבערגאַנג האָט אָנגעהאַלטן פֿײַלן צו שיקן. ער איז נאָך אין דער רייע — פּרוּווט אים ווידער שיקן.',
     previewUnavailable: 'פֿאָרויסקוק נישט פֿאַראַן',
     previewLabel: label => `פֿאָרויסקוק ${label}`,
     couldNotPreview: label => `נישט געקענט פֿאָרויסקוקן ${label}`,
@@ -2048,19 +2117,19 @@ export const yi = defineLocale({
       codeReview: {
         label: 'קאָד־איבערקוק',
         description: 'אוידיטירט די איצטיקע ענדערונג פֿאַר רעגרעסיעס, פֿאַרלאָזנע פֿאַלן און פֿעלנדיקע טעסטן.',
-        text: 'ביטע איבערקוקט דאָס פֿאַר באַגס, רעגרעסיעס און פֿעלנדיקע טעסטן.',
+        text: 'ביטע איבערקוקט דאָס פֿאַר באַגס, רעגרעסיעס און פֿעלנדיקע טעסטן.'
       },
       implementationPlan: {
         label: 'אימפּלעמענטאַציע־פּלאַן',
         description: 'באַשרײַבט אַן אַנגאַנג פֿאַר איר רירט דעם קאָד כּדי דער דיף זאָל בלײַבן פֿאָקוסירט.',
-        text: 'ביטע מאַכט אַ קורצן אימפּלעמענטאַציע־פּלאַן פֿאַר איר ענדערט דעם קאָד.',
+        text: 'ביטע מאַכט אַ קורצן אימפּלעמענטאַציע־פּלאַן פֿאַר איר ענדערט דעם קאָד.'
       },
       explainThis: {
         label: 'דערקלערט דאָס',
         description: 'גייט דורך ווי דער אויסגעקליבענער קאָד אַרבעט און פֿאַרבינדט צו די הויפּט־טעקעס.',
-        text: 'ביטע דערקלערט ווי דאָס אַרבעט און ווײַזט מיר די הויפּט־טעקעס.',
-      },
-    },
+        text: 'ביטע דערקלערט ווי דאָס אַרבעט און ווײַזט מיר די הויפּט־טעקעס.'
+      }
+    }
   },
   statusStack: {
     agents: 'אַגענטן',
@@ -2090,8 +2159,10 @@ export const yi = defineLocale({
       viewAsList: 'זען ווי אַ ליסטע',
       revert: 'צוריקשטעלן',
       revertAll: 'צוריקשטעלן אַלץ',
-      revertConfirm: 'אָפּוואַרפֿן די ענדערונגען צו דער טעקע און זי צוריקשטעלן אויפֿן געקאָמיטן סטאַטוס? דאָס קען נישט צוריקגעמאַכט ווערן.',
-      revertAllConfirm: 'אָפּוואַרפֿן יעדע ענדערונג און צוריקשטעלן די טעקעס אויפֿן געקאָמיטן סטאַטוס? דאָס קען נישט צוריקגעמאַכט ווערן.',
+      revertConfirm:
+        'אָפּוואַרפֿן די ענדערונגען צו דער טעקע און זי צוריקשטעלן אויפֿן געקאָמיטן סטאַטוס? דאָס קען נישט צוריקגעמאַכט ווערן.',
+      revertAllConfirm:
+        'אָפּוואַרפֿן יעדע ענדערונג און צוריקשטעלן די טעקעס אויפֿן געקאָמיטן סטאַטוס? דאָס קען נישט צוריקגעמאַכט ווערן.',
       staged: 'צוגעגרייט',
       noChanges: 'קיין ענדערונגען',
       notRepo: 'נישט קיין git־רעפּאָ',
@@ -2108,13 +2179,14 @@ export const yi = defineLocale({
       openPr: 'עפֿענען די PR',
       ghMissing: 'אינסטאַלירט די GitHub CLI (gh) און לאָגירט זיך אַרײַן צו עפֿענען PRס',
       agentShip: 'בעטן OpenAmer צו עפֿענען אַ PR',
-      agentShipPrompt: 'איבערקוקט די איצטיקע ענדערונגען, קאָמיט זיי מיט אַ קלאָרער conventional-commit־מעלדונג, שיקט דעם צווייג און עפֿענט אַ pull request.',
+      agentShipPrompt:
+        'איבערקוקט די איצטיקע ענדערונגען, קאָמיט זיי מיט אַ קלאָרער conventional-commit־מעלדונג, שיקט דעם צווייג און עפֿענט אַ pull request.',
       newBranch: 'נײַער צווייג',
       branchOffFrom: base => `נײַער צווייג פֿון ${base}`,
       switchTo: branch => `אַריבערגיין צו ${branch}`,
       switchFailed: branch => `נישט געקענט אַריבערגיין צו ${branch}`,
-      worktrees: 'אַרבעטסצווייגן',
-    },
+      worktrees: 'אַרבעטסצווייגן'
+    }
   },
   updates: {
     stages: {
@@ -2129,7 +2201,7 @@ export const yi = defineLocale({
       done: 'דערהײַנטיקונג פֿאַרענדיקט',
       manual: 'דערהײַנטיקן פֿון אייער טערמינאַל',
       guiSkew: 'דערהײַנטיקן די Desktop־אַפּ',
-      error: 'דערהײַנטיקונג פּויזירט',
+      error: 'דערהײַנטיקונג פּויזירט'
     },
     checking: 'זוכט דערהײַנטיקונגען…',
     checkFailedTitle: 'נישט געקענט פּרוּוון דערהײַנטיקונגען',
@@ -2144,20 +2216,25 @@ export const yi = defineLocale({
     availableBody: 'אַ נײַע ווערסיע פֿון OpenAmer איז גרייט צו אינסטאַלירן.',
     availableTitleBackend: 'סערווירער־דערהײַנטיקונג פֿאַראַן',
     availableBodyBackend: 'אַ נײַערע ווערסיע פֿונעם פֿאַרבונדענעם OpenAmer־סערווירער איז גרייט צו אינסטאַלירן.',
-    availableBodyNoChangelog: 'אַ נײַערע ווערסיע איז גרייט. ווערסיע־באַמערקונגען זענען נישט פֿאַראַן פֿאַר דעם אינסטאַלאַציע־טיפּ.',
+    availableBodyNoChangelog:
+      'אַ נײַערע ווערסיע איז גרייט. ווערסיע־באַמערקונגען זענען נישט פֿאַראַן פֿאַר דעם אינסטאַלאַציע־טיפּ.',
     updateNow: 'איצט דערהײַנטיקן',
     maybeLater: 'אפֿשר שפּעטער',
     moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} אַרײַן.`,
     manualTitle: 'דערהײַנטיקן פֿון אייער טערמינאַל',
-    manualBody: 'איר האָט אינסטאַלירט OpenAmer פֿון דער באַפֿעל־שורה, דערפֿאַר לויפֿן דערהײַנטיקונגען אויך דאָרט. לייגט דאָס אַרײַן אין אייער טערמינאַל:',
+    manualBody:
+      'איר האָט אינסטאַלירט OpenAmer פֿון דער באַפֿעל־שורה, דערפֿאַר לויפֿן דערהײַנטיקונגען אויך דאָרט. לייגט דאָס אַרײַן אין אייער טערמינאַל:',
     manualPickedUp: 'OpenAmer וועט אָננעמען די נײַע ווערסיע בײַם קומענדיקן אָנהייב.',
     guiSkewTitle: 'דערהײַנטיקן די Desktop־אַפּ',
-    guiSkewBody: 'דער סערווירער איז דערהײַנטיקט געוואָרן, אָבער דער Desktop־אַפּ־פּאַקעט איז נישט געענדערט. דערהײַנטיקט אָדער אינסטאַלירט ווידער די OpenAmer Desktop־אַפּ (אייער AppImage / .deb / .rpm) צו פֿאַראייניקן.',
+    guiSkewBody:
+      'דער סערווירער איז דערהײַנטיקט געוואָרן, אָבער דער Desktop־אַפּ־פּאַקעט איז נישט געענדערט. דערהײַנטיקט אָדער אינסטאַלירט ווידער די OpenAmer Desktop־אַפּ (אייער AppImage / .deb / .rpm) צו פֿאַראייניקן.',
     copy: 'קאָפּירן',
     copied: 'קאָפּירט',
     done: 'פֿאַרטיק',
-    applyingBody: 'דער OpenAmer־דערהײַנטיקער נעמט איבער אין זיין אייגענעם פֿענצטער און עפֿענט OpenAmer אויטאָמאַטיש ווידער ווען ער איז פֿאַרטיק. ביטע עפֿענט נישט OpenAmer אַליין בשעת דער דערהײַנטיקונג.',
-    applyingBodyBackend: 'דער ווײַטער סערווירער ווענדט אָן די דערהײַנטיקונג און וועט זיך ווידער אָנהייבן. OpenAmer פֿאַרבינדט זיך אויטאָמאַטיש ווידער ווען ער איז צוריק.',
+    applyingBody:
+      'דער OpenAmer־דערהײַנטיקער נעמט איבער אין זיין אייגענעם פֿענצטער און עפֿענט OpenAmer אויטאָמאַטיש ווידער ווען ער איז פֿאַרטיק. ביטע עפֿענט נישט OpenAmer אַליין בשעת דער דערהײַנטיקונג.',
+    applyingBodyBackend:
+      'דער ווײַטער סערווירער ווענדט אָן די דערהײַנטיקונג און וועט זיך ווידער אָנהייבן. OpenAmer פֿאַרבינדט זיך אויטאָמאַטיש ווידער ווען ער איז צוריק.',
     applyingClose: 'דאָס פֿענצטער וועט זיך שליסן בשעת דער דערהײַנטיקונג לויפֿט, דערנאָך עפֿענט זיך OpenAmer אַליין.',
     errorTitle: 'דערהײַנטיקונג איז נישט פֿאַרענדיקט',
     errorBody: 'קיין זאָרג — גאָרנישט איז נישט פֿאַרלאָרן. איר קענט איצט ווידער פּרוּוון.',
@@ -2168,12 +2245,15 @@ export const yi = defineLocale({
       restarting: 'סערווירער הויבט זיך ווידער אָן צו לאָדן די דערהײַנטיקונג…',
       notAvailable: 'דערהײַנטיקונג נישט פֿאַראַן פֿאַר דעם סערווירער.',
       failed: 'סערווירער־דערהײַנטיקונג דורכגעפֿאַלן.',
-      noReturn: 'דער סערווירער איז נישט צוריקגעקומען אין ליניע. די דערהײַנטיקונג איז מעגלעך נישט פֿאַרענדיקט — פּרוּווט דעם סערווירער־וירט.',
+      noReturn:
+        'דער סערווירער איז נישט צוריקגעקומען אין ליניע. די דערהײַנטיקונג איז מעגלעך נישט פֿאַרענדיקט — פּרוּווט דעם סערווירער־וירט.'
     },
     appErrors: {
-      updateLocked: 'דערהײַנטיקונג אָפּגעזאָגט: אַן אַנדער OpenAmer־פֿענצטער אָדער אַ טערמינאַל וואָס פֿירט openamer האַלט די אינסטאַלאַציע אָפֿן. שליסט עס און פּרוּווט ווידער.',
-      updateFailed: 'די דערהײַנטיקונג איז נישט פֿאַרענדיקט. קיין זאָרג — גאָרנישט איז נישט פֿאַרלאָרן. איר קענט איצט ווידער פּרוּוון.',
-    },
+      updateLocked:
+        'דערהײַנטיקונג אָפּגעזאָגט: אַן אַנדער OpenAmer־פֿענצטער אָדער אַ טערמינאַל וואָס פֿירט openamer האַלט די אינסטאַלאַציע אָפֿן. שליסט עס און פּרוּווט ווידער.',
+      updateFailed:
+        'די דערהײַנטיקונג איז נישט פֿאַרענדיקט. קיין זאָרג — גאָרנישט איז נישט פֿאַרלאָרן. איר קענט איצט ווידער פּרוּוון.'
+    }
   },
   install: {
     stageStates: {
@@ -2181,25 +2261,31 @@ export const yi = defineLocale({
       running: 'אינסטאַלירט',
       succeeded: 'פֿאַרטיק',
       skipped: 'איבערגעשפּרונגען',
-      failed: 'דורכגעפֿאַלן',
+      failed: 'דורכגעפֿאַלן'
     },
     oneTimeTitle: 'OpenAmer דאַרף אַן איין־מאָליקע אינסטאַלאַציע',
-    unsupportedDesc: platform => `אויטאָמאַטישע אינסטאַלאַציע בײַם ערשטן אָנהייב איז נאָך נישט פֿאַראַן אויף ${platform}. עפֿענט Terminal און פֿירט אויס דעם באַפֿעל אונטן, דערנאָך אָנהייבט די אַפּ פֿון נײַ. שפּעטערדיקע אָנהייבן וועלן איבערשפּרינגען דעם טריט.`,
+    unsupportedDesc: platform =>
+      `אויטאָמאַטישע אינסטאַלאַציע בײַם ערשטן אָנהייב איז נאָך נישט פֿאַראַן אויף ${platform}. עפֿענט Terminal און פֿירט אויס דעם באַפֿעל אונטן, דערנאָך אָנהייבט די אַפּ פֿון נײַ. שפּעטערדיקע אָנהייבן וועלן איבערשפּרינגען דעם טריט.`,
     installCommand: 'אינסטאַלאַציע־באַפֿעל',
     copyCommand: 'קאָפּירן דעם באַפֿעל',
     viewDocs: 'זען די אינסטאַלאַציע־דאָקומענטן',
     installTo: 'וועט זיך אינסטאַלירן אין',
     retryAfterRun: 'איך האָב עס אויסגעפֿירט -- פּרוּווט ווידער',
     setupChoiceTitle: 'באַשטימען OpenAmer Desktop',
-    setupChoiceDesc: 'פֿאַרבינדט די אַפּ צו אַן OpenAmer־שער וואָס איר פֿירט שוין, אָדער אינסטאַלירט OpenAmer לאָקאַל אויף דעם קאָמפּיוטער.',
+    setupChoiceDesc:
+      'פֿאַרבינדט די אַפּ צו אַן OpenAmer־שער וואָס איר פֿירט שוין, אָדער אינסטאַלירט OpenAmer לאָקאַל אויף דעם קאָמפּיוטער.',
     connectExistingTitle: 'פֿאַרבינדן זיך צו אַ באַשטייענדיקן OpenAmer',
     connectExistingShort: 'פֿאַרבינדן באַשטייענדיקן',
-    connectExistingDesc: 'באַנוצט אַ ווײַטן סערווירער מיט אַ סעסיע־טאָקען אָדער בראַוזער־אַרײַנלאָגירן. קיין לאָקאַלע אינסטאַלאַציע וועט זיך נישט אָנהייבן.',
+    connectExistingDesc:
+      'באַנוצט אַ ווײַטן סערווירער מיט אַ סעסיע־טאָקען אָדער בראַוזער־אַרײַנלאָגירן. קיין לאָקאַלע אינסטאַלאַציע וועט זיך נישט אָנהייבן.',
     installLocalTitle: 'אינסטאַלירן OpenAmer לאָקאַל',
-    installLocalDesc: 'לאָדט אַראָפּ OpenAmer, שאַפֿט זיין Python־סבֿיבֿה און פֿירט דעם סערווירער אויף דעם קאָמפּיוטער.',
-    localStartUnavailable: 'די לאָקאַלע אינסטאַלאַציע האָט נישט געקענט אָנהייבן. הויבט OpenAmer Desktop ווידער אָן און פּרוּווט ווידער.',
+    installLocalDesc:
+      'לאָדט אַראָפּ OpenAmer, שאַפֿט זיין Python־סבֿיבֿה און פֿירט דעם סערווירער אויף דעם קאָמפּיוטער.',
+    localStartUnavailable:
+      'די לאָקאַלע אינסטאַלאַציע האָט נישט געקענט אָנהייבן. הויבט OpenAmer Desktop ווידער אָן און פּרוּווט ווידער.',
     remoteSetupTitle: 'פֿאַרבינדן זיך צו אַ באַשטייענדיקן OpenAmer',
-    remoteSetupDesc: 'לייגט אַרײַן אייער שער־URL. OpenAmer Desktop וועט דערקענען צי ער דאַרף אַ טאָקען אָדער אַ בראַוזער־אַרײַנלאָגירן.',
+    remoteSetupDesc:
+      'לייגט אַרײַן אייער שער־URL. OpenAmer Desktop וועט דערקענען צי ער דאַרף אַ טאָקען אָדער אַ בראַוזער־אַרײַנלאָגירן.',
     remoteUrlTitle: 'שער־URL',
     remoteUrlDesc: 'באַנוצט די באַזיס־URL פֿונעם OpenAmer־שער, אַרײַנגערעכנט https:// ווען ווײַט.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2213,7 +2299,8 @@ export const yi = defineLocale({
     signIn: 'אַרײַנלאָגירן זיך',
     signInWith: provider => `אַרײַנלאָגירן זיך מיט ${provider}`,
     enterUrlFirst: 'לייגט קודם אַרײַן אַ שער־URL.',
-    signInIncomplete: 'דאָס אַרײַנלאָגירונג־פֿענצטער האָט זיך פֿאַרמאַכט פֿאַר דער אויטענטיפֿיקאַציע איז פֿאַרענדיקט געוואָרן.',
+    signInIncomplete:
+      'דאָס אַרײַנלאָגירונג־פֿענצטער האָט זיך פֿאַרמאַכט פֿאַר דער אויטענטיפֿיקאַציע איז פֿאַרענדיקט געוואָרן.',
     tokenTitle: 'סעסיע־טאָקען',
     tokenDesc: 'לייגט אַרײַן דעם סעסיע־טאָקען פֿון דער .env־טעקע פֿונעם ווײַטן שער.',
     pasteSessionToken: 'אַרײַנלייגן דעם סעסיע־טאָקען',
@@ -2226,8 +2313,10 @@ export const yi = defineLocale({
     failedTitle: 'אינסטאַלאַציע דורכגעפֿאַלן',
     settingUpTitle: 'באַשטימט OpenAmer Agent',
     finishingTitle: 'פֿאַרענדיקט',
-    failedDesc: 'איינער פֿון די אינסטאַלאַציע־טריטען איז דורכגעפֿאַלן. אויף Windows קען דאָס פּאַסירן אויב אַן אַנדער OpenAmer CLI אָדער Desktop־אינסטאַנץ לויפֿט. שטעלט אָפּ יעדע לויפֿנדיקע OpenAmer־אינסטאַנץ, דערנאָך פּרוּווט ווידער. פּרוּווט די פּרטים אונטן אָדער דעם Desktop־פּראָטאָקאָל פֿאַר דער גאַנצער פּרוט.',
-    activeDesc: 'דאָס איז אַן איין־מאָליקע איינשטעלונג. דער OpenAmer־אינסטאַלירער לאָדט אַראָפּ אָהענגיקייטן און באַשטימט אייער מאַשין. שפּעטערדיקע אָנהייבן וועלן איבערשפּרינגען דעם טריט.',
+    failedDesc:
+      'איינער פֿון די אינסטאַלאַציע־טריטען איז דורכגעפֿאַלן. אויף Windows קען דאָס פּאַסירן אויב אַן אַנדער OpenAmer CLI אָדער Desktop־אינסטאַנץ לויפֿט. שטעלט אָפּ יעדע לויפֿנדיקע OpenAmer־אינסטאַנץ, דערנאָך פּרוּווט ווידער. פּרוּווט די פּרטים אונטן אָדער דעם Desktop־פּראָטאָקאָל פֿאַר דער גאַנצער פּרוט.',
+    activeDesc:
+      'דאָס איז אַן איין־מאָליקע איינשטעלונג. דער OpenAmer־אינסטאַלירער לאָדט אַראָפּ אָהענגיקייטן און באַשטימט אייער מאַשין. שפּעטערדיקע אָנהייבן וועלן איבערשפּרינגען דעם טריט.',
     progress: (completed, total) => `${completed} פֿון ${total} טריטען פֿאַרענדיקט`,
     currentStage: stage => ` -- איצט: ${stage}`,
     fetchingManifest: 'רופֿט אָפּ דעם אינסטאַלירער־מאַניפֿעסט...',
@@ -2241,18 +2330,19 @@ export const yi = defineLocale({
     transcriptSaved: 'דער גאַנצער פּרוט געהיט אין',
     copiedOutput: 'קאָפּירט!',
     copyOutput: 'קאָפּירן דעם אַרויסגאַנג',
-    reloadRetry: 'נײַ־לאָדן און פּרוּווט ווידער',
+    reloadRetry: 'נײַ־לאָדן און פּרוּווט ווידער'
   },
   onboarding: {
-    headerTitle: "באַשטימען מיט OpenAmer Agent",
+    headerTitle: 'באַשטימען מיט OpenAmer Agent',
     headerDesc: 'פֿאַרבינדט אַ מאָדעל־פֿאַרזאָרגער צו אָנהייבן שמועסן. רובֿ אָפּציעס דאַרפֿן איין קליק.',
-    preparingInstall: 'OpenAmer פֿאַרענדיקט די אינסטאַלאַציע. דאָס דויערט געוויינטלעך ווייניקער ווי אַ מינוט בײַם ערשטן לויף.',
+    preparingInstall:
+      'OpenAmer פֿאַרענדיקט די אינסטאַלאַציע. דאָס דויערט געוויינטלעך ווייניקער ווי אַ מינוט בײַם ערשטן לויף.',
     starting: 'אָנהייבט OpenAmer…',
     lookingUpProviders: 'זוכט פֿאַרזאָרגער...',
     collapse: 'אַרײַנציען',
     otherProviders: 'אַנדערע פֿאַרזאָרגער',
     haveApiKey: 'איך האָב אַן API־שליסל',
-    chooseLater: "איך וועל שפּעטער אויסקלייבן אַ פֿאַרזאָרגער",
+    chooseLater: 'איך וועל שפּעטער אויסקלייבן אַ פֿאַרזאָרגער',
     recommended: 'רעקאָמענדירט',
     connected: 'פֿאַרבונדן',
     featuredPitch: 'איין אַבאָנעמענט, 300+ פֿראָנט־מאָדעלן — דער רעקאָמענדירטער וועג צו פֿירן OpenAmer',
@@ -2261,28 +2351,29 @@ export const yi = defineLocale({
     apiKeyOptions: {
       fireworks: {
         short: 'דירעקטע מאָדעל־API',
-        description: 'דירעקטער צוטריט צו מאָדעלן געהאָסטעט פֿון Fireworks AI.',
+        description: 'דירעקטער צוטריט צו מאָדעלן געהאָסטעט פֿון Fireworks AI.'
       },
       openrouter: {
         short: 'איין שליסל, פֿיל מאָדעלן',
-        description: 'האָסטעט הונדערטער מאָדעלן הינטער איין שליסל. גוטע פֿאַרבאַשטימונג פֿאַר נײַע אינסטאַלאַציעס.',
+        description: 'האָסטעט הונדערטער מאָדעלן הינטער איין שליסל. גוטע פֿאַרבאַשטימונג פֿאַר נײַע אינסטאַלאַציעס.'
       },
       openai: {
         short: 'GPT־קלאַס מאָדעלן',
-        description: 'דירעקטער צוטריט צו OpenAI־מאָדעלן.',
+        description: 'דירעקטער צוטריט צו OpenAI־מאָדעלן.'
       },
       gemini: {
         short: 'Gemini־מאָדעלן',
-        description: 'דירעקטער צוטריט צו Google Gemini־מאָדעלן.',
+        description: 'דירעקטער צוטריט צו Google Gemini־מאָדעלן.'
       },
       xai: {
         short: 'Grok־מאָדעלן',
-        description: 'דירעקטער צוטריט צו xAI Grok־מאָדעלן.',
+        description: 'דירעקטער צוטריט צו xAI Grok־מאָדעלן.'
       },
       local: {
         short: 'זעלבסט־געהאָסטעט',
-        description: 'ריכט OpenAmer אויף אַ לאָקאַלן אָדער זעלבסט־געהאָסטעטן OpenAI־קאָמפּאַטיבלען ענדפּוינט (vLLM, llama.cpp, Ollama, אאז"ו).',
-      },
+        description:
+          'ריכט OpenAmer אויף אַ לאָקאַלן אָדער זעלבסט־געהאָסטעטן OpenAI־קאָמפּאַטיבלען ענדפּוינט (vLLM, llama.cpp, Ollama, אאז"ו).'
+      }
     },
     backToSignIn: 'צוריק צום אַרײַנלאָגירן',
     getKey: 'באַקומען אַ שליסל',
@@ -2295,7 +2386,7 @@ export const yi = defineLocale({
     flowSubtitles: {
       pkce: 'עפֿענט אייער בראַוזער צום אַרײַנלאָגירן, דערנאָך פֿירט ווײַטער דאָ',
       device_code: 'עפֿענט אַ וועריפֿיקאַציע־בלאַט אין אייער בראַוזער — OpenAmer פֿאַרבינדט זיך אויטאָמאַטיש',
-      external: 'לאָגירט זיך איין מאָל אַרײַן אין אייער טערמינאַל, דערנאָך קומט צוריק צום שמועס',
+      external: 'לאָגירט זיך איין מאָל אַרײַן אין אייער טערמינאַל, דערנאָך קומט צוריק צום שמועס'
     },
     startingSignIn: provider => `אָנהייבט דאָס אַרײַנלאָגירן פֿאַר ${provider}...`,
     verifyingCode: provider => `באַשטעטיקט אייער קאָד מיט ${provider}...`,
@@ -2309,11 +2400,13 @@ export const yi = defineLocale({
     copyAuthCode: 'קאָפּירט דעם דערלויבניש־קאָד און לייגט אים אַרײַן אונטן.',
     pasteAuthCode: 'אַרײַנלייגן דעם דערלויבניש־קאָד',
     reopenAuthPage: 'ווידער עפֿענען דעם דערלויבניש־בלאַט',
-    autoBrowser: provider => `מיר האָבן געעפֿנט ${provider} אין אייער בראַוזער. דערלויבט OpenAmer דאָרט און איר וועט זיך פֿאַרבינדן אויטאָמאַטיש — גאָרנישט צו קאָפּירן אָדער אַרײַנלייגן.`,
+    autoBrowser: provider =>
+      `מיר האָבן געעפֿנט ${provider} אין אייער בראַוזער. דערלויבט OpenAmer דאָרט און איר וועט זיך פֿאַרבינדן אויטאָמאַטיש — גאָרנישט צו קאָפּירן אָדער אַרײַנלייגן.`,
     reopenSignInPage: 'ווידער עפֿענען דעם אַרײַנלאָגירונג־בלאַט',
     waitingAuthorize: 'וואַרט איר זאָלט דערלויבן...',
-    externalPending: provider => `${provider} לאָגירט זיך אַרײַן דורך זיין אייגענעם CLI. פֿירט אויס דעם באַפֿעל אין אַ טערמינאַל, דערנאָך קומט צוריק און קליקט "איך האָב זיך אַרײַנגעלאָגירט":`,
-    signedIn: "איך האָב זיך אַרײַנגעלאָגירט",
+    externalPending: provider =>
+      `${provider} לאָגירט זיך אַרײַן דורך זיין אייגענעם CLI. פֿירט אויס דעם באַפֿעל אין אַ טערמינאַל, דערנאָך קומט צוריק און קליקט "איך האָב זיך אַרײַנגעלאָגירט":`,
+    signedIn: 'איך האָב זיך אַרײַנגעלאָגירט',
     deviceCodeOpened: provider => `מיר האָבן געעפֿנט ${provider} אין אייער בראַוזער. לייגט דעם קאָד אַרײַן דאָרט:`,
     reopenVerification: 'ווידער עפֿענען דעם וועריפֿיקאַציע־בלאַט',
     copy: 'קאָפּירן',
@@ -2324,7 +2417,7 @@ export const yi = defineLocale({
     price: (input, output) => `${input} אַרײַן / ${output} אַרויס פּער Mtok`,
     change: 'ענדערן',
     startChatting: 'אָנהייבן',
-    docs: provider => `${provider}־דאָקומענטן`,
+    docs: provider => `${provider}־דאָקומענטן`
   },
   modelPicker: {
     title: 'ענדערן מאָדעל',
@@ -2340,13 +2433,13 @@ export const yi = defineLocale({
     free: 'פֿרײַ',
     freeTier: 'פֿרײַער ניוואָ',
     priceTitle: 'אַרײַן / אַרויס פּרײַז פּער מיליאָן טאָקענס',
-    wasPrice: 'איז געווען',
+    wasPrice: 'איז געווען'
   },
   modelVisibility: {
     title: 'מאָדעלן',
     search: 'זוכן מאָדעלן',
     noAuthenticatedProviders: 'קיין אויטענטיפֿיצירטע פֿאַרזאָרגער.',
-    addProvider: 'צולייגן אַ פֿאַרזאָרגער…',
+    addProvider: 'צולייגן אַ פֿאַרזאָרגער…'
   },
   shell: {
     windowControls: 'פֿענצטער־קאָנטראָלן',
@@ -2357,7 +2450,7 @@ export const yi = defineLocale({
       noModels: 'קיין מאָדעלן נישט געפֿונען',
       editModels: 'רעדאַקטירן מאָדעלן…',
       refreshModels: 'דערפֿרישן מאָדעלן',
-      fast: 'גיך',
+      fast: 'גיך'
     },
     modelOptions: {
       noOptions: 'קיין אָפּציעס פֿאַר דעם מאָדעל',
@@ -2373,7 +2466,7 @@ export const yi = defineLocale({
       max: 'מאַקס',
       ultra: 'אולטראַ',
       updateFailed: 'מאָדעל־אָפּציע־דערהײַנטיקונג דורכגעפֿאַלן',
-      fastFailed: 'גיך־מאָדוס־דערהײַנטיקונג דורכגעפֿאַלן',
+      fastFailed: 'גיך־מאָדוס־דערהײַנטיקונג דורכגעפֿאַלן'
     },
     gatewayMenu: {
       gateway: 'שער',
@@ -2388,7 +2481,7 @@ export const yi = defineLocale({
       connection: label => `פֿאַרבינדונג: ${label}`,
       recentActivity: 'לעצטע אַקטיוויטעט',
       viewAllLogs: 'זען אַלע פּראָטאָקאָלן →',
-      messagingPlatforms: 'מעלדונג־פּלאַטפֿאָרמען',
+      messagingPlatforms: 'מעלדונג־פּלאַטפֿאָרמען'
     },
     approvalMode: {
       title: 'באַשטעטיקונג־מאָדוס',
@@ -2398,7 +2491,7 @@ export const yi = defineLocale({
       smart: 'קלוג',
       smartDescription: 'אָפּשאַצן אַקציעס אויטאָמאַטיש און פֿרעגן ווען נייטיק',
       off: 'אָפּגעשטעלט',
-      offDescription: 'לויפֿן אָן באַשטעטיקונג־אויפֿפֿאָדערונגען',
+      offDescription: 'לויפֿן אָן באַשטעטיקונג־אויפֿפֿאָדערונגען'
     },
     statusbar: {
       unknown: 'אומבאַקאַנט',
@@ -2454,18 +2547,19 @@ export const yi = defineLocale({
           skills: 'פֿעיִקייטן',
           subagent_definitions: 'אונטער־אַגענט־דעפֿיניציעס',
           system_prompt: 'סיסטעם־פּראָמפּט',
-          tool_definitions: 'געצייג־דעפֿיניציעס',
+          tool_definitions: 'געצייג־דעפֿיניציעס'
         },
         empty: 'נאָך קיין קאָנטעקסט־דאַטן',
         loading: 'לאָדן די צעטיילונג…',
         percentFull: percent => `${percent}% פֿול`,
         title: 'קאָנטעקסט־באַניץ',
-        tokenSummary: (used, max) => `${used} / ${max} טאָקענס`,
+        tokenSummary: (used, max) => `${used} / ${max} טאָקענס`
       },
       openContextUsage: 'עפֿענען די קאָנטעקסט־באַניץ־צעטיילונג',
       session: 'סעסיע',
       runtimeSessionElapsed: 'פֿאַרלאָפֿן סעסיע־צײַט',
-      yoloOn: 'YOLO אָן — באַשטעטיקט אויטאָמאַטיש געפֿערלעכע באַפֿעלן. קליקט צו אָפּשטעלן. Shift+קליק טוישט עס איבעראַל.',
+      yoloOn:
+        'YOLO אָן — באַשטעטיקט אויטאָמאַטיש געפֿערלעכע באַפֿעלן. קליקט צו אָפּשטעלן. Shift+קליק טוישט עס איבעראַל.',
       yoloOff: 'YOLO אָפּ — קליקט צו באַשטעטיקן אויטאָמאַטיש געפֿערלעכע באַפֿעלן. Shift+קליק טוישט עס איבעראַל.',
       modelNone: 'קיין',
       noModel: 'קיין מאָדעל',
@@ -2473,8 +2567,8 @@ export const yi = defineLocale({
       openModelPicker: 'עפֿענען די מאָדעל־אויסוואַל',
       modelPinned: 'אָנגעהעפֿט פֿון אייך; נײַע שמועסן באַנוצן דאָס אַנשטאָט דער איינשטעלונג־פֿאַרבאַשטימונג',
       modelTitle: (provider, model) => `מאָדעל · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'רעכטע זײַט־לײַסטע',
@@ -2510,7 +2604,7 @@ export const yi = defineLocale({
     terminalNew: 'נײַער טערמינאַל',
     terminalCloseOthers: 'שליסן די אַנדערע',
     terminalCloseAll: 'שליסן אַלע',
-    addToChat: 'צולייגן צום שמועס',
+    addToChat: 'צולייגן צום שמועס'
   },
   preview: {
     tab: 'פֿאָרויסקוק',
@@ -2544,7 +2638,8 @@ export const yi = defineLocale({
     unsavedChanges: 'נישט געהיטענע ענדערונגען',
     saveFailed: message => `נישט געקענט אויפֿהיטן: ${message}`,
     diskChangedTitle: 'טעקע געענדערט אויפֿן דיסק',
-    diskChangedBody: 'די טעקע איז געענדערט זינט איר האָט זי געעפֿנט. איבערשרַײַבן מיט אייער ווערסיע, אָדער אָפּוואַרפֿן אייערע ענדערונגען און נײַ־לאָדן?',
+    diskChangedBody:
+      'די טעקע איז געענדערט זינט איר האָט זי געעפֿנט. איבערשרַײַבן מיט אייער ווערסיע, אָדער אָפּוואַרפֿן אייערע ענדערונגען און נײַ־לאָדן?',
     overwrite: 'איבערשרַײַבן',
     discardReload: 'אָפּוואַרפֿן און נײַ־לאָדן',
     console: {
@@ -2565,7 +2660,7 @@ export const yi = defineLocale({
       empty: 'נאָך קיין קאָנסאָל־מעלדונגען.',
       promptHeader: 'פֿאָרויסקוק־קאָנסאָל:',
       sentTitle: 'געשיקט צום שמועס',
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} צוגעלייגט צום רעדאַקטאָר`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} צוגעלייגט צום רעדאַקטאָר`
     },
     web: {
       appFailedToBoot: 'די פֿאָרויסקוק־אַפּ האָט נישט געקענט אָנהייבן',
@@ -2583,24 +2678,27 @@ export const yi = defineLocale({
       showConsole: 'ווײַזן דעם פֿאָרויסקוק־קאָנסאָל',
       hideDevTools: 'באַהאַלטן די פֿאָרויסקוק־DevTools',
       openDevTools: 'עפֿענען די פֿאָרויסקוק־DevTools',
-      finishedRestarting: message => `OpenAmer האָט פֿאַרענדיקט אָנהייבן דעם פֿאָרויסקוק־סערווירער ווידער${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer האָט פֿאַרענדיקט אָנהייבן דעם פֿאָרויסקוק־סערווירער ווידער${message ? `: ${message}` : ''}`,
       failedRestarting: message => `סערווירער־ווידער־אָנהייב דורכגעפֿאַלן: ${message}`,
       unknownError: 'אומבאַקאַנטער טעות',
       restartedTitle: 'פֿאָרויסקוק־סערווירער אָנגעהויבן ווידער',
       reloadingNow: 'לאָדט דעם פֿאָרויסקוק איצט נײַ.',
       restartFailedTitle: 'פֿאָרויסקוק־ווידער־אָנהייב דורכגעפֿאַלן',
       restartFailedMessage: 'OpenAmer האָט נישט געקענט אָנהייבן דעם סערווירער ווידער.',
-      stillWorking: 'OpenAmer אַרבעט נאָך, אָבער קיין רעזולטאַט פֿונעם ווידער־אָנהייב איז נאָך נישט אָנגעקומען. דער סערווירער־באַפֿעל לויפֿט מעגלעך אין פֿאָרגרונט.',
+      stillWorking:
+        'OpenAmer אַרבעט נאָך, אָבער קיין רעזולטאַט פֿונעם ווידער־אָנהייב איז נאָך נישט אָנגעקומען. דער סערווירער־באַפֿעל לויפֿט מעגלעך אין פֿאָרגרונט.',
       workspaceReloading: 'אַרבעטספּלאַץ געענדערט, לאָדט דעם פֿאָרויסקוק נײַ',
       fileChanged: url => `טעקע געענדערט, לאָדט דעם פֿאָרויסקוק נײַ: ${url}`,
       filesChanged: (count, url) => `${count} טעקע־ענדערונגען, לאָדט דעם פֿאָרויסקוק נײַ: ${url}`,
       watchFailed: message => `נישט געקענט נאָכפֿאָלגן די פֿאָרויסקוק־טעקע: ${message}`,
-      moduleMimeDescription: 'מאָדול־סקריפּטן ווערן געדינט מיט אַ פֿאַלשן MIME־טיפּ. דאָס מיינט געוויינטלעך אַז אַ סטאַטישער טעקע־סערווירער דינט אַ Vite/React־אַפּ אַנשטאָט דעם פּראָיעקט־אַנטוויקלונג־סערווירער.',
+      moduleMimeDescription:
+        'מאָדול־סקריפּטן ווערן געדינט מיט אַ פֿאַלשן MIME־טיפּ. דאָס מיינט געוויינטלעך אַז אַ סטאַטישער טעקע־סערווירער דינט אַ Vite/React־אַפּ אַנשטאָט דעם פּראָיעקט־אַנטוויקלונג־סערווירער.',
       loadFailedConsole: (code, message) => `לאָדן דורכגעפֿאַלן${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'דער פֿאָרויסקוק־בלאַט איז נישט דערגרייכבאַר געווען.',
       openTarget: url => `עפֿענען ${url}`,
-      fallbackTitle: 'פֿאָרויסקוק',
-    },
+      fallbackTitle: 'פֿאָרויסקוק'
+    }
   },
   zones: {
     showHeader: 'ווײַזן דעם קאָפּ',
@@ -2608,7 +2706,8 @@ export const yi = defineLocale({
     minimize: 'מינימיזירן',
     restore: 'צוריקשטעלן',
     closeRunningTitle: 'שליסן דעם לויפֿנדיקן טאַב?',
-    closeRunningBody: 'דער שמועס אַרבעט נאָך (אָדער וואַרט אויף אייער אַרײַנגאַנג). שליסן דעם טאַב באַהאַלט אים — די סעסיע האַלט איר פּראָגרעס און קען ווערן ווידער געעפֿנט פֿון דער לײַסטע.',
+    closeRunningBody:
+      'דער שמועס אַרבעט נאָך (אָדער וואַרט אויף אייער אַרײַנגאַנג). שליסן דעם טאַב באַהאַלט אים — די סעסיע האַלט איר פּראָגרעס און קען ווערן ווידער געעפֿנט פֿון דער לײַסטע.',
     closeRunningConfirm: 'שליסן דעם טאַב',
     closeOthers: 'שליסן די אַנדערע',
     closeToRight: 'שליסן צו דער רעכטער',
@@ -2645,14 +2744,15 @@ export const yi = defineLocale({
     layoutNamePlaceholder: fallback => `אויסלייג־נאָמען (${fallback})`,
     saveApply: 'אויפֿהיטן און אָנווענדן',
     notExpressible: 'דער אָרדענונג פֿאַרצאַנקט זיך (מיל) — נאָך נישט אויסדריקבאַר אַלס פֿאַרשאַכטלטע צעטיילונגען',
-    zoneCount: count => `${count} זאָנען`,
+    zoneCount: count => `${count} זאָנען`
   },
   assistant: {
     thread: {
       loadingSession: 'לאָדן די סעסיע',
       showEarlier: 'ווײַזן פֿריִערדיקע מעלדונגען',
       loadingResponse: 'OpenAmer לאָדט אַן ענטפֿער',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'טראַכט',
@@ -2680,7 +2780,7 @@ export const yi = defineLocale({
       restoreNext: 'צוריקשטעלן דעם קומענדיקן קאָנטראָל־פּונקט',
       goForward: 'גיין פֿאָרויס',
       sendEdited: 'שיקן די רעדאַקטירטע מעלדונג',
-      attachingFile: 'לייגט צו…',
+      attachingFile: 'לייגט צו…'
     },
     approval: {
       gatewayDisconnected: 'דער OpenAmer־שער איז נישט פֿאַרבונדן',
@@ -2693,8 +2793,9 @@ export const yi = defineLocale({
       jumpToApproval: 'באַשטעטיקונג נייטיק',
       reject: 'אָפּוואַרפֿן',
       alwaysTitle: 'שטענדיק דערלויבן דאָס באַפֿעל?',
-      alwaysDescription: pattern => `דאָס לייגט צו דעם מוסטער “${pattern}” צו אייער שטענדיקער דערלויבניש־ליסטע (~/.openamer/config.yaml). OpenAmer וועט מער נישט פֿרעגן פֿאַר אַזוינע באַפֿעלן — אין דער סעסיע אָדער אין סיי וועלכער צוקונפֿטיקער.`,
-      alwaysAllow: 'שטענדיק דערלויבן',
+      alwaysDescription: pattern =>
+        `דאָס לייגט צו דעם מוסטער “${pattern}” צו אייער שטענדיקער דערלויבניש־ליסטע (~/.openamer/config.yaml). OpenAmer וועט מער נישט פֿרעגן פֿאַר אַזוינע באַפֿעלן — אין דער סעסיע אָדער אין סיי וועלכער צוקונפֿטיקער.`,
+      alwaysAllow: 'שטענדיק דערלויבן'
     },
     clarify: {
       notReady: 'די פֿרעג־בקשה איז נאָך נישט גרייט',
@@ -2708,7 +2809,7 @@ export const yi = defineLocale({
       continueLabel: 'ממשיך זיין',
       lateAnswer: (question, choice) => `וועגן: "${question}" — מײַן ענטפֿער: ${choice}`,
       lateAnswerTip: 'אַנטוואַרפֿט דעם ענטפֿער אַלס נאָכפֿאָלגע־מעלדונג',
-      lateAnswerHint: 'דער פּראָמפּט וואַרט מער נישט. קליקט אַן אָפּציע צו אים אַנטוואַרפֿן אַלס נאָכפֿאָלגע־מעלדונג.',
+      lateAnswerHint: 'דער פּראָמפּט וואַרט מער נישט. קליקט אַן אָפּציע צו אים אַנטוואַרפֿן אַלס נאָכפֿאָלגע־מעלדונג.'
     },
     tool: {
       code: 'קאָד',
@@ -2744,11 +2845,11 @@ export const yi = defineLocale({
         ran: 'אויסגעפֿירט',
         running: 'לויפֿט',
         ranCode: 'אויסגעפֿירט קאָד',
-        runningCode: 'סקריפּט',
+        runningCode: 'סקריפּט'
       },
       prefixes: {
         browser: 'בראַוזער',
-        web: 'וועב',
+        web: 'וועב'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2756,132 +2857,133 @@ export const yi = defineLocale({
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `לויפֿט ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `לויפֿט ${action.toLowerCase()}`,
+        runningTool: action => `לויפֿט ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'האָט געקליקט אַ בלאַט־עלעמענט',
           pending: 'קליקט אַ בלאַט־עלעמענט',
-          pendingAction: 'קליקט',
+          pendingAction: 'קליקט'
         },
         browser_fill: {
           done: 'האָט אויסגעפֿילט אַ פֿאָרמולאַר־פֿעלד',
           pending: 'פֿילט אויס אַ פֿאָרמולאַר־פֿעלד',
-          pendingAction: 'פֿילט אויס',
+          pendingAction: 'פֿילט אויס'
         },
         browser_navigate: {
           done: 'האָט געעפֿנט דעם בלאַט',
           pending: 'עפֿענט דעם בלאַט',
-          pendingAction: 'עפֿענט',
+          pendingAction: 'עפֿענט'
         },
         browser_snapshot: {
           done: 'האָט אָפּגענומען אַ בלאַט־סנאַפּשאָט',
           pending: 'נעמט אָפּ אַ בלאַט־סנאַפּשאָט',
-          pendingAction: 'נעמט אָפּ',
+          pendingAction: 'נעמט אָפּ'
         },
         browser_take_screenshot: {
           done: 'האָט אָפּגענומען אַ סקרינשאָט',
           pending: 'נעמט אָפּ אַ סקרינשאָט',
-          pendingAction: 'נעמט אָפּ',
+          pendingAction: 'נעמט אָפּ'
         },
         browser_type: {
           done: 'האָט געשריבן אויפֿן בלאַט',
           pending: 'שרײַבט אויפֿן בלאַט',
-          pendingAction: 'שרײַבט',
+          pendingAction: 'שרײַבט'
         },
         clarify: {
           done: 'האָט געפֿרעגט אַ פֿראַגע',
           pending: 'פֿרעגט אַ פֿראַגע',
-          pendingAction: 'פֿרעגט',
+          pendingAction: 'פֿרעגט'
         },
         cronjob: {
           done: 'Cron־אַרבעט',
           pending: 'פּלאַנירט אַ cron־אַרבעט',
-          pendingAction: 'פּלאַנירט',
+          pendingAction: 'פּלאַנירט'
         },
         edit_file: {
           done: 'האָט רעדאַקטירט אַ טעקע',
           pending: 'רעדאַקטירט אַ טעקע',
-          pendingAction: 'רעדאַקטירט',
+          pendingAction: 'רעדאַקטירט'
         },
         execute_code: {
           done: 'האָט אויסגעפֿירט קאָד',
           pending: 'סקריפּט',
-          pendingAction: 'סקריפּט',
+          pendingAction: 'סקריפּט'
         },
         image_generate: {
           done: 'האָט דערצייגט אַ בילד',
           pending: 'דערצייגט אַ בילד',
-          pendingAction: 'דערצייגט',
+          pendingAction: 'דערצייגט'
         },
         list_files: {
           done: 'האָט אויסגערעכנט טעקעס',
           pending: 'רעכנט אויס טעקעס',
-          pendingAction: 'רעכנט אויס',
+          pendingAction: 'רעכנט אויס'
         },
         patch: {
           done: 'האָט געפּאַטשט אַ טעקע',
           pending: 'פּאַטשט אַ טעקע',
-          pendingAction: 'פּאַטשט',
+          pendingAction: 'פּאַטשט'
         },
         read_file: {
           done: 'האָט געלייענט אַ טעקע',
           pending: 'לייענט אַ טעקע',
-          pendingAction: 'לייענט',
+          pendingAction: 'לייענט'
         },
         search_files: {
           done: 'האָט געזוכט אין טעקעס',
           pending: 'זוכט אין טעקעס',
-          pendingAction: 'זוכט',
+          pendingAction: 'זוכט'
         },
         session_search_recall: {
           done: 'האָט געזוכט אין דער סעסיע־היסטאָריע',
           pending: 'זוכט אין דער סעסיע־היסטאָריע',
-          pendingAction: 'זוכט',
+          pendingAction: 'זוכט'
         },
         terminal: {
           done: 'האָט אויסגעפֿירט אַ באַפֿעל',
           pending: 'פֿירט אויס אַ באַפֿעל',
-          pendingAction: 'פֿירט אויס',
+          pendingAction: 'פֿירט אויס'
         },
         todo: {
           done: 'האָט דערהײַנטיקט די אויפֿגאַבן',
           pending: 'דערהײַנטיקט די אויפֿגאַבן',
-          pendingAction: 'דערהײַנטיקט',
+          pendingAction: 'דערהײַנטיקט'
         },
         vision_analyze: {
           done: 'האָט אַנאַליזירט אַ בילד',
           pending: 'אַנאַליזירט אַ בילד',
-          pendingAction: 'אַנאַליזירט',
+          pendingAction: 'אַנאַליזירט'
         },
         web_extract: {
           done: 'האָט געלייענט אַ וועב־בלאַט',
           pending: 'לייענט אַ וועב־בלאַט',
-          pendingAction: 'לייענט',
+          pendingAction: 'לייענט'
         },
         web_search: {
           done: 'האָט געזוכט אויפֿן וועב',
           pending: 'זוכט אויפֿן וועב',
-          pendingAction: 'זוכט',
+          pendingAction: 'זוכט'
         },
         write_file: {
           done: 'האָט רעדאַקטירט אַ טעקע',
           pending: 'רעדאַקטירט אַ טעקע',
-          pendingAction: 'רעדאַקטירט',
-        },
-      },
-    },
+          pendingAction: 'רעדאַקטירט'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'דער OpenAmer־שער איז נישט פֿאַרבונדן',
     sudoSendFailed: 'נישט געקענט שיקן דאָס sudo־פּאַראָל',
     secretSendFailed: 'נישט געקענט שיקן דאָס סוד',
     sudoTitle: 'אַדמיניסטראַטאָר־פּאַראָל',
-    sudoDesc: 'OpenAmer דאַרף אייער sudo־פּאַראָל צו אויספֿירן אַ פּריווילעגירטן באַפֿעל. עס ווערט נאָר געשיקט צו אייער לאָקאַלן אַגענט.',
+    sudoDesc:
+      'OpenAmer דאַרף אייער sudo־פּאַראָל צו אויספֿירן אַ פּריווילעגירטן באַפֿעל. עס ווערט נאָר געשיקט צו אייער לאָקאַלן אַגענט.',
     sudoPlaceholder: 'sudo־פּאַראָל',
     secretTitle: 'סוד נייטיק',
     secretDesc: 'OpenAmer דאַרף אַ באַשײַנונג צו ממשיך זיין.',
-    secretPlaceholder: 'סוד־ווערט',
+    secretPlaceholder: 'סוד־ווערט'
   },
   desktop: {
     audioReadFailed: 'נישט געקענט לייענען דאָס אויפֿגענומענע אודיאָ',
@@ -2898,7 +3000,8 @@ export const yi = defineLocale({
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} פֿאַר דער סעסיע`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'נישט געקענט טוישן YOLO',
-    profileStatus: current => `פּראָפֿיל: ${current}. באַנוצט /profile <name> אָדער די "נײַע סעסיע"־אויסוואַל צו אָנהייבן אַ שמועס אין אַן אַנדער פּראָפֿיל.`,
+    profileStatus: current =>
+      `פּראָפֿיל: ${current}. באַנוצט /profile <name> אָדער די "נײַע סעסיע"־אויסוואַל צו אָנהייבן אַ שמועס אין אַן אַנדער פּראָפֿיל.`,
     unknownProfile: 'אומבאַקאַנטער פּראָפֿיל',
     noProfileNamed: (target, available) => `קיין פּראָפֿיל מיטן נאָמען "${target}". פֿאַראַן: ${available}`,
     newChatsProfile: name => `נײַע שמועסן וועלן באַנוצן דעם פּראָפֿיל ${name}.`,
@@ -2908,8 +3011,9 @@ export const yi = defineLocale({
     regenerateFailed: 'ווידער־דערצייגן דורכגעפֿאַלן',
     editFailed: 'רעדאַקטירן דורכגעפֿאַלן',
     resumeFailed: 'ממשיך זיין דורכגעפֿאַלן',
-    resumeStrandedTitle: "נישט געקענט לאָדן די סעסיע",
-    resumeStrandedBody: 'די פֿאַרבינדונג צו דער סעסיע איז דורכגעפֿאַלן און די אויטאָמאַטישע פּרוּוון האָבן אויפֿגעגעבן. פּרוּווט אַז דער שער לויפֿט, דערנאָך פּרוּווט ווידער.',
+    resumeStrandedTitle: 'נישט געקענט לאָדן די סעסיע',
+    resumeStrandedBody:
+      'די פֿאַרבינדונג צו דער סעסיע איז דורכגעפֿאַלן און די אויטאָמאַטישע פּרוּוון האָבן אויפֿגעגעבן. פּרוּווט אַז דער שער לויפֿט, דערנאָך פּרוּווט ווידער.',
     resumeRetry: 'פּרוּווט ווידער',
     nothingToBranch: 'גאָרנישט צו צווייגן',
     branchNeedsChat: 'אָנהייבט אָדער מאַכט ווײַטער אַ שמועס פֿאַר איר צווייגט.',
@@ -2923,7 +3027,8 @@ export const yi = defineLocale({
     archiveFailed: 'אַרכיווירן דורכגעפֿאַלן',
     cwdChangeFailed: 'ענדערן דעם אַרבעט־פּאַפּקע דורכגעפֿאַלן',
     cwdStagedTitle: 'אַרבעט־פּאַפּקע צוגעגרייט',
-    cwdStagedMessage: 'הויבט דעם Desktop־סערווירער ווידער אָן צו אָנווענדן די פּאַפּקע־ענדערונגען אויף דער אַקטיווער סעסיע.',
+    cwdStagedMessage:
+      'הויבט דעם Desktop־סערווירער ווידער אָן צו אָנווענדן די פּאַפּקע־ענדערונגען אויף דער אַקטיווער סעסיע.',
     modelSwitchFailed: 'ענדערן מאָדעל דורכגעפֿאַלן',
     sessionExported: 'סעסיע עקספּאָרטירט',
     sessionExportFailed: 'נישט געקענט עקספּאָרטירן די סעסיע',
@@ -2949,31 +3054,31 @@ export const yi = defineLocale({
       success: platform => `איבערגעגעבן צו ${platform}. מאַכט ווײַטער דאָ סיי ווען.`,
       systemNote: platform => `↻ איבערגעגעבן צו ${platform} — מאַכט ווײַטער דאָ סיי ווען.`,
       failed: error => `איבערגאַבע דורכגעפֿאַלן: ${error}`,
-      timedOut: 'אָפּגעלאָפֿן בשעת וואַרטן אויפֿן שער. לויפֿט `openamer gateway`?',
-    },
+      timedOut: 'אָפּגעלאָפֿן בשעת וואַרטן אויפֿן שער. לויפֿט `openamer gateway`?'
+    }
   },
   errors: {
     genericFailure: 'עפּעס איז געגאַנגען אומריכטיק',
     boundaryTitle: 'עפּעס איז צעבראָכן אין דער אינטערפֿייס',
     boundaryDesc: 'די אַנזיכט האָט געטראָפֿן אַן אומדערוואַרטעטן טעות. אייערע שמועסן און איינשטעלונגען זענען זיכער.',
     reloadWindow: 'נײַ־לאָדן דאָס פֿענצטער',
-    openLogs: 'עפֿענען די פּראָטאָקאָלן',
+    openLogs: 'עפֿענען די פּראָטאָקאָלן'
   },
   ui: {
     search: {
-      clear: 'אויסליידיקן דעם זוך',
+      clear: 'אויסליידיקן דעם זוך'
     },
     pagination: {
       label: 'בלאַטבלאַטערן',
       previous: 'פֿריִער',
       previousAria: 'גיין צום פֿריִערדיקן בלאַט',
       next: 'ווײַטער',
-      nextAria: 'גיין צום קומענדיקן בלאַט',
+      nextAria: 'גיין צום קומענדיקן בלאַט'
     },
     sidebar: {
       title: 'זײַט־לײַסטע',
       description: 'ווײַזט די מאָבילע זײַט־לײַסטע.',
-      toggle: 'טוישן די זײַט־לײַסטע',
-    },
-  },
+      toggle: 'טוישן די זײַט־לײַסטע'
+    }
+  }
 })

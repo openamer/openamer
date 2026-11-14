@@ -19,7 +19,7 @@ export const si = defineLocale({
     pathCopied: 'මාර්ගය පිටපත් කරන ලදි',
     revealFinder: 'Finder හි පෙන්වන්න',
     revealExplorer: 'File Explorer හි පෙන්වන්න',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop සූදානම්',
@@ -28,7 +28,7 @@ export const si = defineLocale({
       loadingSettings: 'OpenAmer සැකසුම් පූරණය වෙමින්',
       loadingSessions: 'මෑත සැසි පූරණය වෙමින්',
       startingDesktopConnection: 'ඩෙස්ක්ටොප් සම්බන්ධතාව ආරම්භ කරමින්',
-      startingOpenAmerDesktop: 'OpenAmer Desktop ආරම්භ කරමින්…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop ආරම්භ කරමින්…'
     },
     errors: {
       backgroundExited: 'OpenAmer පසුබිම් ක්‍රියාවලිය අවසන් විය.',
@@ -37,13 +37,15 @@ export const si = defineLocale({
       desktopBootFailed: 'ඩෙස්ක්ටොප් ඇරඹුම අසාර්ථක විය',
       gatewayConnectionLost: 'ගේට්වේ සමඟ සම්බන්ධතාවය අහිමි විය',
       gatewaySignInRequired: 'ගේට්වේ පිවිසුම අවශ්‍යයි',
-      ipcBridgeUnavailable: 'ඩෙස්ක්ටොප් IPC පාලම නොමැත.',
+      ipcBridgeUnavailable: 'ඩෙස්ක්ටොප් IPC පාලම නොමැත.'
     },
     failure: {
       title: 'OpenAmer ආරම්භ කළ නොහැකි විය',
-      description: 'පසුබිම් ගේට්වේ ආරම්භ වූයේ නැත. පහත ප්‍රතිසාධන පියවරවලින් එකක් උත්සාහ කරන්න. මෙහි කිසිවක් ඔබේ චැට් හෝ සැකසුම් මකන්නේ නැත.',
+      description:
+        'පසුබිම් ගේට්වේ ආරම්භ වූයේ නැත. පහත ප්‍රතිසාධන පියවරවලින් එකක් උත්සාහ කරන්න. මෙහි කිසිවක් ඔබේ චැට් හෝ සැකසුම් මකන්නේ නැත.',
       remoteTitle: 'දුරස්ථ ගේට්වේ පිවිසුම අවශ්‍යයි',
-      remoteDescription: 'ඔබේ දුරස්ථ ගේට්වේ සැසිය කල් ඉකුත් වී ඇත. නැවත සම්බන්ධ වීමට ආයෙත් පිවිසෙන්න. මෙහි කිසිවක් ඔබේ චැට් හෝ සැකසුම් මකන්නේ නැත.',
+      remoteDescription:
+        'ඔබේ දුරස්ථ ගේට්වේ සැසිය කල් ඉකුත් වී ඇත. නැවත සම්බන්ධ වීමට ආයෙත් පිවිසෙන්න. මෙහි කිසිවක් ඔබේ චැට් හෝ සැකසුම් මකන්නේ නැත.',
       retry: 'නැවත උත්සාහ කරන්න',
       repairInstall: 'ස්ථාපනය අලුත්වැඩියා කරන්න',
       useLocalGateway: 'දේශීය ගේට්වේ භාවිත කරන්න',
@@ -62,10 +64,11 @@ export const si = defineLocale({
       signInFailed: 'පිවිසීම අසාර්ථකයි',
       signInToRemoteGateway: 'දුරස්ථ ගේට්වේවරයට පිවිසෙන්න',
       identityProvider: 'ඔබේ අනන්‍යතා සපයන්නා',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   common: {
     apply: 'යොදන්න',
@@ -106,7 +109,7 @@ export const si = defineLocale({
     update: 'යාවත්කාලීන කරන්න',
     on: 'සක්‍රීය',
     off: 'අක්‍රීය',
-    tryHint: term => `Try “${term}”`,
+    tryHint: term => `Try “${term}”`
   },
   notifications: {
     region: 'දැනුම්දීම්',
@@ -118,7 +121,8 @@ export const si = defineLocale({
     copyDetail: 'විස්තර පිටපත් කරන්න',
     copyDetailFailed: 'දැනුම්දීමේ විස්තර පිටපත් කළ නොහැකි විය',
     backendOutOfDateTitle: 'පසුතලය යල් පැන ඇත',
-    backendOutOfDateMessage: 'ඔබේ OpenAmer පසුතලය මෙම ඩෙස්ක්ටොප් අනුවාදයට වඩා පැරණිය; නිවැරදිව ක්‍රියා නොකරනු ඇත. ඒවා ගැළපෙන පරිදි යාවත්කාලීන කරන්න.',
+    backendOutOfDateMessage:
+      'ඔබේ OpenAmer පසුතලය මෙම ඩෙස්ක්ටොප් අනුවාදයට වඩා පැරණිය; නිවැරදිව ක්‍රියා නොකරනු ඇත. ඒවා ගැළපෙන පරිදි යාවත්කාලීන කරන්න.',
     installMethodUnsupportedTitle: 'සහාය නොදක්වන ස්ථාපන ක්‍රමය',
     updateOpenAmer: 'OpenAmer යාවත්කාලීන කරන්න',
     updateReadyTitle: 'යාවත්කාලීනය සූදානම්',
@@ -127,11 +131,12 @@ export const si = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT සඳහා ELEVENLABS_API_KEY අවශ්‍යයි.',
       elevenLabsRejectedKey: 'ElevenLabs API යතුර ප්‍රතික්ෂේප කළේය (401).',
       gatewayAuthFailed: 'ගේට්වේ සත්‍යාපනය අසාර්ථක විය — ඔබේ API_SERVER_KEY පරීක්ෂා කරන්න.',
-      methodNotAllowed: 'ඩෙස්ක්ටොප් බැකෙන්ඩ් එම ඉල්ලීම ප්‍රතික්ෂේප කළේය (405 ක්‍රමයට අවසර නැත). OpenAmer Desktop නැවත ආරම්භ කිරීමට උත්සාහ කරන්න.',
+      methodNotAllowed:
+        'ඩෙස්ක්ටොප් බැකෙන්ඩ් එම ඉල්ලීම ප්‍රතික්ෂේප කළේය (405 ක්‍රමයට අවසර නැත). OpenAmer Desktop නැවත ආරම්භ කිරීමට උත්සාහ කරන්න.',
       microphonePermission: 'මයික්‍රොෆෝන අවසරය ප්‍රතික්ෂේප විය.',
       openaiRejectedApiKey: 'OpenAI API යතුර ප්‍රතික්ෂේප කළේය.',
       openaiTtsNeedsKey: 'OpenAI TTS සඳහා VOICE_TOOLS_OPENAI_KEY හෝ OPENAI_API_KEY අවශ්‍යයි.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'හඬ මාදිලිය භාවිතා කිරීමට කථනය-සිට-පෙළට සකසන්න.',
@@ -150,7 +155,7 @@ export const si = defineLocale({
       transcriptionFailed: 'හඬ පිටපත්කිරීම අසාර්ථක විය',
       transcriptionUnavailable: 'හඬ පිටපත් කිරීම තවම ලබා නොමැත.',
       tryRecordingAgain: 'නැවත පටිගත කිරීම උත්සාහ කරන්න.',
-      unavailable: 'හඬ ලබා නොහැක',
+      unavailable: 'හඬ ලබා නොහැක'
     },
     native: {
       approvalTitle: 'අනුමැතිය අවශ්‍යයි',
@@ -163,10 +168,10 @@ export const si = defineLocale({
       turnErrorTitle: 'වාරය අසාර්ථක විය',
       backgroundDoneTitle: 'පසුබිම් කාර්යය අවසන් විය',
       backgroundFailedTitle: 'පසුබිම් කාර්යය අසාර්ථක විය',
-      creditsTitle: 'ක්‍රෙඩිට්',
+      creditsTitle: 'ක්‍රෙඩිට්'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer ක්‍රෙඩිට් අවසන්',
@@ -174,7 +179,7 @@ export const si = defineLocale({
     openBilling: 'බිල්පත් විවෘත කරන්න',
     addCredits: 'ක්‍රෙඩිට් එකතු කරන්න',
     dismiss: 'ඉවත් කරන්න',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   titlebar: {
     hideSidebar: 'පැති තීරුව සඟවන්න',
@@ -191,7 +196,7 @@ export const si = defineLocale({
     openStarmap: 'මතක ප්‍රස්තාරය විවෘත කරන්න',
     openKeybinds: 'යතුරුපුවරු කෙටිමඟ',
     layoutEditor: 'පිරිසැලසුම් සංස්කාරකය',
-    layoutEditorTitle: 'පිරිසැලසුම් සංස්කාරකය — âŒ˜-click මගින් පිරිසැලසුම නැවත සකසයි',
+    layoutEditorTitle: 'පිරිසැලසුම් සංස්කාරකය — âŒ˜-click මගින් පිරිසැලසුම නැවත සකසයි'
   },
   keybinds: {
     title: 'යතුරුපුවරු කෙටිමඟ',
@@ -206,7 +211,7 @@ export const si = defineLocale({
       profiles: 'පැතිකඩ',
       session: 'සැසිය',
       navigation: 'සංචලනය',
-      view: 'දර්ශනය',
+      view: 'දර්ශනය'
     },
     actions: {
       'keybinds.openPanel': 'යතුරුපුවරු කෙටිමඟුන් විවෘත කරන්න',
@@ -285,10 +290,10 @@ export const si = defineLocale({
       'composer.slash': 'ස්ලැෂ් විධාන පැලට්',
       'composer.help': 'ඉක්මන් උපකාර',
       'composer.history': 'පොප්ඕවර් / ඉතිහාසය මාරු කරන්න',
-      'composer.cancel': 'පොප්ඕවර් වසන්න · ධාවනය අවලංගු කරන්න',
+      'composer.cancel': 'පොප්ඕවර් වසන්න · ධාවනය අවලංගු කරන්න'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   language: {
     label: 'භාෂාව',
@@ -297,7 +302,7 @@ export const si = defineLocale({
     saveError: 'භාෂා යාවත්කාලීනය අසාර්ථකයි',
     switchTo: 'භාෂාව මාරු කරන්න',
     searchPlaceholder: 'භාෂා සොයන්න…',
-    noResults: 'භාෂා හමු නොවිණි',
+    noResults: 'භාෂා හමු නොවිණි'
   },
   settings: {
     closeSettings: 'සැකසුම් වසන්න',
@@ -322,11 +327,12 @@ export const si = defineLocale({
       billing: 'බිල්පත්',
       notifications: 'දැනුම්දීම්',
       plugins: 'ප්ලගින්',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'ඩෙස්ක්ටොප් ප්ලගින්',
-      blurb: 'මෙම යෙදුමට පූරණය වන UI දිගු — build එක සමඟ බැඳුණු, නැතහොත් desktop-plugins ෆෝල්ඩරයට දමන ලද (OpenAmer ලියන ඒවා ඇතුළුව). අක්‍රීය කිරීමෙන් ප්ලගින් එකක් සජීවීව ඉවත් වන අතර නැවත ආරම්භ කිරීම්වලින් පසුවත් පවතී.',
+      blurb:
+        'මෙම යෙදුමට පූරණය වන UI දිගු — build එක සමඟ බැඳුණු, නැතහොත් desktop-plugins ෆෝල්ඩරයට දමන ලද (OpenAmer ලියන ඒවා ඇතුළුව). අක්‍රීය කිරීමෙන් ප්ලගින් එකක් සජීවීව ඉවත් වන අතර නැවත ආරම්භ කිරීම්වලින් පසුවත් පවතී.',
       openFolder: 'ප්ලගින් ෆෝල්ඩරය විවෘත කරන්න',
       rescan: 'නැවත ස්කෑන් කරන්න',
       reveal: 'ගොනු කළමනාකරුවෙන් පෙන්වන්න',
@@ -337,41 +343,42 @@ export const si = defineLocale({
       kinds: {
         bundled: 'බණ්ඩල් කළ',
         disk: 'ඩිස්කයේ',
-        runtime: 'රන්ටයිම්',
+        runtime: 'රන්ටයිම්'
       },
-      count: n => `${n} installed`,
+      count: n => `${n} installed`
     },
     notifications: {
       title: 'දැනුම්දීම්',
-      intro: 'ස්වදේශීය ඩෙස්ක්ටොප් දැනුම්දීම්, යෙදුම තුළ ටෝස්ට්වලින් වෙන්ව. මේවා උපාංගයට පමණක් වන අතර — සෑම පරිගණකයක්ම තමන්ගේම සැකසුම් තබා ගනී.',
+      intro:
+        'ස්වදේශීය ඩෙස්ක්ටොප් දැනුම්දීම්, යෙදුම තුළ ටෝස්ට්වලින් වෙන්ව. මේවා උපාංගයට පමණක් වන අතර — සෑම පරිගණකයක්ම තමන්ගේම සැකසුම් තබා ගනී.',
       enableAll: 'දැනුම්දීම් සබල කරන්න',
       enableAllDesc: 'ප්‍රධාන ස්විචය. පහත සියලු දැනුම්දීම් නිහඬ කිරීමට මෙය අක්‍රිය කරන්න.',
       focusedHint: 'සම්පූර්ණ කිරීමේ ඇඟවීම් ක්‍රියාත්මක වන්නේ OpenAmer පසුබිමේ සිටියදී පමණි.',
       kinds: {
         approval: {
           label: 'අනුමැතිය අවශ්‍යයි',
-          description: 'විධානයක් ඔබ අනුමත කිරීමට හෝ ප්‍රතික්ෂේප කිරීමට බලා සිටී.',
+          description: 'විධානයක් ඔබ අනුමත කිරීමට හෝ ප්‍රතික්ෂේප කිරීමට බලා සිටී.'
         },
         input: {
           label: 'ආදානය අවශ්‍යයි',
-          description: 'OpenAmer ප්‍රශ්නයක් ඇසුවා හෝ මුරපදයක් හෝ රහසක් අවශ්‍ය වේ.',
+          description: 'OpenAmer ප්‍රශ්නයක් ඇසුවා හෝ මුරපදයක් හෝ රහසක් අවශ්‍ය වේ.'
         },
         turnDone: {
           label: 'ප්‍රතිචාරය සූදානම්',
-          description: 'OpenAmer පසුබිමේ සිටියදී වටයක් අවසන් විය.',
+          description: 'OpenAmer පසුබිමේ සිටියදී වටයක් අවසන් විය.'
         },
         turnError: {
           label: 'වටය අසාර්ථක විය',
-          description: 'වටයක් දෝෂයකින් අවසන් විය.',
+          description: 'වටයක් දෝෂයකින් අවසන් විය.'
         },
         backgroundDone: {
           label: 'පසුබිම් කාර්යය අවසන් විය',
-          description: 'පසුබිමට යවන ලද ටර්මිනල් විධානයක් සම්පූර්ණ විය.',
+          description: 'පසුබිමට යවන ලද ටර්මිනල් විධානයක් සම්පූර්ණ විය.'
         },
         credits: {
           label: 'ක්‍රෙඩිට් ඇඟවීම්',
-          description: 'ක්‍රෙඩිට් ප්‍රවේශය විරාම කර ඇත හෝ ප්‍රතිසාධනය කර ඇත.',
-        },
+          description: 'ක්‍රෙඩිට් ප්‍රවේශය විරාම කර ඇත හෝ ප්‍රතිසාධනය කර ඇත.'
+        }
       },
       test: 'පරීක්ෂණ දැනුම්දීමක් යවන්න',
       testTitle: 'OpenAmer',
@@ -380,7 +387,7 @@ export const si = defineLocale({
       testUnsupported: 'මෙම පද්ධතිය ස්වදේශීය දැනුම්දීම් සඳහා සහාය නොදක්වයි.',
       completionSoundTitle: 'සම්පූර්ණ වීමේ ශබ්දය',
       completionSoundDesc: 'ඒජන්ට් වාරයක් අවසන් වූ විට වාදනය වේ. පෙරසැකසුමක් තෝරා මෙහි පෙරදසුන් කරන්න.',
-      completionSoundPreview: 'පෙරදසුන',
+      completionSoundPreview: 'පෙරදසුන'
     },
     sections: {
       model: 'ආකෘතිය',
@@ -390,7 +397,7 @@ export const si = defineLocale({
       safety: 'ආරක්ෂාව',
       memory: 'මතකය සහ සන්දර්භය',
       voice: 'හඬ',
-      advanced: 'උසස්',
+      advanced: 'උසස්'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop පිළිබඳව',
@@ -398,25 +405,26 @@ export const si = defineLocale({
       gateway: 'ගේට්වේ සම්බන්ධතාවය...',
       keys: 'API යතුරු සොයන්න...',
       mcp: 'MCP සර්වර් සොයන්න...',
-      sessions: 'සංරක්ෂිත සැසි සොයන්න...',
+      sessions: 'සංරක්ෂිත සැසි සොයන්න...'
     },
     modeOptions: {
       light: {
         label: 'ලා',
-        description: 'දීප්ත ඩෙස්ක්ටොප් මතුපිට',
+        description: 'දීප්ත ඩෙස්ක්ටොප් මතුපිට'
       },
       dark: {
         label: 'අඳුරු',
-        description: 'අඩු දිලිසීම් වැඩබිම',
+        description: 'අඩු දිලිසීම් වැඩබිම'
       },
       system: {
         label: 'පද්ධතිය',
-        description: 'OS පෙනුම අනුගමනය කරන්න',
-      },
+        description: 'OS පෙනුම අනුගමනය කරන්න'
+      }
     },
     appearance: {
       title: 'පෙනුම',
-      intro: 'මේවා ඩෙස්ක්ටොප්-පමණක් දර්ශන මනාප වේ. මාදිලිය දීප්තිය පාලනය කරයි; තේමාව ඇක්සන්ට් වර්ණ පුවරුව සහ චැට් මතුපිට ශෛලිය පාලනය කරයි.',
+      intro:
+        'මේවා ඩෙස්ක්ටොප්-පමණක් දර්ශන මනාප වේ. මාදිලිය දීප්තිය පාලනය කරයි; තේමාව ඇක්සන්ට් වර්ණ පුවරුව සහ චැට් මතුපිට ශෛලිය පාලනය කරයි.',
       colorMode: 'වර්ණ මාදිලිය',
       colorModeDesc: 'ස්ථිර මාදිලියක් තෝරන්න හෝ OpenAmer ඔබේ පද්ධති සැකසුම අනුගමනය කිරීමට ඉඩ දෙන්න.',
       toolViewTitle: 'මෙවලම් ඇමතුම් ප්‍රදර්ශනය',
@@ -427,8 +435,10 @@ export const si = defineLocale({
       backdropTitle: 'චැට් පසුබිම',
       backdropDesc: 'සංවාදය පිටුපස ඇති මඳ ප්‍රතිමා රූපය.',
       pet: {
-        intro: 'යෙදුමට ඉහළින් පාවෙමින් OpenAmer කරන දේට ප්‍රතිචාර දක්වන සජීවී petdex මස්කට් එකක් භාරගන්න — මෙවලම් ක්‍රියාත්මක වන විට දුවයි, සාර්ථකත්වයේදී සමරයි, දෝෂවලදී කේන්ති ගනියි.',
-        restartHint: 'සුරතල් සතුන්ට ඉක්මන් නැවත ආරම්භයක් අවශ්‍යයි — මෙම විශේෂාංගය එකතු කිරීමට පෙර යෙදුම ධාවනය වී ඇත. OpenAmer වසා නැවත විවෘත කර, මෙතැනට ආපසු එන්න.',
+        intro:
+          'යෙදුමට ඉහළින් පාවෙමින් OpenAmer කරන දේට ප්‍රතිචාර දක්වන සජීවී petdex මස්කට් එකක් භාරගන්න — මෙවලම් ක්‍රියාත්මක වන විට දුවයි, සාර්ථකත්වයේදී සමරයි, දෝෂවලදී කේන්ති ගනියි.',
+        restartHint:
+          'සුරතල් සතුන්ට ඉක්මන් නැවත ආරම්භයක් අවශ්‍යයි — මෙම විශේෂාංගය එකතු කිරීමට පෙර යෙදුම ධාවනය වී ඇත. OpenAmer වසා නැවත විවෘත කර, මෙතැනට ආපසු එන්න.',
         on: 'සක්‍රීය',
         off: 'අක්‍රීය',
         scaleTitle: 'ප්‍රමාණය',
@@ -461,10 +471,11 @@ export const si = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
       embedsTitle: 'පේළිගත එම්බෙඩ්',
-      embedsDesc: 'පොහොසත් පෙරදසුන් තෙවන පාර්ශවීය අඩවිවලින් (YouTube, X, …) පූරණය වේ. අසන්න මගින් ඔබ එක් එකකට අවසර දෙන තෙක් ආදේශකයක් පෙන්වයි; සැමවිටම ඒවා ස්වයංක්‍රීයව පූරණය කරයි; අක්‍රිය සරල සබැඳි තබා ගනී.',
+      embedsDesc:
+        'පොහොසත් පෙරදසුන් තෙවන පාර්ශවීය අඩවිවලින් (YouTube, X, …) පූරණය වේ. අසන්න මගින් ඔබ එක් එකකට අවසර දෙන තෙක් ආදේශකයක් පෙන්වයි; සැමවිටම ඒවා ස්වයංක්‍රීයව පූරණය කරයි; අක්‍රිය සරල සබැඳි තබා ගනී.',
       embedsAsk: 'අසන්න',
       embedsAlways: 'සැමවිටම',
       embedsOff: 'අක්‍රිය',
@@ -475,17 +486,19 @@ export const si = defineLocale({
       themeTitle: 'තේමාව',
       themeDesc: 'ඩෙස්ක්ටොප් වර්ණ පුවරු පමණි. තෝරාගත් මාදිලිය ඉහළින් යෙදේ.',
       installTitle: 'VS Code වෙතින් ස්ථාපනය කරන්න',
-      installDesc: 'Marketplace දිගුවේ id එකක් (උදා: dracula-theme.theme-dracula) අලවන්න, එහි වර්ණ තේමාව ඩෙස්ක්ටොප් වර්ණ පුවරුවකට පරිවර්තනය කිරීමට.',
+      installDesc:
+        'Marketplace දිගුවේ id එකක් (උදා: dracula-theme.theme-dracula) අලවන්න, එහි වර්ණ තේමාව ඩෙස්ක්ටොප් වර්ණ පුවරුවකට පරිවර්තනය කිරීමට.',
       installButton: 'ස්ථාපනය කරන්න',
       installing: 'ස්ථාපනය වෙමින්…',
       installError: 'එම තේමාව ස්ථාපනය කළ නොහැකි විය.',
       removeTheme: 'තේමාව ඉවත් කරන්න',
       importedBadge: 'ආයාත කළ',
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installPlaceholder: 'publisher.extension',
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     about: {
       heading: 'OpenAmer ඩෙස්ක්ටොප්',
@@ -512,7 +525,7 @@ export const si = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     credentials: {
       saving: 'සුරකිමින්',
@@ -522,7 +535,7 @@ export const si = defineLocale({
       couldNotSave: 'අක්තපත්‍රය සුරැකිය නොහැකි විය.',
       remove: 'ඉවත් කරන්න',
       getKey: 'යතුරක් ලබාගන්න',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     envActions: {
       credentialActions: 'අක්තපත්‍ර ක්‍රියා',
@@ -533,7 +546,7 @@ export const si = defineLocale({
       replace: 'ප්‍රතිස්ථාපනය කරන්න',
       set: 'සකසන්න',
       clear: 'හිස් කරන්න',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     gateway: {
       loading: 'ගේට්වේ සැකසුම් පූරණය වෙමින්...',
@@ -541,34 +554,42 @@ export const si = defineLocale({
       unavailableDesc: 'ඩෙස්ක්ටොප් IPC පාලම මගින් ගේට්වේ සැකසුම් හෙළි නොකරයි.',
       title: 'ගේට්වේ සම්බන්ධතාව',
       envOverride: 'env අභිබවා යාම',
-      intro: 'OpenAmer Desktop පෙරනිමියෙන් තමන්ගේම දේශීය ගේට්වේ එකක් ආරම්භ කරයි. වෙනත් යන්ත්‍රයක හෝ විශ්වාසදායක ප්‍රොක්සියක් පිටුපස දැනටමත් ක්‍රියාත්මක වන OpenAmer බැක්එන්ඩ් එකක් මෙම යෙදුමෙන් පාලනය කිරීමට අවශ්‍ය විට දුරස්ථ ගේට්වේ එකක් භාවිත කරන්න. එයට තමන්ගේම දුරස්ථ සත්කාරකයක් ලබා දීමට පහත පැතිකඩක් තෝරන්න.',
+      intro:
+        'OpenAmer Desktop පෙරනිමියෙන් තමන්ගේම දේශීය ගේට්වේ එකක් ආරම්භ කරයි. වෙනත් යන්ත්‍රයක හෝ විශ්වාසදායක ප්‍රොක්සියක් පිටුපස දැනටමත් ක්‍රියාත්මක වන OpenAmer බැක්එන්ඩ් එකක් මෙම යෙදුමෙන් පාලනය කිරීමට අවශ්‍ය විට දුරස්ථ ගේට්වේ එකක් භාවිත කරන්න. එයට තමන්ගේම දුරස්ථ සත්කාරකයක් ලබා දීමට පහත පැතිකඩක් තෝරන්න.',
       appliesTo: 'අදාළ වන්නේ',
       allProfiles: 'සියලු පැතිකඩ',
       defaultConnection: 'තමන්ගේම අභිබවා යාමක් නොමැති සෑම පැතිකඩකටම පෙරනිමි සම්බන්ධතාව.',
       envOverrideTitle: 'පරිසර විචල්‍ය මෙම ඩෙස්ක්ටොප් සැසිය පාලනය කරමින් පවතී.',
-      envOverrideDesc: 'පහත සුරකින ලද සැකසුම භාවිත කිරීමට OPENAMER_DESKTOP_REMOTE_URL සහ OPENAMER_DESKTOP_REMOTE_TOKEN ඉවත් කරන්න.',
+      envOverrideDesc:
+        'පහත සුරකින ලද සැකසුම භාවිත කිරීමට OPENAMER_DESKTOP_REMOTE_URL සහ OPENAMER_DESKTOP_REMOTE_TOKEN ඉවත් කරන්න.',
       signOut: 'ඉවත් වීම',
       authTitle: 'සත්‍යාපනය',
-      authSignedInPassword: 'මෙම ගේට්වේ පරිශීලක නාමයක් සහ මුරපදයක් භාවිතා කරයි. ඔබ පිවිසී ඇත; සැසිය ස්වයංක්‍රීයව නැවුම් වේ.',
+      authSignedInPassword:
+        'මෙම ගේට්වේ පරිශීලක නාමයක් සහ මුරපදයක් භාවිතා කරයි. ඔබ පිවිසී ඇත; සැසිය ස්වයංක්‍රීයව නැවුම් වේ.',
       authSignedInOauth: 'මෙම ගේට්වේ OAuth භාවිතා කරයි. ඔබ පිවිසී ඇත; සැසිය ස්වයංක්‍රීයව නැවුම් වේ.',
-      authNeedsPassword: 'මෙම ගේට්වේ පරිශීලක නාමයක් සහ මුරපදයක් භාවිතා කරයි. මෙම ඩෙස්ක්ටොප් යෙදුම බලගැන්වීමට පිවිසෙන්න.',
+      authNeedsPassword:
+        'මෙම ගේට්වේ පරිශීලක නාමයක් සහ මුරපදයක් භාවිතා කරයි. මෙම ඩෙස්ක්ටොප් යෙදුම බලගැන්වීමට පිවිසෙන්න.',
       tokenTitle: 'සැසි ටෝකනය',
-      tokenDesc: 'REST සහ WebSocket ප්‍රවේශය සඳහා භාවිතා කරන dashboard සැසි ටෝකනය. සුරකින ලද ටෝකනය තබා ගැනීමට හිස්ව තබන්න.',
+      tokenDesc:
+        'REST සහ WebSocket ප්‍රවේශය සඳහා භාවිතා කරන dashboard සැසි ටෝකනය. සුරකින ලද ටෝකනය තබා ගැනීමට හිස්ව තබන්න.',
       savedToken: 'සුරකින ලදි',
       pasteSessionToken: 'සැසි ටෝකනය අලවන්න',
       testRemote: 'දුරස්ථය පරීක්ෂා කරන්න',
       saveForRestart: 'ඊළඟ නැවත ආරම්භය සඳහා සුරකින්න',
       saveAndReconnect: 'සුරකින්න සහ නැවත සම්බන්ධ වන්න',
       diagnostics: 'රෝග විනිශ්චය',
-      diagnosticsDesc: 'ඔබේ ගොනු කළමනාකරු තුළ `desktop.log` හෙළිදරව් කරන්න — ගේට්වේ ආරම්භ කිරීමට අපොහොසත් වන විට ප්‍රයෝජනවත්.',
+      diagnosticsDesc:
+        'ඔබේ ගොනු කළමනාකරු තුළ `desktop.log` හෙළිදරව් කරන්න — ගේට්වේ ආරම්භ කිරීමට අපොහොසත් වන විට ප්‍රයෝජනවත්.',
       openLogs: 'ලොග් විවෘත කරන්න',
       incompleteTitle: 'දුරස්ථ ගේට්වේ අසම්පූර්ණයි',
       incompleteSignIn: 'දුරස්ථ වෙත මාරු වීමට පෙර දුරස්ථ URL එකක් ඇතුළත් කර පිවිසෙන්න.',
       incompleteToken: 'දුරස්ථ වෙත මාරු වීමට පෙර දුරස්ථ URL එකක් සහ සැසි ටෝකනයක් ඇතුළත් කරන්න.',
       incompleteSignInTest: 'පරීක්ෂා කිරීමට පෙර දුරස්ථ URL එකක් ඇතුළත් කර පිවිසෙන්න.',
       incompleteTokenTest: 'පරීක්ෂා කිරීමට පෙර දුරස්ථ URL එකක් සහ සැසි ටෝකනයක් ඇතුළත් කරන්න.',
-      sshErrNotInstalled: 'OpenAmer දුරස්ථ සත්කාරකයේ ස්ථාපනය කර නැත. එහි එය ස්ථාපනය කරන්න (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) හෝ OpenAmer මාර්ගය සකසන්න.',
-      sshErrPlatform: 'සහාය නොදක්වන දුරස්ථ වේදිකාවකි. OpenAmer Desktop SSH මාදිලිය Linux, macOS සහ Windows දුරස්ථ සත්කාරක සඳහා සහාය දක්වයි.',
+      sshErrNotInstalled:
+        'OpenAmer දුරස්ථ සත්කාරකයේ ස්ථාපනය කර නැත. එහි එය ස්ථාපනය කරන්න (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) හෝ OpenAmer මාර්ගය සකසන්න.',
+      sshErrPlatform:
+        'සහාය නොදක්වන දුරස්ථ වේදිකාවකි. OpenAmer Desktop SSH මාදිලිය Linux, macOS සහ Windows දුරස්ථ සත්කාරක සඳහා සහාය දක්වයි.',
       sshErrTimeout: 'SSH සම්බන්ධතාවය කාලය ඉක්මවා ගියේය. සත්කාරකයට ළඟා විය නොහැකි හෝ නිදාගෙන සිටිය හැක.',
       sshErrUpdateRequired: 'Desktop SSH සමඟ සම්බන්ධ වීමට පෙර දුරස්ථ සත්කාරකයේ OpenAmer යාවත්කාලීන කරන්න.',
       sshErrUnknown: 'SSH සම්බන්ධතාවය අසාර්ථක විය.',
@@ -578,7 +599,7 @@ export const si = defineLocale({
       cloudNoAgents: {
         before: 'මෙම ගිණුමේ ඒජන්ට් කිසිවක් හමු නොවීය. එකක් සාදන්න',
         linkText: 'OpenAmer ද්වාරය',
-        after: ', පසුව නැවුම් කරන්න.',
+        after: ', පසුව නැවුම් කරන්න.'
       },
       cloudRefresh: 'නැවුම් කරන්න',
       cloudConnect: 'සම්බන්ධ කරන්න',
@@ -621,7 +642,8 @@ export const si = defineLocale({
       inheritDesc: 'මෙම පැතිකඩේ අධික්‍රමණය ඉවත් කර පෙරනිමි සම්බන්ධතාව භාවිත කරන්න.',
       remoteTitle: 'දුරස්ථ ද්වාරය',
       remoteDesc: 'මෙම ඩෙස්ක්ටොප් ෂෙලය දුරස්ථ OpenAmer පසුතලයකට සම්බන්ධ කරන්න.',
-      remoteAuthHint: 'සත්කාරක ද්වාර OAuth හෝ පරිශීලක නාමයක් සහ මුරපදයක් භාවිත කරයි; ස්වයං-සත්කාරක ඒවා සැසි ටෝකනයක් භාවිත කළ හැක.',
+      remoteAuthHint:
+        'සත්කාරක ද්වාර OAuth හෝ පරිශීලක නාමයක් සහ මුරපදයක් භාවිත කරයි; ස්වයං-සත්කාරක ඒවා සැසි ටෝකනයක් භාවිත කළ හැක.',
       cloudDesc: 'OpenAmer Cloud වෙත එක් වරක් පිවිස ඔබේ ගිණුමේ ඇති නියෝජිතයන්ගෙන් තෝරන්න — අලවා ගැනීමට URL එකක් නැත.',
       cloudSignIn: 'OpenAmer Cloud වෙත පිවිසෙන්න',
       cloudSignedIn: 'OpenAmer Cloud වෙත පිවිසී ඇත',
@@ -647,14 +669,19 @@ export const si = defineLocale({
       applyFailed: 'ගේට්වේ සැකසුම් යෙදිය නොහැකි විය',
       saveFailed: 'ගේට්වේ සැකසුම් සුරකින්න නොහැකි විය',
       sshTitle: 'SSH හරහා සම්බන්ධ වන්න',
-      sshDesc: 'OpenAmer දුරස්ථයේ SSH හරහා ආරම්භ කර මෙම යෙදුමට tunnel කරනු ලැබේ — ඔබම ආරම්භ කිරීමට හෝ නිරාවරණය කිරීමට කිසිවක් නැත. සත්කාරකයට වැඩ කරන යතුරු මත පදනම් වූ SSH ප්‍රවේශය අවශ්‍යයි.',
-      sshTrustHint: 'පළමුව ඉදිරිපත් වන සත්කාරක යතුර විශ්වාස කර pin කරනු ලැබේ; පසුව සිදුවන වෙනස්කම් fail closed ලෙස අසාර්ථක වේ.',
+      sshDesc:
+        'OpenAmer දුරස්ථයේ SSH හරහා ආරම්භ කර මෙම යෙදුමට tunnel කරනු ලැබේ — ඔබම ආරම්භ කිරීමට හෝ නිරාවරණය කිරීමට කිසිවක් නැත. සත්කාරකයට වැඩ කරන යතුරු මත පදනම් වූ SSH ප්‍රවේශය අවශ්‍යයි.',
+      sshTrustHint:
+        'පළමුව ඉදිරිපත් වන සත්කාරක යතුර විශ්වාස කර pin කරනු ලැබේ; පසුව සිදුවන වෙනස්කම් fail closed ලෙස අසාර්ථක වේ.',
       sshErrUnreachable: 'SSH හරහා එම host වෙත ළඟා විය නොහැකි විය. host, port සහ ඔබේ ජාලය පරීක්ෂා කරන්න.',
-      sshErrAuth: 'SSH සත්‍යාපනය අසාර්ථක විය. ඔබේ key එක ssh-agent (ssh-add) වෙත පූරණය කරන්න හෝ ~/.ssh/config හි IdentityFile එකක් සකසන්න — OpenAmer ssh එක අන්තර්ක්‍රියා රහිතව ධාවනය කරයි.',
-      sshErrHostKey: 'ඔබ අවසන් වරට සම්බන්ධ වූ දා සිට host key වෙනස් වී ඇත. මෙය අපේක්ෂිත බව තහවුරු කර, ssh-keygen -R <host> ධාවනය කර නැවත සම්බන්ධ වන්න.',
+      sshErrAuth:
+        'SSH සත්‍යාපනය අසාර්ථක විය. ඔබේ key එක ssh-agent (ssh-add) වෙත පූරණය කරන්න හෝ ~/.ssh/config හි IdentityFile එකක් සකසන්න — OpenAmer ssh එක අන්තර්ක්‍රියා රහිතව ධාවනය කරයි.',
+      sshErrHostKey:
+        'ඔබ අවසන් වරට සම්බන්ධ වූ දා සිට host key වෙනස් වී ඇත. මෙය අපේක්ෂිත බව තහවුරු කර, ssh-keygen -R <host> ධාවනය කර නැවත සම්බන්ධ වන්න.',
       cloudTitle: 'OpenAmer ක්ලවුඩ්',
       cloudSignInTitle: 'OpenAmer ක්ලවුඩ්',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudOrgRole: role => `Role: ${role}`,
       cloudConnectedTo: name => `Connected to ${name}.`,
       cloudStatusLabel: status => `Status: ${status}`,
@@ -662,7 +689,7 @@ export const si = defineLocale({
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     config: {
       none: 'කිසිවක් නැත',
@@ -678,7 +705,8 @@ export const si = defineLocale({
       imported: 'වින්‍යාසය ආයාත කරන ලදි',
       invalidJson: 'වලංගු නොවන වින්‍යාස JSON',
       keepAwakeTitle: 'පරිගණකය අවදියෙන් තබා ගන්න',
-      keepAwakeDesc: 'දිගු හෝ රාත්‍රී ධාවන ක්‍රියාත්මක වීමට මෙම යන්ත්‍රය නිදාගැනීමෙන් වළක්වන්න. තිරය තවමත් අඳුරු විය හැක.',
+      keepAwakeDesc:
+        'දිගු හෝ රාත්‍රී ධාවන ක්‍රියාත්මක වීමට මෙම යන්ත්‍රය නිදාගැනීමෙන් වළක්වන්න. තිරය තවමත් අඳුරු විය හැක.'
     },
     mcp: {
       catalogEmpty: 'කැටලොග් සටහන් නොමැත.',
@@ -740,10 +768,11 @@ export const si = defineLocale({
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       authenticatedMessage: (server, count) => `${server}: ${count} tools`,
       enableTool: tool => `Enable ${tool}`,
-      disableTool: tool => `Disable ${tool}`,
+      disableTool: tool => `Disable ${tool}`
     },
     model: {
       loading: 'ආකෘති වින්‍යාසය පූරණය වෙමින්...',
@@ -752,36 +781,36 @@ export const si = defineLocale({
       tasks: {
         compression: {
           label: 'සම්පීඩනය',
-          hint: 'සන්දර්භ සංකෝචනය',
+          hint: 'සන්දර්භ සංකෝචනය'
         },
         skills_hub: {
           label: 'නිපුණතා කේන්ද්‍රය',
-          hint: 'නිපුණතා සෙවීම',
+          hint: 'නිපුණතා සෙවීම'
         },
         approval: {
           label: 'අනුමැතිය',
-          hint: 'බුද්ධිමත් ස්වයං අනුමැතිය',
+          hint: 'බුද්ධිමත් ස්වයං අනුමැතිය'
         },
         mcp: {
           hint: 'MCP මෙවලම් මාර්ගගත කිරීම',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'ශීර්ෂක ජනනය',
-          hint: 'සැසි ශීර්ෂක',
+          hint: 'සැසි ශීර්ෂක'
         },
         curator: {
           label: 'සංග්‍රාහක',
-          hint: 'නිපුණතා භාවිත සමාලෝචනය',
+          hint: 'නිපුණතා භාවිත සමාලෝචනය'
         },
         vision: {
           label: 'දෘශ්‍ය',
-          hint: 'රූප විශ්ලේෂණය',
+          hint: 'රූප විශ්ලේෂණය'
         },
         web_extract: {
           label: 'වෙබ් උපුටා ගැනීම',
-          hint: 'පිටු සාරාංශය',
-        },
+          hint: 'පිටු සාරාංශය'
+        }
       },
       model: 'ආකෘතිය',
       applying: 'යොදමින්...',
@@ -791,24 +820,26 @@ export const si = defineLocale({
       defaultsFailed: 'ආකෘති පෙරනිමි සුරැකීමට අසාර්ථක විය',
       auxiliaryTitle: 'සහායක ආකෘති',
       resetAllToMain: 'සියල්ල ප්‍රධාන ආකෘතියට නැවත සකසන්න',
-      auxiliaryDesc: 'සහායක කාර්යයන් පෙරනිමියෙන් ප්‍රධාන ආකෘතියේ ධාවනය වේ. ඕනෑම කාර්යයක් සඳහා වෙන් කළ ආකෘතියක් පවරා එය අභිබවා යන්න.',
+      auxiliaryDesc:
+        'සහායක කාර්යයන් පෙරනිමියෙන් ප්‍රධාන ආකෘතියේ ධාවනය වේ. ඕනෑම කාර්යයක් සඳහා වෙන් කළ ආකෘතියක් පවරා එය අභිබවා යන්න.',
       setToMain: 'ප්‍රධාන ආකෘතියට සකසන්න',
       change: 'වෙනස් කරන්න',
       autoUseMain: 'ස්වයං Â· ප්‍රධාන ආකෘතිය භාවිත කරන්න',
       providerDefault: '(සපයන්නාගේ පෙරනිමිය)',
       fallbackAdd: 'ආපසු ආකෘතියක් එක් කරන්න',
       fallbackEmpty: 'ආපසු ආකෘති නැත â€” එය අසාර්ථක නොවන්නේ නම් පෙරනිමි ආකෘතිය භාවිත වේ.',
-      notInCatalog: 'මෙම සපයන්නාගේ ආකෘති ලැයිස්තුවේ නොමැත â€” ඇමතුම් උපස්ථයකට ආපසු යා හැක.',
+      notInCatalog: 'මෙම සපයන්නාගේ ආකෘති ලැයිස්තුවේ නොමැත â€” ඇමතුම් උපස්ථයකට ආපසු යා හැක.'
     },
     keys: {
       loading: 'API යතුරු සහ අක්තපත්‍ර පූරණය වෙමින්...',
       failedLoad: 'API යතුරු පූරණය කිරීම අසාර්ථක විය',
-      empty: 'මෙම කාණ්ඩයේ තවම කිසිවක් වින්‍යාස කර නැත.',
+      empty: 'මෙම කාණ්ඩයේ තවම කිසිවක් වින්‍යාස කර නැත.'
     },
     providers: {
       connectAccount: 'ගිණුමක් සම්බන්ධ කරන්න',
       haveApiKey: 'ඒ වෙනුවට API යතුරක් තිබේද?',
-      intro: 'දායකත්වයකින් පිවිසෙන්න — පිටපත් කිරීමට API යතුරක් අවශ්‍ය නැත. OpenAmer ඔබ වෙනුවෙන් බ්‍රවුසර පිවිසුම මෙහි යෙදුම තුළම ධාවනය කරයි.',
+      intro:
+        'දායකත්වයකින් පිවිසෙන්න — පිටපත් කිරීමට API යතුරක් අවශ්‍ය නැත. OpenAmer ඔබ වෙනුවෙන් බ්‍රවුසර පිවිසුම මෙහි යෙදුම තුළම ධාවනය කරයි.',
       connected: 'සම්බන්ධයි',
       collapse: 'හකුළන්න',
       connectAnother: 'තවත් සැපයුම්කරුවෙකු සම්බන්ධ කරන්න',
@@ -821,16 +852,17 @@ export const si = defineLocale({
       noKeysMatch: 'ඔබේ සෙවුමට ගැළපෙන සපයන්නන් නොමැත.',
       localEndpoint: {
         title: 'දේශීය / අභිරුචි අන්ත ලක්ෂ්‍යය',
-        description: 'OpenAmer ඕනෑම OpenAI-ගැළපෙන අන්ත ලක්ෂ්‍යයකට යොමු කරන්න (Zyphra, vLLM, llama.cpp, Ollama, ආදිය).',
+        description: 'OpenAmer ඕනෑම OpenAI-ගැළපෙන අන්ත ලක්ෂ්‍යයකට යොමු කරන්න (Zyphra, vLLM, llama.cpp, Ollama, ආදිය).'
       },
       loading: 'සපයන්නන් පූරණය වෙමින්...',
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     toolsets: {
       webCapabilityUnset: 'සකසා නැත',
@@ -855,7 +887,7 @@ export const si = defineLocale({
         selectedTitle: 'බැකෙන්ඩ් තෝරන ලදි',
         needsSetupHint: 'දැන් ඔබට මෙම බැකෙන්ඩ් තෝරාගත හැක — සැකසුම සම්පූර්ණ වන තෙක් විධාන අසාර්ථක වනු ඇත.',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       loadingConfig: 'වින්‍යාසය පූරණය වෙමින්',
       savedTitle: 'අක්තපත්‍රය සුරකින ලදි',
@@ -869,7 +901,8 @@ export const si = defineLocale({
       postSetupStarting: 'ආරම්භ වෙමින්…',
       postSetupCompleteTitle: 'සැකසුම සම්පූර්ණයි',
       postSetupErrorTitle: 'සැකසුම දෝෂ සහිතව අවසන් විය',
-      noProviderOptions: 'මෙම මෙවලම් කට්ටලයට සැපයුම්කරු විකල්ප නොමැත — එය සක්‍රීය කරන්න, එවිට එය ඔබේ වත්මන් සැකසුම සමඟ ක්‍රියා කරයි.',
+      noProviderOptions:
+        'මෙම මෙවලම් කට්ටලයට සැපයුම්කරු විකල්ප නොමැත — එය සක්‍රීය කරන්න, එවිට එය ඔබේ වත්මන් සැකසුම සමඟ ක්‍රියා කරයි.',
       noProviders: 'මෙම මෙවලම් කට්ටලය සඳහා දැන් සැපයුම්කරුවන් නොමැත.',
       ready: 'සූදානම්',
       needsSignIn: 'පිවිසුම අවශ්‍යයි',
@@ -892,8 +925,10 @@ export const si = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -903,12 +938,13 @@ export const si = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     sessions: {
       autoArchiveFailed: 'ස්වයංක්‍රීය ලේඛනාගාරය යාවත්කාලීන කළ නොහැක',
       defaultDirTitle: 'පෙරනිමි ව්‍යාපෘති ෆෝල්ඩරය',
-      defaultDirDesc: 'ඔබ වෙනත් එකක් තෝරා නොගන්නේ නම් නව සැසි මෙම ෆෝල්ඩරයේ ආරම්භ වේ. ඔබේ ගෘහ ෆෝල්ඩරය භාවිතා කිරීමට එය සකසා නොමැතිව තබන්න.',
+      defaultDirDesc:
+        'ඔබ වෙනත් එකක් තෝරා නොගන්නේ නම් නව සැසි මෙම ෆෝල්ඩරයේ ආරම්භ වේ. ඔබේ ගෘහ ෆෝල්ඩරය භාවිතා කිරීමට එය සකසා නොමැතිව තබන්න.',
       change: 'වෙනස් කරන්න',
       choose: 'තෝරන්න',
       clear: 'හිස් කරන්න',
@@ -920,23 +956,25 @@ export const si = defineLocale({
       clearDirFailed: 'පෙරනිමි ෆෝල්ඩරය හිස් කළ නොහැක',
       loading: 'සංරක්ෂිත සැසි පූරණය වෙමින්…',
       archivedTitle: 'සංරක්ෂිත සැසි',
-      archivedIntro: 'සංරක්ෂිත චැට් පැති තීරුවෙන් සඟවා ඇත, නමුත් ඒවායේ සියලු පණිවිඩ තබා ගනී. එය සංරක්ෂණය කිරීමට පැති තීරුවේ චැට් එකක් Ctrl/âŒ˜-click කරන්න.',
+      archivedIntro:
+        'සංරක්ෂිත චැට් පැති තීරුවෙන් සඟවා ඇත, නමුත් ඒවායේ සියලු පණිවිඩ තබා ගනී. එය සංරක්ෂණය කිරීමට පැති තීරුවේ චැට් එකක් Ctrl/âŒ˜-click කරන්න.',
       emptyArchivedTitle: 'කිසිවක් සංරක්ෂණය කර නැත',
       emptyArchivedDesc: 'එය මෙහි සැඟවීමට චැට් එකක් සංරක්ෂණය කරන්න.',
       unarchive: 'සංරක්ෂණය ඉවත් කරන්න',
       deletePermanently: 'ස්ථිරව මකන්න',
       restored: 'ප්‍රතිස්ථාපනය කර ඇත',
       autoArchiveTitle: 'ක්‍රියාකාරී නොවන කතාබහ ස්වයංක්‍රීයව සංරක්ෂණය කරන්න',
-      autoArchiveDesc: 'ඔබ දිගු කලක් ස්පර්ශ නොකළ කතාබහ ස්වයංක්‍රීයව සංරක්ෂණය කරන්න. ඇමිණූ කතාබහ කිසිදා සංරක්ෂණය නොවේ, කිසිවක් මකා නොදමයි — සංරක්ෂිත කතාබහ මෙතැනට පමණක් ගෙන එයි.',
+      autoArchiveDesc:
+        'ඔබ දිගු කලක් ස්පර්ශ නොකළ කතාබහ ස්වයංක්‍රීයව සංරක්ෂණය කරන්න. ඇමිණූ කතාබහ කිසිදා සංරක්ෂණය නොවේ, කිසිවක් මකා නොදමයි — සංරක්ෂිත කතාබහ මෙතැනට පමණක් ගෙන එයි.',
       autoArchiveDaysLabel: 'පසු සංරක්ෂණය කරන්න',
       autoArchiveDaysUnit: 'ක්‍රියාකාරීත්වය නොමැති දින',
       defaultDirUpdated: 'පෙරනිමි ව්‍යාපෘති නාමාවලිය යාවත්කාලීන විය — එය බලපැවැත්වීමට නව චැට් එකක් අරඹන්න (Ctrl/âŒ˜+N)',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     toolsetsRefreshFailed: 'මෙවලම් කට්ටල නැවුම් කිරීමට අසමත් විය',
@@ -954,7 +992,7 @@ export const si = defineLocale({
     provenance: {
       agent: 'ඉගෙන ගත්',
       bundled: 'ආවේණික',
-      hub: 'හබ්',
+      hub: 'හබ්'
     },
     changesApplyNewSessions: 'වෙනස්කම් නව සැසිවලට අදාළ වේ.',
     skillUpdated: 'කුසලතාව යාවත්කාලීන විය',
@@ -987,7 +1025,7 @@ export const si = defineLocale({
       trust: {
         builtin: 'ඇතුළත්',
         trusted: 'විශ්වාසනීය',
-        community: 'ප්‍රජාව',
+        community: 'ප්‍රජාව'
       },
       verdictSafe: 'ආරක්ෂිත',
       verdictCaution: 'ප්‍රවේශම්',
@@ -1007,7 +1045,7 @@ export const si = defineLocale({
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     tabSkills: 'කුසලතා',
     tabToolsets: 'මෙවලම්',
@@ -1025,7 +1063,8 @@ export const si = defineLocale({
     noDescription: 'විස්තරයක් නැත.',
     configured: 'වින්‍යාස කර ඇත',
     needsKeys: 'යතුරු අවශ්‍යයි',
-    visionModelHint: 'දර්ශනය ඔබේ සහායක ආකෘති වින්‍යාසය භාවිතා කරයි — රූපයට හැකියාව ඇති ආකෘතිය එහි තෝරාගනු ලැබේ, මෙහි සපයන්නා අනුව නොවේ.',
+    visionModelHint:
+      'දර්ශනය ඔබේ සහායක ආකෘති වින්‍යාසය භාවිතා කරයි — රූපයට හැකියාව ඇති ආකෘතිය එහි තෝරාගනු ලැබේ, මෙහි සපයන්නා අනුව නොවේ.',
     visionModelLink: 'සැකසුම් → ආකෘති තුළ දර්ශන ආකෘතිය තෝරන්න',
     skillsLoadFailed: 'කුසලතා පූරණය වීම අසාර්ථක විය',
     sortAlpha: 'A–Z',
@@ -1039,7 +1078,7 @@ export const si = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   commandCenter: {
     branches: 'ශාඛා',
@@ -1062,7 +1101,7 @@ export const si = defineLocale({
       generatedTag: 'උත්පාදිතයි',
       adoptFailed: 'එම සුරතල් සතා හදාගත නොහැක.',
       toggleFailed: 'සුරතල් සතා සක්‍රීය/අක්‍රීය කළ නොහැක.',
-      noneAvailable: 'සුරතල් සතුන් නොමැත — ස්ථාපනයට පහතින් එකක් තෝරන්න.',
+      noneAvailable: 'සුරතල් සතුන් නොමැත — ස්ථාපනයට පහතින් එකක් තෝරන්න.'
     },
     generatePet: {
       title: 'සුරතලෙක් ජනනය කරන්න',
@@ -1085,61 +1124,62 @@ export const si = defineLocale({
       slowProviderHint: 'මෙයට මිනිත්තු කිහිපයක් ගත විය හැක',
       remix: 'නැවත මිශ්‍ර කරන්න',
       remixConfirmTitle: 'මෙම පෙනුම නැවත මිශ්‍ර කරන්නද?',
-      remixConfirmBody: 'මෙය ආරම්භක ලක්ෂ්‍යය ලෙස භාවිතා කර නව කෙටුම්පත් කට්ටලයක් ජනනය කරයි. මෙයට විනාඩි කිහිපයක් ගත විය හැක.',
+      remixConfirmBody:
+        'මෙය ආරම්භක ලක්ෂ්‍යය ලෙස භාවිතා කර නව කෙටුම්පත් කට්ටලයක් ජනනය කරයි. මෙයට විනාඩි කිහිපයක් ගත විය හැක.',
       genericError: 'ජනනය අසාර්ථක විය — නැවත උත්සාහ කරන්න හෝ යෝජනාවක් තෝරන්න.',
       referenceImageTooLarge: 'යොමු රූපය ඉතා විශාලය. 16 MB ට අඩු එකක් භාවිතා කරන්න.',
       referenceImageInvalid: 'එම යොමු රූපය කියවිය නොහැකි විය. PNG, JPG, WebP හෝ GIF උත්සාහ කරන්න.',
       adopt: 'භාරගන්න',
       startOver: 'නැවත අරඹන්න',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     sections: {
       system: 'පද්ධතිය',
       usage: 'භාවිතය',
       maintenance: 'නඩත්තුව',
-      sessions: 'සැසි',
+      sessions: 'සැසි'
     },
     sectionDescriptions: {
       maintenance: 'රෝග විනිශ්චය, උපස්ථ කිරීම්, කියුරේටර් සහ මතක දත්ත',
       sessions: 'සැසි සොයන්න සහ කළමනාකරණය කරන්න',
       system: 'තත්ත්වය, ලොග්, සහ පද්ධති ක්‍රියා',
-      usage: 'කාලයත් සමඟ ටෝකන්, පිරිවැය සහ කුසලතා ක්‍රියාකාරකම්',
+      usage: 'කාලයත් සමඟ ටෝකන්, පිරිවැය සහ කුසලතා ක්‍රියාකාරකම්'
     },
     nav: {
       newChat: {
         title: 'නව සැසිය',
-        detail: 'නව සැසියක් අරඹන්න',
+        detail: 'නව සැසියක් අරඹන්න'
       },
       settings: {
         title: 'සැකසුම්',
-        detail: 'OpenAmer ඩෙස්ක්ටොප් වින්‍යාස කරන්න',
+        detail: 'OpenAmer ඩෙස්ක්ටොප් වින්‍යාස කරන්න'
       },
       skills: {
         title: 'හැකියාවන්',
-        detail: 'කුසලතා, මෙවලම් සහ MCP සේවාදායක',
+        detail: 'කුසලතා, මෙවලම් සහ MCP සේවාදායක'
       },
       messaging: {
         title: 'පණිවිඩකරණය',
-        detail: 'Telegram, Slack, Discord සහ තවත් සකසන්න',
+        detail: 'Telegram, Slack, Discord සහ තවත් සකසන්න'
       },
       artifacts: {
         title: 'ආටිෆැක්ට්ස්',
-        detail: 'ජනනය කළ ප්‍රතිදාන බලන්න',
-      },
+        detail: 'ජනනය කළ ප්‍රතිදාන බලන්න'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'සැසි පැනලය',
-        detail: 'සැසි සොයන්න, පින් කරන්න සහ කළමනාකරණය කරන්න',
+        detail: 'සැසි සොයන්න, පින් කරන්න සහ කළමනාකරණය කරන්න'
       },
       system: {
         title: 'පද්ධති පැනලය',
-        detail: 'ගේට්වේ තත්ත්වය, ලොග්, නැවත අරඹන්න/යාවත්කාලීන කරන්න',
+        detail: 'ගේට්වේ තත්ත්වය, ලොග්, නැවත අරඹන්න/යාවත්කාලීන කරන්න'
       },
       usage: {
         title: 'භාවිත පැනලය',
-        detail: 'ටෝකන්, පිරිවැය සහ කුසලතා ක්‍රියාකාරකම්',
-      },
+        detail: 'ටෝකන්, පිරිවැය සහ කුසලතා ක්‍රියාකාරකම්'
+      }
     },
     installTheme: {
       title: 'තේමාව ස්ථාපනය කරන්න…',
@@ -1151,7 +1191,7 @@ export const si = defineLocale({
       install: 'ස්ථාපනය කරන්න',
       installing: 'ස්ථාපනය කරමින්...',
       installed: 'ස්ථාපනය කර ඇත',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'සැකසුම් ක්ෂේත්‍ර',
     mcpServers: 'MCP සේවාදායක',
@@ -1204,7 +1244,8 @@ export const si = defineLocale({
       backup: 'උපස්ථයක් සාදන්න',
       backupDesc: 'වින්‍යාසය, මතකයන්, කුසලතා සහ සැසි zip කරන්න',
       debugShare: 'නිදොස් බෙදාගැනීම',
-      debugShareDesc: 'රහස්‍ය ඉවත් කළ වාර්තාවක් + ලොග් උඩුගත කරන්න, බෙදාගත හැකි සබැඳි ලබාගන්න (පැය 6කින් ස්වයංක්‍රීයව මැකේ)',
+      debugShareDesc:
+        'රහස්‍ය ඉවත් කළ වාර්තාවක් + ලොග් උඩුගත කරන්න, බෙදාගත හැකි සබැඳි ලබාගන්න (පැය 6කින් ස්වයංක්‍රීයව මැකේ)',
       debugShareRunning: 'නිදොස් වාර්තාව උඩුගත කරමින්...',
       debugShareLinks: 'බෙදාගැනීමේ සබැඳි',
       debugShareFailed: 'නිදොස් බෙදාගැනීම අසාර්ථක විය',
@@ -1237,7 +1278,7 @@ export const si = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     close: 'විධාන මධ්‍යස්ථානය වසන්න',
     paletteTitle: 'විධාන පැලට්',
@@ -1250,7 +1291,7 @@ export const si = defineLocale({
     days: count => `${count}d`,
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   messaging: {
     states: {
@@ -1262,7 +1303,7 @@ export const si = defineLocale({
       pending_restart: 'නැවත ආරම්භ කිරීම අවශ්‍යයි',
       retrying: 'නැවත උත්සාහ කරමින්',
       startup_failed: 'ආරම්භ කිරීම අසාර්ථකයි',
-      connected: 'සම්බන්ධයි',
+      connected: 'සම්බන්ධයි'
     },
     unknown: 'නොදනී',
     hintPendingRestart: 'මෙම වෙනස යෙදීමට තත්ත්ව තීරුවෙන් ගේට්වේ නැවත ආරම්භ කරන්න.',
@@ -1274,130 +1315,131 @@ export const si = defineLocale({
     openSetupGuide: 'සැකසුම් මාර්ගෝපදේශය විවෘත කරන්න',
     required: 'අවශ්‍යයි',
     recommended: 'නිර්දේශිතයි',
-    noTokenNeeded: 'මෙම වේදිකාවට මෙහි ටෝකනයක් අවශ්‍ය නැත. ඉහත සැකසුම් මාර්ගෝපදේශය භාවිත කර, පසුව පහතින් එය සක්‍රීය කරන්න.',
+    noTokenNeeded:
+      'මෙම වේදිකාවට මෙහි ටෝකනයක් අවශ්‍ය නැත. ඉහත සැකසුම් මාර්ගෝපදේශය භාවිත කර, පසුව පහතින් එය සක්‍රීය කරන්න.',
     enabled: 'සක්‍රීයයි',
     fieldCopy: {
       DISCORD_REPLY_TO_MODE: {
         label: 'පිළිතුරු විලාසය',
-        help: 'පළමු, සියල්ල, හෝ අක්‍රිය.',
+        help: 'පළමු, සියල්ල, හෝ අක්‍රිය.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'සියලු Discord පරිශීලකයින්ට ඉඩ දෙන්න',
-        help: 'සංවර්ධනයට පමණි. true නම්, අනුමත ලැයිස්තුවක් නොමැතිව ඕනෑම කෙනෙකුට bot එකට DM කළ හැක.',
+        help: 'සංවර්ධනයට පමණි. true නම්, අනුමත ලැයිස්තුවක් නොමැතිව ඕනෑම කෙනෙකුට bot එකට DM කළ හැක.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'මුල් නාලිකා ID',
-        help: 'bot පෙරගමන් පණිවිඩ යවන නාලිකාව (cron ප්‍රතිදාන, මතක් කිරීම්).',
+        help: 'bot පෙරගමන් පණිවිඩ යවන නාලිකාව (cron ප්‍රතිදාන, මතක් කිරීම්).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'මුල් නාලිකා නම',
-        help: 'ලොග සහ තත්ත්ව ප්‍රතිදානයේ මුල් නාලිකාව සඳහා පෙන්වන නම.',
+        help: 'ලොග සහ තත්ත්ව ප්‍රතිදානයේ මුල් නාලිකාව සඳහා පෙන්වන නම.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'සියලු iMessage පරිශීලකයින්ට ඉඩ දෙන්න',
-        help: 'true වූ විට, BlueBubbles අනුමත ලැයිස්තුව මඟ හරින්න.',
+        help: 'true වූ විට, BlueBubbles අනුමත ලැයිස්තුව මඟ හරින්න.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'සියලු Mattermost පරිශීලකයින්ට ඉඩ දෙන්න',
+        label: 'සියලු Mattermost පරිශීලකයින්ට ඉඩ දෙන්න'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'මුල් නාලිකාව',
+        label: 'මුල් නාලිකාව'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'සියලු QQ පරිශීලකයින්ට ඉඩ දෙන්න',
+        label: 'සියලු QQ පරිශීලකයින්ට ඉඩ දෙන්න'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ මුල් නාලිකාව',
-        help: 'cron බෙදාහැරීම සඳහා පෙරනිමි නාලිකාව හෝ කණ්ඩායම.',
+        help: 'cron බෙදාහැරීම සඳහා පෙරනිමි නාලිකාව හෝ කණ්ඩායම.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ මුල් නාලිකා නම',
+        label: 'QQ මුල් නාලිකා නම'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack bot ටෝකනය',
         help: 'ඔබේ Slack යෙදුම ස්ථාපනය කිරීමෙන් පසු OAuth & Permissions හි ඇති bot ටෝකනය භාවිත කරන්න.',
-        placeholder: 'Slack bot ටෝකනය අලවන්න',
+        placeholder: 'Slack bot ටෝකනය අලවන්න'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack යෙදුම් ටෝකනය',
         help: 'Socket Mode සඳහා අවශ්‍ය යෙදුම්-මට්ටමේ ටෝකනය භාවිත කරන්න.',
-        placeholder: 'Slack යෙදුම් ටෝකනය අලවන්න',
+        placeholder: 'Slack යෙදුම් ටෝකනය අලවන්න'
       },
       SLACK_ALLOWED_USERS: {
         label: 'අනුමත Slack පරිශීලක ID',
-        help: 'නිර්දේශිතයි. කොමාවෙන් වෙන් කළ Slack පරිශීලක ID.',
+        help: 'නිර්දේශිතයි. කොමාවෙන් වෙන් කළ Slack පරිශීලක ID.'
       },
       MATTERMOST_URL: {
         label: 'සේවාදායක URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'බොට් ටෝකනය',
+        label: 'බොට් ටෝකනය'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'අනුමත පරිශීලක ID',
-        help: 'නිර්දේශිතයි. කොමාවෙන් වෙන් කළ Mattermost පරිශීලක ID.',
+        help: 'නිර්දේශිතයි. කොමාවෙන් වෙන් කළ Mattermost පරිශීලක ID.'
       },
       MATRIX_HOMESERVER: {
         placeholder: 'https://matrix.org',
-        label: 'හෝම්සර්වර් URL',
+        label: 'හෝම්සර්වර් URL'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'ප්‍රවේශ ටෝකනය',
+        label: 'ප්‍රවේශ ටෝකනය'
       },
       MATRIX_USER_ID: {
         label: 'බොට් පරිශීලක ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'අනුමත Matrix පරිශීලක ID',
-        help: 'නිර්දේශිතයි. @user:server ආකෘතියෙන් කොමාවෙන් වෙන් කළ පරිශීලක ID.',
+        help: 'නිර්දේශිතයි. @user:server ආකෘතියෙන් කොමාවෙන් වෙන් කළ පරිශීලක ID.'
       },
       SIGNAL_HTTP_URL: {
         placeholder: 'http://127.0.0.1:8080',
         help: 'ක්‍රියාත්මක වන signal-cli REST bridge එකක URL.',
-        label: 'Signal පාලම URL',
+        label: 'Signal පාලම URL'
       },
       SIGNAL_ACCOUNT: {
         label: 'දුරකථන අංකය',
-        help: 'ඔබේ signal-cli bridge එක සමඟ ලියාපදිංචි කර ඇති අංකය.',
+        help: 'ඔබේ signal-cli bridge එක සමඟ ලියාපදිංචි කර ඇති අංකය.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'අවසර ලත් Signal පරිශීලකයින්',
-        help: 'නිර්දේශිතයි. කොමාවෙන් වෙන් කළ Signal හැඳුනුම්.',
+        help: 'නිර්දේශිතයි. කොමාවෙන් වෙන් කළ Signal හැඳුනුම්.'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp bridge සක්‍රීය කරන්න',
-        help: 'පහත ටොගලය මගින් ස්වයංක්‍රීයව සකසයි. අවශ්‍ය බව ඔබ දන්නේ නැත්නම් මෙය වෙනස් නොකරන්න.',
+        help: 'පහත ටොගලය මගින් ස්වයංක්‍රීයව සකසයි. අවශ්‍ය බව ඔබ දන්නේ නැත්නම් මෙය වෙනස් නොකරන්න.'
       },
       WHATSAPP_MODE: {
-        label: 'Bridge මාදිලිය',
+        label: 'Bridge මාදිලිය'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'අවසර ලත් WhatsApp පරිශීලකයින්',
-        help: 'නිර්දේශිතයි. කොමාවෙන් වෙන් කළ දුරකථන අංක හෝ WhatsApp හැඳුනුම්.',
+        help: 'නිර්දේශිතයි. කොමාවෙන් වෙන් කළ දුරකථන අංක හෝ WhatsApp හැඳුනුම්.'
       },
       TELEGRAM_ALLOWED_USERS: {
         help: 'නිර්දේශිතයි. @userinfobot වෙතින් කොමාවෙන් වෙන් කළ සංඛ්‍යාත්මක ID. මෙය නොමැතිව, ඕනෑම කෙනෙකුට ඔබේ බොට් එකට DM කළ හැක.',
-        label: 'අවසර ලත් Telegram පරිශීලක ID',
+        label: 'අවසර ලත් Telegram පරිශීලක ID'
       },
       TELEGRAM_PROXY: {
         label: 'ප්‍රොක්සි URL',
-        help: 'Telegram අවහිර කර ඇති ජාලවලට පමණක් අවශ්‍යයි.',
+        help: 'Telegram අවහිර කර ඇති ජාලවලට පමණක් අවශ්‍යයි.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'බොට් ටෝකනය',
-        help: 'Discord Developer Portal හි යෙදුමක් සාදන්න, බොට් එකක් එක් කරන්න, පසුව එහි ටෝකනය අලවන්න.',
+        help: 'Discord Developer Portal හි යෙදුමක් සාදන්න, බොට් එකක් එක් කරන්න, පසුව එහි ටෝකනය අලවන්න.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'අවසර ලත් Discord පරිශීලක ID',
-        help: 'නිර්දේශිතයි. කොමාවෙන් වෙන් කළ Discord පරිශීලක ID.',
+        help: 'නිර්දේශිතයි. කොමාවෙන් වෙන් කළ Discord පරිශීලක ID.'
       },
       TELEGRAM_BOT_TOKEN: {
         placeholder: 'Telegram බොට් ටෝකනය අලවන්න',
         label: 'බොට් ටෝකනය',
-        help: '@BotFather සමඟ බොට් එකක් සාදා, එය ලබා දෙන ටෝකනය අලවන්න.',
-      },
+        help: '@BotFather සමඟ බොට් එකක් සාදා, එය ලබා දෙන ටෝකනය අලවන්න.'
+      }
     },
     saving: 'සුරකිමින්...',
     saveChanges: 'වෙනස්කම් සුරකින්න',
@@ -1423,8 +1465,7 @@ export const si = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Webhooks සොයන්න...',
@@ -1433,7 +1474,8 @@ export const si = defineLocale({
     hint: 'ලබන්නා ක්‍රියාත්මක වූ පසු subscription වෙනස්කම් hot-reload වේ. අබල කළ subscriptions එන events ප්‍රතික්ෂේප කරයි.',
     empty: 'තවම webhook subscriptions නැත.',
     disabledTitle: 'Webhook ලබන්නා අබලයි',
-    disabledBody: 'Webhooks යනු තමන්ගේම gateway වේදිකාවකි. එන HTTP සිදුවීම් පිළිගැනීමට මෙහි ඒවා සක්‍රීය කරන්න; subscription එකක් Telegram, Discord, Slack හෝ වෙනත් channel එකකට බෙදාහරින විට පමණක් chat channels අවශ්‍ය වේ.',
+    disabledBody:
+      'Webhooks යනු තමන්ගේම gateway වේදිකාවකි. එන HTTP සිදුවීම් පිළිගැනීමට මෙහි ඒවා සක්‍රීය කරන්න; subscription එකක් Telegram, Discord, Slack හෝ වෙනත් channel එකකට බෙදාහරින විට පමණක් chat channels අවශ්‍ය වේ.',
     enable: 'Webhooks සක්‍රීය කරන්න',
     enabling: 'සක්‍රීය කරමින්...',
     enableRow: 'සක්‍රීය කරන්න',
@@ -1480,7 +1522,7 @@ export const si = defineLocale({
       discord: 'ඩිස්කෝර්ඩ්',
       slack: 'ස්ලැක්',
       email: 'ඊමේල්',
-      github_comment: 'GitHub අදහස',
+      github_comment: 'GitHub අදහස'
     },
     subscriptions: (count: number) => `Subscriptions (${count})`,
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -1488,7 +1530,7 @@ export const si = defineLocale({
     deleteFailed: (name: string) => `Failed to delete "${name}"`,
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     close: 'පැතිකඩ වසන්න',
@@ -1566,7 +1608,7 @@ export const si = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   cron: {
     close: 'cron වසන්න',
@@ -1580,14 +1622,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'විරාමිත',
       disabled: 'අක්‍රීය',
       error: 'දෝෂය',
-      completed: 'සම්පූර්ණයි',
+      completed: 'සම්පූර්ණයි'
     },
     deliveryLabels: {
       local: 'මෙම ඩෙස්ක්ටොපය',
       telegram: 'ටෙලිග්‍රෑම්',
       discord: 'ඩිස්කෝඩ්',
       slack: 'ස්ලැක්',
-      email: 'ඊමේල්',
+      email: 'ඊමේල්'
     },
     scheduleLabels: {
       daily: 'දිනපතා',
@@ -1596,7 +1638,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'මාසිකව',
       hourly: 'පැයකට වරක්',
       'every-15-minutes': 'සෑම විනාඩි 15කට වරක්',
-      custom: 'අභිරුචි',
+      custom: 'අභිරුචි'
     },
     scheduleHints: {
       daily: 'සෑම දිනකම පෙ.ව. 9:00ට',
@@ -1605,7 +1647,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'සෑම මාසයකම පළමු දිනය පෙ.ව. 9:00ට',
       hourly: 'සෑම පැයක ආරම්භයේදී',
       'every-15-minutes': 'සෑම විනාඩි 15කට වරක්',
-      custom: 'Cron සින්ටැක්ස් හෝ ස්වභාවික භාෂාව',
+      custom: 'Cron සින්ටැක්ස් හෝ ස්වභාවික භාෂාව'
     },
     days: {
       '0': 'ඉරිදා',
@@ -1615,11 +1657,12 @@ Leave blank to keep the ${mode} default.`,
       '4': 'බ්‍රහස්පතින්දා',
       '5': 'සිකුරාදා',
       '6': 'සෙනසුරාදා',
-      '7': 'ඉරිදා',
+      '7': 'ඉරිදා'
     },
     topOfHour: 'සෑම පැයක ආරම්භයේදී',
     newCron: 'නව cron',
-    emptyDescNew: 'cron ප්‍රකාශනයකට අනුව ඉල්ලීමක් ධාවනය කිරීමට නියම කරන්න. OpenAmer එය ධාවනය කර ඔබ තෝරන ගමනාන්තයට ප්‍රතිඵල ලබා දෙයි.',
+    emptyDescNew:
+      'cron ප්‍රකාශනයකට අනුව ඉල්ලීමක් ධාවනය කිරීමට නියම කරන්න. OpenAmer එය ධාවනය කර ඔබ තෝරන ගමනාන්තයට ප්‍රතිඵල ලබා දෙයි.',
     emptyDescSearch: 'වඩාත් පුළුල් සෙවුම් විමසුමක් උත්සාහ කරන්න.',
     emptyTitleNew: 'තවම නියමිත කාර්යයන් නැත',
     emptyTitleSearch: 'ගැළපීම් නැත',
@@ -1655,7 +1698,8 @@ Leave blank to keep the ${mode} default.`,
     editTitle: 'cron කාර්යය සංස්කරණය කරන්න',
     createTitle: 'නව cron කාර්යය',
     editDesc: 'කාලසටහන, විමසුම හෝ බෙදාහැරීමේ ඉලක්කය යාවත්කාලීන කරන්න. වෙනස්කම් ඊළඟ ධාවනයේදී අදාළ වේ.',
-    createDesc: 'විමසුමක් ස්වයංක්‍රීයව ධාවනය වීමට කාලසටහන් කරන්න. cron වාක්‍ය වින්‍යාසය හෝ "සෑම මිනිත්තු 15කම" වැනි ස්වාභාවික වාක්‍යයක් භාවිත කරන්න.',
+    createDesc:
+      'විමසුමක් ස්වයංක්‍රීයව ධාවනය වීමට කාලසටහන් කරන්න. cron වාක්‍ය වින්‍යාසය හෝ "සෑම මිනිත්තු 15කම" වැනි ස්වාභාවික වාක්‍යයක් භාවිත කරන්න.',
     nameLabel: 'නම',
     namePlaceholder: 'උදෑසන සාරාංශය',
     promptLabel: 'විමසුම',
@@ -1677,7 +1721,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'cron සාදන්න',
     tabs: {
       jobs: 'කාර්යයන්',
-      blueprints: 'නිල්සටහන්',
+      blueprints: 'නිල්සටහන්'
     },
     blueprints: {
       tab: 'නිල්සටහන්',
@@ -1691,7 +1735,7 @@ Leave blank to keep the ${mode} default.`,
       loading: 'නිල්සටහන් පූරණය වෙමින්...',
       failedLoad: 'නිල්සටහන් පූරණය කිරීමට අසාර්ථක විය',
       emptyTitle: 'නිල්සටහන් නොමැත',
-      emptyDesc: 'මෙම බැකෙන්ඩ් තුළ ස්වයංක්‍රීයකරණ නිල්සටහන් නොමැත.',
+      emptyDesc: 'මෙම බැකෙන්ඩ් තුළ ස්වයංක්‍රීයකරණ නිල්සටහන් නොමැත.'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -1700,7 +1744,7 @@ Leave blank to keep the ${mode} default.`,
     everyDayOfWeekAt: (day, time) => `Every ${day} at ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Monthly on day ${dayOfMonth} at ${time}`,
     everyHourAt: minute => `Every hour at :${minute}`,
-    actionsFor: title => `Actions for ${title}`,
+    actionsFor: title => `Actions for ${title}`
   },
   artifacts: {
     search: 'ආටිෆැක්ට් සොයන්න...',
@@ -1734,14 +1778,14 @@ Leave blank to keep the ${mode} default.`,
     copyUrl: 'URL පිටපත් කරන්න',
     copyPath: 'මාර්ගය පිටපත් කරන්න',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'නව සැසිය',
       skills: 'හැකියාවන්',
       messaging: 'පණිවිඩකරණය',
-      artifacts: 'නිර්මාණ',
+      artifacts: 'නිර්මාණ'
     },
     searchAria: 'සැසි සොයන්න',
     searchPlaceholder: 'සැසි සොයන්න…',
@@ -1792,8 +1836,10 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'මාර්ගය පිටපත් කරන්න',
       removeFromSidebar: 'පැති තීරුවෙන් සඟවන්න',
       createFailed: 'ව්‍යාපෘතිය සෑදිය නොහැකි විය',
-      staleBackend: 'ව්‍යාපෘති සෑදීමට OpenAmer backend යාවත්කාලීන කරන්න — ඔබේ backend මෙම ඩෙස්ක්ටොප් යෙදුමට වඩා පැරණියි (සැකසුම් → යාවත්කාලීන → Backend).',
-      deleteConfirm: 'මෙය සුරකින ලද ව්‍යාපෘතිය OpenAmer වෙතින් ඉවත් කරයි. ගොනු, git repos සහ worktrees ස්පර්ශ නොවී පවතී.',
+      staleBackend:
+        'ව්‍යාපෘති සෑදීමට OpenAmer backend යාවත්කාලීන කරන්න — ඔබේ backend මෙම ඩෙස්ක්ටොප් යෙදුමට වඩා පැරණියි (සැකසුම් → යාවත්කාලීන → Backend).',
+      deleteConfirm:
+        'මෙය සුරකින ලද ව්‍යාපෘතිය OpenAmer වෙතින් ඉවත් කරයි. ගොනු, git repos සහ worktrees ස්පර්ශ නොවී පවතී.',
       startWork: 'නව worktree',
       newWorktreeTitle: 'නව worktree',
       newWorktreeDesc: 'මෙම worktree සඳහා ශාඛාව නම් කරන්න.',
@@ -1813,14 +1859,16 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'ශාඛා හමු නොවීය',
       removeWorktree: 'worktree ඉවත් කරන්න',
       removeWorktreeFailed: 'වර්ක්ට්‍රී ඉවත් කළ නොහැක (කමිට් නොකළ වෙනස්කම්?)',
-      removeWorktreeConfirm: 'එය git වෙතින් ඉවත් කරන්න (වර්ක්ට්‍රී නාමාවලිය මකා දමයි; ශාඛාව රැඳේ), නැතහොත් පැති තීරුවෙන් ලේන් සඟවා වර්ක්ට්‍රී තැටියේ තබන්න.',
-      removeWorktreeDirty: 'මෙම වර්ක්ට්‍රීට කමිට් නොකළ වෙනස්කම් ඇත. බලහත්කාරයෙන් ඉවත් කරන්න (එම වෙනස්කම් ඉවතලයි), නැතහොත් ලේන් සඟවා එය තැටියේ තබන්න.',
+      removeWorktreeConfirm:
+        'එය git වෙතින් ඉවත් කරන්න (වර්ක්ට්‍රී නාමාවලිය මකා දමයි; ශාඛාව රැඳේ), නැතහොත් පැති තීරුවෙන් ලේන් සඟවා වර්ක්ට්‍රී තැටියේ තබන්න.',
+      removeWorktreeDirty:
+        'මෙම වර්ක්ට්‍රීට කමිට් නොකළ වෙනස්කම් ඇත. බලහත්කාරයෙන් ඉවත් කරන්න (එම වෙනස්කම් ඉවතලයි), නැතහොත් ලේන් සඟවා එය තැටියේ තබන්න.',
       forceRemove: 'බලහත්කාරයෙන් ඉවත් කරන්න',
       back: 'සියලුම ව්‍යාපෘති',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     loading: 'පූරණය වෙමින්…',
     loadMore: 'තව පූරණය කරන්න',
@@ -1855,19 +1903,19 @@ Leave blank to keep the ${mode} default.`,
       actionsFor: title => `Actions for ${title}`,
       handoffOrigin: platform => `Handed off from ${platform}`,
       ownedByProfile: profile => `Profile: ${profile}`,
-      untitledChat: id => `Chat ${id}`,
+      untitledChat: id => `Chat ${id}`
     },
     dateDivider: {
       today: 'අද මුල් භාගයේ',
       yesterday: 'ඊයේ',
       thisWeek: 'මෙම සතියේ මුල් භාගයේ',
       lastWeek: 'පසුගිය සතිය',
-      thisMonth: 'මෙම මාසයේ මුල් භාගයේ',
+      thisMonth: 'මෙම මාසයේ මුල් භාගයේ'
     },
     noMatch: query => `No sessions match “${query}”.`,
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     placeholderStarting: 'OpenAmer ආරම්භ වෙමින්...',
@@ -1908,7 +1956,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'පෙර සැසියක් අඛණ්ඩව කරගෙන යන්න',
       '/details': 'ප්‍රතිලේඛන විස්තර මට්ටම පාලනය කරන්න',
       '/copy': 'තේරීම හෝ අවසන් සහායක පණිවිඩය පිටපත් කරන්න',
-      '/quit': 'openamer වෙතින් ඉවත් වන්න',
+      '/quit': 'openamer වෙතින් ඉවත් වන්න'
     },
     hotkeyDescs: {
       'composer.mention': 'ගොනු, ෆෝල්ඩර, urls, git යොමු කරන්න',
@@ -1918,7 +1966,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'ඊළඟ පෝලිම් වාරය යවන්න',
       'keybinds.openPanel': 'සියලු යතුරුපුවරු කෙටිමං',
       'composer.cancel': 'පොප්ඕවරය වසන්න · ධාවනය අවලංගු කරන්න',
-      'composer.history': 'පොප්ඕවරය / ඉතිහාසය මාරු කරන්න',
+      'composer.history': 'පොප්ඕවරය / ඉතිහාසය මාරු කරන්න'
     },
     attachUrlTitle: 'URL එකක් අමුණන්න',
     attachUrlDesc: 'OpenAmer මෙම පිටුව ගෙනැවිත් මෙම වාරය සඳහා සන්දර්භය ලෙස ඇතුළත් කරයි.',
@@ -1943,18 +1991,18 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'කේත සමාලෝචනය',
         description: 'වර්තමාන වෙනස පසුබැසීම්, අත්හැරුණු අන්ත අවස්ථා සහ නොමැති පරීක්ෂණ සඳහා විගණනය කරන්න.',
-        text: 'කරුණාකර මෙය දෝෂ, පසුබැසීම් සහ නොමැති පරීක්ෂණ සඳහා සමාලෝචනය කරන්න.',
+        text: 'කරුණාකර මෙය දෝෂ, පසුබැසීම් සහ නොමැති පරීක්ෂණ සඳහා සමාලෝචනය කරන්න.'
       },
       implementationPlan: {
         label: 'ක්‍රියාත්මක කිරීමේ සැලැස්ම',
         description: 'කේතය ස්පර්ශ කිරීමට පෙර ප්‍රවේශයක් සටහන් කරන්න, එවිට වෙනස කේන්ද්‍රීයව පවතී.',
-        text: 'කේතය වෙනස් කිරීමට පෙර සංක්ෂිප්ත ක්‍රියාත්මක කිරීමේ සැලැස්මක් සකසන්න.',
+        text: 'කේතය වෙනස් කිරීමට පෙර සංක්ෂිප්ත ක්‍රියාත්මක කිරීමේ සැලැස්මක් සකසන්න.'
       },
       explainThis: {
         label: 'මෙය පැහැදිලි කරන්න',
         description: 'තෝරාගත් කේතය ක්‍රියා කරන ආකාරය පැහැදිලි කර ප්‍රධාන ගොනු වෙත සබැඳි දෙන්න.',
-        text: 'කරුණාකර මෙය ක්‍රියා කරන ආකාරය පැහැදිලි කර ප්‍රධාන ගොනු වෙත මට යොමු දෙන්න.',
-      },
+        text: 'කරුණාකර මෙය ක්‍රියා කරන ආකාරය පැහැදිලි කර ප්‍රධාන ගොනු වෙත මට යොමු දෙන්න.'
+      }
     },
     queueStuckTitle: 'පෝලිම්ගත පණිවිඩය යවා නැත',
     queueStuckBody: 'පෝලිම්ගත වාරයක් යැවීම නැවත නැවත අසාර්ථක විය. එය තවමත් පෝලිමේ ඇත — නැවත යැවීමට උත්සාහ කරන්න.',
@@ -1984,7 +2032,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -1993,14 +2041,14 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
     attachments: count => `${count} attachment${count === 1 ? '' : 's'}`,
     previewLabel: label => `Preview ${label}`,
     couldNotPreview: label => `Could not preview ${label}`,
-    removeAttachment: label => `Remove ${label}`,
+    removeAttachment: label => `Remove ${label}`
   },
   statusStack: {
     agents: 'නියෝජිතයන්',
@@ -2040,7 +2088,8 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'PR විවෘත කරන්න',
       ghMissing: 'PR විවෘත කිරීමට GitHub CLI (gh) ස්ථාපනය කර පුරනය වන්න',
       agentShip: 'OpenAmer හට PR විවෘත කරන්නට කියන්න',
-      agentShipPrompt: 'වත්මන් වෙනස්කම් සමාලෝචනය කර, පැහැදිලි conventional-commit පණිවිඩයක් සමඟ කමිට් කර, ශාඛාව push කර, pull request එකක් විවෘත කරන්න.',
+      agentShipPrompt:
+        'වත්මන් වෙනස්කම් සමාලෝචනය කර, පැහැදිලි conventional-commit පණිවිඩයක් සමඟ කමිට් කර, ශාඛාව push කර, pull request එකක් විවෘත කරන්න.',
       newBranch: 'නව ශාඛාව',
       worktrees: 'Worktree ස්ථාන',
       commitPlaceholder: 'පණිවිඩය (âŒ˜â†µ ඉදිරිපත් කිරීමට)',
@@ -2049,12 +2098,12 @@ Leave blank to keep the ${mode} default.`,
       behind: count => `${count} behind`,
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -2069,7 +2118,7 @@ Leave blank to keep the ${mode} default.`,
       pull: 'පාහේ අවසන්…',
       pydeps: 'අවසන් කරමින්…',
       update: 'OpenAmer යාවත්කාලීන කරමින්…',
-      rebuild: 'ඩෙස්ක්ටොප් යෙදුම නැවත ගොඩනගමින්…',
+      rebuild: 'ඩෙස්ක්ටොප් යෙදුම නැවත ගොඩනගමින්…'
     },
     checking: 'යාවත්කාලීන සොයමින්…',
     checkFailedTitle: 'යාවත්කාලීන පරීක්ෂා කිරීමට නොහැකි විය',
@@ -2088,15 +2137,19 @@ Leave blank to keep the ${mode} default.`,
     updateNow: 'දැන් යාවත්කාලීන කරන්න',
     maybeLater: 'පසුව බලමු',
     manualTitle: 'ඔබේ ටර්මිනලයෙන් යාවත්කාලීන කරන්න',
-    manualBody: 'ඔබ OpenAmer විධාන රේඛාවෙන් ස්ථාපනය කළා, ඒ නිසා යාවත්කාලීන කිරීම් ද එහි ක්‍රියාත්මක වේ. මෙය ඔබේ ටර්මිනලයට අලවන්න:',
+    manualBody:
+      'ඔබ OpenAmer විධාන රේඛාවෙන් ස්ථාපනය කළා, ඒ නිසා යාවත්කාලීන කිරීම් ද එහි ක්‍රියාත්මක වේ. මෙය ඔබේ ටර්මිනලයට අලවන්න:',
     manualPickedUp: 'ඊළඟ වතාවේ OpenAmer ආරම්භ කරන විට එය නව අනුවාදය ලබාගනී.',
     guiSkewTitle: 'ඩෙස්ක්ටොප් යෙදුම යාවත්කාලීන කරන්න',
-    guiSkewBody: 'බැක්එන්ඩ් යාවත්කාලීන කළා, නමුත් මෙම ඩෙස්ක්ටොප් යෙදුම් පැකේජය වෙනස් වී නැත. ගැළපෙන පරිදි OpenAmer ඩෙස්ක්ටොප් යෙදුම (ඔබේ AppImage / .deb / .rpm) යාවත්කාලීන කරන්න හෝ නැවත ස්ථාපනය කරන්න.',
+    guiSkewBody:
+      'බැක්එන්ඩ් යාවත්කාලීන කළා, නමුත් මෙම ඩෙස්ක්ටොප් යෙදුම් පැකේජය වෙනස් වී නැත. ගැළපෙන පරිදි OpenAmer ඩෙස්ක්ටොප් යෙදුම (ඔබේ AppImage / .deb / .rpm) යාවත්කාලීන කරන්න හෝ නැවත ස්ථාපනය කරන්න.',
     copy: 'පිටපත් කරන්න',
     copied: 'පිටපත් කළා',
     done: 'අවසන්',
-    applyingBody: 'OpenAmer යාවත්කාලීනකරු තමන්ගේම කවුළුවකින් පාලනය ගනී, අවසන් වූ පසු OpenAmer ස්වයංක්‍රීයව නැවත විවෘත කරයි. යාවත්කාලීන වන අතරතුර කරුණාකර ඔබම OpenAmer නැවත විවෘත නොකරන්න.',
-    applyingBodyBackend: 'දුරස්ථ බැක්එන්ඩ් යාවත්කාලීනය යොදමින් සිටින අතර නැවත ආරම්භ වේ. එය නැවත පැමිණි විට OpenAmer ස්වයංක්‍රීයව නැවත සම්බන්ධ වේ.',
+    applyingBody:
+      'OpenAmer යාවත්කාලීනකරු තමන්ගේම කවුළුවකින් පාලනය ගනී, අවසන් වූ පසු OpenAmer ස්වයංක්‍රීයව නැවත විවෘත කරයි. යාවත්කාලීන වන අතරතුර කරුණාකර ඔබම OpenAmer නැවත විවෘත නොකරන්න.',
+    applyingBodyBackend:
+      'දුරස්ථ බැක්එන්ඩ් යාවත්කාලීනය යොදමින් සිටින අතර නැවත ආරම්භ වේ. එය නැවත පැමිණි විට OpenAmer ස්වයංක්‍රීයව නැවත සම්බන්ධ වේ.',
     applyingClose: 'යාවත්කාලීනය ක්‍රියාත්මක වන අතරතුර මෙම කවුළුව වැසේ, පසුව OpenAmer තමන්ම නැවත විවෘත වේ.',
     errorTitle: 'යාවත්කාලීනය අවසන් නොවීය',
     errorBody: 'කිසිම කරදරයක් නැහැ — කිසිවක් නැති වී නැත. ඔබට දැන් නැවත උත්සාහ කළ හැක.',
@@ -2107,13 +2160,14 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'යාවත්කාලීනය පූරණය කිරීමට බැක්එන්ඩ් නැවත ආරම්භ වෙමින්…',
       notAvailable: 'මෙම බැක්එන්ඩ් සඳහා යාවත්කාලීනය නොමැත.',
       failed: 'බැක්එන්ඩ් යාවත්කාලීනය අසාර්ථක විය.',
-      noReturn: 'Backend නැවත online වුණේ නැහැ. Update එක සම්පූර්ණ නොවන්නට ඇත — backend host එක පරීක්ෂා කරන්න.',
+      noReturn: 'Backend නැවත online වුණේ නැහැ. Update එක සම්පූර්ණ නොවන්නට ඇත — backend host එක පරීක්ෂා කරන්න.'
     },
     appErrors: {
-      updateLocked: 'Update එක නතර කළා: තවත් OpenAmer කවුළුවක් හෝ openamer ධාවනය වන ටර්මිනලයක් මෙම ස්ථාපනය විවෘතව තබා ඇත. එය වසා නැවත උත්සාහ කරන්න.',
-      updateFailed: 'Update එක සම්පූර්ණ වුණේ නැහැ. කිසිවක් නැති වී නැත — දැන් නැවත උත්සාහ කළ හැක.',
+      updateLocked:
+        'Update එක නතර කළා: තවත් OpenAmer කවුළුවක් හෝ openamer ධාවනය වන ටර්මිනලයක් මෙම ස්ථාපනය විවෘතව තබා ඇත. එය වසා නැවත උත්සාහ කරන්න.',
+      updateFailed: 'Update එක සම්පූර්ණ වුණේ නැහැ. කිසිවක් නැති වී නැත — දැන් නැවත උත්සාහ කළ හැක.'
     },
-    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
+    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`
   },
   install: {
     stageStates: {
@@ -2121,7 +2175,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'ස්ථාපනය වෙමින්',
       succeeded: 'අවසන්',
       skipped: 'මඟ හැරියා',
-      failed: 'අසාර්ථක',
+      failed: 'අසාර්ථක'
     },
     oneTimeTitle: 'OpenAmer සඳහා එක් වරක් ස්ථාපනයක් අවශ්‍යයි',
     installCommand: 'ස්ථාපන විධානය',
@@ -2130,15 +2184,18 @@ Leave blank to keep the ${mode} default.`,
     installTo: 'ස්ථාපනය වන්නේ',
     retryAfterRun: 'මම එය ධාවනය කළා -- නැවත උත්සාහ කරන්න',
     setupChoiceTitle: 'OpenAmer Desktop සකසන්න',
-    setupChoiceDesc: 'ඔබ දැනටමත් ධාවනය කරන OpenAmer ගේට්වේ එකකට මෙම යෙදුම සම්බන්ධ කරන්න, නැතිනම් මෙම පරිගණකයේ OpenAmer දේශීයව ස්ථාපනය කරන්න.',
+    setupChoiceDesc:
+      'ඔබ දැනටමත් ධාවනය කරන OpenAmer ගේට්වේ එකකට මෙම යෙදුම සම්බන්ධ කරන්න, නැතිනම් මෙම පරිගණකයේ OpenAmer දේශීයව ස්ථාපනය කරන්න.',
     connectExistingTitle: 'පවතින OpenAmer වෙත සම්බන්ධ වන්න',
     connectExistingShort: 'පවතින එක සම්බන්ධ කරන්න',
-    connectExistingDesc: 'සැසි ටෝකනයක් හෝ බ්‍රවුසර පිවිසුමක් සමඟ දුරස්ථ backend එකක් භාවිත කරන්න. දේශීය ස්ථාපනයක් ආරම්භ නොවේ.',
+    connectExistingDesc:
+      'සැසි ටෝකනයක් හෝ බ්‍රවුසර පිවිසුමක් සමඟ දුරස්ථ backend එකක් භාවිත කරන්න. දේශීය ස්ථාපනයක් ආරම්භ නොවේ.',
     installLocalTitle: 'OpenAmer දේශීයව ස්ථාපනය කරන්න',
     installLocalDesc: 'OpenAmer බාගන්න, එහි Python පරිසරය සාදන්න, සහ මෙම පරිගණකයේ backend ධාවනය කරන්න.',
     localStartUnavailable: 'දේශීය ස්ථාපනය ආරම්භ කළ නොහැකි විය. OpenAmer Desktop නැවත අරඹා නැවත උත්සාහ කරන්න.',
     remoteSetupTitle: 'පවතින OpenAmer වෙත සම්බන්ධ වන්න',
-    remoteSetupDesc: 'ඔබේ ගේට්වේ URL ඇතුළත් කරන්න. OpenAmer Desktop මගින් token එකක් අවශ්‍යද නැතහොත් බ්‍රව්සරයෙන් පිවිසීම අවශ්‍යද යන්න හඳුනා ගනී.',
+    remoteSetupDesc:
+      'ඔබේ ගේට්වේ URL ඇතුළත් කරන්න. OpenAmer Desktop මගින් token එකක් අවශ්‍යද නැතහොත් බ්‍රව්සරයෙන් පිවිසීම අවශ්‍යද යන්න හඳුනා ගනී.',
     remoteUrlTitle: 'ගේට්වේ URL',
     remoteUrlDesc: 'දුරස්ථ විට https:// ඇතුළුව OpenAmer ගේට්වේයේ මූලික URL භාවිත කරන්න.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2162,8 +2219,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'ස්ථාපනය අසාර්ථක විය',
     settingUpTitle: 'OpenAmer Agent සකසමින්',
     finishingTitle: 'අවසන් කරමින්',
-    failedDesc: 'ස්ථාපන පියවරක් අසාර්ථක විය. Windows තුළ, තවත් OpenAmer CLI හෝ ඩෙස්ක්ටොප් අවස්ථාවක් ක්‍රියාත්මක වන්නේ නම් මෙය සිදු විය හැක. ක්‍රියාත්මක වන සියලුම OpenAmer අවස්ථා නවත්වා නැවත උත්සාහ කරන්න. සම්පූර්ණ පිටපත සඳහා පහත විස්තර හෝ ඩෙස්ක්ටොප් ලොගය පරීක්ෂා කරන්න.',
-    activeDesc: 'මෙය එක් වරක් සිදු කරන සැකසුමකි. OpenAmer ස්ථාපකය පරායත්තතා බාගත කර ඔබේ යන්ත්‍රය වින්‍යාස කරමින් සිටී. පසුව ආරම්භ කිරීම්වලදී මෙම පියවර මඟ හරිනු ඇත.',
+    failedDesc:
+      'ස්ථාපන පියවරක් අසාර්ථක විය. Windows තුළ, තවත් OpenAmer CLI හෝ ඩෙස්ක්ටොප් අවස්ථාවක් ක්‍රියාත්මක වන්නේ නම් මෙය සිදු විය හැක. ක්‍රියාත්මක වන සියලුම OpenAmer අවස්ථා නවත්වා නැවත උත්සාහ කරන්න. සම්පූර්ණ පිටපත සඳහා පහත විස්තර හෝ ඩෙස්ක්ටොප් ලොගය පරීක්ෂා කරන්න.',
+    activeDesc:
+      'මෙය එක් වරක් සිදු කරන සැකසුමකි. OpenAmer ස්ථාපකය පරායත්තතා බාගත කර ඔබේ යන්ත්‍රය වින්‍යාස කරමින් සිටී. පසුව ආරම්භ කිරීම්වලදී මෙම පියවර මඟ හරිනු ඇත.',
     fetchingManifest: 'ස්ථාපක මැනිෆෙස්ටය ලබා ගනිමින්...',
     error: 'දෝෂය',
     hideOutput: 'ස්ථාපක ප්‍රතිදානය සඟවන්න',
@@ -2175,13 +2234,14 @@ Leave blank to keep the ${mode} default.`,
     copiedOutput: 'පිටපත් කරන ලදි!',
     copyOutput: 'ප්‍රතිදානය පිටපත් කරන්න',
     reloadRetry: 'නැවත පූරණය කර නැවත උත්සාහ කරන්න',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
     signInWith: provider => `Sign in with ${provider}`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'OpenAmer ඒජන්ට් සමඟ ඔබව සකසා ගනිමු',
@@ -2201,28 +2261,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'සෘජු ආකෘති API',
-        description: 'Fireworks AI විසින් සත්කාරකත්වය දෙන ආකෘති සඳහා සෘජු ප්‍රවේශය.',
+        description: 'Fireworks AI විසින් සත්කාරකත්වය දෙන ආකෘති සඳහා සෘජු ප්‍රවේශය.'
       },
       openrouter: {
         short: 'එක් යතුරක්, බොහෝ ආකෘති',
-        description: 'එක් යතුරක් පිටුපස ආකෘති සියගණනක් සත්කාරකත්වය දෙයි. නව ස්ථාපන සඳහා හොඳ පෙරනිමියකි.',
+        description: 'එක් යතුරක් පිටුපස ආකෘති සියගණනක් සත්කාරකත්වය දෙයි. නව ස්ථාපන සඳහා හොඳ පෙරනිමියකි.'
       },
       openai: {
         short: 'GPT පන්තියේ ආකෘති',
-        description: 'OpenAI ආකෘති සඳහා සෘජු ප්‍රවේශය.',
+        description: 'OpenAI ආකෘති සඳහා සෘජු ප්‍රවේශය.'
       },
       gemini: {
         short: 'Gemini ආකෘති',
-        description: 'Google Gemini ආකෘතිවලට සෘජු ප්‍රවේශය.',
+        description: 'Google Gemini ආකෘතිවලට සෘජු ප්‍රවේශය.'
       },
       xai: {
         short: 'Grok ආකෘති',
-        description: 'xAI Grok ආකෘතිවලට සෘජු ප්‍රවේශය.',
+        description: 'xAI Grok ආකෘතිවලට සෘජු ප්‍රවේශය.'
       },
       local: {
         short: 'ස්වයං සත්කාරක',
-        description: 'OpenAmer එක දේශීය හෝ ස්වයං සත්කාරක OpenAI-අනුකූල endpoint එකකට යොමු කරන්න (vLLM, llama.cpp, Ollama, ආදිය).',
-      },
+        description:
+          'OpenAmer එක දේශීය හෝ ස්වයං සත්කාරක OpenAI-අනුකූල endpoint එකකට යොමු කරන්න (vLLM, llama.cpp, Ollama, ආදිය).'
+      }
     },
     backToSignIn: 'පුරනය වීමට ආපසු',
     getKey: 'යතුරක් ලබා ගන්න',
@@ -2235,7 +2296,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'පුරනය වීමට ඔබේ බ්‍රවුසරය විවෘත කරයි, පසුව මෙහි දිගටම කරගෙන යයි',
       device_code: 'ඔබේ බ්‍රවුසරයේ සත්‍යාපන පිටුවක් විවෘත කරයි — OpenAmer ස්වයංක්‍රීයව සම්බන්ධ වේ',
-      external: 'ඔබේ ටර්මිනලයේ එක් වරක් පුරනය වන්න, පසුව චැට් වෙත නැවත එන්න',
+      external: 'ඔබේ ටර්මිනලයේ එක් වරක් පුරනය වන්න, පසුව චැට් වෙත නැවත එන්න'
     },
     signInFailed: 'පුරනය වීම අසාර්ථක විය. නැවත උත්සාහ කරන්න.',
     pickDifferentProvider: 'වෙනත් සැපයුම්කරුවෙකු තෝරන්න',
@@ -2260,11 +2321,13 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'ආකෘතිය මාරු කරන්න',
@@ -2280,13 +2343,13 @@ Leave blank to keep the ${mode} default.`,
     free: 'නොමිලේ',
     freeTier: 'නොමිලේ ස්තරය',
     priceTitle: 'ටෝකන මිලියනයකට ආදාන / ප්‍රතිදාන මිල',
-    wasPrice: 'විය',
+    wasPrice: 'විය'
   },
   modelVisibility: {
     title: 'මාදිලි',
     search: 'මාදිලි සොයන්න',
     noAuthenticatedProviders: 'සත්‍යාපිත සැපයුම්කරුවන් නොමැත.',
-    addProvider: 'සැපයුම්කරු එක් කරන්න…',
+    addProvider: 'සැපයුම්කරු එක් කරන්න…'
   },
   shell: {
     windowControls: 'කවුළු පාලන',
@@ -2297,7 +2360,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'මාදිලි හමු නොවිණි',
       editModels: 'මාදිලි සංස්කරණය…',
       refreshModels: 'මාදිලි නැවුම් කරන්න',
-      fast: 'වේගවත්',
+      fast: 'වේගවත්'
     },
     modelOptions: {
       noOptions: 'මෙම මාදිලියට විකල්ප නැත',
@@ -2313,7 +2376,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'උපරිම',
       ultra: 'අල්ට්‍රා',
       updateFailed: 'මාදිලියේ විකල්පය යාවත්කාලීන කිරීම අසාර්ථකයි',
-      fastFailed: 'වේගවත් මාදිලිය යාවත්කාලීන කිරීම අසාර්ථකයි',
+      fastFailed: 'වේගවත් මාදිලිය යාවත්කාලීන කිරීම අසාර්ථකයි'
     },
     gatewayMenu: {
       gateway: 'ගේට්වේ',
@@ -2328,7 +2391,7 @@ Leave blank to keep the ${mode} default.`,
       recentActivity: 'මෑත ක්‍රියාකාරකම්',
       viewAllLogs: 'සියලු ලොග් බලන්න →',
       messagingPlatforms: 'පණිවිඩ වේදිකා',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'අනුමැති මාදිලිය',
@@ -2338,7 +2401,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'ක්‍රියා ස්වයංක්‍රීයව ඇගයා අවශ්‍ය විට අසන්න',
       off: 'අක්‍රීය',
       offDescription: 'අනුමැති විමසීම් නොමැතිව ධාවනය කරන්න',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'නොදනී',
@@ -2378,19 +2441,21 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'උප නියෝජිත අර්ථ දැක්වීම්',
           system_prompt: 'පද්ධති ප්‍රොම්ප්ට්',
           tool_definitions: 'මෙවලම් අර්ථ දැක්වීම්',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'තවම සන්දර්භ දත්ත නැත',
         loading: 'විස්තරය පූරණය වෙමින්…',
         title: 'සන්දර්භ භාවිතය',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'සන්දර්භ භාවිත විස්තරය විවෘත කරන්න',
       session: 'සැසිය',
       runtimeSessionElapsed: 'ධාවන සැසියේ ගත වූ වේලාව',
-      yoloOn: 'YOLO සක්‍රීයයි — අනතුරුදායක විධාන ස්වයංක්‍රීයව අනුමත කරමින්. ක්‍රියා විරහිත කිරීමට ක්ලික් කරන්න. Shift+click මගින් එය ගෝලීයව මාරු කරයි.',
-      yoloOff: 'YOLO අක්‍රීයයි — අනතුරුදායක විධාන ස්වයංක්‍රීයව අනුමත කිරීමට ක්ලික් කරන්න. Shift+click මගින් එය ගෝලීයව මාරු කරයි.',
+      yoloOn:
+        'YOLO සක්‍රීයයි — අනතුරුදායක විධාන ස්වයංක්‍රීයව අනුමත කරමින්. ක්‍රියා විරහිත කිරීමට ක්ලික් කරන්න. Shift+click මගින් එය ගෝලීයව මාරු කරයි.',
+      yoloOff:
+        'YOLO අක්‍රීයයි — අනතුරුදායක විධාන ස්වයංක්‍රීයව අනුමත කිරීමට ක්ලික් කරන්න. Shift+click මගින් එය ගෝලීයව මාරු කරයි.',
       modelNone: 'නැත',
       noModel: 'මොඩලයක් නැත',
       switchModel: 'මොඩලය මාරු කරන්න',
@@ -2413,8 +2478,8 @@ Leave blank to keep the ${mode} default.`,
       failed: count => `${count} failed`,
       running: count => `${count} running`,
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'දකුණු පැති තීරුව',
@@ -2450,7 +2515,7 @@ Leave blank to keep the ${mode} default.`,
     addToChat: 'කතාබහට එකතු කරන්න',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'පෙරදසුන',
@@ -2480,7 +2545,7 @@ Leave blank to keep the ${mode} default.`,
       sentTitle: 'චැට් වෙත යවන ලදි',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'පෙරදසුන් යෙදුම ආරම්භ කිරීමට අසමත් විය',
@@ -2501,9 +2566,11 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'දැන් පෙරදසුන නැවත පූරණය කරමින්.',
       restartFailedTitle: 'පෙරදසුන නැවත ආරම්භ කිරීම අසාර්ථක විය',
       restartFailedMessage: 'OpenAmer හට සේවාදායකය නැවත ආරම්භ කිරීමට නොහැකි විය.',
-      stillWorking: 'OpenAmer තවමත් ක්‍රියාත්මක වෙමින් සිටී, නමුත් නැවත ආරම්භ කිරීමේ ප්‍රතිඵලයක් තවම ලැබී නැත. සේවාදායක විධානය පෙරබිමින් ධාවනය වෙමින් තිබිය හැක.',
+      stillWorking:
+        'OpenAmer තවමත් ක්‍රියාත්මක වෙමින් සිටී, නමුත් නැවත ආරම්භ කිරීමේ ප්‍රතිඵලයක් තවම ලැබී නැත. සේවාදායක විධානය පෙරබිමින් ධාවනය වෙමින් තිබිය හැක.',
       workspaceReloading: 'වැඩබිම වෙනස් විය, පෙරදසුන නැවත පූරණය කරමින්',
-      moduleMimeDescription: 'මොඩියුල ස්ක්‍රිප්ට් වැරදි MIME වර්ගයකින් සපයනු ලබයි. මෙයින් සාමාන්‍යයෙන් අදහස් වන්නේ ව්‍යාපෘති සංවර්ධන සේවාදායකය වෙනුවට ස්ථිතික ගොනු සේවාදායකයක් Vite/React යෙදුමක් සපයමින් සිටින බවයි.',
+      moduleMimeDescription:
+        'මොඩියුල ස්ක්‍රිප්ට් වැරදි MIME වර්ගයකින් සපයනු ලබයි. මෙයින් සාමාන්‍යයෙන් අදහස් වන්නේ ව්‍යාපෘති සංවර්ධන සේවාදායකය වෙනුවට ස්ථිතික ගොනු සේවාදායකයක් Vite/React යෙදුමක් සපයමින් සිටින බවයි.',
       unreachableDescription: 'පෙරදසුන් පිටුවට ළඟා විය නොහැකි විය.',
       fallbackTitle: 'පෙරදසුන',
       lookingRestart: taskId => `OpenAmer is looking for a preview server to restart (${taskId})`,
@@ -2514,7 +2581,7 @@ Leave blank to keep the ${mode} default.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     opening: 'විවෘත වෙමින්...',
     hide: 'සඟවන්න',
@@ -2534,13 +2601,14 @@ Leave blank to keep the ${mode} default.`,
     editing: 'සංස්කරණය කරමින්',
     unsavedChanges: 'නොසුරකින ලද වෙනස්කම්',
     diskChangedTitle: 'තැටියේ ගොනුව වෙනස් වී ඇත',
-    diskChangedBody: 'ඔබ මෙය විවෘත කළ පසු මෙම ගොනුව වෙනස් වී ඇත. එය ඔබේ අනුවාදයෙන් ප්‍රතිස්ථාපනය කරන්නද, නැතහොත් ඔබේ සංස්කරණ ඉවතලා නැවත පූරණය කරන්නද?',
+    diskChangedBody:
+      'ඔබ මෙය විවෘත කළ පසු මෙම ගොනුව වෙනස් වී ඇත. එය ඔබේ අනුවාදයෙන් ප්‍රතිස්ථාපනය කරන්නද, නැතහොත් ඔබේ සංස්කරණ ඉවතලා නැවත පූරණය කරන්නද?',
     linkHint: 'පෙරදසුන් පැනලය සඳහා âŒ˜/Ctrl-click',
     closeTab: label => `Close ${label}`,
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   zones: {
     showHeader: 'ශීර්ෂය පෙන්වන්න',
@@ -2548,7 +2616,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'කුඩා කරන්න',
     restore: 'ප්‍රතිසාධනය කරන්න',
     closeRunningTitle: 'ක්‍රියාත්මක වන ටැබය වසන්නද?',
-    closeRunningBody: 'මෙම චැටය තවමත් ක්‍රියාත්මකයි (හෝ ඔබේ ආදානය සඳහා බලා සිටී). ටැබය වසා දැමීමෙන් එය සැඟවේ — සැසිය එහි ප්‍රගතිය රඳවා ගන්නා අතර පැති තීරුවෙන් නැවත විවෘත කළ හැක.',
+    closeRunningBody:
+      'මෙම චැටය තවමත් ක්‍රියාත්මකයි (හෝ ඔබේ ආදානය සඳහා බලා සිටී). ටැබය වසා දැමීමෙන් එය සැඟවේ — සැසිය එහි ප්‍රගතිය රඳවා ගන්නා අතර පැති තීරුවෙන් නැවත විවෘත කළ හැක.',
     closeRunningConfirm: 'ටැබය වසන්න',
     closeOthers: 'අනෙක් ටැබ වසන්න',
     closeToRight: 'දකුණු පස ඇති ටැබ වසන්න',
@@ -2585,7 +2654,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
@@ -2616,11 +2685,12 @@ Leave blank to keep the ${mode} default.`,
       goForward: 'ඉදිරියට යන්න',
       sendEdited: 'සංස්කරණය කළ පණිවිඩය යවන්න',
       attachingFile: 'අමුණමින්…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
-      yesterday: time => `Yesterday, ${time}`,
+      yesterday: time => `Yesterday, ${time}`
     },
     clarify: {
       lateAnswerTip: 'මෙම පිළිතුර පසු විපරම් පණිවිඩයක් ලෙස කෙටුම්පත් කරන්න',
@@ -2634,7 +2704,7 @@ Leave blank to keep the ${mode} default.`,
       skip: 'මඟ හරින්න',
       skipped: 'මඟ හරින ලදී',
       continueLabel: 'ඉදිරියට යන්න',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     tool: {
       code: 'කේතය',
@@ -2668,123 +2738,123 @@ Leave blank to keep the ${mode} default.`,
         ran: 'ධාවනය කළා',
         running: 'ධාවනය වෙමින්',
         ranCode: 'කේතය ධාවනය කළා',
-        runningCode: 'ස්ක්‍රිප්ට් කරමින්',
+        runningCode: 'ස්ක්‍රිප්ට් කරමින්'
       },
       prefixes: {
         browser: 'බ්‍රව්සරය',
-        web: 'වෙබ්',
+        web: 'වෙබ්'
       },
       titles: {
         browser_click: {
           done: 'පිටු අංගය ක්ලික් කළා',
           pending: 'පිටු අංගය ක්ලික් කරමින්',
-          pendingAction: 'ක්ලික් කරමින්',
+          pendingAction: 'ක්ලික් කරමින්'
         },
         browser_fill: {
           done: 'පෝරම ක්ෂේත්‍රය පුරවා ඇත',
           pending: 'පෝරම ක්ෂේත්‍රය පුරවමින්',
-          pendingAction: 'පිරවීම',
+          pendingAction: 'පිරවීම'
         },
         browser_navigate: {
           done: 'පිටුව විවෘත කළා',
           pending: 'පිටුව විවෘත කරමින්',
-          pendingAction: 'විවෘත කරමින්',
+          pendingAction: 'විවෘත කරමින්'
         },
         browser_snapshot: {
           done: 'පිටු සේයා රුව ග්‍රහණය කළා',
           pending: 'පිටු සේයා රුව ග්‍රහණය කරමින්',
-          pendingAction: 'ග්‍රහණය කරමින්',
+          pendingAction: 'ග්‍රහණය කරමින්'
         },
         browser_take_screenshot: {
           done: 'තිර රුව ග්‍රහණය කළා',
           pending: 'තිර රුව ග්‍රහණය කරමින්',
-          pendingAction: 'ග්‍රහණය කරමින්',
+          pendingAction: 'ග්‍රහණය කරමින්'
         },
         browser_type: {
           done: 'පිටුවේ යතුරුලියනය කළා',
           pending: 'පිටුවේ යතුරුලියනය කරමින්',
-          pendingAction: 'යතුරුලියනය කරමින්',
+          pendingAction: 'යතුරුලියනය කරමින්'
         },
         clarify: {
           done: 'ප්‍රශ්නයක් ඇසුවා',
           pending: 'ප්‍රශ්නයක් අසමින්',
-          pendingAction: 'අසමින්',
+          pendingAction: 'අසමින්'
         },
         cronjob: {
           done: 'Cron කාර්යය',
           pending: 'Cron කාර්යය සැලසුම් කරමින්',
-          pendingAction: 'සැලසුම් කරමින්',
+          pendingAction: 'සැලසුම් කරමින්'
         },
         edit_file: {
           done: 'ගොනුව සංස්කරණය කළා',
           pending: 'ගොනුව සංස්කරණය කරමින්',
-          pendingAction: 'සංස්කරණය කරමින්',
+          pendingAction: 'සංස්කරණය කරමින්'
         },
         execute_code: {
           done: 'කේතය ධාවනය කළා',
           pending: 'ස්ක්‍රිප්ට් කරමින්',
-          pendingAction: 'ස්ක්‍රිප්ට් කරමින්',
+          pendingAction: 'ස්ක්‍රිප්ට් කරමින්'
         },
         image_generate: {
           done: 'පින්තූරය ජනනය කළා',
           pending: 'පින්තූරය ජනනය කරමින්',
-          pendingAction: 'ජනනය කරමින්',
+          pendingAction: 'ජනනය කරමින්'
         },
         list_files: {
           done: 'ගොනු ලැයිස්තුගත කළා',
           pending: 'ගොනු ලැයිස්තුගත කරමින්',
-          pendingAction: 'ලැයිස්තුගත කරමින්',
+          pendingAction: 'ලැයිස්තුගත කරමින්'
         },
         patch: {
           done: 'ගොනුව පැච් කළා',
           pending: 'ගොනුව පැච් කරමින්',
-          pendingAction: 'පැච් කරමින්',
+          pendingAction: 'පැච් කරමින්'
         },
         read_file: {
           done: 'ගොනුව කියවා ඇත',
           pending: 'ගොනුව කියවමින්',
-          pendingAction: 'කියවමින්',
+          pendingAction: 'කියවමින්'
         },
         search_files: {
           done: 'ගොනු සොයන ලදී',
           pending: 'ගොනු සොයමින්',
-          pendingAction: 'සොයමින්',
+          pendingAction: 'සොයමින්'
         },
         session_search_recall: {
           done: 'සැසි ඉතිහාසය සොයන ලදි',
           pending: 'සැසි ඉතිහාසය සොයමින්',
-          pendingAction: 'සොයමින්',
+          pendingAction: 'සොයමින්'
         },
         terminal: {
           done: 'විධානය ක්‍රියාත්මක කළා',
           pending: 'විධානය ක්‍රියාත්මක කරමින්',
-          pendingAction: 'ක්‍රියාත්මක වෙමින්',
+          pendingAction: 'ක්‍රියාත්මක වෙමින්'
         },
         todo: {
           done: 'කාර්ය ලැයිස්තුව යාවත්කාලීන කළා',
           pending: 'කාර්ය ලැයිස්තුව යාවත්කාලීන කරමින්',
-          pendingAction: 'යාවත්කාලීන කරමින්',
+          pendingAction: 'යාවත්කාලීන කරමින්'
         },
         vision_analyze: {
           done: 'රූපය විශ්ලේෂණය කළා',
           pending: 'රූපය විශ්ලේෂණය කරමින්',
-          pendingAction: 'විශ්ලේෂණය කරමින්',
+          pendingAction: 'විශ්ලේෂණය කරමින්'
         },
         web_extract: {
           done: 'වෙබ් පිටුව කියවන ලදි',
           pending: 'වෙබ් පිටුව කියවමින්',
-          pendingAction: 'කියවමින්',
+          pendingAction: 'කියවමින්'
         },
         web_search: {
           done: 'වෙබය සොයන ලදි',
           pending: 'වෙබය සොයමින්',
-          pendingAction: 'සොයමින්',
+          pendingAction: 'සොයමින්'
         },
         write_file: {
           done: 'ගොනුව සංස්කරණය කළා',
           pending: 'ගොනුව සංස්කරණය කරමින්',
-          pendingAction: 'සංස්කරණය',
-        },
+          pendingAction: 'සංස්කරණය'
+        }
       },
       recoveredMany: count => `Recovered after ${count} failed steps`,
       failedMany: count => `${count} steps failed`,
@@ -2794,8 +2864,8 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
     },
     approval: {
       gatewayDisconnected: 'OpenAmer ද්වාරය සම්බන්ධ නොවී ඇත',
@@ -2809,19 +2879,21 @@ Leave blank to keep the ${mode} default.`,
       reject: 'ප්‍රතික්ෂේප කරන්න',
       alwaysTitle: 'මෙම විධානයට සැමවිටම ඉඩ දෙන්නද?',
       alwaysAllow: 'සැමවිටම ඉඩ දෙන්න',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
-    },
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer ගේට්වේ සම්බන්ධ වී නැත',
     sudoSendFailed: 'sudo මුරපදය යැවිය නොහැකි විය',
     secretSendFailed: 'රහස යැවිය නොහැකි විය',
     sudoTitle: 'පරිපාලක මුරපදය',
-    sudoDesc: 'වරප්‍රසාදිත විධානයක් ධාවනය කිරීමට OpenAmer ට ඔබේ sudo මුරපදය අවශ්‍යයි. එය යැවෙන්නේ ඔබේ ප්‍රාදේශීය නියෝජිතයාට පමණි.',
+    sudoDesc:
+      'වරප්‍රසාදිත විධානයක් ධාවනය කිරීමට OpenAmer ට ඔබේ sudo මුරපදය අවශ්‍යයි. එය යැවෙන්නේ ඔබේ ප්‍රාදේශීය නියෝජිතයාට පමණි.',
     sudoPlaceholder: 'sudo මුරපදය',
     secretTitle: 'රහස අවශ්‍යයි',
     secretDesc: 'ඉදිරියට යාමට OpenAmer ට අක්තපත්‍රයක් අවශ්‍යයි.',
-    secretPlaceholder: 'රහස් අගය',
+    secretPlaceholder: 'රහස් අගය'
   },
   desktop: {
     audioReadFailed: 'පටිගත කළ ශ්‍රව්‍යය කියවිය නොහැකි විය',
@@ -2842,7 +2914,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'සංස්කරණය අසාර්ථක විය',
     resumeFailed: 'දිගටම කරගෙන යාම අසාර්ථක විය',
     resumeStrandedTitle: 'මෙම සැසිය පූරණය කළ නොහැකි විය',
-    resumeStrandedBody: 'මෙම සැසියට සම්බන්ධතාවය අසාර්ථක වූ අතර ස්වයංක්‍රීය නැවත උත්සාහයන් අත්හැර දමන ලදී. ගේට්වේ ක්‍රියාත්මක දැයි පරීක්ෂා කර නැවත උත්සාහ කරන්න.',
+    resumeStrandedBody:
+      'මෙම සැසියට සම්බන්ධතාවය අසාර්ථක වූ අතර ස්වයංක්‍රීය නැවත උත්සාහයන් අත්හැර දමන ලදී. ගේට්වේ ක්‍රියාත්මක දැයි පරීක්ෂා කර නැවත උත්සාහ කරන්න.',
     resumeRetry: 'නැවත උත්සාහ කරන්න',
     nothingToBranch: 'ශාඛා කිරීමට කිසිවක් නැත',
     branchNeedsChat: 'ශාඛා කිරීමට පෙර චැට් එකක් අරඹන්න හෝ දිගටම කරගෙන යන්න.',
@@ -2881,40 +2954,41 @@ Leave blank to keep the ${mode} default.`,
       timedOut: 'ගේට්වේ සඳහා රැඳී සිටීම කල් ඉකුත් විය. `openamer gateway` ක්‍රියාත්මක වෙමින් තිබේද?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     skillCommandsAvailable: count => `${count} skill commands available.`,
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
-    branchTitle: n => `Draft: Branch #${n}`,
+    branchTitle: n => `Draft: Branch #${n}`
   },
   errors: {
     genericFailure: 'යමක් වැරදී ඇත',
     boundaryTitle: 'අතුරුමුහුණතේ දෝෂයක් සිදු විය',
     boundaryDesc: 'දර්ශනයට අනපේක්ෂිත දෝෂයක් හමු විය. ඔබගේ චැට් සහ සැකසුම් ආරක්ෂිතය.',
     reloadWindow: 'කවුළුව නැවත පූරණය කරන්න',
-    openLogs: 'ලොග් විවෘත කරන්න',
+    openLogs: 'ලොග් විවෘත කරන්න'
   },
   ui: {
     search: {
-      clear: 'සෙවුම හිස් කරන්න',
+      clear: 'සෙවුම හිස් කරන්න'
     },
     pagination: {
       label: 'පිටු බෙදීම',
       previous: 'පෙර',
       previousAria: 'පෙර පිටුවට යන්න',
       next: 'ඊළඟ',
-      nextAria: 'ඊළඟ පිටුවට යන්න',
+      nextAria: 'ඊළඟ පිටුවට යන්න'
     },
     sidebar: {
       title: 'පැති තීරුව',
       description: 'ජංගම පැති තීරුව පෙන්වයි.',
-      toggle: 'පැති තීරුව මාරු කරන්න',
-    },
+      toggle: 'පැති තීරුව මාරු කරන්න'
+    }
   },
   starmap: {
     title: 'මතක ප්‍රස්තාරය',
@@ -2930,7 +3004,8 @@ Leave blank to keep the ${mode} default.`,
     emptyTitle: 'තවම කිසිවක් ඉගෙන ගෙන නැත',
     emptyDesc: 'OpenAmer ඔබේ කාර්යය සඳහා කුසලතා සහ මතක ගොඩනඟන විට, ඒවා මෙහි දිස්වේ.',
     share: 'සිතියම බෙදාගන්න',
-    shareHint: 'මෙම සිතියම බෙදාගැනීමට කේතය පිටපත් කරන්න, නැතහොත් පූරණය කිරීමට එකක් අලවන්න. එයට පිරිසැලසුම පමණක් ඇතුළත් වේ, ඔබේ මතකය හෝ කුසලතා පෙළ නොවේ.',
+    shareHint:
+      'මෙම සිතියම බෙදාගැනීමට කේතය පිටපත් කරන්න, නැතහොත් පූරණය කිරීමට එකක් අලවන්න. එයට පිරිසැලසුම පමණක් ඇතුළත් වේ, ඔබේ මතකය හෝ කුසලතා පෙළ නොවේ.',
     shareTitle: 'සිතියම ආයාත / නිර්යාත කරන්න',
     sharePlaceholder: 'සිතියම් කේතයක් අලවන්න…',
     copy: 'සිතියම් කේතය පිටපත් කරන්න',
@@ -2941,7 +3016,7 @@ Leave blank to keep the ${mode} default.`,
     importedBadge: 'ආයාත කළ සිතියම',
     resetToMine: 'මගේ සිතියම වෙත ආපසු',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'නියෝජිතයන් වසන්න',
@@ -2971,9 +3046,10 @@ Leave blank to keep the ${mode} default.`,
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
-  },
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
+  }
 })

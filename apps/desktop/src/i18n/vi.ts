@@ -44,7 +44,7 @@ export const vi = defineLocale({
     update: 'Cập nhật',
     tryHint: term => `Thử “${term}”`,
     on: 'Bật',
-    off: 'Tắt',
+    off: 'Tắt'
   },
   fileMenu: {
     revealFinder: 'Hiện trong Finder',
@@ -59,7 +59,7 @@ export const vi = defineLocale({
     renameLabel: 'Tên mới',
     deleteTitle: name => `Xóa ${name}?`,
     deleteBody: 'Nó sẽ được chuyển vào Thùng rác — bạn có thể khôi phục từ đó.',
-    pathCopied: 'Đã sao chép đường dẫn',
+    pathCopied: 'Đã sao chép đường dẫn'
   },
   boot: {
     ready: 'OpenAmer Desktop đã sẵn sàng',
@@ -69,7 +69,7 @@ export const vi = defineLocale({
       loadingSettings: 'Đang tải cài đặt OpenAmer',
       loadingSessions: 'Đang tải các phiên gần đây',
       startingDesktopConnection: 'Đang bắt đầu kết nối desktop',
-      startingOpenAmerDesktop: 'Đang khởi động OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Đang khởi động OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Tiến trình nền của OpenAmer đã kết thúc.',
@@ -78,13 +78,15 @@ export const vi = defineLocale({
       desktopBootFailed: 'Khởi động desktop thất bại',
       gatewayConnectionLost: 'Mất kết nối tới gateway',
       gatewaySignInRequired: 'Cần đăng nhập vào gateway',
-      ipcBridgeUnavailable: 'Cầu IPC của desktop không khả dụng.',
+      ipcBridgeUnavailable: 'Cầu IPC của desktop không khả dụng.'
     },
     failure: {
-      title: "OpenAmer không thể khởi động",
-      description: "Gateway nền không khởi động được. Hãy thử một trong các bước khôi phục bên dưới. Không có gì ở đây xóa các cuộc trò chuyện hay cài đặt của bạn.",
+      title: 'OpenAmer không thể khởi động',
+      description:
+        'Gateway nền không khởi động được. Hãy thử một trong các bước khôi phục bên dưới. Không có gì ở đây xóa các cuộc trò chuyện hay cài đặt của bạn.',
       remoteTitle: 'Cần đăng nhập vào gateway từ xa',
-      remoteDescription: 'Phiên gateway từ xa của bạn đã hết hạn. Đăng nhập lại để kết nối lại. Không có gì ở đây xóa các cuộc trò chuyện hay cài đặt của bạn.',
+      remoteDescription:
+        'Phiên gateway từ xa của bạn đã hết hạn. Đăng nhập lại để kết nối lại. Không có gì ở đây xóa các cuộc trò chuyện hay cài đặt của bạn.',
       retry: 'Thử lại',
       repairInstall: 'Sửa chữa cài đặt',
       useLocalGateway: 'Dùng gateway cục bộ',
@@ -92,7 +94,8 @@ export const vi = defineLocale({
       back: 'Quay lại',
       openLogs: 'Mở nhật ký',
       repairHint: 'Việc sửa chữa chạy lại trình cài đặt và có thể mất vài phút trên máy mới.',
-      remoteSignInHint: signInLabel => `Đăng xuất khỏi phiên trình duyệt từ xa đã lưu, rồi mở ${signInLabel}. Dùng "Dùng gateway cục bộ" để chuyển về backend đi kèm.`,
+      remoteSignInHint: signInLabel =>
+        `Đăng xuất khỏi phiên trình duyệt từ xa đã lưu, rồi mở ${signInLabel}. Dùng "Dùng gateway cục bộ" để chuyển về backend đi kèm.`,
       signOutAndSignIn: 'Đăng xuất & đăng nhập',
       remoteFailureHint: 'Kiểm tra URL và đăng nhập trong cài đặt gateway, hoặc chuyển sang gateway cục bộ.',
       hideRecentLogs: 'Ẩn nhật ký gần đây',
@@ -104,8 +107,8 @@ export const vi = defineLocale({
       signInFailed: 'Đăng nhập thất bại',
       signInToRemoteGateway: 'Đăng nhập vào gateway từ xa',
       signInWithProvider: provider => `Đăng nhập bằng ${provider}`,
-      identityProvider: 'nhà cung cấp danh tính của bạn',
-    },
+      identityProvider: 'nhà cung cấp danh tính của bạn'
+    }
   },
   notifications: {
     region: 'Thông báo',
@@ -118,21 +121,23 @@ export const vi = defineLocale({
     copyDetail: 'Sao chép chi tiết',
     copyDetailFailed: 'Không thể sao chép chi tiết thông báo',
     backendOutOfDateTitle: 'Backend đã cũ',
-    backendOutOfDateMessage: 'Backend OpenAmer của bạn cũ hơn bản dựng desktop này và có thể hoạt động không đúng. Hãy cập nhật để đồng bộ.',
+    backendOutOfDateMessage:
+      'Backend OpenAmer của bạn cũ hơn bản dựng desktop này và có thể hoạt động không đúng. Hãy cập nhật để đồng bộ.',
     installMethodUnsupportedTitle: 'Phương thức cài đặt không được hỗ trợ',
     updateOpenAmer: 'Cập nhật OpenAmer',
     updateReadyTitle: 'Cập nhật đã sẵn sàng',
     updateReadyMessage: count => `${count} thay đổi mới ${count === 1 ? 'Thay đổi' : 'Thay đổi'} đã có.`,
-    seeWhatsNew: "Xem có gì mới",
+    seeWhatsNew: 'Xem có gì mới',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT cần ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs đã từ chối khóa API (401).',
       gatewayAuthFailed: 'Xác thực gateway thất bại — kiểm tra API_SERVER_KEY của bạn.',
-      methodNotAllowed: 'Backend desktop đã từ chối yêu cầu đó (405 Method Not Allowed). Thử khởi động lại OpenAmer Desktop.',
+      methodNotAllowed:
+        'Backend desktop đã từ chối yêu cầu đó (405 Method Not Allowed). Thử khởi động lại OpenAmer Desktop.',
       microphonePermission: 'Quyền micro đã bị từ chối.',
       openaiRejectedApiKey: 'OpenAI đã từ chối khóa API.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI đã từ chối khóa API (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS cần VOICE_TOOLS_OPENAI_KEY hoặc OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS cần VOICE_TOOLS_OPENAI_KEY hoặc OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Cấu hình giọng nói thành văn bản để dùng chế độ thoại.',
@@ -151,7 +156,7 @@ export const vi = defineLocale({
       transcriptionFailed: 'Chuyển giọng nói thành văn bản thất bại',
       transcriptionUnavailable: 'Chuyển giọng nói thành văn bản chưa khả dụng.',
       tryRecordingAgain: 'Thử ghi lại.',
-      unavailable: 'Không có giọng nói',
+      unavailable: 'Không có giọng nói'
     },
     native: {
       approvalTitle: 'Cần phê duyệt',
@@ -164,11 +169,12 @@ export const vi = defineLocale({
       turnErrorTitle: 'Lượt xử lý thất bại',
       backgroundDoneTitle: 'Tác vụ nền hoàn tất',
       backgroundFailedTitle: 'Tác vụ nền thất bại',
-      creditsTitle: 'Tín dụng',
-    },
+      creditsTitle: 'Tín dụng'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Đang dùng kết xuất phần mềm — phát hiện màn hình từ xa (${reason}). Tăng tốc GPU bị tắt để tránh nhấp nháy.`,
+    message: reason =>
+      `Đang dùng kết xuất phần mềm — phát hiện màn hình từ xa (${reason}). Tăng tốc GPU bị tắt để tránh nhấp nháy.`
   },
   billingBlock: {
     titleOpenamer: 'Hết tín dụng OpenAmer',
@@ -176,7 +182,7 @@ export const vi = defineLocale({
     fallbackMessage: 'Tài khoản của bạn đã hết tín dụng. Thêm tín dụng để tiếp tục.',
     openBilling: 'Mở trang thanh toán',
     addCredits: 'Thêm tín dụng',
-    dismiss: 'Bỏ qua',
+    dismiss: 'Bỏ qua'
   },
   titlebar: {
     hideSidebar: 'Ẩn thanh bên',
@@ -193,7 +199,7 @@ export const vi = defineLocale({
     openStarmap: 'Mở đồ thị bộ nhớ',
     openKeybinds: 'Phím tắt',
     layoutEditor: 'Trình chỉnh sửa bố cục',
-    layoutEditorTitle: 'Trình chỉnh sửa bố cục — Cmd/Ctrl+nhấp đặt lại bố cục',
+    layoutEditorTitle: 'Trình chỉnh sửa bố cục — Cmd/Ctrl+nhấp đặt lại bố cục'
   },
   keybinds: {
     title: 'Phím tắt',
@@ -210,7 +216,7 @@ export const vi = defineLocale({
       profiles: 'Hồ sơ',
       session: 'Phiên',
       navigation: 'Điều hướng',
-      view: 'Xem',
+      view: 'Xem'
     },
     actions: {
       'keybinds.openPanel': 'Mở phím tắt',
@@ -289,8 +295,8 @@ export const vi = defineLocale({
       'composer.slash': 'Bảng lệnh gạch chéo',
       'composer.help': 'Trợ giúp nhanh',
       'composer.history': 'Chuyển vòng bảng nổi / lịch sử',
-      'composer.cancel': 'Đóng bảng nổi · hủy lượt chạy',
-    },
+      'composer.cancel': 'Đóng bảng nổi · hủy lượt chạy'
+    }
   },
   language: {
     label: 'Ngôn ngữ',
@@ -299,7 +305,7 @@ export const vi = defineLocale({
     saveError: 'Cập nhật ngôn ngữ thất bại',
     switchTo: 'Đổi ngôn ngữ',
     searchPlaceholder: 'Tìm ngôn ngữ…',
-    noResults: 'Không tìm thấy ngôn ngữ nào',
+    noResults: 'Không tìm thấy ngôn ngữ nào'
   },
   settings: {
     closeSettings: 'Đóng cài đặt',
@@ -324,11 +330,12 @@ export const vi = defineLocale({
       about: 'Giới thiệu',
       billing: 'Thanh toán',
       notifications: 'Thông báo',
-      plugins: 'Tiện ích',
+      plugins: 'Tiện ích'
     },
     plugins: {
       title: 'Plugin máy tính',
-      blurb: 'Tiện ích giao diện được tải vào ứng dụng này — đi kèm bản dựng hoặc được thả vào thư mục desktop-plugins (kể cả những tiện ích do OpenAmer ghi). Tắt sẽ gỡ tiện ích ngay lập tức và vẫn giữ nguyên sau khi khởi động lại.',
+      blurb:
+        'Tiện ích giao diện được tải vào ứng dụng này — đi kèm bản dựng hoặc được thả vào thư mục desktop-plugins (kể cả những tiện ích do OpenAmer ghi). Tắt sẽ gỡ tiện ích ngay lập tức và vẫn giữ nguyên sau khi khởi động lại.',
       count: n => `${n} đã cài đặt`,
       openFolder: 'Mở thư mục plugin',
       rescan: 'Quét lại',
@@ -340,49 +347,51 @@ export const vi = defineLocale({
       kinds: {
         bundled: 'đi kèm',
         disk: 'trên ổ đĩa',
-        runtime: 'môi trường chạy',
-      },
+        runtime: 'môi trường chạy'
+      }
     },
     notifications: {
       title: 'Thông báo',
-      intro: 'Thông báo gốc trên máy tính để bàn, tách biệt với thông báo nổi trong ứng dụng. Các thông báo này cục bộ theo thiết bị — mỗi máy tính giữ cài đặt riêng.',
+      intro:
+        'Thông báo gốc trên máy tính để bàn, tách biệt với thông báo nổi trong ứng dụng. Các thông báo này cục bộ theo thiết bị — mỗi máy tính giữ cài đặt riêng.',
       enableAll: 'Bật thông báo',
       enableAllDesc: 'Công tắc tổng. Tắt mục này để tắt mọi thông báo bên dưới.',
       focusedHint: 'Cảnh báo hoàn thành chỉ kích hoạt khi OpenAmer chạy nền.',
       kinds: {
         approval: {
           label: 'Cần phê duyệt',
-          description: 'Một lệnh đang chờ bạn phê duyệt hoặc từ chối.',
+          description: 'Một lệnh đang chờ bạn phê duyệt hoặc từ chối.'
         },
         input: {
           label: 'Cần nhập liệu',
-          description: 'OpenAmer đã hỏi một câu hoặc cần mật khẩu hoặc thông tin bí mật.',
+          description: 'OpenAmer đã hỏi một câu hoặc cần mật khẩu hoặc thông tin bí mật.'
         },
         turnDone: {
           label: 'Phản hồi đã sẵn sàng',
-          description: 'Một lượt đã hoàn tất khi OpenAmer chạy nền.',
+          description: 'Một lượt đã hoàn tất khi OpenAmer chạy nền.'
         },
         turnError: {
           label: 'Lượt chạy thất bại',
-          description: 'Một lượt đã kết thúc với lỗi.',
+          description: 'Một lượt đã kết thúc với lỗi.'
         },
         backgroundDone: {
           label: 'Tác vụ nền đã hoàn tất',
-          description: 'Một lệnh dòng lệnh chạy nền đã hoàn tất.',
+          description: 'Một lệnh dòng lệnh chạy nền đã hoàn tất.'
         },
         credits: {
           label: 'Cảnh báo tín dụng',
-          description: 'Quyền truy cập tín dụng bị tạm dừng hoặc được khôi phục.',
-        },
+          description: 'Quyền truy cập tín dụng bị tạm dừng hoặc được khôi phục.'
+        }
       },
       test: 'Gửi thông báo thử',
       testTitle: 'OpenAmer',
       testBody: 'Thông báo đang hoạt động.',
-      testSent: 'Đã gửi thử. Nếu không thấy gì, hãy kiểm tra quyền thông báo của hệ điều hành và Tập trung/Không làm phiền.',
+      testSent:
+        'Đã gửi thử. Nếu không thấy gì, hãy kiểm tra quyền thông báo của hệ điều hành và Tập trung/Không làm phiền.',
       testUnsupported: 'Hệ thống này không hỗ trợ thông báo gốc.',
       completionSoundTitle: 'Âm thanh hoàn tất',
       completionSoundDesc: 'Phát khi một lượt của tác nhân kết thúc. Chọn một mẫu đặt trước và nghe thử tại đây.',
-      completionSoundPreview: 'Nghe thử',
+      completionSoundPreview: 'Nghe thử'
     },
     sections: {
       model: 'Mô hình',
@@ -392,7 +401,7 @@ export const vi = defineLocale({
       safety: 'An toàn',
       memory: 'Bộ nhớ & Ngữ cảnh',
       voice: 'Giọng nói',
-      advanced: 'Nâng cao',
+      advanced: 'Nâng cao'
     },
     searchPlaceholder: {
       about: 'Giới thiệu OpenAmer Desktop',
@@ -400,37 +409,40 @@ export const vi = defineLocale({
       gateway: 'Kết nối gateway...',
       keys: 'Tìm kiếm khóa API...',
       mcp: 'Tìm kiếm máy chủ MCP...',
-      sessions: 'Tìm kiếm phiên đã lưu trữ...',
+      sessions: 'Tìm kiếm phiên đã lưu trữ...'
     },
     modeOptions: {
       light: {
         label: 'Sáng',
-        description: 'Bề mặt sáng',
+        description: 'Bề mặt sáng'
       },
       dark: {
         label: 'Tối',
-        description: 'Không gian chói nhẹ',
+        description: 'Không gian chói nhẹ'
       },
       system: {
         label: 'Hệ thống',
-        description: 'Theo diện mạo của hệ điều hành',
-      },
+        description: 'Theo diện mạo của hệ điều hành'
+      }
     },
     appearance: {
       title: 'Diện mạo',
-      intro: 'Đây là tùy chọn hiển thị chỉ dành cho desktop. Chế độ điều khiển độ sáng; giao diện điều khiển bảng màu nhấn và kiểu bề mặt trò chuyện.',
+      intro:
+        'Đây là tùy chọn hiển thị chỉ dành cho desktop. Chế độ điều khiển độ sáng; giao diện điều khiển bảng màu nhấn và kiểu bề mặt trò chuyện.',
       colorMode: 'Chế độ màu',
       colorModeDesc: 'Chọn chế độ cố định hoặc để OpenAmer theo cài đặt hệ thống.',
       toolViewTitle: 'Hiển thị lời gọi công cụ',
       toolViewDesc: 'Sản phẩm ẩn dữ liệu thô của công cụ; Kỹ thuật hiển thị toàn bộ đầu vào/đầu ra.',
       uiScaleTitle: 'Tỷ lệ giao diện',
-      uiScaleDesc: (percent: number) => `Tỷ lệ văn bản và điều khiển trên toàn ứng dụng. Cmd/Ctrl với +, - và 0 cũng hoạt động. Hiện tại: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Tỷ lệ văn bản và điều khiển trên toàn ứng dụng. Cmd/Ctrl với +, - và 0 cũng hoạt động. Hiện tại: ${percent}%.`,
       translucencyTitle: 'Độ trong suốt cửa sổ',
       translucencyDesc: 'Nhìn thấy desktop của bạn xuyên qua toàn bộ cửa sổ. Chỉ trên macOS và Windows.',
       backdropTitle: 'Hình nền trò chuyện',
       backdropDesc: 'Hình tượng tượng mờ phía sau cuộc trò chuyện.',
       embedsTitle: 'Nội dung nhúng',
-      embedsDesc: 'Bản xem trước phong phú tải từ các trang bên thứ ba (YouTube, X, …). Hỏi hiển thị chỗ trống cho đến khi bạn cho phép từng cái; Luôn luôn tải tự động; Tắt giữ liên kết thuần.',
+      embedsDesc:
+        'Bản xem trước phong phú tải từ các trang bên thứ ba (YouTube, X, …). Hỏi hiển thị chỗ trống cho đến khi bạn cho phép từng cái; Luôn luôn tải tự động; Tắt giữ liên kết thuần.',
       embedsAsk: 'Hỏi',
       embedsAlways: 'Luôn luôn',
       embedsOff: 'Tắt',
@@ -443,7 +455,8 @@ export const vi = defineLocale({
       themeDesc: 'Chỉ bảng màu desktop. Chế độ đã chọn được áp dụng phía trên.',
       themeProfileNote: profile => `Đã lưu cho hồ sơ ${profile} — mỗi hồ sơ giữ giao diện riêng.`,
       installTitle: 'Cài đặt từ VS Code',
-      installDesc: 'Dán ID tiện ích mở rộng Marketplace (vd. dracula-theme.theme-dracula) để chuyển giao diện màu của nó thành bảng màu desktop.',
+      installDesc:
+        'Dán ID tiện ích mở rộng Marketplace (vd. dracula-theme.theme-dracula) để chuyển giao diện màu của nó thành bảng màu desktop.',
       installPlaceholder: 'nhà phát hành.tiện ích mở rộng',
       installButton: 'Cài đặt',
       installing: 'Đang cài đặt…',
@@ -453,8 +466,10 @@ export const vi = defineLocale({
       importedBadge: 'Đã nhập',
       pet: {
         title: 'Thú cưng',
-        intro: 'Nhận nuôi một linh vật petdex động, bay lơ lửng trên ứng dụng và phản ứng với những gì OpenAmer đang làm — chạy khi công cụ thực thi, ăn mừng khi thành công, hờn dỗi khi lỗi.',
-        restartHint: 'Thú cưng cần khởi động lại nhanh — ứng dụng đang chạy đã khởi động trước khi tính năng này được thêm. Thoát và mở lại OpenAmer, rồi quay lại đây.',
+        intro:
+          'Nhận nuôi một linh vật petdex động, bay lơ lửng trên ứng dụng và phản ứng với những gì OpenAmer đang làm — chạy khi công cụ thực thi, ăn mừng khi thành công, hờn dỗi khi lỗi.',
+        restartHint:
+          'Thú cưng cần khởi động lại nhanh — ứng dụng đang chạy đã khởi động trước khi tính năng này được thêm. Thoát và mở lại OpenAmer, rồi quay lại đây.',
         on: 'Bật',
         off: 'Tắt',
         scaleTitle: 'Kích thước',
@@ -464,7 +479,7 @@ export const vi = defineLocale({
         chooseTitle: 'Chọn thú cưng',
         chooseDesc: 'Chọn một con sẽ cài đặt (nếu cần) và kích hoạt nó.',
         searchPlaceholder: 'Tìm thú cưng…',
-        unreachable: "Không thể kết nối tới thư viện petdex. Kiểm tra kết nối và mở lại trang này.",
+        unreachable: 'Không thể kết nối tới thư viện petdex. Kiểm tra kết nối và mở lại trang này.',
         noMatch: query => `Không có thú cưng nào khớp với "${query}".`,
         installedTag: 'đã cài đặt',
         generatedTag: 'Đã tạo',
@@ -473,7 +488,7 @@ export const vi = defineLocale({
         uninstall: name => `Gỡ cài đặt ${name}`,
         delete: name => `Xóa ${name}`,
         deleteTitle: name => `Xóa ${name}?`,
-        deleteBody: "Thao tác này xóa vĩnh viễn thú cưng — không thể cài đặt lại.",
+        deleteBody: 'Thao tác này xóa vĩnh viễn thú cưng — không thể cài đặt lại.',
         deleteConfirm: 'Xóa',
         rename: name => `Đổi tên ${name}`,
         renameTitle: 'Đổi tên thú cưng',
@@ -486,8 +501,8 @@ export const vi = defineLocale({
         exportFailed: slug => `Không thể xuất ${slug}`,
         noneAvailable: 'Hiện không có thú cưng nào để bật.',
         turnOnFailed: 'Không thể bật thú cưng.',
-        turnOffFailed: 'Không thể tắt thú cưng.',
-      },
+        turnOffFailed: 'Không thể tắt thú cưng.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -498,15 +513,16 @@ export const vi = defineLocale({
       updates: 'Bản cập nhật',
       checkNow: 'Kiểm tra ngay',
       checking: 'Đang kiểm tra…',
-      seeWhatsNew: "Xem có gì mới",
+      seeWhatsNew: 'Xem có gì mới',
       updateNow: 'Cập nhật ngay',
       releaseNotes: 'Ghi chú phát hành',
-      onLatest: "Bạn đang dùng phiên bản mới nhất.",
+      onLatest: 'Bạn đang dùng phiên bản mới nhất.',
       installing: 'Một bản cập nhật đang được cài đặt.',
-      cantUpdate: "Bản dựng này không thể tự cập nhật từ trong ứng dụng.",
-      cantReach: "Không thể truy cập máy chủ cập nhật.",
+      cantUpdate: 'Bản dựng này không thể tự cập nhật từ trong ứng dụng.',
+      cantReach: 'Không thể truy cập máy chủ cập nhật.',
       tapCheck: 'Nhấn "Kiểm tra ngay" để tìm bản cập nhật.',
-      updateReady: count => `Bản cập nhật mới đã sẵn sàng (gồm ${count} thay đổi ${count === 1 ? 'Thay đổi' : 'Thay đổi'}).`,
+      updateReady: count =>
+        `Bản cập nhật mới đã sẵn sàng (gồm ${count} thay đổi ${count === 1 ? 'Thay đổi' : 'Thay đổi'}).`,
       lastChecked: age => `Kiểm tra lần cuối ${age}`,
       justNowSuffix: ' · vừa xong',
       automaticUpdates: 'Tự động cập nhật',
@@ -516,7 +532,7 @@ export const vi = defineLocale({
       justNow: 'vừa xong',
       minAgo: count => `${count} phút trước`,
       hoursAgo: count => `${count} giờ trước`,
-      daysAgo: count => `${count} ngày trước`,
+      daysAgo: count => `${count} ngày trước`
     },
     config: {
       none: 'Không có',
@@ -532,7 +548,7 @@ export const vi = defineLocale({
       imported: 'Đã nhập cấu hình',
       invalidJson: 'JSON cấu hình không hợp lệ',
       keepAwakeTitle: 'Giữ máy tính thức',
-      keepAwakeDesc: 'Ngăn máy này ngủ để các lần chạy dài hoặc qua đêm vẫn tiếp tục. Màn hình vẫn có thể mờ đi.',
+      keepAwakeDesc: 'Ngăn máy này ngủ để các lần chạy dài hoặc qua đêm vẫn tiếp tục. Màn hình vẫn có thể mờ đi.'
     },
     credentials: {
       pasteKey: 'Dán khóa',
@@ -542,7 +558,7 @@ export const vi = defineLocale({
       couldNotSave: 'Không thể lưu thông tin xác thực.',
       remove: 'Gỡ bỏ',
       getKey: 'Lấy khóa',
-      saving: 'Đang lưu',
+      saving: 'Đang lưu'
     },
     envActions: {
       actionsFor: label => `Thao tác cho ${label}`,
@@ -553,7 +569,7 @@ export const vi = defineLocale({
       revealValue: 'Hiện giá trị',
       replace: 'Thay thế',
       set: 'Đặt',
-      clear: 'Xóa',
+      clear: 'Xóa'
     },
     gateway: {
       loading: 'Đang tải cài đặt cổng kết nối...',
@@ -561,23 +577,28 @@ export const vi = defineLocale({
       unavailableDesc: 'Cầu IPC desktop không cung cấp cài đặt cổng kết nối.',
       title: 'Kết nối cổng',
       envOverride: 'Ghi đè env',
-      intro: 'OpenAmer Desktop mặc định khởi động cổng cục bộ riêng. Dùng cổng từ xa khi bạn muốn ứng dụng này điều khiển backend OpenAmer đang chạy trên máy khác hoặc sau proxy đáng tin cậy. Chọn một hồ sơ bên dưới để cấp máy chủ từ xa riêng cho hồ sơ đó.',
+      intro:
+        'OpenAmer Desktop mặc định khởi động cổng cục bộ riêng. Dùng cổng từ xa khi bạn muốn ứng dụng này điều khiển backend OpenAmer đang chạy trên máy khác hoặc sau proxy đáng tin cậy. Chọn một hồ sơ bên dưới để cấp máy chủ từ xa riêng cho hồ sơ đó.',
       appliesTo: 'Áp dụng cho',
       allProfiles: 'Tất cả hồ sơ',
       defaultConnection: 'Kết nối mặc định cho mọi hồ sơ không có ghi đè riêng.',
-      profileConnection: profile => `Kết nối chỉ được dùng khi “${profile}” là hồ sơ đang hoạt động. Chọn Dùng cổng mặc định để xóa ghi đè của hồ sơ này.`,
+      profileConnection: profile =>
+        `Kết nối chỉ được dùng khi “${profile}” là hồ sơ đang hoạt động. Chọn Dùng cổng mặc định để xóa ghi đè của hồ sơ này.`,
       envOverrideTitle: 'Biến môi trường đang điều khiển phiên desktop này.',
-      envOverrideDesc: 'Bỏ đặt OPENAMER_DESKTOP_REMOTE_URL và OPENAMER_DESKTOP_REMOTE_TOKEN để dùng cài đặt đã lưu bên dưới.',
+      envOverrideDesc:
+        'Bỏ đặt OPENAMER_DESKTOP_REMOTE_URL và OPENAMER_DESKTOP_REMOTE_TOKEN để dùng cài đặt đã lưu bên dưới.',
       modeTitle: 'Chế độ kết nối',
       localTitle: 'Cổng cục bộ',
       localDesc: 'Khởi động backend OpenAmer riêng trên localhost. Đây là mặc định và hoạt động ngoại tuyến.',
       inheritTitle: 'Dùng cổng mặc định',
-      inheritDesc: "Xóa ghi đè của hồ sơ này và dùng kết nối mặc định.",
+      inheritDesc: 'Xóa ghi đè của hồ sơ này và dùng kết nối mặc định.',
       remoteTitle: 'Cổng từ xa',
       remoteDesc: 'Kết nối ứng dụng desktop này với backend OpenAmer từ xa.',
-      remoteAuthHint: 'Cổng được lưu trữ dùng OAuth hoặc tên người dùng và mật khẩu; cổng tự lưu trữ có thể dùng token phiên.',
+      remoteAuthHint:
+        'Cổng được lưu trữ dùng OAuth hoặc tên người dùng và mật khẩu; cổng tự lưu trữ có thể dùng token phiên.',
       cloudTitle: 'OpenAmer Cloud',
-      cloudDesc: 'Đăng nhập một lần vào OpenAmer Cloud và chọn từ các tác nhân trên tài khoản của bạn — không cần dán URL.',
+      cloudDesc:
+        'Đăng nhập một lần vào OpenAmer Cloud và chọn từ các tác nhân trên tài khoản của bạn — không cần dán URL.',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudSignIn: 'Đăng nhập vào OpenAmer Cloud',
       cloudSignedIn: 'Đã đăng nhập vào OpenAmer Cloud',
@@ -592,7 +613,7 @@ export const vi = defineLocale({
       cloudNoAgents: {
         before: 'Không tìm thấy agent nào trên tài khoản này. Hãy tạo một agent trong ',
         linkText: 'Cổng thông tin OpenAmer',
-        after: ', rồi làm mới.',
+        after: ', rồi làm mới.'
       },
       cloudRefresh: 'Làm mới',
       cloudConnect: 'Kết nối',
@@ -619,7 +640,8 @@ export const vi = defineLocale({
       authSignedInPassword: 'Cổng này dùng tên người dùng và mật khẩu. Bạn đã đăng nhập; phiên sẽ tự động làm mới.',
       authSignedInOauth: 'Cổng này dùng OAuth. Bạn đã đăng nhập; phiên sẽ tự động làm mới.',
       authNeedsPassword: 'Cổng này dùng tên người dùng và mật khẩu. Đăng nhập để cấp quyền cho ứng dụng máy tính này.',
-      authNeedsOauth: provider => `Cổng này dùng OAuth. Đăng nhập bằng ${provider} để cấp quyền cho ứng dụng máy tính này.`,
+      authNeedsOauth: provider =>
+        `Cổng này dùng OAuth. Đăng nhập bằng ${provider} để cấp quyền cho ứng dụng máy tính này.`,
       tokenTitle: 'Mã phiên',
       tokenDesc: 'Mã phiên của bảng điều khiển dùng cho truy cập REST và WebSocket. Để trống để giữ mã đã lưu.',
       existingToken: value => `Mã hiện có ${value}`,
@@ -652,7 +674,8 @@ export const vi = defineLocale({
       applyFailed: 'Không thể áp dụng cài đặt cổng',
       saveFailed: 'Không thể lưu cài đặt cổng',
       sshTitle: 'Kết nối qua SSH',
-      sshDesc: 'OpenAmer được khởi chạy trên máy từ xa qua SSH và tạo đường hầm tới ứng dụng này — không cần tự khởi động hay mở cổng. Yêu cầu truy cập SSH bằng khóa đang hoạt động tới máy chủ.',
+      sshDesc:
+        'OpenAmer được khởi chạy trên máy từ xa qua SSH và tạo đường hầm tới ứng dụng này — không cần tự khởi động hay mở cổng. Yêu cầu truy cập SSH bằng khóa đang hoạt động tới máy chủ.',
       sshTrustHint: 'Khóa máy chủ được trình bày lần đầu sẽ được tin cậy và ghim; các thay đổi sau đó sẽ bị từ chối.',
       sshHostTitle: 'Máy chủ',
       sshHostDesc: 'user@host, hoặc bí danh Host từ ~/.ssh/config.',
@@ -668,7 +691,8 @@ export const vi = defineLocale({
       sshKeyTitle: 'Tệp định danh',
       sshKeyDesc: 'Đường dẫn khóa riêng tư. Để trống = ssh-agent hoặc ~/.ssh/config.',
       sshOpenAmerPathTitle: 'Đường dẫn OpenAmer (tùy chọn)',
-      sshOpenAmerPathDesc: 'Đường dẫn đầy đủ tới tệp nhị phân openamer trên máy chủ từ xa. Để trống = tự động phát hiện.',
+      sshOpenAmerPathDesc:
+        'Đường dẫn đầy đủ tới tệp nhị phân openamer trên máy chủ từ xa. Để trống = tự động phát hiện.',
       sshOpenAmerPathPlaceholder: 'tự động phát hiện',
       sshTestConnection: 'Kiểm tra SSH',
       sshConnect: 'Kết nối',
@@ -676,18 +700,22 @@ export const vi = defineLocale({
       sshReachable: (host, platform) => `Có thể truy cập: ${host} (${platform}) — Đã tìm thấy OpenAmer`,
       sshIncompleteHost: 'Nhập máy chủ SSH trước khi kết nối.',
       sshErrUnreachable: 'Không thể truy cập máy chủ đó qua SSH. Kiểm tra máy chủ, cổng và mạng của bạn.',
-      sshErrAuth: 'Xác thực SSH thất bại. Nạp khóa của bạn vào ssh-agent (ssh-add) hoặc đặt IdentityFile trong ~/.ssh/config — OpenAmer chạy ssh ở chế độ không tương tác.',
-      sshErrHostKey: 'Khóa máy chủ đã THAY ĐỔI kể từ lần kết nối gần nhất. Hãy xác minh điều này là dự kiến, rồi chạy ssh-keygen -R <host> và kết nối lại.',
-      sshErrNotInstalled: 'OpenAmer chưa được cài đặt trên máy chủ từ xa. Hãy cài đặt tại đó (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) hoặc đặt đường dẫn OpenAmer.',
-      sshErrPlatform: 'Nền tảng từ xa không được hỗ trợ. Chế độ SSH của OpenAmer Desktop hỗ trợ máy chủ từ xa chạy Linux, macOS và Windows.',
+      sshErrAuth:
+        'Xác thực SSH thất bại. Nạp khóa của bạn vào ssh-agent (ssh-add) hoặc đặt IdentityFile trong ~/.ssh/config — OpenAmer chạy ssh ở chế độ không tương tác.',
+      sshErrHostKey:
+        'Khóa máy chủ đã THAY ĐỔI kể từ lần kết nối gần nhất. Hãy xác minh điều này là dự kiến, rồi chạy ssh-keygen -R <host> và kết nối lại.',
+      sshErrNotInstalled:
+        'OpenAmer chưa được cài đặt trên máy chủ từ xa. Hãy cài đặt tại đó (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) hoặc đặt đường dẫn OpenAmer.',
+      sshErrPlatform:
+        'Nền tảng từ xa không được hỗ trợ. Chế độ SSH của OpenAmer Desktop hỗ trợ máy chủ từ xa chạy Linux, macOS và Windows.',
       sshErrTimeout: 'Kết nối SSH đã hết thời gian chờ. Máy chủ có thể không thể truy cập hoặc đang ở trạng thái ngủ.',
       sshErrUpdateRequired: 'Cập nhật OpenAmer trên máy chủ từ xa trước khi kết nối bằng Desktop SSH.',
-      sshErrUnknown: 'Kết nối SSH thất bại.',
+      sshErrUnknown: 'Kết nối SSH thất bại.'
     },
     keys: {
       loading: 'Đang tải khóa API và thông tin xác thực...',
       failedLoad: 'Tải khóa API thất bại',
-      empty: 'Chưa có gì được cấu hình trong mục này.',
+      empty: 'Chưa có gì được cấu hình trong mục này.'
     },
     mcp: {
       loading: 'Đang tải máy chủ MCP...',
@@ -739,7 +767,8 @@ export const vi = defineLocale({
       catalogInstallFailed: name => `Cài đặt ${name} thất bại`,
       catalogEnvPrompt: name => `${name} yêu cầu thông tin xác thực`,
       catalogEnvRequired: 'Điền các giá trị bắt buộc trước khi cài đặt.',
-      capabilitySummary: (tools, prompts, resources) => `Đã bật ${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')}`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `Đã bật ${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')}`,
       statusConnecting: 'Đang kết nối…',
       statusNeedsAuth: 'Cần xác thực',
       statusError: 'Lỗi',
@@ -752,11 +781,12 @@ export const vi = defineLocale({
       unsavedConnect: 'Chưa lưu — lưu mcp.json để kết nối.',
       enableTool: tool => `Bật ${tool}`,
       disableTool: tool => `Tắt ${tool}`,
-      noOutput: 'Chưa có đầu ra.',
+      noOutput: 'Chưa có đầu ra.'
     },
     model: {
       loading: 'Đang tải cấu hình mô hình...',
-      appliesDesc: 'Áp dụng cho phiên mới. Dùng bộ chọn mô hình trong ô soạn để đổi nhanh mô hình cho cuộc trò chuyện đang mở.',
+      appliesDesc:
+        'Áp dụng cho phiên mới. Dùng bộ chọn mô hình trong ô soạn để đổi nhanh mô hình cho cuộc trò chuyện đang mở.',
       provider: 'Nhà cung cấp',
       model: 'Mô hình',
       applying: 'Đang áp dụng...',
@@ -773,46 +803,48 @@ export const vi = defineLocale({
       providerDefault: '(mặc định nhà cung cấp)',
       fallbackAdd: 'Thêm dự phòng',
       fallbackEmpty: 'Không có mô hình dự phòng — mô hình mặc định được dùng trừ khi nó lỗi.',
-      notInCatalog: "không nằm trong danh sách mô hình của nhà cung cấp này — các cuộc gọi có thể chuyển sang bản dự phòng.",
+      notInCatalog:
+        'không nằm trong danh sách mô hình của nhà cung cấp này — các cuộc gọi có thể chuyển sang bản dự phòng.',
       tasks: {
         vision: {
           label: 'Thị giác',
-          hint: 'Phân tích hình ảnh',
+          hint: 'Phân tích hình ảnh'
         },
         web_extract: {
           label: 'Trích xuất web',
-          hint: 'Tóm tắt trang',
+          hint: 'Tóm tắt trang'
         },
         compression: {
           label: 'Nén',
-          hint: 'Nén ngữ cảnh',
+          hint: 'Nén ngữ cảnh'
         },
         skills_hub: {
           label: 'Trung tâm kỹ năng',
-          hint: 'Tìm kiếm kỹ năng',
+          hint: 'Tìm kiếm kỹ năng'
         },
         approval: {
           label: 'Phê duyệt',
-          hint: 'Tự động phê duyệt thông minh',
+          hint: 'Tự động phê duyệt thông minh'
         },
         mcp: {
           label: 'MCP',
-          hint: 'Định tuyến công cụ MCP',
+          hint: 'Định tuyến công cụ MCP'
         },
         title_generation: {
           label: 'Tạo tiêu đề',
-          hint: 'Tiêu đề phiên',
+          hint: 'Tiêu đề phiên'
         },
         curator: {
           label: 'Người quản lý',
-          hint: 'Rà soát sử dụng kỹ năng',
-        },
-      },
+          hint: 'Rà soát sử dụng kỹ năng'
+        }
+      }
     },
     providers: {
       connectAccount: 'Kết nối tài khoản',
       haveApiKey: 'Có khóa API thay thế?',
-      intro: 'Đăng nhập bằng gói đăng ký — không cần sao chép khóa API. OpenAmer chạy đăng nhập qua trình duyệt cho bạn, ngay tại đây trong ứng dụng.',
+      intro:
+        'Đăng nhập bằng gói đăng ký — không cần sao chép khóa API. OpenAmer chạy đăng nhập qua trình duyệt cho bạn, ngay tại đây trong ứng dụng.',
       connected: 'Đã kết nối',
       collapse: 'Thu gọn',
       connectAnother: 'Kết nối nhà cung cấp khác',
@@ -822,7 +854,8 @@ export const vi = defineLocale({
       removeConfirm: provider => `Xóa ${provider}?`,
       removeExternalGeneric: provider => `${provider} được quản lý bởi CLI riêng — hãy xóa tại đó.`,
       removeKeyManaged: provider => `${provider} được cấu hình từ khóa API. Hãy xóa trong Khóa API.`,
-      removeTerminalConfirm: (provider, command) => `Ngắt kết nối ${provider}? Thao tác này chạy "${command}" trong terminal để xóa thông tin xác thực.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Ngắt kết nối ${provider}? Thao tác này chạy "${command}" trong terminal để xóa thông tin xác thực.`,
       removeTerminalRunning: provider => `Đang chạy lệnh ngắt kết nối ${provider} trong terminal…`,
       removedTitle: 'Đã xóa tài khoản',
       removedMessage: provider => `Đã xóa ${provider}.`,
@@ -832,14 +865,15 @@ export const vi = defineLocale({
       noKeysMatch: 'Không có nhà cung cấp nào khớp tìm kiếm.',
       localEndpoint: {
         title: 'Điểm cuối cục bộ / tùy chỉnh',
-        description: 'Trỏ OpenAmer tới bất kỳ điểm cuối tương thích OpenAI nào (Zyphra, vLLM, llama.cpp, Ollama, v.v.).',
+        description: 'Trỏ OpenAmer tới bất kỳ điểm cuối tương thích OpenAI nào (Zyphra, vLLM, llama.cpp, Ollama, v.v.).'
       },
-      loading: 'Đang tải nhà cung cấp...',
+      loading: 'Đang tải nhà cung cấp...'
     },
     sessions: {
       loading: 'Đang tải phiên lưu trữ…',
       archivedTitle: 'Phiên đã lưu trữ',
-      archivedIntro: 'Các cuộc trò chuyện đã lưu trữ bị ẩn khỏi thanh bên nhưng vẫn giữ tất cả tin nhắn. Nhấn Ctrl/⌘ và nhấp vào một cuộc trò chuyện trong thanh bên để lưu trữ.',
+      archivedIntro:
+        'Các cuộc trò chuyện đã lưu trữ bị ẩn khỏi thanh bên nhưng vẫn giữ tất cả tin nhắn. Nhấn Ctrl/⌘ và nhấp vào một cuộc trò chuyện trong thanh bên để lưu trữ.',
       emptyArchivedTitle: 'Không có gì được lưu trữ',
       emptyArchivedDesc: 'Lưu trữ cuộc trò chuyện để ẩn nó khỏi đây.',
       unarchive: 'Bỏ lưu trữ',
@@ -848,12 +882,14 @@ export const vi = defineLocale({
       restored: 'Đã khôi phục',
       deleteConfirm: title => `Xóa vĩnh viễn "${title}"? Không thể hoàn tác.`,
       autoArchiveTitle: 'Tự động lưu trữ cuộc trò chuyện cũ',
-      autoArchiveDesc: "Tự động lưu trữ các cuộc trò chuyện bạn không mở trong một thời gian. Cuộc trò chuyện đã ghim không bao giờ bị lưu trữ, và không có gì bị xóa — các cuộc trò chuyện đã lưu trữ chỉ chuyển sang đây.",
+      autoArchiveDesc:
+        'Tự động lưu trữ các cuộc trò chuyện bạn không mở trong một thời gian. Cuộc trò chuyện đã ghim không bao giờ bị lưu trữ, và không có gì bị xóa — các cuộc trò chuyện đã lưu trữ chỉ chuyển sang đây.',
       autoArchiveDaysLabel: 'Lưu trữ sau',
       autoArchiveDaysUnit: 'ngày không hoạt động',
       autoArchiveFailed: 'Không thể cập nhật tự động lưu trữ',
       defaultDirTitle: 'Thư mục dự án mặc định',
-      defaultDirDesc: 'Các phiên mới sẽ bắt đầu trong thư mục này trừ khi bạn chọn thư mục khác. Để trống để dùng thư mục home của bạn.',
+      defaultDirDesc:
+        'Các phiên mới sẽ bắt đầu trong thư mục này trừ khi bạn chọn thư mục khác. Để trống để dùng thư mục home của bạn.',
       defaultDirUpdated: 'Đã cập nhật thư mục dự án mặc định — hãy bắt đầu cuộc trò chuyện mới (Ctrl/⌘+N) để áp dụng',
       defaultsTo: label => `Mặc định là ${label}.`,
       change: 'Thay đổi',
@@ -864,7 +900,7 @@ export const vi = defineLocale({
       unarchiveFailed: 'Bỏ lưu trữ thất bại',
       deleteFailed: 'Xóa thất bại',
       updateDirFailed: 'Không thể cập nhật thư mục mặc định',
-      clearDirFailed: 'Không thể xóa thư mục mặc định',
+      clearDirFailed: 'Không thể xóa thư mục mặc định'
     },
     toolsets: {
       loadingConfig: 'Đang tải cấu hình',
@@ -882,14 +918,16 @@ export const vi = defineLocale({
       selectedMessage: provider => `${provider} hiện đã hoạt động.`,
       failedSelect: provider => `Không chọn được ${provider}`,
       failedLoad: 'Không tải được cấu hình công cụ',
-      noProviderOptions: 'Bộ công cụ này không có tùy chọn nhà cung cấp — chỉ cần bật là dùng được với thiết lập hiện tại.',
+      noProviderOptions:
+        'Bộ công cụ này không có tùy chọn nhà cung cấp — chỉ cần bật là dùng được với thiết lập hiện tại.',
       noProviders: 'Hiện không có nhà cung cấp nào cho bộ công cụ này.',
       ready: 'Sẵn sàng',
       needsSignIn: 'Cần đăng nhập',
       needsSetup: 'Cần thiết lập',
       openamerIncluded: 'Có trong gói đăng ký OpenAmer — đăng nhập OpenAmer Portal để kích hoạt.',
       openamerAuthNeededTitle: 'Đăng nhập OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} đã được lưu nhưng sẽ không kích hoạt cho đến khi bạn đăng nhập OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} đã được lưu nhưng sẽ không kích hoạt cho đến khi bạn đăng nhập OpenAmer Portal.`,
       openamerAuthSignIn: 'Đăng nhập',
       openamerAuthDoneTitle: 'Đã kết nối OpenAmer Portal',
       openamerAuthDoneMessage: 'Các backend của gói đăng ký đã hoạt động.',
@@ -936,9 +974,9 @@ export const vi = defineLocale({
         selectedTitle: 'Đã chọn backend',
         selectedMessage: backend => `Lệnh terminal giờ chạy qua ${backend}. Áp dụng cho các phiên mới.`,
         failedSelect: backend => `Không chọn được ${backend}`,
-        needsSetupHint: 'Bạn có thể chọn backend này ngay — lệnh sẽ thất bại cho đến khi thiết lập xong.',
-      },
-    },
+        needsSetupHint: 'Bạn có thể chọn backend này ngay — lệnh sẽ thất bại cho đến khi thiết lập xong.'
+      }
+    }
   },
   skills: {
     tabSkills: 'Kỹ năng',
@@ -958,7 +996,8 @@ export const vi = defineLocale({
     noDescription: 'Không có mô tả.',
     configured: 'Đã cấu hình',
     needsKeys: 'Cần khóa',
-    visionModelHint: 'Tính năng thị giác dùng cấu hình mô hình phụ của bạn — mô hình xử lý hình ảnh được chọn ở đó, không phải theo từng nhà cung cấp tại đây.',
+    visionModelHint:
+      'Tính năng thị giác dùng cấu hình mô hình phụ của bạn — mô hình xử lý hình ảnh được chọn ở đó, không phải theo từng nhà cung cấp tại đây.',
     visionModelLink: 'Chọn mô hình thị giác trong Cài đặt → Mô hình',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} bộ công cụ đã bật`,
     configureToolset: label => `Cấu hình ${label}`,
@@ -984,7 +1023,7 @@ export const vi = defineLocale({
     provenance: {
       agent: 'Đã học',
       bundled: 'Tích hợp sẵn',
-      hub: 'Trung tâm',
+      hub: 'Trung tâm'
     },
     emptyNoneFound: noun => `Không tìm thấy ${noun}`,
     emptyNothingMatches: query => `Không có kết quả nào khớp với “${query}”.`,
@@ -1002,9 +1041,11 @@ export const vi = defineLocale({
       connectingHubs: 'Đang kết nối tới các trung tâm kỹ năng...',
       connectedHubs: 'Trung tâm đã kết nối:',
       featured: 'Kỹ năng nổi bật',
-      landingHint: 'Tìm kiếm trong trung tâm để duyệt các kỹ năng có thể cài đặt từ chỉ mục chính thức, GitHub và các nguồn cộng đồng.',
+      landingHint:
+        'Tìm kiếm trong trung tâm để duyệt các kỹ năng có thể cài đặt từ chỉ mục chính thức, GitHub và các nguồn cộng đồng.',
       noResults: 'Không tìm thấy kỹ năng phù hợp trong trung tâm.',
-      resultCount: (count, ms) => `${count} kết quả ${count === 1 ? 'Kết quả' : 'Kết quả'}${ms !== null ? ` in ${ms}ms` : ''}`,
+      resultCount: (count, ms) =>
+        `${count} kết quả ${count === 1 ? 'Kết quả' : 'Kết quả'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Hết thời gian chờ: ${sources}`,
       installed: 'Đã cài đặt',
       install: 'Cài đặt',
@@ -1022,7 +1063,7 @@ export const vi = defineLocale({
       trust: {
         builtin: 'tích hợp sẵn',
         trusted: 'đáng tin cậy',
-        community: 'cộng đồng',
+        community: 'cộng đồng'
       },
       verdictSafe: 'An toàn',
       verdictCaution: 'Thận trọng',
@@ -1040,8 +1081,8 @@ export const vi = defineLocale({
       loadFailed: 'Tải trung tâm kỹ năng thất bại',
       previewFailed: 'Xem trước kỹ năng thất bại',
       scanFailed: 'Quét bảo mật thất bại',
-      searchFailed: 'Tìm kiếm trên trung tâm thất bại',
-    },
+      searchFailed: 'Tìm kiếm trên trung tâm thất bại'
+    }
   },
   starmap: {
     title: 'Đồ thị bộ nhớ',
@@ -1058,7 +1099,8 @@ export const vi = defineLocale({
     emptyTitle: 'Chưa học được gì',
     emptyDesc: 'Khi OpenAmer xây dựng kỹ năng và ký ức cho công việc của bạn, chúng sẽ xuất hiện ở đây.',
     share: 'Chia sẻ bản đồ',
-    shareHint: 'Sao chép mã để chia sẻ bản đồ này, hoặc dán mã để tải. Mã chỉ gồm bố cục, không gồm nội dung ký ức hay kỹ năng của bạn.',
+    shareHint:
+      'Sao chép mã để chia sẻ bản đồ này, hoặc dán mã để tải. Mã chỉ gồm bố cục, không gồm nội dung ký ức hay kỹ năng của bạn.',
     shareTitle: 'Nhập / xuất bản đồ',
     sharePlaceholder: 'Dán mã bản đồ…',
     copy: 'Sao chép mã bản đồ',
@@ -1068,7 +1110,7 @@ export const vi = defineLocale({
     importEmpty: 'Dán mã bản đồ để tải.',
     importSuccess: nodes => `Đã tải bản đồ với ${nodes} ${nodes === 1 ? 'Nút' : 'Nút'}.`,
     importedBadge: 'bản đồ đã nhập',
-    resetToMine: 'Quay lại bản đồ',
+    resetToMine: 'Quay lại bản đồ'
   },
   agents: {
     close: 'Đóng agent',
@@ -1098,7 +1140,7 @@ export const vi = defineLocale({
     ageDays: days => `${days} ngày trước`,
     durationSeconds: seconds => `${seconds} giây`,
     durationMinutes: (minutes, seconds) => `${minutes} phút ${seconds} giây`,
-    tokens: value => `${value} token`,
+    tokens: value => `${value} token`
   },
   commandCenter: {
     close: 'Đóng trung tâm lệnh',
@@ -1128,7 +1170,7 @@ export const vi = defineLocale({
       generatedTag: 'Đã tạo',
       adoptFailed: 'Không thể nhận nuôi thú cưng đó.',
       toggleFailed: 'Không thể bật/tắt thú cưng.',
-      noneAvailable: 'Không có thú cưng nào — chọn một bên dưới để cài đặt.',
+      noneAvailable: 'Không có thú cưng nào — chọn một bên dưới để cài đặt.'
     },
     generatePet: {
       title: 'Tạo thú cưng',
@@ -1157,7 +1199,7 @@ export const vi = defineLocale({
       referenceImageTooLarge: 'Ảnh tham chiếu quá lớn. Hãy dùng ảnh dưới 16 MB.',
       referenceImageInvalid: 'Không đọc được ảnh tham chiếu đó. Hãy thử PNG, JPG, WebP hoặc GIF.',
       adopt: 'Áp dụng',
-      startOver: 'Bắt đầu lại',
+      startOver: 'Bắt đầu lại'
     },
     installTheme: {
       title: 'Cài đặt chủ đề…',
@@ -1169,7 +1211,7 @@ export const vi = defineLocale({
       install: 'Cài đặt',
       installing: 'Đang cài đặt...',
       installed: 'Đã cài đặt',
-      installs: count => `${count} lượt cài đặt`,
+      installs: count => `${count} lượt cài đặt`
     },
     settingsFields: 'Trường cài đặt',
     mcpServers: 'Máy chủ MCP',
@@ -1178,49 +1220,49 @@ export const vi = defineLocale({
       maintenance: 'Bảo trì',
       sessions: 'Phiên',
       system: 'Hệ thống',
-      usage: 'Mức sử dụng',
+      usage: 'Mức sử dụng'
     },
     sectionDescriptions: {
       maintenance: 'Chẩn đoán, sao lưu, quản lý và dữ liệu bộ nhớ',
       sessions: 'Tìm kiếm và quản lý phiên',
       system: 'Trạng thái, nhật ký và thao tác hệ thống',
-      usage: 'Hoạt động token, chi phí và kỹ năng theo thời gian',
+      usage: 'Hoạt động token, chi phí và kỹ năng theo thời gian'
     },
     nav: {
       newChat: {
         title: 'Phiên mới',
-        detail: 'Bắt đầu phiên mới',
+        detail: 'Bắt đầu phiên mới'
       },
       settings: {
         title: 'Cài đặt',
-        detail: 'Cấu hình OpenAmer desktop',
+        detail: 'Cấu hình OpenAmer desktop'
       },
       skills: {
         title: 'Khả năng',
-        detail: 'Kỹ năng, công cụ và máy chủ MCP',
+        detail: 'Kỹ năng, công cụ và máy chủ MCP'
       },
       messaging: {
         title: 'Nhắn tin',
-        detail: 'Thiết lập Telegram, Slack, Discord và hơn thế',
+        detail: 'Thiết lập Telegram, Slack, Discord và hơn thế'
       },
       artifacts: {
         title: 'Sản phẩm tạo ra',
-        detail: 'Duyệt các đầu ra đã tạo',
-      },
+        detail: 'Duyệt các đầu ra đã tạo'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Bảng phiên',
-        detail: 'Tìm kiếm, ghim và quản lý phiên',
+        detail: 'Tìm kiếm, ghim và quản lý phiên'
       },
       system: {
         title: 'Bảng hệ thống',
-        detail: 'Trạng thái cổng, nhật ký, khởi động lại/cập nhật',
+        detail: 'Trạng thái cổng, nhật ký, khởi động lại/cập nhật'
       },
       usage: {
         title: 'Bảng sử dụng',
-        detail: 'Mã thông báo, chi phí và hoạt động kỹ năng',
-      },
+        detail: 'Mã thông báo, chi phí và hoạt động kỹ năng'
+      }
     },
     providerNavigate: 'Điều hướng',
     providerSessions: 'Phiên',
@@ -1308,8 +1350,8 @@ export const vi = defineLocale({
       actionStarted: name => `${name} đã khởi động — đang theo dõi nhật ký...`,
       actionFailed: name => `${name} khởi động thất bại`,
       running: 'Đang chạy...',
-      viewLog: 'Nhật ký hành động',
-    },
+      viewLog: 'Nhật ký hành động'
+    }
   },
   messaging: {
     search: 'Tìm kiếm nhắn tin...',
@@ -1324,7 +1366,7 @@ export const vi = defineLocale({
       not_configured: 'Cần thiết lập',
       pending_restart: 'Cần khởi động lại',
       retrying: 'Đang thử lại',
-      startup_failed: 'Khởi động thất bại',
+      startup_failed: 'Khởi động thất bại'
     },
     unknown: 'Không xác định',
     hintPendingRestart: 'Khởi động lại gateway từ thanh trạng thái để áp dụng thay đổi này.',
@@ -1363,127 +1405,126 @@ export const vi = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Mã thông báo rô-bốt',
         help: 'Tạo bot với @BotFather, sau đó dán mã nhận được.',
-        placeholder: 'Dán mã bot Telegram',
+        placeholder: 'Dán mã bot Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'ID người dùng Telegram được phép',
-        help: 'Khuyến nghị. Các ID số cách nhau bằng dấu phẩy từ @userinfobot. Nếu không có, bất kỳ ai cũng có thể nhắn tin riêng cho bot của bạn.',
+        help: 'Khuyến nghị. Các ID số cách nhau bằng dấu phẩy từ @userinfobot. Nếu không có, bất kỳ ai cũng có thể nhắn tin riêng cho bot của bạn.'
       },
       TELEGRAM_PROXY: {
         label: 'URL máy chủ trung gian',
-        help: 'Chỉ cần trên mạng bị chặn Telegram.',
+        help: 'Chỉ cần trên mạng bị chặn Telegram.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Mã thông báo rô-bốt',
-        help: 'Tạo ứng dụng trong Discord Developer Portal, thêm bot, rồi dán token của bot.',
+        help: 'Tạo ứng dụng trong Discord Developer Portal, thêm bot, rồi dán token của bot.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'ID người dùng Discord được phép',
-        help: 'Khuyến nghị. Các ID người dùng Discord cách nhau bằng dấu phẩy.',
+        help: 'Khuyến nghị. Các ID người dùng Discord cách nhau bằng dấu phẩy.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Kiểu trả lời',
-        help: 'first, all hoặc off.',
+        help: 'first, all hoặc off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Cho phép mọi người dùng Discord',
-        help: 'Chỉ dùng khi phát triển. Khi bật, bất kỳ ai cũng có thể nhắn tin riêng cho bot mà không cần danh sách cho phép.',
+        help: 'Chỉ dùng khi phát triển. Khi bật, bất kỳ ai cũng có thể nhắn tin riêng cho bot mà không cần danh sách cho phép.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID kênh chính',
-        help: 'Kênh bot gửi tin nhắn chủ động (kết quả cron, nhắc nhở).',
+        help: 'Kênh bot gửi tin nhắn chủ động (kết quả cron, nhắc nhở).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Tên kênh chính',
-        help: 'Tên hiển thị của kênh chính trong log và đầu ra trạng thái.',
+        help: 'Tên hiển thị của kênh chính trong log và đầu ra trạng thái.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Cho phép mọi người dùng iMessage',
-        help: 'Khi bật, bỏ qua danh sách cho phép của BlueBubbles.',
+        help: 'Khi bật, bỏ qua danh sách cho phép của BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Cho phép mọi người dùng Mattermost',
+        label: 'Cho phép mọi người dùng Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Kênh chính',
+        label: 'Kênh chính'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Cho phép mọi người dùng QQ',
+        label: 'Cho phép mọi người dùng QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Kênh chính QQ',
-        help: 'Kênh hoặc nhóm mặc định để gửi cron.',
+        help: 'Kênh hoặc nhóm mặc định để gửi cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Tên kênh chính QQ',
+        label: 'Tên kênh chính QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Mã thông báo rô-bốt Slack',
         help: 'Dùng token bot từ OAuth & Permissions sau khi cài ứng dụng Slack.',
-        placeholder: 'Dán token bot Slack',
+        placeholder: 'Dán token bot Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token ứng dụng Slack',
         help: 'Dùng token cấp ứng dụng cần cho Socket Mode.',
-        placeholder: 'Dán token ứng dụng Slack',
+        placeholder: 'Dán token ứng dụng Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'ID người dùng Slack được phép',
-        help: 'Khuyến nghị. ID người dùng Slack cách nhau bằng dấu phẩy.',
+        help: 'Khuyến nghị. ID người dùng Slack cách nhau bằng dấu phẩy.'
       },
       MATTERMOST_URL: {
         label: 'URL máy chủ',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Mã thông báo rô-bốt',
+        label: 'Mã thông báo rô-bốt'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'ID người dùng được phép',
-        help: 'Khuyến nghị. ID người dùng Mattermost cách nhau bằng dấu phẩy.',
+        help: 'Khuyến nghị. ID người dùng Mattermost cách nhau bằng dấu phẩy.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL homeserver',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token truy cập',
+        label: 'Token truy cập'
       },
       MATRIX_USER_ID: {
         label: 'ID người dùng bot',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'ID người dùng Matrix được phép',
-        help: 'Khuyến nghị. ID người dùng phân tách bằng dấu phẩy theo định dạng @user:server.',
+        help: 'Khuyến nghị. ID người dùng phân tách bằng dấu phẩy theo định dạng @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL cầu nối Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL của cầu nối REST signal-cli đang chạy.',
+        help: 'URL của cầu nối REST signal-cli đang chạy.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Số điện thoại',
-        help: 'Số đã đăng ký với cầu nối signal-cli của bạn.',
+        help: 'Số đã đăng ký với cầu nối signal-cli của bạn.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Người dùng Signal được phép',
-        help: 'Khuyến nghị. Định danh Signal phân tách bằng dấu phẩy.',
+        help: 'Khuyến nghị. Định danh Signal phân tách bằng dấu phẩy.'
       },
       WHATSAPP_ENABLED: {
         label: 'Bật cầu nối WhatsApp',
-        help: 'Được đặt tự động bởi công tắc bên dưới. Để nguyên trừ khi bạn biết mình cần.',
+        help: 'Được đặt tự động bởi công tắc bên dưới. Để nguyên trừ khi bạn biết mình cần.'
       },
       WHATSAPP_MODE: {
-        label: 'Chế độ cầu nối',
+        label: 'Chế độ cầu nối'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Người dùng WhatsApp được phép',
-        help: 'Khuyến nghị. Số điện thoại hoặc ID WhatsApp phân tách bằng dấu phẩy.',
-      },
+        help: 'Khuyến nghị. Số điện thoại hoặc ID WhatsApp phân tách bằng dấu phẩy.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Tìm kiếm webhook...',
@@ -1493,7 +1534,8 @@ export const vi = defineLocale({
     hint: 'Thay đổi đăng ký sẽ tải lại nóng khi bộ nhận đang chạy. Đăng ký bị tắt sẽ từ chối sự kiện đến.',
     empty: 'Chưa có đăng ký webhook nào.',
     disabledTitle: 'Bộ nhận webhook đã tắt',
-    disabledBody: 'Webhook là một nền tảng cổng riêng. Bật tại đây để nhận sự kiện HTTP đến; kênh trò chuyện chỉ cần khi đăng ký gửi đến Telegram, Discord, Slack hoặc kênh khác.',
+    disabledBody:
+      'Webhook là một nền tảng cổng riêng. Bật tại đây để nhận sự kiện HTTP đến; kênh trò chuyện chỉ cần khi đăng ký gửi đến Telegram, Discord, Slack hoặc kênh khác.',
     enable: 'Bật webhook',
     enabling: 'Đang bật...',
     enabled: (name: string) => `Đã bật: "${name}"`,
@@ -1546,8 +1588,8 @@ export const vi = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'Thư điện tử',
-      github_comment: 'Bình luận GitHub',
-    },
+      github_comment: 'Bình luận GitHub'
+    }
   },
   profiles: {
     close: 'Đóng hồ sơ',
@@ -1625,7 +1667,7 @@ export const vi = defineLocale({
     failedLoadSoul: 'Không tải được SOUL.md',
     failedSaveSoul: 'Không lưu được SOUL.md',
     failedCreate: 'Không tạo được hồ sơ',
-    failedRename: 'Không đổi tên được hồ sơ',
+    failedRename: 'Không đổi tên được hồ sơ'
   },
   cron: {
     close: 'Đóng cron',
@@ -1640,14 +1682,14 @@ export const vi = defineLocale({
       paused: 'đã tạm dừng',
       disabled: 'đã tắt',
       error: 'lỗi',
-      completed: 'Hoàn tất',
+      completed: 'Hoàn tất'
     },
     deliveryLabels: {
       local: 'Máy tính này',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Email',
+      email: 'Email'
     },
     scheduleLabels: {
       daily: 'Hàng ngày',
@@ -1656,7 +1698,7 @@ export const vi = defineLocale({
       monthly: 'Hàng tháng',
       hourly: 'Hàng giờ',
       'every-15-minutes': 'Mỗi 15 phút',
-      custom: 'Tùy chỉnh',
+      custom: 'Tùy chỉnh'
     },
     scheduleHints: {
       daily: 'Mỗi ngày lúc 9:00 sáng',
@@ -1665,7 +1707,7 @@ export const vi = defineLocale({
       monthly: 'Ngày đầu tiên mỗi tháng lúc 9:00 sáng',
       hourly: 'Vào đầu mỗi giờ',
       'every-15-minutes': 'Mỗi 15 phút',
-      custom: 'Cú pháp cron hoặc ngôn ngữ tự nhiên',
+      custom: 'Cú pháp cron hoặc ngôn ngữ tự nhiên'
     },
     days: {
       '0': 'Chủ nhật',
@@ -1675,7 +1717,7 @@ export const vi = defineLocale({
       '4': 'Thứ Năm',
       '5': 'Thứ Sáu',
       '6': 'Thứ Bảy',
-      '7': 'Chủ Nhật',
+      '7': 'Chủ Nhật'
     },
     dayFallback: value => `ngày ${value}`,
     everyDayAt: time => `Mỗi ngày lúc ${time}`,
@@ -1685,7 +1727,8 @@ export const vi = defineLocale({
     topOfHour: 'Vào đầu mỗi giờ',
     everyHourAt: minute => `Mỗi giờ lúc :${minute}`,
     newCron: 'Cron mới',
-    emptyDescNew: 'Lên lịch một câu lệnh để chạy theo biểu thức cron. OpenAmer sẽ chạy và gửi kết quả đến đích bạn chọn.',
+    emptyDescNew:
+      'Lên lịch một câu lệnh để chạy theo biểu thức cron. OpenAmer sẽ chạy và gửi kết quả đến đích bạn chọn.',
     emptyDescSearch: 'Hãy thử truy vấn tìm kiếm rộng hơn.',
     emptyTitleNew: 'Chưa có tác vụ đã lên lịch',
     emptyTitleSearch: 'Không có kết quả phù hợp',
@@ -1744,7 +1787,7 @@ export const vi = defineLocale({
     createAction: 'Tạo cron',
     tabs: {
       jobs: 'Công việc',
-      blueprints: 'Bản thiết kế',
+      blueprints: 'Bản thiết kế'
     },
     blueprints: {
       tab: 'Bản thiết kế',
@@ -1758,8 +1801,8 @@ export const vi = defineLocale({
       loading: 'Đang tải bản thiết kế...',
       failedLoad: 'Không tải được bản thiết kế',
       emptyTitle: 'Không có bản thiết kế nào',
-      emptyDesc: 'Không có bản thiết kế tự động hóa nào trên backend này.',
-    },
+      emptyDesc: 'Không có bản thiết kế tự động hóa nào trên backend này.'
+    }
   },
   artifacts: {
     search: 'Tìm kiếm tạo tác...',
@@ -1793,14 +1836,14 @@ export const vi = defineLocale({
     kindLink: 'liên kết',
     chat: 'Trò chuyện',
     copyUrl: 'Sao chép URL',
-    copyPath: 'Sao chép đường dẫn',
+    copyPath: 'Sao chép đường dẫn'
   },
   sidebar: {
     nav: {
       'new-session': 'Phiên mới',
       skills: 'Khả năng',
       messaging: 'Nhắn tin',
-      artifacts: 'Hiện vật',
+      artifacts: 'Hiện vật'
     },
     searchAria: 'Tìm kiếm phiên',
     searchPlaceholder: 'Tìm kiếm phiên…',
@@ -1832,7 +1875,7 @@ export const vi = defineLocale({
       namePlaceholder: 'Ví dụ: Skunkworks',
       foldersLabel: 'Thư mục',
       ideaLabel: 'Ý tưởng',
-      ideaPlaceholder: "Dự án này nói về gì? (lưu vào IDEA.md)",
+      ideaPlaceholder: 'Dự án này nói về gì? (lưu vào IDEA.md)',
       ideaGenerate: 'Tạo ý tưởng',
       ideaGenerating: 'Đang tạo…',
       ideaShuffle: 'Xáo trộn mẫu',
@@ -1852,7 +1895,8 @@ export const vi = defineLocale({
       copyPath: 'Sao chép đường dẫn',
       removeFromSidebar: 'Ẩn khỏi thanh bên',
       createFailed: 'Không thể tạo dự án',
-      staleBackend: 'Cập nhật phần phụ trợ OpenAmer để tạo dự án — phần phụ trợ của bạn cũ hơn ứng dụng máy tính này (Cài đặt → Cập nhật → Phần phụ trợ).',
+      staleBackend:
+        'Cập nhật phần phụ trợ OpenAmer để tạo dự án — phần phụ trợ của bạn cũ hơn ứng dụng máy tính này (Cài đặt → Cập nhật → Phần phụ trợ).',
       deleteConfirm: 'Thao tác này xóa dự án đã lưu khỏi OpenAmer. Tệp, repo git và worktree vẫn giữ nguyên.',
       startWork: 'Worktree mới',
       newWorktreeTitle: 'Worktree mới',
@@ -1874,13 +1918,15 @@ export const vi = defineLocale({
       noBranches: 'Không tìm thấy nhánh',
       removeWorktree: 'Xóa worktree',
       removeWorktreeFailed: 'Không thể xóa worktree (có thay đổi chưa commit?)',
-      removeWorktreeConfirm: 'Xóa nó khỏi git (xóa thư mục worktree; nhánh vẫn giữ nguyên), hoặc chỉ ẩn làn khỏi thanh bên và để worktree trên đĩa.',
-      removeWorktreeDirty: 'Worktree này có thay đổi chưa commit. Buộc xóa nó (bỏ các thay đổi đó), hoặc chỉ ẩn làn và giữ nó trên đĩa.',
+      removeWorktreeConfirm:
+        'Xóa nó khỏi git (xóa thư mục worktree; nhánh vẫn giữ nguyên), hoặc chỉ ẩn làn khỏi thanh bên và để worktree trên đĩa.',
+      removeWorktreeDirty:
+        'Worktree này có thay đổi chưa commit. Buộc xóa nó (bỏ các thay đổi đó), hoặc chỉ ẩn làn và giữ nó trên đĩa.',
       forceRemove: 'Buộc xóa',
       enter: label => `Mở ${label}`,
       reorder: label => `Sắp xếp lại ${label}`,
       toggle: label => `Bật/tắt phiên ${label}`,
-      back: 'Tất cả dự án',
+      back: 'Tất cả dự án'
     },
     newSessionIn: label => `Phiên mới trong ${label}`,
     showMoreIn: (count, label) => `Hiển thị thêm ${count} trong ${label}`,
@@ -1918,15 +1964,15 @@ export const vi = defineLocale({
       ageNow: 'bây giờ',
       ageDay: 'n',
       ageHour: 'g',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Hôm nay',
       yesterday: 'Hôm qua',
       thisWeek: 'Đầu tuần này',
       lastWeek: 'Tuần trước',
-      thisMonth: 'Đầu tháng này',
-    },
+      thisMonth: 'Đầu tháng này'
+    }
   },
   composer: {
     message: 'Tin nhắn',
@@ -1937,20 +1983,20 @@ export const vi = defineLocale({
     newSessionPlaceholders: [
       'Chúng ta đang xây dựng gì?',
       'Giao nhiệm vụ cho OpenAmer',
-      "Bạn đang nghĩ gì?",
+      'Bạn đang nghĩ gì?',
       'Mô tả điều bạn cần',
       'Chúng ta nên xử lý gì?',
       'Hỏi bất cứ điều gì',
-      'Bắt đầu với mục tiêu',
+      'Bắt đầu với mục tiêu'
     ],
     followUpPlaceholders: [
       'Gửi tin nhắn tiếp theo',
       'Thêm ngữ cảnh',
       'Tinh chỉnh yêu cầu',
-      "Tiếp theo là gì?",
+      'Tiếp theo là gì?',
       'Tiếp tục',
       'Đẩy sâu hơn',
-      'Điều chỉnh hoặc tiếp tục',
+      'Điều chỉnh hoặc tiếp tục'
     ],
     startVoice: 'Bắt đầu trò chuyện bằng giọng nói',
     queueMessage: 'Đưa tin nhắn vào hàng đợi',
@@ -1986,7 +2032,7 @@ export const vi = defineLocale({
       '/resume': 'tiếp tục phiên trước',
       '/details': 'điều chỉnh mức chi tiết bản ghi',
       '/copy': 'sao chép lựa chọn hoặc tin nhắn trợ lý cuối',
-      '/quit': 'thoát openamer',
+      '/quit': 'thoát openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'tham chiếu tệp, thư mục, url, git',
@@ -1996,7 +2042,7 @@ export const vi = defineLocale({
       'composer.sendQueued': 'gửi lượt đã xếp hàng tiếp theo',
       'keybinds.openPanel': 'tất cả phím tắt',
       'composer.cancel': 'đóng popover · hủy chạy',
-      'composer.history': 'chuyển vòng popover / lịch sử',
+      'composer.history': 'chuyển vòng popover / lịch sử'
     },
     attachUrlTitle: 'Đính kèm URL',
     attachUrlDesc: 'OpenAmer sẽ tải trang và đưa vào làm ngữ cảnh cho lượt này.',
@@ -2046,20 +2092,21 @@ export const vi = defineLocale({
     snippets: {
       codeReview: {
         label: 'Xem lại mã',
-        description: 'Kiểm tra thay đổi hiện tại để tìm lỗi hồi quy, các trường hợp biên bị bỏ sót và các bài kiểm tra còn thiếu.',
-        text: 'Vui lòng rà soát lỗi, lỗi hồi quy và kiểm thử còn thiếu.',
+        description:
+          'Kiểm tra thay đổi hiện tại để tìm lỗi hồi quy, các trường hợp biên bị bỏ sót và các bài kiểm tra còn thiếu.',
+        text: 'Vui lòng rà soát lỗi, lỗi hồi quy và kiểm thử còn thiếu.'
       },
       implementationPlan: {
         label: 'Kế hoạch triển khai',
         description: 'Phác thảo cách tiếp cận trước khi sửa mã để bản diff vẫn tập trung.',
-        text: 'Vui lòng lập kế hoạch triển khai ngắn gọn trước khi sửa mã.',
+        text: 'Vui lòng lập kế hoạch triển khai ngắn gọn trước khi sửa mã.'
       },
       explainThis: {
         label: 'Giải thích phần này',
         description: 'Trình bày cách mã đã chọn hoạt động và liên kết tới các tệp chính.',
-        text: 'Vui lòng giải thích cách hoạt động và chỉ cho tôi các tệp chính.',
-      },
-    },
+        text: 'Vui lòng giải thích cách hoạt động và chỉ cho tôi các tệp chính.'
+      }
+    }
   },
   statusStack: {
     agents: 'Tác nhân',
@@ -2107,13 +2154,14 @@ export const vi = defineLocale({
       openPr: 'Mở PR',
       ghMissing: 'Cài GitHub CLI (gh) và đăng nhập để mở PR',
       agentShip: 'Yêu cầu OpenAmer mở PR',
-      agentShipPrompt: 'Xem lại các thay đổi hiện tại, commit với thông điệp conventional-commit rõ ràng, push nhánh và mở pull request.',
+      agentShipPrompt:
+        'Xem lại các thay đổi hiện tại, commit với thông điệp conventional-commit rõ ràng, push nhánh và mở pull request.',
       newBranch: 'Nhánh mới',
       branchOffFrom: base => `Nhánh mới từ ${base}`,
       switchTo: branch => `Chuyển sang ${branch}`,
       switchFailed: branch => `Không thể chuyển sang ${branch}`,
-      worktrees: 'Cây làm việc',
-    },
+      worktrees: 'Cây làm việc'
+    }
   },
   updates: {
     stages: {
@@ -2128,7 +2176,7 @@ export const vi = defineLocale({
       done: 'Cập nhật hoàn tất',
       manual: 'Cập nhật từ terminal của bạn',
       guiSkew: 'Cập nhật ứng dụng desktop',
-      error: 'Cập nhật đã tạm dừng',
+      error: 'Cập nhật đã tạm dừng'
     },
     checking: 'Đang tìm bản cập nhật…',
     checkFailedTitle: 'Không thể kiểm tra bản cập nhật',
@@ -2151,12 +2199,15 @@ export const vi = defineLocale({
     manualBody: 'Bạn đã cài OpenAmer từ dòng lệnh, nên bản cập nhật cũng chạy ở đó. Dán lệnh này vào terminal:',
     manualPickedUp: 'OpenAmer sẽ nhận phiên bản mới vào lần khởi chạy tiếp theo.',
     guiSkewTitle: 'Cập nhật ứng dụng máy tính',
-    guiSkewBody: 'Phần nền đã được cập nhật, nhưng gói ứng dụng máy tính này không thay đổi. Hãy cập nhật hoặc cài lại ứng dụng máy tính OpenAmer (AppImage / .deb / .rpm) cho khớp.',
+    guiSkewBody:
+      'Phần nền đã được cập nhật, nhưng gói ứng dụng máy tính này không thay đổi. Hãy cập nhật hoặc cài lại ứng dụng máy tính OpenAmer (AppImage / .deb / .rpm) cho khớp.',
     copy: 'Sao chép',
     copied: 'Đã sao chép',
     done: 'Xong',
-    applyingBody: 'Trình cập nhật OpenAmer sẽ chạy trong cửa sổ riêng và tự mở lại OpenAmer khi hoàn tất. Vui lòng không tự mở lại OpenAmer trong khi đang cập nhật.',
-    applyingBodyBackend: 'Phần nền từ xa đang áp dụng bản cập nhật và sẽ khởi động lại. OpenAmer sẽ tự kết nối lại khi phần nền hoạt động trở lại.',
+    applyingBody:
+      'Trình cập nhật OpenAmer sẽ chạy trong cửa sổ riêng và tự mở lại OpenAmer khi hoàn tất. Vui lòng không tự mở lại OpenAmer trong khi đang cập nhật.',
+    applyingBodyBackend:
+      'Phần nền từ xa đang áp dụng bản cập nhật và sẽ khởi động lại. OpenAmer sẽ tự kết nối lại khi phần nền hoạt động trở lại.',
     applyingClose: 'Cửa sổ này sẽ đóng trong khi bản cập nhật chạy, sau đó OpenAmer sẽ tự mở lại.',
     errorTitle: 'Cập nhật chưa hoàn tất',
     errorBody: 'Không sao — không có gì bị mất. Bạn có thể thử lại ngay bây giờ.',
@@ -2167,12 +2218,14 @@ export const vi = defineLocale({
       restarting: 'Đang khởi động lại phần phụ trợ để tải bản cập nhật…',
       notAvailable: 'Không có bản cập nhật cho phần phụ trợ này.',
       failed: 'Cập nhật phần phụ trợ thất bại.',
-      noReturn: 'Phần phụ trợ không trực tuyến trở lại. Bản cập nhật có thể chưa hoàn tất — kiểm tra máy chủ phần phụ trợ.',
+      noReturn:
+        'Phần phụ trợ không trực tuyến trở lại. Bản cập nhật có thể chưa hoàn tất — kiểm tra máy chủ phần phụ trợ.'
     },
     appErrors: {
-      updateLocked: 'Đã hủy cập nhật: một cửa sổ OpenAmer khác hoặc cửa sổ dòng lệnh đang chạy openamer đang giữ bản cài này mở. Đóng nó và thử lại.',
-      updateFailed: 'Bản cập nhật chưa hoàn tất. Đừng lo — không mất gì cả. Bạn có thể thử lại ngay.',
-    },
+      updateLocked:
+        'Đã hủy cập nhật: một cửa sổ OpenAmer khác hoặc cửa sổ dòng lệnh đang chạy openamer đang giữ bản cài này mở. Đóng nó và thử lại.',
+      updateFailed: 'Bản cập nhật chưa hoàn tất. Đừng lo — không mất gì cả. Bạn có thể thử lại ngay.'
+    }
   },
   install: {
     stageStates: {
@@ -2180,25 +2233,29 @@ export const vi = defineLocale({
       running: 'Đang cài đặt',
       succeeded: 'Xong',
       skipped: 'Đã bỏ qua',
-      failed: 'Thất bại',
+      failed: 'Thất bại'
     },
     oneTimeTitle: 'OpenAmer cần cài đặt một lần',
-    unsupportedDesc: platform => `Cài đặt tự động trong lần khởi chạy đầu tiên chưa khả dụng trên ${platform}. Mở Terminal và chạy lệnh bên dưới, sau đó khởi chạy lại ứng dụng này. Các lần khởi chạy sau sẽ bỏ qua bước này.`,
+    unsupportedDesc: platform =>
+      `Cài đặt tự động trong lần khởi chạy đầu tiên chưa khả dụng trên ${platform}. Mở Terminal và chạy lệnh bên dưới, sau đó khởi chạy lại ứng dụng này. Các lần khởi chạy sau sẽ bỏ qua bước này.`,
     installCommand: 'Lệnh cài đặt',
     copyCommand: 'Sao chép lệnh',
     viewDocs: 'Xem tài liệu cài đặt',
     installTo: 'Sẽ cài đặt vào',
     retryAfterRun: 'Tôi đã chạy -- thử lại',
     setupChoiceTitle: 'Thiết lập OpenAmer Desktop',
-    setupChoiceDesc: 'Kết nối ứng dụng này với cổng OpenAmer bạn đã chạy, hoặc cài đặt OpenAmer cục bộ trên máy tính này.',
+    setupChoiceDesc:
+      'Kết nối ứng dụng này với cổng OpenAmer bạn đã chạy, hoặc cài đặt OpenAmer cục bộ trên máy tính này.',
     connectExistingTitle: 'Kết nối với OpenAmer hiện có',
     connectExistingShort: 'Kết nối hiện có',
-    connectExistingDesc: 'Dùng backend từ xa với token phiên hoặc đăng nhập qua trình duyệt. Không có cài đặt cục bộ nào được bắt đầu.',
+    connectExistingDesc:
+      'Dùng backend từ xa với token phiên hoặc đăng nhập qua trình duyệt. Không có cài đặt cục bộ nào được bắt đầu.',
     installLocalTitle: 'Cài đặt OpenAmer cục bộ',
     installLocalDesc: 'Tải OpenAmer, tạo môi trường Python của nó và chạy backend trên máy tính này.',
     localStartUnavailable: 'Không thể bắt đầu cài đặt cục bộ. Khởi động lại OpenAmer Desktop và thử lại.',
     remoteSetupTitle: 'Kết nối với OpenAmer hiện có',
-    remoteSetupDesc: 'Nhập URL cổng của bạn. OpenAmer Desktop sẽ phát hiện xem cần token hay đăng nhập qua trình duyệt.',
+    remoteSetupDesc:
+      'Nhập URL cổng của bạn. OpenAmer Desktop sẽ phát hiện xem cần token hay đăng nhập qua trình duyệt.',
     remoteUrlTitle: 'URL cổng',
     remoteUrlDesc: 'Dùng URL gốc của cổng OpenAmer, bao gồm https:// khi ở xa.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2225,8 +2282,10 @@ export const vi = defineLocale({
     failedTitle: 'Cài đặt thất bại',
     settingUpTitle: 'Đang thiết lập OpenAmer Agent',
     finishingTitle: 'Đang hoàn tất',
-    failedDesc: 'Một bước cài đặt đã thất bại. Trên Windows, điều này có thể xảy ra nếu một phiên bản OpenAmer CLI hoặc ứng dụng desktop khác đang chạy. Dừng mọi phiên bản OpenAmer đang chạy, rồi thử lại. Kiểm tra chi tiết bên dưới hoặc nhật ký desktop để xem toàn bộ bản ghi.',
-    activeDesc: 'Đây là thiết lập chỉ chạy một lần. Trình cài đặt OpenAmer đang tải các gói phụ thuộc và cấu hình máy của bạn. Các lần khởi chạy sau sẽ bỏ qua bước này.',
+    failedDesc:
+      'Một bước cài đặt đã thất bại. Trên Windows, điều này có thể xảy ra nếu một phiên bản OpenAmer CLI hoặc ứng dụng desktop khác đang chạy. Dừng mọi phiên bản OpenAmer đang chạy, rồi thử lại. Kiểm tra chi tiết bên dưới hoặc nhật ký desktop để xem toàn bộ bản ghi.',
+    activeDesc:
+      'Đây là thiết lập chỉ chạy một lần. Trình cài đặt OpenAmer đang tải các gói phụ thuộc và cấu hình máy của bạn. Các lần khởi chạy sau sẽ bỏ qua bước này.',
     progress: (completed, total) => `${completed}/${total} bước đã hoàn tất`,
     currentStage: stage => ` -- hiện tại: ${stage}`,
     fetchingManifest: 'Đang tải manifest của trình cài đặt...',
@@ -2240,10 +2299,10 @@ export const vi = defineLocale({
     transcriptSaved: 'Toàn bộ bản ghi đã được lưu vào',
     copiedOutput: 'Đã sao chép!',
     copyOutput: 'Sao chép đầu ra',
-    reloadRetry: 'Tải lại và thử lại',
+    reloadRetry: 'Tải lại và thử lại'
   },
   onboarding: {
-    headerTitle: "Hãy thiết lập OpenAmer Agent cho bạn",
+    headerTitle: 'Hãy thiết lập OpenAmer Agent cho bạn',
     headerDesc: 'Kết nối nhà cung cấp mô hình để bắt đầu trò chuyện. Hầu hết tùy chọn chỉ cần một cú nhấp.',
     preparingInstall: 'OpenAmer đang hoàn tất cài đặt. Lần chạy đầu thường mất dưới một phút.',
     starting: 'Đang khởi động OpenAmer…',
@@ -2251,7 +2310,7 @@ export const vi = defineLocale({
     collapse: 'Thu gọn',
     otherProviders: 'Nhà cung cấp khác',
     haveApiKey: 'Tôi có khóa API',
-    chooseLater: "Tôi sẽ chọn nhà cung cấp sau",
+    chooseLater: 'Tôi sẽ chọn nhà cung cấp sau',
     recommended: 'Đề xuất',
     connected: 'Đã kết nối',
     featuredPitch: 'Một gói đăng ký, hơn 300 mô hình tiên tiến — cách được đề xuất để chạy OpenAmer',
@@ -2260,28 +2319,29 @@ export const vi = defineLocale({
     apiKeyOptions: {
       fireworks: {
         short: 'API mô hình trực tiếp',
-        description: 'Truy cập trực tiếp các mô hình do Fireworks AI lưu trữ.',
+        description: 'Truy cập trực tiếp các mô hình do Fireworks AI lưu trữ.'
       },
       openrouter: {
         short: 'một khóa, nhiều mô hình',
-        description: 'Lưu trữ hàng trăm mô hình sau một khóa duy nhất. Mặc định tốt cho bản cài mới.',
+        description: 'Lưu trữ hàng trăm mô hình sau một khóa duy nhất. Mặc định tốt cho bản cài mới.'
       },
       openai: {
         short: 'Mô hình cấp GPT',
-        description: 'Truy cập trực tiếp các mô hình OpenAI.',
+        description: 'Truy cập trực tiếp các mô hình OpenAI.'
       },
       gemini: {
         short: 'Mô hình Gemini',
-        description: 'Truy cập trực tiếp các mô hình Google Gemini.',
+        description: 'Truy cập trực tiếp các mô hình Google Gemini.'
       },
       xai: {
         short: 'Mô hình Grok',
-        description: 'Truy cập trực tiếp các mô hình Grok của xAI.',
+        description: 'Truy cập trực tiếp các mô hình Grok của xAI.'
       },
       local: {
         short: 'tự lưu trữ',
-        description: 'Trỏ OpenAmer đến điểm cuối tương thích OpenAI cục bộ hoặc tự lưu trữ (vLLM, llama.cpp, Ollama, v.v.).',
-      },
+        description:
+          'Trỏ OpenAmer đến điểm cuối tương thích OpenAI cục bộ hoặc tự lưu trữ (vLLM, llama.cpp, Ollama, v.v.).'
+      }
     },
     backToSignIn: 'Quay lại đăng nhập',
     getKey: 'Lấy khóa',
@@ -2294,7 +2354,7 @@ export const vi = defineLocale({
     flowSubtitles: {
       pkce: 'Mở trình duyệt để đăng nhập, rồi tiếp tục tại đây',
       device_code: 'Mở trang xác minh trong trình duyệt — OpenAmer tự động kết nối',
-      external: 'Đăng nhập một lần trong cửa sổ dòng lệnh, rồi quay lại trò chuyện',
+      external: 'Đăng nhập một lần trong cửa sổ dòng lệnh, rồi quay lại trò chuyện'
     },
     startingSignIn: provider => `Bắt đầu đăng nhập cho ${provider}...`,
     verifyingCode: provider => `Đang xác minh mã của bạn với ${provider}...`,
@@ -2308,11 +2368,13 @@ export const vi = defineLocale({
     copyAuthCode: 'Sao chép mã ủy quyền và dán bên dưới.',
     pasteAuthCode: 'Dán mã ủy quyền',
     reopenAuthPage: 'Mở lại trang ủy quyền',
-    autoBrowser: provider => `Chúng tôi đã mở ${provider} trong trình duyệt của bạn. Cấp quyền cho OpenAmer tại đó và bạn sẽ được kết nối tự động — không cần sao chép hay dán.`,
+    autoBrowser: provider =>
+      `Chúng tôi đã mở ${provider} trong trình duyệt của bạn. Cấp quyền cho OpenAmer tại đó và bạn sẽ được kết nối tự động — không cần sao chép hay dán.`,
     reopenSignInPage: 'Mở lại trang đăng nhập',
     waitingAuthorize: 'Đang chờ bạn cấp quyền...',
-    externalPending: provider => `${provider} đăng nhập qua CLI riêng của nó. Chạy lệnh này trong terminal, sau đó quay lại và chọn "Tôi đã đăng nhập":`,
-    signedIn: "Tôi đã đăng nhập",
+    externalPending: provider =>
+      `${provider} đăng nhập qua CLI riêng của nó. Chạy lệnh này trong terminal, sau đó quay lại và chọn "Tôi đã đăng nhập":`,
+    signedIn: 'Tôi đã đăng nhập',
     deviceCodeOpened: provider => `Chúng tôi đã mở ${provider} trong trình duyệt của bạn. Nhập mã này tại đó:`,
     reopenVerification: 'Mở lại trang xác minh',
     copy: 'Sao chép',
@@ -2323,7 +2385,7 @@ export const vi = defineLocale({
     price: (input, output) => `${input} vào / ${output} ra mỗi Mtok`,
     change: 'Thay đổi',
     startChatting: 'Bắt đầu',
-    docs: provider => `${provider} tài liệu`,
+    docs: provider => `${provider} tài liệu`
   },
   modelPicker: {
     title: 'Chuyển mô hình',
@@ -2339,13 +2401,13 @@ export const vi = defineLocale({
     free: 'Miễn phí',
     freeTier: 'Gói miễn phí',
     priceTitle: 'Giá đầu vào / đầu ra trên mỗi triệu token',
-    wasPrice: 'đã là',
+    wasPrice: 'đã là'
   },
   modelVisibility: {
     title: 'Mô hình',
     search: 'Tìm kiếm mô hình',
     noAuthenticatedProviders: 'Không có nhà cung cấp đã xác thực.',
-    addProvider: 'Thêm nhà cung cấp…',
+    addProvider: 'Thêm nhà cung cấp…'
   },
   shell: {
     windowControls: 'Điều khiển cửa sổ',
@@ -2356,7 +2418,7 @@ export const vi = defineLocale({
       noModels: 'Không tìm thấy mô hình',
       editModels: 'Chỉnh sửa mô hình…',
       refreshModels: 'Làm mới mô hình',
-      fast: 'Nhanh',
+      fast: 'Nhanh'
     },
     modelOptions: {
       noOptions: 'Không có tùy chọn cho mô hình này',
@@ -2372,7 +2434,7 @@ export const vi = defineLocale({
       max: 'Tối đa',
       ultra: 'Siêu',
       updateFailed: 'Cập nhật tùy chọn mô hình thất bại',
-      fastFailed: 'Cập nhật chế độ nhanh thất bại',
+      fastFailed: 'Cập nhật chế độ nhanh thất bại'
     },
     gatewayMenu: {
       gateway: 'Cổng kết nối',
@@ -2387,7 +2449,7 @@ export const vi = defineLocale({
       connection: label => `Kết nối: ${label}`,
       recentActivity: 'Hoạt động gần đây',
       viewAllLogs: 'Xem tất cả nhật ký →',
-      messagingPlatforms: 'Nền tảng nhắn tin',
+      messagingPlatforms: 'Nền tảng nhắn tin'
     },
     approvalMode: {
       title: 'Chế độ phê duyệt',
@@ -2397,7 +2459,7 @@ export const vi = defineLocale({
       smart: 'Thông minh',
       smartDescription: 'Tự động đánh giá hành động và hỏi khi cần',
       off: 'Tắt',
-      offDescription: 'Chạy mà không hỏi phê duyệt',
+      offDescription: 'Chạy mà không hỏi phê duyệt'
     },
     statusbar: {
       unknown: 'không rõ',
@@ -2453,13 +2515,13 @@ export const vi = defineLocale({
           skills: 'Kỹ năng',
           subagent_definitions: 'Định nghĩa tác nhân con',
           system_prompt: 'Lời nhắc hệ thống',
-          tool_definitions: 'Định nghĩa công cụ',
+          tool_definitions: 'Định nghĩa công cụ'
         },
         empty: 'Chưa có dữ liệu ngữ cảnh',
         loading: 'Đang tải chi tiết…',
         percentFull: percent => `${percent}% Đầy`,
         title: 'Mức sử dụng ngữ cảnh',
-        tokenSummary: (used, max) => `${used} / ${max} Token`,
+        tokenSummary: (used, max) => `${used} / ${max} Token`
       },
       openContextUsage: 'Mở phân tích mức sử dụng ngữ cảnh',
       session: 'Phiên',
@@ -2472,8 +2534,8 @@ export const vi = defineLocale({
       openModelPicker: 'Mở bộ chọn mô hình',
       modelPinned: 'do bạn ghim; cuộc trò chuyện mới dùng mục này thay vì mặc định trong Cài đặt',
       modelTitle: (provider, model) => `Mô hình · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Thanh bên phải',
@@ -2509,7 +2571,7 @@ export const vi = defineLocale({
     terminalNew: 'Cửa sổ lệnh mới',
     terminalCloseOthers: 'Đóng các tab khác',
     terminalCloseAll: 'Đóng tất cả',
-    addToChat: 'Thêm vào chat',
+    addToChat: 'Thêm vào chat'
   },
   preview: {
     tab: 'Xem trước',
@@ -2543,7 +2605,8 @@ export const vi = defineLocale({
     unsavedChanges: 'Thay đổi chưa lưu',
     saveFailed: message => `Không thể lưu: ${message}`,
     diskChangedTitle: 'Tệp đã thay đổi trên đĩa',
-    diskChangedBody: 'Tệp này đã thay đổi từ khi bạn mở. Ghi đè bằng phiên bản của bạn, hay hủy các chỉnh sửa và tải lại?',
+    diskChangedBody:
+      'Tệp này đã thay đổi từ khi bạn mở. Ghi đè bằng phiên bản của bạn, hay hủy các chỉnh sửa và tải lại?',
     overwrite: 'Ghi đè',
     discardReload: 'Hủy & tải lại',
     console: {
@@ -2564,7 +2627,7 @@ export const vi = defineLocale({
       empty: 'Chưa có thông báo console.',
       promptHeader: 'Console xem trước:',
       sentTitle: 'Đã gửi tới chat',
-      sentMessage: count => `${count} mục nhật ký ${count === 1 ? 'y' : 'ies'} đã được thêm vào ô soạn thảo`,
+      sentMessage: count => `${count} mục nhật ký ${count === 1 ? 'y' : 'ies'} đã được thêm vào ô soạn thảo`
     },
     web: {
       appFailedToBoot: 'Ứng dụng xem trước khởi động thất bại',
@@ -2589,17 +2652,19 @@ export const vi = defineLocale({
       reloadingNow: 'Đang tải lại bản xem trước.',
       restartFailedTitle: 'Khởi động lại xem trước thất bại',
       restartFailedMessage: 'OpenAmer không thể khởi động lại máy chủ.',
-      stillWorking: 'OpenAmer vẫn đang làm việc, nhưng chưa nhận được kết quả khởi động lại. Lệnh máy chủ có thể đang chạy ở tiền cảnh.',
+      stillWorking:
+        'OpenAmer vẫn đang làm việc, nhưng chưa nhận được kết quả khởi động lại. Lệnh máy chủ có thể đang chạy ở tiền cảnh.',
       workspaceReloading: 'Không gian làm việc đã thay đổi, đang tải lại xem trước',
       fileChanged: url => `Tệp đã thay đổi, đang tải lại xem trước: ${url}`,
       filesChanged: (count, url) => `${count} thay đổi tệp, đang tải lại xem trước: ${url}`,
       watchFailed: message => `Không thể theo dõi tệp xem trước: ${message}`,
-      moduleMimeDescription: 'Script module đang được phục vụ với MIME type sai. Điều này thường có nghĩa là máy chủ tệp tĩnh đang phục vụ ứng dụng Vite/React thay vì máy chủ dev của dự án.',
+      moduleMimeDescription:
+        'Script module đang được phục vụ với MIME type sai. Điều này thường có nghĩa là máy chủ tệp tĩnh đang phục vụ ứng dụng Vite/React thay vì máy chủ dev của dự án.',
       loadFailedConsole: (code, message) => `Tải thất bại${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Không thể truy cập trang xem trước.',
       openTarget: url => `Mở ${url}`,
-      fallbackTitle: 'Xem trước',
-    },
+      fallbackTitle: 'Xem trước'
+    }
   },
   zones: {
     showHeader: 'Hiện tiêu đề',
@@ -2607,7 +2672,8 @@ export const vi = defineLocale({
     minimize: 'Thu nhỏ',
     restore: 'Khôi phục',
     closeRunningTitle: 'Đóng tab đang chạy?',
-    closeRunningBody: 'Cuộc trò chuyện này vẫn đang xử lý (hoặc đang chờ bạn nhập). Đóng tab sẽ ẩn nó — phiên vẫn giữ tiến trình và có thể mở lại từ thanh bên.',
+    closeRunningBody:
+      'Cuộc trò chuyện này vẫn đang xử lý (hoặc đang chờ bạn nhập). Đóng tab sẽ ẩn nó — phiên vẫn giữ tiến trình và có thể mở lại từ thanh bên.',
     closeRunningConfirm: 'Đóng tab',
     closeOthers: 'Đóng các tab khác',
     closeToRight: 'Đóng các tab bên phải',
@@ -2644,25 +2710,16 @@ export const vi = defineLocale({
     layoutNamePlaceholder: fallback => `Tên bố cục (${fallback})`,
     saveApply: 'Lưu và áp dụng',
     notExpressible: 'cách bố trí này lồng nhau (chong chóng) — chưa thể biểu diễn dưới dạng tách lồng nhau',
-    zoneCount: count => `${count} vùng`,
+    zoneCount: count => `${count} vùng`
   },
   assistant: {
     thread: {
       loadingSession: 'Đang tải phiên',
       showEarlier: 'Hiện tin nhắn cũ hơn',
       loadingResponse: 'OpenAmer đang tải phản hồi',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Đang suy nghĩ',
       today: time => `Hôm nay, ${time}`,
@@ -2689,7 +2746,7 @@ export const vi = defineLocale({
       restoreNext: 'Khôi phục điểm kiểm tra tiếp theo',
       goForward: 'Tiến tới',
       sendEdited: 'Gửi tin nhắn đã sửa',
-      attachingFile: 'Đang đính kèm…',
+      attachingFile: 'Đang đính kèm…'
     },
     approval: {
       gatewayDisconnected: 'Cổng OpenAmer chưa được kết nối',
@@ -2702,8 +2759,9 @@ export const vi = defineLocale({
       jumpToApproval: 'Cần phê duyệt',
       reject: 'Từ chối',
       alwaysTitle: 'Luôn cho phép lệnh này?',
-      alwaysDescription: pattern => `Thao tác này thêm mẫu “${pattern}” vào danh sách cho phép vĩnh viễn (~/.openamer/config.yaml). OpenAmer sẽ không hỏi lại cho các lệnh như thế này — trong phiên này hoặc bất kỳ phiên nào sau này.`,
-      alwaysAllow: 'Luôn cho phép',
+      alwaysDescription: pattern =>
+        `Thao tác này thêm mẫu “${pattern}” vào danh sách cho phép vĩnh viễn (~/.openamer/config.yaml). OpenAmer sẽ không hỏi lại cho các lệnh như thế này — trong phiên này hoặc bất kỳ phiên nào sau này.`,
+      alwaysAllow: 'Luôn cho phép'
     },
     clarify: {
       notReady: 'Yêu cầu làm rõ chưa sẵn sàng',
@@ -2717,7 +2775,7 @@ export const vi = defineLocale({
       continueLabel: 'Tiếp tục',
       lateAnswer: (question, choice) => `Về: "${question}" — câu trả lời của tôi: ${choice}`,
       lateAnswerTip: 'Soạn câu trả lời này làm tin nhắn tiếp theo',
-      lateAnswerHint: 'Lời nhắc này không còn chờ nữa. Chọn một tùy chọn để soạn thành tin nhắn tiếp theo.',
+      lateAnswerHint: 'Lời nhắc này không còn chờ nữa. Chọn một tùy chọn để soạn thành tin nhắn tiếp theo.'
     },
     tool: {
       code: 'Mã',
@@ -2753,11 +2811,11 @@ export const vi = defineLocale({
         ran: 'Đã chạy',
         running: 'Đang chạy',
         ranCode: 'Đã chạy mã',
-        runningCode: 'Đang viết script',
+        runningCode: 'Đang viết script'
       },
       prefixes: {
         browser: 'Trình duyệt',
-        web: 'Trang web',
+        web: 'Trang web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2765,121 +2823,121 @@ export const vi = defineLocale({
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Đang chạy ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Đang chạy ${action.toLowerCase()}`,
+        runningTool: action => `Đang chạy ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Đã nhấp phần tử trang',
           pending: 'Đang nhấp phần tử trang',
-          pendingAction: 'Đang nhấp',
+          pendingAction: 'Đang nhấp'
         },
         browser_fill: {
           done: 'Đã điền trường biểu mẫu',
           pending: 'Đang điền trường biểu mẫu',
-          pendingAction: 'Đang điền',
+          pendingAction: 'Đang điền'
         },
         browser_navigate: {
           done: 'Đã mở trang',
           pending: 'Đang mở trang',
-          pendingAction: 'Đang mở',
+          pendingAction: 'Đang mở'
         },
         browser_snapshot: {
           done: 'Đã chụp ảnh trang',
           pending: 'Đang chụp ảnh trang',
-          pendingAction: 'Đang chụp',
+          pendingAction: 'Đang chụp'
         },
         browser_take_screenshot: {
           done: 'Đã chụp ảnh màn hình',
           pending: 'Đang chụp ảnh màn hình',
-          pendingAction: 'Đang chụp',
+          pendingAction: 'Đang chụp'
         },
         browser_type: {
           done: 'Đã nhập trên trang',
           pending: 'Đang nhập trên trang',
-          pendingAction: 'Đang nhập',
+          pendingAction: 'Đang nhập'
         },
         clarify: {
           done: 'Đã đặt câu hỏi',
           pending: 'Đang đặt câu hỏi',
-          pendingAction: 'Đang hỏi',
+          pendingAction: 'Đang hỏi'
         },
         cronjob: {
           done: 'Tác vụ cron',
           pending: 'Đang lên lịch tác vụ cron',
-          pendingAction: 'Đang lên lịch',
+          pendingAction: 'Đang lên lịch'
         },
         edit_file: {
           done: 'Đã sửa tệp',
           pending: 'Đang sửa tệp',
-          pendingAction: 'Đang sửa',
+          pendingAction: 'Đang sửa'
         },
         execute_code: {
           done: 'Đã chạy mã',
           pending: 'Đang viết script',
-          pendingAction: 'Đang viết script',
+          pendingAction: 'Đang viết script'
         },
         image_generate: {
           done: 'Đã tạo ảnh',
           pending: 'Đang tạo ảnh',
-          pendingAction: 'Đang tạo',
+          pendingAction: 'Đang tạo'
         },
         list_files: {
           done: 'Đã liệt kê tệp',
           pending: 'Đang liệt kê tệp',
-          pendingAction: 'Đang liệt kê',
+          pendingAction: 'Đang liệt kê'
         },
         patch: {
           done: 'Đã vá tệp',
           pending: 'Đang vá tệp',
-          pendingAction: 'Đang vá',
+          pendingAction: 'Đang vá'
         },
         read_file: {
           done: 'Đọc tệp',
           pending: 'Đang đọc tệp',
-          pendingAction: 'Đang đọc',
+          pendingAction: 'Đang đọc'
         },
         search_files: {
           done: 'Đã tìm kiếm tệp',
           pending: 'Đang tìm kiếm tệp',
-          pendingAction: 'Đang tìm kiếm',
+          pendingAction: 'Đang tìm kiếm'
         },
         session_search_recall: {
           done: 'Đã tìm kiếm lịch sử phiên',
           pending: 'Đang tìm kiếm lịch sử phiên',
-          pendingAction: 'Đang tìm kiếm',
+          pendingAction: 'Đang tìm kiếm'
         },
         terminal: {
           done: 'Đã chạy lệnh',
           pending: 'Đang chạy lệnh',
-          pendingAction: 'Đang chạy',
+          pendingAction: 'Đang chạy'
         },
         todo: {
           done: 'Đã cập nhật việc cần làm',
           pending: 'Đang cập nhật việc cần làm',
-          pendingAction: 'Đang cập nhật',
+          pendingAction: 'Đang cập nhật'
         },
         vision_analyze: {
           done: 'Đã phân tích ảnh',
           pending: 'Đang phân tích ảnh',
-          pendingAction: 'Đang phân tích',
+          pendingAction: 'Đang phân tích'
         },
         web_extract: {
           done: 'Đọc trang web',
           pending: 'Đang đọc trang web',
-          pendingAction: 'Đang đọc',
+          pendingAction: 'Đang đọc'
         },
         web_search: {
           done: 'Đã tìm kiếm web',
           pending: 'Đang tìm kiếm web',
-          pendingAction: 'Đang tìm kiếm',
+          pendingAction: 'Đang tìm kiếm'
         },
         write_file: {
           done: 'Đã sửa tệp',
           pending: 'Đang sửa tệp',
-          pendingAction: 'Đang sửa',
-        },
-      },
-    },
+          pendingAction: 'Đang sửa'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'Gateway OpenAmer chưa kết nối',
@@ -2890,7 +2948,7 @@ export const vi = defineLocale({
     sudoPlaceholder: 'mật khẩu sudo',
     secretTitle: 'Cần thông tin bí mật',
     secretDesc: 'OpenAmer cần thông tin xác thực để tiếp tục.',
-    secretPlaceholder: 'giá trị bí mật',
+    secretPlaceholder: 'giá trị bí mật'
   },
   desktop: {
     audioReadFailed: 'Không thể đọc âm thanh đã ghi',
@@ -2907,7 +2965,8 @@ export const vi = defineLocale({
     yoloSystem: active => `YOLO ${active ? 'bật' : 'tắt'} cho phiên này`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Không thể bật/tắt YOLO',
-    profileStatus: current => `Hồ sơ: ${current}. Dùng /profile <name> hoặc trình chọn "Phiên mới" để bắt đầu trò chuyện trong hồ sơ khác.`,
+    profileStatus: current =>
+      `Hồ sơ: ${current}. Dùng /profile <name> hoặc trình chọn "Phiên mới" để bắt đầu trò chuyện trong hồ sơ khác.`,
     unknownProfile: 'Hồ sơ không xác định',
     noProfileNamed: (target, available) => `Không có hồ sơ nào tên "${target}". Có sẵn: ${available}`,
     newChatsProfile: name => `Các cuộc trò chuyện mới sẽ dùng hồ sơ ${name}.`,
@@ -2917,8 +2976,9 @@ export const vi = defineLocale({
     regenerateFailed: 'Tạo lại thất bại',
     editFailed: 'Chỉnh sửa thất bại',
     resumeFailed: 'Tiếp tục thất bại',
-    resumeStrandedTitle: "Không thể tải phiên này",
-    resumeStrandedBody: 'Kết nối đến phiên này thất bại và các lần thử lại tự động đã dừng. Kiểm tra xem cổng kết nối có đang chạy không, rồi thử lại.',
+    resumeStrandedTitle: 'Không thể tải phiên này',
+    resumeStrandedBody:
+      'Kết nối đến phiên này thất bại và các lần thử lại tự động đã dừng. Kiểm tra xem cổng kết nối có đang chạy không, rồi thử lại.',
     resumeRetry: 'Thử lại',
     nothingToBranch: 'Không có gì để tạo nhánh',
     branchNeedsChat: 'Hãy bắt đầu hoặc tiếp tục trò chuyện trước khi tạo nhánh.',
@@ -2932,7 +2992,8 @@ export const vi = defineLocale({
     archiveFailed: 'Lưu trữ thất bại',
     cwdChangeFailed: 'Đổi thư mục làm việc thất bại',
     cwdStagedTitle: 'Đã tạm đặt thư mục làm việc',
-    cwdStagedMessage: 'Khởi động lại backend desktop để áp dụng thay đổi thư mục làm việc cho phiên đang hoạt động này.',
+    cwdStagedMessage:
+      'Khởi động lại backend desktop để áp dụng thay đổi thư mục làm việc cho phiên đang hoạt động này.',
     modelSwitchFailed: 'Chuyển mô hình thất bại',
     sessionExported: 'Đã xuất phiên',
     sessionExportFailed: 'Không thể xuất phiên',
@@ -2958,31 +3019,31 @@ export const vi = defineLocale({
       success: platform => `Đã chuyển cho ${platform}. Tiếp tục tại đây bất cứ lúc nào.`,
       systemNote: platform => `↻ Đã bàn giao cho ${platform} — tiếp tục tại đây bất cứ lúc nào.`,
       failed: error => `Bàn giao thất bại: ${error}`,
-      timedOut: 'Hết thời gian chờ cổng kết nối. `openamer gateway` có đang chạy không?',
-    },
+      timedOut: 'Hết thời gian chờ cổng kết nối. `openamer gateway` có đang chạy không?'
+    }
   },
   errors: {
     genericFailure: 'Đã xảy ra lỗi',
     boundaryTitle: 'Giao diện gặp sự cố',
     boundaryDesc: 'Chế độ xem gặp lỗi ngoài ý muốn. Cuộc trò chuyện và cài đặt của bạn vẫn an toàn.',
     reloadWindow: 'Tải lại cửa sổ',
-    openLogs: 'Mở nhật ký',
+    openLogs: 'Mở nhật ký'
   },
   ui: {
     search: {
-      clear: 'Xóa tìm kiếm',
+      clear: 'Xóa tìm kiếm'
     },
     pagination: {
       label: 'phân trang',
       previous: 'Trước',
       previousAria: 'Đến trang trước',
       next: 'Tiếp',
-      nextAria: 'Đi đến trang tiếp theo',
+      nextAria: 'Đi đến trang tiếp theo'
     },
     sidebar: {
       title: 'Thanh bên',
       description: 'Hiển thị thanh bên di động.',
-      toggle: 'Bật/tắt thanh bên',
-    },
-  },
+      toggle: 'Bật/tắt thanh bên'
+    }
+  }
 })

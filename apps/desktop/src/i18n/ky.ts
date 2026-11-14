@@ -45,11 +45,11 @@ export const ky = defineLocale({
     update: 'Жаңыртуу',
     on: 'Күйгүзүлгөн',
     off: 'Өчүрүлгөн',
-    tryHint: term => `Try “${term}”`,
+    tryHint: term => `Try “${term}”`
   },
   fileMenu: {
-    revealFinder: 'Finder\'де көрсөтүү',
-    revealExplorer: 'File Explorer\'де көрсөтүү',
+    revealFinder: "Finder'де көрсөтүү",
+    revealExplorer: "File Explorer'де көрсөтүү",
     revealFileManager: 'Камтыган папканы ачуу',
     revealInSidebar: 'Файл дарагинде көрсөтүү',
     copyPath: 'Жолду көчүрүү',
@@ -60,7 +60,7 @@ export const ky = defineLocale({
     renameLabel: 'Жаңы ат',
     deleteBody: 'Ал Таштандыга жылдырылат — аны ошол жерден калыбына келтирүүгө болот.',
     pathCopied: 'Жол көчүрүлдү',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop даяр',
@@ -69,7 +69,7 @@ export const ky = defineLocale({
       loadingSettings: 'OpenAmer жөндөөлөрү жүктөлүүдө',
       loadingSessions: 'Акыркы сессиялар жүктөлүүдө',
       startingDesktopConnection: 'Иш такта байланышы башталууда',
-      startingOpenAmerDesktop: 'OpenAmer Desktop башталууда…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop башталууда…'
     },
     errors: {
       backgroundExited: 'OpenAmer фондук процесси токтоду.',
@@ -78,13 +78,15 @@ export const ky = defineLocale({
       desktopBootFailed: 'Иш такта жүктөлбөдү',
       gatewayConnectionLost: 'Шлюзга байланыш үзүлдү',
       gatewaySignInRequired: 'Шлюзга кирүү талап кылынат',
-      ipcBridgeUnavailable: 'Иштактадагы IPC көпүрөсү жеткиликсиз.',
+      ipcBridgeUnavailable: 'Иштактадагы IPC көпүрөсү жеткиликсиз.'
     },
     failure: {
       title: 'OpenAmer баштала алган жок',
-      description: 'Фондук шлюз ишке кирген жок. Төмөнкү калыбына келтирүү кадамдарынын бирин сынап көрүңүз. Бул жерде эч нерсе чаттарыңызды же жөндөөлөрүңүздү жок кылбайт.',
+      description:
+        'Фондук шлюз ишке кирген жок. Төмөнкү калыбына келтирүү кадамдарынын бирин сынап көрүңүз. Бул жерде эч нерсе чаттарыңызды же жөндөөлөрүңүздү жок кылбайт.',
       remoteTitle: 'Алыскы шлюзга кирүү талап кылынат',
-      remoteDescription: 'Алыскы шлюздагы сессияңыздын мөөнөтү бүттү. Кайра туташуу үчүн кайра кириңиз. Бул жерде эч нерсе чаттарыңызды же жөндөөлөрүңүздү жок кылбайт.',
+      remoteDescription:
+        'Алыскы шлюздагы сессияңыздын мөөнөтү бүттү. Кайра туташуу үчүн кайра кириңиз. Бул жерде эч нерсе чаттарыңызды же жөндөөлөрүңүздү жок кылбайт.',
       retry: 'Кайра аракет кылуу',
       repairInstall: 'Орнотууну оңдоо',
       useLocalGateway: 'Жергиликтүү шлюзду колдонуу',
@@ -103,10 +105,11 @@ export const ky = defineLocale({
       signInFailed: 'Кирүү ишке ашкан жок',
       signInToRemoteGateway: 'Алыскы шлюзга кирүү',
       identityProvider: 'сиздин идентификация провайдериңиз',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   notifications: {
     region: 'Эскертүүлөр',
@@ -118,7 +121,8 @@ export const ky = defineLocale({
     copyDetail: 'Чоо-жайды көчүрүү',
     copyDetailFailed: 'Эскертүүнүн чоо-жайын көчүрүү мүмкүн болбоду',
     backendOutOfDateTitle: 'Бэкенд эскирген',
-    backendOutOfDateMessage: 'Сиздин OpenAmer бэкендиңиз бул десктоп версиясынан эски жана туура иштебеши мүмкүн. Аларды шайкештештирүү үчүн жаңыртыңыз.',
+    backendOutOfDateMessage:
+      'Сиздин OpenAmer бэкендиңиз бул десктоп версиясынан эски жана туура иштебеши мүмкүн. Аларды шайкештештирүү үчүн жаңыртыңыз.',
     installMethodUnsupportedTitle: 'Колдоого алынбаган орнотуу ыкмасы',
     updateOpenAmer: 'OpenAmer жаңыртуу',
     updateReadyTitle: 'Жаңыртуу даяр',
@@ -127,11 +131,12 @@ export const ky = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT үчүн ELEVENLABS_API_KEY керек.',
       elevenLabsRejectedKey: 'ElevenLabs API ачкычын четке какты (401).',
       gatewayAuthFailed: 'Шлюз аутентификациясы ишке ашкан жок — API_SERVER_KEY параметрин текшериңиз.',
-      methodNotAllowed: 'Десктоптук backend бул сурамды четке какты (405 Method Not Allowed). OpenAmer Desktop колдонмосун кайра иштетүүгө аракет кылыңыз.',
+      methodNotAllowed:
+        'Десктоптук backend бул сурамды четке какты (405 Method Not Allowed). OpenAmer Desktop колдонмосун кайра иштетүүгө аракет кылыңыз.',
       microphonePermission: 'Микрофонго уруксат четке кагылды.',
       openaiRejectedApiKey: 'OpenAI API ачкычын четке какты.',
       openaiTtsNeedsKey: 'OpenAI TTS үчүн VOICE_TOOLS_OPENAI_KEY же OPENAI_API_KEY керек.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Үн режимин колдонуу үчүн сүйлөөнү текстке айландырууну жөндөңүз.',
@@ -150,7 +155,7 @@ export const ky = defineLocale({
       transcriptionFailed: 'Үндү транскрипциялоо ишке ашкан жок.',
       transcriptionUnavailable: 'Үн транскрипциясы азырынча жеткиликсиз.',
       tryRecordingAgain: 'Кайра жазып көрүңүз.',
-      unavailable: 'Үн жеткиликсиз',
+      unavailable: 'Үн жеткиликсиз'
     },
     native: {
       approvalTitle: 'Уруксат керек',
@@ -163,10 +168,10 @@ export const ky = defineLocale({
       turnErrorTitle: 'Аракет ишке ашпады',
       backgroundDoneTitle: 'Фондук тапшырма бүттү',
       backgroundFailedTitle: 'Фондук тапшырма ишке ашпады',
-      creditsTitle: 'Кредиттер',
+      creditsTitle: 'Кредиттер'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer кредиттери бүттү',
@@ -174,7 +179,7 @@ export const ky = defineLocale({
     openBilling: 'Эсеп-кысапты ачуу',
     addCredits: 'Кредит кошуу',
     dismiss: 'Жабуу',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Каптал панелди жашыруу',
@@ -191,7 +196,7 @@ export const ky = defineLocale({
     openStarmap: 'Эс тутум графигин ачуу',
     openKeybinds: 'Пернетақта ыкчам ачкычтары',
     layoutEditor: 'Жайгаштыруу редактору',
-    layoutEditorTitle: 'Жайгаштыруу редактору â€” âŒ˜ менен басуу жайгаштырууну баштапкы абалга келтирет',
+    layoutEditorTitle: 'Жайгаштыруу редактору â€” âŒ˜ менен басуу жайгаштырууну баштапкы абалга келтирет'
   },
   keybinds: {
     title: 'Пернетақта ыкчам ачкычтары',
@@ -206,7 +211,7 @@ export const ky = defineLocale({
       profiles: 'Профилдер',
       session: 'Сессия',
       navigation: 'Багыттоо',
-      view: 'Көрүнүш',
+      view: 'Көрүнүш'
     },
     actions: {
       'keybinds.openPanel': 'Клавиатура ыкчам ачкычтарын ачуу',
@@ -285,10 +290,10 @@ export const ky = defineLocale({
       'composer.slash': 'Кыйгач командалар палитрасы',
       'composer.help': 'Ыкчам жардам',
       'composer.history': 'Поповер / тарыхты айландыруу',
-      'composer.cancel': 'Поповерди жабуу · аткарууну токтотуу',
+      'composer.cancel': 'Поповерди жабуу · аткарууну токтотуу'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   language: {
     label: 'Тил',
@@ -297,7 +302,7 @@ export const ky = defineLocale({
     saveError: 'Тилди жаңыртуу ишке ашкан жок',
     switchTo: 'Тилди алмаштыруу',
     searchPlaceholder: 'Тилдерди издөө…',
-    noResults: 'Тилдер табылган жок',
+    noResults: 'Тилдер табылган жок'
   },
   settings: {
     closeSettings: 'Жөндөөлөрдү жабуу',
@@ -322,48 +327,50 @@ export const ky = defineLocale({
       billing: 'Төлөмдөр',
       notifications: 'Эскертүүлөр',
       plugins: 'Плагиндер',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     notifications: {
       kinds: {
         credits: {
           description: 'Кредитке жетүү токтотулду же калыбына келтирилди.',
-          label: 'Кредит эскертүүлөрү',
+          label: 'Кредит эскертүүлөрү'
         },
         approval: {
           label: 'Ырастоо керек',
-          description: 'Буйрукту ырастооңузду же четке кагууңузду күтүп турат.',
+          description: 'Буйрукту ырастооңузду же четке кагууңузду күтүп турат.'
         },
         input: {
           label: 'Киргизүү керек',
-          description: 'OpenAmer суроо берди же сырсөз же купуя маалымат керек.',
+          description: 'OpenAmer суроо берди же сырсөз же купуя маалымат керек.'
         },
         turnDone: {
           label: 'Жооп даяр',
-          description: 'OpenAmer фондо турганда кезек аяктады.',
+          description: 'OpenAmer фондо турганда кезек аяктады.'
         },
         turnError: {
           label: 'Кезек ишке ашпады',
-          description: 'Кезек ката менен аяктады.',
+          description: 'Кезек ката менен аяктады.'
         },
         backgroundDone: {
           label: 'Фондук тапшырма аяктады',
-          description: 'Фонго өткөрүлгөн терминал буйругу аяктады.',
-        },
+          description: 'Фонго өткөрүлгөн терминал буйругу аяктады.'
+        }
       },
       test: 'Сыноо эскертүүсүн жөнөтүү',
       testTitle: 'OpenAmer',
       testBody: 'Эскертүүлөр иштеп жатат.',
-      testSent: 'Сыноо жөнөтүлдү. Эч нерсе көрүнбөсө, операциялык системанын эскертүү уруксаттарын жана Фокус/Тынчсыздандырбаңыз режимин текшериңиз.',
+      testSent:
+        'Сыноо жөнөтүлдү. Эч нерсе көрүнбөсө, операциялык системанын эскертүү уруксаттарын жана Фокус/Тынчсыздандырбаңыз режимин текшериңиз.',
       testUnsupported: 'Бул система системалык эскертүүлөрдү колдобойт.',
       completionSoundTitle: 'Аяктоо үнү',
       completionSoundDesc: 'Агенттин кезеги бүткөндө ойнойт. Дайын параметрди тандап, бул жерде алдын ала угуңуз.',
       completionSoundPreview: 'Алдын ала көрүү',
       title: 'Эскертүүлөр',
-      intro: 'Жергиликтүү десктоп эскертүүлөрү, колдонмодогу тосттордон өзүнчө. Алар түзмөктө жергиликтүү — ар бир компьютер өз жөндөөлөрүн сактайт.',
+      intro:
+        'Жергиликтүү десктоп эскертүүлөрү, колдонмодогу тосттордон өзүнчө. Алар түзмөктө жергиликтүү — ар бир компьютер өз жөндөөлөрүн сактайт.',
       enableAll: 'Эскертүүлөрдү күйгүзүү',
       enableAllDesc: 'Башкы которгуч. Төмөнкү бардык эскертүүлөрдү өчүрүү үчүн муну өчүрүңүз.',
-      focusedHint: 'Аяктоо эскертүүлөрү OpenAmer фондо иштегенде гана иштейт.',
+      focusedHint: 'Аяктоо эскертүүлөрү OpenAmer фондо иштегенде гана иштейт.'
     },
     sections: {
       model: 'Модель',
@@ -373,7 +380,7 @@ export const ky = defineLocale({
       safety: 'Коопсуздук',
       memory: 'Эс жана контекст',
       voice: 'Үн',
-      advanced: 'Кеңири',
+      advanced: 'Кеңири'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop тууралуу',
@@ -381,25 +388,26 @@ export const ky = defineLocale({
       gateway: 'Шлюзга туташуу...',
       keys: 'API ачкычтарын издөө...',
       mcp: 'MCP серверлерин издөө...',
-      sessions: 'Архивделген сессияларды издөө...',
+      sessions: 'Архивделген сессияларды издөө...'
     },
     modeOptions: {
       light: {
         label: 'Жарык',
-        description: 'Жарык жумуш үстөлүнүн беттери',
+        description: 'Жарык жумуш үстөлүнүн беттери'
       },
       dark: {
         label: 'Караңгы',
-        description: 'Жаркырашы аз иш аянты',
+        description: 'Жаркырашы аз иш аянты'
       },
       system: {
         label: 'Система',
-        description: 'ОС көрүнүшүнө ээрчүү',
-      },
+        description: 'ОС көрүнүшүнө ээрчүү'
+      }
     },
     appearance: {
       title: 'Көрүнүш',
-      intro: 'Булар жумуш үстөлүнө гана тиешелүү көрсөтүү жөндөөлөрү. Режим жарыктыкты башкарат; тема акцент палитрасын жана чат бетинин стилин көзөмөлдөйт.',
+      intro:
+        'Булар жумуш үстөлүнө гана тиешелүү көрсөтүү жөндөөлөрү. Режим жарыктыкты башкарат; тема акцент палитрасын жана чат бетинин стилин көзөмөлдөйт.',
       colorMode: 'Түс режими',
       colorModeDesc: 'Туруктуу режимди тандаңыз же OpenAmer системаңыздын жөндөөсүнө ээрчисин.',
       toolViewTitle: 'Курал чакыруусун көрсөтүү',
@@ -410,8 +418,10 @@ export const ky = defineLocale({
       backdropTitle: 'Чаттын арткы фоны',
       backdropDesc: 'Сүйлөшүүнүн артындагы бүдөмүк статуя сүрөтү.',
       pet: {
-        intro: 'Колдонмонун үстүндө калкыган жана OpenAmer эмне кылып жатканына жооп берген анимацияланган petdex маскотун кабыл алыңыз — куралдар аткарылып жатканда чуркайт, ийгиликте майрамдайт, каталарда көңүлү чөгөт.',
-        restartHint: 'Жаныбарларга тез кайра баштоо керек — иштеп жаткан колдонмо бул функция кошулганга чейин башталган. OpenAmerден чыгып, кайра ачыңыз, анан бул жерге кайтыңыз.',
+        intro:
+          'Колдонмонун үстүндө калкыган жана OpenAmer эмне кылып жатканына жооп берген анимацияланган petdex маскотун кабыл алыңыз — куралдар аткарылып жатканда чуркайт, ийгиликте майрамдайт, каталарда көңүлү чөгөт.',
+        restartHint:
+          'Жаныбарларга тез кайра баштоо керек — иштеп жаткан колдонмо бул функция кошулганга чейин башталган. OpenAmerден чыгып, кайра ачыңыз, анан бул жерге кайтыңыз.',
         on: 'Күйүк',
         off: 'Өчүк',
         scaleTitle: 'Өлчөм',
@@ -444,10 +454,11 @@ export const ky = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
       embedsTitle: 'Инлайн кыстырмалар',
-      embedsDesc: 'Бай алдын ала көрүүлөр үчүнчү тараптын сайттарынан жүктөлөт (YouTube, X, …). «Сура» ар бирине уруксат бергенче орун толтургучту көрсөтөт; «Дайыма» аларды автоматтык жүктөйт; «Өчүк» жөнөкөй шилтемелерди калтырат.',
+      embedsDesc:
+        'Бай алдын ала көрүүлөр үчүнчү тараптын сайттарынан жүктөлөт (YouTube, X, …). «Сура» ар бирине уруксат бергенче орун толтургучту көрсөтөт; «Дайыма» аларды автоматтык жүктөйт; «Өчүк» жөнөкөй шилтемелерди калтырат.',
       embedsAsk: 'Сура',
       embedsAlways: 'Дайыма',
       embedsOff: 'Өчүк',
@@ -457,18 +468,20 @@ export const ky = defineLocale({
       technicalDesc: 'Куралдын чийки аргументтерин/жыйынтыктарын жана төмөнкү деңгээлдеги деталдарды кошуңуз.',
       themeTitle: 'Тема',
       themeDesc: 'Жумуш үстөлүнүн палитралары гана. Тандалган режим үстүнөн колдонулат.',
-      installTitle: 'VS Code\'дон орнотуу',
-      installDesc: 'Marketplace кеңейтүүсүнүн ID\'син (мис. dracula-theme.theme-dracula) чаптап, анын түс темасын жумуш үстөлүнүн палитрасына айландырыңыз.',
+      installTitle: "VS Code'дон орнотуу",
+      installDesc:
+        "Marketplace кеңейтүүсүнүн ID'син (мис. dracula-theme.theme-dracula) чаптап, анын түс темасын жумуш үстөлүнүн палитрасына айландырыңыз.",
       installButton: 'Орнотуу',
       installing: 'Орнотулуп жатат…',
       installError: 'Ал теманы орнотуу мүмкүн болбоду.',
       removeTheme: 'Теманы алып салуу',
       importedBadge: 'Импорттолду',
       installPlaceholder: 'жарыялоочу.кеңейтүү',
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     about: {
       heading: 'OpenAmer иш тактасы',
@@ -486,7 +499,8 @@ export const ky = defineLocale({
       tapCheck: 'Жаңыртууларды издөө үчүн «Азыр текшер» баскычын басыңыз.',
       justNowSuffix: '· азыр эле',
       automaticUpdates: 'Автоматтык жаңыртуулар',
-      automaticUpdatesDesc: 'OpenAmer жаңыртууларды фондо автоматтык түрдө текшерип, жаңыртуу даяр болгондо сизге билдирет.',
+      automaticUpdatesDesc:
+        'OpenAmer жаңыртууларды фондо автоматтык түрдө текшерип, жаңыртуу даяр болгондо сизге билдирет.',
       never: 'эч качан',
       justNow: 'азыр эле',
       version: value => `Version ${value}`,
@@ -495,7 +509,7 @@ export const ky = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     config: {
       none: 'Жок',
@@ -511,7 +525,7 @@ export const ky = defineLocale({
       imported: 'Конфигурация импорттолду',
       invalidJson: 'Жараксыз конфиг JSON',
       keepAwakeTitle: 'Компьютерди ойготуп кармоо',
-      keepAwakeDesc: 'Бул машина уктабасын, узак же түн бою иштөө улансын. Дисплей караңгыланышы мүмкүн.',
+      keepAwakeDesc: 'Бул машина уктабасын, узак же түн бою иштөө улансын. Дисплей караңгыланышы мүмкүн.'
     },
     credentials: {
       pasteKey: 'Ачкычты чаптоо',
@@ -521,7 +535,7 @@ export const ky = defineLocale({
       remove: 'Өчүрүү',
       getKey: 'Ачкыч алуу',
       saving: 'Сакталууда',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     envActions: {
       credentialActions: 'Креденциалдык аракеттер',
@@ -532,7 +546,7 @@ export const ky = defineLocale({
       replace: 'Алмаштыруу',
       set: 'Орнотуу',
       clear: 'Тазалоо',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     gateway: {
       loading: 'Шлюз жөндөөлөрү жүктөлүүдө...',
@@ -540,41 +554,48 @@ export const ky = defineLocale({
       unavailableDesc: 'Десктоптук IPC көпүрөсү шлюз жөндөөлөрүн көрсөтпөйт.',
       title: 'Шлюзга туташуу',
       envOverride: 'env алмаштыруусу',
-      intro: 'OpenAmer Desktop демейде өзүнүн жергиликтүү шлюзун иштетет. Бул колдонмо башка машинадагы же ишенимдүү проксинин артындагы иштеп жаткан OpenAmer backendди башкаруусун кааласаңыз, алыскы шлюзду колдонуңуз. Ага өзүнүн алыскы хосту болушу үчүн төмөнкү профилди тандаңыз.',
+      intro:
+        'OpenAmer Desktop демейде өзүнүн жергиликтүү шлюзун иштетет. Бул колдонмо башка машинадагы же ишенимдүү проксинин артындагы иштеп жаткан OpenAmer backendди башкаруусун кааласаңыз, алыскы шлюзду колдонуңуз. Ага өзүнүн алыскы хосту болушу үчүн төмөнкү профилди тандаңыз.',
       appliesTo: 'Колдонулат',
       allProfiles: 'Бардык профилдер',
       defaultConnection: 'Өзүнүн алмаштыруусу жок ар бир профиль үчүн демейки туташуу.',
       envOverrideTitle: 'Бул десктоп сессиясын айлана-чөйрө өзгөрмөлөрү башкарып жатат.',
-      envOverrideDesc: 'Төмөнкү сакталган жөндөөнү колдонуу үчүн OPENAMER_DESKTOP_REMOTE_URL жана OPENAMER_DESKTOP_REMOTE_TOKEN өзгөрмөлөрүн өчүрүңүз.',
+      envOverrideDesc:
+        'Төмөнкү сакталган жөндөөнү колдонуу үчүн OPENAMER_DESKTOP_REMOTE_URL жана OPENAMER_DESKTOP_REMOTE_TOKEN өзгөрмөлөрүн өчүрүңүз.',
       cloudNoAgents: {
         before: 'Бул аккаунтта агент табылган жок. Түзүү үчүн',
         linkText: 'OpenAmer порталы',
-        after: ', анан жаңыртыңыз.',
+        after: ', анан жаңыртыңыз.'
       },
       cloudRefresh: 'Жаңыртуу',
       cloudConnect: 'Туташтыруу',
       cloudConnecting: 'Туташтырылып жатат…',
       cloudDiscoverFailed: 'OpenAmer Cloud агенттериңизди жүктөө мүмкүн болбоду',
       cloudConnectFailed: 'Ал агентке туташтыруу мүмкүн болбоду',
-      cloudSignInFailed: 'OpenAmer Cloud\'го кирүү ишке ашкан жок',
-      cloudSignedOutTitle: 'OpenAmer Cloud\'дон чыктыңыз',
+      cloudSignInFailed: "OpenAmer Cloud'го кирүү ишке ашкан жок",
+      cloudSignedOutTitle: "OpenAmer Cloud'дон чыктыңыз",
       cloudSignedOutMessage: 'OpenAmer Cloud сессиясы тазаланды.',
       cloudConnectedTitle: 'Туташты',
       cloudConnectedPill: 'Туташты',
       cloudAgentProvisioning: 'Дайындалып жатат…',
       remoteUrlTitle: 'Алыскы URL',
-      remoteUrlDesc: 'Алыскы башкаруу панелинин backend бөлүгү үчүн негизги URL. Жол префикстери колдоого алынат, мисалы /openamer.',
+      remoteUrlDesc:
+        'Алыскы башкаруу панелинин backend бөлүгү үчүн негизги URL. Жол префикстери колдоого алынат, мисалы /openamer.',
       probing: 'Бул шлюз кантип аутентификация кыларын текшерүүдө…',
-      probeError: 'Бул шлюзга азырынча жетүү мүмкүн болбоду. URLди текшериңиз — ал жооп бергенде аутентификация ыкмасы көрүнөт.',
+      probeError:
+        'Бул шлюзга азырынча жетүү мүмкүн болбоду. URLди текшериңиз — ал жооп бергенде аутентификация ыкмасы көрүнөт.',
       signedIn: 'Кирдиңиз',
       signIn: 'Кирүү',
       signOut: 'Чыгуу',
       authTitle: 'Аутентификация',
-      authSignedInPassword: 'Бул шлюз колдонуучу аты жана сырсөздү колдонот. Сиз киргенсиз; сессия автоматтык түрдө жаңыртылат.',
+      authSignedInPassword:
+        'Бул шлюз колдонуучу аты жана сырсөздү колдонот. Сиз киргенсиз; сессия автоматтык түрдө жаңыртылат.',
       authSignedInOauth: 'Бул шлюз OAuth колдонот. Сиз киргенсиз; сессия автоматтык түрдө жаңыртылат.',
-      authNeedsPassword: 'Бул шлюз колдонуучу аты жана сырсөздү колдонот. Бул десктоп колдонмосуна уруксат берүү үчүн кириңиз.',
+      authNeedsPassword:
+        'Бул шлюз колдонуучу аты жана сырсөздү колдонот. Бул десктоп колдонмосуна уруксат берүү үчүн кириңиз.',
       tokenTitle: 'Сессиялык токен',
-      tokenDesc: 'REST жана WebSocket аркылуу кирүү үчүн колдонулган панелдин сессиялык токени. Сакталган токенди сактоо үчүн бош калтырыңыз.',
+      tokenDesc:
+        'REST жана WebSocket аркылуу кирүү үчүн колдонулган панелдин сессиялык токени. Сакталган токенди сактоо үчүн бош калтырыңыз.',
       savedToken: 'сакталды',
       pasteSessionToken: 'Сессиялык токенди чаптаңыз',
       testRemote: 'Алыскы шлюзду текшерүү',
@@ -603,8 +624,10 @@ export const ky = defineLocale({
       applyFailed: 'Шлюз жөндөөлөрүн колдонуу мүмкүн болбоду',
       saveFailed: 'Шлюз жөндөөлөрүн сактоо мүмкүн болбоду',
       sshTitle: 'SSH аркылуу туташуу',
-      sshDesc: 'OpenAmer алыскы хостдо SSH аркылуу ишке киргизилип, бул колдонмого туннелденет — өзүңүз эч нерсе баштабайсыз же ачыкка чыгарбайсыз. Хостко иштеген ачкыч негизиндеги SSH кирүү талап кылынат.',
-      sshTrustHint: 'Биринчи көрсөтүлгөн хост ачкычы ишенилет жана бекитилет; кийинки өзгөрүүлөрдө байланыш токтотулат.',
+      sshDesc:
+        'OpenAmer алыскы хостдо SSH аркылуу ишке киргизилип, бул колдонмого туннелденет — өзүңүз эч нерсе баштабайсыз же ачыкка чыгарбайсыз. Хостко иштеген ачкыч негизиндеги SSH кирүү талап кылынат.',
+      sshTrustHint:
+        'Биринчи көрсөтүлгөн хост ачкычы ишенилет жана бекитилет; кийинки өзгөрүүлөрдө байланыш токтотулат.',
       sshHostTitle: 'Хост',
       sshHostDesc: 'user@host же ~/.ssh/config файлындагы Host алиасы.',
       sshHostPick: 'Хост тандаңыз…',
@@ -626,25 +649,31 @@ export const ky = defineLocale({
       sshButtonsHint: 'Сактоо кийинки ачылышта колдонулат. «Туташуу» азыр кайра туташат.',
       sshIncompleteHost: 'Туташуудан мурун SSH хостун киргизиңиз.',
       sshErrUnreachable: 'Ошол хостко SSH аркылуу жетүү мүмкүн эмес. Хостту, портту жана тармагыңызды текшериңиз.',
-      sshErrAuth: 'SSH аутентификациясы ишке ашкан жок. Ачкычыңызды ssh-agent ичине жүктөңүз (ssh-add) же ~/.ssh/config ичинде IdentityFile орнотуңуз — OpenAmer sshды интерактивдүү эмес иштетет.',
-      sshErrHostKey: 'Хосттун ачкычы акыркы туташуудан бери ӨЗГӨРГӨН. Бул күтүлгөндүгүн текшериңиз, анан ssh-keygen -R <host> буйругун иштетип, кайра туташыңыз.',
-      sshErrNotInstalled: 'OpenAmer алыскы хостто орнотулган эмес. Аны ошол жерге орнотуңуз (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) же OpenAmer жолун коюңуз.',
-      sshErrPlatform: 'Колдоого алынбаган алыскы платформа. OpenAmer Desktop SSH режими Linux, macOS жана Windows алыскы хостторун колдойт.',
+      sshErrAuth:
+        'SSH аутентификациясы ишке ашкан жок. Ачкычыңызды ssh-agent ичине жүктөңүз (ssh-add) же ~/.ssh/config ичинде IdentityFile орнотуңуз — OpenAmer sshды интерактивдүү эмес иштетет.',
+      sshErrHostKey:
+        'Хосттун ачкычы акыркы туташуудан бери ӨЗГӨРГӨН. Бул күтүлгөндүгүн текшериңиз, анан ssh-keygen -R <host> буйругун иштетип, кайра туташыңыз.',
+      sshErrNotInstalled:
+        'OpenAmer алыскы хостто орнотулган эмес. Аны ошол жерге орнотуңуз (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) же OpenAmer жолун коюңуз.',
+      sshErrPlatform:
+        'Колдоого алынбаган алыскы платформа. OpenAmer Desktop SSH режими Linux, macOS жана Windows алыскы хостторун колдойт.',
       sshErrTimeout: 'SSH туташуу убактысы бүттү. Хост жеткиликсиз же уктап жаткан болушу мүмкүн.',
       sshErrUpdateRequired: 'Desktop SSH менен туташуудан мурун алыскы хосттогу OpenAmer программасын жаңыртыңыз.',
       sshErrUnknown: 'SSH туташуусу ишке ашкан жок.',
       modeTitle: 'Туташуу режими',
       localTitle: 'Жергиликтүү шлюз',
-      localDesc: 'localhost\'то жеке OpenAmer бэкендин иштетүү. Бул демейки жана оффлайн иштейт.',
+      localDesc: "localhost'то жеке OpenAmer бэкендин иштетүү. Бул демейки жана оффлайн иштейт.",
       inheritTitle: 'Демейки шлюзду колдонуу',
       inheritDesc: 'Бул профилдин өзгөртүүсүн алып салып, демейки туташууну колдонуңуз.',
       remoteTitle: 'Алыскы шлюз',
       remoteDesc: 'Бул десктоп кабыгын алыскы OpenAmer бэкендине туташтыруу.',
-      remoteAuthHint: 'Хостингдеги шлюздар OAuth же колдонуучу аты менен сырсөздү колдонот; өз алдынча хостингдегилер сессия токенин колдонушу мүмкүн.',
-      cloudDesc: 'OpenAmer Cloud\'га бир жолу кирип, аккаунтуңуздагы агенттерден тандаңыз — URL жабыштыруунун кереги жок.',
-      cloudSignIn: 'OpenAmer Cloud\'га кирүү',
-      cloudSignedIn: 'OpenAmer Cloud\'га киргенсиз',
-      cloudNeedsSignIn: 'Аккаунтуңуздагы агенттерди көрүү үчүн OpenAmer Cloud\'га кириңиз.',
+      remoteAuthHint:
+        'Хостингдеги шлюздар OAuth же колдонуучу аты менен сырсөздү колдонот; өз алдынча хостингдегилер сессия токенин колдонушу мүмкүн.',
+      cloudDesc:
+        "OpenAmer Cloud'га бир жолу кирип, аккаунтуңуздагы агенттерден тандаңыз — URL жабыштыруунун кереги жок.",
+      cloudSignIn: "OpenAmer Cloud'га кирүү",
+      cloudSignedIn: "OpenAmer Cloud'га киргенсиз",
+      cloudNeedsSignIn: "Аккаунтуңуздагы агенттерди көрүү үчүн OpenAmer Cloud'га кириңиз.",
       cloudSignedInDesc: 'Сиз киргенсиз. Төмөнкү агентти тандаңыз; сессия автоматтык түрдө жаңыланат.',
       cloudAgentsTitle: 'Агенттериңиз',
       cloudOrgPickerTitle: 'Уюмду тандаңыз',
@@ -653,7 +682,8 @@ export const ky = defineLocale({
       cloudLoadingAgents: 'Агенттериңиз жүктөлүүдө…',
       cloudTitle: 'OpenAmer булуту',
       cloudSignInTitle: 'OpenAmer булуту',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudOrgRole: role => `Role: ${role}`,
       cloudConnectedTo: name => `Connected to ${name}.`,
       cloudStatusLabel: status => `Status: ${status}`,
@@ -661,12 +691,12 @@ export const ky = defineLocale({
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     keys: {
       loading: 'API ачкычтары жана ынандыруу маалыматтары жүктөлүүдө...',
       failedLoad: 'API ачкычтары жүктөлбөдү',
-      empty: 'Бул категорияда азырынча эч нерсе жөндөлгөн эмес.',
+      empty: 'Бул категорияда азырынча эч нерсе жөндөлгөн эмес.'
     },
     mcp: {
       loading: 'MCP серверлери жүктөлүүдө...',
@@ -728,14 +758,16 @@ export const ky = defineLocale({
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       authenticatedMessage: (server, count) => `${server}: ${count} tools`,
       enableTool: tool => `Enable ${tool}`,
-      disableTool: tool => `Disable ${tool}`,
+      disableTool: tool => `Disable ${tool}`
     },
     model: {
       loading: 'Модель конфигурациясы жүктөлүүдө...',
-      appliesDesc: 'Жаңы сессияларга колдонулат. Активдүү чатты ыкчам алмаштыруу үчүн жазуу аймагындагы модель тандагычты колдонуңуз.',
+      appliesDesc:
+        'Жаңы сессияларга колдонулат. Активдүү чатты ыкчам алмаштыруу үчүн жазуу аймагындагы модель тандагычты колдонуңуз.',
       provider: 'Провайдер',
       model: 'Модель',
       applying: 'Колдонулуп жатат...',
@@ -745,7 +777,8 @@ export const ky = defineLocale({
       defaultsFailed: 'Моделдин демейкилерин сактоо ишке ашкан жок',
       auxiliaryTitle: 'Көмөкчү моделдер',
       resetAllToMain: 'Баарын негизгиге кайтаруу',
-      auxiliaryDesc: 'Көмөкчү тапшырмалар демейки боюнча негизги моделде иштейт. Каалаган тапшырмага атайын модель дайындап, демейкини алмаштырыңыз.',
+      auxiliaryDesc:
+        'Көмөкчү тапшырмалар демейки боюнча негизги моделде иштейт. Каалаган тапшырмага атайын модель дайындап, демейкини алмаштырыңыз.',
       setToMain: 'Негизгиге коюу',
       change: 'Өзгөртүү',
       autoUseMain: 'авто · негизги моделди колдонуу',
@@ -756,37 +789,37 @@ export const ky = defineLocale({
       tasks: {
         vision: {
           label: 'Көрүү',
-          hint: 'Сүрөттү талдоо',
+          hint: 'Сүрөттү талдоо'
         },
         web_extract: {
           label: 'Вебден алуу',
-          hint: 'Баракчаны кыскача жыйынтыктоо',
+          hint: 'Баракчаны кыскача жыйынтыктоо'
         },
         compression: {
           label: 'Кысуу',
-          hint: 'Контекстти тыгыздоо',
+          hint: 'Контекстти тыгыздоо'
         },
         skills_hub: {
           label: 'Көндүмдөр борбору',
-          hint: 'Көндүм издөө',
+          hint: 'Көндүм издөө'
         },
         approval: {
           label: 'Уруксат',
-          hint: 'Акылдуу автоуруксат',
+          hint: 'Акылдуу автоуруксат'
         },
         mcp: {
           hint: 'MCP куралдарын багыттоо',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Аталыш түзүү',
-          hint: 'Сессия аталыштары',
+          hint: 'Сессия аталыштары'
         },
         curator: {
           label: 'Куратор',
-          hint: 'Көндүм колдонулушун карап чыгуу',
-        },
-      },
+          hint: 'Көндүм колдонулушун карап чыгуу'
+        }
+      }
     },
     providers: {
       disconnectInTerminal: 'Ажыратуу (терминалда өчүрүү командасын иштетет)',
@@ -796,12 +829,14 @@ export const ky = defineLocale({
       noKeysMatch: 'Издөөңүзгө дал келген провайдерлер жок.',
       localEndpoint: {
         title: 'Жергиликтүү / ыңгайлаштырылган endpoint',
-        description: 'OpenAmer үчүн OpenAI менен шайкеш келген каалаган endpointти көрсөтүңүз (Zyphra, vLLM, llama.cpp, Ollama ж.б.).',
+        description:
+          'OpenAmer үчүн OpenAI менен шайкеш келген каалаган endpointти көрсөтүңүз (Zyphra, vLLM, llama.cpp, Ollama ж.б.).'
       },
       loading: 'Провайдерлер жүктөлүүдө...',
       connectAccount: 'Аккаунтту туташтыруу',
       haveApiKey: 'Ордуна API ачкычыңыз барбы?',
-      intro: 'Жазылуу менен кирүү — көчүрүү үчүн API ачкычы жок. OpenAmer браузердеги кирүүнү сиз үчүн ушул колдонмодо эле иштетет.',
+      intro:
+        'Жазылуу менен кирүү — көчүрүү үчүн API ачкычы жок. OpenAmer браузердеги кирүүнү сиз үчүн ушул колдонмодо эле иштетет.',
       connected: 'Туташтырылды',
       collapse: 'Жыйноо',
       connectAnother: 'Башка провайдерди туташтыруу',
@@ -810,10 +845,11 @@ export const ky = defineLocale({
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     sessions: {
       loading: 'Архивделген сессиялар жүктөлүүдө…',
@@ -824,12 +860,14 @@ export const ky = defineLocale({
       deletePermanently: 'Түбөлүк өчүрүү',
       restored: 'Кайтарылды',
       autoArchiveTitle: 'Эскирген чаттарды автоматтык архивдөө',
-      autoArchiveDesc: 'Бир аз убакыттан бери кол тийгизбеген чаттарды автоматтык түрдө архивдеңиз. Бекитилген чаттар эч качан архивделбейт, эч нерсе өчүрүлбөйт — архивделген чаттар ушул жерге жылдырылат.',
+      autoArchiveDesc:
+        'Бир аз убакыттан бери кол тийгизбеген чаттарды автоматтык түрдө архивдеңиз. Бекитилген чаттар эч качан архивделбейт, эч нерсе өчүрүлбөйт — архивделген чаттар ушул жерге жылдырылат.',
       autoArchiveDaysLabel: 'Архивдөө мөөнөтү',
       autoArchiveDaysUnit: 'кыймылсыздык күнү',
       autoArchiveFailed: 'Автоархивди жаңыртуу мүмкүн болбоду',
       defaultDirTitle: 'Демейки долбоор каталогу',
-      defaultDirDesc: 'Жаңы сессиялар башка папканы тандабасаңыз, ушул папкада башталат. Үй каталогуңузду колдонуу үчүн аны орнотулбаган калтырыңыз.',
+      defaultDirDesc:
+        'Жаңы сессиялар башка папканы тандабасаңыз, ушул папкада башталат. Үй каталогуңузду колдонуу үчүн аны орнотулбаган калтырыңыз.',
       change: 'Өзгөртүү',
       choose: 'Тандоо',
       clear: 'Тазалоо',
@@ -839,11 +877,12 @@ export const ky = defineLocale({
       deleteFailed: 'Жоюу ишке ашкан жок',
       updateDirFailed: 'Демейки каталогду жаңыртуу мүмкүн болбоду',
       clearDirFailed: 'Демейки каталогду тазалоо мүмкүн болбоду',
-      archivedIntro: 'Архивделген чаттар каптал тилкеден жашырылат, бирок бардык билдирүүлөрү сакталат. Архивдөө үчүн каптал тилкедеги чатты Ctrl/âŒ˜ менен басыңыз.',
+      archivedIntro:
+        'Архивделген чаттар каптал тилкеден жашырылат, бирок бардык билдирүүлөрү сакталат. Архивдөө үчүн каптал тилкедеги чатты Ctrl/âŒ˜ менен басыңыз.',
       defaultDirUpdated: 'Демейки долбоор каталогу жаңыртылды â€” күчүнө кириши үчүн жаңы чат баштаңыз (Ctrl/âŒ˜+N)',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
       loadingConfig: 'Конфигурация жүктөлүүдө',
@@ -853,7 +892,8 @@ export const ky = defineLocale({
       notSet: 'Орнотулган эмес',
       selectedTitle: 'Провайдер тандалды',
       failedLoad: 'Курал конфигурациясын жүктөө ишке ашкан жок',
-      noProviderOptions: 'Бул куралдар топтомунун провайдер параметрлери жок — күйгүзсөңүз, учурдагы жөндөөңүз менен иштейт.',
+      noProviderOptions:
+        'Бул куралдар топтомунун провайдер параметрлери жок — күйгүзсөңүз, учурдагы жөндөөңүз менен иштейт.',
       noProviders: 'Азыр бул куралдар топтому үчүн провайдерлер жеткиликтүү эмес.',
       ready: 'Дайын',
       needsSignIn: 'Кирүү керек',
@@ -895,7 +935,7 @@ export const ky = defineLocale({
         selectedTitle: 'Бэкенд тандалды',
         needsSetupHint: 'Бул бэкенди азыр тандасаңыз болот — жөндөө аяктамайынча буйруктар иштебейт.',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       savedMessage: key => `${key} updated.`,
       removedMessage: key => `${key} removed.`,
@@ -905,8 +945,10 @@ export const ky = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -916,11 +958,12 @@ export const ky = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     plugins: {
       title: 'Десктоп плагиндери',
-      blurb: 'Бул колдонмого жүктөлгөн UI кеңейтүүлөр — курама менен берилет же desktop-plugins папкасына салынат (OpenAmer жазгандарды кошкондо). Өчүргөндө плагин дароо жүктөн чыгат жана кайра иштетүүдөн кийин да сакталат.',
+      blurb:
+        'Бул колдонмого жүктөлгөн UI кеңейтүүлөр — курама менен берилет же desktop-plugins папкасына салынат (OpenAmer жазгандарды кошкондо). Өчүргөндө плагин дароо жүктөн чыгат жана кайра иштетүүдөн кийин да сакталат.',
       openFolder: 'Плагиндер папкасын ачуу',
       rescan: 'Кайра сканерлөө',
       reveal: 'Файл менеджеринде көрсөтүү',
@@ -931,12 +974,12 @@ export const ky = defineLocale({
       kinds: {
         bundled: 'топтомго киргизилген',
         disk: 'дискте',
-        runtime: 'аткаруу убактысы',
+        runtime: 'аткаруу убактысы'
       },
-      count: n => `${n} installed`,
+      count: n => `${n} installed`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     skillArchivedTitle: 'Көндүм архивделди',
@@ -948,7 +991,8 @@ export const ky = defineLocale({
       connectingHubs: 'Көндүм хабдарына туташууда...',
       connectedHubs: 'Туташкан хабдар:',
       featured: 'Сунушталган көндүмдөр',
-      landingHint: 'Расмий индекстен, GitHub жана коомчулук булактарынан орнотулуучу көндүмдөрдү көрүү үчүн хабдан издөө.',
+      landingHint:
+        'Расмий индекстен, GitHub жана коомчулук булактарынан орнотулуучу көндүмдөрдү көрүү үчүн хабдан издөө.',
       noResults: 'Хабдан дал келген көндүмдөр табылган жок.',
       installed: 'Орнотулган',
       install: 'Орнотуу',
@@ -966,7 +1010,7 @@ export const ky = defineLocale({
       trust: {
         builtin: 'курулган',
         trusted: 'ишенимдүү',
-        community: 'коомчулук',
+        community: 'коомчулук'
       },
       verdictSafe: 'Коопсуз',
       verdictCaution: 'Этияттык',
@@ -986,11 +1030,11 @@ export const ky = defineLocale({
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     tabSkills: 'Көндүмдөр',
     tabToolsets: 'Куралдар',
-    tabHub: 'Hub\'ды кароо',
+    tabHub: "Hub'ды кароо",
     all: 'Баары',
     searchSkills: 'Көндүмдөрдү издөө...',
     searchToolsets: 'Куралдарды издөө...',
@@ -1004,7 +1048,8 @@ export const ky = defineLocale({
     noDescription: 'Сүрөттөмө жок.',
     configured: 'Конфигурацияланган',
     needsKeys: 'Ачкычтар керек',
-    visionModelHint: 'Көрүү жардамчы модель конфигурацияңызды колдонот — сүрөткө жөндөмдүү модель ошол жерден тандалат, бул жерде провайдер боюнча эмес.',
+    visionModelHint:
+      'Көрүү жардамчы модель конфигурацияңызды колдонот — сүрөткө жөндөмдүү модель ошол жерден тандалат, бул жерде провайдер боюнча эмес.',
     visionModelLink: 'Көрүү моделин Жөндөөлөр → Моделдерден тандаңыз',
     skillsLoadFailed: 'Көндүмдөр жүктөлбөй калды',
     toolsetsRefreshFailed: 'Курал топтомдору жаңыртылбады',
@@ -1022,7 +1067,7 @@ export const ky = defineLocale({
     provenance: {
       agent: 'Үйрөнүлгөн',
       bundled: 'Ички',
-      hub: 'Борбор',
+      hub: 'Борбор'
     },
     changesApplyNewSessions: 'Өзгөртүүлөр жаңы сессияларга колдонулат.',
     skillUpdated: 'Көндүм жаңыртылды',
@@ -1039,7 +1084,7 @@ export const ky = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     title: 'Эстутум графы',
@@ -1055,7 +1100,8 @@ export const ky = defineLocale({
     emptyTitle: 'Азырынча үйрөнүлгөн эч нерсе жок',
     emptyDesc: 'OpenAmer ишиңиз үчүн көндүмдөрдү жана эстутумдарды түзгөн сайын, алар бул жерде көрүнөт.',
     share: 'Картаны бөлүшүү',
-    shareHint: 'Бул картаны бөлүшүү үчүн кодду көчүрүңүз же жүктөө үчүн кодду чаптаңыз. Ал жайгашууну гана камтыйт, эстутумуңузду же көндүмүңүздүн текстін камтыбайт.',
+    shareHint:
+      'Бул картаны бөлүшүү үчүн кодду көчүрүңүз же жүктөө үчүн кодду чаптаңыз. Ал жайгашууну гана камтыйт, эстутумуңузду же көндүмүңүздүн текстін камтыбайт.',
     shareTitle: 'Картаны импорттоо / экспорттоо',
     sharePlaceholder: 'Карта кодун чаптаңыз…',
     copy: 'Карта кодун көчүрүү',
@@ -1066,7 +1112,7 @@ export const ky = defineLocale({
     importedBadge: 'Импорттолгон карта',
     resetToMine: 'Менин картамга кайтуу',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Агенттерди жабуу',
@@ -1096,7 +1142,7 @@ export const ky = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'Командалык борборду жабуу',
@@ -1117,7 +1163,8 @@ export const ky = defineLocale({
       placeholder: 'Жаныбарларды издөө…',
       loading: 'petdex галереясы жүктөлүүдө…',
       error: 'petdex галереясына жетүү мүмкүн болбоду.',
-      staleBackend: 'Жаныбарларды колдонуу үчүн OpenAmerди кайра иштетиңиз — арткы кызмат бул функциядан мурун пайда болгон.',
+      staleBackend:
+        'Жаныбарларды колдонуу үчүн OpenAmerди кайра иштетиңиз — арткы кызмат бул функциядан мурун пайда болгон.',
       empty: 'Дал келген жаныбарлар жок.',
       turnOff: 'Өчүрүү',
       turnOn: 'Күйгүзүү',
@@ -1125,7 +1172,7 @@ export const ky = defineLocale({
       generatedTag: 'Түзүлгөн',
       adoptFailed: 'Ошол жаныбарды багып алуу мүмкүн болбоду.',
       toggleFailed: 'Жаныбарды күйгүзүү/өчүрүү мүмкүн болбоду.',
-      noneAvailable: 'Жеткиликтүү жаныбарлар жок — орнотуу үчүн төмөнөн бирөөнү тандаңыз.',
+      noneAvailable: 'Жеткиликтүү жаныбарлар жок — орнотуу үчүн төмөнөн бирөөнү тандаңыз.'
     },
     generatePet: {
       title: 'Жаныбар жаратуу',
@@ -1148,25 +1195,26 @@ export const ky = defineLocale({
       slowProviderHint: 'Бул бир нече мүнөткө созулушу мүмкүн',
       remix: 'Ремикс',
       remixConfirmTitle: 'Бул көрүнүштү ремикс кыласызбы?',
-      remixConfirmBody: 'Бул ушуну баштапкы чекит кылып, жаңы черновиктер топтомун жаратат. Бир нече мүнөткө созулушу мүмкүн.',
+      remixConfirmBody:
+        'Бул ушуну баштапкы чекит кылып, жаңы черновиктер топтомун жаратат. Бир нече мүнөткө созулушу мүмкүн.',
       genericError: 'Жаратуу ишке ашкан жок — кайра аракет кылыңыз же сунушту тандаңыз.',
       referenceImageTooLarge: 'Үлгү сүрөт өтө чоң. 16 МБдан кичине сүрөт колдонуңуз.',
       referenceImageInvalid: 'Ал үлгү сүрөттү окуу мүмкүн болбоду. PNG, JPG, WebP же GIF форматын сынап көрүңүз.',
       adopt: 'Кабыл алуу',
       startOver: 'Кайра баштоо',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     installTheme: {
       title: 'Тема орнотуу…',
       pageTitle: 'Тема орнотуу',
-      placeholder: 'VS Code Marketplace\'тен издөө...',
+      placeholder: "VS Code Marketplace'тен издөө...",
       loading: 'Marketplace издөөдө...',
-      error: 'Marketplace\'ке туташуу мүмкүн болбоду.',
+      error: "Marketplace'ке туташуу мүмкүн болбоду.",
       empty: 'Дал келген темалар жок.',
       install: 'Орнотуу',
       installing: 'Орнотулуп жатат...',
       installed: 'Орнотулду',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Жөндөө талаалары',
     mcpServers: 'MCP серверлери',
@@ -1175,49 +1223,49 @@ export const ky = defineLocale({
       maintenance: 'Тейлөө',
       sessions: 'Сессиялар',
       system: 'Система',
-      usage: 'Колдонуу',
+      usage: 'Колдонуу'
     },
     sectionDescriptions: {
       maintenance: 'Диагностика, камдык көчүрмөлөр, куратор жана эстутум маалыматтары',
       sessions: 'Сессияларды издөө жана башкаруу',
       system: 'Абал, журналдар жана система аракеттери',
-      usage: 'Токен, чыгым жана көндүм активдүүлүгү убакыт боюнча',
+      usage: 'Токен, чыгым жана көндүм активдүүлүгү убакыт боюнча'
     },
     nav: {
       newChat: {
         title: 'Жаңы сессия',
-        detail: 'Жаңы сессияны баштоо',
+        detail: 'Жаңы сессияны баштоо'
       },
       settings: {
         title: 'Жөндөөлөр',
-        detail: 'OpenAmer десктопун жөндөө',
+        detail: 'OpenAmer десктопун жөндөө'
       },
       skills: {
         title: 'Мүмкүнчүлүктөр',
-        detail: 'Көндүмдөр, куралдар жана MCP серверлери',
+        detail: 'Көндүмдөр, куралдар жана MCP серверлери'
       },
       messaging: {
         title: 'Билдирүүлөр',
-        detail: 'Telegram, Slack, Discord жана башкаларды жөндөө',
+        detail: 'Telegram, Slack, Discord жана башкаларды жөндөө'
       },
       artifacts: {
         title: 'Артефакттар',
-        detail: 'Жаралган натыйжаларды кароо',
-      },
+        detail: 'Жаралган натыйжаларды кароо'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Сессиялар панели',
-        detail: 'Сессияларды издөө, кадоо жана башкаруу',
+        detail: 'Сессияларды издөө, кадоо жана башкаруу'
       },
       system: {
         title: 'Система панели',
-        detail: 'Шлюз абалы, журналдар, кайра баштоо/жаңыртуу',
+        detail: 'Шлюз абалы, журналдар, кайра баштоо/жаңыртуу'
       },
       usage: {
         title: 'Колдонуу панели',
-        detail: 'Токен, чыгым жана көндүм активдүүлүгү',
-      },
+        detail: 'Токен, чыгым жана көндүм активдүүлүгү'
+      }
     },
     providerNavigate: 'Навигация',
     providerSessions: 'Сессиялар',
@@ -1267,7 +1315,8 @@ export const ky = defineLocale({
       backup: 'Камдык көчүрмө түзүү',
       backupDesc: 'Конфиг, эскерүүлөр, көндүмдөр жана сессияларды Zip архивге салуу',
       debugShare: 'Мүчүлүштүктү жөндөө бөлүшүүсү',
-      debugShareDesc: 'Маалыматы жашырылган отчет жана журналдарды жүктөп, бөлүшүү шилтемелерин алыңыз (6 сааттан кийин автоматтык өчүрүлөт)',
+      debugShareDesc:
+        'Маалыматы жашырылган отчет жана журналдарды жүктөп, бөлүшүү шилтемелерин алыңыз (6 сааттан кийин автоматтык өчүрүлөт)',
       debugShareRunning: 'Мүчүлүштүктү жөндөө отчету жүктөлүүдө...',
       debugShareLinks: 'Бөлүшүү шилтемелери',
       debugShareFailed: 'Мүчүлүштүктү жөндөө бөлүшүүсү ишке ашкан жок',
@@ -1300,14 +1349,14 @@ export const ky = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     startInBranch: branch => `New conversation in ${branch}`,
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · Active sessions ${count}`,
     days: count => `${count}d`,
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   messaging: {
     search: 'Билдирүү платформаларын издөө...',
@@ -1322,7 +1371,7 @@ export const ky = defineLocale({
       not_configured: 'Жөндөө керек',
       pending_restart: 'Кайра баштоо керек',
       retrying: 'Кайра аракет кылынууда',
-      startup_failed: 'Баштоо ишке ашкан жок',
+      startup_failed: 'Баштоо ишке ашкан жок'
     },
     unknown: 'Белгисиз',
     hintPendingRestart: 'Бул өзгөртүүнү колдонуу үчүн шлюзду статус тилкесинен кайра баштаңыз.',
@@ -1334,7 +1383,8 @@ export const ky = defineLocale({
     openSetupGuide: 'Жөндөө нускамасын ачуу',
     required: 'Талап кылынат',
     recommended: 'Сунушталат',
-    noTokenNeeded: 'Бул платформада бул жерде токен керек эмес. Жогорку жөндөө нускамасын колдонуп, анан аны төмөндө иштетиңиз.',
+    noTokenNeeded:
+      'Бул платформада бул жерде токен керек эмес. Жогорку жөндөө нускамасын колдонуп, анан аны төмөндө иштетиңиз.',
     enabled: 'Иштетилген',
     disabled: 'Өчүрүлгөн',
     unsavedChanges: 'Сакталбаган өзгөртүүлөр',
@@ -1349,124 +1399,124 @@ export const ky = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Бот токени',
         help: '@BotFather менен бот түзүп, анын берген токенин кой.',
-        placeholder: 'Telegram бот токенин кой',
+        placeholder: 'Telegram бот токенин кой'
       },
       TELEGRAM_ALLOWED_USERS: {
-        label: 'Уруксат берилген Telegram колдонуучу ID\'лери',
-        help: 'Сунушталат. @userinfobot берген үтүр менен бөлүнгөн сандык ID\'лер. Бул жок болсо, каалаган адам ботуңузга жеке билдирүү жөнөтө алат.',
+        label: "Уруксат берилген Telegram колдонуучу ID'лери",
+        help: "Сунушталат. @userinfobot берген үтүр менен бөлүнгөн сандык ID'лер. Бул жок болсо, каалаган адам ботуңузга жеке билдирүү жөнөтө алат."
       },
       TELEGRAM_PROXY: {
         label: 'Прокси URL',
-        help: 'Telegram бөгөттөлгөн тармактарда гана керек.',
+        help: 'Telegram бөгөттөлгөн тармактарда гана керек.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Бот токени',
-        help: 'Discord Developer Portal\'до колдонмо түзүп, бот кошуп, анан анын токенин кой.',
+        help: "Discord Developer Portal'до колдонмо түзүп, бот кошуп, анан анын токенин кой."
       },
       DISCORD_ALLOWED_USERS: {
-        label: 'Уруксат берилген Discord колдонуучу ID\'лери',
-        help: 'Сунушталат. Үтүр менен бөлүнгөн Discord колдонуучу ID\'лери.',
+        label: "Уруксат берилген Discord колдонуучу ID'лери",
+        help: "Сунушталат. Үтүр менен бөлүнгөн Discord колдонуучу ID'лери."
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Жооп стили',
-        help: 'биринчи, баары же өчүк.',
+        help: 'биринчи, баары же өчүк.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Бардык Discord колдонуучуларына уруксат берүү',
-        help: 'Өнүктүрүү үчүн гана. true болгондо, ар ким ботко уруксат тизмесиз жеке билдирүү жаза алат.',
+        help: 'Өнүктүрүү үчүн гана. true болгондо, ар ким ботко уруксат тизмесиз жеке билдирүү жаза алат.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Негизги каналдын ID',
-        help: 'Бот демилгелүү билдирүүлөрдү жөнөтө турган канал (cron чыгарылышы, эскертүүлөр).',
+        help: 'Бот демилгелүү билдирүүлөрдү жөнөтө турган канал (cron чыгарылышы, эскертүүлөр).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Негизги каналдын аты',
-        help: 'Негизги каналдын журналдарда жана статус чыгарылышында көрсөтүлүүчү аты.',
+        help: 'Негизги каналдын журналдарда жана статус чыгарылышында көрсөтүлүүчү аты.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Бардык iMessage колдонуучуларына уруксат берүү',
-        help: 'true болгондо, BlueBubbles уруксат тизмесин аттап өт.',
+        help: 'true болгондо, BlueBubbles уруксат тизмесин аттап өт.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Бардык Mattermost колдонуучуларына уруксат берүү',
+        label: 'Бардык Mattermost колдонуучуларына уруксат берүү'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Негизги канал',
+        label: 'Негизги канал'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Бардык QQ колдонуучуларына уруксат берүү',
+        label: 'Бардык QQ колдонуучуларына уруксат берүү'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ негизги каналы',
-        help: 'cron жеткирүү үчүн демейки канал же топ.',
+        help: 'cron жеткирүү үчүн демейки канал же топ.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ негизги каналынын аты',
+        label: 'QQ негизги каналынын аты'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack бот токени',
         help: 'Slack колдонмосуңузду орноткондон кийин OAuth & Permissions бөлүмүндөгү бот токенин колдонуңуз.',
-        placeholder: 'Slack бот токенин чаптаңыз',
+        placeholder: 'Slack бот токенин чаптаңыз'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack колдонмо токени',
         help: 'Socket Mode үчүн талап кылынган колдонмо деңгээлиндеги токенди колдонуңуз.',
-        placeholder: 'Slack колдонмо токенин чаптаңыз',
+        placeholder: 'Slack колдонмо токенин чаптаңыз'
       },
       SIGNAL_ACCOUNT: {
         help: 'signal-cli көпүрөңүздө катталган номер.',
-        label: 'Телефон номери',
+        label: 'Телефон номери'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Уруксат берилген Signal колдонуучулары',
-        help: 'Сунушталат. Үтүр менен бөлүнгөн Signal идентификаторлору.',
+        help: 'Сунушталат. Үтүр менен бөлүнгөн Signal идентификаторлору.'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp көпүрөсүн иштетүү',
-        help: 'Төмөнкү которгуч аркылуу автоматтык түрдө коюлат. Керек экенин билбесеңиз, өзгөртпөңүз.',
+        help: 'Төмөнкү которгуч аркылуу автоматтык түрдө коюлат. Керек экенин билбесеңиз, өзгөртпөңүз.'
       },
       WHATSAPP_MODE: {
-        label: 'Көпүрө режими',
+        label: 'Көпүрө режими'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Уруксат берилген WhatsApp колдонуучулары',
-        help: 'Сунушталат. Үтүр менен бөлүнгөн телефон номерлери же WhatsApp IDлери.',
+        help: 'Сунушталат. Үтүр менен бөлүнгөн телефон номерлери же WhatsApp IDлери.'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Уруксат берилген Slack колдонуучу IDлери',
-        help: 'Сунушталат. Үтүр менен бөлүнгөн Slack колдонуучу IDлери.',
+        help: 'Сунушталат. Үтүр менен бөлүнгөн Slack колдонуучу IDлери.'
       },
       MATTERMOST_URL: {
         label: 'Сервердин URL дареги',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Бот токени',
+        label: 'Бот токени'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Уруксат берилген колдонуучу IDлери',
-        help: 'Сунушталат. Үтүр менен бөлүнгөн Mattermost колдонуучу IDлери.',
+        help: 'Сунушталат. Үтүр менен бөлүнгөн Mattermost колдонуучу IDлери.'
       },
       MATRIX_HOMESERVER: {
         label: 'Homeserver URL дареги',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Кирүү токени',
+        label: 'Кирүү токени'
       },
       MATRIX_USER_ID: {
         label: 'Бот колдонуучу IDси',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Уруксат берилген Matrix колдонуучу IDлери',
-        help: 'Сунушталат. @user:server форматындагы үтүр менен бөлүнгөн колдонуучу IDлери.',
+        help: 'Сунушталат. @user:server форматындагы үтүр менен бөлүнгөн колдонуучу IDлери.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal көпүрөсүнүн URL дареги',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'Иштеп жаткан signal-cli REST көпүрөсүнүн URL дареги.',
-      },
+        help: 'Иштеп жаткан signal-cli REST көпүрөсүнүн URL дареги.'
+      }
     },
     advanced: count => `Advanced (${count})`,
     clearField: key => `Clear ${key}`,
@@ -1480,8 +1530,7 @@ export const ky = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Вебхуктарды издөө...',
@@ -1490,7 +1539,8 @@ export const ky = defineLocale({
     hint: 'Кабыл алуучу иштеп турганда жазылуу өзгөрүүлөрү автоматтык кайра жүктөлөт. Өчүрүлгөн жазылуулар келген окуяларды четке кагат.',
     empty: 'Азырынча вебхук жазылуулары жок.',
     disabledTitle: 'Вебхук кабыл алуучу өчүрүлгөн',
-    disabledBody: 'Вебхуктар өзүнчө шлюз платформасы. Кирүүчү HTTP окуяларын кабыл алуу үчүн аларды ушул жерден иштетиңиз; чат каналдары жазылуу Telegram, Discord, Slack же башка каналга жеткиргенде гана керек.',
+    disabledBody:
+      'Вебхуктар өзүнчө шлюз платформасы. Кирүүчү HTTP окуяларын кабыл алуу үчүн аларды ушул жерден иштетиңиз; чат каналдары жазылуу Telegram, Discord, Slack же башка каналга жеткиргенде гана керек.',
     enable: 'Вебхуктарды иштетүү',
     enabling: 'Иштетилүүдө...',
     enableRow: 'Иштетүү',
@@ -1537,7 +1587,7 @@ export const ky = defineLocale({
       github_comment: 'GitHub комментарий',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     subscriptions: (count: number) => `Subscriptions (${count})`,
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -1545,7 +1595,7 @@ export const ky = defineLocale({
     deleteFailed: (name: string) => `Failed to delete "${name}"`,
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     renameMenu: 'Атын өзгөртүү…',
@@ -1623,7 +1673,7 @@ export const ky = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   cron: {
     close: 'Cron жабуу',
@@ -1637,14 +1687,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'токтотулган',
       disabled: 'өчүрүлгөн',
       error: 'ката',
-      completed: 'аякталды',
+      completed: 'аякталды'
     },
     deliveryLabels: {
       local: 'Бул жумушчу стол',
       email: 'Электрондук почта',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     days: {
       '0': 'Жекшемби',
@@ -1654,11 +1704,12 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Бейшемби',
       '5': 'Жума',
       '6': 'Ишемби',
-      '7': 'Жекшемби',
+      '7': 'Жекшемби'
     },
     topOfHour: 'Ар бир сааттын башында',
     newCron: 'Жаңы cron',
-    emptyDescNew: 'Cron туюнтмасы боюнча иштөө үчүн промпт пландаңыз. OpenAmer аны иштетип, натыйжаларды сиз тандаган дарекке жеткирет.',
+    emptyDescNew:
+      'Cron туюнтмасы боюнча иштөө үчүн промпт пландаңыз. OpenAmer аны иштетип, натыйжаларды сиз тандаган дарекке жеткирет.',
     emptyDescSearch: 'Кененирээк издөө суроосун сынап көрүңүз.',
     emptyTitleNew: 'Азырынча пландалган иштер жок',
     emptyTitleSearch: 'Дал келүүлөр жок',
@@ -1696,7 +1747,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Cron түзүү',
     tabs: {
       jobs: 'Жумуштар',
-      blueprints: 'Үлгүлөр',
+      blueprints: 'Үлгүлөр'
     },
     blueprints: {
       tab: 'Үлгүлөр',
@@ -1710,17 +1761,19 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Үлгүлөр жүктөлүүдө...',
       failedLoad: 'Үлгүлөрдү жүктөө ишке ашкан жок',
       emptyTitle: 'Үлгүлөр жок',
-      emptyDesc: 'Бул backend\'де автоматташтыруу үлгүлөрү жок.',
+      emptyDesc: "Бул backend'де автоматташтыруу үлгүлөрү жок."
     },
     failedSave: 'Cron тапшырмасын сактоо ишке ашкан жок',
     editTitle: 'Cron тапшырмасын түзөтүү',
     createTitle: 'Жаңы cron тапшырмасы',
     editDesc: 'Графикти, нускаманы же жеткирүү дарегин жаңыртыңыз. Өзгөртүүлөр кийинки иштетүүдө колдонулат.',
-    createDesc: 'Нускаманы автоматтык иштетүү үчүн график түзүңүз. Cron синтаксисин же «ар 15 мүнөт сайын» сыяктуу табигый сүйлөмдү колдонуңуз.',
+    createDesc:
+      'Нускаманы автоматтык иштетүү үчүн график түзүңүз. Cron синтаксисин же «ар 15 мүнөт сайын» сыяктуу табигый сүйлөмдү колдонуңуз.',
     nameLabel: 'Аталышы',
     namePlaceholder: 'Эртең мененки кыскача маалымат',
     promptLabel: 'Нускама',
-    promptPlaceholder: 'Окулбаган Slack жиптеримди кыскача баяндап, эң мыкты 5ин мага электрондук почта аркылуу жөнөт...',
+    promptPlaceholder:
+      'Окулбаган Slack жиптеримди кыскача баяндап, эң мыкты 5ин мага электрондук почта аркылуу жөнөт...',
     frequencyLabel: 'Жыштык',
     deliverLabel: 'Жеткирүү дареги',
     deliverNeedsHomeChannel: 'алгач негизги каналды орнотуңуз',
@@ -1739,7 +1792,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Ай сайын',
       hourly: 'Саат сайын',
       'every-15-minutes': 'Ар 15 мүнөттө',
-      custom: 'Ыңгайлаштырылган',
+      custom: 'Ыңгайлаштырылган'
     },
     scheduleHints: {
       daily: 'Күн сайын таңкы 9:00дө',
@@ -1748,7 +1801,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Ар айдын биринчи күнү таңкы 9:00дө',
       hourly: 'Ар сааттын башында',
       'every-15-minutes': 'Ар 15 мүнөттө',
-      custom: 'Cron синтаксиси же табигый тил',
+      custom: 'Cron синтаксиси же табигый тил'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -1757,7 +1810,7 @@ Leave blank to keep the ${mode} default.`,
     everyDayOfWeekAt: (day, time) => `Every ${day} at ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Monthly on day ${dayOfMonth} at ${time}`,
     everyHourAt: minute => `Every hour at :${minute}`,
-    actionsFor: title => `Actions for ${title}`,
+    actionsFor: title => `Actions for ${title}`
   },
   artifacts: {
     search: 'Артефактілерди издөө...',
@@ -1791,14 +1844,14 @@ Leave blank to keep the ${mode} default.`,
     colLocationLink: 'URL',
     colLocationFile: 'Жол',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'Жаңы сессия',
       skills: 'Мүмкүнчүлүктөр',
       messaging: 'Билдирүүлөр',
-      artifacts: 'Артефактылар',
+      artifacts: 'Артефактылар'
     },
     searchAria: 'Сессияларды издөө',
     searchPlaceholder: 'Сессияларды издөө…',
@@ -1849,8 +1902,10 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'Жолду көчүрүү',
       removeFromSidebar: 'Каптал тилкеден жашыруу',
       createFailed: 'Долбоор түзүлбөдү',
-      staleBackend: 'Долбоорлорду түзүү үчүн OpenAmer бэкендин жаңыртыңыз — сиздин бэкенд бул десктоп колдонмодон эски (Жөндөөлөр → Жаңыртуулар → Бэкенд).',
-      deleteConfirm: 'Бул сакталган долбоорду OpenAmer\'ден өчүрөт. Файлдар, git репозиторийлери жана иш дарактары тийилбейт.',
+      staleBackend:
+        'Долбоорлорду түзүү үчүн OpenAmer бэкендин жаңыртыңыз — сиздин бэкенд бул десктоп колдонмодон эски (Жөндөөлөр → Жаңыртуулар → Бэкенд).',
+      deleteConfirm:
+        "Бул сакталган долбоорду OpenAmer'ден өчүрөт. Файлдар, git репозиторийлери жана иш дарактары тийилбейт.",
       startWork: 'Жаңы иш дарагы',
       newWorktreeTitle: 'Жаңы иш дарагы',
       newWorktreeDesc: 'Бул иш дарагы үчүн бутактын атын жазыңыз.',
@@ -1870,14 +1925,16 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'Бутактар табылган жок',
       removeWorktree: 'Иш дарагын өчүрүү',
       removeWorktreeFailed: 'Жумушчу даракты өчүрүү мүмкүн болбоду (коммиттелбеген өзгөртүүлөр барбы?)',
-      removeWorktreeConfirm: 'Аны git\'тен алып сал (worktree каталогун өчүрөт; бутак калат), же жөн гана тилкени каптал панелден жашырып, worktree\'ни дискте калтыр.',
-      removeWorktreeDirty: 'Бул worktree\'де коммиттелбеген өзгөртүүлөр бар. Мажбурлап өчүр (ал өзгөртүүлөр жоголот), же жөн гана тилкени жашырып, аны дискте калтыр.',
+      removeWorktreeConfirm:
+        "Аны git'тен алып сал (worktree каталогун өчүрөт; бутак калат), же жөн гана тилкени каптал панелден жашырып, worktree'ни дискте калтыр.",
+      removeWorktreeDirty:
+        "Бул worktree'де коммиттелбеген өзгөртүүлөр бар. Мажбурлап өчүр (ал өзгөртүүлөр жоголот), же жөн гана тилкени жашырып, аны дискте калтыр.",
       forceRemove: 'Мажбурлап өчүрүү',
       back: 'Бардык долбоорлор',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     loading: 'Жүктөлүүдө…',
     loadMore: 'Көбүрөөк жүктөө',
@@ -1893,7 +1950,7 @@ Leave blank to keep the ${mode} default.`,
       hideTabBar: 'Өтмөк тилкесин жашыруу',
       openInNewTab: 'Жаңы өтмөктө ачуу',
       openInSplit: 'Бөлүнгөн көрүнүштө ачуу',
-      copyIdFailed: 'Сессия ID\'син көчүрүү мүмкүн болбоду',
+      copyIdFailed: "Сессия ID'син көчүрүү мүмкүн болбоду",
       sessionActions: 'Сессия аракеттери',
       sessionRunning: 'Сессия иштеп жатат',
       needsInput: 'Сиздин киргизүүңүз керек',
@@ -1912,19 +1969,19 @@ Leave blank to keep the ${mode} default.`,
       actionsFor: title => `Actions for ${title}`,
       handoffOrigin: platform => `Handed off from ${platform}`,
       ownedByProfile: profile => `Profile: ${profile}`,
-      untitledChat: id => `Chat ${id}`,
+      untitledChat: id => `Chat ${id}`
     },
     dateDivider: {
       today: 'Бүгүн эрте',
       yesterday: 'Кечээ',
       thisWeek: 'Бул аптанын башында',
       lastWeek: 'Өткөн аптада',
-      thisMonth: 'Бул айдын башында',
+      thisMonth: 'Бул айдын башында'
     },
     noMatch: query => `No sessions match “${query}”.`,
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     message: 'Билдирүү',
@@ -1965,17 +2022,17 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'мурунку сессияны улантуу',
       '/details': 'транскрипттин деталдык деңгээлин башкаруу',
       '/copy': 'тандоону же акыркы ассистент билдирүүсүн көчүрүү',
-      '/quit': 'openamer\'ден чыгуу',
+      '/quit': "openamer'ден чыгуу"
     },
     hotkeyDescs: {
-      'composer.mention': 'файлдарга, папкаларга, urls жана git\'ке шилтеме',
+      'composer.mention': "файлдарга, папкаларга, urls жана git'ке шилтеме",
       'composer.slash': 'slash командалар палитрасы',
       'composer.help': 'бул ыкчам жардам (жабуу үчүн delete)',
       'composer.sendNewline': 'жөнөтүү · жаңы сап үчүн Shift+Enter',
       'composer.sendQueued': 'кийинки кезектеги айламды жөнөтүү',
       'keybinds.openPanel': 'бардык клавиатуралык ыкчам ачкычтар',
       'composer.cancel': 'калкыма терезени жабуу · аткарууну токтотуу',
-      'composer.history': 'калкыма терезе / тарых боюнча айлануу',
+      'composer.history': 'калкыма терезе / тарых боюнча айлануу'
     },
     attachUrlTitle: 'URL тиркөө',
     attachUrlDesc: 'OpenAmer баракчаны жүктөп алып, аны ушул айлам үчүн контекст катары кошот.',
@@ -2000,18 +2057,18 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'Кодду карап чыгуу',
         description: 'Регрессиялар, түшүп калган четки учурлар жана жок тесттер үчүн учурдагы өзгөртүүнү текшериңиз.',
-        text: 'Муну каталар, регрессиялар жана жетишпеген тесттер боюнча карап чыгыңыз.',
+        text: 'Муну каталар, регрессиялар жана жетишпеген тесттер боюнча карап чыгыңыз.'
       },
       implementationPlan: {
         label: 'Ишке ашыруу планы',
         description: 'Кодго тийүүдөн мурун ыкманы белгилеңиз, diff фокуста калсын.',
-        text: 'Кодду өзгөртүүдөн мурун кыска ишке ашыруу планын түзүңүз.',
+        text: 'Кодду өзгөртүүдөн мурун кыска ишке ашыруу планын түзүңүз.'
       },
       explainThis: {
         label: 'Муну түшүндүрүп бериңиз',
         description: 'Тандалган код кантип иштээрин түшүндүрүп, негизги файлдарга шилтеме бериңиз.',
-        text: 'Бул кантип иштээрин түшүндүрүп, негизги файлдарды көрсөтүңүз.',
-      },
+        text: 'Бул кантип иштээрин түшүндүрүп, негизги файлдарды көрсөтүңүз.'
+      }
     },
     queueStuckTitle: 'Кезектеги билдирүү жөнөтүлгөн жок',
     queueStuckBody: 'Кезектеги жооп жөнөтүлө албай жатат. Ал дагы эле кезекте — кайра жөнөтүп көрүңүз.',
@@ -2041,7 +2098,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -2050,14 +2107,14 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
     attachments: count => `${count} attachment${count === 1 ? '' : 's'}`,
     previewLabel: label => `Preview ${label}`,
     couldNotPreview: label => `Could not preview ${label}`,
-    removeAttachment: label => `Remove ${label}`,
+    removeAttachment: label => `Remove ${label}`
   },
   statusStack: {
     agents: 'Агенттер',
@@ -2080,8 +2137,10 @@ Leave blank to keep the ${mode} default.`,
       viewAsList: 'Тизме түрүндө көрүү',
       revert: 'Кайтаруу',
       revertAll: 'Баарын кайтаруу',
-      revertConfirm: 'Бул файлдагы өзгөртүүлөрдү жокко чыгарып, commit кылынган абалга кайтарасызбы? Муну артка кайтаруу мүмкүн эмес.',
-      revertAllConfirm: 'Бардык өзгөртүүлөрдү жокко чыгарып, файлдарды commit кылынган абалга кайтарасызбы? Муну артка кайтаруу мүмкүн эмес.',
+      revertConfirm:
+        'Бул файлдагы өзгөртүүлөрдү жокко чыгарып, commit кылынган абалга кайтарасызбы? Муну артка кайтаруу мүмкүн эмес.',
+      revertAllConfirm:
+        'Бардык өзгөртүүлөрдү жокко чыгарып, файлдарды commit кылынган абалга кайтарасызбы? Муну артка кайтаруу мүмкүн эмес.',
       staged: 'Индекске кошулган',
       noChanges: 'Өзгөртүүлөр жок',
       notRepo: 'Git репозиторийи эмес',
@@ -2097,7 +2156,8 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'PR ачуу',
       ghMissing: 'PR ачуу үчүн GitHub CLI (gh) орнотуп, кириңиз',
       agentShip: 'OpenAmerден PR ачууну сураңыз',
-      agentShipPrompt: 'Учурдагы өзгөртүүлөрдү карап чыгып, аларды так conventional-commit билдирүүсү менен коммиттеп, бутакты push кылып, pull request ачыңыз.',
+      agentShipPrompt:
+        'Учурдагы өзгөртүүлөрдү карап чыгып, аларды так conventional-commit билдирүүсү менен коммиттеп, бутакты push кылып, pull request ачыңыз.',
       newBranch: 'Жаңы бутак',
       worktrees: 'Жумушчу дарактар',
       commitPlaceholder: 'Билдирүү (âŒ˜â†µ менен тастыктоо)',
@@ -2106,12 +2166,12 @@ Leave blank to keep the ${mode} default.`,
       behind: count => `${count} behind`,
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -2126,7 +2186,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'Жаңыртуу аяктады',
       manual: 'Терминалдан жаңыртыңыз',
       guiSkew: 'Десктоп колдонмосун жаңыртыңыз',
-      error: 'Жаңыртуу токтотулду',
+      error: 'Жаңыртуу токтотулду'
     },
     checking: 'Жаңыртуулар изделүүдө…',
     checkFailedTitle: 'Жаңыртууларды текшерүү мүмкүн болбоду',
@@ -2140,20 +2200,24 @@ Leave blank to keep the ${mode} default.`,
     availableTitle: 'Жаңы жаңыртуу бар',
     availableBody: 'OpenAmerдин жаңы версиясы орнотууга даяр.',
     availableTitleBackend: 'Backend жаңыртуусу жеткиликтүү',
-    availableBodyBackend: 'Туташкан OpenAmer backend\'инин жаңыраак версиясы орнотууга даяр.',
+    availableBodyBackend: "Туташкан OpenAmer backend'инин жаңыраак версиясы орнотууга даяр.",
     availableBodyNoChangelog: 'Жаңыраак версия даяр. Бул орнотуу түрү үчүн чыгарылыш эскертүүлөрү жеткиликсиз.',
     updateNow: 'Азыр жаңыртыңыз',
     maybeLater: 'Кийинчерээк',
     manualTitle: 'Терминалыңыздан жаңыртыңыз',
-    manualBody: 'Сиз OpenAmerди буйрук сабынан орнотконсуз, ошондуктан жаңыртуулар да ошол жерден иштейт. Муну терминалыңызга чаптаңыз:',
+    manualBody:
+      'Сиз OpenAmerди буйрук сабынан орнотконсуз, ошондуктан жаңыртуулар да ошол жерден иштейт. Муну терминалыңызга чаптаңыз:',
     manualPickedUp: 'OpenAmer кийинки жолу ачканда жаңы версияны алат.',
     guiSkewTitle: 'Десктоп колдонмосун жаңыртыңыз',
-    guiSkewBody: 'Бэкенд жаңыртылды, бирок бул десктоп колдонмо пакети өзгөргөн жок. Дал келтирүү үчүн OpenAmer десктоп колдонмосун (AppImage / .deb / .rpm) жаңыртыңыз же кайра орнотуңуз.',
+    guiSkewBody:
+      'Бэкенд жаңыртылды, бирок бул десктоп колдонмо пакети өзгөргөн жок. Дал келтирүү үчүн OpenAmer десктоп колдонмосун (AppImage / .deb / .rpm) жаңыртыңыз же кайра орнотуңуз.',
     copy: 'Көчүрүү',
     copied: 'Көчүрүлдү',
     done: 'Бүттү',
-    applyingBody: 'OpenAmer жаңырткычы өзүнүн терезесинде иштейт жана бүткөндө OpenAmerди автоматтык түрдө кайра ачат. Жаңыртуу учурунда OpenAmerди өзүңүз кайра ачпаңыз.',
-    applyingBodyBackend: 'Алыскы бэкенд жаңыртууну орнотуп жатат жана кайра иштетилет. OpenAmer кайра иштегенде автоматтык түрдө туташат.',
+    applyingBody:
+      'OpenAmer жаңырткычы өзүнүн терезесинде иштейт жана бүткөндө OpenAmerди автоматтык түрдө кайра ачат. Жаңыртуу учурунда OpenAmerди өзүңүз кайра ачпаңыз.',
+    applyingBodyBackend:
+      'Алыскы бэкенд жаңыртууну орнотуп жатат жана кайра иштетилет. OpenAmer кайра иштегенде автоматтык түрдө туташат.',
     applyingClose: 'Бул терезе жаңыртуу жүрүп жатканда жабылат, андан кийин OpenAmer өзү кайра ачылат.',
     errorTitle: 'Жаңыртуу бүткөн жок',
     errorBody: 'Кам жок — эч нерсе жоголгон жок. Азыр кайра аракет кыла аласыз.',
@@ -2164,19 +2228,21 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'Бэкенд жаңыртууну жүктөө үчүн кайра иштетилүүдө…',
       notAvailable: 'Бул бэкенд үчүн жаңыртуу жеткиликсиз.',
       failed: 'Бэкенд жаңыртуусу ишке ашкан жок.',
-      noReturn: 'Бэкенд кайра онлайн болгон жок. Жаңыртуу аяктабаган болушу мүмкүн — бэкенд хостун текшериңиз.',
+      noReturn: 'Бэкенд кайра онлайн болгон жок. Жаңыртуу аяктабаган болушу мүмкүн — бэкенд хостун текшериңиз.'
     },
     appErrors: {
-      updateLocked: 'Жаңыртуу токтотулду: башка OpenAmer терезеси же openamer иштеп жаткан терминал бул орнотууну кармап турат. Аны жаап, кайталаңыз.',
-      updateFailed: 'Жаңыртуу аяктаган жок. Кабатыр болбоңуз — эч нерсе жоголгон жок. Азыр кайталап көрсөңүз болот.',
+      updateLocked:
+        'Жаңыртуу токтотулду: башка OpenAmer терезеси же openamer иштеп жаткан терминал бул орнотууну кармап турат. Аны жаап, кайталаңыз.',
+      updateFailed: 'Жаңыртуу аяктаган жок. Кабатыр болбоңуз — эч нерсе жоголгон жок. Азыр кайталап көрсөңүз болот.'
     },
-    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
+    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`
   },
   install: {
     installLocalDesc: 'OpenAmerди жүктөп, Python чөйрөсүн түзүп, backendди ушул компьютерде иштетиңиз.',
     localStartUnavailable: 'Жергиликтүү орнотуу башталбады. OpenAmer Desktop ишин кайра баштап, дагы аракет кылыңыз.',
     remoteSetupTitle: 'Бар OpenAmerге туташуу',
-    remoteSetupDesc: 'Шлюздун URL дарегин киргизиңиз. OpenAmer Desktop токен же браузер аркылуу кирүү керекпи экенин аныктайт.',
+    remoteSetupDesc:
+      'Шлюздун URL дарегин киргизиңиз. OpenAmer Desktop токен же браузер аркылуу кирүү керекпи экенин аныктайт.',
     remoteUrlTitle: 'Шлюздун URL дареги',
     remoteUrlDesc: 'OpenAmer шлюзунун негизги URL дарегин колдонуңуз; алыскы болсо https:// кошуңуз.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2198,7 +2264,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'Орнотулуп жатат',
       succeeded: 'Бүттү',
       skipped: 'Өткөрүп жиберилди',
-      failed: 'Ийгиликсиз',
+      failed: 'Ийгиликсиз'
     },
     oneTimeTitle: 'OpenAmer бир жолку орнотууну талап кылат',
     installCommand: 'Орнотуу буйругу',
@@ -2206,12 +2272,14 @@ Leave blank to keep the ${mode} default.`,
     viewDocs: 'Орнотуу документтерин көрүү',
     installTo: 'Мына жерге орнотулат',
     retryAfterRun: 'Мен аны иштеттим -- кайталаңыз',
-    setupChoiceTitle: 'OpenAmer Desktop\'ти жөндөө',
-    setupChoiceDesc: 'Бул колдонмону сиз иштетип жаткан OpenAmer шлюзуна туташтырыңыз же OpenAmer\'ди бул компьютерге локалдуу орнотуңуз.',
-    connectExistingTitle: 'Бар болгон OpenAmer\'ге туташуу',
+    setupChoiceTitle: "OpenAmer Desktop'ти жөндөө",
+    setupChoiceDesc:
+      "Бул колдонмону сиз иштетип жаткан OpenAmer шлюзуна туташтырыңыз же OpenAmer'ди бул компьютерге локалдуу орнотуңуз.",
+    connectExistingTitle: "Бар болгон OpenAmer'ге туташуу",
     connectExistingShort: 'Бар болгонун туташтыруу',
-    connectExistingDesc: 'Сессиялык токен же браузер аркылуу кирүү менен алыскы бэкендди колдонуңуз. Локалдык орнотуу башталбайт.',
-    installLocalTitle: 'OpenAmer\'ди локалдуу орнотуу',
+    connectExistingDesc:
+      'Сессиялык токен же браузер аркылуу кирүү менен алыскы бэкендди колдонуңуз. Локалдык орнотуу башталбайт.',
+    installLocalTitle: "OpenAmer'ди локалдуу орнотуу",
     incompleteTokenTest: 'Бул шлюзди текшерүүдөн мурун сессиялык токенди киргизиңиз.',
     testConnection: 'Байланышты текшерүү',
     applyRemote: 'Колдонуу жана кайра туташуу',
@@ -2219,8 +2287,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Орнотуу ишке ашкан жок',
     settingUpTitle: 'OpenAmer Agent жөндөлүүдө',
     finishingTitle: 'Аяктап жатат',
-    failedDesc: 'Орнотуу кадамдарынын бири ишке ашкан жок. Windows\'то бул башка OpenAmer CLI же десктоп көчүрмөсү иштеп жатса болушу мүмкүн. Иштеп жаткан OpenAmer көчүрмөлөрүнүн баарын токтотуңуз, анан кайра аракет кылыңыз. Толук транскрипт үчүн төмөнкү деталдарды же десктоп журналын текшериңиз.',
-    activeDesc: 'Бул бир жолку жөндөө. OpenAmer орнотуучусу көз карандылыктарды жүктөп, компьютериңизди жөндөп жатат. Кийинки иштетүүлөр бул кадамды өткөрүп кетишет.',
+    failedDesc:
+      "Орнотуу кадамдарынын бири ишке ашкан жок. Windows'то бул башка OpenAmer CLI же десктоп көчүрмөсү иштеп жатса болушу мүмкүн. Иштеп жаткан OpenAmer көчүрмөлөрүнүн баарын токтотуңуз, анан кайра аракет кылыңыз. Толук транскрипт үчүн төмөнкү деталдарды же десктоп журналын текшериңиз.",
+    activeDesc:
+      'Бул бир жолку жөндөө. OpenAmer орнотуучусу көз карандылыктарды жүктөп, компьютериңизди жөндөп жатат. Кийинки иштетүүлөр бул кадамды өткөрүп кетишет.',
     fetchingManifest: 'Орнотуучунун манифести алынууда...',
     error: 'Ката',
     hideOutput: 'Орнотуучунун чыгышын жашыруу',
@@ -2232,13 +2302,14 @@ Leave blank to keep the ${mode} default.`,
     copiedOutput: 'Көчүрүлдү!',
     copyOutput: 'Чыгышты көчүрүү',
     reloadRetry: 'Кайра жүктөө жана кайра аракет кылуу',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
     signInWith: provider => `Sign in with ${provider}`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'OpenAmer Agent менен жөндөөнү баштайлы',
@@ -2258,41 +2329,42 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'Түз модель API',
-        description: 'Fireworks AI хосттогон моделдерге түз кирүү.',
+        description: 'Fireworks AI хосттогон моделдерге түз кирүү.'
       },
       openrouter: {
         short: 'бир ачкыч, көп модел',
-        description: 'Бир ачкычтын артында жүздөгөн моделди хосттойт. Жаңы орнотуулар үчүн жакшы демейки.',
+        description: 'Бир ачкычтын артында жүздөгөн моделди хосттойт. Жаңы орнотуулар үчүн жакшы демейки.'
       },
       openai: {
         short: 'GPT класстагы моделдер',
-        description: 'OpenAI моделдерине түз кирүү.',
+        description: 'OpenAI моделдерине түз кирүү.'
       },
       gemini: {
         short: 'Gemini моделдери',
-        description: 'Google Gemini моделдерине түз кирүү.',
+        description: 'Google Gemini моделдерине түз кирүү.'
       },
       xai: {
         short: 'Grok моделдери',
-        description: 'xAI Grok моделдерине түз кирүү.',
+        description: 'xAI Grok моделдерине түз кирүү.'
       },
       local: {
         short: 'өзүңүз хосттогон',
-        description: 'OpenAmerди жергиликтүү же өзүңүз хосттогон OpenAI менен шайкеш endpoint\'ке багыттаңыз (vLLM, llama.cpp, Ollama ж.б.).',
-      },
+        description:
+          "OpenAmerди жергиликтүү же өзүңүз хосттогон OpenAI менен шайкеш endpoint'ке багыттаңыз (vLLM, llama.cpp, Ollama ж.б.)."
+      }
     },
     backToSignIn: 'Кирүүгө кайтуу',
     getKey: 'Ачкыч алуу',
     replaceCurrent: 'Учурдагы маанини алмаштыруу',
     pasteApiKey: 'API ачкычын чаптоо',
-    localApiKeyPlaceholder: 'API ачкычы (милдеттүү эмес — endpoint\'иңиз талап кылса гана)',
+    localApiKeyPlaceholder: "API ачкычы (милдеттүү эмес — endpoint'иңиз талап кылса гана)",
     couldNotSave: 'Креденциалды сактай албадык.',
     connecting: 'Туташууда',
     update: 'Жаңыртуу',
     flowSubtitles: {
       pkce: 'Кирүү үчүн браузериңизди ачат, анан ушул жерден улантат',
       device_code: 'Браузериңизде текшерүү баракчасын ачат — OpenAmer автоматтык түрдө туташат',
-      external: 'Терминалыңызда бир жолу кириңиз, анан чатка кайтыңыз',
+      external: 'Терминалыңызда бир жолу кириңиз, анан чатка кайтыңыз'
     },
     signInFailed: 'Кирүү ишке ашкан жок. Кайра аракет кылыңыз.',
     pickDifferentProvider: 'Башка провайдерди тандаңыз',
@@ -2317,11 +2389,13 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     loadFailed: 'Моделдер жүктөлбөдү',
@@ -2337,13 +2411,13 @@ Leave blank to keep the ${mode} default.`,
     unknown: '(белгисиз)',
     search: 'Провайдерлерди жана моделдерди чыпкалоо...',
     noModels: 'Моделдер табылган жок.',
-    addProvider: 'Провайдер кошуу',
+    addProvider: 'Провайдер кошуу'
   },
   modelVisibility: {
     title: 'Моделдер',
     search: 'Моделдерди издөө',
     noAuthenticatedProviders: 'Аутентификацияланган провайдерлер жок.',
-    addProvider: 'Провайдер кошуу…',
+    addProvider: 'Провайдер кошуу…'
   },
   shell: {
     windowControls: 'Терезе башкаруулары',
@@ -2354,7 +2428,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'Моделдер табылган жок',
       editModels: 'Моделдерди түзөтүү…',
       refreshModels: 'Моделдерди жаңыртуу',
-      fast: 'Тез',
+      fast: 'Тез'
     },
     modelOptions: {
       noOptions: 'Бул модель үчүн опциялар жок',
@@ -2370,7 +2444,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'Максимум',
       ultra: 'Ультра',
       updateFailed: 'Модель опциясын жаңыртуу ишке ашпады',
-      fastFailed: 'Тез режимди жаңыртуу ишке ашпады',
+      fastFailed: 'Тез режимди жаңыртуу ишке ашпады'
     },
     gatewayMenu: {
       gateway: 'Шлюз',
@@ -2385,7 +2459,7 @@ Leave blank to keep the ${mode} default.`,
       recentActivity: 'Акыркы аракеттер',
       viewAllLogs: 'Бардык журналдарды көрүү →',
       messagingPlatforms: 'Билдирүү платформалары',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'Бекитүү режими',
@@ -2395,7 +2469,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'Аракеттерди автоматтык баалап, керек болгондо сура',
       off: 'Өчүк',
       offDescription: 'Бекитүү суроолорусуз иштетүү',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'белгисиз',
@@ -2437,19 +2511,21 @@ Leave blank to keep the ${mode} default.`,
           rules: 'Эрежелер',
           skills: 'Көндүмдөр',
           subagent_definitions: 'Субагент аныктамалары',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Контекст маалыматтары азырынча жок',
         loading: 'Бөлүштүрүү жүктөлүүдө…',
         title: 'Контекстти колдонуу',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Контекст колдонуу бөлүштүрүүсүн ач',
       session: 'Сессия',
       runtimeSessionElapsed: 'Иштөө сессиясынын өткөн убактысы',
-      yoloOn: 'YOLO күйгүзүлгөн — коркунучтуу буйруктар автоматтык бекитилет. Өчүрүү үчүн басыңыз. Shift+click аны глобалдык түрдө күйгүзүп-өчүрөт.',
-      yoloOff: 'YOLO өчүк — коркунучтуу буйруктарды автоматтык бекитүү үчүн басыңыз. Shift+click аны глобалдык түрдө күйгүзүп-өчүрөт.',
+      yoloOn:
+        'YOLO күйгүзүлгөн — коркунучтуу буйруктар автоматтык бекитилет. Өчүрүү үчүн басыңыз. Shift+click аны глобалдык түрдө күйгүзүп-өчүрөт.',
+      yoloOff:
+        'YOLO өчүк — коркунучтуу буйруктарды автоматтык бекитүү үчүн басыңыз. Shift+click аны глобалдык түрдө күйгүзүп-өчүрөт.',
       modelNone: 'жок',
       noModel: 'модель жок',
       switchModel: 'Моделди алмаштыруу',
@@ -2470,8 +2546,8 @@ Leave blank to keep the ${mode} default.`,
       failed: count => `${count} failed`,
       running: count => `${count} running`,
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Оң каптал панели',
@@ -2481,7 +2557,7 @@ Leave blank to keep the ${mode} default.`,
     noFolderSelected: 'Папка тандалган жок',
     changeCwdTitle: 'Иштөө каталогун өзгөртүү',
     remotePickerTitle: 'Алыскы папканы тандоо',
-    remotePickerDescription: 'Туташкан backend\'деги папкаларды карап чыгуу.',
+    remotePickerDescription: "Туташкан backend'деги папкаларды карап чыгуу.",
     remotePickerSelect: 'Папканы тандоо',
     openFolder: 'Папканы ачуу',
     refreshTree: 'Даракты жаңыртуу',
@@ -2507,7 +2583,7 @@ Leave blank to keep the ${mode} default.`,
     addToChat: 'Чатка кошуу',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'Алдын ала көрүү',
@@ -2535,7 +2611,8 @@ Leave blank to keep the ${mode} default.`,
     editing: 'Түзөтүлүүдө',
     unsavedChanges: 'Сакталбаган өзгөртүүлөр',
     diskChangedTitle: 'Файл дискте өзгөрдү',
-    diskChangedBody: 'Бул файл ачкандан бери өзгөрдү. Аны өз версияңыз менен үстүнөн жазасызбы же түзөтүүлөрүңүздү таштап, кайра жүктөйсүзбү?',
+    diskChangedBody:
+      'Бул файл ачкандан бери өзгөрдү. Аны өз версияңыз менен үстүнөн жазасызбы же түзөтүүлөрүңүздү таштап, кайра жүктөйсүзбү?',
     overwrite: 'Үстүнөн жазуу',
     discardReload: 'Ыргытып, кайра жүктөө',
     console: {
@@ -2556,7 +2633,7 @@ Leave blank to keep the ${mode} default.`,
       sentTitle: 'Чатка жөнөтүлдү',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Алдын ала көрүү колдонмосу ишке кирбеди',
@@ -2577,9 +2654,11 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'Алдын ала көрүү азыр кайра жүктөлүүдө.',
       restartFailedTitle: 'Алдын ала көрүүнү кайра баштоо ишке ашкан жок',
       restartFailedMessage: 'OpenAmer серверди кайра баштай алган жок.',
-      stillWorking: 'OpenAmer дагы деле иштеп жатат, бирок кайра баштоо жыйынтыгы азырынча келген жок. Сервер буйругу алдыңкы планда иштеп жаткан болушу мүмкүн.',
+      stillWorking:
+        'OpenAmer дагы деле иштеп жатат, бирок кайра баштоо жыйынтыгы азырынча келген жок. Сервер буйругу алдыңкы планда иштеп жаткан болушу мүмкүн.',
       workspaceReloading: 'Иш мейкиндиги өзгөрдү, алдын ала көрүү кайра жүктөлүүдө',
-      moduleMimeDescription: 'Модуль скрипттери туура эмес MIME түрү менен берилүүдө. Бул көбүнчө долбоордун иштеп чыгуу серверинин ордуна статикалык файл сервери Vite/React колдонмосун берип жатканын билдирет.',
+      moduleMimeDescription:
+        'Модуль скрипттери туура эмес MIME түрү менен берилүүдө. Бул көбүнчө долбоордун иштеп чыгуу серверинин ордуна статикалык файл сервери Vite/React колдонмосун берип жатканын билдирет.',
       unreachableDescription: 'Алдын ала көрүү бетине жетүү мүмкүн болгон жок.',
       fallbackTitle: 'Алдын ала көрүү',
       lookingRestart: taskId => `OpenAmer is looking for a preview server to restart (${taskId})`,
@@ -2590,14 +2669,14 @@ Leave blank to keep the ${mode} default.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     linkHint: 'Алдын ала көрүү панели үчүн âŒ˜/Ctrl менен басыңыз',
     closeTab: label => `Close ${label}`,
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   zones: {
     showHeader: 'Баш жагын көрсөтүү',
@@ -2605,7 +2684,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Кичирейтүү',
     restore: 'Калыбына келтирүү',
     closeRunningTitle: 'Иштеп жаткан өтмөктү жабасызбы?',
-    closeRunningBody: 'Бул чат дагы эле иштеп жатат (же сиздин киргизүүңүздү күтүүдө). Өтмөктү жабуу аны жашырат — сессия прогрессин сактап калат жана каптал панелинен кайра ачыла алат.',
+    closeRunningBody:
+      'Бул чат дагы эле иштеп жатат (же сиздин киргизүүңүздү күтүүдө). Өтмөктү жабуу аны жашырат — сессия прогрессин сактап калат жана каптал панелинен кайра ачыла алат.',
     closeRunningConfirm: 'Өтмөктү жабуу',
     closeOthers: 'Башкаларды жабуу',
     closeToRight: 'Оң жактагыларды жабуу',
@@ -2617,7 +2697,8 @@ Leave blank to keep the ${mode} default.`,
     dirRight: 'оңго',
     pluginDisabledBody: 'Панелди кайра көрсөтүү үчүн аны Жөндөөлөр → Плагиндерден кайра иштетиңиз.',
     editTitle: 'Жайгашуулар',
-    editHint: 'Жайгашууну тандаңыз же панелдерди аймактардын ортосунда сүйрөңүз. Аймакты бөлүү үчүн ага оң баскыч менен басыңыз.',
+    editHint:
+      'Жайгашууну тандаңыз же панелдерди аймактардын ортосунда сүйрөңүз. Аймакты бөлүү үчүн ага оң баскыч менен басыңыз.',
     reset: 'Кайра коюу',
     templates: 'Калыптар',
     custom: 'Ыңгайлаштырылган',
@@ -2626,7 +2707,8 @@ Leave blank to keep the ${mode} default.`,
     nameLayoutPlaceholder: 'Бул жайгашууга ат коюңуз…',
     zoneEditorTitle: 'Зона редактору',
     editorHintPre: 'бөлүү үчүн басыңыз ·',
-    editorHintPost: 'сызыкты оодарат · бириктирүү үчүн аймактар аркылуу сүйрөңүз · өлчөмүн өзгөртүү үчүн жалпы четтерден сүйрөңүз',
+    editorHintPost:
+      'сызыкты оодарат · бириктирүү үчүн аймактар аркылуу сүйрөңүз · өлчөмүн өзгөртүү үчүн жалпы четтерден сүйрөңүз',
     templateColumns: 'Мамычалар',
     templateRows: 'Саптар',
     templateGrid: 'Тор',
@@ -2642,7 +2724,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
@@ -2673,11 +2755,12 @@ Leave blank to keep the ${mode} default.`,
       goForward: 'Алга жыл',
       sendEdited: 'Түзөтүлгөн билдирүүнү жөнөтүү',
       attachingFile: 'Тиркелүүдө...',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
-      yesterday: time => `Yesterday, ${time}`,
+      yesterday: time => `Yesterday, ${time}`
     },
     approval: {
       gatewayDisconnected: 'OpenAmer шлюзу туташкан эмес',
@@ -2691,7 +2774,8 @@ Leave blank to keep the ${mode} default.`,
       reject: 'Баш тартуу',
       alwaysTitle: 'Бул буйрукка дайыма уруксат берилсинби?',
       alwaysAllow: 'Дайыма уруксат берүү',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
       notReady: 'Тактоо сурамы азырынча даяр эмес',
@@ -2705,7 +2789,7 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'Улантуу',
       lateAnswerTip: 'Бул жоопту кошумча билдирүү катары долбоорло',
       lateAnswerHint: 'Бул суроо эми күтпөйт. Аны кошумча билдирүү катары долбоорлоо үчүн опция тандаңыз.',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     tool: {
       code: 'Код',
@@ -2739,123 +2823,123 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Иштетилди',
         running: 'Иштеп жатат',
         ranCode: 'Код иштетилди',
-        runningCode: 'Скрипт аткарылууда',
+        runningCode: 'Скрипт аткарылууда'
       },
       prefixes: {
         browser: 'Браузер',
-        web: 'Веб',
+        web: 'Веб'
       },
       titles: {
         browser_click: {
           done: 'Барак элементи басылды',
           pending: 'Барак элементи басылып жатат',
-          pendingAction: 'Басылып жатат',
+          pendingAction: 'Басылып жатат'
         },
         browser_fill: {
           done: 'Форма талаасы толтурулду',
           pending: 'Форма талаасы толтурулуп жатат',
-          pendingAction: 'Толтуруу',
+          pendingAction: 'Толтуруу'
         },
         browser_navigate: {
           done: 'Баракча ачылды',
           pending: 'Баракча ачылууда',
-          pendingAction: 'Ачылууда',
+          pendingAction: 'Ачылууда'
         },
         browser_snapshot: {
           done: 'Баракчанын сүрөтү алынды',
           pending: 'Баракчанын сүрөтү алынууда',
-          pendingAction: 'Алынууда',
+          pendingAction: 'Алынууда'
         },
         browser_take_screenshot: {
           done: 'Скриншот алынды',
           pending: 'Скриншот алынууда',
-          pendingAction: 'Алынууда',
+          pendingAction: 'Алынууда'
         },
         browser_type: {
           done: 'Баракчага жазылды',
           pending: 'Баракчага жазылууда',
-          pendingAction: 'Жазылууда',
+          pendingAction: 'Жазылууда'
         },
         clarify: {
           done: 'Суроо берилди',
           pending: 'Суроо берилүүдө',
-          pendingAction: 'Сурап жатат',
+          pendingAction: 'Сурап жатат'
         },
         cronjob: {
           done: 'Cron иши',
           pending: 'Cron иши пландалууда',
-          pendingAction: 'Пландалууда',
+          pendingAction: 'Пландалууда'
         },
         edit_file: {
           done: 'Файл өзгөртүлдү',
           pending: 'Файлды түзөтүү',
-          pendingAction: 'Түзөтүү',
+          pendingAction: 'Түзөтүү'
         },
         execute_code: {
           done: 'Код иштетилди',
           pending: 'Скрипт жазуу',
-          pendingAction: 'Скрипт жазуу',
+          pendingAction: 'Скрипт жазуу'
         },
         image_generate: {
           done: 'Сүрөт жаратылды',
           pending: 'Сүрөт жаратылууда',
-          pendingAction: 'Жаратылууда',
+          pendingAction: 'Жаратылууда'
         },
         list_files: {
           done: 'Файлдар тизмеленди',
           pending: 'Файлдарды тизмелөө',
-          pendingAction: 'Тизмелөө',
+          pendingAction: 'Тизмелөө'
         },
         patch: {
           done: 'Файл жамалды',
           pending: 'Файлды жамоо',
-          pendingAction: 'Жамоо',
+          pendingAction: 'Жамоо'
         },
         read_file: {
           done: 'Файл окулду',
           pending: 'Файл окулууда',
-          pendingAction: 'Окуу',
+          pendingAction: 'Окуу'
         },
         search_files: {
           done: 'Файлдар изделди',
           pending: 'Файлдарды издөө',
-          pendingAction: 'Издөө',
+          pendingAction: 'Издөө'
         },
         session_search_recall: {
           done: 'Сессия тарыхы изделди',
           pending: 'Сессия тарыхы изделүүдө',
-          pendingAction: 'Изделүүдө',
+          pendingAction: 'Изделүүдө'
         },
         terminal: {
           done: 'Буйрук аткарылды',
           pending: 'Буйрук аткарылууда',
-          pendingAction: 'Аткарылууда',
+          pendingAction: 'Аткарылууда'
         },
         todo: {
           done: 'Тапшырмалар жаңыртылды',
           pending: 'Тапшырмалар жаңыртылууда',
-          pendingAction: 'Жаңыртылууда',
+          pendingAction: 'Жаңыртылууда'
         },
         vision_analyze: {
           done: 'Сүрөт талданды',
           pending: 'Сүрөт талданууда',
-          pendingAction: 'Талданууда',
+          pendingAction: 'Талданууда'
         },
         web_extract: {
           done: 'Веб барак окулду',
           pending: 'Веб барак окулууда',
-          pendingAction: 'Окулууда',
+          pendingAction: 'Окулууда'
         },
         web_search: {
           done: 'Веб изделди',
           pending: 'Веб изделүүдө',
-          pendingAction: 'Изделүүдө',
+          pendingAction: 'Изделүүдө'
         },
         write_file: {
           done: 'Файл өзгөртүлдү',
           pending: 'Файл өзгөртүлүүдө',
-          pendingAction: 'Түзөтүү',
-        },
+          pendingAction: 'Түзөтүү'
+        }
       },
       recoveredMany: count => `Recovered after ${count} failed steps`,
       failedMany: count => `${count} steps failed`,
@@ -2865,9 +2949,9 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
+    }
   },
   desktop: {
     yoloToggleFailed: 'YOLO абалын өзгөртүү мүмкүн болбоду',
@@ -2879,7 +2963,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'Оңдоо ишке ашкан жок',
     resumeFailed: 'Улантуу ишке ашкан жок',
     resumeStrandedTitle: 'Бул сессияны жүктөө мүмкүн болбоду',
-    resumeStrandedBody: 'Бул сессияга туташуу ишке ашкан жок жана автоматтык кайталоолор токтоду. Шлюз иштеп жатканын текшерип, кайра аракет кылыңыз.',
+    resumeStrandedBody:
+      'Бул сессияга туташуу ишке ашкан жок жана автоматтык кайталоолор токтоду. Шлюз иштеп жатканын текшерип, кайра аракет кылыңыз.',
     resumeRetry: 'Кайра аракет кылуу',
     nothingToBranch: 'Тармактоо үчүн эч нерсе жок',
     branchNeedsChat: 'Тармактоодон мурун чатты баштаңыз же улантыңыз.',
@@ -2918,7 +3003,7 @@ Leave blank to keep the ${mode} default.`,
       timedOut: 'Шлюзду күтүү убактысы бүттү. `openamer gateway` иштеп жатабы?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     audioReadFailed: 'Жазылган аудиону окуу мүмкүн болбоду',
     sessionUnavailable: 'Сессия жеткиликсиз',
@@ -2933,47 +3018,50 @@ Leave blank to keep the ${mode} default.`,
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
-    branchTitle: n => `Draft: Branch #${n}`,
+    branchTitle: n => `Draft: Branch #${n}`
   },
   errors: {
     genericFailure: 'Бир нерсе туура эмес болду',
     boundaryTitle: 'Интерфейсте бир нерсе бузулду',
     boundaryDesc: 'Көрүнүштө күтүлбөгөн ката кетти. Чаттарыңыз жана жөндөөлөрүңүз коопсуз.',
     reloadWindow: 'Терезени кайра жүктөө',
-    openLogs: 'Журналдарды ачуу',
+    openLogs: 'Журналдарды ачуу'
   },
   ui: {
     search: {
-      clear: 'Издөөнү тазалоо',
+      clear: 'Издөөнү тазалоо'
     },
     pagination: {
       label: 'Барактоо',
       previous: 'Мурунку',
       previousAria: 'Мурунку баракка өтүү',
       next: 'Кийинки',
-      nextAria: 'Кийинки баракка өтүү',
+      nextAria: 'Кийинки баракка өтүү'
     },
     sidebar: {
       title: 'Каптал панели',
       description: 'Мобилдик каптал панелин көрсөтөт.',
-      toggle: 'Каптал панелин ачуу/жабуу',
-    },
+      toggle: 'Каптал панелин ачуу/жабуу'
+    }
   },
   prompts: {
     secretSendFailed: 'Жашыруун маалыматты жөнөтүү мүмкүн болбоду',
     sudoTitle: 'Администратордун сырсөзү',
-    sudoDesc: 'OpenAmer артыкчылыктуу команданы иштетүү үчүн сиздин sudo сырсөзүңүз керек. Ал жалгыз жергиликтүү агентиңизге жөнөтүлөт.',
+    sudoDesc:
+      'OpenAmer артыкчылыктуу команданы иштетүү үчүн сиздин sudo сырсөзүңүз керек. Ал жалгыз жергиликтүү агентиңизге жөнөтүлөт.',
     sudoPlaceholder: 'sudo сырсөзү',
     secretTitle: 'Жашыруун маалымат талап кылынат',
     secretDesc: 'OpenAmer улантуу үчүн ырастоочу маалыматты талап кылат.',
     secretPlaceholder: 'жашыруун маалыматтын мааниси',
     gatewayDisconnected: 'OpenAmer шлюзу туташкан эмес',
-    sudoSendFailed: 'sudo сырсөзүн жөнөтүү мүмкүн болбоду',
+    sudoSendFailed: 'sudo сырсөзүн жөнөтүү мүмкүн болбоду'
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
-  },
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
+  }
 })

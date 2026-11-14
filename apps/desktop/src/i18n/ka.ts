@@ -16,7 +16,8 @@ export const ka = defineLocale({
       defaultsFailed: 'მოდელის ნაგულისხმევების შენახვა ვერ მოხერხდა',
       auxiliaryTitle: 'დამხმარე მოდელები',
       resetAllToMain: 'ყველას მთავარზე დაბრუნება',
-      auxiliaryDesc: 'დამხმარე ამოცანები ნაგულისხმევად მთავარ მოდელზე მუშაობს. გადასაფარად რომელიმე ამოცანას მიუთითეთ გამოყოფილი მოდელი.',
+      auxiliaryDesc:
+        'დამხმარე ამოცანები ნაგულისხმევად მთავარ მოდელზე მუშაობს. გადასაფარად რომელიმე ამოცანას მიუთითეთ გამოყოფილი მოდელი.',
       setToMain: 'მთავარზე დაყენება',
       change: 'შეცვლა',
       autoUseMain: 'ავტო · მთავარი მოდელის გამოყენება',
@@ -27,45 +28,46 @@ export const ka = defineLocale({
       tasks: {
         vision: {
           label: 'ხედვა',
-          hint: 'სურათის ანალიზი',
+          hint: 'სურათის ანალიზი'
         },
         web_extract: {
           label: 'ვებ-ამოღება',
-          hint: 'გვერდის შეჯამება',
+          hint: 'გვერდის შეჯამება'
         },
         compression: {
           label: 'შეკუმშვა',
-          hint: 'კონტექსტის კომპაქტიზაცია',
+          hint: 'კონტექსტის კომპაქტიზაცია'
         },
         skills_hub: {
           label: 'უნარების ჰაბი',
-          hint: 'უნარების ძებნა',
+          hint: 'უნარების ძებნა'
         },
         approval: {
           label: 'დამტკიცება',
-          hint: 'ჭკვიანური ავტო-დამტკიცება',
+          hint: 'ჭკვიანური ავტო-დამტკიცება'
         },
         mcp: {
           hint: 'MCP ხელსაწყოების მარშრუტიზაცია',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'სათაურის გენერაცია',
-          hint: 'სესიის სათაურები',
+          hint: 'სესიის სათაურები'
         },
         curator: {
           label: 'კურატორი',
-          hint: 'უნარების გამოყენების მიმოხილვა',
-        },
+          hint: 'უნარების გამოყენების მიმოხილვა'
+        }
       },
       loading: 'იტვირთება მოდელის კონფიგურაცია...',
       appliesDesc: 'ვრცელდება ახალ სესიებზე. გამოიყენე მოდელის ამრჩევი შემდგენელში აქტიური ჩატის ადგილზე შესაცვლელად.',
-      provider: 'პროვაიდერი',
+      provider: 'პროვაიდერი'
     },
     providers: {
       connectAccount: 'ანგარიშის დაკავშირება',
       haveApiKey: 'გაქვთ API გასაღები ამის ნაცვლად?',
-      intro: 'გაიარეთ შესვლა გამოწერით — API გასაღების კოპირება არ გჭირდებათ. OpenAmer ბრაუზერით შესვლას თქვენთვის, პირდაპირ აქ, აპში გაუშვებს.',
+      intro:
+        'გაიარეთ შესვლა გამოწერით — API გასაღების კოპირება არ გჭირდებათ. OpenAmer ბრაუზერით შესვლას თქვენთვის, პირდაპირ აქ, აპში გაუშვებს.',
       connected: 'დაკავშირებულია',
       collapse: 'ჩაკეცვა',
       connectAnother: 'სხვა პროვაიდერის დაკავშირება',
@@ -78,20 +80,22 @@ export const ka = defineLocale({
       noKeysMatch: 'ძიებას პროვაიდერი არ შეესაბამება.',
       localEndpoint: {
         title: 'ლოკალური / მორგებული ენდპოინტი',
-        description: 'OpenAmer მიუთითეთ ნებისმიერ OpenAI-თავსებად ენდპოინტზე (Zyphra, vLLM, llama.cpp, Ollama და სხვ.).',
+        description: 'OpenAmer მიუთითეთ ნებისმიერ OpenAI-თავსებად ენდპოინტზე (Zyphra, vLLM, llama.cpp, Ollama და სხვ.).'
       },
       loading: 'პროვაიდერები იტვირთება...',
       removeConfirm: provider => `მოვხსნა ${provider}?`,
       removeExternalGeneric: provider => `${provider} იმართება მისივე CLI-ით — მოხსენი იქ.`,
       removeKeyManaged: provider => `${provider} კონფიგურირებულია API გასაღებიდან. მოხსენი API გასაღებებში.`,
-      removeTerminalConfirm: (provider, command) => `გავთიშო ${provider}? ეს ტერმინალში გაუშვებს "${command}" მონაცემების გასასუფთავებლად.`,
+      removeTerminalConfirm: (provider, command) =>
+        `გავთიშო ${provider}? ეს ტერმინალში გაუშვებს "${command}" მონაცემების გასასუფთავებლად.`,
       removeTerminalRunning: provider => `${provider}-ის გათიშვა ტერმინალში…`,
       removedMessage: provider => `${provider} მოხსნილია.`,
-      failedRemove: provider => `${provider}-ის მოცილება ვერ მოხერხდა`,
+      failedRemove: provider => `${provider}-ის მოცილება ვერ მოხერხდა`
     },
     toolsets: {
       failedLoad: 'ხელსაწყოს კონფიგურაცია ვერ ჩაიტვირთა',
-      noProviderOptions: 'ამ ხელსაწყოების კომპლექტს პროვაიდერის პარამეტრები არ აქვს — ჩართეთ და იმუშავებს თქვენს მიმდინარე კონფიგურაციასთან.',
+      noProviderOptions:
+        'ამ ხელსაწყოების კომპლექტს პროვაიდერის პარამეტრები არ აქვს — ჩართეთ და იმუშავებს თქვენს მიმდინარე კონფიგურაციასთან.',
       noProviders: 'ამ ხელსაწყოების კომპლექტისთვის ახლა პროვაიდერები მიუწვდომელია.',
       ready: 'მზადაა',
       needsSignIn: 'საჭიროებს შესვლას',
@@ -133,7 +137,7 @@ export const ka = defineLocale({
         selectedTitle: 'ბექენდი არჩეულია',
         selectedMessage: backend => `ტერმინალის ბრძანებები ახლა მუშაობს ${backend}-ის გავლით. ვრცელდება ახალ სესიებზე.`,
         failedSelect: backend => `${backend}-ის არჩევა ვერ მოხერხდა`,
-        needsSetupHint: 'შეგიძლია ეს ბექენდი ახლა აირჩიო — ბრძანებები ვერ შესრულდება, სანამ დაყენება არ დასრულდება.',
+        needsSetupHint: 'შეგიძლია ეს ბექენდი ახლა აირჩიო — ბრძანებები ვერ შესრულდება, სანამ დაყენება არ დასრულდება.'
       },
       loadingConfig: 'კონფიგურაცია იტვირთება',
       savedTitle: 'მონაცემები შენახულია',
@@ -149,8 +153,10 @@ export const ka = defineLocale({
       removeConfirm: key => `მოვხსნა ${key} .env-იდან?`,
       selectedMessage: provider => `${provider} ახლა აქტიურია.`,
       failedSelect: provider => `${provider}-ის არჩევა ვერ მოხერხდა`,
-      openamerAuthNeededMessage: provider => `${provider} შენახულია, მაგრამ არ გააქტიურდება, სანამ OpenAmer Portal-ში არ შეხვალ.`,
-      postSetupHint: step => `ამ ბექენდს სჭირდება ერთჯერადი ინსტალაცია (${step}). მუშაობს ამ მანქანაზე — შეიძლება რამდენიმე წუთი დასჭირდეს.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} შენახულია, მაგრამ არ გააქტიურდება, სანამ OpenAmer Portal-ში არ შეხვალ.`,
+      postSetupHint: step =>
+        `ამ ბექენდს სჭირდება ერთჯერადი ინსტალაცია (${step}). მუშაობს ამ მანქანაზე — შეიძლება რამდენიმე წუთი დასჭირდეს.`,
       postSetupCompleteMessage: step => `${step} დაინსტალირდა.`,
       postSetupErrorMessage: step => `შეამოწმე ${step} ლოგი.`,
       postSetupFailed: step => `${step}-ის დაყენება ვერ გაეშვა`,
@@ -160,7 +166,7 @@ export const ka = defineLocale({
       failedSelectCapability: provider => `${provider}-ის დაყენება ვერ მოხერხდა`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} ვრცელდება ახალ სესიებზე.`,
-      failedSelectModel: model => `${model}-ის არჩევა ვერ მოხერხდა`,
+      failedSelectModel: model => `${model}-ის არჩევა ვერ მოხერხდა`
     },
     sessions: {
       loading: 'არქივირებული სესიები იტვირთება…',
@@ -171,12 +177,14 @@ export const ka = defineLocale({
       deletePermanently: 'სამუდამოდ წაშლა',
       restored: 'აღდგენილია',
       autoArchiveTitle: 'მოძველებული ჩატების ავტოარქივირება',
-      autoArchiveDesc: 'ავტომატურად დაარქივეთ ჩატები, რომლებსაც დიდი ხანია არ შეგხებიათ. მიმაგრებული ჩატები არასდროს არქივდება და არაფერი იშლება — არქივირებული ჩატები უბრალოდ აქ გადადის.',
+      autoArchiveDesc:
+        'ავტომატურად დაარქივეთ ჩატები, რომლებსაც დიდი ხანია არ შეგხებიათ. მიმაგრებული ჩატები არასდროს არქივდება და არაფერი იშლება — არქივირებული ჩატები უბრალოდ აქ გადადის.',
       autoArchiveDaysLabel: 'არქივირება შემდეგ:',
       autoArchiveDaysUnit: 'დღე უმოქმედობის შემდეგ',
       autoArchiveFailed: 'ავტოარქივირების განახლება ვერ მოხერხდა',
       defaultDirTitle: 'პროექტის ნაგულისხმევი დირექტორია',
-      defaultDirDesc: 'ახალი სესიები ამ საქაღალდეში იწყება, თუ სხვას არ აირჩევთ. დატოვეთ დაუყენებელი, რომ თქვენი სახლის დირექტორია გამოყენდეს.',
+      defaultDirDesc:
+        'ახალი სესიები ამ საქაღალდეში იწყება, თუ სხვას არ აირჩევთ. დატოვეთ დაუყენებელი, რომ თქვენი სახლის დირექტორია გამოყენდეს.',
       change: 'შეცვლა',
       choose: 'არჩევა',
       clear: 'გასუფთავება',
@@ -186,11 +194,12 @@ export const ka = defineLocale({
       deleteFailed: 'წაშლა ვერ მოხერხდა',
       updateDirFailed: 'ნაგულისხმევი დირექტორიის განახლება ვერ მოხერხდა',
       clearDirFailed: 'ნაგულისხმევი დირექტორიის გასუფთავება ვერ მოხერხდა',
-      archivedIntro: 'დაარქივებული ჩატები დამალულია გვერდითი ზოლიდან, მაგრამ ინახავს ყველა შეტყობინებას. Ctrl/⌘-დაწკაპუნება ჩატზე გვერდით ზოლში დააარქივებს მას.',
+      archivedIntro:
+        'დაარქივებული ჩატები დამალულია გვერდითი ზოლიდან, მაგრამ ინახავს ყველა შეტყობინებას. Ctrl/⌘-დაწკაპუნება ჩატზე გვერდით ზოლში დააარქივებს მას.',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `სამუდამოდ წავშალო "${title}"? ამას უკან ვერ დააბრუნებ.`,
       defaultDirUpdated: 'პროექტის ნაგულისხმევი საქაღალდე განახლდა — დაიწყე ახალი ჩატი (Ctrl/⌘+N), რომ ძალაში შევიდეს',
-      defaultsTo: label => `ნაგულისხმევი: ${label}.`,
+      defaultsTo: label => `ნაგულისხმევი: ${label}.`
     },
     closeSettings: 'პარამეტრების დახურვა',
     exportConfig: 'კონფიგის ექსპორტი',
@@ -214,11 +223,12 @@ export const ka = defineLocale({
       about: 'შესახებ',
       billing: 'ბილინგი',
       notifications: 'შეტყობინებები',
-      plugins: 'დანამატები',
+      plugins: 'დანამატები'
     },
     plugins: {
       title: 'დესკტოპ დანამატები',
-      blurb: 'UI გაფართოებები, რომლებიც იტვირთება ამ აპში — ჩაშენებულია აწყობაში, ან ჩაგდებულია desktop-plugins საქაღალდეში (მათ შორის ის, რასაც OpenAmer წერს). გამორთვა ცოცხლად ხსნის დანამატს და რჩება გადატვირთვების შემდეგ.',
+      blurb:
+        'UI გაფართოებები, რომლებიც იტვირთება ამ აპში — ჩაშენებულია აწყობაში, ან ჩაგდებულია desktop-plugins საქაღალდეში (მათ შორის ის, რასაც OpenAmer წერს). გამორთვა ცოცხლად ხსნის დანამატს და რჩება გადატვირთვების შემდეგ.',
       count: n => `${n} დაინსტალირებული`,
       openFolder: 'დანამატების საქაღალდის გახსნა',
       rescan: 'ხელახლა სკანირება',
@@ -230,40 +240,41 @@ export const ka = defineLocale({
       kinds: {
         bundled: 'ჩაშენებული',
         disk: 'დისკზე',
-        runtime: 'გაშვებისას',
-      },
+        runtime: 'გაშვებისას'
+      }
     },
     notifications: {
       title: 'შეტყობინებები',
-      intro: 'სისტემური დესკტოპ შეტყობინებები, ცალკე აპში ნაჩვენები შეტყობინებებისგან. ეს არის მოწყობილობაზე ლოკალური — ყოველ კომპიუტერს აქვს თავისი პარამეტრები.',
+      intro:
+        'სისტემური დესკტოპ შეტყობინებები, ცალკე აპში ნაჩვენები შეტყობინებებისგან. ეს არის მოწყობილობაზე ლოკალური — ყოველ კომპიუტერს აქვს თავისი პარამეტრები.',
       enableAll: 'შეტყობინებების ჩართვა',
       enableAllDesc: 'მთავარი გადამრთველი. გამორთე, რომ გააჩუმო ყველა შეტყობინება ქვემოთ.',
       focusedHint: 'დასრულების შეტყობინებები მუშაობს მხოლოდ მაშინ, როცა OpenAmer ფონშია.',
       kinds: {
         approval: {
           label: 'საჭიროა დადასტურება',
-          description: 'ბრძანება გელოდება დასადასტურებლად ან უარსაყოფად.',
+          description: 'ბრძანება გელოდება დასადასტურებლად ან უარსაყოფად.'
         },
         input: {
           label: 'საჭიროა შეყვანა',
-          description: 'OpenAmer-მა დასვა კითხვა ან სჭირდება პაროლი ან საიდუმლო.',
+          description: 'OpenAmer-მა დასვა კითხვა ან სჭირდება პაროლი ან საიდუმლო.'
         },
         turnDone: {
           label: 'პასუხი მზადაა',
-          description: 'ნაბიჯი დასრულდა, სანამ OpenAmer ფონში იყო.',
+          description: 'ნაბიჯი დასრულდა, სანამ OpenAmer ფონში იყო.'
         },
         turnError: {
           label: 'ნაბიჯი ვერ შესრულდა',
-          description: 'ნაბიჯი შეცდომით დასრულდა.',
+          description: 'ნაბიჯი შეცდომით დასრულდა.'
         },
         backgroundDone: {
           label: 'ფონური დავალება დასრულდა',
-          description: 'ფონური ტერმინალის ბრძანება დასრულდა.',
+          description: 'ფონური ტერმინალის ბრძანება დასრულდა.'
         },
         credits: {
           label: 'კრედიტების შეტყობინებები',
-          description: 'კრედიტებზე წვდომა შეჩერებულია ან აღდგა.',
-        },
+          description: 'კრედიტებზე წვდომა შეჩერებულია ან აღდგა.'
+        }
       },
       test: 'სატესტო შეტყობინების გაგზავნა',
       testTitle: 'OpenAmer',
@@ -272,7 +283,7 @@ export const ka = defineLocale({
       testUnsupported: 'ეს სისტემა არ უჭერს მხარს სისტემურ შეტყობინებებს.',
       completionSoundTitle: 'დასრულების ხმა',
       completionSoundDesc: 'იკვრება, როცა აგენტის ნაბიჯი სრულდება. აირჩიე პრესეტი და მოისმინე აქ.',
-      completionSoundPreview: 'მოსმენა',
+      completionSoundPreview: 'მოსმენა'
     },
     sections: {
       model: 'მოდელი',
@@ -282,7 +293,7 @@ export const ka = defineLocale({
       safety: 'უსაფრთხოება',
       memory: 'მეხსიერება და კონტექსტი',
       voice: 'ხმა',
-      advanced: 'დამატებითი',
+      advanced: 'დამატებითი'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop-ის შესახებ',
@@ -290,37 +301,40 @@ export const ka = defineLocale({
       gateway: 'გეითვეის კავშირი...',
       keys: 'API გასაღებების ძებნა...',
       mcp: 'MCP სერვერების ძებნა...',
-      sessions: 'დაარქივებული სესიების ძებნა...',
+      sessions: 'დაარქივებული სესიების ძებნა...'
     },
     modeOptions: {
       light: {
         label: 'ღია',
-        description: 'ნათელი დესკტოპ ზედაპირები',
+        description: 'ნათელი დესკტოპ ზედაპირები'
       },
       dark: {
         label: 'მუქი',
-        description: 'ნაკლებად მბზინავი სამუშაო სივრცე',
+        description: 'ნაკლებად მბზინავი სამუშაო სივრცე'
       },
       system: {
         label: 'სისტემა',
-        description: 'OS-ის გარეგნობის მიყოლა',
-      },
+        description: 'OS-ის გარეგნობის მიყოლა'
+      }
     },
     appearance: {
       title: 'გარეგნობა',
-      intro: 'ეს არის მხოლოდ დესკტოპის ჩვენების პარამეტრები. რეჟიმი აკონტროლებს სიკაშკაშეს; თემა — აქცენტის პალიტრას და ჩატის ზედაპირის სტილს.',
+      intro:
+        'ეს არის მხოლოდ დესკტოპის ჩვენების პარამეტრები. რეჟიმი აკონტროლებს სიკაშკაშეს; თემა — აქცენტის პალიტრას და ჩატის ზედაპირის სტილს.',
       colorMode: 'ფერის რეჟიმი',
       colorModeDesc: 'აირჩიე ფიქსირებული რეჟიმი ან მიეცი OpenAmer-ს სისტემის პარამეტრის მიყოლის საშუალება.',
       toolViewTitle: 'ხელსაწყოს გამოძახების ჩვენება',
       toolViewDesc: 'Product მალავს ნედლ მონაცემებს; Technical აჩვენებს სრულ შეყვანას/გამოყვანას.',
       uiScaleTitle: 'ინტერფეისის მასშტაბი',
-      uiScaleDesc: (percent: number) => `ამასშტაბებს ტექსტს და კონტროლებს მთელ აპში. Cmd/Ctrl +, - და 0 ასევე მუშაობს. მიმდინარე: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `ამასშტაბებს ტექსტს და კონტროლებს მთელ აპში. Cmd/Ctrl +, - და 0 ასევე მუშაობს. მიმდინარე: ${percent}%.`,
       translucencyTitle: 'ფანჯრის გამჭვირვალობა',
       translucencyDesc: 'დაინახე დესკტოპი მთელი ფანჯრის გავლით. მხოლოდ macOS და Windows.',
       backdropTitle: 'ჩატის ფონი',
       backdropDesc: 'საუბრის უკან არსებული მკრთალი ქანდაკების სურათი.',
       embedsTitle: 'ჩაშენებული ელემენტები',
-      embedsDesc: 'მდიდარი გადახედვები იტვირთება მესამე მხარის საიტებიდან (YouTube, X, …). „ჰკითხე“ აჩვენებს ჩანაცვლებას, სანამ თითოეულს დაუშვებ; „ყოველთვის“ ტვირთავს ავტომატურად; „გამორთული“ ტოვებს ჩვეულებრივ ბმულებს.',
+      embedsDesc:
+        'მდიდარი გადახედვები იტვირთება მესამე მხარის საიტებიდან (YouTube, X, …). „ჰკითხე“ აჩვენებს ჩანაცვლებას, სანამ თითოეულს დაუშვებ; „ყოველთვის“ ტვირთავს ავტომატურად; „გამორთული“ ტოვებს ჩვეულებრივ ბმულებს.',
       embedsAsk: 'ჰკითხე',
       embedsAlways: 'ყოველთვის',
       embedsOff: 'გამორთული',
@@ -333,7 +347,8 @@ export const ka = defineLocale({
       themeDesc: 'მხოლოდ დესკტოპ პალიტრები. არჩეული რეჟიმი გამოიყენება ზემოდან.',
       themeProfileNote: profile => `შენახულია ${profile} პროფილისთვის — თითოეულ პროფილს თავისი თემა აქვს.`,
       installTitle: 'VS Code-დან ინსტალაცია',
-      installDesc: 'ჩასვი Marketplace გაფართოების id (მაგ. dracula-theme.theme-dracula), რომ მისი ფერის თემა დესკტოპ პალიტრად გადაკეთდეს.',
+      installDesc:
+        'ჩასვი Marketplace გაფართოების id (მაგ. dracula-theme.theme-dracula), რომ მისი ფერის თემა დესკტოპ პალიტრად გადაკეთდეს.',
       installPlaceholder: 'publisher.extension',
       installButton: 'ინსტალაცია',
       installing: 'ინსტალდება…',
@@ -343,8 +358,10 @@ export const ka = defineLocale({
       importedBadge: 'იმპორტირებული',
       pet: {
         title: 'ცხოველი',
-        intro: 'აიყვანე ანიმაციური petdex ნიღაბი, რომელიც აპზე ცურავს და რეაგირებს იმაზე, რასაც OpenAmer აკეთებს — დარბის ხელსაწყოების მუშაობისას, ზეიმობს წარმატებაზე, ბრაზდება შეცდომებზე.',
-        restartHint: 'ცხოველებს სჭირდებათ სწრაფი გადატვირთვა — მოქმედი აპი ამ ფუნქციის დამატებამდე გაეშვა. დახურე და ხელახლა გახსენი OpenAmer, შემდეგ დაბრუნდი აქ.',
+        intro:
+          'აიყვანე ანიმაციური petdex ნიღაბი, რომელიც აპზე ცურავს და რეაგირებს იმაზე, რასაც OpenAmer აკეთებს — დარბის ხელსაწყოების მუშაობისას, ზეიმობს წარმატებაზე, ბრაზდება შეცდომებზე.',
+        restartHint:
+          'ცხოველებს სჭირდებათ სწრაფი გადატვირთვა — მოქმედი აპი ამ ფუნქციის დამატებამდე გაეშვა. დახურე და ხელახლა გახსენი OpenAmer, შემდეგ დაბრუნდი აქ.',
         on: 'ჩართული',
         off: 'გამორთული',
         scaleTitle: 'ზომა',
@@ -354,7 +371,7 @@ export const ka = defineLocale({
         chooseTitle: 'აირჩიე ცხოველი',
         chooseDesc: 'არჩევა დააინსტალირებს (საჭიროებისამებრ) და გახდის აქტიურს.',
         searchPlaceholder: 'ცხოველების ძებნა…',
-        unreachable: "petdex გალერეა მიუწვდომელია. შეამოწმე კავშირი და ხელახლა გახსენი ეს გვერდი.",
+        unreachable: 'petdex გალერეა მიუწვდომელია. შეამოწმე კავშირი და ხელახლა გახსენი ეს გვერდი.',
         noMatch: query => `არცერთი ცხოველი არ ემთხვევა "${query}".`,
         installedTag: 'დაყენებული',
         generatedTag: 'გენერირებული',
@@ -363,7 +380,7 @@ export const ka = defineLocale({
         uninstall: name => `${name}-ის დეინსტალაცია`,
         delete: name => `${name}-ის წაშლა`,
         deleteTitle: name => `წავშალო ${name}?`,
-        deleteBody: "ეს სამუდამოდ შლის ცხოველს — მისი ხელახლა დაყენება შეუძლებელია.",
+        deleteBody: 'ეს სამუდამოდ შლის ცხოველს — მისი ხელახლა დაყენება შეუძლებელია.',
         deleteConfirm: 'წაშლა',
         rename: name => `${name}-ის გადარქმევა`,
         renameTitle: 'ცხოველის გადარქმევა',
@@ -376,8 +393,8 @@ export const ka = defineLocale({
         exportFailed: slug => `${slug}-ის ექსპორტი ვერ მოხერხდა`,
         noneAvailable: 'ახლა ჩასართავი ცხოველები არ არის.',
         turnOnFailed: 'ცხოველის ჩართვა ვერ მოხერხდა.',
-        turnOffFailed: 'ცხოველის გამორთვა ვერ მოხერხდა.',
-      },
+        turnOffFailed: 'ცხოველის გამორთვა ვერ მოხერხდა.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -388,13 +405,13 @@ export const ka = defineLocale({
       updates: 'განახლებები',
       checkNow: 'ახლა შემოწმება',
       checking: 'მოწმდება…',
-      seeWhatsNew: "ნახე რა არის ახალი",
+      seeWhatsNew: 'ნახე რა არის ახალი',
       updateNow: 'ახლა განახლება',
       releaseNotes: 'გამოშვების შენიშვნები',
-      onLatest: "უახლეს ვერსიაზე ხარ.",
+      onLatest: 'უახლეს ვერსიაზე ხარ.',
       installing: 'განახლება ახლა ინსტალდება.',
-      cantUpdate: "ეს აწყობა თავს ვერ განაახლებს აპის შიგნიდან.",
-      cantReach: "განახლების სერვერი მიუწვდომელია.",
+      cantUpdate: 'ეს აწყობა თავს ვერ განაახლებს აპის შიგნიდან.',
+      cantReach: 'განახლების სერვერი მიუწვდომელია.',
       tapCheck: 'დააწკაპუნე „ახლა შემოწმება“ განახლებების საძებნელად.',
       updateReady: count => `ახალი განახლება მზადაა (${count} change${count === 1 ? '' : 's'} included).`,
       lastChecked: age => `ბოლო შემოწმება ${age}`,
@@ -406,7 +423,7 @@ export const ka = defineLocale({
       justNow: 'ახლახან',
       minAgo: count => `${count} წუთის წინ`,
       hoursAgo: count => `${count} საათის წინ`,
-      daysAgo: count => `${count} დღის წინ`,
+      daysAgo: count => `${count} დღის წინ`
     },
     config: {
       none: 'არცერთი',
@@ -422,7 +439,8 @@ export const ka = defineLocale({
       imported: 'კონფიგი იმპორტირებულია',
       invalidJson: 'კონფიგის არასწორი JSON',
       keepAwakeTitle: 'კომპიუტერი ფხიზლად შენარჩუნება',
-      keepAwakeDesc: 'აუკრძალე ამ მანქანას ძილი, რომ ხანგრძლივი ან ღამის გაშვებები არ შეწყდეს. ეკრანს მაინც შეუძლია ჩაქრეს.',
+      keepAwakeDesc:
+        'აუკრძალე ამ მანქანას ძილი, რომ ხანგრძლივი ან ღამის გაშვებები არ შეწყდეს. ეკრანს მაინც შეუძლია ჩაქრეს.'
     },
     credentials: {
       pasteKey: 'გასაღების ჩასმა',
@@ -432,7 +450,7 @@ export const ka = defineLocale({
       couldNotSave: 'მონაცემების შენახვა ვერ მოხერხდა.',
       remove: 'მოცილება',
       getKey: 'გასაღების მიღება',
-      saving: 'ინახება',
+      saving: 'ინახება'
     },
     envActions: {
       actionsFor: label => `მოქმედებები ${label}-ისთვის`,
@@ -443,7 +461,7 @@ export const ka = defineLocale({
       revealValue: 'მნიშვნელობის ჩვენება',
       replace: 'ჩანაცვლება',
       set: 'დაყენება',
-      clear: 'გასუფთავება',
+      clear: 'გასუფთავება'
     },
     gateway: {
       loading: 'იტვირთება გეითვეის პარამეტრები...',
@@ -451,18 +469,21 @@ export const ka = defineLocale({
       unavailableDesc: 'დესკტოპის IPC ხიდი არ ამჟღავნებს გეითვეის პარამეტრებს.',
       title: 'კავშირი გეითვეისთან',
       envOverride: 'env-ის გადაფარვა',
-      intro: 'OpenAmer Desktop ნაგულისხმევად საკუთარ ლოკალურ გეითვეის უშვებს. გამოიყენე დისტანციური გეითვეი, როცა გინდა ეს აპი მართავდეს უკვე გაშვებულ OpenAmer ბექენდს სხვა მანქანაზე ან სანდო პროქსის უკან. აირჩიე პროფილი ქვემოთ, რომ მას თავისი დისტანციური ჰოსტი მისცე.',
+      intro:
+        'OpenAmer Desktop ნაგულისხმევად საკუთარ ლოკალურ გეითვეის უშვებს. გამოიყენე დისტანციური გეითვეი, როცა გინდა ეს აპი მართავდეს უკვე გაშვებულ OpenAmer ბექენდს სხვა მანქანაზე ან სანდო პროქსის უკან. აირჩიე პროფილი ქვემოთ, რომ მას თავისი დისტანციური ჰოსტი მისცე.',
       appliesTo: 'ვრცელდება',
       allProfiles: 'ყველა პროფილზე',
       defaultConnection: 'ნაგულისხმევი კავშირი ყველა პროფილისთვის, რომელსაც საკუთარი გადაფარვა არ აქვს.',
-      profileConnection: profile => `კავშირი, რომელიც გამოიყენება მხოლოდ მაშინ, როცა “${profile}” აქტიური პროფილია. აირჩიე ნაგულისხმევი გეითვეის გამოყენება მისი გადაფარვის მოსაშორებლად.`,
+      profileConnection: profile =>
+        `კავშირი, რომელიც გამოიყენება მხოლოდ მაშინ, როცა “${profile}” აქტიური პროფილია. აირჩიე ნაგულისხმევი გეითვეის გამოყენება მისი გადაფარვის მოსაშორებლად.`,
       envOverrideTitle: 'გარემოს ცვლადები მართავს ამ დესკტოპ სესიას.',
-      envOverrideDesc: 'მოხსენი OPENAMER_DESKTOP_REMOTE_URL და OPENAMER_DESKTOP_REMOTE_TOKEN, რომ გამოიყენო ქვემოთ შენახული პარამეტრი.',
+      envOverrideDesc:
+        'მოხსენი OPENAMER_DESKTOP_REMOTE_URL და OPENAMER_DESKTOP_REMOTE_TOKEN, რომ გამოიყენო ქვემოთ შენახული პარამეტრი.',
       modeTitle: 'კავშირის რეჟიმი',
       localTitle: 'ლოკალური გეითვეი',
       localDesc: 'გაუშვი პირადი OpenAmer ბექენდი localhost-ზე. ეს ნაგულისხმევია და მუშაობს ოფლაინ.',
       inheritTitle: 'ნაგულისხმევი გეითვეის გამოყენება',
-      inheritDesc: "მოხსენი ამ პროფილის გადაფარვა და გამოიყენე ნაგულისხმევი კავშირი.",
+      inheritDesc: 'მოხსენი ამ პროფილის გადაფარვა და გამოიყენე ნაგულისხმევი კავშირი.',
       remoteTitle: 'დისტანციური გეითვეი',
       remoteDesc: 'დაუკავშირე ეს დესკტოპ გარსი დისტანციურ OpenAmer ბექენდს.',
       remoteAuthHint: 'ჰოსტინგის გეითვეები იყენებენ OAuth-ს ან მომხმარებელს და პაროლს; თვითჰოსტინგის — სესიის ტოკენს.',
@@ -482,7 +503,7 @@ export const ka = defineLocale({
       cloudNoAgents: {
         before: 'ამ ანგარიშზე აგენტები ვერ მოიძებნა. შექმენი ერთი ',
         linkText: 'OpenAmer პორტალში',
-        after: ', შემდეგ განაახლე.',
+        after: ', შემდეგ განაახლე.'
       },
       cloudRefresh: 'განახლება',
       cloudConnect: 'დაკავშირება',
@@ -498,7 +519,8 @@ export const ka = defineLocale({
       cloudAgentProvisioning: 'მზადდება…',
       cloudStatusLabel: status => `სტატუსი: ${status}`,
       remoteUrlTitle: 'დისტანციური URL',
-      remoteUrlDesc: 'საბაზისო URL დისტანციური დაშბორდ ბექენდისთვის. ბილიკის პრეფიქსები მხარდაჭერილია, მაგალითად /openamer.',
+      remoteUrlDesc:
+        'საბაზისო URL დისტანციური დაშბორდ ბექენდისთვის. ბილიკის პრეფიქსები მხარდაჭერილია, მაგალითად /openamer.',
       probing: 'ვამოწმებ, როგორ ავტორიზდება ეს გეითვეი…',
       probeError: 'ჯერ ვერ მივაღწიე ამ გეითვეის. შეამოწმე URL — ავტორიზაციის მეთოდი გამოჩნდება, როცა უპასუხებს.',
       signedIn: 'შესული ხარ',
@@ -509,7 +531,8 @@ export const ka = defineLocale({
       authSignedInPassword: 'ეს გეითვეი იყენებს მომხმარებელს და პაროლს. შესული ხარ; სესია ავტომატურად განახლდება.',
       authSignedInOauth: 'ეს გეითვეი იყენებს OAuth-ს. შესული ხარ; სესია ავტომატურად განახლდება.',
       authNeedsPassword: 'ეს გეითვეი იყენებს მომხმარებელს და პაროლს. შედი, რომ ავტორიზაცია მისცე ამ დესკტოპ აპს.',
-      authNeedsOauth: provider => `ეს გეითვეი იყენებს OAuth-ს. შედი ${provider}-ით, რომ ავტორიზაცია მისცე ამ დესკტოპ აპს.`,
+      authNeedsOauth: provider =>
+        `ეს გეითვეი იყენებს OAuth-ს. შედი ${provider}-ით, რომ ავტორიზაცია მისცე ამ დესკტოპ აპს.`,
       tokenTitle: 'სესიის ტოკენი',
       tokenDesc: 'დაშბორდის სესიის ტოკენი REST და WebSocket წვდომისთვის. დატოვე ცარიელი, რომ შენახული ტოკენი დარჩეს.',
       existingToken: value => `არსებული ტოკენი ${value}`,
@@ -542,7 +565,8 @@ export const ka = defineLocale({
       applyFailed: 'გეითვეის პარამეტრები ვერ გამოიყენა',
       saveFailed: 'გეითვეის პარამეტრები ვერ შეინახა',
       sshTitle: 'SSH-ით დაკავშირება',
-      sshDesc: 'OpenAmer გაეშვება დისტანციურად SSH-ის გავლით და გვირაბით მოდის ამ აპში — არაფერია დასაწყები ან გასამჟღავნებელი. საჭიროა მუშა გასაღებზე დაფუძნებული SSH წვდომა ჰოსტთან.',
+      sshDesc:
+        'OpenAmer გაეშვება დისტანციურად SSH-ის გავლით და გვირაბით მოდის ამ აპში — არაფერია დასაწყები ან გასამჟღავნებელი. საჭიროა მუშა გასაღებზე დაფუძნებული SSH წვდომა ჰოსტთან.',
       sshTrustHint: 'პირველი წარმოდგენილი ჰოსტის გასაღები სანდოდ მიიღება და მიმაგრდება; შემდგომი ცვლილებები იხურება.',
       sshHostTitle: 'ჰოსტი',
       sshHostDesc: 'user@host, ან Host ალიასი ~/.ssh/config-იდან.',
@@ -566,18 +590,22 @@ export const ka = defineLocale({
       sshReachable: (host, platform) => `ხელმისაწვდომია: ${host} (${platform}) — OpenAmer მოიძებნა`,
       sshIncompleteHost: 'შეიყვანე SSH ჰოსტი დაკავშირებამდე.',
       sshErrUnreachable: 'ამ ჰოსტს SSH-ით ვერ მივაღწიე. შეამოწმე ჰოსტი, პორტი და ქსელი.',
-      sshErrAuth: 'SSH ავტორიზაცია ვერ მოხერხდა. ჩატვირთე გასაღები ssh-agent-ში (ssh-add) ან დააყენე IdentityFile ~/.ssh/config-ში — OpenAmer ssh-ს არაინტერაქტიულად უშვებს.',
-      sshErrHostKey: 'ჰოსტის გასაღები შეიცვალა ბოლო დაკავშირების შემდეგ. დაადასტურე, რომ ეს მოსალოდნელია, შემდეგ გაუშვი ssh-keygen -R <host> და დაუკავშირდი ხელახლა.',
-      sshErrNotInstalled: 'OpenAmer არ არის დაინსტალირებული დისტანციურ ჰოსტზე. დააინსტალირე იქ (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ან დააყენე OpenAmer-ის ბილიკი.',
-      sshErrPlatform: 'მხარდაუჭერელი დისტანციური პლატფორმა. OpenAmer Desktop SSH რეჟიმი უჭერს მხარს Linux, macOS და Windows დისტანციურ ჰოსტებს.',
+      sshErrAuth:
+        'SSH ავტორიზაცია ვერ მოხერხდა. ჩატვირთე გასაღები ssh-agent-ში (ssh-add) ან დააყენე IdentityFile ~/.ssh/config-ში — OpenAmer ssh-ს არაინტერაქტიულად უშვებს.',
+      sshErrHostKey:
+        'ჰოსტის გასაღები შეიცვალა ბოლო დაკავშირების შემდეგ. დაადასტურე, რომ ეს მოსალოდნელია, შემდეგ გაუშვი ssh-keygen -R <host> და დაუკავშირდი ხელახლა.',
+      sshErrNotInstalled:
+        'OpenAmer არ არის დაინსტალირებული დისტანციურ ჰოსტზე. დააინსტალირე იქ (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ან დააყენე OpenAmer-ის ბილიკი.',
+      sshErrPlatform:
+        'მხარდაუჭერელი დისტანციური პლატფორმა. OpenAmer Desktop SSH რეჟიმი უჭერს მხარს Linux, macOS და Windows დისტანციურ ჰოსტებს.',
       sshErrTimeout: 'SSH კავშირის დრო ამოიწურა. ჰოსტი შეიძლება მიუწვდომელი ან ძილშია.',
       sshErrUpdateRequired: 'განაახლე OpenAmer დისტანციურ ჰოსტზე Desktop SSH-ით დაკავშირებამდე.',
-      sshErrUnknown: 'SSH კავშირი ვერ დამყარდა.',
+      sshErrUnknown: 'SSH კავშირი ვერ დამყარდა.'
     },
     keys: {
       loading: 'იტვირთება API გასაღებები და მონაცემები...',
       failedLoad: 'API გასაღებები ვერ ჩაიტვირთა',
-      empty: 'ამ კატეგორიაში ჯერ არაფერია კონფიგურირებული.',
+      empty: 'ამ კატეგორიაში ჯერ არაფერია კონფიგურირებული.'
     },
     mcp: {
       loading: 'იტვირთება MCP სერვერები...',
@@ -629,7 +657,8 @@ export const ka = defineLocale({
       catalogInstallFailed: name => `${name}-ის ინსტალაცია ვერ მოხერხდა`,
       catalogEnvPrompt: name => `${name} მოითხოვს მონაცემებს`,
       catalogEnvRequired: 'შეავსე სავალდებულო მნიშვნელობები ინსტალაციამდე.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ჩართულია`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ჩართულია`,
       statusConnecting: 'უკავშირდება…',
       statusNeedsAuth: 'საჭიროა ავტორიზაცია',
       statusError: 'შეცდომა',
@@ -642,23 +671,23 @@ export const ka = defineLocale({
       unsavedConnect: 'არ არის შენახული — შეინახე mcp.json დასაკავშირებლად.',
       enableTool: tool => `${tool}-ის ჩართვა`,
       disableTool: tool => `${tool}-ის გამორთვა`,
-      noOutput: 'ჯერ გამოტანა არ არის.',
-    },
+      noOutput: 'ჯერ გამოტანა არ არის.'
+    }
   },
   commandCenter: {
     sectionEntries: {
       usage: {
         title: 'გამოყენების პანელი',
-        detail: 'ტოკენები, ხარჯი და უნარების აქტივობა',
+        detail: 'ტოკენები, ხარჯი და უნარების აქტივობა'
       },
       sessions: {
         title: 'სესიების პანელი',
-        detail: 'სესიების ძებნა, დამაგრება და მართვა',
+        detail: 'სესიების ძებნა, დამაგრება და მართვა'
       },
       system: {
         title: 'სისტემის პანელი',
-        detail: 'გეითვეის სტატუსი, ლოგები, გადატვირთვა/განახლება',
-      },
+        detail: 'გეითვეის სტატუსი, ლოგები, გადატვირთვა/განახლება'
+      }
     },
     providerNavigate: 'ნავიგაცია',
     providerSessions: 'სესიები',
@@ -725,7 +754,7 @@ export const ka = defineLocale({
       generatedTag: 'გენერირებული',
       adoptFailed: 'ამ ცხოველის აყვანა ვერ მოხერხდა.',
       toggleFailed: 'ცხოველის გადართვა ვერ მოხერხდა.',
-      noneAvailable: 'ცხოველები არ არის — აირჩიე ერთი ქვემოთ დასაყენებლად.',
+      noneAvailable: 'ცხოველები არ არის — აირჩიე ერთი ქვემოთ დასაყენებლად.'
     },
     generatePet: {
       title: 'ცხოველის გენერირება',
@@ -754,7 +783,7 @@ export const ka = defineLocale({
       referenceImageTooLarge: 'საცნობი სურათი ძალიან დიდია. გამოიყენე 16 MB-ზე ნაკლები.',
       referenceImageInvalid: 'ამ საცნობი სურათის წაკითხვა ვერ მოხერხდა. სცადე PNG, JPG, WebP ან GIF.',
       adopt: 'აყვანა',
-      startOver: 'თავიდან დაწყება',
+      startOver: 'თავიდან დაწყება'
     },
     installTheme: {
       title: 'თემის ინსტალაცია…',
@@ -766,7 +795,7 @@ export const ka = defineLocale({
       install: 'ინსტალაცია',
       installing: 'ინსტალდება...',
       installed: 'დაყენებულია',
-      installs: count => `${count} ინსტალაცია`,
+      installs: count => `${count} ინსტალაცია`
     },
     settingsFields: 'პარამეტრების ველები',
     mcpServers: 'MCP სერვერები',
@@ -775,35 +804,35 @@ export const ka = defineLocale({
       maintenance: 'მოვლა',
       sessions: 'სესიები',
       system: 'სისტემა',
-      usage: 'გამოყენება',
+      usage: 'გამოყენება'
     },
     sectionDescriptions: {
       maintenance: 'დიაგნოსტიკა, სარეზერვო ასლები, კურატორი და მეხსიერების მონაცემები',
       sessions: 'სესიების ძებნა და მართვა',
       system: 'სტატუსი, ლოგები და სისტემური მოქმედებები',
-      usage: 'ტოკენები, ხარჯი და უნარების აქტივობა დროში',
+      usage: 'ტოკენები, ხარჯი და უნარების აქტივობა დროში'
     },
     nav: {
       newChat: {
         title: 'ახალი სესია',
-        detail: 'დაიწყე ახალი სესია',
+        detail: 'დაიწყე ახალი სესია'
       },
       settings: {
         title: 'პარამეტრები',
-        detail: 'OpenAmer Desktop-ის კონფიგურირება',
+        detail: 'OpenAmer Desktop-ის კონფიგურირება'
       },
       skills: {
         title: 'შესაძლებლობები',
-        detail: 'უნარები, ხელსაწყოები და MCP სერვერები',
+        detail: 'უნარები, ხელსაწყოები და MCP სერვერები'
       },
       messaging: {
         title: 'შეტყობინებები',
-        detail: 'Telegram-ის, Slack-ის, Discord-ის და სხვების დაყენება',
+        detail: 'Telegram-ის, Slack-ის, Discord-ის და სხვების დაყენება'
       },
       artifacts: {
         title: 'არტეფაქტები',
-        detail: 'გენერირებული შედეგების დათვალიერება',
-      },
+        detail: 'გენერირებული შედეგების დათვალიერება'
+      }
     },
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · აქტიური სესიები ${count}`,
     days: count => `${count}დღ`,
@@ -853,8 +882,8 @@ export const ka = defineLocale({
       actionStarted: name => `${name} დაიწყო — ლოგს ვადევნებ თვალს...`,
       actionFailed: name => `${name} ვერ გაეშვა`,
       running: 'მიმდინარეობს...',
-      viewLog: 'მოქმედებების ლოგი',
-    },
+      viewLog: 'მოქმედებების ლოგი'
+    }
   },
   webhooks: {
     fieldDescription: 'აღწერა',
@@ -878,7 +907,7 @@ export const ka = defineLocale({
       github_comment: 'GitHub-ის კომენტარი',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     search: 'ვებჰუკების ძებნა...',
     loading: 'იტვირთება ვებჰუკები...',
@@ -887,7 +916,8 @@ export const ka = defineLocale({
     hint: 'გამოწერების ცვლილებები ცხლად გადაიტვირთება, როცა მიმღები მუშაობს. გამორთული გამოწერები უარყოფს შემომავალ მოვლენებს.',
     empty: 'ჯერ ვებჰუკ გამოწერები არ არის.',
     disabledTitle: 'ვებჰუკის მიმღები გამორთულია',
-    disabledBody: 'ვებჰუკები საკუთარი გეითვეი პლატფორმაა. ჩართე აქ, რომ მიიღო შემომავალი HTTP მოვლენები; ჩატის არხები საჭიროა მხოლოდ მაშინ, როცა გამოწერა აწვდის Telegram-ს, Discord-ს, Slack-ს ან სხვა არხს.',
+    disabledBody:
+      'ვებჰუკები საკუთარი გეითვეი პლატფორმაა. ჩართე აქ, რომ მიიღო შემომავალი HTTP მოვლენები; ჩატის არხები საჭიროა მხოლოდ მაშინ, როცა გამოწერა აწვდის Telegram-ს, Discord-ს, Slack-ს ან სხვა არხს.',
     enable: 'ვებჰუკების ჩართვა',
     enabling: 'ჩართვა...',
     enabled: (name: string) => `ჩართული: "${name}"`,
@@ -918,7 +948,7 @@ export const ka = defineLocale({
     done: 'მზადაა',
     fieldName: 'სახელი',
     fieldNamePlaceholder: 'მაგ. github-push',
-    createFailed: (detail: string) => `შექმნა ვერ მოხერხდა: ${detail}`,
+    createFailed: (detail: string) => `შექმნა ვერ მოხერხდა: ${detail}`
   },
   profiles: {
     close: 'პროფილების დახურვა',
@@ -996,7 +1026,7 @@ export const ka = defineLocale({
     failedLoadSoul: 'SOUL.md ვერ ჩაიტვირთა',
     failedSaveSoul: 'SOUL.md ვერ შეინახა',
     failedCreate: 'პროფილის შექმნა ვერ მოხერხდა',
-    failedRename: 'პროფილის გადარქმევა ვერ მოხერხდა',
+    failedRename: 'პროფილის გადარქმევა ვერ მოხერხდა'
   },
   artifacts: {
     refreshing: 'არტეფაქტების განახლება',
@@ -1030,14 +1060,14 @@ export const ka = defineLocale({
     search: 'არტეფაქტების ძებნა...',
     refresh: 'არტეფაქტების განახლება',
     rangeOf: (start, end, total) => `${start}-${end} / ${total}`,
-    goToPage: (itemLabel, page) => `გადადი ${itemLabel} გვერდზე ${page}`,
+    goToPage: (itemLabel, page) => `გადადი ${itemLabel} გვერდზე ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'ახალი სესია',
       skills: 'შესაძლებლობები',
       messaging: 'შეტყობინებები',
-      artifacts: 'არტეფაქტები',
+      artifacts: 'არტეფაქტები'
     },
     searchAria: 'სესიების ძიება',
     searchPlaceholder: 'სესიების ძიება…',
@@ -1069,7 +1099,7 @@ export const ka = defineLocale({
       namePlaceholder: 'მაგ. Skunkworks',
       foldersLabel: 'საქაღალდეები',
       ideaLabel: 'იდეა',
-      ideaPlaceholder: "რაზეა ეს პროექტი? (ინახება IDEA.md-ში)",
+      ideaPlaceholder: 'რაზეა ეს პროექტი? (ინახება IDEA.md-ში)',
       ideaGenerate: 'იდეის გენერირება',
       ideaGenerating: 'გენერირდება…',
       ideaShuffle: 'შაბლონების არევა',
@@ -1089,7 +1119,8 @@ export const ka = defineLocale({
       copyPath: 'ბილიკის კოპირება',
       removeFromSidebar: 'გვერდითი ზოლიდან დამალვა',
       createFailed: 'პროექტის შექმნა ვერ მოხერხდა',
-      staleBackend: 'განაახლე OpenAmer ბექენდი პროექტების შესაქმნელად — შენი ბექენდი უფრო ძველია ვიდრე ეს დესკტოპ აპი (პარამეტრები → განახლებები → ბექენდი).',
+      staleBackend:
+        'განაახლე OpenAmer ბექენდი პროექტების შესაქმნელად — შენი ბექენდი უფრო ძველია ვიდრე ეს დესკტოპ აპი (პარამეტრები → განახლებები → ბექენდი).',
       deleteConfirm: 'ეს შლის შენახულ პროექტს OpenAmer-იდან. ფაილები, git რეპოზიტორიები და worktrees უცვლელი რჩება.',
       startWork: 'ახალი worktree',
       newWorktreeTitle: 'ახალი worktree',
@@ -1111,13 +1142,15 @@ export const ka = defineLocale({
       noBranches: 'განშტოებები ვერ მოიძებნა',
       removeWorktree: 'worktree-ს მოცილება',
       removeWorktreeFailed: 'worktree ვერ მოიხსნა (შეუნახავი ცვლილებები?)',
-      removeWorktreeConfirm: 'მოხსენი git-იდან (შლის worktree საქაღალდეს; განშტოება რჩება), ან უბრალოდ დამალე ზოლი გვერდითი ზოლიდან და დატოვე worktree დისკზე.',
-      removeWorktreeDirty: 'ამ worktree-ს აქვს შეუნახავი ცვლილებები. მოხსენი იძულებით (ყრის ამ ცვლილებებს), ან უბრალოდ დამალე ზოლი და დატოვე დისკზე.',
+      removeWorktreeConfirm:
+        'მოხსენი git-იდან (შლის worktree საქაღალდეს; განშტოება რჩება), ან უბრალოდ დამალე ზოლი გვერდითი ზოლიდან და დატოვე worktree დისკზე.',
+      removeWorktreeDirty:
+        'ამ worktree-ს აქვს შეუნახავი ცვლილებები. მოხსენი იძულებით (ყრის ამ ცვლილებებს), ან უბრალოდ დამალე ზოლი და დატოვე დისკზე.',
       forceRemove: 'იძულებით მოცილება',
       enter: label => `${label}-ის გახსნა`,
       reorder: label => `${label}-ის გადალაგება`,
       toggle: label => `${label} სესიების გადართვა`,
-      back: 'ყველა პროექტი',
+      back: 'ყველა პროექტი'
     },
     newSessionIn: label => `ახალი სესია ${label}-ში`,
     showMoreIn: (count, label) => `კიდევ ${count} ${label}-ში`,
@@ -1155,15 +1188,15 @@ export const ka = defineLocale({
       ageNow: 'ახლა',
       ageDay: 'დღ',
       ageHour: 'სთ',
-      ageMin: 'წთ',
+      ageMin: 'წთ'
     },
     dateDivider: {
       today: 'დღეს ადრე',
       yesterday: 'გუშინ',
       thisWeek: 'ამ კვირაში ადრე',
       lastWeek: 'გასულ კვირას',
-      thisMonth: 'ამ თვეში ადრე',
-    },
+      thisMonth: 'ამ თვეში ადრე'
+    }
   },
   composer: {
     queueStuckTitle: 'რიგში მყოფი შეტყობინება არ გაიგზავნა',
@@ -1192,19 +1225,20 @@ export const ka = defineLocale({
     snippets: {
       codeReview: {
         label: 'კოდის მიმოხილვა',
-        description: 'შეამოწმეთ მიმდინარე ცვლილება რეგრესიებზე, გამოტოვებულ კიდურ შემთხვევებზე და გამოტოვებულ ტესტებზე.',
-        text: 'გთხოვთ, გადახედეთ ამას ხარვეზებზე, რეგრესიებსა და გამოტოვებულ ტესტებზე.',
+        description:
+          'შეამოწმეთ მიმდინარე ცვლილება რეგრესიებზე, გამოტოვებულ კიდურ შემთხვევებზე და გამოტოვებულ ტესტებზე.',
+        text: 'გთხოვთ, გადახედეთ ამას ხარვეზებზე, რეგრესიებსა და გამოტოვებულ ტესტებზე.'
       },
       implementationPlan: {
         label: 'განხორციელების გეგმა',
         description: 'დახაზეთ მიდგომა კოდის შეცვლამდე, რომ დიფი ფოკუსირებული დარჩეს.',
-        text: 'გთხოვთ, კოდის შეცვლამდე შეადგინეთ მოკლე განხორციელების გეგმა.',
+        text: 'გთხოვთ, კოდის შეცვლამდე შეადგინეთ მოკლე განხორციელების გეგმა.'
       },
       explainThis: {
         label: 'ახსენით ეს',
         description: 'გაიარეთ, როგორ მუშაობს არჩეული კოდი და მიუთითეთ მთავარ ფაილებზე.',
-        text: 'გთხოვთ, ახსენით როგორ მუშაობს ეს და მიმითითეთ მთავარ ფაილებზე.',
-      },
+        text: 'გთხოვთ, ახსენით როგორ მუშაობს ეს და მიმითითეთ მთავარ ფაილებზე.'
+      }
     },
     stopShort: 'შეჩერება',
     endConversation: 'ხმოვანი საუბრის დასრულება',
@@ -1227,7 +1261,7 @@ export const ka = defineLocale({
       '/resume': 'წინა სესიის გაგრძელება',
       '/details': 'ტრანსკრიპტის დეტალურობის დონის მართვა',
       '/copy': 'არჩეულის ან ასისტენტის ბოლო შეტყობინების კოპირება',
-      '/quit': 'openamer-დან გასვლა',
+      '/quit': 'openamer-დან გასვლა'
     },
     hotkeyDescs: {
       'composer.mention': 'ფაილების, საქაღალდეების, URL-ების, git-ის მითითება',
@@ -1237,7 +1271,7 @@ export const ka = defineLocale({
       'composer.sendQueued': 'რიგში მდგომი შემდეგი ტურის გაგზავნა',
       'keybinds.openPanel': 'ყველა კლავიატურის მალსახმობი',
       'composer.cancel': 'პოპოვერის დახურვა · გაშვების გაუქმება',
-      'composer.history': 'პოპოვერის / ისტორიის მონაცვლეობა',
+      'composer.history': 'პოპოვერის / ისტორიის მონაცვლეობა'
     },
     attachUrlTitle: 'URL-ის მიმაგრება',
     attachUrlDesc: 'OpenAmer მოიტანს გვერდს და მას ამ ტურის კონტექსტად ჩართავს.',
@@ -1258,20 +1292,20 @@ export const ka = defineLocale({
     newSessionPlaceholders: [
       'რას ვაშენებთ?',
       'მიეცი OpenAmer-ს დავალება',
-      "რა გიფიქრია?",
+      'რა გიფიქრია?',
       'აღწერე, რა გჭირდება',
       'რას მივხედოთ?',
       'ჰკითხე ყველაფერი',
-      'დაიწყე მიზნით',
+      'დაიწყე მიზნით'
     ],
     followUpPlaceholders: [
       'გაგზავნე გაგრძელება',
       'დაამატე მეტი კონტექსტი',
       'დააზუსტე მოთხოვნა',
-      "რა შემდეგ?",
+      'რა შემდეგ?',
       'გააგრძელე ასე',
       'წაიყვანე უფრო შორს',
-      'შეცვალე ან გააგრძელე',
+      'შეცვალე ან გააგრძელე'
     ],
     startVoice: 'ხმოვანი საუბრის დაწყება',
     queueMessage: 'შეტყობინების რიგში დაყენება',
@@ -1296,7 +1330,7 @@ export const ka = defineLocale({
     previewLabel: label => `გადახედვა ${label}`,
     couldNotPreview: label => `${label}-ის გადახედვა ვერ მოხერხდა`,
     removeAttachment: label => `${label}-ის მოცილება`,
-    url: 'URL…',
+    url: 'URL…'
   },
   statusStack: {
     agents: 'აგენტები',
@@ -1319,8 +1353,10 @@ export const ka = defineLocale({
       viewAsList: 'სიის სახით ნახვა',
       revert: 'დაბრუნება',
       revertAll: 'ყველას დაბრუნება',
-      revertConfirm: 'გაუქმდეს ცვლილებები ამ ფაილში და აღდგეს ის დაკომიტებულ მდგომარეობამდე? ამის გაუქმება შეუძლებელია.',
-      revertAllConfirm: 'გაუქმდეს ყველა ცვლილება და აღდგეს ფაილები დაკომიტებულ მდგომარეობამდე? ამის გაუქმება შეუძლებელია.',
+      revertConfirm:
+        'გაუქმდეს ცვლილებები ამ ფაილში და აღდგეს ის დაკომიტებულ მდგომარეობამდე? ამის გაუქმება შეუძლებელია.',
+      revertAllConfirm:
+        'გაუქმდეს ყველა ცვლილება და აღდგეს ფაილები დაკომიტებულ მდგომარეობამდე? ამის გაუქმება შეუძლებელია.',
       staged: 'დამატებული',
       noChanges: 'ცვლილებები არ არის',
       notRepo: 'ეს არ არის git-ის რეპოზიტორია',
@@ -1336,7 +1372,8 @@ export const ka = defineLocale({
       openPr: 'PR-ის გახსნა',
       ghMissing: 'დააყენეთ GitHub CLI (gh) და შედით სისტემაში PR-ების გასახსნელად',
       agentShip: 'სთხოვეთ OpenAmer-ს PR-ის გახსნა',
-      agentShipPrompt: 'გადახედეთ მიმდინარე ცვლილებებს, დააკომიტეთ ისინი მკაფიო conventional-commit შეტყობინებით, გაგზავნეთ შტო და გახსენით pull request.',
+      agentShipPrompt:
+        'გადახედეთ მიმდინარე ცვლილებებს, დააკომიტეთ ისინი მკაფიო conventional-commit შეტყობინებით, გაგზავნეთ შტო და გახსენით pull request.',
       newBranch: 'ახალი შტო',
       worktrees: 'სამუშაო ხეები',
       changed: count => `${count} შეცვლილი`,
@@ -1345,12 +1382,12 @@ export const ka = defineLocale({
       commitPlaceholder: 'შეტყობინება (⌘↵ კომიტისთვის)',
       branchOffFrom: base => `ახალი განშტოება ${base}-იდან`,
       switchTo: branch => `${branch}-ზე გადასვლა`,
-      switchFailed: branch => `${branch}-ზე გადასვლა ვერ მოხერხდა`,
+      switchFailed: branch => `${branch}-ზე გადასვლა ვერ მოხერხდა`
     },
     background: count => `${count} ფონში`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `დავალებები ${done}/${total}`,
-    exit: code => `გასვლა ${code}`,
+    exit: code => `გასვლა ${code}`
   },
   updates: {
     stages: {
@@ -1365,7 +1402,7 @@ export const ka = defineLocale({
       pull: 'თითქმის მზადაა…',
       pydeps: 'დასრულება…',
       update: 'OpenAmer-ის განახლება…',
-      rebuild: 'დესკტოპ აპლიკაციის ხელახლა აწყობა…',
+      rebuild: 'დესკტოპ აპლიკაციის ხელახლა აწყობა…'
     },
     checking: 'მიმდინარეობს განახლებების ძებნა…',
     checkFailedTitle: 'განახლებების შემოწმება ვერ მოხერხდა',
@@ -1384,15 +1421,19 @@ export const ka = defineLocale({
     updateNow: 'განახლეთ ახლა',
     maybeLater: 'მოგვიანებით',
     manualTitle: 'განაახლეთ ტერმინალიდან',
-    manualBody: 'თქვენ OpenAmer დააყენეთ ბრძანების ხაზიდან, ამიტომ განახლებებიც იქ გაეშვება. ჩასვით ეს თქვენს ტერმინალში:',
+    manualBody:
+      'თქვენ OpenAmer დააყენეთ ბრძანების ხაზიდან, ამიტომ განახლებებიც იქ გაეშვება. ჩასვით ეს თქვენს ტერმინალში:',
     manualPickedUp: 'OpenAmer ახალ ვერსიას მიიღებს მისი შემდეგი გაშვებისას.',
     guiSkewTitle: 'განაახლეთ დესკტოპ აპი',
-    guiSkewBody: 'ბექენდი განახლდა, მაგრამ ამ დესკტოპ აპის პაკეტი არ შეიცვალა. განაახლეთ ან გადააყენეთ OpenAmer-ის დესკტოპ აპი (თქვენი AppImage / .deb / .rpm), რომ შეესაბამებოდეს.',
+    guiSkewBody:
+      'ბექენდი განახლდა, მაგრამ ამ დესკტოპ აპის პაკეტი არ შეიცვალა. განაახლეთ ან გადააყენეთ OpenAmer-ის დესკტოპ აპი (თქვენი AppImage / .deb / .rpm), რომ შეესაბამებოდეს.',
     copy: 'კოპირება',
     copied: 'დაკოპირებულია',
     done: 'დასრულდა',
-    applyingBody: 'OpenAmer-ის განახლების პროგრამა გადადის საკუთარ ფანჯარაში და დასრულების შემდეგ OpenAmer-ს ავტომატურად ხელახლა გახსნის. გთხოვთ, განახლების დროს თავად ნუ გახსნით OpenAmer-ს.',
-    applyingBodyBackend: 'დისტანციური ბექენდი ახორციელებს განახლებას და გადაიტვირთება. OpenAmer ავტომატურად ხელახლა დაუკავშირდება, როცა ის დაბრუნდება.',
+    applyingBody:
+      'OpenAmer-ის განახლების პროგრამა გადადის საკუთარ ფანჯარაში და დასრულების შემდეგ OpenAmer-ს ავტომატურად ხელახლა გახსნის. გთხოვთ, განახლების დროს თავად ნუ გახსნით OpenAmer-ს.',
+    applyingBodyBackend:
+      'დისტანციური ბექენდი ახორციელებს განახლებას და გადაიტვირთება. OpenAmer ავტომატურად ხელახლა დაუკავშირდება, როცა ის დაბრუნდება.',
     applyingClose: 'ეს ფანჯარა დაიხურება განახლების მსვლელობისას, შემდეგ OpenAmer დამოუკიდებლად გაიხსნება.',
     errorTitle: 'განახლება არ დასრულდა',
     errorBody: 'ნუ ინერვიულებთ — არაფერი დაიკარგა. ახლა შეგიძლიათ ხელახლა სცადოთ.',
@@ -1403,13 +1444,14 @@ export const ka = defineLocale({
       restarting: 'ბექენდი გადაიტვირთება განახლების ჩასატვირთად…',
       notAvailable: 'განახლება მიუწვდომელია ამ ბექენდისთვის.',
       failed: 'ბექენდის განახლება ვერ მოხერხდა.',
-      noReturn: 'ბექენდი ონლაინ არ დაბრუნდა. განახლება, შესაძლოა, არ დასრულებულა — შეამოწმე ბექენდის ჰოსტი.',
+      noReturn: 'ბექენდი ონლაინ არ დაბრუნდა. განახლება, შესაძლოა, არ დასრულებულა — შეამოწმე ბექენდის ჰოსტი.'
     },
     moreChanges: count => `+ ${count} change${count === 1 ? '' : 's'} დამატებით შედის.`,
     appErrors: {
-      updateLocked: 'განახლება შეწყდა: სხვა OpenAmer ფანჯარა ან ტერმინალი, რომელიც openamer-ს უშვებს, ამ ინსტალაციას ღიად იჭერს. დახურე და სცადე ხელახლა.',
-      updateFailed: 'განახლება არ დასრულდა. ნუ დარდობ — არაფერი დაიკარგა. შეგიძლია ახლა სცადო.',
-    },
+      updateLocked:
+        'განახლება შეწყდა: სხვა OpenAmer ფანჯარა ან ტერმინალი, რომელიც openamer-ს უშვებს, ამ ინსტალაციას ღიად იჭერს. დახურე და სცადე ხელახლა.',
+      updateFailed: 'განახლება არ დასრულდა. ნუ დარდობ — არაფერი დაიკარგა. შეგიძლია ახლა სცადო.'
+    }
   },
   modelPicker: {
     loadFailed: 'მოდელების ჩატვირთვა ვერ მოხერხდა',
@@ -1425,13 +1467,13 @@ export const ka = defineLocale({
     search: 'პროვაიდერების და მოდელების ფილტრი...',
     noModels: 'მოდელები ვერ მოიძებნა.',
     addProvider: 'პროვაიდერის დამატება',
-    pro: 'Pro',
+    pro: 'Pro'
   },
   modelVisibility: {
     title: 'მოდელები',
     search: 'მოდელების ძიება',
     noAuthenticatedProviders: 'ავტორიზებული პროვაიდერები არ არის.',
-    addProvider: 'პროვაიდერის დამატება…',
+    addProvider: 'პროვაიდერის დამატება…'
   },
   shell: {
     windowControls: 'ფანჯრის კონტროლი',
@@ -1442,7 +1484,7 @@ export const ka = defineLocale({
       noModels: 'მოდელები ვერ მოიძებნა',
       editModels: 'მოდელების რედაქტირება…',
       refreshModels: 'მოდელების განახლება',
-      fast: 'სწრაფი',
+      fast: 'სწრაფი'
     },
     modelOptions: {
       noOptions: 'ამ მოდელისთვის პარამეტრები არ არის',
@@ -1458,7 +1500,7 @@ export const ka = defineLocale({
       max: 'მაქს',
       ultra: 'ულტრა',
       updateFailed: 'მოდელის პარამეტრის განახლება ვერ მოხერხდა',
-      fastFailed: 'სწრაფი რეჟიმის განახლება ვერ მოხერხდა',
+      fastFailed: 'სწრაფი რეჟიმის განახლება ვერ მოხერხდა'
     },
     gatewayMenu: {
       gateway: 'გეითვეი',
@@ -1473,7 +1515,7 @@ export const ka = defineLocale({
       connection: label => `კავშირი: ${label}`,
       recentActivity: 'ბოლო აქტივობა',
       viewAllLogs: 'ყველა ლოგის ნახვა →',
-      messagingPlatforms: 'საკომუნიკაციო პლატფორმები',
+      messagingPlatforms: 'საკომუნიკაციო პლატფორმები'
     },
     approvalMode: {
       title: 'დადასტურების რეჟიმი',
@@ -1483,7 +1525,7 @@ export const ka = defineLocale({
       smart: 'ჭკვიანური',
       smartDescription: 'ავტომატურად შეაფასე მოქმედებები და ჰკითხე საჭიროებისას',
       off: 'გამორთული',
-      offDescription: 'იმუშავე დადასტურების მოთხოვნების გარეშე',
+      offDescription: 'იმუშავე დადასტურების მოთხოვნების გარეშე'
     },
     statusbar: {
       unknown: 'უცნობი',
@@ -1539,27 +1581,29 @@ export const ka = defineLocale({
           skills: 'უნარები',
           subagent_definitions: 'ქვეაგენტის განსაზღვრებები',
           system_prompt: 'სისტემური ინსტრუქცია',
-          tool_definitions: 'ხელსაწყოს განსაზღვრებები',
+          tool_definitions: 'ხელსაწყოს განსაზღვრებები'
         },
         empty: 'ჯერ კონტექსტის მონაცემები არ არის',
         loading: 'იტვირთება დაშლა…',
         percentFull: percent => `${percent}% სავსე`,
         title: 'კონტექსტის გამოყენება',
-        tokenSummary: (used, max) => `${used} / ${max} ტოკენი`,
+        tokenSummary: (used, max) => `${used} / ${max} ტოკენი`
       },
       openContextUsage: 'კონტექსტის გამოყენების დაშლის გახსნა',
       session: 'სესია',
       runtimeSessionElapsed: 'სესიის გაშვების დრო',
-      yoloOn: 'YOLO ჩართულია — ავტომატურად ამტკიცებს საშიშ ბრძანებებს. დააწკაპუნე გამოსართავად. Shift+დაწკაპუნება გლობალურად ცვლის.',
-      yoloOff: 'YOLO გამორთულია — დააწკაპუნე საშიში ბრძანებების ავტომატური დასამტკიცებლად. Shift+დაწკაპუნება გლობალურად ცვლის.',
+      yoloOn:
+        'YOLO ჩართულია — ავტომატურად ამტკიცებს საშიშ ბრძანებებს. დააწკაპუნე გამოსართავად. Shift+დაწკაპუნება გლობალურად ცვლის.',
+      yoloOff:
+        'YOLO გამორთულია — დააწკაპუნე საშიში ბრძანებების ავტომატური დასამტკიცებლად. Shift+დაწკაპუნება გლობალურად ცვლის.',
       modelNone: 'არცერთი',
       noModel: 'მოდელი არ არის',
       switchModel: 'მოდელის შეცვლა',
       openModelPicker: 'მოდელის ამრჩევის გახსნა',
       modelPinned: 'შენ დაგამაგრე; ახალი ჩატები ამას იყენებს პარამეტრების ნაგულისხმევის ნაცვლად',
       modelTitle: (provider, model) => `მოდელი · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   assistant: {
     thread: {
@@ -1586,7 +1630,8 @@ export const ka = defineLocale({
       loadingSession: 'იტვირთება სესია',
       showEarlier: 'ადრინდელი შეტყობინებების ჩვენება',
       loadingResponse: 'OpenAmer პასუხს ტვირთავს',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'ვფიქრობ',
@@ -1594,7 +1639,7 @@ export const ka = defineLocale({
       yesterday: time => `გუშინ, ${time}`,
       copy: 'კოპირება',
       refresh: 'განახლება',
-      moreActions: 'მეტი მოქმედება',
+      moreActions: 'მეტი მოქმედება'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer-ის გეითვეი არ არის დაკავშირებული',
@@ -1608,7 +1653,8 @@ export const ka = defineLocale({
       reject: 'უარყოფა',
       alwaysTitle: 'ყოველთვის დაშვებული იყოს ეს ბრძანება?',
       alwaysAllow: 'ყოველთვის დაშვება',
-      alwaysDescription: pattern => `ეს ამატებს “${pattern}” შაბლონს შენს მუდმივ დაშვებების სიაში (~/.openamer/config.yaml). OpenAmer აღარ იკითხავს მსგავს ბრძანებებზე — ამ სესიაში ან მომავალში.`,
+      alwaysDescription: pattern =>
+        `ეს ამატებს “${pattern}” შაბლონს შენს მუდმივ დაშვებების სიაში (~/.openamer/config.yaml). OpenAmer აღარ იკითხავს მსგავს ბრძანებებზე — ამ სესიაში ან მომავალში.`
     },
     clarify: {
       notReady: 'დაზუსტების მოთხოვნა ჯერ მზად არ არის',
@@ -1622,124 +1668,124 @@ export const ka = defineLocale({
       continueLabel: 'გაგრძელება',
       lateAnswer: (question, choice) => `რე: "${question}" — ჩემი პასუხი: ${choice}`,
       lateAnswerTip: 'ეს პასუხი შეადგინე გაგრძელების შეტყობინებად',
-      lateAnswerHint: 'ეს მოთხოვნა აღარ ელოდება. აირჩიე ვარიანტი, რომ შეადგინო გაგრძელების შეტყობინებად.',
+      lateAnswerHint: 'ეს მოთხოვნა აღარ ელოდება. აირჩიე ვარიანტი, რომ შეადგინო გაგრძელების შეტყობინებად.'
     },
     tool: {
       prefixes: {
         web: 'ვები',
-        browser: 'ბრაუზერი',
+        browser: 'ბრაუზერი'
       },
       titles: {
         browser_click: {
           done: 'დაწკაპუნებული გვერდის ელემენტი',
           pending: 'გვერდის ელემენტზე დაწკაპუნება',
-          pendingAction: 'დაწკაპუნება',
+          pendingAction: 'დაწკაპუნება'
         },
         browser_fill: {
           done: 'შევსებული ფორმის ველი',
           pending: 'ფორმის ველის შევსება',
-          pendingAction: 'შევსება',
+          pendingAction: 'შევსება'
         },
         browser_navigate: {
           done: 'გახსნილი გვერდი',
           pending: 'გვერდის გახსნა',
-          pendingAction: 'გახსნა',
+          pendingAction: 'გახსნა'
         },
         browser_snapshot: {
           done: 'გადაღებული გვერდის სნეპშოტი',
           pending: 'გვერდის სნეპშოტის გადაღება',
-          pendingAction: 'გადაღება',
+          pendingAction: 'გადაღება'
         },
         browser_take_screenshot: {
           done: 'გადაღებული ეკრანის სურათი',
           pending: 'ეკრანის სურათის გადაღება',
-          pendingAction: 'გადაღება',
+          pendingAction: 'გადაღება'
         },
         browser_type: {
           done: 'გვერდზე აკრეფილი',
           pending: 'გვერდზე აკრეფა',
-          pendingAction: 'აკრეფა',
+          pendingAction: 'აკრეფა'
         },
         clarify: {
           done: 'დასმული კითხვა',
           pending: 'კითხვის დასმა',
-          pendingAction: 'დასმა',
+          pendingAction: 'დასმა'
         },
         cronjob: {
           done: 'Cron ამოცანა',
           pending: 'Cron ამოცანის დაგეგმვა',
-          pendingAction: 'დაგეგმვა',
+          pendingAction: 'დაგეგმვა'
         },
         edit_file: {
           done: 'რედაქტირებული ფაილი',
           pending: 'ფაილის რედაქტირება',
-          pendingAction: 'რედაქტირება',
+          pendingAction: 'რედაქტირება'
         },
         execute_code: {
           done: 'გაშვებული კოდი',
           pending: 'სკრიპტირება',
-          pendingAction: 'სკრიპტირება',
+          pendingAction: 'სკრიპტირება'
         },
         image_generate: {
           done: 'გენერირებული სურათი',
           pending: 'სურათის გენერირება',
-          pendingAction: 'გენერირება',
+          pendingAction: 'გენერირება'
         },
         list_files: {
           done: 'ჩამოთვლილი ფაილები',
           pending: 'ფაილების ჩამოთვლა',
-          pendingAction: 'ჩამოთვლა',
+          pendingAction: 'ჩამოთვლა'
         },
         patch: {
           done: 'დაპატჩილი ფაილი',
           pending: 'ფაილის დაპატჩვა',
-          pendingAction: 'დაპატჩვა',
+          pendingAction: 'დაპატჩვა'
         },
         read_file: {
           done: 'ფაილი წაკითხულია',
           pending: 'ფაილი იკითხება',
-          pendingAction: 'კითხულობს',
+          pendingAction: 'კითხულობს'
         },
         search_files: {
           done: 'ფაილები მოძებნილია',
           pending: 'ფაილები მოიძებნება',
-          pendingAction: 'ეძებს',
+          pendingAction: 'ეძებს'
         },
         session_search_recall: {
           done: 'სესიების ისტორია მოძებნილია',
           pending: 'სესიების ისტორია მოიძებნება',
-          pendingAction: 'ეძებს',
+          pendingAction: 'ეძებს'
         },
         terminal: {
           done: 'ბრძანება გაეშვა',
           pending: 'ბრძანება იშვება',
-          pendingAction: 'უშვებს',
+          pendingAction: 'უშვებს'
         },
         todo: {
           done: 'დავალებები განახლდა',
           pending: 'დავალებები ახლდება',
-          pendingAction: 'აახლებს',
+          pendingAction: 'აახლებს'
         },
         vision_analyze: {
           done: 'სურათი გაანალიზდა',
           pending: 'სურათი ანალიზდება',
-          pendingAction: 'აანალიზებს',
+          pendingAction: 'აანალიზებს'
         },
         web_extract: {
           done: 'ვებ გვერდი წაკითხულია',
           pending: 'ვებ გვერდი იკითხება',
-          pendingAction: 'კითხულობს',
+          pendingAction: 'კითხულობს'
         },
         web_search: {
           done: 'ვებ მოძებნილია',
           pending: 'ვებ მოიძებნება',
-          pendingAction: 'ეძებს',
+          pendingAction: 'ეძებს'
         },
         write_file: {
           done: 'ფაილი რედაქტირებულია',
           pending: 'ფაილი რედაქტირდება',
-          pendingAction: 'არედაქტირებს',
-        },
+          pendingAction: 'არედაქტირებს'
+        }
       },
       code: 'კოდი',
       copyCode: 'კოდის კოპირება',
@@ -1774,7 +1820,7 @@ export const ka = defineLocale({
         ran: 'გაშვებულია',
         running: 'მიმდინარეობს',
         ranCode: 'კოდი გაეშვა',
-        runningCode: 'სკრიპტირება',
+        runningCode: 'სკრიპტირება'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -1782,9 +1828,9 @@ export const ka = defineLocale({
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `ვუშვებ ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `ვუშვებ ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `ვუშვებ ${action.toLowerCase()}`
+      }
+    }
   },
   preview: {
     overwrite: 'გადაწერა',
@@ -1807,7 +1853,7 @@ export const ka = defineLocale({
       sentTitle: 'ჩატში გაგზავნილია',
       messages: count => `${count} კონსოლის შეტყობინება`,
       selected: count => `${count} არჩეული`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} დაემატა შემდგენელს`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} დაემატა შემდგენელს`
     },
     web: {
       appFailedToBoot: 'გადახედვის აპლიკაციის გაშვება ვერ მოხერხდა',
@@ -1828,9 +1874,11 @@ export const ka = defineLocale({
       reloadingNow: 'გადახედვა ახლა გადაიტვირთება.',
       restartFailedTitle: 'გადახედვის გადატვირთვა ვერ მოხერხდა',
       restartFailedMessage: 'OpenAmer-მა სერვერის გადატვირთვა ვერ შეძლო.',
-      stillWorking: 'OpenAmer ჯერ კიდევ მუშაობს, მაგრამ გადატვირთვის შედეგი ჯერ არ მოსულა. შესაძლოა სერვერის ბრძანება წინა პლანზე მუშაობდეს.',
+      stillWorking:
+        'OpenAmer ჯერ კიდევ მუშაობს, მაგრამ გადატვირთვის შედეგი ჯერ არ მოსულა. შესაძლოა სერვერის ბრძანება წინა პლანზე მუშაობდეს.',
       workspaceReloading: 'სამუშაო სივრცე შეიცვალა, გადახედვა გადაიტვირთება',
-      moduleMimeDescription: 'მოდულის სკრიპტები არასწორი MIME ტიპით მიეწოდება. ეს ჩვეულებრივ ნიშნავს, რომ სტატიკური ფაილების სერვერი Vite/React აპლიკაციას ემსახურება პროექტის dev სერვერის ნაცვლად.',
+      moduleMimeDescription:
+        'მოდულის სკრიპტები არასწორი MIME ტიპით მიეწოდება. ეს ჩვეულებრივ ნიშნავს, რომ სტატიკური ფაილების სერვერი Vite/React აპლიკაციას ემსახურება პროექტის dev სერვერის ნაცვლად.',
       unreachableDescription: 'გადახედვის გვერდთან დაკავშირება ვერ მოხერხდა.',
       fallbackTitle: 'გადახედვა',
       lookingRestart: taskId => `OpenAmer ეძებს გადასატვირთ პრევიუ სერვერს (${taskId})`,
@@ -1841,7 +1889,7 @@ export const ka = defineLocale({
       filesChanged: (count, url) => `${count} ფაილის ცვლილება, გადახედვა იტვირთება: ${url}`,
       watchFailed: message => `პრევიუ ფაილზე დაკვირვება ვერ მოხერხდა: ${message}`,
       loadFailedConsole: (code, message) => `ჩატვირთვა ვერ მოხერხდა${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `${url}-ის გახსნა`,
+      openTarget: url => `${url}-ის გახსნა`
     },
     tab: 'გადახედვა',
     closeTab: label => `${label}-ის დახურვა`,
@@ -1874,7 +1922,8 @@ export const ka = defineLocale({
     unsavedChanges: 'შეუნახავი ცვლილებები',
     saveFailed: message => `შენახვა ვერ მოხერხდა: ${message}`,
     diskChangedTitle: 'ფაილი დისკზე შეიცვალა',
-    diskChangedBody: 'ეს ფაილი გახსნის შემდეგ შეიცვალა. გადავაწერო შენი ვერსიით, თუ გავაუქმო ცვლილებები და ხელახლა ჩავტვირთო?',
+    diskChangedBody:
+      'ეს ფაილი გახსნის შემდეგ შეიცვალა. გადავაწერო შენი ვერსიით, თუ გავაუქმო ცვლილებები და ხელახლა ჩავტვირთო?'
   },
   desktop: {
     yoloToggleFailed: 'YOLO-ის გადართვა ვერ მოხერხდა',
@@ -1886,7 +1935,8 @@ export const ka = defineLocale({
     editFailed: 'რედაქტირება ვერ მოხერხდა',
     resumeFailed: 'გაგრძელება ვერ მოხერხდა',
     resumeStrandedTitle: 'ამ სესიის ჩატვირთვა ვერ მოხერხდა',
-    resumeStrandedBody: 'ამ სესიასთან კავშირი ვერ დამყარდა და ავტომატური ხელახალი ცდები შეწყდა. შეამოწმეთ, მუშაობს თუ არა gateway, შემდეგ სცადეთ ხელახლა.',
+    resumeStrandedBody:
+      'ამ სესიასთან კავშირი ვერ დამყარდა და ავტომატური ხელახალი ცდები შეწყდა. შეამოწმეთ, მუშაობს თუ არა gateway, შემდეგ სცადეთ ხელახლა.',
     resumeRetry: 'ხელახლა ცდა',
     nothingToBranch: 'გასაშტო არაფერია',
     branchNeedsChat: 'დაწყეთ ან გააგრძელეთ ჩატი განშტოებამდე.',
@@ -1930,7 +1980,8 @@ export const ka = defineLocale({
     yoloOff: 'YOLO გამორთულია',
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} ამ სესიისთვის`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `პროფილი: ${current}. გამოიყენე /profile <name> ან „ახალი სესიის“ ამრჩევი სხვა პროფილში ჩატის დასაწყებად.`,
+    profileStatus: current =>
+      `პროფილი: ${current}. გამოიყენე /profile <name> ან „ახალი სესიის“ ამრჩევი სხვა პროფილში ჩატის დასაწყებად.`,
     noProfileNamed: (target, available) => `პროფილი სახელით "${target}" არ არის. ხელმისაწვდომი: ${available}`,
     newChatsProfile: name => `ახალი ჩატები გამოიყენებს პროფილს ${name}.`,
     branchTitle: n => `მონახაზი: განშტოება #${n}`,
@@ -1942,8 +1993,8 @@ export const ka = defineLocale({
       success: platform => `გადაეცა ${platform}-ს. აქ ნებისმიერ დროს შეგიძლია გააგრძელო.`,
       systemNote: platform => `↻ გადაეცა ${platform}-ს — აქ ნებისმიერ დროს შეგიძლია გააგრძელო.`,
       failed: error => `გადაცემა ვერ მოხერხდა: ${error}`,
-      timedOut: 'გეითვეის ლოდინის დრო ამოიწურა. მუშაობს `openamer gateway`?',
-    },
+      timedOut: 'გეითვეის ლოდინის დრო ამოიწურა. მუშაობს `openamer gateway`?'
+    }
   },
   common: {
     apply: 'გამოყენება',
@@ -1984,7 +2035,7 @@ export const ka = defineLocale({
     update: 'განახლება',
     tryHint: term => `სცადე “${term}”`,
     on: 'ჩართული',
-    off: 'გამორთული',
+    off: 'გამორთული'
   },
   fileMenu: {
     revealFinder: 'Finder-ში ჩვენება',
@@ -1999,7 +2050,7 @@ export const ka = defineLocale({
     renameLabel: 'ახალი სახელი',
     deleteTitle: name => `წავშალო ${name}?`,
     deleteBody: 'ის გადავა ნაგავში — იქიდან შეგიძლია აღადგინო.',
-    pathCopied: 'ბილიკი დაკოპირდა',
+    pathCopied: 'ბილიკი დაკოპირდა'
   },
   boot: {
     ready: 'OpenAmer Desktop მზადაა',
@@ -2009,7 +2060,7 @@ export const ka = defineLocale({
       loadingSettings: 'იტვირთება OpenAmer-ის პარამეტრები',
       loadingSessions: 'იტვირთება ბოლო სესიები',
       startingDesktopConnection: 'იწყება დესკტოპ კავშირი',
-      startingOpenAmerDesktop: 'იწყება OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'იწყება OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'OpenAmer-ის ფონური პროცესი დასრულდა.',
@@ -2018,13 +2069,15 @@ export const ka = defineLocale({
       desktopBootFailed: 'დესკტოპის გაშვება ვერ მოხერხდა',
       gatewayConnectionLost: 'გეითვეისთან კავშირი დაიკარგა',
       gatewaySignInRequired: 'საჭიროა გეითვეიში შესვლა',
-      ipcBridgeUnavailable: 'დესკტოპის IPC ხიდი მიუწვდომელია.',
+      ipcBridgeUnavailable: 'დესკტოპის IPC ხიდი მიუწვდომელია.'
     },
     failure: {
-      title: "OpenAmer ვერ გაეშვა",
-      description: "ფონური გეითვეი არ ამოქმედდა. სცადე აღდგენის ერთ-ერთი ნაბიჯი ქვემოთ. არცერთი მათგანი არ შლის შენს ჩატებს ან პარამეტრებს.",
+      title: 'OpenAmer ვერ გაეშვა',
+      description:
+        'ფონური გეითვეი არ ამოქმედდა. სცადე აღდგენის ერთ-ერთი ნაბიჯი ქვემოთ. არცერთი მათგანი არ შლის შენს ჩატებს ან პარამეტრებს.',
       remoteTitle: 'საჭიროა დისტანციურ გეითვეიში შესვლა',
-      remoteDescription: 'შენი დისტანციური გეითვეის სესია ამოიწურა. გაიარე ავტორიზაცია ხელახლა. აქ არაფერი შლის ჩატებს ან პარამეტრებს.',
+      remoteDescription:
+        'შენი დისტანციური გეითვეის სესია ამოიწურა. გაიარე ავტორიზაცია ხელახლა. აქ არაფერი შლის ჩატებს ან პარამეტრებს.',
       retry: 'ხელახლა ცდა',
       repairInstall: 'ინსტალაციის შეკეთება',
       useLocalGateway: 'ლოკალური გეითვეის გამოყენება',
@@ -2032,7 +2085,8 @@ export const ka = defineLocale({
       back: 'უკან',
       openLogs: 'ლოგების გახსნა',
       repairHint: 'შეკეთება ხელახლა უშვებს ინსტალერს და ახალ მანქანაზე შეიძლება რამდენიმე წუთი დასჭირდეს.',
-      remoteSignInHint: signInLabel => `გამოდის შენახული დისტანციური ბრაუზერის სესიიდან და შემდეგ ხსნის ${signInLabel}. გამოიყენე ლოკალური გეითვეი ჩაშენებულ ბექენდზე გადასასვლელად.`,
+      remoteSignInHint: signInLabel =>
+        `გამოდის შენახული დისტანციური ბრაუზერის სესიიდან და შემდეგ ხსნის ${signInLabel}. გამოიყენე ლოკალური გეითვეი ჩაშენებულ ბექენდზე გადასასვლელად.`,
       signOutAndSignIn: 'გასვლა და შესვლა',
       remoteFailureHint: 'შეამოწმე გეითვეის URL და ავტორიზაცია გეითვეის პარამეტრებში, ან გადადი ლოკალურ გეითვეიზე.',
       hideRecentLogs: 'ბოლო ლოგების დამალვა',
@@ -2044,8 +2098,8 @@ export const ka = defineLocale({
       signInFailed: 'შესვლა ვერ მოხერხდა',
       signInToRemoteGateway: 'დისტანციურ გეითვეიში შესვლა',
       signInWithProvider: provider => `შესვლა ${provider}-ით`,
-      identityProvider: 'შენი იდენტობის პროვაიდერი',
-    },
+      identityProvider: 'შენი იდენტობის პროვაიდერი'
+    }
   },
   notifications: {
     region: 'შეტყობინებები',
@@ -2058,21 +2112,23 @@ export const ka = defineLocale({
     copyDetail: 'დეტალის კოპირება',
     copyDetailFailed: 'შეტყობინების დეტალის კოპირება ვერ მოხერხდა',
     backendOutOfDateTitle: 'ბექენდი მოძველებულია',
-    backendOutOfDateMessage: 'შენი OpenAmer ბექენდი უფრო ძველია ვიდრე ეს დესკტოპ აწყობა და შეიძლება არასწორად იმუშაოს. განაახლე მათი შესაბამისობისთვის.',
+    backendOutOfDateMessage:
+      'შენი OpenAmer ბექენდი უფრო ძველია ვიდრე ეს დესკტოპ აწყობა და შეიძლება არასწორად იმუშაოს. განაახლე მათი შესაბამისობისთვის.',
     installMethodUnsupportedTitle: 'ინსტალაციის მხარდაუჭერელი მეთოდი',
     updateOpenAmer: 'OpenAmer-ის განახლება',
     updateReadyTitle: 'განახლება მზადაა',
     updateReadyMessage: count => `${count} ახალი ცვლილება${count === 1 ? '' : 's'} ხელმისაწვდომია.`,
-    seeWhatsNew: "ნახე რა არის ახალი",
+    seeWhatsNew: 'ნახე რა არის ახალი',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT-ს სჭირდება ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs-მა უარყო API გასაღები (401).',
       gatewayAuthFailed: 'გეითვეის ავტორიზაცია ვერ მოხერხდა — შეამოწმე API_SERVER_KEY.',
-      methodNotAllowed: 'დესკტოპ ბექენდმა უარყო ეს მოთხოვნა (405 Method Not Allowed). სცადე OpenAmer Desktop-ის გადატვირთვა.',
+      methodNotAllowed:
+        'დესკტოპ ბექენდმა უარყო ეს მოთხოვნა (405 Method Not Allowed). სცადე OpenAmer Desktop-ის გადატვირთვა.',
       microphonePermission: 'მიკროფონის ნებართვა უარყოფილია.',
       openaiRejectedApiKey: 'OpenAI-მ უარყო API გასაღები.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI-მ უარყო API გასაღები (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS-ს სჭირდება VOICE_TOOLS_OPENAI_KEY ან OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS-ს სჭირდება VOICE_TOOLS_OPENAI_KEY ან OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'კონფიგურირე მეტყველების ტექსტად გარდაქმნა ხმოვანი რეჟიმისთვის.',
@@ -2091,7 +2147,7 @@ export const ka = defineLocale({
       transcriptionFailed: 'ხმის ტრანსკრიფცია ვერ მოხერხდა',
       transcriptionUnavailable: 'ხმის ტრანსკრიფცია ჯერ არ არის ხელმისაწვდომი.',
       tryRecordingAgain: 'სცადე ხელახლა ჩაწერა.',
-      unavailable: 'ხმა მიუწვდომელია',
+      unavailable: 'ხმა მიუწვდომელია'
     },
     native: {
       approvalTitle: 'საჭიროა დადასტურება',
@@ -2104,11 +2160,12 @@ export const ka = defineLocale({
       turnErrorTitle: 'ნაბიჯი ვერ შესრულდა',
       backgroundDoneTitle: 'ფონური დავალება დასრულდა',
       backgroundFailedTitle: 'ფონური დავალება ვერ შესრულდა',
-      creditsTitle: 'კრედიტები',
-    },
+      creditsTitle: 'კრედიტები'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `აქტიურია პროგრამული რენდერინგი — დაფიქსირდა დისტანციური ეკრანი (${reason}). GPU აჩქარება გამორთულია ციმციმის თავიდან ასაცილებლად.`,
+    message: reason =>
+      `აქტიურია პროგრამული რენდერინგი — დაფიქსირდა დისტანციური ეკრანი (${reason}). GPU აჩქარება გამორთულია ციმციმის თავიდან ასაცილებლად.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer-ის კრედიტები ამოიწურა',
@@ -2116,7 +2173,7 @@ export const ka = defineLocale({
     fallbackMessage: 'შენს ანგარიშს კრედიტები ამოეწურა. დაამატე კრედიტები გასაგრძელებლად.',
     openBilling: 'ბილინგის გახსნა',
     addCredits: 'კრედიტების დამატება',
-    dismiss: 'დახურვა',
+    dismiss: 'დახურვა'
   },
   titlebar: {
     hideSidebar: 'გვერდითი ზოლის დამალვა',
@@ -2133,7 +2190,7 @@ export const ka = defineLocale({
     openStarmap: 'მეხსიერების გრაფის გახსნა',
     openKeybinds: 'კლავიატურის მალსახმობები',
     layoutEditor: 'განლაგების რედაქტორი',
-    layoutEditorTitle: 'განლაგების რედაქტორი — ⌘-დაწკაპუნება აბრუნებს განლაგებას',
+    layoutEditorTitle: 'განლაგების რედაქტორი — ⌘-დაწკაპუნება აბრუნებს განლაგებას'
   },
   keybinds: {
     title: 'კლავიატურის მალსახმობები',
@@ -2150,7 +2207,7 @@ export const ka = defineLocale({
       profiles: 'პროფილები',
       session: 'სესია',
       navigation: 'ნავიგაცია',
-      view: 'ხედი',
+      view: 'ხედი'
     },
     actions: {
       'keybinds.openPanel': 'კლავიატურის მალსახმობების გახსნა',
@@ -2229,8 +2286,8 @@ export const ka = defineLocale({
       'composer.slash': 'slash ბრძანებების პალიტრა',
       'composer.help': 'სწრაფი დახმარება',
       'composer.history': 'პოპოვერის / ისტორიის ციკლი',
-      'composer.cancel': 'პოპოვერის დახურვა · გაშვების გაუქმება',
-    },
+      'composer.cancel': 'პოპოვერის დახურვა · გაშვების გაუქმება'
+    }
   },
   language: {
     label: 'ენა',
@@ -2239,7 +2296,7 @@ export const ka = defineLocale({
     saveError: 'ენის განახლება ვერ მოხერხდა',
     switchTo: 'ენის შეცვლა',
     searchPlaceholder: 'ენების ძებნა…',
-    noResults: 'ენები ვერ მოიძებნა',
+    noResults: 'ენები ვერ მოიძებნა'
   },
   skills: {
     tabSkills: 'უნარები',
@@ -2259,7 +2316,8 @@ export const ka = defineLocale({
     noDescription: 'აღწერა არ არის.',
     configured: 'კონფიგურირებულია',
     needsKeys: 'საჭიროებს გასაღებებს',
-    visionModelHint: 'ხედვა იყენებს შენი დამხმარე მოდელის კონფიგურაციას — სურათების მქონე მოდელი იქ ირჩევა, არა აქ პროვაიდერის მიხედვით.',
+    visionModelHint:
+      'ხედვა იყენებს შენი დამხმარე მოდელის კონფიგურაციას — სურათების მქონე მოდელი იქ ირჩევა, არა აქ პროვაიდერის მიხედვით.',
     visionModelLink: 'აირჩიე ხედვის მოდელი პარამეტრებში → მოდელები',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} ხელსაწყოს ნაკრები ჩართულია`,
     configureToolset: label => `${label}-ის კონფიგურირება`,
@@ -2285,7 +2343,7 @@ export const ka = defineLocale({
     provenance: {
       agent: 'ნასწავლი',
       bundled: 'ჩაშენებული',
-      hub: 'ჰაბი',
+      hub: 'ჰაბი'
     },
     emptyNoneFound: noun => `${noun} ვერ მოიძებნა`,
     emptyNothingMatches: query => `არაფერი ემთხვევა “${query}”.`,
@@ -2303,9 +2361,11 @@ export const ka = defineLocale({
       connectingHubs: 'უერთდება უნარების ჰაბებს...',
       connectedHubs: 'დაკავშირებული ჰაბები:',
       featured: 'გამორჩეული უნარები',
-      landingHint: 'მოძებნე ჰაბში, რომ დაათვალიერო დასაყენებელი უნარები ოფიციალური ინდექსიდან, GitHub-იდან და საზოგადოების წყაროებიდან.',
+      landingHint:
+        'მოძებნე ჰაბში, რომ დაათვალიერო დასაყენებელი უნარები ოფიციალური ინდექსიდან, GitHub-იდან და საზოგადოების წყაროებიდან.',
       noResults: 'ჰაბში შესაბამისი უნარები ვერ მოიძებნა.',
-      resultCount: (count, ms) => `შედეგები: ${count} result${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
+      resultCount: (count, ms) =>
+        `შედეგები: ${count} result${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `დრო ამოიწურა: ${sources}`,
       installed: 'დაყენებული',
       install: 'ინსტალაცია',
@@ -2323,7 +2383,7 @@ export const ka = defineLocale({
       trust: {
         builtin: 'ჩაშენებული',
         trusted: 'სანდო',
-        community: 'საზოგადოებრივი',
+        community: 'საზოგადოებრივი'
       },
       verdictSafe: 'უსაფრთხო',
       verdictCaution: 'სიფრთხილე',
@@ -2341,8 +2401,8 @@ export const ka = defineLocale({
       loadFailed: 'უნარების ჰაბი ვერ ჩაიტვირთა',
       previewFailed: 'უნარის გადახედვა ვერ მოხერხდა',
       scanFailed: 'უსაფრთხოების სკანირება ვერ მოხერხდა',
-      searchFailed: 'ჰაბში ძებნა ვერ მოხერხდა',
-    },
+      searchFailed: 'ჰაბში ძებნა ვერ მოხერხდა'
+    }
   },
   starmap: {
     title: 'მეხსიერების გრაფი',
@@ -2359,7 +2419,8 @@ export const ka = defineLocale({
     emptyTitle: 'ჯერ არაფერია ნასწავლი',
     emptyDesc: 'როცა OpenAmer შენი სამუშაოსთვის უნარებსა და მეხსიერებებს აგროვებს, ისინი აქ ჩნდება.',
     share: 'რუკის გაზიარება',
-    shareHint: 'დააკოპირე კოდი რუკის გასაზიარებლად, ან ჩასვი ერთი ჩასატვირთად. შეიცავს მხოლოდ განლაგებას, არა შენს მეხსიერებას ან უნარების ტექსტს.',
+    shareHint:
+      'დააკოპირე კოდი რუკის გასაზიარებლად, ან ჩასვი ერთი ჩასატვირთად. შეიცავს მხოლოდ განლაგებას, არა შენს მეხსიერებას ან უნარების ტექსტს.',
     shareTitle: 'რუკის იმპორტი / ექსპორტი',
     sharePlaceholder: 'ჩასვი რუკის კოდი…',
     copy: 'რუკის კოდის კოპირება',
@@ -2369,7 +2430,7 @@ export const ka = defineLocale({
     importEmpty: 'ჩასვი რუკის კოდი ჩასატვირთად.',
     importSuccess: nodes => `ჩაიტვირთა რუკა ${nodes} ${nodes === 1 ? 'node' : 'nodes'}-ით.`,
     importedBadge: 'იმპორტირებული რუკა',
-    resetToMine: 'ჩემს რუკაზე დაბრუნება',
+    resetToMine: 'ჩემს რუკაზე დაბრუნება'
   },
   agents: {
     close: 'აგენტების დახურვა',
@@ -2399,7 +2460,7 @@ export const ka = defineLocale({
     ageDays: days => `${days} დღის წინ`,
     durationSeconds: seconds => `${seconds}წმ`,
     durationMinutes: (minutes, seconds) => `${minutes}წთ ${seconds}წმ`,
-    tokens: value => `${value} ტოკ`,
+    tokens: value => `${value} ტოკ`
   },
   messaging: {
     search: 'შეტყობინებების ძებნა...',
@@ -2414,7 +2475,7 @@ export const ka = defineLocale({
       not_configured: 'საჭიროებს დაყენებას',
       pending_restart: 'საჭიროა გადატვირთვა',
       retrying: 'ხელახლა ცდის',
-      startup_failed: 'გაშვება ვერ მოხერხდა',
+      startup_failed: 'გაშვება ვერ მოხერხდა'
     },
     unknown: 'უცნობი',
     hintPendingRestart: 'სტატუსის ზოლიდან გადატვირთე გეითვეი ამ ცვლილების გამოსაყენებლად.',
@@ -2453,127 +2514,126 @@ export const ka = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'ბოტის ტოკენი',
         help: 'შექმენი ბოტი @BotFather-ით, შემდეგ ჩასვი მის მიერ მოცემული ტოკენი.',
-        placeholder: 'ჩასვი Telegram ბოტის ტოკენი',
+        placeholder: 'ჩასვი Telegram ბოტის ტოკენი'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'დაშვებული Telegram მომხმარებლის ID-ები',
-        help: 'რეკომენდებული. მძიმით გამოყოფილი რიცხვითი ID-ები @userinfobot-იდან. ამის გარეშე ნებისმიერს შეუძლია შენს ბოტს მისწეროს.',
+        help: 'რეკომენდებული. მძიმით გამოყოფილი რიცხვითი ID-ები @userinfobot-იდან. ამის გარეშე ნებისმიერს შეუძლია შენს ბოტს მისწეროს.'
       },
       TELEGRAM_PROXY: {
         label: 'პროქსის URL',
-        help: 'საჭიროა მხოლოდ იმ ქსელებში, სადაც Telegram დაბლოკილია.',
+        help: 'საჭიროა მხოლოდ იმ ქსელებში, სადაც Telegram დაბლოკილია.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'ბოტის ტოკენი',
-        help: 'შექმენი აპლიკაცია Discord Developer Portal-ში, დაამატე ბოტი, შემდეგ ჩასვი მისი ტოკენი.',
+        help: 'შექმენი აპლიკაცია Discord Developer Portal-ში, დაამატე ბოტი, შემდეგ ჩასვი მისი ტოკენი.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'დაშვებული Discord მომხმარებლის ID-ები',
-        help: 'რეკომენდებული. მძიმით გამოყოფილი Discord მომხმარებლის ID-ები.',
+        help: 'რეკომენდებული. მძიმით გამოყოფილი Discord მომხმარებლის ID-ები.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'პასუხის სტილი',
-        help: 'first, all ან off.',
+        help: 'first, all ან off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'ყველა Discord მომხმარებლის დაშვება',
-        help: 'მხოლოდ განვითარებისთვის. true-ს შემთხვევაში ნებისმიერს შეუძლია ბოტს მისწეროს დაშვებების სიის გარეშე.',
+        help: 'მხოლოდ განვითარებისთვის. true-ს შემთხვევაში ნებისმიერს შეუძლია ბოტს მისწეროს დაშვებების სიის გარეშე.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'მთავარი არხის ID',
-        help: 'არხი, სადაც ბოტი აგზავნის პროაქტიულ შეტყობინებებს (cron გამოტანა, შეხსენებები).',
+        help: 'არხი, სადაც ბოტი აგზავნის პროაქტიულ შეტყობინებებს (cron გამოტანა, შეხსენებები).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'მთავარი არხის სახელი',
-        help: 'მთავარი არხის საჩვენებელი სახელი ლოგებში და სტატუსის გამოტანაში.',
+        help: 'მთავარი არხის საჩვენებელი სახელი ლოგებში და სტატუსის გამოტანაში.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'ყველა iMessage მომხმარებლის დაშვება',
-        help: 'true-ს შემთხვევაში BlueBubbles-ის დაშვებების სია გამოტოვდება.',
+        help: 'true-ს შემთხვევაში BlueBubbles-ის დაშვებების სია გამოტოვდება.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'ყველა Mattermost მომხმარებლის დაშვება',
+        label: 'ყველა Mattermost მომხმარებლის დაშვება'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'მთავარი არხი',
+        label: 'მთავარი არხი'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'ყველა QQ მომხმარებლის დაშვება',
+        label: 'ყველა QQ მომხმარებლის დაშვება'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ-ის მთავარი არხი',
-        help: 'ნაგულისხმევი არხი ან ჯგუფი cron-ის მიწოდებისთვის.',
+        help: 'ნაგულისხმევი არხი ან ჯგუფი cron-ის მიწოდებისთვის.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ-ის მთავარი არხის სახელი',
+        label: 'QQ-ის მთავარი არხის სახელი'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack ბოტის ტოკენი',
         help: 'გამოიყენე ბოტის ტოკენი OAuth & Permissions-იდან Slack აპის დაყენების შემდეგ.',
-        placeholder: 'ჩასვი Slack ბოტის ტოკენი',
+        placeholder: 'ჩასვი Slack ბოტის ტოკენი'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack აპის ტოკენი',
         help: 'გამოიყენე აპის დონის ტოკენი, რომელიც Socket Mode-ს სჭირდება.',
-        placeholder: 'ჩასვი Slack აპის ტოკენი',
+        placeholder: 'ჩასვი Slack აპის ტოკენი'
       },
       SLACK_ALLOWED_USERS: {
         label: 'დაშვებული Slack მომხმარებლის ID-ები',
-        help: 'რეკომენდებული. მძიმით გამოყოფილი Slack მომხმარებლის ID-ები.',
+        help: 'რეკომენდებული. მძიმით გამოყოფილი Slack მომხმარებლის ID-ები.'
       },
       MATTERMOST_URL: {
         label: 'სერვერის URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'ბოტის ტოკენი',
+        label: 'ბოტის ტოკენი'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'დაშვებული მომხმარებლის ID-ები',
-        help: 'რეკომენდებული. მძიმით გამოყოფილი Mattermost მომხმარებლის ID-ები.',
+        help: 'რეკომენდებული. მძიმით გამოყოფილი Mattermost მომხმარებლის ID-ები.'
       },
       MATRIX_HOMESERVER: {
         label: 'Homeserver-ის URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'წვდომის ტოკენი',
+        label: 'წვდომის ტოკენი'
       },
       MATRIX_USER_ID: {
         label: 'ბოტის მომხმარებლის ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'დაშვებული Matrix მომხმარებლის ID-ები',
-        help: 'რეკომენდებული. მძიმით გამოყოფილი ID-ები @user:server ფორმატში.',
+        help: 'რეკომენდებული. მძიმით გამოყოფილი ID-ები @user:server ფორმატში.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal ხიდის URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'მოქმედი signal-cli REST ხიდის URL.',
+        help: 'მოქმედი signal-cli REST ხიდის URL.'
       },
       SIGNAL_ACCOUNT: {
         label: 'ტელეფონის ნომერი',
-        help: 'ნომერი, რომელიც შენს signal-cli ხიდზეა რეგისტრირებული.',
+        help: 'ნომერი, რომელიც შენს signal-cli ხიდზეა რეგისტრირებული.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'დაშვებული Signal მომხმარებლები',
-        help: 'რეკომენდებული. მძიმით გამოყოფილი Signal იდენტიფიკატორები.',
+        help: 'რეკომენდებული. მძიმით გამოყოფილი Signal იდენტიფიკატორები.'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp ხიდის ჩართვა',
-        help: 'ავტომატურად დგება ქვემოთ მოცემული გადამრთველით. ნუ შეეხები, თუ არ იცი, რომ გჭირდება.',
+        help: 'ავტომატურად დგება ქვემოთ მოცემული გადამრთველით. ნუ შეეხები, თუ არ იცი, რომ გჭირდება.'
       },
       WHATSAPP_MODE: {
-        label: 'ხიდის რეჟიმი',
+        label: 'ხიდის რეჟიმი'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'დაშვებული WhatsApp მომხმარებლები',
-        help: 'რეკომენდებული. მძიმით გამოყოფილი ტელეფონის ნომრები ან WhatsApp ID-ები.',
-      },
+        help: 'რეკომენდებული. მძიმით გამოყოფილი ტელეფონის ნომრები ან WhatsApp ID-ები.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   cron: {
     close: 'cron-ის დახურვა',
@@ -2588,14 +2648,14 @@ export const ka = defineLocale({
       paused: 'შეჩერებული',
       disabled: 'გამორთული',
       error: 'შეცდომა',
-      completed: 'დასრულებული',
+      completed: 'დასრულებული'
     },
     deliveryLabels: {
       local: 'ეს დესკტოპი',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'ელფოსტა',
+      email: 'ელფოსტა'
     },
     scheduleLabels: {
       daily: 'ყოველდღე',
@@ -2604,7 +2664,7 @@ export const ka = defineLocale({
       monthly: 'ყოველთვიური',
       hourly: 'ყოველსაათიანი',
       'every-15-minutes': 'ყოველ 15 წუთში',
-      custom: 'მორგებული',
+      custom: 'მორგებული'
     },
     scheduleHints: {
       daily: 'ყოველ დღე 9:00-ზე',
@@ -2613,7 +2673,7 @@ export const ka = defineLocale({
       monthly: 'ყოველი თვის პირველ დღეს 9:00-ზე',
       hourly: 'ყოველი საათის დასაწყისში',
       'every-15-minutes': 'ყოველ 15 წუთში',
-      custom: 'cron სინტაქსი ან ბუნებრივი ენა',
+      custom: 'cron სინტაქსი ან ბუნებრივი ენა'
     },
     days: {
       '0': 'კვირა',
@@ -2623,7 +2683,7 @@ export const ka = defineLocale({
       '4': 'ხუთშაბათი',
       '5': 'პარასკევი',
       '6': 'შაბათი',
-      '7': 'კვირა',
+      '7': 'კვირა'
     },
     dayFallback: value => `დღე ${value}`,
     everyDayAt: time => `ყოველ დღე ${time}-ზე`,
@@ -2633,7 +2693,8 @@ export const ka = defineLocale({
     topOfHour: 'ყოველი საათის დასაწყისში',
     everyHourAt: minute => `ყოველ საათს :${minute}-ზე`,
     newCron: 'ახალი cron',
-    emptyDescNew: 'დაგეგმე ინსტრუქცია cron გამოსახულებით გასაშვებად. OpenAmer გაუშვებს და შედეგებს შენს მიერ არჩეულ დანიშნულებაზე მიაწვდის.',
+    emptyDescNew:
+      'დაგეგმე ინსტრუქცია cron გამოსახულებით გასაშვებად. OpenAmer გაუშვებს და შედეგებს შენს მიერ არჩეულ დანიშნულებაზე მიაწვდის.',
     emptyDescSearch: 'სცადე უფრო ფართო საძიებო მოთხოვნა.',
     emptyTitleNew: 'ჯერ დაგეგმილი დავალებები არ არის',
     emptyTitleSearch: 'დამთხვევები არ არის',
@@ -2670,7 +2731,8 @@ export const ka = defineLocale({
     editTitle: 'cron დავალების რედაქტირება',
     createTitle: 'ახალი cron დავალება',
     editDesc: 'განაახლე განრიგი, ინსტრუქცია ან მიწოდების დანიშნულება. ცვლილებები ძალაში შედის შემდეგ გაშვებაზე.',
-    createDesc: 'დაგეგმე ინსტრუქცია ავტომატურად გასაშვებად. გამოიყენე cron სინტაქსი ან ბუნებრივი ფრაზა, მაგ. "ყოველ 15 წუთში".',
+    createDesc:
+      'დაგეგმე ინსტრუქცია ავტომატურად გასაშვებად. გამოიყენე cron სინტაქსი ან ბუნებრივი ფრაზა, მაგ. "ყოველ 15 წუთში".',
     nameLabel: 'სახელი',
     namePlaceholder: 'დილის ბრიფინგი',
     promptLabel: 'ინსტრუქცია',
@@ -2692,7 +2754,7 @@ export const ka = defineLocale({
     createAction: 'cron-ის შექმნა',
     tabs: {
       jobs: 'დავალებები',
-      blueprints: 'შაბლონები',
+      blueprints: 'შაბლონები'
     },
     blueprints: {
       tab: 'შაბლონები',
@@ -2706,8 +2768,8 @@ export const ka = defineLocale({
       loading: 'იტვირთება შაბლონები...',
       failedLoad: 'შაბლონები ვერ ჩაიტვირთა',
       emptyTitle: 'შაბლონები არ არის',
-      emptyDesc: 'ამ ბექენდზე ავტომატიზაციის შაბლონები არ არის.',
-    },
+      emptyDesc: 'ამ ბექენდზე ავტომატიზაციის შაბლონები არ არის.'
+    }
   },
   install: {
     stageStates: {
@@ -2715,20 +2777,23 @@ export const ka = defineLocale({
       running: 'ინსტალდება',
       succeeded: 'მზადაა',
       skipped: 'გამოტოვებული',
-      failed: 'ვერ მოხერხდა',
+      failed: 'ვერ მოხერხდა'
     },
     oneTimeTitle: 'OpenAmer-ს სჭირდება ერთჯერადი ინსტალაცია',
-    unsupportedDesc: platform => `ავტომატური პირველი გაშვების ინსტალაცია ჯერ არ არის ხელმისაწვდომი ${platform}-ზე. გახსენი ტერმინალი და გაუშვი ქვემოთ მოცემული ბრძანება, შემდეგ ხელახლა გაუშვი ეს აპი. შემდგომი გაშვებები გამოტოვებს ამ ნაბიჯს.`,
+    unsupportedDesc: platform =>
+      `ავტომატური პირველი გაშვების ინსტალაცია ჯერ არ არის ხელმისაწვდომი ${platform}-ზე. გახსენი ტერმინალი და გაუშვი ქვემოთ მოცემული ბრძანება, შემდეგ ხელახლა გაუშვი ეს აპი. შემდგომი გაშვებები გამოტოვებს ამ ნაბიჯს.`,
     installCommand: 'ინსტალაციის ბრძანება',
     copyCommand: 'ბრძანების კოპირება',
     viewDocs: 'ინსტალაციის დოკუმენტაცია',
     installTo: 'დაყენდება',
     retryAfterRun: 'გავუშვი -- სცადე ხელახლა',
     setupChoiceTitle: 'OpenAmer Desktop-ის დაყენება',
-    setupChoiceDesc: 'დაუკავშირე ეს აპი უკვე მოქმედ OpenAmer გეითვეის, ან დააინსტალირე OpenAmer ლოკალურად ამ კომპიუტერზე.',
+    setupChoiceDesc:
+      'დაუკავშირე ეს აპი უკვე მოქმედ OpenAmer გეითვეის, ან დააინსტალირე OpenAmer ლოკალურად ამ კომპიუტერზე.',
     connectExistingTitle: 'არსებულ OpenAmer-თან დაკავშირება',
     connectExistingShort: 'არსებულის დაკავშირება',
-    connectExistingDesc: 'გამოიყენე დისტანციური ბექენდი სესიის ტოკენით ან ბრაუზერით შესვლით. ლოკალური ინსტალაცია არ დაიწყება.',
+    connectExistingDesc:
+      'გამოიყენე დისტანციური ბექენდი სესიის ტოკენით ან ბრაუზერით შესვლით. ლოკალური ინსტალაცია არ დაიწყება.',
     installLocalTitle: 'OpenAmer-ის ლოკალურად ინსტალაცია',
     installLocalDesc: 'ჩამოტვირთე OpenAmer, შექმენი მისი Python გარემო და გაუშვი ბექენდი ამ კომპიუტერზე.',
     localStartUnavailable: 'ლოკალური ინსტალაცია ვერ დაიწყო. გადატვირთე OpenAmer Desktop და სცადე ხელახლა.',
@@ -2760,8 +2825,10 @@ export const ka = defineLocale({
     failedTitle: 'ინსტალაცია ვერ მოხერხდა',
     settingUpTitle: 'OpenAmer Agent-ის დაყენება',
     finishingTitle: 'დასრულება',
-    failedDesc: 'ინსტალაციის ერთი ნაბიჯი ვერ შესრულდა. Windows-ზე ეს შეიძლება მოხდეს, თუ სხვა OpenAmer CLI ან დესკტოპ ინსტანცია მუშაობს. გააჩერე ყველა მოქმედი OpenAmer ინსტანცია და სცადე ხელახლა. ნახე დეტალები ქვემოთ ან დესკტოპის ლოგი სრული ტრანსკრიპტისთვის.',
-    activeDesc: 'ეს არის ერთჯერადი დაყენება. OpenAmer-ის ინსტალერი ტვირთავს დამოკიდებულებებს და აკონფიგურირებს შენს მანქანას. შემდგომი გაშვებები გამოტოვებს ამ ნაბიჯს.',
+    failedDesc:
+      'ინსტალაციის ერთი ნაბიჯი ვერ შესრულდა. Windows-ზე ეს შეიძლება მოხდეს, თუ სხვა OpenAmer CLI ან დესკტოპ ინსტანცია მუშაობს. გააჩერე ყველა მოქმედი OpenAmer ინსტანცია და სცადე ხელახლა. ნახე დეტალები ქვემოთ ან დესკტოპის ლოგი სრული ტრანსკრიპტისთვის.',
+    activeDesc:
+      'ეს არის ერთჯერადი დაყენება. OpenAmer-ის ინსტალერი ტვირთავს დამოკიდებულებებს და აკონფიგურირებს შენს მანქანას. შემდგომი გაშვებები გამოტოვებს ამ ნაბიჯს.',
     progress: (completed, total) => `${completed} / ${total} ნაბიჯი დასრულებულია`,
     currentStage: stage => `  -- ახლა: ${stage}`,
     fetchingManifest: 'ინსტალერის მანიფესტის ჩამოტვირთვა...',
@@ -2775,10 +2842,10 @@ export const ka = defineLocale({
     transcriptSaved: 'სრული ტრანსკრიპტი შენახულია',
     copiedOutput: 'დაკოპირდა!',
     copyOutput: 'გამოტანის კოპირება',
-    reloadRetry: 'განახლება და ხელახლა ცდა',
+    reloadRetry: 'განახლება და ხელახლა ცდა'
   },
   onboarding: {
-    headerTitle: "მოდი, დაგაყენოთ OpenAmer Agent-ით",
+    headerTitle: 'მოდი, დაგაყენოთ OpenAmer Agent-ით',
     headerDesc: 'დაუკავშირე მოდელის პროვაიდერი, რომ დაიწყო საუბარი. უმეტეს ვარიანტს ერთი დაწკაპუნება სჭირდება.',
     preparingInstall: 'OpenAmer ასრულებს ინსტალაციას. პირველ გაშვებაზე ეს ჩვეულებრივ წუთზე ნაკლებს იკავებს.',
     starting: 'OpenAmer იწყება…',
@@ -2786,7 +2853,7 @@ export const ka = defineLocale({
     collapse: 'ჩაკეცვა',
     otherProviders: 'სხვა პროვაიდერები',
     haveApiKey: 'მაქვს API გასაღები',
-    chooseLater: "პროვაიდერს მოგვიანებით ავირჩევ",
+    chooseLater: 'პროვაიდერს მოგვიანებით ავირჩევ',
     recommended: 'რეკომენდებული',
     connected: 'დაკავშირებულია',
     featuredPitch: 'ერთი გამოწერა, 300+ frontier მოდელი — OpenAmer-ის გაშვების რეკომენდებული გზა',
@@ -2795,28 +2862,29 @@ export const ka = defineLocale({
     apiKeyOptions: {
       fireworks: {
         short: 'პირდაპირი მოდელის API',
-        description: 'პირდაპირი წვდომა Fireworks AI-ზე ჰოსტირებულ მოდელებზე.',
+        description: 'პირდაპირი წვდომა Fireworks AI-ზე ჰოსტირებულ მოდელებზე.'
       },
       openrouter: {
         short: 'ერთი გასაღები, ბევრი მოდელი',
-        description: 'ასობით მოდელი ერთი გასაღების უკან. კარგი ნაგულისხმევი ახალი ინსტალაციებისთვის.',
+        description: 'ასობით მოდელი ერთი გასაღების უკან. კარგი ნაგულისხმევი ახალი ინსტალაციებისთვის.'
       },
       openai: {
         short: 'GPT კლასის მოდელები',
-        description: 'პირდაპირი წვდომა OpenAI მოდელებზე.',
+        description: 'პირდაპირი წვდომა OpenAI მოდელებზე.'
       },
       gemini: {
         short: 'Gemini მოდელები',
-        description: 'პირდაპირი წვდომა Google Gemini მოდელებზე.',
+        description: 'პირდაპირი წვდომა Google Gemini მოდელებზე.'
       },
       xai: {
         short: 'Grok მოდელები',
-        description: 'პირდაპირი წვდომა xAI Grok მოდელებზე.',
+        description: 'პირდაპირი წვდომა xAI Grok მოდელებზე.'
       },
       local: {
         short: 'თვითჰოსტინგი',
-        description: 'მიუთითე OpenAmer ლოკალურ ან თვითჰოსტინგის OpenAI-თავსებად ენდპოინტზე (vLLM, llama.cpp, Ollama და სხვა).',
-      },
+        description:
+          'მიუთითე OpenAmer ლოკალურ ან თვითჰოსტინგის OpenAI-თავსებად ენდპოინტზე (vLLM, llama.cpp, Ollama და სხვა).'
+      }
     },
     backToSignIn: 'შესვლაზე დაბრუნება',
     getKey: 'გასაღების მიღება',
@@ -2829,7 +2897,7 @@ export const ka = defineLocale({
     flowSubtitles: {
       pkce: 'ხსნის ბრაუზერს შესვლისთვის, შემდეგ აგრძელებს აქ',
       device_code: 'ხსნის ვერიფიკაციის გვერდს ბრაუზერში — OpenAmer ავტომატურად უკავშირდება',
-      external: 'შედი ერთხელ ტერმინალში, შემდეგ დაბრუნდი ჩატში',
+      external: 'შედი ერთხელ ტერმინალში, შემდეგ დაბრუნდი ჩატში'
     },
     startingSignIn: provider => `${provider}-ით შესვლის დაწყება...`,
     verifyingCode: provider => `კოდის ვერიფიკაცია ${provider}-ით...`,
@@ -2843,11 +2911,13 @@ export const ka = defineLocale({
     copyAuthCode: 'დააკოპირე ავტორიზაციის კოდი და ჩასვი ქვემოთ.',
     pasteAuthCode: 'ავტორიზაციის კოდის ჩასმა',
     reopenAuthPage: 'ავტორიზაციის გვერდის ხელახლა გახსნა',
-    autoBrowser: provider => `${provider} გავხსენით შენს ბრაუზერში. მიეცი OpenAmer-ს ავტორიზაცია იქ და ავტომატურად დაუკავშირდები — არაფერია კოპირებადი ან ჩასასმელი.`,
+    autoBrowser: provider =>
+      `${provider} გავხსენით შენს ბრაუზერში. მიეცი OpenAmer-ს ავტორიზაცია იქ და ავტომატურად დაუკავშირდები — არაფერია კოპირებადი ან ჩასასმელი.`,
     reopenSignInPage: 'შესვლის გვერდის ხელახლა გახსნა',
     waitingAuthorize: 'ველოდები ავტორიზაციას...',
-    externalPending: provider => `${provider} საკუთარი CLI-ით შედის. გაუშვი ეს ბრძანება ტერმინალში, შემდეგ დაბრუნდი და აირჩიე „შევედი“:`,
-    signedIn: "შევედი",
+    externalPending: provider =>
+      `${provider} საკუთარი CLI-ით შედის. გაუშვი ეს ბრძანება ტერმინალში, შემდეგ დაბრუნდი და აირჩიე „შევედი“:`,
+    signedIn: 'შევედი',
     deviceCodeOpened: provider => `${provider} გავხსენით შენს ბრაუზერში. შეიყვანე ეს კოდი იქ:`,
     reopenVerification: 'ვერიფიკაციის გვერდის ხელახლა გახსნა',
     copy: 'კოპირება',
@@ -2858,7 +2928,7 @@ export const ka = defineLocale({
     price: (input, output) => `${input} შეყვანა / ${output} გამოტანა Mtok-ზე`,
     change: 'შეცვლა',
     startChatting: 'დაწყება',
-    docs: provider => `${provider} დოკუმენტაცია`,
+    docs: provider => `${provider} დოკუმენტაცია`
   },
   rightSidebar: {
     aria: 'მარჯვენა გვერდითი ზოლი',
@@ -2894,7 +2964,7 @@ export const ka = defineLocale({
     terminalNew: 'ახალი ტერმინალი',
     terminalCloseOthers: 'სხვების დახურვა',
     terminalCloseAll: 'ყველას დახურვა',
-    addToChat: 'ჩატში დამატება',
+    addToChat: 'ჩატში დამატება'
   },
   zones: {
     showHeader: 'სათაურის ჩვენება',
@@ -2902,7 +2972,8 @@ export const ka = defineLocale({
     minimize: 'მინიმიზაცია',
     restore: 'აღდგენა',
     closeRunningTitle: 'დავხურო აქტიური ჩანართი?',
-    closeRunningBody: 'ეს ჩატი ჯერ მუშაობს (ან შენს შეყვანას ელოდება). ჩანართის დახურვა დამალავს — სესია ინახავს პროგრესს და გვერდითი ზოლიდან ხელახლა გაიხსნება.',
+    closeRunningBody:
+      'ეს ჩატი ჯერ მუშაობს (ან შენს შეყვანას ელოდება). ჩანართის დახურვა დამალავს — სესია ინახავს პროგრესს და გვერდითი ზოლიდან ხელახლა გაიხსნება.',
     closeRunningConfirm: 'ჩანართის დახურვა',
     closeOthers: 'სხვების დახურვა',
     closeToRight: 'მარჯვნიდან დახურვა',
@@ -2928,7 +2999,8 @@ export const ka = defineLocale({
     deletePreset: name => `${name}-ის წაშლა`,
     zoneEditorTitle: 'ზონების რედაქტორი',
     editorHintPre: 'დააწკაპუნე გასაყოფად · ',
-    editorHintPost: '  ხაზს აბრუნებს · გადაათრიე ზონებს შორის გასაერთიანებლად · გადაათრიე საერთო კიდეები ზომის შესაცვლელად',
+    editorHintPost:
+      '  ხაზს აბრუნებს · გადაათრიე ზონებს შორის გასაერთიანებლად · გადაათრიე საერთო კიდეები ზომის შესაცვლელად',
     templateColumns: 'სვეტები',
     templateRows: 'რიგები',
     templateGrid: 'ბადე',
@@ -2939,41 +3011,42 @@ export const ka = defineLocale({
     layoutNamePlaceholder: fallback => `განლაგების სახელი (${fallback})`,
     saveApply: 'შენახვა და გამოყენება',
     notExpressible: 'ეს განლაგება იკვეთება (pinwheel) — ჯერ არ არის გამოსახვადი ჩადგმული გაყოფებით',
-    zoneCount: count => `${count} ზონა`,
+    zoneCount: count => `${count} ზონა`
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer გეითვეი არ არის დაკავშირებული',
     sudoSendFailed: 'sudo პაროლის გაგზავნა ვერ მოხერხდა',
     secretSendFailed: 'საიდუმლოს გაგზავნა ვერ მოხერხდა',
     sudoTitle: 'ადმინისტრატორის პაროლი',
-    sudoDesc: 'OpenAmer-ს სჭირდება შენი sudo პაროლი პრივილეგირებული ბრძანების გასაშვებად. ის მხოლოდ შენს ლოკალურ აგენტს ეგზავნება.',
+    sudoDesc:
+      'OpenAmer-ს სჭირდება შენი sudo პაროლი პრივილეგირებული ბრძანების გასაშვებად. ის მხოლოდ შენს ლოკალურ აგენტს ეგზავნება.',
     sudoPlaceholder: 'sudo პაროლი',
     secretTitle: 'საჭიროა საიდუმლო',
     secretDesc: 'OpenAmer-ს სჭირდება მონაცემები გასაგრძელებლად.',
-    secretPlaceholder: 'საიდუმლოს მნიშვნელობა',
+    secretPlaceholder: 'საიდუმლოს მნიშვნელობა'
   },
   errors: {
     genericFailure: 'რაღაც შეცდა',
     boundaryTitle: 'ინტერფეისში რაღაც გატყდა',
     boundaryDesc: 'ხედი მოულოდნელ შეცდომას წააწყდა. შენი ჩატები და პარამეტრები უსაფრთხოდაა.',
     reloadWindow: 'ფანჯრის ხელახლა ჩატვირთვა',
-    openLogs: 'ლოგების გახსნა',
+    openLogs: 'ლოგების გახსნა'
   },
   ui: {
     search: {
-      clear: 'ძებნის გასუფთავება',
+      clear: 'ძებნის გასუფთავება'
     },
     pagination: {
       label: 'გვერდებად დაყოფა',
       previous: 'წინა',
       previousAria: 'წინა გვერდზე გადასვლა',
       next: 'შემდეგი',
-      nextAria: 'შემდეგ გვერდზე გადასვლა',
+      nextAria: 'შემდეგ გვერდზე გადასვლა'
     },
     sidebar: {
       title: 'გვერდითი ზოლი',
       description: 'აჩვენებს მობილურ გვერდით ზოლს.',
-      toggle: 'გვერდითი ზოლის გადართვა',
-    },
-  },
+      toggle: 'გვერდითი ზოლის გადართვა'
+    }
+  }
 })

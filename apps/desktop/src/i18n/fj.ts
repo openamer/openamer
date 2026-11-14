@@ -45,7 +45,7 @@ export const fj = defineLocale({
     delete: 'Dusitauti',
     docs: 'Vakadokaiti',
     done: 'I oti',
-    tryHint: term => `Try “${term}”`,
+    tryHint: term => `Try “${term}”`
   },
   fileMenu: {
     revealFinder: 'Whakitu i Finder',
@@ -60,7 +60,7 @@ export const fj = defineLocale({
     renameLabel: 'Igo foʻou',
     deleteBody: 'E hoko koe ki le Trash — e faʻafou koe mai i kina.',
     pathCopied: 'U taʻ kopi i te ara',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop e tonu',
@@ -69,7 +69,7 @@ export const fj = defineLocale({
       loadingSettings: 'E uta i ngā tikera o OpenAmer',
       loadingSessions: 'E uta i ngā sesani tainipake',
       startingDesktopConnection: 'E amata te konekisi desktop',
-      startingOpenAmerDesktop: 'E amata OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'E amata OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'E mutu te kauputu o OpenAmer i muri.',
@@ -78,22 +78,25 @@ export const fj = defineLocale({
       desktopBootFailed: 'E hapa te tīmātanga o te Desktop.',
       gatewayConnectionLost: 'E lavu na yaso ki na kociki',
       gatewaySignInRequired: 'E gava na dodoco ki na kociki',
-      ipcBridgeUnavailable: 'E sega ni koci e na hoko IPC ni te deskitopa.',
+      ipcBridgeUnavailable: 'E sega ni koci e na hoko IPC ni te deskitopa.'
     },
     failure: {
       title: 'OpenAmer e sega ni iotoyawa',
-      description: 'Sa sega na kociki ni keceri ni iotoyawa. Ta kailagi na eka ni vakarorogo se eka ni kusi e kaci kina. E sega na koci oqo e ma\'amua na talanoa niu na seti.',
+      description:
+        "Sa sega na kociki ni keceri ni iotoyawa. Ta kailagi na eka ni vakarorogo se eka ni kusi e kaci kina. E sega na koci oqo e ma'amua na talanoa niu na seti.",
       remoteTitle: 'E gava na dodoco ki na kociki iva',
-      remoteDescription: 'Sa oti na sesi ni kociki iva. Dodoco tale ki na vakayabani. E sega na koci oqo e ma\'amua na talanoa niu na seti.',
+      remoteDescription:
+        "Sa oti na sesi ni kociki iva. Dodoco tale ki na vakayabani. E sega na koci oqo e ma'amua na talanoa niu na seti.",
       retry: 'Try tale',
-      repairInstall: 'Sakiusa\'i te iotoyawa',
+      repairInstall: "Sakiusa'i te iotoyawa",
       useLocalGateway: 'Vakayabo na kociki ni teke',
       gatewaySettings: 'Na seti ni kociki',
       back: 'Lio',
       openLogs: 'Kuvaka na makologo',
-      repairHint: 'E gaca na sakiusa\'i oqo ni vakayabaka na iotoyawa, ka tale na miniti vakaiveni ki se komputa poi.',
+      repairHint: "E gaca na sakiusa'i oqo ni vakayabaka na iotoyawa, ka tale na miniti vakaiveni ki se komputa poi.",
       signOutAndSignIn: 'Coke na koki, e na dodoco tale',
-      remoteFailureHint: 'Bisitina na URL ni kociki, kae e dodoco ki ga under na seti ni kociki, se vakayabo na kociki ni teke.',
+      remoteFailureHint:
+        'Bisitina na URL ni kociki, kae e dodoco ki ga under na seti ni kociki, se vakayabo na kociki ni teke.',
       hideRecentLogs: 'Lalo na makologo ni sa oti loo',
       showRecentLogs: 'Kusi na makologo ni sa oti loo',
       signedInTitle: 'Sa dodoco',
@@ -103,10 +106,11 @@ export const fj = defineLocale({
       signInFailed: 'E koe le saini',
       signInToRemoteGateway: 'Saini ki le gateway mamao',
       identityProvider: 'o lau fokaiyani o le ʻataga',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   notifications: {
     region: 'Fesoʻotai',
@@ -118,7 +122,8 @@ export const fj = defineLocale({
     copyDetail: 'Kopi i le faʻamatala',
     copyDetailFailed: 'Le ʻaai fua e kopi i le faʻamatala o le fesoʻotai',
     backendOutOfDateTitle: 'E lē tuʻimau ai le backend',
-    backendOutOfDateMessage: 'E sili tuʻaʻi le backend o OpenAmer i se faʻatupunga o le desktop nei, ʻe ono ʻe se ʻaʻoga lelei. Whakamou ia i faʻamou ai.',
+    backendOutOfDateMessage:
+      'E sili tuʻaʻi le backend o OpenAmer i se faʻatupunga o le desktop nei, ʻe ono ʻe se ʻaʻoga lelei. Whakamou ia i faʻamou ai.',
     installMethodUnsupportedTitle: 'E le faʻaogaina le auala o le faʻaputu',
     updateOpenAmer: 'Whakamou OpenAmer',
     updateReadyTitle: 'E tali faʻamou',
@@ -127,11 +132,12 @@ export const fj = defineLocale({
       elevenLabsNeedsKey: 'E tofiʻa e ElevenLabs STT i le ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs e salaga ki na tavutini API (401).',
       gatewayAuthFailed: 'Auta i vakarorogo i tuilevaka — tio ki na API_SERVER_KEY.',
-      methodNotAllowed: 'Na backend o OpenAmer Desktop e salaga ki na request (405 Method E求得ataleka). Vakataurau na OpenAmer Desktop.',
+      methodNotAllowed:
+        'Na backend o OpenAmer Desktop e salaga ki na request (405 Method E求得ataleka). Vakataurau na OpenAmer Desktop.',
       microphonePermission: 'E salaga na vakataleka o mikrofoni.',
       openaiRejectedApiKey: 'OpenAI e salaga ki na tavutini API.',
       openaiTtsNeedsKey: 'OpenAI TTS e needi na VOICE_TOOLS_OPENAI_KEY na OPENAI_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Vakaconfigure na lali-korotu vakatomo na node lali.',
@@ -150,7 +156,7 @@ export const fj = defineLocale({
       transcriptionFailed: 'E tuilevaka na vakututubuki o na lali',
       transcriptionUnavailable: 'E sega ni saqiti na laivoti vaka vosa.',
       tryRecordingAgain: 'Tale ni saqiti.',
-      unavailable: 'E sega ni saqiti na vaka vosa.',
+      unavailable: 'E sega ni saqiti na vaka vosa.'
     },
     native: {
       approvalTitle: 'E gaga na whakamana.',
@@ -163,10 +169,10 @@ export const fj = defineLocale({
       turnErrorTitle: 'E gau na hoko.',
       backgroundDoneTitle: 'E oti na kaosi ni mate eneo te muma.',
       backgroundFailedTitle: 'E gau na kaosi ni mate eneo te muma.',
-      creditsTitle: 'Viyo',
+      creditsTitle: 'Viyo'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   billingBlock: {
     titleOpenamer: 'E sega na viyo o OpenAmer.',
@@ -174,7 +180,7 @@ export const fj = defineLocale({
     openBilling: 'Sura na nadi vakabauti',
     addCredits: 'Addi na viyo',
     dismiss: 'Tudua',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Caka na kasa ni to-kasa.',
@@ -191,7 +197,7 @@ export const fj = defineLocale({
     openStarmap: 'Kuva na graph ni manya',
     openKeybinds: 'Lakovi vakacutecu',
     layoutEditor: 'Vakayavesi na layout',
-    layoutEditorTitle: 'Editha hoʻoponowanga â€” âŒ˜-click e toe hoki i ʻo ʻe hoʻoponowanga',
+    layoutEditorTitle: 'Editha hoʻoponowanga â€” âŒ˜-click e toe hoki i ʻo ʻe hoʻoponowanga'
   },
   keybinds: {
     title: 'Lakovi vakacutecu',
@@ -206,7 +212,7 @@ export const fj = defineLocale({
       profiles: 'Vakacaucau',
       session: 'Vakayari',
       navigation: 'Taonavigationi',
-      view: 'Vakataimani',
+      view: 'Vakataimani'
     },
     actions: {
       'keybinds.openPanel': 'Openi vakabuka vakavosa',
@@ -219,9 +225,9 @@ export const fj = defineLocale({
       'nav.artifacts': 'Openi vakayotogi',
       'nav.cron': 'Openi vakatau',
       'nav.agents': 'Openi vakatawa',
-      'session.new': 'Vakayari va\'o',
-      'session.newTab': 'Tabo vakayari va\'o',
-      'session.newWindow': 'Windows va\'o',
+      'session.new': "Vakayari va'o",
+      'session.newTab': "Tabo vakayari va'o",
+      'session.newWindow': "Windows va'o",
       'session.next': 'Vakayari ka tu ni',
       'session.prev': 'Taumaga oqo kina',
       'session.slot.1': 'Fasilita ki sesi kutai 1',
@@ -282,13 +288,13 @@ export const fj = defineLocale({
       'composer.queue': 'Vakabwaiti mesi',
       'composer.sendQueued': 'Vakau i vakarakaraga ni kamosi e vakabwaiti',
       'composer.mention': 'Vakamamaca fao, folodo, URL',
-      'composer.slash': 'Paleti ni komando \'/\'',
+      'composer.slash': "Paleti ni komando '/'",
       'composer.help': 'Awa vakarakarakasa vavoo',
       'composer.history': 'Sui na popover / hisetori',
-      'composer.cancel': 'Katakalo popover · vakabaka i vakayaga',
+      'composer.cancel': 'Katakalo popover · vakabaka i vakayaga'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   language: {
     label: 'Gagana',
@@ -297,7 +303,7 @@ export const fj = defineLocale({
     saveError: 'Ko yawa ki na vakadeva i gagana.',
     switchTo: 'Fasousa gagana',
     searchPlaceholder: 'Ona gagana…',
-    noResults: 'E se taro na gagana',
+    noResults: 'E se taro na gagana'
   },
   settings: {
     closeSettings: 'Katakalo i nisetup',
@@ -311,76 +317,79 @@ export const fj = defineLocale({
       providers: 'Vakamemaca',
       providerAccounts: 'Vakaisaga',
       providerApiKeys: 'I takete API',
-      providerCustomEndpoints: 'Taua fa\'apitokai',
+      providerCustomEndpoints: "Taua fa'apitokai",
       gateway: 'Viti maliti',
       apiKeys: 'Instruments & Mesi',
       keybinds: 'Tohotohi kikifikate',
       keysTools: 'Instruments',
-      keysSettings: 'Fa\'atonutau',
+      keysSettings: "Fa'atonutau",
       archivedChats: 'Talanoa lautarake',
       about: 'Moa',
       billing: 'Puni',
       notifications: 'Fakamōhiga',
       plugins: 'Polaxini',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       empty: 'E sega na kawenaka desktop e lomawai.',
       kinds: {
         bundled: 'e tukuna',
         disk: 'ki diski',
-        runtime: 'ki na ga',
+        runtime: 'ki na ga'
       },
       title: 'Polaxini laukalakai',
-      blurb: 'Fa\'extensions UI e loo ki lenei app — e fa\'awase ena build, se e ulu ki lenei foloda `desktop-plugins` (e lua mo na e tusa `OpenAmer` e writes). Fakaseya e movetotoka plugin ki seutea mo e fa\'asa mo na toe tu.',
+      blurb:
+        "Fa'extensions UI e loo ki lenei app — e fa'awase ena build, se e ulu ki lenei foloda `desktop-plugins` (e lua mo na e tusa `OpenAmer` e writes). Fakaseya e movetotoka plugin ki seutea mo e fa'asa mo na toe tu.",
       openFolder: 'Toki lenei foloda polaxini',
       rescan: 'Toe lau',
-      reveal: 'Faka\'ataraina ki lvei kaimani',
+      reveal: "Faka'ataraina ki lvei kaimani",
       enable: 'Fakamumui',
       disable: 'Fakaseya',
       failed: 'E tu kakahi',
-      count: n => `${n} installed`,
+      count: n => `${n} installed`
     },
     notifications: {
       title: 'Moeka',
-      intro: 'Moeka desktop a gena, kesi mai na moeka a tikidara. Oqo moeka o ga kompyuta — e tofa na seti o ga kompyuta e tofa.',
+      intro:
+        'Moeka desktop a gena, kesi mai na moeka a tikidara. Oqo moeka o ga kompyuta — e tofa na seti o ga kompyuta e tofa.',
       enableAll: 'Sewisea na moeka',
       enableAllDesc: 'Swichi matua. Katako o ni mumina na moeka ka lalo.',
       focusedHint: 'E lalawa tikali na moeka oti ki na ga e a OpenAmer e loma.',
       kinds: {
         approval: {
           label: 'E lava na matani',
-          description: 'E na takete na fakamau me matani ka tokotoka.',
+          description: 'E na takete na fakamau me matani ka tokotoka.'
         },
         input: {
           label: 'E lava na input',
-          description: 'E hia OpenAmer na dotsi ka e gaganivi na paswod ka secret.',
+          description: 'E hia OpenAmer na dotsi ka e gaganivi na paswod ka secret.'
         },
         turnDone: {
           label: 'E vala na tisili',
-          description: 'E oti na ka ki na ga e a OpenAmer e loma.',
+          description: 'E oti na ka ki na ga e a OpenAmer e loma.'
         },
         turnError: {
           label: 'E gau na ka',
-          description: 'E oti na ka e a gaga.',
+          description: 'E oti na ka e a gaga.'
         },
         backgroundDone: {
           label: 'E oti na ka i loma',
-          description: 'E oti na fakamau terminal i loma.',
+          description: 'E oti na fakamau terminal i loma.'
         },
         credits: {
           label: 'Moeka vakabond',
-          description: 'O suspendi na fusi vakarau, se o vakarau kina.',
-        },
+          description: 'O suspendi na fusi vakarau, se o vakarau kina.'
+        }
       },
       test: 'Vakarau na pule vakarai',
       testTitle: 'OpenAmer',
       testBody: 'E vakatokotona na vakarau vakarasi.',
-      testSent: 'I kana e sa vakarau. I kana e sega e rau, tikodra na vakarau vakarasi ni vakama OS, Tautaua/Ei Vakarau.',
+      testSent:
+        'I kana e sa vakarau. I kana e sega e rau, tikodra na vakarau vakarasi ni vakama OS, Tautaua/Ei Vakarau.',
       testUnsupported: 'E sega ni kudei na vakarau vakarasi vakaboronagi.',
       completionSoundTitle: 'Revo ni Oti',
       completionSoundDesc: 'E taukea le revo ni oti na vakarau vakatawa. O fili na preset vakarau vakatokotona e kina.',
-      completionSoundPreview: 'Sikura',
+      completionSoundPreview: 'Sikura'
     },
     searchPlaceholder: {
       keys: 'Ie vakasei e tauka API...',
@@ -388,25 +397,26 @@ export const fj = defineLocale({
       sessions: 'Ie vakasei e tauka vakarorogoesi...',
       about: 'I OpenAmer Guduri',
       config: 'Teu na goro...',
-      gateway: 'Fetokai ki te kila...',
+      gateway: 'Fetokai ki te kila...'
     },
     modeOptions: {
       light: {
         label: 'Mama',
-        description: 'Mama',
+        description: 'Mama'
       },
       dark: {
         label: 'Bena',
-        description: 'Eni iva ni loloma',
+        description: 'Eni iva ni loloma'
       },
       system: {
         label: 'VSystems',
-        description: 'Tautau na folutau ni OS',
-      },
+        description: 'Tautau na folutau ni OS'
+      }
     },
     appearance: {
       title: 'Folutau',
-      intro: 'E desktop kei na nafua mona. E na faananoa e na mama na mode, ka ono e theme na kula ni ma\'adina na vakamamaca na chat.',
+      intro:
+        "E desktop kei na nafua mona. E na faananoa e na mama na mode, ka ono e theme na kula ni ma'adina na vakamamaca na chat.",
       colorMode: 'Mama ni Kula',
       colorModeDesc: 'E vakachoice e mode e tu vak forever, na `OpenAmer` e matali na vakarorogoesi ni v Systems.',
       toolViewTitle: 'Folutau ni Vakaitau',
@@ -417,8 +427,10 @@ export const fj = defineLocale({
       backdropTitle: 'Lave e Chat',
       backdropDesc: 'E ni makawa na image ni tau vake e kea na vakaroro.',
       pet: {
-        intro: 'Vakoritori maskati `petdex` e fulei e le ga ka vakatawa na ga e rade e vakayali iravi, e dena na vakarokoroko, ka e loloma ki na vihise.',
-        restartHint: 'E gaga na kauti ki na restart vakavovovu — e sa tu na ga o rae e a adda na feature. Lau ki OpenAmer, ka toe opening, ka dokolo na ni.',
+        intro:
+          'Vakoritori maskati `petdex` e fulei e le ga ka vakatawa na ga e rade e vakayali iravi, e dena na vakarokoroko, ka e loloma ki na vihise.',
+        restartHint:
+          'E gaga na kauti ki na restart vakavovovu — e sa tu na ga o rae e a adda na feature. Lau ki OpenAmer, ka toe opening, ka dokolo na ni.',
         on: 'E',
         off: 'Lasi',
         scaleTitle: 'Vakabari',
@@ -451,10 +463,11 @@ export const fj = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
       embedsTitle: 'Tauera vakai',
-      embedsDesc: 'E loadi na tauvaka vakalevu mai na site mai vakavanou (YouTube, X, …). Na “Tarohia” e vakadrau na vakatau ki oti na koe vakatokona na site tayataya; na “Vakariteki” e loadi vakariteki; na “Mati” e vakadeu na linki tasala.',
+      embedsDesc:
+        'E loadi na tauvaka vakalevu mai na site mai vakavanou (YouTube, X, …). Na “Tarohia” e vakadrau na vakatau ki oti na koe vakatokona na site tayataya; na “Vakariteki” e loadi vakariteki; na “Mati” e vakadeu na linki tasala.',
       embedsAsk: 'Tarohia',
       embedsAlways: 'Vakariteki',
       embedsOff: 'Mati',
@@ -465,17 +478,19 @@ export const fj = defineLocale({
       themeTitle: 'Vakaviti',
       themeDesc: 'Na palette ta desktop vakarikodi. Na vakaviti tauvola e vakaitau ena levu.',
       installTitle: 'Instali mai VS Code',
-      installDesc: 'Peste i na ID a na extension a na Marketplace (e.g. dracula-theme.theme-dracula) ke vakaviti na palette ta desktop.',
+      installDesc:
+        'Peste i na ID a na extension a na Marketplace (e.g. dracula-theme.theme-dracula) ke vakaviti na palette ta desktop.',
       installButton: 'Instali',
       installing: 'E instali…',
       installError: 'E ivali na instali a na vakaviti.',
       removeTheme: 'Aisea na vakaviti',
       importedBadge: 'Vakairau',
       installPlaceholder: '`publisher.extension`',
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     sections: {
       model: 'Siseto',
@@ -485,7 +500,7 @@ export const fj = defineLocale({
       safety: 'Tautaua',
       memory: 'Manatu & Vakadivuva',
       voice: 'Revo',
-      advanced: 'Vakauku',
+      advanced: 'Vakauku'
     },
     config: {
       none: 'Walea',
@@ -493,15 +508,15 @@ export const fj = defineLocale({
       builtinOnly: 'Walea ki na mea vakabuti pe',
       notSet: 'E a seti',
       commaSeparated: 'ni lewa e koma e tuata',
-      loading: 'Okamautu na fa\'akava ni `OpenAmer`...',
-      emptyTitle: 'E le levu levu e fa\'akava.',
+      loading: "Okamautu na fa'akava ni `OpenAmer`...",
+      emptyTitle: "E le levu levu e fa'akava.",
       emptyDesc: 'E a i tokai na tulou e saa vakayoyoyou.',
-      failedLoad: 'E a lavo na fa\'akava e okamautu.',
-      autosaveFailed: 'Te sa\'akapi fua e a lavo.',
-      imported: 'U sa importu na fa\'akava',
-      invalidJson: 'E a bula na `JSON` ni fa\'akava',
-      keepAwakeTitle: 'Tauma na computer vaka\'oqagai.',
-      keepAwakeDesc: 'Bocega na computer ni manoko vakaviti o kodo vakaviti. E rili ga na vala.',
+      failedLoad: "E a lavo na fa'akava e okamautu.",
+      autosaveFailed: "Te sa'akapi fua e a lavo.",
+      imported: "U sa importu na fa'akava",
+      invalidJson: "E a bula na `JSON` ni fa'akava",
+      keepAwakeTitle: "Tauma na computer vaka'oqagai.",
+      keepAwakeDesc: 'Bocega na computer ni manoko vakaviti o kodo vakaviti. E rili ga na vala.'
     },
     credentials: {
       pasteKey: 'Vakapasi ki',
@@ -511,7 +526,7 @@ export const fj = defineLocale({
       remove: 'M.havei',
       getKey: 'Mai ki na mokuli',
       saving: 'Teitaki',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     about: {
       heading: 'OpenAmer Teisevu',
@@ -529,7 +544,8 @@ export const fj = defineLocale({
       tapCheck: 'Caka na "Vilailai levu" kei na wilivili na susutusi.',
       justNowSuffix: '· vei levu',
       automaticUpdates: 'Na susutusi otautu',
-      automaticUpdatesDesc: 'E vilaila na OpenAmer na susutusi otautu i loma, ka e vakamama na galo kei na susutusi e sa valivali.',
+      automaticUpdatesDesc:
+        'E vilaila na OpenAmer na susutusi otautu i loma, ka e vakamama na galo kei na susutusi e sa valivali.',
       never: 'Kabani',
       justNow: 'vei levu',
       version: value => `Version ${value}`,
@@ -538,7 +554,7 @@ export const fj = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     envActions: {
       credentialActions: 'Veitaki na kredentitio',
@@ -549,7 +565,7 @@ export const fj = defineLocale({
       replace: 'Sostuu',
       set: 'Vakauru',
       clear: 'Puri',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     gateway: {
       loading: 'E okauti na teitaki vakabauti...',
@@ -557,16 +573,18 @@ export const fj = defineLocale({
       unavailableDesc: 'E sega ni kama na palaka IPC vakadesktop na teitaki vakabauti.',
       title: 'Vakabauti',
       envOverride: 'Vakatau mai na manawa',
-      intro: 'By default, e na startu na OpenAmer Desktop na gateway vakatoa ni korolei. Vakabauti ki na gateway e noho mude na app vakabauti ki na backend OpenAmer e sa tu, e toke i se iva? Vakabauti ki na backend e toke i se iva na proxy a trust. Lomaho na profile lalo ni vakauru na host vakatoa nona.',
+      intro:
+        'By default, e na startu na OpenAmer Desktop na gateway vakatoa ni korolei. Vakabauti ki na gateway e noho mude na app vakabauti ki na backend OpenAmer e sa tu, e toke i se iva? Vakabauti ki na backend e toke i se iva na proxy a trust. Lomaho na profile lalo ni vakauru na host vakatoa nona.',
       appliesTo: 'E vakaitau ki',
       allProfiles: 'Na profile kei',
       defaultConnection: 'Na vakabauti tautokofefe ki na profile kei e sega ni nona override.',
       envOverrideTitle: 'Na mukti vakamanawa e vakabauti na sesesõ vakadesktop nei.',
-      envOverrideDesc: 'Yavesa na OPENAMER_DESKTOP_REMOTE_URL na OPENAMER_DESKTOP_REMOTE_TOKEN vakabauti e sa vakaisa lalo.',
+      envOverrideDesc:
+        'Yavesa na OPENAMER_DESKTOP_REMOTE_URL na OPENAMER_DESKTOP_REMOTE_TOKEN vakabauti e sa vakaisa lalo.',
       cloudNoAgents: {
         before: 'E se le vakayali e lo koniseta. Tukua e du i roto i le',
         linkText: 'vakapoti OpenAmer',
-        after: ', ka taketesi.',
+        after: ', ka taketesi.'
       },
       cloudRefresh: 'Taketesi',
       cloudConnect: 'Koneketa',
@@ -587,11 +605,13 @@ export const fj = defineLocale({
       signIn: 'Cumu',
       signOut: 'Cau',
       authTitle: 'Autentikasi',
-      authSignedInPassword: 'E gvee vakabuka kei e tilivongeni a vitesau ni. Oti vakamamaru; e novi vakaroroko kautani a sesio.',
+      authSignedInPassword:
+        'E gvee vakabuka kei e tilivongeni a vitesau ni. Oti vakamamaru; e novi vakaroroko kautani a sesio.',
       authSignedInOauth: 'E vakabuka OAuth a vitesau ni. Oti vakamamaru; e novi vakaroroko kautani a sesio.',
       authNeedsPassword: 'E gvee vakabuka kei e tilivongeni a vitesau ni. Cau ka vakamamaru lvei a desktop app ni.',
       tokenTitle: 'Viti ni sesio',
-      tokenDesc: 'E viti ni sesio ni dasibodi e vakabukai na REST kei na WebSocket. Tukuni e na tu na qarawasewa a viti.',
+      tokenDesc:
+        'E viti ni sesio ni dasibodi e vakabukai na REST kei na WebSocket. Tukuni e na tu na qarawasewa a viti.',
       savedToken: 'e qarawasewa',
       pasteSessionToken: 'Lutu e viti ni sesio',
       testRemote: 'Vakatesti te vitesau iremote',
@@ -620,7 +640,8 @@ export const fj = defineLocale({
       applyFailed: 'E sa gaga na apply ki na teitulavi ni te hoko',
       saveFailed: 'E sa gaga na save ni na teitulavi ni te hoko',
       sshTitle: 'Hoko mai ki SSH',
-      sshDesc: 'Na OpenAmer e sa launch ki te host mamao ki SSH ka tuni ki na app ni vakadeu — e gaga na levu. E gaga na moni ki te host e SSH e vuagi ki grogoti.',
+      sshDesc:
+        'Na OpenAmer e sa launch ki te host mamao ki SSH ka tuni ki na app ni vakadeu — e gaga na levu. E gaga na moni ki te host e SSH e vuagi ki grogoti.',
       sshTrustHint: 'Na ki noni na ki ni te host e trust ka pin — na gaga e mua na vakalutu.',
       sshHostTitle: 'Srua',
       sshHostDesc: '`user@host`, se na irini Host mai na `~/.ssh/config`.',
@@ -633,7 +654,7 @@ export const fj = defineLocale({
       sshUserPlaceholder: 'mai `~/.ssh/config`',
       sshPortTitle: 'Matakone',
       sshPortDesc: 'E tubu = 22 na matakone o `~/.ssh/config`.',
-      sshKeyTitle: 'Fa faka\'identity',
+      sshKeyTitle: "Fa faka'identity",
       sshKeyDesc: 'Ala o ki e ki yagisagi. E tubu = `ssh-agent` na `~/.ssh/config`.',
       sshOpenAmerPathTitle: 'Ala o `OpenAmer` (naivo)',
       sshOpenAmerPathDesc: 'Ala oti o ki e binary e wareware o `openamer`. E tubu = vakadewa.',
@@ -642,11 +663,16 @@ export const fj = defineLocale({
       sshConnect: 'Cicilabala',
       sshButtonsHint: 'E vaka-NEXT na kama tuvalu oqo. O na cicilabala na yawa ni.',
       sshIncompleteHost: 'Vakoroisau e kina na hosita o SSH.',
-      sshErrUnreachable: 'E gaga na dogobuva e cicilabala ki na hosita e ga over SSH. Nakita na hosita, na matakone, na network.',
-      sshErrAuth: 'E manawa na fakafotu o SSH. Vakoload e ki yagisagi ki na `ssh-agent` (`ssh-add`) na vakawinaya e `IdentityFile` ki `~/.ssh/config` — e vakatau na `OpenAmer` na `ssh` se rawa vakina.',
-      sshErrHostKey: 'E suli na ki hosita talu e na yawa o na cicilabala tuvalu. Vakadokodoka na vakarorogo e na tamana, ka gava na `ssh-keygen -R <host>` ka cicilabala tale.',
-      sshErrNotInstalled: 'Egei e instalasi `OpenAmer` ki te host remote. Instalasi ki reena (`curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh`) ki na seti te `OpenAmer` path.',
-      sshErrPlatform: 'E se faa tau na plataforma remote. E faa tau na `OpenAmer Desktop SSH mode` ki noda `Linux`, `macOS`, ma `Windows` remote.',
+      sshErrUnreachable:
+        'E gaga na dogobuva e cicilabala ki na hosita e ga over SSH. Nakita na hosita, na matakone, na network.',
+      sshErrAuth:
+        'E manawa na fakafotu o SSH. Vakoload e ki yagisagi ki na `ssh-agent` (`ssh-add`) na vakawinaya e `IdentityFile` ki `~/.ssh/config` — e vakatau na `OpenAmer` na `ssh` se rawa vakina.',
+      sshErrHostKey:
+        'E suli na ki hosita talu e na yawa o na cicilabala tuvalu. Vakadokodoka na vakarorogo e na tamana, ka gava na `ssh-keygen -R <host>` ka cicilabala tale.',
+      sshErrNotInstalled:
+        'Egei e instalasi `OpenAmer` ki te host remote. Instalasi ki reena (`curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh`) ki na seti te `OpenAmer` path.',
+      sshErrPlatform:
+        'E se faa tau na plataforma remote. E faa tau na `OpenAmer Desktop SSH mode` ki noda `Linux`, `macOS`, ma `Windows` remote.',
       sshErrTimeout: 'E mavea le fihiki `SSH`. E possible se e legei te host ka e moe.',
       sshErrUpdateRequired: 'Whakamupua le `OpenAmer` ki te host remote ka mua ni ka connect ki na `Desktop SSH`.',
       sshErrUnknown: 'E kama e mavea le fihiki `SSH`.',
@@ -657,7 +683,8 @@ export const fj = defineLocale({
       inheritDesc: 'Tuma i vakayoverride ʻo ʻe profile ni ka vakay vakatubutuba e matamata.',
       remoteTitle: 'Gateway i ʻoga',
       remoteDesc: 'Caksu i vaka-shell ʻo ni desktop ki i OpenAmer backend i ʻoga.',
-      remoteAuthHint: 'Gateway e loloi e vakayabo OAuth kioa usernames ia ni password; gateway e loloi ʻo ia e ganoa e vakayabo session token.',
+      remoteAuthHint:
+        'Gateway e loloi e vakayabo OAuth kioa usernames ia ni password; gateway e loloi ʻo ia e ganoa e vakayabo session token.',
       cloudDesc: 'Ulukuntu vakali ki OpenAmer Cloud ka vakay mai na drau ʻo ʻe account ʻo — kotoa ʻo ʻe URL vakabuka.',
       cloudSignIn: 'Ulukuntu ki OpenAmer Cloud',
       cloudSignedIn: 'Na ulukuntu ki OpenAmer Cloud',
@@ -670,7 +697,8 @@ export const fj = defineLocale({
       cloudLoadingAgents: 'E load tina ʻo ʻe drau…',
       cloudTitle: 'OpenAmer Voso',
       cloudSignInTitle: 'OpenAmer Voso',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudOrgRole: role => `Role: ${role}`,
       cloudConnectedTo: name => `Connected to ${name}.`,
       cloudStatusLabel: status => `Status: ${status}`,
@@ -678,12 +706,12 @@ export const fj = defineLocale({
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     keys: {
       loading: 'E loading na API keys ma na credentials...',
       failedLoad: 'E kama e loading na API keys',
-      empty: 'Egei e faa konfiguracia i le categori ni.',
+      empty: 'Egei e faa konfiguracia i le categori ni.'
     },
     mcp: {
       loading: 'E loading na MCP servers...',
@@ -745,14 +773,16 @@ export const fj = defineLocale({
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       authenticatedMessage: (server, count) => `${server}: ${count} tools`,
       enableTool: tool => `Enable ${tool}`,
-      disableTool: tool => `Disable ${tool}`,
+      disableTool: tool => `Disable ${tool}`
     },
     model: {
       loading: 'E loa na konfigurasi ni modeli...',
-      appliesDesc: 'E a tau vakawai na seshen vaovau. Vakayaua na fakachoose ni modeli e lalai na fakawai o koe o vakavaitokani na chat e t机箱.',
+      appliesDesc:
+        'E a tau vakawai na seshen vaovau. Vakayaua na fakachoose ni modeli e lalai na fakawai o koe o vakavaitokani na chat e t机箱.',
       provider: 'Kamuniaga',
       model: 'Tauka',
       applying: 'E lolotu...',
@@ -762,7 +792,8 @@ export const fj = defineLocale({
       defaultsFailed: 'Utege n tautoga o gowe o e tauka',
       auxiliaryTitle: 'Tauka vakamama',
       resetAllToMain: 'Vakareseti voseva ki e tauka matua',
-      auxiliaryDesc: 'E tauka matua e gowe e vakayavi e taska vakamama. Vakabeke tauka to e taska tautoga o gowe o se vakachange.',
+      auxiliaryDesc:
+        'E tauka matua e gowe e vakayavi e taska vakamama. Vakabeke tauka to e taska tautoga o gowe o se vakachange.',
       setToMain: 'Vakatokotona ki e tauka matua',
       change: 'Vakania',
       autoUseMain: 'Oteta · vakayoga tauka matua',
@@ -773,37 +804,37 @@ export const fj = defineLocale({
       tasks: {
         vision: {
           label: 'Kite',
-          hint: 'Analyis o e yawa',
+          hint: 'Analyis o e yawa'
         },
         web_extract: {
           label: 'Extract mai webe',
-          hint: 'Tak summary o e peji',
+          hint: 'Tak summary o e peji'
         },
         compression: {
           label: 'Takomaga',
-          hint: 'Cudrataki duai',
+          hint: 'Cudrataki duai'
         },
         skills_hub: {
-          label: 'Ma\' hubi o kōkōhā',
-          hint: 'Dauka kōkōhā',
+          label: "Ma' hubi o kōkōhā",
+          hint: 'Dauka kōkōhā'
         },
         approval: {
           label: 'Fidua',
-          hint: 'Fidua otomatika ena vakarakarataki smart',
+          hint: 'Fidua otomatika ena vakarakarataki smart'
         },
         mcp: {
           hint: 'Taliitiga tools MCP',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Generesena yavoti',
-          hint: 'Yavoti o sesiseni',
+          hint: 'Yavoti o sesiseni'
         },
         curator: {
           label: 'Kurata',
-          hint: 'Ditakitaga vakaivagavoga o kōkōhā',
-        },
-      },
+          hint: 'Ditakitaga vakaivagavoga o kōkōhā'
+        }
+      }
     },
     providers: {
       disconnectInTerminal: 'Katalei (e vakayaco na komodo e tawa na taro e terminal)',
@@ -813,7 +844,7 @@ export const fj = defineLocale({
       noKeysMatch: 'Basi e provider e guri ki na dilo yi.',
       localEndpoint: {
         title: 'Endpoint e vakaviti / e vakatupu',
-        description: 'Vakatau OpenAmer ki na endpoint e OpenAI-compatible (Zyphra, vLLM, llama.cpp, Ollama, keimodi).',
+        description: 'Vakatau OpenAmer ki na endpoint e OpenAI-compatible (Zyphra, vLLM, llama.cpp, Ollama, keimodi).'
       },
       loading: 'E loloi na provider...',
       connectAccount: 'Soro na account',
@@ -827,10 +858,11 @@ export const fj = defineLocale({
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     sessions: {
       loading: 'E loloi na talanoa e sa toqa…',
@@ -841,12 +873,14 @@ export const fj = defineLocale({
       deletePermanently: 'Dilai ma na mudei',
       restored: 'E sa doka',
       autoArchiveTitle: 'Toqa vakautomatic na talanoa e tu luli',
-      autoArchiveDesc: 'Toqa vakautomatic na talanoa e sa no ita e levu. Na talanoa e vakabai basi e toqa na mudei, ka basi e taro — na talanoa e toqa qai vakavovodo kina.',
+      autoArchiveDesc:
+        'Toqa vakautomatic na talanoa e sa no ita e levu. Na talanoa e vakabai basi e toqa na mudei, ka basi e taro — na talanoa e toqa qai vakavovodo kina.',
       autoArchiveDaysLabel: 'Toqa muri',
       autoArchiveDaysUnit: 'na mota e no tiko',
       autoArchiveFailed: 'E saa tauva e teuakina otomatika',
       defaultDirTitle: 'Direkoti vakaprojeka taucina',
-      defaultDirDesc: 'E na tibi na vao e tiko ki lisi ni soko ki se na tau na hoko. E kore e seti koe etoi, ka na tiko ki lisi ni kodo ni gome.',
+      defaultDirDesc:
+        'E na tibi na vao e tiko ki lisi ni soko ki se na tau na hoko. E kore e seti koe etoi, ka na tiko ki lisi ni kodo ni gome.',
       change: 'Vakalolo',
       choose: 'Fili',
       clear: 'Tikai',
@@ -856,11 +890,13 @@ export const fj = defineLocale({
       deleteFailed: 'E saa vakatala e delete',
       updateDirFailed: 'E saa tauva direkoti taucina',
       clearDirFailed: 'E saa tikai direkoti taucina',
-      archivedIntro: 'E huna i te pakina e kinasi i tarafi ki lētō, kafi e pupu ano i ʻene mesi katoa. Ctrl/âŒ˜-click i tetahi pakina i tarafi ki lētō ki te kina.',
-      defaultDirUpdated: 'Kua whakaputia te kōpaki tēpū o te kaupapa â€” amata i tetahi pakina hou (Ctrl/âŒ˜+N) kia whai tikanga',
+      archivedIntro:
+        'E huna i te pakina e kinasi i tarafi ki lētō, kafi e pupu ano i ʻene mesi katoa. Ctrl/âŒ˜-click i tetahi pakina i tarafi ki lētō ki te kina.',
+      defaultDirUpdated:
+        'Kua whakaputia te kōpaki tēpū o te kaupapa â€” amata i tetahi pakina hou (Ctrl/âŒ˜+N) kia whai tikanga',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
       loadingConfig: 'E kama e konfigurasi',
@@ -912,7 +948,7 @@ export const fj = defineLocale({
         selectedTitle: 'E fili na moto',
         needsSetupHint: 'E rawa na fili na moto oqo — na komoka e sega na raka kae oti na tevaka.',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       savedMessage: key => `${key} updated.`,
       removedMessage: key => `${key} removed.`,
@@ -922,8 +958,10 @@ export const fj = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -933,10 +971,10 @@ export const fj = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     skillArchivedTitle: 'Igo ni vakabeba',
@@ -948,7 +986,8 @@ export const fj = defineLocale({
       connectingHubs: 'E oko kina ki na vakabivi ni igo...',
       connectedHubs: 'Na vakabivi ni igo e oko kina:',
       featured: 'Igo vakavovono',
-      landingHint: 'Dodo i vakabivi ni igo me vakarau i igo e vakaitaua kina mai na indisi vakaviti, GitHub, na vakabivi vakaviti.',
+      landingHint:
+        'Dodo i vakabivi ni igo me vakarau i igo e vakaitaua kina mai na indisi vakaviti, GitHub, na vakabivi vakaviti.',
       noResults: 'E tau na igo e tilotiloa i vakabivi ni igo.',
       installed: 'Ni vakaitaua',
       install: 'Vakaitaua',
@@ -966,7 +1005,7 @@ export const fj = defineLocale({
       trust: {
         builtin: 'i lomu ni vakabuna',
         trusted: 'i lololevu',
-        community: 'i vakayabaki',
+        community: 'i vakayabaki'
       },
       verdictSafe: 'Vakarakarame',
       verdictCaution: 'Vakarorogo',
@@ -986,7 +1025,7 @@ export const fj = defineLocale({
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     tabSkills: 'Vosa manu',
     tabToolsets: 'Vose',
@@ -1004,7 +1043,8 @@ export const fj = defineLocale({
     noDescription: 'E a tavai na faasinakina.',
     configured: 'I faasai',
     needsKeys: 'E gaga na giti',
-    visionModelHint: 'E faaogia e na ‘Vision’ na faasainu o na modeli o guri — e fili eo na modeli e gaga na manu, ka e oti na fili ki na modeli e a duadua, ka levu na levu.',
+    visionModelHint:
+      'E faaogia e na ‘Vision’ na faasainu o na modeli o guri — e fili eo na modeli e gaga na manu, ka e oti na fili ki na modeli e a duadua, ka levu na levu.',
     visionModelLink: 'Fili na modeli o ‘Vision’ ki na Filitaga → na Modeli',
     skillsLoadFailed: 'E faaopa na vosa manu',
     toolsetsRefreshFailed: 'Ie tu na koko vakarorogo ki na refresh',
@@ -1022,7 +1062,7 @@ export const fj = defineLocale({
     provenance: {
       agent: 'Ako',
       bundled: 'Vaka i vuturaga',
-      hub: 'Vucesa',
+      hub: 'Vucesa'
     },
     changesApplyNewSessions: 'I vakaoti na sesea vaovau.',
     skillUpdated: 'I vakalakovi na kilik',
@@ -1039,12 +1079,12 @@ export const fj = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     title: 'Kerek manoya',
     close: 'Close kerek manoya',
-    refresh: 'Fo\'ou',
+    refresh: "Fo'ou",
     memory: 'Manoya',
     filterAll: 'Doka',
     filterUsed: 'Vakarayawa',
@@ -1053,9 +1093,11 @@ export const fj = defineLocale({
     loadFailed: 'E gaga vakarau kerek manoya',
     loading: 'E lole…',
     emptyTitle: 'E sa sega na vakoreti',
-    emptyDesc: 'E vakorokoroko na OpenAmer na vakasaumea na manoya, ka doka na manoya e tokona na kerek mo na vakarokoroko na vakasaumea na ga.',
+    emptyDesc:
+      'E vakorokoroko na OpenAmer na vakasaumea na manoya, ka doka na manoya e tokona na kerek mo na vakarokoroko na vakasaumea na ga.',
     share: 'Vakam share mapa',
-    shareHint: 'Dusi na kodo vakam share na mapa, ko ka paste kawe na kodo ka lauso. E a tau na layout ka sega na manoya mo na vakarokoroko na vakasaumea na ga.',
+    shareHint:
+      'Dusi na kodo vakam share na mapa, ko ka paste kawe na kodo ka lauso. E a tau na layout ka sega na manoya mo na vakarokoroko na vakasaumea na ga.',
     shareTitle: 'Import / export mapa',
     sharePlaceholder: 'Paste ka kodo mapa…',
     copy: 'Dusi kodo mapa',
@@ -1066,7 +1108,7 @@ export const fj = defineLocale({
     importedBadge: 'Mapa e sa importu',
     resetToMine: 'Lau na mapaqu',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   commandCenter: {
     branches: 'Vao',
@@ -1081,7 +1123,8 @@ export const fj = defineLocale({
       placeholder: 'Daru manu…',
       loading: 'E lo e pitori a petdex…',
       error: 'E gaba a rawa ki e pitori a petdex.',
-      staleBackend: 'Tala-cekai OpenAmer o vakayeni manu — e tu lelevi e backend au e sega ni iloiloya na levu ni manu.',
+      staleBackend:
+        'Tala-cekai OpenAmer o vakayeni manu — e tu lelevi e backend au e sega ni iloiloya na levu ni manu.',
       empty: 'E sega ni manu e tauvata.',
       turnOff: 'Tamatea',
       turnOn: 'Tudrau',
@@ -1089,7 +1132,7 @@ export const fj = defineLocale({
       generatedTag: 'E vakatau',
       adoptFailed: 'E gaba a vakadrai e manu levu.',
       toggleFailed: 'E gaba a suia e manu.',
-      noneAvailable: 'E sega ni manu e noa — soro e levu o ka lalo ni vakadonu.',
+      noneAvailable: 'E sega ni manu e noa — soro e levu o ka lalo ni vakadonu.'
     },
     generatePet: {
       title: 'Genera mai se manu',
@@ -1118,7 +1161,7 @@ export const fj = defineLocale({
       referenceImageInvalid: 'E tawaitei na vakabuka yatudrau ni iloya. Try na PNG, JPG, WebP, na GIF.',
       adopt: 'Kabuka',
       startOver: 'Tovo',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     installTheme: {
       title: 'Vakaitau i karoko…',
@@ -1130,7 +1173,7 @@ export const fj = defineLocale({
       install: 'Vakaitau',
       installing: 'E vakaitau…',
       installed: 'Na vakaitau',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Laivo ni vakarorogo',
     mcpServers: 'Servea MCP',
@@ -1139,49 +1182,49 @@ export const fj = defineLocale({
       maintenance: 'Vakayabani',
       sessions: 'Vorovoro',
       system: 'Sistema',
-      usage: 'Yosun',
+      usage: 'Yosun'
     },
     sectionDescriptions: {
       maintenance: 'Dit diagnosesi, kopies, kuratora, uaua datamemoria',
       sessions: 'Cau, gobo na seseni',
       system: 'Bokita, rau, gausa sistema',
-      usage: 'Token, nudi, vakasaqayavaki i na levu',
+      usage: 'Token, nudi, vakasaqayavaki i na levu'
     },
     nav: {
       newChat: {
         title: 'Seseni vao',
-        detail: 'Sokovu seseni vao',
+        detail: 'Sokovu seseni vao'
       },
       settings: {
         title: 'Setingsi',
-        detail: 'Sokovu komputa OpenAmer',
+        detail: 'Sokovu komputa OpenAmer'
       },
       skills: {
         title: 'Vakasaqayavaki',
-        detail: 'Vakasaqayavaki, itarata, serusa MCP',
+        detail: 'Vakasaqayavaki, itarata, serusa MCP'
       },
       messaging: {
         title: 'Vitate',
-        detail: 'Sokovu Telegram, Slack, Discord, ke e na levu',
+        detail: 'Sokovu Telegram, Slack, Discord, ke e na levu'
       },
       artifacts: {
         title: 'Kaimomo',
-        detail: 'Dola na kaimomo',
-      },
+        detail: 'Dola na kaimomo'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'I-paneli ni seseni',
-        detail: 'Cau, kasa, vakamanagesi na seseni',
+        detail: 'Cau, kasa, vakamanagesi na seseni'
       },
       system: {
         title: 'I-paneli ni sistema',
-        detail: 'Bokita yateva, rau, toe vakabiriki/Whakatuwai',
+        detail: 'Bokita yateva, rau, toe vakabiriki/Whakatuwai'
       },
       usage: {
         title: 'Paneli vakayakai',
-        detail: 'Tokena, uzova, na veivousa moni',
-      },
+        detail: 'Tokena, uzova, na veivousa moni'
+      }
     },
     providerNavigate: 'Nararawa',
     providerSessions: 'Vakarorogo',
@@ -1231,7 +1274,8 @@ export const fj = defineLocale({
       backup: 'Vakarorogo',
       backupDesc: 'Dibia na ono i vakaratoka, memorisi, vakayau, ni vakadroka',
       debugShare: 'Vakaitau na matafifi',
-      debugShareDesc: 'Lawa adiana na reporti ni vakayabaki + lavi, ka gaga na link ni vakaitau (e tiko na delete ni 6h)',
+      debugShareDesc:
+        'Lawa adiana na reporti ni vakayabaki + lavi, ka gaga na link ni vakaitau (e tiko na delete ni 6h)',
       debugShareRunning: 'E lawa na reporti ni matafifi...',
       debugShareLinks: 'Link ni vakaitau',
       debugShareFailed: 'E dovela na vakaitau ni matafifi',
@@ -1264,7 +1308,7 @@ export const fj = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     close: 'Katakatau vakarokoroko ni vakacommand',
     paletteTitle: 'Pele ni vakacommand',
@@ -1277,7 +1321,7 @@ export const fj = defineLocale({
     days: count => `${count}d`,
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   messaging: {
     search: 'Olo messaging...',
@@ -1292,9 +1336,9 @@ export const fj = defineLocale({
       not_configured: 'Eit i teutau',
       pending_restart: 'Eit i toe tauva cei',
       retrying: 'O takaraga',
-      startup_failed: 'I kila na start',
+      startup_failed: 'I kila na start'
     },
-    unknown: 'Teuma ta\'e rai',
+    unknown: "Teuma ta'e rai",
     hintPendingRestart: 'Toe vakachangi le gateway mai ki na bar ni status ki na apply vakena.',
     hintGatewayStopped: 'Vakabuka le gateway mai ki na bar ni status ki na cemo.',
     credentialsSet: 'I seti na credential',
@@ -1304,7 +1348,8 @@ export const fj = defineLocale({
     openSetupGuide: 'Vakabuka i te dalomu ni teutau',
     required: 'Eit pakari',
     recommended: 'E na kumi levu',
-    noTokenNeeded: 'I sega ni token vakatauwa ki na platform ni. Vakalakaa i te dalomu ni teutau ni lalo, kae vakabuka ki na lalo.',
+    noTokenNeeded:
+      'I sega ni token vakatauwa ki na platform ni. Vakalakaa i te dalomu ni teutau ni lalo, kae vakabuka ki na lalo.',
     enabled: 'I vakabuka',
     disabled: 'Disabla',
     unsavedChanges: 'Veitubaki levu',
@@ -1319,124 +1364,124 @@ export const fj = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Tokena ni bot',
         help: 'Vuoqa bot mai na @BotFather, kaeaja paste na tokena e sa tokena koe.',
-        placeholder: 'Paste na tokena ni bot ni Telegram',
+        placeholder: 'Paste na tokena ni bot ni Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'IDs ni vakabauta ni vakayagiti ni Telegram',
-        help: 'E taivouga. IDs nomeri mai na @userinfobot e vavili na comma. Ite leva, e gaga na ovoi e DM na bot ni vakou.',
+        help: 'E taivouga. IDs nomeri mai na @userinfobot e vavili na comma. Ite leva, e gaga na ovoi e DM na bot ni vakou.'
       },
       TELEGRAM_PROXY: {
         label: 'URL ni proxy',
-        help: 'E gusa only ki na network vayau na Telegram e bloke',
+        help: 'E gusa only ki na network vayau na Telegram e bloke'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Tokena ni bot',
-        help: 'Vuoqa application ki na Discord Developer Portal, add bot, kaeaja paste na tokena.',
+        help: 'Vuoqa application ki na Discord Developer Portal, add bot, kaeaja paste na tokena.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'IDs ni vakabauta ni vakayagiti ni Discord',
-        help: 'E taivouga. IDs ni vakayagiti ni Discord e vavili na comma.',
+        help: 'E taivouga. IDs ni vakayagiti ni Discord e vavili na comma.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Mata i tali',
-        help: 'mua, kei ka, sao no.',
+        help: 'mua, kei ka, sao no.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Vakalevu cei grog a Discord',
-        help: 'Qarqara vakadevelopment tikai. E na levu, e rauva e gafa e vakayagataki na bot ni koro vata ga e tu e vakama.',
+        help: 'Qarqara vakadevelopment tikai. E na levu, e rauva e gafa e vakayagataki na bot ni koro vata ga e tu e vakama.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID ni oni i home',
-        help: 'Oni e tukuna na bot na mesi e saqata (na cron output, na parastasi).',
+        help: 'Oni e tukuna na bot na mesi e saqata (na cron output, na parastasi).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Vavaka ni oni i home',
-        help: 'Vavaka ni oni i home e lomau ki na logi na k台的.',
+        help: 'Vavaka ni oni i home e lomau ki na logi na k台的.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Vakalevu cei grog a iMessage',
-        help: 'E na levu, e sivuru na BlueBubbles allowlist.',
+        help: 'E na levu, e sivuru na BlueBubbles allowlist.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Vakalevu cei grog a Mattermost',
+        label: 'Vakalevu cei grog a Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Oni i home',
+        label: 'Oni i home'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Vakalevu cei grog a QQ',
+        label: 'Vakalevu cei grog a QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Oni i home ni QQ',
-        help: 'Oni vakadefault na mataboro ba na cron.',
+        help: 'Oni vakadefault na mataboro ba na cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Vavaka ni oni i home ni QQ',
+        label: 'Vavaka ni oni i home ni QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token ni bot ni Slack',
         help: 'Vakayaga na token ni bot mai na OAuth & Permissions ni muri ni安装 na Slack app.',
-        placeholder: 'Makena na token ni bot ni Slack',
+        placeholder: 'Makena na token ni bot ni Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token ni app ni Slack',
         help: 'Vakabeqa i token ni app-level eo e gaga na gumi Socket Mode.',
-        placeholder: 'Xopy i token ni Slack app',
+        placeholder: 'Xopy i token ni Slack app'
       },
       SIGNAL_ACCOUNT: {
         help: 'Na numerou e vakareregistara ki vakayavi signal-cli',
-        label: 'Nomeri ni fono',
+        label: 'Nomeri ni fono'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Na kayomesedamasi o Signal e vutai',
-        help: 'O vakivakaledu. Na ID o Signal e noho na comma.',
+        help: 'O vakivakaledu. Na ID o Signal e noho na comma.'
       },
       WHATSAPP_ENABLED: {
         label: 'Vakayavi na vakayavi o WhatsApp',
-        help: 'E vakadeu na giuva levu e na vakagorogi ai lalo. Toce na vakagorogi ka koyeni levu na giuva levu.',
+        help: 'E vakadeu na giuva levu e na vakagorogi ai lalo. Toce na vakagorogi ka koyeni levu na giuva levu.'
       },
       WHATSAPP_MODE: {
-        label: 'Moda o na vakayavi',
+        label: 'Moda o na vakayavi'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Na kayomesedamasi o WhatsApp e vutai',
-        help: 'O vakivakaledu. Na numerou o telefoni ko na ID o WhatsApp e noho na comma.',
+        help: 'O vakivakaledu. Na numerou o telefoni ko na ID o WhatsApp e noho na comma.'
       },
       SLACK_ALLOWED_USERS: {
         label: 'IDs ni users ni Slack e vakarorogo',
-        help: 'E fa\' rekomendi. IDs ni users ni Slack e fa\'aseda i comma.',
+        help: "E fa' rekomendi. IDs ni users ni Slack e fa'aseda i comma."
       },
       MATTERMOST_URL: {
         label: 'URL ni serve',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token ni bot',
+        label: 'Token ni bot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'IDs ni users e vakarorogo',
-        help: 'E fa\' rekomendi. IDs ni users ni Mattermost e fa\'aseda i comma.',
+        help: "E fa' rekomendi. IDs ni users ni Mattermost e fa'aseda i comma."
       },
       MATRIX_HOMESERVER: {
         label: 'URL ni homeserver',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token ni access',
+        label: 'Token ni access'
       },
       MATRIX_USER_ID: {
         label: 'ID ni user ni bot',
-        placeholder: '`@openamer:example.org`',
+        placeholder: '`@openamer:example.org`'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'IDs ni users ni Matrix e vakarorogo',
-        help: 'E fa\' rekomendi. IDs ni users e fa\'aseda i comma, e tu e format @user:server.',
+        help: "E fa' rekomendi. IDs ni users e fa'aseda i comma, e tu e format @user:server."
       },
       SIGNAL_HTTP_URL: {
         label: 'URL ni Signal bridge',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL ni signal-cli REST bridge e rili.',
-      },
+        help: 'URL ni signal-cli REST bridge e rili.'
+      }
     },
     advanced: count => `Advanced (${count})`,
     clearField: key => `Clear ${key}`,
@@ -1450,8 +1495,7 @@ export const fj = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Daukeci na webhooks...',
@@ -1460,29 +1504,30 @@ export const fj = defineLocale({
     hint: 'Na vakabiriki ni subscription e vakaroload na soro gena E rawa na receiver. Na subscription e cicirevaka e na filakita na incoming events.',
     empty: 'E sega na subscription o na webhooks.',
     disabledTitle: 'E cicirevaka na receiver o na webhooks',
-    disabledBody: 'Na webhooks e samokelevu na platform o na gateway vakayavi. Vakayavi vaka vakayavi na iVau ni HTTP e mai; na kula vakavutori e gDou e gDou na subscription e vakarivolori ki na Telegram, Discord, Slack, ko na kula e vosa.',
+    disabledBody:
+      'Na webhooks e samokelevu na platform o na gateway vakayavi. Vakayavi vaka vakayavi na iVau ni HTTP e mai; na kula vakavutori e gDou e gDou na subscription e vakarivolori ki na Telegram, Discord, Slack, ko na kula e vosa.',
     enable: 'Vakayavi na webhooks',
     enabling: 'E vakayavi...',
     enableRow: 'Vakayavi',
     disableRow: 'Cicirevaka',
     delete: 'Volovi',
-    deleting: 'Oke lo\'a...',
+    deleting: "Oke lo'a...",
     deleted: 'Ua oke te webhook',
     deleteTitle: 'Oke i te webhook',
     deleteDescPrefix: 'A ka tawa manu',
-    deleteDescSuffix: '. A ka fa\'otu na\'i.',
+    deleteDescSuffix: ". A ka fa'otu na'i.",
     newSubscription: 'Makububutoga hou',
-    restarting: 'Toe fa\'otinu i te gateway...',
-    restartNeeded: 'E ua enable i te webhooks, kedi e muna toe fa\'otinu te gateway kei na ga lurai na tale ma.',
-    restartGateway: 'Toe fa\'otinu i te gateway',
-    restartingGateway: 'Toe fa\'otinu...',
-    enabledRestarting: 'E ua enable i te webhooks; oke lo\'a toe fa\'otinu i te gateway...',
-    all: '(so\'o)',
+    restarting: "Toe fa'otinu i te gateway...",
+    restartNeeded: "E ua enable i te webhooks, kedi e muna toe fa'otinu te gateway kei na ga lurai na tale ma.",
+    restartGateway: "Toe fa'otinu i te gateway",
+    restartingGateway: "Toe fa'otinu...",
+    enabledRestarting: "E ua enable i te webhooks; oke lo'a toe fa'otinu i te gateway...",
+    all: "(so'o)",
     deliverOnly: 'taimata',
     createdTitle: 'Ua kuri te makububutoga',
-    createdSecretHint: 'Kopoti i te secret i konei — e fa\'otinu na\'i.',
+    createdSecretHint: "Kopoti i te secret i konei — e fa'otinu na'i.",
     webhookUrl: 'URL o te webhook',
-    secretOnce: 'Secret (e fa\'otinu)',
+    secretOnce: "Secret (e fa'otinu)",
     done: 'Vosa',
     fieldName: 'Vaga',
     fieldNamePlaceholder: 'o.g. github-push',
@@ -1492,7 +1537,7 @@ export const fj = defineLocale({
       email: 'Imeli',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     fieldDescription: 'Wasinikidau',
     fieldDescriptionPlaceholder: 'Ii vodo oqo webhook (vei paketti)',
@@ -1515,7 +1560,7 @@ export const fj = defineLocale({
     deleteFailed: (name: string) => `Failed to delete "${name}"`,
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     close: 'Katakacai profili',
@@ -1543,12 +1588,12 @@ export const fj = defineLocale({
     copying: 'O dai...',
     modelLabel: 'Wawale',
     skillsLabel: 'Vakasa',
-    notSet: 'Ta\'e seti',
+    notSet: "Ta'e seti",
     soulDesc: 'Ka vakarorogo vakai ni vakayagatia na system prompt kei na persona ni vakaoti vakatolu.',
     soulOptional: 'Wale kana',
     soulPlaceholderCloned: 'I darua',
     soulPlaceholderEmpty: 'E tubudevu',
-    unsavedChanges: 'Na tubudau ni vakayaga e sa\'i vola',
+    unsavedChanges: "Na tubudau ni vakayaga e sa'i vola",
     loadingSoul: 'O load SOUL.md...',
     emptySoul: 'SOUL.md e tubudevu — vakatubuka na persona...',
     saving: 'O save...',
@@ -1556,7 +1601,7 @@ export const fj = defineLocale({
     deleteTitle: 'O ka tawaka ka profile?',
     deleteDescPrefix: 'O ka tawaka',
     deleteDescMid: 'ka kutu e tawaka na',
-    deleteDescSuffix: 'directory. E sa\'i vakafid Back.',
+    deleteDescSuffix: "directory. E sa'i vakafid Back.",
     deleting: 'Ok deletesa...',
     createDesc: 'E lima mai na profile OpenAmer: e ikalaitoi na config, skills, ke SOUL.md.',
     nameLabel: 'Vosa',
@@ -1593,7 +1638,7 @@ export const fj = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   cron: {
     close: 'Mumui cron',
@@ -1607,14 +1652,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'ua tu',
       disabled: 'maloki',
       error: 'somosomo',
-      completed: 'ua oti',
+      completed: 'ua oti'
     },
     deliveryLabels: {
       local: 'Desktopa ni vaka',
       email: 'i-meeli',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     days: {
       '0': 'Sekede',
@@ -1624,11 +1669,12 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Cakacaka',
       '5': 'Vakabau',
       '6': 'Vosabau',
-      '7': 'Cakisabai',
+      '7': 'Cakisabai'
     },
     topOfHour: 'I le tumai ni every hour',
     newCron: 'Cron vaovao',
-    emptyDescNew: 'Vakayaga e tatale mo vakayaga eke na cron expression. OpenAmer e na vakayaga ka vakasa na kae vakatau.',
+    emptyDescNew:
+      'Vakayaga e tatale mo vakayaga eke na cron expression. OpenAmer e na vakayaga ka vakasa na kae vakatau.',
     emptyDescSearch: 'Esekerau na se ni lavo vakavutai.',
     emptyTitleNew: 'E voa kerei na timoti ni vakayaga',
     emptyTitleSearch: 'E voa kerei na mavo',
@@ -1662,9 +1708,10 @@ Leave blank to keep the ${mode} default.`,
     failedDelete: 'E ivali se na cacoi na kaavo cron',
     failedSave: 'Ue sagohi te cron job',
     editTitle: 'Sakara cron job',
-    createTitle: 'Cron job va\'o',
+    createTitle: "Cron job va'o",
     editDesc: 'Vakarahi na vakaraimeri, na eparata, se na ko eparata. E vakaqaravi na kitima ki na rini e tu koo.',
-    createDesc: 'Vakaraimeria na eparata bena rini oti. Vakayudua na vakavuvi cron se na vakavuvi vakavai vaka "vata 15 miniti".',
+    createDesc:
+      'Vakaraimeria na eparata bena rini oti. Vakayudua na vakavuvi cron se na vakavuvi vakavai vaka "vata 15 miniti".',
     nameLabel: 'Yota',
     namePlaceholder: 'Vakarakaraka vunimata',
     promptLabel: 'Eparata',
@@ -1681,12 +1728,12 @@ Leave blank to keep the ${mode} default.`,
     promptRequired: 'E grequa na eparata.',
     promptScheduleRequired: 'E grequa na eparata kei na vakaraimeri.',
     scheduleRequired: 'Me qoroyi na vakatokani.',
-    scriptOnlyEditHint: 'Vutoko ni script keva (ai \'o \'ai prompt). Job id:',
+    scriptOnlyEditHint: "Vutoko ni script keva (ai 'o 'ai prompt). Job id:",
     saveChanges: 'Vakabaka na vakabaitau',
     createAction: 'Vakauru i cron',
     tabs: {
       jobs: 'Vutoko',
-      blueprints: 'Vakabari',
+      blueprints: 'Vakabari'
     },
     blueprints: {
       tab: 'Vakabari',
@@ -1700,7 +1747,7 @@ Leave blank to keep the ${mode} default.`,
       loading: 'I loo na vakabari...',
       failedLoad: 'I lawe na load ni vakabari',
       emptyTitle: 'E sega ni vakabari',
-      emptyDesc: 'E sega ni vakautomationi vakabari e r_available ki na backend.',
+      emptyDesc: 'E sega ni vakautomationi vakabari e r_available ki na backend.'
     },
     scheduleLabels: {
       daily: 'I vakaoti',
@@ -1709,7 +1756,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'I vukau',
       hourly: 'I hora',
       'every-15-minutes': 'I 15 miniti',
-      custom: 'Vakatokona',
+      custom: 'Vakatokona'
     },
     scheduleHints: {
       daily: 'I vakaoti ki 9:00 AM',
@@ -1718,7 +1765,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'I tubu ni viti o gaga i vukau ki 9:00 AM',
       hourly: 'I te i vakabuka ni hora',
       'every-15-minutes': 'I 15 miniti',
-      custom: 'No keka Cron vakatawa na i gagaba',
+      custom: 'No keka Cron vakatawa na i gagaba'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -1727,14 +1774,14 @@ Leave blank to keep the ${mode} default.`,
     everyDayOfWeekAt: (day, time) => `Every ${day} at ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Monthly on day ${dayOfMonth} at ${time}`,
     everyHourAt: minute => `Every hour at :${minute}`,
-    actionsFor: title => `Actions for ${title}`,
+    actionsFor: title => `Actions for ${title}`
   },
   artifacts: {
     search: 'Dauka na vakabunibuni...',
     refresh: 'Fokai na vakabunibuni',
     refreshing: 'Laukuina na fiti',
     indexing: 'Laukuina na fiti ni vakavakavi tudei',
-    tabAll: 'Ro\'o',
+    tabAll: "Ro'o",
     tabImages: 'Tusi',
     tabFiles: 'Viti',
     tabLinks: 'Maho',
@@ -1761,14 +1808,14 @@ Leave blank to keep the ${mode} default.`,
     copyUrl: 'Kop URL',
     copyPath: 'Kop nena',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'Seshoni vao',
       skills: 'Vakavutau',
       messaging: 'Tutubaki',
-      artifacts: 'Vakavrakai',
+      artifacts: 'Vakavrakai'
     },
     searchAria: 'Dusi seshoni',
     searchPlaceholder: 'Dusi seshoni…',
@@ -1779,9 +1826,11 @@ Leave blank to keep the ${mode} default.`,
     cronJobs: 'Tautau vakaviti',
     groupAriaGrouped: 'Nesesea seshoni ke e na tavosa',
     projects: {
-      removeWorktreeFailed: 'E gava i kautu te worktree (e sa\'i fokomodo?)',
-      removeWorktreeConfirm: 'Kaukatia mai i git (e kautu te direkitori; e noho na branch), se taitai na lane mai na sidebar ka vakabeka te worktree ki diski.',
-      removeWorktreeDirty: 'E sa\'i fokomodo te worktree. Kaukatia vakavutaki (e sa\'i fokomodo), se taitai na lane ka vakabeka te worktree ki diski.',
+      removeWorktreeFailed: "E gava i kautu te worktree (e sa'i fokomodo?)",
+      removeWorktreeConfirm:
+        'Kaukatia mai i git (e kautu te direkitori; e noho na branch), se taitai na lane mai na sidebar ka vakabeka te worktree ki diski.',
+      removeWorktreeDirty:
+        "E sa'i fokomodo te worktree. Kaukatia vakavutaki (e sa'i fokomodo), se taitai na lane ka vakabeka te worktree ki diski.",
       forceRemove: 'Kaukatia vakavutaki',
       back: 'E kauka o ia tikitema',
       sectionLabel: 'Vakasa',
@@ -1813,8 +1862,10 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'Kopya e path',
       removeFromSidebar: 'Fana na sidebar',
       createFailed: 'E sa tau sara vakarorogo',
-      staleBackend: 'Vakorauvoci i te tautoka ni OpenAmer kei na vakabuka ni projeti — e levu i te tautoka soko koe ni te programu ni desktop (Seti → I Vakorauvoci → Tautoka).',
-      deleteConfirm: 'E vakamabaka i te projeti ni loloi mai vei OpenAmer. E ma si rawa na vosa, na vokovoko ni git, na vaitree vakau.',
+      staleBackend:
+        'Vakorauvoci i te tautoka ni OpenAmer kei na vakabuka ni projeti — e levu i te tautoka soko koe ni te programu ni desktop (Seti → I Vakorauvoci → Tautoka).',
+      deleteConfirm:
+        'E vakamabaka i te projeti ni loloi mai vei OpenAmer. E ma si rawa na vosa, na vokovoko ni git, na vaitree vakau.',
       startWork: 'Vaitree vakau vovo',
       newWorktreeTitle: 'Vaitree vakau vovo',
       newWorktreeDesc: 'Vakamumuca i te mata ni te vaitree vakau.',
@@ -1836,9 +1887,9 @@ Leave blank to keep the ${mode} default.`,
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
-    loading: 'E lo\'oa…',
+    loading: "E lo'oa…",
     loadMore: 'Kauka tani',
     row: {
       pin: 'Kabeka',
@@ -1871,7 +1922,7 @@ Leave blank to keep the ${mode} default.`,
       untitledChat: id => `Chat ${id}`,
       ageDay: 'd',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     groupAriaUngrouped: 'Vakarorogo na vakaviti vakayau',
     showProjects: 'Parodha na vakasa',
@@ -1889,12 +1940,12 @@ Leave blank to keep the ${mode} default.`,
       yesterday: 'Naati',
       thisWeek: 'Goana ni vose',
       lastWeek: 'Viti e tiko',
-      thisMonth: 'Goana ni vula',
+      thisMonth: 'Goana ni vula'
     },
     noMatch: query => `No sessions match “${query}”.`,
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     placeholderStarting: 'Ka sa na OpenAmer...',
@@ -1934,7 +1985,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'Vakatokomu na sesini tauri',
       '/details': 'Vakatau na kano ni bulesara',
       '/copy': 'A kopia na fili se isoro a mata tauri',
-      '/quit': 'Mivi na OpenAmer',
+      '/quit': 'Mivi na OpenAmer'
     },
     hotkeyDescs: {
       'composer.mention': 'Vakamapu faili, vuli, url, git',
@@ -1944,7 +1995,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'Ara e turni ni vailata',
       'keybinds.openPanel': 'O shortcut ni keyboard kece',
       'composer.cancel': 'Movo popover · doka e run',
-      'composer.history': 'Vakaloa popover / history',
+      'composer.history': 'Vakaloa popover / history'
     },
     attachUrlTitle: 'Kakau se URL',
     attachUrlDesc: 'Na OpenAmer e fetch na page ka includa e ia mo context ni ena turni.',
@@ -1962,25 +2013,26 @@ Leave blank to keep the ${mode} default.`,
     queueResume: 'Fokotu',
     queueResumeTip: 'E nofoti na Stop — fokotu e vakarorogo ni turni ni vailata',
     snippetsTitle: 'Vakatawa',
-    snippetsDesc: 'Vakabodobi na vakatawa va\'opotpoto mo vakabarea.',
+    snippetsDesc: "Vakabodobi na vakatawa va'opotpoto mo vakabarea.",
     dropFiles: 'Vadoudou na fa mo vakabarea.',
     dropSession: 'Vadoudou mo vakalinki na vakavutaki ni vileso.',
     snippets: {
       codeReview: {
         label: 'Tatausarako kodo',
-        description: 'Tatau vakatitimatimatini na vakabara o koko, vakatapu e sa lavo tisea, kea na vakatamana e sa lava.',
-        text: 'Tupou tatausara tiko na kodo, vakatapu, kea na vakatamana e sa lava.',
+        description:
+          'Tatau vakatitimatimatini na vakabara o koko, vakatapu e sa lavo tisea, kea na vakatamana e sa lava.',
+        text: 'Tupou tatausara tiko na kodo, vakatapu, kea na vakatamana e sa lava.'
       },
       implementationPlan: {
         label: 'Vakaburutara vakabimplementasi',
         description: 'Vakaburutara na yawa vakatari ka toki vakabodo na kodo, vakasa na diff.',
-        text: 'Tupou vakaburutara vakabimplementasi vaitarovi ka toki vakabodo na kodo.',
+        text: 'Tupou vakaburutara vakabimplementasi vaitarovi ka toki vakabodo na kodo.'
       },
       explainThis: {
         label: 'Vakamamataka tiko',
         description: 'Vakamama na yawa e galo na kodo o lo, ka vakalinki na fa rarama.',
-        text: 'Tupou vakamamataka na yawa e galo, ka vakalinki na fa rarama.',
-      },
+        text: 'Tupou vakamamataka na yawa e galo, ka vakalinki na fa rarama.'
+      }
     },
     message: 'Yoron',
     queueStuckTitle: 'Karere e saa tau levu ka e saa vakabai',
@@ -2011,7 +2063,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -2020,14 +2072,14 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
     attachments: count => `${count} attachment${count === 1 ? '' : 's'}`,
     previewLabel: label => `Preview ${label}`,
     couldNotPreview: label => `Could not preview ${label}`,
-    removeAttachment: label => `Remove ${label}`,
+    removeAttachment: label => `Remove ${label}`
   },
   statusStack: {
     agents: 'Vakamateki',
@@ -2042,7 +2094,7 @@ Leave blank to keep the ${mode} default.`,
       review: 'Siviti',
       close: 'Katakici',
       openChanges: 'Cura i na Vakalovorova',
-      openFile: 'Cura i na Fa\'otua',
+      openFile: "Cura i na Fa'otua",
       stage: 'Vakatarawaiti',
       unstage: 'Katara i ka taraiti',
       stageAll: 'Vakatarawaiti soqo',
@@ -2050,8 +2102,9 @@ Leave blank to keep the ${mode} default.`,
       viewAsList: 'Noda e vaka Tini',
       revert: 'Vakalakahi',
       revertAll: 'Vakalakahi soqo',
-      revertConfirm: 'Be e lusi i na vakalovorova ki na fa\'otua ka vakatoro e na fa\'otua ki na ulutaki? E sega ni vakabisia.',
-      revertAllConfirm: 'Be e lusi i na vakalovorova soqo ka vakatoro na fa\'otua ki na ulutaki? E sega ni vakabisia.',
+      revertConfirm:
+        "Be e lusi i na vakalovorova ki na fa'otua ka vakatoro e na fa'otua ki na ulutaki? E sega ni vakabisia.",
+      revertAllConfirm: "Be e lusi i na vakalovorova soqo ka vakatoro na fa'otua ki na ulutaki? E sega ni vakabisia.",
       staged: 'E sa taraiti',
       noChanges: 'E sega ni vakalovorova',
       notRepo: 'E sega ni vaka-Git i na koo',
@@ -2067,7 +2120,8 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'Vakavokai PR',
       ghMissing: 'Instalei GitHub CLI (gh) ka vakaisoro mo vakavokai PR',
       agentShip: 'Vakana OpenAmer mo vakavokai PR',
-      agentShipPrompt: 'Dokodo na mua oqo, vakaisewa ki na vou conventional-commit ma adiseka, guta na rara, ka dokodo na pull request.',
+      agentShipPrompt:
+        'Dokodo na mua oqo, vakaisewa ki na vou conventional-commit ma adiseka, guta na rara, ka dokodo na pull request.',
       newBranch: 'Rara vao',
       worktrees: 'Vakayapa',
       commitPlaceholder: 'Vexo (âŒ˜â†µ ka kaburaki)',
@@ -2076,12 +2130,12 @@ Leave blank to keep the ${mode} default.`,
       behind: count => `${count} behind`,
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -2092,23 +2146,26 @@ Leave blank to keep the ${mode} default.`,
       pydeps: 'Vakaisai…',
       update: 'Vakaukau OpenAmer…',
       rebuild: 'Vakaturuaki aplikesheni desktop…',
-      restart: 'O fa\'anotu toe OpenAmer…',
-      done: 'U sa oti e fo\'ou',
-      manual: 'Fo\'ou mai na terminali',
-      guiSkew: 'Fo\'ou e apiseiseni',
-      error: 'U tau na fo\'ou',
+      restart: "O fa'anotu toe OpenAmer…",
+      done: "U sa oti e fo'ou",
+      manual: "Fo'ou mai na terminali",
+      guiSkew: "Fo'ou e apiseiseni",
+      error: "U tau na fo'ou"
     },
     maybeLater: 'Muri kama',
     manualTitle: 'Whakawhaka mai i terminali',
     manualBody: 'Ua安装 OpenAmer mai i terminali, ka atu ai ko whakawhaka mai kiina. Tākopi tēnei ki to terminali:',
     manualPickedUp: 'Ka picking mai OpenAmer i te vershioni nui inaigi āku kā whakatuwhera.',
     guiSkewTitle: 'Whakawhaka mai i desktop app',
-    guiSkewBody: 'Ua whakawhaka mai te backend, kāore aua changed te paketi o nei desktop app. Whakawhaka mai ki te reinstall vulei i te OpenAmer desktop app (to AppImage / .deb / .rpm) ki te aligns.',
+    guiSkewBody:
+      'Ua whakawhaka mai te backend, kāore aua changed te paketi o nei desktop app. Whakawhaka mai ki te reinstall vulei i te OpenAmer desktop app (to AppImage / .deb / .rpm) ki te aligns.',
     copy: 'Tākopi',
     copied: 'Ua tākopi',
     done: 'Ua vaka',
-    applyingBody: 'Ka接管 te OpenAmer updater i tana own window, ka reopen vulei i OpenAmer āku oti. Āfio koe e reopen i OpenAmer i te wā e whakawhaka mai ana.',
-    applyingBodyBackend: 'Kei te whakamahi te remote backend i te whakawhaka mai, ka restart vulei. Ka reconnect vulei i OpenAmer āku ko hoki mai.',
+    applyingBody:
+      'Ka接管 te OpenAmer updater i tana own window, ka reopen vulei i OpenAmer āku oti. Āfio koe e reopen i OpenAmer i te wā e whakawhaka mai ana.',
+    applyingBodyBackend:
+      'Kei te whakamahi te remote backend i te whakawhaka mai, ka restart vulei. Ka reconnect vulei i OpenAmer āku ko hoki mai.',
     applyingClose: 'Ka close tēnei window āku e rere ana te whakawhaka mai, ka reopen vulei i OpenAmer iā ia.',
     errorTitle: 'Kāore i oti te whakawhaka mai',
     errorBody: 'E ia — kāore i lost. E taa e faa try vulei inaigi.',
@@ -2119,28 +2176,29 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'Kei te restart te backend ki te load i te whakawhaka mai…',
       notAvailable: 'E kāore te whakawhaka mai mō te backend nei.',
       failed: 'Kāore i angsuccess te whakawhaka mai o te backend.',
-      noReturn: 'Ta cogi tu na backend. E on giga na update — vakacheke na host ka backend.',
+      noReturn: 'Ta cogi tu na backend. E on giga na update — vakacheke na host ka backend.'
     },
-    checking: 'O loloi na fo\'ou…',
-    checkFailedTitle: 'E sa\'i ake e si ko na fo\'ou',
-    tryAgain: 'Talo fa\'otinu',
-    notAvailableTitle: 'E sa tavuli na fo\'ou',
-    unsupportedMessage: 'E sa\'i na vakorokoroki e se versioni ni OpenAmer vakatau na app vakabuti.',
-    connectionRetry: 'Vakili na totokoni iva, ka na tolo fa\'otinu.',
+    checking: "O loloi na fo'ou…",
+    checkFailedTitle: "E sa'i ake e si ko na fo'ou",
+    tryAgain: "Talo fa'otinu",
+    notAvailableTitle: "E sa tavuli na fo'ou",
+    unsupportedMessage: "E sa'i na vakorokoroki e se versioni ni OpenAmer vakatau na app vakabuti.",
+    connectionRetry: "Vakili na totokoni iva, ka na tolo fa'otinu.",
     latestBody: 'O vakatau na versioni muta.',
     latestBodyBackend: 'O vakatau na versioni muta na backend.',
     allSetTitle: 'U sa vaka准备好',
-    availableTitle: 'E sa vakama na fo\'ou muta',
+    availableTitle: "E sa vakama na fo'ou muta",
     availableBody: 'E sa valIVALI na versioni muta o OpenAmer.',
-    availableTitleBackend: 'E sa vakama na fo\'ou backend',
+    availableTitleBackend: "E sa vakama na fo'ou backend",
     availableBodyBackend: 'E sa valIVALI na versioni muta o backend connected o OpenAmer.',
     availableBodyNoChangelog: 'E sa valIVALI na versioni muta. E sa tavuli na fanau o vakorokoroki mai na itypeseni.',
-    updateNow: 'Fo\'ou tada',
+    updateNow: "Fo'ou tada",
     appErrors: {
-      updateLocked: 'E soso na update: e tabaka na OpenAmer window ke na terminal e tabaka na openamer. Mamo ki na fenua e tauri vakay rere.',
-      updateFailed: 'E on giga na update. E oni na levu — e tawali na me e lost. E vaka na koe e gero.',
+      updateLocked:
+        'E soso na update: e tabaka na OpenAmer window ke na terminal e tabaka na openamer. Mamo ki na fenua e tauri vakay rere.',
+      updateFailed: 'E on giga na update. E oni na levu — e tawali na me e lost. E vaka na koe e gero.'
     },
-    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
+    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`
   },
   install: {
     stageStates: {
@@ -2148,7 +2206,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'E installing',
       succeeded: 'Vota',
       skipped: 'E taituraga',
-      failed: 'E soso',
+      failed: 'E soso'
     },
     oneTimeTitle: 'E giga na OpenAmer e tauri na install ta vakaviti',
     installCommand: 'Amaka ki na install',
@@ -2157,17 +2215,21 @@ Leave blank to keep the ${mode} default.`,
     installTo: 'E na install ki na',
     retryAfterRun: 'E a run au — vakay rere',
     setupChoiceTitle: 'Vakayodonu na OpenAmer Desktop',
-    setupChoiceDesc: 'Fasilitia na OpenAmer gateway e tauri na koe e tabaka, ke na install OpenAmer ki na komputa ni ga oqo.',
+    setupChoiceDesc:
+      'Fasilitia na OpenAmer gateway e tauri na koe e tabaka, ke na install OpenAmer ki na komputa ni ga oqo.',
     connectExistingTitle: 'Fasilitia na OpenAmer e tauri',
     connectExistingShort: 'Fasilitia na e tauri',
-    connectExistingDesc: 'Vakayodonu na backend e ika toqo ke na session token ke na browser sign-in. E na start na local install.',
+    connectExistingDesc:
+      'Vakayodonu na backend e ika toqo ke na session token ke na browser sign-in. E na start na local install.',
     installLocalTitle: 'Na install OpenAmer ki na ga oqo',
     installLocalDesc: 'Tauka `OpenAmer`, vakaua na taujau Python, ka vakaua na backend ki na komputa niqo.',
     localStartUnavailable: 'E e si tu na vakaoti ki na vakaua. Ka restart na `OpenAmer Desktop` ka tovo vakale.',
     remoteSetupTitle: 'Konekti ki na `OpenAmer` e sa tu',
-    remoteSetupDesc: 'Enerau na URL ni te gateway. Na `OpenAmer Desktop` e gesea koea na gadi vakaoti ki na tokisapo na browser.',
+    remoteSetupDesc:
+      'Enerau na URL ni te gateway. Na `OpenAmer Desktop` e gesea koea na gadi vakaoti ki na tokisapo na browser.',
     remoteUrlTitle: 'URL ni te gateway',
-    remoteUrlDesc: 'Vakamamuna na URL vakatau ni te gateway ni `OpenAmer`, o gaga na `https://` ka vakatau na gateway e tu i te tulaga.',
+    remoteUrlDesc:
+      'Vakamamuna na URL vakatau ni te gateway ni `OpenAmer`, o gaga na `https://` ka vakatau na gateway e tu i te tulaga.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
     probing: 'E gesea na vakamafvai ki te gateway...',
     probeError: 'E e si ake na gesea na gateway ni `OpenAmer`.',
@@ -2186,29 +2248,32 @@ Leave blank to keep the ${mode} default.`,
     testConnection: 'Vakamamaru vuturaga',
     applyRemote: 'Vakayori hoki ka kabo vuturaga',
     backToSetup: 'Toe',
-    failedTitle: 'Ko mavala o fa\'ainisitili',
-    settingUpTitle: 'Ko fa\'akina e OpenAmer Agent',
+    failedTitle: "Ko mavala o fa'ainisitili",
+    settingUpTitle: "Ko fa'akina e OpenAmer Agent",
     finishingTitle: 'Ko oti koo',
-    failedDesc: 'Ko mavala o na i tikiti o fa\'ainisitili. E rawa Windows, e na rawa na sa ena OpenAmer CLI ki na fa\'atue o teise e taukai. Vak stop na fa\'atue OpenAmer e taukai, ka toe ni kabo. Vakarorogo na i tikiti o ka ra ko e katepiti ni teise ki na log o teise.',
-    activeDesc: 'O fa\'akina mokoi ni vakavoo. Ko OpenAmer installer e kaakau mai na i vakarDependencies hoki ko fa\'akonfiguri e\'anga vakalou. Na i fa\'atoro ni tuimela e na kalaki na i tikiti oqo.',
+    failedDesc:
+      "Ko mavala o na i tikiti o fa'ainisitili. E rawa Windows, e na rawa na sa ena OpenAmer CLI ki na fa'atue o teise e taukai. Vak stop na fa'atue OpenAmer e taukai, ka toe ni kabo. Vakarorogo na i tikiti o ka ra ko e katepiti ni teise ki na log o teise.",
+    activeDesc:
+      "O fa'akina mokoi ni vakavoo. Ko OpenAmer installer e kaakau mai na i vakarDependencies hoki ko fa'akonfiguri e'anga vakalou. Na i fa'atoro ni tuimela e na kalaki na i tikiti oqo.",
     fetchingManifest: 'Ko kaakau mai e installer manifest...',
     error: 'Erora',
-    hideOutput: 'Cakau na i katakata o fa\'ainisitili',
-    showOutput: 'Nena na i katakata o fa\'ainisitili',
+    hideOutput: "Cakau na i katakata o fa'ainisitili",
+    showOutput: "Nena na i katakata o fa'ainisitili",
     noOutput: 'Cikau, iai na i katakata.',
     cancelling: 'Ko tai...',
-    cancelInstall: 'Tai ki e fa\'ainisitili',
+    cancelInstall: "Tai ki e fa'ainisitili",
     transcriptSaved: 'Ko gacoi e na katoa o te transcript ki',
     copiedOutput: 'E vakacopi!',
     copyOutput: 'Vakacopi e na i katakata',
     reloadRetry: 'Faa load hoki ka toe ni kabo',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
     signInWith: provider => `Sign in with ${provider}`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'Vakarauka koe ki OpenAmer Agent',
@@ -2228,28 +2293,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'API model direct',
-        description: 'Access direct ki na model e hosti na Fireworks AI.',
+        description: 'Access direct ki na model e hosti na Fireworks AI.'
       },
       openrouter: {
         short: 'API key vua, model levu',
-        description: 'E hosti na model timoti e rua na API key vua. Filifia lelei mo instali vou.',
+        description: 'E hosti na model timoti e rua na API key vua. Filifia lelei mo instali vou.'
       },
       openai: {
         short: 'Model e parivodatoga na GPT',
-        description: 'Access direct ki na model OpenAI.',
+        description: 'Access direct ki na model OpenAI.'
       },
       gemini: {
         short: 'Môdeli Gemini',
-        description: 'Tafeqa tuʻi ki na môdeli a Google Gemini.',
+        description: 'Tafeqa tuʻi ki na môdeli a Google Gemini.'
       },
       xai: {
         short: 'Môdeli Grok',
-        description: 'Tafeqa tuʻi ki na môdeli a xAI Grok.',
+        description: 'Tafeqa tuʻi ki na môdeli a xAI Grok.'
       },
       local: {
         short: 'Itea host',
-        description: 'Ori OpenAmer ki se endpoint lokal o se itea host e OpenAI-compatible (vLLM, llama.cpp, Ollama, sns.).',
-      },
+        description:
+          'Ori OpenAmer ki se endpoint lokal o se itea host e OpenAI-compatible (vLLM, llama.cpp, Ollama, sns.).'
+      }
     },
     backToSignIn: 'Foki ki te huanga mai',
     getKey: 'Toka se',
@@ -2262,13 +2328,13 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'E kai te browser kei te huanga mai, kae continue ki konei',
       device_code: 'E kai se paga fakamanatunuga i roto i la browser — e kai OpenAmer oti',
-      external: 'Huanga mai iane i roto i la terminal, kae foki mai ki te talanoa',
+      external: 'Huanga mai iane i roto i la terminal, kae foki mai ki te talanoa'
     },
     signInFailed: 'E faili te huanga mai. Ngana hou.',
     pickDifferentProvider: 'Filifili se provider e keke.',
     authorizeThere: 'Whakamana OpenAmer i rethere.',
-    copyAuthCode: 'Kopyae fa\'code o te vakamasomesu mo paste ia ki lalo.',
-    pasteAuthCode: 'Paste fa\'code o te vakamasomesu',
+    copyAuthCode: "Kopyae fa'code o te vakamasomesu mo paste ia ki lalo.",
+    pasteAuthCode: "Paste fa'code o te vakamasomesu",
     reopenAuthPage: 'Toe avatalei e te pege o te vakamasomesu',
     reopenSignInPage: 'Toe avatalei e te pege o te hoko mai',
     waitingAuthorize: 'E vakatamali na tamatarau vakamasomesu...',
@@ -2276,9 +2342,9 @@ Leave blank to keep the ${mode} default.`,
     reopenVerification: 'Toe avatalei e te pege o te vakamafakainca',
     copy: 'Kopya',
     defaultModel: 'Modeli matua',
-    freeTier: 'Tasitei ma\'free',
+    freeTier: "Tasitei ma'free",
     pro: 'Mata vinaka',
-    free: 'Ma\'free',
+    free: "Ma'free",
     change: 'Suia',
     startChatting: 'Amata',
     startingSignIn: provider => `Starting sign-in for ${provider}...`,
@@ -2287,11 +2353,13 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'Suia modeli',
@@ -2307,13 +2375,13 @@ Leave blank to keep the ${mode} default.`,
     free: 'Vakabivi',
     freeTier: 'Vakabivi',
     priceTitle: 'Vakarorogo ni Cika/Caqa ena milioni ni tokoni',
-    wasPrice: 'e',
+    wasPrice: 'e'
   },
   modelVisibility: {
     title: 'Modu',
     search: 'Civivo na modu',
     noAuthenticatedProviders: 'E sega ni na vosa na makamakau ni vakatoro.',
-    addProvider: 'Cusi na makamakau…',
+    addProvider: 'Cusi na makamakau…'
   },
   shell: {
     windowControls: 'Niyake vakavili',
@@ -2324,7 +2392,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'E sega na modu e rau',
       editModels: 'Vakabirauti na Modu…',
       refreshModels: 'Vakafou na Modu',
-      fast: 'Vakarabai',
+      fast: 'Vakarabai'
     },
     gatewayMenu: {
       checkingInference: 'Siaka ko vakainference',
@@ -2339,7 +2407,7 @@ Leave blank to keep the ${mode} default.`,
       offline: 'I sa wekeweke',
       inferenceReady: 'Te inferensi e sa rawa',
       inferenceNotReady: 'E sa rawa madi te inferensi',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'Mo reka tu',
@@ -2349,7 +2417,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'Vakatevitia na gega o taro koo vei e sa gani',
       off: 'Cakacau',
       offDescription: 'Cika binaa ni titi vakamanatoa',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'Te levu na',
@@ -2368,8 +2436,8 @@ Leave blank to keep the ${mode} default.`,
       gatewayChecking: 'eitaroina',
       gatewayConnecting: 'eihono',
       gatewayOffline: 'laivoa',
-      gatewayRestarting: 'e toe fa\'otu…',
-      gatewayTitle: 'Le fa\'anotu o le vate fakapana a OpenAmer',
+      gatewayRestarting: "e toe fa'otu…",
+      gatewayTitle: "Le fa'anotu o le vate fakapana a OpenAmer",
       agents: 'Kauti',
       closeAgents: 'Mumui kauti',
       openAgents: 'Tudou kauti',
@@ -2391,18 +2459,19 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'Tinakore taufi',
           system_prompt: 'Galatatoka mai',
           tool_definitions: 'Tinakore yawa',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Ara data konteksti',
         loading: 'Okawa…',
         title: 'Votevokai konteksti',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Dakuina votevokai konteksti',
       session: 'Viti',
       runtimeSessionElapsed: 'Viti yawa',
-      yoloOn: 'YOLO on — e vakarokorokai automatiki na isoro ni levu. Click ena sa OFF. Shift+click e vakay-toggle k Globally.',
+      yoloOn:
+        'YOLO on — e vakarokorokai automatiki na isoro ni levu. Click ena sa OFF. Shift+click e vakay-toggle k Globally.',
       yoloOff: 'YOLO off — Click ena vakarokoroka automatiki na isoro ni levu. Shift+click e vakay-toggle k Globally.',
       modelNone: 'Wale',
       noModel: 'Caka modeli',
@@ -2424,7 +2493,7 @@ Leave blank to keep the ${mode} default.`,
       failed: count => `${count} failed`,
       running: count => `${count} running`,
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
     },
     modelOptions: {
       noOptions: 'E sega na ndodonoka ki te modela',
@@ -2440,8 +2509,8 @@ Leave blank to keep the ${mode} default.`,
       max: 'I soro duadua',
       ultra: 'I soro duadua lauta',
       updateFailed: 'I sogo i te vakatau i te modela',
-      fastFailed: 'I sogo i te vakatau o te mode vite',
-    },
+      fastFailed: 'I sogo i te vakatau o te mode vite'
+    }
   },
   rightSidebar: {
     aria: 'Idovodovo ki je',
@@ -2477,7 +2546,7 @@ Leave blank to keep the ${mode} default.`,
     addToChat: 'Vakororogo ki na chat',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'Prevyu',
@@ -2505,7 +2574,8 @@ Leave blank to keep the ${mode} default.`,
     editing: 'E vakarorogoya',
     unsavedChanges: 'Ga taketake na tusa e sa kepa',
     diskChangedTitle: 'E sa tauvatani na file ki na diski',
-    diskChangedBody: 'E sa tauvatani na file tawa na kai oti. Ena kojotoka e levu na versio e ou, na sega ena gade na tusa e ou ka reload?',
+    diskChangedBody:
+      'E sa tauvatani na file tawa na kai oti. Ena kojotoka e levu na versio e ou, na sega ena gade na tusa e ou ka reload?',
     overwrite: 'Tauko',
     discardReload: 'Hegogi ka lauta',
     console: {
@@ -2526,7 +2596,7 @@ Leave blank to keep the ${mode} default.`,
       sentTitle: 'I vakarorogo ki te talanoa',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'E ivalidi te previu app ia kama',
@@ -2547,9 +2617,11 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'E reload te preview izao.',
       restartFailedTitle: 'E fail te restart o te preview',
       restartFailedMessage: 'E tauke na OpenAmer ena restart te server.',
-      stillWorking: 'OpenAmer e continue works, koi na restart result e ka sona tu. E na possibility te server command e run i te foreground.',
+      stillWorking:
+        'OpenAmer e continue works, koi na restart result e ka sona tu. E na possibility te server command e run i te foreground.',
       workspaceReloading: 'EChanged te workspace, e reload te preview',
-      moduleMimeDescription: 'Te MIME type o Module scripts e sa tau vakaviti. E da gani vakati te static file server e serves ke app a Vite/React, e gena ko e project dev server.',
+      moduleMimeDescription:
+        'Te MIME type o Module scripts e sa tau vakaviti. E da gani vakati te static file server e serves ke app a Vite/React, e gena ko e project dev server.',
       unreachableDescription: 'E tauke na reach te preview page.',
       fallbackTitle: 'Te m preview',
       lookingRestart: taskId => `OpenAmer is looking for a preview server to restart (${taskId})`,
@@ -2560,14 +2632,14 @@ Leave blank to keep the ${mode} default.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     linkHint: 'âŒ˜/Ctrl-click vö o qone',
     closeTab: label => `Close ${label}`,
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   zones: {
     showHeader: 'Nanao header',
@@ -2575,7 +2647,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Whakaiti',
     restore: 'Dekote',
     closeRunningTitle: 'Mude e na tab o lo tau?',
-    closeRunningBody: 'Lo chat e cikoci (wala koo e vakarawaiti ki o vakatawa). E mude na tab e oti, e tago kina — e gqai lo seseni e tukulei na mahoko ni makina, ia e rau kina mai na taba ni vasagala.',
+    closeRunningBody:
+      'Lo chat e cikoci (wala koo e vakarawaiti ki o vakatawa). E mude na tab e oti, e tago kina — e gqai lo seseni e tukulei na mahoko ni makina, ia e rau kina mai na taba ni vasagala.',
     closeRunningConfirm: 'Mude tab',
     closeOthers: 'Mude na tab tale',
     closeToRight: 'Mude na tab e taba ni monogi',
@@ -2587,7 +2660,8 @@ Leave blank to keep the ${mode} default.`,
     dirRight: 'monogi',
     pluginDisabledBody: 'Vakagainisi kina ki Sauti → Vakawiris, vakadakaiti na pane.',
     editTitle: 'Vakarokoroko',
-    editHint: 'Filimasi e vakarokoroko, wala koo e vakadraiva na fale vaka hilibe na viti. Click monogi e na viti vakawase.',
+    editHint:
+      'Filimasi e vakarokoroko, wala koo e vakadraiva na fale vaka hilibe na viti. Click monogi e na viti vakawase.',
     reset: 'Vakarokoroko',
     templates: 'Vakauvuli',
     custom: 'Tohitoka',
@@ -2612,7 +2686,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
@@ -2625,7 +2699,7 @@ Leave blank to keep the ${mode} default.`,
       moreActions: 'Vei kua fakamoeʻa',
       branchNewChat: 'Vase i chat e kai',
       dismissError: 'Tutubua e gaqetaka',
-      readAloudFailed: 'Fa\'otinau e se gaqetaka',
+      readAloudFailed: "Fa'otinau e se gaqetaka",
       preparingAudio: 'E loloi kabi...',
       stopReading: 'Toso e laubale',
       readAloud: 'Laubale',
@@ -2643,11 +2717,12 @@ Leave blank to keep the ${mode} default.`,
       goForward: 'Kaa ki mua',
       sendEdited: 'Curu e kai e vakayau',
       attachingFile: 'E vakatubekeni…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
-      yesterday: time => `Yesterday, ${time}`,
+      yesterday: time => `Yesterday, ${time}`
     },
     approval: {
       gatewayDisconnected: 'E sega ni connect i te vayamila a OpenAmer',
@@ -2661,7 +2736,8 @@ Leave blank to keep the ${mode} default.`,
       reject: 'Takala',
       alwaysTitle: 'Yawa ga katoa i te kamanu ni?',
       alwaysAllow: 'Yawa ga katoa',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
       notReady: 'E sega ga ready i te hohopa ni vakamālō',
@@ -2675,7 +2751,7 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'Tau hoki',
       lateAnswerTip: 'Vakawachati na vala vakivi',
       lateAnswerHint: 'E sa na vivili na prompt ni. Filotofo na e vakawachati koi na kora vakivi.',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     tool: {
       code: 'Koda',
@@ -2709,123 +2785,123 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Ivlaku',
         running: 'Ivlaku',
         ranCode: 'Ivlaku kodo',
-        runningCode: 'Vakacokoniti kodo',
+        runningCode: 'Vakacokoniti kodo'
       },
       prefixes: {
         browser: 'Puleti',
-        web: 'iNeti',
+        web: 'iNeti'
       },
       titles: {
         browser_click: {
           done: 'Dau kaukau vakacacau',
           pending: 'Dau kaukau vakacacau',
-          pendingAction: 'Dau',
+          pendingAction: 'Dau'
         },
         browser_fill: {
           done: 'Vakaisa vakamarama',
           pending: 'Vakaisa vakamarama',
-          pendingAction: 'Fatani',
+          pendingAction: 'Fatani'
         },
         browser_navigate: {
           done: 'Kauti e sora',
           pending: 'Sora na kauti',
-          pendingAction: 'Sora',
+          pendingAction: 'Sora'
         },
         browser_snapshot: {
           done: 'Kuta e te kauti',
           pending: 'Kuta na kauti',
-          pendingAction: 'Kuta',
+          pendingAction: 'Kuta'
         },
         browser_take_screenshot: {
           done: 'Kuta e te ekran',
           pending: 'Kuta na ekran',
-          pendingAction: 'Kuta',
+          pendingAction: 'Kuta'
         },
         browser_type: {
           done: 'Kauti e vakayaga',
           pending: 'Vakayaga na kauti',
-          pendingAction: 'Vakayaga',
+          pendingAction: 'Vakayaga'
         },
         clarify: {
           done: 'E vakataroga na taroga',
           pending: 'Vakataroga na taroga',
-          pendingAction: 'Vakataroga',
+          pendingAction: 'Vakataroga'
         },
         cronjob: {
           done: 'Kaumea vakabuka',
           pending: 'Vakatokona na kaumea vakabuka',
-          pendingAction: 'Vakatokona',
+          pendingAction: 'Vakatokona'
         },
         edit_file: {
           done: 'E vakabara na faila',
           pending: 'Doiga faila',
-          pendingAction: 'Doigai',
+          pendingAction: 'Doigai'
         },
         execute_code: {
           done: 'Dokau kodi',
           pending: 'Kodokodo',
-          pendingAction: 'Kodokodo',
+          pendingAction: 'Kodokodo'
         },
         image_generate: {
           done: 'Nusupucini kuo laiti',
           pending: 'Laiti nusupucini',
-          pendingAction: 'Laiti',
+          pendingAction: 'Laiti'
         },
         list_files: {
           done: 'Faila kuo lisiti',
           pending: 'Faila e lisiti',
-          pendingAction: 'Lisiti',
+          pendingAction: 'Lisiti'
         },
         patch: {
           done: 'Faila kuo yobisi',
           pending: 'Faila e yobisi',
-          pendingAction: 'Yobisi',
+          pendingAction: 'Yobisi'
         },
         read_file: {
           done: 'Faila kuo oni',
           pending: 'Faila e oni',
-          pendingAction: 'Oni',
+          pendingAction: 'Oni'
         },
         search_files: {
           done: 'Faila kuo dusi',
           pending: 'Faila e dusi',
-          pendingAction: 'Dusi',
+          pendingAction: 'Dusi'
         },
         session_search_recall: {
           done: 'Daru i l历史 oqo',
           pending: 'E daru i l历史 oqo',
-          pendingAction: 'E daru',
+          pendingAction: 'E daru'
         },
         terminal: {
           done: 'E galue',
           pending: 'E galue',
-          pendingAction: 'E galue',
+          pendingAction: 'E galue'
         },
         todo: {
           done: 'Vakauveki veikaukau',
           pending: 'E vakauveki veikaukau',
-          pendingAction: 'E vakauveki',
+          pendingAction: 'E vakauveki'
         },
         vision_analyze: {
           done: 'Vakasaqau i l图片',
           pending: 'E vakasaqau i l图片',
-          pendingAction: 'E vakasaqau',
+          pendingAction: 'E vakasaqau'
         },
         web_extract: {
           done: 'Dau i le web page',
           pending: 'E dau i le web page',
-          pendingAction: 'E dau',
+          pendingAction: 'E dau'
         },
         web_search: {
           done: 'Daru i le web',
           pending: 'E daru i le web',
-          pendingAction: 'E daru',
+          pendingAction: 'E daru'
         },
         write_file: {
           done: 'Vakacala i le file',
           pending: 'E vakacala i le file',
-          pendingAction: 'Koea',
-        },
+          pendingAction: 'Koea'
+        }
       },
       recoveredMany: count => `Recovered after ${count} failed steps`,
       failedMany: count => `${count} steps failed`,
@@ -2835,34 +2911,36 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
+    }
   },
   desktop: {
     yoloToggleFailed: 'E sega ni rawa vakatogolo i te YOLO',
     unknownProfile: 'Profa e sega ni ono',
-    setProfileFailed: 'E sa tau fa\' seti i te profa',
+    setProfileFailed: "E sa tau fa' seti i te profa",
     sttDisabled: 'E sa tau kabina te vakabuta-gaga ki na seta.',
-    stopFailed: 'E sa tau fa\'otogi',
+    stopFailed: "E sa tau fa'otogi",
     regenerateFailed: 'E sa tau toe sitema',
     editFailed: 'E sa tau vakabuni',
     resumeFailed: 'E sa tau toe takali',
-    resumeStrandedTitle: 'E sa tau fa\'load i te pasisessioni nei',
-    resumeStrandedBody: 'E sa tau fa\'connect i te pasisessioni nei, sa oti na tries automatic. Vakanna na kwanetisevei e sa rawa, ka toe keno.',
+    resumeStrandedTitle: "E sa tau fa'load i te pasisessioni nei",
+    resumeStrandedBody:
+      "E sa tau fa'connect i te pasisessioni nei, sa oti na tries automatic. Vakanna na kwanetisevei e sa rawa, ka toe keno.",
     resumeRetry: 'Toe keno',
     nothingToBranch: 'E sega na mea e vakaroro',
-    branchNeedsChat: 'E fa\'amata na talanoa, na toki vakaroro i te talanoa nei.',
+    branchNeedsChat: "E fa'amata na talanoa, na toki vakaroro i te talanoa nei.",
     sessionBusy: 'E fena te pasisessioni',
-    branchStopCurrent: 'E fa\'otogi te turn nei, na toki vakaroro i te talanoa nei.',
+    branchStopCurrent: "E fa'otogi te turn nei, na toki vakaroro i te talanoa nei.",
     branchNoText: 'E sega ni gaga o te meseji nei e vakaroro mai.',
-    branchFailed: 'E sa tau fa\'vakaroro',
+    branchFailed: "E sa tau fa'vakaroro",
     deleteFailed: 'E sa tau deleti',
-    archived: 'Fa\'archivio',
-    archiveFailed: 'E sa tau fa\'archivio',
+    archived: "Fa'archivio",
+    archiveFailed: "E sa tau fa'archivio",
     cwdChangeFailed: 'I vole levu na suke tauka ni galo',
     cwdStagedTitle: 'Vei suqe ki tauka ni galo e sa vakadevei',
-    cwdStagedMessage: 'Fefedi na backend vakapesi vakataimaga vakayalatyaga na suke tauka ni galo `cwd` ki na sesiseni ni ono.',
+    cwdStagedMessage:
+      'Fefedi na backend vakapesi vakataimaga vakayalatyaga na suke tauka ni galo `cwd` ki na sesiseni ni ono.',
     modelSwitchFailed: 'I vole levu na sui model',
     sessionExported: 'I a exporta na sesiseni',
     sessionExportFailed: 'E sa tauvoli exporta na sesiseni',
@@ -2880,7 +2958,7 @@ Leave blank to keep the ${mode} default.`,
     imageAttachFailed: 'I vole levu ki vakavotogi sē',
     attachImages: 'Vakavotogi na sē',
     clipboard: 'Kopiboard',
-    noClipboardImage: 'Ta\'ea e tau imasi ioka i kilokopo',
+    noClipboardImage: "Ta'ea e tau imasi ioka i kilokopo",
     clipboardPasteFailed: 'E manu ia ki te lolomasi',
     dropFiles: 'Teu e tau faila',
     handoff: {
@@ -2888,7 +2966,7 @@ Leave blank to keep the ${mode} default.`,
       timedOut: 'E yaqati na tinu vakavutai ki te gateway. E cini `openamer gateway`?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     audioReadFailed: 'E sega ni lavo i le audio e sa rekordera',
     sessionUnavailable: 'E sega ni gaca na vakasesa',
@@ -2903,34 +2981,35 @@ Leave blank to keep the ${mode} default.`,
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
-    branchTitle: n => `Draft: Branch #${n}`,
+    branchTitle: n => `Draft: Branch #${n}`
   },
   errors: {
     genericFailure: 'E manu e tau ka',
     boundaryTitle: 'E niu faa e tau mea i te interfesi',
-    boundaryDesc: 'E ari e tau vaka\'ono e te va\'eview. E malomalo na vakasikoga na vakasikoga.',
+    boundaryDesc: "E ari e tau vaka'ono e te va'eview. E malomalo na vakasikoga na vakasikoga.",
     reloadWindow: 'Whakaoriteti te windowsi',
-    openLogs: 'Tuu e tau logi',
+    openLogs: 'Tuu e tau logi'
   },
   ui: {
     search: {
-      clear: 'Tafea e te suau',
+      clear: 'Tafea e te suau'
     },
     pagination: {
       label: 'Te vakabare',
       previous: 'Mua',
       previousAria: 'E mua ki te peja',
       next: 'Murimuri',
-      nextAria: 'E muri ki te peja',
+      nextAria: 'E muri ki te peja'
     },
     sidebar: {
-      title: 'Te pa\'e vasava',
-      description: 'E vakatautau e te pa\'e vasava o te telefoni.',
-      toggle: 'Vakatogotogo e te pa\'e vasava',
-    },
+      title: "Te pa'e vasava",
+      description: "E vakatautau e te pa'e vasava o te telefoni.",
+      toggle: "Vakatogotogo e te pa'e vasava"
+    }
   },
   agents: {
     close: 'Katakatau vakawakai',
@@ -2960,20 +3039,22 @@ Leave blank to keep the ${mode} default.`,
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   prompts: {
     gatewayDisconnected: 'E sega ni konekisi OpenAmer gateway',
     sudoSendFailed: 'E sega ni grogotova na paswota sudo',
     secretSendFailed: 'E sega ni grogotova na kekena',
     sudoTitle: 'Paswota o administrator',
-    sudoDesc: 'OpenAmer e goga na paswota sudo me vakayawa na komanda o gaga levu. E grogotova ki na agent ni gaigai o gaga.',
+    sudoDesc:
+      'OpenAmer e goga na paswota sudo me vakayawa na komanda o gaga levu. E grogotova ki na agent ni gaigai o gaga.',
     sudoPlaceholder: 'Paswota sudo',
     secretTitle: 'O goga na kekena',
     secretDesc: 'OpenAmer e goga na teka mate ka vakorohoga.',
-    secretPlaceholder: 'Kikina o na kekena',
+    secretPlaceholder: 'Kikina o na kekena'
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
-  },
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
+  }
 })

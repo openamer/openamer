@@ -14,9 +14,11 @@ export const kj = defineLocale({
       signInToRemoteGateway: 'Nyingena koshivelo shokule',
       identityProvider: 'omupauli womukalo woye',
       title: 'OpenAmer kai dulu okutameka',
-      description: 'Oshivelo shokonima inashi fika po. Linga imwe yomikalo yokuyambulula ei i li pevi. Kapa na shimwe apa tashi dimi omapopyo ile omalandulopo.',
+      description:
+        'Oshivelo shokonima inashi fika po. Linga imwe yomikalo yokuyambulula ei i li pevi. Kapa na shimwe apa tashi dimi omapopyo ile omalandulopo.',
       remoteTitle: 'Okupita moshivelo shokule otaku pumbiwa',
-      remoteDescription: 'Oshipui shoshivelo shokule sha pwe. Pita vali mo opo u kwatakane vali. Kapa na shimwe apa tashi dimi omapopyo ile omalandulopo.',
+      remoteDescription:
+        'Oshipui shoshivelo shokule sha pwe. Pita vali mo opo u kwatakane vali. Kapa na shimwe apa tashi dimi omapopyo ile omalandulopo.',
       retry: 'Linga vali',
       repairInstall: 'Yambulula okutula',
       useLocalGateway: 'Longifa oshivelo shomomukunda',
@@ -25,13 +27,15 @@ export const kj = defineLocale({
       openLogs: 'Pashula omalogo',
       repairHint: 'Okuyambulula otaku pitukile okutula nokwa dulu okupita omaminute adike komputa ipe.',
       signOutAndSignIn: 'Dja mo & pita mo',
-      remoteFailureHint: 'Konakona URL yoshivelo nokupita mo koshi yomalandulopo eshivelo, ile lundulula koshivelo shomomukunda.',
+      remoteFailureHint:
+        'Konakona URL yoshivelo nokupita mo koshi yomalandulopo eshivelo, ile lundulula koshivelo shomomukunda.',
       hideRecentLogs: 'Holeka omalogo epe',
       showRecentLogs: 'Ulika omalogo epe',
       signedInTitle: 'Wa pita mo',
       signedInMessage: 'Okukwatakana vali noshivelo shokule…',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
     errors: {
       gatewayConnectionLost: 'Okukwatakanisa noshivelo kwa kanifa',
@@ -40,7 +44,7 @@ export const kj = defineLocale({
       backgroundExited: 'OpenAmer background process exited.',
       backgroundExitedDuringStartup: 'OpenAmer background process exited during startup.',
       backendStopped: 'Backend stopped',
-      desktopBootFailed: 'Desktop boot failed',
+      desktopBootFailed: 'Desktop boot failed'
     },
     ready: 'OpenAmer Desktop is ready',
     desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
@@ -49,8 +53,8 @@ export const kj = defineLocale({
       loadingSettings: 'Loading OpenAmer settings',
       loadingSessions: 'Loading recent sessions',
       startingDesktopConnection: 'Starting desktop connection',
-      startingOpenAmerDesktop: 'Starting OpenAmer Desktop…',
-    },
+      startingOpenAmerDesktop: 'Starting OpenAmer Desktop…'
+    }
   },
   notifications: {
     region: 'Omahoololo',
@@ -62,7 +66,8 @@ export const kj = defineLocale({
     copyDetail: 'Kopa uuyelele',
     copyDetailFailed: 'Inaku dula okukopa uuyelele woshihoololo',
     backendOutOfDateTitle: 'Backend ya kulupa',
-    backendOutOfDateMessage: 'Backend yoye ya OpenAmer ya kulupa okupitila meduliko ndika lya desktop no itai dula okulonga nawa. Lundulula opo i yele.',
+    backendOutOfDateMessage:
+      'Backend yoye ya OpenAmer ya kulupa okupitila meduliko ndika lya desktop no itai dula okulonga nawa. Lundulula opo i yele.',
     installMethodUnsupportedTitle: 'Omukalo wokutula inagu kwatelwa',
     updateOpenAmer: 'Lundulula OpenAmer',
     updateReadyTitle: 'Okulundulula kwa lungama',
@@ -71,11 +76,12 @@ export const kj = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT oi pumbwa ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs oya anya okhiye yAPI (401).',
       gatewayAuthFailed: 'Okukonakona kwa Gateway kwa fya — kona API_SERVER_KEY yoye.',
-      methodNotAllowed: 'Backend yedesktop oya anya okupula oko (405 Method Not Allowed). Lika okutameka vali OpenAmer Desktop.',
+      methodNotAllowed:
+        'Backend yedesktop oya anya okupula oko (405 Method Not Allowed). Lika okutameka vali OpenAmer Desktop.',
       microphonePermission: 'Epemiso lomakrofoni ola anywa.',
       openaiRejectedApiKey: 'OpenAI oya anya okhiye yAPI.',
       openaiTtsNeedsKey: 'OpenAI TTS oyi pumbwa VOICE_TOOLS_OPENAI_KEY ile OPENAI_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Longa okushanga ewi ku longife omukalo wewi.',
@@ -94,7 +100,7 @@ export const kj = defineLocale({
       transcriptionFailed: 'Okushanga ewi kwa fya.',
       transcriptionUnavailable: 'Okushanga ondaka kape na natango.',
       tryRecordingAgain: 'Kambeni okuhoka vali.',
-      unavailable: 'Ondaka kai li po',
+      unavailable: 'Ondaka kai li po'
     },
     native: {
       approvalTitle: 'Okuziminwa otaku pumbiwa',
@@ -107,10 +113,10 @@ export const kj = defineLocale({
       turnErrorTitle: 'Okutanta kwa hala',
       backgroundDoneTitle: 'Oshilongwa shomokati sha mana',
       backgroundFailedTitle: 'Oshilongwa shomokati sha hala',
-      creditsTitle: 'Oikrediti',
+      creditsTitle: 'Oikrediti'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   billingBlock: {
     titleOpenamer: 'Oikrediti yOpenAmer oya pwa',
@@ -118,7 +124,7 @@ export const kj = defineLocale({
     openBilling: 'Patala okufuta',
     addCredits: 'Wedha oikrediti',
     dismiss: 'Xulifa',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Holeka okambamba',
@@ -135,7 +141,7 @@ export const kj = defineLocale({
     openStarmap: 'Patulula ografo yomadhidhiliko',
     openKeybinds: 'Ondjila dhifupi dhokipandanda',
     layoutEditor: 'Omulongeli womapangalalo',
-    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout',
+    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout'
   },
   keybinds: {
     title: 'Ondjila dhifupi dhokipandanda',
@@ -150,7 +156,7 @@ export const kj = defineLocale({
       profiles: 'Omaprofila',
       session: 'Oshikando',
       navigation: 'Okweenda',
-      view: 'Okutala',
+      view: 'Okutala'
     },
     actions: {
       'keybinds.openPanel': 'Patulula omalanduliko okibodo',
@@ -229,10 +235,10 @@ export const kj = defineLocale({
       'composer.slash': 'Opaleta yomilomino ya slash',
       'composer.help': 'Omukwafo mbwa',
       'composer.history': 'Temba popover / oihistoria',
-      'composer.cancel': 'Pata popover · kanifa okuninga',
+      'composer.cancel': 'Pata popover · kanifa okuninga'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   language: {
     label: 'Elaka',
@@ -241,7 +247,7 @@ export const kj = defineLocale({
     saveError: 'Okuyambulula elaka kwa fya',
     switchTo: 'Shintula elaka',
     searchPlaceholder: 'Konga oilaka…',
-    noResults: 'Kape na oilaka ya monika',
+    noResults: 'Kape na oilaka ya monika'
   },
   settings: {
     closeSettings: 'Pata oipango',
@@ -266,11 +272,12 @@ export const kj = defineLocale({
       billing: 'Okufuta',
       notifications: 'Omaziviso',
       plugins: 'Oiplagini',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'Oiplagini yodesktop',
-      blurb: 'Omaendelelo oUI a pangelwa moshiapplikeshi shika — a kwatelwa pamwe noshishitwa, ile a tuldwa mofolda yodesktop-plugins (hamo oo OpenAmer ha shanga). Okudima ohaku kufa oiplagini manga tai longo nokuhupu okwali vali.',
+      blurb:
+        'Omaendelelo oUI a pangelwa moshiapplikeshi shika — a kwatelwa pamwe noshishitwa, ile a tuldwa mofolda yodesktop-plugins (hamo oo OpenAmer ha shanga). Okudima ohaku kufa oiplagini manga tai longo nokuhupu okwali vali.',
       openFolder: 'Oula ofolda yoiplagini',
       rescan: 'Skena vali',
       reveal: 'Holola momufindalela womafayila',
@@ -281,50 +288,52 @@ export const kj = defineLocale({
       kinds: {
         bundled: 'a kwatelwa pamwe',
         disk: 'mudisko',
-        runtime: 'ethimbo lyokulonga',
+        runtime: 'ethimbo lyokulonga'
       },
-      count: n => `${n} installed`,
+      count: n => `${n} installed`
     },
     notifications: {
       title: 'Omatseyitho',
-      intro: 'Omatseyitho okompyuta sho shili, a yooloka komatseyitho gomokati. Agaa oge koshinano — kehe kompyuta oku na omayetwamo gago.',
+      intro:
+        'Omatseyitho okompyuta sho shili, a yooloka komatseyitho gomokati. Agaa oge koshinano — kehe kompyuta oku na omayetwamo gago.',
       enableAll: 'Pandula omatseyitho',
       enableAllDesc: 'Oshikwatelwa shinene. Dima eshi opo uha uvu omatseyitho agehe kopevi.',
       focusedHint: 'Omatseyitho okumana otaga pitithwa apa OpenAmer a li kombunda.',
       kinds: {
         approval: {
           label: 'Epitiko la pumbiwa',
-          description: 'Omulombwelo otau ku teelele opo u u pitike nenge u u tinde.',
+          description: 'Omulombwelo otau ku teelele opo u u pitike nenge u u tinde.'
         },
         input: {
           label: 'Okutula sha kwa pumbiwa',
-          description: 'OpenAmer okwa pula epulo nenge okwa pumbwa oshiholekwa nenge oshidila.',
+          description: 'OpenAmer okwa pula epulo nenge okwa pumbwa oshiholekwa nenge oshidila.'
         },
         turnDone: {
           label: 'Eyamukulo la wana',
-          description: 'Oshikando sha mana apa OpenAmer a li kombunda.',
+          description: 'Oshikando sha mana apa OpenAmer a li kombunda.'
         },
         turnError: {
           label: 'Oshikando sha pumbuka',
-          description: 'Oshikando sha mana noshihomo.',
+          description: 'Oshikando sha mana noshihomo.'
         },
         backgroundDone: {
           label: 'Oshilonga kombunda sha mana',
-          description: 'Omulombwelo woterminal wa tulwa kombunda owa mana.',
+          description: 'Omulombwelo woterminal wa tulwa kombunda owa mana.'
         },
         credits: {
           label: 'Omatseyitho okrediti',
-          description: 'Epemiso lokulandifa ola pauswa nenge ola yelulwa.',
-        },
+          description: 'Epemiso lokulandifa ola pauswa nenge ola yelulwa.'
+        }
       },
       test: 'Tuma oshidimbulukifo shokuyelela',
       testTitle: 'OpenAmer',
       testBody: 'Omidimbulukifo oda li okulonga.',
-      testSent: 'Oshiyelelwa sha tumwa. Ngeenge inashi monika, kona omapemiso omidimbulukifo yOS yoye nosho yo Ekwameno/Ino kangha.',
+      testSent:
+        'Oshiyelelwa sha tumwa. Ngeenge inashi monika, kona omapemiso omidimbulukifo yOS yoye nosho yo Ekwameno/Ino kangha.',
       testUnsupported: 'Efimbano eli itali kwatele omidimbulukifo yomunhu.',
       completionSoundTitle: 'Oshihomo shokuhanga',
       completionSoundDesc: 'Oshi imbi eshi okweenda komonamalunga kwa hanga. Hoolola oshihopelwa ndele oshi tala apa.',
-      completionSoundPreview: 'Tala',
+      completionSoundPreview: 'Tala'
     },
     sections: {
       model: 'Omodela',
@@ -334,7 +343,7 @@ export const kj = defineLocale({
       safety: 'Ekwameno',
       memory: 'Omadimbulukwa nOmukunda',
       voice: 'Ewi',
-      advanced: 'Komeho',
+      advanced: 'Komeho'
     },
     searchPlaceholder: {
       about: 'Kombada yOpenAmer Desktop',
@@ -342,25 +351,26 @@ export const kj = defineLocale({
       gateway: 'Okwamatela koshivelo...',
       keys: 'Konga oikiliki yAPI...',
       mcp: 'Konga ooseva dhaMCP...',
-      sessions: 'Konga oosesheni dha tulwa po...',
+      sessions: 'Konga oosesheni dha tulwa po...'
     },
     modeOptions: {
       light: {
         label: 'Epenya',
-        description: 'Omapandja oshitulo shokompyuta a penya',
+        description: 'Omapandja oshitulo shokompyuta a penya'
       },
       dark: {
         label: 'Omudile',
-        description: 'Oshilandulilo shihe na okupenya',
+        description: 'Oshilandulilo shihe na okupenya'
       },
       system: {
         label: 'Osisitema',
-        description: 'Landula okumoneka kwOS',
-      },
+        description: 'Landula okumoneka kwOS'
+      }
     },
     appearance: {
       title: 'Okumoneka',
-      intro: 'Oyo omahoololo okumoneka oshitulo shokompyuta auke. Omukalo wu lawula epenya; otheme tai lawula opaleta yomuvulala nokushongekwa kwomapandja okupopya.',
+      intro:
+        'Oyo omahoololo okumoneka oshitulo shokompyuta auke. Omukalo wu lawula epenya; otheme tai lawula opaleta yomuvulala nokushongekwa kwomapandja okupopya.',
       colorMode: 'Omukalo wOmivulala',
       colorModeDesc: 'Hoolola omukalo wa tulwa po ile etha OpenAmer a landule osettingi yosisitema yoye.',
       toolViewTitle: 'Okuulika Okuita kwOshilongwa',
@@ -371,7 +381,8 @@ export const kj = defineLocale({
       backdropTitle: 'Oshihaka shOkupopya',
       backdropDesc: 'Oshifanekiso shomukwaniilwa sha nyanyala shi li konima yokupopya.',
       embedsTitle: 'Oma-embed okati',
-      embedsDesc: 'Omapreviyu omanene otai kufwa mo koompito domoipangelo (YouTube, X, …). Pula otai ulike oshifo mpaka u pitikile kehe imwe; Aluhe otai kufe mo ove; Dima otai fiya po omalink a yuka.',
+      embedsDesc:
+        'Omapreviyu omanene otai kufwa mo koompito domoipangelo (YouTube, X, …). Pula otai ulike oshifo mpaka u pitikile kehe imwe; Aluhe otai kufe mo ove; Dima otai fiya po omalink a yuka.',
       embedsAsk: 'Pula',
       embedsAlways: 'Aluhe',
       embedsOff: 'Dima',
@@ -382,7 +393,8 @@ export const kj = defineLocale({
       themeTitle: 'Omukalo',
       themeDesc: 'Omapaleti edesktop ashike. Omukalo wa hoololwa tau kala kombada.',
       installTitle: 'Instola okuza ku VS Code',
-      installDesc: 'Pasta id yokunyula maMarketplace (oshitukulwa: dracula-theme.theme-dracula) opo u shunike omukalo wayo womamanya moopaleti yedesktop.',
+      installDesc:
+        'Pasta id yokunyula maMarketplace (oshitukulwa: dracula-theme.theme-dracula) opo u shunike omukalo wayo womamanya moopaleti yedesktop.',
       installButton: 'Instola',
       installing: 'Otai instola…',
       installError: 'Inai dulu okustola omukalo oo.',
@@ -390,8 +402,10 @@ export const kj = defineLocale({
       importedBadge: 'Ya pitilizwa mo',
       pet: {
         title: 'Oshimuna',
-        intro: 'Tambula oshimuna shepetdex shi na omwenyo tashi tanta kombada yeprograma ndele tashi nyamukula kwaasho OpenAmer ta ningi — tashi matuka manga iilongifo tai longwa, tashi hafele eshi sha dula, tashi kala oluhodi pomapuka.',
-        restartHint: 'Iimuna oi na okupitilila okupenduka mbala — epograma tali longo ola tameka fiyo ashike oinima ei inai wedhwa. Dile OpenAmer nokuli okupatulula vali, ndele u aluka okuno.',
+        intro:
+          'Tambula oshimuna shepetdex shi na omwenyo tashi tanta kombada yeprograma ndele tashi nyamukula kwaasho OpenAmer ta ningi — tashi matuka manga iilongifo tai longwa, tashi hafele eshi sha dula, tashi kala oluhodi pomapuka.',
+        restartHint:
+          'Iimuna oi na okupitilila okupenduka mbala — epograma tali longo ola tameka fiyo ashike oinima ei inai wedhwa. Dile OpenAmer nokuli okupatulula vali, ndele u aluka okuno.',
         on: 'Kuna',
         off: 'Dima',
         scaleTitle: 'Ounene',
@@ -401,7 +415,8 @@ export const kj = defineLocale({
         chooseTitle: 'Hoolola oshimuna',
         chooseDesc: 'Okuhoolola imwe otashi shi tula (ngeenge sha pumbiwa) ndele tashi shi ningi shi longe.',
         searchPlaceholder: 'Konga iimuna…',
-        unreachable: 'Inashi dula okufika kogalari yepetdex. Kona omukalo woye wokukwatagana nokupatulula vali epandja eli.',
+        unreachable:
+          'Inashi dula okufika kogalari yepetdex. Kona omukalo woye wokukwatagana nokupatulula vali epandja eli.',
         installedTag: 'sha tulwa',
         generatedTag: 'sha shitwa',
         deleteBody: 'Oshinima eshi otashi dimi oshimuna alushe — itashi dulu okutulwa vali.',
@@ -423,13 +438,14 @@ export const kj = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installPlaceholder: 'publisher.extension',
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     about: {
       versionUnavailable: 'Oshikando inashi monika.',
@@ -456,7 +472,7 @@ export const kj = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     config: {
       none: 'Kape na',
@@ -472,7 +488,7 @@ export const kj = defineLocale({
       imported: 'Epangulo lya etwa mo',
       invalidJson: 'Epangulo JSON lya puka',
       keepAwakeTitle: 'Fyaala okompyuta ya penduka',
-      keepAwakeDesc: 'Kumuna omashina ngaa okulala, opo i twale ko uuku. Oshimoni otashi dulu natango okudima.',
+      keepAwakeDesc: 'Kumuna omashina ngaa okulala, opo i twale ko uuku. Oshimoni otashi dulu natango okudima.'
     },
     credentials: {
       pasteKey: 'Paka okiyi',
@@ -482,7 +498,7 @@ export const kj = defineLocale({
       remove: 'Kufa mo',
       getKey: 'Wana okiyi',
       saving: 'Okuyaka',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     envActions: {
       credentialActions: 'Iilonga yomafikililo',
@@ -493,7 +509,7 @@ export const kj = defineLocale({
       replace: 'Shintula',
       set: 'Tula',
       clear: 'Pangula',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     gateway: {
       loading: 'Okuyeta iipangelo yongwayo...',
@@ -501,12 +517,14 @@ export const kj = defineLocale({
       unavailableDesc: 'Oshitambo she IPC shodesktop kashi hololi iipangelo yongwayo.',
       title: 'Ekwatakano lyongwayo',
       envOverride: 'Okupitilila kwenv',
-      intro: 'OpenAmer Desktop otai tameka ongwayo yayo yopamwe petameko. Longifa ongwayo yokule ngeenge wa hala oshiapp eshi tai pangele OpenAmer backend tai longo nale koshimina shikwawo ile konima ya proxy ineekelelwa. Hoola omaprofile kohi opo u i pe host yayo yokule.',
+      intro:
+        'OpenAmer Desktop otai tameka ongwayo yayo yopamwe petameko. Longifa ongwayo yokule ngeenge wa hala oshiapp eshi tai pangele OpenAmer backend tai longo nale koshimina shikwawo ile konima ya proxy ineekelelwa. Hoola omaprofile kohi opo u i pe host yayo yokule.',
       appliesTo: 'Otai kwatele kwa',
       allProfiles: 'Omaprofile aehe',
       defaultConnection: 'Ekwatakano lyopetameko komaprofile aehe aana kape na okupitilila kwayo mwene.',
       envOverrideTitle: 'Oivariyabli yomudilinga otai pangele oshikondo shodesktop eshi.',
-      envOverrideDesc: 'Kufa po OPENAMER_DESKTOP_REMOTE_URL na OPENAMER_DESKTOP_REMOTE_TOKEN opo u longife iipangelo yayakwa kohi.',
+      envOverrideDesc:
+        'Kufa po OPENAMER_DESKTOP_REMOTE_URL na OPENAMER_DESKTOP_REMOTE_TOKEN opo u longife iipangelo yayakwa kohi.',
       modeTitle: 'Omukalo wokukwatana',
       localTitle: 'Oshivelo shokomukunda',
       localDesc: 'Tameka backend yopamwepe yOpenAmer ku localhost. Eshi osho shokudilila no shi longo inaashi kwatana.',
@@ -514,8 +532,10 @@ export const kj = defineLocale({
       inheritDesc: 'Kufa po okupitilila kwoprofile ei ndele longa okukwatana kwokudilila.',
       remoteTitle: 'Oshivelo shokokule',
       remoteDesc: 'Kwatana shell yedesktop ei ku backend yOpenAmer yokokule.',
-      remoteAuthHint: 'Eeshivelo da kwatelwa otadi longa OAuth ile edina lomulongifi nokusalula; edi da kwatelwa lwomwene otadi dulu okulonga token yesesheni.',
-      cloudDesc: 'Ingila lumwe mu OpenAmer Cloud ndele hoola mo kumaagent a li koakaunta yoye — kape na URL ndi u na okumaneka.',
+      remoteAuthHint:
+        'Eeshivelo da kwatelwa otadi longa OAuth ile edina lomulongifi nokusalula; edi da kwatelwa lwomwene otadi dulu okulonga token yesesheni.',
+      cloudDesc:
+        'Ingila lumwe mu OpenAmer Cloud ndele hoola mo kumaagent a li koakaunta yoye — kape na URL ndi u na okumaneka.',
       cloudSignIn: 'Ingila mu OpenAmer Cloud',
       cloudSignedIn: 'Wa ingila mu OpenAmer Cloud',
       cloudNeedsSignIn: 'Ingila mu OpenAmer Cloud opo u shakalife aagent a li koakaunta yoye.',
@@ -543,12 +563,15 @@ export const kj = defineLocale({
       sshButtonsHint: 'Hoola otaku landula mokuhanga kwoku landula. Kwatelapo otaku kwatelapo ngaho.',
       sshIncompleteHost: 'Shanga omuhapi SSH manga inoo kwatelapo.',
       sshErrUnreachable: 'Ina ku dulu okufika komuhapi oo paSSH. Kambeka omuhapi, oshipala, netiweka yoye.',
-      sshErrAuth: 'Okupitila kwaSSH kwa nyanyuka. Tula okii yoye mu ssh-agent (ssh-add) ile shanga IdentityFile mu ~/.ssh/config — OpenAmer ota longifa ssh kaye na okupulwa.',
-      sshErrHostKey: 'Okii yomuhapi ya SHANDUKA okudja eshi wa kwatelapo lwahugunina. Kambeka ngeenge osho sha teelelwa, nduno ninga ssh-keygen -R <host> ndele kwatelapo vali.',
+      sshErrAuth:
+        'Okupitila kwaSSH kwa nyanyuka. Tula okii yoye mu ssh-agent (ssh-add) ile shanga IdentityFile mu ~/.ssh/config — OpenAmer ota longifa ssh kaye na okupulwa.',
+      sshErrHostKey:
+        'Okii yomuhapi ya SHANDUKA okudja eshi wa kwatelapo lwahugunina. Kambeka ngeenge osho sha teelelwa, nduno ninga ssh-keygen -R <host> ndele kwatelapo vali.',
       enterUrlFirst: 'Tokota URL yokule tete.',
       restartingTitle: 'Ekwatakano lye-Gateway tali tamekwa vali',
       savedTitle: 'Omalongekidho e-Gateway a xupifwa',
-      restartingMessage: 'OpenAmer Desktop ota ka kwatakana vali nomalongekidho a xupifwa — shell ota kala ya patuluka.',
+      restartingMessage:
+        'OpenAmer Desktop ota ka kwatakana vali nomalongekidho a xupifwa — shell ota kala ya patuluka.',
       savedMessage: 'A xupifwa kokutameka vali kwokomesho.',
       reachableTitle: 'Gateway yokule oya hangika',
       signedOutTitle: 'Wa pita mo',
@@ -560,24 +583,28 @@ export const kj = defineLocale({
       applyFailed: 'Inaashi dula okutula omalongekidho e-Gateway',
       saveFailed: 'Inaashi dula okuxupifwa omalongekidho e-Gateway',
       sshTitle: 'Kwatakana okupitila mu SSH',
-      sshDesc: 'OpenAmer ota tamekwa kokule okupitila mu SSH ndele tai tunnelwa ko-app ei — kape na shoka to tameke ile to holole. Oku pumbwa okukwatakana kwa SSH kwokushilipaleka nge oshike?',
+      sshDesc:
+        'OpenAmer ota tamekwa kokule okupitila mu SSH ndele tai tunnelwa ko-app ei — kape na shoka to tameke ile to holole. Oku pumbwa okukwatakana kwa SSH kwokushilipaleka nge oshike?',
       sshTrustHint: 'Oshidjemo shotete shohost key osha ekelwa nokupinwa; omalunduluko vali otaa nyona.',
       sshHostTitle: 'Omuhandji',
       sshHostDesc: 'user@host, ile Host alias kuma ~/.ssh/config.',
       sshHostPick: 'Hoolola host…',
-      sshErrNotInstalled: 'OpenAmer ina i tulwa ko host yokule. I tula mo (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ile u tule ondjila ya OpenAmer.',
-      sshErrPlatform: 'Platform yokule ina i kwatelwa. OpenAmer Desktop SSH mode oyi shii okulongifa Linux, macOS, na Windows host dokule.',
+      sshErrNotInstalled:
+        'OpenAmer ina i tulwa ko host yokule. I tula mo (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ile u tule ondjila ya OpenAmer.',
+      sshErrPlatform:
+        'Platform yokule ina i kwatelwa. OpenAmer Desktop SSH mode oyi shii okulongifa Linux, macOS, na Windows host dokule.',
       sshErrTimeout: 'Okukwata SSH kwa pwa efimbo. Host yokule ina yi adika ile oyi kofa.',
       sshErrUpdateRequired: 'Hanga ino kwata Desktop SSH, tula peva OpenAmer ko host yokule.',
       sshErrUnknown: 'Okukwata SSH kwa fya.',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudTitle: 'OpenAmer Cloud',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudOrgRole: role => `Role: ${role}`,
       cloudNoAgents: {
         before: 'No agents found on this account. Create one in the ',
         linkText: 'OpenAmer portal',
-        after: ', then refresh.',
+        after: ', then refresh.'
       },
       cloudRefresh: 'Refresh',
       cloudConnect: 'Connect',
@@ -601,7 +628,8 @@ export const kj = defineLocale({
       signOut: 'Sign out',
       signInWith: provider => `Sign in with ${provider}`,
       authTitle: 'Authentication',
-      authSignedInPassword: 'This gateway uses a username and password. You are signed in; the session refreshes automatically.',
+      authSignedInPassword:
+        'This gateway uses a username and password. You are signed in; the session refreshes automatically.',
       authSignedInOauth: 'This gateway uses OAuth. You are signed in; the session refreshes automatically.',
       authNeedsPassword: 'This gateway uses a username and password. Sign in to authorize this desktop app.',
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
@@ -622,12 +650,12 @@ export const kj = defineLocale({
       incompleteSignInTest: 'Enter a remote URL and sign in before testing.',
       incompleteTokenTest: 'Enter a remote URL and session token before testing.',
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     keys: {
       loading: 'Oku palula API keys noma credentials...',
       failedLoad: 'API keys ina ya palulwa',
-      empty: 'Kapa na shimwe sha tulwa mokategoria ei natango.',
+      empty: 'Kapa na shimwe sha tulwa mokategoria ei natango.'
     },
     mcp: {
       loading: 'Oku palula MCP servers...',
@@ -689,14 +717,16 @@ export const kj = defineLocale({
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       authenticatedMessage: (server, count) => `${server}: ${count} tools`,
       enableTool: tool => `Enable ${tool}`,
-      disableTool: tool => `Disable ${tool}`,
+      disableTool: tool => `Disable ${tool}`
     },
     model: {
       loading: 'Otai pakuwa okonfigurasi yomodela...',
-      appliesDesc: 'Otai kala po komasesheni made. Longifa omuhooli womodela mokomposa opo u lundulule mbala ochat i kala po.',
+      appliesDesc:
+        'Otai kala po komasesheni made. Longifa omuhooli womodela mokomposa opo u lundulule mbala ochat i kala po.',
       provider: 'Omugandji',
       model: 'Omodela',
       applying: 'Oku tula mo...',
@@ -706,7 +736,8 @@ export const kj = defineLocale({
       defaultsFailed: 'Kwa hala okuhangula oipango yopamwe yomodela',
       auxiliaryTitle: 'Omodela dokukwafela',
       resetAllToMain: 'Tula ayihe pehovelo komodela omukulu',
-      auxiliaryDesc: 'Oilonga yokukwafela oi longifwa komodela omukulu opamwe. Pa oshilonga keshe omodela yaye mwene opo u shi lundulule.',
+      auxiliaryDesc:
+        'Oilonga yokukwafela oi longifwa komodela omukulu opamwe. Pa oshilonga keshe omodela yaye mwene opo u shi lundulule.',
       setToMain: 'Tula komodela omukulu',
       change: 'Lundulula',
       autoUseMain: 'auto · longifa omodela omukulu',
@@ -717,42 +748,43 @@ export const kj = defineLocale({
       tasks: {
         vision: {
           label: 'Okumona',
-          hint: 'Okukonakona efano',
+          hint: 'Okukonakona efano'
         },
         web_extract: {
           label: 'Okukupa mo kwa web',
-          hint: 'Okupendula epandja',
+          hint: 'Okupendula epandja'
         },
         compression: {
           label: 'Okukanyuna',
-          hint: 'Okukanyuna kwomukalo',
+          hint: 'Okukanyuna kwomukalo'
         },
         skills_hub: {
           label: 'Ondaho yomayelelo',
-          hint: 'Okukona omayelelo',
+          hint: 'Okukona omayelelo'
         },
         approval: {
           label: 'Okulumbatira',
-          hint: 'Okulumbatira okuyendela',
+          hint: 'Okulumbatira okuyendela'
         },
         mcp: {
           hint: 'Omutungululo woshinangwalikishi sha MCP',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Okutunga omitwe',
-          hint: 'Omitwe domakundi',
+          hint: 'Omitwe domakundi'
         },
         curator: {
           label: 'Omukulili',
-          hint: 'Okutala oshikando shomayelelo',
-        },
-      },
+          hint: 'Okutala oshikando shomayelelo'
+        }
+      }
     },
     providers: {
       connectAccount: 'Okutwala akaunti',
       haveApiKey: 'Ove u na okukiina API?',
-      intro: 'Okwingila nosubscription — kape na API key yokukopa. OpenAmer ota ningi sign-in yo browser kwoove, apa mwa app.',
+      intro:
+        'Okwingila nosubscription — kape na API key yokukopa. OpenAmer ota ningi sign-in yo browser kwoove, apa mwa app.',
       connected: 'Okwatwa',
       collapse: 'Okuhwama',
       connectAnother: 'Okutwala omufindishi umwe',
@@ -765,16 +797,18 @@ export const kj = defineLocale({
       noKeysMatch: 'Kape na ovagandji tava wanifa okukonga kwoye.',
       localEndpoint: {
         title: 'Epelulo lyopamwe / lyokuhoolola',
-        description: 'Pangula OpenAmer kepelulo keshe lya wana na OpenAI-compatible (Zyphra, vLLM, llama.cpp, Ollama, nokuli).',
+        description:
+          'Pangula OpenAmer kepelulo keshe lya wana na OpenAI-compatible (Zyphra, vLLM, llama.cpp, Ollama, nokuli).'
       },
       loading: 'Okuveta ovagandji...',
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     sessions: {
       loading: 'Okuveta oosesheni dha hongwa…',
@@ -785,12 +819,14 @@ export const kj = defineLocale({
       deletePermanently: 'Kufa po alushe',
       restored: 'A shunwa po',
       autoArchiveTitle: 'Honga owini oochat dha kulupa',
-      autoArchiveDesc: 'Honga nowini oochat odo uhe na okudhi kwata efimbo lile. Oochat dha kwatwa itadhi hongwa nande, ndele kape na sha ta ka kufwa po — oochat dha hongwa otadhi ka kala apa.',
+      autoArchiveDesc:
+        'Honga nowini oochat odo uhe na okudhi kwata efimbo lile. Oochat dha kwatwa itadhi hongwa nande, ndele kape na sha ta ka kufwa po — oochat dha hongwa otadhi ka kala apa.',
       autoArchiveDaysLabel: 'Honga konima',
       autoArchiveDaysUnit: 'omafiku okuhawa',
       autoArchiveFailed: 'Inaashi dula okwalula auto-archive',
       defaultDirTitle: 'Oshifo shoprojekti shopetameko',
-      defaultDirDesc: 'Omashendjo mape ohaa tameka moshifo eshi ngeenge ino hoolola shimwe. Shi fiye shihe na okusetwa opo u longife oshifo shoye shokukala.',
+      defaultDirDesc:
+        'Omashendjo mape ohaa tameka moshifo eshi ngeenge ino hoolola shimwe. Shi fiye shihe na okusetwa opo u longife oshifo shoye shokukala.',
       change: 'Kwalu',
       choose: 'Hoolola',
       clear: 'Pangula',
@@ -800,11 +836,12 @@ export const kj = defineLocale({
       deleteFailed: 'Okudhima kwa nyona',
       updateDirFailed: 'Inaashi dula okwalula oshifo shopetameko',
       clearDirFailed: 'Inaashi dula okupangula oshifo shopetameko',
-      archivedIntro: 'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
+      archivedIntro:
+        'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
       defaultDirUpdated: 'Default project directory updated — start a new chat (Ctrl/⌘+N) for it to take effect',
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
       loadingConfig: 'Otayi tula omasetelo',
@@ -814,7 +851,8 @@ export const kj = defineLocale({
       notSet: 'Inaashi setwa',
       selectedTitle: 'Omugandji a hoololwa',
       failedLoad: 'Omasetelo oshilongifo inaa dula okutulwa',
-      noProviderOptions: 'Oshilongifo eshi kashi na oishomo yovagandji — shi pe enghono, noshi longa nokupangwa kwoye kwopaife.',
+      noProviderOptions:
+        'Oshilongifo eshi kashi na oishomo yovagandji — shi pe enghono, noshi longa nokupangwa kwoye kwopaife.',
       noProviders: 'Kape na ovagandji va hangika koshilongifo eshi paife.',
       ready: 'Owa yaluka',
       needsSignIn: 'Owa pumbwa okunyola mo',
@@ -856,7 +894,7 @@ export const kj = defineLocale({
         selectedTitle: 'Backend ya hoololwa',
         needsSetupHint: 'Oto dulu okuhoolola backend ei paife — omando itai longa fiyo okutulwa kwa pwa.',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       savedMessage: key => `${key} updated.`,
       removedMessage: key => `${key} removed.`,
@@ -866,8 +904,10 @@ export const kj = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -877,10 +917,10 @@ export const kj = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     tabSkills: 'Uunongo',
@@ -899,7 +939,8 @@ export const kj = defineLocale({
     noDescription: 'Kape na efatululo.',
     configured: 'Ya longekidwa',
     needsKeys: 'Oku pumbwa oonkey',
-    visionModelHint: 'Okumona oku longifa epangulilo lyoye lyomodelo yekwafo — omodelo i wapa okumona efano oyo i hoololwa mbo, hasho ko-provider apa.',
+    visionModelHint:
+      'Okumona oku longifa epangulilo lyoye lyomodelo yekwafo — omodelo i wapa okumona efano oyo i hoololwa mbo, hasho ko-provider apa.',
     visionModelLink: 'Hoolola omodelo yokumona mu Omapangulilo → Oomodelo',
     skillsLoadFailed: 'Uunongo kwa nyatuka oku pakelwa.',
     skillArchivedTitle: 'Ounongo wa pakwa',
@@ -911,7 +952,8 @@ export const kj = defineLocale({
       connectingHubs: 'Oku kwatanisha noohub dounongo...',
       connectedHubs: 'Oohub da kwatanishwa:',
       featured: 'Ounongo wa hoololwa',
-      landingHint: 'Konga muhub opo u mone ounongo tau dulu okutulwa okuza kofindex yopambelela, GitHub, nomishangomwa yomoshitukulwa.',
+      landingHint:
+        'Konga muhub opo u mone ounongo tau dulu okutulwa okuza kofindex yopambelela, GitHub, nomishangomwa yomoshitukulwa.',
       noResults: 'Kape na ounongo wa faafana wa monika muhub.',
       installed: 'Wa tulwa',
       install: 'Tula',
@@ -929,7 +971,7 @@ export const kj = defineLocale({
       trust: {
         builtin: 'Kwatelwa mo',
         trusted: 'Lineekelwa',
-        community: 'Oshigwana',
+        community: 'Oshigwana'
       },
       verdictSafe: 'Shihe noshiponga',
       verdictCaution: 'Koleka',
@@ -949,7 +991,7 @@ export const kj = defineLocale({
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     toolsetsRefreshFailed: 'Oishilongitho itai dulu okupyaululwa',
     skillEnabled: 'Ounongo wa pitikwa',
@@ -966,7 +1008,7 @@ export const kj = defineLocale({
     provenance: {
       agent: 'Sha lihongwa',
       bundled: 'Sha kwatelwa mo',
-      hub: 'Oshikondo',
+      hub: 'Oshikondo'
     },
     changesApplyNewSessions: 'Oihinduka otai kwatela mo oiseshini ipe.',
     skillUpdated: 'Ounongo wa pyaululwa',
@@ -983,7 +1025,7 @@ export const kj = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     title: 'Graf yomadimbulukwa',
@@ -999,7 +1041,8 @@ export const kj = defineLocale({
     emptyTitle: 'Kape na sha shi lilongwa natango',
     emptyDesc: 'Ngaashi OpenAmer ta tungu ounongo nomadimbulukwa omolwoilonga yoye, otai monika apa.',
     share: 'Yandja mapa',
-    shareHint: 'Kopa okoodi opo u yandje mapa ndino, ile u dope imwe opo i tutilwe. Oyo i kwata ashike okupangwa, haina omadimbulukwa ile otesti younongo yoye.',
+    shareHint:
+      'Kopa okoodi opo u yandje mapa ndino, ile u dope imwe opo i tutilwe. Oyo i kwata ashike okupangwa, haina omadimbulukwa ile otesti younongo yoye.',
     shareTitle: 'Eta / pitifa mapa',
     sharePlaceholder: 'Dopa okoodi yemapa…',
     copy: 'Kopa okoodi yemapa',
@@ -1010,7 +1053,7 @@ export const kj = defineLocale({
     importedBadge: 'Omapa ya etwa',
     resetToMine: 'Shuna komapa ange',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Vala aagent',
@@ -1040,7 +1083,7 @@ export const kj = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'Vala osenta yokomanda',
@@ -1069,7 +1112,7 @@ export const kj = defineLocale({
       generatedTag: 'Ya shitwa',
       adoptFailed: 'Inashi dula okukufa oshimuna osho.',
       toggleFailed: 'Inashi dula okushandula oshimuna.',
-      noneAvailable: 'Kape na iimuna yi li po — hoolola imwe pevi opo u i tule.',
+      noneAvailable: 'Kape na iimuna yi li po — hoolola imwe pevi opo u i tule.'
     },
     generatePet: {
       title: 'Hanga oshimakuwa',
@@ -1098,7 +1141,7 @@ export const kj = defineLocale({
       referenceImageInvalid: 'Kape na okulesha efano lokutalifa. Longifa PNG, JPG, WebP ile GIF.',
       adopt: 'Tambula',
       startOver: 'Tameka vali',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     installTheme: {
       title: 'Tula po otheme…',
@@ -1110,7 +1153,7 @@ export const kj = defineLocale({
       install: 'Tula po',
       installing: 'Oku tula po...',
       installed: 'Ya tulwa po',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Omapulapula omayalulo',
     mcpServers: 'Aaseva MCP',
@@ -1119,21 +1162,21 @@ export const kj = defineLocale({
       maintenance: 'Okukaleka po',
       sessions: 'Omasessioni',
       system: 'Ehangano',
-      usage: 'Okulongifa',
+      usage: 'Okulongifa'
     },
     sectionEntries: {
       usage: {
         title: 'Opanel yokushandja',
-        detail: 'Token, ondando nomakwatakaneno ounongo',
+        detail: 'Token, ondando nomakwatakaneno ounongo'
       },
       sessions: {
         title: 'Opanel yooseshini',
-        detail: 'Konga, panga, no pangelako ooseshini',
+        detail: 'Konga, panga, no pangelako ooseshini'
       },
       system: {
         title: 'Opanel yehangano',
-        detail: 'Omukalo gwegateway, omalogi, okutameka/okuyelula',
-      },
+        detail: 'Omukalo gwegateway, omalogi, okutameka/okuyelula'
+      }
     },
     providerNavigate: 'Enda',
     providerSessions: 'Omasheso',
@@ -1157,29 +1200,29 @@ export const kj = defineLocale({
       maintenance: 'Omafatululo, omafumbelo, omupangi, nedata lyomadidiliko',
       sessions: 'Konga no pangelako ooseshini',
       system: 'Omukalo, omalogi, nomalongakano ehangano',
-      usage: 'Token, ondando, nomalongakano eshongo pethimbo',
+      usage: 'Token, ondando, nomalongakano eshongo pethimbo'
     },
     nav: {
       newChat: {
         title: 'Oseshini yipe',
-        detail: 'Tameka oseshini yipe',
+        detail: 'Tameka oseshini yipe'
       },
       settings: {
         title: 'Omalongekelo',
-        detail: 'Longeka oshitako shOpenAmer',
+        detail: 'Longeka oshitako shOpenAmer'
       },
       skills: {
         title: 'Omaunamashongo',
-        detail: 'Omashongo, oitooli, noomaserver oMCP',
+        detail: 'Omashongo, oitooli, noomaserver oMCP'
       },
       messaging: {
         title: 'Omatumwalaka',
-        detail: 'Longeka Telegram, Slack, Discord, nokunye',
+        detail: 'Longeka Telegram, Slack, Discord, nokunye'
       },
       artifacts: {
         title: 'Oinyolwa',
-        detail: 'Tala oinima ya shitwa',
-      },
+        detail: 'Tala oinima ya shitwa'
+      }
     },
     actionStartedWaiting: 'Oshilonga sha tameka, otashi teelele omukalo...',
     loadingStatus: 'Okupakula omukalo...',
@@ -1243,7 +1286,7 @@ export const kj = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     logSearchPlaceholder: 'Hoolola eengodi domalog...',
     startInBranch: branch => `New conversation in ${branch}`,
@@ -1251,7 +1294,7 @@ export const kj = defineLocale({
     days: count => `${count}d`,
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   messaging: {
     search: 'Konga omatumwalaka...',
@@ -1266,7 +1309,7 @@ export const kj = defineLocale({
       not_configured: 'Oshi pumbwa okulongekidwa',
       pending_restart: 'Oku pumbwa okutameka vali',
       retrying: 'Oku kambadhala vali',
-      startup_failed: 'Okutameka kwa nyona',
+      startup_failed: 'Okutameka kwa nyona'
     },
     unknown: 'Kaashi shiivike',
     hintPendingRestart: 'Tameka vali oshivelo shomaimbila oko ku status bar opo u longithe omalunduluko aa.',
@@ -1278,130 +1321,131 @@ export const kj = defineLocale({
     openSetupGuide: 'Peula omukanda wokulongekida',
     required: 'Sha pumbiwa',
     recommended: 'Sha lukilwa',
-    noTokenNeeded: 'Oshifika shika inashi pumbwa token apa. Longitha omukanda wokulongekida ku li kombada, ndele to shi pe efudo pevi.',
+    noTokenNeeded:
+      'Oshifika shika inashi pumbwa token apa. Longitha omukanda wokulongekida ku li kombada, ndele to shi pe efudo pevi.',
     enabled: 'Sha longwa',
     fieldCopy: {
       DISCORD_REPLY_TO_MODE: {
         label: 'Omukalo wokuyamukula',
-        help: 'tete, ayihe, nenge dima',
+        help: 'tete, ayihe, nenge dima'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Twiila aveshe valongifi vaDiscord',
-        help: 'Ehangano derike. Ngeenge oshili, keshe umwe ota dulu okutumina bot kape na olista yokutwiila.',
+        help: 'Ehangano derike. Ngeenge oshili, keshe umwe ota dulu okutumina bot kape na olista yokutwiila.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID yoshitambi shokumbo',
-        help: 'Oshitambi moka bot hai tumu omatumwalaka opo (cron output, omadhidhiliko).',
+        help: 'Oshitambi moka bot hai tumu omatumwalaka opo (cron output, omadhidhiliko).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Edina loshitambi shokumbo',
-        help: 'Edina lokuliholola loshitambi shokumbo momaloga nokomutumbo wostatus.',
+        help: 'Edina lokuliholola loshitambi shokumbo momaloga nokomutumbo wostatus.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Twiila aveshe valongifi vaiMessage',
-        help: 'Ngeenge oshili, pitilila olista yokutwiila yaBlueBubbles.',
+        help: 'Ngeenge oshili, pitilila olista yokutwiila yaBlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Twiila aveshe valongifi vaMattermost',
+        label: 'Twiila aveshe valongifi vaMattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Oshitambi shokumbo',
+        label: 'Oshitambi shokumbo'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Twiila aveshe valongifi vaQQ',
+        label: 'Twiila aveshe valongifi vaQQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Oshitambi shokumbo shaQQ',
-        help: 'Oshitambi nenge oshigongwa shokutuma cron.',
+        help: 'Oshitambi nenge oshigongwa shokutuma cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Edina loshitambi shokumbo shaQQ',
+        label: 'Edina loshitambi shokumbo shaQQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token yobot yaSlack',
         help: 'Longifa token yobot okudja kuOAuth & Permissions konima yokutula app yoye yaSlack.',
-        placeholder: 'Tula token yobot yaSlack',
+        placeholder: 'Tula token yobot yaSlack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token yapp yaSlack',
         help: 'Longifa token yapp yopamwene i pumbiwa yoSocket Mode.',
-        placeholder: 'Paka token yapp ya Slack',
+        placeholder: 'Paka token yapp ya Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'ID dhomulongifi dha pitikwa dha Slack',
-        help: 'Sha kumikwa. ID dhomulongifi dha Slack dha tukululwa nokoma.',
+        help: 'Sha kumikwa. ID dhomulongifi dha Slack dha tukululwa nokoma.'
       },
       MATTERMOST_URL: {
         label: 'URL yoserver',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token yobot',
+        label: 'Token yobot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'ID dhomulongifi dha pitikwa',
-        help: 'Sha kumikwa. ID dhomulongifi dha Mattermost dha tukululwa nokoma.',
+        help: 'Sha kumikwa. ID dhomulongifi dha Mattermost dha tukululwa nokoma.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL yoHomeserver',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token yokupita',
+        label: 'Token yokupita'
       },
       MATRIX_USER_ID: {
         label: 'ID yomulongifi yobot',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'ID dhomulongifi dha Matrix dha pitikwa',
-        help: 'Sha kumikwa. ID dhomulongifi dha tukululwa nokoma mofomat yo @user:server.',
+        help: 'Sha kumikwa. ID dhomulongifi dha tukululwa nokoma mofomat yo @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL yobridge ya Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL yobridge ya signal-cli REST i li po.',
+        help: 'URL yobridge ya signal-cli REST i li po.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Onomola yofon',
-        help: 'Onomola ya shangithwa nomulambo woye wa signal-cli.',
+        help: 'Onomola ya shangithwa nomulambo woye wa signal-cli.'
       },
       TELEGRAM_BOT_TOKEN: {
         label: 'Tokene yobot',
         help: 'Ninga bot na @BotFather, ndele to dheke tokene oyo tai ku pe.',
-        placeholder: 'Dheka tokene yobot yTelegram',
+        placeholder: 'Dheka tokene yobot yTelegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Oma ID ovalongifi vaTelegram a pitikwa',
-        help: 'Sha lungamenwa. Oma ID omanamba a tulwa ko na komma okudja ku @userinfobot. Ngeenge inashi ningwa, keshe umwe e na okutuma omahapu ku bot yoye.',
+        help: 'Sha lungamenwa. Oma ID omanamba a tulwa ko na komma okudja ku @userinfobot. Ngeenge inashi ningwa, keshe umwe e na okutuma omahapu ku bot yoye.'
       },
       TELEGRAM_PROXY: {
         label: 'URL yoproxy',
-        help: 'Otai pumbiwa ashike moonetwo omo Telegram ya imwa.',
+        help: 'Otai pumbiwa ashike moonetwo omo Telegram ya imwa.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Tokene yobot',
-        help: 'Ninga oprograma mo Discord Developer Portal, weda ko bot, ndele to dheke tokene yayo.',
+        help: 'Ninga oprograma mo Discord Developer Portal, weda ko bot, ndele to dheke tokene yayo.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Oma ID ovalongifi vaDiscord a pitikwa',
-        help: 'Sha lungamenwa. Oma ID ovalongifi vaDiscord a tulwa ko na komma.',
+        help: 'Sha lungamenwa. Oma ID ovalongifi vaDiscord a tulwa ko na komma.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Ovalongifi va Signal va pitikwa',
-        help: 'Sha pumbiwa. Omaidentifai aSignal a tukanifwa nokoma.',
+        help: 'Sha pumbiwa. Omaidentifai aSignal a tukanifwa nokoma.'
       },
       WHATSAPP_ENABLED: {
         label: 'Pitika omulambo wa WhatsApp',
-        help: 'Ya tulwa kautomatika kokutogola kwo pevi. Shi fiye po ngaashi u shii shi pumbiwa.',
+        help: 'Ya tulwa kautomatika kokutogola kwo pevi. Shi fiye po ngaashi u shii shi pumbiwa.'
       },
       WHATSAPP_MODE: {
-        label: 'Omukalo womulambo',
+        label: 'Omukalo womulambo'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Ovalongifi va WhatsApp va pitikwa',
-        help: 'Sha pumbiwa. Oonomola domafono ile omaID aWhatsApp a tukanifwa nokoma.',
-      },
+        help: 'Sha pumbiwa. Oonomola domafono ile omaID aWhatsApp a tukanifwa nokoma.'
+      }
     },
     disabled: 'Kwa imwa',
     unsavedChanges: 'Omayalulo inaa hulithwa',
@@ -1424,8 +1468,7 @@ export const kj = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Konga owebhook...',
@@ -1434,7 +1477,8 @@ export const kj = defineLocale({
     hint: 'Omaundululo osubscription otaa londa mbala ngeenge omutaambi ta longo. Omasubscription a kandifwa otaa anya omatokolwa taa uya.',
     empty: 'Kape na omasubscription owebhook natango.',
     disabledTitle: 'Omutaambi wowebhook okwa kandifwa.',
-    disabledBody: 'Owebhook osho oplatform yovene yegateway. Pitika ko apa opo u taambe omatokolwa aHTTP taa uya; omachannel okupopya otaa pumbiwa ashike ngeenge osubscription tai twala kuTelegram, Discord, Slack, ile kuchannel imwe.',
+    disabledBody:
+      'Owebhook osho oplatform yovene yegateway. Pitika ko apa opo u taambe omatokolwa aHTTP taa uya; omachannel okupopya otaa pumbiwa ashike ngeenge osubscription tai twala kuTelegram, Discord, Slack, ile kuchannel imwe.',
     enable: 'Pitika owebhook',
     enabling: 'Oku pitika...',
     enableRow: 'Pitika',
@@ -1481,7 +1525,7 @@ export const kj = defineLocale({
       github_comment: 'Omukanda waGitHub',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     subscriptions: (count: number) => `Subscriptions (${count})`,
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -1489,7 +1533,7 @@ export const kj = defineLocale({
     deleteFailed: (name: string) => `Failed to delete "${name}"`,
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     close: 'Finda omaprofile',
@@ -1567,7 +1611,7 @@ export const kj = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   cron: {
     close: 'Dhika cron',
@@ -1581,14 +1625,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'ya kelelwa',
       disabled: 'ya imwa',
       error: 'epuko',
-      completed: 'ya mana',
+      completed: 'ya mana'
     },
     deliveryLabels: {
       local: 'Desktop eli',
       email: 'O-email',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     scheduleLabels: {
       daily: 'Efiku keshe',
@@ -1597,7 +1641,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Omwedi keshe',
       hourly: 'Oshita keshe',
       'every-15-minutes': 'Ominute 15 keshe',
-      custom: 'Osho wa hala',
+      custom: 'Osho wa hala'
     },
     scheduleHints: {
       daily: 'Efiku keshe po 9:00 AM',
@@ -1606,7 +1650,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Esiku lotete lomwedi keshe po 9:00 AM',
       hourly: 'Komutwe woshita keshe',
       'every-15-minutes': 'Ominute 15 keshe',
-      custom: 'Oshitya shaCron ile elaka lyovanhu',
+      custom: 'Oshitya shaCron ile elaka lyovanhu'
     },
     days: {
       '0': 'Oshisungo',
@@ -1616,11 +1660,12 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Otine',
       '5': 'Otanu',
       '6': 'Omafiku',
-      '7': 'Olyapenga',
+      '7': 'Olyapenga'
     },
     topOfHour: 'Kombada yeyovi keshe',
     newCron: 'Cron ipe',
-    emptyDescNew: 'Panga prompt yi ninge pa cron expression. OpenAmer ote ke yi ninga nokutuma oipiyanana kwaasho wa hoolola.',
+    emptyDescNew:
+      'Panga prompt yi ninge pa cron expression. OpenAmer ote ke yi ninga nokutuma oipiyanana kwaasho wa hoolola.',
     emptyDescSearch: 'Kambadhala okonakona kwaalala',
     emptyTitleNew: 'Kape na oipango yopangwa natango',
     emptyTitleSearch: 'Kape na okufanana',
@@ -1656,7 +1701,8 @@ Leave blank to keep the ${mode} default.`,
     editTitle: 'Lundulula omulimo wa cron',
     createTitle: 'Omulimo mupe wa cron',
     editDesc: 'Lundulula oshikafo, epulo nosho okuyandja. Omalunduluko a ta ka landula okweenda kwashi landula.',
-    createDesc: 'Panga epulo li enda ngaho. Longa cron syntax ile ondjovo yomunhu ngaashi "efimbo keshe lomominiti 15".',
+    createDesc:
+      'Panga epulo li enda ngaho. Longa cron syntax ile ondjovo yomunhu ngaashi "efimbo keshe lomominiti 15".',
     nameLabel: 'Edina',
     namePlaceholder: 'Ehekeleko lomangulukilo',
     promptLabel: 'Epulo',
@@ -1678,7 +1724,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Panga cron',
     tabs: {
       jobs: 'Omilonga',
-      blueprints: 'Omapangwa',
+      blueprints: 'Omapangwa'
     },
     blueprints: {
       tab: 'Omapangwa',
@@ -1692,7 +1738,7 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Oku kufa omapangwa...',
       failedLoad: 'Kwa nyona oku kufa omapangwa',
       emptyTitle: 'Kape na omapangwa a monika',
-      emptyDesc: 'Kape na omapangwa omilonga yomeke a monika ko backend ei.',
+      emptyDesc: 'Kape na omapangwa omilonga yomeke a monika ko backend ei.'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -1701,7 +1747,7 @@ Leave blank to keep the ${mode} default.`,
     everyDayOfWeekAt: (day, time) => `Every ${day} at ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Monthly on day ${dayOfMonth} at ${time}`,
     everyHourAt: minute => `Every hour at :${minute}`,
-    actionsFor: title => `Actions for ${title}`,
+    actionsFor: title => `Actions for ${title}`
   },
   artifacts: {
     search: 'Konga omikanda...',
@@ -1735,14 +1781,14 @@ Leave blank to keep the ${mode} default.`,
     colLocationLink: 'URL',
     colLocationFile: 'Ondjila',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'Oshikando shipe',
       skills: 'Omaano',
       messaging: 'Omatumwalaka',
-      artifacts: 'Oinima',
+      artifacts: 'Oinima'
     },
     searchAria: 'Konga ooshikando',
     searchPlaceholder: 'Konga ooshikando…',
@@ -1793,8 +1839,10 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'Kopa ondjila',
       removeFromSidebar: 'Holeka ko osidebar',
       createFailed: 'Ina ku dulu okushita omudimo',
-      staleBackend: 'Hongwena okombada yaOpenAmer opo i shite oiprojekta — okombada yoye i kulu po kwa app ei yokomputa (Omatwalekpo → Omalunduluko → Okombada).',
-      deleteConfirm: 'Oshi kufa po oprojekta ya yolekwa moOpenAmer. Omafila, oma-repo e-git, na worktree ina yi kwatwa.',
+      staleBackend:
+        'Hongwena okombada yaOpenAmer opo i shite oiprojekta — okombada yoye i kulu po kwa app ei yokomputa (Omatwalekpo → Omalunduluko → Okombada).',
+      deleteConfirm:
+        'Oshi kufa po oprojekta ya yolekwa moOpenAmer. Omafila, oma-repo e-git, na worktree ina yi kwatwa.',
       startWork: 'Worktree ompe',
       newWorktreeTitle: 'Worktree ompe',
       newWorktreeDesc: 'Tumbula edina lotavi yoworktree ei.',
@@ -1814,14 +1862,16 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'Kape na omatavi a monika',
       removeWorktree: 'Kufa po worktree',
       removeWorktreeFailed: 'Itashi dulika okukutula worktree (omalunduluko inaa tulwa?)',
-      removeWorktreeConfirm: 'Kutula mo ku git (tashi dhima odhairekitori yeworktree; oshitayi tashi kala), nenge holeka olukalo mopaite ndele leka worktree modisk.',
-      removeWorktreeDirty: 'Worktree ei ina omalunduluko inaa tulwa. Kutula nokunene (tashi imba omalunduluko), nenge holeka olukalo ndele i leke modisk.',
+      removeWorktreeConfirm:
+        'Kutula mo ku git (tashi dhima odhairekitori yeworktree; oshitayi tashi kala), nenge holeka olukalo mopaite ndele leka worktree modisk.',
+      removeWorktreeDirty:
+        'Worktree ei ina omalunduluko inaa tulwa. Kutula nokunene (tashi imba omalunduluko), nenge holeka olukalo ndele i leke modisk.',
       forceRemove: 'Kutula nokunene',
       back: 'Omaprojeka aeshe',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     loading: 'Otashi londa…',
     loadMore: 'Londa vali',
@@ -1856,19 +1906,19 @@ Leave blank to keep the ${mode} default.`,
       actionsFor: title => `Actions for ${title}`,
       handoffOrigin: platform => `Handed off from ${platform}`,
       ownedByProfile: profile => `Profile: ${profile}`,
-      untitledChat: id => `Chat ${id}`,
+      untitledChat: id => `Chat ${id}`
     },
     dateDivider: {
       today: 'Kwa pita nena',
       yesterday: 'Zimo',
       thisWeek: 'Kwa pita oshivike eshi',
       lastWeek: 'Oshivike sha pita',
-      thisMonth: 'Kwa pita omwedhi uu',
+      thisMonth: 'Kwa pita omwedhi uu'
     },
     noMatch: query => `No sessions match “${query}”.`,
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     placeholderStarting: 'Okuhovela OpenAmer...',
@@ -1909,7 +1959,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'twikila osesheni yokwale',
       '/details': 'pulonga oshitwa shotranscript',
       '/copy': 'kopa oshitwa osho wa hoolola nenge osheendo shahugunina shomukwathi',
-      '/quit': 'pita mo openamer',
+      '/quit': 'pita mo openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'tala komafayila, komafodela, koourl, git',
@@ -1919,7 +1969,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'Tuma omukalo wa landula wa teelelwa',
       'keybinds.openPanel': 'omatokoso aeshe okombongolo',
       'composer.cancel': 'Pata epopover · kanifa okuninga',
-      'composer.history': 'Lundulula epopover / omilandu',
+      'composer.history': 'Lundulula epopover / omilandu'
     },
     attachUrlTitle: 'Hangeka URL',
     attachUrlDesc: 'OpenAmer ota ka kufa omukanda ndika noku u kwatela onga omukalo wokupopya womukalo uu.',
@@ -1963,18 +2013,18 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'Okutala okoodi',
         description: 'Konakona omalundululo ano: omapita pehi, omalupulo a kanifwa, nomayeso a pumbiwa.',
-        text: 'Kutya tala eshi: omambudi, omapita pehi, nomayeso a pumbiwa.',
+        text: 'Kutya tala eshi: omambudi, omapita pehi, nomayeso a pumbiwa.'
       },
       implementationPlan: {
         label: 'Omukululo wokuninga',
         description: 'Holola ondjila opo u ninge okoodi, opo okudifekela ku kale kwa yelela.',
-        text: 'Kutya panga omukululo wokuninga muule, opo u lundulule okoodi.',
+        text: 'Kutya panga omukululo wokuninga muule, opo u lundulule okoodi.'
       },
       explainThis: {
         label: 'Holola eshi',
         description: 'Yelela nghee okoodi ya hoololwa hai longa, u hanganife nomafaila a simana.',
-        text: 'Kutya yelela nghee eshi hai longa, u ndjulise komafaila a simana.',
-      },
+        text: 'Kutya yelela nghee eshi hai longa, u ndjulise komafaila a simana.'
+      }
     },
     wakingProfile: profile => `Waking up ${profile}…`,
     newSessionPlaceholders: [
@@ -1984,7 +2034,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -1993,7 +2043,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
@@ -2001,7 +2051,7 @@ Leave blank to keep the ${mode} default.`,
     previewLabel: label => `Preview ${label}`,
     couldNotPreview: label => `Could not preview ${label}`,
     removeAttachment: label => `Remove ${label}`,
-    url: 'URL…',
+    url: 'URL…'
   },
   statusStack: {
     agents: 'Aakwati',
@@ -2045,30 +2095,35 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'Open PR',
       ghMissing: 'Install the GitHub CLI (gh) and sign in to open PRs',
       agentShip: 'Ask OpenAmer to open PR',
-      agentShipPrompt: 'Review the current changes, commit them with a clear conventional-commit message, push the branch, and open a pull request.',
+      agentShipPrompt:
+        'Review the current changes, commit them with a clear conventional-commit message, push the branch, and open a pull request.',
       newBranch: 'New branch',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
       switchFailed: branch => `Could not switch to ${branch}`,
-      worktrees: 'Worktrees',
+      worktrees: 'Worktrees'
     },
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     maybeLater: 'Mbela konima',
     manualTitle: 'Pupalifa okudja mu terminal yoye',
-    manualBody: 'Owa tula OpenAmer okudja komukanda womayetelo, ongaashi omapupalifo ohaa ningwa ko vali. Kopa eshi mu terminal yoye:',
+    manualBody:
+      'Owa tula OpenAmer okudja komukanda womayetelo, ongaashi omapupalifo ohaa ningwa ko vali. Kopa eshi mu terminal yoye:',
     manualPickedUp: 'OpenAmer oka kwata oshipa shipe pethimbo u ke shi patula vali.',
     guiSkewTitle: 'Pupalifa app yodesktop',
-    guiSkewBody: 'Backend oya pupalifwa, ndele opakete yapp yodesktop inai hindurwa. Pupalifa nenge tula vali OpenAmer desktop app (AppImage / .deb / .rpm) yoye opo yi kale pamwe.',
+    guiSkewBody:
+      'Backend oya pupalifwa, ndele opakete yapp yodesktop inai hindurwa. Pupalifa nenge tula vali OpenAmer desktop app (AppImage / .deb / .rpm) yoye opo yi kale pamwe.',
     copy: 'Kopa',
     copied: 'Osha kopwa',
     done: 'Osha mana',
-    applyingBody: 'Epupalifo lyaOpenAmer otali kwata ko mowindo yalo yene nokupatulula OpenAmer yene uuna lya mana. Ino patulula OpenAmer yoye mwene uuna li li mokupupalifa.',
-    applyingBodyBackend: 'Backend yokukule oyi li mokupupalifa noya ka tameka vali. OpenAmer ota ka kwatana vali yene uuna ya aluka.',
+    applyingBody:
+      'Epupalifo lyaOpenAmer otali kwata ko mowindo yalo yene nokupatulula OpenAmer yene uuna lya mana. Ino patulula OpenAmer yoye mwene uuna li li mokupupalifa.',
+    applyingBodyBackend:
+      'Backend yokukule oyi li mokupupalifa noya ka tameka vali. OpenAmer ota ka kwatana vali yene uuna ya aluka.',
     applyingClose: 'Owindo ndino otayi ka pata uuna epupalifo tali ningwa, ndele OpenAmer otayi ka patuluka yene.',
     errorTitle: 'Epupalifo inali mana',
     errorBody: 'Kape na uupyakadhi — kape na sha shi kanifa. Oto dulu okuninga vali paife.',
@@ -2079,11 +2134,13 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'Backend oyi li okutameka vali opo yi tule epupalifo…',
       notAvailable: 'Epupalifo kape na ko kwa backend ndjino.',
       failed: 'Epupalifo lya backend inali pondola.',
-      noReturn: 'Backend ina iya vali online. Update ina iya okukala ya mana — tala host yobackend.',
+      noReturn: 'Backend ina iya vali online. Update ina iya okukala ya mana — tala host yobackend.'
     },
     appErrors: {
-      updateLocked: 'Update ya diminwa: window imwe yoOpenAmer ile terminal tai endifa openamer oyo tai kwate install ei. Pata yo, ndele linga vali.',
-      updateFailed: 'Update ina iya okukala ya mana. Ino kala noudjuu — kape na sha sha kana. Oto dulu okulinga vali ngashingeyi.',
+      updateLocked:
+        'Update ya diminwa: window imwe yoOpenAmer ile terminal tai endifa openamer oyo tai kwate install ei. Pata yo, ndele linga vali.',
+      updateFailed:
+        'Update ina iya okukala ya mana. Ino kala noudjuu — kape na sha sha kana. Oto dulu okulinga vali ngashingeyi.'
     },
     stages: {
       idle: 'Getting ready…',
@@ -2097,7 +2154,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'Update complete',
       manual: 'Update from your terminal',
       guiSkew: 'Update the desktop app',
-      error: 'Update paused',
+      error: 'Update paused'
     },
     checking: 'Looking for updates…',
     checkFailedTitle: 'Couldn’t check for updates',
@@ -2114,7 +2171,7 @@ Leave blank to keep the ${mode} default.`,
     availableBodyBackend: 'A newer version of the connected OpenAmer backend is ready to install.',
     availableBodyNoChangelog: 'A newer version is ready. Release notes aren’t available for this install type.',
     updateNow: 'Update now',
-    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
+    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`
   },
   install: {
     stageStates: {
@@ -2122,7 +2179,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'Otai tula',
       succeeded: 'Kwa mana',
       skipped: 'Kwa pitililwa',
-      failed: 'Kwa pumbwa',
+      failed: 'Kwa pumbwa'
     },
     oneTimeTitle: 'OpenAmer oi pumbwa okutulwa lumwe',
     installCommand: 'Komanda yokutula',
@@ -2134,7 +2191,8 @@ Leave blank to keep the ${mode} default.`,
     setupChoiceDesc: 'Hanganifa app ei ku gateway yoOpenAmer u na vali, ile tula OpenAmer mokomputa ei.',
     connectExistingTitle: 'Hanganifa kuOpenAmer u na vali',
     connectExistingShort: 'Hanganifa u na vali',
-    connectExistingDesc: 'Longifa backend yokule ne token yosesheni ile okuningina mubrowser. Itai ka tameka install yomokomputa ei.',
+    connectExistingDesc:
+      'Longifa backend yokule ne token yosesheni ile okuningina mubrowser. Itai ka tameka install yomokomputa ei.',
     installLocalTitle: 'Tula OpenAmer mokomputa ei',
     incompleteTokenTest: 'Tula token yosession manga ino yeleka oshivelo eshi.',
     testConnection: 'Yeleka ekwato',
@@ -2143,8 +2201,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Okutula mo kwa fya',
     settingUpTitle: 'Okulongekida OpenAmer Agent',
     finishingTitle: 'Okumana',
-    failedDesc: 'Imwe yomikanda dokutula mo ya fya. Ku Windows, eshi otashi dulu okuyaluka ngeenge OpenAmer CLI imwe ile desktop instance tai longo. Kaleka po OpenAmer instance adihe tadi longo, ndele linga vali. Tala ouyelele wopokati pevi ile desktop log opo u mone oshileshwa ashihe.',
-    activeDesc: 'Eshi okulongekida kwomukando umwe. Omulongekidi wa OpenAmer oku downloda omikanda yokukwafela nokulongekida omashina oye. Omafembi vali otaa pitilila oshikando eshi.',
+    failedDesc:
+      'Imwe yomikanda dokutula mo ya fya. Ku Windows, eshi otashi dulu okuyaluka ngeenge OpenAmer CLI imwe ile desktop instance tai longo. Kaleka po OpenAmer instance adihe tadi longo, ndele linga vali. Tala ouyelele wopokati pevi ile desktop log opo u mone oshileshwa ashihe.',
+    activeDesc:
+      'Eshi okulongekida kwomukando umwe. Omulongekidi wa OpenAmer oku downloda omikanda yokukwafela nokulongekida omashina oye. Omafembi vali otaa pitilila oshikando eshi.',
     fetchingManifest: 'Oku landa manifest yomulongekidi...',
     error: 'Oshihuna',
     hideOutput: 'Holeka oshilombo shomulongekidi',
@@ -2156,11 +2216,13 @@ Leave blank to keep the ${mode} default.`,
     copiedOutput: 'Sha kopa!',
     copyOutput: 'Kopa oshilombo',
     reloadRetry: 'Pinda vali ndele linga vali',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     installLocalDesc: 'Download OpenAmer, create its Python environment, and run the backend on this computer.',
     localStartUnavailable: 'Local installation could not start. Restart OpenAmer Desktop and try again.',
     remoteSetupTitle: 'Connect to existing OpenAmer',
-    remoteSetupDesc: 'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
+    remoteSetupDesc:
+      'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
     remoteUrlTitle: 'Gateway URL',
     remoteUrlDesc: 'Use the base URL of the OpenAmer gateway, including https:// when remote.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2182,34 +2244,35 @@ Leave blank to keep the ${mode} default.`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     apiKeyOptions: {
       gemini: {
         short: 'Oimodela yaGemini',
-        description: 'Okufika pauyuki koimodela yaGoogle Gemini',
+        description: 'Okufika pauyuki koimodela yaGoogle Gemini'
       },
       xai: {
         short: 'Oimodela yaGrok',
-        description: 'Okufika pauyuki koimodela yaGrok yaxAI',
+        description: 'Okufika pauyuki koimodela yaGrok yaxAI'
       },
       local: {
         short: 'yaumwene',
-        description: 'Twala OpenAmer ku endpoint yokoshitukulwa ile yaumwene tai yukifa OpenAI (vLLM, llama.cpp, Ollama, nok.)',
+        description:
+          'Twala OpenAmer ku endpoint yokoshitukulwa ile yaumwene tai yukifa OpenAI (vLLM, llama.cpp, Ollama, nok.)'
       },
       fireworks: {
         short: 'API yomodeli yokuyuka',
-        description: 'Okufikama kwa yuka komamodeli vana okuhashwa kwaFireworks AI.',
+        description: 'Okufikama kwa yuka komamodeli vana okuhashwa kwaFireworks AI.'
       },
       openrouter: {
         short: 'okiyi imwe, ovamodeli vahapu',
-        description: 'Ota kala novamodeli omasatui konima yokiyi imwe. Oshihoolwa sha pama komalongekido mape.',
+        description: 'Ota kala novamodeli omasatui konima yokiyi imwe. Oshihoolwa sha pama komalongekido mape.'
       },
       openai: {
         short: 'ovamodeli vomukunda waGPT',
-        description: 'Okufikama kwa yuka komamodeli vaOpenAI.',
-      },
+        description: 'Okufikama kwa yuka komamodeli vaOpenAI.'
+      }
     },
     backToSignIn: 'Shuna kokunyakula',
     getKey: 'Kufa okiyi',
@@ -2222,7 +2285,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'Tai patulula browser yoye u nokunyakula, ndele tai twikile apa',
       device_code: 'Tai patulula omukanda wokumanyuna mubrowser yoye — OpenAmer tai kwatela yene',
-      external: 'Nyiikila lumwe mwa terminal yoye, ndele shuna kokutya',
+      external: 'Nyiikila lumwe mwa terminal yoye, ndele shuna kokutya'
     },
     signInFailed: 'Okunyakula kwa fya. Linge vali.',
     pickDifferentProvider: 'Hoolola omufidi umwe',
@@ -2250,10 +2313,12 @@ Leave blank to keep the ${mode} default.`,
     copyAuthCode: 'Copy the authorization code and paste it below.',
     pasteAuthCode: 'Paste authorization code',
     reopenAuthPage: 'Re-open authorization page',
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
     reopenSignInPage: 'Re-open sign-in page',
     waitingAuthorize: 'Waiting for you to authorize...',
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     signedIn: "I've signed in",
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     reopenVerification: 'Re-open verification page',
@@ -2265,7 +2330,7 @@ Leave blank to keep the ${mode} default.`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
     change: 'Change',
     startChatting: 'Begin',
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   shell: {
     gatewayMenu: {
@@ -2281,7 +2346,7 @@ Leave blank to keep the ${mode} default.`,
       offline: 'Offline',
       inferenceReady: 'Inference ready',
       inferenceNotReady: 'Inference not ready',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'Omukalo wokupitika',
@@ -2291,7 +2356,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'Nokwiiyenga tala iilonga nokupula ngeenge kwa pumbiwa',
       off: 'Kwa dima',
       offDescription: 'Endifa nokuhapula okupitika',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'Kashi shiwike',
@@ -2311,19 +2376,21 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'Omafatululo omukwafele',
           system_prompt: 'Ompulo yosystema',
           tool_definitions: 'Omafatululo oishilonga',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Kape na data yomukalo natango',
         loading: 'Okufulula omafatululo…',
         title: 'Okulandifa kwomukalo',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Patulula omafatululo okulandifa kwomukalo',
       session: 'Oshikando',
       runtimeSessionElapsed: 'Oshikando shokulonga sha pitilila',
-      yoloOn: 'YOLO ya patuka — okutambula paumwene omaetwaliko oufembanghenda. Klikka okudimifa. Shift+click osho shi lundulula komafano agehe.',
-      yoloOff: 'YOLO ya dima — klikka okutambula paumwene omaetwaliko oufembanghenda. Shift+click osho shi lundulula komafano agehe.',
+      yoloOn:
+        'YOLO ya patuka — okutambula paumwene omaetwaliko oufembanghenda. Klikka okudimifa. Shift+click osho shi lundulula komafano agehe.',
+      yoloOff:
+        'YOLO ya dima — klikka okutambula paumwene omaetwaliko oufembanghenda. Shift+click osho shi lundulula komafano agehe.',
       modelNone: 'kape na',
       noModel: 'kape na omodela',
       switchModel: 'Lundulula omodela',
@@ -2366,7 +2433,7 @@ Leave blank to keep the ${mode} default.`,
       running: count => `${count} running`,
       cron: 'Cron',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
     },
     windowControls: 'Window controls',
     paneControls: 'Pane controls',
@@ -2376,7 +2443,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'No models found',
       editModels: 'Edit Models…',
       refreshModels: 'Refresh Models',
-      fast: 'Fast',
+      fast: 'Fast'
     },
     modelOptions: {
       noOptions: 'No options for this model',
@@ -2392,8 +2459,8 @@ Leave blank to keep the ${mode} default.`,
       max: 'Max',
       ultra: 'Ultra',
       updateFailed: 'Model option update failed',
-      fastFailed: 'Fast mode update failed',
-    },
+      fastFailed: 'Fast mode update failed'
+    }
   },
   rightSidebar: {
     aria: 'Okapandja kokululyo',
@@ -2429,7 +2496,7 @@ Leave blank to keep the ${mode} default.`,
     terminalNew: 'New terminal',
     terminalCloseOthers: 'Close others',
     terminalCloseAll: 'Close all',
-    addToChat: 'Add to chat',
+    addToChat: 'Add to chat'
   },
   preview: {
     overwrite: 'Shanga kombada',
@@ -2452,7 +2519,7 @@ Leave blank to keep the ${mode} default.`,
       sentTitle: 'Kwa tumwa kokukundafana',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'App yokutala komeho inai dulu okutameka',
@@ -2477,16 +2544,18 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'Reloading the preview now.',
       restartFailedTitle: 'Preview restart failed',
       restartFailedMessage: 'OpenAmer could not restart the server.',
-      stillWorking: 'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
+      stillWorking:
+        'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
       workspaceReloading: 'Workspace changed, reloading preview',
       fileChanged: url => `File changed, reloading preview: ${url}`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
-      moduleMimeDescription: 'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
+      moduleMimeDescription:
+        'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'The preview page could not be reached.',
       openTarget: url => `Open ${url}`,
-      fallbackTitle: 'Preview',
+      fallbackTitle: 'Preview'
     },
     tab: 'Preview',
     closeTab: label => `Close ${label}`,
@@ -2519,7 +2588,8 @@ Leave blank to keep the ${mode} default.`,
     unsavedChanges: 'Unsaved changes',
     saveFailed: message => `Couldn't save: ${message}`,
     diskChangedTitle: 'File changed on disk',
-    diskChangedBody: 'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
+    diskChangedBody:
+      'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?'
   },
   assistant: {
     approval: {
@@ -2534,7 +2604,8 @@ Leave blank to keep the ${mode} default.`,
       reject: 'Tinda',
       alwaysTitle: 'Dimina alushe elombwelo eli?',
       alwaysAllow: 'Dimina alushe',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
       notReady: 'Okupula okweeshiva kaku li tayi',
@@ -2547,8 +2618,9 @@ Leave blank to keep the ${mode} default.`,
       skipped: 'Kwa pitwa',
       continueLabel: 'Twikila',
       lateAnswerTip: 'Shanga eyamukulo eli ngaashi etumwalaka loku landula',
-      lateAnswerHint: 'Epulo eli itali teelele vali. Hoola oshinima opo u shange eyamukulo ngaashi etumwalaka loku landula.',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswerHint:
+        'Epulo eli itali teelele vali. Hoola oshinima opo u shange eyamukulo ngaashi etumwalaka loku landula.',
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     tool: {
       code: 'Okoodi',
@@ -2573,113 +2645,113 @@ Leave blank to keep the ${mode} default.`,
         edit_file: {
           pending: 'Okulongulula efaili',
           pendingAction: 'Okulongulula',
-          done: 'Edited file',
+          done: 'Edited file'
         },
         execute_code: {
           done: 'Okoodi ya ningwa',
           pending: 'Okushanga oskript',
-          pendingAction: 'Okushanga oskript',
+          pendingAction: 'Okushanga oskript'
         },
         image_generate: {
           done: 'Oshifwanekwa sha shitwa',
           pending: 'Okushita oshifwanekwa',
-          pendingAction: 'Okushita',
+          pendingAction: 'Okushita'
         },
         list_files: {
           done: 'Omafaili a tangwa',
           pending: 'Okutanga omafaili',
-          pendingAction: 'Okutanga',
+          pendingAction: 'Okutanga'
         },
         patch: {
           done: 'Efaili lya patchwa',
           pending: 'Okupatcha efaili',
-          pendingAction: 'Okupatcha',
+          pendingAction: 'Okupatcha'
         },
         read_file: {
           done: 'Efaili lya leswa',
           pending: 'Okulesa efaili',
-          pendingAction: 'Okulesa',
+          pendingAction: 'Okulesa'
         },
         search_files: {
           done: 'Omafaili a kongwa',
           pending: 'Okukonga omafaili',
-          pendingAction: 'Okukonga',
+          pendingAction: 'Okukonga'
         },
         session_search_recall: {
           done: 'Kwa konakona omukokoto woshikando',
           pending: 'Okukonakona omukokoto woshikando',
-          pendingAction: 'Okukonakona',
+          pendingAction: 'Okukonakona'
         },
         terminal: {
           done: 'Kwa endwa omulombwelo',
           pending: 'Okuendwa omulombwelo',
-          pendingAction: 'Okuendwa',
+          pendingAction: 'Okuendwa'
         },
         todo: {
           done: 'Kwa pumbululwa omilonga',
           pending: 'Okupumbulula omilonga',
-          pendingAction: 'Okupumbulula',
+          pendingAction: 'Okupumbulula'
         },
         vision_analyze: {
           done: 'Kwa konakonwa efano',
           pending: 'Okukonakona efano',
-          pendingAction: 'Okukonakona',
+          pendingAction: 'Okukonakona'
         },
         web_extract: {
           done: 'Kwa leshwa efu lyoweb',
           pending: 'Okulesha efu lyoweb',
-          pendingAction: 'Okulesha',
+          pendingAction: 'Okulesha'
         },
         web_search: {
           done: 'Kwa konakona oweb',
           pending: 'Okukonakona oweb',
-          pendingAction: 'Okukonakona',
+          pendingAction: 'Okukonakona'
         },
         write_file: {
           done: 'Kwa lundululwa efayili',
           pending: 'Okulundulula efayili',
-          pendingAction: 'Editing',
+          pendingAction: 'Editing'
         },
         browser_click: {
           done: 'Clicked page element',
           pending: 'Clicking page element',
-          pendingAction: 'Clicking',
+          pendingAction: 'Clicking'
         },
         browser_fill: {
           done: 'Filled form field',
           pending: 'Filling form field',
-          pendingAction: 'Filling',
+          pendingAction: 'Filling'
         },
         browser_navigate: {
           done: 'Opened page',
           pending: 'Opening page',
-          pendingAction: 'Opening',
+          pendingAction: 'Opening'
         },
         browser_snapshot: {
           done: 'Captured page snapshot',
           pending: 'Capturing page snapshot',
-          pendingAction: 'Capturing',
+          pendingAction: 'Capturing'
         },
         browser_take_screenshot: {
           done: 'Captured screenshot',
           pending: 'Capturing screenshot',
-          pendingAction: 'Capturing',
+          pendingAction: 'Capturing'
         },
         browser_type: {
           done: 'Typed on page',
           pending: 'Typing on page',
-          pendingAction: 'Typing',
+          pendingAction: 'Typing'
         },
         clarify: {
           done: 'Asked a question',
           pending: 'Asking a question',
-          pendingAction: 'Asking',
+          pendingAction: 'Asking'
         },
         cronjob: {
           done: 'Cron job',
           pending: 'Scheduling cron job',
-          pendingAction: 'Scheduling',
-        },
+          pendingAction: 'Scheduling'
+        }
       },
       recoveredMany: count => `Recovered after ${count} failed steps`,
       failedMany: count => `${count} steps failed`,
@@ -2696,11 +2768,11 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Ran',
         running: 'Running',
         ranCode: 'Ran code',
-        runningCode: 'Scripting',
+        runningCode: 'Scripting'
       },
       prefixes: {
         browser: 'Browser',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2708,14 +2780,15 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
     },
     thread: {
       loadingSession: 'Loading session',
       showEarlier: 'Show earlier messages',
       loadingResponse: 'OpenAmer is loading a response',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Thinking',
@@ -2738,13 +2811,14 @@ Leave blank to keep the ${mode} default.`,
       restoreCheckpoint: 'Restore checkpoint',
       restoreFromHere: 'Restore checkpoint — rerun from this prompt',
       restoreTitle: 'Restore to this checkpoint?',
-      restoreBody: 'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
+      restoreBody:
+        'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
       restoreConfirm: 'Restore & rerun',
       restoreNext: 'Restore next checkpoint',
       goForward: 'Go forward',
       sendEdited: 'Send edited message',
-      attachingFile: 'Attaching…',
-    },
+      attachingFile: 'Attaching…'
+    }
   },
   desktop: {
     yoloToggleFailed: 'Ina dula okulundulula YOLO',
@@ -2756,7 +2830,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'Okulundulula kwa hala',
     resumeFailed: 'Okutameka vali kwa hala',
     resumeStrandedTitle: 'Ina dula okulanda seshoni ei',
-    resumeStrandedBody: 'Okuhangana koseshoni ei kwa hala nokuninga vali kwautomatiki kwa mana. Tala kutya gateway oyi li mo, ndele linga vali.',
+    resumeStrandedBody:
+      'Okuhangana koseshoni ei kwa hala nokuninga vali kwautomatiki kwa mana. Tala kutya gateway oyi li mo, ndele linga vali.',
     resumeRetry: 'Linga vali',
     nothingToBranch: 'Kapa na sha shoku taulula',
     branchNeedsChat: 'Tameka ile twikila nechat fimbo ino taulula.',
@@ -2769,7 +2844,8 @@ Leave blank to keep the ${mode} default.`,
     archiveFailed: 'Okutuvika kwa hala',
     cwdChangeFailed: 'Okushinka kwedirectory yokulonga kwa nyama',
     cwdStagedTitle: 'Directory yokulonga ya tulwa po',
-    cwdStagedMessage: 'Pandulula backend yodesktop opo u longife okushinka kwedirectory yokulonga mesession eli lya aktivwa.',
+    cwdStagedMessage:
+      'Pandulula backend yodesktop opo u longife okushinka kwedirectory yokulonga mesession eli lya aktivwa.',
     modelSwitchFailed: 'Okulundulula model kwa nyama',
     sessionExported: 'Session ya pitifiwa',
     sessionExportFailed: 'Okupitifa session kwa nyama',
@@ -2800,7 +2876,8 @@ Leave blank to keep the ${mode} default.`,
     yoloOff: 'YOLO off',
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
     branchTitle: n => `Draft: Branch #${n}`,
@@ -2812,8 +2889,8 @@ Leave blank to keep the ${mode} default.`,
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
       failed: error => `Handoff failed: ${error}`,
-      timedOut: 'Timed out waiting for the gateway. Is `openamer gateway` running?',
-    },
+      timedOut: 'Timed out waiting for the gateway. Is `openamer gateway` running?'
+    }
   },
   common: {
     apply: 'Apply',
@@ -2854,7 +2931,7 @@ Leave blank to keep the ${mode} default.`,
     update: 'Update',
     tryHint: term => `Try “${term}”`,
     on: 'On',
-    off: 'Off',
+    off: 'Off'
   },
   fileMenu: {
     revealFinder: 'Reveal in Finder',
@@ -2869,10 +2946,11 @@ Leave blank to keep the ${mode} default.`,
     renameLabel: 'New name',
     deleteTitle: name => `Delete ${name}?`,
     deleteBody: 'It will be moved to the Trash — you can restore it from there.',
-    pathCopied: 'Path copied',
+    pathCopied: 'Path copied'
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
   },
   modelPicker: {
     title: 'Switch model',
@@ -2888,13 +2966,13 @@ Leave blank to keep the ${mode} default.`,
     free: 'Free',
     freeTier: 'Free tier',
     priceTitle: 'Input / Output price per million tokens',
-    wasPrice: 'was',
+    wasPrice: 'was'
   },
   modelVisibility: {
     title: 'Models',
     search: 'Search models',
     noAuthenticatedProviders: 'No authenticated providers.',
-    addProvider: 'Add provider…',
+    addProvider: 'Add provider…'
   },
   zones: {
     showHeader: 'Show header',
@@ -2902,7 +2980,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Minimize',
     restore: 'Restore',
     closeRunningTitle: 'Close running tab?',
-    closeRunningBody: 'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
+    closeRunningBody:
+      'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
     closeRunningConfirm: 'Close tab',
     closeOthers: 'Close others',
     closeToRight: 'Close to the right',
@@ -2939,7 +3018,7 @@ Leave blank to keep the ${mode} default.`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
     saveApply: 'Save & apply',
     notExpressible: 'this arrangement interlocks (pinwheel) — not expressible as nested splits yet',
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2950,30 +3029,30 @@ Leave blank to keep the ${mode} default.`,
     sudoPlaceholder: 'sudo password',
     secretTitle: 'Secret required',
     secretDesc: 'OpenAmer needs a credential to continue.',
-    secretPlaceholder: 'secret value',
+    secretPlaceholder: 'secret value'
   },
   errors: {
     genericFailure: 'Something went wrong',
     boundaryTitle: 'Something broke in the interface',
     boundaryDesc: 'The view hit an unexpected error. Your chats and settings are safe.',
     reloadWindow: 'Reload window',
-    openLogs: 'Open logs',
+    openLogs: 'Open logs'
   },
   ui: {
     search: {
-      clear: 'Clear search',
+      clear: 'Clear search'
     },
     pagination: {
       label: 'pagination',
       previous: 'Prev',
       previousAria: 'Go to previous page',
       next: 'Next',
-      nextAria: 'Go to next page',
+      nextAria: 'Go to next page'
     },
     sidebar: {
       title: 'Sidebar',
       description: 'Displays the mobile sidebar.',
-      toggle: 'Toggle Sidebar',
-    },
-  },
+      toggle: 'Toggle Sidebar'
+    }
+  }
 })

@@ -45,13 +45,13 @@ export const co = defineLocale({
     update: 'Aggiurnà',
     tryHint: term => `Pruvate “${term}”`,
     on: 'Attivu',
-    off: 'Disattivu',
+    off: 'Disattivu'
   },
   fileMenu: {
     revealFinder: 'Mustrà in Finder',
     revealExplorer: 'Mustrà in Espluratore di i fugliali',
     revealFileManager: 'Apre a cartula chì u cuntene',
-    revealInSidebar: 'Mustrà in l\'arburu di i fugliali',
+    revealInSidebar: "Mustrà in l'arburu di i fugliali",
     copyPath: 'Cupià u camminu',
     copyRelativePath: 'Cupià u camminu rilativu',
     rename: 'Rinuminà…',
@@ -60,53 +60,57 @@ export const co = defineLocale({
     renameLabel: 'Nome novu',
     deleteTitle: name => `Supprimà ${name}?`,
     deleteBody: 'Serà messu in a Pugnitopa — pudete u resturà da quì.',
-    pathCopied: 'Camminu cupiatu',
+    pathCopied: 'Camminu cupiatu'
   },
   boot: {
     ready: 'OpenAmer Desktop hè prontu',
     desktopBootFailedWithMessage: message => `L'avviu di u Desktop hè fiascatu: ${message}`,
     steps: {
       connectingGateway: 'Cunnessione à u gateway di u Desktop in diretta',
-      loadingSettings: 'Caricamentu di i parametri d\'OpenAmer',
+      loadingSettings: "Caricamentu di i parametri d'OpenAmer",
       loadingSessions: 'Caricamentu di e sessioni recente',
       startingDesktopConnection: 'Avviu di a cunnessione di u Desktop',
-      startingOpenAmerDesktop: 'Avviu d\'OpenAmer Desktop…',
+      startingOpenAmerDesktop: "Avviu d'OpenAmer Desktop…"
     },
     errors: {
-      backgroundExited: 'U prucessu di fondo d\'OpenAmer hè sortu.',
-      backgroundExitedDuringStartup: 'U prucessu di fondo d\'OpenAmer hè sortu durante l\'avviu.',
+      backgroundExited: "U prucessu di fondo d'OpenAmer hè sortu.",
+      backgroundExitedDuringStartup: "U prucessu di fondo d'OpenAmer hè sortu durante l'avviu.",
       backendStopped: 'U servore hè firmatu',
-      desktopBootFailed: 'L\'avviu di u Desktop hè fiascatu',
+      desktopBootFailed: "L'avviu di u Desktop hè fiascatu",
       gatewayConnectionLost: 'Cunnessione à u gateway persa',
       gatewaySignInRequired: 'Cunnessione à u gateway richiesta',
-      ipcBridgeUnavailable: 'U ponte IPC di u Desktop ùn hè micca dispunibule.',
+      ipcBridgeUnavailable: 'U ponte IPC di u Desktop ùn hè micca dispunibule.'
     },
     failure: {
-      title: "OpenAmer ùn hà pussutu avvià si",
-      description: "U gateway di fondo ùn hè micca partutu. Pruvate unu di i passi di ricuperu quì sottu. Nunda quì ùn cancella e vostre conversazioni nè i vostri parametri.",
+      title: 'OpenAmer ùn hà pussutu avvià si',
+      description:
+        'U gateway di fondo ùn hè micca partutu. Pruvate unu di i passi di ricuperu quì sottu. Nunda quì ùn cancella e vostre conversazioni nè i vostri parametri.',
       remoteTitle: 'Cunnessione à u gateway remotu richiesta',
-      remoteDescription: 'A vostra sessione di u gateway remotu hè scaduta. Cunnettate vi torna per ricunnettà. Nunda quì ùn cancella e vostre conversazioni nè i vostri parametri.',
+      remoteDescription:
+        'A vostra sessione di u gateway remotu hè scaduta. Cunnettate vi torna per ricunnettà. Nunda quì ùn cancella e vostre conversazioni nè i vostri parametri.',
       retry: 'Ripruvà',
-      repairInstall: 'Riparà l\'installazione',
+      repairInstall: "Riparà l'installazione",
       useLocalGateway: 'Aduprà u gateway lucale',
       gatewaySettings: 'Parametri di u gateway',
       back: 'Indietro',
       openLogs: 'Apre i ghjurnali',
-      repairHint: 'A riparazione torna à eseguì l\'installatore è pò piglià qualchì minutu nant\'à una macchina nova.',
-      remoteSignInHint: signInLabel => `Esce da a sessione di u navigatore remotu salvata, po apre ${signInLabel}. Aduprate u gateway lucale per passà à u servore inclusu.`,
+      repairHint: "A riparazione torna à eseguì l'installatore è pò piglià qualchì minutu nant'à una macchina nova.",
+      remoteSignInHint: signInLabel =>
+        `Esce da a sessione di u navigatore remotu salvata, po apre ${signInLabel}. Aduprate u gateway lucale per passà à u servore inclusu.`,
       signOutAndSignIn: 'Esce è cunnettate vi',
-      remoteFailureHint: 'Verificate l\'URL di u gateway è a cunnessione in i parametri di u gateway, o passate à u gateway lucale.',
+      remoteFailureHint:
+        "Verificate l'URL di u gateway è a cunnessione in i parametri di u gateway, o passate à u gateway lucale.",
       hideRecentLogs: 'Piattà i ghjurnali recente',
       showRecentLogs: 'Mustrà i ghjurnali recente',
       signedInTitle: 'Cunnettatu',
       signedInMessage: 'Ricunnessione à u gateway remotu…',
       signInIncompleteTitle: 'Cunnessione incompleta',
-      signInIncompleteMessage: 'A finestra di cunnessione s\'hè chjusa prima chì l\'autentificazione fussi compia.',
+      signInIncompleteMessage: "A finestra di cunnessione s'hè chjusa prima chì l'autentificazione fussi compia.",
       signInFailed: 'A cunnessione hè fallita',
       signInToRemoteGateway: 'Cunnettate vi à u gateway remotu',
       signInWithProvider: provider => `Cunnettate vi cù ${provider}`,
-      identityProvider: 'u vostru furnidore d\'identità',
-    },
+      identityProvider: "u vostru furnidore d'identità"
+    }
   },
   notifications: {
     region: 'Notificazioni',
@@ -119,21 +123,23 @@ export const co = defineLocale({
     copyDetail: 'Cupià u dettagliu',
     copyDetailFailed: 'Ùn hè micca pussutu cupià u dettagliu di a notificazione',
     backendOutOfDateTitle: 'Servore vechju',
-    backendOutOfDateMessage: 'U vostru servore OpenAmer hè più vechju chè sta versione di u Desktop è pò ùn funziunà bè. Aggiurnate lu per allinià li.',
-    installMethodUnsupportedTitle: 'Metudu d\'installazione micca supportatu',
+    backendOutOfDateMessage:
+      'U vostru servore OpenAmer hè più vechju chè sta versione di u Desktop è pò ùn funziunà bè. Aggiurnate lu per allinià li.',
+    installMethodUnsupportedTitle: "Metudu d'installazione micca supportatu",
     updateOpenAmer: 'Aggiurnà OpenAmer',
     updateReadyTitle: 'Aggiurnamentu prontu',
     updateReadyMessage: count => `${count} mudificazione nova ${count === 1 ? '' : 's'} dispunibule.`,
-    seeWhatsNew: "Vede ciò chì hè novu",
+    seeWhatsNew: 'Vede ciò chì hè novu',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT hà bisognu di ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs hà rifiutatu a chjave API (401).',
-      gatewayAuthFailed: 'L\'autentificazione di u gateway hè fallita — verificate u vostru API_SERVER_KEY.',
-      methodNotAllowed: 'U servore di u Desktop hà rifiutatu sta dumanda (405 Method Not Allowed). Pruvate à riavvià OpenAmer Desktop.',
+      gatewayAuthFailed: "L'autentificazione di u gateway hè fallita — verificate u vostru API_SERVER_KEY.",
+      methodNotAllowed:
+        'U servore di u Desktop hà rifiutatu sta dumanda (405 Method Not Allowed). Pruvate à riavvià OpenAmer Desktop.',
       microphonePermission: 'U permessu di u microfunu hè statu rifiutatu.',
       openaiRejectedApiKey: 'OpenAI hà rifiutatu a chjave API.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI hà rifiutatu a chjave API (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS hà bisognu di VOICE_TOOLS_OPENAI_KEY o OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS hà bisognu di VOICE_TOOLS_OPENAI_KEY o OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Configurate a trascrizione di a parolla per aduprà u modu voce.',
@@ -141,7 +147,7 @@ export const co = defineLocale({
       microphoneAccessDenied: 'Accessu à u microfunu rifiutatu.',
       microphoneConstraintsUnsupported: 'Stu dispusitivu ùn supporta micca i vincoli di u microfunu.',
       microphoneFailed: 'U microfunu hè fiascatu',
-      microphoneInUse: 'U microfunu hè digià adupratu da un\'altra app.',
+      microphoneInUse: "U microfunu hè digià adupratu da un'altra app.",
       microphonePermissionDenied: 'U permessu di u microfunu hè statu rifiutatu.',
       microphoneStartFailed: 'Ùn hè micca pussutu principià a registrazione di u microfunu.',
       microphoneUnsupported: 'Stu runtime ùn supporta micca a registrazione di u microfunu.',
@@ -152,7 +158,7 @@ export const co = defineLocale({
       transcriptionFailed: 'A trascrizione di a voce hè fallita',
       transcriptionUnavailable: 'A trascrizione di a voce ùn hè ancu dispunibule.',
       tryRecordingAgain: 'Pruvate à registrà torna.',
-      unavailable: 'Voce micca dispunibule',
+      unavailable: 'Voce micca dispunibule'
     },
     native: {
       approvalTitle: 'Apprubazione necessaria',
@@ -165,11 +171,12 @@ export const co = defineLocale({
       turnErrorTitle: 'U turnu hè fiascatu',
       backgroundDoneTitle: 'U compitu di fondo hè finitu',
       backgroundFailedTitle: 'U compitu di fondo hè fiascatu',
-      creditsTitle: 'Crediti',
-    },
+      creditsTitle: 'Crediti'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Rendering software attivu — schermu remotu rilevatu (${reason}). L'accelerazione GPU hè disattivata per impedì u sfarinamentu.`,
+    message: reason =>
+      `Rendering software attivu — schermu remotu rilevatu (${reason}). L'accelerazione GPU hè disattivata per impedì u sfarinamentu.`
   },
   billingBlock: {
     titleOpenamer: 'Crediti OpenAmer esauriti',
@@ -177,13 +184,13 @@ export const co = defineLocale({
     fallbackMessage: 'U vostru contu ùn hà più crediti. Aghjunghjite ne per cuntinuà.',
     openBilling: 'Apre a fatturazione',
     addCredits: 'Aghjunghje crediti',
-    dismiss: 'Caccià',
+    dismiss: 'Caccià'
   },
   titlebar: {
     hideSidebar: 'Piattà a barra laterale',
     showSidebar: 'Mustrà a barra laterale',
     search: 'Circà',
-    searchTitle: 'Circà in e sessioni, e viste è l\'azzioni',
+    searchTitle: "Circà in e sessioni, e viste è l'azzioni",
     swapSidebarSides: 'Scambià i lati di a barra',
     swapSidebarSidesTitle: 'Scambià i lati di e sessioni è di u navigatore di fugliali',
     hideRightSidebar: 'Piattà a barra laterale diritta',
@@ -194,7 +201,7 @@ export const co = defineLocale({
     openStarmap: 'Apre u grafu di a memoria',
     openKeybinds: 'Scurzatoi di tastiera',
     layoutEditor: 'Editore di disposizione',
-    layoutEditorTitle: 'Editore di disposizione — ⌘-clic resetta a disposizione',
+    layoutEditorTitle: 'Editore di disposizione — ⌘-clic resetta a disposizione'
   },
   keybinds: {
     title: 'Scurzatoi di tastiera',
@@ -211,7 +218,7 @@ export const co = defineLocale({
       profiles: 'Profili',
       session: 'Sessione',
       navigation: 'Navigazione',
-      view: 'Vista',
+      view: 'Vista'
     },
     actions: {
       'keybinds.openPanel': 'Apre i scurzatoi di tastiera',
@@ -221,9 +228,9 @@ export const co = defineLocale({
       'nav.profiles': 'Apre i profili',
       'nav.skills': 'Apre e cumpetenze',
       'nav.messaging': 'Apre i messaghji',
-      'nav.artifacts': 'Apre l\'artefatti',
+      'nav.artifacts': "Apre l'artefatti",
       'nav.cron': 'Apre i travaglii prugrammati',
-      'nav.agents': 'Apre l\'agenti',
+      'nav.agents': "Apre l'agenti",
       'session.new': 'Sessione nova',
       'session.newTab': 'Tavula di sessione nova',
       'session.newWindow': 'Finestra nova',
@@ -241,7 +248,7 @@ export const co = defineLocale({
       'session.focusSearch': 'Circà in e sessioni',
       'session.togglePin': 'Appuntà / disarmà a sessione attuale',
       'workspace.newWorktree': 'Arbure di travagliu novu',
-      'composer.focus': 'Mette u focu nant\'à u redattore',
+      'composer.focus': "Mette u focu nant'à u redattore",
       'composer.modelPicker': 'Apre a scelta di mudellu',
       'composer.voice': 'Principià / firmà a conversazione voce',
       'view.toggleSidebar': 'Piattà/mustrà a barra di e sessioni',
@@ -290,25 +297,25 @@ export const co = defineLocale({
       'composer.slash': 'Paletta di cumandi cù /',
       'composer.help': 'Aiutu rapidu',
       'composer.history': 'Fà girà u popover / a storia',
-      'composer.cancel': 'Chjudà u popover · annullà l\'esecuzione',
-    },
+      'composer.cancel': "Chjudà u popover · annullà l'esecuzione"
+    }
   },
   language: {
     label: 'Lingua',
-    description: 'Sceglite a lingua di l\'interfaccia di u Desktop.',
+    description: "Sceglite a lingua di l'interfaccia di u Desktop.",
     saving: 'Salvà a lingua…',
-    saveError: 'L\'aghjurnamentu di a lingua hè fiascatu',
+    saveError: "L'aghjurnamentu di a lingua hè fiascatu",
     switchTo: 'Cambià lingua',
     searchPlaceholder: 'Circà e lingue…',
-    noResults: 'Nisciuna lingua trovata',
+    noResults: 'Nisciuna lingua trovata'
   },
   settings: {
     closeSettings: 'Chjudà i parametri',
     exportConfig: 'Esportà a cunfigurazione',
     importConfig: 'Impurtà a cunfigurazione',
     resetToDefaults: 'Resettà à i valori predefiniti',
-    resetConfirm: 'Resettà tutti i parametri à i valori predefiniti d\'OpenAmer?',
-    exportFailed: 'L\'esportazione hè fallita',
+    resetConfirm: "Resettà tutti i parametri à i valori predefiniti d'OpenAmer?",
+    exportFailed: "L'esportazione hè fallita",
     resetFailed: 'U reset hè fiascatu',
     nav: {
       providers: 'Furnidori',
@@ -325,11 +332,12 @@ export const co = defineLocale({
       about: 'À propositu',
       billing: 'Fatturazione',
       notifications: 'Notificazioni',
-      plugins: 'Plugin',
+      plugins: 'Plugin'
     },
     plugins: {
       title: 'Plugin di u Desktop',
-      blurb: 'Estensioni di l\'interfaccia caricate in sta app — incluse in a versione, o messe in a cartula desktop-plugins (cumprese quelle chì OpenAmer scrive). Disattivà ne scarica unu in diretta è sopravvive à i riavvii.',
+      blurb:
+        "Estensioni di l'interfaccia caricate in sta app — incluse in a versione, o messe in a cartula desktop-plugins (cumprese quelle chì OpenAmer scrive). Disattivà ne scarica unu in diretta è sopravvive à i riavvii.",
       count: n => `${n} installati`,
       openFolder: 'Apre a cartula di i plugin',
       rescan: 'Riscanà',
@@ -340,50 +348,52 @@ export const co = defineLocale({
       empty: 'Nisciunu plugin di u Desktop installatu per avà.',
       kinds: {
         bundled: 'inclusu',
-        disk: 'nant\'à u discu',
-        runtime: 'à l\'esecuzione',
-      },
+        disk: "nant'à u discu",
+        runtime: "à l'esecuzione"
+      }
     },
     notifications: {
       title: 'Notificazioni',
-      intro: 'Notificazioni native di u Desktop, sfarente da i toast in l\'app. Sò lucali à u dispusitivu — ogni urdinatore guarda i so parametri.',
+      intro:
+        "Notificazioni native di u Desktop, sfarente da i toast in l'app. Sò lucali à u dispusitivu — ogni urdinatore guarda i so parametri.",
       enableAll: 'Attivà e notificazioni',
       enableAllDesc: 'Interruttore maestru. Disattivate lu per silenzià tutte e notificazioni quì sottu.',
-      focusedHint: 'L\'avvisi di fine si accendenu solu quandu OpenAmer hè in u fondo.',
+      focusedHint: "L'avvisi di fine si accendenu solu quandu OpenAmer hè in u fondo.",
       kinds: {
         approval: {
           label: 'Apprubazione necessaria',
-          description: 'Un cumandu aspettà chì u appruvate o u rifiutate.',
+          description: 'Un cumandu aspettà chì u appruvate o u rifiutate.'
         },
         input: {
           label: 'Risposta necessaria',
-          description: 'OpenAmer hà fattu una dumanda o hà bisognu di una parolla secreta.',
+          description: 'OpenAmer hà fattu una dumanda o hà bisognu di una parolla secreta.'
         },
         turnDone: {
           label: 'Risposta pronta',
-          description: 'Un turnu hà finitu mentre OpenAmer era in u fondo.',
+          description: 'Un turnu hà finitu mentre OpenAmer era in u fondo.'
         },
         turnError: {
           label: 'U turnu hè fiascatu',
-          description: 'Un turnu hà finitu cù un errore.',
+          description: 'Un turnu hà finitu cù un errore.'
         },
         backgroundDone: {
           label: 'U compitu di fondo hè finitu',
-          description: 'Un cumandu di terminale in u fondo hè compiu.',
+          description: 'Un cumandu di terminale in u fondo hè compiu.'
         },
         credits: {
           label: 'Avvisi di crediti',
-          description: 'L\'accessu à i crediti hè in pausa o ristabilitu.',
-        },
+          description: "L'accessu à i crediti hè in pausa o ristabilitu."
+        }
       },
       test: 'Mandà una notificazione di prova',
       testTitle: 'OpenAmer',
       testBody: 'E notificazioni funzionanu.',
-      testSent: 'Prova mandata. S\'ellu ùn apparse nunda, verificate i permessi di notificazione di u vostru sistema è Focus / Ùn disturbà.',
+      testSent:
+        "Prova mandata. S'ellu ùn apparse nunda, verificate i permessi di notificazione di u vostru sistema è Focus / Ùn disturbà.",
       testUnsupported: 'Stu sistema ùn supporta micca e notificazioni native.',
       completionSoundTitle: 'Sonu di fine',
-      completionSoundDesc: 'Sonà quandu un turnu d\'agente finisce. Sceglite un predefinitu è ascultate lu quì.',
-      completionSoundPreview: 'Ascultà',
+      completionSoundDesc: "Sonà quandu un turnu d'agente finisce. Sceglite un predefinitu è ascultate lu quì.",
+      completionSoundPreview: 'Ascultà'
     },
     sections: {
       model: 'Mudellu',
@@ -393,45 +403,48 @@ export const co = defineLocale({
       safety: 'Sicurezza',
       memory: 'Memoria è cuntestu',
       voice: 'Voce',
-      advanced: 'Avanzatu',
+      advanced: 'Avanzatu'
     },
     searchPlaceholder: {
-      about: 'À propositu d\'OpenAmer Desktop',
+      about: "À propositu d'OpenAmer Desktop",
       config: 'Circà in i parametri...',
       gateway: 'Cunnessione à u gateway...',
       keys: 'Circà e chjavi API...',
       mcp: 'Circà i servori MCP...',
-      sessions: 'Circà in e sessioni archiviate...',
+      sessions: 'Circà in e sessioni archiviate...'
     },
     modeOptions: {
       light: {
         label: 'Chjaru',
-        description: 'Superficie chjare di u Desktop',
+        description: 'Superficie chjare di u Desktop'
       },
       dark: {
         label: 'Scuru',
-        description: 'Spaziu di travagliu senza abbagliu',
+        description: 'Spaziu di travagliu senza abbagliu'
       },
       system: {
         label: 'Sistema',
-        description: 'Siguità l\'aspettu di u sistema',
-      },
+        description: "Siguità l'aspettu di u sistema"
+      }
     },
     appearance: {
       title: 'Aspettu',
-      intro: 'Sò preferenze di visualizazione di u Desktop solu. U modu cuntrolla a luminosità; u tema cuntrolla a paletta d\'accentu è u stilu di a conversazione.',
+      intro:
+        "Sò preferenze di visualizazione di u Desktop solu. U modu cuntrolla a luminosità; u tema cuntrolla a paletta d'accentu è u stilu di a conversazione.",
       colorMode: 'Modu di culore',
-      colorModeDesc: 'Sceglite un modu fissu o lasciate ch\'OpenAmer siguiti u vostru sistema.',
+      colorModeDesc: "Sceglite un modu fissu o lasciate ch'OpenAmer siguiti u vostru sistema.",
       toolViewTitle: 'Visualizazione di e chjamate di strumenti',
-      toolViewDesc: 'Product piatta i dati grezzi di i strumenti; Technical mostra tuttu l\'input è l\'output.',
-      uiScaleTitle: 'Scala di l\'interfaccia',
-      uiScaleDesc: (percent: number) => `Ingrandisce u testu è i cuntrolli in tutta l'app. Cmd/Ctrl cù +, - è 0 funziona ancu. Attuale: ${percent}%.`,
+      toolViewDesc: "Product piatta i dati grezzi di i strumenti; Technical mostra tuttu l'input è l'output.",
+      uiScaleTitle: "Scala di l'interfaccia",
+      uiScaleDesc: (percent: number) =>
+        `Ingrandisce u testu è i cuntrolli in tutta l'app. Cmd/Ctrl cù +, - è 0 funziona ancu. Attuale: ${percent}%.`,
       translucencyTitle: 'Trasparenza di a finestra',
       translucencyDesc: 'Vede u vostru scrivanu à traversu tutta a finestra. macOS è Windows solu.',
       backdropTitle: 'Sfondo di a conversazione',
-      backdropDesc: 'L\'imagine debule di statua daretu à a conversazione.',
+      backdropDesc: "L'imagine debule di statua daretu à a conversazione.",
       embedsTitle: 'Incorporazioni in linea',
-      embedsDesc: 'Anteprime ricche caricate da siti di terzi (YouTube, X, …). Ask mostra un locu vodu finch\'è ùn permette ognunu; Always i carica automaticamente; Off guarda ligami simplici.',
+      embedsDesc:
+        "Anteprime ricche caricate da siti di terzi (YouTube, X, …). Ask mostra un locu vodu finch'è ùn permette ognunu; Always i carica automaticamente; Off guarda ligami simplici.",
       embedsAsk: 'Dumandà',
       embedsAlways: 'Sempre',
       embedsOff: 'Disattivu',
@@ -439,12 +452,13 @@ export const co = defineLocale({
       product: 'Produttu',
       productDesc: 'Attività di i strumenti amichevule cù riassunti cuncisi.',
       technical: 'Tecnicu',
-      technicalDesc: 'Include l\'argumenti è i risultati grezzi di i strumenti è i dettagli di bassu livellu.',
+      technicalDesc: "Include l'argumenti è i risultati grezzi di i strumenti è i dettagli di bassu livellu.",
       themeTitle: 'Tema',
       themeDesc: 'Palette di u Desktop solu. U modu sceltu hè applicatu sopra.',
       themeProfileNote: profile => `Salvatu per u prufilu ${profile} — ogni prufilu guarda u so tema.`,
       installTitle: 'Installà da VS Code',
-      installDesc: 'Incollate un id d\'estensione di u Marketplace (per esempiu dracula-theme.theme-dracula) per cunvertisce u so tema di culore in una paletta di u Desktop.',
+      installDesc:
+        "Incollate un id d'estensione di u Marketplace (per esempiu dracula-theme.theme-dracula) per cunvertisce u so tema di culore in una paletta di u Desktop.",
       installPlaceholder: 'publisher.extension',
       installButton: 'Installà',
       installing: 'Installazione…',
@@ -454,18 +468,21 @@ export const co = defineLocale({
       importedBadge: 'Impurtatu',
       pet: {
         title: 'Animale',
-        intro: 'Aduttate una mascotte animata petdex chì flotte nant\'à l\'app è reagisce à ciò chì OpenAmer face — corre mentre i strumenti esecutanu, festeggia nant\'à u successu, si lagna nant\'à l\'errori.',
-        restartHint: 'L\'animali ani bisognu di un riavviu prestu — l\'app in corsa hè partuta prima chì sta funzione fussi aghjunta. Esce è riapre OpenAmer, po vultà quì.',
+        intro:
+          "Aduttate una mascotte animata petdex chì flotte nant'à l'app è reagisce à ciò chì OpenAmer face — corre mentre i strumenti esecutanu, festeggia nant'à u successu, si lagna nant'à l'errori.",
+        restartHint:
+          "L'animali ani bisognu di un riavviu prestu — l'app in corsa hè partuta prima chì sta funzione fussi aghjunta. Esce è riapre OpenAmer, po vultà quì.",
         on: 'Attivu',
         off: 'Disattivu',
         scaleTitle: 'Taglia',
-        scaleDesc: 'Cambià a taglia di a mascotte fluttuante. S\'applica in ogni locu subitu.',
+        scaleDesc: "Cambià a taglia di a mascotte fluttuante. S'applica in ogni locu subitu.",
         roamTitle: 'Girà',
-        roamDesc: 'Lasciate chì l\'animale vaghi in a finestra da per ellu quandu hè inattivu.',
+        roamDesc: "Lasciate chì l'animale vaghi in a finestra da per ellu quandu hè inattivu.",
         chooseTitle: 'Sceglie un animale',
-        chooseDesc: 'Sceglie ne unu l\'installa (s\'ellu hè necessariu) è u rende attivu.',
+        chooseDesc: "Sceglie ne unu l'installa (s'ellu hè necessariu) è u rende attivu.",
         searchPlaceholder: 'Circà animali…',
-        unreachable: "Ùn hè micca pussutu ghjunghje à a galleria petdex. Verificate a vostra cunnessione è riapre sta pagina.",
+        unreachable:
+          'Ùn hè micca pussutu ghjunghje à a galleria petdex. Verificate a vostra cunnessione è riapre sta pagina.',
         noMatch: query => `Nisciunu animale currisponde à "${query}".`,
         installedTag: 'installatu',
         generatedTag: 'Generatu',
@@ -477,7 +494,7 @@ export const co = defineLocale({
         deleteBody: "Questu supprime definitivamente l'animale — ùn pò micca esse reinstallatu.",
         deleteConfirm: 'Supprimà',
         rename: name => `Rinuminà ${name}`,
-        renameTitle: 'Rinuminà l\'animale',
+        renameTitle: "Rinuminà l'animale",
         renamePlaceholder: 'Numinate u vostru animale',
         renameSave: 'Salvà',
         exportPet: name => `Esportà ${name}`,
@@ -486,9 +503,9 @@ export const co = defineLocale({
         renameFailed: slug => `Ùn hè micca pussutu rinuminà ${slug}`,
         exportFailed: slug => `Ùn hè micca pussutu esportà ${slug}`,
         noneAvailable: 'Nisciunu animale dispunibule per attivà avà.',
-        turnOnFailed: 'Ùn hè micca pussutu attivà l\'animale.',
-        turnOffFailed: 'Ùn hè micca pussutu disattivà l\'animale.',
-      },
+        turnOnFailed: "Ùn hè micca pussutu attivà l'animale.",
+        turnOffFailed: "Ùn hè micca pussutu disattivà l'animale."
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -499,7 +516,7 @@ export const co = defineLocale({
       updates: 'Aghjurnamenti',
       checkNow: 'Verificà avà',
       checking: 'Verifica…',
-      seeWhatsNew: "Vede ciò chì hè novu",
+      seeWhatsNew: 'Vede ciò chì hè novu',
       updateNow: 'Aggiurnà avà',
       releaseNotes: 'Note di a versione',
       onLatest: "Site nant'à a versione più recente.",
@@ -507,17 +524,19 @@ export const co = defineLocale({
       cantUpdate: "Sta versione ùn pò micca aghjurnà si da l'internu di l'app.",
       cantReach: "Ùn pudemu micca ghjunghje à u servore d'aghjurnamentu.",
       tapCheck: 'Toccate "Verificà avà" per circà aghjurnamenti.',
-      updateReady: count => `Un aghjurnamentu novu hè prontu (${count} mudificazione ${count === 1 ? '' : 's'} inclusa/e).`,
+      updateReady: count =>
+        `Un aghjurnamentu novu hè prontu (${count} mudificazione ${count === 1 ? '' : 's'} inclusa/e).`,
       lastChecked: age => `Ultima verifica ${age}`,
       justNowSuffix: ' · avà',
       automaticUpdates: 'Aghjurnamenti automatici',
-      automaticUpdatesDesc: 'OpenAmer verifica l\'aghjurnamenti automaticamente in u fondo è vi avvisa quandu unu hè prontu.',
+      automaticUpdatesDesc:
+        "OpenAmer verifica l'aghjurnamenti automaticamente in u fondo è vi avvisa quandu unu hè prontu.",
       branchCommit: (branch, commit) => `Branca ${branch} · Commit ${commit}`,
       never: 'mai',
       justNow: 'avà',
       minAgo: count => `${count} min fà`,
       hoursAgo: count => `${count} ore fà`,
-      daysAgo: count => `${count} ghjorni fà`,
+      daysAgo: count => `${count} ghjorni fà`
     },
     config: {
       none: 'Nisciunu',
@@ -525,15 +544,16 @@ export const co = defineLocale({
       builtinOnly: 'Integratu solu',
       notSet: 'Micca definitu',
       commaSeparated: 'valori separati da virgule',
-      loading: 'Caricamentu di a cunfigurazione d\'OpenAmer...',
+      loading: "Caricamentu di a cunfigurazione d'OpenAmer...",
       emptyTitle: 'Nunda à configurà',
       emptyDesc: 'Sta sezione ùn hà micca parametri mudificabili.',
       failedLoad: 'I parametri ùn ani micca pussutu caricà si',
       autosaveFailed: 'U salvamentu automaticu hè fiascatu',
       imported: 'Cunfigurazione impurtata',
       invalidJson: 'JSON di cunfigurazione invalidu',
-      keepAwakeTitle: 'Mantene l\'urdinatore svegliu',
-      keepAwakeDesc: 'Impedisce à sta macchina di dorme per chì e corse longhe o di notte cuntinuinu. U schermu pò sempre abbassà si.',
+      keepAwakeTitle: "Mantene l'urdinatore svegliu",
+      keepAwakeDesc:
+        'Impedisce à sta macchina di dorme per chì e corse longhe o di notte cuntinuinu. U schermu pò sempre abbassà si.'
     },
     credentials: {
       pasteKey: 'Incollà a chjave',
@@ -543,18 +563,18 @@ export const co = defineLocale({
       couldNotSave: 'Ùn hè micca pussutu salvà a credenziale.',
       remove: 'Caccià',
       getKey: 'Ottene una chjave',
-      saving: 'Salvà',
+      saving: 'Salvà'
     },
     envActions: {
       actionsFor: label => `Azzioni per ${label}`,
-      credentialActions: 'Azzioni nant\'à e credenziali',
+      credentialActions: "Azzioni nant'à e credenziali",
       manageInKeys: 'Gestisce in Chjavi API',
       docs: 'Documenti',
       hideValue: 'Piattà u valore',
       revealValue: 'Mustrà u valore',
       replace: 'Rimpiazzà',
       set: 'Definì',
-      clear: 'Svuotà',
+      clear: 'Svuotà'
     },
     gateway: {
       loading: 'Caricamentu di i parametri di u gateway...',
@@ -562,44 +582,50 @@ export const co = defineLocale({
       unavailableDesc: 'U ponte IPC di u Desktop ùn espone micca i parametri di u gateway.',
       title: 'Cunnessione à u gateway',
       envOverride: 'mudificazione via env',
-      intro: 'OpenAmer Desktop principia u so propiu gateway lucale per predefinizione. Aduprate un gateway remotu quandu vulete chì sta app cuntrolli un servore OpenAmer dighjà in corsa nant\'à un\'altra macchina o daretu à un proxy di fiducia. Sceglite un prufilu quì sottu per dà li u so propiu servore remotu.',
-      appliesTo: 'S\'applica à',
+      intro:
+        "OpenAmer Desktop principia u so propiu gateway lucale per predefinizione. Aduprate un gateway remotu quandu vulete chì sta app cuntrolli un servore OpenAmer dighjà in corsa nant'à un'altra macchina o daretu à un proxy di fiducia. Sceglite un prufilu quì sottu per dà li u so propiu servore remotu.",
+      appliesTo: "S'applica à",
       allProfiles: 'Tutti i prufili',
       defaultConnection: 'Cunnessione predefinita per ogni prufilu chì ùn hà micca a so propiu mudificazione.',
-      profileConnection: profile => `Cunnessione aduprata solu quandu “${profile}” hè u prufilu attivu. Sceglite Aduprà u gateway predefinitu per caccià a so mudificazione.`,
-      envOverrideTitle: 'E variabili d\'ambiente cuntrollanu sta sessione di u Desktop.',
-      envOverrideDesc: 'Cacciate OPENAMER_DESKTOP_REMOTE_URL è OPENAMER_DESKTOP_REMOTE_TOKEN per aduprà u parametru salvatu quì sottu.',
+      profileConnection: profile =>
+        `Cunnessione aduprata solu quandu “${profile}” hè u prufilu attivu. Sceglite Aduprà u gateway predefinitu per caccià a so mudificazione.`,
+      envOverrideTitle: "E variabili d'ambiente cuntrollanu sta sessione di u Desktop.",
+      envOverrideDesc:
+        'Cacciate OPENAMER_DESKTOP_REMOTE_URL è OPENAMER_DESKTOP_REMOTE_TOKEN per aduprà u parametru salvatu quì sottu.',
       modeTitle: 'Modu di cunnessione',
       localTitle: 'Gateway lucale',
-      localDesc: 'Principià un servore OpenAmer privatu nant\'à localhost. Questu hè u predefinitu è funziona senza rete.',
+      localDesc:
+        "Principià un servore OpenAmer privatu nant'à localhost. Questu hè u predefinitu è funziona senza rete.",
       inheritTitle: 'Aduprà u gateway predefinitu',
-      inheritDesc: "Caccià a mudificazione di stu prufilu è aduprà a cunnessione predefinita.",
+      inheritDesc: 'Caccià a mudificazione di stu prufilu è aduprà a cunnessione predefinita.',
       remoteTitle: 'Gateway remotu',
       remoteDesc: 'Cunnettà sta scorza di u Desktop à un servore OpenAmer remotu.',
-      remoteAuthHint: 'I gateway allugati adupranu OAuth o un nome d\'utilizatore è una parolla secreta; quelli autualugati ponu aduprà un token di sessione.',
+      remoteAuthHint:
+        "I gateway allugati adupranu OAuth o un nome d'utilizatore è una parolla secreta; quelli autualugati ponu aduprà un token di sessione.",
       cloudTitle: 'OpenAmer Cloud',
-      cloudDesc: 'Cunnettate vi una volta à OpenAmer Cloud è sceglite trà l\'agenti di u vostru contu — nisciunu URL da incollà.',
+      cloudDesc:
+        "Cunnettate vi una volta à OpenAmer Cloud è sceglite trà l'agenti di u vostru contu — nisciunu URL da incollà.",
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudSignIn: 'Cunnettate vi à OpenAmer Cloud',
       cloudSignedIn: 'Cunnettatu à OpenAmer Cloud',
-      cloudNeedsSignIn: 'Cunnettate vi à OpenAmer Cloud per scopre l\'agenti di u vostru contu.',
+      cloudNeedsSignIn: "Cunnettate vi à OpenAmer Cloud per scopre l'agenti di u vostru contu.",
       cloudSignedInDesc: 'Site cunnettatu. Sceglite un agente quì sottu; a sessione si rinfresca automaticamente.',
       cloudAgentsTitle: 'I vostri agenti',
-      cloudOrgPickerTitle: 'Sceglie un\'urganizazione',
+      cloudOrgPickerTitle: "Sceglie un'urganizazione",
       cloudOrgSelect: 'Sceglie',
       cloudOrgChange: 'Cambià urganizazione',
       cloudOrgRole: role => `Ruolu: ${role}`,
       cloudLoadingAgents: 'Caricamentu di i vostri agenti…',
       cloudNoAgents: {
-        before: 'Nisciunu agente trovu nant\'à stu contu. Creà ne unu in u ',
+        before: "Nisciunu agente trovu nant'à stu contu. Creà ne unu in u ",
         linkText: 'purtale OpenAmer',
-        after: ', po rinfrescà.',
+        after: ', po rinfrescà.'
       },
       cloudRefresh: 'Rinfrescà',
       cloudConnect: 'Cunnettà',
       cloudConnecting: 'Cunnessione…',
       cloudDiscoverFailed: 'Ùn hè micca pussutu caricà i vostri agenti OpenAmer Cloud',
-      cloudConnectFailed: 'Ùn hè micca pussutu cunnettà si à quell\'agente',
+      cloudConnectFailed: "Ùn hè micca pussutu cunnettà si à quell'agente",
       cloudSignInFailed: 'A cunnessione à OpenAmer Cloud hè fallita',
       cloudSignedOutTitle: 'Discunnettatu da OpenAmer Cloud',
       cloudSignedOutMessage: 'A sessione OpenAmer Cloud hè stata sguassata.',
@@ -609,20 +635,26 @@ export const co = defineLocale({
       cloudAgentProvisioning: 'Preparazione…',
       cloudStatusLabel: status => `Statu: ${status}`,
       remoteUrlTitle: 'URL remota',
-      remoteUrlDesc: 'URL di basa di u servore di u tabellone remotu. I prefissi di camminu sò supportati, per esempiu /openamer.',
-      probing: 'Verifica di cumu stu gateway s\'autenticheghja…',
-      probeError: 'Ùn hè ancu pussutu ghjunghje à stu gateway. Verificate l\'URL — u metudu d\'autentificazione appariscerà quandu risponderà.',
+      remoteUrlDesc:
+        'URL di basa di u servore di u tabellone remotu. I prefissi di camminu sò supportati, per esempiu /openamer.',
+      probing: "Verifica di cumu stu gateway s'autenticheghja…",
+      probeError:
+        "Ùn hè ancu pussutu ghjunghje à stu gateway. Verificate l'URL — u metudu d'autentificazione appariscerà quandu risponderà.",
       signedIn: 'Cunnettatu',
       signIn: 'Cunnettà si',
       signOut: 'Discunnettà si',
       signInWith: provider => `Cunnettà si cù ${provider}`,
       authTitle: 'Autentificazione',
-      authSignedInPassword: 'Stu gateway usa un nome d\'utilizatore è una parolla secreta. Site cunnettatu; a sessione si rinfresca automaticamente.',
+      authSignedInPassword:
+        "Stu gateway usa un nome d'utilizatore è una parolla secreta. Site cunnettatu; a sessione si rinfresca automaticamente.",
       authSignedInOauth: 'Stu gateway usa OAuth. Site cunnettatu; a sessione si rinfresca automaticamente.',
-      authNeedsPassword: 'Stu gateway usa un nome d\'utilizatore è una parolla secreta. Cunnettate vi per auturizà sta app di u Desktop.',
-      authNeedsOauth: provider => `Stu gateway usa OAuth. Cunnettate vi cù ${provider} per auturizà sta app di u Desktop.`,
+      authNeedsPassword:
+        "Stu gateway usa un nome d'utilizatore è una parolla secreta. Cunnettate vi per auturizà sta app di u Desktop.",
+      authNeedsOauth: provider =>
+        `Stu gateway usa OAuth. Cunnettate vi cù ${provider} per auturizà sta app di u Desktop.`,
       tokenTitle: 'Token di sessione',
-      tokenDesc: 'U token di sessione di u tabellone adupratu per l\'accessu REST è WebSocket. Lasciate vodu per guardà u token salvatu.',
+      tokenDesc:
+        "U token di sessione di u tabellone adupratu per l'accessu REST è WebSocket. Lasciate vodu per guardà u token salvatu.",
       existingToken: value => `Token esistente ${value}`,
       savedToken: 'salvatu',
       pasteSessionToken: 'Incollà u token di sessione',
@@ -653,8 +685,9 @@ export const co = defineLocale({
       applyFailed: 'Ùn hè micca pussutu applicà i parametri di u gateway',
       saveFailed: 'Ùn hè micca pussutu salvà i parametri di u gateway',
       sshTitle: 'Cunnettà si via SSH',
-      sshDesc: 'OpenAmer hè avviatu nant\'à u remotu via SSH è tunnellatu à sta app — nunda da avvià o espone da per voi. Richiede un accessu SSH per chjave chì funziona à l\'ospite.',
-      sshTrustHint: 'A prima chjave d\'ospite presentata hè fiducia è appuntata; i cambiamenti dopu falliscenu chjusi.',
+      sshDesc:
+        "OpenAmer hè avviatu nant'à u remotu via SSH è tunnellatu à sta app — nunda da avvià o espone da per voi. Richiede un accessu SSH per chjave chì funziona à l'ospite.",
+      sshTrustHint: "A prima chjave d'ospite presentata hè fiducia è appuntata; i cambiamenti dopu falliscenu chjusi.",
       sshHostTitle: 'Ospite',
       sshHostDesc: 'user@host, o un alias Host da ~/.ssh/config.',
       sshHostPick: 'Sceglie un ospite…',
@@ -666,29 +699,34 @@ export const co = defineLocale({
       sshUserPlaceholder: 'da ~/.ssh/config',
       sshPortTitle: 'Portu',
       sshPortDesc: 'Vodu = 22 o u portu di ~/.ssh/config.',
-      sshKeyTitle: 'Fugliale d\'identità',
+      sshKeyTitle: "Fugliale d'identità",
       sshKeyDesc: 'Camminu di a chjave privata. Vodu = ssh-agent o ~/.ssh/config.',
-      sshOpenAmerPathTitle: 'Camminu d\'OpenAmer (facultativu)',
+      sshOpenAmerPathTitle: "Camminu d'OpenAmer (facultativu)",
       sshOpenAmerPathDesc: 'Camminu sanu à u binariu openamer remotu. Vodu = rilevazione automatica.',
       sshOpenAmerPathPlaceholder: 'rilevazione automatica',
       sshTestConnection: 'Pruvà SSH',
       sshConnect: 'Cunnettà',
-      sshButtonsHint: 'Salvà s\'applica à u prossimu avviu. Cunnettà ricunnettà avà.',
+      sshButtonsHint: "Salvà s'applica à u prossimu avviu. Cunnettà ricunnettà avà.",
       sshReachable: (host, platform) => `Raggiungibile: ${host} (${platform}) — OpenAmer trovu`,
       sshIncompleteHost: 'Inserite un ospite SSH prima di cunnettà.',
-      sshErrUnreachable: 'Ùn hè micca pussutu ghjunghje à quell\'ospite via SSH. Verificate l\'ospite, u portu è a vostra rete.',
-      sshErrAuth: 'L\'autentificazione SSH hè fallita. Caricate a vostra chjave in ssh-agent (ssh-add) o definite un IdentityFile in ~/.ssh/config — OpenAmer esegue ssh senza interazzione.',
-      sshErrHostKey: 'A chjave d\'ospite HÈ CAMBIATA da l\'ultima cunnessione. Verificate chì hè previstu, po eseguite ssh-keygen -R <host> è ricunnettate.',
-      sshErrNotInstalled: 'OpenAmer ùn hè micca installatu nant\'à l\'ospite remotu. Installate lu quì (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) o definite u camminu d\'OpenAmer.',
-      sshErrPlatform: 'Piattaforma remota micca supportata. U modu SSH di OpenAmer Desktop supporta ospiti Linux, macOS è Windows.',
-      sshErrTimeout: 'A cunnessione SSH hè scaduta. L\'ospite pò esse irraggiungibile o addurmintatu.',
-      sshErrUpdateRequired: 'Aghjurnate OpenAmer nant\'à l\'ospite remotu prima di cunnettà si cù l\'SSH di u Desktop.',
-      sshErrUnknown: 'A cunnessione SSH hè fallita.',
+      sshErrUnreachable:
+        "Ùn hè micca pussutu ghjunghje à quell'ospite via SSH. Verificate l'ospite, u portu è a vostra rete.",
+      sshErrAuth:
+        "L'autentificazione SSH hè fallita. Caricate a vostra chjave in ssh-agent (ssh-add) o definite un IdentityFile in ~/.ssh/config — OpenAmer esegue ssh senza interazzione.",
+      sshErrHostKey:
+        "A chjave d'ospite HÈ CAMBIATA da l'ultima cunnessione. Verificate chì hè previstu, po eseguite ssh-keygen -R <host> è ricunnettate.",
+      sshErrNotInstalled:
+        "OpenAmer ùn hè micca installatu nant'à l'ospite remotu. Installate lu quì (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) o definite u camminu d'OpenAmer.",
+      sshErrPlatform:
+        'Piattaforma remota micca supportata. U modu SSH di OpenAmer Desktop supporta ospiti Linux, macOS è Windows.',
+      sshErrTimeout: "A cunnessione SSH hè scaduta. L'ospite pò esse irraggiungibile o addurmintatu.",
+      sshErrUpdateRequired: "Aghjurnate OpenAmer nant'à l'ospite remotu prima di cunnettà si cù l'SSH di u Desktop.",
+      sshErrUnknown: 'A cunnessione SSH hè fallita.'
     },
     keys: {
       loading: 'Caricamentu di e chjavi API è di e credenziali...',
       failedLoad: 'E chjavi API ùn ani micca pussutu caricà si',
-      empty: 'Nunda di cunfiguratu in sta categuria per avà.',
+      empty: 'Nunda di cunfiguratu in sta categuria per avà.'
     },
     mcp: {
       loading: 'Caricamentu di i servori MCP...',
@@ -702,7 +740,7 @@ export const co = defineLocale({
       gatewayUnavailableTitle: 'Gateway micca dispunibule',
       gatewayUnavailableMessage: 'Ricunnettate u gateway prima di ricaricà MCP.',
       reloadedTitle: 'Strumenti MCP ricaricati',
-      reloadedMessage: 'I schemi novi di i strumenti s\'applicanu à i turni novi.',
+      reloadedMessage: "I schemi novi di i strumenti s'applicanu à i turni novi.",
       reloadFailed: 'U ricaricamentu MCP hè fiascatu',
       savedTitle: 'Servore MCP salvatu',
       savedMessage: name => `${name} s'applica dopu à u ricaricamentu MCP.`,
@@ -740,7 +778,8 @@ export const co = defineLocale({
       catalogInstallFailed: name => `Fiascu à installà ${name}`,
       catalogEnvPrompt: name => `${name} richiede credenziali`,
       catalogEnvRequired: 'Riempite i valori richiesti prima di installà.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} attivati`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} attivati`,
       statusConnecting: 'Cunnessione…',
       statusNeedsAuth: 'Richiede autentificazione',
       statusError: 'Errore',
@@ -753,11 +792,12 @@ export const co = defineLocale({
       unsavedConnect: 'Micca salvatu — salvate mcp.json per cunnettà.',
       enableTool: tool => `Attivà ${tool}`,
       disableTool: tool => `Disattivà ${tool}`,
-      noOutput: 'Nisciunu output per avà.',
+      noOutput: 'Nisciunu output per avà.'
     },
     model: {
       loading: 'Caricamentu di a cunfigurazione di u mudellu...',
-      appliesDesc: 'S\'applica à e sessioni nove. Aduprate a scelta di mudellu in u redattore per cambià a conversazione attiva à caldu.',
+      appliesDesc:
+        "S'applica à e sessioni nove. Aduprate a scelta di mudellu in u redattore per cambià a conversazione attiva à caldu.",
       provider: 'Furnidore',
       model: 'Mudellu',
       applying: 'Applicazione...',
@@ -767,63 +807,66 @@ export const co = defineLocale({
       defaultsFailed: 'Fiascu à salvà i predefiniti di u mudellu',
       auxiliaryTitle: 'Mudelli ausiliari',
       resetAllToMain: 'Resettà tuttu à u principale',
-      auxiliaryDesc: 'I travaglii ausiliari esecutanu nant\'à u mudellu principale per predefinizione. Assignate un mudellu dedicatu à un travagliu per u rimpiazzà.',
+      auxiliaryDesc:
+        "I travaglii ausiliari esecutanu nant'à u mudellu principale per predefinizione. Assignate un mudellu dedicatu à un travagliu per u rimpiazzà.",
       setToMain: 'Mette à u principale',
       change: 'Cambià',
       autoUseMain: 'auto · aduprà u mudellu principale',
       providerDefault: '(predefinitu di u furnidore)',
       fallbackAdd: 'Aghjunghje un fallback',
-      fallbackEmpty: 'Nisciunu mudellu di fallback — u mudellu predefinitu hè adupratu finch\'ellu ùn fallisce.',
-      notInCatalog: "ùn hè micca in a lista di mudelli di stu furnidore — e chjamate ponu passà à un backup.",
+      fallbackEmpty: "Nisciunu mudellu di fallback — u mudellu predefinitu hè adupratu finch'ellu ùn fallisce.",
+      notInCatalog: 'ùn hè micca in a lista di mudelli di stu furnidore — e chjamate ponu passà à un backup.',
       tasks: {
         vision: {
           label: 'Visione',
-          hint: 'Analisi d\'imagine',
+          hint: "Analisi d'imagine"
         },
         web_extract: {
           label: 'Estrazione web',
-          hint: 'Riassuntu di a pagina',
+          hint: 'Riassuntu di a pagina'
         },
         compression: {
           label: 'Cumpressione',
-          hint: 'Compattazione di u cuntestu',
+          hint: 'Compattazione di u cuntestu'
         },
         skills_hub: {
           label: 'Hub di e cumpetenze',
-          hint: 'Ricerca di cumpetenze',
+          hint: 'Ricerca di cumpetenze'
         },
         approval: {
           label: 'Apprubazione',
-          hint: 'Apprubazione automatica intelligente',
+          hint: 'Apprubazione automatica intelligente'
         },
         mcp: {
           label: 'MCP',
-          hint: 'Ruttamentu di i strumenti MCP',
+          hint: 'Ruttamentu di i strumenti MCP'
         },
         title_generation: {
           label: 'Generazione di titulu',
-          hint: 'Tituli di e sessioni',
+          hint: 'Tituli di e sessioni'
         },
         curator: {
           label: 'Curatore',
-          hint: 'Rivisione di l\'usu di e cumpetenze',
-        },
-      },
+          hint: "Rivisione di l'usu di e cumpetenze"
+        }
+      }
     },
     providers: {
       connectAccount: 'Cunnettà un contu',
       haveApiKey: 'Avete una chjave API invece?',
-      intro: 'Cunnettate vi cù un abbonamentu — nisciuna chjave API da cupià. OpenAmer esegue a cunnessione di u navigatore per voi, quì in l\'app.',
+      intro:
+        "Cunnettate vi cù un abbonamentu — nisciuna chjave API da cupià. OpenAmer esegue a cunnessione di u navigatore per voi, quì in l'app.",
       connected: 'Cunnettatu',
       collapse: 'Riduce',
-      connectAnother: 'Cunnettà un\'altru furnidore',
+      connectAnother: "Cunnettà un'altru furnidore",
       otherProviders: 'Altri furnidori',
       disconnect: 'Discunnettà',
       disconnectInTerminal: 'Discunnettà (esegue u cumandu di rimuzione in u terminale)',
       removeConfirm: provider => `Caccià ${provider}?`,
       removeExternalGeneric: provider => `${provider} hè gestitu da u so propiu CLI — caccià lu quì.`,
       removeKeyManaged: provider => `${provider} hè cunfiguratu da una chjave API. Caccià lu da Chjavi API.`,
-      removeTerminalConfirm: (provider, command) => `Discunnettà ${provider}? Questu esegue "${command}" in u terminale per sguassà a credenziale.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Discunnettà ${provider}? Questu esegue "${command}" in u terminale per sguassà a credenziale.`,
       removeTerminalRunning: provider => `Esecuzione di a discunnessione di ${provider} in u terminale…`,
       removedTitle: 'Contu cacciatu',
       removedMessage: provider => `${provider} hè statu cacciatu.`,
@@ -833,15 +876,16 @@ export const co = defineLocale({
       noKeysMatch: 'Nisciunu furnidore currisponde à a vostra ricerca.',
       localEndpoint: {
         title: 'Puntu lucale / persunalizatu',
-        description: 'Puntate OpenAmer à qualsiasi puntu cumpatibile cù OpenAI (Zyphra, vLLM, llama.cpp, Ollama, ecc.).',
+        description: 'Puntate OpenAmer à qualsiasi puntu cumpatibile cù OpenAI (Zyphra, vLLM, llama.cpp, Ollama, ecc.).'
       },
-      loading: 'Caricamentu di i furnidori...',
+      loading: 'Caricamentu di i furnidori...'
     },
     sessions: {
       loading: 'Caricamentu di e sessioni archiviate…',
       archivedTitle: 'Sessioni archiviate',
-      archivedIntro: 'E conversazioni archiviate sò piattate da a barra laterale ma guardanu tutti i so messaghji. Ctrl/⌘-clic nant\'à una conversazione in a barra laterale per l\'archivià.',
-      emptyArchivedTitle: 'Nunda d\'archiviatu',
+      archivedIntro:
+        "E conversazioni archiviate sò piattate da a barra laterale ma guardanu tutti i so messaghji. Ctrl/⌘-clic nant'à una conversazione in a barra laterale per l'archivià.",
+      emptyArchivedTitle: "Nunda d'archiviatu",
       emptyArchivedDesc: 'Archiviate una conversazione per a piattà quì.',
       unarchive: 'Disarchivià',
       deletePermanently: 'Supprimà definitivamente',
@@ -849,13 +893,16 @@ export const co = defineLocale({
       restored: 'Ristabilitatu',
       deleteConfirm: title => `Supprimà definitivamente "${title}"? Questu ùn pò micca esse annullatu.`,
       autoArchiveTitle: 'Archiviazioni automatica di e conversazioni vechje',
-      autoArchiveDesc: "Archivià automaticamente e conversazioni chì ùn avete micca tuccatu da un pezzu. E conversazioni appuntate ùn sò mai archiviate, è nunda ùn hè supprimatu — e conversazioni archiviate si movenu solu quì.",
+      autoArchiveDesc:
+        'Archivià automaticamente e conversazioni chì ùn avete micca tuccatu da un pezzu. E conversazioni appuntate ùn sò mai archiviate, è nunda ùn hè supprimatu — e conversazioni archiviate si movenu solu quì.',
       autoArchiveDaysLabel: 'Archivià dopu',
-      autoArchiveDaysUnit: 'ghjorni d\'inattività',
-      autoArchiveFailed: 'Ùn hè micca pussutu aghjurnà l\'archiviazioni automatica',
+      autoArchiveDaysUnit: "ghjorni d'inattività",
+      autoArchiveFailed: "Ùn hè micca pussutu aghjurnà l'archiviazioni automatica",
       defaultDirTitle: 'Cartula di prugettu predefinita',
-      defaultDirDesc: 'E sessioni nove principianu in sta cartula s\'è voi ùn ne scegliete un\'altra. Lasciate la micca definita per aduprà a vostra cartula persunale.',
-      defaultDirUpdated: 'A cartula di prugettu predefinita hè aghjurnata — principiate una conversazione nova (Ctrl/⌘+N) per chì piglii effettu',
+      defaultDirDesc:
+        "E sessioni nove principianu in sta cartula s'è voi ùn ne scegliete un'altra. Lasciate la micca definita per aduprà a vostra cartula persunale.",
+      defaultDirUpdated:
+        'A cartula di prugettu predefinita hè aghjurnata — principiate una conversazione nova (Ctrl/⌘+N) per chì piglii effettu',
       defaultsTo: label => `Predefinitu à ${label}.`,
       change: 'Cambià',
       choose: 'Sceglie',
@@ -865,7 +912,7 @@ export const co = defineLocale({
       unarchiveFailed: 'A disarchiviazioni hè fallita',
       deleteFailed: 'A supprimazione hè fallita',
       updateDirFailed: 'Ùn hè micca pussutu aghjurnà a cartula predefinita',
-      clearDirFailed: 'Ùn hè micca pussutu sguassà a cartula predefinita',
+      clearDirFailed: 'Ùn hè micca pussutu sguassà a cartula predefinita'
     },
     toolsets: {
       loadingConfig: 'Caricamentu di a cunfigurazione',
@@ -883,21 +930,24 @@ export const co = defineLocale({
       selectedMessage: provider => `${provider} hè avà attivu.`,
       failedSelect: provider => `Fiascu à sceglie ${provider}`,
       failedLoad: 'A cunfigurazione di i strumenti ùn hà micca pussutu caricà si',
-      noProviderOptions: 'Stu settore di strumenti ùn hà micca opzioni di furnidore — attivatelu è funziona cù a vostra cunfigurazione attuale.',
+      noProviderOptions:
+        'Stu settore di strumenti ùn hà micca opzioni di furnidore — attivatelu è funziona cù a vostra cunfigurazione attuale.',
       noProviders: 'Nisciunu furnidore hè dispunibule per stu settore avà.',
       ready: 'Prontu',
       needsSignIn: 'Richiede cunnessione',
       needsSetup: 'Richiede cunfigurazione',
       openamerIncluded: 'Inclusu cù un abbonamentu OpenAmer — cunnettate vi à u Purtale OpenAmer per attivà lu.',
       openamerAuthNeededTitle: 'Cunnettate vi à u Purtale OpenAmer',
-      openamerAuthNeededMessage: provider => `${provider} hè salvatu ma ùn s'attiverà micca finch'è ùn vi cunnettete à u Purtale OpenAmer.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} hè salvatu ma ùn s'attiverà micca finch'è ùn vi cunnettete à u Purtale OpenAmer.`,
       openamerAuthSignIn: 'Cunnettà si',
       openamerAuthDoneTitle: 'Purtale OpenAmer cunnettatu',
-      openamerAuthDoneMessage: 'I vostri servori d\'abbonamentu sò avà attivi.',
+      openamerAuthDoneMessage: "I vostri servori d'abbonamentu sò avà attivi.",
       openamerAuthFailed: 'A cunnessione à u Purtale OpenAmer ùn hè micca compia',
       noApiKeyRequired: 'Nisciuna chjave API necessaria.',
-      postSetupHint: step => `Stu servore hà bisognu di un'installazione una volta (${step}). Funziona nant'à sta macchina — pò piglià qualchì minutu.`,
-      postSetupInstalledHint: 'Installatu. Eseguite torna a cunfigurazione solu s\'ellu hè rottu qualcosa.',
+      postSetupHint: step =>
+        `Stu servore hà bisognu di un'installazione una volta (${step}). Funziona nant'à sta macchina — pò piglià qualchì minutu.`,
+      postSetupInstalledHint: "Installatu. Eseguite torna a cunfigurazione solu s'ellu hè rottu qualcosa.",
       postSetupRun: 'Eseguì a cunfigurazione',
       postSetupRerun: 'Rieseguì a cunfigurazione',
       postSetupInstalled: 'Installatu',
@@ -912,9 +962,9 @@ export const co = defineLocale({
       webExtractActive: backend => `Estrazione: ${backend}`,
       webCapabilityUnset: 'micca definitu',
       webUseForSearch: 'Aduprà per a ricerca',
-      webUseForExtract: 'Aduprà per l\'estrazione',
+      webUseForExtract: "Aduprà per l'estrazione",
       webUsedForSearch: 'Servore di ricerca',
-      webUsedForExtract: 'Servore d\'estrazione',
+      webUsedForExtract: "Servore d'estrazione",
       webCapabilitySelectedMessage: (provider, capability) => `${provider} gestisce avà a ${capability} web.`,
       failedSelectCapability: provider => `Fiascu à definì ${provider}`,
       loadingModels: 'Caricamentu di u catalogu di mudelli...',
@@ -927,25 +977,26 @@ export const co = defineLocale({
       modelSelectedMessage: model => `${model} s'applica à e sessioni nove.`,
       failedSelectModel: model => `Fiascu à sceglie ${model}`,
       terminalBackend: {
-        sectionTitle: 'Servore d\'esecuzione',
-        loading: 'Verifica di i servori d\'esecuzione…',
+        sectionTitle: "Servore d'esecuzione",
+        loading: "Verifica di i servori d'esecuzione…",
         failedLoad: 'Ùn hè micca pussutu caricà i servori di u terminale',
         ready: 'Prontu',
         needsSetup: 'Richiede cunfigurazione',
         unavailable: 'Micca dispunibule',
         inUse: 'In usu',
         selectedTitle: 'Servore sceltu',
-        selectedMessage: backend => `I cumandi di u terminale esecutanu avà via ${backend}. S'applica à e sessioni nove.`,
+        selectedMessage: backend =>
+          `I cumandi di u terminale esecutanu avà via ${backend}. S'applica à e sessioni nove.`,
         failedSelect: backend => `Fiascu à sceglie ${backend}`,
-        needsSetupHint: 'Pudete sceglie stu servore avà — i cumandi fallisceranu finch\'è a cunfigurazione ùn hè compia.',
-      },
-    },
+        needsSetupHint: "Pudete sceglie stu servore avà — i cumandi fallisceranu finch'è a cunfigurazione ùn hè compia."
+      }
+    }
   },
   skills: {
     tabSkills: 'Cumpetenze',
     tabToolsets: 'Strumenti',
     tabMcp: 'MCP',
-    tabHub: 'Sfuglià l\'Hub',
+    tabHub: "Sfuglià l'Hub",
     all: 'Tutti',
     searchSkills: 'Circà cumpetenze...',
     searchToolsets: 'Circà strumenti...',
@@ -959,7 +1010,8 @@ export const co = defineLocale({
     noDescription: 'Nisciuna descrizione.',
     configured: 'Cunfiguratu',
     needsKeys: 'Richiede chjavi',
-    visionModelHint: 'A visione usa a vostra cunfigurazione di mudellu ausiliariu — u mudellu capace d\'imagine hè sceltu quì, micca per furnidore quì.',
+    visionModelHint:
+      "A visione usa a vostra cunfigurazione di mudellu ausiliariu — u mudellu capace d'imagine hè sceltu quì, micca per furnidore quì.",
     visionModelLink: 'Sceglie u mudellu di visione in Parametri → Mudelli',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} settori di strumenti attivati`,
     configureToolset: label => `Cunfigurà ${label}`,
@@ -985,26 +1037,27 @@ export const co = defineLocale({
     provenance: {
       agent: 'Amparatu',
       bundled: 'Integratu',
-      hub: 'Hub',
+      hub: 'Hub'
     },
     emptyNoneFound: noun => `Nisciunu ${noun} trovu`,
     emptyNothingMatches: query => `Nunda ùn currisponde à “${query}”.`,
     emptyNoneAvailable: noun => `Nisciunu ${noun} dispunibule per avà.`,
-    changesApplyNewSessions: 'I cambiamenti s\'applicanu à e sessioni nove.',
+    changesApplyNewSessions: "I cambiamenti s'applicanu à e sessioni nove.",
     skillUpdated: 'Cumpetenza aghjurnata',
     edit: 'Mudificà',
     archive: 'Archivià',
     skillArchivedTitle: 'Cumpetenza archiviata',
     skillArchivedMessage: 'Restaurabile via openamer curator restore.',
     hub: {
-      searchPlaceholder: 'Circà in l\'hub di e cumpetenze',
+      searchPlaceholder: "Circà in l'hub di e cumpetenze",
       search: 'Circà',
       searching: 'Ricerca...',
-      connectingHubs: 'Cunnessione à l\'hub di e cumpetenze...',
+      connectingHubs: "Cunnessione à l'hub di e cumpetenze...",
       connectedHubs: 'Hub cunnettati:',
       featured: 'Cumpetenze in evidenza',
-      landingHint: 'Circate in l\'hub per sfuglià e cumpetenze installabili da l\'indice ufficiale, GitHub è e fonti di a cumunità.',
-      noResults: 'Nisciuna cumpetenza currispondente trovata in l\'hub.',
+      landingHint:
+        "Circate in l'hub per sfuglià e cumpetenze installabili da l'indice ufficiale, GitHub è e fonti di a cumunità.",
+      noResults: "Nisciuna cumpetenza currispondente trovata in l'hub.",
       resultCount: (count, ms) => `${count} result${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Scadutu: ${sources}`,
       installed: 'Installatu',
@@ -1012,7 +1065,7 @@ export const co = defineLocale({
       installing: 'Installazione...',
       uninstall: 'Disinstallà',
       uninstalling: 'Disinstallazione...',
-      updateAll: 'Aghjurnà l\'installati',
+      updateAll: "Aghjurnà l'installati",
       updating: 'Aghjurnamentu...',
       preview: 'Anteprima',
       scan: 'Scannà',
@@ -1023,26 +1076,26 @@ export const co = defineLocale({
       trust: {
         builtin: 'integratu',
         trusted: 'di fiducia',
-        community: 'cumunità',
+        community: 'cumunità'
       },
       verdictSafe: 'Sicuru',
       verdictCaution: 'Attenzione',
       verdictDangerous: 'Periculosu',
       policyAllow: 'Installazione permessa',
-      policyAsk: 'Rivisione prima d\'installà',
+      policyAsk: "Rivisione prima d'installà",
       policyBlock: 'Installazione bluccata da a pulitica',
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       noFindings: 'Nisciuna scuperta di sicurezza.',
       installStarted: name => `Installazione di ${name}...`,
       uninstallStarted: name => `Disinstallazione di ${name}...`,
       updateStarted: 'Aghjurnamentu di e cumpetenze installate...',
-      actionFailed: 'L\'azzione nant\'à a cumpetenza hè fallita',
-      actionLog: 'Ghjurnale d\'azzioni',
-      loadFailed: 'L\'hub di e cumpetenze ùn hà micca pussutu caricà si',
-      previewFailed: 'L\'anteprima di a cumpetenza hè fallita',
+      actionFailed: "L'azzione nant'à a cumpetenza hè fallita",
+      actionLog: "Ghjurnale d'azzioni",
+      loadFailed: "L'hub di e cumpetenze ùn hà micca pussutu caricà si",
+      previewFailed: "L'anteprima di a cumpetenza hè fallita",
       scanFailed: 'A scansione di sicurezza hè fallita',
-      searchFailed: 'A ricerca in l\'hub hè fallita',
-    },
+      searchFailed: "A ricerca in l'hub hè fallita"
+    }
   },
   starmap: {
     title: 'Grafu di a memoria',
@@ -1056,10 +1109,11 @@ export const co = defineLocale({
     viewGraph: 'Grafu',
     loadFailed: 'Ùn hè micca pussutu caricà u grafu di a memoria',
     loading: 'Caricamentu…',
-    emptyTitle: 'Nunda d\'amparatu per avà',
+    emptyTitle: "Nunda d'amparatu per avà",
     emptyDesc: 'Quandu OpenAmer custruisce cumpetenze è memorie per u vostru travagliu, appariscenu quì.',
     share: 'Sparte a mappa',
-    shareHint: 'Cupiate u codice per sparte sta mappa, o incollatene unu per caricà la. Contene solu a disposizione, micca a vostra memoria o u testu di e cumpetenze.',
+    shareHint:
+      'Cupiate u codice per sparte sta mappa, o incollatene unu per caricà la. Contene solu a disposizione, micca a vostra memoria o u testu di e cumpetenze.',
     shareTitle: 'Impurtà / esportà a mappa',
     sharePlaceholder: 'Incollate un codice di mappa…',
     copy: 'Cupià u codice di a mappa',
@@ -1069,14 +1123,14 @@ export const co = defineLocale({
     importEmpty: 'Incollate un codice di mappa per a caricà.',
     importSuccess: nodes => `Caricata una mappa cù ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'mappa impurtata',
-    resetToMine: 'Vultà à a mo mappa',
+    resetToMine: 'Vultà à a mo mappa'
   },
   agents: {
-    close: 'Chjudà l\'agenti',
+    close: "Chjudà l'agenti",
     title: 'Arbure di i ghjetti',
     subtitle: 'Attività in diretta di i subagenti per u turnu attuale.',
     emptyTitle: 'Nisciunu subagente in diretta',
-    emptyDesc: 'Quandu un turnu delega u travagliu, l\'agenti figlioli trasmettenu u so prugressu quì.',
+    emptyDesc: "Quandu un turnu delega u travagliu, l'agenti figlioli trasmettenu u so prugressu quì.",
     running: 'In corsa',
     failed: 'Fiascatu',
     done: 'Fattu',
@@ -1099,13 +1153,13 @@ export const co = defineLocale({
     ageDays: days => `${days}g fà`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'Chjudà u centru di cumandi',
     paletteTitle: 'Paletta di cumandi',
     back: 'Indietro',
-    searchPlaceholder: 'Circà in e sessioni, e viste è l\'azzioni',
+    searchPlaceholder: "Circà in e sessioni, e viste è l'azzioni",
     goTo: 'Andà à',
     goToSession: 'Andà à a sessione',
     branches: 'Branche',
@@ -1121,15 +1175,15 @@ export const co = defineLocale({
       placeholder: 'Circà animali…',
       loading: 'Caricamentu di a galleria petdex…',
       error: 'Ùn hè micca pussutu ghjunghje à a galleria petdex.',
-      staleBackend: 'Riavviate OpenAmer per aduprà l\'animali — u servore hè più vechju chè sta funzione.',
+      staleBackend: "Riavviate OpenAmer per aduprà l'animali — u servore hè più vechju chè sta funzione.",
       empty: 'Nisciunu animale currispondente.',
       turnOff: 'Disattivà',
       turnOn: 'Attivà',
       installed: 'Installatu',
       generatedTag: 'Generatu',
-      adoptFailed: 'Ùn hè micca pussutu aduttà quell\'animale.',
-      toggleFailed: 'Ùn hè micca pussutu cambià l\'animale.',
-      noneAvailable: 'Nisciunu animale dispunibule — sceglite ne unu quì sottu per installà lu.',
+      adoptFailed: "Ùn hè micca pussutu aduttà quell'animale.",
+      toggleFailed: "Ùn hè micca pussutu cambià l'animale.",
+      noneAvailable: 'Nisciunu animale dispunibule — sceglite ne unu quì sottu per installà lu.'
     },
     generatePet: {
       title: 'Generà un animale',
@@ -1153,12 +1207,13 @@ export const co = defineLocale({
       slowProviderHint: 'Questu pò piglià parechji minuti',
       remix: 'Rifà',
       remixConfirmTitle: 'Rifà stu aspettu?',
-      remixConfirmBody: 'Questu genera un inseme novu di abbozzi aduprendu questu cum\'è puntu di partenza. Pò piglià parechji minuti.',
+      remixConfirmBody:
+        "Questu genera un inseme novu di abbozzi aduprendu questu cum'è puntu di partenza. Pò piglià parechji minuti.",
       genericError: 'A generazione hè fallita — riprovate o sceglite un suggerimentu.',
-      referenceImageTooLarge: 'L\'imagine di riferenza hè troppu grande. Adupratene una sottu 16 MB.',
-      referenceImageInvalid: 'Ùn hè micca pussutu leghje quell\'imagine di riferenza. Pruvate un PNG, JPG, WebP o GIF.',
+      referenceImageTooLarge: "L'imagine di riferenza hè troppu grande. Adupratene una sottu 16 MB.",
+      referenceImageInvalid: "Ùn hè micca pussutu leghje quell'imagine di riferenza. Pruvate un PNG, JPG, WebP o GIF.",
       adopt: 'Aduttà',
-      startOver: 'Ricumincià',
+      startOver: 'Ricumincià'
     },
     installTheme: {
       title: 'Installà un tema…',
@@ -1170,7 +1225,7 @@ export const co = defineLocale({
       install: 'Installà',
       installing: 'Installazione...',
       installed: 'Installatu',
-      installs: count => `${count} installazioni`,
+      installs: count => `${count} installazioni`
     },
     settingsFields: 'Campi di i parametri',
     mcpServers: 'Servori MCP',
@@ -1179,49 +1234,49 @@ export const co = defineLocale({
       maintenance: 'Mantenimentu',
       sessions: 'Sessioni',
       system: 'Sistema',
-      usage: 'Usu',
+      usage: 'Usu'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostica, salvataghji, curatore è dati di memoria',
       sessions: 'Circà è gestisce e sessioni',
       system: 'Statu, ghjurnali è azzioni di u sistema',
-      usage: 'Token, costu è attività di e cumpetenze in u tempu',
+      usage: 'Token, costu è attività di e cumpetenze in u tempu'
     },
     nav: {
       newChat: {
         title: 'Sessione nova',
-        detail: 'Principià una sessione nova',
+        detail: 'Principià una sessione nova'
       },
       settings: {
         title: 'Parametri',
-        detail: 'Cunfigurà OpenAmer desktop',
+        detail: 'Cunfigurà OpenAmer desktop'
       },
       skills: {
         title: 'Capacità',
-        detail: 'Cumpetenze, strumenti è servori MCP',
+        detail: 'Cumpetenze, strumenti è servori MCP'
       },
       messaging: {
         title: 'Messaghji',
-        detail: 'Cunfigurà Telegram, Slack, Discord è altru',
+        detail: 'Cunfigurà Telegram, Slack, Discord è altru'
       },
       artifacts: {
         title: 'Artefatti',
-        detail: 'Sfuglià l\'output generati',
-      },
+        detail: "Sfuglià l'output generati"
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Pannellu di e sessioni',
-        detail: 'Circà, appuntà è gestisce e sessioni',
+        detail: 'Circà, appuntà è gestisce e sessioni'
       },
       system: {
         title: 'Pannellu di u sistema',
-        detail: 'Statu di u gateway, ghjurnali, riavviu/aghjurnamentu',
+        detail: 'Statu di u gateway, ghjurnali, riavviu/aghjurnamentu'
       },
       usage: {
-        title: 'Pannellu d\'usu',
-        detail: 'Token, costu è attività di e cumpetenze',
-      },
+        title: "Pannellu d'usu",
+        detail: 'Token, costu è attività di e cumpetenze'
+      }
     },
     providerNavigate: 'Navigà',
     providerSessions: 'Sessioni',
@@ -1252,7 +1307,7 @@ export const co = defineLocale({
     statTokens: 'Token in/fora',
     statCost: 'Costu stim.',
     actualCost: cost => `reale ${cost}`,
-    loadingUsage: 'Caricamentu di l\'usu...',
+    loadingUsage: "Caricamentu di l'usu...",
     noUsage: period => `Nisciunu usu in l'ultimi ${period} ghjorni.`,
     retry: 'Ripruvà',
     dailyTokens: 'Token ghjurnaleri',
@@ -1270,20 +1325,21 @@ export const co = defineLocale({
     maintenance: {
       runOps: 'Diagnostica',
       doctor: 'Eseguì doctor',
-      doctorDesc: 'Verificà a salute di l\'installazione, a cunfigurazione è i furnidori',
+      doctorDesc: "Verificà a salute di l'installazione, a cunfigurazione è i furnidori",
       securityAudit: 'Audit di sicurezza',
       securityAuditDesc: 'Scannà a cunfigurazione è e cumpetenze per i parametri rischiosi',
       backup: 'Creà un salvataghju',
       backupDesc: 'Zippà cunfigurazione, memorie, cumpetenze è sessioni',
       debugShare: 'Sparte debug',
-      debugShareDesc: 'Caricà un raportu rivedutu + ghjurnali, ottene ligami spartibili (si cancella da per ellu in 6h)',
+      debugShareDesc:
+        'Caricà un raportu rivedutu + ghjurnali, ottene ligami spartibili (si cancella da per ellu in 6h)',
       debugShareRunning: 'Caricamentu di u raportu di debug...',
       debugShareLinks: 'Ligami di spartera',
       debugShareFailed: 'A spartera di debug hè fallita',
       copyLink: 'Cupià u ligame',
       linkCopied: 'Ligame cupiatu',
       curator: 'Curatore di e cumpetenze',
-      curatorDesc: 'Rivisione di fondo chì archivia e cumpetenze vechje create da l\'agente',
+      curatorDesc: "Rivisione di fondo chì archivia e cumpetenze vechje create da l'agente",
       curatorPaused: 'In pausa',
       curatorActive: 'Attivu',
       curatorDisabled: 'Disattivatu',
@@ -1296,8 +1352,8 @@ export const co = defineLocale({
       memoryDataDesc: 'Fugliali di memoria integrati iniettati in ogni sessione',
       memoryProvider: name => `Furnidore attivu: ${name}`,
       builtinMemory: 'integratu',
-      memoryFile: 'Memoria di l\'agente (MEMORY.md)',
-      userFile: 'Prufilu d\'utilizatore (USER.md)',
+      memoryFile: "Memoria di l'agente (MEMORY.md)",
+      userFile: "Prufilu d'utilizatore (USER.md)",
       bytes: size => size,
       empty: 'vodu',
       resetMemory: 'Resettà a memoria',
@@ -1309,8 +1365,8 @@ export const co = defineLocale({
       actionStarted: name => `${name} principiatu — seguitu di u ghjurnale...`,
       actionFailed: name => `${name} ùn hà micca pussutu principià`,
       running: 'In corsa...',
-      viewLog: 'Ghjurnale d\'azzioni',
-    },
+      viewLog: "Ghjurnale d'azzioni"
+    }
   },
   messaging: {
     search: 'Circà in i messaghji...',
@@ -1325,7 +1381,7 @@ export const co = defineLocale({
       not_configured: 'Richiede cunfigurazione',
       pending_restart: 'Riavvio necessariu',
       retrying: 'Riprova',
-      startup_failed: 'L\'avviu hè fiascatu',
+      startup_failed: "L'avviu hè fiascatu"
     },
     unknown: 'Scunnisciutu',
     hintPendingRestart: 'Riavviate u gateway da a barra di statu per applicà stu cambiamentu.',
@@ -1338,7 +1394,8 @@ export const co = defineLocale({
     required: 'Richiestu',
     recommended: 'Ricumandatu',
     advanced: count => `Avanzatu (${count})`,
-    noTokenNeeded: 'Sta piattaforma ùn hà micca bisognu di un token quì. Aduprate a guida di cunfigurazione sopra, po attivatela sottu.',
+    noTokenNeeded:
+      'Sta piattaforma ùn hà micca bisognu di un token quì. Aduprate a guida di cunfigurazione sopra, po attivatela sottu.',
     enabled: 'Attivatu',
     disabled: 'Disattivatu',
     unsavedChanges: 'Cambiamenti micca salvati',
@@ -1364,137 +1421,137 @@ export const co = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Token di u bot',
         help: 'Create un bot cù @BotFather, po incollate u token chì vi dà.',
-        placeholder: 'Incollate u token di u bot Telegram',
+        placeholder: 'Incollate u token di u bot Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
-        label: 'ID d\'utilizatori Telegram permessi',
-        help: 'Ricumandatu. ID numerichi separati da virgule da @userinfobot. Senza questu, ognunu pò mandà messaghji à u vostru bot.',
+        label: "ID d'utilizatori Telegram permessi",
+        help: 'Ricumandatu. ID numerichi separati da virgule da @userinfobot. Senza questu, ognunu pò mandà messaghji à u vostru bot.'
       },
       TELEGRAM_PROXY: {
         label: 'URL di u proxy',
-        help: 'Necessariu solu nant\'à e rete induve Telegram hè bluccatu.',
+        help: "Necessariu solu nant'à e rete induve Telegram hè bluccatu."
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token di u bot',
-        help: 'Create un\'applicazione in u Purtale di i Sviluppatori Discord, aghjunghjite un bot, po incollate u so token.',
+        help: "Create un'applicazione in u Purtale di i Sviluppatori Discord, aghjunghjite un bot, po incollate u so token."
       },
       DISCORD_ALLOWED_USERS: {
-        label: 'ID d\'utilizatori Discord permessi',
-        help: 'Ricumandatu. ID d\'utilizatori Discord separati da virgule.',
+        label: "ID d'utilizatori Discord permessi",
+        help: "Ricumandatu. ID d'utilizatori Discord separati da virgule."
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Stile di risposta',
-        help: 'first, all, o off.',
+        help: 'first, all, o off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
-        label: 'Permette tutti l\'utilizatori Discord',
-        help: 'Sviluppu solu. Quandu hè veru, ognunu pò mandà à u bot senza lista.',
+        label: "Permette tutti l'utilizatori Discord",
+        help: 'Sviluppu solu. Quandu hè veru, ognunu pò mandà à u bot senza lista.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID di u canale di casa',
-        help: 'Canale induve u bot manda messaghji proattivi (output di cron, reminiscenze).',
+        help: 'Canale induve u bot manda messaghji proattivi (output di cron, reminiscenze).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Nome di u canale di casa',
-        help: 'Nome visuale di u canale di casa in i ghjurnali è u statu.',
+        help: 'Nome visuale di u canale di casa in i ghjurnali è u statu.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
-        label: 'Permette tutti l\'utilizatori iMessage',
-        help: 'Quandu hè veru, saltate a lista BlueBubbles.',
+        label: "Permette tutti l'utilizatori iMessage",
+        help: 'Quandu hè veru, saltate a lista BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Permette tutti l\'utilizatori Mattermost',
+        label: "Permette tutti l'utilizatori Mattermost"
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Canale di casa',
+        label: 'Canale di casa'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Permette tutti l\'utilizatori QQ',
+        label: "Permette tutti l'utilizatori QQ"
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Canale di casa QQ',
-        help: 'Canale o gruppu predefinitu per a consegna di cron.',
+        help: 'Canale o gruppu predefinitu per a consegna di cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Nome di u canale di casa QQ',
+        label: 'Nome di u canale di casa QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token di u bot Slack',
         help: 'Aduprate u token di u bot da OAuth & Permissions dopu à avè installatu a vostra app Slack.',
-        placeholder: 'Incollate u token di u bot Slack',
+        placeholder: 'Incollate u token di u bot Slack'
       },
       SLACK_APP_TOKEN: {
-        label: 'Token di l\'app Slack',
-        help: 'Aduprate u token à livellu d\'app necessariu per u modu Socket.',
-        placeholder: 'Incollate u token di l\'app Slack',
+        label: "Token di l'app Slack",
+        help: "Aduprate u token à livellu d'app necessariu per u modu Socket.",
+        placeholder: "Incollate u token di l'app Slack"
       },
       SLACK_ALLOWED_USERS: {
-        label: 'ID d\'utilizatori Slack permessi',
-        help: 'Ricumandatu. ID d\'utilizatori Slack separati da virgule.',
+        label: "ID d'utilizatori Slack permessi",
+        help: "Ricumandatu. ID d'utilizatori Slack separati da virgule."
       },
       MATTERMOST_URL: {
         label: 'URL di u servore',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token di u bot',
+        label: 'Token di u bot'
       },
       MATTERMOST_ALLOWED_USERS: {
-        label: 'ID d\'utilizatori permessi',
-        help: 'Ricumandatu. ID d\'utilizatori Mattermost separati da virgule.',
+        label: "ID d'utilizatori permessi",
+        help: "Ricumandatu. ID d'utilizatori Mattermost separati da virgule."
       },
       MATRIX_HOMESERVER: {
         label: 'URL di u servore di casa',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token d\'accessu',
+        label: "Token d'accessu"
       },
       MATRIX_USER_ID: {
-        label: 'ID d\'utilizatore di u bot',
-        placeholder: '@openamer:example.org',
+        label: "ID d'utilizatore di u bot",
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
-        label: 'ID d\'utilizatori Matrix permessi',
-        help: 'Ricumandatu. ID d\'utilizatori separati da virgule in u formatu @user:server.',
+        label: "ID d'utilizatori Matrix permessi",
+        help: "Ricumandatu. ID d'utilizatori separati da virgule in u formatu @user:server."
       },
       SIGNAL_HTTP_URL: {
         label: 'URL di u ponte Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL di un ponte REST signal-cli in corsa.',
+        help: 'URL di un ponte REST signal-cli in corsa.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Numeru di telefunu',
-        help: 'U numeru registratu cù u vostru ponte signal-cli.',
+        help: 'U numeru registratu cù u vostru ponte signal-cli.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Utilizatori Signal permessi',
-        help: 'Ricumandatu. Identificatori Signal separati da virgule.',
+        help: 'Ricumandatu. Identificatori Signal separati da virgule.'
       },
       WHATSAPP_ENABLED: {
         label: 'Attivà u ponte WhatsApp',
-        help: 'Definitatu automaticamente da l\'interruttore sottu. Lasciate lu stà s\'è voi ùn sapete micca chì ne avete bisognu.',
+        help: "Definitatu automaticamente da l'interruttore sottu. Lasciate lu stà s'è voi ùn sapete micca chì ne avete bisognu."
       },
       WHATSAPP_MODE: {
-        label: 'Modu di u ponte',
+        label: 'Modu di u ponte'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Utilizatori WhatsApp permessi',
-        help: 'Ricumandatu. Numeri di telefunu o ID WhatsApp separati da virgule.',
-      },
+        help: 'Ricumandatu. Numeri di telefunu o ID WhatsApp separati da virgule.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Circà webhooks...',
     loading: 'Caricamentu di i webhooks...',
     loadFailed: 'I webhooks ùn ani micca pussutu caricà si',
     subscriptions: (count: number) => `Abbunamenti (${count})`,
-    hint: 'I cambiamenti d\'abbunamentu si ricaricanu in diretta quandu u ricevitore hè in corsa. L\'abbunamenti disattivati rifiutanu l\'eventi entranti.',
+    hint: "I cambiamenti d'abbunamentu si ricaricanu in diretta quandu u ricevitore hè in corsa. L'abbunamenti disattivati rifiutanu l'eventi entranti.",
     empty: 'Nisciunu abbunamentu di webhook per avà.',
     disabledTitle: 'Ricevitore di webhook disattivatu',
-    disabledBody: 'I webhooks sò una piattaforma di gateway à parte. Attivateli quì per accettà eventi HTTP entranti; i canali di conversazione sò necessarii solu quandu un abbunamentu consegna à Telegram, Discord, Slack o un\'altru canale.',
+    disabledBody:
+      "I webhooks sò una piattaforma di gateway à parte. Attivateli quì per accettà eventi HTTP entranti; i canali di conversazione sò necessarii solu quandu un abbunamentu consegna à Telegram, Discord, Slack o un'altru canale.",
     enable: 'Attivà i webhooks',
     enabling: 'Attivazione...',
     enabled: (name: string) => `Attivatu: "${name}"`,
@@ -1511,7 +1568,8 @@ export const co = defineLocale({
     toggleFailed: (name: string) => `Fiascu à aghjurnà "${name}"`,
     newSubscription: 'Abbunamentu novu',
     restarting: 'Gateway in riavviu...',
-    restartNeeded: 'I webhooks sò attivati, ma u gateway hà sempre bisognu di un riavviu prima chì u ricevitore possi entre in linea.',
+    restartNeeded:
+      'I webhooks sò attivati, ma u gateway hà sempre bisognu di un riavviu prima chì u ricevitore possi entre in linea.',
     restartGateway: 'Riavvià u gateway',
     restartingGateway: 'Riavvio...',
     restartFailed: (detail: string) => `U riavviu di u gateway hè fiascatu${detail}`,
@@ -1534,7 +1592,7 @@ export const co = defineLocale({
     fieldDeliver: 'Consegnà à',
     fieldDeliverOnly: 'Consegnà solu u payload',
     fieldPrompt: 'Prompt',
-    fieldPromptPlaceholder: 'Istruzzioni per l\'agente quandu stu webhook si accende (facultativu)',
+    fieldPromptPlaceholder: "Istruzzioni per l'agente quandu stu webhook si accende (facultativu)",
     nameRequired: 'Nome necessariu',
     create: 'Creà',
     creating: 'Creazione...',
@@ -1547,8 +1605,8 @@ export const co = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'Email',
-      github_comment: 'Cummentu GitHub',
-    },
+      github_comment: 'Cummentu GitHub'
+    }
   },
   profiles: {
     close: 'Chjudà i prufili',
@@ -1583,7 +1641,7 @@ export const co = defineLocale({
     modelLabel: 'Mudellu',
     skillsLabel: 'Cumpetenze',
     notSet: 'Micca definitu',
-    soulDesc: 'U prompt di u sistema è l\'istruzzioni di persona integrati in stu prufilu.',
+    soulDesc: "U prompt di u sistema è l'istruzzioni di persona integrati in stu prufilu.",
     soulOptional: 'facultativu',
     soulPlaceholder: mode => `U prompt di u sistema / persona per stu prufilu.
 Lasciate vodu per guardà u predefinitu ${mode}.`,
@@ -1611,7 +1669,7 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     creating: 'Creazione...',
     createAction: 'Creà u prufilu',
     renameTitle: 'Rinuminà u prufilu',
-    renameDescPrefix: 'A rinuminazione aghjurna a cartula di u prufilu è qualsiasi script d\'involucro in ',
+    renameDescPrefix: "A rinuminazione aghjurna a cartula di u prufilu è qualsiasi script d'involucro in ",
     renameDescSuffix: '.',
     newNameLabel: 'Nome novu',
     renaming: 'Rinuminazione...',
@@ -1626,7 +1684,7 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     failedLoadSoul: 'Fiascu à caricà SOUL.md',
     failedSaveSoul: 'Fiascu à salvà SOUL.md',
     failedCreate: 'Fiascu à creà u prufilu',
-    failedRename: 'Fiascu à rinuminà u prufilu',
+    failedRename: 'Fiascu à rinuminà u prufilu'
   },
   cron: {
     close: 'Chjudà cron',
@@ -1641,14 +1699,14 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
       paused: 'in pausa',
       disabled: 'disattivatu',
       error: 'errore',
-      completed: 'compiu',
+      completed: 'compiu'
     },
     deliveryLabels: {
       local: 'Stu Desktop',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Email',
+      email: 'Email'
     },
     scheduleLabels: {
       daily: 'Ogni ghjornu',
@@ -1657,16 +1715,16 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
       monthly: 'Ogni mese',
       hourly: 'Ogni ora',
       'every-15-minutes': 'Ogni 15 minuti',
-      custom: 'Persunalizatu',
+      custom: 'Persunalizatu'
     },
     scheduleHints: {
       daily: 'Ogni ghjornu à 9:00',
       weekdays: 'Da luni à vennari à 9:00',
       weekly: 'Ogni luni à 9:00',
       monthly: 'U primu ghjornu di ogni mese à 9:00',
-      hourly: 'À l\'iniziu di ogni ora',
+      hourly: "À l'iniziu di ogni ora",
       'every-15-minutes': 'Ogni 15 minuti',
-      custom: 'Sintassi cron o linguaghju naturale',
+      custom: 'Sintassi cron o linguaghju naturale'
     },
     days: {
       '0': 'Dumenica',
@@ -1676,17 +1734,18 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
       '4': 'Ghjovi',
       '5': 'Vennari',
       '6': 'Sàbatu',
-      '7': 'Dumenica',
+      '7': 'Dumenica'
     },
     dayFallback: value => `ghjornu ${value}`,
     everyDayAt: time => `Ogni ghjornu à ${time}`,
     weekdaysAt: time => `I ghjorni di a settimana à ${time}`,
     everyDayOfWeekAt: (day, time) => `Ogni ${day} à ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Ogni mese u ghjornu ${dayOfMonth} à ${time}`,
-    topOfHour: 'À l\'iniziu di ogni ora',
+    topOfHour: "À l'iniziu di ogni ora",
     everyHourAt: minute => `Ogni ora à :${minute}`,
     newCron: 'Cron novu',
-    emptyDescNew: 'Pruvate un prompt per eseguì si nant\'à un\'espressione cron. OpenAmer l\'eseguirà è cunsegnerà i risultati à a destinazione chì scegliete.',
+    emptyDescNew:
+      "Pruvate un prompt per eseguì si nant'à un'espressione cron. OpenAmer l'eseguirà è cunsegnerà i risultati à a destinazione chì scegliete.",
     emptyDescSearch: 'Pruvate una ricerca più larga.',
     emptyTitleNew: 'Nisciunu travagliu prugrammatu per avà',
     emptyTitleSearch: 'Nisciuna currispondenza',
@@ -1722,8 +1781,9 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     failedSave: 'Fiascu à salvà u travagliu cron',
     editTitle: 'Mudificà u travagliu cron',
     createTitle: 'Travagliu cron novu',
-    editDesc: 'Aghjurnà a prugrammazione, u prompt o a destinazione. I cambiamenti s\'applicanu à a prossima corsa.',
-    createDesc: 'Pruvate un prompt per eseguì si automaticamente. Aduprate a sintassi cron o una frase naturale cum\'è "ogni 15 minuti".',
+    editDesc: "Aghjurnà a prugrammazione, u prompt o a destinazione. I cambiamenti s'applicanu à a prossima corsa.",
+    createDesc:
+      'Pruvate un prompt per eseguì si automaticamente. Aduprate a sintassi cron o una frase naturale cum\'è "ogni 15 minuti".',
     nameLabel: 'Nome',
     namePlaceholder: 'Briefing di a matina',
     promptLabel: 'Prompt',
@@ -1745,7 +1805,7 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     createAction: 'Creà cron',
     tabs: {
       jobs: 'Travaglii',
-      blueprints: 'Prughjetti',
+      blueprints: 'Prughjetti'
     },
     blueprints: {
       tab: 'Prughjetti',
@@ -1759,22 +1819,22 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
       loading: 'Caricamentu di i prughjetti...',
       failedLoad: 'Fiascu à caricà i prughjetti',
       emptyTitle: 'Nisciunu prughjettu dispunibule',
-      emptyDesc: 'Nisciunu prughjettu d\'automazione dispunibule nant\'à stu servore.',
-    },
+      emptyDesc: "Nisciunu prughjettu d'automazione dispunibule nant'à stu servore."
+    }
   },
   artifacts: {
     search: 'Circà artefatti...',
-    refresh: 'Rinfrescà l\'artefatti',
-    refreshing: 'Rinfrescamentu di l\'artefatti',
-    indexing: 'Indiciu di l\'artefatti di e sessioni recente',
+    refresh: "Rinfrescà l'artefatti",
+    refreshing: "Rinfrescamentu di l'artefatti",
+    indexing: "Indiciu di l'artefatti di e sessioni recente",
     tabAll: 'Tutti',
     tabImages: 'Imagini',
     tabFiles: 'Fugliali',
     tabLinks: 'Ligami',
     noArtifactsTitle: 'Nisciunu artefattu trovu',
-    noArtifactsDesc: 'L\'imagine generate è l\'output di fugliali apparisceranu quì quandu e sessioni i producenu.',
-    failedLoad: 'L\'artefatti ùn ani micca pussutu caricà si',
-    openFailed: 'L\'apertura hè fallita',
+    noArtifactsDesc: "L'imagine generate è l'output di fugliali apparisceranu quì quandu e sessioni i producenu.",
+    failedLoad: "L'artefatti ùn ani micca pussutu caricà si",
+    openFailed: "L'apertura hè fallita",
     itemsImage: 'imagine',
     itemsLink: 'ligami',
     itemsFile: 'fugliali',
@@ -1793,15 +1853,15 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     kindFile: 'fugliale',
     kindLink: 'ligame',
     chat: 'Conversazione',
-    copyUrl: 'Cupià l\'URL',
-    copyPath: 'Cupià u camminu',
+    copyUrl: "Cupià l'URL",
+    copyPath: 'Cupià u camminu'
   },
   sidebar: {
     nav: {
       'new-session': 'Sessione nova',
       skills: 'Capacità',
       messaging: 'Messaghji',
-      artifacts: 'Artefatti',
+      artifacts: 'Artefatti'
     },
     searchAria: 'Circà in e sessioni',
     searchPlaceholder: 'Circà in e sessioni…',
@@ -1818,7 +1878,7 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     groupTitleGrouped: 'Disraggruppà e sessioni',
     groupTitleUngrouped: 'Raggruppà per spaziu di travagliu',
     allPinned: 'Tuttu quì hè appuntatu. Disappuntate una conversazione per a mustrà in e recente.',
-    shiftClickHint: 'Shift-clic nant\'à una conversazione per l\'appuntà',
+    shiftClickHint: "Shift-clic nant'à una conversazione per l'appuntà",
     noWorkspace: 'Nisciunu spaziu di travagliu',
     noProject: 'Nisciunu prugettu',
     projectEmpty: 'Nisciuna sessione per avà',
@@ -1833,8 +1893,8 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
       namePlaceholder: 'per esempiu Skunkworks',
       foldersLabel: 'Cartule',
       ideaLabel: 'Pensata',
-      ideaPlaceholder: "Di chì tratta stu prugettu? (salvatu in IDEA.md)",
-      ideaGenerate: 'Generà un\'idea',
+      ideaPlaceholder: 'Di chì tratta stu prugettu? (salvatu in IDEA.md)',
+      ideaGenerate: "Generà un'idea",
       ideaGenerating: 'Generazione…',
       ideaShuffle: 'Cambià i mudelli',
       noFolders: 'Nisciuna cartula aghjunta per avà.',
@@ -1853,16 +1913,18 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
       copyPath: 'Cupià u camminu',
       removeFromSidebar: 'Piattà da a barra laterale',
       createFailed: 'Ùn hè micca pussutu creà u prugettu',
-      staleBackend: 'Aghjurnate u servore OpenAmer per creà prugetti — u vostru servore hè più vechju chè sta app (Parametri → Aghjurnamenti → Servore).',
-      deleteConfirm: 'Questu caccia u prugettu salvatu da OpenAmer. I fugliali, i repository git è l\'arburi di travagliu ferma intatti.',
+      staleBackend:
+        'Aghjurnate u servore OpenAmer per creà prugetti — u vostru servore hè più vechju chè sta app (Parametri → Aghjurnamenti → Servore).',
+      deleteConfirm:
+        "Questu caccia u prugettu salvatu da OpenAmer. I fugliali, i repository git è l'arburi di travagliu ferma intatti.",
       startWork: 'Arbure di travagliu novu',
       newWorktreeTitle: 'Arbure di travagliu novu',
-      newWorktreeDesc: 'Numinate a branca per st\'arbure di travagliu.',
+      newWorktreeDesc: "Numinate a branca per st'arbure di travagliu.",
       branchPlaceholder: 'per esempiu my-feature',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       baseBranchPlaceholder: 'Circà branche…',
       baseBranchNone: 'Nisciuna branca trovata',
-      startWorkFailed: 'Ùn hè micca pussutu creà l\'arbure di travagliu',
+      startWorkFailed: "Ùn hè micca pussutu creà l'arbure di travagliu",
       convertBranch: 'Cunvertisce una branca…',
       convertBranchTitle: 'Cunvertisce una branca',
       convertBranchDesc: 'Apre e branche digià estratte, o creà un arbure di travagliu per una branca libera.',
@@ -1873,25 +1935,27 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
       branchCreateWorktree: 'arbure di travagliu novu',
       branchesLoading: 'Caricamentu di e branche…',
       noBranches: 'Nisciuna branca trovata',
-      removeWorktree: 'Caccià l\'arbure di travagliu',
-      removeWorktreeFailed: 'Ùn hè micca pussutu caccià l\'arbure di travagliu (cambiamenti micca cummessi?)',
-      removeWorktreeConfirm: 'Caccià lu da git (supprime a cartula di l\'arbure; a branca ferma), o piattà solu a corsia da a barra laterale è lascià l\'arbure nant\'à u discu.',
-      removeWorktreeDirty: 'St\'arbure di travagliu hà cambiamenti micca cummessi. Caccià lu à forza (scarta quelli cambiamenti), o piattà a corsia è u guardà nant\'à u discu.',
+      removeWorktree: "Caccià l'arbure di travagliu",
+      removeWorktreeFailed: "Ùn hè micca pussutu caccià l'arbure di travagliu (cambiamenti micca cummessi?)",
+      removeWorktreeConfirm:
+        "Caccià lu da git (supprime a cartula di l'arbure; a branca ferma), o piattà solu a corsia da a barra laterale è lascià l'arbure nant'à u discu.",
+      removeWorktreeDirty:
+        "St'arbure di travagliu hà cambiamenti micca cummessi. Caccià lu à forza (scarta quelli cambiamenti), o piattà a corsia è u guardà nant'à u discu.",
       forceRemove: 'Caccià à forza',
       enter: label => `Apre ${label}`,
       reorder: label => `Riurdinà ${label}`,
       toggle: label => `Cambià e sessioni ${label}`,
-      back: 'Tutti i prugetti',
+      back: 'Tutti i prugetti'
     },
     newSessionIn: label => `Sessione nova in ${label}`,
     showMoreIn: (count, label) => `Mustrà ${count} d'altri in ${label}`,
     loading: 'Caricamentu…',
-    loadMore: 'Caricà d\'altri',
+    loadMore: "Caricà d'altri",
     loadCount: step => `Caricà ${step} d'altri`,
     row: {
       pin: 'Appuntà',
       unpin: 'Disappuntà',
-      copyId: 'Cupià l\'ID',
+      copyId: "Cupià l'ID",
       export: 'Esportà',
       branchFrom: 'Branca',
       rename: 'Rinuminà',
@@ -1900,7 +1964,7 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
       hideTabBar: 'Piattà a barra di e tavule',
       openInNewTab: 'Apre in una tavula nova',
       openInSplit: 'Apre in spaccatura',
-      copyIdFailed: 'Ùn hè micca pussutu cupià l\'ID di a sessione',
+      copyIdFailed: "Ùn hè micca pussutu cupià l'ID di a sessione",
       actionsFor: title => `Azzioni per ${title}`,
       sessionActions: 'Azzioni di a sessione',
       sessionRunning: 'Sessione in corsa',
@@ -1919,39 +1983,39 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
       ageNow: 'avà',
       ageDay: 'g',
       ageHour: 'h',
-      ageMin: 'min',
+      ageMin: 'min'
     },
     dateDivider: {
       today: 'Più prestu oghje',
       yesterday: 'Eri',
       thisWeek: 'Più prestu sta settimana',
       lastWeek: 'A settimana passata',
-      thisMonth: 'Più prestu stu mese',
-    },
+      thisMonth: 'Più prestu stu mese'
+    }
   },
   composer: {
     message: 'Messaghju',
     wakingProfile: profile => `Sveglia ${profile}…`,
-    placeholderStarting: 'Avviu d\'OpenAmer...',
+    placeholderStarting: "Avviu d'OpenAmer...",
     placeholderReconnecting: 'Ricunnessione à OpenAmer…',
     placeholderFollowUp: 'Mandà un seguitamentu',
     newSessionPlaceholders: [
       'Cosa custruimu?',
       'Dà un travagliu à OpenAmer',
-      "Cosa avete in mente?",
+      'Cosa avete in mente?',
       'Descrivite ciò chì vi serve',
       'Cosa duvemu affruntà?',
       'Dumandate qualsiasi cosa',
-      'Principiate cù un ughjettu',
+      'Principiate cù un ughjettu'
     ],
     followUpPlaceholders: [
       'Mandà un seguitamentu',
       'Aghjunghje più cuntestu',
       'Raffinà a dumanda',
-      "Cosa avà?",
+      'Cosa avà?',
       'Cuntinuà',
       'Andà più luntanu',
-      'Aghjustà o cuntinuà',
+      'Aghjustà o cuntinuà'
     ],
     startVoice: 'Principià una conversazione voce',
     queueMessage: 'Mette u messaghju in coda',
@@ -1965,7 +2029,7 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     listening: 'Ascultà',
     muteMic: 'Silenzià u microfunu',
     unmuteMic: 'Riattivà u microfunu',
-    stopListening: 'Firmà d\'ascultà è mandà',
+    stopListening: "Firmà d'ascultà è mandà",
     stopShort: 'Firmà',
     endConversation: 'Finisce a conversazione voce',
     endShort: 'Fine',
@@ -1986,8 +2050,8 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
       '/clear': 'principià una sessione nova',
       '/resume': 'ripiglià una sessione precedente',
       '/details': 'cuntrollà u livellu di dettagliu di a trascrizione',
-      '/copy': 'cupià a selezzione o l\'ultimu messaghju di l\'assistente',
-      '/quit': 'esce da openamer',
+      '/copy': "cupià a selezzione o l'ultimu messaghju di l'assistente",
+      '/quit': 'esce da openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'riferisce fugliali, cartule, urls, git',
@@ -1997,12 +2061,12 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
       'composer.sendQueued': 'mandà u turnu siguente in coda',
       'keybinds.openPanel': 'tutti i scurzatoi di tastiera',
       'composer.cancel': 'chjudà u popover · annullà a corsa',
-      'composer.history': 'fà girà u popover / a storia',
+      'composer.history': 'fà girà u popover / a storia'
     },
     attachUrlTitle: 'Attachjа una URL',
-    attachUrlDesc: 'OpenAmer piglierà a pagina è l\'includerà cum\'è cuntestu per stu turnu.',
+    attachUrlDesc: "OpenAmer piglierà a pagina è l'includerà cum'è cuntestu per stu turnu.",
     urlPlaceholder: 'https://example.com/post',
-    urlHintPre: 'Includite l\'URL sana, per esempiu ',
+    urlHintPre: "Includite l'URL sana, per esempiu ",
     attach: 'Attachjа',
     queued: count => `${count} in coda`,
     queuedPaused: count => `${count} in coda — in pausa`,
@@ -2016,15 +2080,15 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     queueSend: 'Mandà',
     queueDelete: 'Supprimà',
     queueResume: 'Riprende',
-    queueResumeTip: 'In pausa per Firmà — ripiglià l\'invii di i turni in coda',
+    queueResumeTip: "In pausa per Firmà — ripiglià l'invii di i turni in coda",
     queueStuckTitle: 'Messaghju in coda micca mandatu',
-    queueStuckBody: 'Un turnu in coda hà continuatu à fallisce l\'inviu. Hè sempre in coda — pruvate à u mandà torna.',
+    queueStuckBody: "Un turnu in coda hà continuatu à fallisce l'inviu. Hè sempre in coda — pruvate à u mandà torna.",
     previewUnavailable: 'Anteprima micca dispunibule',
     previewLabel: label => `Anteprima ${label}`,
     couldNotPreview: label => `Ùn hè micca pussutu fà l'anteprima di ${label}`,
     removeAttachment: label => `Caccià ${label}`,
     dictating: 'Dettatura',
-    preparingAudio: 'Preparazione di l\'audio',
+    preparingAudio: "Preparazione di l'audio",
     speakingResponse: 'Risposta à voce',
     readingAloud: 'Lettura à voce alta',
     themeSuggestions: 'Suggerimenti di tema di u Desktop',
@@ -2035,32 +2099,32 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     files: 'Fugliali…',
     folder: 'Cartula…',
     images: 'Imagini…',
-    pasteImage: 'Incollà un\'imagine',
+    pasteImage: "Incollà un'imagine",
     url: 'URL…',
     promptSnippets: 'Frammenti di prompt…',
     tipPre: 'Cunsigliu: scrivite ',
     tipPost: ' per riferisce fugliali in linea.',
     snippetsTitle: 'Frammenti di prompt',
-    snippetsDesc: 'Sceglite un prompt d\'iniziu da mette in u redattore.',
+    snippetsDesc: "Sceglite un prompt d'iniziu da mette in u redattore.",
     dropFiles: 'Lasciate cascà fugliali per attachjà li',
     dropSession: 'Lasciate cascà per ligà sta conversazione',
     snippets: {
       codeReview: {
         label: 'Rivisione di u codice',
         description: 'Audità u cambiamentu attuale per regressioni, casi trascurati è teste mancanti.',
-        text: 'Rivisità questu per bug, regressioni è teste mancanti.',
+        text: 'Rivisità questu per bug, regressioni è teste mancanti.'
       },
       implementationPlan: {
-        label: 'Pianu d\'implementazione',
+        label: "Pianu d'implementazione",
         description: 'Abbozzà un approcciu prima di tuccà u codice per chì u diff ferma focu.',
-        text: 'Fate un pianu d\'implementazione concisu prima di cambià u codice.',
+        text: "Fate un pianu d'implementazione concisu prima di cambià u codice."
       },
       explainThis: {
         label: 'Spiegà questu',
         description: 'Spiegà cumu funziona u codice sceltu è ligà à i fugliali chjave.',
-        text: 'Spiegatemi cumu funziona questu è indicatemi i fugliali chjave.',
-      },
-    },
+        text: 'Spiegatemi cumu funziona questu è indicatemi i fugliali chjave.'
+      }
+    }
   },
   statusStack: {
     agents: 'Agenti',
@@ -2086,12 +2150,14 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
       stage: 'Preparà',
       unstage: 'Dispreparà',
       stageAll: 'Preparà tuttu',
-      viewAsTree: 'Vede cum\'è arbure',
-      viewAsList: 'Vede cum\'è lista',
+      viewAsTree: "Vede cum'è arbure",
+      viewAsList: "Vede cum'è lista",
       revert: 'Risturà',
       revertAll: 'Risturà tuttu',
-      revertConfirm: 'Scartà i cambiamenti à stu fugliale è u risturà à u statu cummessu? Questu ùn pò micca esse annullatu.',
-      revertAllConfirm: 'Scartà ogni cambiamentu è risturà i fugliali à u statu cummessu? Questu ùn pò micca esse annullatu.',
+      revertConfirm:
+        'Scartà i cambiamenti à stu fugliale è u risturà à u statu cummessu? Questu ùn pò micca esse annullatu.',
+      revertAllConfirm:
+        'Scartà ogni cambiamentu è risturà i fugliali à u statu cummessu? Questu ùn pò micca esse annullatu.',
       staged: 'Preparatu',
       noChanges: 'Nisciunu cambiamentu',
       notRepo: 'Micca un repository git',
@@ -2107,14 +2173,15 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
       createPr: 'Creà una PR',
       openPr: 'Apre a PR',
       ghMissing: 'Installate a CLI GitHub (gh) è cunnettate vi per apre PR',
-      agentShip: 'Dumandà à OpenAmer d\'apre a PR',
-      agentShipPrompt: 'Rivisità i cambiamenti attuali, cummetteli cù un messaghju conventional-commit chjaru, inviate a branca è aprite una pull request.',
+      agentShip: "Dumandà à OpenAmer d'apre a PR",
+      agentShipPrompt:
+        'Rivisità i cambiamenti attuali, cummetteli cù un messaghju conventional-commit chjaru, inviate a branca è aprite una pull request.',
       newBranch: 'Branca nova',
       branchOffFrom: base => `Branca nova da ${base}`,
       switchTo: branch => `Passà à ${branch}`,
       switchFailed: branch => `Ùn hè micca pussutu passà à ${branch}`,
-      worktrees: 'Arburi di travagliu',
-    },
+      worktrees: 'Arburi di travagliu'
+    }
   },
   updates: {
     stages: {
@@ -2123,57 +2190,64 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
       fetch: 'Scaricamentu…',
       pull: 'Quasi ci simu…',
       pydeps: 'Finiscina…',
-      update: 'Aghjurnamentu d\'OpenAmer…',
-      rebuild: 'Ricustruzione di l\'app di u Desktop…',
-      restart: 'Riavviu d\'OpenAmer…',
+      update: "Aghjurnamentu d'OpenAmer…",
+      rebuild: "Ricustruzione di l'app di u Desktop…",
+      restart: "Riavviu d'OpenAmer…",
       done: 'Aghjurnamentu compiu',
       manual: 'Aghjurnà da u vostru terminale',
-      guiSkew: 'Aghjurnà l\'app di u Desktop',
-      error: 'Aghjurnamentu in pausa',
+      guiSkew: "Aghjurnà l'app di u Desktop",
+      error: 'Aghjurnamentu in pausa'
     },
     checking: 'Circà aghjurnamenti…',
-    checkFailedTitle: 'Ùn hè micca pussutu verificà l\'aghjurnamenti',
+    checkFailedTitle: "Ùn hè micca pussutu verificà l'aghjurnamenti",
     tryAgain: 'Ripruvate',
     notAvailableTitle: 'Aghjurnamentu micca dispunibule',
-    unsupportedMessage: 'Sta versione d\'OpenAmer ùn pò micca aghjurnà si da l\'internu di l\'app.',
+    unsupportedMessage: "Sta versione d'OpenAmer ùn pò micca aghjurnà si da l'internu di l'app.",
     connectionRetry: 'Verificate a vostra cunnessione è ripruvate.',
     latestBody: 'Avete a versione più recente.',
     latestBodyBackend: 'U servore hà a versione più recente.',
     allSetTitle: 'Tutto hè prontu',
     availableTitle: 'Aghjurnamentu novu dispunibule',
-    availableBody: 'Una versione nova d\'OpenAmer hè pronta da installà.',
+    availableBody: "Una versione nova d'OpenAmer hè pronta da installà.",
     availableTitleBackend: 'Aghjurnamentu di u servore dispunibule',
     availableBodyBackend: 'Una versione più nova di u servore OpenAmer cunnettatu hè pronta da installà.',
-    availableBodyNoChangelog: 'Una versione più nova hè pronta. E note di a versione ùn sò micca dispunibule per stu tipu d\'installazione.',
+    availableBodyNoChangelog:
+      "Una versione più nova hè pronta. E note di a versione ùn sò micca dispunibule per stu tipu d'installazione.",
     updateNow: 'Aghjurnà avà',
     maybeLater: 'Forse più tardi',
     moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} inclusi.`,
     manualTitle: 'Aghjurnà da u vostru terminale',
-    manualBody: 'Avete installatu OpenAmer da a linea di cumandu, dunque l\'aghjurnamenti esecutanu quì ancu. Incollate questu in u vostru terminale:',
-    manualPickedUp: 'OpenAmer piglierà a versione nova a a prossima volta chì l\'avviate.',
-    guiSkewTitle: 'Aghjurnà l\'app di u Desktop',
-    guiSkewBody: 'U servore hè statu aghjurnatu, ma u pacchettu di st\'app di u Desktop ùn hè micca cambiatu. Aghjurnate o reinstallate l\'app di u Desktop OpenAmer (u vostru AppImage / .deb / .rpm) per allinià.',
+    manualBody:
+      "Avete installatu OpenAmer da a linea di cumandu, dunque l'aghjurnamenti esecutanu quì ancu. Incollate questu in u vostru terminale:",
+    manualPickedUp: "OpenAmer piglierà a versione nova a a prossima volta chì l'avviate.",
+    guiSkewTitle: "Aghjurnà l'app di u Desktop",
+    guiSkewBody:
+      "U servore hè statu aghjurnatu, ma u pacchettu di st'app di u Desktop ùn hè micca cambiatu. Aghjurnate o reinstallate l'app di u Desktop OpenAmer (u vostru AppImage / .deb / .rpm) per allinià.",
     copy: 'Cupià',
     copied: 'Cupiata',
     done: 'Fattu',
-    applyingBody: 'L\'aghjurnatore d\'OpenAmer piglia u so propiu finestra è riapre OpenAmer automaticamente quandu hè fattu. Per piacè ùn riaprite micca OpenAmer da per voi mentre l\'aghjurnamentu.',
-    applyingBodyBackend: 'U servore remotu applica l\'aghjurnamentu è riavvierà. OpenAmer si ricunnerà automaticamente quandu hè torna.',
-    applyingClose: 'Sta finestra si chjuderà mentre l\'aghjurnamentu corre, po OpenAmer si riapre da per ellu.',
-    errorTitle: 'L\'aghjurnamentu ùn hè micca finitu',
+    applyingBody:
+      "L'aghjurnatore d'OpenAmer piglia u so propiu finestra è riapre OpenAmer automaticamente quandu hè fattu. Per piacè ùn riaprite micca OpenAmer da per voi mentre l'aghjurnamentu.",
+    applyingBodyBackend:
+      "U servore remotu applica l'aghjurnamentu è riavvierà. OpenAmer si ricunnerà automaticamente quandu hè torna.",
+    applyingClose: "Sta finestra si chjuderà mentre l'aghjurnamentu corre, po OpenAmer si riapre da per ellu.",
+    errorTitle: "L'aghjurnamentu ùn hè micca finitu",
     errorBody: 'Nisun prublema — nunda ùn hè statu persu. Pudete ripruvà avà.',
     notNow: 'Micca avà',
     applyStatus: {
       preparing: 'Aghjurnamentu di u servore…',
       pulling: 'Servore in aghjurnamentu…',
-      restarting: 'Servore in riavviu per carricà l\'aghjurnamentu…',
+      restarting: "Servore in riavviu per carricà l'aghjurnamentu…",
       notAvailable: 'Aghjurnamentu micca dispunibule per stu servore.',
-      failed: 'L\'aghjurnamentu di u servore hè fiascatu.',
-      noReturn: 'U servore ùn hè micca vultatu in linea. L\'aghjurnamentu pò micca esse compiu — verificate l\'ospite di u servore.',
+      failed: "L'aghjurnamentu di u servore hè fiascatu.",
+      noReturn:
+        "U servore ùn hè micca vultatu in linea. L'aghjurnamentu pò micca esse compiu — verificate l'ospite di u servore."
     },
     appErrors: {
-      updateLocked: 'Aghjurnamentu annullatu: un\'altra finestra d\'OpenAmer o un terminale chì esegue openamer tene st\'installazione aperta. Chjudatela è ripruvate.',
-      updateFailed: 'L\'aghjurnamentu ùn hè micca compiu. Nisun prublema — nunda ùn hè statu persu. Pudete ripruvà avà.',
-    },
+      updateLocked:
+        "Aghjurnamentu annullatu: un'altra finestra d'OpenAmer o un terminale chì esegue openamer tene st'installazione aperta. Chjudatela è ripruvate.",
+      updateFailed: "L'aghjurnamentu ùn hè micca compiu. Nisun prublema — nunda ùn hè statu persu. Pudete ripruvà avà."
+    }
   },
   install: {
     stageStates: {
@@ -2181,31 +2255,36 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
       running: 'Installazione',
       succeeded: 'Fattu',
       skipped: 'Saltatu',
-      failed: 'Fiascatu',
+      failed: 'Fiascatu'
     },
-    oneTimeTitle: 'OpenAmer hà bisognu di un\'installazione una volta',
-    unsupportedDesc: platform => `L'installazione automatica à u primu avviu ùn hè ancu dispunibule nant'à ${platform}. Aprite Terminale è eseguite u cumandu sottu, po rilancate sta app. L'avvii siguenti salteranu stu passu.`,
-    installCommand: 'Cumandu d\'installazione',
+    oneTimeTitle: "OpenAmer hà bisognu di un'installazione una volta",
+    unsupportedDesc: platform =>
+      `L'installazione automatica à u primu avviu ùn hè ancu dispunibule nant'à ${platform}. Aprite Terminale è eseguite u cumandu sottu, po rilancate sta app. L'avvii siguenti salteranu stu passu.`,
+    installCommand: "Cumandu d'installazione",
     copyCommand: 'Cupià u cumandu',
-    viewDocs: 'Vede i documenti d\'installazione',
-    installTo: 'S\'installerà in',
-    retryAfterRun: 'L\'aghju eseguitu -- ripruvà',
+    viewDocs: "Vede i documenti d'installazione",
+    installTo: "S'installerà in",
+    retryAfterRun: "L'aghju eseguitu -- ripruvà",
     setupChoiceTitle: 'Cunfigurà OpenAmer Desktop',
-    setupChoiceDesc: 'Cunnettate sta app à un gateway OpenAmer chì eseguite digià, o installate OpenAmer lucalmente nant\'à stu computer.',
+    setupChoiceDesc:
+      "Cunnettate sta app à un gateway OpenAmer chì eseguite digià, o installate OpenAmer lucalmente nant'à stu computer.",
     connectExistingTitle: 'Cunnettà si à un OpenAmer esistente',
-    connectExistingShort: 'Cunnettà l\'esistente',
-    connectExistingDesc: 'Aduprate un servore remotu cù un token di sessione o a cunnessione di u navigatore. Nisciuna installazione lucale principierà.',
+    connectExistingShort: "Cunnettà l'esistente",
+    connectExistingDesc:
+      'Aduprate un servore remotu cù un token di sessione o a cunnessione di u navigatore. Nisciuna installazione lucale principierà.',
     installLocalTitle: 'Installà OpenAmer lucalmente',
-    installLocalDesc: 'Scaricà OpenAmer, creà u so ambiente Python è eseguì u servore nant\'à stu computer.',
-    localStartUnavailable: 'L\'installazione lucale ùn hà micca pussutu principià. Riavviate OpenAmer Desktop è ripruvate.',
+    installLocalDesc: "Scaricà OpenAmer, creà u so ambiente Python è eseguì u servore nant'à stu computer.",
+    localStartUnavailable:
+      "L'installazione lucale ùn hà micca pussutu principià. Riavviate OpenAmer Desktop è ripruvate.",
     remoteSetupTitle: 'Cunnettà si à un OpenAmer esistente',
-    remoteSetupDesc: 'Inserite l\'URL di u vostru gateway. OpenAmer Desktop rileverà s\'ellu hà bisognu di un token o di a cunnessione di u navigatore.',
+    remoteSetupDesc:
+      "Inserite l'URL di u vostru gateway. OpenAmer Desktop rileverà s'ellu hà bisognu di un token o di a cunnessione di u navigatore.",
     remoteUrlTitle: 'URL di u gateway',
-    remoteUrlDesc: 'Aduprate l\'URL di basa di u gateway OpenAmer, cumpresu https:// quandu hè remotu.',
+    remoteUrlDesc: "Aduprate l'URL di basa di u gateway OpenAmer, cumpresu https:// quandu hè remotu.",
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
-    probing: 'Rilevazione di l\'autentificazione di u gateway...',
+    probing: "Rilevazione di l'autentificazione di u gateway...",
     probeError: 'Ùn hè micca pussutu ghjunghje à quellu gateway OpenAmer.',
-    identityProvider: 'u vostru furnidore d\'identità',
+    identityProvider: "u vostru furnidore d'identità",
     authTitle: 'Autentificazione',
     authNeedsOauth: provider => `Cunnettate vi cù ${provider} prima di pruvà stu gateway.`,
     authSignedIn: 'A cunnessione di u navigatore hè compia.',
@@ -2213,7 +2292,7 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     signIn: 'Cunnettà si',
     signInWith: provider => `Cunnettà si cù ${provider}`,
     enterUrlFirst: 'Inserite prima un URL di gateway.',
-    signInIncomplete: 'A finestra di cunnessione s\'hè chjusa prima chì l\'autentificazione fussi compia.',
+    signInIncomplete: "A finestra di cunnessione s'hè chjusa prima chì l'autentificazione fussi compia.",
     tokenTitle: 'Token di sessione',
     tokenDesc: 'Incollate u token di sessione da u fugliale .env di u gateway remotu.',
     pasteSessionToken: 'Incollà u token di sessione',
@@ -2223,36 +2302,39 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     testSucceeded: (baseUrl, version) => `Cunnettatu à ${baseUrl}${version ? ` (${version})` : ''}.`,
     applyRemote: 'Applicà è ricunnettà',
     backToSetup: 'Indietro',
-    failedTitle: 'L\'installazione hè fallita',
-    settingUpTitle: 'Cunfigurazione d\'OpenAmer Agent',
+    failedTitle: "L'installazione hè fallita",
+    settingUpTitle: "Cunfigurazione d'OpenAmer Agent",
     finishingTitle: 'Finiscina',
-    failedDesc: 'Unu di i passi d\'installazione hè fiascatu. Nant\'à Windows, questu pò accade s\'ellu corre un\'altra CLI OpenAmer o un\'altra istanza di u Desktop. Firmate ogni istanza OpenAmer in corsa, po ripruvate. Verificate i dettagli sottu o u ghjurnale di u Desktop per a trascrizione sana.',
-    activeDesc: 'Questa hè una cunfigurazione una volta. L\'installatore d\'OpenAmer scarica e dipendenze è cunfigura a vostra macchina. L\'avvii siguenti salteranu stu passu.',
+    failedDesc:
+      "Unu di i passi d'installazione hè fiascatu. Nant'à Windows, questu pò accade s'ellu corre un'altra CLI OpenAmer o un'altra istanza di u Desktop. Firmate ogni istanza OpenAmer in corsa, po ripruvate. Verificate i dettagli sottu o u ghjurnale di u Desktop per a trascrizione sana.",
+    activeDesc:
+      "Questa hè una cunfigurazione una volta. L'installatore d'OpenAmer scarica e dipendenze è cunfigura a vostra macchina. L'avvii siguenti salteranu stu passu.",
     progress: (completed, total) => `${completed} di ${total} passi compii`,
     currentStage: stage => ` -- avà: ${stage}`,
-    fetchingManifest: 'Recuperu di u manifestu di l\'installatore...',
+    fetchingManifest: "Recuperu di u manifestu di l'installatore...",
     error: 'Errore',
-    hideOutput: 'Piattà l\'output di l\'installatore',
-    showOutput: 'Mustrà l\'output di l\'installatore',
+    hideOutput: "Piattà l'output di l'installatore",
+    showOutput: "Mustrà l'output di l'installatore",
     lines: count => `${count} line${count === 1 ? '' : 's'}`,
     noOutput: 'Nisciunu output per avà.',
     cancelling: 'Annullamentu...',
-    cancelInstall: 'Annullà l\'installazione',
+    cancelInstall: "Annullà l'installazione",
     transcriptSaved: 'Trascrizione sana salvata in',
     copiedOutput: 'Cupiata!',
-    copyOutput: 'Cupià l\'output',
-    reloadRetry: 'Ricaricà è ripruvà',
+    copyOutput: "Cupià l'output",
+    reloadRetry: 'Ricaricà è ripruvà'
   },
   onboarding: {
-    headerTitle: "Cunfigurà vi cù OpenAmer Agent",
-    headerDesc: 'Cunnettate un furnidore di mudellu per principià à chattà. A maiò parte di l\'opzioni piglianu un clic.',
-    preparingInstall: 'OpenAmer finisce l\'installazione. Questu piglia di solitu menu di un minutu à a prima corsa.',
-    starting: 'Avviu d\'OpenAmer…',
+    headerTitle: 'Cunfigurà vi cù OpenAmer Agent',
+    headerDesc:
+      "Cunnettate un furnidore di mudellu per principià à chattà. A maiò parte di l'opzioni piglianu un clic.",
+    preparingInstall: "OpenAmer finisce l'installazione. Questu piglia di solitu menu di un minutu à a prima corsa.",
+    starting: "Avviu d'OpenAmer…",
     lookingUpProviders: 'Ricerca di i furnidori...',
     collapse: 'Riduce',
     otherProviders: 'Altri furnidori',
     haveApiKey: 'Aghju una chjave API',
-    chooseLater: "Sceglieraghju un furnidore più tardi",
+    chooseLater: 'Sceglieraghju un furnidore più tardi',
     recommended: 'Ricumandatu',
     connected: 'Cunnettatu',
     featuredPitch: 'Un abbonamentu, 300+ mudelli di frontiera — a manera ricumandata di esegue OpenAmer',
@@ -2261,41 +2343,42 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     apiKeyOptions: {
       fireworks: {
         short: 'API di mudellu diretta',
-        description: 'Accessu direttu à i mudelli allugati da Fireworks AI.',
+        description: 'Accessu direttu à i mudelli allugati da Fireworks AI.'
       },
       openrouter: {
         short: 'una chjave, parechji mudelli',
-        description: 'Alloga centinaie di mudelli daretu à una chjave sola. Bon predefinitu per l\'installazioni nove.',
+        description: "Alloga centinaie di mudelli daretu à una chjave sola. Bon predefinitu per l'installazioni nove."
       },
       openai: {
         short: 'Mudelli di classe GPT',
-        description: 'Accessu direttu à i mudelli OpenAI.',
+        description: 'Accessu direttu à i mudelli OpenAI.'
       },
       gemini: {
         short: 'Mudelli Gemini',
-        description: 'Accessu direttu à i mudelli Google Gemini.',
+        description: 'Accessu direttu à i mudelli Google Gemini.'
       },
       xai: {
         short: 'Mudelli Grok',
-        description: 'Accessu direttu à i mudelli xAI Grok.',
+        description: 'Accessu direttu à i mudelli xAI Grok.'
       },
       local: {
         short: 'autualugatu',
-        description: 'Puntate OpenAmer à un puntu lucale o autualugatu cumpatibile cù OpenAI (vLLM, llama.cpp, Ollama, ecc.).',
-      },
+        description:
+          'Puntate OpenAmer à un puntu lucale o autualugatu cumpatibile cù OpenAI (vLLM, llama.cpp, Ollama, ecc.).'
+      }
     },
     backToSignIn: 'Vultà à a cunnessione',
     getKey: 'Ottene una chjave',
     replaceCurrent: 'Rimpiazzà u valore attuale',
     pasteApiKey: 'Incollà a chjave API',
-    localApiKeyPlaceholder: 'Chjave API (facultativa — solu s\'è u vostru puntu ne richiede una)',
+    localApiKeyPlaceholder: "Chjave API (facultativa — solu s'è u vostru puntu ne richiede una)",
     couldNotSave: 'Ùn hè micca pussutu salvà a credenziale.',
     connecting: 'Cunnessione',
     update: 'Aghjurnà',
     flowSubtitles: {
       pkce: 'Apre u vostru navigatore per cunnettà si, po cuntinueghja quì',
       device_code: 'Apre una pagina di verifica in u vostru navigatore — OpenAmer si cunnette automaticamente',
-      external: 'Cunnettate vi una volta in u vostru terminale, po vultate à a conversazione',
+      external: 'Cunnettate vi una volta in u vostru terminale, po vultate à a conversazione'
     },
     startingSignIn: provider => `Principiu di a cunnessione per ${provider}...`,
     verifyingCode: provider => `Verifica di u vostru codice cù ${provider}...`,
@@ -2306,14 +2389,16 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     signInWith: provider => `Cunnettà si cù ${provider}`,
     openedBrowser: provider => `Avemu apertu ${provider} in u vostru navigatore.`,
     authorizeThere: 'Auturizà OpenAmer quì.',
-    copyAuthCode: 'Cupiate u codice d\'auturizazione è incollatelu sottu.',
-    pasteAuthCode: 'Incollà u codice d\'auturizazione',
-    reopenAuthPage: 'Riapre a pagina d\'auturizazione',
-    autoBrowser: provider => `Avemu apertu ${provider} in u vostru navigatore. Auturizate OpenAmer quì è sarete cunnettatu automaticamente — nunda da cupià o incollà.`,
+    copyAuthCode: "Cupiate u codice d'auturizazione è incollatelu sottu.",
+    pasteAuthCode: "Incollà u codice d'auturizazione",
+    reopenAuthPage: "Riapre a pagina d'auturizazione",
+    autoBrowser: provider =>
+      `Avemu apertu ${provider} in u vostru navigatore. Auturizate OpenAmer quì è sarete cunnettatu automaticamente — nunda da cupià o incollà.`,
     reopenSignInPage: 'Riapre a pagina di cunnessione',
     waitingAuthorize: 'Aspettà chì auturizate...',
-    externalPending: provider => `${provider} si cunnette per u so propiu CLI. Eseguite stu cumandu in un terminale, po vultate è sceglite "Mi sò cunnettatu":`,
-    signedIn: "Mi sò cunnettatu",
+    externalPending: provider =>
+      `${provider} si cunnette per u so propiu CLI. Eseguite stu cumandu in un terminale, po vultate è sceglite "Mi sò cunnettatu":`,
+    signedIn: 'Mi sò cunnettatu',
     deviceCodeOpened: provider => `Avemu apertu ${provider} in u vostru navigatore. Inserite stu codice quì:`,
     reopenVerification: 'Riapre a pagina di verifica',
     copy: 'Cupià',
@@ -2324,7 +2409,7 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     price: (input, output) => `${input} in / ${output} fora per Mtok`,
     change: 'Cambià',
     startChatting: 'Principià',
-    docs: provider => `Documenti di ${provider}`,
+    docs: provider => `Documenti di ${provider}`
   },
   modelPicker: {
     title: 'Cambià mudellu',
@@ -2340,24 +2425,24 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     free: 'Gratuitu',
     freeTier: 'Livellu gratuitu',
     priceTitle: 'Prezzu input / output per milione di token',
-    wasPrice: 'era',
+    wasPrice: 'era'
   },
   modelVisibility: {
     title: 'Mudelli',
     search: 'Circà mudelli',
     noAuthenticatedProviders: 'Nisciunu furnidore autenticatu.',
-    addProvider: 'Aghjunghje un furnidore…',
+    addProvider: 'Aghjunghje un furnidore…'
   },
   shell: {
     windowControls: 'Cuntrolli di a finestra',
     paneControls: 'Cuntrolli di u pannellu',
-    appControls: 'Cuntrolli di l\'app',
+    appControls: "Cuntrolli di l'app",
     modelMenu: {
       search: 'Circà mudelli',
       noModels: 'Nisciunu mudellu trovu',
       editModels: 'Mudificà i mudelli…',
       refreshModels: 'Rinfrescà i mudelli',
-      fast: 'Rapidu',
+      fast: 'Rapidu'
     },
     modelOptions: {
       noOptions: 'Nisciuna opzione per stu mudellu',
@@ -2372,8 +2457,8 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
       xhigh: 'Assai altu',
       max: 'Massimu',
       ultra: 'Ultra',
-      updateFailed: 'L\'aghjurnamentu di l\'opzione di u mudellu hè fiascatu',
-      fastFailed: 'L\'aghjurnamentu di u modu rapidu hè fiascatu',
+      updateFailed: "L'aghjurnamentu di l'opzione di u mudellu hè fiascatu",
+      fastFailed: "L'aghjurnamentu di u modu rapidu hè fiascatu"
     },
     gatewayMenu: {
       gateway: 'Gateway',
@@ -2382,23 +2467,23 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
       offline: 'Fora di linea',
       inferenceReady: 'Inferenza pronta',
       inferenceNotReady: 'Inferenza micca pronta',
-      checkingInference: 'Verifica di l\'inferenza',
+      checkingInference: "Verifica di l'inferenza",
       disconnected: 'Discunnettatu',
       openSystem: 'Apre u pannellu di u sistema',
       connection: label => `Cunnessione: ${label}`,
       recentActivity: 'Attività recente',
       viewAllLogs: 'Vede tutti i ghjurnali →',
-      messagingPlatforms: 'Piattaforme di messaghji',
+      messagingPlatforms: 'Piattaforme di messaghji'
     },
     approvalMode: {
-      title: 'Modu d\'apprubazione',
+      title: "Modu d'apprubazione",
       ariaLabel: mode => `Modu d'apprubazione: ${mode}`,
       manual: 'Manuale',
-      manualDescription: 'Dumandà prima di l\'azzioni chì richiedenu apprubazione',
+      manualDescription: "Dumandà prima di l'azzioni chì richiedenu apprubazione",
       smart: 'Intelligente',
-      smartDescription: 'Valutà automaticamente l\'azzioni è dumandà quandu hè necessariu',
+      smartDescription: "Valutà automaticamente l'azzioni è dumandà quandu hè necessariu",
       off: 'Disattivu',
-      offDescription: 'Eseguì senza richieste d\'apprubazione',
+      offDescription: "Eseguì senza richieste d'apprubazione"
     },
     statusbar: {
       unknown: 'scunnisciutu',
@@ -2429,10 +2514,10 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
       gatewayConnecting: 'cunnessione',
       gatewayOffline: 'fora di linea',
       gatewayRestarting: 'riavviu…',
-      gatewayTitle: 'Statu di u gateway d\'inferenza OpenAmer',
+      gatewayTitle: "Statu di u gateway d'inferenza OpenAmer",
       agents: 'Agenti',
-      closeAgents: 'Chjudà l\'agenti',
-      openAgents: 'Apre l\'agenti',
+      closeAgents: "Chjudà l'agenti",
+      openAgents: "Apre l'agenti",
       subagents: count => `${count} subagent${count === 1 ? '' : 's'}`,
       failed: count => `${count} fiascati`,
       running: count => `${count} in corsa`,
@@ -2454,27 +2539,29 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
           skills: 'Cumpetenze',
           subagent_definitions: 'Definizioni di subagenti',
           system_prompt: 'Prompt di u sistema',
-          tool_definitions: 'Definizioni di strumenti',
+          tool_definitions: 'Definizioni di strumenti'
         },
         empty: 'Nisciunu datu di cuntestu per avà',
         loading: 'Caricamentu di a ripartizione…',
         percentFull: percent => `${percent}% pienu`,
         title: 'Usu di u cuntestu',
-        tokenSummary: (used, max) => `${used} / ${max} Token`,
+        tokenSummary: (used, max) => `${used} / ${max} Token`
       },
-      openContextUsage: 'Apre a ripartizione di l\'usu di u cuntestu',
+      openContextUsage: "Apre a ripartizione di l'usu di u cuntestu",
       session: 'Sessione',
       runtimeSessionElapsed: 'Tempu passatu di a sessione',
-      yoloOn: 'YOLO attivu — apprubazione automatica di i cumandi periculosi. Clic per disattivà. Shift+clic per cambià globalmente.',
-      yoloOff: 'YOLO disattivu — clic per appruvà automaticamente i cumandi periculosi. Shift+clic per cambià globalmente.',
+      yoloOn:
+        'YOLO attivu — apprubazione automatica di i cumandi periculosi. Clic per disattivà. Shift+clic per cambià globalmente.',
+      yoloOff:
+        'YOLO disattivu — clic per appruvà automaticamente i cumandi periculosi. Shift+clic per cambià globalmente.',
       modelNone: 'nisciunu',
       noModel: 'nisciunu mudellu',
       switchModel: 'Cambià mudellu',
       openModelPicker: 'Apre a scelta di mudellu',
       modelPinned: 'appuntatu da voi; e conversazioni nove adupranu questu invece di u predefinitu di i Parametri',
       modelTitle: (provider, model) => `Mudellu · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Barra laterale diritta',
@@ -2484,11 +2571,11 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     noFolderSelected: 'Nisciuna cartula scelta',
     changeCwdTitle: 'Cambià a cartula di travagliu',
     remotePickerTitle: 'Sceglie una cartula remota',
-    remotePickerDescription: 'Sfuglià e cartule nant\'à u servore cunnettatu.',
+    remotePickerDescription: "Sfuglià e cartule nant'à u servore cunnettatu.",
     remotePickerSelect: 'Sceglie a cartula',
     folderTip: cwd => `${cwd} — clic per cambià cartula`,
     openFolder: 'Apre a cartula',
-    refreshTree: 'Rinfrescà l\'arbure',
+    refreshTree: "Rinfrescà l'arbure",
     collapseAll: 'Riduce tutte e cartule',
     previewUnavailable: 'Anteprima micca dispunibule',
     couldNotPreview: path => `Ùn hè micca pussutu fà l'anteprima di ${path}`,
@@ -2500,32 +2587,32 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     unreadableBody: error => `Ùn hè micca pussutu leghje sta cartula (${error}).`,
     emptyTitle: 'Vodu',
     emptyBody: 'Sta cartula hè voda.',
-    treeErrorTitle: 'Errore di l\'arbure',
-    treeErrorBody: 'L\'arbure di i fugliali hà scontru un errore affissendu sta cartula.',
+    treeErrorTitle: "Errore di l'arbure",
+    treeErrorBody: "L'arbure di i fugliali hà scontru un errore affissendu sta cartula.",
     tryAgain: 'Ripruvate',
-    loadingTree: 'Caricamentu di l\'arbure di i fugliali',
+    loadingTree: "Caricamentu di l'arbure di i fugliali",
     loadingFiles: 'Caricamentu di i fugliali',
     terminalHide: 'Piattà u terminale',
     terminalsAria: 'Terminali',
     terminalNew: 'Terminale novu',
-    terminalCloseOthers: 'Chjudà l\'altri',
+    terminalCloseOthers: "Chjudà l'altri",
     terminalCloseAll: 'Chjudà tutti',
-    addToChat: 'Aghjunghje à a conversazione',
+    addToChat: 'Aghjunghje à a conversazione'
   },
   preview: {
     tab: 'Anteprima',
     closeTab: label => `Chjudà ${label}`,
-    closeOthers: 'Chjudà l\'altri',
+    closeOthers: "Chjudà l'altri",
     closeToRight: 'Chjudà à a diritta',
     closeAll: 'Chjudà tutti',
-    closePane: 'Chjudà u pannellu d\'anteprima',
-    loading: 'Caricamentu di l\'anteprima',
+    closePane: "Chjudà u pannellu d'anteprima",
+    loading: "Caricamentu di l'anteprima",
     unavailable: 'Anteprima micca dispunibule',
     opening: 'Apertura...',
     hide: 'Piattà',
-    openPreview: 'Apre l\'anteprima',
+    openPreview: "Apre l'anteprima",
     openInBrowser: 'Apre in u navigatore',
-    linkHint: '⌘/Ctrl-clic per u pannellu d\'anteprima',
+    linkHint: "⌘/Ctrl-clic per u pannellu d'anteprima",
     sourceLineTitle: 'Clic per selezziunà · shift-clic per stende · sicà à u redattore',
     source: 'FONTE',
     renderedPreview: 'ANTEPRIMA',
@@ -2535,7 +2622,7 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     binaryBody: label => `L'anteprima di ${label} pò mustrà testu illegibile.`,
     largeTitle: 'Stu fugliale hè grande',
     largeBody: (label, size) => `${label} hè ${size}. OpenAmer mustrerà solu i primi 512 KB.`,
-    previewAnyway: 'Fà l\'anteprima quantunque',
+    previewAnyway: "Fà l'anteprima quantunque",
     truncated: 'Mustra i primi 512 KB.',
     noInlineTitle: 'Nisciuna anteprima in linea',
     noInlineBody: mimeType => `${mimeType || 'This file type'} pò sempre esse attachjаtu cum'è cuntestu.`,
@@ -2543,19 +2630,20 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     editing: 'Mudifica',
     unsavedChanges: 'Cambiamenti micca salvati',
     saveFailed: message => `Ùn hè micca pussutu salvà: ${message}`,
-    diskChangedTitle: 'U fugliale hè cambiatu nant\'à u discu',
-    diskChangedBody: 'Stu fugliale hè cambiatu da quandu l\'avete apertu. U rimpiazzà cù a vostra versione, o scartà e vostre mudifiche è ricaricà?',
+    diskChangedTitle: "U fugliale hè cambiatu nant'à u discu",
+    diskChangedBody:
+      "Stu fugliale hè cambiatu da quandu l'avete apertu. U rimpiazzà cù a vostra versione, o scartà e vostre mudifiche è ricaricà?",
     overwrite: 'Rimpiazzà',
     discardReload: 'Scartà è ricaricà',
     console: {
-      deselect: 'Deselezziunà l\'entrata',
-      select: 'Selezziunà l\'entrata',
-      copyFailed: 'Ùn hè micca pussutu cupià l\'output di a console',
+      deselect: "Deselezziunà l'entrata",
+      select: "Selezziunà l'entrata",
+      copyFailed: "Ùn hè micca pussutu cupià l'output di a console",
       copyEntry: 'Cupià sta entrata',
       sendEntry: 'Mandà sta entrata à a conversazione',
       messages: count => `${count} messaghji di console`,
-      resize: 'Ridimensiunà a console d\'anteprima',
-      title: 'Console d\'anteprima',
+      resize: "Ridimensiunà a console d'anteprima",
+      title: "Console d'anteprima",
       selected: count => `${count} selezziunati`,
       sendToChat: 'Mandà à a conversazione',
       copySelected: 'Cupià i selezziunati à u clipboard',
@@ -2563,54 +2651,58 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
       copy: 'Cupià',
       clear: 'Svuotà',
       empty: 'Nisciunu messaghju di console per avà.',
-      promptHeader: 'Console d\'anteprima:',
+      promptHeader: "Console d'anteprima:",
       sentTitle: 'Mandatu à a conversazione',
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} aghjunti à u redattore`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} aghjunti à u redattore`
     },
     web: {
-      appFailedToBoot: 'L\'app d\'anteprima ùn hà micca pussutu avvià si',
+      appFailedToBoot: "L'app d'anteprima ùn hà micca pussutu avvià si",
       serverNotFound: 'Servore micca trovu',
-      failedToLoad: 'L\'anteprima ùn hà micca pussutu caricà si',
+      failedToLoad: "L'anteprima ùn hà micca pussutu caricà si",
       tryAgain: 'Ripruvate',
       restarting: 'OpenAmer riparte...',
       askRestart: 'Dumandà à OpenAmer di riavvià u servore',
       lookingRestart: taskId => `OpenAmer cerca un servore d'anteprima da riavvià (${taskId})`,
-      restartingTitle: 'Riavvio di u servore d\'anteprima',
-      restartingMessage: 'OpenAmer travaglia in u fondo. Fighjate a console d\'anteprima per u prugressu.',
+      restartingTitle: "Riavvio di u servore d'anteprima",
+      restartingMessage: "OpenAmer travaglia in u fondo. Fighjate a console d'anteprima per u prugressu.",
       startRestartFailed: message => `Ùn hè micca pussutu principià u riavviu di u servore: ${message}`,
       restartFailed: 'U riavviu di u servore hè fiascatu',
-      hideConsole: 'Piattà a console d\'anteprima',
-      showConsole: 'Mustrà a console d\'anteprima',
-      hideDevTools: 'Piattà i DevTools d\'anteprima',
-      openDevTools: 'Apre i DevTools d\'anteprima',
-      finishedRestarting: message => `OpenAmer hà finitu di riavvià u servore d'anteprima${message ? `: ${message}` : ''}`,
+      hideConsole: "Piattà a console d'anteprima",
+      showConsole: "Mustrà a console d'anteprima",
+      hideDevTools: "Piattà i DevTools d'anteprima",
+      openDevTools: "Apre i DevTools d'anteprima",
+      finishedRestarting: message =>
+        `OpenAmer hà finitu di riavvià u servore d'anteprima${message ? `: ${message}` : ''}`,
       failedRestarting: message => `U riavviu di u servore hè fiascatu: ${message}`,
       unknownError: 'errore scunnisciutu',
-      restartedTitle: 'Servore d\'anteprima riavviatu',
-      reloadingNow: 'Ricaricamentu di l\'anteprima avà.',
-      restartFailedTitle: 'U riavviu di l\'anteprima hè fiascatu',
+      restartedTitle: "Servore d'anteprima riavviatu",
+      reloadingNow: "Ricaricamentu di l'anteprima avà.",
+      restartFailedTitle: "U riavviu di l'anteprima hè fiascatu",
       restartFailedMessage: 'OpenAmer ùn hà micca pussutu riavvià u servore.',
-      stillWorking: 'OpenAmer travaglia sempre, ma nisciunu risultatu di riavviu hè arrivatu. U cumandu di u servore pò esse in corsa in u primu pianu.',
-      workspaceReloading: 'Spaziu di travagliu cambiatu, ricaricamentu di l\'anteprima',
+      stillWorking:
+        'OpenAmer travaglia sempre, ma nisciunu risultatu di riavviu hè arrivatu. U cumandu di u servore pò esse in corsa in u primu pianu.',
+      workspaceReloading: "Spaziu di travagliu cambiatu, ricaricamentu di l'anteprima",
       fileChanged: url => `Fugliale cambiatu, ricaricamentu di l'anteprima: ${url}`,
       filesChanged: (count, url) => `${count} cambiamenti di fugliali, ricaricamentu di l'anteprima: ${url}`,
       watchFailed: message => `Ùn hè micca pussutu surveglià u fugliale d'anteprima: ${message}`,
-      moduleMimeDescription: 'I script di modulu sò serviti cù un tipu MIME sbagliatu. Questu significa di solitu chì un servore di fugliali statici serve un\'app Vite/React invece di u servore di sviluppu di u prugettu.',
+      moduleMimeDescription:
+        "I script di modulu sò serviti cù un tipu MIME sbagliatu. Questu significa di solitu chì un servore di fugliali statici serve un'app Vite/React invece di u servore di sviluppu di u prugettu.",
       loadFailedConsole: (code, message) => `Caricamentu fiascatu${code ? ` (${code})` : ''}: ${message}`,
-      unreachableDescription: 'A pagina d\'anteprima ùn hè micca pussuta esse raggiunta.',
+      unreachableDescription: "A pagina d'anteprima ùn hè micca pussuta esse raggiunta.",
       openTarget: url => `Apre ${url}`,
-      fallbackTitle: 'Anteprima',
-    },
+      fallbackTitle: 'Anteprima'
+    }
   },
   zones: {
-    showHeader: 'Mustrà l\'intestazione',
-    hideHeader: 'Piattà l\'intestazione',
+    showHeader: "Mustrà l'intestazione",
+    hideHeader: "Piattà l'intestazione",
     minimize: 'Minimizà',
     restore: 'Risturà',
     closeRunningTitle: 'Chjudà a tavula in corsa?',
-    closeRunningBody: 'Sta conversazione travaglia sempre (o aspettà a vostra risposta). Chjudà a tavula a piatta — a sessione guarda u so prugressu è pò esse riaperta da a barra laterale.',
+    closeRunningBody:
+      'Sta conversazione travaglia sempre (o aspettà a vostra risposta). Chjudà a tavula a piatta — a sessione guarda u so prugressu è pò esse riaperta da a barra laterale.',
     closeRunningConfirm: 'Chjudà a tavula',
-    closeOthers: 'Chjudà l\'altri',
+    closeOthers: "Chjudà l'altri",
     closeToRight: 'Chjudà à a diritta',
     closeAll: 'Chjudà tutti',
     newSessionTab: 'Tavula di sessione nova',
@@ -2624,12 +2716,12 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     pluginDisabledBody: 'Riattivatelu in Parametri → Plugin per fà vultà u pannellu.',
     missingPane: paneId => `pannellu mancante: ${paneId}`,
     editTitle: 'Disposizioni',
-    editHint: 'Sceglite una disposizione, o sicate i pannelli trà e zone. Clic à a diritta nant\'à una zona per spaccà.',
+    editHint: "Sceglite una disposizione, o sicate i pannelli trà e zone. Clic à a diritta nant'à una zona per spaccà.",
     reset: 'Resettà',
     templates: 'Mudelli',
     custom: 'Persunalizatu',
     newGridLayout: 'Disposizione di griglia nova',
-    saveCurrentAs: 'Salvà l\'arranciamentu attuale cum\'è mudellu',
+    saveCurrentAs: "Salvà l'arranciamentu attuale cum'è mudellu",
     nameLayoutPlaceholder: 'Numinate sta disposizione…',
     deletePreset: name => `Supprimà ${name}`,
     zoneEditorTitle: 'Editore di zone',
@@ -2644,15 +2736,16 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     customZoneName: count => `${count} zone persunalizate`,
     layoutNamePlaceholder: fallback => `Nome di a disposizione (${fallback})`,
     saveApply: 'Salvà è applicà',
-    notExpressible: 'st\'arranciamentu s\'intreccia (mulinu) — micca esprimibile cum\'è spaccature annidate per avà',
-    zoneCount: count => `${count} zone`,
+    notExpressible: "st'arranciamentu s'intreccia (mulinu) — micca esprimibile cum'è spaccature annidate per avà",
+    zoneCount: count => `${count} zone`
   },
   assistant: {
     thread: {
       loadingSession: 'Caricamentu di a sessione',
       showEarlier: 'Mustrà i messaghji precedenti',
       loadingResponse: 'OpenAmer carrica una risposta',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Pensà',
@@ -2662,9 +2755,9 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
       refresh: 'Rinfrescà',
       moreActions: 'Più azzioni',
       branchNewChat: 'Ramu in una conversazione nova',
-      dismissError: 'Caccià l\'errore',
+      dismissError: "Caccià l'errore",
       readAloudFailed: 'A lettura à voce alta hè fallita',
-      preparingAudio: 'Preparazione di l\'audio...',
+      preparingAudio: "Preparazione di l'audio...",
       stopReading: 'Firmà a lettura',
       readAloud: 'Leghje à voce alta',
       editMessage: 'Mudificà u messaghju',
@@ -2675,26 +2768,28 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
       restoreCheckpoint: 'Risturà u checkpoint',
       restoreFromHere: 'Risturà u checkpoint — rieseguì da stu prompt',
       restoreTitle: 'Risturà à stu checkpoint?',
-      restoreBody: 'Tuttu ciò chì vene dopu à stu prompt hè cacciatu da a conversazione, è u prompt esegue torna da quì.',
+      restoreBody:
+        'Tuttu ciò chì vene dopu à stu prompt hè cacciatu da a conversazione, è u prompt esegue torna da quì.',
       restoreConfirm: 'Risturà è rieseguì',
       restoreNext: 'Risturà u checkpoint siguente',
       goForward: 'Andà in avanti',
       sendEdited: 'Mandà u messaghju mudificatu',
-      attachingFile: 'Attachjamentu…',
+      attachingFile: 'Attachjamentu…'
     },
     approval: {
       gatewayDisconnected: 'U gateway OpenAmer ùn hè micca cunnettatu',
-      sendFailed: 'Ùn hè micca pussutu mandà a risposta d\'apprubazione',
+      sendFailed: "Ùn hè micca pussutu mandà a risposta d'apprubazione",
       run: 'Eseguì',
       command: 'Cumandu',
-      moreOptions: 'Più opzioni d\'apprubazione',
+      moreOptions: "Più opzioni d'apprubazione",
       allowSession: 'Permette sta sessione',
       alwaysAllowMenu: 'Permette sempre…',
       jumpToApproval: 'Apprubazione necessaria',
       reject: 'Rifiutà',
       alwaysTitle: 'Permette sempre stu cumandu?',
-      alwaysDescription: pattern => `Questu aghjunghje u mudellu “${pattern}” à a vostra lista permanente (~/.openamer/config.yaml). OpenAmer ùn dumanderà più per cumandi cusì — in sta sessione o in qualsiasi altra.`,
-      alwaysAllow: 'Permette sempre',
+      alwaysDescription: pattern =>
+        `Questu aghjunghje u mudellu “${pattern}” à a vostra lista permanente (~/.openamer/config.yaml). OpenAmer ùn dumanderà più per cumandi cusì — in sta sessione o in qualsiasi altra.`,
+      alwaysAllow: 'Permette sempre'
     },
     clarify: {
       notReady: 'A dumanda di chiarimentu ùn hè ancu pronta',
@@ -2707,24 +2802,24 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
       skipped: 'Saltatu',
       continueLabel: 'Cuntinuà',
       lateAnswer: (question, choice) => `Re: "${question}" — a mo risposta: ${choice}`,
-      lateAnswerTip: 'Abbozzà sta risposta cum\'è messaghju di seguitamentu',
-      lateAnswerHint: 'Stu prompt ùn aspetta più. Sceglite un\'opzione per l\'abbozzà cum\'è messaghju di seguitamentu.',
+      lateAnswerTip: "Abbozzà sta risposta cum'è messaghju di seguitamentu",
+      lateAnswerHint: "Stu prompt ùn aspetta più. Sceglite un'opzione per l'abbozzà cum'è messaghju di seguitamentu."
     },
     tool: {
       code: 'Codice',
       copyCode: 'Cupià u codice',
-      renderingImage: 'Rendering di l\'imagine',
-      copyOutput: 'Cupià l\'output',
+      renderingImage: "Rendering di l'imagine",
+      copyOutput: "Cupià l'output",
       copyCommand: 'Cupià u cumandu',
       copyContent: 'Cupià u cuntinutu',
-      copyUrl: 'Cupià l\'URL',
+      copyUrl: "Cupià l'URL",
       copyResults: 'Cupià i risultati',
       copyQuery: 'Cupià a dumanda',
       copyFile: 'Cupià u fugliale',
       copyPath: 'Cupià u camminu',
       outputAlt: 'Output di u strumentu',
       rawResponse: 'Risposta grezza',
-      copyActivity: 'Cupià l\'attività',
+      copyActivity: "Cupià l'attività",
       recoveredOne: 'Ricuperatu dopu à 1 passu fiascatu',
       recoveredMany: count => `Ricuperatu dopu à ${count} passi fiascati`,
       failedOne: '1 passu fiascatu',
@@ -2744,11 +2839,11 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
         ran: 'Hà eseguidu',
         running: 'In corsa',
         ranCode: 'Hà eseguidu u codice',
-        runningCode: 'Scrittura di script',
+        runningCode: 'Scrittura di script'
       },
       prefixes: {
         browser: 'Navigatore',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2756,135 +2851,136 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Esecuzione di ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Esecuzione di ${action.toLowerCase()}`,
+        runningTool: action => `Esecuzione di ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Hà clicatu un elementu di a pagina',
           pending: 'Cliccà un elementu di a pagina',
-          pendingAction: 'Cliccà',
+          pendingAction: 'Cliccà'
         },
         browser_fill: {
           done: 'Hà riempitu un campu di furmulariu',
           pending: 'Riempia un campu di furmulariu',
-          pendingAction: 'Riempia',
+          pendingAction: 'Riempia'
         },
         browser_navigate: {
           done: 'Hà apertu a pagina',
           pending: 'Apertura di a pagina',
-          pendingAction: 'Apertura',
+          pendingAction: 'Apertura'
         },
         browser_snapshot: {
-          done: 'Hà pigliatu un\'istantanea di a pagina',
-          pending: 'Piglia un\'istantanea di a pagina',
-          pendingAction: 'Piglia',
+          done: "Hà pigliatu un'istantanea di a pagina",
+          pending: "Piglia un'istantanea di a pagina",
+          pendingAction: 'Piglia'
         },
         browser_take_screenshot: {
           done: 'Hà pigliatu una schermata',
           pending: 'Piglia una schermata',
-          pendingAction: 'Piglia',
+          pendingAction: 'Piglia'
         },
         browser_type: {
-          done: 'Hà scrittu nant\'à a pagina',
-          pending: 'Scrive nant\'à a pagina',
-          pendingAction: 'Scrive',
+          done: "Hà scrittu nant'à a pagina",
+          pending: "Scrive nant'à a pagina",
+          pendingAction: 'Scrive'
         },
         clarify: {
           done: 'Hà fattu una dumanda',
           pending: 'Face una dumanda',
-          pendingAction: 'Dumandà',
+          pendingAction: 'Dumandà'
         },
         cronjob: {
           done: 'Travagliu cron',
           pending: 'Prugrammazione di un travagliu cron',
-          pendingAction: 'Prugrammazione',
+          pendingAction: 'Prugrammazione'
         },
         edit_file: {
           done: 'Hà mudificatu un fugliale',
           pending: 'Mudifica un fugliale',
-          pendingAction: 'Mudifica',
+          pendingAction: 'Mudifica'
         },
         execute_code: {
           done: 'Hà eseguidu u codice',
           pending: 'Scrittura di script',
-          pendingAction: 'Script',
+          pendingAction: 'Script'
         },
         image_generate: {
-          done: 'Hà generatu un\'imagine',
-          pending: 'Generazione di un\'imagine',
-          pendingAction: 'Generazione',
+          done: "Hà generatu un'imagine",
+          pending: "Generazione di un'imagine",
+          pendingAction: 'Generazione'
         },
         list_files: {
           done: 'Hà listatu i fugliali',
           pending: 'Lista di i fugliali',
-          pendingAction: 'Lista',
+          pendingAction: 'Lista'
         },
         patch: {
           done: 'Hà patchiato un fugliale',
           pending: 'Patch di un fugliale',
-          pendingAction: 'Patch',
+          pendingAction: 'Patch'
         },
         read_file: {
           done: 'Hà lettu un fugliale',
           pending: 'Leghje un fugliale',
-          pendingAction: 'Leghje',
+          pendingAction: 'Leghje'
         },
         search_files: {
           done: 'Hà circatu in i fugliali',
           pending: 'Cerca in i fugliali',
-          pendingAction: 'Cerca',
+          pendingAction: 'Cerca'
         },
         session_search_recall: {
           done: 'Hà circatu in a storia di e sessioni',
           pending: 'Cerca in a storia di e sessioni',
-          pendingAction: 'Cerca',
+          pendingAction: 'Cerca'
         },
         terminal: {
           done: 'Hà eseguidu un cumandu',
           pending: 'Esecuzione di un cumandu',
-          pendingAction: 'Esecuzione',
+          pendingAction: 'Esecuzione'
         },
         todo: {
           done: 'Hà aghjurnatu i compiti',
           pending: 'Aghjurnamentu di i compiti',
-          pendingAction: 'Aghjurnamentu',
+          pendingAction: 'Aghjurnamentu'
         },
         vision_analyze: {
-          done: 'Hà analizatu un\'imagine',
-          pending: 'Analisi di un\'imagine',
-          pendingAction: 'Analisi',
+          done: "Hà analizatu un'imagine",
+          pending: "Analisi di un'imagine",
+          pendingAction: 'Analisi'
         },
         web_extract: {
           done: 'Hà lettu una pagina web',
           pending: 'Leghje una pagina web',
-          pendingAction: 'Leghje',
+          pendingAction: 'Leghje'
         },
         web_search: {
           done: 'Hà circatu in u web',
           pending: 'Cerca in u web',
-          pendingAction: 'Cerca',
+          pendingAction: 'Cerca'
         },
         write_file: {
           done: 'Hà mudificatu un fugliale',
           pending: 'Mudifica un fugliale',
-          pendingAction: 'Mudifica',
-        },
-      },
-    },
+          pendingAction: 'Mudifica'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'U gateway OpenAmer ùn hè micca cunnettatu',
     sudoSendFailed: 'Ùn hè micca pussutu mandà a parolla secreta sudo',
     secretSendFailed: 'Ùn hè micca pussutu mandà a parolla secreta',
-    sudoTitle: 'Parolla secreta d\'amministratore',
-    sudoDesc: 'OpenAmer hà bisognu di a vostra parolla secreta sudo per eseguì un cumandu privilegiatu. Hè mandata solu à u vostru agente lucale.',
+    sudoTitle: "Parolla secreta d'amministratore",
+    sudoDesc:
+      'OpenAmer hà bisognu di a vostra parolla secreta sudo per eseguì un cumandu privilegiatu. Hè mandata solu à u vostru agente lucale.',
     sudoPlaceholder: 'parolla secreta sudo',
     secretTitle: 'Parolla secreta necessaria',
     secretDesc: 'OpenAmer hà bisognu di una credenziale per cuntinuà.',
-    secretPlaceholder: 'valore secretu',
+    secretPlaceholder: 'valore secretu'
   },
   desktop: {
-    audioReadFailed: 'Ùn hè micca pussutu leghje l\'audio registratu',
+    audioReadFailed: "Ùn hè micca pussutu leghje l'audio registratu",
     sessionUnavailable: 'Sessione micca dispunibule',
     createSessionFailed: 'Ùn hè micca pussutu creà una sessione nova',
     promptFailed: 'U prompt hè fiascatu',
@@ -2898,7 +2994,8 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} per sta sessione`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Ùn hè micca pussutu cambià YOLO',
-    profileStatus: current => `Prufilu: ${current}. Aduprate /profile <name> o a scelta "Sessione nova" per principià una conversazione in un altru prufilu.`,
+    profileStatus: current =>
+      `Prufilu: ${current}. Aduprate /profile <name> o a scelta "Sessione nova" per principià una conversazione in un altru prufilu.`,
     unknownProfile: 'Prufilu scunnisciutu',
     noProfileNamed: (target, available) => `Nisciunu prufilu chjamatu "${target}". Dispunibuli: ${available}`,
     newChatsProfile: name => `E conversazioni nove adupraranu u prufilu ${name}.`,
@@ -2908,8 +3005,9 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     regenerateFailed: 'A rigenerazione hè fallita',
     editFailed: 'A mudifica hè fallita',
     resumeFailed: 'A ripresa hè fallita',
-    resumeStrandedTitle: "Ùn hè micca pussutu caricà sta sessione",
-    resumeStrandedBody: 'A cunnessione à sta sessione hè fallita è e prove automatiche sò firmate. Verificate chì u gateway esegue, po ripruvate.',
+    resumeStrandedTitle: 'Ùn hè micca pussutu caricà sta sessione',
+    resumeStrandedBody:
+      'A cunnessione à sta sessione hè fallita è e prove automatiche sò firmate. Verificate chì u gateway esegue, po ripruvate.',
     resumeRetry: 'Ripruvà',
     nothingToBranch: 'Nunda da ramificà',
     branchNeedsChat: 'Principiate o ripigliate una conversazione prima di ramificà.',
@@ -2920,7 +3018,7 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     branchFailed: 'A ramificazione hè fallita',
     deleteFailed: 'A supprimazione hè fallita',
     archived: 'Archiviatu',
-    archiveFailed: 'L\'archiviazioni hè fallita',
+    archiveFailed: "L'archiviazioni hè fallita",
     cwdChangeFailed: 'U cambiamentu di a cartula di travagliu hè fiascatu',
     cwdStagedTitle: 'Cartula di travagliu preparata',
     cwdStagedMessage: 'Riavviate u servore di u Desktop per applicà i cambiamenti di cartula à sta sessione attiva.',
@@ -2930,50 +3028,50 @@ Lasciate vodu per guardà u predefinitu ${mode}.`,
     imageSaved: 'Imagine salvata',
     downloadStarted: 'Scaricamentu principiatu',
     restartToUseSaveImage: 'Riavviate OpenAmer Desktop per aduprà Salvà Imagine.',
-    restartToSaveImages: 'Riavviate OpenAmer Desktop per salvà l\'imagine',
-    imageDownloadFailed: 'U scaricamentu di l\'imagine hè fiascatu',
-    openImage: 'Apre l\'imagine',
-    downloadImage: 'Scaricà l\'imagine',
-    savingImage: 'Salvamentu di l\'imagine',
-    imagePreviewFailed: 'L\'anteprima di l\'imagine hè fallita',
-    imageAttach: 'Attachjamentu d\'imagine',
-    imageWriteFailed: 'Fiascu à scrive l\'imagine nant\'à u discu.',
-    imageAttachFailed: 'L\'attachjamentu di l\'imagine hè fiascatu',
-    attachImages: 'Attachjа l\'imagine',
+    restartToSaveImages: "Riavviate OpenAmer Desktop per salvà l'imagine",
+    imageDownloadFailed: "U scaricamentu di l'imagine hè fiascatu",
+    openImage: "Apre l'imagine",
+    downloadImage: "Scaricà l'imagine",
+    savingImage: "Salvamentu di l'imagine",
+    imagePreviewFailed: "L'anteprima di l'imagine hè fallita",
+    imageAttach: "Attachjamentu d'imagine",
+    imageWriteFailed: "Fiascu à scrive l'imagine nant'à u discu.",
+    imageAttachFailed: "L'attachjamentu di l'imagine hè fiascatu",
+    attachImages: "Attachjа l'imagine",
     clipboard: 'Appunti',
     noClipboardImage: 'Nisciuna imagine trovata in u clipboard',
-    clipboardPasteFailed: 'L\'incollamentu da u clipboard hè fiascatu',
+    clipboardPasteFailed: "L'incollamentu da u clipboard hè fiascatu",
     dropFiles: 'Lasciate cascà fugliali',
     handoff: {
       pickPlatform: 'Sceglite una destinazione',
       success: platform => `Trasferitu à ${platform}. Ripigliate quì in ogni momentu.`,
       systemNote: platform => `↻ Trasferitu à ${platform} — ripigliate quì in ogni momentu.`,
       failed: error => `U trasferimentu hè fiascatu: ${error}`,
-      timedOut: 'Scadutu aspettendu u gateway. `openamer gateway` esegue?',
-    },
+      timedOut: 'Scadutu aspettendu u gateway. `openamer gateway` esegue?'
+    }
   },
   errors: {
     genericFailure: 'Qualcosa hè andatu male',
-    boundaryTitle: 'Qualcosa s\'hè rottu in l\'interfaccia',
+    boundaryTitle: "Qualcosa s'hè rottu in l'interfaccia",
     boundaryDesc: 'A vista hà scontru un errore inaspettatu. E vostre conversazioni è i vostri parametri sò salvi.',
     reloadWindow: 'Ricaricà a finestra',
-    openLogs: 'Apre i ghjurnali',
+    openLogs: 'Apre i ghjurnali'
   },
   ui: {
     search: {
-      clear: 'Svuotà a ricerca',
+      clear: 'Svuotà a ricerca'
     },
     pagination: {
       label: 'paginazione',
       previous: 'Precedente',
       previousAria: 'Andà à a pagina precedente',
       next: 'Siguente',
-      nextAria: 'Andà à a pagina siguente',
+      nextAria: 'Andà à a pagina siguente'
     },
     sidebar: {
       title: 'Barra laterale',
       description: 'Affissa a barra laterale mobile.',
-      toggle: 'Cambià a barra laterale',
-    },
-  },
+      toggle: 'Cambià a barra laterale'
+    }
+  }
 })

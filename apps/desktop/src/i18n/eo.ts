@@ -44,7 +44,7 @@ export const eo = defineLocale({
     update: 'Ĝisdatigi',
     tryHint: term => `Provu “${term}”`,
     on: 'Ŝaltita',
-    off: 'Malŝaltita',
+    off: 'Malŝaltita'
   },
   fileMenu: {
     revealFinder: 'Montri en Finder',
@@ -59,7 +59,7 @@ export const eo = defineLocale({
     renameLabel: 'Nova nomo',
     deleteTitle: name => `Forigi ${name}?`,
     deleteBody: 'Ĝi estos movita al la Rubujo — vi povas restaŭri ĝin de tie.',
-    pathCopied: 'Vojon kopiite',
+    pathCopied: 'Vojon kopiite'
   },
   boot: {
     ready: 'OpenAmer Desktop pretas',
@@ -69,7 +69,7 @@ export const eo = defineLocale({
       loadingSettings: 'Ŝargante agordojn de OpenAmer',
       loadingSessions: 'Ŝargante lastajn seancojn',
       startingDesktopConnection: 'Startigante labortablan konekton',
-      startingOpenAmerDesktop: 'Startigante OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Startigante OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'La fona procezo de OpenAmer finiĝis.',
@@ -78,13 +78,15 @@ export const eo = defineLocale({
       desktopBootFailed: 'Startigo de labortablo malsukcesis',
       gatewayConnectionLost: 'Konekto al enirejo perdiĝis',
       gatewaySignInRequired: 'Ensaluto al enirejo bezonata',
-      ipcBridgeUnavailable: 'La IPC-ponto de la labortablo ne disponeblas.',
+      ipcBridgeUnavailable: 'La IPC-ponto de la labortablo ne disponeblas.'
     },
     failure: {
-      title: "OpenAmer ne povis starti",
-      description: "La fona enirejo ne ekfunkciis. Provu unu el la riparaj paŝoj sube. Nenio ĉi tie forigas viajn babilejojn aŭ agordojn.",
+      title: 'OpenAmer ne povis starti',
+      description:
+        'La fona enirejo ne ekfunkciis. Provu unu el la riparaj paŝoj sube. Nenio ĉi tie forigas viajn babilejojn aŭ agordojn.',
       remoteTitle: 'Ensaluto al fora enirejo bezonata',
-      remoteDescription: 'Via sesio de la fora enirejo eksvalidiĝis. Ensaluu denove por rekonekti. Nenio ĉi tie forigas viajn babilejojn aŭ agordojn.',
+      remoteDescription:
+        'Via sesio de la fora enirejo eksvalidiĝis. Ensaluu denove por rekonekti. Nenio ĉi tie forigas viajn babilejojn aŭ agordojn.',
       retry: 'Reprovi',
       repairInstall: 'Ripari instaladon',
       useLocalGateway: 'Uzi lokan enirejon',
@@ -92,7 +94,8 @@ export const eo = defineLocale({
       back: 'Reen',
       openLogs: 'Malfermi protokolojn',
       repairHint: 'La riparo reruligas la instalilon kaj povas daŭri kelkajn minutojn en nova maŝino.',
-      remoteSignInHint: signInLabel => `Elsalutas la konservitan sesion de la fora retumilo, tiam malfermas ${signInLabel}. Uzu "Uzi lokan enirejon" por reveni al la inkludita backend.`,
+      remoteSignInHint: signInLabel =>
+        `Elsalutas la konservitan sesion de la fora retumilo, tiam malfermas ${signInLabel}. Uzu "Uzi lokan enirejon" por reveni al la inkludita backend.`,
       signOutAndSignIn: 'Elsaluti kaj ensaluti',
       remoteFailureHint: 'Kontrolu la URL-n kaj ensaluton en la agordoj de la enirejo, aŭ ŝanĝu al loka enirejo.',
       hideRecentLogs: 'Kaŝi lastatempajn protokolojn',
@@ -104,8 +107,8 @@ export const eo = defineLocale({
       signInFailed: 'Ensaluto malsukcesis',
       signInToRemoteGateway: 'Ensaluti al fora enirejo',
       signInWithProvider: provider => `Ensaluti per ${provider}`,
-      identityProvider: 'via identeca provizanto',
-    },
+      identityProvider: 'via identeca provizanto'
+    }
   },
   notifications: {
     region: 'Sciigoj',
@@ -118,21 +121,23 @@ export const eo = defineLocale({
     copyDetail: 'Kopii detalojn',
     copyDetailFailed: 'Ne eblis kopii detalojn de la sciigo',
     backendOutOfDateTitle: 'Backend malĝisdatigita',
-    backendOutOfDateMessage: 'Via OpenAmer-backend estas pli malnova ol ĉi tiu labortabla versio kaj eble ne funkcios ĝuste. Ĝisdatigu por vicigi ilin.',
+    backendOutOfDateMessage:
+      'Via OpenAmer-backend estas pli malnova ol ĉi tiu labortabla versio kaj eble ne funkcios ĝuste. Ĝisdatigu por vicigi ilin.',
     installMethodUnsupportedTitle: 'Nesubtenata instala metodo',
     updateOpenAmer: 'Ĝisdatigi OpenAmer',
     updateReadyTitle: 'Ĝisdatigo preta',
     updateReadyMessage: count => `${count} nova ŝanĝo${count === 1 ? 'ŝanĝo' : 'ŝanĝoj'} disponeblas.`,
-    seeWhatsNew: "Vidi novaĵojn",
+    seeWhatsNew: 'Vidi novaĵojn',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT bezonas ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs rifuzis la API-ŝlosilon (401).',
       gatewayAuthFailed: 'Aŭtentikigo de enirejo malsukcesis — kontrolu vian API_SERVER_KEY.',
-      methodNotAllowed: 'La labortabla backend rifuzis tiun peton (405 Method Not Allowed). Provu restartigi OpenAmer Desktop.',
+      methodNotAllowed:
+        'La labortabla backend rifuzis tiun peton (405 Method Not Allowed). Provu restartigi OpenAmer Desktop.',
       microphonePermission: 'La permeso por mikrofono estis rifuzita.',
       openaiRejectedApiKey: 'OpenAI rifuzis la API-ŝlosilon.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI rifuzis la API-ŝlosilon (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS bezonas VOICE_TOOLS_OPENAI_KEY aŭ OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS bezonas VOICE_TOOLS_OPENAI_KEY aŭ OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Agordu parolon-al-tekston por uzi voĉan reĝimon.',
@@ -151,7 +156,7 @@ export const eo = defineLocale({
       transcriptionFailed: 'Voĉa transskribo malsukcesis',
       transcriptionUnavailable: 'Voĉa transskribo ankoraŭ ne disponeblas.',
       tryRecordingAgain: 'Provu registri denove.',
-      unavailable: 'Voĉo nedisponebla',
+      unavailable: 'Voĉo nedisponebla'
     },
     native: {
       approvalTitle: 'Aprobado bezonata',
@@ -164,11 +169,12 @@ export const eo = defineLocale({
       turnErrorTitle: 'La vico malsukcesis',
       backgroundDoneTitle: 'Fona tasko finiĝis',
       backgroundFailedTitle: 'La fona tasko malsukcesis',
-      creditsTitle: 'Kreditoj',
-    },
+      creditsTitle: 'Kreditoj'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Programara bildigo aktiva — fora ekrano detektita (${reason}). GPU-akcelado estas malŝaltita por eviti flagradon.`,
+    message: reason =>
+      `Programara bildigo aktiva — fora ekrano detektita (${reason}). GPU-akcelado estas malŝaltita por eviti flagradon.`
   },
   billingBlock: {
     titleOpenamer: 'Sen OpenAmer-kreditoj',
@@ -176,7 +182,7 @@ export const eo = defineLocale({
     fallbackMessage: 'Via konto havas neniujn kreditojn. Aldonu kreditojn por daŭrigi.',
     openBilling: 'Malfermi fakturadon',
     addCredits: 'Aldoni kreditojn',
-    dismiss: 'Forigi',
+    dismiss: 'Forigi'
   },
   titlebar: {
     hideSidebar: 'Kaŝi flankan strion',
@@ -193,7 +199,7 @@ export const eo = defineLocale({
     openStarmap: 'Malferri memorgrafo',
     openKeybinds: 'Klavaj kombinaĵoj',
     layoutEditor: 'Aranĝa redaktilo',
-    layoutEditorTitle: 'Aranĝa redaktilo — Cmd/Ctrl+klako restarigas la aranĝon',
+    layoutEditorTitle: 'Aranĝa redaktilo — Cmd/Ctrl+klako restarigas la aranĝon'
   },
   keybinds: {
     title: 'Klavaraj fulmoklavoj',
@@ -210,7 +216,7 @@ export const eo = defineLocale({
       profiles: 'Profiloj',
       session: 'Seanco',
       navigation: 'Navigado',
-      view: 'Vido',
+      view: 'Vido'
     },
     actions: {
       'keybinds.openPanel': 'Malfermi klavarajn fulmoklavojn',
@@ -289,8 +295,8 @@ export const eo = defineLocale({
       'composer.slash': 'Paleto de slash-komandoj',
       'composer.help': 'Rapida helpo',
       'composer.history': 'Cikli popoveron / historian',
-      'composer.cancel': 'Fermi popoveron · nuligi rundayon',
-    },
+      'composer.cancel': 'Fermi popoveron · nuligi rundayon'
+    }
   },
   language: {
     label: 'Lingvo',
@@ -299,7 +305,7 @@ export const eo = defineLocale({
     saveError: 'Ĝisdatigo de lingvo malsukcesis',
     switchTo: 'Ŝanĝi lingvon',
     searchPlaceholder: 'Serĉi lingvojn…',
-    noResults: 'Neniuj lingvoj trovitaj',
+    noResults: 'Neniuj lingvoj trovitaj'
   },
   settings: {
     closeSettings: 'Fermi agordojn',
@@ -324,11 +330,12 @@ export const eo = defineLocale({
       about: 'Pri',
       billing: 'Fakturado',
       notifications: 'Sciigoj',
-      plugins: 'Kromaĵoj',
+      plugins: 'Kromaĵoj'
     },
     plugins: {
       title: 'Desktopaj pluginoj',
-      blurb: 'UI-etendaĵoj ŝargitaj en ĉi tiun aplikaĵon — inkluzivitaj kun la buildo, aŭ metitaj en la dosierujo desktop-plugins (inkluzive tiujn, kiujn skribas OpenAmer). Malŝaltado malkargas pluginojn tuj kaj restas post restartoj.',
+      blurb:
+        'UI-etendaĵoj ŝargitaj en ĉi tiun aplikaĵon — inkluzivitaj kun la buildo, aŭ metitaj en la dosierujo desktop-plugins (inkluzive tiujn, kiujn skribas OpenAmer). Malŝaltado malkargas pluginojn tuj kaj restas post restartoj.',
       count: n => `${n} instalitaj`,
       openFolder: 'Malfermi dosierujon de pluginoj',
       rescan: 'Reskandi',
@@ -340,49 +347,51 @@ export const eo = defineLocale({
       kinds: {
         bundled: 'kunpakigita',
         disk: 'surdiske',
-        runtime: 'rultempo',
-      },
+        runtime: 'rultempo'
+      }
     },
     notifications: {
       title: 'Sciigoj',
-      intro: 'Denaskaj labortablaj sciigoj, apartaj de enaplikaj ŝprucsciigoj. Ĉi tiuj estas lokalaj al la aparato — ĉiu komputilo konservas siajn proprajn agordojn.',
+      intro:
+        'Denaskaj labortablaj sciigoj, apartaj de enaplikaj ŝprucsciigoj. Ĉi tiuj estas lokalaj al la aparato — ĉiu komputilo konservas siajn proprajn agordojn.',
       enableAll: 'Ŝalti sciigojn',
       enableAllDesc: 'Ĉefa ŝaltilo. Malŝaltu ĝin por silentigi ĉiujn subajn sciigojn.',
       focusedHint: 'Kompletigaj avertoj ekas nur kiam OpenAmer estas fone.',
       kinds: {
         approval: {
           label: 'Necesas aprobo',
-          description: 'Komando atendas vian aprobon aŭ malakcepton.',
+          description: 'Komando atendas vian aprobon aŭ malakcepton.'
         },
         input: {
           label: 'Necesas enigo',
-          description: 'OpenAmer faris demandon aŭ bezonas pasvorton aŭ sekreton.',
+          description: 'OpenAmer faris demandon aŭ bezonas pasvorton aŭ sekreton.'
         },
         turnDone: {
           label: 'Respondo preta',
-          description: 'Turno finiĝis dum OpenAmer estis fone.',
+          description: 'Turno finiĝis dum OpenAmer estis fone.'
         },
         turnError: {
           label: 'Turno malsukcesis',
-          description: 'Vico finiĝis per eraro.',
+          description: 'Vico finiĝis per eraro.'
         },
         backgroundDone: {
           label: 'Fona tasko finiĝis',
-          description: 'Fona terminala komando finiĝis.',
+          description: 'Fona terminala komando finiĝis.'
         },
         credits: {
           label: 'Kreditaj avertoj',
-          description: 'Aliro al kredito estas paŭzita aŭ restarigita.',
-        },
+          description: 'Aliro al kredito estas paŭzita aŭ restarigita.'
+        }
       },
       test: 'Sendi testan sciigon',
       testTitle: 'OpenAmer',
       testBody: 'Sciigoj funkcias.',
-      testSent: 'Testo sendita. Se nenio aperas, kontrolu la permesojn de via operaciumo por sciigoj kaj Fokuso/Ne ĝenu.',
+      testSent:
+        'Testo sendita. Se nenio aperas, kontrolu la permesojn de via operaciumo por sciigoj kaj Fokuso/Ne ĝenu.',
       testUnsupported: 'Ĉi tiu sistemo ne subtenas denaskajn sciigojn.',
       completionSoundTitle: 'Fina sono',
       completionSoundDesc: 'Aŭdiĝas kiam agenta vico finiĝas. Elektu antaŭagordon kaj antaŭprezentu ĝin ĉi tie.',
-      completionSoundPreview: 'Antaŭprezenti',
+      completionSoundPreview: 'Antaŭprezenti'
     },
     sections: {
       model: 'Modelo',
@@ -392,7 +401,7 @@ export const eo = defineLocale({
       safety: 'Sekureco',
       memory: 'Memoro kaj kunteksto',
       voice: 'Voĉo',
-      advanced: 'Altnivela',
+      advanced: 'Altnivela'
     },
     searchPlaceholder: {
       about: 'Pri OpenAmer Desktop',
@@ -400,37 +409,40 @@ export const eo = defineLocale({
       gateway: 'Konekto al pordego...',
       keys: 'Serĉi API-ŝlosilojn...',
       mcp: 'Serĉi MCP-servilojn...',
-      sessions: 'Serĉi arkivitajn seancojn...',
+      sessions: 'Serĉi arkivitajn seancojn...'
     },
     modeOptions: {
       light: {
         label: 'Hela',
-        description: 'Helaj surfacoj',
+        description: 'Helaj surfacoj'
       },
       dark: {
         label: 'Malhela',
-        description: 'Spaco kun malblendo',
+        description: 'Spaco kun malblendo'
       },
       system: {
         label: 'Sistemo',
-        description: 'Sekvi la aspekton de la sistemo',
-      },
+        description: 'Sekvi la aspekton de la sistemo'
+      }
     },
     appearance: {
       title: 'Aspekto',
-      intro: 'Ĉi tiuj estas montraj preferoj nur por la labortablo. La reĝimo regulas brilecon; la etoso regulas la akcentan paleton kaj la stilon de la babileja surfaco.',
+      intro:
+        'Ĉi tiuj estas montraj preferoj nur por la labortablo. La reĝimo regulas brilecon; la etoso regulas la akcentan paleton kaj la stilon de la babileja surfaco.',
       colorMode: 'Kolora reĝimo',
       colorModeDesc: 'Elektu fiksitan reĝimon aŭ lasu OpenAmer sekvi la agordojn de via sistemo.',
       toolViewTitle: 'Montrado de ilalvokoj',
       toolViewDesc: 'Produkto kaŝas krudajn ilojn; Teknika montras plenajn enigojn/eligojn.',
       uiScaleTitle: 'Interfaca skalo',
-      uiScaleDesc: (percent: number) => `Skaligas tekston kaj regilojn tra la tuta aplikaĵo. Cmd/Ctrl kun +, - kaj 0 ankaŭ funkcias. Nuntempa: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Skaligas tekston kaj regilojn tra la tuta aplikaĵo. Cmd/Ctrl kun +, - kaj 0 ankaŭ funkcias. Nuntempa: ${percent}%.`,
       translucencyTitle: 'Travidebleco de fenestro',
       translucencyDesc: 'Vidu vian labortablon tra la tuta fenestro. Nur macOS kaj Windows.',
       backdropTitle: 'Babileja fono',
       backdropDesc: 'La malklara statuobildo malantaŭ la konversacio.',
       embedsTitle: 'Enmetitaj enhavoj',
-      embedsDesc: 'Riĉaj antaŭrigardoj ŝargiĝas de triapartiaj retejoj (YouTube, X, …). Demandi montras loktenilon ĝis vi permesas ĉiun; Ĉiam aŭtomate ŝargas ilin; Malŝaltite tenas simplajn ligilojn.',
+      embedsDesc:
+        'Riĉaj antaŭrigardoj ŝargiĝas de triapartiaj retejoj (YouTube, X, …). Demandi montras loktenilon ĝis vi permesas ĉiun; Ĉiam aŭtomate ŝargas ilin; Malŝaltite tenas simplajn ligilojn.',
       embedsAsk: 'Demandi',
       embedsAlways: 'Ĉiam',
       embedsOff: 'Malŝaltita',
@@ -443,7 +455,8 @@ export const eo = defineLocale({
       themeDesc: 'Nur labortablaj paletroj. La elektita reĝimo aplikiĝas supre.',
       themeProfileNote: profile => `Konservite por la profilo ${profile} — ĉiu profilo tenas sian etoson.`,
       installTitle: 'Instali el VS Code',
-      installDesc: 'Algluu Marketplace-ektension identigilon (ekz. dracula-theme.theme-dracula) por konverti ĝian koloretoson en labortablan paletron.',
+      installDesc:
+        'Algluu Marketplace-ektension identigilon (ekz. dracula-theme.theme-dracula) por konverti ĝian koloretoson en labortablan paletron.',
       installPlaceholder: 'eldona.estendo',
       installButton: 'Instali',
       installing: 'Instalante…',
@@ -453,8 +466,10 @@ export const eo = defineLocale({
       importedBadge: 'Importita',
       pet: {
         title: ' 반려동물',
-        intro: 'Adoptu animatan maskoton de petdex, kiu flotas super la aplikaĵo kaj reagas al tio, kion OpenAmer faras — kurantas dum iloj ekzekutas, festas sukceson, malkontentas pri eraroj.',
-        restartHint: ' 반려동uloj bezonas rapidan restarton — la ĉefprogramo startis antaŭ ol ĉi tiu funkcio estis aldonita. Fermu kaj remalŝemuru OpenAmer, poste revenu ĉi tien.',
+        intro:
+          'Adoptu animatan maskoton de petdex, kiu flotas super la aplikaĵo kaj reagas al tio, kion OpenAmer faras — kurantas dum iloj ekzekutas, festas sukceson, malkontentas pri eraroj.',
+        restartHint:
+          ' 반려동uloj bezonas rapidan restarton — la ĉefprogramo startis antaŭ ol ĉi tiu funkcio estis aldonita. Fermu kaj remalŝemuru OpenAmer, poste revenu ĉi tien.',
         on: 'Ĉu',
         off: 'Ne',
         scaleTitle: 'Grando',
@@ -464,7 +479,7 @@ export const eo = defineLocale({
         chooseTitle: 'Elektu 반려동ulon',
         chooseDesc: 'Elektado instalas ĝin (se necese) kaj aktivigas ĝin.',
         searchPlaceholder: 'Serĉi 반려동ulojn…',
-        unreachable: "Ne ebis atingi la galerion de petdex. Kontrolu vian konekton kaj remalŝemuru ĉi tiun paĝon.",
+        unreachable: 'Ne ebis atingi la galerion de petdex. Kontrolu vian konekton kaj remalŝemuru ĉi tiun paĝon.',
         noMatch: query => `Nenii 반려동uloj kongruas kun "${query}".`,
         installedTag: 'instalita',
         generatedTag: 'Generita',
@@ -473,7 +488,7 @@ export const eo = defineLocale({
         uninstall: name => `Malinstali ${name}`,
         delete: name => `Forigi ${name}`,
         deleteTitle: name => `Ĉu forigi ${name}?`,
-        deleteBody: "Tio ĉi permanent forigas la beston — ĝi ne plu estos reinstalebla.",
+        deleteBody: 'Tio ĉi permanent forigas la beston — ĝi ne plu estos reinstalebla.',
         deleteConfirm: 'Forigi',
         rename: name => `Renomi ${name}`,
         renameTitle: 'Renomi beston',
@@ -486,8 +501,8 @@ export const eo = defineLocale({
         exportFailed: slug => `Ne povis eksporti ${slug}`,
         noneAvailable: 'Neniu besto disponeblas por ŝalti nun.',
         turnOnFailed: 'Ne povis ŝalti la beston.',
-        turnOffFailed: 'Ne povis malŝalti la beston.',
-      },
+        turnOffFailed: 'Ne povis malŝalti la beston.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -498,13 +513,13 @@ export const eo = defineLocale({
       updates: 'Ĝisdatigoj',
       checkNow: 'Kontroli nun',
       checking: 'Kontrolante…',
-      seeWhatsNew: "Vidi novaĵojn",
+      seeWhatsNew: 'Vidi novaĵojn',
       updateNow: 'Ĝisdatigi nun',
       releaseNotes: 'Eldonaj notoj',
-      onLatest: "Vi estas sur la plej nova versio.",
+      onLatest: 'Vi estas sur la plej nova versio.',
       installing: 'Ĝisdatigo nun instalata.',
-      cantUpdate: "Ĉi tiu versio ne povas memĝisdatigi de interne de la aplikaĵo.",
-      cantReach: "Ni ne povis atingi la ĝisdatigan servilon.",
+      cantUpdate: 'Ĉi tiu versio ne povas memĝisdatigi de interne de la aplikaĵo.',
+      cantReach: 'Ni ne povis atingi la ĝisdatigan servilon.',
       tapCheck: 'Frapu "Kontroli nun" por serĉi ĝisdatigojn.',
       updateReady: count => `Nova ĝisdatigo estas preta (${count} ŝanĝo${count === 1 ? 'ŝanĝo' : 'ŝanĝoj'} inkluziva).`,
       lastChecked: age => `Lasta kontrolo ${age}`,
@@ -516,7 +531,7 @@ export const eo = defineLocale({
       justNow: 'ĵus',
       minAgo: count => `antaŭ ${count} min`,
       hoursAgo: count => `antaŭ ${count} horoj`,
-      daysAgo: count => `antaŭ ${count} tagoj`,
+      daysAgo: count => `antaŭ ${count} tagoj`
     },
     config: {
       none: 'Neniu',
@@ -532,7 +547,8 @@ export const eo = defineLocale({
       imported: 'Agordo importita',
       invalidJson: 'Nevalida agorda JSON',
       keepAwakeTitle: 'Teni komputilon veka',
-      keepAwakeDesc: 'Malhelpu ĉi tiun maŝinon dormi por ke longaj aŭ tutnoktaj taskoj daŭru. La ekrano ankoraŭ povas malheliĝi.',
+      keepAwakeDesc:
+        'Malhelpu ĉi tiun maŝinon dormi por ke longaj aŭ tutnoktaj taskoj daŭru. La ekrano ankoraŭ povas malheliĝi.'
     },
     credentials: {
       pasteKey: 'Alglui ŝlosilon',
@@ -542,7 +558,7 @@ export const eo = defineLocale({
       couldNotSave: 'Ne eblis konservi akreditilon.',
       remove: 'Forigi',
       getKey: 'Akiri ŝlosilon',
-      saving: 'Konservado',
+      saving: 'Konservado'
     },
     envActions: {
       actionsFor: label => `Agadoj por ${label}`,
@@ -553,7 +569,7 @@ export const eo = defineLocale({
       revealValue: 'Montri valoron',
       replace: 'Anstataŭigi',
       set: 'Agordi',
-      clear: 'Viŝi',
+      clear: 'Viŝi'
     },
     gateway: {
       loading: 'Ŝargado de ponto-agordoj...',
@@ -561,21 +577,26 @@ export const eo = defineLocale({
       unavailableDesc: 'La IPC-ponto de la labortablo ne eksponas ponto-agordojn.',
       title: 'Ponto-konekto',
       envOverride: 'env-superrego',
-      intro: 'OpenAmer Desktop startas sian propran lokalan ponton defaŭlte. Uzu remotan ponton, kiam vi volas, ke ĉi tiu aplikaĵo kontrolu jam funkciantan OpenAmer-backendon en alia maŝino aŭ malantaŭ fidinda proksiservero. Elektu profilon sube por doni al ĝi sian propran remotan gastiganton.',
+      intro:
+        'OpenAmer Desktop startas sian propran lokalan ponton defaŭlte. Uzu remotan ponton, kiam vi volas, ke ĉi tiu aplikaĵo kontrolu jam funkciantan OpenAmer-backendon en alia maŝino aŭ malantaŭ fidinda proksiservero. Elektu profilon sube por doni al ĝi sian propran remotan gastiganton.',
       appliesTo: 'Aplikiĝas al',
       allProfiles: 'Ĉiuj profiloj',
       defaultConnection: 'Defaŭlta konekto por ĉiu profilo, kiu ne havas sian propran superregon.',
-      profileConnection: profile => `Konekto uzata nur kiam “${profile}” estas la aktiva profilo. Elektu Uzi defaŭltan ponton por forigi ĝian superregon.`,
+      profileConnection: profile =>
+        `Konekto uzata nur kiam “${profile}” estas la aktiva profilo. Elektu Uzi defaŭltan ponton por forigi ĝian superregon.`,
       envOverrideTitle: 'Medivariabloj regas ĉi tiun labortablan sesion.',
-      envOverrideDesc: 'Malstarigu OPENAMER_DESKTOP_REMOTE_URL kaj OPENAMER_DESKTOP_REMOTE_TOKEN por uzi la konservitan agordon sube.',
+      envOverrideDesc:
+        'Malstarigu OPENAMER_DESKTOP_REMOTE_URL kaj OPENAMER_DESKTOP_REMOTE_TOKEN por uzi la konservitan agordon sube.',
       modeTitle: 'Konekta reĝimo',
       localTitle: 'Loka pordego',
-      localDesc: 'Startigu privatan OpenAmer-malantaŭservon sur localhost. Ĉi tio estas la defaŭlto kaj funkcias senrete.',
+      localDesc:
+        'Startigu privatan OpenAmer-malantaŭservon sur localhost. Ĉi tio estas la defaŭlto kaj funkcias senrete.',
       inheritTitle: 'Uzi defaŭltan pordegon',
-      inheritDesc: "Forigu la anstataŭigon de ĉi tiu profilo kaj uzu la defaŭltan konekton.",
+      inheritDesc: 'Forigu la anstataŭigon de ĉi tiu profilo kaj uzu la defaŭltan konekton.',
       remoteTitle: 'Fora pordego',
       remoteDesc: 'Konektu ĉi tiun labortablan ŝelon al fora OpenAmer-malantaŭaĵo.',
-      remoteAuthHint: 'Gastigataj pordegoj uzas OAuth aŭ uzantnomon kaj pasvorton; memgastigataj povas uzi sesian ĵetonon.',
+      remoteAuthHint:
+        'Gastigataj pordegoj uzas OAuth aŭ uzantnomon kaj pasvorton; memgastigataj povas uzi sesian ĵetonon.',
       cloudTitle: 'OpenAmer Nubo',
       cloudDesc: 'Ensalutu unufoje al OpenAmer Cloud kaj elektu el la agentoj en via konto — neniu URL por alglui.',
       cloudSignInTitle: 'OpenAmer Nubo',
@@ -592,7 +613,7 @@ export const eo = defineLocale({
       cloudNoAgents: {
         before: 'Neniuj agentoj trovitaj en ĉi tiu konto. Kreu unu en la ',
         linkText: 'OpenAmer portalo',
-        after: ', poste refreŝigu.',
+        after: ', poste refreŝigu.'
       },
       cloudRefresh: 'Refreŝu',
       cloudConnect: 'Konektu',
@@ -608,20 +629,26 @@ export const eo = defineLocale({
       cloudAgentProvisioning: 'Provizante…',
       cloudStatusLabel: status => `Stato: ${status}`,
       remoteUrlTitle: 'Fora URL',
-      remoteUrlDesc: 'Baza URL por la fora malantaŭservilo de la panelo. Vojo-prefiksoj estas subtenataj, ekzemple /openamer.',
+      remoteUrlDesc:
+        'Baza URL por la fora malantaŭservilo de la panelo. Vojo-prefiksoj estas subtenataj, ekzemple /openamer.',
       probing: 'Kontrolante kiel ĉi tiu pordego aŭtentikigas…',
-      probeError: 'Ankoraŭ ne eblas atingi ĉi tiun pordegon. Kontrolu la URL — la aŭtentikiga metodo aperos, kiam ĝi respondos.',
+      probeError:
+        'Ankoraŭ ne eblas atingi ĉi tiun pordegon. Kontrolu la URL — la aŭtentikiga metodo aperos, kiam ĝi respondos.',
       signedIn: 'Ensalutita',
       signIn: 'Ensaluti',
       signOut: 'Elsaluti',
       signInWith: provider => `Ensaluti per ${provider}`,
       authTitle: 'Aŭtentigo',
-      authSignedInPassword: 'Ĉi tiu pordego uzas uzantnomon kaj pasvorton. Vi estas ensalutinta; la sesio aŭtomate refreŝiĝas.',
+      authSignedInPassword:
+        'Ĉi tiu pordego uzas uzantnomon kaj pasvorton. Vi estas ensalutinta; la sesio aŭtomate refreŝiĝas.',
       authSignedInOauth: 'Ĉi tiu pordego uzas OAuth. Vi estas ensalutinta; la sesio aŭtomate refreŝiĝas.',
-      authNeedsPassword: 'Ĉi tiu pordego uzas uzantnomon kaj pasvorton. Ensalutu por rajtigi ĉi tiun surtablan aplikaĵon.',
-      authNeedsOauth: provider => `Ĉi tiu pordego uzas OAuth. Ensalutu per ${provider} por rajtigi ĉi tiun surtablan aplikaĵon.`,
+      authNeedsPassword:
+        'Ĉi tiu pordego uzas uzantnomon kaj pasvorton. Ensalutu por rajtigi ĉi tiun surtablan aplikaĵon.',
+      authNeedsOauth: provider =>
+        `Ĉi tiu pordego uzas OAuth. Ensalutu per ${provider} por rajtigi ĉi tiun surtablan aplikaĵon.`,
       tokenTitle: 'Sesia ĵetono',
-      tokenDesc: 'La sesia ĵetono de la stirpanelo uzata por REST- kaj WebSocket-aliro. Lasu malplena por konservi la konservitan ĵetonon.',
+      tokenDesc:
+        'La sesia ĵetono de la stirpanelo uzata por REST- kaj WebSocket-aliro. Lasu malplena por konservi la konservitan ĵetonon.',
       existingToken: value => `Ekzistanta ĵetono ${value}`,
       savedToken: 'konservita',
       pasteSessionToken: 'Algluu seancan ĵetonon',
@@ -652,8 +679,10 @@ export const eo = defineLocale({
       applyFailed: 'Ne eblis apliki pordegajn agordojn',
       saveFailed: 'Ne eblis konservi pordegajn agordojn',
       sshTitle: 'Konekti per SSH',
-      sshDesc: 'OpenAmer estas lanĉata sur la fora gastiganto per SSH kaj tunelata al ĉi tiu aplikaĵo — nenion vi devas mem lanĉi aŭ elmeti. Postulas funkciantan ŝlosilbazan SSH-aliron al la gastiganto.',
-      sshTrustHint: 'La unua prezentita gastigila ŝlosilo estas fidata kaj fiksita; postaj ŝanĝoj malakceptiĝas sekure.',
+      sshDesc:
+        'OpenAmer estas lanĉata sur la fora gastiganto per SSH kaj tunelata al ĉi tiu aplikaĵo — nenion vi devas mem lanĉi aŭ elmeti. Postulas funkciantan ŝlosilbazan SSH-aliron al la gastiganto.',
+      sshTrustHint:
+        'La unua prezentita gastigila ŝlosilo estas fidata kaj fiksita; postaj ŝanĝoj malakceptiĝas sekure.',
       sshHostTitle: 'Gastiganto',
       sshHostDesc: 'uzanto@gastiganto, aŭ alinomo Host el ~/.ssh/config.',
       sshHostPick: 'Elektu gastiganton…',
@@ -676,18 +705,22 @@ export const eo = defineLocale({
       sshReachable: (host, platform) => `Atingebla: ${host} (${platform}) — OpenAmer trovita`,
       sshIncompleteHost: 'Enigu SSH-gastiganton antaŭ konekti.',
       sshErrUnreachable: 'Ne eblis atingi tiun gastiganton per SSH. Kontrolu la gastiganton, pordon kaj vian reton.',
-      sshErrAuth: 'SSH-aŭtentigo malsukcesis. Ŝargu vian ŝlosilon en ssh-agent (ssh-add) aŭ agordu IdentityFile en ~/.ssh/config — OpenAmer lanĉas ssh neinteraktive.',
-      sshErrHostKey: 'La gastiga ŝlosilo ŜANĜIĜIS ekde via lasta konekto. Kontrolu, ĉu tio estas atendita, poste rulu ssh-keygen -R <host> kaj rekonektu.',
-      sshErrNotInstalled: 'OpenAmer ne estas instalita sur la fora gastiganto. Instalu ĝin tie (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) aŭ agordu la vojon al OpenAmer.',
-      sshErrPlatform: 'Nesubtenata fora platformo. La SSH-reĝimo de OpenAmer Desktop subtenas forajn gastigantojn Linux, macOS kaj Windows.',
+      sshErrAuth:
+        'SSH-aŭtentigo malsukcesis. Ŝargu vian ŝlosilon en ssh-agent (ssh-add) aŭ agordu IdentityFile en ~/.ssh/config — OpenAmer lanĉas ssh neinteraktive.',
+      sshErrHostKey:
+        'La gastiga ŝlosilo ŜANĜIĜIS ekde via lasta konekto. Kontrolu, ĉu tio estas atendita, poste rulu ssh-keygen -R <host> kaj rekonektu.',
+      sshErrNotInstalled:
+        'OpenAmer ne estas instalita sur la fora gastiganto. Instalu ĝin tie (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) aŭ agordu la vojon al OpenAmer.',
+      sshErrPlatform:
+        'Nesubtenata fora platformo. La SSH-reĝimo de OpenAmer Desktop subtenas forajn gastigantojn Linux, macOS kaj Windows.',
       sshErrTimeout: 'SSH-konekto finiĝis pro tempolimo. La gastiganto eble estas neatingebla aŭ dormanta.',
       sshErrUpdateRequired: 'Ĝisdatigu OpenAmer sur la fora gastiganto antaŭ ol konekti per Desktop SSH.',
-      sshErrUnknown: 'SSH-konekto malsukcesis.',
+      sshErrUnknown: 'SSH-konekto malsukcesis.'
     },
     keys: {
       loading: 'Ŝargado de API-ŝlosiloj kaj akreditiloj...',
       failedLoad: 'API-ŝlosiloj malsukcesis ŝargiĝi',
-      empty: 'Ankoraŭ nenio agordita en ĉi tiu kategorio.',
+      empty: 'Ankoraŭ nenio agordita en ĉi tiu kategorio.'
     },
     mcp: {
       loading: 'Ŝargado de MCP-serviloj...',
@@ -739,7 +772,8 @@ export const eo = defineLocale({
       catalogInstallFailed: name => `Malsukcesis instali ${name}`,
       catalogEnvPrompt: name => `${name} postulas legitimilojn`,
       catalogEnvRequired: 'Plenigu la postulatajn valorojn antaŭ instalado.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ebligita`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ebligita`,
       statusConnecting: 'Konektante…',
       statusNeedsAuth: 'Bezonas aŭtentikigon',
       statusError: 'Eraro',
@@ -752,11 +786,12 @@ export const eo = defineLocale({
       unsavedConnect: 'Nekonservita — konservu mcp.json por konekti.',
       enableTool: tool => `Ŝalti ${tool}`,
       disableTool: tool => `Malŝalti ${tool}`,
-      noOutput: 'Ankoraŭ neniu eligo.',
+      noOutput: 'Ankoraŭ neniu eligo.'
     },
     model: {
       loading: 'Ŝargante modelan agordon...',
-      appliesDesc: 'Validas por novaj sesioj. Uzu la modelan elektilon en la redaktilo por tujŝanĝi la aktivan babilon.',
+      appliesDesc:
+        'Validas por novaj sesioj. Uzu la modelan elektilon en la redaktilo por tujŝanĝi la aktivan babilon.',
       provider: 'Provizanto',
       model: 'Modelo',
       applying: 'Aplikante...',
@@ -766,53 +801,55 @@ export const eo = defineLocale({
       defaultsFailed: 'Malsukcesis konservi modelajn defaŭltojn',
       auxiliaryTitle: 'Helpmodeloj',
       resetAllToMain: 'Restarigi ĉiujn al la ĉefa',
-      auxiliaryDesc: 'Helpos taskoj funkcias sur la ĉefa modelo defaŭlte. Asignu dediĉitan modelon al iu ajn tasko por anstataŭigi.',
+      auxiliaryDesc:
+        'Helpos taskoj funkcias sur la ĉefa modelo defaŭlte. Asignu dediĉitan modelon al iu ajn tasko por anstataŭigi.',
       setToMain: 'Agordi kiel ĉefan',
       change: 'Ŝanĝi',
       autoUseMain: 'aŭtomate · uzi ĉefan modelon',
       providerDefault: '(defaŭlto de provizanto)',
       fallbackAdd: 'Aldoni rezervon',
       fallbackEmpty: 'Neniuj rezervaj modeloj — la defaŭlta modelo estas uzata krom se ĝi malsukcesas.',
-      notInCatalog: "ne estas en la modellisto de ĉi tiu provizanto — alvokoj povas uzi rezervan modelon.",
+      notInCatalog: 'ne estas en la modellisto de ĉi tiu provizanto — alvokoj povas uzi rezervan modelon.',
       tasks: {
         vision: {
           label: 'Vido',
-          hint: 'Bildanalizo',
+          hint: 'Bildanalizo'
         },
         web_extract: {
           label: 'Reta eltiro',
-          hint: 'Resumado de paĝoj',
+          hint: 'Resumado de paĝoj'
         },
         compression: {
           label: 'Kunpremado',
-          hint: 'Kompaktigo de kunteksto',
+          hint: 'Kompaktigo de kunteksto'
         },
         skills_hub: {
           label: 'Centro de kapabloj',
-          hint: 'Serĉo de kapabloj',
+          hint: 'Serĉo de kapabloj'
         },
         approval: {
           label: 'Aprobo',
-          hint: 'Inteligenta aŭtomata aprobo',
+          hint: 'Inteligenta aŭtomata aprobo'
         },
         mcp: {
           label: 'MCP',
-          hint: 'Enkursigo de MCP-iloj',
+          hint: 'Enkursigo de MCP-iloj'
         },
         title_generation: {
           label: 'Titola generado',
-          hint: 'Seancotitoloj',
+          hint: 'Seancotitoloj'
         },
         curator: {
           label: 'Kuratoro',
-          hint: 'Revizio de kapablouzo',
-        },
-      },
+          hint: 'Revizio de kapablouzo'
+        }
+      }
     },
     providers: {
       connectAccount: 'Konekti konton',
       haveApiKey: 'Ĉu vi havas API-ŝlosilon anstataŭe?',
-      intro: 'Ensalutu per abono — neniu API-ŝlosilo por kopii. OpenAmer faras la retumilan ensaluton por vi, ĝuste ĉi tie en la aplikaĵo.',
+      intro:
+        'Ensalutu per abono — neniu API-ŝlosilo por kopii. OpenAmer faras la retumilan ensaluton por vi, ĝuste ĉi tie en la aplikaĵo.',
       connected: 'Konektita',
       collapse: 'Faldi',
       connectAnother: 'Konekti alian provizanton',
@@ -822,7 +859,8 @@ export const eo = defineLocale({
       removeConfirm: provider => `Forigi ${provider}?`,
       removeExternalGeneric: provider => `${provider} estas administrata de sia propra CLI — forigu ĝin tie.`,
       removeKeyManaged: provider => `${provider} estas agordita per API-ŝlosilo. Forigu ĝin el API-ŝlosiloj.`,
-      removeTerminalConfirm: (provider, command) => `Ĉu malkonekti ${provider}? Ĉi tio lanĉas "${command}" en la terminalo por forigi la akreditaĵon.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Ĉu malkonekti ${provider}? Ĉi tio lanĉas "${command}" en la terminalo por forigi la akreditaĵon.`,
       removeTerminalRunning: provider => `Lanĉante malkonekton de ${provider} en la terminalo…`,
       removedTitle: 'Konto forigita',
       removedMessage: provider => `${provider} estis forigita.`,
@@ -832,14 +870,15 @@ export const eo = defineLocale({
       noKeysMatch: 'Neniuj provizantoj kongruas kun via serĉo.',
       localEndpoint: {
         title: 'Loka / propra finpunkto',
-        description: 'Direktu OpenAmer al iu ajn OpenAI-kompatibla finpunkto (Zyphra, vLLM, llama.cpp, Ollama, ktp).',
+        description: 'Direktu OpenAmer al iu ajn OpenAI-kompatibla finpunkto (Zyphra, vLLM, llama.cpp, Ollama, ktp).'
       },
-      loading: 'Ŝargante provizantojn...',
+      loading: 'Ŝargante provizantojn...'
     },
     sessions: {
       loading: 'Ŝargante arkivitajn sesiojn…',
       archivedTitle: 'Arkivitaj sesioj',
-      archivedIntro: 'Arkivitaj babilejoj estas kaŝitaj el la flanka panelo sed konservas ĉiujn siajn mesaĝojn. Ctrl/⌘-klaku babilejon en la flanka panelo por arkivi ĝin.',
+      archivedIntro:
+        'Arkivitaj babilejoj estas kaŝitaj el la flanka panelo sed konservas ĉiujn siajn mesaĝojn. Ctrl/⌘-klaku babilejon en la flanka panelo por arkivi ĝin.',
       emptyArchivedTitle: 'Nenio arkivita',
       emptyArchivedDesc: 'Arkivu babilejon por kaŝi ĝin ĉi tie.',
       unarchive: 'Malarkivi',
@@ -848,13 +887,16 @@ export const eo = defineLocale({
       restored: 'Restarigita',
       deleteConfirm: title => `Ĉu forigi "${title}" por ĉiam? Ĉi tio ne povas esti malfarita.`,
       autoArchiveTitle: 'Aŭtomate arkivi neaktivitajn babilejojn',
-      autoArchiveDesc: "Aŭtomate arkivi babilejojn, kiujn vi ne tuŝis dum iom da tempo. Fiksitaj babilejoj neniam estas arkivitaj, kaj nenio estas forigita — arkivitaj babilejoj nur moviĝas ĉi tien.",
+      autoArchiveDesc:
+        'Aŭtomate arkivi babilejojn, kiujn vi ne tuŝis dum iom da tempo. Fiksitaj babilejoj neniam estas arkivitaj, kaj nenio estas forigita — arkivitaj babilejoj nur moviĝas ĉi tien.',
       autoArchiveDaysLabel: 'Arkivi post',
       autoArchiveDaysUnit: 'tagoj da neaktiveco',
       autoArchiveFailed: 'Ne eblis ĝisdatigi aŭtomatan arkivadon',
       defaultDirTitle: 'Defaŭlta projekta dosierujo',
-      defaultDirDesc: 'Novaj sesioj komenciĝas en ĉi tiu dosierujo krom se vi elektas alian. Lasu ĝin neagordita por uzi vian hejman dosierujon.',
-      defaultDirUpdated: 'Defaŭlta projekta dosierujo ĝisdatigita — komencu novan babilon (Ctrl/⌘+N) por ke ĝi efektiviĝu',
+      defaultDirDesc:
+        'Novaj sesioj komenciĝas en ĉi tiu dosierujo krom se vi elektas alian. Lasu ĝin neagordita por uzi vian hejman dosierujon.',
+      defaultDirUpdated:
+        'Defaŭlta projekta dosierujo ĝisdatigita — komencu novan babilon (Ctrl/⌘+N) por ke ĝi efektiviĝu',
       defaultsTo: label => `Defaŭltas al ${label}.`,
       change: 'Ŝanĝi',
       choose: 'Elekti',
@@ -864,7 +906,7 @@ export const eo = defineLocale({
       unarchiveFailed: 'Malarkivigo malsukcesis',
       deleteFailed: 'Forigo malsukcesis',
       updateDirFailed: 'Ne eblis ĝisdatigi defaŭltan dosierujon',
-      clearDirFailed: 'Ne eblis malplenigi defaŭltan dosierujon',
+      clearDirFailed: 'Ne eblis malplenigi defaŭltan dosierujon'
     },
     toolsets: {
       loadingConfig: 'Ŝargado de agordo',
@@ -882,20 +924,23 @@ export const eo = defineLocale({
       selectedMessage: provider => `${provider} nun aktivas.`,
       failedSelect: provider => `Malsukcesis elekti ${provider}`,
       failedLoad: 'Malsukcesis ŝargi ilagordon',
-      noProviderOptions: 'Ĉi tiu ilaro havas neniujn opciojn pri provizantoj — ebligu ĝin kaj ĝi funkcios kun via nuna agordo.',
+      noProviderOptions:
+        'Ĉi tiu ilaro havas neniujn opciojn pri provizantoj — ebligu ĝin kaj ĝi funkcios kun via nuna agordo.',
       noProviders: 'Nun ne disponeblas provizantoj por ĉi tiu ilaro.',
       ready: 'Preta',
       needsSignIn: 'Bezonas ensaluton',
       needsSetup: 'Bezonas agordon',
       openamerIncluded: 'Inkluzivita en OpenAmer-abono — ensalutu al OpenAmer Portal por aktivigi.',
       openamerAuthNeededTitle: 'Ensalutu al OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} estas konservita sed ne aktiviĝos ĝis vi ensalutos al OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} estas konservita sed ne aktiviĝos ĝis vi ensalutos al OpenAmer Portal.`,
       openamerAuthSignIn: 'Ensalutu',
       openamerAuthDoneTitle: 'OpenAmer Portal konektita',
       openamerAuthDoneMessage: 'Viaj abonaj servoj nun aktivas.',
       openamerAuthFailed: 'Ensaluto al OpenAmer Portal ne finiĝis',
       noApiKeyRequired: 'API-ŝlosilo ne necesas.',
-      postSetupHint: step => `Ĉi tiu dorservilo bezonas unufojan instalon (${step}). Funkcias sur ĉi tiu maŝino — povas daŭri kelkajn minutojn.`,
+      postSetupHint: step =>
+        `Ĉi tiu dorservilo bezonas unufojan instalon (${step}). Funkcias sur ĉi tiu maŝino — povas daŭri kelkajn minutojn.`,
       postSetupInstalledHint: 'Instalita. Rerulu agordon nur se io rompiĝis.',
       postSetupRun: 'Ruli agordon',
       postSetupRerun: 'Reruli agordon',
@@ -936,9 +981,10 @@ export const eo = defineLocale({
         selectedTitle: 'Malantaŭaĵo elektita',
         selectedMessage: backend => `Terminalaj komandoj nun ruliĝas per ${backend}. Aplikatas al novaj sesioj.`,
         failedSelect: backend => `Malsukcesis elekti ${backend}`,
-        needsSetupHint: 'Vi povas elekti ĉi tiun malantaŭan sistemon nun — komandoj malsukcesos ĝis la agordo estos finita.',
-      },
-    },
+        needsSetupHint:
+          'Vi povas elekti ĉi tiun malantaŭan sistemon nun — komandoj malsukcesos ĝis la agordo estos finita.'
+      }
+    }
   },
   skills: {
     tabSkills: 'Lertecoj',
@@ -958,7 +1004,8 @@ export const eo = defineLocale({
     noDescription: 'Neniu priskribo.',
     configured: 'Agordita',
     needsKeys: 'Bezonas ŝlosilojn',
-    visionModelHint: 'Vizio uzas vian krommodelan agordon — la bildokapabla modelo elektiĝas tie, ne laŭ provizanto ĉi tie.',
+    visionModelHint:
+      'Vizio uzas vian krommodelan agordon — la bildokapabla modelo elektiĝas tie, ne laŭ provizanto ĉi tie.',
     visionModelLink: 'Elektu vizian modelon en Agordoj → Modeloj',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} ilararoj ŝaltitaj`,
     configureToolset: label => `Agordi ${label}`,
@@ -984,7 +1031,7 @@ export const eo = defineLocale({
     provenance: {
       agent: 'Lernita',
       bundled: 'Enkonstruita',
-      hub: 'Hubo',
+      hub: 'Hubo'
     },
     emptyNoneFound: noun => `Neniu ${noun} trovita`,
     emptyNothingMatches: query => `Nenio kongruas kun “${query}”.`,
@@ -1002,9 +1049,11 @@ export const eo = defineLocale({
       connectingHubs: 'Konektante al kapablohuboj...',
       connectedHubs: 'Konektitaj huboj:',
       featured: 'Elstaraj kapabloj',
-      landingHint: 'Serĉu en la hubo por foliumi instaleblajn kapablojn el la oficiala indekso, GitHub kaj komunumaj fontoj.',
+      landingHint:
+        'Serĉu en la hubo por foliumi instaleblajn kapablojn el la oficiala indekso, GitHub kaj komunumaj fontoj.',
       noResults: 'Neniuj kongruaj kapabloj troviĝis en la hubo.',
-      resultCount: (count, ms) => `${count} rezulto${count === 1 ? 'rezulto' : 'rezultoj'}${ms !== null ? ` in ${ms}ms` : ''}`,
+      resultCount: (count, ms) =>
+        `${count} rezulto${count === 1 ? 'rezulto' : 'rezultoj'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Tempolimo: ${sources}`,
       installed: 'Instalita',
       install: 'Instali',
@@ -1022,7 +1071,7 @@ export const eo = defineLocale({
       trust: {
         builtin: 'enkonstruita',
         trusted: 'fidinda',
-        community: 'komunumo',
+        community: 'komunumo'
       },
       verdictSafe: 'Sekura',
       verdictCaution: 'Singarda',
@@ -1040,8 +1089,8 @@ export const eo = defineLocale({
       loadFailed: 'Centro de kapabloj malsukcesis ŝargiĝi',
       previewFailed: 'Antaŭrigardo de kapablo malsukcesis',
       scanFailed: 'Sekureca skanado malsukcesis',
-      searchFailed: 'Serĉo en centro malsukcesis',
-    },
+      searchFailed: 'Serĉo en centro malsukcesis'
+    }
   },
   starmap: {
     title: 'Memorgrafo',
@@ -1058,7 +1107,8 @@ export const eo = defineLocale({
     emptyTitle: 'Ankoraŭ nenio lernita',
     emptyDesc: 'Dum OpenAmer kreas kapablojn kaj memoraĵojn por via laboro, ili aperas ĉi tie.',
     share: 'Kunhavigi mapon',
-    shareHint: 'Kopiu la kodon por kunhavigi ĉi tiun mapon, aŭ algluu unu por ŝargi. Ĝi inkluzivas nur la aranĝon, ne vian memoron aŭ kapablotekston.',
+    shareHint:
+      'Kopiu la kodon por kunhavigi ĉi tiun mapon, aŭ algluu unu por ŝargi. Ĝi inkluzivas nur la aranĝon, ne vian memoron aŭ kapablotekston.',
     shareTitle: 'Importi / eksporti mapon',
     sharePlaceholder: 'Algluu mapkodon…',
     copy: 'Kopii mapkodon',
@@ -1068,7 +1118,7 @@ export const eo = defineLocale({
     importEmpty: 'Algluu mapkodon por ŝargi ĝin.',
     importSuccess: nodes => `Ŝargis mapon kun ${nodes} ${nodes === 1 ? 'nodo' : 'nodoj'}.`,
     importedBadge: 'importita mapo',
-    resetToMine: 'Reen al mia mapo',
+    resetToMine: 'Reen al mia mapo'
   },
   agents: {
     close: 'Fermi agentojn',
@@ -1098,7 +1148,7 @@ export const eo = defineLocale({
     ageDays: days => `antaŭ ${days} t`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} ĵetonoj`,
+    tokens: value => `${value} ĵetonoj`
   },
   commandCenter: {
     close: 'Fermi komandocentron',
@@ -1128,7 +1178,7 @@ export const eo = defineLocale({
       generatedTag: 'Generita',
       adoptFailed: 'Ne eblis adopti tiun dorlotbeston.',
       toggleFailed: 'Ne eblis ŝalti aŭ malŝalti la dorlotbeston.',
-      noneAvailable: 'Neniu dorlotbesto disponeblas — elektu unu sube por instali.',
+      noneAvailable: 'Neniu dorlotbesto disponeblas — elektu unu sube por instali.'
     },
     generatePet: {
       title: 'Generi dorlotbeston',
@@ -1152,12 +1202,13 @@ export const eo = defineLocale({
       slowProviderHint: 'Ĉi tio povas daŭri plurajn minutojn',
       remix: 'Remiksi',
       remixConfirmTitle: 'Ĉu remiksi ĉi tiun aspekton?',
-      remixConfirmBody: 'Ĉi tio generas novan aron da skizoj uzante ĉi tiun kiel komencan punkton. Ĝi povas daŭri plurajn minutojn.',
+      remixConfirmBody:
+        'Ĉi tio generas novan aron da skizoj uzante ĉi tiun kiel komencan punkton. Ĝi povas daŭri plurajn minutojn.',
       genericError: 'Generado malsukcesis — provu denove aŭ elektu sugeston.',
       referenceImageTooLarge: 'La referenca bildo tro grandas. Uzu unu sub 16 MB.',
       referenceImageInvalid: 'Ne eblis legi tiun referencan bildon. Provu PNG, JPG, WebP aŭ GIF.',
       adopt: 'Adopti',
-      startOver: 'Rekomenci',
+      startOver: 'Rekomenci'
     },
     installTheme: {
       title: 'Instali etoson…',
@@ -1169,7 +1220,7 @@ export const eo = defineLocale({
       install: 'Instali',
       installing: 'Instalado...',
       installed: 'Instalita',
-      installs: count => `${count} instaloj`,
+      installs: count => `${count} instaloj`
     },
     settingsFields: 'Agordaj kampoj',
     mcpServers: 'MCP-serviloj',
@@ -1178,49 +1229,49 @@ export const eo = defineLocale({
       maintenance: 'Bontenado',
       sessions: 'Sesioj',
       system: 'Sistemo',
-      usage: 'Uzado',
+      usage: 'Uzado'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostiko, savkopioj, prizorganto kaj memordatumoj',
       sessions: 'Serĉi kaj administri seancojn',
       system: 'Stato, protokoloj kaj sistemaj agoj',
-      usage: 'Ĵetonoj, kostoj kaj lertaktiveco laŭ tempo',
+      usage: 'Ĵetonoj, kostoj kaj lertaktiveco laŭ tempo'
     },
     nav: {
       newChat: {
         title: 'Nova seanco',
-        detail: 'Komenci novan seancon',
+        detail: 'Komenci novan seancon'
       },
       settings: {
         title: 'Agordoj',
-        detail: 'Agordi OpenAmer-labortablon',
+        detail: 'Agordi OpenAmer-labortablon'
       },
       skills: {
         title: 'Kapabloj',
-        detail: 'Lertoj, iloj kaj MCP-serviloj',
+        detail: 'Lertoj, iloj kaj MCP-serviloj'
       },
       messaging: {
         title: 'Mesaĝado',
-        detail: 'Agordu Telegram, Slack, Discord kaj pli',
+        detail: 'Agordu Telegram, Slack, Discord kaj pli'
       },
       artifacts: {
         title: 'Artefaktoj',
-        detail: 'Trarigardi generitajn eligojn',
-      },
+        detail: 'Trarigardi generitajn eligojn'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Panelo de seancoj',
-        detail: 'Serĉi, pingli kaj administri seancojn',
+        detail: 'Serĉi, pingli kaj administri seancojn'
       },
       system: {
         title: 'Sistema panelo',
-        detail: 'Stato de pordego, protokoloj, restartigo/ĝisdatigo',
+        detail: 'Stato de pordego, protokoloj, restartigo/ĝisdatigo'
       },
       usage: {
         title: 'Panelo pri uzado',
-        detail: 'Ĵetonoj, kostoj kaj aktiveco de lertoj',
-      },
+        detail: 'Ĵetonoj, kostoj kaj aktiveco de lertoj'
+      }
     },
     providerNavigate: 'Navigi',
     providerSessions: 'Sesioj',
@@ -1275,7 +1326,8 @@ export const eo = defineLocale({
       backup: 'Krei sekurkopion',
       backupDesc: 'Zipi agordon, memoraĵojn, kapablojn kaj seancojn',
       debugShare: 'Sencimiga kunhavigo',
-      debugShareDesc: 'Alŝuti raporton kun kaŝitaj sentemaj informoj + protokolojn, ricevi kunhaveblajn ligilojn (aŭtomate forviŝiĝos post 6h)',
+      debugShareDesc:
+        'Alŝuti raporton kun kaŝitaj sentemaj informoj + protokolojn, ricevi kunhaveblajn ligilojn (aŭtomate forviŝiĝos post 6h)',
       debugShareRunning: 'Alŝutado de sencimiga raporto...',
       debugShareLinks: 'Kunhavigaj ligiloj',
       debugShareFailed: 'Sencimiga kunhavigo malsukcesis',
@@ -1308,8 +1360,8 @@ export const eo = defineLocale({
       actionStarted: name => `${name} startis — sekvante journalon...`,
       actionFailed: name => `${name} malsukcesis lanĉiĝi`,
       running: 'Rulante...',
-      viewLog: 'Registro de agoj',
-    },
+      viewLog: 'Registro de agoj'
+    }
   },
   messaging: {
     search: 'Serĉi mesaĝadon...',
@@ -1324,7 +1376,7 @@ export const eo = defineLocale({
       not_configured: 'Bezonas agordon',
       pending_restart: 'Bezonas restartigon',
       retrying: 'Reprovante',
-      startup_failed: 'Starto malsukcesis',
+      startup_failed: 'Starto malsukcesis'
     },
     unknown: 'Nekonata',
     hintPendingRestart: 'Restartigu la pordegon el la statobreto por apliki ĉi tiun ŝanĝon.',
@@ -1363,127 +1415,126 @@ export const eo = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Bota ĵetono',
         help: 'Kreu boton per @BotFather, poste algluu la ĵetonon, kiun ĝi donas al vi.',
-        placeholder: 'Algluu ĵetonon de Telegram-boto',
+        placeholder: 'Algluu ĵetonon de Telegram-boto'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Permesitaj Telegram-uzantaj ID-oj',
-        help: 'Rekomendata. Komo-separitaj nombraj ID-oj de @userinfobot. Sen ĉi tio, iu ajn povas sendi privatan mesaĝon al via boto.',
+        help: 'Rekomendata. Komo-separitaj nombraj ID-oj de @userinfobot. Sen ĉi tio, iu ajn povas sendi privatan mesaĝon al via boto.'
       },
       TELEGRAM_PROXY: {
         label: 'Prokura URL',
-        help: 'Nur necesa en retoj, kie Telegram estas blokita.',
+        help: 'Nur necesa en retoj, kie Telegram estas blokita.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Bota ĵetono',
-        help: 'Kreu aplikaĵon en Discord Developer Portal, aldonu boton, poste algluu ĝian ĵetonon.',
+        help: 'Kreu aplikaĵon en Discord Developer Portal, aldonu boton, poste algluu ĝian ĵetonon.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Permesitaj Discord-uzantaj ID-oj',
-        help: 'Rekomendata. Komo-separitaj Discord-uzantaj ID-oj.',
+        help: 'Rekomendata. Komo-separitaj Discord-uzantaj ID-oj.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Responda stilo',
-        help: 'unua, ĉiuj aŭ malŝaltita.',
+        help: 'unua, ĉiuj aŭ malŝaltita.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Permesi ĉiujn Discord-uzantojn',
-        help: 'Nur por evoluigo. Se vera, iu ajn povas private mesaĝi la roboton sen permeslisto.',
+        help: 'Nur por evoluigo. Se vera, iu ajn povas private mesaĝi la roboton sen permeslisto.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID de hejma kanalo',
-        help: 'Kanalo kie la roboto sendas proaktivajn mesaĝojn (cron-eligoj, memorigoj).',
+        help: 'Kanalo kie la roboto sendas proaktivajn mesaĝojn (cron-eligoj, memorigoj).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Nomo de hejma kanalo',
-        help: 'Montra nomo por la hejma kanalo en protokoloj kaj stato-eligoj.',
+        help: 'Montra nomo por la hejma kanalo en protokoloj kaj stato-eligoj.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Permesi ĉiujn uzantojn de iMessage',
-        help: 'Se vera, preterpasi la permesliston de BlueBubbles.',
+        help: 'Se vera, preterpasi la permesliston de BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Permesi ĉiujn uzantojn de Mattermost',
+        label: 'Permesi ĉiujn uzantojn de Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Hejma kanalo',
+        label: 'Hejma kanalo'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Permesi ĉiujn uzantojn de QQ',
+        label: 'Permesi ĉiujn uzantojn de QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Hejma kanalo de QQ',
-        help: 'Defaŭlta kanalo aŭ grupo por cron-elsendo.',
+        help: 'Defaŭlta kanalo aŭ grupo por cron-elsendo.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Nomo de hejma kanalo de QQ',
+        label: 'Nomo de hejma kanalo de QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack-bota ĵetono',
         help: 'Uzu la robotan ĵetonon el OAuth & Permissions post instalo de via Slack-a aplikaĵo.',
-        placeholder: 'Alglui robotan ĵetonon de Slack',
+        placeholder: 'Alglui robotan ĵetonon de Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Ĵetono de Slack-aplikaĵo',
         help: 'Uzu la aplikaĵnivelan ĵetonon bezonatan por Socket Mode.',
-        placeholder: 'Alglui ĵetonon de Slack-aplikaĵo',
+        placeholder: 'Alglui ĵetonon de Slack-aplikaĵo'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Permesitaj uzantaj ID-oj de Slack',
-        help: 'Rekomendita. Komo-apartigitaj Slack-uzantaj IDoj.',
+        help: 'Rekomendita. Komo-apartigitaj Slack-uzantaj IDoj.'
       },
       MATTERMOST_URL: {
         label: 'Servila URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Bota ĵetono',
+        label: 'Bota ĵetono'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Permesitaj uzantaj IDoj',
-        help: 'Rekomendita. Komo-apartigitaj Mattermost-uzantaj IDoj.',
+        help: 'Rekomendita. Komo-apartigitaj Mattermost-uzantaj IDoj.'
       },
       MATRIX_HOMESERVER: {
         label: 'Hejmservila URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Akirĵetono',
+        label: 'Akirĵetono'
       },
       MATRIX_USER_ID: {
         label: 'Bota uzanta IDo',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Permesitaj Matrix-uzantaj IDoj',
-        help: 'Rekomendita. Komo-apartigitaj uzantaj IDoj en formato @user:server.',
+        help: 'Rekomendita. Komo-apartigitaj uzantaj IDoj en formato @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal-ponta URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL de funkcianta signal-cli REST-ponto.',
+        help: 'URL de funkcianta signal-cli REST-ponto.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Telefonnumero',
-        help: 'La numero registrita ĉe via signal-cli-ponto.',
+        help: 'La numero registrita ĉe via signal-cli-ponto.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Permesitaj Signal-uzantoj',
-        help: 'Rekomendita. Komo-apartigitaj Signal-identigiloj.',
+        help: 'Rekomendita. Komo-apartigitaj Signal-identigiloj.'
       },
       WHATSAPP_ENABLED: {
         label: 'Ŝalti WhatsApp-ponton',
-        help: 'Aŭtomate agordata per la suba ŝaltilo. Ne ŝanĝu ĝin se vi ne certe bezonas.',
+        help: 'Aŭtomate agordata per la suba ŝaltilo. Ne ŝanĝu ĝin se vi ne certe bezonas.'
       },
       WHATSAPP_MODE: {
-        label: 'Ponta reĝimo',
+        label: 'Ponta reĝimo'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Permesitaj WhatsApp-uzantoj',
-        help: 'Rekomendata. Telefonnumeroj aŭ WhatsApp-identigiloj apartigitaj per komoj.',
-      },
+        help: 'Rekomendata. Telefonnumeroj aŭ WhatsApp-identigiloj apartigitaj per komoj.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Serĉi retkroĉilojn...',
@@ -1493,7 +1544,8 @@ export const eo = defineLocale({
     hint: 'Abonaj ŝanĝoj tujreŝargiĝas kiam la ricevilo funkcias. Malŝaltitaj abonoj malakceptas alvenantajn eventojn.',
     empty: 'Ankoraŭ neniu retkroĉila abono.',
     disabledTitle: 'Retkroĉila ricevilo malŝaltita',
-    disabledBody: 'Retkroĉiloj estas propra porda platformo. Ŝaltu ilin ĉi tie por akcepti alvenantajn HTTP-eventojn; babilkanaloj necesas nur kiam abono transdonas al Telegram, Discord, Slack aŭ alia kanalo.',
+    disabledBody:
+      'Retkroĉiloj estas propra porda platformo. Ŝaltu ilin ĉi tie por akcepti alvenantajn HTTP-eventojn; babilkanaloj necesas nur kiam abono transdonas al Telegram, Discord, Slack aŭ alia kanalo.',
     enable: 'Ŝalti retkroĉilojn',
     enabling: 'Ŝaltante...',
     enabled: (name: string) => `Ŝaltita: "${name}"`,
@@ -1510,7 +1562,8 @@ export const eo = defineLocale({
     toggleFailed: (name: string) => `Malsukcesis ĝisdatigi "${name}"`,
     newSubscription: 'Nova abono',
     restarting: 'Enirejo restartigata...',
-    restartNeeded: 'Retkroĉiloj estas ebligitaj, sed la enirejo ankoraŭ bezonas restartigon antaŭ ol la ricevilo povas ekfunkcii.',
+    restartNeeded:
+      'Retkroĉiloj estas ebligitaj, sed la enirejo ankoraŭ bezonas restartigon antaŭ ol la ricevilo povas ekfunkcii.',
     restartGateway: 'Restartigi enirejon',
     restartingGateway: 'Restartigante...',
     restartFailed: (detail: string) => `Restartigo de enirejo malsukcesis${detail}`,
@@ -1546,8 +1599,8 @@ export const eo = defineLocale({
       discord: 'Discordo',
       slack: 'Slack',
       email: 'Retpoŝto',
-      github_comment: 'GitHub-komento',
-    },
+      github_comment: 'GitHub-komento'
+    }
   },
   profiles: {
     close: 'Fermi profilojn',
@@ -1625,7 +1678,7 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
     failedLoadSoul: 'Malsukcesis ŝargi SOUL.md',
     failedSaveSoul: 'Malsukcesis konservi SOUL.md',
     failedCreate: 'Malsukcesis krei profilon',
-    failedRename: 'Malsukcesis renomi profilon',
+    failedRename: 'Malsukcesis renomi profilon'
   },
   cron: {
     close: 'Fermi cron',
@@ -1640,14 +1693,14 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       paused: 'paŭzita',
       disabled: 'malŝaltita',
       error: 'eraro',
-      completed: 'kompletigita',
+      completed: 'kompletigita'
     },
     deliveryLabels: {
       local: 'Ĉi tiu komputilo',
       telegram: 'Telegramo',
       discord: 'Discordo',
       slack: 'Slack',
-      email: 'Retpoŝto',
+      email: 'Retpoŝto'
     },
     scheduleLabels: {
       daily: 'Ĉiutage',
@@ -1656,7 +1709,7 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       monthly: 'Ĉiumonate',
       hourly: 'Ĉiuhore',
       'every-15-minutes': 'Ĉiujn 15 minutojn',
-      custom: 'Propra',
+      custom: 'Propra'
     },
     scheduleHints: {
       daily: 'Ĉiutage je 9:00 matene',
@@ -1665,7 +1718,7 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       monthly: 'La unuan tagon de ĉiu monato je 9:00 matene',
       hourly: 'Je la komenco de ĉiu horo',
       'every-15-minutes': 'Ĉiujn 15 minutojn',
-      custom: 'Cron-sintakso aŭ natura lingvo',
+      custom: 'Cron-sintakso aŭ natura lingvo'
     },
     days: {
       '0': 'Dimanĉo',
@@ -1675,7 +1728,7 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       '4': 'Ĵaŭdo',
       '5': 'Vendredo',
       '6': 'Sabato',
-      '7': 'Dimanĉo',
+      '7': 'Dimanĉo'
     },
     dayFallback: value => `tago ${value}`,
     everyDayAt: time => `Ĉiutage je ${time}`,
@@ -1685,7 +1738,8 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
     topOfHour: 'Je la komenco de ĉiu horo',
     everyHourAt: minute => `Ĉiuhore je :${minute}`,
     newCron: 'Nova cron',
-    emptyDescNew: 'Planu prompton por ekzekuti laŭ cron-esprimo. OpenAmer ekzekutos ĝin kaj liveros rezultojn al la celloko, kiun vi elektas.',
+    emptyDescNew:
+      'Planu prompton por ekzekuti laŭ cron-esprimo. OpenAmer ekzekutos ĝin kaj liveros rezultojn al la celloko, kiun vi elektas.',
     emptyDescSearch: 'Provu pli vastan serĉdemandon.',
     emptyTitleNew: 'Ankoraŭ neniuj planitaj taskoj',
     emptyTitleSearch: 'Neniuj kongruoj',
@@ -1744,7 +1798,7 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
     createAction: 'Krei cron',
     tabs: {
       jobs: 'Taskoj',
-      blueprints: 'Ŝablonoj',
+      blueprints: 'Ŝablonoj'
     },
     blueprints: {
       tab: 'Ŝablonoj',
@@ -1758,8 +1812,8 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       loading: 'Ŝargado de ŝablonoj...',
       failedLoad: 'Malsukcesis ŝargi ŝablonojn',
       emptyTitle: 'Neniuj ŝablonoj disponeblaj',
-      emptyDesc: 'Neniuj aŭtomatigaj ŝablonoj disponeblas en ĉi tiu backend.',
-    },
+      emptyDesc: 'Neniuj aŭtomatigaj ŝablonoj disponeblas en ĉi tiu backend.'
+    }
   },
   artifacts: {
     search: 'Serĉi artefaktojn...',
@@ -1793,14 +1847,14 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
     kindLink: 'ligilo',
     chat: 'Babilejo',
     copyUrl: 'Kopii URL',
-    copyPath: 'Kopii vojon',
+    copyPath: 'Kopii vojon'
   },
   sidebar: {
     nav: {
       'new-session': 'Nova sesio',
       skills: 'Kapabloj',
       messaging: 'Mesaĝado',
-      artifacts: 'Artefaktoj',
+      artifacts: 'Artefaktoj'
     },
     searchAria: 'Serĉi sesiojn',
     searchPlaceholder: 'Serĉi sesiojn…',
@@ -1832,7 +1886,7 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       namePlaceholder: 'ekz. Skunkworks',
       foldersLabel: 'Dosierujoj',
       ideaLabel: 'Ideo',
-      ideaPlaceholder: "Pri kio temas ĉi tiu projekto? (konserviĝas en IDEA.md)",
+      ideaPlaceholder: 'Pri kio temas ĉi tiu projekto? (konserviĝas en IDEA.md)',
       ideaGenerate: 'Generi ideon',
       ideaGenerating: 'Generante…',
       ideaShuffle: 'Miksi ŝablonojn',
@@ -1852,8 +1906,10 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       copyPath: 'Kopii vojon',
       removeFromSidebar: 'Kaŝi el la flanka panelo',
       createFailed: 'Ne eblis krei projekton',
-      staleBackend: 'Ĝisdatigu la backend de OpenAmer por krei projektojn — via backend estas pli malnova ol ĉi tiu labortabla aplikaĵo (Agordoj → Ĝisdatigoj → Backend).',
-      deleteConfirm: 'Ĉi tio forigas la konservitan projekton el OpenAmer. Dosieroj, git-deponejoj kaj laborarboj restas netuŝitaj.',
+      staleBackend:
+        'Ĝisdatigu la backend de OpenAmer por krei projektojn — via backend estas pli malnova ol ĉi tiu labortabla aplikaĵo (Agordoj → Ĝisdatigoj → Backend).',
+      deleteConfirm:
+        'Ĉi tio forigas la konservitan projekton el OpenAmer. Dosieroj, git-deponejoj kaj laborarboj restas netuŝitaj.',
       startWork: 'Nova laborarbo',
       newWorktreeTitle: 'Nova laborarbo',
       newWorktreeDesc: 'Nomu la branĉon por ĉi tiu laborarbo.',
@@ -1874,13 +1930,15 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       noBranches: 'Neniuj branĉoj trovitaj',
       removeWorktree: 'Forigi laborarbujon',
       removeWorktreeFailed: 'Ne eblis forigi laborarbujon (nekomititaj ŝanĝoj?)',
-      removeWorktreeConfirm: 'Forigu ĝin el Git (forigas la dosierujon de la laborarbujo; la branĉo restas), aŭ simple kaŝu la lenon el la flanka panelo kaj lasu la laborarbujon sur la disko.',
-      removeWorktreeDirty: 'Ĉi tiu laborarbujo havas nekomititajn ŝanĝojn. Devige forigu ĝin (forĵetas tiujn ŝanĝojn), aŭ simple kaŝu la lenon kaj lasu ĝin sur la disko.',
+      removeWorktreeConfirm:
+        'Forigu ĝin el Git (forigas la dosierujon de la laborarbujo; la branĉo restas), aŭ simple kaŝu la lenon el la flanka panelo kaj lasu la laborarbujon sur la disko.',
+      removeWorktreeDirty:
+        'Ĉi tiu laborarbujo havas nekomititajn ŝanĝojn. Devige forigu ĝin (forĵetas tiujn ŝanĝojn), aŭ simple kaŝu la lenon kaj lasu ĝin sur la disko.',
       forceRemove: 'Devige forigi',
       enter: label => `Malfermi ${label}`,
       reorder: label => `Reordigi ${label}`,
       toggle: label => `Baskuligi ${label} seancojn`,
-      back: 'Ĉiuj projektoj',
+      back: 'Ĉiuj projektoj'
     },
     newSessionIn: label => `Nova seanco en ${label}`,
     showMoreIn: (count, label) => `Montri ${count} pli en ${label}`,
@@ -1918,15 +1976,15 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       ageNow: 'nun',
       ageDay: 't',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Pli frue hodiaŭ',
       yesterday: 'Hieraŭ',
       thisWeek: 'Pli frue ĉi-semajne',
       lastWeek: 'Pasinta semajno',
-      thisMonth: 'Pli frue ĉi-monate',
-    },
+      thisMonth: 'Pli frue ĉi-monate'
+    }
   },
   composer: {
     message: 'Mesaĝo',
@@ -1937,20 +1995,20 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
     newSessionPlaceholders: [
       'Kion ni konstruas?',
       'Donu taskon al OpenAmer',
-      "Pri kio vi pensas?",
+      'Pri kio vi pensas?',
       'Priskribu, kion vi bezonas',
       'Kion ni traktu?',
       'Demandu ion ajn',
-      'Komencu per celo',
+      'Komencu per celo'
     ],
     followUpPlaceholders: [
       'Sendu sekvan mesaĝon',
       'Aldonu pli da kunteksto',
       'Precizigu la peton',
-      "Kio sekvas?",
+      'Kio sekvas?',
       'Daŭrigu',
       'Puŝu pli antaŭen',
-      'Ĝustigu aŭ daŭrigu',
+      'Ĝustigu aŭ daŭrigu'
     ],
     startVoice: 'Komencu voĉan interparolon',
     queueMessage: 'Vicigu mesaĝon',
@@ -1986,7 +2044,7 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       '/resume': 'daŭrigi antaŭan seancon',
       '/details': 'regi detalnivelon de la transskribo',
       '/copy': 'kopii elektaĵon aŭ lastan mesaĝon de asistanto',
-      '/quit': 'eliri el OpenAmer',
+      '/quit': 'eliri el OpenAmer'
     },
     hotkeyDescs: {
       'composer.mention': 'referenci dosierojn, dosierujojn, URL-adresojn, git',
@@ -1996,7 +2054,7 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       'composer.sendQueued': 'sendi sekvan vicon el la atendovico',
       'keybinds.openPanel': 'ĉiuj klavaraj mallongigoj',
       'composer.cancel': 'fermi ŝprucfenestron · nuligi plenumon',
-      'composer.history': 'cikli ŝprucfenestron / historion',
+      'composer.history': 'cikli ŝprucfenestron / historion'
     },
     attachUrlTitle: 'Alkroĉi URL-adreson',
     attachUrlDesc: 'OpenAmer alportos la paĝon kaj inkluzivos ĝin kiel kuntekston por ĉi tiu vico.',
@@ -2017,7 +2075,8 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
     queueResume: 'Daŭrigi',
     queueResumeTip: 'Paŭzigita per Halti — daŭrigu sendadon de atendaj vicoj',
     queueStuckTitle: 'Atenda mesaĝo ne sendita',
-    queueStuckBody: 'Atenda vico daŭre malsukcesis sendiĝi. Ĝi ankoraŭ estas en la atendovico — provu sendi ĝin denove.',
+    queueStuckBody:
+      'Atenda vico daŭre malsukcesis sendiĝi. Ĝi ankoraŭ estas en la atendovico — provu sendi ĝin denove.',
     previewUnavailable: 'Antaŭrigardo ne havebla',
     previewLabel: label => `Antaŭrigardo ${label}`,
     couldNotPreview: label => `Ne eblis antaŭrigardi ${label}`,
@@ -2047,19 +2106,19 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       codeReview: {
         label: 'Kodrevizio',
         description: 'Reviziu la nunan ŝanĝon por regresoj, preterlasitaj randokazoj kaj mankantaj testoj.',
-        text: 'Bonvolu revizii ĉi tion por cimoj, regresioj kaj mankantaj testoj.',
+        text: 'Bonvolu revizii ĉi tion por cimoj, regresioj kaj mankantaj testoj.'
       },
       implementationPlan: {
         label: 'Efektiviga plano',
         description: 'Skizu aliron antaŭ ol tuŝi kodon, por ke la diferenco restu fokusita.',
-        text: 'Bonvolu fari koncizan efektivigan planon antaŭ ŝanĝi kodon.',
+        text: 'Bonvolu fari koncizan efektivigan planon antaŭ ŝanĝi kodon.'
       },
       explainThis: {
         label: 'Klarigu ĉi tion',
         description: 'Trairu kiel funkcias la elektita kodo kaj ligilu al la ŝlosilaj dosieroj.',
-        text: 'Bonvolu klarigi kiel ĉi tio funkcias kaj montri al mi la ŝlosilajn dosierojn.',
-      },
-    },
+        text: 'Bonvolu klarigi kiel ĉi tio funkcias kaj montri al mi la ŝlosilajn dosierojn.'
+      }
+    }
   },
   statusStack: {
     agents: 'Agentoj',
@@ -2089,8 +2148,10 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       viewAsList: 'Montri kiel liston',
       revert: 'Malfari',
       revertAll: 'Malfari ĉion',
-      revertConfirm: 'Ĉu forigi la ŝanĝojn de ĉi tiu dosiero kaj restarigi ĝin al la kommitita stato? Ĉi tio ne povas esti malfarita.',
-      revertAllConfirm: 'Ĉu forigi ĉiun ŝanĝon kaj restarigi dosierojn al la kommitita stato? Ĉi tio ne povas esti malfarita.',
+      revertConfirm:
+        'Ĉu forigi la ŝanĝojn de ĉi tiu dosiero kaj restarigi ĝin al la kommitita stato? Ĉi tio ne povas esti malfarita.',
+      revertAllConfirm:
+        'Ĉu forigi ĉiun ŝanĝon kaj restarigi dosierojn al la kommitita stato? Ĉi tio ne povas esti malfarita.',
       staged: 'Indeksita',
       noChanges: 'Neniuj ŝanĝoj',
       notRepo: 'Ne estas git-deponejo',
@@ -2107,13 +2168,14 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       openPr: 'Malfermi PR',
       ghMissing: 'Instalu la GitHub CLI (gh) kaj ensalutu por malfermi PR-ojn',
       agentShip: 'Petu OpenAmer malfermi PR',
-      agentShipPrompt: 'Reviziu la aktualajn ŝanĝojn, komitu ilin per klara mesaĝo laŭ konvenciaj komitoj, puŝu la branĉon kaj malfermu PR.',
+      agentShipPrompt:
+        'Reviziu la aktualajn ŝanĝojn, komitu ilin per klara mesaĝo laŭ konvenciaj komitoj, puŝu la branĉon kaj malfermu PR.',
       newBranch: 'Nova branĉo',
       branchOffFrom: base => `Nova branĉo el ${base}`,
       switchTo: branch => `Ŝanĝi al ${branch}`,
       switchFailed: branch => `Ne eblis ŝanĝi al ${branch}`,
-      worktrees: 'Laborarboj',
-    },
+      worktrees: 'Laborarboj'
+    }
   },
   updates: {
     stages: {
@@ -2128,7 +2190,7 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       done: 'Ĝisdatigo finita',
       manual: 'Ĝisdatigu per via terminalo',
       guiSkew: 'Ĝisdatigu la labortablan aplikaĵon',
-      error: 'Ĝisdatigo paŭzita',
+      error: 'Ĝisdatigo paŭzita'
     },
     checking: 'Serĉante ĝisdatigojn…',
     checkFailedTitle: 'Ne eblis kontroli ĝisdatigojn',
@@ -2148,15 +2210,19 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
     maybeLater: 'Eble poste',
     moreChanges: count => `+ ${count} pliaj ŝanĝoj${count === 1 ? 'ŝanĝo' : 'ŝanĝoj'} inkluzivaj.`,
     manualTitle: 'Ĝisdatigu el via terminalo',
-    manualBody: 'Vi instalis OpenAmer el la komanda linio, do ĝisdatigoj okazas ankaŭ tie. Algluu ĉi tion en vian terminalon:',
+    manualBody:
+      'Vi instalis OpenAmer el la komanda linio, do ĝisdatigoj okazas ankaŭ tie. Algluu ĉi tion en vian terminalon:',
     manualPickedUp: 'OpenAmer uzos la novan version ĉe la sekva lanĉo.',
     guiSkewTitle: 'Ĝisdatigu la surtablan aplikaĵon',
-    guiSkewBody: 'La malantaŭaĵo estis ĝisdatigita, sed ĉi tiu pakaĵo de la surtabla aplikaĵo ne ŝanĝiĝis. Ĝisdatigu aŭ reinstalu la surtablan aplikaĵon OpenAmer (vian AppImage / .deb / .rpm) por kongrui.',
+    guiSkewBody:
+      'La malantaŭaĵo estis ĝisdatigita, sed ĉi tiu pakaĵo de la surtabla aplikaĵo ne ŝanĝiĝis. Ĝisdatigu aŭ reinstalu la surtablan aplikaĵon OpenAmer (vian AppImage / .deb / .rpm) por kongrui.',
     copy: 'Kopii',
     copied: 'Kopiite',
     done: 'Farite',
-    applyingBody: 'La ĝisdatigilo de OpenAmer ekregas en sia propra fenestro kaj aŭtomate remalfermas OpenAmer kiam ĝi finiĝos. Bonvolu ne remalfermi OpenAmer mem dum ĝi ĝisdatiĝas.',
-    applyingBodyBackend: 'La fora malantaŭaĵo aplikas la ĝisdatigon kaj restartos. OpenAmer rekonektiĝos aŭtomate kiam ĝi revenos.',
+    applyingBody:
+      'La ĝisdatigilo de OpenAmer ekregas en sia propra fenestro kaj aŭtomate remalfermas OpenAmer kiam ĝi finiĝos. Bonvolu ne remalfermi OpenAmer mem dum ĝi ĝisdatiĝas.',
+    applyingBodyBackend:
+      'La fora malantaŭaĵo aplikas la ĝisdatigon kaj restartos. OpenAmer rekonektiĝos aŭtomate kiam ĝi revenos.',
     applyingClose: 'Ĉi tiu fenestro fermiĝos dum la ĝisdatigo okazas, poste OpenAmer remalfermiĝos mem.',
     errorTitle: 'La ĝisdatigo ne finiĝis',
     errorBody: 'Neniu zorgo — nenio perdiĝis. Vi povas reprovi nun.',
@@ -2167,12 +2233,14 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       restarting: 'La malantaŭa parto restartiĝas por ŝargi la ĝisdatigon…',
       notAvailable: 'Ĝisdatigo ne disponeblas por ĉi tiu malantaŭa parto.',
       failed: 'Ĝisdatigo de la malantaŭa parto malsukcesis.',
-      noReturn: 'La malantaŭa parto ne revenis en servon. La ĝisdatigo eble ne finiĝis — kontrolu la gastiganton de la malantaŭa parto.',
+      noReturn:
+        'La malantaŭa parto ne revenis en servon. La ĝisdatigo eble ne finiĝis — kontrolu la gastiganton de la malantaŭa parto.'
     },
     appErrors: {
-      updateLocked: 'Ĝisdatigo nuligita: alia OpenAmer-fenestro aŭ terminalo, kiu rulas openamer, blokas ĉi tiun instalon. Fermu ĝin kaj reprovu.',
-      updateFailed: 'La ĝisdatigo ne finiĝis. Ne zorgu — nenio perdiĝis. Vi povas reprovi nun.',
-    },
+      updateLocked:
+        'Ĝisdatigo nuligita: alia OpenAmer-fenestro aŭ terminalo, kiu rulas openamer, blokas ĉi tiun instalon. Fermu ĝin kaj reprovu.',
+      updateFailed: 'La ĝisdatigo ne finiĝis. Ne zorgu — nenio perdiĝis. Vi povas reprovi nun.'
+    }
   },
   install: {
     stageStates: {
@@ -2180,25 +2248,29 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       running: 'Instalante',
       succeeded: 'Finita',
       skipped: 'Preterlasita',
-      failed: 'Malsukcesis',
+      failed: 'Malsukcesis'
     },
     oneTimeTitle: 'OpenAmer bezonas unufojan instalon',
-    unsupportedDesc: platform => `Aŭtomata instalado ĉe unua lanĉo ankoraŭ ne disponeblas ĉe ${platform}. Malfermu terminalon kaj rulu la suban komandon, poste relanĉu ĉi tiun aplikaĵon. Postaj lanĉoj preteros ĉi tiun paŝon.`,
+    unsupportedDesc: platform =>
+      `Aŭtomata instalado ĉe unua lanĉo ankoraŭ ne disponeblas ĉe ${platform}. Malfermu terminalon kaj rulu la suban komandon, poste relanĉu ĉi tiun aplikaĵon. Postaj lanĉoj preteros ĉi tiun paŝon.`,
     installCommand: 'Instala komando',
     copyCommand: 'Kopii komandon',
     viewDocs: 'Vidi instalajn dokumentojn',
     installTo: 'Instalos al',
     retryAfterRun: 'Mi rulis ĝin -- reprovu',
     setupChoiceTitle: 'Agordi OpenAmer Desktop',
-    setupChoiceDesc: 'Konektu ĉi tiun aplikaĵon al OpenAmer-pordego, kiun vi jam funkciigas, aŭ instaligu OpenAmer loke sur ĉi tiu komputilo.',
+    setupChoiceDesc:
+      'Konektu ĉi tiun aplikaĵon al OpenAmer-pordego, kiun vi jam funkciigas, aŭ instaligu OpenAmer loke sur ĉi tiu komputilo.',
     connectExistingTitle: 'Konekti al ekzistanta OpenAmer',
     connectExistingShort: 'Konekti ekzistantan',
-    connectExistingDesc: 'Uzu malproksiman servilan parton kun sesia ĵetono aŭ ensaluto per retumilo. Neniu loka instalado komenciĝos.',
+    connectExistingDesc:
+      'Uzu malproksiman servilan parton kun sesia ĵetono aŭ ensaluto per retumilo. Neniu loka instalado komenciĝos.',
     installLocalTitle: 'Instali OpenAmer loke',
     installLocalDesc: 'Elŝutu OpenAmer, kreu ĝian Python-medion kaj rulu la servilan parton sur ĉi tiu komputilo.',
     localStartUnavailable: 'Loka instalado ne povis komenciĝi. Restartigu OpenAmer Desktop kaj provu denove.',
     remoteSetupTitle: 'Konekti al ekzistanta OpenAmer',
-    remoteSetupDesc: 'Enigu la URL de via pordego. OpenAmer Desktop detektos, ĉu necesas ĵetono aŭ ensaluto per retumilo.',
+    remoteSetupDesc:
+      'Enigu la URL de via pordego. OpenAmer Desktop detektos, ĉu necesas ĵetono aŭ ensaluto per retumilo.',
     remoteUrlTitle: 'Pordega URL',
     remoteUrlDesc: 'Uzu la bazan URL de la OpenAmer-pordego, inkluzive de https:// se malproksima.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2225,8 +2297,10 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
     failedTitle: 'Instalado malsukcesis',
     settingUpTitle: 'Pretigante OpenAmer Agent',
     finishingTitle: 'Finante',
-    failedDesc: 'Unu el la instalaj paŝoj malsukcesis. En Windows, tio povas okazi se alia OpenAmer CLI aŭ labortabla instanco funkcias. Haltigu ĉiujn funkciantajn instancojn de OpenAmer, poste reprovu. Kontrolu la detalojn sube aŭ la labortablan protokolon por la plena transskribo.',
-    activeDesc: 'Ĉi tio estas unufoja agordo. La instalilo de OpenAmer elŝutas dependaĵojn kaj agordas vian maŝinon. Postaj lanĉoj saltos ĉi tiun paŝon.',
+    failedDesc:
+      'Unu el la instalaj paŝoj malsukcesis. En Windows, tio povas okazi se alia OpenAmer CLI aŭ labortabla instanco funkcias. Haltigu ĉiujn funkciantajn instancojn de OpenAmer, poste reprovu. Kontrolu la detalojn sube aŭ la labortablan protokolon por la plena transskribo.',
+    activeDesc:
+      'Ĉi tio estas unufoja agordo. La instalilo de OpenAmer elŝutas dependaĵojn kaj agordas vian maŝinon. Postaj lanĉoj saltos ĉi tiun paŝon.',
     progress: (completed, total) => `${completed} el ${total} paŝoj finitaj`,
     currentStage: stage => ` -- nun: ${stage}`,
     fetchingManifest: 'Elŝutante instalilan manifeston...',
@@ -2240,10 +2314,10 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
     transcriptSaved: 'Plena transskribo konservita en',
     copiedOutput: 'Kopiita!',
     copyOutput: 'Kopii eligon',
-    reloadRetry: 'Reŝargi kaj reprovi',
+    reloadRetry: 'Reŝargi kaj reprovi'
   },
   onboarding: {
-    headerTitle: "Ni pretigu vin por OpenAmer Agent",
+    headerTitle: 'Ni pretigu vin por OpenAmer Agent',
     headerDesc: 'Konektu modelprovizanton por komenci babili. Plej multaj opcioj postulas unu klakon.',
     preparingInstall: 'OpenAmer finas la instaladon. Ĉi tio kutime daŭras malpli ol minuton ĉe la unua rulo.',
     starting: 'Lanĉante OpenAmer…',
@@ -2251,7 +2325,7 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
     collapse: 'Faldi',
     otherProviders: 'Aliaj provizantoj',
     haveApiKey: 'Mi havas API-ŝlosilon',
-    chooseLater: "Mi elektos provizanton poste",
+    chooseLater: 'Mi elektos provizanton poste',
     recommended: 'Rekomendata',
     connected: 'Konektita',
     featuredPitch: 'Unu abono, pli ol 300 avangardaj modeloj — la rekomendata maniero uzi OpenAmer',
@@ -2260,28 +2334,28 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
     apiKeyOptions: {
       fireworks: {
         short: 'rekta modela API',
-        description: 'Rekta aliro al modeloj gastigitaj de Fireworks AI.',
+        description: 'Rekta aliro al modeloj gastigitaj de Fireworks AI.'
       },
       openrouter: {
         short: 'unu ŝlosilo, multaj modeloj',
-        description: 'Gastigas centojn da modeloj malantaŭ unu ŝlosilo. Bona defaŭlto por novaj instalaĵoj.',
+        description: 'Gastigas centojn da modeloj malantaŭ unu ŝlosilo. Bona defaŭlto por novaj instalaĵoj.'
       },
       openai: {
         short: 'Modeloj de klaso GPT',
-        description: 'Rekta aliro al modeloj OpenAI.',
+        description: 'Rekta aliro al modeloj OpenAI.'
       },
       gemini: {
         short: 'Modeloj Gemini',
-        description: 'Rekta aliro al modeloj Google Gemini.',
+        description: 'Rekta aliro al modeloj Google Gemini.'
       },
       xai: {
         short: 'Modeloj Grok',
-        description: 'Rekta aliro al modeloj xAI Grok.',
+        description: 'Rekta aliro al modeloj xAI Grok.'
       },
       local: {
         short: 'memgastigita',
-        description: 'Direktu OpenAmer al loka aŭ memgastigita OpenAI-kongrua finpunkto (vLLM, llama.cpp, Ollama ktp).',
-      },
+        description: 'Direktu OpenAmer al loka aŭ memgastigita OpenAI-kongrua finpunkto (vLLM, llama.cpp, Ollama ktp).'
+      }
     },
     backToSignIn: 'Reen al ensaluto',
     getKey: 'Akiri ŝlosilon',
@@ -2294,7 +2368,7 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
     flowSubtitles: {
       pkce: 'Malfermas vian navigatorn por aliĝi, poste daŭrigas ĉi tie',
       device_code: 'Malfermas kontrolan paĝon en via navegador — OpenAmer konektas aŭtomate',
-      external: 'Aliĝu unufoje en via terminalo, poste revenu al la babilado',
+      external: 'Aliĝu unufoje en via terminalo, poste revenu al la babilado'
     },
     startingSignIn: provider => `Komencante ensaluton por ${provider}...`,
     verifyingCode: provider => `Kontrolante vian kodon per ${provider}...`,
@@ -2308,11 +2382,13 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
     copyAuthCode: 'Kopiu la rajtigkodon kaj gluu ĝin sube.',
     pasteAuthCode: 'Gluu la rajtigkodon',
     reopenAuthPage: 'Remalfermu la rajtigan paĝon',
-    autoBrowser: provider => `Ni malfermis ${provider} en via retumilo. Rajtigu OpenAmer tie, kaj vi estos aŭtomate konektita — nenio por kopii aŭ alglui.`,
+    autoBrowser: provider =>
+      `Ni malfermis ${provider} en via retumilo. Rajtigu OpenAmer tie, kaj vi estos aŭtomate konektita — nenio por kopii aŭ alglui.`,
     reopenSignInPage: 'Remalfermu la aliĝan paĝon',
     waitingAuthorize: 'Atendas vian rajtigon...',
-    externalPending: provider => `${provider} ensalutas per sia propra CLI. Rulu ĉi tiun komandon en terminalo, poste revenu kaj elektu "Mi jam ensalutis":`,
-    signedIn: "Mi jam aliĝis",
+    externalPending: provider =>
+      `${provider} ensalutas per sia propra CLI. Rulu ĉi tiun komandon en terminalo, poste revenu kaj elektu "Mi jam ensalutis":`,
+    signedIn: 'Mi jam aliĝis',
     deviceCodeOpened: provider => `Ni malfermis ${provider} en via retumilo. Enigu ĉi tiun kodon tie:`,
     reopenVerification: 'Remalfermu la kontrolan paĝon',
     copy: 'Kopii',
@@ -2323,7 +2399,7 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
     price: (input, output) => `${input} enigo / ${output} eligo por miliono da ĵetonoj`,
     change: 'Ŝanĝi',
     startChatting: 'Komenci',
-    docs: provider => `${provider} dokumentoj`,
+    docs: provider => `${provider} dokumentoj`
   },
   modelPicker: {
     title: 'Ŝanĝi modelon',
@@ -2339,13 +2415,13 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
     free: 'Senpaga',
     freeTier: 'Senpaga nivelo',
     priceTitle: 'Eniga / Eliga prezo por miliono da ĵetonoj',
-    wasPrice: 'estis',
+    wasPrice: 'estis'
   },
   modelVisibility: {
     title: 'Modeloj',
     search: 'Serĉi modelojn',
     noAuthenticatedProviders: 'Neniuj aŭtentikigitaj provizantoj.',
-    addProvider: 'Aldoni provizanton…',
+    addProvider: 'Aldoni provizanton…'
   },
   shell: {
     windowControls: 'Fenestraj regiloj',
@@ -2356,7 +2432,7 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       noModels: 'Neniuj modeloj trovitaj',
       editModels: 'Redakti modelojn…',
       refreshModels: 'Refreŝigi modelojn',
-      fast: 'Rapida',
+      fast: 'Rapida'
     },
     modelOptions: {
       noOptions: 'Neniuj opcioj por ĉi tiu modelo',
@@ -2372,7 +2448,7 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       max: 'Maksimuma',
       ultra: 'Ekstrema',
       updateFailed: 'Ĝisdatigo de modela opcio malsukcesis',
-      fastFailed: 'Ĝisdatigo de rapida reĝimo malsukcesis',
+      fastFailed: 'Ĝisdatigo de rapida reĝimo malsukcesis'
     },
     gatewayMenu: {
       gateway: 'Kluzo',
@@ -2387,7 +2463,7 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       connection: label => `Konekto: ${label}`,
       recentActivity: 'Lastatempa aktiveco',
       viewAllLogs: 'Vidi ĉiujn protokolojn →',
-      messagingPlatforms: 'Mesaĝaj platformoj',
+      messagingPlatforms: 'Mesaĝaj platformoj'
     },
     approvalMode: {
       title: 'Aproba reĝimo',
@@ -2397,7 +2473,7 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       smart: 'Inteligenta',
       smartDescription: 'Aŭtomate taksi agojn kaj demandi laŭbezone',
       off: 'Malŝaltita',
-      offDescription: 'Ruli sen aprobpetoj',
+      offDescription: 'Ruli sen aprobpetoj'
     },
     statusbar: {
       unknown: 'nekonata',
@@ -2453,18 +2529,19 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
           skills: 'Kapabloj',
           subagent_definitions: 'Difinoj de subagentoj',
           system_prompt: 'Sistema instrukcio',
-          tool_definitions: 'Difinoj de iloj',
+          tool_definitions: 'Difinoj de iloj'
         },
         empty: 'Ankoraŭ neniuj kuntekstaj datumoj',
         loading: 'Ŝargante detaligon…',
         percentFull: percent => `${percent}% Plena`,
         title: 'Uzo de kunteksto',
-        tokenSummary: (used, max) => `${used} / ${max} Ĵetonoj`,
+        tokenSummary: (used, max) => `${used} / ${max} Ĵetonoj`
       },
       openContextUsage: 'Malfermi detaligon de uzo de kunteksto',
       session: 'Seanco',
       runtimeSessionElapsed: 'Daŭro de rultempa seanco',
-      yoloOn: 'YOLO ŝaltita — aŭtomate aprobas danĝerajn komandojn. Klaku por malŝalti. Shift+klako ŝaltas ĝin globale.',
+      yoloOn:
+        'YOLO ŝaltita — aŭtomate aprobas danĝerajn komandojn. Klaku por malŝalti. Shift+klako ŝaltas ĝin globale.',
       yoloOff: 'YOLO malŝaltita — kliku por aŭtomate aprobi danĝerajn komandojn. Shift+klako ŝaltas ĝin globale.',
       modelNone: 'neniu',
       noModel: 'nenia modelo',
@@ -2472,8 +2549,8 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       openModelPicker: 'Malfermi model-elektoron',
       modelPinned: 'fiksita de vi; novaj babiloj uzas tion anstataŭ la defaŭlton de Agordoj',
       modelTitle: (provider, model) => `Modelo · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Dekstra flankpanelo',
@@ -2509,7 +2586,7 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
     terminalNew: 'Nova terminalo',
     terminalCloseOthers: 'Fermi la aliajn',
     terminalCloseAll: 'Fermi ĉiujn',
-    addToChat: 'Aldoni al babilo',
+    addToChat: 'Aldoni al babilo'
   },
   preview: {
     tab: 'Antaŭrigardo',
@@ -2543,7 +2620,8 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
     unsavedChanges: 'Nesavitaj ŝanĝoj',
     saveFailed: message => `Ne eblis konservi: ${message}`,
     diskChangedTitle: 'Dosiero ŝanĝiĝis sur disko',
-    diskChangedBody: 'Ĉi tiu dosiero ŝanĝiĝis ekde kiam vi malfermis ĝin. Ĉu anstataŭigi ĝin per via versio, aŭ forĵeti viajn redaktojn kaj reŝargi?',
+    diskChangedBody:
+      'Ĉi tiu dosiero ŝanĝiĝis ekde kiam vi malfermis ĝin. Ĉu anstataŭigi ĝin per via versio, aŭ forĵeti viajn redaktojn kaj reŝargi?',
     overwrite: 'Anstataŭigi',
     discardReload: 'Forĵeti kaj reŝargi',
     console: {
@@ -2564,7 +2642,7 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       empty: 'Ankoraŭ neniuj konsolaj mesaĝoj.',
       promptHeader: 'Antaŭrigarda konsolo:',
       sentTitle: 'Sendita al babilejo',
-      sentMessage: count => `${count} journaleintrigo${count === 1 ? 'y' : 'ies'} aldonita al komponisto`,
+      sentMessage: count => `${count} journaleintrigo${count === 1 ? 'y' : 'ies'} aldonita al komponisto`
     },
     web: {
       appFailedToBoot: 'Antaŭrigarda aplikaĵo malsukcesis ekfunkcii',
@@ -2582,24 +2660,27 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       showConsole: 'Montri antaŭrigardan konzolon',
       hideDevTools: 'Kaŝi antaŭrigardajn programilojn',
       openDevTools: 'Malfermi antaŭrigardajn programilojn',
-      finishedRestarting: message => `OpenAmer finis restarigi la antaŭrigardan servilon${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer finis restarigi la antaŭrigardan servilon${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Restarigo de servilo malsukcesis: ${message}`,
       unknownError: 'nekonata eraro',
       restartedTitle: 'Antaŭrigarda servilo restarigita',
       reloadingNow: 'Reŝargante la antaŭrigardon nun.',
       restartFailedTitle: 'Restarigo de antaŭrigardo malsukcesis',
       restartFailedMessage: 'OpenAmer ne povis restarigi la servilon.',
-      stillWorking: 'OpenAmer ankoraŭ laboras, sed neniu restariga rezulto ĝis nun alvenis. La servila komando eble funkcias en la antaŭplano.',
+      stillWorking:
+        'OpenAmer ankoraŭ laboras, sed neniu restariga rezulto ĝis nun alvenis. La servila komando eble funkcias en la antaŭplano.',
       workspaceReloading: 'Laborspaco ŝanĝiĝis, reŝargante antaŭrigardon',
       fileChanged: url => `Dosiero ŝanĝiĝis, reŝargante antaŭrigardon: ${url}`,
       filesChanged: (count, url) => `${count} dosieraj ŝanĝoj, reŝargante antaŭrigardon: ${url}`,
       watchFailed: message => `Ne eblis observi antaŭrigardan dosieron: ${message}`,
-      moduleMimeDescription: 'Modulaj skriptoj estas servataj kun malĝusta MIME-tipo. Ĉi tio kutime signifas, ke statika dosiera servilo servas aplikaĵon Vite/React anstataŭ la evoluiga servilo de la projekto.',
+      moduleMimeDescription:
+        'Modulaj skriptoj estas servataj kun malĝusta MIME-tipo. Ĉi tio kutime signifas, ke statika dosiera servilo servas aplikaĵon Vite/React anstataŭ la evoluiga servilo de la projekto.',
       loadFailedConsole: (code, message) => `Ŝargado malsukcesis${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'La antaŭrigarda paĝo ne estis atingebla.',
       openTarget: url => `Malfermi ${url}`,
-      fallbackTitle: 'Antaŭrigardo',
-    },
+      fallbackTitle: 'Antaŭrigardo'
+    }
   },
   zones: {
     showHeader: 'Montri kaplinion',
@@ -2607,7 +2688,8 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
     minimize: 'Minimumigi',
     restore: 'Restarigi',
     closeRunningTitle: 'Ĉu fermi funkciantan langeton?',
-    closeRunningBody: 'Ĉi tiu babilo ankoraŭ funkcias (aŭ atendas vian enigon). Fermado de la langeto kaŝas ĝin — la seanco konservas sian progreson kaj povas esti remalfermita el la flanka panelo.',
+    closeRunningBody:
+      'Ĉi tiu babilo ankoraŭ funkcias (aŭ atendas vian enigon). Fermado de la langeto kaŝas ĝin — la seanco konservas sian progreson kaj povas esti remalfermita el la flanka panelo.',
     closeRunningConfirm: 'Fermi langeton',
     closeOthers: 'Fermi aliajn',
     closeToRight: 'Fermi dekstren',
@@ -2644,27 +2726,16 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
     layoutNamePlaceholder: fallback => `Nomo de aranĝo (${fallback})`,
     saveApply: 'Konservi kaj apliki',
     notExpressible: 'ĉi tiu aranĝo interŝlosiĝas (pinwheel) — ankoraŭ ne esprimebla kiel nestaj fendoj',
-    zoneCount: count => `${count} zonoj`,
+    zoneCount: count => `${count} zonoj`
   },
   assistant: {
     thread: {
       loadingSession: 'Ŝargado de seanco',
       showEarlier: 'Montri pli fruajn mesaĝojn',
       loadingResponse: 'OpenAmer ŝargas respondon',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Penso',
       today: time => `Hodiaŭ, ${time}`,
@@ -2686,12 +2757,13 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       restoreCheckpoint: 'Restarigi kontrolpunkton',
       restoreFromHere: 'Restarigi kontrolpunkton — replenumi ekde ĉi tiu instigo',
       restoreTitle: 'Restarigi al ĉi tiu kontrolpunkto?',
-      restoreBody: 'Ĉio post ĉi tiu prompto estas forigita el la konversacio, kaj la prompto ruliĝas denove ekde ĉi tie.',
+      restoreBody:
+        'Ĉio post ĉi tiu prompto estas forigita el la konversacio, kaj la prompto ruliĝas denove ekde ĉi tie.',
       restoreConfirm: 'Restarigi kaj reruli',
       restoreNext: 'Restarigi la venontan kontrolpunkton',
       goForward: 'Iri antaŭen',
       sendEdited: 'Sendi redaktitan mesaĝon',
-      attachingFile: 'Alkroto…',
+      attachingFile: 'Alkroto…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer-enpordo ne estas konektita',
@@ -2704,8 +2776,9 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       jumpToApproval: 'Necesas aprobo',
       reject: 'Malakcepti',
       alwaysTitle: 'Ĉiam permesi ĉi tiun komandon?',
-      alwaysDescription: pattern => `Ĉi tio aldonas la “${pattern}” ŝablonon al via permanenta permeslisto (~/.openamer/config.yaml). OpenAmer ne demandos denove por komandoj kiel ĉi tiu — en ĉi tiu sesio aŭ en iu ajna estonta.`,
-      alwaysAllow: 'Ĉiam permesi',
+      alwaysDescription: pattern =>
+        `Ĉi tio aldonas la “${pattern}” ŝablonon al via permanenta permeslisto (~/.openamer/config.yaml). OpenAmer ne demandos denove por komandoj kiel ĉi tiu — en ĉi tiu sesio aŭ en iu ajna estonta.`,
+      alwaysAllow: 'Ĉiam permesi'
     },
     clarify: {
       notReady: 'La peto pri klarigo ne ankoraŭ pretas',
@@ -2719,7 +2792,7 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       continueLabel: 'Daŭrigi',
       lateAnswer: (question, choice) => `Pri: "${question}" — mia respondo: ${choice}`,
       lateAnswerTip: 'Skizi ĉi tiun respondon kiel postan mesaĝon',
-      lateAnswerHint: 'Ĉi tiu invito ne plu atendas. Elektu opcion por skizi ĝin kiel postan mesaĝon.',
+      lateAnswerHint: 'Ĉi tiu invito ne plu atendas. Elektu opcion por skizi ĝin kiel postan mesaĝon.'
     },
     tool: {
       code: 'Kodo',
@@ -2755,11 +2828,11 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
         ran: 'Rulis',
         running: 'Rulas',
         ranCode: 'Rulis kodon',
-        runningCode: 'Skriptado',
+        runningCode: 'Skriptado'
       },
       prefixes: {
         browser: 'Retumilo',
-        web: 'Reto',
+        web: 'Reto'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2767,132 +2840,133 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Rulas ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Rulas ${action.toLowerCase()}`,
+        runningTool: action => `Rulas ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Klakis paĝan elementon',
           pending: 'Klakas paĝan elementon',
-          pendingAction: 'Klakas',
+          pendingAction: 'Klakas'
         },
         browser_fill: {
           done: 'Plenigis formularan kampon',
           pending: 'Plenigas formularan kampon',
-          pendingAction: 'Plenigas',
+          pendingAction: 'Plenigas'
         },
         browser_navigate: {
           done: 'Malfermis paĝon',
           pending: 'Malfermas paĝon',
-          pendingAction: 'Malfermado',
+          pendingAction: 'Malfermado'
         },
         browser_snapshot: {
           done: 'Kaptita paĝa momentfoto',
           pending: 'Kaptante paĝan momentfoton',
-          pendingAction: 'Kaptante',
+          pendingAction: 'Kaptante'
         },
         browser_take_screenshot: {
           done: 'Kaptita ekrankopio',
           pending: 'Kaptante ekrankopion',
-          pendingAction: 'Kaptante',
+          pendingAction: 'Kaptante'
         },
         browser_type: {
           done: 'Tajpita sur paĝo',
           pending: 'Tajpante sur paĝo',
-          pendingAction: 'Tajpante',
+          pendingAction: 'Tajpante'
         },
         clarify: {
           done: 'Faris demandon',
           pending: 'Farante demandon',
-          pendingAction: 'Demandante',
+          pendingAction: 'Demandante'
         },
         cronjob: {
           done: 'Cron-tasko',
           pending: 'Planante Cron-taskon',
-          pendingAction: 'Planante',
+          pendingAction: 'Planante'
         },
         edit_file: {
           done: 'Redaktita dosiero',
           pending: 'Redaktante dosieron',
-          pendingAction: 'Redaktante',
+          pendingAction: 'Redaktante'
         },
         execute_code: {
           done: 'Rulis kodon',
           pending: 'Skriptado',
-          pendingAction: 'Skriptado',
+          pendingAction: 'Skriptado'
         },
         image_generate: {
           done: 'Generita bildo',
           pending: 'Generante bildon',
-          pendingAction: 'Generante',
+          pendingAction: 'Generante'
         },
         list_files: {
           done: 'Listigitaj dosieroj',
           pending: 'Listigante dosierojn',
-          pendingAction: 'Listigante',
+          pendingAction: 'Listigante'
         },
         patch: {
           done: 'Flikita dosiero',
           pending: 'Flikante dosieron',
-          pendingAction: 'Flikante',
+          pendingAction: 'Flikante'
         },
         read_file: {
           done: 'Legita dosiero',
           pending: 'Legante dosieron',
-          pendingAction: 'Legante',
+          pendingAction: 'Legante'
         },
         search_files: {
           done: 'Serĉitaj dosieroj',
           pending: 'Serĉante dosierojn',
-          pendingAction: 'Serĉante',
+          pendingAction: 'Serĉante'
         },
         session_search_recall: {
           done: 'Serĉita sesia historio',
           pending: 'Serĉante sesian historion',
-          pendingAction: 'Serĉante',
+          pendingAction: 'Serĉante'
         },
         terminal: {
           done: 'Plenumis komandon',
           pending: 'Plenumas komandon',
-          pendingAction: 'Plenumas',
+          pendingAction: 'Plenumas'
         },
         todo: {
           done: 'Ĝisdatigis taskojn',
           pending: 'Ĝisdatigas taskojn',
-          pendingAction: 'Ĝisdatigas',
+          pendingAction: 'Ĝisdatigas'
         },
         vision_analyze: {
           done: 'Analizis bildon',
           pending: 'Analizas bildon',
-          pendingAction: 'Analizas',
+          pendingAction: 'Analizas'
         },
         web_extract: {
           done: 'Legis retpaĝon',
           pending: 'Legas retpaĝon',
-          pendingAction: 'Legas',
+          pendingAction: 'Legas'
         },
         web_search: {
           done: 'Retserĉis',
           pending: 'Retserĉas',
-          pendingAction: 'Serĉas',
+          pendingAction: 'Serĉas'
         },
         write_file: {
           done: 'Redaktis dosieron',
           pending: 'Redaktas dosieron',
-          pendingAction: 'Redaktas',
-        },
-      },
-    },
+          pendingAction: 'Redaktas'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer-pordego ne estas konektita',
     sudoSendFailed: 'Ne eblis sendi sudo-pasvorton',
     secretSendFailed: 'Ne eblis sendi sekreton',
     sudoTitle: 'Administra pasvorto',
-    sudoDesc: 'OpenAmer bezonas vian sudo-pasvorton por ruli privilegian komandon. Ĝi estas sendata nur al via loka agento.',
+    sudoDesc:
+      'OpenAmer bezonas vian sudo-pasvorton por ruli privilegian komandon. Ĝi estas sendata nur al via loka agento.',
     sudoPlaceholder: 'sudo-pasvorto',
     secretTitle: 'Sekreto bezonata',
     secretDesc: 'OpenAmer bezonas akreditilon por daŭrigi.',
-    secretPlaceholder: 'sekreta valoro',
+    secretPlaceholder: 'sekreta valoro'
   },
   desktop: {
     audioReadFailed: 'Ne eblis legi registritan aŭdion',
@@ -2909,7 +2983,8 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
     yoloSystem: active => `YOLO ${active ? 'ŝaltita' : 'malŝaltita'} por ĉi tiu sesio`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Ne eblis ŝalti YOLO',
-    profileStatus: current => `Profilo: ${current}. Uzu /profile <nomo> aŭ la elektilon "Nova seanco" por komenci babilon en alia profilo.`,
+    profileStatus: current =>
+      `Profilo: ${current}. Uzu /profile <nomo> aŭ la elektilon "Nova seanco" por komenci babilon en alia profilo.`,
     unknownProfile: 'Nesciata profilo',
     noProfileNamed: (target, available) => `Neniu profilo nomata "${target}". Disponeblaj: ${available}`,
     newChatsProfile: name => `Novaj babilejoj uzos profilon ${name}.`,
@@ -2919,8 +2994,9 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
     regenerateFailed: 'Regenerado malsukcesis',
     editFailed: 'Redaktado malsukcesis',
     resumeFailed: 'Daŭrigado malsukcesis',
-    resumeStrandedTitle: "Ne eblis ŝargi ĉi tiun seanco",
-    resumeStrandedBody: 'La konekto al ĉi tiu seanco malsukcesis kaj la aŭtomataj reprovoj ĉesis. Kontrolu ke la ponto funkcias, poste reprovu.',
+    resumeStrandedTitle: 'Ne eblis ŝargi ĉi tiun seanco',
+    resumeStrandedBody:
+      'La konekto al ĉi tiu seanco malsukcesis kaj la aŭtomataj reprovoj ĉesis. Kontrolu ke la ponto funkcias, poste reprovu.',
     resumeRetry: 'Reprovi',
     nothingToBranch: 'Nenio por stari',
     branchNeedsChat: 'Komencu aŭ daŭrigu babilon antaŭ stari.',
@@ -2934,7 +3010,8 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
     archiveFailed: 'Arkivado malsukcesis',
     cwdChangeFailed: 'Ŝanĝo de labordosierujo malsukcesis',
     cwdStagedTitle: 'Labordosierujo pretigita',
-    cwdStagedMessage: 'Restartigu la labortablan servilon por apliki ŝanĝojn de labordosierujo al ĉi tiu aktiva seanco.',
+    cwdStagedMessage:
+      'Restartigu la labortablan servilon por apliki ŝanĝojn de labordosierujo al ĉi tiu aktiva seanco.',
     modelSwitchFailed: 'Ŝanĝo de modelo malsukcesis',
     sessionExported: 'Seanco elportita',
     sessionExportFailed: 'Ne eblis elporti seanon',
@@ -2960,31 +3037,31 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       success: platform => `Transdonita al ${platform}. Rekomencu ĉi tie iam ajn.`,
       systemNote: platform => `↻ Transdonita al ${platform} — rekomencu ĉi tie iam ajn.`,
       failed: error => `Transdono malsukcesis: ${error}`,
-      timedOut: 'Tempolimito ekspiris atendante la ĉaptejon. Ĉu `openamer gateway` funkcias?',
-    },
+      timedOut: 'Tempolimito ekspiris atendante la ĉaptejon. Ĉu `openamer gateway` funkcias?'
+    }
   },
   errors: {
     genericFailure: 'Iu afero malĝoje iris',
     boundaryTitle: 'Iu afero rompiĝis en la interfazo',
     boundaryDesc: 'La viduĵo renkontris neatenditan eraron. Viaj babiloj kaj agordoj estas sekuraj.',
     reloadWindow: 'Reŝargi fenestron',
-    openLogs: 'Malfermi journalojn',
+    openLogs: 'Malfermi journalojn'
   },
   ui: {
     search: {
-      clear: 'Forigi serĉon',
+      clear: 'Forigi serĉon'
     },
     pagination: {
       label: 'pagigo',
       previous: 'Antaŭa',
       previousAria: 'Iri al antaŭa paĝo',
       next: 'Sekva',
-      nextAria: 'Iri al sekva paĝo',
+      nextAria: 'Iri al sekva paĝo'
     },
     sidebar: {
       title: 'Flanka pano',
       description: 'Montras la movilan flankpanon.',
-      toggle: 'Baskuligi flankpanelon',
-    },
-  },
+      toggle: 'Baskuligi flankpanelon'
+    }
+  }
 })

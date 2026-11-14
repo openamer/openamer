@@ -9,8 +9,10 @@ export const st = defineLocale({
   settings: {
     appearance: {
       pet: {
-        intro: 'Amohela moreme o phatlileng oa petdex o phahang hodima k\'a app, o arabela ho lathe OpenAmer a etsa — o matha ha lisebenzi li sebetsa, o ile o thabela ha ho atleha, \'me o nyenyefetsa ha ho lula.',
-        restartHint: 'Pets li hloka restart e ka potlazo — app e sebetsang e qalile pele ho lathe lona mofokolo. Hlakotse \'me u bule OpenAmer, joale o khutlele mona.',
+        intro:
+          "Amohela moreme o phatlileng oa petdex o phahang hodima k'a app, o arabela ho lathe OpenAmer a etsa — o matha ha lisebenzi li sebetsa, o ile o thabela ha ho atleha, 'me o nyenyefetsa ha ho lula.",
+        restartHint:
+          "Pets li hloka restart e ka potlazo — app e sebetsang e qalile pele ho lathe lona mofokolo. Hlakotse 'me u bule OpenAmer, joale o khutlele mona.",
         on: 'Ho khala',
         off: 'Ho khutla',
         scaleTitle: 'Boholo',
@@ -18,9 +20,9 @@ export const st = defineLocale({
         roamTitle: 'Phuthela',
         roamDesc: 'Lumella pet ho phuthela fenseter ka yona e lebenze ha e sa sebetsa.',
         chooseTitle: 'Khetha pet',
-        chooseDesc: 'Ho khetha e \'muputsoa ho e keng (ha ho hlokoang) \'me ho e etsa e sebetsang.',
+        chooseDesc: "Ho khetha e 'muputsoa ho e keng (ha ho hlokoang) 'me ho e etsa e sebetsang.",
         searchPlaceholder: 'Batla pets…',
-        unreachable: 'Ha ho kgone ho fihla galer ya petdex. Sheba khoneho ya hao \'me u bulee pege ena.',
+        unreachable: "Ha ho kgone ho fihla galer ya petdex. Sheba khoneho ya hao 'me u bulee pege ena.",
         installedTag: 'e keng',
         generatedTag: 'E hokotsoileng',
         deleteBody: 'Sena se hlakola pet ka ho saqhele — e keke ea rekeneng ho e keng.',
@@ -43,22 +45,25 @@ export const st = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
       title: 'Appearance',
-      intro: 'These are desktop-only display preferences. Mode controls brightness; theme controls the accent palette and chat surface styling.',
+      intro:
+        'These are desktop-only display preferences. Mode controls brightness; theme controls the accent palette and chat surface styling.',
       colorMode: 'Color Mode',
       colorModeDesc: 'Pick a fixed mode or let OpenAmer follow your system setting.',
       toolViewTitle: 'Tool Call Display',
       toolViewDesc: 'Product hides raw tool payloads; Technical shows full input/output.',
       uiScaleTitle: 'UI Scale',
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       translucencyTitle: 'Window Translucency',
       translucencyDesc: 'See your desktop through the whole window. macOS and Windows only.',
       backdropTitle: 'Chat Backdrop',
       backdropDesc: 'The faint statue image behind the conversation.',
       embedsTitle: 'Inline Embeds',
-      embedsDesc: 'Rich previews load from third-party sites (YouTube, X, …). Ask shows a placeholder until you allow each one; Always loads them automatically; Off keeps plain links.',
+      embedsDesc:
+        'Rich previews load from third-party sites (YouTube, X, …). Ask shows a placeholder until you allow each one; Always loads them automatically; Off keeps plain links.',
       embedsAsk: 'Ask',
       embedsAlways: 'Always',
       embedsOff: 'Off',
@@ -71,14 +76,15 @@ export const st = defineLocale({
       themeDesc: 'Desktop palettes only. The selected mode is applied on top.',
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installTitle: 'Install from VS Code',
-      installDesc: 'Paste a Marketplace extension id (e.g. dracula-theme.theme-dracula) to convert its color theme into a desktop palette.',
+      installDesc:
+        'Paste a Marketplace extension id (e.g. dracula-theme.theme-dracula) to convert its color theme into a desktop palette.',
       installPlaceholder: 'publisher.extension',
       installButton: 'Install',
       installing: 'Installing…',
       installError: 'Could not install that theme.',
       installed: name => `Installed “${name}”.`,
       removeTheme: 'Remove theme',
-      importedBadge: 'Imported',
+      importedBadge: 'Imported'
     },
     about: {
       versionUnavailable: 'Mocha ha e fumaneheng',
@@ -90,12 +96,12 @@ export const st = defineLocale({
       releaseNotes: 'Litlhabiso tsa phatlalatso',
       onLatest: 'U na le mofuta o mora kaofela.',
       installing: 'Ho etsaa nako ena khoelo e khahlisang.',
-      cantUpdate: 'Khuano ena e keke ea e phatlalatsa ka yena ka hare k\'a app.',
+      cantUpdate: "Khuano ena e keke ea e phatlalatsa ka yena ka hare k'a app.",
       cantReach: 'Ha re kgone ho fihla seva ea litlhabiso.',
       tapCheck: 'Tsheba "Sheba joale" ho batla litlhabiso.',
       justNowSuffix: '· jwale ka nako e fetileng ho lathe',
       automaticUpdates: 'Litlhabiso tsa ho itlhela',
-      automaticUpdatesDesc: 'OpenAmer e batla litlhabiso ka ho itlhela ka moro o ka moro, \'me e k notify ha ho lokile.',
+      automaticUpdatesDesc: "OpenAmer e batla litlhabiso ka ho itlhela ka moro o ka moro, 'me e k notify ha ho lokile.",
       never: 'bosiu',
       justNow: 'jwale ka nako e fetileng ho lathe',
       heading: 'OpenAmer Desktop',
@@ -105,7 +111,7 @@ export const st = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     config: {
       none: 'Ha ho na',
@@ -121,7 +127,8 @@ export const st = defineLocale({
       imported: 'Lehlakome le tšenetsoe',
       invalidJson: 'JSON ea lehlakome e sa nepahali',
       keepAwakeTitle: 'Bolokisa kompyutha e phakome',
-      keepAwakeDesc: 'Kenafisa kompyutha ena ho robala hore mesebetsi e telele kapa ea bosiu e se nale ha e sa khutsohe. Tšhimi ea boholo e ka fihlela ea dima.',
+      keepAwakeDesc:
+        'Kenafisa kompyutha ena ho robala hore mesebetsi e telele kapa ea bosiu e se nale ha e sa khutsohe. Tšhimi ea boholo e ka fihlela ea dima.'
     },
     credentials: {
       pasteKey: 'Tlatlosa senkeyi',
@@ -131,7 +138,7 @@ export const st = defineLocale({
       remove: 'Tlosa',
       getKey: 'Hwana senkeyi',
       saving: 'Ho boloka',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     envActions: {
       credentialActions: 'Lipa tsa bopaki',
@@ -142,7 +149,7 @@ export const st = defineLocale({
       replace: 'Ntilefodisa',
       set: 'Beka',
       clear: 'Hlakola',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     gateway: {
       loading: 'Ho loading litlhopheng tsa seteishen...',
@@ -150,20 +157,25 @@ export const st = defineLocale({
       unavailableDesc: 'Bridge ea IPC ea desktop ha e f暴露 litlhopheng tsa seteishen.',
       title: 'Kopano ea seteishen',
       envOverride: 'Tlhabelo ya env',
-      intro: 'OpenAmer Desktop e qala seteishen ea hae ea sebele. Use seteishen e hole o ka la sebetsa ka OpenAmer backend e seseng mo mofumeng o mong o kapa ka proxy e tšeptšeng. Khetha mokotlong o ka tlase ho fana ka seteishen ea hae e hole.',
+      intro:
+        'OpenAmer Desktop e qala seteishen ea hae ea sebele. Use seteishen e hole o ka la sebetsa ka OpenAmer backend e seseng mo mofumeng o mong o kapa ka proxy e tšeptšeng. Khetha mokotlong o ka tlase ho fana ka seteishen ea hae e hole.',
       appliesTo: 'E sebetsa ho',
       allProfiles: 'Mokotlong oohle',
       defaultConnection: 'Kopano ea kwaehlo bakeng sa mokotlong o mong le o mong o nang le ho se etse tlhabelo ea hae.',
       envOverrideTitle: 'Libolotso tsa tikantso li control kopo ena ea desktop.',
-      envOverrideDesc: 'Tlosa OPENAMER_DESKTOP_REMOTE_URL le OPENAMER_DESKTOP_REMOTE_TOKEN ho sebedisa lehlakome le bolokiloeng ka tlase.',
+      envOverrideDesc:
+        'Tlosa OPENAMER_DESKTOP_REMOTE_URL le OPENAMER_DESKTOP_REMOTE_TOKEN ho sebedisa lehlakome le bolokiloeng ka tlase.',
       signIn: 'Kena',
       signOut: 'Tsoa',
       authTitle: 'Netefatso',
-      authSignedInPassword: 'Gateway ena e sebelisa lebitso la mosebedisi le phasewete. O kene; seshene e ntjhafatswa ka boiketsetso.',
+      authSignedInPassword:
+        'Gateway ena e sebelisa lebitso la mosebedisi le phasewete. O kene; seshene e ntjhafatswa ka boiketsetso.',
       authSignedInOauth: 'Gateway ena e sebelisa OAuth. O kene; seshene e ntjhafatswa ka boiketsetso.',
-      authNeedsPassword: 'Gateway ena e sebelisa lebitso la mosebedisi le phasewete. Kena ho lumella app ena ya desktop.',
+      authNeedsPassword:
+        'Gateway ena e sebelisa lebitso la mosebedisi le phasewete. Kena ho lumella app ena ya desktop.',
       tokenTitle: 'Token ya seshene',
-      tokenDesc: 'Token ya seshene ya dashboard e sebelisoang bakeng sa phihlello ya REST le WebSocket. Tlohela e se na letho ho boloka token e bolokilweng.',
+      tokenDesc:
+        'Token ya seshene ya dashboard e sebelisoang bakeng sa phihlello ya REST le WebSocket. Tlohela e se na letho ho boloka token e bolokilweng.',
       savedToken: 'e bolokiloe',
       pasteSessionToken: 'Kgomarela token ya seshene',
       testRemote: 'Leka remote',
@@ -180,7 +192,8 @@ export const st = defineLocale({
       enterUrlFirst: 'Kenya URL ya remote pele.',
       restartingTitle: 'Khokahano ya gateway e qala hape',
       savedTitle: 'Dipeakanyo tsa gateway di bolokiloe',
-      restartingMessage: 'OpenAmer Desktop e tla hokahana hape e sebedisa dipeakanyo tse bolokilweng — shell e dula e butswe.',
+      restartingMessage:
+        'OpenAmer Desktop e tla hokahana hape e sebedisa dipeakanyo tse bolokilweng — shell e dula e butswe.',
       savedMessage: 'E bolokiloe bakeng sa ho qala hape ho tlang.',
       reachableTitle: 'Gateway ya remote e fihlelleha',
       signedOutTitle: 'O tsoile',
@@ -192,8 +205,10 @@ export const st = defineLocale({
       applyFailed: 'Ho hlolehile ho sebedisa dipeakanyo tsa gateway',
       saveFailed: 'Ho hlolehile ho boloka dipeakanyo tsa gateway',
       sshTitle: 'Hokahanya ka SSH',
-      sshDesc: 'OpenAmer e qalisoa ho remote ka SSH mme e fetisoa ka tunnel ho app ena — ha ho na letho la ho qala kapa ho itlhahisa. Ho hloka phihlello e sebetsang ya SSH e thehilweng hodima senotlolo ho host.',
-      sshTrustHint: 'Senotlolo sa host sa pele se hlahisitsweng sea tshepwa mme se tsitsisitswe; diphetoho tsa morao di hloleha ka ho kwala.',
+      sshDesc:
+        'OpenAmer e qalisoa ho remote ka SSH mme e fetisoa ka tunnel ho app ena — ha ho na letho la ho qala kapa ho itlhahisa. Ho hloka phihlello e sebetsang ya SSH e thehilweng hodima senotlolo ho host.',
+      sshTrustHint:
+        'Senotlolo sa host sa pele se hlahisitsweng sea tshepwa mme se tsitsisitswe; diphetoho tsa morao di hloleha ka ho kwala.',
       sshHostTitle: 'Moamoheli',
       sshHostDesc: 'user@host, kapa alias ya Moamoheli e tswang ho ~/.ssh/config.',
       sshHostPick: 'Khetha host…',
@@ -213,14 +228,19 @@ export const st = defineLocale({
       sshButtonsHint: 'Boloka ho tla sebetsa qalong e latelang. Hokela ho hokela hape hona joale.',
       sshIncompleteHost: 'Kenya host ea SSH pele u hokela.',
       sshErrUnreachable: 'Ha hoa khone ho fihlela host eo ka SSH. Lekola host, port le netweke ea hao.',
-      sshErrAuth: 'Netefatso ea SSH e hlolehile. Kenya senotlolo sa hao ho ssh-agent (ssh-add) kapa beha IdentityFile ho ~/.ssh/config — OpenAmer e tsamaisa ssh ntle le ho kena lipakeng.',
-      sshErrHostKey: 'Senotlolo sa host se FETOHILE ho tloha ha u qetela ho hokela. Netefatsa hore sena se lebelletsoe, ebe u tsamaisa ssh-keygen -R <host> ebe u hokela hape.',
-      sshErrNotInstalled: 'OpenAmer ha e so kenngoe ho host e hole. E kenye moo (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) kapa beha tsela ea OpenAmer.',
-      sshErrPlatform: 'Sethala sa hole ha se tšehetsoe. Mokhoa oa SSH oa OpenAmer Desktop o tšehetsa Linux, macOS le Windows hosts tsa hole.',
+      sshErrAuth:
+        'Netefatso ea SSH e hlolehile. Kenya senotlolo sa hao ho ssh-agent (ssh-add) kapa beha IdentityFile ho ~/.ssh/config — OpenAmer e tsamaisa ssh ntle le ho kena lipakeng.',
+      sshErrHostKey:
+        'Senotlolo sa host se FETOHILE ho tloha ha u qetela ho hokela. Netefatsa hore sena se lebelletsoe, ebe u tsamaisa ssh-keygen -R <host> ebe u hokela hape.',
+      sshErrNotInstalled:
+        'OpenAmer ha e so kenngoe ho host e hole. E kenye moo (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) kapa beha tsela ea OpenAmer.',
+      sshErrPlatform:
+        'Sethala sa hole ha se tšehetsoe. Mokhoa oa SSH oa OpenAmer Desktop o tšehetsa Linux, macOS le Windows hosts tsa hole.',
       sshErrTimeout: 'Khokahano ea SSH e felile nako. Host e kanna ea se fihlellehe kapa e robetse.',
       sshErrUpdateRequired: 'Ntlafatsa OpenAmer ho host e hole pele u hokela ka SSH ea Desktop.',
       sshErrUnknown: 'Khokahano ea SSH e hlolehile.',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       modeTitle: 'Connection mode',
       localTitle: 'Local gateway',
       localDesc: 'Start a private OpenAmer backend on localhost. This is the default and works offline.',
@@ -245,7 +265,7 @@ export const st = defineLocale({
       cloudNoAgents: {
         before: 'No agents found on this account. Create one in the ',
         linkText: 'OpenAmer portal',
-        after: ', then refresh.',
+        after: ', then refresh.'
       },
       cloudRefresh: 'Refresh',
       cloudConnect: 'Connect',
@@ -271,7 +291,7 @@ export const st = defineLocale({
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       sshHostPickTitle: 'Host',
       sshPortTitle: 'Port',
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     model: {
       provider: 'Mointhoetsi',
@@ -283,7 +303,8 @@ export const st = defineLocale({
       defaultsFailed: 'Ho e le nehetseng ho boloka litsea tsa boholo tsa mohlelo',
       auxiliaryTitle: 'Lihelo tse khang',
       resetAllToMain: 'Seta bohle ho e ka sehloohong',
-      auxiliaryDesc: 'Mesebetsi e thusang e sebetsa ka mohlelo o ka sehloohong ka boholo. Lebisa mohlelo o iketellihang mesebetsi e mong ho e fetola.',
+      auxiliaryDesc:
+        'Mesebetsi e thusang e sebetsa ka mohlelo o ka sehloohong ka boholo. Lebisa mohlelo o iketellihang mesebetsi e mong ho e fetola.',
       setToMain: 'Seta ho e ka sehloohong',
       change: 'Fetola',
       autoUseMain: 'auto · sebenzisa mohlelo o ka sehloohong',
@@ -294,44 +315,45 @@ export const st = defineLocale({
       tasks: {
         vision: {
           label: 'Pono',
-          hint: 'Tlhokomelo ya lifenseter',
+          hint: 'Tlhokomelo ya lifenseter'
         },
         web_extract: {
           label: 'Nkhapa ea web',
-          hint: 'Tlhahloko ya leqephe',
+          hint: 'Tlhahloko ya leqephe'
         },
         compression: {
           label: 'Kohomamiso',
-          hint: 'Ho hokomana moo e keng',
+          hint: 'Ho hokomana moo e keng'
         },
         skills_hub: {
           label: 'Sehoke sa litsoa',
-          hint: 'Batla litsoa',
+          hint: 'Batla litsoa'
         },
         approval: {
           label: 'Tumello',
-          hint: 'Tumello e bohle boiqo',
+          hint: 'Tumello e bohle boiqo'
         },
         mcp: {
           hint: 'Tlhophelo ya lise tsa MCP',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Henna lith标题',
-          hint: 'Ditlh标题 tsa sesomo',
+          hint: 'Ditlh标题 tsa sesomo'
         },
         curator: {
           label: 'Tlhokomedi',
-          hint: 'Tlhokomelo ya tšebeletso ea litsoa',
-        },
+          hint: 'Tlhokomelo ya tšebeletso ea litsoa'
+        }
       },
       loading: 'Loading model configuration...',
-      appliesDesc: 'Applies to new sessions. Use the model picker in the composer to hot-swap the active chat.',
+      appliesDesc: 'Applies to new sessions. Use the model picker in the composer to hot-swap the active chat.'
     },
     providers: {
       connectAccount: 'Kopanya akhaonto',
       haveApiKey: 'Na u na le API key?',
-      intro: 'Ngena ka lebalesoa — ha u na le API key ya kopoya. OpenAmer e sebetsa ho ngena ka browser uena, hantle hape k\'a phaposing.',
+      intro:
+        "Ngena ka lebalesoa — ha u na le API key ya kopoya. OpenAmer e sebetsa ho ngena ka browser uena, hantle hape k'a phaposing.",
       connected: 'Kopanotsoe',
       collapse: 'Fihlisa',
       connectAnother: 'Kopanya mointhoetsi o mong',
@@ -341,7 +363,8 @@ export const st = defineLocale({
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedTitle: 'Account removed',
       removedMessage: provider => `${provider} was removed.`,
@@ -351,14 +374,14 @@ export const st = defineLocale({
       noKeysMatch: 'No providers match your search.',
       localEndpoint: {
         title: 'Local / custom endpoint',
-        description: 'Point OpenAmer at any OpenAI-compatible endpoint (Zyphra, vLLM, llama.cpp, Ollama, etc).',
+        description: 'Point OpenAmer at any OpenAI-compatible endpoint (Zyphra, vLLM, llama.cpp, Ollama, etc).'
       },
-      loading: 'Loading providers...',
+      loading: 'Loading providers...'
     },
     keys: {
       loading: 'Ho kenya linotlolo tsa API le boitsebiso...',
       failedLoad: 'Linotlolo tsa API li hlolehile ho kenngoa',
-      empty: 'Ha ho letho le hlophisitsoeng mokhahlelong ona hajoale.',
+      empty: 'Ha ho letho le hlophisitsoeng mokhahlelong ona hajoale.'
     },
     mcp: {
       loading: 'Ho kenya li-server tsa MCP...',
@@ -410,7 +433,8 @@ export const st = defineLocale({
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
       catalogEnvRequired: 'Fill in the required values before installing.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       statusConnecting: 'Connecting…',
       statusNeedsAuth: 'Needs authentication',
       statusError: 'Error',
@@ -423,7 +447,7 @@ export const st = defineLocale({
       unsavedConnect: 'Unsaved — save mcp.json to connect.',
       enableTool: tool => `Enable ${tool}`,
       disableTool: tool => `Disable ${tool}`,
-      noOutput: 'No output yet.',
+      noOutput: 'No output yet.'
     },
     toolsets: {
       terminalBackend: {
@@ -437,7 +461,7 @@ export const st = defineLocale({
         unavailable: 'Unavailable',
         inUse: 'In use',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       loadingConfig: 'Loading configuration',
       savedTitle: 'Credential saved',
@@ -461,13 +485,15 @@ export const st = defineLocale({
       needsSetup: 'Needs setup',
       openamerIncluded: 'Included with a OpenAmer subscription — sign in to OpenAmer Portal to activate.',
       openamerAuthNeededTitle: 'Sign in to OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
       openamerAuthSignIn: 'Sign in',
       openamerAuthDoneTitle: 'OpenAmer Portal connected',
       openamerAuthDoneMessage: 'Your subscription backends are now active.',
       openamerAuthFailed: 'OpenAmer Portal sign-in did not complete',
       noApiKeyRequired: 'No API key required.',
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupInstalledHint: 'Installed. Re-run setup only if something is broken.',
       postSetupRun: 'Run setup',
       postSetupRerun: 'Re-run setup',
@@ -496,7 +522,7 @@ export const st = defineLocale({
       modelInactiveHint: 'Select this backend first to change its model.',
       modelSelectedTitle: 'Model selected',
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     closeSettings: 'Close settings',
     exportConfig: 'Export config',
@@ -520,11 +546,12 @@ export const st = defineLocale({
       about: 'About',
       billing: 'Billing',
       notifications: 'Notifications',
-      plugins: 'Plugins',
+      plugins: 'Plugins'
     },
     plugins: {
       title: 'Desktop plugins',
-      blurb: 'UI extensions loaded into this app — bundled with the build, or dropped into the desktop-plugins folder (including ones OpenAmer writes). Disabling unloads a plugin live and survives restarts.',
+      blurb:
+        'UI extensions loaded into this app — bundled with the build, or dropped into the desktop-plugins folder (including ones OpenAmer writes). Disabling unloads a plugin live and survives restarts.',
       count: n => `${n} installed`,
       openFolder: 'Open plugins folder',
       rescan: 'Rescan',
@@ -536,40 +563,41 @@ export const st = defineLocale({
       kinds: {
         bundled: 'bundled',
         disk: 'on disk',
-        runtime: 'runtime',
-      },
+        runtime: 'runtime'
+      }
     },
     notifications: {
       title: 'Notifications',
-      intro: 'Native desktop notifications, separate from in-app toasts. These are device-local — each computer keeps its own settings.',
+      intro:
+        'Native desktop notifications, separate from in-app toasts. These are device-local — each computer keeps its own settings.',
       enableAll: 'Enable notifications',
       enableAllDesc: 'Master switch. Turn this off to silence every notification below.',
       focusedHint: 'Completion alerts only fire while OpenAmer is in the background.',
       kinds: {
         approval: {
           label: 'Approval needed',
-          description: 'A command is waiting for you to approve or reject it.',
+          description: 'A command is waiting for you to approve or reject it.'
         },
         input: {
           label: 'Input needed',
-          description: 'OpenAmer asked a question or needs a password or secret.',
+          description: 'OpenAmer asked a question or needs a password or secret.'
         },
         turnDone: {
           label: 'Response ready',
-          description: 'A turn finished while OpenAmer was in the background.',
+          description: 'A turn finished while OpenAmer was in the background.'
         },
         turnError: {
           label: 'Turn failed',
-          description: 'A turn ended with an error.',
+          description: 'A turn ended with an error.'
         },
         backgroundDone: {
           label: 'Background task finished',
-          description: 'A backgrounded terminal command completed.',
+          description: 'A backgrounded terminal command completed.'
         },
         credits: {
           label: 'Credit alerts',
-          description: 'Credit access is paused or restored.',
-        },
+          description: 'Credit access is paused or restored.'
+        }
       },
       test: 'Send test notification',
       testTitle: 'OpenAmer',
@@ -578,7 +606,7 @@ export const st = defineLocale({
       testUnsupported: 'This system does not support native notifications.',
       completionSoundTitle: 'Completion Sound',
       completionSoundDesc: 'Plays when an agent turn finishes. Pick a preset and preview it here.',
-      completionSoundPreview: 'Preview',
+      completionSoundPreview: 'Preview'
     },
     sections: {
       model: 'Model',
@@ -588,7 +616,7 @@ export const st = defineLocale({
       safety: 'Safety',
       memory: 'Memory & Context',
       voice: 'Voice',
-      advanced: 'Advanced',
+      advanced: 'Advanced'
     },
     searchPlaceholder: {
       about: 'About OpenAmer Desktop',
@@ -596,28 +624,29 @@ export const st = defineLocale({
       gateway: 'Gateway connection...',
       keys: 'Search API keys...',
       mcp: 'Search MCP servers...',
-      sessions: 'Search archived sessions...',
+      sessions: 'Search archived sessions...'
     },
     modeOptions: {
       light: {
         label: 'Light',
-        description: 'Bright desktop surfaces',
+        description: 'Bright desktop surfaces'
       },
       dark: {
         label: 'Dark',
-        description: 'Low-glare workspace',
+        description: 'Low-glare workspace'
       },
       system: {
         label: 'System',
-        description: 'Follow OS appearance',
-      },
+        description: 'Follow OS appearance'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
     sessions: {
       loading: 'Loading archived sessions…',
       archivedTitle: 'Archived sessions',
-      archivedIntro: 'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
+      archivedIntro:
+        'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
       emptyArchivedTitle: 'Nothing archived',
       emptyArchivedDesc: 'Archive a chat to hide it here.',
       unarchive: 'Unarchive',
@@ -626,12 +655,14 @@ export const st = defineLocale({
       restored: 'Restored',
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
       autoArchiveTitle: 'Auto-archive stale chats',
-      autoArchiveDesc: "Automatically archive chats you haven't touched in a while. Pinned chats are never archived, and nothing is deleted — archived chats just move here.",
+      autoArchiveDesc:
+        "Automatically archive chats you haven't touched in a while. Pinned chats are never archived, and nothing is deleted — archived chats just move here.",
       autoArchiveDaysLabel: 'Archive after',
       autoArchiveDaysUnit: 'days of inactivity',
       autoArchiveFailed: 'Could not update auto-archive',
       defaultDirTitle: 'Default project directory',
-      defaultDirDesc: 'New sessions start in this folder unless you pick another. Leave it unset to use your home directory.',
+      defaultDirDesc:
+        'New sessions start in this folder unless you pick another. Leave it unset to use your home directory.',
       defaultDirUpdated: 'Default project directory updated — start a new chat (Ctrl/⌘+N) for it to take effect',
       defaultsTo: label => `Defaults to ${label}.`,
       change: 'Change',
@@ -642,8 +673,8 @@ export const st = defineLocale({
       unarchiveFailed: 'Unarchive failed',
       deleteFailed: 'Delete failed',
       updateDirFailed: 'Could not update default directory',
-      clearDirFailed: 'Could not clear default directory',
-    },
+      clearDirFailed: 'Could not clear default directory'
+    }
   },
   starmap: {
     title: 'Lerata ea khopamo',
@@ -659,7 +690,8 @@ export const st = defineLocale({
     emptyTitle: 'Ha ho letho se ithutileng',
     emptyDesc: 'Ha OpenAmer a etsa mesebetsi le lithuto tsa hao, li tla hape fa kae.',
     share: 'Arolela mapa',
-    shareHint: 'Kopana khodo ho arolela mapa kapa namela e ea ho lata. E na le sebope feela, eseng mongolo oa khopamo kapa lithuto.',
+    shareHint:
+      'Kopana khodo ho arolela mapa kapa namela e ea ho lata. E na le sebope feela, eseng mongolo oa khopamo kapa lithuto.',
     shareTitle: 'Fana / ntlha mapa',
     sharePlaceholder: 'Namela khodo ea mapa…',
     copy: 'Kopana khodo ea mapa',
@@ -670,7 +702,7 @@ export const st = defineLocale({
     importedBadge: 'mapa e fano',
     resetToMine: 'Khutlela mapeng ea ka',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Hlohisa li-agent',
@@ -700,7 +732,7 @@ export const st = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'Hlohisa seteishen sa taolo',
@@ -729,7 +761,7 @@ export const st = defineLocale({
       generatedTag: 'Hetsi',
       adoptFailed: 'Ha ho kgone ho nka pet eo.',
       toggleFailed: 'Ha ho kgone ho fetola pet.',
-      noneAvailable: 'Ha ho na le dipet — kha ea e le tlase ho e kenya.',
+      noneAvailable: 'Ha ho na le dipet — kha ea e le tlase ho e kenya.'
     },
     generatePet: {
       title: 'Hetsa pet',
@@ -753,12 +785,13 @@ export const st = defineLocale({
       remix: 'Ntsohisa',
       remixConfirmTitle: 'U ka ntsohisa bokhato bo?',
       hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
-      remixConfirmBody: 'This generates a fresh set of drafts using this one as the starting point. It can take several minutes.',
+      remixConfirmBody:
+        'This generates a fresh set of drafts using this one as the starting point. It can take several minutes.',
       genericError: 'Generation failed — try again or pick a suggestion.',
       referenceImageTooLarge: 'Reference image is too large. Use one under 16 MB.',
       referenceImageInvalid: 'Could not read that reference image. Try a PNG, JPG, WebP, or GIF.',
       adopt: 'Adopt',
-      startOver: 'Start over',
+      startOver: 'Start over'
     },
     startInBranch: branch => `New conversation in ${branch}`,
     installTheme: {
@@ -771,7 +804,7 @@ export const st = defineLocale({
       install: 'Install',
       installing: 'Installing...',
       installed: 'Installed',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Settings fields',
     mcpServers: 'MCP servers',
@@ -780,49 +813,49 @@ export const st = defineLocale({
       maintenance: 'Maintenance',
       sessions: 'Sessions',
       system: 'System',
-      usage: 'Usage',
+      usage: 'Usage'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostics, backups, curator, and memory data',
       sessions: 'Search and manage sessions',
       system: 'Status, logs, and system actions',
-      usage: 'Token, cost, and skill activity over time',
+      usage: 'Token, cost, and skill activity over time'
     },
     nav: {
       newChat: {
         title: 'New session',
-        detail: 'Start a fresh session',
+        detail: 'Start a fresh session'
       },
       settings: {
         title: 'Settings',
-        detail: 'Configure OpenAmer desktop',
+        detail: 'Configure OpenAmer desktop'
       },
       skills: {
         title: 'Capabilities',
-        detail: 'Skills, tools, and MCP servers',
+        detail: 'Skills, tools, and MCP servers'
       },
       messaging: {
         title: 'Messaging',
-        detail: 'Set up Telegram, Slack, Discord, and more',
+        detail: 'Set up Telegram, Slack, Discord, and more'
       },
       artifacts: {
         title: 'Artifacts',
-        detail: 'Browse generated outputs',
-      },
+        detail: 'Browse generated outputs'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Sessions panel',
-        detail: 'Search, pin, and manage sessions',
+        detail: 'Search, pin, and manage sessions'
       },
       system: {
         title: 'System panel',
-        detail: 'Gateway status, logs, restart/update',
+        detail: 'Gateway status, logs, restart/update'
       },
       usage: {
         title: 'Usage panel',
-        detail: 'Token, cost, and skill activity',
-      },
+        detail: 'Token, cost, and skill activity'
+      }
     },
     providerNavigate: 'Navigate',
     providerSessions: 'Sessions',
@@ -910,8 +943,8 @@ export const st = defineLocale({
       actionStarted: name => `${name} started — tailing log...`,
       actionFailed: name => `${name} failed to start`,
       running: 'Running...',
-      viewLog: 'Action log',
-    },
+      viewLog: 'Action log'
+    }
   },
   skills: {
     skillArchivedTitle: 'Bohebo bo bolokilwe',
@@ -923,7 +956,8 @@ export const st = defineLocale({
       connectingHubs: 'Ho hokumana le hub ya dithero...',
       connectedHubs: 'Hub tse hokumane:',
       featured: 'Dithero tse tsebangang',
-      landingHint: 'Batla hub ho lehula dithero tse neng li ka installwa ho lethatholo la semmuso, GitHub le mitheng ya sechaba.',
+      landingHint:
+        'Batla hub ho lehula dithero tse neng li ka installwa ho lethatholo la semmuso, GitHub le mitheng ya sechaba.',
       noResults: 'Ha ho na dithero tse o batlang tse fumanoeng hub.',
       installed: 'Ho installeditse',
       install: 'Installa',
@@ -940,7 +974,7 @@ export const st = defineLocale({
       trust: {
         builtin: 'moqolo o ka hare ho',
         trusted: 'o lumelletsweng',
-        community: 'sechaba',
+        community: 'sechaba'
       },
       verdictSafe: 'Sireletse',
       verdictCaution: 'Hlokomela',
@@ -951,7 +985,7 @@ export const st = defineLocale({
       noFindings: 'Ha ho na lintlha tsa polokelo.',
       updateStarted: 'Ho ntsefatsa dithero tse di installeditse...',
       actionFailed: 'Ho etsa bohebo ho ka hokotlo',
-      actionLog: 'Log ea ts\'ebetso',
+      actionLog: "Log ea ts'ebetso",
       loadFailed: 'Hub e hlophohileng ho kgutlisa',
       previewFailed: 'Ponatsha ya bohebo e hlophohileng',
       scanFailed: 'Ho scan ea polokelo ho ka hokotlo',
@@ -961,7 +995,7 @@ export const st = defineLocale({
       scan: 'Scan',
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     tabSkills: 'Bokhoni',
     tabToolsets: 'Lisebelisoa',
@@ -979,7 +1013,8 @@ export const st = defineLocale({
     noDescription: 'Ha ho tlhaloso.',
     configured: 'E hlophisitsoe',
     needsKeys: 'E hloka linotlolo',
-    visionModelHint: 'Vision e sebelisa tlhophiso ea model ea thuso — model e khonang ho sebelisa litšoantšo e khethoa moo, eseng ho mofani ka mong mona.',
+    visionModelHint:
+      'Vision e sebelisa tlhophiso ea model ea thuso — model e khonang ho sebelisa litšoantšo e khethoa moo, eseng ho mofani ka mong mona.',
     visionModelLink: 'Khetha model ea pono ho Litlhophiso → Mehlala',
     skillsLoadFailed: 'Ho loda bokhoni ho hlolehile',
     toolsetsRefreshFailed: 'Ho nchafatsa li-toolset ho hlolehile',
@@ -997,7 +1032,7 @@ export const st = defineLocale({
     provenance: {
       agent: 'E ithutiloe',
       bundled: 'E hahelitsoe',
-      hub: 'Hub',
+      hub: 'Hub'
     },
     changesApplyNewSessions: 'Liphetoho li sebetsa ho disishini tse ncha.',
     skillUpdated: 'Bokhoni bo nchafalitsoe',
@@ -1014,7 +1049,7 @@ export const st = defineLocale({
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
     emptyNoneAvailable: noun => `No ${noun} available yet.`,
     edit: 'Edit',
-    archive: 'Archive',
+    archive: 'Archive'
   },
   webhooks: {
     fieldDescription: 'Kopo',
@@ -1038,7 +1073,7 @@ export const st = defineLocale({
       email: 'Imeile',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     done: 'Ho felile',
     fieldName: 'Lebitso',
@@ -1050,7 +1085,8 @@ export const st = defineLocale({
     hint: 'Subscription changes hot-reload once the receiver is running. Disabled subscriptions reject incoming events.',
     empty: 'No webhook subscriptions yet.',
     disabledTitle: 'Webhook receiver disabled',
-    disabledBody: 'Webhooks are their own gateway platform. Enable them here to accept incoming HTTP events; chat channels are only needed when a subscription delivers to Telegram, Discord, Slack, or another channel.',
+    disabledBody:
+      'Webhooks are their own gateway platform. Enable them here to accept incoming HTTP events; chat channels are only needed when a subscription delivers to Telegram, Discord, Slack, or another channel.',
     enable: 'Enable webhooks',
     enabling: 'Enabling...',
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -1078,7 +1114,7 @@ export const st = defineLocale({
     createdSecretHint: 'Copy the secret now — it is only shown once.',
     webhookUrl: 'Webhook URL',
     secretOnce: 'Secret (shown once)',
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     close: 'Bitsa m profiles',
@@ -1156,7 +1192,7 @@ export const st = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   cron: {
     days: {
@@ -1167,11 +1203,12 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Labone',
       '5': 'Tlhatshe',
       '6': 'Mochao',
-      '7': 'Sònyay',
+      '7': 'Sònyay'
     },
     topOfHour: 'Ho qala hora ka nako e mong le e e hodimeng',
     newCron: 'Cron e ncha',
-    emptyDescNew: 'Rela prompt ho tsama le tefiso ea cron. OpenAmer e tla e sebetsa mme a kape liphetho koping e o khethang.',
+    emptyDescNew:
+      'Rela prompt ho tsama le tefiso ea cron. OpenAmer e tla e sebetsa mme a kape liphetho koping e o khethang.',
     emptyDescSearch: 'Leka ho batla ka kopo e phatlalalitsoeng.',
     emptyTitleNew: 'Ha ho na mesebatsi e rerilweng kahoo',
     emptyTitleSearch: 'Ha ho na khoneho',
@@ -1191,7 +1228,7 @@ Leave blank to keep the ${mode} default.`,
     edit: 'Fetola cron',
     deleteTitle: 'Moma mosebatsi oa cron?',
     deleteDescPrefix: 'Sena tla tlosa',
-    deleteDescSuffix: 'ka mor\'a pele. O tla ema ho luma hang kaofela.',
+    deleteDescSuffix: "ka mor'a pele. O tla ema ho luma hang kaofela.",
     deleting: 'Ho tlakala...',
     resumed: 'Cron e tsotsoe',
     paused: 'Cron e emisitsoe',
@@ -1215,7 +1252,7 @@ Leave blank to keep the ${mode} default.`,
       tab: 'Meralo',
       startFrom: 'Qala ho tloha',
       custom: 'E ikhethileng',
-      subtitle: 'Diautomation tse lokiselitsoeng',
+      subtitle: 'Diautomation tse lokiselitsoeng'
     },
     scheduleLabels: {
       'every-15-minutes': 'Metsotso e 15 e meng le e meng',
@@ -1224,26 +1261,28 @@ Leave blank to keep the ${mode} default.`,
       weekdays: 'Matsatsi a beke',
       weekly: 'Ka beke',
       monthly: 'Ka khoeli',
-      hourly: 'Ka hora',
+      hourly: 'Ka hora'
     },
     scheduleHints: {
       daily: 'Letsatsi le leng le le leng ka 9:00 hoseng',
       weekdays: 'Mantaha ho fihla Labohlano ka 9:00 hoseng',
       weekly: 'Mantaha o mong le o mong ka 9:00 hoseng',
-      monthly: 'Letsatsi la pele la khoeli e \'ngoe le e \'ngoe ka 9:00 hoseng',
-      hourly: 'Qalong ea hora e \'ngoe le e \'ngoe',
+      monthly: "Letsatsi la pele la khoeli e 'ngoe le e 'ngoe ka 9:00 hoseng",
+      hourly: "Qalong ea hora e 'ngoe le e 'ngoe",
       'every-15-minutes': 'Metsotso e 15 e meng le e meng',
-      custom: 'Mokhoa oa Cron kapa puo e tlhaho',
+      custom: 'Mokhoa oa Cron kapa puo e tlhaho'
     },
     failedSave: 'Ho hlolehile ho boloka mosebetsi oa cron',
     editTitle: 'Fetola mosebetsi oa cron',
     createTitle: 'Mosebetsi o mocha oa cron',
     editDesc: 'Ntlafatsa kemiso, taelo, kapa sepheo sa ho romela. Liphetoho li tla sebetsa tsamaisong e latelang.',
-    createDesc: 'Bea kemiso ea taelo hore e tsamaee e le ka bo eona. Sebelisa mokhoa oa Cron kapa polelo e tlhaho e kang "metsotso e 15 e meng le e meng".',
+    createDesc:
+      'Bea kemiso ea taelo hore e tsamaee e le ka bo eona. Sebelisa mokhoa oa Cron kapa polelo e tlhaho e kang "metsotso e 15 e meng le e meng".',
     nameLabel: 'Lebitso',
     namePlaceholder: 'Tlhahisoleseding ea hoseng',
     promptLabel: 'Taelo',
-    promptPlaceholder: 'Etsa kakaretso ea likhoele tsa Slack tseo ke sa li balang ebe o nthomella tse 5 tse holimo ka imeile...',
+    promptPlaceholder:
+      'Etsa kakaretso ea likhoele tsa Slack tseo ke sa li balang ebe o nthomella tse 5 tse holimo ka imeile...',
     frequencyLabel: 'Makhetlo',
     deliverLabel: 'Romela ho',
     deliverNeedsHomeChannel: 'beha kanale ea lapeng pele',
@@ -1251,7 +1290,8 @@ Leave blank to keep the ${mode} default.`,
     modelDefault: 'Kamehla (mohlala oa lefatše)',
     customScheduleLabel: 'Kemiso e ikhethileng',
     customPlaceholder: '0 9 * * * kapa matsatsi a beke ka 9 hoseng',
-    customHint: 'Polelo ea Cron, kapa lipoleloana tse kang "hora e \'ngoe le e \'ngoe" kapa "matsatsi a beke ka 9 hoseng".',
+    customHint:
+      'Polelo ea Cron, kapa lipoleloana tse kang "hora e \'ngoe le e \'ngoe" kapa "matsatsi a beke ka 9 hoseng".',
     optional: 'Ka boikhethelo',
     promptRequired: 'Taelo ea hlokahala.',
     promptScheduleRequired: 'Taelo le kemiso lia hlokahala.',
@@ -1261,7 +1301,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Theha cron',
     tabs: {
       jobs: 'Mesebetsi',
-      blueprints: 'Meralo',
+      blueprints: 'Meralo'
     },
     close: 'Koala cron',
     title: 'Mesebetsi e reriloeng',
@@ -1274,14 +1314,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'e emisitsoe',
       disabled: 'e koetsoe',
       error: 'phoso',
-      completed: 'e phethiloe',
+      completed: 'e phethiloe'
     },
     deliveryLabels: {
       local: 'Desktophu ena',
       email: 'Imeile',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -1290,7 +1330,7 @@ Leave blank to keep the ${mode} default.`,
     everyDayOfWeekAt: (day, time) => `Every ${day} at ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Monthly on day ${dayOfMonth} at ${time}`,
     everyHourAt: minute => `Every hour at :${minute}`,
-    actionsFor: title => `Actions for ${title}`,
+    actionsFor: title => `Actions for ${title}`
   },
   artifacts: {
     refreshing: 'Ho khahlisa lihlahlela',
@@ -1324,14 +1364,14 @@ Leave blank to keep the ${mode} default.`,
     refresh: 'Nchafatsa dihlahisoa',
     kindFile: 'Fayile',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'Phetoho ncha',
       skills: 'Mebello',
       messaging: 'Ho isa',
-      artifacts: 'Lihlahlela',
+      artifacts: 'Lihlahlela'
     },
     searchAria: 'Ebatla litheme',
     searchPlaceholder: 'Ebatla litheme…',
@@ -1340,7 +1380,7 @@ Leave blank to keep the ${mode} default.`,
     pinned: 'Etsieng',
     sessions: 'Litheme',
     cronJobs: 'Mosebatsi oa cron',
-    groupAriaGrouped: 'Bonts\'a letheme',
+    groupAriaGrouped: "Bonts'a letheme",
     row: {
       copyId: 'Kopi ID',
       export: 'Eksporta',
@@ -1372,14 +1412,14 @@ Leave blank to keep the ${mode} default.`,
       actionsFor: title => `Actions for ${title}`,
       handoffOrigin: platform => `Handed off from ${platform}`,
       ownedByProfile: profile => `Profile: ${profile}`,
-      untitledChat: id => `Chat ${id}`,
+      untitledChat: id => `Chat ${id}`
     },
     dateDivider: {
       today: 'Kajelo lehono',
       yesterday: 'Kajelo',
       thisWeek: 'Kajelo beke ena',
       lastWeek: 'Beke e fetile',
-      thisMonth: 'Kajelo kgwedi ena',
+      thisMonth: 'Kajelo kgwedi ena'
     },
     groupAriaUngrouped: 'Hlophisa sessions ka workspace',
     showProjects: 'Bontsha projects',
@@ -1419,8 +1459,10 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'Kopela tsela',
       removeFromSidebar: 'Fihla sidebar',
       createFailed: 'Sa kgone ho tlhophisa projeke',
-      staleBackend: 'Nolofatsa OpenAmer backend ho tlhophisa projeke — backend ea hao e khutlile ho feta app ena ea desktop (Lakatse → Ntlafatso → Backend).',
-      deleteConfirm: 'Lenyana ena e felisa projeke e bolokileng ho OpenAmer. Lifaele, git repos, le worktrees li tla Sala le tsona.',
+      staleBackend:
+        'Nolofatsa OpenAmer backend ho tlhophisa projeke — backend ea hao e khutlile ho feta app ena ea desktop (Lakatse → Ntlafatso → Backend).',
+      deleteConfirm:
+        'Lenyana ena e felisa projeke e bolokileng ho OpenAmer. Lifaele, git repos, le worktrees li tla Sala le tsona.',
       startWork: 'Worktree e ncha',
       newWorktreeTitle: 'Worktree e ncha',
       newWorktreeDesc: 'Lakela lebitsa la branch ya worktree ena.',
@@ -1440,8 +1482,10 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'Fela branch',
       removeWorktree: 'Tlosa worktree',
       removeWorktreeFailed: 'Sa kgone ho tlosa worktree (liphetoho tse sa bolokang?)',
-      removeWorktreeConfirm: 'Tlosa e ka git (e felisa directory ya worktree; branch e tla Sala), kapa fela fihla lane ho sidebar e sa tlosa worktree.',
-      removeWorktreeDirty: 'Worktree ena e na le liphetoho tse sa bolokang. Tlosa ka matla (e felisa liphetoho tseo), kapa fela fihla lane e sa tlosa worktree.',
+      removeWorktreeConfirm:
+        'Tlosa e ka git (e felisa directory ya worktree; branch e tla Sala), kapa fela fihla lane ho sidebar e sa tlosa worktree.',
+      removeWorktreeDirty:
+        'Worktree ena e na le liphetoho tse sa bolokang. Tlosa ka matla (e felisa liphetoho tseo), kapa fela fihla lane e sa tlosa worktree.',
       forceRemove: 'Tlosa ka matla',
       back: 'Projeke kaofela',
       namePlaceholder: 'mohl.: Skunkworks',
@@ -1450,14 +1494,14 @@ Leave blank to keep the ${mode} default.`,
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     loading: 'Lala…',
     loadMore: 'Lakela more',
     noMatch: query => `No sessions match “${query}”.`,
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     queueStuckTitle: 'Otheka o neng a ema ha o romalwe',
@@ -1487,18 +1531,18 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'Tlhophlo ea kodo',
         description: 'Hlola phetoho ea haale ka lintho tse phetolotse, maqolo a hlokotse, le lite tse neng tsa bola.',
-        text: 'Ka kopo hloa ena ka lintho tse ngangisang, tse phetolotse, le tse neng tsa bola.',
+        text: 'Ka kopo hloa ena ka lintho tse ngangisang, tse phetolotse, le tse neng tsa bola.'
       },
       implementationPlan: {
         label: 'Plan ya ntlha',
         description: 'Tlhama mokhoa pele u ka amang kobo hore phetoho e lula e focused.',
-        text: 'Ka kopo etsa plan ya ntlha ya ntlha pele u ka fetola kobo.',
+        text: 'Ka kopo etsa plan ya ntlha ya ntlha pele u ka fetola kobo.'
       },
       explainThis: {
         label: 'Hlalosa ena',
-        description: 'Fata ka botlalo kobo e khethileng e sebetsa \'me u link lifaile tsa bohlokoa.',
-        text: 'Ka kopo hlalosa kahoo ena e sebetsa \'me u nto lifaile tsa bohlokoa.',
-      },
+        description: "Fata ka botlalo kobo e khethileng e sebetsa 'me u link lifaile tsa bohlokoa.",
+        text: "Ka kopo hlalosa kahoo ena e sebetsa 'me u nto lifaile tsa bohlokoa."
+      }
     },
     message: 'Molaetsa',
     placeholderStarting: 'O qala OpenAmer...',
@@ -1516,7 +1560,7 @@ Leave blank to keep the ${mode} default.`,
     listening: 'E tloaelo',
     muteMic: 'Koala moikopotso',
     unmuteMic: 'Ntsha moikopotso',
-    stopListening: 'Ema ho tloaela \'me o romelle',
+    stopListening: "Ema ho tloaela 'me o romelle",
     stopShort: 'Ema',
     endConversation: 'Fella kakareng ya mophato',
     endShort: 'Qetella',
@@ -1538,7 +1582,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'tsoela kereke e fetileng',
       '/details': 'laola boikarabelo ba transcript',
       '/copy': 'kopi e khethileng kapa mola oa moradi oa hoqetela',
-      '/quit': 'Fihla OpenAmer',
+      '/quit': 'Fihla OpenAmer'
     },
     hotkeyDescs: {
       'composer.mention': 'bonya lifaele, liphoofolo, li-URL, git',
@@ -1548,10 +1592,10 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'romella turn e latelang e oelang',
       'keybinds.openPanel': 'likhetho tsohle tsa khutlo',
       'composer.cancel': 'koala popover · cancel run',
-      'composer.history': 'pota popover / history',
+      'composer.history': 'pota popover / history'
     },
     attachUrlTitle: 'Kopanya URL',
-    attachUrlDesc: 'OpenAmer o tla e fumana leqephe \'me o le kenyeng sebaka sa lehlo la hao.',
+    attachUrlDesc: "OpenAmer o tla e fumana leqephe 'me o le kenyeng sebaka sa lehlo la hao.",
     urlPlaceholder: 'https://example.com/post',
     urlHintPre: 'Kenyetsa URL e felletseng, mohl.',
     attach: 'Lakanya',
@@ -1574,7 +1618,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -1583,14 +1627,14 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
     attachments: count => `${count} attachment${count === 1 ? '' : 's'}`,
     previewLabel: label => `Preview ${label}`,
     couldNotPreview: label => `Could not preview ${label}`,
-    removeAttachment: label => `Remove ${label}`,
+    removeAttachment: label => `Remove ${label}`
   },
   statusStack: {
     agents: 'Linto',
@@ -1613,8 +1657,8 @@ Leave blank to keep the ${mode} default.`,
       viewAsList: 'Bona ka list',
       revert: 'Hlakola',
       revertAll: 'Hlakola kaofela',
-      revertConfirm: 'Tlosa dipheto tsa file ena \'me u e napele khoutong e kileng e akhiloeng? Ke sa kgonehe.',
-      revertAllConfirm: 'Tlosa dipheto kaofela \'me u napele ditfile khoutong e kileng e akhiloeng? Ke sa kgonehe.',
+      revertConfirm: "Tlosa dipheto tsa file ena 'me u e napele khoutong e kileng e akhiloeng? Ke sa kgonehe.",
+      revertAllConfirm: "Tlosa dipheto kaofela 'me u napele ditfile khoutong e kileng e akhiloeng? Ke sa kgonehe.",
       staged: 'E lakileng',
       noChanges: 'Ha na dipheto',
       notRepo: 'Haese ke git repository',
@@ -1623,15 +1667,16 @@ Leave blank to keep the ${mode} default.`,
       scopeBranch: 'Lethaga',
       scopeLastTurn: 'Turn ya bofelo',
       commit: 'Komitisa',
-      commitAndPush: 'Komitisa \'me u romela',
+      commitAndPush: "Komitisa 'me u romela",
       commitPlaceholder: 'Molaetsa (⌘↵ ho komita)',
       generateCommitMessage: 'Hlahisa molaetsa wa komita',
       stopGenerating: 'Yekela ho hlahisa',
       createPr: 'Etsa PR',
       openPr: 'Bula PR',
-      ghMissing: 'Kenya GitHub CLI (gh) \'me u kene ho bula li-PR',
+      ghMissing: "Kenya GitHub CLI (gh) 'me u kene ho bula li-PR",
       agentShip: 'Kopa OpenAmer ho bula PR',
-      agentShipPrompt: 'Hlahloba liphetoho tsa hajoale, li commit ka molaetsa o hlakileng oa conventional-commit, sututsa lekala, ebe u bula pull request.',
+      agentShipPrompt:
+        'Hlahloba liphetoho tsa hajoale, li commit ka molaetsa o hlakileng oa conventional-commit, sututsa lekala, ebe u bula pull request.',
       newBranch: 'Lekala le lecha',
       worktrees: 'Li-worktree',
       changed: count => `${count} changed`,
@@ -1639,12 +1684,12 @@ Leave blank to keep the ${mode} default.`,
       behind: count => `${count} behind`,
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   zones: {
     showHeader: 'Bontša kholo',
@@ -1652,7 +1697,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Nyenyefatsa',
     restore: 'Khahlisa',
     closeRunningTitle: 'Koala tafole e sebetsang?',
-    closeRunningBody: 'Thotelo ena e ntse e sebetsa (kapa e emetse ka haeo hao). Koala tafole e ka fihla — thotelo e boloka tsobotso ya hae \'me e ka qalisoa hape ho bohloko.',
+    closeRunningBody:
+      "Thotelo ena e ntse e sebetsa (kapa e emetse ka haeo hao). Koala tafole e ka fihla — thotelo e boloka tsobotso ya hae 'me e ka qalisoa hape ho bohloko.",
     closeRunningConfirm: 'Koala tafole',
     closeOthers: 'Koala tse ding',
     closeToRight: 'Koala ho ea ka ho ja ka moro',
@@ -1664,7 +1710,7 @@ Leave blank to keep the ${mode} default.`,
     dirRight: 'ho ea ka moro',
     pluginDisabledBody: 'E-enable boe ba e etsa ka Seting → Plugin ho lula pane e ka hape.',
     editTitle: 'Mothwalemoho',
-    editHint: 'Khetha mothwalemoho, kapa uhula lipane lipakeng tse ling. Klikha ka ho e letsoa ka ntl\'a ho arolahano.',
+    editHint: "Khetha mothwalemoho, kapa uhula lipane lipakeng tse ling. Klikha ka ho e letsoa ka ntl'a ho arolahano.",
     reset: 'Khahlisa',
     templates: 'Lipotokelo',
     custom: 'Tla tlhabo',
@@ -1679,7 +1725,8 @@ Leave blank to keep the ${mode} default.`,
     templateGrid: 'Gridi',
     templatePriority: 'Bophelo',
     saveApply: 'Boloka & seba',
-    notExpressible: 'mokotulo oo o entlhang (pinwheel) — ha o sa ka sepelwaka ka ho arolahano tse tse khahlolaneng kwa ntle sa ho ja',
+    notExpressible:
+      'mokotulo oo o entlhang (pinwheel) — ha o sa ka sepelwaka ka ho arolahano tse tse khahlolaneng kwa ntle sa ho ja',
     split: dir => `Split ${dir}`,
     move: dir => `Move ${dir}`,
     pluginDisabled: pluginId => `Plugin "${pluginId}" disabled`,
@@ -1689,7 +1736,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
@@ -1720,11 +1767,12 @@ Leave blank to keep the ${mode} default.`,
       goForward: 'Eala hodima',
       sendEdited: 'Romela mesehleng e fetolotsoeng',
       attachingFile: 'Ho khomishana...',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
-      yesterday: time => `Yesterday, ${time}`,
+      yesterday: time => `Yesterday, ${time}`
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gateway ha e se a ngangisana',
@@ -1738,7 +1786,8 @@ Leave blank to keep the ${mode} default.`,
       reject: 'Hana',
       alwaysTitle: 'Lumello kamehla taelo ena?',
       alwaysAllow: 'Lumello ka metloha',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
       notReady: 'Kopo ea ho hlopholetsa ha e itse e lokile',
@@ -1752,7 +1801,7 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'Tsoela',
       lateAnswerTip: 'Lala answer ka follow-up',
       lateAnswerHint: 'Prompt ha e sa letle, khetha option ya lala',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     tool: {
       actions: {
@@ -1766,123 +1815,123 @@ Leave blank to keep the ${mode} default.`,
         opened: 'E bula',
         opening: 'E bula',
         failedToOpen: 'E ka sa bula',
-        searched: 'E batla',
+        searched: 'E batla'
       },
       prefixes: {
         browser: 'Sebetsi sa leboko',
-        web: 'Inthanete',
+        web: 'Inthanete'
       },
       titles: {
         browser_click: {
           done: 'E khile wa phatla',
           pending: 'O phatla',
-          pendingAction: 'E phatlheng',
+          pendingAction: 'E phatlheng'
         },
         browser_fill: {
           done: 'E tlatsile leqepha',
           pending: 'E tlatsang leqepha',
-          pendingAction: 'E tlatsang',
+          pendingAction: 'E tlatsang'
         },
         browser_navigate: {
           done: 'E buleile',
           pending: 'E buleheng',
-          pendingAction: 'E buleheng',
+          pendingAction: 'E buleheng'
         },
         browser_snapshot: {
           done: 'E tsamaisile snapshot',
           pending: 'E tsamaisang snapshot',
-          pendingAction: 'E tsamaisang',
+          pendingAction: 'E tsamaisang'
         },
         browser_take_screenshot: {
           done: 'E tsamaisile screenshot',
           pending: 'E tsamaisang screenshot',
-          pendingAction: 'E tsamaisang',
+          pendingAction: 'E tsamaisang'
         },
         browser_type: {
           done: 'E ngile ka page',
           pending: 'E ngolang ka page',
-          pendingAction: 'E ngolang',
+          pendingAction: 'E ngolang'
         },
         clarify: {
           done: 'E botsile potlako',
           pending: 'E botsang potlako',
-          pendingAction: 'E botsang',
+          pendingAction: 'E botsang'
         },
         cronjob: {
           done: 'Mosebetsi wa cron',
           pending: 'E rerelang cron job',
-          pendingAction: 'E rerelang',
+          pendingAction: 'E rerelang'
         },
         edit_file: {
           done: 'E lokile file',
           pending: 'E lokolang file',
-          pendingAction: 'E lokolang',
+          pendingAction: 'E lokolang'
         },
         execute_code: {
           done: 'E khile moralo',
           pending: 'Ho ngola',
-          pendingAction: 'Ho ngola',
+          pendingAction: 'Ho ngola'
         },
         image_generate: {
           done: 'E hlahisile setshwantshwa',
           pending: 'E hlahisang setshwantshwa',
-          pendingAction: 'E hlahisang',
+          pendingAction: 'E hlahisang'
         },
         list_files: {
           done: 'Lifae tse lihloletseng',
           pending: 'Koahla lifae',
-          pendingAction: 'Koahla',
+          pendingAction: 'Koahla'
         },
         patch: {
           done: 'Faele e phetotsweng',
           pending: 'Koahla phetotso ya faele',
-          pendingAction: 'Phetotso',
+          pendingAction: 'Phetotso'
         },
         read_file: {
           done: 'Bala faele',
           pending: 'Koahla bala faele',
-          pendingAction: 'Koahla',
+          pendingAction: 'Koahla'
         },
         search_files: {
           done: 'Lifae tse batlileng',
           pending: 'Koahla lifae tse batlileng',
-          pendingAction: 'Koahla',
+          pendingAction: 'Koahla'
         },
         session_search_recall: {
           done: 'Batsa history ya session',
           pending: 'Koahla batsa history ya session',
-          pendingAction: 'Koahla',
+          pendingAction: 'Koahla'
         },
         terminal: {
           done: 'O eketseng command',
           pending: 'Koahla eketsa command',
-          pendingAction: 'Koahla',
+          pendingAction: 'Koahla'
         },
         todo: {
           done: 'Ditodo tse phetotsweng',
           pending: 'Koahla phetotso ya ditodo',
-          pendingAction: 'Koahla phetotso',
+          pendingAction: 'Koahla phetotso'
         },
         vision_analyze: {
           done: 'Seswantsho se analisitse',
           pending: 'Koahla analisi ya seswantsho',
-          pendingAction: 'Koahla analisi',
+          pendingAction: 'Koahla analisi'
         },
         web_extract: {
           done: 'Bala wepeji',
           pending: 'Koahla bala wepeji',
-          pendingAction: 'Koahla',
+          pendingAction: 'Koahla'
         },
         web_search: {
           done: 'Batsa web',
           pending: 'Koahla batsa web',
-          pendingAction: 'Koahla',
+          pendingAction: 'Koahla'
         },
         write_file: {
           done: 'Faele e phetotsweng',
           pending: 'Koahla phetotso ya faele',
-          pendingAction: 'Koahla phetotso',
-        },
+          pendingAction: 'Koahla phetotso'
+        }
       },
       code: 'Khode',
       copyCode: 'Kopio khode',
@@ -1912,9 +1961,9 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
+    }
   },
   rightSidebar: {
     emptyTitle: 'Fula',
@@ -1950,7 +1999,7 @@ Leave blank to keep the ${mode} default.`,
     changeCwdTitle: 'Fetola directory ea mosebetsi',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'Tlhokomelo',
@@ -1979,7 +2028,8 @@ Leave blank to keep the ${mode} default.`,
     editing: 'Ho fola',
     unsavedChanges: 'Litsobo tse sa bolokang',
     diskChangedTitle: 'Lifaile e fetohotse ka disk',
-    diskChangedBody: 'Lifaile ena e fetohile mantsiboea a se ka ua e bula. U e qaule ka mofuta wa hao, kapa u latlhele litsobo tsa hao mme u e khutlisetse?',
+    diskChangedBody:
+      'Lifaile ena e fetohile mantsiboea a se ka ua e bula. U e qaule ka mofuta wa hao, kapa u latlhele litsobo tsa hao mme u e khutlisetse?',
     overwrite: 'Hlakola',
     discardReload: 'Hlaola le reload',
     console: {
@@ -2000,7 +2050,7 @@ Leave blank to keep the ${mode} default.`,
       sentTitle: 'Romelitse ho chat',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'App ya preview e kgone ho boot',
@@ -2034,13 +2084,13 @@ Leave blank to keep the ${mode} default.`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
       openTarget: url => `Open ${url}`,
-      fallbackTitle: 'Preview',
+      fallbackTitle: 'Preview'
     },
     closeTab: label => `Close ${label}`,
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   desktop: {
     yoloToggleFailed: 'Ha ho kgone ho fetola YOLO',
@@ -2052,7 +2102,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'Ho edita ho lokane',
     resumeFailed: 'Ho tsoela ho lokane',
     resumeStrandedTitle: 'Ha ho kgone ho loading seshene ena',
-    resumeStrandedBody: 'Khoneko e sebetsaneng le seshene ena e lokane, mme liteko tsa ho itsoela lia tlohela. Etsahetsa hore gateway e sebetsa, e phele o le phehe.',
+    resumeStrandedBody:
+      'Khoneko e sebetsaneng le seshene ena e lokane, mme liteko tsa ho itsoela lia tlohela. Etsahetsa hore gateway e sebetsa, e phele o le phehe.',
     resumeRetry: 'Leka',
     nothingToBranch: 'Ha ho letho le ho arola',
     branchNeedsChat: 'Qala kapa o tsoele chatbot pele o arola.',
@@ -2090,7 +2141,7 @@ Leave blank to keep the ${mode} default.`,
       timedOut: 'Ho le bile nako ho ema gateway. E se o ntse e matha `openamer gateway`?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     audioReadFailed: 'Ha a kgone ho bala audio e bolokilweng',
     sessionUnavailable: 'Session e haile',
@@ -2105,35 +2156,36 @@ Leave blank to keep the ${mode} default.`,
     skillCommandsAvailable: count => `${count} skill commands available.`,
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
     branchTitle: n => `Draft: Branch #${n}`,
-    clipboard: 'Clipboard',
+    clipboard: 'Clipboard'
   },
   errors: {
     genericFailure: 'Ha ho na le ntho e sa lokeng',
     boundaryTitle: 'Ho senyeha haholo tsebang',
     boundaryDesc: 'Ponong ho ka hlaha hore e sa loka. Dipalekano tsa hao le litso tsa hao li sireletse.',
     reloadWindow: 'Khetha window',
-    openLogs: 'Bula lipeelo',
+    openLogs: 'Bula lipeelo'
   },
   ui: {
     search: {
-      clear: 'Hlakola batlo',
+      clear: 'Hlakola batlo'
     },
     pagination: {
       label: 'Lifaele tse ngata',
       previous: 'Pele',
       previousAria: 'Eya faele e fetileng',
       next: 'E latelang',
-      nextAria: 'Eya faele e latelang',
+      nextAria: 'Eya faele e latelang'
     },
     sidebar: {
       title: 'Mohlakare',
       description: 'E bontša mohlakare wa selefouna.',
-      toggle: 'Lula mohlakare',
-    },
+      toggle: 'Lula mohlakare'
+    }
   },
   install: {
     probeError: 'Ile ya khonehla ho fihla gate ya OpenAmer.',
@@ -2155,8 +2207,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Installation e kile ya kgaotsa.',
     settingUpTitle: 'Ho rala OpenAmer Agent',
     finishingTitle: 'E qetella',
-    failedDesc: 'Ke e mong ea mehla ea install e ile ya kgaotsa. Ka Windows, seno ke ka etsahala ha OpenAmer CLI kapa desktop instance e mong e sebetse. Ema OpenAmer instance e ngeng, ebe o leke. Hlokomela lintlha tlasa kapa desktop log bakeng sa khalefihlo e felile.',
-    activeDesc: 'Ke kakaretso ya nako e le nngwe. OpenAmer installer e tla tsamaisa dependencies e la hao mophato. Ho qala ho tlang, ke tla skip step ena.',
+    failedDesc:
+      'Ke e mong ea mehla ea install e ile ya kgaotsa. Ka Windows, seno ke ka etsahala ha OpenAmer CLI kapa desktop instance e mong e sebetse. Ema OpenAmer instance e ngeng, ebe o leke. Hlokomela lintlha tlasa kapa desktop log bakeng sa khalefihlo e felile.',
+    activeDesc:
+      'Ke kakaretso ya nako e le nngwe. OpenAmer installer e tla tsamaisa dependencies e la hao mophato. Ho qala ho tlang, ke tla skip step ena.',
     fetchingManifest: 'E ntshetsa manifest ea installer...',
     error: 'Phoso',
     hideOutput: 'Fihla phello ea installer',
@@ -2173,7 +2227,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'E ikatisa',
       succeeded: 'Fetotse',
       skipped: 'E skipile',
-      failed: 'E ile',
+      failed: 'E ile'
     },
     oneTimeTitle: 'OpenAmer e hloka install ya once',
     installCommand: 'Command ya install',
@@ -2182,7 +2236,8 @@ Leave blank to keep the ${mode} default.`,
     installTo: 'E install ho',
     retryAfterRun: 'Ke runile yona -- retry',
     setupChoiceTitle: 'Tlisa OpenAmer Desktop',
-    setupChoiceDesc: 'Hokela app ena ho OpenAmer gateway eo u e runang, kapa install OpenAmer ka local ho computer ena.',
+    setupChoiceDesc:
+      'Hokela app ena ho OpenAmer gateway eo u e runang, kapa install OpenAmer ka local ho computer ena.',
     connectExistingTitle: 'Hokela OpenAmer e existing',
     connectExistingShort: 'Hokela eo e existing',
     connectExistingDesc: 'Use remote backend le token ya session kapa browser sign-in. Local install e ka e start.',
@@ -2194,14 +2249,15 @@ Leave blank to keep the ${mode} default.`,
     remoteUrlDesc: 'Use base URL ya OpenAmer gateway, including https:// ha e remote.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
     probing: 'E detecta gateway authentication...',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     remoteUrlTitle: 'Gateway URL',
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
     signInWith: provider => `Sign in with ${provider}`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'Ha re u rale OpenAmer Agent',
@@ -2221,28 +2277,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'API ya modela e tobane',
-        description: 'Kgokelo ea modela tse Fireworks AI',
+        description: 'Kgokelo ea modela tse Fireworks AI'
       },
       openrouter: {
         short: 'Kgolo e le nngwe, modela le bang',
-        description: 'E amang modela makholokho ka kgolo e le nngwe. Khetho e kgwele',
+        description: 'E amang modela makholokho ka kgolo e le nngwe. Khetho e kgwele'
       },
       openai: {
         short: 'Modela tsa GPT-class',
-        description: 'Kgokelo ea modela tse OpenAI',
+        description: 'Kgokelo ea modela tse OpenAI'
       },
       gemini: {
         short: 'Modela tsa Gemini',
-        description: 'Kgokelo ea modela tse Google Gemini',
+        description: 'Kgokelo ea modela tse Google Gemini'
       },
       xai: {
         short: 'Modela tsa Grok',
-        description: 'Kgokelo ea modela tse xAI Grok',
+        description: 'Kgokelo ea modela tse xAI Grok'
       },
       local: {
         short: 'I-hostile ka nna',
-        description: 'Ntsho OpenAmer ho endpoint ea local kapa self-hosted OpenAI-compatible (vLLM, llama.cpp, Ollama, etc).',
-      },
+        description:
+          'Ntsho OpenAmer ho endpoint ea local kapa self-hosted OpenAI-compatible (vLLM, llama.cpp, Ollama, etc).'
+      }
     },
     backToSignIn: 'Boela ho tsena',
     getKey: 'Fumana kgolo',
@@ -2255,7 +2312,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'E bula browser ea hao ho tsena, ebe e tsoela here',
       device_code: 'E bula page ea verification browser ea hao — OpenAmer e kopile ka bonolo',
-      external: 'Tsena once terminal ea hao, ebe u boe chat',
+      external: 'Tsena once terminal ea hao, ebe u boe chat'
     },
     signInFailed: 'Tsena e sa kgone. Leka hape.',
     pickDifferentProvider: 'Khetha mofani o mong',
@@ -2274,8 +2331,10 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     defaultModel: 'Default model',
     freeTier: 'Free tier',
@@ -2284,12 +2343,14 @@ Leave blank to keep the ${mode} default.`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
     change: 'Change',
     startChatting: 'Begin',
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   updates: {
     done: 'Fetotse',
-    applyingBody: 'OpenAmer fetotse e nka sebaka sa lone fensetere ebe e qala OpenAmer ka ikhethelo ha e fetotse. Ka khotso, osa qale OpenAmer uena ha u e ntse u e fetotse.',
-    applyingBodyBackend: 'Morero o ka khotso o be o fetotse, o qala ka ikhethelo. OpenAmer e qala ka ikhethelo ha e fetotse.',
+    applyingBody:
+      'OpenAmer fetotse e nka sebaka sa lone fensetere ebe e qala OpenAmer ka ikhethelo ha e fetotse. Ka khotso, osa qale OpenAmer uena ha u e ntse u e fetotse.',
+    applyingBodyBackend:
+      'Morero o ka khotso o be o fetotse, o qala ka ikhethelo. OpenAmer e qala ka ikhethelo ha e fetotse.',
     applyingClose: 'Fensetere ena e tla koalo ha e fetotse, ebe OpenAmer e qala ka ikhethelo.',
     errorTitle: 'Fetotse e sa fetotse',
     errorBody: 'Ha ho tshwanelo — letho le sa lebile. O ka leka hano.',
@@ -2300,11 +2361,12 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'Morero o qala ka ikhethelo ho loada fetotse…',
       notAvailable: 'Fetotse e ha e available bakeng sa morero ona.',
       failed: 'Fetotse ya morero e ile.',
-      noReturn: 'Morero o sa ka khotso online. Fetotse e kanna e sa fetotse — nka morero host.',
+      noReturn: 'Morero o sa ka khotso online. Fetotse e kanna e sa fetotse — nka morero host.'
     },
     appErrors: {
-      updateLocked: 'Fetotse e kanyetso: OpenAmer fensetere e mang kapa terminal e running openamer e hola install. E koalo ebe u leke.',
-      updateFailed: 'Fetotse e sa fetotse. Ha ho tshwanelo — letho le sa lebile. O ka leka hano.',
+      updateLocked:
+        'Fetotse e kanyetso: OpenAmer fensetere e mang kapa terminal e running openamer e hola install. E koalo ebe u leke.',
+      updateFailed: 'Fetotse e sa fetotse. Ha ho tshwanelo — letho le sa lebile. O ka leka hano.'
     },
     stages: {
       idle: 'Ho itokisetsa…',
@@ -2318,14 +2380,14 @@ Leave blank to keep the ${mode} default.`,
       done: 'Nchafatso e felile',
       manual: 'Nchafatsa ho tsoa terminal ea hau',
       guiSkew: 'Nchafatsa sesebelisoa sa desktop',
-      error: 'Nchafatso e emisitsoe',
+      error: 'Nchafatso e emisitsoe'
     },
     checking: 'Ho batla linchafatso…',
     checkFailedTitle: 'Ha hoa khonahala ho hlahloba linchafatso',
     tryAgain: 'Leka hape',
     notAvailableTitle: 'Nchafatso ha e fumanehe',
     unsupportedMessage: 'Mofuta ona oa OpenAmer ha o khone ho itlhafatsa ka hare ho sesebelisoa.',
-    connectionRetry: 'Hlahloba khokahano ea hau \'me u leke hape.',
+    connectionRetry: "Hlahloba khokahano ea hau 'me u leke hape.",
     latestBody: 'U sebelisa mofuta oa morao-rao.',
     latestBodyBackend: 'Backend e sebelisa mofuta oa morao-rao.',
     allSetTitle: 'U lokile',
@@ -2333,17 +2395,20 @@ Leave blank to keep the ${mode} default.`,
     availableBody: 'Mofuta o mocha oa OpenAmer o loketse ho kenngoa.',
     availableTitleBackend: 'Nchafatso ea backend e fumaneha',
     availableBodyBackend: 'Mofuta o mocha oa backend ea OpenAmer e hokahileng o loketse ho kenngoa.',
-    availableBodyNoChangelog: 'Mofuta o mocha o lokile. Lintlha tsa tokollo ha li fumanehe bakeng sa mofuta ona oa ho kenya.',
+    availableBodyNoChangelog:
+      'Mofuta o mocha o lokile. Lintlha tsa tokollo ha li fumanehe bakeng sa mofuta ona oa ho kenya.',
     updateNow: 'Nchafatsa hona joale',
     maybeLater: 'Mohlomong hamorao',
     manualTitle: 'Nchafatsa ho tsoa terminal ea hau',
-    manualBody: 'U kentse OpenAmer ho tsoa mola oa taelo, kahoo linchafatso li sebetsa moo hape. Khomaretsa sena terminal ea hau:',
+    manualBody:
+      'U kentse OpenAmer ho tsoa mola oa taelo, kahoo linchafatso li sebetsa moo hape. Khomaretsa sena terminal ea hau:',
     manualPickedUp: 'OpenAmer e tla fumana mofuta o mocha ha u e qala hape.',
     moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
     guiSkewTitle: 'Update the desktop app',
-    guiSkewBody: 'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
+    guiSkewBody:
+      'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
     copy: 'Copy',
-    copied: 'Copied',
+    copied: 'Copied'
   },
   shell: {
     statusbar: {
@@ -2367,13 +2432,13 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'Tlhaloso ea litho tse nnyane',
           system_prompt: 'Kopo ea system',
           tool_definitions: 'Tlhaloso ea lisebelisoa',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Gao na data ea kontekst',
         loading: 'E loadeloe tlhahlobo...',
         title: 'Tšebeliso ea Kontekst',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Bula tlhahlobo ea tšebeliso ea kontekst',
       session: 'Kopano',
@@ -2419,7 +2484,7 @@ Leave blank to keep the ${mode} default.`,
       cron: 'Cron',
       webhooks: 'Webhooks',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
     },
     windowControls: 'Window controls',
     paneControls: 'Pane controls',
@@ -2429,7 +2494,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'No models found',
       editModels: 'Edit Models…',
       refreshModels: 'Refresh Models',
-      fast: 'Fast',
+      fast: 'Fast'
     },
     modelOptions: {
       noOptions: 'No options for this model',
@@ -2445,7 +2510,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'Max',
       ultra: 'Ultra',
       updateFailed: 'Model option update failed',
-      fastFailed: 'Fast mode update failed',
+      fastFailed: 'Fast mode update failed'
     },
     gatewayMenu: {
       gateway: 'Gateway',
@@ -2460,7 +2525,7 @@ Leave blank to keep the ${mode} default.`,
       connection: label => `Connection: ${label}`,
       recentActivity: 'Recent activity',
       viewAllLogs: 'View all logs →',
-      messagingPlatforms: 'Messaging platforms',
+      messagingPlatforms: 'Messaging platforms'
     },
     approvalMode: {
       title: 'Approval mode',
@@ -2470,19 +2535,20 @@ Leave blank to keep the ${mode} default.`,
       smart: 'Smart',
       smartDescription: 'Automatically assess actions and ask when needed',
       off: 'Off',
-      offDescription: 'Run without approval prompts',
-    },
+      offDescription: 'Run without approval prompts'
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer gateway e sa khone ho hokela',
     sudoSendFailed: 'Sa khotsoa password ea sudo',
     secretSendFailed: 'Sa khotsoa siri',
     sudoTitle: 'Password ea Administrator',
-    sudoDesc: 'OpenAmer o hloka password ea hao ea sudo ho etsa command ea tokelo. E sentsoa feela ho agent ea hao ea lebaka.',
+    sudoDesc:
+      'OpenAmer o hloka password ea hao ea sudo ho etsa command ea tokelo. E sentsoa feela ho agent ea hao ea lebaka.',
     sudoPlaceholder: 'password ea sudo',
     secretTitle: 'Siri e hlokahala',
     secretDesc: 'OpenAmer o hloka bohloko ba ho tsoela.',
-    secretPlaceholder: 'Bohloko ba lekana',
+    secretPlaceholder: 'Bohloko ba lekana'
   },
   fileMenu: {
     revealFileManager: 'Bula foldara e nang le eona',
@@ -2497,7 +2563,7 @@ Leave blank to keep the ${mode} default.`,
     pathCopied: 'Tsela e kopisitsoe',
     revealFinder: 'Reveal in Finder',
     revealExplorer: 'Reveal in File Explorer',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop e se e loketse',
@@ -2506,168 +2572,172 @@ Leave blank to keep the ${mode} default.`,
       loadingSettings: 'Ho latha litlhophiso tsa OpenAmer',
       loadingSessions: 'Ho latha diseshene tsa morao tjena',
       startingDesktopConnection: 'Ho qala khokahano ea desktop',
-      startingOpenAmerDesktop: 'Ho qala OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Ho qala OpenAmer Desktop…'
     },
     errors: {
-      backgroundExited: 'Ts\'ebetso ea morao ea OpenAmer e tsoile.',
-      backgroundExitedDuringStartup: 'Ts\'ebetso ea morao ea OpenAmer e tsoile nakong ea ho qala.',
+      backgroundExited: "Ts'ebetso ea morao ea OpenAmer e tsoile.",
+      backgroundExitedDuringStartup: "Ts'ebetso ea morao ea OpenAmer e tsoile nakong ea ho qala.",
       backendStopped: 'Backend e emisitsoe',
       desktopBootFailed: 'Ho qala desktop ho hlotsoe',
       gatewayConnectionLost: 'Khokahano le gateway e lahlehile',
       gatewaySignInRequired: 'Ho hlokahala ho kena ho gateway',
-      ipcBridgeUnavailable: 'Borokho ba IPC ba desktop ha bo fumanehe.',
+      ipcBridgeUnavailable: 'Borokho ba IPC ba desktop ha bo fumanehe.'
     },
     failure: {
       title: 'OpenAmer e hlotsoe ho qala',
-      description: 'Gateway ea morao ha e ka ea hlaha. Leka e \'ngoe ea mehato ea ho hlaphoheloa e ka tlase. Ha ho letho mona le hlakolang lipuisano kapa litlhophiso tsa hau.',
+      description:
+        "Gateway ea morao ha e ka ea hlaha. Leka e 'ngoe ea mehato ea ho hlaphoheloa e ka tlase. Ha ho letho mona le hlakolang lipuisano kapa litlhophiso tsa hau.",
       remoteTitle: 'Ho hlokahala ho kena ho gateway e hole',
-      remoteDescription: 'Seshene sa hau sa gateway e hole se felile. Kena hape ho hokela. Ha ho letho mona le hlakolang lipuisano kapa litlhophiso tsa hau.',
+      remoteDescription:
+        'Seshene sa hau sa gateway e hole se felile. Kena hape ho hokela. Ha ho letho mona le hlakolang lipuisano kapa litlhophiso tsa hau.',
       retry: 'Leka hape',
       repairInstall: 'Lokisa ho instola',
       useLocalGateway: 'Sebelisa gateway ea lehae',
       gatewaySettings: 'Litlhophiso tsa gateway',
       back: 'Morao',
       openLogs: 'Bula lirekoto',
-      repairHint: 'Ho lokisa ho boela ho tsamaisa installer mme ho ka nka metsotso e \'maloa mochining o mocha.',
+      repairHint: "Ho lokisa ho boela ho tsamaisa installer mme ho ka nka metsotso e 'maloa mochining o mocha.",
       signOutAndSignIn: 'Tsoa & kena',
-      remoteFailureHint: 'Hlahloba URL ea gateway le ho kena tlas\'a Litlhophiso tsa gateway, kapa fetolela ho gateway ea lehae.',
+      remoteFailureHint:
+        "Hlahloba URL ea gateway le ho kena tlas'a Litlhophiso tsa gateway, kapa fetolela ho gateway ea lehae.",
       hideRecentLogs: 'Pata lirekoto tsa morao tjena',
       showRecentLogs: 'Bontsha lirekoto tsa morao tjena',
       signedInTitle: 'U kene',
       signedInMessage: 'Ho hokela hape ho gateway e hole…',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
       signInIncompleteTitle: 'Sign-in incomplete',
       signInIncompleteMessage: 'The login window closed before authentication finished.',
       signInFailed: 'Sign-in failed',
       signInToRemoteGateway: 'Sign in to remote gateway',
       signInWithProvider: provider => `Sign in with ${provider}`,
-      identityProvider: 'your identity provider',
+      identityProvider: 'your identity provider'
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   messaging: {
     fieldCopy: {
       DISCORD_BOT_TOKEN: {
         help: 'Theha sesebelisoa ho Discord Developer Portal, kenya bot, ebe u khomaretsa token ea eona.',
-        label: 'Tokene ea bot',
+        label: 'Tokene ea bot'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Li-ID tsa basebelisi ba Discord tse lumelletsoeng',
-        help: 'E khothalletsoa. Li-ID tsa basebelisi ba Discord tse arotsoeng ka khoma.',
+        help: 'E khothalletsoa. Li-ID tsa basebelisi ba Discord tse arotsoeng ka khoma.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Setaele sa karabo',
-        help: 'ea pele, tsohle, kapa tima.',
+        help: 'ea pele, tsohle, kapa tima.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Lumella basebelisi bohle ba Discord',
-        help: 'Ntlafatso feela. Ha e le true, mang kapa mang a ka DM bot ntle le lenane la tumello.',
+        help: 'Ntlafatso feela. Ha e le true, mang kapa mang a ka DM bot ntle le lenane la tumello.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID ea kanale ea lehae',
-        help: 'Kanale eo bot e romelang melaetsa e ikemetseng ho eona (tlhahiso ea cron, likhopotso).',
+        help: 'Kanale eo bot e romelang melaetsa e ikemetseng ho eona (tlhahiso ea cron, likhopotso).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Lebitso la kanale ea lehae',
-        help: 'Lebitso la pontšo la kanale ea lehae ho logs le tlhahisong ea boemo.',
+        help: 'Lebitso la pontšo la kanale ea lehae ho logs le tlhahisong ea boemo.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Lumella basebelisi bohle ba iMessage',
-        help: 'Ha e le true, tlola lenane la tumello la BlueBubbles.',
+        help: 'Ha e le true, tlola lenane la tumello la BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Lumella basebelisi bohle ba Mattermost',
+        label: 'Lumella basebelisi bohle ba Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Kanale ea lehae',
+        label: 'Kanale ea lehae'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Lumella basebelisi bohle ba QQ',
+        label: 'Lumella basebelisi bohle ba QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Kanale ea lehae ea QQ',
-        help: 'Kanale kapa sehlopha sa kamehla bakeng sa phano ea cron.',
+        help: 'Kanale kapa sehlopha sa kamehla bakeng sa phano ea cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Lebitso la kanale ea lehae ea QQ',
+        label: 'Lebitso la kanale ea lehae ea QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token ea bot ea Slack',
         help: 'Sebelisa token ea bot ho tsoa ho OAuth & Permissions kamora ho kenya app ea hau ea Slack.',
-        placeholder: 'Khomaretsa token ea bot ea Slack',
+        placeholder: 'Khomaretsa token ea bot ea Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token ea app ea Slack',
         help: 'Sebelisa token ea boemo la app e hlokahalang bakeng sa Socket Mode.',
-        placeholder: 'Khomaretsa token ea app ea Slack',
+        placeholder: 'Khomaretsa token ea app ea Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Li-ID tsa basebelisi ba Slack tse lumelletsoeng',
-        help: 'E khothalletsoa. Li-ID tsa basebelisi ba Slack tse arotsoeng ka khoma.',
+        help: 'E khothalletsoa. Li-ID tsa basebelisi ba Slack tse arotsoeng ka khoma.'
       },
       MATTERMOST_URL: {
         label: 'URL ea seva',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token ea bot',
+        label: 'Token ea bot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Li-ID tsa basebelisi tse lumelletsoeng',
-        help: 'E khothalletsoa. Li-ID tsa basebelisi ba Mattermost tse arotsoeng ka khoma.',
+        help: 'E khothalletsoa. Li-ID tsa basebelisi ba Mattermost tse arotsoeng ka khoma.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL ea seva ea lehae',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token ea phihlello',
+        label: 'Token ea phihlello'
       },
       MATRIX_USER_ID: {
         label: 'ID ea mosebelisi oa bot',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Li-ID tsa basebelisi ba Matrix tse lumelletsoeng',
-        help: 'E khothalletsoa. Li-ID tsa basebelisi tse arotsoeng ka khoma ka sebopeho sa @user:server.',
+        help: 'E khothalletsoa. Li-ID tsa basebelisi tse arotsoeng ka khoma ka sebopeho sa @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL ea borokho ba Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL of a running signal-cli REST bridge.',
+        help: 'URL of a running signal-cli REST bridge.'
       },
       TELEGRAM_BOT_TOKEN: {
         label: 'Tokene ea bot',
         help: 'Theha bot le @BotFather, ebe u beha tokene eo e u fang eona.',
-        placeholder: 'Beha tokene ea bot ea Telegram',
+        placeholder: 'Beha tokene ea bot ea Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Li-ID tsa basebelisi ba Telegram tse lumelletsoeng',
-        help: 'E khothalletsoa. Li-ID tsa linomoro tse arohanngoe ka dikoma tse tsoang ho @userinfobot. Ntle le sena, mang kapa mang a ka romela bot ea hau molaetsa o tobileng.',
+        help: 'E khothalletsoa. Li-ID tsa linomoro tse arohanngoe ka dikoma tse tsoang ho @userinfobot. Ntle le sena, mang kapa mang a ka romela bot ea hau molaetsa o tobileng.'
       },
       TELEGRAM_PROXY: {
         label: 'URL ea proxy',
-        help: 'E hlokahala feela ho marang-rang ao Telegram e thibetsoeng ho \'ona.',
+        help: "E hlokahala feela ho marang-rang ao Telegram e thibetsoeng ho 'ona."
       },
       SIGNAL_ACCOUNT: {
         label: 'Phone number',
-        help: 'The number registered with your signal-cli bridge.',
+        help: 'The number registered with your signal-cli bridge.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Allowed Signal users',
-        help: 'Recommended. Comma-separated Signal identifiers.',
+        help: 'Recommended. Comma-separated Signal identifiers.'
       },
       WHATSAPP_ENABLED: {
         label: 'Enable WhatsApp bridge',
-        help: 'Set automatically by the toggle below. Leave alone unless you know you need it.',
+        help: 'Set automatically by the toggle below. Leave alone unless you know you need it.'
       },
       WHATSAPP_MODE: {
-        label: 'Bridge mode',
+        label: 'Bridge mode'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Allowed WhatsApp users',
-        help: 'Recommended. Comma-separated phone numbers or WhatsApp IDs.',
-      },
+        help: 'Recommended. Comma-separated phone numbers or WhatsApp IDs.'
+      }
     },
     loading: 'E ntse e jara lithala tsa melaetsa...',
     loadFailed: 'Lithala tsa melaetsa li hlotsoe ho jara',
@@ -2680,7 +2750,7 @@ Leave blank to keep the ${mode} default.`,
       not_configured: 'E hloka ho setoa',
       pending_restart: 'Ho hlokahala ho qala bocha',
       retrying: 'E ntse e leka hape',
-      startup_failed: 'Ho qala ho hlotsoe',
+      startup_failed: 'Ho qala ho hlotsoe'
     },
     unknown: 'Ha e tsejoe',
     hintPendingRestart: 'Qala heke bocha ho tloha bareng ea boemo ho sebelisa phetoho ena.',
@@ -2692,7 +2762,8 @@ Leave blank to keep the ${mode} default.`,
     openSetupGuide: 'Bula tataiso ea ho seta',
     required: 'Ea hlokahala',
     recommended: 'E khothalletsoa',
-    noTokenNeeded: 'Sethala sena ha se hloke tokene mona. Sebelisa tataiso ea ho seta e ka holimo, ebe u e bulela ka tlase.',
+    noTokenNeeded:
+      'Sethala sena ha se hloke tokene mona. Sebelisa tataiso ea ho seta e ka holimo, ebe u e bulela ka tlase.',
     enabled: 'E bulehile',
     disabled: 'E koetsoe',
     unsavedChanges: 'Liphetoho tse sa bolokiloeng',
@@ -2701,8 +2772,8 @@ Leave blank to keep the ${mode} default.`,
     saved: 'E bolokiloe',
     replaceValue: 'Nkela boleng ba hajoale sebaka',
     openDocs: 'Bula litokomane',
-    restartToApply: 'Phetoho ena e tla sebetsa ka mor\'a ho qala heke bocha.',
-    restartToReconnect: 'Boitsebiso bo bocha bo tla sebetsa ka mor\'a ho qala heke bocha.',
+    restartToApply: "Phetoho ena e tla sebetsa ka mor'a ho qala heke bocha.",
+    restartToReconnect: "Boitsebiso bo bocha bo tla sebetsa ka mor'a ho qala heke bocha.",
     search: 'Search messaging...',
     advanced: count => `Advanced (${count})`,
     clearField: key => `Clear ${key}`,
@@ -2716,8 +2787,7 @@ Leave blank to keep the ${mode} default.`,
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   common: {
     apply: 'Apply',
@@ -2758,7 +2828,7 @@ Leave blank to keep the ${mode} default.`,
     update: 'Update',
     tryHint: term => `Try “${term}”`,
     on: 'On',
-    off: 'Off',
+    off: 'Off'
   },
   notifications: {
     region: 'Notifications',
@@ -2771,7 +2841,8 @@ Leave blank to keep the ${mode} default.`,
     copyDetail: 'Copy detail',
     copyDetailFailed: 'Could not copy notification detail',
     backendOutOfDateTitle: 'Backend out of date',
-    backendOutOfDateMessage: 'Your OpenAmer backend is older than this desktop build and may not work correctly. Update to align them.',
+    backendOutOfDateMessage:
+      'Your OpenAmer backend is older than this desktop build and may not work correctly. Update to align them.',
     installMethodUnsupportedTitle: 'Unsupported install method',
     updateOpenAmer: 'Update OpenAmer',
     updateReadyTitle: 'Update ready',
@@ -2781,11 +2852,12 @@ Leave blank to keep the ${mode} default.`,
       elevenLabsNeedsKey: 'ElevenLabs STT needs ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs rejected the API key (401).',
       gatewayAuthFailed: 'Gateway authentication failed — check your API_SERVER_KEY.',
-      methodNotAllowed: 'The desktop backend rejected that request (405 Method Not Allowed). Try restarting OpenAmer Desktop.',
+      methodNotAllowed:
+        'The desktop backend rejected that request (405 Method Not Allowed). Try restarting OpenAmer Desktop.',
       microphonePermission: 'Microphone permission was denied.',
       openaiRejectedApiKey: 'OpenAI rejected the API key.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS needs VOICE_TOOLS_OPENAI_KEY or OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS needs VOICE_TOOLS_OPENAI_KEY or OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Configure speech-to-text to use voice mode.',
@@ -2804,7 +2876,7 @@ Leave blank to keep the ${mode} default.`,
       transcriptionFailed: 'Voice transcription failed',
       transcriptionUnavailable: 'Voice transcription is not available yet.',
       tryRecordingAgain: 'Try recording again.',
-      unavailable: 'Voice unavailable',
+      unavailable: 'Voice unavailable'
     },
     native: {
       approvalTitle: 'Approval needed',
@@ -2817,11 +2889,12 @@ Leave blank to keep the ${mode} default.`,
       turnErrorTitle: 'Turn failed',
       backgroundDoneTitle: 'Background task finished',
       backgroundFailedTitle: 'Background task failed',
-      creditsTitle: 'Credits',
-    },
+      creditsTitle: 'Credits'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
   },
   billingBlock: {
     titleOpenamer: 'Out of OpenAmer credits',
@@ -2829,7 +2902,7 @@ Leave blank to keep the ${mode} default.`,
     fallbackMessage: 'Your account is out of credits. Add credits to keep going.',
     openBilling: 'Open billing',
     addCredits: 'Add credits',
-    dismiss: 'Dismiss',
+    dismiss: 'Dismiss'
   },
   titlebar: {
     hideSidebar: 'Hide sidebar',
@@ -2846,7 +2919,7 @@ Leave blank to keep the ${mode} default.`,
     openStarmap: 'Open memory graph',
     openKeybinds: 'Keyboard shortcuts',
     layoutEditor: 'Layout editor',
-    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout',
+    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout'
   },
   keybinds: {
     title: 'Keyboard shortcuts',
@@ -2863,7 +2936,7 @@ Leave blank to keep the ${mode} default.`,
       profiles: 'Profiles',
       session: 'Session',
       navigation: 'Navigation',
-      view: 'View',
+      view: 'View'
     },
     actions: {
       'keybinds.openPanel': 'Open keyboard shortcuts',
@@ -2942,8 +3015,8 @@ Leave blank to keep the ${mode} default.`,
       'composer.slash': 'Slash command palette',
       'composer.help': 'Quick help',
       'composer.history': 'Cycle popover / history',
-      'composer.cancel': 'Close popover · cancel run',
-    },
+      'composer.cancel': 'Close popover · cancel run'
+    }
   },
   language: {
     label: 'Language',
@@ -2952,7 +3025,7 @@ Leave blank to keep the ${mode} default.`,
     saveError: 'Language update failed',
     switchTo: 'Switch language',
     searchPlaceholder: 'Search languages…',
-    noResults: 'No languages found',
+    noResults: 'No languages found'
   },
   modelPicker: {
     title: 'Switch model',
@@ -2968,12 +3041,12 @@ Leave blank to keep the ${mode} default.`,
     free: 'Free',
     freeTier: 'Free tier',
     priceTitle: 'Input / Output price per million tokens',
-    wasPrice: 'was',
+    wasPrice: 'was'
   },
   modelVisibility: {
     title: 'Models',
     search: 'Search models',
     noAuthenticatedProviders: 'No authenticated providers.',
-    addProvider: 'Add provider…',
-  },
+    addProvider: 'Add provider…'
+  }
 })

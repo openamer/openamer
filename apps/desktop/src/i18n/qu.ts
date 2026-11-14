@@ -12,76 +12,79 @@ export const qu = defineLocale({
       kinds: {
         bundled: 'kuska kachisqa',
         disk: 'diskipi',
-        runtime: 'puriypi',
+        runtime: 'puriypi'
       },
       title: 'Computadora yapaykuna',
-      blurb: 'Kay aplicaciónman chayachisqa UI mast\'ariykuna — ruwasqawan kuska, utaq desktop-plugins carpeta-man churaypi (OpenAmer qillqasqankunapas). Harkaspaqa yapayta kawsaqlla hurqun, musuqmanta qallariypipas qhipan.',
+      blurb:
+        "Kay aplicaciónman chayachisqa UI mast'ariykuna — ruwasqawan kuska, utaq desktop-plugins carpeta-man churaypi (OpenAmer qillqasqankunapas). Harkaspaqa yapayta kawsaqlla hurqun, musuqmanta qallariypipas qhipan.",
       openFolder: 'Yapaykuna carpeta-ta kichay',
       rescan: 'Musuqmanta maskay',
       reveal: 'Archivo kamachiqpi rikuchiy',
       enable: 'Atichiy',
       disable: 'Harkay',
       failed: 'Mana atikunchu',
-      count: n => `${n} installed`,
+      count: n => `${n} installed`
     },
     notifications: {
       title: 'Willakuykuna',
-      intro: 'Escritorioq kikin willakuykuna, app ukupi toasts nisqamanta t\'aqasqa. Kaykunaqa llamk\'anallapi kanku — sapa computadora kikinpa churaykunata waqaychan.',
+      intro:
+        "Escritorioq kikin willakuykuna, app ukupi toasts nisqamanta t'aqasqa. Kaykunaqa llamk'anallapi kanku — sapa computadora kikinpa churaykunata waqaychan.",
       enableAll: 'Willakuykunata atichiy',
-      enableAllDesc: 'Llapan atichiy. Kayta wañuchiy qatiq willakuykunata ch\'inyachinapaq.',
+      enableAllDesc: "Llapan atichiy. Kayta wañuchiy qatiq willakuykunata ch'inyachinapaq.",
       focusedHint: 'Tukusqa willakuykunaqa OpenAmer backgroundpi kachkaptillan lluqsin.',
       kinds: {
         approval: {
           label: 'Aprobay necesitakun',
-          description: 'Huk kamachiyqa suyashanmi aprobayta utaq rechazayta.',
+          description: 'Huk kamachiyqa suyashanmi aprobayta utaq rechazayta.'
         },
         input: {
           label: 'Yaykuchiy necesitakun',
-          description: 'OpenAmerqa tapukurqanmi utaq contraseñata icha pakasqa willayta necesitanmi.',
+          description: 'OpenAmerqa tapukurqanmi utaq contraseñata icha pakasqa willayta necesitanmi.'
         },
         turnDone: {
           label: 'Kutichiy wakichisqa',
-          description: 'Huk turno tukukurqan OpenAmer backgroundpi kachkaptin.',
+          description: 'Huk turno tukukurqan OpenAmer backgroundpi kachkaptin.'
         },
         turnError: {
           label: 'Turnoqa pantarqan',
-          description: 'Huk turno pantaywan tukukurqan.',
+          description: 'Huk turno pantaywan tukukurqan.'
         },
         backgroundDone: {
           label: 'Background ruwana tukusqa',
-          description: 'Backgroundpi terminal kamachiy tukurqan.',
+          description: 'Backgroundpi terminal kamachiy tukurqan.'
         },
         credits: {
           label: 'Crédito willakuykuna',
-          description: 'Crédito haykuy sayachisqa utaq kutichisqa.',
-        },
+          description: 'Crédito haykuy sayachisqa utaq kutichisqa.'
+        }
       },
       test: 'Prueba willakuyta apachiy',
       testTitle: 'OpenAmer',
-      testBody: 'Willakuykuna llamk\'achkan.',
-      testSent: 'Prueba apachisqa. Mana imapas rikhuriptinqa, OS willakuy permisokunata Focus/Do Not Disturb nisqatapas qhaway.',
+      testBody: "Willakuykuna llamk'achkan.",
+      testSent:
+        'Prueba apachisqa. Mana imapas rikhuriptinqa, OS willakuy permisokunata Focus/Do Not Disturb nisqatapas qhaway.',
       testUnsupported: 'Kay sistemaqa manam kikin willakuykunata soportanchu.',
       completionSoundTitle: 'Tukusqa sonido',
       completionSoundDesc: 'Agenteq turnon tukuptin sonidota lluqsichin. Huk preset akllaspa kaypi ñawpaqta uyariy.',
-      completionSoundPreview: 'Ñawpaqta uyariy',
+      completionSoundPreview: 'Ñawpaqta uyariy'
     },
     sections: {
       model: 'Modelo',
       chat: 'Rimanakuy',
-      appearance: 'Rikch\'ay',
-      workspace: 'Llamk\'anapampa',
+      appearance: "Rikch'ay",
+      workspace: "Llamk'anapampa",
       safety: 'Allin kay',
       memory: 'Yuyay & Contexto',
       voice: 'Rimay',
-      advanced: 'Avanzaq',
+      advanced: 'Avanzaq'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop nisqamanta',
       config: 'Churaykunata maskay...',
-      gateway: 'Gateway t\'inkiy...',
-      keys: 'Kayku API wak\'asqa...',
+      gateway: "Gateway t'inkiy...",
+      keys: "Kayku API wak'asqa...",
       mcp: 'Kayku MCP misiyuq...',
-      sessions: 'Kayku archivay qawasqa...',
+      sessions: 'Kayku archivay qawasqa...'
     },
     closeSettings: 'Allichaykunata wichqay',
     exportConfig: 'Allichayta lluqsichiy',
@@ -105,12 +108,14 @@ export const qu = defineLocale({
       billing: 'Qullqi yupay',
       notifications: 'Willaykuna',
       plugins: 'Yapaykuna',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     appearance: {
       pet: {
-        intro: 'Huk kuyuq petdex mascotata chaskiy, app patapi tuytuspa OpenAmer ruwasqanman kutichimuq — yanapakuykuna ruwakuspa kallpan, allin ruwaypi kusikun, pantaypi llakikun.',
-        restartHint: 'Uywakunaqa utqaylla hukmanta qallariyta munan — kunan kawsachkan app kay ruway yapakunman ñawpaq qallarisqa. OpenAmermanta lluqsiy, hukmanta kichariy, chaymanta kayman kutimuy.',
+        intro:
+          'Huk kuyuq petdex mascotata chaskiy, app patapi tuytuspa OpenAmer ruwasqanman kutichimuq — yanapakuykuna ruwakuspa kallpan, allin ruwaypi kusikun, pantaypi llakikun.',
+        restartHint:
+          'Uywakunaqa utqaylla hukmanta qallariyta munan — kunan kawsachkan app kay ruway yapakunman ñawpaq qallarisqa. OpenAmermanta lluqsiy, hukmanta kichariy, chaymanta kayman kutimuy.',
         on: 'Kawsachkan',
         off: 'Sayasqa',
         scaleTitle: 'Chhika',
@@ -118,9 +123,9 @@ export const qu = defineLocale({
         roamTitle: 'Muyuy',
         roamDesc: 'Uywata mana ruwaspa kachariy, ventanapi kikinmanta purinanpaq.',
         chooseTitle: 'Huk uywata akllay',
-        chooseDesc: 'Hukta akllaspa instalakun (necesitasqaqa) hinaspa llamk\'achin.',
+        chooseDesc: "Hukta akllaspa instalakun (necesitasqaqa) hinaspa llamk'achin.",
         searchPlaceholder: 'Uywakunata maskay…',
-        unreachable: 'petdex galeríaman mana chayanichu. T\'inkiykita qhaway hinaspa kay p\'anqata hukmanta kichariy.',
+        unreachable: "petdex galeríaman mana chayanichu. T'inkiykita qhaway hinaspa kay p'anqata hukmanta kichariy.",
         installedTag: 'instalasqa',
         generatedTag: 'Rurasqa',
         deleteBody: 'Kay uywata wiñaypaq pichan — manam hukmanta instalakuyta atikmanchu.',
@@ -143,10 +148,11 @@ export const qu = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
       title: 'Qilla',
-      intro: 'Kuku escritorio display manan. Modo brillo kontrolpay; theme acento palette y chat surface estilo kontrolpay.',
+      intro:
+        'Kuku escritorio display manan. Modo brillo kontrolpay; theme acento palette y chat surface estilo kontrolpay.',
       colorMode: 'Modo color',
       colorModeDesc: 'Willa modu fijo o OpenAmer nuna sistema setting napa.',
       toolViewTitle: 'Herramienta yuyay display',
@@ -157,7 +163,8 @@ export const qu = defineLocale({
       backdropTitle: 'Chat fondo',
       backdropDesc: 'Ima apu imaga rimay rikunapi',
       embedsTitle: 'Chaychi chupanaku',
-      embedsDesc: 'Rich previas chawpinta third-party sites (YouTube, X, …). Yuyay waranqa placeholder kunayma chaway; Siempre waranqa chaykama; Patiq waranqa plain links.',
+      embedsDesc:
+        'Rich previas chawpinta third-party sites (YouTube, X, …). Yuyay waranqa placeholder kunayma chaway; Siempre waranqa chaykama; Patiq waranqa plain links.',
       embedsAsk: 'Yuyay',
       embedsAlways: 'Siempre',
       embedsOff: 'Patiq',
@@ -170,15 +177,17 @@ export const qu = defineLocale({
       installTitle: 'Installar from VS Code',
       installButton: 'Installar',
       installing: 'Installando…',
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
-      installDesc: 'Paste a Marketplace extension id (e.g. dracula-theme.theme-dracula) to convert its color theme into a desktop palette.',
+      installDesc:
+        'Paste a Marketplace extension id (e.g. dracula-theme.theme-dracula) to convert its color theme into a desktop palette.',
       installPlaceholder: 'publisher.extension',
       installError: 'Could not install that theme.',
       installed: name => `Installed “${name}”.`,
       removeTheme: 'Remove theme',
-      importedBadge: 'Imported',
+      importedBadge: 'Imported'
     },
     about: {
       versionUnavailable: 'Versión mana tarikunchu',
@@ -195,8 +204,9 @@ export const qu = defineLocale({
       tapCheck: '"Kunan qhaway" nisqata ñit\'iy musuqyachiykunata maskanaykipaq.',
       justNowSuffix: '· kunanlla',
       automaticUpdates: 'Kikinmanta musuqyachiykuna',
-      automaticUpdatesDesc: 'OpenAmerqa kikinmanta musuqyachiykunata qhawan qhipa kaqpi hinaspa willasunki huk listo kaptin.',
-      never: 'manam hayk\'aqpas',
+      automaticUpdatesDesc:
+        'OpenAmerqa kikinmanta musuqyachiykunata qhawan qhipa kaqpi hinaspa willasunki huk listo kaptin.',
+      never: "manam hayk'aqpas",
       justNow: 'kunanlla',
       heading: 'OpenAmer Escritorio',
       version: value => `Version ${value}`,
@@ -205,31 +215,31 @@ export const qu = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     modeOptions: {
       light: {
         label: 'Luz',
-        description: 'Muy luz surfaces',
+        description: 'Muy luz surfaces'
       },
       dark: {
         label: 'Kachi',
-        description: 'Baxo akuya trabajo',
+        description: 'Baxo akuya trabajo'
       },
       system: {
         label: 'Sistema',
-        description: 'Ñiqpalla OS qilla',
-      },
+        description: 'Ñiqpalla OS qilla'
+      }
     },
     credentials: {
       remove: 'Qhipay',
       getKey: 'Llapyakunata ruway',
       saving: 'Kayllisqa',
       pasteKey: 'Pik llave',
-      optional: 'Ak\'ala',
+      optional: "Ak'ala",
       enterValueFirst: 'Enter willay chay.',
-      couldNotSave: 'Ak\'achu fallakunata.',
-      pasteLabelKey: label => `Paste ${label} key`,
+      couldNotSave: "Ak'achu fallakunata.",
+      pasteLabelKey: label => `Paste ${label} key`
     },
     envActions: {
       credentialActions: 'Akullikuak',
@@ -240,20 +250,22 @@ export const qu = defineLocale({
       replace: 'Kaypacha',
       set: 'Hukiy',
       clear: 'Limpiy',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     gateway: {
       loading: 'Cargando ajayu...',
-      unavailableTitle: 'Ajayu mank\'ari',
+      unavailableTitle: "Ajayu mank'ari",
       unavailableDesc: 'El desktop IPC pukllay duma ajayu config chinta tucuy.',
       title: 'Conexiun Ajayu',
       envOverride: 'env manukuy',
-      intro: 'OpenAmer Desktop kamaykunata mank\'arikunata jilqanakunata ruway. Remote ajayu ruwaykama kay app chayna OpenAmer backend poromiyata chawpiykota control niykarka. Yuyaykota el panelqa akulliykta ruwaykama remote host own niykarka.',
-      appliesTo: 'Hap\'iy',
+      intro:
+        "OpenAmer Desktop kamaykunata mank'arikunata jilqanakunata ruway. Remote ajayu ruwaykama kay app chayna OpenAmer backend poromiyata chawpiykota control niykarka. Yuyaykota el panelqa akulliykta ruwaykama remote host own niykarka.",
+      appliesTo: "Hap'iy",
       allProfiles: 'Suyakuna perfiles',
       defaultConnection: 'Default conexiun kachiykapa, own override tucun.',
       envOverrideTitle: 'Haywasqa suti kichkan kay escritorioqa sesión.',
-      envOverrideDesc: 'Paya OPENAMER_DESKTOP_REMOTE_URL and OPENAMER_DESKTOP_REMOTE_TOKEN willkha para willkunapi kay chawpi willka.',
+      envOverrideDesc:
+        'Paya OPENAMER_DESKTOP_REMOTE_URL and OPENAMER_DESKTOP_REMOTE_TOKEN willkha para willkunapi kay chawpi willka.',
       modeTitle: 'Qallayniyki',
       localTitle: 'Local willka',
       localDesc: 'Manayokunata OpenAmer backend nukayki localhost. Kayqa dewanaka willka kayqa offline kawsaykunata.',
@@ -261,7 +273,8 @@ export const qu = defineLocale({
       inheritDesc: 'Kay profile nuna willqa willqa willkunata willqa.',
       remoteTitle: 'Remote willka',
       remoteDesc: 'Kay escritorio shellta remote OpenAmer backend willqa.',
-      remoteAuthHint: 'Hosted gateways OAuth willqa utaq username and password; self-hosted minkuy session token willqa.',
+      remoteAuthHint:
+        'Hosted gateways OAuth willqa utaq username and password; self-hosted minkuy session token willqa.',
       cloudDesc: 'Sujñayki OpenAmer Cloud kachkan agentes willkunapi kawsay - URL chawpi chayawanpi.',
       cloudSignIn: 'Sujñayki OpenAmer Cloud kachkan',
       cloudSignedIn: 'Sujñayki OpenAmer Cloud kachkan',
@@ -275,7 +288,7 @@ export const qu = defineLocale({
       cloudNoAgents: {
         before: 'Arakuykunata asa kayman. Yaqillaykikunata OpenAmer portalpi.',
         linkText: 'OpenAmer wasi',
-        after: ', luego refreska.',
+        after: ', luego refreska.'
       },
       cloudRefresh: 'Refreska',
       cloudConnect: 'Yuriy',
@@ -332,14 +345,19 @@ export const qu = defineLocale({
       sshButtonsHint: 'Mishanqa mankayta runkakunata yacharqa. Yunkuy mankayqa willakuy.',
       sshIncompleteHost: 'Intinman SSH ronqa willakuy.',
       sshErrUnreachable: 'Milla ronqa SSH nukalla. Chawpichay ronqa, pukio, andi kunman kunan.',
-      sshErrAuth: 'SSH autentikasyon wawqiskutay. Ruraq akullaykunata ssh-agent (ssh-add) ka wargachay o ~/.ssh/config manchetamun IdentityFile kunay — OpenAmer ssh mankallamuy.',
-      sshErrHostKey: 'Rukakayki llave qhawkuypi hayskakta qa hiyasqa kawsayman. Kunay qasqa, ssh-keygen -R <host> ruwanakullay, kukukuy.',
-      sshErrNotInstalled: 'OpenAmer rukakayku tawrantikunata napa. Chayman tawrantikunata (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ruwasho o OpenAmer rikunaykunata kunay.',
-      sshErrPlatform: 'Tawrantin platforma mamantay. OpenAmer Desktop SSH modu Linux, macOS, and Windows rukakaykunata ruwaykunata qhilan.',
+      sshErrAuth:
+        'SSH autentikasyon wawqiskutay. Ruraq akullaykunata ssh-agent (ssh-add) ka wargachay o ~/.ssh/config manchetamun IdentityFile kunay — OpenAmer ssh mankallamuy.',
+      sshErrHostKey:
+        'Rukakayki llave qhawkuypi hayskakta qa hiyasqa kawsayman. Kunay qasqa, ssh-keygen -R <host> ruwanakullay, kukukuy.',
+      sshErrNotInstalled:
+        'OpenAmer rukakayku tawrantikunata napa. Chayman tawrantikunata (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ruwasho o OpenAmer rikunaykunata kunay.',
+      sshErrPlatform:
+        'Tawrantin platforma mamantay. OpenAmer Desktop SSH modu Linux, macOS, and Windows rukakaykunata ruwaykunata qhilan.',
       sshErrTimeout: 'SSH kawsaypi tawaytimuy. Rukakaykunata chaykaranman o kawsalla.',
       sshErrUpdateRequired: 'OpenAmer rukakayku tawrantikunata kunanay kawsaykunata kawsanay Desktop SSH rikawasqa.',
       sshErrUnknown: 'SSH kawsayniy tawaykimuy.',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudTitle: 'OpenAmer Cloud',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudOrgRole: role => `Role: ${role}`,
@@ -350,7 +368,8 @@ export const qu = defineLocale({
       signOut: 'Sign out',
       signInWith: provider => `Sign in with ${provider}`,
       authTitle: 'Authentication',
-      authSignedInPassword: 'This gateway uses a username and password. You are signed in; the session refreshes automatically.',
+      authSignedInPassword:
+        'This gateway uses a username and password. You are signed in; the session refreshes automatically.',
       authSignedInOauth: 'This gateway uses OAuth. You are signed in; the session refreshes automatically.',
       authNeedsPassword: 'This gateway uses a username and password. Sign in to authorize this desktop app.',
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
@@ -369,7 +388,7 @@ export const qu = defineLocale({
       incompleteSignIn: 'Enter a remote URL and sign in before switching to remote.',
       incompleteToken: 'Enter a remote URL and session token before switching to remote.',
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     config: {
       none: 'Manu',
@@ -385,7 +404,7 @@ export const qu = defineLocale({
       imported: 'Rura imporatarqan',
       invalidJson: 'Rura invalida JSON',
       keepAwakeTitle: 'Mantikuy computadora',
-      keepAwakeDesc: 'Parir kay maquina durmiy. El display siga kachkaran.',
+      keepAwakeDesc: 'Parir kay maquina durmiy. El display siga kachkaran.'
     },
     mcp: {
       reloadedTitle: 'MCP llawpap haykuta apaykac',
@@ -437,7 +456,8 @@ export const qu = defineLocale({
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
       catalogEnvRequired: 'Fill in the required values before installing.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       statusConnecting: 'Connecting…',
       statusNeedsAuth: 'Needs authentication',
       statusError: 'Error',
@@ -450,12 +470,12 @@ export const qu = defineLocale({
       unsavedConnect: 'Unsaved — save mcp.json to connect.',
       enableTool: tool => `Enable ${tool}`,
       disableTool: tool => `Disable ${tool}`,
-      noOutput: 'No output yet.',
+      noOutput: 'No output yet.'
     },
     keys: {
       loading: 'API llaveskunata and kanchikunata rukukayku...',
       failedLoad: 'API llaveskunata rukukunku tawaykimuy',
-      empty: 'Kay takiyakunapi kunanna chaynanku.',
+      empty: 'Kay takiyakunapi kunanna chaynanku.'
     },
     model: {
       appliesDesc: 'Añataqa musukuna. Llamka akullkunata kapsulawan uskay hot-swap kunata chat aktibo.',
@@ -479,43 +499,43 @@ export const qu = defineLocale({
       tasks: {
         vision: {
           label: 'Imaynuy',
-          hint: 'Suyma analisi',
+          hint: 'Suyma analisi'
         },
         web_extract: {
           label: 'Web waqay',
-          hint: 'Pajina yuyay',
+          hint: 'Pajina yuyay'
         },
         compression: {
-          label: 'Ch\'uyay',
-          hint: 'Contexto ch\'uyay',
+          label: "Ch'uyay",
+          hint: "Contexto ch'uyay"
         },
         skills_hub: {
           label: 'Habilya muna',
-          hint: 'Habilya qisqa',
+          hint: 'Habilya qisqa'
         },
         approval: {
           label: 'Ayllusqa',
-          hint: 'Mikuy ayllusqa',
+          hint: 'Mikuy ayllusqa'
         },
         mcp: {
           hint: 'MCP llawmi',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Muna qor',
-          hint: 'Sesiyon muna',
+          hint: 'Sesiyon muna'
         },
         curator: {
           label: 'Kurador',
-          hint: 'Habilya ruway',
-        },
+          hint: 'Habilya ruway'
+        }
       },
-      loading: 'Loading model configuration...',
+      loading: 'Loading model configuration...'
     },
     providers: {
       connectAccount: 'Cuenta hanuy',
       haveApiKey: 'API llawku imas?',
-      intro: 'Qirini susay — API llawman q\'awanay. OpenAmer browser qirini qaykunata, kay apun.',
+      intro: "Qirini susay — API llawman q'awanay. OpenAmer browser qirini qaykunata, kay apun.",
       connected: 'Yawar',
       collapse: 'Chucuy',
       connectAnother: 'Yana llawan hanuy',
@@ -525,7 +545,8 @@ export const qu = defineLocale({
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedTitle: 'Account removed',
       removedMessage: provider => `${provider} was removed.`,
@@ -535,16 +556,17 @@ export const qu = defineLocale({
       noKeysMatch: 'No providers match your search.',
       localEndpoint: {
         title: 'Local / custom endpoint',
-        description: 'Point OpenAmer at any OpenAI-compatible endpoint (Zyphra, vLLM, llama.cpp, Ollama, etc).',
+        description: 'Point OpenAmer at any OpenAI-compatible endpoint (Zyphra, vLLM, llama.cpp, Ollama, etc).'
       },
-      loading: 'Loading providers...',
+      loading: 'Loading providers...'
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
     sessions: {
       loading: 'Loading archived sessions…',
       archivedTitle: 'Archived sessions',
-      archivedIntro: 'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
+      archivedIntro:
+        'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
       emptyArchivedTitle: 'Nothing archived',
       emptyArchivedDesc: 'Archive a chat to hide it here.',
       unarchive: 'Unarchive',
@@ -553,12 +575,14 @@ export const qu = defineLocale({
       restored: 'Restored',
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
       autoArchiveTitle: 'Auto-archive stale chats',
-      autoArchiveDesc: "Automatically archive chats you haven't touched in a while. Pinned chats are never archived, and nothing is deleted — archived chats just move here.",
+      autoArchiveDesc:
+        "Automatically archive chats you haven't touched in a while. Pinned chats are never archived, and nothing is deleted — archived chats just move here.",
       autoArchiveDaysLabel: 'Archive after',
       autoArchiveDaysUnit: 'days of inactivity',
       autoArchiveFailed: 'Could not update auto-archive',
       defaultDirTitle: 'Default project directory',
-      defaultDirDesc: 'New sessions start in this folder unless you pick another. Leave it unset to use your home directory.',
+      defaultDirDesc:
+        'New sessions start in this folder unless you pick another. Leave it unset to use your home directory.',
       defaultDirUpdated: 'Default project directory updated — start a new chat (Ctrl/⌘+N) for it to take effect',
       defaultsTo: label => `Defaults to ${label}.`,
       change: 'Change',
@@ -569,7 +593,7 @@ export const qu = defineLocale({
       unarchiveFailed: 'Unarchive failed',
       deleteFailed: 'Delete failed',
       updateDirFailed: 'Could not update default directory',
-      clearDirFailed: 'Could not clear default directory',
+      clearDirFailed: 'Could not clear default directory'
     },
     toolsets: {
       loadingConfig: 'Loading configuration',
@@ -594,13 +618,15 @@ export const qu = defineLocale({
       needsSetup: 'Needs setup',
       openamerIncluded: 'Included with a OpenAmer subscription — sign in to OpenAmer Portal to activate.',
       openamerAuthNeededTitle: 'Sign in to OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
       openamerAuthSignIn: 'Sign in',
       openamerAuthDoneTitle: 'OpenAmer Portal connected',
       openamerAuthDoneMessage: 'Your subscription backends are now active.',
       openamerAuthFailed: 'OpenAmer Portal sign-in did not complete',
       noApiKeyRequired: 'No API key required.',
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupInstalledHint: 'Installed. Re-run setup only if something is broken.',
       postSetupRun: 'Run setup',
       postSetupRerun: 'Re-run setup',
@@ -641,9 +667,9 @@ export const qu = defineLocale({
         selectedTitle: 'Backend selected',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
         failedSelect: backend => `Failed to select ${backend}`,
-        needsSetupHint: 'You can select this backend now — commands will fail until setup is complete.',
-      },
-    },
+        needsSetupHint: 'You can select this backend now — commands will fail until setup is complete.'
+      }
+    }
   },
   keybinds: {
     actions: {
@@ -654,10 +680,10 @@ export const qu = defineLocale({
       'view.newTerminal': 'Musuq terminal',
       'view.nextTerminal': 'Qatiq terminal',
       'view.prevTerminal': 'Ñawpaq terminal',
-      'view.closeTerminal': 'Terminalta wichq\'ay',
+      'view.closeTerminal': "Terminalta wichq'ay",
       'view.terminalSelection': 'Terminal akllasqata composerman apachiy',
-      'view.closeTab': 'Tabta wichq\'ay',
-      'view.reopenTab': 'Wichq\'asqa tabta kichariy',
+      'view.closeTab': "Tabta wichq'ay",
+      'view.reopenTab': "Wichq'asqa tabta kichariy",
       'view.flipPanes': 'Kinray ladota tikray',
       'appearance.toggleMode': 'Achik / laqha tikray',
       'profile.default': 'Kikin profilanman tikray',
@@ -684,22 +710,22 @@ export const qu = defineLocale({
       'profile.toggleAll': 'Llapan profil qhawariyta tikray',
       'profile.create': 'Profilta ruway',
       'composer.send': 'Willakuyta apachiy',
-      'composer.newline': 'Musuq siq\'ita churay',
+      'composer.newline': "Musuq siq'ita churay",
       'composer.steer': 'Purichkaq turnota pusay',
       'composer.queue': 'Willakuyta suyachiy',
       'composer.sendQueued': 'Qatiq suyachisqa turnota apachiy',
       'composer.mention': 'Qillqakunata, wayruqkunata, URLs nisqakunata willay',
       'composer.slash': 'Slash kamachiy paleta',
-      'keybinds.openPanel': 'Kak\'iy teclad apañiy',
-      'nav.commandPalette': 'Kak\'iy ruway paleta',
-      'nav.commandCenter': 'Kak\'iy ruway markay',
-      'nav.settings': 'Kak\'iy ajukuy',
-      'nav.profiles': 'Kak\'iy afilias',
-      'nav.skills': 'Kak\'iy qulqas',
-      'nav.messaging': 'Kak\'iy mensajey',
-      'nav.artifacts': 'Kak\'iy yuray',
-      'nav.cron': 'Kak\'iy qhichiy',
-      'nav.agents': 'Kak\'iy agentes',
+      'keybinds.openPanel': "Kak'iy teclad apañiy",
+      'nav.commandPalette': "Kak'iy ruway paleta",
+      'nav.commandCenter': "Kak'iy ruway markay",
+      'nav.settings': "Kak'iy ajukuy",
+      'nav.profiles': "Kak'iy afilias",
+      'nav.skills': "Kak'iy qulqas",
+      'nav.messaging': "Kak'iy mensajey",
+      'nav.artifacts': "Kak'iy yuray",
+      'nav.cron': "Kak'iy qhichiy",
+      'nav.agents': "Kak'iy agentes",
       'session.new': 'Runtay ñuqay',
       'session.newTab': 'Runtay ñuqay qhichwep',
       'session.newWindow': 'Ventana ñuqay',
@@ -715,7 +741,7 @@ export const qu = defineLocale({
       'session.slot.8': 'Pampawarqan wasi raqsamuy 8',
       'session.slot.9': 'Pampawarqan wasi raqsamuy 9',
       'session.focusSearch': 'Yuyay wasi',
-      'session.togglePin': 'Ch\'ask / Ch\'ask q\'asa wasi kakay',
+      'session.togglePin': "Ch'ask / Ch'ask q'asa wasi kakay",
       'workspace.newWorktree': 'Musuq shuklla',
       'composer.focus': 'Yayukuy qorikuna',
       'composer.modelPicker': 'Kakukuy musuq kamay',
@@ -723,7 +749,7 @@ export const qu = defineLocale({
       'view.toggleSidebar': 'Pampawarqan wasi mukurakuku',
       'view.toggleRightSidebar': 'Pampawarqan fiili mukurakuku',
       'view.toggleReview': 'Pampawarqan revísu panel',
-      'view.showFiles': 'Muyay fiili mukurakuku',
+      'view.showFiles': 'Muyay fiili mukurakuku'
     },
     set: 'Aysa',
     categories: {
@@ -731,7 +757,7 @@ export const qu = defineLocale({
       profiles: 'Afilias',
       session: 'Runtay',
       navigation: 'Navegación',
-      view: 'Muycuy',
+      view: 'Muycuy'
     },
     title: 'Teclatunaka ayku',
     search: 'Yurajta ayku…',
@@ -740,7 +766,7 @@ export const qu = defineLocale({
     resetAll: 'Kayman kay',
     pressKey: 'Piwapuka…',
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   language: {
     label: 'Simi',
@@ -749,17 +775,17 @@ export const qu = defineLocale({
     saveError: 'Simi musuqyachiy mana atikunchu',
     switchTo: 'Simita tikray',
     searchPlaceholder: 'Simikunata maskay…',
-    noResults: 'Mana simikuna tarikunchu',
+    noResults: 'Mana simikuna tarikunchu'
   },
   webhooks: {
     fieldDescription: 'Willakuy',
     fieldDescriptionPlaceholder: 'Imatam kay webhook ruwan (munaspa)',
     fieldEvents: 'Eventokuna',
-    fieldEventsPlaceholder: 'koma-wan rakiy, llapanpaq ch\'usaqta saqiy',
+    fieldEventsPlaceholder: "koma-wan rakiy, llapanpaq ch'usaqta saqiy",
     fieldSkills: 'Yachaykuna',
     fieldSkillsPlaceholder: 'koma-wan rakiy yachay sutikuna (munaspa)',
     fieldDeliver: 'Apachiy kayman',
-    fieldDeliverOnly: 'Apachina q\'epillata apachiy',
+    fieldDeliverOnly: "Apachina q'epillata apachiy",
     fieldPrompt: 'Yuyaychay',
     fieldPromptPlaceholder: 'Agentepaq kamachikuykuna kay webhook ruwakusqanpi (munaspa)',
     nameRequired: 'Suti kananmi',
@@ -773,7 +799,7 @@ export const qu = defineLocale({
       github_comment: 'GitHub comentario',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     search: 'Webhook-nata maskay...',
     loading: 'Webhook-nata loading...',
@@ -781,7 +807,8 @@ export const qu = defineLocale({
     hint: 'Subscription-nuyup hukmichasqa, receiver ñam铪 qhawaykuptitaj kaq. DisABLED subscriptions qay incoming event-nata reject-nan.',
     empty: 'Mana webhook subscription-naraqmi.',
     disabledTitle: 'Webhook receiver-disabled',
-    disabledBody: 'Webhook-nataru amaqay gateway platform-ninmi. Qay incoming HTTP event-nata chaskinapaq, kaypi enabled qechay; chat channel-naraqmi achka subscription Telegram, Discord, Slack utaq huk channel-man deliver qananchu.',
+    disabledBody:
+      'Webhook-nataru amaqay gateway platform-ninmi. Qay incoming HTTP event-nata chaskinapaq, kaypi enabled qechay; chat channel-naraqmi achka subscription Telegram, Discord, Slack utaq huk channel-man deliver qananchu.',
     enable: 'Webhook-nata enabled qechay',
     enabling: 'Enabled qechamkan...',
     deleteTitle: 'Webhook-nata delete qey',
@@ -813,11 +840,11 @@ export const qu = defineLocale({
     webhookUrl: 'Webhook URL',
     secretOnce: 'Secret (shown once)',
     fieldNamePlaceholder: 'e.g. github-push',
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     close: 'Perfilkunata wichqay',
-    nameHint: 'Sullk\'a letrakuna, yupaykuna, guionkuna, guion baxokuna. Letrawan utaq yupaywan qallarinanmi.',
+    nameHint: "Sullk'a letrakuna, yupaykuna, guionkuna, guion baxokuna. Letrawan utaq yupaywan qallarinanmi.",
     title: 'Perfilkuna',
     search: 'Perfilkunata maskay...',
     loading: 'Perfilkunata cargachkan...',
@@ -891,11 +918,11 @@ Leave blank to keep the ${mode} default.`,
     failedLoadSoul: 'Failed to load SOUL.md',
     failedSaveSoul: 'Failed to save SOUL.md',
     failedCreate: 'Failed to create profile',
-    failedRename: 'Failed to rename profile',
+    failedRename: 'Failed to rename profile'
   },
   messaging: {
     states: {
-      connecting: 'T\'inkichkan',
+      connecting: "T'inkichkan",
       disabled: 'Mana atichisqa',
       fatal: 'Pantay',
       gateway_stopped: 'Mensajekuna gateway sayasqa',
@@ -903,19 +930,20 @@ Leave blank to keep the ${mode} default.`,
       pending_restart: 'Musuqmanta qallarichiy munan',
       retrying: 'Musuqmanta ruwachkan',
       startup_failed: 'Qallariy pantasqa',
-      connected: 'Tinkisqa',
+      connected: 'Tinkisqa'
     },
     unknown: 'Mana yachasqa',
     hintPendingRestart: 'Kay tikrayta churakunampaq, gateway-ta estado barraqmanta musuqmanta qallarichiy.',
-    hintGatewayStopped: 'T\'inkinapaq, gateway-ta estado barraqmanta qallarichiy.',
+    hintGatewayStopped: "T'inkinapaq, gateway-ta estado barraqmanta qallarichiy.",
     credentialsSet: 'Credencialkuna churaykusqa',
     needsSetup: 'Allichayta munan',
     gatewayStopped: 'Mensajekuna gateway sayasqa',
-    getCredentials: 'Credencialnikikunata hap\'iy',
+    getCredentials: "Credencialnikikunata hap'iy",
     openSetupGuide: 'Allichay guiata kichay',
     required: 'Munanchisqa',
     recommended: 'Yuyaychasqa',
-    noTokenNeeded: 'Kay platformaqa manam kaypi token-ta munanchu. Hananpi allichay guiata llamk\'achiy, chaymanta kaypi atichiy.',
+    noTokenNeeded:
+      "Kay platformaqa manam kaypi token-ta munanchu. Hananpi allichay guiata llamk'achiy, chaymanta kaypi atichiy.",
     enabled: 'Atichisqa',
     disabled: 'Mana atichisqa',
     unsavedChanges: 'Mana waqaychasqa tikraykuna',
@@ -924,130 +952,130 @@ Leave blank to keep the ${mode} default.`,
     saved: 'Waqaychasqa',
     replaceValue: 'Kunan chaninta tikray',
     openDocs: 'Qillqakunata kichay',
-    restartToApply: 'Kay tikrayqa gateway musuqmanta qallarisqanmanta qhipa llamk\'anqa.',
-    restartToReconnect: 'Musuq credencialkunaqa gateway musuqmanta qallarisqanmanta qhipa llamk\'anqaku.',
+    restartToApply: "Kay tikrayqa gateway musuqmanta qallarisqanmanta qhipa llamk'anqa.",
+    restartToReconnect: "Musuq credencialkunaqa gateway musuqmanta qallarisqanmanta qhipa llamk'anqaku.",
     fieldCopy: {
       TELEGRAM_BOT_TOKEN: {
-        help: '@BotFather-wan botta ruray, chaymanta qusunki token-ta k\'askachiy.',
-        placeholder: 'Telegram bot token-ta k\'askachiy',
-        label: 'Bot token',
+        help: "@BotFather-wan botta ruray, chaymanta qusunki token-ta k'askachiy.",
+        placeholder: "Telegram bot token-ta k'askachiy",
+        label: 'Bot token'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Permitichisqa Telegram usuario IDkuna',
-        help: 'Yuyaychasqa. @userinfobot-manta coma-wan rakiy yupay IDkuna. Kayqa mana kaptin, pipas botnikiman DM-ta apachiyta atin.',
+        help: 'Yuyaychasqa. @userinfobot-manta coma-wan rakiy yupay IDkuna. Kayqa mana kaptin, pipas botnikiman DM-ta apachiyta atin.'
       },
       TELEGRAM_PROXY: {
-        help: 'Telegram hark\'asqa redespi chayllapi munanchisqa.',
-        label: 'Proxy URL',
+        help: "Telegram hark'asqa redespi chayllapi munanchisqa.",
+        label: 'Proxy URL'
       },
       DISCORD_BOT_TOKEN: {
-        help: 'Discord Developer Portalpi aplicacionta ruray, botta yapay, chaymanta tokenninta k\'askachiy.',
-        label: 'Bot token',
+        help: "Discord Developer Portalpi aplicacionta ruray, botta yapay, chaymanta tokenninta k'askachiy.",
+        label: 'Bot token'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Permitichisqa Discord usuario IDkuna',
-        help: 'Yuyaychasqa. Coma-wan rakiy Discord usuario IDkuna.',
+        help: 'Yuyaychasqa. Coma-wan rakiy Discord usuario IDkuna.'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'WhatsApp rikuchiyuq allow',
-        help: 'Allin在全. Telefono-numeroy yachayta rantin\'ar, utaq WhatsApp ID-ni comma-separado hina.',
+        help: "Allin在全. Telefono-numeroy yachayta rantin'ar, utaq WhatsApp ID-ni comma-separado hina."
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Wasi kanali sutin',
-        help: 'Wasi kanali sutinta qillqa yachayninpaq',
+        help: 'Wasi kanali sutinta qillqa yachayninpaq'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'iMessage llapan runankunata saqiy',
-        help: 'Chuqaqmi, BlueBubbles saqiy listata llapanmanta waqaychay.',
+        help: 'Chuqaqmi, BlueBubbles saqiy listata llapanmanta waqaychay.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Mattermost llapan runankunata saqiy',
+        label: 'Mattermost llapan runankunata saqiy'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Wasi kanali',
+        label: 'Wasi kanali'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'QQ llapan runankunata saqiy',
+        label: 'QQ llapan runankunata saqiy'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ wasi kanali',
-        help: 'Cron kachayninpaq default kanali yanaq tapisqa.',
+        help: 'Cron kachayninpaq default kanali yanaq tapisqa.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ wasi kanali sutin',
+        label: 'QQ wasi kanali sutin'
       },
       SLACK_BOT_TOKEN: {
-        help: 'Slack appnata instalaymanta huchuq, OAuth & Permissionspi kaq bot tokeninta llamk\'ichiy.',
+        help: "Slack appnata instalaymanta huchuq, OAuth & Permissionspi kaq bot tokeninta llamk'ichiy.",
         placeholder: 'Slack bot tokeninta qillqay',
-        label: 'Slack bot token',
+        label: 'Slack bot token'
       },
       SLACK_APP_TOKEN: {
-        help: 'Socket Modepaq munasqa app-level tokeninta llamk\'ichiy.',
+        help: "Socket Modepaq munasqa app-level tokeninta llamk'ichiy.",
         placeholder: 'Slack app tokeninta qillqay',
-        label: 'Slack app token',
+        label: 'Slack app token'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Saqisqa Slack runa IDninkuna',
-        help: 'Allinmi. Slack runa IDninkuna t\'inkichqmanta separadupasqa.',
+        help: "Allinmi. Slack runa IDninkuna t'inkichqmanta separadupasqa."
       },
       MATTERMOST_URL: {
         placeholder: 'https://mattermost.example.com',
-        label: 'Server URL',
+        label: 'Server URL'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Saqisqa runa IDninkuna',
-        help: 'Allinmi. Mattermost runa IDninkuna t\'inkichqmanta separadupasqa.',
+        help: "Allinmi. Mattermost runa IDninkuna t'inkichqmanta separadupasqa."
       },
       MATRIX_HOMESERVER: {
         placeholder: 'https://matrix.org',
-        label: 'Homeserver URL',
+        label: 'Homeserver URL'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Acceso token',
+        label: 'Acceso token'
       },
       MATRIX_USER_ID: {
         label: 'Bot runa ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Saqisqa Matrix runa IDninkuna',
-        help: 'Allinmi. @runa:server tupuypiq runa IDninkuna t\'inkichqmanta separadupasqa.',
+        help: "Allinmi. @runa:server tupuypiq runa IDninkuna t'inkichqmanta separadupasqa."
       },
       SIGNAL_HTTP_URL: {
         placeholder: 'http://127.0.0.1:8080',
         help: 'Ñawpaq signal-cli REST bridgemu URL.',
-        label: 'Signal bridge URL',
+        label: 'Signal bridge URL'
       },
       SIGNAL_ACCOUNT: {
         label: 'Telefono yupay',
-        help: 'signal-cli bridgenpi registrashqa yupay.',
+        help: 'signal-cli bridgenpi registrashqa yupay.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Saqisqa Signal runankuna',
-        help: 'Allinmi. Signal identifikadorinkuna t\'inkichqmanta separadupasqa.',
+        help: "Allinmi. Signal identifikadorinkuna t'inkichqmanta separadupasqa."
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp bridgenta kichay',
-        help: 'Hich\'uraq t\'urakwanmanta automátikamanta sutin. Yachaykamaqmi churaychu.',
+        help: "Hich'uraq t'urakwanmanta automátikamanta sutin. Yachaykamaqmi churaychu."
       },
       WHATSAPP_MODE: {
-        label: 'Bridge tupuynin',
+        label: 'Bridge tupuynin'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Kutichiy laya',
-        help: 'ñawpaq, llapa, utaq wañuchisqa.',
+        help: 'ñawpaq, llapa, utaq wañuchisqa.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Llapa Discord ruraqkunata saqiy',
-        help: 'Wiñachinallapaqlla. Chiqapta kaqtin, pipas botman DM apachiyta atin mana saqisqa listawan.',
+        help: 'Wiñachinallapaqlla. Chiqapta kaqtin, pipas botman DM apachiyta atin mana saqisqa listawan.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Wasi kanal ID',
-        help: 'Kanal chaypi bot ñawpaq willakuykunata apachin (cron lluqsichiykuna, yuyachikuykuna).',
+        help: 'Kanal chaypi bot ñawpaq willakuykunata apachin (cron lluqsichiykuna, yuyachikuykuna).'
       },
       MATTERMOST_TOKEN: {
-        label: 'Bot token',
-      },
+        label: 'Bot token'
+      }
     },
     search: 'Willanakuyta maskachkan...',
     loading: 'Willanakuy patapatakunata cargachkan...',
@@ -1064,13 +1092,12 @@ Leave blank to keep the ${mode} default.`,
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   shell: {
     gatewayMenu: {
       checkingInference: 'Inferenciata qhawachkan',
-      disconnected: 'Mana t\'inkisqa',
+      disconnected: "Mana t'inkisqa",
       openSystem: 'Sistema panelta kichay',
       recentActivity: 'Qhipa ruwaykuna',
       viewAllLogs: 'Tukuy registrokunata qhaway →',
@@ -1081,7 +1108,7 @@ Leave blank to keep the ${mode} default.`,
       offline: 'Offline',
       inferenceReady: 'Inference ready',
       inferenceNotReady: 'Inference not ready',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'Aprobación modo',
@@ -1091,7 +1118,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'Ruwaykunata kikillanmanta qhawaspa, munasqapi tapuy',
       off: 'Wañuchisqa',
       offDescription: 'Aprobación tapuykunata mana tapuspa puriy',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'Mana riqsisqa',
@@ -1106,7 +1133,7 @@ Leave blank to keep the ${mode} default.`,
       gatewayReady: 'Allichisqa',
       gatewayNeedsSetup: 'Wakichiyta munan',
       gatewayChecking: 'Qhawachkan',
-      gatewayConnecting: 'T\'inkichkan',
+      gatewayConnecting: "T'inkichkan",
       gatewayOffline: 'Mana llikapi',
       gatewayRestarting: 'Wateqmanta qallarichkan…',
       gatewayTitle: 'OpenAmer inferencia punku kaynin',
@@ -1129,19 +1156,21 @@ Leave blank to keep the ${mode} default.`,
           system_prompt: 'Sistempa prompt',
           tool_definitions: 'Toolpa kamachiykuna',
           conversation: 'Conversation',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Mana kawsay kanchu',
         loading: 'Kawsay t’astayni qhichaychkan…',
         title: 'Kawsay pachakmanta',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Kawsay pachakmanta qhaway',
       session: 'Sesiya',
       runtimeSessionElapsed: 'Sesiya qallariymanta puchuy',
-      yoloOn: 'YOLO kanchak — hatun llaqtay kamachiykunata kikinmanta ariyachini. Wisq’aypaq apaspa mana yuraychaychay. Shift+click maypita tikray.',
-      yoloOff: 'YOLO mana — hatun llaqtay kamachiykunata kikinmanta ariyachinapaq apaspa qhaway. Shift+click maypita tikray.',
+      yoloOn:
+        'YOLO kanchak — hatun llaqtay kamachiykunata kikinmanta ariyachini. Wisq’aypaq apaspa mana yuraychaychay. Shift+click maypita tikray.',
+      yoloOff:
+        'YOLO mana — hatun llaqtay kamachiykunata kikinmanta ariyachinapaq apaspa qhaway. Shift+click maypita tikray.',
       modelNone: 'Mana kanchu',
       noModel: 'Mana modelo',
       switchModel: 'Modelo tikray',
@@ -1166,7 +1195,7 @@ Leave blank to keep the ${mode} default.`,
       cron: 'Cron',
       contextUsage: 'Context usage',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
     },
     windowControls: 'Window controls',
     paneControls: 'Pane controls',
@@ -1176,7 +1205,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'No models found',
       editModels: 'Edit Models…',
       refreshModels: 'Refresh Models',
-      fast: 'Fast',
+      fast: 'Fast'
     },
     modelOptions: {
       noOptions: 'No options for this model',
@@ -1192,8 +1221,8 @@ Leave blank to keep the ${mode} default.`,
       max: 'Max',
       ultra: 'Ultra',
       updateFailed: 'Model option update failed',
-      fastFailed: 'Fast mode update failed',
-    },
+      fastFailed: 'Fast mode update failed'
+    }
   },
   notifications: {
     errors: {
@@ -1204,7 +1233,7 @@ Leave blank to keep the ${mode} default.`,
       openaiRejectedApiKey: 'OpenAI wachkakunku API key.',
       openaiTtsNeedsKey: 'OpenAI TTS VOICE_TOOLS_OPENAI_KEY utaq OPENAI_API_KEY qhawarqa.',
       elevenLabsNeedsKey: 'ElevenLabs STT qatna ELEVENLABS_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Speech-to-text configurekunata voice mode llamkanku.',
@@ -1216,14 +1245,14 @@ Leave blank to keep the ${mode} default.`,
       microphonePermissionDenied: 'Micrófono kimiykunata wasimuychu.',
       microphoneStartFailed: 'Mananaku microphone recording startinmanchu.',
       microphoneUnsupported: 'Kay runtime microphone recording yupunkuwaychu.',
-      noMicrophone: 'Micrófono kayman mit\'alla.',
-      noSpeechDetected: 'Mikukuyqa mit\'alla.',
+      noMicrophone: "Micrófono kayman mit'alla.",
+      noSpeechDetected: "Mikukuyqa mit'alla.",
       playbackFailed: 'Voice playback akirqanchu.',
       recordingFailed: 'Voice recording akirqanchu.',
       transcriptionFailed: 'Voice transcription akirqanchu.',
       transcriptionUnavailable: 'Rimayni manutaymi.',
       tryRecordingAgain: 'Ruraykama chikuymiyay.',
-      unavailable: 'Rimayni taytaymi.',
+      unavailable: 'Rimayni taytaymi.'
     },
     native: {
       approvalTitle: 'Yayuyiq yecan.',
@@ -1236,7 +1265,7 @@ Leave blank to keep the ${mode} default.`,
       turnErrorTitle: 'Turna fallashay.',
       backgroundDoneTitle: 'Task finyashay.',
       backgroundFailedTitle: 'Task fallashay.',
-      creditsTitle: 'Kredito',
+      creditsTitle: 'Kredito'
     },
     region: 'Avisokun',
     hide: 'Kawsay',
@@ -1247,13 +1276,14 @@ Leave blank to keep the ${mode} default.`,
     copyDetail: 'Yuyayni copiay',
     copyDetailFailed: 'Mishan avisokun yuyayni copiway',
     backendOutOfDateTitle: 'Backend manthay',
-    backendOutOfDateMessage: 'OpenAmer backend taykun amuykun llawan desktop build kaykun chawpiwaykun llukiywan. Kaykun kayman hukuywan.',
+    backendOutOfDateMessage:
+      'OpenAmer backend taykun amuykun llawan desktop build kaykun chawpiwaykun llukiywan. Kaykun kayman hukuywan.',
     installMethodUnsupportedTitle: 'Install metod willka',
     updateOpenAmer: 'Kaykun OpenAmer',
     updateReadyTitle: 'Kaykun llawan',
     seeWhatsNew: 'Muqay kay nuna',
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer kredito akunashan.',
@@ -1261,7 +1291,7 @@ Leave blank to keep the ${mode} default.`,
     openBilling: 'Billing kachay',
     addCredits: 'Kredito mushay.',
     dismiss: 'Waway',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Sidebar wastay',
@@ -1278,23 +1308,24 @@ Leave blank to keep the ${mode} default.`,
     openStarmap: 'Qaykama imashqa grafikuna',
     openKeybinds: 'Teclatunaka ayku',
     layoutEditor: 'Layautu edita',
-    layoutEditorTitle: 'Layautu edita — ⌘-click kayman kay layautu',
+    layoutEditorTitle: 'Layautu edita — ⌘-click kayman kay layautu'
   },
   boot: {
     errors: {
       gatewayConnectionLost: 'Pukllay muyuq kaykunata',
       gatewaySignInRequired: 'Kaykunata willakuykuna',
-      ipcBridgeUnavailable: 'Escritorio IPC t\'ikuy manukun.',
+      ipcBridgeUnavailable: "Escritorio IPC t'ikuy manukun.",
       backgroundExited: 'OpenAmer background process exited.',
       backgroundExitedDuringStartup: 'OpenAmer background process exited during startup.',
       backendStopped: 'Backend stopped',
-      desktopBootFailed: 'Desktop boot failed',
+      desktopBootFailed: 'Desktop boot failed'
     },
     failure: {
       title: '`OpenAmer` iskarkay',
       description: 'Kaykunata pampakun. Kaymantayni kawsaykunaqa fallawan. Ukunmanta kawsaykunata kachkar.',
       remoteTitle: 'Kay lejón willakuykuna',
-      remoteDescription: 'Kay lejón kaykunata willakuyqa saywiscpay. Ehipay willakuykunata willakuykunata. Ukunmanta kawsaykunata kachkar.',
+      remoteDescription:
+        'Kay lejón kaykunata willakuyqa saywiscpay. Ehipay willakuykunata willakuykunata. Ukunmanta kawsaykunata kachkar.',
       retry: 'Yuyay',
       repairInstall: 'Kawsaykunata',
       useLocalGateway: 'Kachikunata willakuy',
@@ -1304,7 +1335,7 @@ Leave blank to keep the ${mode} default.`,
       repairHint: 'Kawsaykunata installer qhawaykukuy ulemu.',
       signOutAndSignIn: 'Willakuy & willakuy',
       remoteFailureHint: 'Kaykunata `URL` willakuyyati ajukunapi, hawa kachikunata willay.',
-      hideRecentLogs: 'Ukhu logs k\'uyiy',
+      hideRecentLogs: "Ukhu logs k'uyiy",
       showRecentLogs: 'Ukhu logs muksiy',
       signedInTitle: 'Willakuykita',
       signedInMessage: 'Kay lejón kaykunata willaykukuta…',
@@ -1313,8 +1344,9 @@ Leave blank to keep the ${mode} default.`,
       signInFailed: 'Qallaykama fallay',
       signInToRemoteGateway: 'Qallaykama remoto willayman',
       identityProvider: 'Yurqayni provay',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
     ready: 'OpenAmer Desktop is ready',
     desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
@@ -1323,35 +1355,36 @@ Leave blank to keep the ${mode} default.`,
       loadingSettings: 'Loading OpenAmer settings',
       loadingSessions: 'Loading recent sessions',
       startingDesktopConnection: 'Starting desktop connection',
-      startingOpenAmerDesktop: 'Starting OpenAmer Desktop…',
-    },
+      startingOpenAmerDesktop: 'Starting OpenAmer Desktop…'
+    }
   },
   onboarding: {
     apiKeyOptions: {
       xai: {
         description: 'Acceso directo a modelos xAI Grok.',
-        short: 'Grok models',
+        short: 'Grok models'
       },
       local: {
         short: 'Installda en servidor propio',
-        description: 'Apunta OpenAmer a un endpoint local o propio compatible con OpenAI (vLLM, llama.cpp, Ollama, etc).',
+        description:
+          'Apunta OpenAmer a un endpoint local o propio compatible con OpenAI (vLLM, llama.cpp, Ollama, etc).'
       },
       fireworks: {
         short: 'direct model API',
-        description: 'Direct access to models hosted by Fireworks AI.',
+        description: 'Direct access to models hosted by Fireworks AI.'
       },
       openrouter: {
         short: 'one key, many models',
-        description: 'Hosts hundreds of models behind a single key. Good default for new installs.',
+        description: 'Hosts hundreds of models behind a single key. Good default for new installs.'
       },
       openai: {
         short: 'GPT-class models',
-        description: 'Direct access to OpenAI models.',
+        description: 'Direct access to OpenAI models.'
       },
       gemini: {
         short: 'Gemini models',
-        description: 'Direct access to Google Gemini models.',
-      },
+        description: 'Direct access to Google Gemini models.'
+      }
     },
     backToSignIn: 'Volver a iniciar sesión',
     getKey: 'Obtener una llave',
@@ -1364,7 +1397,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'Abre tu navegador para iniciar sesión y luego continúa aquí',
       device_code: 'Abre una página de verificación en tu navegador — OpenAmer se conecta automáticamente',
-      external: 'Inicia sesión una vez en tu terminal y vuelve aquí para chatear',
+      external: 'Inicia sesión una vez en tu terminal y vuelve aquí para chatear'
     },
     signInFailed: 'No se pudo iniciar sesión. Inténtalo de nuevo.',
     pickDifferentProvider: 'Elegir otro proveedor',
@@ -1402,12 +1435,14 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     pro: 'Pro',
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'Cambiar modelo',
@@ -1423,7 +1458,7 @@ Leave blank to keep the ${mode} default.`,
     free: 'Free',
     freeTier: 'Free tier',
     priceTitle: 'Input / Output price per million tokens',
-    wasPrice: 'was',
+    wasPrice: 'was'
   },
   rightSidebar: {
     aria: 'Lluq’i uran',
@@ -1459,7 +1494,7 @@ Leave blank to keep the ${mode} default.`,
     terminalNew: 'New terminal',
     terminalCloseOthers: 'Close others',
     terminalCloseAll: 'Close all',
-    addToChat: 'Add to chat',
+    addToChat: 'Add to chat'
   },
   desktop: {
     dropFiles: 'Archiyayta kichay',
@@ -1468,7 +1503,7 @@ Leave blank to keep the ${mode} default.`,
       timedOut: 'Gateway-man suyuchiykunamanta tiyay pasisqa. `openamer gateway` ruchisqachu?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     audioReadFailed: 'Waqaychasqa uyarinata mana ñawinchayta atirqanchu',
     sessionUnavailable: 'Sesión mana kachkanchu',
@@ -1476,27 +1511,29 @@ Leave blank to keep the ${mode} default.`,
     promptFailed: 'Mañakuy mana allinchu',
     providerCredentialRequired: 'Ñawpaq willakuyta apachinaykipaq, quq yaykuy willakuyta yapay.',
     emptySlashCommand: 'chusaq slash kamachiy',
-    desktopCommands: 'Hamp\'ara kamachiykuna',
+    desktopCommands: "Hamp'ara kamachiykuna",
     yoloArmed: 'YOLO kay rimanaypaq armasqa',
-    yoloOff: 'YOLO mana llamk\'achkanchu',
+    yoloOff: "YOLO mana llamk'achkanchu",
     yoloToggleFailed: 'YOLO mana kutichiyta atirqanchu',
     unknownProfile: 'Mana riqsisqa perfil',
     setProfileFailed: 'Perfilta churayta mana atirqanchu',
-    sttDisabled: 'Rimay-qillqaman ruwayqa churaykunapi mana llamk\'achkanchu.',
+    sttDisabled: "Rimay-qillqaman ruwayqa churaykunapi mana llamk'achkanchu.",
     stopFailed: 'Sayachiy mana allinchu',
     regenerateFailed: 'Musuqmanta ruway mana allinchu',
     editFailed: 'Allichay mana allinchu',
     resumeFailed: 'Purichiy mana allinchu',
     resumeStrandedTitle: 'Kay sesiónta mana apamuyta atirqanchu',
-    resumeStrandedBody: 'Kay sesiónman t\'inkiy mana allinchu, automatiko kutipaykunaqa saqirqanku. Punku purichkanchus chayta qhaway, hinaspa musuqmanta ruway.',
+    resumeStrandedBody:
+      "Kay sesiónman t'inkiy mana allinchu, automatiko kutipaykunaqa saqirqanku. Punku purichkanchus chayta qhaway, hinaspa musuqmanta ruway.",
     resumeRetry: 'Musuqmanta ruway',
-    nothingToBranch: 'Mana ima k\'allmachanapaq',
-    branchNeedsChat: 'K\'allmachanaykipaq, rimanayta qallariy utaq purichiy.',
+    nothingToBranch: "Mana ima k'allmachanapaq",
+    branchNeedsChat: "K'allmachanaykipaq, rimanayta qallariy utaq purichiy.",
     skillCommandsAvailable: count => `${count} skill commands available.`,
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
     sessionBusy: 'Session busy',
@@ -1528,31 +1565,31 @@ Leave blank to keep the ${mode} default.`,
     attachImages: 'Attach images',
     clipboard: 'Clipboard',
     noClipboardImage: 'No image found in clipboard',
-    clipboardPasteFailed: 'Clipboard paste failed',
+    clipboardPasteFailed: 'Clipboard paste failed'
   },
   errors: {
     genericFailure: 'Imapas rariq',
-    boundaryTitle: 'Interfaz-pi k\'iti q\'urqarqan',
-    boundaryDesc: 'Rikuchiy mana yuyayninchiq pachak-nata tarisqa. Chats-yki q\'ullkiyki-chayki allinmi.',
+    boundaryTitle: "Interfaz-pi k'iti q'urqarqan",
+    boundaryDesc: "Rikuchiy mana yuyayninchiq pachak-nata tarisqa. Chats-yki q'ullkiyki-chayki allinmi.",
     reloadWindow: 'Wintuta qichay',
-    openLogs: 'Log-kunata kichay',
+    openLogs: 'Log-kunata kichay'
   },
   ui: {
     search: {
-      clear: 'Maskana pichay',
+      clear: 'Maskana pichay'
     },
     pagination: {
       label: 'Paginación',
       previous: 'Ñawpaq',
       previousAria: 'Ñawpaq página-man riy',
       next: 'Qhipaq',
-      nextAria: 'Qhipaq página-man riy',
+      nextAria: 'Qhipaq página-man riy'
     },
     sidebar: {
       title: 'Lad panel',
       description: 'Móvil lad panel-nta rikuchin.',
-      toggle: 'Lad panel-ta rikuchiy-pakray',
-    },
+      toggle: 'Lad panel-ta rikuchiy-pakray'
+    }
   },
   skills: {
     hub: {
@@ -1573,7 +1610,7 @@ Leave blank to keep the ${mode} default.`,
       trust: {
         builtin: 'Ukhu',
         trusted: 'Iñisqa',
-        community: 'Ayllu',
+        community: 'Ayllu'
       },
       verdictSafe: 'Allin',
       verdictCaution: 'Yuyaychay',
@@ -1595,12 +1632,13 @@ Leave blank to keep the ${mode} default.`,
       connectingHubs: 'Connecting to skill hubs...',
       connectedHubs: 'Connected hubs:',
       featured: 'Featured skills',
-      landingHint: 'Search the hub to browse installable skills from the official index, GitHub, and community sources.',
+      landingHint:
+        'Search the hub to browse installable skills from the official index, GitHub, and community sources.',
       resultCount: (count, ms) => `${count} result${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     tabSkills: 'Skills',
     tabToolsets: 'Tools',
@@ -1619,7 +1657,8 @@ Leave blank to keep the ${mode} default.`,
     noDescription: 'No description.',
     configured: 'Configured',
     needsKeys: 'Needs keys',
-    visionModelHint: 'Vision uses your auxiliary model configuration — the image-capable model is picked there, not per-provider here.',
+    visionModelHint:
+      'Vision uses your auxiliary model configuration — the image-capable model is picked there, not per-provider here.',
     visionModelLink: 'Choose vision model in Settings → Models',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} toolsets enabled`,
     configureToolset: label => `Configure ${label}`,
@@ -1645,7 +1684,7 @@ Leave blank to keep the ${mode} default.`,
     provenance: {
       agent: 'Learned',
       bundled: 'Built-in',
-      hub: 'Hub',
+      hub: 'Hub'
     },
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
@@ -1655,24 +1694,25 @@ Leave blank to keep the ${mode} default.`,
     edit: 'Edit',
     archive: 'Archive',
     skillArchivedTitle: 'Skill archived',
-    skillArchivedMessage: 'Restorable via openamer curator restore.',
+    skillArchivedMessage: 'Restorable via openamer curator restore.'
   },
   starmap: {
-    title: 'Yuyay siq\'i',
-    close: 'Yuyay siq\'ita wichqay',
+    title: "Yuyay siq'i",
+    close: "Yuyay siq'ita wichqay",
     refresh: 'Musuqyachiy',
     memory: 'Yuyay',
     filterAll: 'Llapan',
     filterUsed: 'Utilizasqa',
     filterLearned: 'Yachasqa',
-    viewGraph: 'Siq\'i',
-    loadFailed: 'Yuyay siq\'ita mana kargayta atikunchu.',
+    viewGraph: "Siq'i",
+    loadFailed: "Yuyay siq'ita mana kargayta atikunchu.",
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
     loading: 'Loading…',
     emptyTitle: 'Nothing learned yet',
     emptyDesc: 'As OpenAmer builds skills and memories for your work, they appear here.',
     share: 'Share map',
-    shareHint: 'Copy the code to share this map, or paste one to load. It only includes the layout, not your memory or skill text.',
+    shareHint:
+      'Copy the code to share this map, or paste one to load. It only includes the layout, not your memory or skill text.',
     shareTitle: 'Import / export map',
     sharePlaceholder: 'Paste a map code…',
     copy: 'Copy map code',
@@ -1682,22 +1722,23 @@ Leave blank to keep the ${mode} default.`,
     importEmpty: 'Paste a map code to load it.',
     importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'imported map',
-    resetToMine: 'Back to my map',
+    resetToMine: 'Back to my map'
   },
   commandCenter: {
     maintenance: {
-      debugShareDesc: 'Huk pakasqa willakuyta + registrokunata apachiy, rakinapaq tinkikunata chaskiy (6h qhipaman kikillanmanta chinkachin)',
+      debugShareDesc:
+        'Huk pakasqa willakuyta + registrokunata apachiy, rakinapaq tinkikunata chaskiy (6h qhipaman kikillanmanta chinkachin)',
       debugShareRunning: 'Debug willakuyta apachichkani...',
       debugShareLinks: 'Tinkikunata rakiy',
       debugShareFailed: 'Debug rakiy mana atikunchu',
       copyLink: 'Tinkita copiay',
       linkCopied: 'Tinki copiasqa',
       curator: 'Yachay kamachiq',
-      curatorDesc: 'Mana rikuriq qhawariy, mawk\'a agentepa ruwasqan yachaykunata waqaychan',
+      curatorDesc: "Mana rikuriq qhawariy, mawk'a agentepa ruwasqan yachaykunata waqaychan",
       curatorPaused: 'Sayachisqa',
       curatorActive: 'Rurachkan',
       curatorDisabled: 'Mana ruwachiq',
-      curatorNeverRan: 'Mana hayk\'aq ruwakurqanchu',
+      curatorNeverRan: "Mana hayk'aq ruwakurqanchu",
       pause: 'Sayachiy',
       resume: 'Kutichiy',
       runNow: 'Kunan ruway',
@@ -1706,7 +1747,7 @@ Leave blank to keep the ${mode} default.`,
       builtinMemory: 'kikin',
       memoryFile: 'Agentepa yuyaynin (MEMORY.md)',
       userFile: 'Ruraqpa perfilnin (USER.md)',
-      empty: 'ch\'usaq',
+      empty: "ch'usaq",
       resetMemory: 'Yuyayta qallarichiy',
       resetUser: 'Perfilta qallarichiy',
       resetAll: 'Iskaytinta qallarichiy',
@@ -1727,7 +1768,7 @@ Leave blank to keep the ${mode} default.`,
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     installTheme: {
       loading: 'Qhatuta maskashan...',
@@ -1739,7 +1780,7 @@ Leave blank to keep the ${mode} default.`,
       title: 'Install theme…',
       pageTitle: 'Install theme',
       placeholder: 'Search the VS Code Marketplace...',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Churanakuna pampakuna',
     mcpServers: 'MCP sirwikuna',
@@ -1748,49 +1789,49 @@ Leave blank to keep the ${mode} default.`,
       maintenance: 'Allichay',
       sessions: 'Sesionkuna',
       system: 'Sistema',
-      usage: 'Apachikuy',
+      usage: 'Apachikuy'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostikukuna, waqaychasqakuna, kuratur, yuyay willakuna',
       sessions: 'Sesionkunata maskay hinaspa kamachiy',
       system: 'Estado, qillqakuna, sistema ruwaykuna',
-      usage: 'Token, chanin, yachay ruway pachapi',
+      usage: 'Token, chanin, yachay ruway pachapi'
     },
     nav: {
       newChat: {
         title: 'Musuq sesion',
-        detail: 'Musuq sesionta qallariy',
+        detail: 'Musuq sesionta qallariy'
       },
       settings: {
         title: 'Churanakuna',
-        detail: 'OpenAmer desktopta allichay',
+        detail: 'OpenAmer desktopta allichay'
       },
       skills: {
         title: 'Atiykuna',
-        detail: 'Yachaykuna, llamk\'anakuna, MCP sirwikuna',
+        detail: "Yachaykuna, llamk'anakuna, MCP sirwikuna"
       },
       messaging: {
         title: 'Mensajekuna',
-        detail: 'Telegram, Slack, Discord, hukkunatapas allichay',
+        detail: 'Telegram, Slack, Discord, hukkunatapas allichay'
       },
       artifacts: {
         title: 'Ruwasqakuna',
-        detail: 'Ruwasqa lluqsikunata qhaway',
-      },
+        detail: 'Ruwasqa lluqsikunata qhaway'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Sesionkunapa panel',
-        detail: 'Sesionkunata maskay, fijay, kamachiy',
+        detail: 'Sesionkunata maskay, fijay, kamachiy'
       },
       system: {
         title: 'Sistemapa panel',
-        detail: 'Gateway estado, qillqakuna, musuqmanta qallariy/musuqyachiy',
+        detail: 'Gateway estado, qillqakuna, musuqmanta qallariy/musuqyachiy'
       },
       usage: {
         title: 'Apachikuypa panel',
-        detail: 'Token, chanin, yachay ruway',
-      },
+        detail: 'Token, chanin, yachay ruway'
+      }
     },
     providerNavigate: 'Navegay',
     providerSessions: 'Sesionkuna',
@@ -1826,7 +1867,7 @@ Leave blank to keep the ${mode} default.`,
       generatedTag: 'Generated',
       adoptFailed: 'Could not adopt that pet.',
       toggleFailed: 'Could not toggle the pet.',
-      noneAvailable: 'No pets available — pick one below to install.',
+      noneAvailable: 'No pets available — pick one below to install.'
     },
     generatePet: {
       title: 'Generate a pet',
@@ -1850,12 +1891,13 @@ Leave blank to keep the ${mode} default.`,
       slowProviderHint: 'This can take several minutes',
       remix: 'Remix',
       remixConfirmTitle: 'Remix this look?',
-      remixConfirmBody: 'This generates a fresh set of drafts using this one as the starting point. It can take several minutes.',
+      remixConfirmBody:
+        'This generates a fresh set of drafts using this one as the starting point. It can take several minutes.',
       genericError: 'Generation failed — try again or pick a suggestion.',
       referenceImageTooLarge: 'Reference image is too large. Use one under 16 MB.',
       referenceImageInvalid: 'Could not read that reference image. Try a PNG, JPG, WebP, or GIF.',
       adopt: 'Adopt',
-      startOver: 'Start over',
+      startOver: 'Start over'
     },
     exportSession: 'Export session',
     deleteSession: 'Delete session',
@@ -1893,7 +1935,7 @@ Leave blank to keep the ${mode} default.`,
     actions: count => `${count} actions`,
     logFile: 'Log file',
     logLevel: 'Level',
-    logSearchPlaceholder: 'Filter log lines...',
+    logSearchPlaceholder: 'Filter log lines...'
   },
   artifacts: {
     colLocationLink: 'URL',
@@ -1902,7 +1944,7 @@ Leave blank to keep the ${mode} default.`,
     colSession: 'Sesión',
     kindImage: 'Rikcha',
     kindFile: 'Willakuy',
-    kindLink: 'T\'inki',
+    kindLink: "T'inki",
     chat: 'Rimanakuy',
     copyUrl: 'URL iskaychay',
     copyPath: 'Ñanta iskaychay',
@@ -1927,14 +1969,14 @@ Leave blank to keep the ${mode} default.`,
     goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
     colTitleLink: 'Link title',
     colTitleFile: 'Name',
-    colTitleDefault: 'Title / name',
+    colTitleDefault: 'Title / name'
   },
   sidebar: {
     nav: {
       'new-session': 'Musuq sesión',
       skills: 'Atiykuna',
       messaging: 'Willanakuy',
-      artifacts: 'Ruwasqakuna',
+      artifacts: 'Ruwasqakuna'
     },
     searchAria: 'Sesionkunata maskay',
     searchPlaceholder: 'Sesionkunata maskay…',
@@ -1944,14 +1986,14 @@ Leave blank to keep the ${mode} default.`,
     sessions: 'Sesionkuna',
     cronJobs: 'Cron ruwanakuna',
     groupAriaGrouped: 'Sesionkunata huk listallapi rikuchiy',
-    groupAriaUngrouped: 'Sesionkunata llamk\'ana pampaman hina huñuy',
+    groupAriaUngrouped: "Sesionkunata llamk'ana pampaman hina huñuy",
     showProjects: 'Proyectokunata rikuchiy',
     showSessions: 'Sesionkunata rikuchiy',
     groupTitleGrouped: 'Sesionkunata huñuymanta paskiy',
-    groupTitleUngrouped: 'Llamk\'ana pampaman hina huñuy',
+    groupTitleUngrouped: "Llamk'ana pampaman hina huñuy",
     allPinned: 'Kaypi tukuy ima chutkusqa. Huk rimayta chutkuymanta paskiy kunallanpi rikuchinaypaq.',
     shiftClickHint: 'Rimayta chutkunaypaq Shift-click ruway',
-    noWorkspace: 'Mana llamk\'ana pampa',
+    noWorkspace: "Mana llamk'ana pampa",
     noProject: 'Mana proyecto',
     projectEmpty: 'Manaraq sesionkuna kanchu',
     noSessions: 'Manaraq sesionkuna kanchu',
@@ -1959,15 +2001,17 @@ Leave blank to keep the ${mode} default.`,
       sectionLabel: 'Proyectokuna',
       newButton: 'Musuq proyecto',
       createTitle: 'Musuq proyecto',
-      createDesc: 'Llamk\'ana pampata sutichay, huk utaq aswan carpetakunata yapay.',
+      createDesc: "Llamk'ana pampata sutichay, huk utaq aswan carpetakunata yapay.",
       renameTitle: 'Proyectota sutita tikray',
       addFolderTitle: 'Carpeta yapay',
       namePlaceholder: 'Hina: Skunkworks',
-      noBranches: 'Mana k\'apakuna tarikunchu',
-      removeWorktree: 'Llamk\'ana sach\'ata qichuy',
-      removeWorktreeFailed: 'Mana llamk\'ana sach\'ata qichuyta atikunchu (mana commit ruwasqa hukyaykuna?)',
-      removeWorktreeConfirm: 'Gitmanta qichuy (llamk\'ana sach\'a directoriota pichan; k\'apaqa qhipakun), utaq ladu barramanta ñanta pakaspa llamk\'ana sach\'ata diskipi saqiy.',
-      removeWorktreeDirty: 'Kay llamk\'ana sach\'api mana commit ruwasqa hukyaykuna kan. Kallpawan qichuy (chay hukyaykunata qispichin), utaq ñanta pakaspa diskipi saqiy.',
+      noBranches: "Mana k'apakuna tarikunchu",
+      removeWorktree: "Llamk'ana sach'ata qichuy",
+      removeWorktreeFailed: "Mana llamk'ana sach'ata qichuyta atikunchu (mana commit ruwasqa hukyaykuna?)",
+      removeWorktreeConfirm:
+        "Gitmanta qichuy (llamk'ana sach'a directoriota pichan; k'apaqa qhipakun), utaq ladu barramanta ñanta pakaspa llamk'ana sach'ata diskipi saqiy.",
+      removeWorktreeDirty:
+        "Kay llamk'ana sach'api mana commit ruwasqa hukyaykuna kan. Kallpawan qichuy (chay hukyaykunata qispichin), utaq ñanta pakaspa diskipi saqiy.",
       forceRemove: 'Kallpawan qichuy',
       back: 'Tukuy proyectokuna',
       foldersLabel: 'Folders',
@@ -1992,7 +2036,8 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'Copy path',
       removeFromSidebar: 'Hide from sidebar',
       createFailed: 'Could not create project',
-      staleBackend: 'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
+      staleBackend:
+        'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
       deleteConfirm: 'This removes the saved project from OpenAmer. Files, git repos, and worktrees stay untouched.',
       startWork: 'New worktree',
       newWorktreeTitle: 'New worktree',
@@ -2013,16 +2058,16 @@ Leave blank to keep the ${mode} default.`,
       branchesLoading: 'Loading branches…',
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     loading: 'Kargachkan…',
     loadMore: 'Aswan kargay',
     row: {
-      pin: 'T\'inkiy',
-      unpin: 'T\'inkiyta qichuy',
+      pin: "T'inkiy",
+      unpin: "T'inkiyta qichuy",
       copyId: 'ID-ta iskaychay',
       export: 'Lluqsichiy',
-      branchFrom: 'K\'apa',
+      branchFrom: "K'apa",
       rename: 'Sutichay',
       archive: 'Archivay',
       newWindow: 'Musuq ventana',
@@ -2039,7 +2084,7 @@ Leave blank to keep the ${mode} default.`,
       renamed: 'Sutichasqa',
       renameFailed: 'Sutichay mana atikunchu',
       renameTitle: 'Sesión sutichay',
-      renameDesc: 'Kay chatman yuyarinapaq sutita churay. Pichanapaq ch\'usaqta saqiy.',
+      renameDesc: "Kay chatman yuyarinapaq sutita churay. Pichanapaq ch'usaqta saqiy.",
       untitledPlaceholder: 'Mana sutiyuq sesión',
       ageNow: 'kunan',
       actionsFor: title => `Actions for ${title}`,
@@ -2048,23 +2093,23 @@ Leave blank to keep the ${mode} default.`,
       untitledChat: id => `Chat ${id}`,
       ageDay: 'd',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Kunan ñawpaq',
-      yesterday: 'Qayna p\'unchaw',
+      yesterday: "Qayna p'unchaw",
       thisWeek: 'Kay semanapi ñawpaq',
       lastWeek: 'Qayna semana',
-      thisMonth: 'Earlier this month',
+      thisMonth: 'Earlier this month'
     },
     noMatch: query => `No sessions match “${query}”.`,
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   assistant: {
     tool: {
-      outputAlt: 'Llamk\'ana lluqsichisqan',
+      outputAlt: "Llamk'ana lluqsichisqan",
       rawResponse: 'Mana allichasqa kutichiy',
       copyActivity: 'Kopiyay ruway',
       recoveredOne: '1 urmaq ruwaymanta qispisqa',
@@ -2084,123 +2129,123 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Ruwasqa',
         running: 'Purichkan',
         ranCode: 'Kamachikuy ruwasqa',
-        runningCode: 'Qillqa ruway',
+        runningCode: 'Qillqa ruway'
       },
       prefixes: {
-        browser: 'Llika mask\'ana',
-        web: 'Llika',
+        browser: "Llika mask'ana",
+        web: 'Llika'
       },
       titles: {
         browser_click: {
-          done: 'P\'anqa elemento ñit\'isqa',
-          pending: 'P\'anqa elemento ñit\'ichkan',
-          pendingAction: 'Ñit\'ichkan',
+          done: "P'anqa elemento ñit'isqa",
+          pending: "P'anqa elemento ñit'ichkan",
+          pendingAction: "Ñit'ichkan"
         },
         browser_fill: {
-          done: 'Formulario k\'iti hunt\'asqa',
-          pending: 'Formulario k\'itita hunt\'achkan',
-          pendingAction: 'Hunt\'achkan',
+          done: "Formulario k'iti hunt'asqa",
+          pending: "Formulario k'itita hunt'achkan",
+          pendingAction: "Hunt'achkan"
         },
         browser_navigate: {
-          done: 'P\'anqa kichasqa',
-          pending: 'P\'anqa kichachkan',
-          pendingAction: 'Kichachkan',
+          done: "P'anqa kichasqa",
+          pending: "P'anqa kichachkan",
+          pendingAction: 'Kichachkan'
         },
         browser_snapshot: {
-          done: 'P\'anqa rikch\'ay hap\'isqa',
-          pending: 'P\'anqa rikch\'ayta hap\'ichkan',
-          pendingAction: 'Hap\'ichkan',
+          done: "P'anqa rikch'ay hap'isqa",
+          pending: "P'anqa rikch'ayta hap'ichkan",
+          pendingAction: "Hap'ichkan"
         },
         browser_take_screenshot: {
-          done: 'Pantalla rikch\'ay hap\'isqa',
-          pending: 'Pantalla rikch\'ayta hap\'ichkan',
-          pendingAction: 'Hap\'ichkan',
+          done: "Pantalla rikch'ay hap'isqa",
+          pending: "Pantalla rikch'ayta hap'ichkan",
+          pendingAction: "Hap'ichkan"
         },
         browser_type: {
-          done: 'P\'anqapi qillqasqa',
-          pending: 'P\'anqapi qillqachkan',
-          pendingAction: 'Qillqachkan',
+          done: "P'anqapi qillqasqa",
+          pending: "P'anqapi qillqachkan",
+          pendingAction: 'Qillqachkan'
         },
         web_extract: {
-          pending: 'Web p\'anqata ñawinchachkay',
+          pending: "Web p'anqata ñawinchachkay",
           pendingAction: 'Ñawinchachkay',
-          done: 'Read webpage',
+          done: 'Read webpage'
         },
         web_search: {
           done: 'Webpi maskasqa',
           pending: 'Webpi maskachkay',
-          pendingAction: 'Maskachkay',
+          pendingAction: 'Maskachkay'
         },
         write_file: {
           done: 'Archivota allichasqa',
           pending: 'Archivota allichachkay',
-          pendingAction: 'Allichachkay',
+          pendingAction: 'Allichachkay'
         },
         clarify: {
           done: 'Asked a question',
           pending: 'Asking a question',
-          pendingAction: 'Asking',
+          pendingAction: 'Asking'
         },
         cronjob: {
           done: 'Cron job',
           pending: 'Scheduling cron job',
-          pendingAction: 'Scheduling',
+          pendingAction: 'Scheduling'
         },
         edit_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
+          pendingAction: 'Editing'
         },
         execute_code: {
           done: 'Ran code',
           pending: 'Scripting',
-          pendingAction: 'Scripting',
+          pendingAction: 'Scripting'
         },
         image_generate: {
           done: 'Generated image',
           pending: 'Generating image',
-          pendingAction: 'Generating',
+          pendingAction: 'Generating'
         },
         list_files: {
           done: 'Listed files',
           pending: 'Listing files',
-          pendingAction: 'Listing',
+          pendingAction: 'Listing'
         },
         patch: {
           done: 'Patched file',
           pending: 'Patching file',
-          pendingAction: 'Patching',
+          pendingAction: 'Patching'
         },
         read_file: {
           done: 'Read file',
           pending: 'Reading file',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         search_files: {
           done: 'Searched files',
           pending: 'Searching files',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         session_search_recall: {
           done: 'Searched session history',
           pending: 'Searching session history',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         terminal: {
           done: 'Ran command',
           pending: 'Running command',
-          pendingAction: 'Running',
+          pendingAction: 'Running'
         },
         todo: {
           done: 'Updated todos',
           pending: 'Updating todos',
-          pendingAction: 'Updating',
+          pendingAction: 'Updating'
         },
         vision_analyze: {
           done: 'Analyzed image',
           pending: 'Analyzing image',
-          pendingAction: 'Analyzing',
-        },
+          pendingAction: 'Analyzing'
+        }
       },
       code: 'Code',
       copyCode: 'Copy code',
@@ -2221,14 +2266,15 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
     },
     thread: {
       loadingSession: 'Loading session',
       showEarlier: 'Show earlier messages',
       loadingResponse: 'OpenAmer is loading a response',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Thinking',
@@ -2251,12 +2297,13 @@ Leave blank to keep the ${mode} default.`,
       restoreCheckpoint: 'Restore checkpoint',
       restoreFromHere: 'Restore checkpoint — rerun from this prompt',
       restoreTitle: 'Restore to this checkpoint?',
-      restoreBody: 'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
+      restoreBody:
+        'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
       restoreConfirm: 'Restore & rerun',
       restoreNext: 'Restore next checkpoint',
       goForward: 'Go forward',
       sendEdited: 'Send edited message',
-      attachingFile: 'Attaching…',
+      attachingFile: 'Attaching…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2269,8 +2316,9 @@ Leave blank to keep the ${mode} default.`,
       jumpToApproval: 'Approval needed',
       reject: 'Reject',
       alwaysTitle: 'Always allow this command?',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
-      alwaysAllow: 'Always allow',
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysAllow: 'Always allow'
     },
     clarify: {
       notReady: 'Clarify request is not ready yet',
@@ -2284,19 +2332,20 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'Continue',
       lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
       lateAnswerTip: 'Draft this answer as a follow-up message',
-      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.',
-    },
+      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.'
+    }
   },
   prompts: {
-    gatewayDisconnected: 'OpenAmer punku mana t\'inkisqachu',
+    gatewayDisconnected: "OpenAmer punku mana t'inkisqachu",
     sudoSendFailed: 'Sudo contraseñata mana apachiyta atirqanchu',
     secretSendFailed: 'Pakasqa willakuyta mana apachiyta atirqanchu',
     sudoTitle: 'Kamachiq contraseña',
-    sudoDesc: 'OpenAmer nisqaqa huk atiyniyoq kamachiyta ruwananpaq sudo contraseñaykita munan. Chayqa kikin agentniykimanllam apachikun.',
+    sudoDesc:
+      'OpenAmer nisqaqa huk atiyniyoq kamachiyta ruwananpaq sudo contraseñaykita munan. Chayqa kikin agentniykimanllam apachikun.',
     sudoPlaceholder: 'sudo contraseña',
     secretTitle: 'Pakasqa willakuy munakun',
     secretDesc: 'OpenAmer nisqaqa huk yaykuy willakuyta munan qatinanpaq.',
-    secretPlaceholder: 'pakasqa chanin',
+    secretPlaceholder: 'pakasqa chanin'
   },
   common: {
     apply: 'Apply',
@@ -2337,7 +2386,7 @@ Leave blank to keep the ${mode} default.`,
     update: 'Update',
     tryHint: term => `Try “${term}”`,
     on: 'On',
-    off: 'Off',
+    off: 'Off'
   },
   fileMenu: {
     revealFinder: 'Reveal in Finder',
@@ -2352,10 +2401,11 @@ Leave blank to keep the ${mode} default.`,
     renameLabel: 'New name',
     deleteTitle: name => `Delete ${name}?`,
     deleteBody: 'It will be moved to the Trash — you can restore it from there.',
-    pathCopied: 'Path copied',
+    pathCopied: 'Path copied'
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
   },
   agents: {
     close: 'Close agents',
@@ -2385,7 +2435,7 @@ Leave blank to keep the ${mode} default.`,
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   cron: {
     close: 'Close cron',
@@ -2400,14 +2450,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'paused',
       disabled: 'disabled',
       error: 'error',
-      completed: 'completed',
+      completed: 'completed'
     },
     deliveryLabels: {
       local: 'This desktop',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Email',
+      email: 'Email'
     },
     scheduleLabels: {
       daily: 'Daily',
@@ -2416,7 +2466,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Monthly',
       hourly: 'Hourly',
       'every-15-minutes': 'Every 15 minutes',
-      custom: 'Custom',
+      custom: 'Custom'
     },
     scheduleHints: {
       daily: 'Every day at 9:00 AM',
@@ -2425,7 +2475,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'The first day of each month at 9:00 AM',
       hourly: 'At the top of every hour',
       'every-15-minutes': 'Every 15 minutes',
-      custom: 'Cron syntax or natural language',
+      custom: 'Cron syntax or natural language'
     },
     days: {
       '0': 'Sunday',
@@ -2435,7 +2485,7 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Thursday',
       '5': 'Friday',
       '6': 'Saturday',
-      '7': 'Sunday',
+      '7': 'Sunday'
     },
     dayFallback: value => `day ${value}`,
     everyDayAt: time => `Every day at ${time}`,
@@ -2445,7 +2495,8 @@ Leave blank to keep the ${mode} default.`,
     topOfHour: 'At the top of every hour',
     everyHourAt: minute => `Every hour at :${minute}`,
     newCron: 'New cron',
-    emptyDescNew: 'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
+    emptyDescNew:
+      'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
     emptyDescSearch: 'Try a broader search query.',
     emptyTitleNew: 'No scheduled jobs yet',
     emptyTitleSearch: 'No matches',
@@ -2504,7 +2555,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Create cron',
     tabs: {
       jobs: 'Jobs',
-      blueprints: 'Blueprints',
+      blueprints: 'Blueprints'
     },
     blueprints: {
       tab: 'Blueprints',
@@ -2518,8 +2569,8 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Loading blueprints...',
       failedLoad: 'Failed to load blueprints',
       emptyTitle: 'No blueprints available',
-      emptyDesc: 'No automation blueprints are available on this backend.',
-    },
+      emptyDesc: 'No automation blueprints are available on this backend.'
+    }
   },
   composer: {
     message: 'Message',
@@ -2534,7 +2585,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -2543,7 +2594,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     startVoice: 'Start voice conversation',
     queueMessage: 'Queue message',
@@ -2579,7 +2630,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'resume a prior session',
       '/details': 'control transcript detail level',
       '/copy': 'copy selection or last assistant message',
-      '/quit': 'exit openamer',
+      '/quit': 'exit openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'reference files, folders, urls, git',
@@ -2589,7 +2640,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'send next queued turn',
       'keybinds.openPanel': 'all keyboard shortcuts',
       'composer.cancel': 'close popover · cancel run',
-      'composer.history': 'cycle popover / history',
+      'composer.history': 'cycle popover / history'
     },
     attachUrlTitle: 'Attach a URL',
     attachUrlDesc: 'OpenAmer will fetch the page and include it as context for this turn.',
@@ -2640,19 +2691,19 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'Code review',
         description: 'Audit the current change for regressions, dropped edge cases, and missing tests.',
-        text: 'Please review this for bugs, regressions, and missing tests.',
+        text: 'Please review this for bugs, regressions, and missing tests.'
       },
       implementationPlan: {
         label: 'Implementation plan',
         description: 'Outline an approach before touching code so the diff stays focused.',
-        text: 'Please make a concise implementation plan before changing code.',
+        text: 'Please make a concise implementation plan before changing code.'
       },
       explainThis: {
         label: 'Explain this',
         description: 'Walk through how the selected code works and link to the key files.',
-        text: 'Please explain how this works and point me to the key files.',
-      },
-    },
+        text: 'Please explain how this works and point me to the key files.'
+      }
+    }
   },
   statusStack: {
     agents: 'Agents',
@@ -2700,13 +2751,14 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'Open PR',
       ghMissing: 'Install the GitHub CLI (gh) and sign in to open PRs',
       agentShip: 'Ask OpenAmer to open PR',
-      agentShipPrompt: 'Review the current changes, commit them with a clear conventional-commit message, push the branch, and open a pull request.',
+      agentShipPrompt:
+        'Review the current changes, commit them with a clear conventional-commit message, push the branch, and open a pull request.',
       newBranch: 'New branch',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
       switchFailed: branch => `Could not switch to ${branch}`,
-      worktrees: 'Worktrees',
-    },
+      worktrees: 'Worktrees'
+    }
   },
   updates: {
     stages: {
@@ -2721,7 +2773,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'Update complete',
       manual: 'Update from your terminal',
       guiSkew: 'Update the desktop app',
-      error: 'Update paused',
+      error: 'Update paused'
     },
     checking: 'Looking for updates…',
     checkFailedTitle: 'Couldn’t check for updates',
@@ -2741,15 +2793,19 @@ Leave blank to keep the ${mode} default.`,
     maybeLater: 'Maybe later',
     moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
     manualTitle: 'Update from your terminal',
-    manualBody: 'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
+    manualBody:
+      'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
     manualPickedUp: 'OpenAmer will pick up the new version next time you launch it.',
     guiSkewTitle: 'Update the desktop app',
-    guiSkewBody: 'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
+    guiSkewBody:
+      'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
     copy: 'Copy',
     copied: 'Copied',
     done: 'Done',
-    applyingBody: 'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
-    applyingBodyBackend: 'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
+    applyingBody:
+      'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
+    applyingBodyBackend:
+      'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
     applyingClose: 'This window will close while the update runs, then OpenAmer reopens on its own.',
     errorTitle: 'Update didn’t finish',
     errorBody: 'No worries — nothing was lost. You can try again now.',
@@ -2760,12 +2816,13 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'Backend restarting to load the update…',
       notAvailable: 'Update not available for this backend.',
       failed: 'Backend update failed.',
-      noReturn: 'Backend didn’t come back online. The update may not have completed — check the backend host.',
+      noReturn: 'Backend didn’t come back online. The update may not have completed — check the backend host.'
     },
     appErrors: {
-      updateLocked: 'Update aborted: another OpenAmer window or a terminal running openamer is holding this install open. Close it and retry.',
-      updateFailed: 'The update didn’t complete. No worries — nothing was lost. You can try again now.',
-    },
+      updateLocked:
+        'Update aborted: another OpenAmer window or a terminal running openamer is holding this install open. Close it and retry.',
+      updateFailed: 'The update didn’t complete. No worries — nothing was lost. You can try again now.'
+    }
   },
   install: {
     stageStates: {
@@ -2773,17 +2830,19 @@ Leave blank to keep the ${mode} default.`,
       running: 'Installing',
       succeeded: 'Done',
       skipped: 'Skipped',
-      failed: 'Failed',
+      failed: 'Failed'
     },
     oneTimeTitle: 'OpenAmer needs a one-time install',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     installCommand: 'Install command',
     copyCommand: 'Copy command',
     viewDocs: 'View install docs',
     installTo: 'Will install to',
     retryAfterRun: 'I’ve run it -- retry',
     setupChoiceTitle: 'Set up OpenAmer Desktop',
-    setupChoiceDesc: 'Connect this app to a OpenAmer gateway you already run, or install OpenAmer locally on this computer.',
+    setupChoiceDesc:
+      'Connect this app to a OpenAmer gateway you already run, or install OpenAmer locally on this computer.',
     connectExistingTitle: 'Connect to existing OpenAmer',
     connectExistingShort: 'Connect existing',
     connectExistingDesc: 'Use a remote backend with a session token or browser sign-in. No local install will start.',
@@ -2791,7 +2850,8 @@ Leave blank to keep the ${mode} default.`,
     installLocalDesc: 'Download OpenAmer, create its Python environment, and run the backend on this computer.',
     localStartUnavailable: 'Local installation could not start. Restart OpenAmer Desktop and try again.',
     remoteSetupTitle: 'Connect to existing OpenAmer',
-    remoteSetupDesc: 'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
+    remoteSetupDesc:
+      'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
     remoteUrlTitle: 'Gateway URL',
     remoteUrlDesc: 'Use the base URL of the OpenAmer gateway, including https:// when remote.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2818,8 +2878,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Installation failed',
     settingUpTitle: 'Setting up OpenAmer Agent',
     finishingTitle: 'Finishing up',
-    failedDesc: 'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
-    activeDesc: 'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
+    failedDesc:
+      'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
+    activeDesc:
+      'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
     fetchingManifest: 'Fetching installer manifest...',
@@ -2833,13 +2895,13 @@ Leave blank to keep the ${mode} default.`,
     transcriptSaved: 'Full transcript saved to',
     copiedOutput: 'Copied!',
     copyOutput: 'Copy output',
-    reloadRetry: 'Reload and retry',
+    reloadRetry: 'Reload and retry'
   },
   modelVisibility: {
     title: 'Models',
     search: 'Search models',
     noAuthenticatedProviders: 'No authenticated providers.',
-    addProvider: 'Add provider…',
+    addProvider: 'Add provider…'
   },
   preview: {
     tab: 'Preview',
@@ -2873,7 +2935,8 @@ Leave blank to keep the ${mode} default.`,
     unsavedChanges: 'Unsaved changes',
     saveFailed: message => `Couldn't save: ${message}`,
     diskChangedTitle: 'File changed on disk',
-    diskChangedBody: 'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
+    diskChangedBody:
+      'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
     overwrite: 'Overwrite',
     discardReload: 'Discard & reload',
     console: {
@@ -2894,7 +2957,7 @@ Leave blank to keep the ${mode} default.`,
       empty: 'No console messages yet.',
       promptHeader: 'Preview console:',
       sentTitle: 'Sent to chat',
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Preview app failed to boot',
@@ -2919,17 +2982,19 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'Reloading the preview now.',
       restartFailedTitle: 'Preview restart failed',
       restartFailedMessage: 'OpenAmer could not restart the server.',
-      stillWorking: 'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
+      stillWorking:
+        'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
       workspaceReloading: 'Workspace changed, reloading preview',
       fileChanged: url => `File changed, reloading preview: ${url}`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
-      moduleMimeDescription: 'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
+      moduleMimeDescription:
+        'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'The preview page could not be reached.',
       openTarget: url => `Open ${url}`,
-      fallbackTitle: 'Preview',
-    },
+      fallbackTitle: 'Preview'
+    }
   },
   zones: {
     showHeader: 'Show header',
@@ -2937,7 +3002,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Minimize',
     restore: 'Restore',
     closeRunningTitle: 'Close running tab?',
-    closeRunningBody: 'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
+    closeRunningBody:
+      'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
     closeRunningConfirm: 'Close tab',
     closeOthers: 'Close others',
     closeToRight: 'Close to the right',
@@ -2974,6 +3040,6 @@ Leave blank to keep the ${mode} default.`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
     saveApply: 'Save & apply',
     notExpressible: 'this arrangement interlocks (pinwheel) — not expressible as nested splits yet',
-    zoneCount: count => `${count} zones`,
-  },
+    zoneCount: count => `${count} zones`
+  }
 })

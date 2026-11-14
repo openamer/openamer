@@ -45,7 +45,7 @@ export const cu = defineLocale({
     delete: 'Удалить',
     docs: 'Документы',
     done: 'Готово',
-    tryHint: term => `Try “${term}”`,
+    tryHint: term => `Try “${term}”`
   },
   fileMenu: {
     revealFinder: 'Показать в Finder',
@@ -60,7 +60,7 @@ export const cu = defineLocale({
     renameLabel: 'Новое имя',
     deleteBody: 'Будет перемещено в корзину — вы можете восстановить его оттуда.',
     pathCopied: 'Путь скопирован',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   boot: {
     ready: 'Настольная программа OpenAmer готова',
@@ -69,7 +69,7 @@ export const cu = defineLocale({
       loadingSettings: 'Загрузка настроек OpenAmer',
       loadingSessions: 'Загрузка недавних сеансов',
       startingDesktopConnection: 'Начало подключения к рабочему столу',
-      startingOpenAmerDesktop: 'Запуск настольной программы OpenAmer…',
+      startingOpenAmerDesktop: 'Запуск настольной программы OpenAmer…'
     },
     errors: {
       backgroundExited: 'Фоновый процесс OpenAmer завершился.',
@@ -78,7 +78,7 @@ export const cu = defineLocale({
       desktopBootFailed: 'Не удалось загрузить рабочий стол',
       gatewayConnectionLost: 'Свѣза со шлюзомъ потеряна',
       gatewaySignInRequired: 'Требува се входъ въ шлюза',
-      ipcBridgeUnavailable: 'Настолен мостъ IPC е недостъпенъ.',
+      ipcBridgeUnavailable: 'Настолен мостъ IPC е недостъпенъ.'
     },
     failure: {
       signInIncompleteTitle: 'Входъ не завершёнъ',
@@ -87,9 +87,11 @@ export const cu = defineLocale({
       signInToRemoteGateway: 'Войти въ удалённый шлюзъ',
       identityProvider: 'вашъ источникъ личности',
       title: 'OpenAmer не може да се пусне',
-      description: 'Фоновиятъ шлюзъ не се пусне. Опитайте една отъ възстановителнитѣ стъпки по-долу. Нищо тукъ не изтрива чатовете или настройките ви.',
+      description:
+        'Фоновиятъ шлюзъ не се пусне. Опитайте една отъ възстановителнитѣ стъпки по-долу. Нищо тукъ не изтрива чатовете или настройките ви.',
       remoteTitle: 'Требува се входъ въ отдалечения шлюзъ',
-      remoteDescription: 'Сесията ви съ отдалечения шлюзъ изтече. Влезте пакъ, за да се свържете. Нищо тукъ не изтрива чатовете или настройките ви.',
+      remoteDescription:
+        'Сесията ви съ отдалечения шлюзъ изтече. Влезте пакъ, за да се свържете. Нищо тукъ не изтрива чатовете или настройките ви.',
       retry: 'Опитайте пакъ',
       repairInstall: 'Поправете инсталацията',
       useLocalGateway: 'Използвайте локаленъ шлюзъ',
@@ -103,10 +105,11 @@ export const cu = defineLocale({
       showRecentLogs: 'Показване на новитѣ журнали',
       signedInTitle: 'Входътъ е извършенъ',
       signedInMessage: 'Съвръзване съ отдалечения шлюзъ…',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   notifications: {
     region: 'Увѣдомленія',
@@ -118,7 +121,8 @@ export const cu = defineLocale({
     copyDetail: 'Копировать подробности',
     copyDetailFailed: 'Не удалось скопировать подробности увѣдомленія',
     backendOutOfDateTitle: 'Серверная часть устарела',
-    backendOutOfDateMessage: 'Ваша серверная часть OpenAmer старше этой настольной сборки и может работать неправильно. Обновите её, чтобы согласовать ихъ.',
+    backendOutOfDateMessage:
+      'Ваша серверная часть OpenAmer старше этой настольной сборки и может работать неправильно. Обновите её, чтобы согласовать ихъ.',
     installMethodUnsupportedTitle: 'Недопустимый способъ установки',
     updateOpenAmer: 'Обновить OpenAmer',
     updateReadyTitle: 'Обновленіе готово',
@@ -127,11 +131,12 @@ export const cu = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT требует ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs отвергъ ключъ API (401).',
       gatewayAuthFailed: 'Аутентификация шлюза не удалась — проверьте API_SERVER_KEY.',
-      methodNotAllowed: 'Настольный сервер отвергъ этот запросъ (405 Method Not Allowed). Попробуйте перезапустить OpenAmer Desktop.',
+      methodNotAllowed:
+        'Настольный сервер отвергъ этот запросъ (405 Method Not Allowed). Попробуйте перезапустить OpenAmer Desktop.',
       microphonePermission: 'Доступъ къ микрофону былъ запрещенъ.',
       openaiRejectedApiKey: 'OpenAI отвергъ ключъ API.',
       openaiTtsNeedsKey: 'OpenAI TTS требуетъ VOICE_TOOLS_OPENAI_KEY или OPENAI_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Настройте распознавание речи для голосового режима.',
@@ -150,7 +155,7 @@ export const cu = defineLocale({
       transcriptionFailed: 'Распознавание голоса не удалось',
       transcriptionUnavailable: 'Преписъ гласа нѣсть у наличіи',
       tryRecordingAgain: 'Попытайтесѧ записати паки',
-      unavailable: 'Гласъ недоступенъ',
+      unavailable: 'Гласъ недоступенъ'
     },
     native: {
       approvalTitle: 'Требуется одобрение',
@@ -163,10 +168,10 @@ export const cu = defineLocale({
       turnErrorTitle: 'Ходъ не удасѧ',
       backgroundDoneTitle: 'Фоновая задача окончена',
       backgroundFailedTitle: 'Фоновая задача не удасѧ',
-      creditsTitle: 'Кредиты',
+      creditsTitle: 'Кредиты'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   titlebar: {
     showSidebar: 'Покажи боковую панель',
@@ -183,7 +188,7 @@ export const cu = defineLocale({
     openKeybinds: 'Горячие клавиши',
     layoutEditor: 'Редактор макета',
     hideSidebar: 'Скрыть боковую панель',
-    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout',
+    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout'
   },
   keybinds: {
     title: 'Горячие клавиши',
@@ -198,7 +203,7 @@ export const cu = defineLocale({
       profiles: 'Профили',
       session: 'Сесїа',
       navigation: 'Навигацїа',
-      view: 'Видъ',
+      view: 'Видъ'
     },
     actions: {
       'keybinds.openPanel': 'Открыти клавиатурныя сокращенія',
@@ -277,10 +282,10 @@ export const cu = defineLocale({
       'composer.slash': 'Палитра слэшъ-командъ',
       'composer.help': 'Быстрая справка',
       'composer.history': 'Перемѣна поповера / исторіи',
-      'composer.cancel': 'Закрыть поповеръ · отмѣнить запускъ',
+      'composer.cancel': 'Закрыть поповеръ · отмѣнить запускъ'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   billingBlock: {
     titleOpenamer: 'Кредиты OpenAmer исчерпаны',
@@ -288,7 +293,7 @@ export const cu = defineLocale({
     openBilling: 'Открыть оплату',
     addCredits: 'Добавить кредиты',
     dismiss: 'Отклонить',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   language: {
     label: 'Языкъ',
@@ -297,7 +302,7 @@ export const cu = defineLocale({
     saveError: 'Не удалось обновить языкъ',
     switchTo: 'Смѣнить языкъ',
     searchPlaceholder: 'Искать языки…',
-    noResults: 'Языки не найдены',
+    noResults: 'Языки не найдены'
   },
   settings: {
     closeSettings: 'Закрыть настройки',
@@ -322,48 +327,50 @@ export const cu = defineLocale({
       billing: 'Платежи',
       notifications: 'Извещения',
       plugins: 'Плагины',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     notifications: {
       kinds: {
         credits: {
           description: 'Доступъ кредита приостановленъ или восстановленъ.',
-          label: 'Сигнали за кредит',
+          label: 'Сигнали за кредит'
         },
         approval: {
           label: 'Нужно е одобрение',
-          description: 'Една команда чака да бъде одобрена или отхвърлена.',
+          description: 'Една команда чака да бъде одобрена или отхвърлена.'
         },
         input: {
           label: 'Нужен е вход',
-          description: 'OpenAmer зададе въпрос или нужда парола или тайна.',
+          description: 'OpenAmer зададе въпрос или нужда парола или тайна.'
         },
         turnDone: {
           label: 'Отговорът е готов',
-          description: 'Един ход завърши, докато OpenAmer беше във фонов режим.',
+          description: 'Един ход завърши, докато OpenAmer беше във фонов режим.'
         },
         turnError: {
           label: 'Провал на хода',
-          description: 'Един ход завърши с грешка.',
+          description: 'Един ход завърши с грешка.'
         },
         backgroundDone: {
           label: 'Фонова задача завърши',
-          description: 'Фоновата команда в терминала завърши.',
-        },
+          description: 'Фоновата команда в терминала завърши.'
+        }
       },
       test: 'Отправить тестовое уведомленіе',
       testTitle: 'OpenAmer',
       testBody: 'Уведомленія работаютъ.',
-      testSent: 'Тестъ отправленъ. Если ничего не появится, проверьте права уведомленій ОС и режимы Focus/Не беспокоить.',
+      testSent:
+        'Тестъ отправленъ. Если ничего не появится, проверьте права уведомленій ОС и режимы Focus/Не беспокоить.',
       testUnsupported: 'Эта система не поддерживаетъ встроенныя уведомленія.',
       completionSoundTitle: 'Звукъ завершенія',
       completionSoundDesc: 'Звучитъ при окончаніи очереди агента. Выберите заготовку и прослушайте её здесь.',
       completionSoundPreview: 'Прослушать',
       title: 'Известия',
-      intro: 'Естествени настолни известия, отделени от вътрешните съобщения. Те са местни на устройството — всяк компютър пази своите настройки.',
+      intro:
+        'Естествени настолни известия, отделени от вътрешните съобщения. Те са местни на устройството — всяк компютър пази своите настройки.',
       enableAll: 'Включи известията',
       enableAllDesc: 'Главен превключател. Изключи го, за да заглушиш всички известия по-долу.',
-      focusedHint: 'Сигналите за завършване се задействат само докато OpenAmer е във фонов режим.',
+      focusedHint: 'Сигналите за завършване се задействат само докато OpenAmer е във фонов режим.'
     },
     sections: {
       model: 'Модель',
@@ -373,7 +380,7 @@ export const cu = defineLocale({
       safety: 'Безопасность',
       memory: 'Память и контекстъ',
       voice: 'Голосъ',
-      advanced: 'Дополнительно',
+      advanced: 'Дополнительно'
     },
     searchPlaceholder: {
       about: 'О настольномъ OpenAmer',
@@ -381,24 +388,25 @@ export const cu = defineLocale({
       gateway: 'Соединеніе съ шлюзомъ...',
       keys: 'Искати ключи API...',
       mcp: 'Искати серверы MCP...',
-      sessions: 'Искати архивныя сессии...',
+      sessions: 'Искати архивныя сессии...'
     },
     plugins: {
       empty: 'Никакви настолни плагини още не са инсталирани.',
       kinds: {
         bundled: 'съединени',
         disk: 'на диск',
-        runtime: 'време на изпълнение',
+        runtime: 'време на изпълнение'
       },
       title: 'Плагины стола',
-      blurb: 'Расширения UI, загружаемыя в сие приложение — встроенныя в сборку или положенныя в папку desktop-plugins (включая тѣ, яже пишет OpenAmer). Отключение выгружает плагин вживе и сохраняется при перезапуске.',
+      blurb:
+        'Расширения UI, загружаемыя в сие приложение — встроенныя в сборку или положенныя в папку desktop-plugins (включая тѣ, яже пишет OpenAmer). Отключение выгружает плагин вживе и сохраняется при перезапуске.',
       openFolder: 'Открыти папку плагинов',
       rescan: 'Пересмотрити',
       reveal: 'Показати в файловом управнике',
       enable: 'Включити',
       disable: 'Отключити',
       failed: 'неудача',
-      count: n => `${n} installed`,
+      count: n => `${n} installed`
     },
     config: {
       none: 'Ничто',
@@ -414,7 +422,8 @@ export const cu = defineLocale({
       imported: 'Конфигурация импортирована',
       invalidJson: 'Неверный JSON конфигурации',
       keepAwakeTitle: 'Держать компьютер бодрым',
-      keepAwakeDesc: 'Остановить сон этой машины, чтобы длительные или ночные процессы продолжались. Экран может всё ещё затемняться.',
+      keepAwakeDesc:
+        'Остановить сон этой машины, чтобы длительные или ночные процессы продолжались. Экран может всё ещё затемняться.'
     },
     credentials: {
       pasteKey: 'Вставить ключ',
@@ -424,12 +433,13 @@ export const cu = defineLocale({
       remove: 'Удалить',
       getKey: 'Получить ключ',
       saving: 'Съхранѥниѥ',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     sessions: {
       autoArchiveFailed: 'Не обновити автозапис',
       defaultDirTitle: 'По умолчанию каталог проекта',
-      defaultDirDesc: 'Новые сеансы в этой папке, если не выберете другую. Оставьте неустановленным, чтобы использовать домашний каталог.',
+      defaultDirDesc:
+        'Новые сеансы в этой папке, если не выберете другую. Оставьте неустановленным, чтобы использовать домашний каталог.',
       change: 'Изменить',
       choose: 'Выбрать',
       clear: 'Очистить',
@@ -441,7 +451,8 @@ export const cu = defineLocale({
       clearDirFailed: 'Не удалось очистить каталог по умолчанию',
       loading: 'Loading archived sessions…',
       archivedTitle: 'Archived sessions',
-      archivedIntro: 'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
+      archivedIntro:
+        'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
       emptyArchivedTitle: 'Nothing archived',
       emptyArchivedDesc: 'Archive a chat to hide it here.',
       unarchive: 'Unarchive',
@@ -450,11 +461,12 @@ export const cu = defineLocale({
       restored: 'Restored',
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
       autoArchiveTitle: 'Auto-archive stale chats',
-      autoArchiveDesc: "Automatically archive chats you haven't touched in a while. Pinned chats are never archived, and nothing is deleted — archived chats just move here.",
+      autoArchiveDesc:
+        "Automatically archive chats you haven't touched in a while. Pinned chats are never archived, and nothing is deleted — archived chats just move here.",
       autoArchiveDaysLabel: 'Archive after',
       autoArchiveDaysUnit: 'days of inactivity',
       defaultDirUpdated: 'Default project directory updated — start a new chat (Ctrl/⌘+N) for it to take effect',
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
       loadingConfig: 'Загрузка конфигурации',
@@ -504,9 +516,10 @@ export const cu = defineLocale({
         unavailable: 'Недоступно',
         inUse: 'В употреблении',
         selectedTitle: 'Бэкенд выбран',
-        needsSetupHint: 'Вы можете выбрать этот бэкенд сейчас — команды будут не работать, пока настройка не завершена.',
+        needsSetupHint:
+          'Вы можете выбрать этот бэкенд сейчас — команды будут не работать, пока настройка не завершена.',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       savedMessage: key => `${key} updated.`,
       removedMessage: key => `${key} removed.`,
@@ -516,8 +529,10 @@ export const cu = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -527,11 +542,12 @@ export const cu = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     appearance: {
       embedsTitle: 'Встроенные вставки',
-      embedsDesc: 'Богатые превью загружаются с сторонних сайтов (YouTube, X, …). Запрос показывает заполнитель до разрешения; всегда загружаются автоматически; Откл. оставляет обычные ссылки.',
+      embedsDesc:
+        'Богатые превью загружаются с сторонних сайтов (YouTube, X, …). Запрос показывает заполнитель до разрешения; всегда загружаются автоматически; Откл. оставляет обычные ссылки.',
       embedsAsk: 'Запросить',
       embedsAlways: 'Всегда',
       embedsOff: 'Откл.',
@@ -542,7 +558,8 @@ export const cu = defineLocale({
       themeTitle: 'Тема',
       themeDesc: 'Только настольные палитры. Выбранный режим применяется поверх',
       installTitle: 'Установить из VS Code',
-      installDesc: 'Вставьте id расширения Marketplace (напр. dracula-theme.theme-dracula), чтобы преобразовать его цветовую схему в настольную палитру',
+      installDesc:
+        'Вставьте id расширения Marketplace (напр. dracula-theme.theme-dracula), чтобы преобразовать его цветовую схему в настольную палитру',
       installButton: 'Установить',
       installing: 'Устанавливается…',
       installError: 'Не удалось установить эту тему',
@@ -550,8 +567,10 @@ export const cu = defineLocale({
       importedBadge: 'Импортировано',
       pet: {
         title: 'Питомец',
-        intro: 'Приими оживленнаго образа petdex, иже паритъ над приложенїемъ и отвѣщаетъ на дѣянїя OpenAmer — течетъ, егда орудїя дѣются, радуется о успѣсѣ, сѣтуетъ о погрѣшенїихъ.',
-        restartHint: 'Животная требуютъ скораго возобновленїя — текущее приложенїе начася прежде, нежели сїя возможность приложена бысть. Изыди и паки отверзи OpenAmer, потомъ возвратися сѣмо.',
+        intro:
+          'Приими оживленнаго образа petdex, иже паритъ над приложенїемъ и отвѣщаетъ на дѣянїя OpenAmer — течетъ, егда орудїя дѣются, радуется о успѣсѣ, сѣтуетъ о погрѣшенїихъ.',
+        restartHint:
+          'Животная требуютъ скораго возобновленїя — текущее приложенїе начася прежде, нежели сїя возможность приложена бысть. Изыди и паки отверзи OpenAmer, потомъ возвратися сѣмо.',
         on: 'Включено',
         off: 'Отключено',
         scaleTitle: 'Размѣръ',
@@ -583,10 +602,11 @@ export const cu = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
       title: 'Вид',
-      intro: 'Сии суть предпочтения вида токмо для стола. Режим управляет светлостию; тема управляет палитрою акцента и убранством поверхности беседы.',
+      intro:
+        'Сии суть предпочтения вида токмо для стола. Режим управляет светлостию; тема управляет палитрою акцента и убранством поверхности беседы.',
       colorMode: 'Режим цвета',
       colorModeDesc: 'Избери постоянный режим или дай OpenAmer последовати настройке системы.',
       toolViewTitle: 'Показ вызова орудий',
@@ -597,24 +617,25 @@ export const cu = defineLocale({
       backdropTitle: 'Фон беседы',
       backdropDesc: 'Бледный образ статуи за беседою.',
       installPlaceholder: 'Издатель.Продължениѥ',
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     modeOptions: {
       light: {
         label: 'Светло',
-        description: 'Светлыя поверхности стола',
+        description: 'Светлыя поверхности стола'
       },
       dark: {
         label: 'Темно',
-        description: 'Рабочее место без блиска',
+        description: 'Рабочее место без блиска'
       },
       system: {
         label: 'Система',
-        description: 'Последовати виду ОС',
-      },
+        description: 'Последовати виду ОС'
+      }
     },
     about: {
       heading: 'OpenAmer Настольный',
@@ -632,7 +653,8 @@ export const cu = defineLocale({
       tapCheck: 'Прикоснися «Испытай нынѣ», да взыщеши обновленїя.',
       justNowSuffix: '· нынѣ',
       automaticUpdates: 'Самодѣйственныя обновленїя',
-      automaticUpdatesDesc: 'OpenAmer испытуетъ обновленїя самодѣйственно въ тайнѣ и извѣщаетъ тя, егда едино будетъ готово.',
+      automaticUpdatesDesc:
+        'OpenAmer испытуетъ обновленїя самодѣйственно въ тайнѣ и извѣщаетъ тя, егда едино будетъ готово.',
       never: 'никогда',
       justNow: 'нынѣ',
       version: value => `Version ${value}`,
@@ -641,12 +663,15 @@ export const cu = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     gateway: {
-      sshErrHostKey: 'Ключь хоста ИЗМѢНЕНЪ ѥсть ѿнелиже послѣдьнее соединилъ сѧ еси. Искꙋси, аще се ожидаѥмо ѥсть, тогда твори ssh-keygen -R <host> и паки соедини сѧ.',
-      sshErrNotInstalled: 'OpenAmer не ѥсть поставленъ на дальнѣмь хостѣ. Постави и тамо (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) или положи пѫть OpenAmer.',
-      sshErrPlatform: 'Неподдержима дальнаѧ платформа. OpenAmer Desktop SSH образъ приѥмлѥть Linux, macOS и Windows дальныѧ хостꙑ.',
+      sshErrHostKey:
+        'Ключь хоста ИЗМѢНЕНЪ ѥсть ѿнелиже послѣдьнее соединилъ сѧ еси. Искꙋси, аще се ожидаѥмо ѥсть, тогда твори ssh-keygen -R <host> и паки соедини сѧ.',
+      sshErrNotInstalled:
+        'OpenAmer не ѥсть поставленъ на дальнѣмь хостѣ. Постави и тамо (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) или положи пѫть OpenAmer.',
+      sshErrPlatform:
+        'Неподдержима дальнаѧ платформа. OpenAmer Desktop SSH образъ приѥмлѥть Linux, macOS и Windows дальныѧ хостꙑ.',
       sshErrTimeout: 'Съединениѥ SSH истече. Хостъ можетъ быти недостижимъ или спѧщь.',
       sshErrUpdateRequired: 'Обнови OpenAmer на дальнѣмь хостѣ преже съединениꙗ съ Desktop SSH.',
       sshErrUnknown: 'Съединениѥ SSH не събꙑсть сѧ.',
@@ -654,7 +679,7 @@ export const cu = defineLocale({
       cloudNoAgents: {
         before: 'Не обрѣтени агенты въ семъ счетѣ. Сътвори единъ въ',
         linkText: 'Порталъ OpenAmer',
-        after: ', потомъ обнови.',
+        after: ', потомъ обнови.'
       },
       cloudRefresh: 'Обнови',
       cloudConnect: 'Съедини',
@@ -679,7 +704,8 @@ export const cu = defineLocale({
       authSignedInOauth: 'Сей шлюзъ употребляетъ OAuth. Ты вшелъ еси; сессіа обновляется сама собою.',
       authNeedsPassword: 'Сей шлюзъ употребляетъ имя и пароль. Вниди, да уполномочиши сіе настольное приложеніе.',
       tokenTitle: 'Токенъ сессіи',
-      tokenDesc: 'Токенъ сессіи панели, употребляемый для доступа къ REST и WebSocket. Остави пусто, да сохраниши сохраненный токенъ.',
+      tokenDesc:
+        'Токенъ сессіи панели, употребляемый для доступа къ REST и WebSocket. Остави пусто, да сохраниши сохраненный токенъ.',
       savedToken: 'сохраненъ',
       pasteSessionToken: 'Вложи токенъ сессіи',
       testRemote: 'Испытай удаленное',
@@ -697,12 +723,14 @@ export const cu = defineLocale({
       unavailableDesc: 'Мостъ IPC настольнаѥго не ѩвлꙗѥтъ настроѥний вратъ.',
       title: 'Съвѧзь вратъ',
       envOverride: 'Прѣмѣна окрѫжениꙗ',
-      intro: 'OpenAmer настольнъ по ѹставѹ начинаѥтъ своѧ врата мѣстна. Аще хощеши, да приложениѥ се ѡправлꙗѥтъ ѹже текѫщꙑимъ OpenAmer задн҄имъ на инѣй машинѣ или за вѣрьномъ посрѣдникѣ, тъгда приими врата дал҄ьнꙗ. Избери образъ нижє, да даси ѥму свои дал҄ьнъ господарь.',
+      intro:
+        'OpenAmer настольнъ по ѹставѹ начинаѥтъ своѧ врата мѣстна. Аще хощеши, да приложениѥ се ѡправлꙗѥтъ ѹже текѫщꙑимъ OpenAmer задн҄имъ на инѣй машинѣ или за вѣрьномъ посрѣдникѣ, тъгда приими врата дал҄ьнꙗ. Избери образъ нижє, да даси ѥму свои дал҄ьнъ господарь.',
       appliesTo: 'Прилагаѥтъ сѧ къ',
       allProfiles: 'Вьсѧ образꙑ',
       defaultConnection: 'Ѹставьна съвѧзь вьсѣкому образѹ, ѥже не имать своего прѣодолѣниꙗ.',
       envOverrideTitle: 'Окрѫжьнꙑѧ прѣмѣнꙑѧ ѡбладаѭтъ симъ настольнꙑимъ събраниѥмъ.',
-      envOverrideDesc: 'Ѿстави OPENAMER_DESKTOP_REMOTE_URL и OPENAMER_DESKTOP_REMOTE_TOKEN не поставлѥна, да приложиши съхранѥное настроѥниѥ нижє.',
+      envOverrideDesc:
+        'Ѿстави OPENAMER_DESKTOP_REMOTE_URL и OPENAMER_DESKTOP_REMOTE_TOKEN не поставлѥна, да приложиши съхранѥное настроѥниѥ нижє.',
       modeTitle: 'Образъ съвѧзи',
       localTitle: 'Мѣстнаѧ врата',
       localDesc: 'Начьни частнъ OpenAmer задн҄и на localhost. Се ѥсть ѹставьно и дѣлаѥтъ безъ мрѣжѧ.',
@@ -710,7 +738,8 @@ export const cu = defineLocale({
       inheritDesc: 'Ѿими прѣодолѣниѥ сего образа и прими ѹставьнѫѧ съвѧзь.',
       remoteTitle: 'Дал҄ьнꙗѧ врата',
       remoteDesc: 'Съвѧжи сиѭ настольнѫѭ ѡболочкѫ съ дал҄ьн҄имъ OpenAmer задн҄имъ.',
-      remoteAuthHint: 'Гостимыѧ врата приѥмлѭтъ OAuth или имѧ и слово таиньно; самовластьныѧ же могѫтъ приѧти знамениѥ събраниꙗ.',
+      remoteAuthHint:
+        'Гостимыѧ врата приѥмлѭтъ OAuth или имѧ и слово таиньно; самовластьныѧ же могѫтъ приѧти знамениѥ събраниꙗ.',
       cloudDesc: 'Въниди ѥдиною въ OpenAmer Cloud и избери ѿ посъланникъ въ твоѥмъ счѫтѣ — нѣсть нѫждꙑ вълагати URL.',
       cloudSignIn: 'Въниди въ OpenAmer Cloud',
       cloudSignedIn: 'Вънидєнъ въ OpenAmer Cloud',
@@ -736,7 +765,8 @@ export const cu = defineLocale({
       applyFailed: 'Не приложєна настроєніа вратъ',
       saveFailed: 'Настроєніа вратъ не съхранєна',
       sshTitle: 'Съвѧжи чрєзъ SSH',
-      sshDesc: 'OpenAmer запускаєтсѧ на далечьнѣмъ чрєзъ SSH и тунєлюєтсѧ къ сємѹ приложєнію — нѣсть чєго начинати или ѡбнажати. Трѣбуєтъ дѣйствѹющаго достѫпа SSH по ключѹ къ хостѹ.',
+      sshDesc:
+        'OpenAmer запускаєтсѧ на далечьнѣмъ чрєзъ SSH и тунєлюєтсѧ къ сємѹ приложєнію — нѣсть чєго начинати или ѡбнажати. Трѣбуєтъ дѣйствѹющаго достѫпа SSH по ключѹ къ хостѹ.',
       sshTrustHint: 'Прьвый предъставлєнный ключъ хоста довѣрєнъ и ѹтверждєнъ; послѣждьнїа измѣнєнїа отказѫтъ.',
       sshHostTitle: 'Хостъ',
       sshHostDesc: 'user@host, или имѧ хоста изъ ~/.ssh/config.',
@@ -759,8 +789,10 @@ export const cu = defineLocale({
       sshButtonsHint: 'Съхранєнїе приложитсѧ въ слѣдѹющємъ начинанїи. Съвѧжи — пакы съвѧжєтсѧ нынѣ.',
       sshIncompleteHost: 'Въведи хостъ SSH прѣждє съвѧзованїа.',
       sshErrUnreachable: 'Не възможе достигнѫти того хоста чрєзъ SSH. Испытай хостъ, портъ и твоѭ сѣть.',
-      sshErrAuth: 'Удостовѣрєнїе SSH не успѣ. Въложи ключъ твой въ ssh-agent (ssh-add) или постави IdentityFile въ ~/.ssh/config — OpenAmer дѣйствѹєтъ ssh безъ въпрошєнїа.',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      sshErrAuth:
+        'Удостовѣрєнїе SSH не успѣ. Въложи ключъ твой въ ssh-agent (ssh-add) или постави IdentityFile въ ~/.ssh/config — OpenAmer дѣйствѹєтъ ssh безъ въпрошєнїа.',
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudTitle: 'OpenAmer Cloud',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudOrgRole: role => `Role: ${role}`,
@@ -770,12 +802,12 @@ export const cu = defineLocale({
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     keys: {
       loading: 'Загрꙋжаѭ ключи API и вѣрительства...',
       failedLoad: 'Не ꙋспѣ загрꙋзити ключи API',
-      empty: 'Ничто же ѥще не устроено въ семъ разрѧдѣ.',
+      empty: 'Ничто же ѥще не устроено въ семъ разрѧдѣ.'
     },
     mcp: {
       loading: 'Загрꙋжаѭ MCP серверꙑ...',
@@ -829,7 +861,8 @@ export const cu = defineLocale({
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
       catalogEnvRequired: 'Fill in the required values before installing.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       statusConnecting: 'Connecting…',
       statusNeedsAuth: 'Needs authentication',
       statusError: 'Error',
@@ -840,7 +873,7 @@ export const cu = defineLocale({
       waitingForBrowser: 'Waiting for browser…',
       authenticate: 'Authenticate',
       enableTool: tool => `Enable ${tool}`,
-      disableTool: tool => `Disable ${tool}`,
+      disableTool: tool => `Disable ${tool}`
     },
     envActions: {
       credentialActions: 'Дѣиства вѣрительствъ',
@@ -851,11 +884,12 @@ export const cu = defineLocale({
       replace: 'Прѣмѣнити',
       set: 'Поставити',
       clear: 'Очистити',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     model: {
       loading: 'Загружается конфигурация модели...',
-      appliesDesc: 'Применяется к новым сессиям. Используйте выборщик модели в композере для быстрой смены активного чата.',
+      appliesDesc:
+        'Применяется к новым сессиям. Используйте выборщик модели в композере для быстрой смены активного чата.',
       provider: 'Поставщик',
       model: 'Модель',
       applying: 'Применяется...',
@@ -865,7 +899,8 @@ export const cu = defineLocale({
       defaultsFailed: 'Не удалось сохранить значения модели по умолчанию.',
       auxiliaryTitle: 'Вспомогательные модели',
       resetAllToMain: 'Сбросить все к основной',
-      auxiliaryDesc: 'Помощники выполняются на основной модели по умолчанию. Назначьте выделенную модель для любой задачи, чтобы переопределить.',
+      auxiliaryDesc:
+        'Помощники выполняются на основной модели по умолчанию. Назначьте выделенную модель для любой задачи, чтобы переопределить.',
       setToMain: 'Установить как основную',
       change: 'Изменить',
       autoUseMain: 'авто · использовать основную модель',
@@ -876,44 +911,45 @@ export const cu = defineLocale({
       tasks: {
         vision: {
           label: 'Vision',
-          hint: 'Image analysis',
+          hint: 'Image analysis'
         },
         web_extract: {
           label: 'Web extract',
-          hint: 'Page summarization',
+          hint: 'Page summarization'
         },
         compression: {
           label: 'Compression',
-          hint: 'Context compaction',
+          hint: 'Context compaction'
         },
         skills_hub: {
           label: 'Skills hub',
-          hint: 'Skill search',
+          hint: 'Skill search'
         },
         approval: {
           label: 'Approval',
-          hint: 'Smart auto-approve',
+          hint: 'Smart auto-approve'
         },
         mcp: {
           label: 'MCP',
-          hint: 'MCP tool routing',
+          hint: 'MCP tool routing'
         },
         title_generation: {
           label: 'Title gen',
-          hint: 'Session titles',
+          hint: 'Session titles'
         },
         curator: {
           label: 'Curator',
-          hint: 'Skill-usage review',
-        },
-      },
+          hint: 'Skill-usage review'
+        }
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
     providers: {
       connectAccount: 'Connect an account',
       haveApiKey: 'Have an API key instead?',
-      intro: 'Sign in with a subscription — no API key to copy. OpenAmer runs the browser sign-in for you, right here in the app.',
+      intro:
+        'Sign in with a subscription — no API key to copy. OpenAmer runs the browser sign-in for you, right here in the app.',
       connected: 'Connected',
       collapse: 'Collapse',
       connectAnother: 'Connect another provider',
@@ -923,7 +959,8 @@ export const cu = defineLocale({
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedTitle: 'Account removed',
       removedMessage: provider => `${provider} was removed.`,
@@ -933,10 +970,10 @@ export const cu = defineLocale({
       noKeysMatch: 'No providers match your search.',
       localEndpoint: {
         title: 'Local / custom endpoint',
-        description: 'Point OpenAmer at any OpenAI-compatible endpoint (Zyphra, vLLM, llama.cpp, Ollama, etc).',
+        description: 'Point OpenAmer at any OpenAI-compatible endpoint (Zyphra, vLLM, llama.cpp, Ollama, etc).'
       },
-      loading: 'Loading providers...',
-    },
+      loading: 'Loading providers...'
+    }
   },
   skills: {
     toolsetsRefreshFailed: 'наборъ инструментов не обновились',
@@ -955,7 +992,7 @@ export const cu = defineLocale({
     provenance: {
       agent: 'изучено',
       bundled: 'встроенное',
-      hub: 'центр',
+      hub: 'центр'
     },
     changesApplyNewSessions: 'Изменения применяются к новым сессиям.',
     skillUpdated: 'умение обновлено',
@@ -968,7 +1005,7 @@ export const cu = defineLocale({
       trust: {
         builtin: 'встроено',
         trusted: 'доверено',
-        community: 'сообщество',
+        community: 'сообщество'
       },
       verdictSafe: 'Безопасно',
       verdictCaution: 'Внимание',
@@ -990,7 +1027,8 @@ export const cu = defineLocale({
       connectingHubs: 'Соединяющи се с умѣние центрами...',
       connectedHubs: 'Соединяны центры:',
       featured: 'Избранныя умѣния',
-      landingHint: 'Искати центру, чтобы просматривать установливаемыя умѣния из официального индекса, GitHub и общественных источников.',
+      landingHint:
+        'Искати центру, чтобы просматривать установливаемыя умѣния из официального индекса, GitHub и общественных источников.',
       noResults: 'Ниже совпадающих умѣний не найдено в центру.',
       installed: 'Установлено',
       install: 'Установити',
@@ -1006,7 +1044,7 @@ export const cu = defineLocale({
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     skillArchivedTitle: 'Умѣние архівано',
     skillArchivedMessage: 'Възстановимо чрез openamer куратор восстановити',
@@ -1027,7 +1065,8 @@ export const cu = defineLocale({
     noDescription: 'No description.',
     configured: 'Configured',
     needsKeys: 'Needs keys',
-    visionModelHint: 'Vision uses your auxiliary model configuration — the image-capable model is picked there, not per-provider here.',
+    visionModelHint:
+      'Vision uses your auxiliary model configuration — the image-capable model is picked there, not per-provider here.',
     visionModelLink: 'Choose vision model in Settings → Models',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} toolsets enabled`,
     configureToolset: label => `Configure ${label}`,
@@ -1039,7 +1078,7 @@ export const cu = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     title: 'Памѣтъ графъ',
@@ -1055,7 +1094,8 @@ export const cu = defineLocale({
     emptyTitle: 'Ничто не учено',
     emptyDesc: 'OpenAmer строит умения и воспоминания, они появляются здесь.',
     share: 'Поделиться картой',
-    shareHint: 'Скопируй код, чтобы поделиться картой, или вставь один, чтобы загрузить. Он содержит только расположение, не память и не текст умения.',
+    shareHint:
+      'Скопируй код, чтобы поделиться картой, или вставь один, чтобы загрузить. Он содержит только расположение, не память и не текст умения.',
     shareTitle: 'Импорт/экспорт карты',
     sharePlaceholder: 'Вставь код карты…',
     copy: 'Скопировать код карты',
@@ -1066,7 +1106,7 @@ export const cu = defineLocale({
     importedBadge: 'импортована мапа',
     resetToMine: 'Назад к мапе моей',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Закрити агентів',
@@ -1096,7 +1136,7 @@ export const cu = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'Закрити командный центр',
@@ -1106,7 +1146,8 @@ export const cu = defineLocale({
     goTo: 'Перейти к',
     goToSession: 'Перейти к сессии',
     generatePet: {
-      remixConfirmBody: 'Тъто создава новъ наборъ черновъ, употребяющиъ сей какъ началъ. Можеъ потрастиъ несколько минутъ.',
+      remixConfirmBody:
+        'Тъто создава новъ наборъ черновъ, употребяющиъ сей какъ началъ. Можеъ потрастиъ несколько минутъ.',
       genericError: 'Создаване неуспешно — пробуйте снова или выберите предложение.',
       referenceImageTooLarge: 'Ссылка на изображение слишком велика. Используйте изображение менее 16 МБ.',
       referenceImageInvalid: 'Не удалось прочитать ссылку на изображение. Попробуйте PNG, JPG, WebP или GIF.',
@@ -1132,7 +1173,7 @@ export const cu = defineLocale({
       backgroundHint: 'You can close this — OpenAmer will notify you when it’s done.',
       slowProviderHint: 'This can take several minutes',
       remix: 'Remix',
-      remixConfirmTitle: 'Remix this look?',
+      remixConfirmTitle: 'Remix this look?'
     },
     installTheme: {
       title: 'Установить тему…',
@@ -1144,7 +1185,7 @@ export const cu = defineLocale({
       install: 'Установить',
       installing: 'Устанавливаем...',
       installed: 'Установлено',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Поля настроек',
     mcpServers: 'Серверы MCP',
@@ -1153,49 +1194,49 @@ export const cu = defineLocale({
       maintenance: 'Обслуживание',
       sessions: 'Сессии',
       system: 'Система',
-      usage: 'Использованіе',
+      usage: 'Использованіе'
     },
     sectionDescriptions: {
       maintenance: 'Диагностика, резервные копии, куратор и данные памяти',
       sessions: 'Поиск и управление сеансами',
       system: 'Статус, журналы и действия системы',
-      usage: 'Токен, стоимость и активность навыков во времени',
+      usage: 'Токен, стоимость и активность навыков во времени'
     },
     nav: {
       newChat: {
         title: 'Новый сеанс',
-        detail: 'Начать новый сеанс',
+        detail: 'Начать новый сеанс'
       },
       settings: {
         title: 'Настройки',
-        detail: 'Настроить OpenAmer desktop',
+        detail: 'Настроить OpenAmer desktop'
       },
       skills: {
         title: 'Возможности',
-        detail: 'Навыки, инструменты и серверы MCP',
+        detail: 'Навыки, инструменты и серверы MCP'
       },
       messaging: {
         title: 'Сообщения',
-        detail: 'Настроить Telegram, Slack, Discord и прочее',
+        detail: 'Настроить Telegram, Slack, Discord и прочее'
       },
       artifacts: {
         title: 'Артефакты',
-        detail: 'Просмотреть сгенерированные выходы',
-      },
+        detail: 'Просмотреть сгенерированные выходы'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Панель сеансов',
-        detail: 'Поиск, закрепление и управление сеансами',
+        detail: 'Поиск, закрепление и управление сеансами'
       },
       system: {
         title: 'Панель системы',
-        detail: 'Статус шлюза, журналы, перезапуск/обновление',
+        detail: 'Статус шлюза, журналы, перезапуск/обновление'
       },
       usage: {
         title: 'Панель употребл.',
-        detail: 'Токен, цена, умение',
-      },
+        detail: 'Токен, цена, умение'
+      }
     },
     providerNavigate: 'Переход',
     providerSessions: 'Сессии',
@@ -1277,7 +1318,7 @@ export const cu = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     pets: {
       turnOn: 'Включи',
@@ -1292,7 +1333,7 @@ export const cu = defineLocale({
       error: 'Could not reach the petdex gallery.',
       staleBackend: 'Restart OpenAmer to use pets — the backend predates this feature.',
       empty: 'No matching pets.',
-      turnOff: 'Turn off',
+      turnOff: 'Turn off'
     },
     branches: 'Branches',
     commands: 'Commands',
@@ -1307,7 +1348,7 @@ export const cu = defineLocale({
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
     actions: count => `${count} actions`,
-    logSearchPlaceholder: 'Filter log lines...',
+    logSearchPlaceholder: 'Filter log lines...'
   },
   messaging: {
     states: {
@@ -1319,7 +1360,7 @@ export const cu = defineLocale({
       pending_restart: 'Требуется перезапуск',
       retrying: 'Повторная попытка',
       startup_failed: 'Запуск не удался',
-      connected: 'Съединено',
+      connected: 'Съединено'
     },
     unknown: 'Неизвестно',
     hintPendingRestart: 'Перезапустите шлюз из строки состояния, чтобы применить это изменение.',
@@ -1331,7 +1372,8 @@ export const cu = defineLocale({
     openSetupGuide: 'Откройте руководство по настройке',
     required: 'Обязательно',
     recommended: 'Рекомендовано',
-    noTokenNeeded: 'Эта платформа не требует токена здесь. Используйте руководство по настройке выше, затем включите его ниже.',
+    noTokenNeeded:
+      'Эта платформа не требует токена здесь. Используйте руководство по настройке выше, затем включите его ниже.',
     enabled: 'Включено',
     search: 'Ищи вѣщания...',
     loading: 'Въгружаю вѣщательныя платформы...',
@@ -1349,124 +1391,124 @@ export const cu = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Знаменье бота',
         help: 'Сътвори бота съ @BotFather, потомъ въложи знаменье, еже ти дастъ.',
-        placeholder: 'Въложи знаменье Telegram бота',
+        placeholder: 'Въложи знаменье Telegram бота'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Позволеныя ID пользователей Telegram',
-        help: 'Съвѣтуемо. Числьныя ID, запятыми раздѣлены, отъ @userinfobot. Безъ сего вьсякъ можетъ писати твоему боту.',
+        help: 'Съвѣтуемо. Числьныя ID, запятыми раздѣлены, отъ @userinfobot. Безъ сего вьсякъ можетъ писати твоему боту.'
       },
       TELEGRAM_PROXY: {
         label: 'URL посредника',
-        help: 'Трѣбѣ токмо въ сѣтехъ, идеже Telegram затворенъ.',
+        help: 'Трѣбѣ токмо въ сѣтехъ, идеже Telegram затворенъ.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Знаменье бота',
-        help: 'Сътвори приложение въ Discord Developer Portal, приложи бота, таже въложи его знаменье.',
+        help: 'Сътвори приложение въ Discord Developer Portal, приложи бота, таже въложи его знаменье.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Позволеныя ID пользователей Discord',
-        help: 'Рекомендовано. Идентификаторы пользователей Discord, разделённые запятыми.',
+        help: 'Рекомендовано. Идентификаторы пользователей Discord, разделённые запятыми.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Стиль ответа',
-        help: 'первый, все, или выключено.',
+        help: 'первый, все, или выключено.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Разрешить всех пользователей Discord',
-        help: 'Только разработка. При истинном, любой может отправить DM боту без списка разрешений.',
+        help: 'Только разработка. При истинном, любой может отправить DM боту без списка разрешений.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Идентификатор домашнего канала',
-        help: 'Канал, где бот отправляет проактивные сообщения (вывод cron, напоминания).',
+        help: 'Канал, где бот отправляет проактивные сообщения (вывод cron, напоминания).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Название домашнего канала',
-        help: 'Отображаемое имя домашнего канала в логах и выводе статуса.',
+        help: 'Отображаемое имя домашнего канала в логах и выводе статуса.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Разрешить всех пользователей iMessage',
-        help: 'При истинном, пропустить список разрешений BlueBubbles.',
+        help: 'При истинном, пропустить список разрешений BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Разрешить всех пользователей Mattermost',
+        label: 'Разрешить всех пользователей Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Домашний канал',
+        label: 'Домашний канал'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Разрешить всех пользователей QQ',
+        label: 'Разрешить всех пользователей QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Домашний канал QQ',
-        help: 'Default channel or group for cron delivery.',
+        help: 'Default channel or group for cron delivery.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ home channel name',
+        label: 'QQ home channel name'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack bot token',
         help: 'Use the bot token from OAuth & Permissions after installing your Slack app.',
-        placeholder: 'Paste Slack bot token',
+        placeholder: 'Paste Slack bot token'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack app token',
         help: 'Use the app-level token required for Socket Mode.',
-        placeholder: 'Paste Slack app token',
+        placeholder: 'Paste Slack app token'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Allowed Slack user IDs',
-        help: 'Recommended. Comma-separated Slack user IDs.',
+        help: 'Recommended. Comma-separated Slack user IDs.'
       },
       MATTERMOST_URL: {
         label: 'Server URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Bot token',
+        label: 'Bot token'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Allowed user IDs',
-        help: 'Recommended. Comma-separated Mattermost user IDs.',
+        help: 'Recommended. Comma-separated Mattermost user IDs.'
       },
       MATRIX_HOMESERVER: {
         label: 'Homeserver URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Access token',
+        label: 'Access token'
       },
       MATRIX_USER_ID: {
         label: 'Bot user ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Allowed Matrix user IDs',
-        help: 'Recommended. Comma-separated user IDs in @user:server format.',
+        help: 'Recommended. Comma-separated user IDs in @user:server format.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal bridge URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL of a running signal-cli REST bridge.',
+        help: 'URL of a running signal-cli REST bridge.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Phone number',
-        help: 'The number registered with your signal-cli bridge.',
+        help: 'The number registered with your signal-cli bridge.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Allowed Signal users',
-        help: 'Recommended. Comma-separated Signal identifiers.',
+        help: 'Recommended. Comma-separated Signal identifiers.'
       },
       WHATSAPP_ENABLED: {
         label: 'Enable WhatsApp bridge',
-        help: 'Set automatically by the toggle below. Leave alone unless you know you need it.',
+        help: 'Set automatically by the toggle below. Leave alone unless you know you need it.'
       },
       WHATSAPP_MODE: {
-        label: 'Bridge mode',
+        label: 'Bridge mode'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Allowed WhatsApp users',
-        help: 'Recommended. Comma-separated phone numbers or WhatsApp IDs.',
-      },
+        help: 'Recommended. Comma-separated phone numbers or WhatsApp IDs.'
+      }
     },
     advanced: count => `Advanced (${count})`,
     clearField: key => `Clear ${key}`,
@@ -1480,8 +1522,7 @@ export const cu = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   profiles: {
     renameMenu: 'Переименовать…',
@@ -1559,7 +1600,7 @@ export const cu = defineLocale({
     defaultBadge: 'Default',
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   cron: {
     scheduleRequired: 'Планъ необходимъ.',
@@ -1568,7 +1609,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Создай крон',
     tabs: {
       jobs: 'Работы',
-      blueprints: 'Схемы',
+      blueprints: 'Схемы'
     },
     blueprints: {
       tab: 'Схемы',
@@ -1582,13 +1623,14 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Загружаю схемы...',
       failedLoad: 'Не удалось загрузить схемы',
       emptyTitle: 'Схемы недоступны',
-      emptyDesc: 'На этом бекенде нет доступных автоматических схем.',
+      emptyDesc: 'На этом бекенде нет доступных автоматических схем.'
     },
     failedSave: 'Неуспехъ сохранения крон-работы',
     editTitle: 'Редактирати крон-работу',
     createTitle: 'Нова крон-работа',
     editDesc: 'Обновити расписание, запросъ, или цель доставкъ. Изменения применяются при следующем запуске.',
-    createDesc: 'Запланити запросъ на автоматический запуск. Использовать синтаксис крон или естественную фразу, как \'каждые 15 минут\'.',
+    createDesc:
+      "Запланити запросъ на автоматический запуск. Использовать синтаксис крон или естественную фразу, как 'каждые 15 минут'.",
     nameLabel: 'Имя',
     namePlaceholder: 'Утренний брифинг',
     promptLabel: 'Запрос',
@@ -1600,7 +1642,7 @@ Leave blank to keep the ${mode} default.`,
     modelDefault: 'По умолчанию (глобальная модель)',
     customScheduleLabel: 'Пользовательское расписание',
     customPlaceholder: '0 9 * * * или будни в 9 утра',
-    customHint: 'Выражение крон, или фразы как \'каждый час\' или \'будни в 9 утра\'.',
+    customHint: "Выражение крон, или фразы как 'каждый час' или 'будни в 9 утра'.",
     optional: 'Опционально',
     promptRequired: 'Запрос обязателен.',
     promptScheduleRequired: 'Запрос и расписание обязательны.',
@@ -1615,7 +1657,7 @@ Leave blank to keep the ${mode} default.`,
       paused: 'прѣстано',
       disabled: 'изключено',
       error: 'погрѣшность',
-      completed: 'съврьшено',
+      completed: 'съврьшено'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     deliveryLabels: {
@@ -1623,7 +1665,7 @@ Leave blank to keep the ${mode} default.`,
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Email',
+      email: 'Email'
     },
     scheduleLabels: {
       daily: 'Daily',
@@ -1632,7 +1674,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Monthly',
       hourly: 'Hourly',
       'every-15-minutes': 'Every 15 minutes',
-      custom: 'Custom',
+      custom: 'Custom'
     },
     scheduleHints: {
       daily: 'Every day at 9:00 AM',
@@ -1641,7 +1683,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'The first day of each month at 9:00 AM',
       hourly: 'At the top of every hour',
       'every-15-minutes': 'Every 15 minutes',
-      custom: 'Cron syntax or natural language',
+      custom: 'Cron syntax or natural language'
     },
     days: {
       '0': 'Sunday',
@@ -1651,7 +1693,7 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Thursday',
       '5': 'Friday',
       '6': 'Saturday',
-      '7': 'Sunday',
+      '7': 'Sunday'
     },
     dayFallback: value => `day ${value}`,
     everyDayAt: time => `Every day at ${time}`,
@@ -1661,7 +1703,8 @@ Leave blank to keep the ${mode} default.`,
     topOfHour: 'At the top of every hour',
     everyHourAt: minute => `Every hour at :${minute}`,
     newCron: 'New cron',
-    emptyDescNew: 'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
+    emptyDescNew:
+      'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
     emptyDescSearch: 'Try a broader search query.',
     emptyTitleNew: 'No scheduled jobs yet',
     emptyTitleSearch: 'No matches',
@@ -1693,7 +1736,7 @@ Leave blank to keep the ${mode} default.`,
     failedLoad: 'Failed to load cron jobs',
     failedUpdate: 'Failed to update cron job',
     failedTrigger: 'Failed to trigger cron job',
-    failedDelete: 'Failed to delete cron job',
+    failedDelete: 'Failed to delete cron job'
   },
   artifacts: {
     search: 'Ищи артефакты...',
@@ -1727,14 +1770,14 @@ Leave blank to keep the ${mode} default.`,
     copyUrl: 'Копировать URL',
     copyPath: 'Копировать путь',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'Новый сеанс',
       skills: 'Возможности',
       messaging: 'Сообщения',
-      artifacts: 'Артефакты',
+      artifacts: 'Артефакты'
     },
     searchAria: 'Поиск сеансов',
     searchPlaceholder: 'Поиск сеансов…',
@@ -1746,8 +1789,10 @@ Leave blank to keep the ${mode} default.`,
     groupAriaGrouped: 'Показать сеансы как один список',
     projects: {
       removeWorktreeFailed: 'Не смоъ убитиъ работное дерево (непокрити изменения?)',
-      removeWorktreeConfirm: 'Убитиъ из гита (удалить работное дерево; ветка остаётся), или скрыть путь и оставить на диске',
-      removeWorktreeDirty: 'Работное дерево имеет непокрити изменения. Принудительно убитиъ (отбросить изменения), или скрыть путь и оставить на диске',
+      removeWorktreeConfirm:
+        'Убитиъ из гита (удалить работное дерево; ветка остаётся), или скрыть путь и оставить на диске',
+      removeWorktreeDirty:
+        'Работное дерево имеет непокрити изменения. Принудительно убитиъ (отбросить изменения), или скрыть путь и оставить на диске',
       forceRemove: 'Принудительно убитиъ',
       back: 'Всѣ проекти',
       sectionLabel: 'Projects',
@@ -1779,7 +1824,8 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'Copy path',
       removeFromSidebar: 'Hide from sidebar',
       createFailed: 'Could not create project',
-      staleBackend: 'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
+      staleBackend:
+        'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
       deleteConfirm: 'This removes the saved project from OpenAmer. Files, git repos, and worktrees stay untouched.',
       startWork: 'New worktree',
       newWorktreeTitle: 'New worktree',
@@ -1802,7 +1848,7 @@ Leave blank to keep the ${mode} default.`,
       removeWorktree: 'Remove worktree',
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     loading: 'Загружаю…',
     loadMore: 'Загрузи больше',
@@ -1837,14 +1883,14 @@ Leave blank to keep the ${mode} default.`,
       untitledChat: id => `Chat ${id}`,
       ageDay: 'd',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Ранее сегодня',
       yesterday: 'Вчера',
       thisWeek: 'Ранее в этой неделе',
       lastWeek: 'Прошлая неделя',
-      thisMonth: 'Ранее в этом месяце',
+      thisMonth: 'Ранее в этом месяце'
     },
     noMatch: query => `No sessions match “${query}”.`,
     groupAriaUngrouped: 'Group sessions by workspace',
@@ -1860,7 +1906,7 @@ Leave blank to keep the ${mode} default.`,
     noSessions: 'No sessions yet',
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     hotkeyDescs: {
@@ -1871,7 +1917,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.history': 'переключить всплывающее окно / историю',
       'composer.mention': 'reference files, folders, urls, git',
       'composer.slash': 'slash command palette',
-      'composer.help': 'this quick help (delete to dismiss)',
+      'composer.help': 'this quick help (delete to dismiss)'
     },
     attachUrlTitle: 'Прикрепить URL',
     attachUrlDesc: 'OpenAmer возьмет страницу и включит ее как контекст для этого хода.',
@@ -1919,7 +1965,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -1928,7 +1974,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     startVoice: 'Start voice conversation',
     queueMessage: 'Queue message',
@@ -1964,7 +2010,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'resume a prior session',
       '/details': 'control transcript detail level',
       '/copy': 'copy selection or last assistant message',
-      '/quit': 'exit openamer',
+      '/quit': 'exit openamer'
     },
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
@@ -1981,19 +2027,19 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'Code review',
         description: 'Audit the current change for regressions, dropped edge cases, and missing tests.',
-        text: 'Please review this for bugs, regressions, and missing tests.',
+        text: 'Please review this for bugs, regressions, and missing tests.'
       },
       implementationPlan: {
         label: 'Implementation plan',
         description: 'Outline an approach before touching code so the diff stays focused.',
-        text: 'Please make a concise implementation plan before changing code.',
+        text: 'Please make a concise implementation plan before changing code.'
       },
       explainThis: {
         label: 'Explain this',
         description: 'Walk through how the selected code works and link to the key files.',
-        text: 'Please explain how this works and point me to the key files.',
-      },
-    },
+        text: 'Please explain how this works and point me to the key files.'
+      }
+    }
   },
   updates: {
     applyStatus: {
@@ -2002,11 +2048,12 @@ Leave blank to keep the ${mode} default.`,
       pulling: 'Backend updating…',
       restarting: 'Backend restarting to load the update…',
       notAvailable: 'Update not available for this backend.',
-      failed: 'Backend update failed.',
+      failed: 'Backend update failed.'
     },
     appErrors: {
-      updateLocked: 'Обновление прервано: другое окно OpenAmer или терминал удерживает установку. Закройте и повторите.',
-      updateFailed: 'Обновление не завершено. Не беспокойтесь — ничего не потеряно. Попробуйте снова.',
+      updateLocked:
+        'Обновление прервано: другое окно OpenAmer или терминал удерживает установку. Закройте и повторите.',
+      updateFailed: 'Обновление не завершено. Не беспокойтесь — ничего не потеряно. Попробуйте снова.'
     },
     stages: {
       idle: 'Уготовлѧѥмсѧ…',
@@ -2020,7 +2067,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'Обновленїе скончано',
       manual: 'Обновити отъ твоегѡ терминала',
       guiSkew: 'Обновити приложенїе стола',
-      error: 'Обновленїе удержано',
+      error: 'Обновленїе удержано'
     },
     checking: 'Взыскаѥмъ обновленїя…',
     checkFailedTitle: 'Не возмогохомъ искати обновленїй',
@@ -2040,19 +2087,23 @@ Leave blank to keep the ${mode} default.`,
     maybeLater: 'Maybe later',
     moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
     manualTitle: 'Update from your terminal',
-    manualBody: 'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
+    manualBody:
+      'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
     manualPickedUp: 'OpenAmer will pick up the new version next time you launch it.',
     guiSkewTitle: 'Update the desktop app',
-    guiSkewBody: 'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
+    guiSkewBody:
+      'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
     copy: 'Copy',
     copied: 'Copied',
     done: 'Done',
-    applyingBody: 'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
-    applyingBodyBackend: 'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
+    applyingBody:
+      'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
+    applyingBodyBackend:
+      'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
     applyingClose: 'This window will close while the update runs, then OpenAmer reopens on its own.',
     errorTitle: 'Update didn’t finish',
     errorBody: 'No worries — nothing was lost. You can try again now.',
-    notNow: 'Not now',
+    notNow: 'Not now'
   },
   install: {
     stageStates: {
@@ -2060,7 +2111,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'Устанавливается',
       succeeded: 'Готово',
       skipped: 'Пропущено',
-      failed: 'Не удалось',
+      failed: 'Не удалось'
     },
     oneTimeTitle: 'OpenAmer требует однократной установки',
     installCommand: 'Команда установки',
@@ -2069,16 +2120,20 @@ Leave blank to keep the ${mode} default.`,
     installTo: 'Установится в',
     retryAfterRun: 'Я запустил — повторите',
     setupChoiceTitle: 'Настроить OpenAmer Desktop',
-    setupChoiceDesc: 'Подключите это приложение к уже запущенному шлюзу OpenAmer, либо установите OpenAmer локально на этом компьютере.',
+    setupChoiceDesc:
+      'Подключите это приложение к уже запущенному шлюзу OpenAmer, либо установите OpenAmer локально на этом компьютере.',
     connectExistingTitle: 'Подключиться к существующему OpenAmer',
     connectExistingShort: 'Подключить существующий',
-    connectExistingDesc: 'Используйте удалённый бэкенд с токеном сеанса или входом через браузер. Локальная установка не начнётся.',
+    connectExistingDesc:
+      'Используйте удалённый бэкенд с токеном сеанса или входом через браузер. Локальная установка не начнётся.',
     installLocalTitle: 'Установить OpenAmer локально',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     installLocalDesc: 'Download OpenAmer, create its Python environment, and run the backend on this computer.',
     localStartUnavailable: 'Local installation could not start. Restart OpenAmer Desktop and try again.',
     remoteSetupTitle: 'Connect to existing OpenAmer',
-    remoteSetupDesc: 'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
+    remoteSetupDesc:
+      'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
     remoteUrlTitle: 'Gateway URL',
     remoteUrlDesc: 'Use the base URL of the OpenAmer gateway, including https:// when remote.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2105,8 +2160,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Installation failed',
     settingUpTitle: 'Setting up OpenAmer Agent',
     finishingTitle: 'Finishing up',
-    failedDesc: 'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
-    activeDesc: 'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
+    failedDesc:
+      'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
+    activeDesc:
+      'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
     fetchingManifest: 'Fetching installer manifest...',
@@ -2120,7 +2177,7 @@ Leave blank to keep the ${mode} default.`,
     transcriptSaved: 'Full transcript saved to',
     copiedOutput: 'Copied!',
     copyOutput: 'Copy output',
-    reloadRetry: 'Reload and retry',
+    reloadRetry: 'Reload and retry'
   },
   onboarding: {
     headerTitle: 'Устроим тебе с Агентом OpenAmer',
@@ -2140,28 +2197,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'прямой API модели',
-        description: 'Прямой доступ к моделям, размещённым Fireworks AI',
+        description: 'Прямой доступ к моделям, размещённым Fireworks AI'
       },
       openrouter: {
         short: 'один ключ, много моделей',
-        description: 'Размещает сотни моделей за одним ключом. Хороший вариант по умолчанию для новых установок',
+        description: 'Размещает сотни моделей за одним ключом. Хороший вариант по умолчанию для новых установок'
       },
       openai: {
         short: 'Модели класса GPT',
-        description: 'Прямой доступ к моделям OpenAI',
+        description: 'Прямой доступ к моделям OpenAI'
       },
       gemini: {
         short: 'Gemini models',
-        description: 'Direct access to Google Gemini models.',
+        description: 'Direct access to Google Gemini models.'
       },
       xai: {
         short: 'Grok models',
-        description: 'Direct access to xAI Grok models.',
+        description: 'Direct access to xAI Grok models.'
       },
       local: {
         short: 'self-hosted',
-        description: 'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).',
-      },
+        description:
+          'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).'
+      }
     },
     backToSignIn: 'Back to sign in',
     getKey: 'Get a key',
@@ -2174,7 +2232,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'Opens your browser to sign in, then continues here',
       device_code: 'Opens a verification page in your browser — OpenAmer connects automatically',
-      external: 'Sign in once in your terminal, then come back to chat',
+      external: 'Sign in once in your terminal, then come back to chat'
     },
     startingSignIn: provider => `Starting sign-in for ${provider}...`,
     verifyingCode: provider => `Verifying your code with ${provider}...`,
@@ -2188,10 +2246,12 @@ Leave blank to keep the ${mode} default.`,
     copyAuthCode: 'Copy the authorization code and paste it below.',
     pasteAuthCode: 'Paste authorization code',
     reopenAuthPage: 'Re-open authorization page',
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
     reopenSignInPage: 'Re-open sign-in page',
     waitingAuthorize: 'Waiting for you to authorize...',
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     signedIn: "I've signed in",
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     reopenVerification: 'Re-open verification page',
@@ -2203,7 +2263,7 @@ Leave blank to keep the ${mode} default.`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
     change: 'Change',
     startChatting: 'Begin',
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   shell: {
     modelOptions: {
@@ -2220,7 +2280,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'Максимум',
       ultra: 'Ультра',
       updateFailed: 'Обновление опций модели не удалось',
-      fastFailed: 'Обновление быстрого режима не удалось',
+      fastFailed: 'Обновление быстрого режима не удалось'
     },
     gatewayMenu: {
       gateway: 'Шлюз',
@@ -2235,7 +2295,7 @@ Leave blank to keep the ${mode} default.`,
       connection: label => `Connection: ${label}`,
       recentActivity: 'Recent activity',
       viewAllLogs: 'View all logs →',
-      messagingPlatforms: 'Messaging platforms',
+      messagingPlatforms: 'Messaging platforms'
     },
     statusbar: {
       hideTerminal: 'Скриј терминал',
@@ -2270,18 +2330,19 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'Определения подагентов',
           system_prompt: 'Системный запрос',
           tool_definitions: 'Определения инструментов',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Нетъ дань контекста',
         loading: 'Загружаю разбивку…',
         title: 'Контекст употребл.',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Открыть разбивку употребл. контекста',
       session: 'Сессия',
       runtimeSessionElapsed: 'Время сессии прошло',
-      yoloOn: 'YOLO включено — автоодобрение опасных команд. Нажмите, чтобы выключить. Shift+click переключает глобально.',
+      yoloOn:
+        'YOLO включено — автоодобрение опасных команд. Нажмите, чтобы выключить. Shift+click переключает глобально.',
       yoloOff: 'YOLO выключено — нажмите, чтобы автоодобрить опасные команды. Shift+click переключает глобально.',
       modelNone: 'нет',
       noModel: 'нет модели',
@@ -2310,7 +2371,7 @@ Leave blank to keep the ${mode} default.`,
       failed: count => `${count} failed`,
       running: count => `${count} running`,
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
     },
     windowControls: 'Window controls',
     paneControls: 'Pane controls',
@@ -2320,7 +2381,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'No models found',
       editModels: 'Edit Models…',
       refreshModels: 'Refresh Models',
-      fast: 'Fast',
+      fast: 'Fast'
     },
     approvalMode: {
       title: 'Approval mode',
@@ -2330,8 +2391,8 @@ Leave blank to keep the ${mode} default.`,
       smart: 'Smart',
       smartDescription: 'Automatically assess actions and ask when needed',
       off: 'Off',
-      offDescription: 'Run without approval prompts',
-    },
+      offDescription: 'Run without approval prompts'
+    }
   },
   rightSidebar: {
     aria: 'Правая боковая панель',
@@ -2367,7 +2428,7 @@ Leave blank to keep the ${mode} default.`,
     addToChat: 'Добавить в чат',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'Предпросмотр',
@@ -2401,7 +2462,8 @@ Leave blank to keep the ${mode} default.`,
     unsavedChanges: 'Unsaved changes',
     saveFailed: message => `Couldn't save: ${message}`,
     diskChangedTitle: 'File changed on disk',
-    diskChangedBody: 'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
+    diskChangedBody:
+      'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
     overwrite: 'Overwrite',
     discardReload: 'Discard & reload',
     console: {
@@ -2422,7 +2484,7 @@ Leave blank to keep the ${mode} default.`,
       empty: 'No console messages yet.',
       promptHeader: 'Preview console:',
       sentTitle: 'Sent to chat',
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Preview app failed to boot',
@@ -2447,17 +2509,19 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'Reloading the preview now.',
       restartFailedTitle: 'Preview restart failed',
       restartFailedMessage: 'OpenAmer could not restart the server.',
-      stillWorking: 'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
+      stillWorking:
+        'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
       workspaceReloading: 'Workspace changed, reloading preview',
       fileChanged: url => `File changed, reloading preview: ${url}`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
-      moduleMimeDescription: 'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
+      moduleMimeDescription:
+        'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'The preview page could not be reached.',
       openTarget: url => `Open ${url}`,
-      fallbackTitle: 'Preview',
-    },
+      fallbackTitle: 'Preview'
+    }
   },
   assistant: {
     thread: {
@@ -2484,7 +2548,8 @@ Leave blank to keep the ${mode} default.`,
       loadingSession: 'Loading session',
       showEarlier: 'Show earlier messages',
       loadingResponse: 'OpenAmer is loading a response',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Thinking',
@@ -2492,7 +2557,7 @@ Leave blank to keep the ${mode} default.`,
       yesterday: time => `Yesterday, ${time}`,
       copy: 'Copy',
       refresh: 'Refresh',
-      moreActions: 'More actions',
+      moreActions: 'More actions'
     },
     clarify: {
       lateAnswerTip: 'Составити ответъ как следующее сообщение',
@@ -2506,7 +2571,7 @@ Leave blank to keep the ${mode} default.`,
       skip: 'Skip',
       skipped: 'Skipped',
       continueLabel: 'Continue',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     tool: {
       code: 'Кодъ',
@@ -2531,113 +2596,113 @@ Leave blank to keep the ${mode} default.`,
         read_file: {
           done: 'Прочести писанїе',
           pending: 'Читаетъ писанїе',
-          pendingAction: 'Читаетъ',
+          pendingAction: 'Читаетъ'
         },
         search_files: {
           done: 'Искана писанїя',
           pending: 'Ищетъ писанїя',
-          pendingAction: 'Ищетъ',
+          pendingAction: 'Ищетъ'
         },
         session_search_recall: {
           done: 'Искана исторїа сѣданїй',
           pending: 'Ищетъ исторїю сѣданїй',
-          pendingAction: 'Ищетъ',
+          pendingAction: 'Ищетъ'
         },
         terminal: {
           done: 'Исполнено повелѣнїе',
           pending: 'Исполняетъ повелѣнїе',
-          pendingAction: 'Исполняетъ',
+          pendingAction: 'Исполняетъ'
         },
         todo: {
           done: 'Обновлена дѣла',
           pending: 'Обновляетъ дѣла',
-          pendingAction: 'Обновляетъ',
+          pendingAction: 'Обновляетъ'
         },
         vision_analyze: {
           done: 'Разсмотрѣнъ образъ',
           pending: 'Разсматриваетъ образъ',
-          pendingAction: 'Разсматриваетъ',
+          pendingAction: 'Разсматриваетъ'
         },
         web_extract: {
           done: 'Прочести страницу',
           pending: 'Читаетъ страницу',
-          pendingAction: 'Читаетъ',
+          pendingAction: 'Читаетъ'
         },
         web_search: {
           done: 'Искана сѣть',
           pending: 'Ищетъ сѣть',
-          pendingAction: 'Ищетъ',
+          pendingAction: 'Ищетъ'
         },
         write_file: {
           done: 'Измѣнено писанїе',
           pending: 'Измѣняетъ писанїе',
-          pendingAction: 'Измѣняетъ',
+          pendingAction: 'Измѣняетъ'
         },
         browser_click: {
           done: 'Clicked page element',
           pending: 'Clicking page element',
-          pendingAction: 'Clicking',
+          pendingAction: 'Clicking'
         },
         browser_fill: {
           done: 'Filled form field',
           pending: 'Filling form field',
-          pendingAction: 'Filling',
+          pendingAction: 'Filling'
         },
         browser_navigate: {
           done: 'Opened page',
           pending: 'Opening page',
-          pendingAction: 'Opening',
+          pendingAction: 'Opening'
         },
         browser_snapshot: {
           done: 'Captured page snapshot',
           pending: 'Capturing page snapshot',
-          pendingAction: 'Capturing',
+          pendingAction: 'Capturing'
         },
         browser_take_screenshot: {
           done: 'Captured screenshot',
           pending: 'Capturing screenshot',
-          pendingAction: 'Capturing',
+          pendingAction: 'Capturing'
         },
         browser_type: {
           done: 'Typed on page',
           pending: 'Typing on page',
-          pendingAction: 'Typing',
+          pendingAction: 'Typing'
         },
         clarify: {
           done: 'Asked a question',
           pending: 'Asking a question',
-          pendingAction: 'Asking',
+          pendingAction: 'Asking'
         },
         cronjob: {
           done: 'Cron job',
           pending: 'Scheduling cron job',
-          pendingAction: 'Scheduling',
+          pendingAction: 'Scheduling'
         },
         edit_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
+          pendingAction: 'Editing'
         },
         execute_code: {
           done: 'Ran code',
           pending: 'Scripting',
-          pendingAction: 'Scripting',
+          pendingAction: 'Scripting'
         },
         image_generate: {
           done: 'Generated image',
           pending: 'Generating image',
-          pendingAction: 'Generating',
+          pendingAction: 'Generating'
         },
         list_files: {
           done: 'Listed files',
           pending: 'Listing files',
-          pendingAction: 'Listing',
+          pendingAction: 'Listing'
         },
         patch: {
           done: 'Patched file',
           pending: 'Patching file',
-          pendingAction: 'Patching',
-        },
+          pendingAction: 'Patching'
+        }
       },
       recoveredMany: count => `Recovered after ${count} failed steps`,
       failedMany: count => `${count} steps failed`,
@@ -2654,11 +2719,11 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Ran',
         running: 'Running',
         ranCode: 'Ran code',
-        runningCode: 'Scripting',
+        runningCode: 'Scripting'
       },
       prefixes: {
         browser: 'Browser',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2666,8 +2731,8 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2680,9 +2745,10 @@ Leave blank to keep the ${mode} default.`,
       jumpToApproval: 'Approval needed',
       reject: 'Reject',
       alwaysTitle: 'Always allow this command?',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
-      alwaysAllow: 'Always allow',
-    },
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysAllow: 'Always allow'
+    }
   },
   desktop: {
     noClipboardImage: 'Слика не в буфере обмена',
@@ -2693,7 +2759,7 @@ Leave blank to keep the ${mode} default.`,
       timedOut: 'Время ожидания шлюза истекло. Работает ли `openamer gateway`?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     audioReadFailed: 'Не возможе прочести записаное слышанїе',
     sessionUnavailable: 'Сѣданїе недоступно',
@@ -2713,7 +2779,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'Исправити не успѣ',
     resumeFailed: 'Продлъжити не успѣ',
     resumeStrandedTitle: 'Не можаше отврѣти сиѥ сѣданиѥ',
-    resumeStrandedBody: 'Съвѧзь къ сему сѣданиѭ не успѣ, и самодѣиствьнꙑѧ пакꙑ отъпадошѧ. Виждь, аще врата дѣиствꙋѭтъ, и пакꙑ искꙋси.',
+    resumeStrandedBody:
+      'Съвѧзь къ сему сѣданиѭ не успѣ, и самодѣиствьнꙑѧ пакꙑ отъпадошѧ. Виждь, аще врата дѣиствꙋѭтъ, и пакꙑ искꙋси.',
     resumeRetry: 'Пакꙑ искꙋси',
     nothingToBranch: 'Нѣсть чьто вѣтвити',
     branchNeedsChat: 'Начьни или продлъжи бесѣдѫ прѣжде вѣтвлѥниꙗ.',
@@ -2742,7 +2809,8 @@ Leave blank to keep the ${mode} default.`,
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
     branchTitle: n => `Draft: Branch #${n}`,
@@ -2751,31 +2819,31 @@ Leave blank to keep the ${mode} default.`,
     imageWriteFailed: 'Failed to write image to disk.',
     imageAttachFailed: 'Image attach failed',
     attachImages: 'Attach images',
-    clipboard: 'Clipboard',
+    clipboard: 'Clipboard'
   },
   errors: {
     genericFailure: 'Что-то пошло не так',
     boundaryTitle: 'Что-то сломалось в интерфейсе',
     boundaryDesc: 'Вид столкнулся с неожиданной ошибкой. Ваши беседы и настройки в безопасности.',
     reloadWindow: 'Перезагрузить окно',
-    openLogs: 'Открыть журналы',
+    openLogs: 'Открыть журналы'
   },
   ui: {
     search: {
-      clear: 'Очистить поиск',
+      clear: 'Очистить поиск'
     },
     pagination: {
       label: 'Пагинация',
       previous: 'Пред',
       previousAria: 'Перейти к предыдущей странице',
       next: 'След',
-      nextAria: 'Перейти к следующей странице',
+      nextAria: 'Перейти к следующей странице'
     },
     sidebar: {
       title: 'Боковая панель',
       description: 'Показывает мобильную боковую панель.',
-      toggle: 'Переключить боковую панель',
-    },
+      toggle: 'Переключить боковую панель'
+    }
   },
   statusStack: {
     coding: {
@@ -2793,7 +2861,8 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'Отврѣсти PR',
       ghMissing: 'Поставити GitHub CLI (gh) и внити, да отвръзеши PR',
       agentShip: 'Просити OpenAmer отврѣсти PR',
-      agentShipPrompt: 'Съглядати нынѣшнїя измѣненїя, съвръшити я съ яснымъ посланїемъ conventional-commit, изнести вѣтвь и отврѣсти PR.',
+      agentShipPrompt:
+        'Съглядати нынѣшнїя измѣненїя, съвръшити я съ яснымъ посланїемъ conventional-commit, изнести вѣтвь и отврѣсти PR.',
       newBranch: 'Нова вѣтвь',
       worktrees: 'Древа дѣлъ',
       title: 'Working tree',
@@ -2820,7 +2889,7 @@ Leave blank to keep the ${mode} default.`,
       commitPlaceholder: 'Message (⌘↵ to commit)',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     agents: 'Agents',
     background: count => `${count} Background`,
@@ -2829,18 +2898,19 @@ Leave blank to keep the ${mode} default.`,
     running: 'Running',
     stop: 'Stop',
     dismiss: 'Dismiss',
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   prompts: {
     gatewayDisconnected: 'Врата OpenAmer не съединена',
     sudoSendFailed: 'Не возможе послати таину sudo',
     secretSendFailed: 'Не возможе послати таину',
     sudoTitle: 'Таина начальника',
-    sudoDesc: 'OpenAmer требуетъ твою таину sudo, да исполнитъ повелѣнїе съ властию. Посылается токмо твоему мѣстному служителю.',
+    sudoDesc:
+      'OpenAmer требуетъ твою таину sudo, да исполнитъ повелѣнїе съ властию. Посылается токмо твоему мѣстному служителю.',
     sudoPlaceholder: 'Таина sudo',
     secretTitle: 'Таина потребна',
     secretDesc: 'OpenAmer требуетъ таину, да продолжитъ.',
-    secretPlaceholder: 'Значенїе таины',
+    secretPlaceholder: 'Значенїе таины'
   },
   webhooks: {
     copy: 'Копирити',
@@ -2850,9 +2920,10 @@ Leave blank to keep the ${mode} default.`,
       discord: 'Дискорд',
       slack: 'Слак',
       email: 'Почта',
-      github_comment: 'GitHub коментарий',
+      github_comment: 'GitHub коментарий'
     },
-    disabledBody: 'Вебхуки — своя платформа шлюза. Включите их, чтобы принимать HTTP‑события; каналы чата нужны только при доставке подписки в Telegram, Discord, Slack или иной канал.',
+    disabledBody:
+      'Вебхуки — своя платформа шлюза. Включите их, чтобы принимать HTTP‑события; каналы чата нужны только при доставке подписки в Telegram, Discord, Slack или иной канал.',
     enable: 'Включити вебхуки',
     enabling: 'Включение…',
     enableRow: 'Включити',
@@ -2904,10 +2975,11 @@ Leave blank to keep the ${mode} default.`,
     create: 'Create',
     creating: 'Creating...',
     created: 'Created',
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
   },
   modelPicker: {
     title: 'Switch model',
@@ -2923,13 +2995,13 @@ Leave blank to keep the ${mode} default.`,
     free: 'Free',
     freeTier: 'Free tier',
     priceTitle: 'Input / Output price per million tokens',
-    wasPrice: 'was',
+    wasPrice: 'was'
   },
   modelVisibility: {
     title: 'Models',
     search: 'Search models',
     noAuthenticatedProviders: 'No authenticated providers.',
-    addProvider: 'Add provider…',
+    addProvider: 'Add provider…'
   },
   zones: {
     showHeader: 'Show header',
@@ -2937,7 +3009,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Minimize',
     restore: 'Restore',
     closeRunningTitle: 'Close running tab?',
-    closeRunningBody: 'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
+    closeRunningBody:
+      'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
     closeRunningConfirm: 'Close tab',
     closeOthers: 'Close others',
     closeToRight: 'Close to the right',
@@ -2974,6 +3047,6 @@ Leave blank to keep the ${mode} default.`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
     saveApply: 'Save & apply',
     notExpressible: 'this arrangement interlocks (pinwheel) — not expressible as nested splits yet',
-    zoneCount: count => `${count} zones`,
-  },
+    zoneCount: count => `${count} zones`
+  }
 })

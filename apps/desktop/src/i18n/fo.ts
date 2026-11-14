@@ -45,18 +45,19 @@ export const fo = defineLocale({
     off: 'Af',
     formatJson: 'Skrá JSON',
     send: 'Senda',
-    tryHint: term => `Try “${term}”`,
+    tryHint: term => `Try “${term}”`
   },
   notifications: {
     errors: {
       elevenLabsRejectedKey: 'ElevenLabs hafnaði API-nøkklan (401).',
       gatewayAuthFailed: 'Gateway-oyðkenning mislukin — sítt API_SERVER_KEY.',
-      methodNotAllowed: 'Desktop-bakgrunnur hafnaði hesi roynd (405 Method Not Allowed). Reynir aftur OpenAmer Desktop.',
+      methodNotAllowed:
+        'Desktop-bakgrunnur hafnaði hesi roynd (405 Method Not Allowed). Reynir aftur OpenAmer Desktop.',
       microphonePermission: 'Mikrofon-leyfi var hafnað.',
       openaiRejectedApiKey: 'OpenAI hafnaði API-nøkklan.',
       openaiTtsNeedsKey: 'OpenAI TTS tørkar VOICE_TOOLS_OPENAI_KEY ella OPENAI_API_KEY.',
       elevenLabsNeedsKey: 'ElevenLabs STT tørkar ELEVENLABS_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Stilla tal-til-tekst til at brúka tal-tilstand.',
@@ -75,7 +76,7 @@ export const fo = defineLocale({
       transcriptionFailed: 'Tal-umskrift feilnað.',
       transcriptionUnavailable: 'Tónleika-tekstur er ikki til tilgongd enn.',
       tryRecordingAgain: 'Prøv at taka upp aftur.',
-      unavailable: 'Tónleika ikki til tilgongd',
+      unavailable: 'Tónleika ikki til tilgongd'
     },
     region: 'Tilkynningar',
     hide: 'Goli',
@@ -86,7 +87,8 @@ export const fo = defineLocale({
     copyDetail: 'Kopiera detalj',
     copyDetailFailed: 'Kundi ikki kopiera tilkynning detalj',
     backendOutOfDateTitle: 'Backend er útdatert',
-    backendOutOfDateMessage: 'Dín OpenAmer backend er eldri enn hesi desktop-útgáva og kann ikki virka rætt. Uppdatera fyri at samstilla.',
+    backendOutOfDateMessage:
+      'Dín OpenAmer backend er eldri enn hesi desktop-útgáva og kann ikki virka rætt. Uppdatera fyri at samstilla.',
     installMethodUnsupportedTitle: 'Óstøttur installasjónarmót',
     updateOpenAmer: 'Uppdatera OpenAmer',
     updateReadyTitle: 'Uppdatering fúll',
@@ -102,10 +104,10 @@ export const fo = defineLocale({
       turnErrorTitle: 'Rúð miseydnaðist',
       backgroundDoneTitle: 'Bakgrunnsgerð lokið',
       backgroundFailedTitle: 'Bakgrunnsgerð miseydnaðist',
-      creditsTitle: 'Krediter',
+      creditsTitle: 'Krediter'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   keybinds: {
     set: 'Setta',
@@ -114,7 +116,7 @@ export const fo = defineLocale({
       profiles: 'Profilir',
       session: 'Sesión',
       navigation: 'Navigering',
-      view: 'Sýn',
+      view: 'Sýn'
     },
     actions: {
       'keybinds.openPanel': 'Opna tastaturskort',
@@ -193,7 +195,7 @@ export const fo = defineLocale({
       'view.toggleSidebar': 'Umskift samtalasíðu',
       'view.toggleRightSidebar': 'Umskift fílaleiðara',
       'view.toggleReview': 'Umskift yfirlitsglugga',
-      'view.showFiles': 'Vís fílaleiðara',
+      'view.showFiles': 'Vís fílaleiðara'
     },
     title: 'Tastatøkur',
     search: 'Leita í tastatøkur…',
@@ -202,7 +204,7 @@ export const fo = defineLocale({
     resetAll: 'Endurstilla øll',
     pressKey: 'Trýst á ein lykil…',
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   language: {
     label: 'Tungumál',
@@ -211,7 +213,7 @@ export const fo = defineLocale({
     saveError: 'Tungumál uppfærslu mistókst',
     switchTo: 'Skip tungumál',
     searchPlaceholder: 'Leita eftir tungumálum…',
-    noResults: 'Einki tungumál funnin',
+    noResults: 'Einki tungumál funnin'
   },
   settings: {
     closeSettings: 'Loysa stillingar',
@@ -236,56 +238,58 @@ export const fo = defineLocale({
       billing: 'Fakturering',
       notifications: 'Frætingar',
       plugins: 'Tíðendir',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       empty: 'Einki desktop-plugins enn installerað.',
       kinds: {
         bundled: 'bundin',
         disk: 'á diski',
-        runtime: 'tíðarvirkni',
+        runtime: 'tíðarvirkni'
       },
       title: 'Sniðartíðendir',
-      blurb: 'UI-útbøtingar eru lodnar inn í appina — innbygdar í buildinum, ella droppaðar í desktop-plugins-mappa (har á meðal tíðendir, sum OpenAmer skrivar). At gera eina tíðend óvirka tekur henni úr live og heldur fram við endurræstingar.',
+      blurb:
+        'UI-útbøtingar eru lodnar inn í appina — innbygdar í buildinum, ella droppaðar í desktop-plugins-mappa (har á meðal tíðendir, sum OpenAmer skrivar). At gera eina tíðend óvirka tekur henni úr live og heldur fram við endurræstingar.',
       openFolder: 'Opna tíðendamappa',
       rescan: 'Skanna endur',
       reveal: 'Vís í skráastjóra',
       enable: 'Virkja',
       disable: 'Gera óvirkt',
       failed: 'Mishekkur',
-      count: n => `${n} installed`,
+      count: n => `${n} installed`
     },
     notifications: {
       title: 'Tilkynningar',
-      intro: 'Innbyggdar desktop-tilkynningar, atskildar frá app-tilkynningar. Hetta er tænastur-álag — hvør tölva heldur sínum eigum stillingum.',
+      intro:
+        'Innbyggdar desktop-tilkynningar, atskildar frá app-tilkynningar. Hetta er tænastur-álag — hvør tölva heldur sínum eigum stillingum.',
       enableAll: 'Virkja tilkynningar',
       enableAllDesc: 'Hovedskiftur. Sløttu av fyri at sløtta allar tilkynningar neðrá.',
       focusedHint: 'Fullgerð tilkynningar berast eingin ein, tá OpenAmer er í bakgrunni.',
       kinds: {
         approval: {
           label: 'Samtykkni tørv',
-          description: 'Ein skipun bíður eftir at tú samtykkir ella hafnar.',
+          description: 'Ein skipun bíður eftir at tú samtykkir ella hafnar.'
         },
         input: {
           label: 'Inngangur tørv',
-          description: 'OpenAmer spurgði ein spurningar ella tørvar loyniorð ella heili.',
+          description: 'OpenAmer spurgði ein spurningar ella tørvar loyniorð ella heili.'
         },
         turnDone: {
           label: 'Svar klár',
-          description: 'Ein vegin klárað, tá OpenAmer var í bakgrunni.',
+          description: 'Ein vegin klárað, tá OpenAmer var í bakgrunni.'
         },
         turnError: {
           label: 'Vegin miseyd',
-          description: 'Ein vegin lokaði við eini villa.',
+          description: 'Ein vegin lokaði við eini villa.'
         },
         backgroundDone: {
           label: 'Bakgrunnsverkandi klárað',
-          description: 'Ein bakgrunns terminalskipun klárað.',
+          description: 'Ein bakgrunns terminalskipun klárað.'
         },
         credits: {
           label: 'Kredit tilkynningar',
-          description: 'Kreditágangur er haldið í hvørð ella endurheimt.',
-        },
+          description: 'Kreditágangur er haldið í hvørð ella endurheimt.'
+        }
       },
       test: 'Send test notifikasjon',
       testTitle: 'OpenAmer',
@@ -294,7 +298,7 @@ export const fo = defineLocale({
       testUnsupported: 'Tað system støttar ikki native notifikasjonir.',
       completionSoundTitle: 'Fullføring lyti',
       completionSoundDesc: 'Spilar, tá ein agentur runde er fullførð. Vel ein forstilling og forhoyr her.',
-      completionSoundPreview: 'Forhoyr',
+      completionSoundPreview: 'Forhoyr'
     },
     config: {
       none: 'Einki',
@@ -310,7 +314,7 @@ export const fo = defineLocale({
       imported: 'Stillingar innimportaðar',
       invalidJson: 'Ógildur stilling JSON',
       keepAwakeTitle: 'Halda tölvu vakna',
-      keepAwakeDesc: 'Støðva at tölvan dør, so at naturnirðir heldur áfram. Skjárinn kann enn dýpa.',
+      keepAwakeDesc: 'Støðva at tölvan dør, so at naturnirðir heldur áfram. Skjárinn kann enn dýpa.'
     },
     credentials: {
       pasteKey: 'Líma lykil',
@@ -320,7 +324,7 @@ export const fo = defineLocale({
       remove: 'Fjarlægja',
       getKey: 'Fá lykil',
       saving: 'Goymir',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     mcp: {
       reloadFailed: 'MCP endurloðning mislukkin',
@@ -382,10 +386,11 @@ export const fo = defineLocale({
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       authenticatedMessage: (server, count) => `${server}: ${count} tools`,
       enableTool: tool => `Enable ${tool}`,
-      disableTool: tool => `Disable ${tool}`,
+      disableTool: tool => `Disable ${tool}`
     },
     model: {
       model: 'Modell',
@@ -396,7 +401,8 @@ export const fo = defineLocale({
       defaultsFailed: 'Gat ikki sparað standardar fyri modell',
       auxiliaryTitle: 'Yvirligar modeller',
       resetAllToMain: 'Endursettu alt til heildar',
-      auxiliaryDesc: 'Hjálparverk keyra sjálvvirkandi á heildar-modellina. Tildýð ein dedikerad modell til at yvirskrifa.',
+      auxiliaryDesc:
+        'Hjálparverk keyra sjálvvirkandi á heildar-modellina. Tildýð ein dedikerad modell til at yvirskrifa.',
       setToMain: 'Set til heildar',
       change: 'Breyta',
       autoUseMain: 'auto · brúka heildar-modell',
@@ -407,40 +413,40 @@ export const fo = defineLocale({
       tasks: {
         vision: {
           label: 'Sjón',
-          hint: 'Mynd-analys',
+          hint: 'Mynd-analys'
         },
         web_extract: {
           label: 'Vefur-úttak',
-          hint: 'Síðu-samantekt',
+          hint: 'Síðu-samantekt'
         },
         compression: {
           label: 'Kompresjon',
-          hint: 'Samstøða samlagning',
+          hint: 'Samstøða samlagning'
         },
         skills_hub: {
           label: 'Færdigahópur',
-          hint: 'Færdigaskur',
+          hint: 'Færdigaskur'
         },
         approval: {
           label: 'Afturkomment',
-          hint: 'Snar sjálv-æftur',
+          hint: 'Snar sjálv-æftur'
         },
         mcp: {
           hint: 'MCP verktyr rútning',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Títulgerð',
-          hint: 'Økuttítlar',
+          hint: 'Økuttítlar'
         },
         curator: {
           label: 'Kuratør',
-          hint: 'Færdiganvøtnur greining',
-        },
+          hint: 'Færdiganvøtnur greining'
+        }
       },
       loading: 'Hleð inn modellstillingar…',
       appliesDesc: 'Gildir á nýggjar økurnar. Brúka modellvalið í samrøðarin fyri at skipta aktivt samrøð.',
-      provider: 'Teyðari',
+      provider: 'Teyðari'
     },
     sections: {
       appearance: 'Útseð',
@@ -450,7 +456,7 @@ export const fo = defineLocale({
       voice: 'Tón',
       advanced: 'Avanzert',
       model: 'Mynstur',
-      chat: 'Samtal',
+      chat: 'Samtal'
     },
     searchPlaceholder: {
       about: 'Um OpenAmer Desktop',
@@ -458,11 +464,12 @@ export const fo = defineLocale({
       gateway: 'Gateway samanslutning...',
       keys: 'Leita eftir API-nøkulum...',
       mcp: 'Leita eftir MCP-tenarum...',
-      sessions: 'Leita eftir arkhiverðum samtalalotum...',
+      sessions: 'Leita eftir arkhiverðum samtalalotum...'
     },
     appearance: {
       embedsTitle: 'Innryktar innbyggingar',
-      embedsDesc: 'Ríkar forsýnir hleðjast frá ytri síðum (YouTube, X, …). Spørg viser ein staðhal, før tú loyvir; Alltid hleðst sjálvvirk; Af heldur vanliga links.',
+      embedsDesc:
+        'Ríkar forsýnir hleðjast frá ytri síðum (YouTube, X, …). Spørg viser ein staðhal, før tú loyvir; Alltid hleðst sjálvvirk; Af heldur vanliga links.',
       embedsAsk: 'Spørg',
       embedsAlways: 'Alltid',
       embedsOff: 'Af',
@@ -473,7 +480,8 @@ export const fo = defineLocale({
       themeTitle: 'Tema',
       themeDesc: 'Buregarðspaletter einungis. Valin mód er viðmótið.',
       installTitle: 'Setta upp frá VS Code',
-      installDesc: 'Líma Marketplace-útreiðslur ID (t.d. dracula-theme.theme-dracula) til at umbreyta hans fargtema til einu buregarðspalett.',
+      installDesc:
+        'Líma Marketplace-útreiðslur ID (t.d. dracula-theme.theme-dracula) til at umbreyta hans fargtema til einu buregarðspalett.',
       installButton: 'Setta upp',
       installing: 'Sett upp…',
       installError: 'Kundi ikki setta upp tað tema.',
@@ -483,8 +491,10 @@ export const fo = defineLocale({
         title: 'Dýr',
         turnOnFailed: 'Kundi ikki slá petin á.',
         turnOffFailed: 'Kundi ikki slá petin av.',
-        intro: 'Tak ein hendingardygna petdex-varð, sum flýst yvir appin og svarar til tíð OpenAmer ger — rennir medan verkstoy vógu, gleðisk at sleppi, og sulur í villum.',
-        restartHint: 'Dýrini tríva ein skjótan endurstart — appið í gongu varð startað, áðrenn hesin feature varð lögd. Sítt OpenAmer og opnað tað aftur, síðan kom aftur her.',
+        intro:
+          'Tak ein hendingardygna petdex-varð, sum flýst yvir appin og svarar til tíð OpenAmer ger — rennir medan verkstoy vógu, gleðisk at sleppi, og sulur í villum.',
+        restartHint:
+          'Dýrini tríva ein skjótan endurstart — appið í gongu varð startað, áðrenn hesin feature varð lögd. Sítt OpenAmer og opnað tað aftur, síðan kom aftur her.',
         on: 'Tá',
         off: 'Frá',
         scaleTitle: 'Stærð',
@@ -514,10 +524,11 @@ export const fo = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
       title: 'Útsýni',
-      intro: 'Hetta eru skjástillingar einast á sniði. Stillingin stýrir birktu, meðan þemað stýrir accenti-litunum og útsýni samtalaflakanna.',
+      intro:
+        'Hetta eru skjástillingar einast á sniði. Stillingin stýrir birktu, meðan þemað stýrir accenti-litunum og útsýni samtalaflakanna.',
       colorMode: 'Litaform',
       colorModeDesc: 'Veldu fast form ella let OpenAmer fylgja systemstillingini þinni.',
       toolViewTitle: 'Kall av amboðum',
@@ -527,11 +538,12 @@ export const fo = defineLocale({
       translucencyDesc: 'Sjáð heimafrí gjøgnum allan gluggan. Bert macOS og Windows.',
       backdropTitle: 'Chatbakgrunnur',
       backdropDesc: 'Svørt mjóka mynd av støðuni bak fyri samrøðuna.',
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installPlaceholder: 'publisher.extension',
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     about: {
       versionUnavailable: 'Útgáva ikki tilgjøng',
@@ -548,7 +560,8 @@ export const fo = defineLocale({
       tapCheck: 'Trykka á "Skoðað núna" fyri at leita eftir uppdateringum.',
       justNowSuffix: '· núna',
       automaticUpdates: 'Sjálvvirkandi uppdateringar',
-      automaticUpdatesDesc: 'OpenAmer letur eftir uppdateringar sjálvvirkandi í bakgrunni og lítur til at vita, hvenær ein er fúna.',
+      automaticUpdatesDesc:
+        'OpenAmer letur eftir uppdateringar sjálvvirkandi í bakgrunni og lítur til at vita, hvenær ein er fúna.',
       never: 'aldrei',
       justNow: 'núna',
       heading: 'OpenAmer Desktop',
@@ -558,7 +571,7 @@ export const fo = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     envActions: {
       credentialActions: 'Kennitala-aksjónir',
@@ -569,7 +582,7 @@ export const fo = defineLocale({
       replace: 'Skipta út',
       clear: 'Tøm',
       actionsFor: label => `Actions for ${label}`,
-      set: 'Set',
+      set: 'Set'
     },
     gateway: {
       loading: 'Hentar gateway-innstillingar...',
@@ -577,12 +590,14 @@ export const fo = defineLocale({
       unavailableDesc: 'Desktop IPC-broin eksponera ikki gateway-innstillingar.',
       title: 'Gateway-tilkopling',
       envOverride: 'Umhverfis-tilbøkur',
-      intro: 'OpenAmer Desktop byrjar sjálvvirk lokál gateway. Brúka fjar-gateway, tá tú vil at appin stýra ein núverandi OpenAmer backend á ein annan maskini ella á bak við ein tryggur proxy. Vel eitt profil neðans at gefa tað sín egna fjar-host.',
+      intro:
+        'OpenAmer Desktop byrjar sjálvvirk lokál gateway. Brúka fjar-gateway, tá tú vil at appin stýra ein núverandi OpenAmer backend á ein annan maskini ella á bak við ein tryggur proxy. Vel eitt profil neðans at gefa tað sín egna fjar-host.',
       appliesTo: 'Gildir fyri',
       allProfiles: 'Allir profilar',
       defaultConnection: 'Sjálvvirk tilkopling fyri kvart profil, sum ikki hevur ein egna tilbøkur.',
       envOverrideTitle: 'Umhverfisvariablar stýra hesi desktop-sesjón.',
-      envOverrideDesc: 'Tømma OPENAMER_DESKTOP_REMOTE_URL og OPENAMER_DESKTOP_REMOTE_TOKEN at brúka innstillingarnar neðans.',
+      envOverrideDesc:
+        'Tømma OPENAMER_DESKTOP_REMOTE_URL og OPENAMER_DESKTOP_REMOTE_TOKEN at brúka innstillingarnar neðans.',
       diagnosticsDesc: 'Sýna desktop.log í skráarstjóranum — gagnleg við gateway‑feil',
       openLogs: 'Opna loggar',
       incompleteTitle: 'Fjarlæg gateway ófullkomin',
@@ -615,7 +630,7 @@ export const fo = defineLocale({
       cloudNoAgents: {
         before: 'Ongin agentar funn á hesum konta. Skap eina í',
         linkText: 'OpenAmer-portalin',
-        after: ', og endurvak ein.',
+        after: ', og endurvak ein.'
       },
       cloudRefresh: 'Endurvaka',
       cloudConnect: 'Knýta',
@@ -631,15 +646,19 @@ export const fo = defineLocale({
       remoteUrlTitle: 'Fjarlægt URL',
       remoteUrlDesc: 'Grunn-URL fyri bakendan á fjarlæta stýriborði. Prefiks av vegum eru stuð, til dømis /openamer.',
       probing: 'Kontrollar hvussu hetta gatewayen autentiserar…',
-      probeError: 'Kundi ikki ná hetta gatewayen enn. Kannað URL-ið — autentiseringsmátreurin kemur fram, tá hon svarar.',
+      probeError:
+        'Kundi ikki ná hetta gatewayen enn. Kannað URL-ið — autentiseringsmátreurin kemur fram, tá hon svarar.',
       signedIn: 'Innskrivaður',
       signIn: 'Log inn',
       signOut: 'Log út',
       authTitle: 'Autentisering',
-      authSignedInPassword: 'Hetta gatewayen brúkar notandanafn og lyklið. Þú ert innskrivaður; sessionin endurvak sjálvvirkandi.',
+      authSignedInPassword:
+        'Hetta gatewayen brúkar notandanafn og lyklið. Þú ert innskrivaður; sessionin endurvak sjálvvirkandi.',
       authSignedInOauth: 'Hetta gatewayen brúkar OAuth. Þú ert innskrivaður; sessionin endurvak sjálvvirkandi.',
-      authNeedsPassword: 'Hetta gatewayen brúkar notandanafn og lyklið. Log inn til at hevja leyfi fyri hetta skrivstovaforrit.',
-      tokenDesc: 'Session-tokenurin, ið brúkast til REST- og WebSocket-aðgong, á stýriborðinu. Lat tey vera 空 fyri at halda tannoyvðna tokeninum.',
+      authNeedsPassword:
+        'Hetta gatewayen brúkar notandanafn og lyklið. Log inn til at hevja leyfi fyri hetta skrivstovaforrit.',
+      tokenDesc:
+        'Session-tokenurin, ið brúkast til REST- og WebSocket-aðgong, á stýriborðinu. Lat tey vera 空 fyri at halda tannoyvðna tokeninum.',
       savedToken: 'sýslt',
       pasteSessionToken: 'Set session token inn',
       testRemote: 'Testa fjarlægt',
@@ -652,13 +671,15 @@ export const fo = defineLocale({
       remoteTitle: 'Fjarlæg gátt',
       remoteDesc: 'Tengja henda desktop-shellin við ein fjarlægan OpenAmer bakenda.',
       remoteAuthHint: 'Hýsaðar gáttir brúka OAuth ella bruktarnavn og lykill; sjálv hýsta kunna brúka session-token.',
-      cloudDesc: 'Logja inn ein skapti á OpenAmer Cloud og veldu millum agentanna á konta tínum — eingin URL atlimpa inn.',
+      cloudDesc:
+        'Logja inn ein skapti á OpenAmer Cloud og veldu millum agentanna á konta tínum — eingin URL atlimpa inn.',
       tokenTitle: 'Sessionarbeiðið',
       saveAndReconnect: 'Halda og tengja aftur',
       diagnostics: 'Diagnostikk',
       saveFailed: 'Kunde ikki halda gátestillingarnar',
       sshTitle: 'Tengja við SSH',
-      sshDesc: 'OpenAmer verður startað á fjarlæga høvið yvir SSH og tunnelert til hesin app — tú hevur ikki atð byrja nakað ella setja sjálv út fyri tær. Krevst virkin SSH-ognanoyting við lykli á høvið.',
+      sshDesc:
+        'OpenAmer verður startað á fjarlæga høvið yvir SSH og tunnelert til hesin app — tú hevur ikki atð byrja nakað ella setja sjálv út fyri tær. Krevst virkin SSH-ognanoyting við lykli á høvið.',
       sshTrustHint: 'Fyrsta høvarlykillin, ið er vístur, er festur; seinni broytingar føroya ikki.',
       sshHostTitle: 'Høvur',
       sshHostDesc: 'user@host, ella eitt Høv-alias frá ~/.ssh/config.',
@@ -680,14 +701,19 @@ export const fo = defineLocale({
       sshButtonsHint: 'Halda verður nýtt á næsta starti. Tengja tengir aftur nú.',
       sshIncompleteHost: 'Skriv eitt SSH-høv áðrenn tú tengir.',
       sshErrUnreachable: 'Kunde ikki náka høvið yvir SSH. Kontrollér høvið, portin og netverkið.',
-      sshErrAuth: 'SSH-authentisering mislingdi. Slepptu lyklinum í ssh-agent (ssh-add) ella sett eitt IdentityFile í ~/.ssh/config — OpenAmer keyrir ssh uttan samrøðu.',
-      sshErrHostKey: 'Høvarlykillin hevur BROYTT síðani tú last tengjast. Víst, at hetta er økkt, og køyr síðan ssh-keygen -R <host> og tengja aftur.',
-      sshErrNotInstalled: 'OpenAmer er ikki installað á fjarlæga høvið. Installera tað har (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ella sett OpenAmer-leiðina.',
-      sshErrPlatform: 'Ónýtsam fjarlægtan pallur. SSH-háttur hjá OpenAmer Desktop stoyttar Linux, macOS og Windows høv á fjarlægum.',
+      sshErrAuth:
+        'SSH-authentisering mislingdi. Slepptu lyklinum í ssh-agent (ssh-add) ella sett eitt IdentityFile í ~/.ssh/config — OpenAmer keyrir ssh uttan samrøðu.',
+      sshErrHostKey:
+        'Høvarlykillin hevur BROYTT síðani tú last tengjast. Víst, at hetta er økkt, og køyr síðan ssh-keygen -R <host> og tengja aftur.',
+      sshErrNotInstalled:
+        'OpenAmer er ikki installað á fjarlæga høvið. Installera tað har (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ella sett OpenAmer-leiðina.',
+      sshErrPlatform:
+        'Ónýtsam fjarlægtan pallur. SSH-háttur hjá OpenAmer Desktop stoyttar Linux, macOS og Windows høv á fjarlægum.',
       sshErrTimeout: 'SSH-tengingin tíðar út. Høvið kann vera utilnáknigt ella sova.',
       sshErrUpdateRequired: 'Uppdatér OpenAmer á fjarlæga høvið áðrenn tú tengir við Desktop SSH.',
       sshErrUnknown: 'SSH-tengingin mislingdi.',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudTitle: 'OpenAmer Cloud',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudOrgRole: role => `Role: ${role}`,
@@ -698,7 +724,7 @@ export const fo = defineLocale({
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       sshTestConnection: 'Test SSH',
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     toolsets: {
       webCapabilityUnset: 'ikkje sett',
@@ -722,7 +748,7 @@ export const fo = defineLocale({
         selectedTitle: 'Backend valdur',
         needsSetupHint: 'Tú kanst velja hendan backend nú — skipanir verða mislukkað til uppsetning er fullførd.',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       loadingConfig: 'Hleði konfigurering',
       savedTitle: 'Innrittingin er goymd',
@@ -731,7 +757,8 @@ export const fo = defineLocale({
       notSet: 'Ikki sett',
       selectedTitle: 'Veitari valdur',
       failedLoad: 'Kundi ikki hlaða verktyaskipan',
-      noProviderOptions: 'Þetta verktysett hefur engar veitara — koyr tað á, so virkar tað við núverandi uppsetningina tær.',
+      noProviderOptions:
+        'Þetta verktysett hefur engar veitara — koyr tað á, so virkar tað við núverandi uppsetningina tær.',
       noProviders: 'Engir veitarar eru tær nú fyri hetta verktysettið.',
       ready: 'Til reiðu',
       needsSignIn: 'Krev skráning',
@@ -759,8 +786,10 @@ export const fo = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -771,12 +800,13 @@ export const fo = defineLocale({
       modelSectionTitle: 'Model',
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     providers: {
       connectAccount: 'Tengja ein konta',
       haveApiKey: 'Hevur tú eitt API-nøkli í staðin?',
-      intro: 'Logg inn við eini áskript — tú hevur ikki nakað API-nøkli at kopiera. OpenAmer keyrir innlogginan í brúkaranum fyri teig, beint í appini.',
+      intro:
+        'Logg inn við eini áskript — tú hevur ikki nakað API-nøkli at kopiera. OpenAmer keyrir innlogginan í brúkaranum fyri teig, beint í appini.',
       connected: 'Týnt',
       collapse: 'Fekkja saman',
       connectAnother: 'Týn annan veitara',
@@ -789,30 +819,31 @@ export const fo = defineLocale({
       noKeysMatch: 'Ongir veitarar passa til tína leiting.',
       localEndpoint: {
         title: 'Staðbundin / serstakur endapunktur',
-        description: 'Rett OpenAmer á einhver OpenAI-kompatibel endapunkt (Zyphra, vLLM, llama.cpp, Ollama, etc.).',
+        description: 'Rett OpenAmer á einhver OpenAI-kompatibel endapunkt (Zyphra, vLLM, llama.cpp, Ollama, etc.).'
       },
       loading: 'Hleð veitarum...',
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     modeOptions: {
       light: {
         label: 'Ljós',
-        description: 'Björt skjáflöt',
+        description: 'Björt skjáflöt'
       },
       dark: {
         label: 'Myrkur',
-        description: 'Vinnustaður við lítið gler',
+        description: 'Vinnustaður við lítið gler'
       },
       system: {
         description: 'Fylgja útsýni OS',
-        label: 'System',
-      },
+        label: 'System'
+      }
     },
     sessions: {
       clear: 'Streym',
@@ -830,27 +861,30 @@ export const fo = defineLocale({
       deletePermanently: 'Sletta endakomst',
       restored: 'Endurvendt',
       autoArchiveTitle: 'Sjálvarkivera eldri samtøl',
-      autoArchiveDesc: 'Arkivera automatisk samtøl, tú hevur ikki rørt í eina tíð. Festi samtøl eru aldri arkiverað, og eingin verður slettað — arkiverð samtøl flytast bara her.',
+      autoArchiveDesc:
+        'Arkivera automatisk samtøl, tú hevur ikki rørt í eina tíð. Festi samtøl eru aldri arkiverað, og eingin verður slettað — arkiverð samtøl flytast bara her.',
       autoArchiveDaysLabel: 'Arkivera eftir',
       autoArchiveDaysUnit: 'dagar av óvirksemi',
       autoArchiveFailed: 'Kundi ikki uppdatera sjálvarkiveringina',
       defaultDirTitle: 'Forvalta verkefnimappa',
-      defaultDirDesc: 'Nýggjar sessjonir byrja í hesari mappu nema tú velur eina aðra. Lat tað stóð upprættat at brúka heima mappina þitt.',
+      defaultDirDesc:
+        'Nýggjar sessjonir byrja í hesari mappu nema tú velur eina aðra. Lat tað stóð upprættat at brúka heima mappina þitt.',
       change: 'Broyt',
       choose: 'Vel',
-      archivedIntro: 'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
+      archivedIntro:
+        'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
       defaultDirUpdated: 'Default project directory updated — start a new chat (Ctrl/⌘+N) for it to take effect',
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     keys: {
       loading: 'Hleð upp API-lyklum og innrittingum...',
       failedLoad: 'API-lyklar kunde ikki hleðast upp',
-      empty: 'Eingin er sett upp í hesini flokki enn.',
+      empty: 'Eingin er sett upp í hesini flokki enn.'
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     hub: {
@@ -860,7 +894,7 @@ export const fo = defineLocale({
       trust: {
         builtin: 'innbyggd',
         trusted: 'tryggur',
-        community: 'samfelag',
+        community: 'samfelag'
       },
       verdictSafe: 'Tryggur',
       verdictCaution: 'Varúð',
@@ -882,7 +916,8 @@ export const fo = defineLocale({
       connectingHubs: 'Connecting to skill hubs...',
       connectedHubs: 'Connected hubs:',
       featured: 'Featured skills',
-      landingHint: 'Search the hub to browse installable skills from the official index, GitHub, and community sources.',
+      landingHint:
+        'Search the hub to browse installable skills from the official index, GitHub, and community sources.',
       noResults: 'No matching skills found in the hub.',
       resultCount: (count, ms) => `${count} result${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Timed out: ${sources}`,
@@ -898,7 +933,7 @@ export const fo = defineLocale({
       scanning: 'Scanning...',
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     tabSkills: 'Færni',
     tabToolsets: 'Tól',
@@ -934,7 +969,7 @@ export const fo = defineLocale({
     provenance: {
       agent: 'Lært',
       bundled: 'Innbyggt',
-      hub: 'Miðstøð',
+      hub: 'Miðstøð'
     },
     changesApplyNewSessions: 'Breytingar gerast gjøgnum nýggjar økningar.',
     skillUpdated: 'Færdigur uppdateraður',
@@ -953,7 +988,7 @@ export const fo = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     title: 'Minnisgraf',
@@ -969,7 +1004,8 @@ export const fo = defineLocale({
     emptyTitle: 'Einki lærð enn',
     emptyDesc: 'Sá OpenAmer byggir ferdir og minnis fyri yvirvini, síð koma hesa.',
     share: 'Deil kort',
-    shareHint: 'Kopier kóðann fyri at deila hetta kort, ella lim inn ein til at lasta. Hetta inniheldur bert layout, ikki yvirvini ella ferdir.',
+    shareHint:
+      'Kopier kóðann fyri at deila hetta kort, ella lim inn ein til at lasta. Hetta inniheldur bert layout, ikki yvirvini ella ferdir.',
     shareTitle: 'Importera / eksportera kort',
     sharePlaceholder: 'Lim inn kortkód…',
     copy: 'Kopier kortkód',
@@ -980,7 +1016,7 @@ export const fo = defineLocale({
     importedBadge: 'innhlaðað kort',
     resetToMine: 'Til baka til mína kort',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Loysa áli',
@@ -1010,7 +1046,7 @@ export const fo = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'Loysa styrkurstøð',
@@ -1022,16 +1058,16 @@ export const fo = defineLocale({
     sectionEntries: {
       usage: {
         title: 'Notkunspane',
-        detail: 'Token, kostnad og ferdigheit',
+        detail: 'Token, kostnad og ferdigheit'
       },
       sessions: {
         title: 'Sessionapanelur',
-        detail: 'Leita, festi og umseta sessionir',
+        detail: 'Leita, festi og umseta sessionir'
       },
       system: {
         title: 'Systemapanelur',
-        detail: 'Gáttarstøða, logg, endurstart/enduruppdating',
-      },
+        detail: 'Gáttarstøða, logg, endurstart/enduruppdating'
+      }
     },
     providerNavigate: 'Navigera',
     providerSessions: 'Sesiónar',
@@ -1076,7 +1112,8 @@ export const fo = defineLocale({
       backup: 'Stoðna backup',
       backupDesc: 'Zip uppseting, minni, færi og sessíónir',
       debugShare: 'Deil villufreaking',
-      debugShareDesc: 'Legja upp skýrslu við fjarlægðum upplýsingum og logg, få deililinkar (sløttar sjálv eftir 6 kl.)',
+      debugShareDesc:
+        'Legja upp skýrslu við fjarlægðum upplýsingum og logg, få deililinkar (sløttar sjálv eftir 6 kl.)',
       debugShareRunning: 'Legja upp villufreakingsskýrslu...',
       debugShareLinks: 'Deililinkar',
       debugShareFailed: 'Deiling av villufreaking mislykst',
@@ -1093,41 +1130,41 @@ export const fo = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     sections: {
       sessions: 'Sessionir',
       usage: 'Nýtsla',
       maintenance: 'Viðhald',
-      system: 'System',
+      system: 'System'
     },
     sectionDescriptions: {
       maintenance: 'Greining, backupar, kurator og minnisgögn',
       sessions: 'Leita og umseta sessionir',
       system: 'Støða, logg og systemhandlinger',
-      usage: 'Token, kostnaður og hæfileikavirksemi yvir tid',
+      usage: 'Token, kostnaður og hæfileikavirksemi yvir tid'
     },
     nav: {
       newChat: {
         title: 'Ný session',
-        detail: 'Byrja nýja session',
+        detail: 'Byrja nýja session'
       },
       settings: {
         title: 'Stillingar',
-        detail: 'Sett upp OpenAmer skrivborð',
+        detail: 'Sett upp OpenAmer skrivborð'
       },
       skills: {
         title: 'Hæfileikar',
-        detail: 'Hæfileikar, amtøk og MCP-servarar',
+        detail: 'Hæfileikar, amtøk og MCP-servarar'
       },
       messaging: {
         title: 'Boðskapar',
-        detail: 'Sett upp Telegram, Slack, Discord og meira',
+        detail: 'Sett upp Telegram, Slack, Discord og meira'
       },
       artifacts: {
         title: 'Útgögn',
-        detail: 'Fletta framleiðslum',
-      },
+        detail: 'Fletta framleiðslum'
+      }
     },
     actionStartedWaiting: 'Verk í boði, bíði eftir støðu...',
     loadingStatus: 'Hleð støðu...',
@@ -1161,7 +1198,7 @@ export const fo = defineLocale({
       installed: 'Installed',
       generatedTag: 'Generated',
       adoptFailed: 'Could not adopt that pet.',
-      toggleFailed: 'Could not toggle the pet.',
+      toggleFailed: 'Could not toggle the pet.'
     },
     generatePet: {
       title: 'Generera eitt húsdýr',
@@ -1184,13 +1221,14 @@ export const fo = defineLocale({
       slowProviderHint: 'Tað kann taka nærri minuttir',
       remix: 'Blanda um',
       remixConfirmTitle: 'Blanda um hetta útlit?',
-      remixConfirmBody: 'Hetta genererer eitt nýtt sett av uppskøtum við at bruka hetta sum upphav. Tað kann taka nærri minuttir.',
+      remixConfirmBody:
+        'Hetta genererer eitt nýtt sett av uppskøtum við at bruka hetta sum upphav. Tað kann taka nærri minuttir.',
       genericError: 'Genereringin mishekk — royp aftur ella velja eitt uppskøt.',
       referenceImageTooLarge: 'Referansumyndin er ov stór. Brúka eina undir 16 MB.',
       referenceImageInvalid: 'Kundi ikki lesa referansumynda. Royp PNG, JPG, WebP ella GIF.',
       adopt: 'Adoptera',
       startOver: 'Byrja frá upptaki',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     installTheme: {
       title: 'Installa tema…',
@@ -1202,7 +1240,7 @@ export const fo = defineLocale({
       install: 'Installa',
       installing: 'Installerer...',
       installed: 'Installert',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Stillingarfelter',
     mcpServers: 'MCP-servarar',
@@ -1221,7 +1259,7 @@ export const fo = defineLocale({
     days: count => `${count}d`,
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   messaging: {
     search: 'Leita í skilaboð...',
@@ -1236,130 +1274,130 @@ export const fo = defineLocale({
       not_configured: 'Krevst uppseting',
       pending_restart: 'Endran endis',
       retrying: 'Reynir aftur',
-      startup_failed: 'Uppstart mislykst',
+      startup_failed: 'Uppstart mislykst'
     },
     fieldCopy: {
       DISCORD_REPLY_TO_MODE: {
         label: 'Svarstil',
-        help: 'først, alt, eller sløttu.',
+        help: 'først, alt, eller sløttu.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Lat alt Discord-brúkar.',
-        help: 'Einungis í þróun. Um tað er sannt, kann øll ein DM til botnini utan lista.',
+        help: 'Einungis í þróun. Um tað er sannt, kann øll ein DM til botnini utan lista.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Heimskannil ID',
-        help: 'Kannil, har botnini sendir proaktivar boð (cron-útgangur, minniskir).',
+        help: 'Kannil, har botnini sendir proaktivar boð (cron-útgangur, minniskir).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Heimskannilnamn',
-        help: 'Sýniravn fyri heimskannilin í loggar og status-útgang.',
+        help: 'Sýniravn fyri heimskannilin í loggar og status-útgang.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Lat alt iMessage-brúkar.',
-        help: 'Um tað er sannt, slepp BlueBubbles lista.',
+        help: 'Um tað er sannt, slepp BlueBubbles lista.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Lat alt Mattermost-brúkar.',
+        label: 'Lat alt Mattermost-brúkar.'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Heimskannil',
+        label: 'Heimskannil'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Lat alt QQ-brúkar.',
+        label: 'Lat alt QQ-brúkar.'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ heimskannil',
-        help: 'Standardkannil ella hógr fyri cron-leið.',
+        help: 'Standardkannil ella hógr fyri cron-leið.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ heimskannilnamn',
+        label: 'QQ heimskannilnamn'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack botn-token',
         help: 'Brúgðu botn-token frá OAuth & Permissions eftir at setja upp Slack-uppsetningina.',
-        placeholder: 'Líma Slack botn-token',
+        placeholder: 'Líma Slack botn-token'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack app-token',
         help: 'Brúðu app-lykli til Socket Mode.',
-        placeholder: 'Líma Slack app-lykli',
+        placeholder: 'Líma Slack app-lykli'
       },
       TELEGRAM_BOT_TOKEN: {
         help: 'Stovna ein bot við @BotFather, og lím tokenið tú fær.',
         placeholder: 'Lím Telegram bot token',
-        label: 'Bot-token',
+        label: 'Bot-token'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Leytt Telegram notendauðkenni',
-        help: 'Fráhent. Kommaseparerte tal-IDs frá @userinfobot. Um tú setur tað, kunnu eingin DM yvir botin.',
+        help: 'Fráhent. Kommaseparerte tal-IDs frá @userinfobot. Um tú setur tað, kunnu eingin DM yvir botin.'
       },
       TELEGRAM_PROXY: {
         help: 'Berre neyðugt á netum har Telegram er blokkerað.',
-        label: 'Proxy-URL',
+        label: 'Proxy-URL'
       },
       DISCORD_BOT_TOKEN: {
         help: 'Stovna ein app í Discord Developer Portal, legg bot, og lím tokenið.',
-        label: 'Bot-token',
+        label: 'Bot-token'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Leytt Discord notendauðkenni',
-        help: 'Fráhent. Kommaseparerte Discord notendauðkenni.',
+        help: 'Fráhent. Kommaseparerte Discord notendauðkenni.'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Tiltekn Slack notendadøttur',
-        help: 'Ráðlagt. Komma-umskild Slack notendadøttur.',
+        help: 'Ráðlagt. Komma-umskild Slack notendadøttur.'
       },
       MATTERMOST_URL: {
         label: 'Server-URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Bot-lykli',
+        label: 'Bot-lykli'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Tiltekn notendadøttur',
-        help: 'Ráðlagt. Komma-umskild Mattermost notendadøttur.',
+        help: 'Ráðlagt. Komma-umskild Mattermost notendadøttur.'
       },
       MATRIX_HOMESERVER: {
         label: 'Homeserver-URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Aðgangslykli',
+        label: 'Aðgangslykli'
       },
       MATRIX_USER_ID: {
         label: 'Bot notendadøttur',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Tiltekn Matrix notendadøttur',
-        help: 'Ráðlagt. Komma-umskild notendadøttur í @user:server formi.',
+        help: 'Ráðlagt. Komma-umskild notendadøttur í @user:server formi.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal-bro-URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL av eini laufandi signal-cli REST-bro.',
+        help: 'URL av eini laufandi signal-cli REST-bro.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Símanúmer',
-        help: 'Nummarið, sum er skráð í signal-cli-brúgini.',
+        help: 'Nummarið, sum er skráð í signal-cli-brúgini.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Loyptir Signal-brúkarar',
-        help: 'Mælt er til. Signal-ID, skild vi komma.',
+        help: 'Mælt er til. Signal-ID, skild vi komma.'
       },
       WHATSAPP_ENABLED: {
         label: 'Virkja WhatsApp-brúg',
-        help: 'Verður sett automatisk av milli niðanfor. Lat vera, nema tú vitst, at tú hevur brúk fyri.',
+        help: 'Verður sett automatisk av milli niðanfor. Lat vera, nema tú vitst, at tú hevur brúk fyri.'
       },
       WHATSAPP_MODE: {
-        label: 'Brúgarmáður',
+        label: 'Brúgarmáður'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Loyptir WhatsApp-brúkarar',
-        help: 'Mælt er til. Telefonnummar ella WhatsApp-ID, skild vi komma.',
-      },
+        help: 'Mælt er til. Telefonnummar ella WhatsApp-ID, skild vi komma.'
+      }
     },
     disabled: 'Óvirkt',
     unsavedChanges: 'Ólagðingar',
@@ -1380,7 +1418,8 @@ export const fo = defineLocale({
     openSetupGuide: 'Opna uppsetingarvegleiða',
     required: 'Kravst',
     recommended: 'Mælt við',
-    noTokenNeeded: 'Hesin platformi træn ikki token her. Brúka uppsetingarvegleiðuna oman og síðan aktivera hann niðurher.',
+    noTokenNeeded:
+      'Hesin platformi træn ikki token her. Brúka uppsetingarvegleiðuna oman og síðan aktivera hann niðurher.',
     enabled: 'Virkt',
     advanced: count => `Advanced (${count})`,
     clearField: key => `Clear ${key}`,
@@ -1394,8 +1433,7 @@ export const fo = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   fileMenu: {
     revealFinder: 'Sýna í Finder',
@@ -1410,7 +1448,7 @@ export const fo = defineLocale({
     renameLabel: 'Nýtt navn',
     deleteBody: 'Tað verður flyttið til roskaskápin — tú kanst endurheimta tað frá hesi.',
     pathCopied: 'Sti kopiert',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   webhooks: {
     deliverOptions: {
@@ -1419,7 +1457,7 @@ export const fo = defineLocale({
       log: 'Logg',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     search: 'Søk webhooks...',
     loading: 'Løsir webhooks...',
@@ -1427,7 +1465,8 @@ export const fo = defineLocale({
     hint: 'Ýtingar í abonnementum verða endurvísnar harðan, tá móttakarin renna. Deil abonnementum avvísa innkoma hendelser.',
     empty: 'Engin webhook-abonnement enn.',
     disabledTitle: 'Webhook-móttakari deilir',
-    disabledBody: 'Webhooks eru sín egna gateway-platforma. Virkt þær her at taka inn HTTP-hendelser; chatveðingar eru einar til at ein abonnement leverer til Telegram, Discord, Slack ella ein annor leið.',
+    disabledBody:
+      'Webhooks eru sín egna gateway-platforma. Virkt þær her at taka inn HTTP-hendelser; chatveðingar eru einar til at ein abonnement leverer til Telegram, Discord, Slack ella ein annor leið.',
     enable: 'Virkja webhooks',
     enabling: 'Virkjar...',
     enableRow: 'Virkja',
@@ -1474,7 +1513,7 @@ export const fo = defineLocale({
     deleteFailed: (name: string) => `Failed to delete "${name}"`,
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     close: 'Lukkir profílir',
@@ -1552,7 +1591,7 @@ export const fo = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   cron: {
     deliveryLabels: {
@@ -1560,7 +1599,7 @@ Leave blank to keep the ${mode} default.`,
       local: 'Þetta skjáborð',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     scheduleLabels: {
       daily: 'Dagligur',
@@ -1569,7 +1608,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Månadslegur',
       hourly: 'Tíðarlegur',
       'every-15-minutes': 'Hvert 15 minutt',
-      custom: 'Sérløg',
+      custom: 'Sérløg'
     },
     scheduleHints: {
       daily: 'Dagligur kl. 9:00',
@@ -1578,7 +1617,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Førsta dagur á hvørjum mánuð kl. 9:00',
       hourly: 'Øvst í hvørjum tíðar',
       'every-15-minutes': 'Hvert 15 minutt',
-      custom: 'Cron-syntaks ella náttúrulegt mál',
+      custom: 'Cron-syntaks ella náttúrulegt mál'
     },
     days: {
       '0': 'Sunnudagur',
@@ -1588,7 +1627,7 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Hósdagur',
       '5': 'Fríggjadagur',
       '6': 'Leygardagur',
-      '7': 'Sunnudagur',
+      '7': 'Sunnudagur'
     },
     close: 'Lukka cron',
     title: 'Tísettar uppgavir',
@@ -1601,11 +1640,12 @@ Leave blank to keep the ${mode} default.`,
       paused: 'í bið',
       disabled: 'óvirkin',
       error: 'feil',
-      completed: 'fullgilt',
+      completed: 'fullgilt'
     },
     topOfHour: 'Á topp av hvørjari tíma',
     newCron: 'Nýtt cron',
-    emptyDescNew: 'Set ein prompt til at koyra á ein cron-formulering. OpenAmer keyrir hann og førir úrslit til destinationina, tú velur.',
+    emptyDescNew:
+      'Set ein prompt til at koyra á ein cron-formulering. OpenAmer keyrir hann og førir úrslit til destinationina, tú velur.',
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
     everyDayAt: time => `Every day at ${time}`,
@@ -1671,7 +1711,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Create cron',
     tabs: {
       jobs: 'Jobs',
-      blueprints: 'Blueprints',
+      blueprints: 'Blueprints'
     },
     blueprints: {
       tab: 'Blueprints',
@@ -1685,8 +1725,8 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Loading blueprints...',
       failedLoad: 'Failed to load blueprints',
       emptyTitle: 'No blueprints available',
-      emptyDesc: 'No automation blueprints are available on this backend.',
-    },
+      emptyDesc: 'No automation blueprints are available on this backend.'
+    }
   },
   sidebar: {
     groupAriaUngrouped: 'Gruppera økurnar eftir arbeiðsrum',
@@ -1731,11 +1771,14 @@ Leave blank to keep the ${mode} default.`,
       removeFromSidebar: 'Goli frá síðublað',
       createFailed: 'Kundi ikki skapa projekt',
       removeWorktreeFailed: 'Gat ikki fjarlægja arbeiðsstræti (óinnskriftaðar broytingar?)',
-      removeWorktreeConfirm: 'Fjarlægja frá git (eyðlar arbeiðsstræti, greinin heldur seg), ella fela laneið frá sidebar og lat tað vera á disken.',
-      removeWorktreeDirty: 'Tað arbeiðsstræti hevur óinnskriftaðar broytingar. Tvinga fjarlægning (eyðlar broytingarnar), ella fela laneið og lat tað vera á disken.',
+      removeWorktreeConfirm:
+        'Fjarlægja frá git (eyðlar arbeiðsstræti, greinin heldur seg), ella fela laneið frá sidebar og lat tað vera á disken.',
+      removeWorktreeDirty:
+        'Tað arbeiðsstræti hevur óinnskriftaðar broytingar. Tvinga fjarlægning (eyðlar broytingarnar), ella fela laneið og lat tað vera á disken.',
       forceRemove: 'Tvinga fjarlægning',
       back: 'Allar verk',
-      staleBackend: 'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
+      staleBackend:
+        'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
       deleteConfirm: 'This removes the saved project from OpenAmer. Files, git repos, and worktrees stay untouched.',
       startWork: 'New worktree',
       newWorktreeTitle: 'New worktree',
@@ -1758,7 +1801,7 @@ Leave blank to keep the ${mode} default.`,
       removeWorktree: 'Remove worktree',
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     loading: 'Hent…',
     loadMore: 'Hent meira',
@@ -1793,13 +1836,13 @@ Leave blank to keep the ${mode} default.`,
       ageNow: 'now',
       ageDay: 'd',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     nav: {
       'new-session': 'New session',
       skills: 'Capabilities',
       messaging: 'Messaging',
-      artifacts: 'Artifacts',
+      artifacts: 'Artifacts'
     },
     searchAria: 'Search sessions',
     searchPlaceholder: 'Search sessions…',
@@ -1818,8 +1861,8 @@ Leave blank to keep the ${mode} default.`,
       yesterday: 'Yesterday',
       thisWeek: 'Earlier this week',
       lastWeek: 'Last week',
-      thisMonth: 'Earlier this month',
-    },
+      thisMonth: 'Earlier this month'
+    }
   },
   composer: {
     snippetsTitle: 'Prompt‑snippir',
@@ -1830,18 +1873,18 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'Kóða‑skoðan',
         description: 'Reikna núverandi broytingu fyri at finna afturkalla, tapte kantfall og manglar prófunir.',
-        text: 'Vinaliga skoðaður hetta fyri buggar, afturkalla og manglar prófunir.',
+        text: 'Vinaliga skoðaður hetta fyri buggar, afturkalla og manglar prófunir.'
       },
       implementationPlan: {
         label: 'Implementeringsplan',
         description: 'Skildur ein áferð før at berra kóða, so diffin heldur fokuserað.',
-        text: 'Vinaliga ger eina korta implementeringsplan før at berra kóða.',
+        text: 'Vinaliga ger eina korta implementeringsplan før at berra kóða.'
       },
       explainThis: {
         label: 'Útskýrðu hetta',
         description: 'Ganga gjennom valda kóða og linka til nøkkelfílar.',
-        text: 'Vinaliga útskýrðu korrekte og vís til nøkkelfílar.',
-      },
+        text: 'Vinaliga útskýrðu korrekte og vís til nøkkelfílar.'
+      }
     },
     editingInComposer: 'Verður redigert í ritara',
     editingQueuedInComposer: 'Verður redigert í ritara í biðrøðu',
@@ -1852,7 +1895,8 @@ Leave blank to keep the ${mode} default.`,
     queueResume: 'Halda fram',
     queueResumeTip: 'Støðgilt við Stop — halda fram við at sendinga tey í biðrøðu',
     queueStuckTitle: 'Løg til sendingar ikki send',
-    queueStuckBody: 'Ein samrøra í biðrøðu hevur ikki klárað at senda. Hon er enn í biðrøðuni — roynd at senda hana aftur.',
+    queueStuckBody:
+      'Ein samrøra í biðrøðu hevur ikki klárað at senda. Hon er enn í biðrøðuni — roynd at senda hana aftur.',
     previewUnavailable: 'Forhåndssjón ikki tøk',
     dictating: 'Diktering',
     preparingAudio: 'Útbúar ljóð',
@@ -1898,7 +1942,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'endurvaka undanari sessjón',
       '/details': 'stýra nøgvum á frammistøðisupplýsing',
       '/copy': 'kopiera val eða seinasta assistentsvar',
-      '/quit': 'lukka OpenAmer',
+      '/quit': 'lukka OpenAmer'
     },
     hotkeyDescs: {
       'composer.mention': 'tilvísanfilir, mappir, URL-ir, git',
@@ -1908,7 +1952,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'senda næsta í biðingu varmá',
       'keybinds.openPanel': 'øll ørkeystaleiðir',
       'composer.cancel': 'lukka popover · stoppa koyring',
-      'composer.history': 'skipta um popover / søgu',
+      'composer.history': 'skipta um popover / søgu'
     },
     attachUrlTitle: 'Hengja URL við',
     attachUrlDesc: 'OpenAmer fer síðuna og tekur við henni sambúti fyri hesari.',
@@ -1926,7 +1970,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -1935,7 +1979,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     startVoice: 'Start voice conversation',
     queueMessage: 'Queue message',
@@ -1952,7 +1996,7 @@ Leave blank to keep the ${mode} default.`,
     previewLabel: label => `Preview ${label}`,
     couldNotPreview: label => `Could not preview ${label}`,
     removeAttachment: label => `Remove ${label}`,
-    url: 'URL…',
+    url: 'URL…'
   },
   statusStack: {
     agents: 'Aðilar',
@@ -1975,8 +2019,10 @@ Leave blank to keep the ${mode} default.`,
       viewAsList: 'Skoða sum lista',
       revert: 'Endursetja',
       revertAll: 'Endursetja alt',
-      revertConfirm: 'Gera frá hendi breytingar á hesi fíl og endursetja hana til innskráðrar ástand? Hetta kann ikki vera afturkast.',
-      revertAllConfirm: 'Gera frá hendi allar breytingar og endursetja fílur til innskráðrar ástand? Hetta kann ikki vera afturkast.',
+      revertConfirm:
+        'Gera frá hendi breytingar á hesi fíl og endursetja hana til innskráðrar ástand? Hetta kann ikki vera afturkast.',
+      revertAllConfirm:
+        'Gera frá hendi allar breytingar og endursetja fílur til innskráðrar ástand? Hetta kann ikki vera afturkast.',
       staged: 'Staðlað',
       noChanges: 'Engar breytingar',
       notRepo: 'Eitt git-repositor',
@@ -1992,7 +2038,8 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'Opna PR',
       ghMissing: 'Installera GitHub CLI (gh) og logg inn fyri at opna PR',
       agentShip: 'Bid OpenAmer um at opna PR',
-      agentShipPrompt: 'Skoða núverandi breytingar, leggja tær á við einum greinum conventional-commit-løgi, pusha greinina og opna pull request.',
+      agentShipPrompt:
+        'Skoða núverandi breytingar, leggja tær á við einum greinum conventional-commit-løgi, pusha greinina og opna pull request.',
       newBranch: 'Nýggj grein',
       changed: count => `${count} changed`,
       ahead: count => `${count} ahead`,
@@ -2001,12 +2048,12 @@ Leave blank to keep the ${mode} default.`,
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
       switchFailed: branch => `Could not switch to ${branch}`,
-      worktrees: 'Worktrees',
+      worktrees: 'Worktrees'
     },
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     applyStatus: {
@@ -2015,11 +2062,12 @@ Leave blank to keep the ${mode} default.`,
       pulling: 'Backend updating…',
       restarting: 'Backend restarting to load the update…',
       notAvailable: 'Update not available for this backend.',
-      failed: 'Backend update failed.',
+      failed: 'Backend update failed.'
     },
     appErrors: {
-      updateLocked: 'Uppdatering broytt: ein annan OpenAmer-vindu ella ein terminal, ið keyrir openamer, heldur installeringu opna. Lat tað stansa og royna aftur.',
-      updateFailed: 'Uppdateringin kom ikki til fullt. Orð ikki — eingin tap. Tú kanst royna aftur nú.',
+      updateLocked:
+        'Uppdatering broytt: ein annan OpenAmer-vindu ella ein terminal, ið keyrir openamer, heldur installeringu opna. Lat tað stansa og royna aftur.',
+      updateFailed: 'Uppdateringin kom ikki til fullt. Orð ikki — eingin tap. Tú kanst royna aftur nú.'
     },
     stages: {
       idle: 'Getting ready…',
@@ -2033,7 +2081,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'Update complete',
       manual: 'Update from your terminal',
       guiSkew: 'Update the desktop app',
-      error: 'Update paused',
+      error: 'Update paused'
     },
     checking: 'Looking for updates…',
     checkFailedTitle: 'Couldn’t check for updates',
@@ -2053,19 +2101,23 @@ Leave blank to keep the ${mode} default.`,
     maybeLater: 'Maybe later',
     moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
     manualTitle: 'Update from your terminal',
-    manualBody: 'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
+    manualBody:
+      'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
     manualPickedUp: 'OpenAmer will pick up the new version next time you launch it.',
     guiSkewTitle: 'Update the desktop app',
-    guiSkewBody: 'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
+    guiSkewBody:
+      'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
     copy: 'Copy',
     copied: 'Copied',
     done: 'Done',
-    applyingBody: 'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
-    applyingBodyBackend: 'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
+    applyingBody:
+      'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
+    applyingBodyBackend:
+      'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
     applyingClose: 'This window will close while the update runs, then OpenAmer reopens on its own.',
     errorTitle: 'Update didn’t finish',
     errorBody: 'No worries — nothing was lost. You can try again now.',
-    notNow: 'Not now',
+    notNow: 'Not now'
   },
   install: {
     stageStates: {
@@ -2073,7 +2125,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'Installerar',
       succeeded: 'Ferdig',
       skipped: 'Hoppað',
-      failed: 'Miseyd',
+      failed: 'Miseyd'
     },
     oneTimeTitle: 'OpenAmer tørvar eina einganga-installering',
     installCommand: 'Install-kommando',
@@ -2082,10 +2134,12 @@ Leave blank to keep the ${mode} default.`,
     installTo: 'Vist installera til',
     retryAfterRun: 'Eg har keyrt tað — royna aftur',
     setupChoiceTitle: 'Set upp OpenAmer Desktop',
-    setupChoiceDesc: 'Tengdu hesi app til ein OpenAmer-gateway, tú hevur altíð keyrt, ella installer OpenAmer lokalt á hesi maskini.',
+    setupChoiceDesc:
+      'Tengdu hesi app til ein OpenAmer-gateway, tú hevur altíð keyrt, ella installer OpenAmer lokalt á hesi maskini.',
     connectExistingTitle: 'Tengdu til eksisterandi OpenAmer',
     connectExistingShort: 'Tengdu eksisterandi',
-    connectExistingDesc: 'Brúka ein fjartengda bakgrunnstøð við einu øktatoken ella browser-innskráning. Ein lokál installeringur startar ikki.',
+    connectExistingDesc:
+      'Brúka ein fjartengda bakgrunnstøð við einu øktatoken ella browser-innskráning. Ein lokál installeringur startar ikki.',
     installLocalTitle: 'Installer OpenAmer lokalt',
     incompleteTokenTest: 'Skriva inn øktatoken før test.',
     testConnection: 'Testa samband',
@@ -2094,8 +2148,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Installation mislukkandi',
     settingUpTitle: 'Set upp OpenAmer Agent',
     finishingTitle: 'Fullføra',
-    failedDesc: 'Ein av installasjonstrinnunum mislukkandi. På Windows ger tað seg, um ein annan OpenAmer CLI- eller desktop-instans er í gangi. Stoppar allar kjørandi OpenAmer-instansir og prúa aftur. Skoðaðu detaljur neðrá ella desktop-loggen fyri fulla skrift.',
-    activeDesc: 'Hetta er ein ein-gongur uppsetning. OpenAmer-installerin lastar niður afhendingar og stillar upp tín maskini. Næstu startir skipar hetta stigin.',
+    failedDesc:
+      'Ein av installasjonstrinnunum mislukkandi. På Windows ger tað seg, um ein annan OpenAmer CLI- eller desktop-instans er í gangi. Stoppar allar kjørandi OpenAmer-instansir og prúa aftur. Skoðaðu detaljur neðrá ella desktop-loggen fyri fulla skrift.',
+    activeDesc:
+      'Hetta er ein ein-gongur uppsetning. OpenAmer-installerin lastar niður afhendingar og stillar upp tín maskini. Næstu startir skipar hetta stigin.',
     fetchingManifest: 'Hent installer manifest...',
     error: 'Villa',
     hideOutput: 'Goym installer-útgang',
@@ -2107,11 +2163,13 @@ Leave blank to keep the ${mode} default.`,
     copiedOutput: 'Kopíerað!',
     copyOutput: 'Kopíera útgang',
     reloadRetry: 'Endurloða og prúa aftur',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     installLocalDesc: 'Download OpenAmer, create its Python environment, and run the backend on this computer.',
     localStartUnavailable: 'Local installation could not start. Restart OpenAmer Desktop and try again.',
     remoteSetupTitle: 'Connect to existing OpenAmer',
-    remoteSetupDesc: 'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
+    remoteSetupDesc:
+      'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
     remoteUrlTitle: 'Gateway URL',
     remoteUrlDesc: 'Use the base URL of the OpenAmer gateway, including https:// when remote.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2133,34 +2191,35 @@ Leave blank to keep the ${mode} default.`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     apiKeyOptions: {
       gemini: {
         short: 'Gemini-Model',
-        description: 'Umum tilgang til Google Gemini-Model',
+        description: 'Umum tilgang til Google Gemini-Model'
       },
       xai: {
         short: 'Grok-Model',
-        description: 'Umum tilgang til xAI Grok-Model',
+        description: 'Umum tilgang til xAI Grok-Model'
       },
       local: {
         short: 'Sjálvvirkað',
-        description: 'Stilla OpenAmer til lokalt eller sjálvvirkt OpenAI-samsvarandi endpoint (vLLM, llama.cpp, Ollama, o.s.frv.)',
+        description:
+          'Stilla OpenAmer til lokalt eller sjálvvirkt OpenAI-samsvarandi endpoint (vLLM, llama.cpp, Ollama, o.s.frv.)'
       },
       fireworks: {
         short: 'bein leið til modela-API',
-        description: 'Bein atgong til modellar hýstir av Fireworks AI.',
+        description: 'Bein atgong til modellar hýstir av Fireworks AI.'
       },
       openrouter: {
         short: 'ein lykill, margir modellar',
-        description: 'Hýstir hundrað modellar aftan fyri ein lykil. Góður standardur til nýggja installeringar.',
+        description: 'Hýstir hundrað modellar aftan fyri ein lykil. Góður standardur til nýggja installeringar.'
       },
       openai: {
         short: 'GPT-flokksmodellar',
-        description: 'Bein atgong til OpenAI-modellar.',
-      },
+        description: 'Bein atgong til OpenAI-modellar.'
+      }
     },
     backToSignIn: 'Til baka til innskrivni',
     getKey: 'Fá ein lykil',
@@ -2173,7 +2232,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'Opnar yvirvísara til innskrivni, síðar heldur áfram her',
       device_code: 'Opnar ein verifikasjónssíðu í yvirvísara — OpenAmer tengir sjálfkrafa',
-      external: 'Skrá inn ein gong í terminal, síðar kom aftur til samrøður',
+      external: 'Skrá inn ein gong í terminal, síðar kom aftur til samrøður'
     },
     signInFailed: 'Innskrivning mislukkin. Reynir aftur.',
     pickDifferentProvider: 'Vel ein annan leverandør',
@@ -2211,12 +2270,14 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     pro: 'Pro',
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   billingBlock: {
     dismiss: 'Henda',
@@ -2224,7 +2285,7 @@ Leave blank to keep the ${mode} default.`,
     fallbackMessage: 'Talan hjá tær er uttøka. Legg til krediter at halda áfram.',
     openBilling: 'Opna greiðslu',
     addCredits: 'Legg til krediter',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Goym síðublað',
@@ -2241,7 +2302,7 @@ Leave blank to keep the ${mode} default.`,
     openStarmap: 'Opna minnisgraf',
     openKeybinds: 'Tastatøkur',
     layoutEditor: 'Layout ritari',
-    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout',
+    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout'
   },
   boot: {
     failure: {
@@ -2253,9 +2314,11 @@ Leave blank to keep the ${mode} default.`,
       signInToRemoteGateway: 'Innskrá í fjartengda gateway',
       identityProvider: 'Dín identitets-tilveita',
       title: 'OpenAmer kunde ikki byrja',
-      description: 'Bakgrundsgáttin kom ikki upp. Royn eitt av endurvætingarstigunum niðanfyri. Ekkis hetta slettar tey chats ella stillingarnar tínar.',
+      description:
+        'Bakgrundsgáttin kom ikki upp. Royn eitt av endurvætingarstigunum niðanfyri. Ekkis hetta slettar tey chats ella stillingarnar tínar.',
       remoteTitle: 'Innskráning í fjarlæga gátt er neyðig',
-      remoteDescription: 'Setan á fjarlægu gáttini er útgulgin. Innskránast aftur fyri at sambandið skal endurvæðast. Ekkis hetta slettar tey chats ella stillingarnar tínar.',
+      remoteDescription:
+        'Setan á fjarlægu gáttini er útgulgin. Innskránast aftur fyri at sambandið skal endurvæðast. Ekkis hetta slettar tey chats ella stillingarnar tínar.',
       retry: 'Roya aftur',
       repairInstall: 'Viðgerð av installering',
       useLocalGateway: 'Brúka lokalu gátt',
@@ -2264,11 +2327,13 @@ Leave blank to keep the ${mode} default.`,
       openLogs: 'Opna logg',
       repairHint: 'Viðgerðin rennar installeringina upp á nýggjum og kann taka nøkur minuttir á nýggjum eindarværi.',
       signOutAndSignIn: 'Útskráning og innskráning',
-      remoteFailureHint: 'Kanna URL-gáttina og innskráningina undir stillingar fyri gáttina, ella skift til lokalu gáttina.',
+      remoteFailureHint:
+        'Kanna URL-gáttina og innskráningina undir stillingar fyri gáttina, ella skift til lokalu gáttina.',
       hideRecentLogs: 'Skjul nýggj logg',
       showRecentLogs: 'Vís nýggj logg',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
     ready: 'OpenAmer Desktop er klár',
     steps: {
@@ -2276,7 +2341,7 @@ Leave blank to keep the ${mode} default.`,
       loadingSettings: 'Loysi OpenAmer stillingar',
       loadingSessions: 'Loysi nýliga øðrum øktir',
       startingDesktopConnection: 'Starta desktop samband',
-      startingOpenAmerDesktop: 'Starta OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Starta OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'OpenAmer bakgrunnsprosessur har farið út.',
@@ -2285,9 +2350,9 @@ Leave blank to keep the ${mode} default.`,
       desktopBootFailed: 'Skrivstovurin startaði ikki',
       gatewayConnectionLost: 'Sambandið við gáttina mistið',
       gatewaySignInRequired: 'Innskráning í gátt er neyðig',
-      ipcBridgeUnavailable: 'IPC-brúg er ikki tilgjengelig.',
+      ipcBridgeUnavailable: 'IPC-brúg er ikki tilgjengelig.'
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   assistant: {
     tool: {
@@ -2312,123 +2377,123 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Koyrt',
         running: 'Í gongu',
         ranCode: 'Koyrt kodu',
-        runningCode: 'Skripting',
+        runningCode: 'Skripting'
       },
       prefixes: {
         browser: 'Netbrýv',
-        web: 'Net',
+        web: 'Net'
       },
       titles: {
         browser_click: {
           done: 'Klikkti á element á síðu',
           pending: 'Klikkir á element á síðu',
-          pendingAction: 'Klikkir',
+          pendingAction: 'Klikkir'
         },
         browser_fill: {
           done: 'Útfylti formfälti',
           pending: 'Fyldir formfälti',
-          pendingAction: 'Fyldir',
+          pendingAction: 'Fyldir'
         },
         browser_navigate: {
           done: 'Opnaði síðu',
           pending: 'Opnir síðu',
-          pendingAction: 'Opnar',
+          pendingAction: 'Opnar'
         },
         browser_snapshot: {
           done: 'Tók mynd av síðu',
           pending: 'Tekur mynd av síðu',
-          pendingAction: 'Tekur',
+          pendingAction: 'Tekur'
         },
         browser_take_screenshot: {
           done: 'Tók skjermmyndu',
           pending: 'Tekur skjermmyndu',
-          pendingAction: 'Tekur',
+          pendingAction: 'Tekur'
         },
         browser_type: {
           done: 'Skrivaði á síðu',
           pending: 'Skrivar á síðu',
-          pendingAction: 'Typing',
+          pendingAction: 'Typing'
         },
         clarify: {
           done: 'Asked a question',
           pending: 'Asking a question',
-          pendingAction: 'Asking',
+          pendingAction: 'Asking'
         },
         cronjob: {
           done: 'Cron job',
           pending: 'Scheduling cron job',
-          pendingAction: 'Scheduling',
+          pendingAction: 'Scheduling'
         },
         edit_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
+          pendingAction: 'Editing'
         },
         execute_code: {
           done: 'Ran code',
           pending: 'Scripting',
-          pendingAction: 'Scripting',
+          pendingAction: 'Scripting'
         },
         image_generate: {
           done: 'Generated image',
           pending: 'Generating image',
-          pendingAction: 'Generating',
+          pendingAction: 'Generating'
         },
         list_files: {
           done: 'Listed files',
           pending: 'Listing files',
-          pendingAction: 'Listing',
+          pendingAction: 'Listing'
         },
         patch: {
           done: 'Patched file',
           pending: 'Patching file',
-          pendingAction: 'Patching',
+          pendingAction: 'Patching'
         },
         read_file: {
           done: 'Read file',
           pending: 'Reading file',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         search_files: {
           done: 'Searched files',
           pending: 'Searching files',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         session_search_recall: {
           done: 'Searched session history',
           pending: 'Searching session history',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         terminal: {
           done: 'Ran command',
           pending: 'Running command',
-          pendingAction: 'Running',
+          pendingAction: 'Running'
         },
         todo: {
           done: 'Updated todos',
           pending: 'Updating todos',
-          pendingAction: 'Updating',
+          pendingAction: 'Updating'
         },
         vision_analyze: {
           done: 'Analyzed image',
           pending: 'Analyzing image',
-          pendingAction: 'Analyzing',
+          pendingAction: 'Analyzing'
         },
         web_extract: {
           done: 'Read webpage',
           pending: 'Reading webpage',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         web_search: {
           done: 'Searched web',
           pending: 'Searching web',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         write_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
-        },
+          pendingAction: 'Editing'
+        }
       },
       code: 'Code',
       copyCode: 'Copy code',
@@ -2448,14 +2513,15 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
     },
     thread: {
       loadingSession: 'Loading session',
       showEarlier: 'Show earlier messages',
       loadingResponse: 'OpenAmer is loading a response',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Thinking',
@@ -2478,12 +2544,13 @@ Leave blank to keep the ${mode} default.`,
       restoreCheckpoint: 'Restore checkpoint',
       restoreFromHere: 'Restore checkpoint — rerun from this prompt',
       restoreTitle: 'Restore to this checkpoint?',
-      restoreBody: 'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
+      restoreBody:
+        'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
       restoreConfirm: 'Restore & rerun',
       restoreNext: 'Restore next checkpoint',
       goForward: 'Go forward',
       sendEdited: 'Send edited message',
-      attachingFile: 'Attaching…',
+      attachingFile: 'Attaching…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2496,8 +2563,9 @@ Leave blank to keep the ${mode} default.`,
       jumpToApproval: 'Approval needed',
       reject: 'Reject',
       alwaysTitle: 'Always allow this command?',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
-      alwaysAllow: 'Always allow',
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysAllow: 'Always allow'
     },
     clarify: {
       notReady: 'Clarify request is not ready yet',
@@ -2511,8 +2579,8 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'Continue',
       lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
       lateAnswerTip: 'Draft this answer as a follow-up message',
-      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.',
-    },
+      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.'
+    }
   },
   ui: {
     pagination: {
@@ -2520,16 +2588,16 @@ Leave blank to keep the ${mode} default.`,
       previousAria: 'Gá til fyrri síðu',
       next: 'Næsta',
       nextAria: 'Gá til næstu síðu',
-      label: 'pagination',
+      label: 'pagination'
     },
     sidebar: {
       title: 'Sidebalk',
       description: 'Vísir mobil-sidebalkin.',
-      toggle: 'Umskipt sidebalk',
+      toggle: 'Umskipt sidebalk'
     },
     search: {
-      clear: 'Clear search',
-    },
+      clear: 'Clear search'
+    }
   },
   modelPicker: {
     title: 'Skrifa um model',
@@ -2545,7 +2613,7 @@ Leave blank to keep the ${mode} default.`,
     freeTier: 'Ókyndingarstig',
     priceTitle: 'Inn- og útgongspris per milljón tokens',
     wasPrice: 'var',
-    pro: 'Pro',
+    pro: 'Pro'
   },
   preview: {
     console: {
@@ -2566,7 +2634,7 @@ Leave blank to keep the ${mode} default.`,
       messages: count => `${count} console messages`,
       resize: 'Resize preview console',
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Forsøysappan fekk atsaka í gongu',
@@ -2587,9 +2655,11 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'Løsi forsøyið upp nú.',
       restartFailedTitle: 'Endurbyrjan av forsøysserverini fekk atsaka',
       restartFailedMessage: 'OpenAmer kunde ikki endurbyrja serverin.',
-      stillWorking: 'OpenAmer arbeðir enn, men úrslit av endurbyrjan er ikki komið enn. Serverommælið kann vera í gongu á framsíðuni.',
+      stillWorking:
+        'OpenAmer arbeðir enn, men úrslit av endurbyrjan er ikki komið enn. Serverommælið kann vera í gongu á framsíðuni.',
       workspaceReloading: 'Arbeidsøkið broytt, løsi forsøyið upp',
-      moduleMimeDescription: 'Modulscript eru serverað við tevri MIME-típi. Hetta merkir vanliga at ein statisk filserver serverar eina Vite/React-app í staðin fyri verkið eigin devserver.',
+      moduleMimeDescription:
+        'Modulscript eru serverað við tevri MIME-típi. Hetta merkir vanliga at ein statisk filserver serverar eina Vite/React-app í staðin fyri verkið eigin devserver.',
       unreachableDescription: 'Forsøyssíðan kunde ikki nálast.',
       fallbackTitle: 'Forsøy',
       lookingRestart: taskId => `OpenAmer is looking for a preview server to restart (${taskId})`,
@@ -2600,7 +2670,7 @@ Leave blank to keep the ${mode} default.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     tab: 'Preview',
     closeTab: label => `Close ${label}`,
@@ -2633,9 +2703,10 @@ Leave blank to keep the ${mode} default.`,
     unsavedChanges: 'Unsaved changes',
     saveFailed: message => `Couldn't save: ${message}`,
     diskChangedTitle: 'File changed on disk',
-    diskChangedBody: 'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
+    diskChangedBody:
+      'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
     overwrite: 'Overwrite',
-    discardReload: 'Discard & reload',
+    discardReload: 'Discard & reload'
   },
   zones: {
     showHeader: 'Vís høvd',
@@ -2643,7 +2714,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Minimer',
     restore: 'Endurstilla',
     closeRunningTitle: 'Loka fíl í gongu?',
-    closeRunningBody: 'Hesin chat er enn í gongu (ella bíðar eftir innputinið þitt). At loka fílunum skjølir hana — gongin heldur framdrætt sínum og kann opnaast aftan frá sidebardin.',
+    closeRunningBody:
+      'Hesin chat er enn í gongu (ella bíðar eftir innputinið þitt). At loka fílunum skjølir hana — gongin heldur framdrætt sínum og kann opnaast aftan frá sidebardin.',
     closeRunningConfirm: 'Loka fíl',
     closeOthers: 'Loka øðrum',
     closeToRight: 'Close to the right',
@@ -2680,11 +2752,12 @@ Leave blank to keep the ${mode} default.`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
     saveApply: 'Save & apply',
     notExpressible: 'this arrangement interlocks (pinwheel) — not expressible as nested splits yet',
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   desktop: {
     resumeStrandedTitle: 'Kundi ikki hlaða upp hetta skeiðið',
-    resumeStrandedBody: 'Tengingin við skeiðið feilaði, og automatiskar endurtýningar gábu upp. Kannað um gatewayin kørir, og roynd so ein.',
+    resumeStrandedBody:
+      'Tengingin við skeiðið feilaði, og automatiskar endurtýningar gábu upp. Kannað um gatewayin kørir, og roynd so ein.',
     resumeRetry: 'Endurtýna',
     nothingToBranch: 'Ekkja at greina frá',
     branchNeedsChat: 'Byrja ellaur halda fram chat áðrenn du greinir frá.',
@@ -2723,7 +2796,7 @@ Leave blank to keep the ${mode} default.`,
       timedOut: 'Tíðar svartaði á at bíta eftir gateway. Er `openamer gateway` kørir?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     audioReadFailed: 'Could not read recorded audio',
     sessionUnavailable: 'Session unavailable',
@@ -2739,7 +2812,8 @@ Leave blank to keep the ${mode} default.`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Could not toggle YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     unknownProfile: 'Unknown profile',
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
@@ -2749,17 +2823,18 @@ Leave blank to keep the ${mode} default.`,
     regenerateFailed: 'Regenerate failed',
     editFailed: 'Edit failed',
     resumeFailed: 'Resume failed',
-    branchTitle: n => `Draft: Branch #${n}`,
+    branchTitle: n => `Draft: Branch #${n}`
   },
   errors: {
     genericFailure: 'Nakað gekk mis',
     boundaryTitle: 'Nakað brýt í grunninum',
     boundaryDesc: 'Síggin feil í eina serit upp. Ditt chat og tínar stillingar eru trygg.',
     reloadWindow: 'Reload window',
-    openLogs: 'Open logs',
+    openLogs: 'Open logs'
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
   },
   artifacts: {
     search: 'Search artifacts...',
@@ -2793,13 +2868,13 @@ Leave blank to keep the ${mode} default.`,
     kindLink: 'link',
     chat: 'Chat',
     copyUrl: 'Copy URL',
-    copyPath: 'Copy path',
+    copyPath: 'Copy path'
   },
   modelVisibility: {
     title: 'Models',
     search: 'Search models',
     noAuthenticatedProviders: 'No authenticated providers.',
-    addProvider: 'Add provider…',
+    addProvider: 'Add provider…'
   },
   shell: {
     windowControls: 'Window controls',
@@ -2810,7 +2885,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'No models found',
       editModels: 'Edit Models…',
       refreshModels: 'Refresh Models',
-      fast: 'Fast',
+      fast: 'Fast'
     },
     modelOptions: {
       noOptions: 'No options for this model',
@@ -2826,7 +2901,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'Max',
       ultra: 'Ultra',
       updateFailed: 'Model option update failed',
-      fastFailed: 'Fast mode update failed',
+      fastFailed: 'Fast mode update failed'
     },
     gatewayMenu: {
       gateway: 'Gateway',
@@ -2841,7 +2916,7 @@ Leave blank to keep the ${mode} default.`,
       connection: label => `Connection: ${label}`,
       recentActivity: 'Recent activity',
       viewAllLogs: 'View all logs →',
-      messagingPlatforms: 'Messaging platforms',
+      messagingPlatforms: 'Messaging platforms'
     },
     approvalMode: {
       title: 'Approval mode',
@@ -2851,7 +2926,7 @@ Leave blank to keep the ${mode} default.`,
       smart: 'Smart',
       smartDescription: 'Automatically assess actions and ask when needed',
       off: 'Off',
-      offDescription: 'Run without approval prompts',
+      offDescription: 'Run without approval prompts'
     },
     statusbar: {
       unknown: 'unknown',
@@ -2907,13 +2982,13 @@ Leave blank to keep the ${mode} default.`,
           skills: 'Skills',
           subagent_definitions: 'Subagent definitions',
           system_prompt: 'System prompt',
-          tool_definitions: 'Tool definitions',
+          tool_definitions: 'Tool definitions'
         },
         empty: 'No context data yet',
         loading: 'Loading breakdown…',
         percentFull: percent => `${percent}% Full`,
         title: 'Context Usage',
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Open context usage breakdown',
       session: 'Session',
@@ -2926,8 +3001,8 @@ Leave blank to keep the ${mode} default.`,
       openModelPicker: 'Open model picker',
       modelPinned: 'pinned by you; new chats use this instead of the Settings default',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Right sidebar',
@@ -2963,7 +3038,7 @@ Leave blank to keep the ${mode} default.`,
     terminalNew: 'New terminal',
     terminalCloseOthers: 'Close others',
     terminalCloseAll: 'Close all',
-    addToChat: 'Add to chat',
+    addToChat: 'Add to chat'
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2974,6 +3049,6 @@ Leave blank to keep the ${mode} default.`,
     sudoPlaceholder: 'sudo password',
     secretTitle: 'Secret required',
     secretDesc: 'OpenAmer needs a credential to continue.',
-    secretPlaceholder: 'secret value',
-  },
+    secretPlaceholder: 'secret value'
+  }
 })

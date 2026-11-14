@@ -45,7 +45,7 @@ export const iu = defineLocale({
     update: 'ᓄᑖᙳᖅᑎᓗᒍ',
     on: 'ᐱᓕᕆᔪᖅ',
     off: 'ᐱᓕᕆᔪᙱᑦᑐᖅ',
-    tryHint: term => `Try “${term}”`,
+    tryHint: term => `Try “${term}”`
   },
   fileMenu: {
     revealFinder: 'Finder-ᒥ ᓇᓗᓇᐃᖅᑎᓗᒍ',
@@ -60,7 +60,7 @@ export const iu = defineLocale({
     renameLabel: 'Atiq nutaaq',
     deleteBody: 'Piiqarvimmut nuunniqtaaq — taakaniit utiqtippassuk.',
     pathCopied: 'Aqqut aajjiliuqtaq',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   boot: {
     ready: 'OpenAmer Qarasaujaq atuinnaqtuq',
@@ -69,7 +69,7 @@ export const iu = defineLocale({
       loadingSettings: 'OpenAmer aturtautit iliutitaq',
       loadingSessions: 'Makkani pijunnautit iliutitaq',
       startingDesktopConnection: 'Qarasaujaq katattautitaq piqataq',
-      startingOpenAmerDesktop: 'OpenAmer Qarasaujaq piqataq…',
+      startingOpenAmerDesktop: 'OpenAmer Qarasaujaq piqataq…'
     },
     errors: {
       backgroundExited: 'OpenAmer tunuliaqutip aulajaaq anijuq.',
@@ -78,13 +78,15 @@ export const iu = defineLocale({
       desktopBootFailed: 'Qarasaujaq piqataq ajurittuq',
       gatewayConnectionLost: 'Gateway-mut attaveqaqtunngit',
       gatewaySignInRequired: 'Gateway-mut isertussaujuq',
-      ipcBridgeUnavailable: 'Qaritaujarmi IPC bridge atuunngittuq.',
+      ipcBridgeUnavailable: 'Qaritaujarmi IPC bridge atuunngittuq.'
     },
     failure: {
       title: 'OpenAmer aallarsinngittuq',
-      description: 'Tunuliaq gateway piqputaasimanngittuq. Atani qanurliinirmut misilittuuq. Uvaniit iqqaumavait qanurliillu piiaqsimanngillat.',
+      description:
+        'Tunuliaq gateway piqputaasimanngittuq. Atani qanurliinirmut misilittuuq. Uvaniit iqqaumavait qanurliillu piiaqsimanngillat.',
       remoteTitle: 'Ungasittuq gateway-mut isertussaujuq',
-      remoteDescription: 'Ungasittuq gateway-mut session-rit nungusimajuq. Attaveqaqtinniaq... isertitsivik. Uvaniit iqqaumavait qanurliillu piiaqsimanngillat.',
+      remoteDescription:
+        'Ungasittuq gateway-mut session-rit nungusimajuq. Attaveqaqtinniaq... isertitsivik. Uvaniit iqqaumavait qanurliillu piiaqsimanngillat.',
       retry: 'Misilittuuq',
       repairInstall: 'Naammaktittiniq iliunniq',
       useLocalGateway: 'Nunami gateway aturit',
@@ -93,7 +95,8 @@ export const iu = defineLocale({
       openLogs: 'Log-it matuit',
       repairHint: 'Naammaktittiniq installer-mik aallartittuq, nutaamik qaritaujarmi minutit atuinnaq.',
       signOutAndSignIn: 'Anitsivik & isertitsivik',
-      remoteFailureHint: 'Gateway URL-ti isertitsivillu Gateway nalliutisiriniq-imi takukkit, immaqaa nunami gateway-mut nuuttit.',
+      remoteFailureHint:
+        'Gateway URL-ti isertitsivillu Gateway nalliutisiriniq-imi takukkit, immaqaa nunami gateway-mut nuuttit.',
       hideRecentLogs: 'Log-it qanurliittut tittusit',
       showRecentLogs: 'Log-it qanurliittut takutit',
       signedInTitle: 'Isertitsisimajuq',
@@ -103,10 +106,11 @@ export const iu = defineLocale({
       signInFailed: 'ᐃᓚᓕᐅᕐᓂᖅ ᐱᔭᕇᙱᑦᑐᖅ',
       signInToRemoteGateway: 'ᐃᓚᓕᐅᕐᓗᑎᑦ ᖃᓄᖅᑕᐅᙱᑦᑐᒧᑦ ᐊᑯᓐᓂᓕᕆᔨᒧᑦ',
       identityProvider: 'ᑭᒃᑯᑦ ᓇᓗᓇᐃᔭᐃᔨᒋᑦ',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   notifications: {
     region: 'ᑐᓴᖅᑎᑦᑎᓂᖅ',
@@ -127,11 +131,12 @@ export const iu = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT ᐊᑐᖁᔨᔪᖅ ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs API ki ajurunniiq (401).',
       gatewayAuthFailed: 'Gateway authentication ajurunniiq — qaujimajjutigik API_SERVER_KEY.',
-      methodNotAllowed: 'Desktop backend tamanna ajurunniiq (405 Method Not Allowed). OpenAmer Desktop aallarniutigik kissaatigik.',
+      methodNotAllowed:
+        'Desktop backend tamanna ajurunniiq (405 Method Not Allowed). OpenAmer Desktop aallarniutigik kissaatigik.',
       microphonePermission: 'Tusaqtit akkunagaa tuninngilaq.',
       openaiRejectedApiKey: 'OpenAI API ki ajurunniiq.',
       openaiTtsNeedsKey: 'OpenAI TTS pisariaqaqtuq VOICE_TOOLS_OPENAI_KEY imaluunniit OPENAI_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Nipimik titiraqtauniq nipi atuqtillugu naqitigik.',
@@ -150,7 +155,7 @@ export const iu = defineLocale({
       transcriptionFailed: 'Nipi titiraqtauniq ajurunniiq.',
       transcriptionUnavailable: 'Nipimik allagartuinnarniq maannakkut atuinnarunngittuq.',
       tryRecordingAgain: 'Nipilirli qangattaaq.',
-      unavailable: 'Nipi atuinnarunngittuq',
+      unavailable: 'Nipi atuinnarunngittuq'
     },
     native: {
       approvalTitle: 'Aalajangiinirmik pisariaqartuq',
@@ -163,10 +168,10 @@ export const iu = defineLocale({
       turnErrorTitle: 'Pivalliq nukittuq',
       backgroundDoneTitle: 'Tunngavimmi suliqaq nuqqaqtuq',
       backgroundFailedTitle: 'Tunngavimmi suliqaq nukittuq',
-      creditsTitle: 'Akiliutit',
+      creditsTitle: 'Akiliutit'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer akiliutit nuqqaqtut',
@@ -174,7 +179,7 @@ export const iu = defineLocale({
     openBilling: 'Akilirniq matuijaaq',
     addCredits: 'Akiliutinik ilaliutit',
     dismiss: 'Qaungit',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Sivusaaq illuit',
@@ -191,7 +196,7 @@ export const iu = defineLocale({
     openStarmap: 'ᐃᑉᐱᒍᓐᓇᐅᑎ ᑎᑎᕋᐅᑦ ᒪᑐᐃᖅᑎᑦ',
     openKeybinds: 'ᓇᕿᑦᑕᐅᑎ ᐱᐅᓯᒋᐊᖅᑎᑦ',
     layoutEditor: 'ᐃᓂᒃᑯᑦ ᓇᒡᓕᒋᐊᖅᑎ',
-    layoutEditorTitle: 'Ilagijaaq allanguqti — âŒ˜-click ilagijaaq aallarut',
+    layoutEditorTitle: 'Ilagijaaq allanguqti — âŒ˜-click ilagijaaq aallarut'
   },
   keybinds: {
     title: 'ᓇᕿᑦᑕᐅᑎ ᐱᐅᓯᒋᐊᖅᑎᑦ',
@@ -206,7 +211,7 @@ export const iu = defineLocale({
       profiles: 'Kinaugusingit',
       session: 'Pivalliaq',
       navigation: 'Mummarialaaq',
-      view: 'Takugak',
+      view: 'Takugak'
     },
     actions: {
       'keybinds.openPanel': 'Matuk qwertyaq-kkut ikajuutit',
@@ -285,10 +290,10 @@ export const iu = defineLocale({
       'composer.slash': 'ᓴᓪᓚᔅ ᐊᐃᑦᑕᐅᑎᑦ ᑕᑯᒃᓴᐅᑎ',
       'composer.help': 'ᓱᒃᑲᖅ ᐃᑲᔫᑎ',
       'composer.history': 'ᐳᐸᐅᕙᕐ / ᖃᓄᐃᓕᐅᓂᑦ ᐊᓯᑦᑎᕆᑦ',
-      'composer.cancel': 'ᐳᐸᐅᕙᕐ ᒪᑐᐃᖅᓯᒍᑦ · ᐊᐅᓚᑦᑎᓂᖅ ᓄᖅᑲᖅᑎᑦᓯᒍᑦ',
+      'composer.cancel': 'ᐳᐸᐅᕙᕐ ᒪᑐᐃᖅᓯᒍᑦ · ᐊᐅᓚᑦᑎᓂᖅ ᓄᖅᑲᖅᑎᑦᓯᒍᑦ'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   language: {
     label: 'ᐅᖃᐅᓯᖅ',
@@ -297,7 +302,7 @@ export const iu = defineLocale({
     saveError: 'ᐅᖃᐅᓯᖅ ᓄᑖᖑᕐᓂᖅ ᐊᔪᙱᑦᑐᖅ',
     switchTo: 'ᐅᖃᐅᓯᕐᒥᒃ ᐊᓯᑦᑎᕆᑦ',
     searchPlaceholder: 'ᐅᖃᐅᓯᕐᓂᒃ ᕿᓂᕐᓗᒋᑦ…',
-    noResults: 'ᐅᖃᐅᓯᐅᔪᑦ ᓇᓂᔭᐅᙱᑦᑐᑦ',
+    noResults: 'ᐅᖃᐅᓯᐅᔪᑦ ᓇᓂᔭᐅᙱᑦᑐᑦ'
   },
   settings: {
     closeSettings: 'ᖃᓄᐃᓕᐅᕐᓂᑦ ᒪᑐᐃᖅᓯᒍᑦ',
@@ -322,48 +327,50 @@ export const iu = defineLocale({
       billing: 'Akiiliriniq',
       notifications: 'Nalunaikkutit',
       plugins: 'Pluginit',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     notifications: {
       kinds: {
         credits: {
           description: 'Akikit atuiniq nangitauqsimajuq utirtautittauqsimajurlu.',
-          label: 'ᓄᕕᖓᔪᑦ ᓇᓗᓇᐃᔭᐅᑎᑦ',
+          label: 'ᓄᕕᖓᔪᑦ ᓇᓗᓇᐃᔭᐅᑎᑦ'
         },
         approval: {
           label: 'ᐊᖏᖅᑕᐅᒋᐊᖃᖅᑐᖅ',
-          description: 'ᐊᐅᓚᔾᔪᑎ ᐅᑕᖅᑭᐅᓕᖅᑐᖅ: ᐊᖏᖅᑲᐅᑎᒋᐊᖅᓱᒍ ᐅᕝᕙᓘᓐᓃᑦ ᐃᓄᖅᑕᐅᖁᓪᓗᒍ.',
+          description: 'ᐊᐅᓚᔾᔪᑎ ᐅᑕᖅᑭᐅᓕᖅᑐᖅ: ᐊᖏᖅᑲᐅᑎᒋᐊᖅᓱᒍ ᐅᕝᕙᓘᓐᓃᑦ ᐃᓄᖅᑕᐅᖁᓪᓗᒍ.'
         },
         input: {
           label: 'ᐃᓕᓴᐃᔨᒋᐊᖃᖅᑐᖅ',
-          description: 'OpenAmer ᐊᐱᖅᓱᖅᑐᖅ ᐅᕝᕙᓘᓐᓃᑦ ᐃᓕᓴᐃᔾᔪᓯᖅ ᐅᕝᕙᓘᓐᓃᑦ ᐃᓗᓯᓐᓂᒃ ᐱᔭᕇᖅᑐᖅ.',
+          description: 'OpenAmer ᐊᐱᖅᓱᖅᑐᖅ ᐅᕝᕙᓘᓐᓃᑦ ᐃᓕᓴᐃᔾᔪᓯᖅ ᐅᕝᕙᓘᓐᓃᑦ ᐃᓗᓯᓐᓂᒃ ᐱᔭᕇᖅᑐᖅ.'
         },
         turnDone: {
           label: 'ᑭᐅᔾᔪᑎ ᐊᑐᐃᓐᓇᖅᑐᖅ',
-          description: 'ᐊᐅᓚᓂᖅ ᐱᔭᕇᖅᑐᖅ OpenAmer ᐃᓗᐊᓂ ᐱᓕᕆᐊᖃᖅᑎᓪᓗᒍ.',
+          description: 'ᐊᐅᓚᓂᖅ ᐱᔭᕇᖅᑐᖅ OpenAmer ᐃᓗᐊᓂ ᐱᓕᕆᐊᖃᖅᑎᓪᓗᒍ.'
         },
         turnError: {
           label: 'ᐊᐅᓚᓂᖅ ᐱᓕᕆᐊᖑᙱᑦᑐᖅ',
-          description: 'ᐊᐅᓚᓂᖅ ᐱᔭᕇᖅᑐᖅ ᐱᕋᔭᒃᑐᒥᒃ.',
+          description: 'ᐊᐅᓚᓂᖅ ᐱᔭᕇᖅᑐᖅ ᐱᕋᔭᒃᑐᒥᒃ.'
         },
         backgroundDone: {
           label: 'ᐃᓗᐊᓂ ᐱᓕᕆᐊᖅ ᐱᔭᕇᖅᑐᖅ',
-          description: 'ᐃᓗᐊᓂ ᑎᑎᕋᐅᑎᒥ ᐊᐅᓚᔾᔪᑎ ᐱᔭᕇᖅᑐᖅ.',
-        },
+          description: 'ᐃᓗᐊᓂ ᑎᑎᕋᐅᑎᒥ ᐊᐅᓚᔾᔪᑎ ᐱᔭᕇᖅᑐᖅ.'
+        }
       },
       test: 'Majjaksiniq nalunaikkut nassiuguk.',
       testTitle: 'OpenAmer',
       testBody: 'Nalunaikkutit atuqtut.',
-      testSent: 'Majjaksiniq nassiutauqsimajuq. Sunait takunngippata, OS-p nalunaikkutinik atuinirmik akuqsarniq uvalu Sammivik/Unikkuminaq qiniruk.',
+      testSent:
+        'Majjaksiniq nassiutauqsimajuq. Sunait takunngippata, OS-p nalunaikkutinik atuinirmik akuqsarniq uvalu Sammivik/Unikkuminaq qiniruk.',
       testUnsupported: 'Una atuutilik nunaqaqqaanik nalunaikkutinik atuqtinngitut.',
       completionSoundTitle: 'Naammassiniq Nipiq',
       completionSoundDesc: 'Agent naammassirpat nipirusuuq. Sanijumik toqqaguk, maani takuguk.',
       completionSoundPreview: 'Takuguk',
       title: 'ᓇᓗᓇᐃᔭᐅᑎᑦ',
-      intro: 'ᓄᓇᖃᖅᑳᖅᓯᒪᔪᑦ ᖃᕋᓴᐅᔭᒃᑯᑦ ᓇᓗᓇᐃᔭᐅᑎᑦ, ᐊᓯᖏᑦ ᐱᓪᓗᒾᑦ ᐃᓗᐊᓂ ᓇᓗᓇᐃᔭᐅᑎᓂᒃ. ᑕᒪᒃᑯᐊ ᐃᑭᐊᖅᑭᕕᒻᒥ — ᐊᑕᐅᓯᖅᑕᐅᓗᑎᒃ ᖃᕋᓴᐅᔭᖅ ᓇᖕᒥᓂᖅ ᖃᓄᐃᓕᐅᕈᑎᓂᒃ ᐊᑐᖅᑐᖅ.',
+      intro:
+        'ᓄᓇᖃᖅᑳᖅᓯᒪᔪᑦ ᖃᕋᓴᐅᔭᒃᑯᑦ ᓇᓗᓇᐃᔭᐅᑎᑦ, ᐊᓯᖏᑦ ᐱᓪᓗᒾᑦ ᐃᓗᐊᓂ ᓇᓗᓇᐃᔭᐅᑎᓂᒃ. ᑕᒪᒃᑯᐊ ᐃᑭᐊᖅᑭᕕᒻᒥ — ᐊᑕᐅᓯᖅᑕᐅᓗᑎᒃ ᖃᕋᓴᐅᔭᖅ ᓇᖕᒥᓂᖅ ᖃᓄᐃᓕᐅᕈᑎᓂᒃ ᐊᑐᖅᑐᖅ.',
       enableAll: 'ᓇᓗᓇᐃᔭᐅᑎᓂᒃ ᐊᑐᖅᑎᑦᑎ',
       enableAllDesc: 'ᐊᖏᔪᖅ ᐱᕕᒃ. ᐃᑎᖅᑎᓪᓗᒍ ᑕᒪᒃᑯᐊ ᐊᑕᖏᓐᓂ ᓇᓗᓇᐃᔭᐅᑎᑦ ᓂᐱᙱᑦᑐᑦ.',
-      focusedHint: 'ᐱᔭᕇᖅᑐᑦ ᓇᓗᓇᐃᔭᐅᑎᑦ ᐱᓕᕆᐊᖅᑐᑦ ᑭᓯᐊᓂ OpenAmer ᐃᓗᐊᓂ ᐱᓕᕆᐊᖃᖅᑎᓪᓗᒍ.',
+      focusedHint: 'ᐱᔭᕇᖅᑐᑦ ᓇᓗᓇᐃᔭᐅᑎᑦ ᐱᓕᕆᐊᖅᑐᑦ ᑭᓯᐊᓂ OpenAmer ᐃᓗᐊᓂ ᐱᓕᕆᐊᖃᖅᑎᓪᓗᒍ.'
     },
     sections: {
       model: 'Mallittauq',
@@ -373,7 +380,7 @@ export const iu = defineLocale({
       safety: 'Upattissarniq',
       memory: 'Iqqaqsimajut & Qanittuq',
       voice: 'Nipiq',
-      advanced: 'Sivulliq',
+      advanced: 'Sivulliq'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop pillugu',
@@ -381,42 +388,44 @@ export const iu = defineLocale({
       gateway: 'Gateway-mik attaqsimaniq...',
       keys: 'API kiut qinirgit...',
       mcp: 'MCP serverit qinirgit...',
-      sessions: 'Illuutitausimajut sessionit qinirgit...',
+      sessions: 'Illuutitausimajut sessionit qinirgit...'
     },
     plugins: {
       empty: 'ᖃᕋᓴᐅᔭᒃᑯᑦ ᐃᓚᐅᑎᑦ ᐃᓕᔭᐅᓯᒪᙱᑦᑐᑦ.',
       kinds: {
         bundled: 'ᐃᓚᒋᔭᐅᓯᒪᔪᑦ',
         disk: 'ᑎᑎᕋᐅᑎᒥ',
-        runtime: 'ᐊᐅᓚᔾᔪᑎ',
+        runtime: 'ᐊᐅᓚᔾᔪᑎ'
       },
       title: 'Qarasaujaup pluginit',
-      blurb: 'UI extensionit una app-mut ilaummata — build-mut ilaliutauhimajut, imaluunniit desktop-plugins folder-mut nalunaitumik (OpenAmer titiraqtangit ilangit). Disable-guni plugin-mik nungutsijumik nalunaiyaqtaujuq, restart-kkut ilangit atuqpalliaqtut.',
+      blurb:
+        'UI extensionit una app-mut ilaummata — build-mut ilaliutauhimajut, imaluunniit desktop-plugins folder-mut nalunaitumik (OpenAmer titiraqtangit ilangit). Disable-guni plugin-mik nungutsijumik nalunaiyaqtaujuq, restart-kkut ilangit atuqpalliaqtut.',
       openFolder: 'Pluginit folder-mik amuqquk',
       rescan: 'Ammaqqiit',
       reveal: 'File manager-mi takuuk',
       enable: 'Atuqtit',
       disable: 'Atuqtitaangit',
       failed: 'Piunngittuq',
-      count: n => `${n} installed`,
+      count: n => `${n} installed`
     },
     modeOptions: {
       light: {
         label: 'Qaumajuq',
-        description: 'Qaumajut qarasaujaup qulangit',
+        description: 'Qaumajut qarasaujaup qulangit'
       },
       dark: {
         label: 'Taqqaq',
-        description: 'Sanaugarvik qaummaq ilaangit',
+        description: 'Sanaugarvik qaummaq ilaangit'
       },
       system: {
         label: 'Nalunaijaut',
-        description: 'OS takunnarninganik malikgit',
-      },
+        description: 'OS takunnarninganik malikgit'
+      }
     },
     appearance: {
       title: 'Takunnarninga',
-      intro: 'Tamanna qarasaujarmi kisimi takunnarningit. Maliktuq qaumaniq maliktuq; qanutuinniq accent miusiq amma chat qulangit sanannginik maliktuq.',
+      intro:
+        'Tamanna qarasaujarmi kisimi takunnarningit. Maliktuq qaumaniq maliktuq; qanutuinniq accent miusiq amma chat qulangit sanannginik maliktuq.',
       colorMode: 'Miusiq maliktuq',
       colorModeDesc: 'Maliktuq atuqtauq nirugit imaluunniit OpenAmer nalunaijaut setting malikli.',
       toolViewTitle: 'Sanaugaut qinirniq takunnarninga',
@@ -427,8 +436,10 @@ export const iu = defineLocale({
       backdropTitle: 'Chat tunuani',
       backdropDesc: 'Chat tunuani sananguaq ajji qaummaq.',
       pet: {
-        intro: 'Pivalliajutimik petdex-mik mascot-mik pigiaqtitikkit, app qaanganut qaumajuq, OpenAmer pijunnautini kiunngittuq — sanannguqtillugit pissuktuq, nalliuttuqtillugu nuannarisaqtuq, piqasiit niqaiqsimajuq.',
-        restartHint: 'Uumajuit qanittumik piqiaqtauqattariaqarput — atuqtumut app una ilaliqqaupat sivulliqtimmit pigiaqtauvimmata. OpenAmer nuqqaqtillugu ammalu matumut utirgit.',
+        intro:
+          'Pivalliajutimik petdex-mik mascot-mik pigiaqtitikkit, app qaanganut qaumajuq, OpenAmer pijunnautini kiunngittuq — sanannguqtillugit pissuktuq, nalliuttuqtillugu nuannarisaqtuq, piqasiit niqaiqsimajuq.',
+        restartHint:
+          'Uumajuit qanittumik piqiaqtauqattariaqarput — atuqtumut app una ilaliqqaupat sivulliqtimmit pigiaqtauvimmata. OpenAmer nuqqaqtillugu ammalu matumut utirgit.',
         on: 'Pigiaqtauk',
         off: 'Nuqqaqtauk',
         scaleTitle: 'Anginiq',
@@ -461,10 +472,11 @@ export const iu = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
       embedsTitle: 'ᐃᓗᐊᓂ ᐃᓚᐅᑎᑕᐅᓯᒪᔪᑦ',
-      embedsDesc: 'ᐱᐅᓂᖅᓴᐅᔪᑦ ᓇᐃᓈᖅᓯᒪᔪᑦ ᐱᖓᔪᐊᓐᓂ ᐃᑭᐊᖅᑭᕕᓂᑦ (YouTube, X, …) ᐅᓯᖅᑕᐅᕗᑦ. ᐊᐱᕆ ᓇᐃᓈᖅᓯᒪᔪᒥᒃ ᓴᖅᑭᑎᑦᑎᕗᖅ ᑕᒪᕐᒥᒃ ᐃᓕᓐᓂᕆᓚᐅᖅᑕᑎᓐᓂ; ᐃᒪᖓᑦ ᐅᓯᖅᑎᑦᑎᕗᖅ; ᓄᖅᑲᖓᔪᖅ ᓴᐃᒻᒪᑦ ᐊᒡᒍᓂᒃ ᐱᐅᓯᖅᑎᑦᑎᕗᖅ.',
+      embedsDesc:
+        'ᐱᐅᓂᖅᓴᐅᔪᑦ ᓇᐃᓈᖅᓯᒪᔪᑦ ᐱᖓᔪᐊᓐᓂ ᐃᑭᐊᖅᑭᕕᓂᑦ (YouTube, X, …) ᐅᓯᖅᑕᐅᕗᑦ. ᐊᐱᕆ ᓇᐃᓈᖅᓯᒪᔪᒥᒃ ᓴᖅᑭᑎᑦᑎᕗᖅ ᑕᒪᕐᒥᒃ ᐃᓕᓐᓂᕆᓚᐅᖅᑕᑎᓐᓂ; ᐃᒪᖓᑦ ᐅᓯᖅᑎᑦᑎᕗᖅ; ᓄᖅᑲᖓᔪᖅ ᓴᐃᒻᒪᑦ ᐊᒡᒍᓂᒃ ᐱᐅᓯᖅᑎᑦᑎᕗᖅ.',
       embedsAsk: 'ᐊᐱᕆ',
       embedsAlways: 'ᐃᒪᖓᑦ',
       embedsOff: 'ᓄᖅᑲᖓᔪᖅ',
@@ -475,17 +487,19 @@ export const iu = defineLocale({
       themeTitle: 'ᐊᔾᔨᓕᐅᖅᑕᐅᔪᖅ',
       themeDesc: 'ᑖᔅᑯᑕᖅ ᐊᔾᔨᓕᐅᖅᑕᐅᔪᑦ ᑭᓯᐊᓂ. ᓂᕈᐊᖅᑕᐅᔪᖅ ᐊᔾᔨᐅᓂᖅ ᖁᓛᒃᑯᑦ ᐊᑐᖅᑕᐅᕗᖅ.',
       installTitle: 'VS Code-ᒥᑦ ᐃᓕᔅᑎᓗᒍ',
-      installDesc: 'ᐃᓚᓕᐅᑎᓗᒍ Marketplace ᐃᓚᐅᑎᑕᐅᔪᖅ ID (ᐆᑦᑕᐅᖅ dracula-theme.theme-dracula) ᑖᔅᑯᑕᒧᑦ ᐊᔾᔨᓕᐅᖅᑕᐅᔪᒧᑦ ᐊᔾᔨᓕᐅᖅᑕᐅᔪᖅ ᐅᐊᒍᑦ.',
+      installDesc:
+        'ᐃᓚᓕᐅᑎᓗᒍ Marketplace ᐃᓚᐅᑎᑕᐅᔪᖅ ID (ᐆᑦᑕᐅᖅ dracula-theme.theme-dracula) ᑖᔅᑯᑕᒧᑦ ᐊᔾᔨᓕᐅᖅᑕᐅᔪᒧᑦ ᐊᔾᔨᓕᐅᖅᑕᐅᔪᖅ ᐅᐊᒍᑦ.',
       installButton: 'ᐃᓕᔅᑎᓗᒍ',
       installing: 'ᐃᓕᔅᑎᓕᕐᓂᖅ…',
       installError: 'ᑖᓐᓇ ᐊᔾᔨᓕᐅᖅᑕᐅᔪᖅ ᐃᓕᔅᑎᓕᕆᐊᖃᙱᑦᑐᖅ.',
       removeTheme: 'ᐊᔾᔨᓕᐅᖅᑕᐅᔪᖅ ᐲᔭᕐᓗᒍ',
       importedBadge: 'ᐅᓯᖅᑕᐅᓯᒪᔪᖅ',
       installPlaceholder: 'saqqitiji.nanniq',
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     about: {
       heading: 'OpenAmer Qarasaujaq',
@@ -503,7 +517,8 @@ export const iu = defineLocale({
       tapCheck: 'Aaqqiksuutinik qaujigilutit Maanna qaujigit tikkuaguk.',
       justNowSuffix: '· maanna',
       automaticUpdates: 'Namminiq aaqqiksuutit',
-      automaticUpdatesDesc: 'OpenAmer aaqqiksuutinik qaujigijarataruq namminiq kinguani, aaqqiksuut piqpat qaujigittarutit.',
+      automaticUpdatesDesc:
+        'OpenAmer aaqqiksuutinik qaujigijarataruq namminiq kinguani, aaqqiksuut piqpat qaujigittarutit.',
       never: 'Qangatagaa',
       justNow: 'Maanna',
       version: value => `Version ${value}`,
@@ -512,7 +527,7 @@ export const iu = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     config: {
       none: 'Nalliunniq',
@@ -528,7 +543,8 @@ export const iu = defineLocale({
       imported: 'Qanuiliurutit tikittitaujut.',
       invalidJson: 'Qanuiliurut JSON ajutsanngittuq.',
       keepAwakeTitle: 'Qarasaujaq inuunniqinnaqtit.',
-      keepAwakeDesc: 'Una qarasaujaq sinilliqinnaqtit akuni unnuukkullu ingerlaarutit ingerlaannialutik. Takujauti nalliriaqpuq.',
+      keepAwakeDesc:
+        'Una qarasaujaq sinilliqinnaqtit akuni unnuukkullu ingerlaarutit ingerlaannialutik. Takujauti nalliriaqpuq.'
     },
     credentials: {
       pasteKey: 'Kiik ilikkit.',
@@ -538,7 +554,7 @@ export const iu = defineLocale({
       remove: 'Piiq.',
       getKey: 'Kiimik pijariuk.',
       saving: 'ᓴᐃᒻᒪᑎᓂᖅ',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     envActions: {
       credentialActions: 'ᓇᓗᓇᐃᒃᑯᑎᓄᑦ ᐊᐅᓚᑦᑎᓂᑦ',
@@ -549,7 +565,7 @@ export const iu = defineLocale({
       replace: 'ᐊᓯᔾᔨᓗᒍ',
       set: 'ᐃᓕᓯᓗᒍ',
       clear: 'ᓴᖅᑭᖅᑲᐃᓗᒍ',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     gateway: {
       loading: 'ᐊᖅᑯᑎᑕ ᖃᓄᐃᓕᐅᕈᑏᑦ ᐅᕕᖅᑕᐅᓂᖅ...',
@@ -557,16 +573,18 @@ export const iu = defineLocale({
       unavailableDesc: 'ᑖᐳᑎᓐ IPC ᐊᖅᑯᑎᖓ ᐊᖅᑯᑎᑕ ᖃᓄᐃᓕᐅᕈᑏᓐᓂᒃ ᓴᖅᑭᑎᙱᑦᑐᖅ.',
       title: 'ᐊᖅᑯᑎᒧᑦ ᑲᓱᖅᑕᐅᓂᖅ',
       envOverride: 'env ᐊᓯᔾᔨᒋᐊᕐᓂᖅ',
-      intro: 'OpenAmer Desktop ᓄᓇᓕᒻᒥ ᐊᖅᑯᑎᒥᒃ ᓄᑖᖑᓪᓗᓂ ᐱᒋᐊᖅᑎᑦᑎᒃᑲᓐᓂᖅ. ᐊᑕᐅᓯᖅᑕᐅᓂᖅᓴᒥᒃ ᐊᖅᑯᑎᒥᒃ ᐊᑐᕐᓗᒍ ᑕᒪᑐᒧᖓ ᐱᓕᕆᐊᖅ OpenAmer backend-ᒥᒃ ᐊᐅᓚᑦᑎᔪᓐᓇᖅᐸᑦ ᐊᓯᖏᓐᓂ ᖃᕆᑕᐅᔭᖅᑎᒥ ᐅᕝᕙᓘᓐᓃᑦ ᑕᒻᒪᕆᒃᑕᐅᓯᒪᔪᒥ ᐊᖅᑯᑎᒥ. ᐅᑖᓂ ᐱᓕᕆᐊᖅᑎᒦᒃ ᓂᕈᐊᕐᓗᒍ ᐃᓄᖓᓄᑦ ᐊᑕᐅᓯᖅᑕᐅᓂᖅᓴᒥᒃ ᐊᖅᑯᑎᒥᒃ.',
+      intro:
+        'OpenAmer Desktop ᓄᓇᓕᒻᒥ ᐊᖅᑯᑎᒥᒃ ᓄᑖᖑᓪᓗᓂ ᐱᒋᐊᖅᑎᑦᑎᒃᑲᓐᓂᖅ. ᐊᑕᐅᓯᖅᑕᐅᓂᖅᓴᒥᒃ ᐊᖅᑯᑎᒥᒃ ᐊᑐᕐᓗᒍ ᑕᒪᑐᒧᖓ ᐱᓕᕆᐊᖅ OpenAmer backend-ᒥᒃ ᐊᐅᓚᑦᑎᔪᓐᓇᖅᐸᑦ ᐊᓯᖏᓐᓂ ᖃᕆᑕᐅᔭᖅᑎᒥ ᐅᕝᕙᓘᓐᓃᑦ ᑕᒻᒪᕆᒃᑕᐅᓯᒪᔪᒥ ᐊᖅᑯᑎᒥ. ᐅᑖᓂ ᐱᓕᕆᐊᖅᑎᒦᒃ ᓂᕈᐊᕐᓗᒍ ᐃᓄᖓᓄᑦ ᐊᑕᐅᓯᖅᑕᐅᓂᖅᓴᒥᒃ ᐊᖅᑯᑎᒥᒃ.',
       appliesTo: 'ᐊᑐᖅᑕᐅᔪᖅ',
       allProfiles: 'ᐱᓕᕆᐊᖅᑎᒦᒃ ᑕᒪᐃᓐᓂ',
       defaultConnection: 'ᓄᑖᖑᓪᓗᓂ ᑲᓱᖅᑕᐅᓂᖅ ᐱᓕᕆᐊᖅᑎᒦᒃ ᑕᒪᐃᓐᓄᑦ ᐊᓯᔾᔨᒋᐊᖅᑕᐅᙱᑦᑐᓄᑦ.',
       envOverrideTitle: 'ᐊᕐᕌᒍᑕᒫᑦ ᐊᓯᔾᔨᔾᔪᑏᑦ ᑕᒪᑐᒧᖓ ᑖᐳᑎᓐ ᑲᑎᒪᔾᔪᑎᒧᑦ ᐊᐅᓚᑦᑎᔪᑦ.',
-      envOverrideDesc: 'ᓴᖅᑭᖅᑲᐃᓗᒋᑦ OPENAMER_DESKTOP_REMOTE_URL ᐊᒻᒪ OPENAMER_DESKTOP_REMOTE_TOKEN ᐅᑖᓂ ᓴᐃᒻᒪᑕᐅᓯᒪᔪᒥᒃ ᖃᓄᐃᓕᐅᕈᑎᒥᒃ ᐊᑐᕐᓂᐊᕐᓗᑎᑦ.',
+      envOverrideDesc:
+        'ᓴᖅᑭᖅᑲᐃᓗᒋᑦ OPENAMER_DESKTOP_REMOTE_URL ᐊᒻᒪ OPENAMER_DESKTOP_REMOTE_TOKEN ᐅᑖᓂ ᓴᐃᒻᒪᑕᐅᓯᒪᔪᒥᒃ ᖃᓄᐃᓕᐅᕈᑎᒥᒃ ᐊᑐᕐᓂᐊᕐᓗᑎᑦ.',
       cloudNoAgents: {
         before: 'Una atuqqutimi ikajuqtiit nanisimayuit. Atiliuk',
         linkText: 'OpenAmer isurriikkut',
-        after: '-mi, aaqqiksuq.',
+        after: '-mi, aaqqiksuq.'
       },
       cloudRefresh: 'Aaqqiksuq',
       cloudConnect: 'Ilagijaut',
@@ -580,7 +598,8 @@ export const iu = defineLocale({
       cloudConnectedPill: 'Ilagijautsimajuq',
       cloudAgentProvisioning: 'Atiliqsimajuq…',
       remoteUrlTitle: 'Ungasittuq URL',
-      remoteUrlDesc: 'Tunngavik URL ungasittumut qaujisaut kingulliup. Aqqutit siuniriit atuqpalliaqsimajut, assigilinginnut /openamer.',
+      remoteUrlDesc:
+        'Tunngavik URL ungasittumut qaujisaut kingulliup. Aqqutit siuniriit atuqpalliaqsimajut, assigilinginnut /openamer.',
       probing: 'Qaujisarniq una gateway qanurli ilagijautijauqsimajuq…',
       probeError: 'Una gateway-mut tikisimayuit maanna. URL qaujisuk — auth maligaq takunnaqsimajuq piulaqtillugu.',
       signedIn: 'Isurrisimajuq',
@@ -600,13 +619,16 @@ export const iu = defineLocale({
       applyFailed: 'ᒐᑦᐃᐧᐊᐃ ᐋᖅᑭᒃᓯᒪᔪᑦ ᐊᑐᖅᑎᑕᐅᔪᓐᓇᙱᑦᑐᑦ',
       saveFailed: 'ᒐᑦᐃᐧᐊᐃ ᐋᖅᑭᒃᓯᒪᔪᑦ ᐊᒐᖅᑕᐅᔪᓐᓇᙱᑦᑐᑦ',
       sshTitle: 'SSH ᐊᑐᖅᖢᒍ ᐃᓚᐅᖅᑎᑦᑎ',
-      sshDesc: 'OpenAmer ᐅᖓᓯᑦᑐᒥ SSH-ᒃᑯᑦ ᐱᒋᐊᖅᑎᑕᐅᕗᖅ ᐊᒻᒪᓗ ᑕᒪᐅᓇ ᐊᑐᖅᑕᐅᔪᒧᑦ tunnel-ᖅᑕᐅᕗᖅ — ᓇᓕᒧᒌᑦᑎᐊᕆᐊᖃᙱᑦᑐᑎᑦ. Host-ᒧᑦ key-ᒥ SSH ᐃᓯᕆᔪᓐᓇᕐᓂᖅ ᐊᑐᖅᑕᐅᔭᕆᐊᖃᖅᑐᖅ.',
+      sshDesc:
+        'OpenAmer ᐅᖓᓯᑦᑐᒥ SSH-ᒃᑯᑦ ᐱᒋᐊᖅᑎᑕᐅᕗᖅ ᐊᒻᒪᓗ ᑕᒪᐅᓇ ᐊᑐᖅᑕᐅᔪᒧᑦ tunnel-ᖅᑕᐅᕗᖅ — ᓇᓕᒧᒌᑦᑎᐊᕆᐊᖃᙱᑦᑐᑎᑦ. Host-ᒧᑦ key-ᒥ SSH ᐃᓯᕆᔪᓐᓇᕐᓂᖅ ᐊᑐᖅᑕᐅᔭᕆᐊᖃᖅᑐᖅ.',
       sshTrustHint: 'ᓯᕗᓪᓕᖅᐸᐅᔪᖅ host key ᓴᖅᑭᑎᑕᐅᔪᖅ ᐊᑎᖅᐸᐅᕗᖅ ᐊᒻᒪᓗ pinned-ᖅᑕᐅᕗᖅ; ᑭᖑᓂᐊᒍᑦ ᐋᖅᑭᒃᑕᐅᔪᑦ fail closed-ᖅᑕᐅᕗᑦ.',
       sshHostTitle: 'ᕼᐅᔅᑦ',
       sshHostDesc: 'user@host, ᐅᕝᕙᓘᓐᓃᑦ Host alias ~/.ssh/config-ᒥᑦ.',
       sshHostPick: 'ᕼᐅᔅᑦ ᓂᕈᐊᕐᓗᒍ…',
-      sshErrNotInstalled: 'OpenAmer ilaliuqtaunngilaq remote host-mi. Tamani ilaliuktarit (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) imaluunniit OpenAmer-imut aquti nalunaarutiguk.',
-      sshErrPlatform: 'Remote platform atuqqaunngitsoq. OpenAmer Desktop SSH mode-kkut Linux, macOS, Windows remote host-it atuqtausinnaavut.',
+      sshErrNotInstalled:
+        'OpenAmer ilaliuqtaunngilaq remote host-mi. Tamani ilaliuktarit (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) imaluunniit OpenAmer-imut aquti nalunaarutiguk.',
+      sshErrPlatform:
+        'Remote platform atuqqaunngitsoq. OpenAmer Desktop SSH mode-kkut Linux, macOS, Windows remote host-it atuqtausinnaavut.',
       sshErrTimeout: 'SSH attavik piffissannguqqauq. Host tikiunnaqanngitsoq imaluunniit sinilaaq.',
       sshErrUpdateRequired: 'OpenAmer nutaraliatuk remote host-mi suli Desktop SSH-kkut attavit.',
       sshErrUnknown: 'SSH attavik ajutauq.',
@@ -647,15 +669,18 @@ export const iu = defineLocale({
       sshButtonsHint: 'Toqqorsiguk kingusimmi matummuutilluni atuutilissaaq. Ilaliut massakkut ilaliutikkaqtuq.',
       sshIncompleteHost: 'SSH host allaguk ilaliutinnginnut.',
       sshErrUnreachable: 'SSH-kkut taanna host-mut isaaqataq nangminngittuq. Host, port, network-mik takugit.',
-      sshErrAuth: 'SSH-mik suraqtaq nangminngittuq. Key-it ssh-agent-mut ilariguk (ssh-add) imaluunniit IdentityFile ~/.ssh/config-mi allaguk — OpenAmer ssh-mik aaqqiktuq, atuisumik apiritsiinginnagu.',
-      sshErrHostKey: 'Host key ALLANNGORTUQ kingulliqpaami ilaliutinninginnit. Taanna naammagittaaq takuguk, kingusimmi ssh-keygen -R <host> aaqqiguk, imaluunniit ilaliutikkaq.',
+      sshErrAuth:
+        'SSH-mik suraqtaq nangminngittuq. Key-it ssh-agent-mut ilariguk (ssh-add) imaluunniit IdentityFile ~/.ssh/config-mi allaguk — OpenAmer ssh-mik aaqqiktuq, atuisumik apiritsiinginnagu.',
+      sshErrHostKey:
+        'Host key ALLANNGORTUQ kingulliqpaami ilaliutinninginnit. Taanna naammagittaaq takuguk, kingusimmi ssh-keygen -R <host> aaqqiguk, imaluunniit ilaliutikkaq.',
       signOut: 'ᐊᓂᒍᐃᑦᑎᓂᖅ',
       authTitle: 'ᓇᓗᓇᐃᔭᐅᓂᖅ',
       authSignedInPassword: 'ᐅᓇ gateway ᐊᑎᖅ ᐊᒻᒪ ᓇᓗᓇᐃᒃᑯᑦ ᐊᑐᖅᑕᐅᔪᖅ. ᐃᓚᓕᐅᑎᔪᖅ; session ᐋᑕᒪᑎᒃᑯᑦ ᐱᐅᓯᐊᖅᑎᑦᑎᔪᖅ.',
       authSignedInOauth: 'ᐅᓇ gateway OAuth ᐊᑐᖅᑕᐅᔪᖅ. ᐃᓚᓕᐅᑎᔪᖅ; session ᐋᑕᒪᑎᒃᑯᑦ ᐱᐅᓯᐊᖅᑎᑦᑎᔪᖅ.',
       authNeedsPassword: 'ᐅᓇ gateway ᐊᑎᖅ ᐊᒻᒪ ᓇᓗᓇᐃᒃᑯᑦ ᐊᑐᖅᑕᐅᔪᖅ. ᐅᓇ desktop app ᐃᑲᔪᖅᑎᑦᑎᓂᖅ ᐃᓚᓕᐅᑎᓂᖅ.',
       tokenTitle: 'session ᓇᓗᓇᐃᒃᑯᑦ',
-      tokenDesc: 'dashboard session ᓇᓗᓇᐃᒃᑯᑦ REST ᐊᒻᒪ WebSocket ᐊᑐᖅᑕᐅᓂᖅ. ᐃᓕᔭᐅᓯᒪᔪᖅ ᓇᓗᓇᐃᒃᑯᑦ ᓱᓕᐊᖅᑎᓐᓂᐊᕐᓂᖅ ᐃᓱᒪᒃᑯᑦ ᓇᑭᑦᑕᐃᓕᒪᓐᓇᖅ.',
+      tokenDesc:
+        'dashboard session ᓇᓗᓇᐃᒃᑯᑦ REST ᐊᒻᒪ WebSocket ᐊᑐᖅᑕᐅᓂᖅ. ᐃᓕᔭᐅᓯᒪᔪᖅ ᓇᓗᓇᐃᒃᑯᑦ ᓱᓕᐊᖅᑎᓐᓂᐊᕐᓂᖅ ᐃᓱᒪᒃᑯᑦ ᓇᑭᑦᑕᐃᓕᒪᓐᓇᖅ.',
       savedToken: 'ᐃᓕᔭᐅᓯᒪᔪᖅ',
       pasteSessionToken: 'session ᓇᓗᓇᐃᒃᑯᑦ ᐃᓕᓴᐅᑎᓂᖅ',
       testRemote: 'remote ᐅᔾᔨᕈᓱᓂᖅ',
@@ -670,7 +695,8 @@ export const iu = defineLocale({
       incompleteSignInTest: 'remote URL ᐃᓕᓴᐅᑎᓂᖅ ᐊᒻᒪ ᐃᓚᓕᐅᑎᓂᖅ ᐅᔾᔨᕈᓱᓐᓂᐊᖅᑎᓪᓗᒍ.',
       incompleteTokenTest: 'remote URL ᐃᓕᓴᐅᑎᓂᖅ ᐊᒻᒪ session ᓇᓗᓇᐃᒃᑯᑦ ᐅᔾᔨᕈᓱᓐᓂᐊᖅᑎᓪᓗᒍ.',
       sshKeyTitle: 'ᐃᓕᖅᑯᓯᒃᑯᑦ ᑎᑎᕋᐅᓯᖅ',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudOrgRole: role => `Role: ${role}`,
       cloudConnectedTo: name => `Connected to ${name}.`,
       cloudStatusLabel: status => `Status: ${status}`,
@@ -678,12 +704,12 @@ export const iu = defineLocale({
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     keys: {
       loading: 'API keys amma credentials uuktuqtavut...',
       failedLoad: 'API keys uuktuqtaunngillat',
-      empty: 'Taapkuatigut ilangini nalunaarutigineqanngilaq.',
+      empty: 'Taapkuatigut ilangini nalunaarutigineqanngilaq.'
     },
     mcp: {
       loading: 'MCP server-it uuktuqtavut...',
@@ -745,14 +771,16 @@ export const iu = defineLocale({
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       authenticatedMessage: (server, count) => `${server}: ${count} tools`,
       enableTool: tool => `Enable ${tool}`,
-      disableTool: tool => `Disable ${tool}`,
+      disableTool: tool => `Disable ${tool}`
     },
     model: {
       loading: 'Modelip nalunaikkutaanik ikkussinniq...',
-      appliesDesc: 'Nutaakkut katimajinut atuutuq. Composer-mi modelimik niriisijaamik aturuk chat atuutumik allanngortissinnaanirmut.',
+      appliesDesc:
+        'Nutaakkut katimajinut atuutuq. Composer-mi modelimik niriisijaamik aturuk chat atuutumik allanngortissinnaanirmut.',
       provider: 'Tunijisoq',
       model: 'ᒧᑕᓕ',
       applying: 'ᐱᒋᐊᖅᑎᑦᑎᔪᖅ...',
@@ -773,37 +801,37 @@ export const iu = defineLocale({
       tasks: {
         vision: {
           label: 'ᑕᑯᓐᓂᖅ',
-          hint: 'ᐊᔾᔨᓕᐅᖅᑕᐅᓯᒪᔪᖅ ᕿᒥᕐᕈᓂᖅ',
+          hint: 'ᐊᔾᔨᓕᐅᖅᑕᐅᓯᒪᔪᖅ ᕿᒥᕐᕈᓂᖅ'
         },
         web_extract: {
           label: 'ᖃᕆᓴᐅᔭᒃᑯᑦ ᓄᖅᑲᖅᑕᐅᔪᖅ',
-          hint: 'ᒪᒃᐱᒐᖅ ᓇᐃᓈᖅᑕᐅᓂᖅ',
+          hint: 'ᒪᒃᐱᒐᖅ ᓇᐃᓈᖅᑕᐅᓂᖅ'
         },
         compression: {
           label: 'ᐊᑦᑎᕆᓂᖅ',
-          hint: 'ᖃᓄᐃᓕᖓᔪᑦ ᐱᓪᓗᒍᑎ',
+          hint: 'ᖃᓄᐃᓕᖓᔪᑦ ᐱᓪᓗᒍᑎ'
         },
         skills_hub: {
           label: 'ᐱᔪᓐᓇᐅᑎᑦ ᑭᒃᑯᑐᐃᓐᓇᕐᕕᒃ',
-          hint: 'ᐱᔪᓐᓇᐅᑎ ᕿᓂᕐᓂᖅ',
+          hint: 'ᐱᔪᓐᓇᐅᑎ ᕿᓂᕐᓂᖅ'
         },
         approval: {
           label: 'ᐊᖏᖅᑕᐅᓂᖅ',
-          hint: 'ᓇᓗᓇᐃᔭᐅᑎ ᐊᖏᖅᑕᐅᑎᑦᑎᓂᖅ',
+          hint: 'ᓇᓗᓇᐃᔭᐅᑎ ᐊᖏᖅᑕᐅᑎᑦᑎᓂᖅ'
         },
         mcp: {
           hint: 'MCP ᓴᓇᐅᑎᑦ ᐊᖏᕐᕋᐅᑎᖏᑦ',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'ᑕᐃᒎᓯᒃᑯᑦ ᓴᓇᓂᖅ',
-          hint: 'ᑲᑎᒪᓂᐅᑉ ᑕᐃᒎᓯᖏᑦ',
+          hint: 'ᑲᑎᒪᓂᐅᑉ ᑕᐃᒎᓯᖏᑦ'
         },
         curator: {
           label: 'ᐊᐅᓚᑦᑎᔨ',
-          hint: 'ᐱᔪᓐᓇᐅᑎ ᐊᑐᖅᑕᐅᓂᖅ ᕿᒥᕐᕈᓂᖅ',
-        },
-      },
+          hint: 'ᐱᔪᓐᓇᐅᑎ ᐊᑐᖅᑕᐅᓂᖅ ᕿᒥᕐᕈᓂᖅ'
+        }
+      }
     },
     sessions: {
       autoArchiveFailed: 'Auto-archive ᓄᑖᙳᖅᑎᑦᑎᔪᓐᓇᖅᓯᒪᙱᑦᑐᖅ',
@@ -826,14 +854,16 @@ export const iu = defineLocale({
       deletePermanently: 'ᐱᐃᖅ ᓄᖅᑲᖅᑎᙱᑦᑐᒥᒃ',
       restored: 'ᐅᑎᖅᑎᑕᐅᓯᒪᔪᖅ',
       autoArchiveTitle: 'ᓇᒻᒥᓂᖅ-ᐊᕐᒃᐊᐃᕕᒃᑭᑦ ᐅᕿᑦᑐᑦ uqallautit',
-      autoArchiveDesc: 'ᓇᒻᒥᓂᖅ ᐊᕐᒃᐊᐃᕕᒃᑭᑦ ᐊᑕᐃᓕᒪᓂᖅᓴᐅᓕᖅᑐᑦ uqallautit. ᐱᓐᓂᒃᑕᐅᓯᒪᔪᑦ uqallautit ᐊᕐᒃᐊᐃᕕᒃᑕᐅᙱᑦᑐᑦ, ᐊᒻᒪᓗ ᑭᓱᓕ ᐱᐃᖅᓯᒪᙱᑦᑐᖅ — ᐊᕐᒃᐊᐃᕕᓯᒪᔪᑦ uqallautit ᒪᓐᓇ ᓄᖅᑲᖅᑐᑦ.',
+      autoArchiveDesc:
+        'ᓇᒻᒥᓂᖅ ᐊᕐᒃᐊᐃᕕᒃᑭᑦ ᐊᑕᐃᓕᒪᓂᖅᓴᐅᓕᖅᑐᑦ uqallautit. ᐱᓐᓂᒃᑕᐅᓯᒪᔪᑦ uqallautit ᐊᕐᒃᐊᐃᕕᒃᑕᐅᙱᑦᑐᑦ, ᐊᒻᒪᓗ ᑭᓱᓕ ᐱᐃᖅᓯᒪᙱᑦᑐᖅ — ᐊᕐᒃᐊᐃᕕᓯᒪᔪᑦ uqallautit ᒪᓐᓇ ᓄᖅᑲᖅᑐᑦ.',
       autoArchiveDaysLabel: 'ᐊᕐᒃᐊᐃᕕᒃᑭᑦ ᑭᖑᓂᐊᒍᑦ',
       autoArchiveDaysUnit: 'ᐅᓪᓗᑦ ᐊᐅᓚᑦᑎᔪᙱᓐᓂᖅ',
-      archivedIntro: 'Toqqortaujut uqalimaat sivuraq-mi takuneqarsinngillat, kisiani nassuiaatigisaannik pigiit. Sivuraq-mi uqalimaq Ctrl/âŒ˜-click toqqortaqqit.',
+      archivedIntro:
+        'Toqqortaujut uqalimaat sivuraq-mi takuneqarsinngillat, kisiani nassuiaatigisaannik pigiit. Sivuraq-mi uqalimaq Ctrl/âŒ˜-click toqqortaqqit.',
       defaultDirUpdated: 'Sulinirmut turaarut naligaaq nutaaq — apiriq nutaaq aallaruk (Ctrl/âŒ˜+N) atuqtumut',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
       loadingConfig: 'ᖃᓄᐃᓕᖓᔪᑦ ᐅᓂᒃᑳᖅᑕᐅᓪᓗᑎᑦ',
@@ -843,7 +873,8 @@ export const iu = defineLocale({
       notSet: 'ᐃᓕᔭᐅᙱᑦᑐᖅ',
       selectedTitle: 'ᑐᑦᑕᕐᕕᐅᔪᖅ ᓂᕈᐊᖅᑕᐅᒻᒪᑦ',
       failedLoad: 'ᐊᑐᕐᕕᐅᔪᑦ ᖃᓄᐃᓕᖓᔪᑦ ᐅᓂᒃᑳᖅᑕᐅᔪᓐᓇᖅᓯᒪᙱᑦᑐᑦ',
-      noProviderOptions: 'Una toolset-imi provider options aqqit — atuqtittigu, maanna qanuriliuqtitikkut suliuqattaqtuq.',
+      noProviderOptions:
+        'Una toolset-imi provider options aqqit — atuqtittigu, maanna qanuriliuqtitikkut suliuqattaqtuq.',
       noProviders: 'Maanna una toolset-mut provider-t aqqit atoruminaqtut.',
       ready: 'Atuqqaqtuq',
       needsSignIn: 'Isissimani pisariaqaqtuq',
@@ -885,7 +916,7 @@ export const iu = defineLocale({
         selectedTitle: 'ᑐᙵᕕᒃ ᓂᕈᐊᖅᑕᐅᔪᖅ',
         needsSetupHint: 'ᐅᕙᓂ ᑐᙵᕕᕐᒥᒃ ᓂᕈᐊᕈᓐᓇᖅᑐᑎᑦ — ᐋᖅᑭᒃᑕᐅᓂᖓ ᓱᓕ ᖃᓄᐃᓕᖓᙱᓐᓂᖓᓂ ᐊᐃᑦᑕᕐᓂᐅᔪᑦ ᐊᑐᖅᑕᐅᓂᐊᙱᑦᑐᑦ.',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       savedMessage: key => `${key} updated.`,
       removedMessage: key => `${key} removed.`,
@@ -895,8 +926,10 @@ export const iu = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -906,7 +939,7 @@ export const iu = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     providers: {
       disconnectInTerminal: 'ᐊᕕᒃᓴᖅᑎᑦᑎᓂᖅ (terminal-ᒥ ᐱᐃᖅᓯᓂᕐᒧᑦ ᐊᐅᓚᑦᑎᔪᖅ ᐊᐅᓚᑕᐅᔪᖅ)',
@@ -916,7 +949,8 @@ export const iu = defineLocale({
       noKeysMatch: 'ᕿᓂᕐᓂᒧᑦ ᑐᓂᔾᔪᑎᑦ ᓈᒻᒪᒃᑯᑦ ᑲᖏᑦᑐᑦ.',
       localEndpoint: {
         title: 'ᓄᓇᓕᖑᔪᖅ / ᓇᒻᒥᓂᖅ endpoint',
-        description: 'OpenAmer-ᒥᒃ OpenAI-compatible endpoint-ᒧᑦ ᐊᑕᐅᓯᐅᓗᐊᖅᑐᒧᑦ ᐊᐅᓚᑦᑎᑦ (Zyphra, vLLM, llama.cpp, Ollama, ᐊᓯᖏᓪᓗ).',
+        description:
+          'OpenAmer-ᒥᒃ OpenAI-compatible endpoint-ᒧᑦ ᐊᑕᐅᓯᐅᓗᐊᖅᑐᒧᑦ ᐊᐅᓚᑦᑎᑦ (Zyphra, vLLM, llama.cpp, Ollama, ᐊᓯᖏᓪᓗ).'
       },
       loading: 'ᑐᓂᔾᔪᑎᑦ ᐃᓚᓕᓯᒪᔪᑦ...',
       connectAccount: 'ᐊᑲᐅᓐᑦ ᐱᓯᐅᑎᓗᒍ',
@@ -930,13 +964,14 @@ export const iu = defineLocale({
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     skillArchivedTitle: 'ᓯᑭᓪ ᑲᐃᓐᓇᐅᑎᒥᑦ ᐃᓯᖅᑕᐅᓯᒪᔪᖅ',
@@ -966,7 +1001,7 @@ export const iu = defineLocale({
       trust: {
         builtin: 'ᐃᓗᓕᖅ',
         trusted: 'ᐃᒃᐱᒍᓱᒃᑕᐅᔪᖅ',
-        community: 'ᓄᓇᓖᑦ',
+        community: 'ᓄᓇᓖᑦ'
       },
       verdictSafe: 'ᐊᑐᐃᓐᓇᖅ',
       verdictCaution: 'ᖁᔭᓐᓇᒦᒃ',
@@ -986,7 +1021,7 @@ export const iu = defineLocale({
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     toolsetsRefreshFailed: 'Suliarutit nutaqqippallialaanngillat',
     skillEnabled: 'Pijariiq atuqtitaq',
@@ -1003,7 +1038,7 @@ export const iu = defineLocale({
     provenance: {
       agent: 'Ilittuq',
       bundled: 'Ilaliuqtuq',
-      hub: 'Qitirmi',
+      hub: 'Qitirmi'
     },
     changesApplyNewSessions: 'Allannguutit nutaat atuqtuutinut atuqtut.',
     skillUpdated: 'Pijariiq nutaqqippalliaqtuq',
@@ -1025,7 +1060,8 @@ export const iu = defineLocale({
     noDescription: 'ᐅᖃᐅᓯᖃᙱᑦᑐᖅ.',
     configured: 'ᐋᖅᑭᒃᓯᒪᔪᖅ',
     needsKeys: 'ᑭᒍᑎᑦ ᐱᔭᕆᐊᖃᖅᑐᑦ',
-    visionModelHint: 'ᑕᑯᔪᓐᓇᐅᑎ ᐊᑐᖅᐸᑦ ᐃᓚᒋᔭᐅᔪᒥᒃ ᒪᑭᕝᕕᓕᕆᔾᔪᓯᒥᒃ — ᑕᑯᓐᓇᔭᐅᔪᓐᓇᖅᑐᖅ ᒪᑭᕝᕕᒃ ᑕᕝᕙᓂ ᓂᕈᐊᖅᑕᐅᔪᖅ, ᑭᒃᑯᓕᕆᔨᓄᑦ ᓇᓗᓇᐃᖅᑕᐅᙱᑦᑐᖅ ᑕᕝᕙᓂ.',
+    visionModelHint:
+      'ᑕᑯᔪᓐᓇᐅᑎ ᐊᑐᖅᐸᑦ ᐃᓚᒋᔭᐅᔪᒥᒃ ᒪᑭᕝᕕᓕᕆᔾᔪᓯᒥᒃ — ᑕᑯᓐᓇᔭᐅᔪᓐᓇᖅᑐᖅ ᒪᑭᕝᕕᒃ ᑕᕝᕙᓂ ᓂᕈᐊᖅᑕᐅᔪᖅ, ᑭᒃᑯᓕᕆᔨᓄᑦ ᓇᓗᓇᐃᖅᑕᐅᙱᑦᑐᖅ ᑕᕝᕙᓂ.',
     visionModelLink: 'ᑕᑯᔪᓐᓇᐅᑎ ᒪᑭᕝᕕᒃ ᓂᕈᐊᕐᓗᒍ ᐋᖅᑭᒃᓯᒪᔪᑦ → ᒪᑭᕝᕕᑦ',
     skillsLoadFailed: 'ᐱᔪᓐᓇᐅᑎᑦ ᐅᓯᔭᖅᑕᐅᔪᓐᓇᙱᑦᑐᑦ',
     sortAlpha: 'A–Z',
@@ -1039,7 +1075,7 @@ export const iu = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     title: 'Iqqaqtuutit titirarvik',
@@ -1055,7 +1091,8 @@ export const iu = defineLocale({
     emptyTitle: 'Ilinniaqtat piqanngittut',
     emptyDesc: 'OpenAmer pijunnaqsit iqqaqtuutillu pijanginnut sanajangit, uvani takuttirarput.',
     share: 'Nauttiqsuut aqqiktit',
-    shareHint: 'Nauttiqsuut una aqqiktit naqitaut aajuk, imaluunniit ilaliuk uplaani. Titiqqat qaujimangit, iqqaqtuutit pijunnaqsillu titiqqat piqanngittut.',
+    shareHint:
+      'Nauttiqsuut una aqqiktit naqitaut aajuk, imaluunniit ilaliuk uplaani. Titiqqat qaujimangit, iqqaqtuutit pijunnaqsillu titiqqat piqanngittut.',
     shareTitle: 'Nauttiqsuut piqaujuk / nuutsaujuk',
     sharePlaceholder: 'Nauttiqsuut naqitaut ilaliuk…',
     copy: 'Nauttiqsuut naqitaut aajuk',
@@ -1066,7 +1103,7 @@ export const iu = defineLocale({
     importedBadge: 'Nunap assinga tirigusuqtuq',
     resetToMine: 'Nunap assinganut uvannut utirli',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Agensit maturli',
@@ -1096,7 +1133,7 @@ export const iu = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'Command center maturli',
@@ -1125,7 +1162,7 @@ export const iu = defineLocale({
       generatedTag: 'Sanajaulauqtuq',
       adoptFailed: 'Uumajaq taanna piyausinnanngilaq.',
       toggleFailed: 'Uumajaq taanna allanngortinngilaq.',
-      noneAvailable: 'Uumajait atuagaksat piqanngilaq — ataani iliuguk.',
+      noneAvailable: 'Uumajait atuagaksat piqanngilaq — ataani iliuguk.'
     },
     generatePet: {
       title: 'Uumajumik sanajaq',
@@ -1154,7 +1191,7 @@ export const iu = defineLocale({
       referenceImageInvalid: 'ᑐᑭᓯᒋᐊᕐᕕᐅᔪᖅ ᐊᔾᔨᖓ ᑐᑭᓯᔾᔪᑎᖃᓚᐅᙱᑦᑐᖅ. PNG, JPG, WebP, ᐅᕝᕙᓘᓐᓃᑦ GIF ᐆᒃᑐᕆᑦ.',
       adopt: 'ᐊᑐᕐᓗᒍ',
       startOver: 'ᐊᑕᐅᓯᕐᒥᑦ ᐱᒋᐊᕐᓗᒍ',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     installTheme: {
       title: 'ᐊᔾᔨᓕᐅᕈᑎ ᐃᓚᒋᐊᕐᓗᒍ…',
@@ -1166,7 +1203,7 @@ export const iu = defineLocale({
       install: 'ᐃᓚᒋᐊᕐᓗᒍ',
       installing: 'ᐃᓚᒋᐊᖅᑎᑦᑎᖅᑐᖅ...',
       installed: 'ᐃᓚᒋᐊᖅᑕᐅᓯᒪᔪᖅ',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'ᓇᒻᒥᓂᖅᑕᐅᔪᑦ ᐃᓚᖏᑦ',
     mcpServers: 'MCP ᑐᙵᕕᐅᔪᑦ',
@@ -1175,49 +1212,49 @@ export const iu = defineLocale({
       maintenance: 'ᐋᖅᑭᒃᓯᓂᖅ',
       sessions: 'ᐱᓕᕆᐊᖑᔪᑦ',
       system: 'Nalluk',
-      usage: 'Atuutiluni',
+      usage: 'Atuutiluni'
     },
     sectionDescriptions: {
       maintenance: 'Qaujisarniq, tammaqsimajut, kuratuur amma tuktuqaqsimajut',
       sessions: 'Qinirniq amma aquqniq suliaqnik',
       system: 'Qanuqtuun, allagat amma nalluk pivalliajut',
-      usage: 'Token, akik amma pijunnarniq atuutiluni piffissami',
+      usage: 'Token, akik amma pijunnarniq atuutiluni piffissami'
     },
     nav: {
       newChat: {
         title: 'Suliaq nutaaq',
-        detail: 'Aallaruk suliaq nutaaq',
+        detail: 'Aallaruk suliaq nutaaq'
       },
       settings: {
         title: 'Qanuqtuurutit',
-        detail: 'Qanuqtuuruk OpenAmer qarasaujaq',
+        detail: 'Qanuqtuuruk OpenAmer qarasaujaq'
       },
       skills: {
         title: 'Pijunnautit',
-        detail: 'Pijunnarniq, atuutit amma MCP kivgaqtuit',
+        detail: 'Pijunnarniq, atuutit amma MCP kivgaqtuit'
       },
       messaging: {
         title: 'Tusaqattarniq',
-        detail: 'Naligijauk Telegram, Slack, Discord amma allat',
+        detail: 'Naligijauk Telegram, Slack, Discord amma allat'
       },
       artifacts: {
         title: 'Sanavalliajut',
-        detail: 'Qimirrukkut sanajautit',
-      },
+        detail: 'Qimirrukkut sanajautit'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Suliaqnik ilaaliurvik',
-        detail: 'Qinirniq, pin amma aquqniq suliaqnik',
+        detail: 'Qinirniq, pin amma aquqniq suliaqnik'
       },
       system: {
         title: 'Nalluk ilaaliurvik',
-        detail: 'Tumqivik qanuqtuun, allagat, aallaruk/nutaaliuk',
+        detail: 'Tumqivik qanuqtuun, allagat, aallaruk/nutaaliuk'
       },
       usage: {
         title: 'Atuinirmut palluq',
-        detail: 'Token, aki, amma pijariurnirmut pijarniq',
-      },
+        detail: 'Token, aki, amma pijariurnirmut pijarniq'
+      }
     },
     providerNavigate: 'Aqqaq',
     providerSessions: 'Sessiyit',
@@ -1299,7 +1336,7 @@ export const iu = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     logSearchPlaceholder: 'ᐅᓂᒃᑳᓂᒃ ᐊᖅᑯᓇᖅᑎᑦᑎ...',
     startInBranch: branch => `New conversation in ${branch}`,
@@ -1307,7 +1344,7 @@ export const iu = defineLocale({
     days: count => `${count}d`,
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   messaging: {
     search: 'Apiriivik qinirniq...',
@@ -1322,7 +1359,7 @@ export const iu = defineLocale({
       not_configured: 'ᐋᖅᑭᒃᑕᐅᒋᐊᖃᖅᑐᖅ',
       pending_restart: 'ᐱᒋᐊᖅᑎᑦᑎᒋᐊᖃᖅᑐᖅ',
       retrying: 'ᐅᑎᖅᑮᓕᕆᔪᖅ',
-      startup_failed: 'ᐱᒋᐊᖅᑎᑦᑎᓂᖅ ᐊᑎᖅᐳᖅ',
+      startup_failed: 'ᐱᒋᐊᖅᑎᑦᑎᓂᖅ ᐊᑎᖅᐳᖅ'
     },
     unknown: 'ᓇᓗᓇᐃᒃᑯᑦᑕᐅᙱᑦᑐᖅ',
     hintPendingRestart: 'ᑕᒪᐃᒍᑦ ᐋᖅᑭᒃᑕᐅᓂᖓᓄᑦ, ᓇᓗᓇᐃᒃᑯᑦ ᓴᓂᕐᒥᑦ ᐃᓚᐅᑎᑦᑎᔪᖅ ᐱᒋᐊᖅᑎᑦᑎᒋᐊᖅ.',
@@ -1349,124 +1386,124 @@ export const iu = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Bot-up token-a',
         help: 'Bot-mik pilakkit @BotFather-mik, kisiani token-nga tunijangit ilaliuk.',
-        placeholder: 'Telegram bot-up token-a ilaliuk',
+        placeholder: 'Telegram bot-up token-a ilaliuk'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Telegram atuisut ID-it atuqpallaaqtut',
-        help: 'Ilaqaqtumik. Numbar-it ID-it comma-mik avunngaqsimajut @userinfobot-mit. Una piqanngikkuni, kinaulli bot-innut DM-aqattaqtuq.',
+        help: 'Ilaqaqtumik. Numbar-it ID-it comma-mik avunngaqsimajut @userinfobot-mit. Una piqanngikkuni, kinaulli bot-innut DM-aqattaqtuq.'
       },
       TELEGRAM_PROXY: {
         label: 'Proxy-p URL-a',
-        help: 'Atuqpallaaqtuq network-it Telegram nalunaiqsimajut.',
+        help: 'Atuqpallaaqtuq network-it Telegram nalunaiqsimajut.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Bot-up token-a',
-        help: 'Application-mik pilakkit Discord Developer Portal-mi, bot-mik ilaliuk, kisiani token-nga ilaliuk.',
+        help: 'Application-mik pilakkit Discord Developer Portal-mi, bot-mik ilaliuk, kisiani token-nga ilaliuk.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Discord atuisut ID-it atuqpallaaqtut',
-        help: 'Ilaqaqtumik. Discord atuisut ID-it comma-mik avunngaqsimajut.',
+        help: 'Ilaqaqtumik. Discord atuisut ID-it comma-mik avunngaqsimajut.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'ᑭᐅᔾᔪᑎ ᐃᓕᔭᐅᔪᖅ',
-        help: 'ᓯᕗᓪᓕᖅ, ᑕᒪᐃᓐᓂ, ᐅᕝᕙᓘᓐᓃᑦ ᓄᖅᑲᖅᑎᑦ.',
+        help: 'ᓯᕗᓪᓕᖅ, ᑕᒪᐃᓐᓂ, ᐅᕝᕙᓘᓐᓃᑦ ᓄᖅᑲᖅᑎᑦ.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Discord ᐊᑐᖅᑎᓂᒃ ᑕᒪᐃᓐᓂᒃ ᐊᓕᐊᒍᑎᑦ',
-        help: 'ᐱᕙᓪᓕᐊᑎᑦᑎᓂᕐᒧᑦ ᑭᓯᐊᓂ. ᓇᓗᓇᐃᖅᑕᐅᓯᒪᑉᐸᑦ, ᑭᓇᐃᓗ ᐅᖃᓕᒪᔪᖅ bot-ᒧᑦ DM-ᖁᔭᐅᓂᖅ ᐊᓕᐊᒍᑎᑦ ᓇᓗᓇᐃᒃᑯᑕᖃᖏᑦᑐᖅ.',
+        help: 'ᐱᕙᓪᓕᐊᑎᑦᑎᓂᕐᒧᑦ ᑭᓯᐊᓂ. ᓇᓗᓇᐃᖅᑕᐅᓯᒪᑉᐸᑦ, ᑭᓇᐃᓗ ᐅᖃᓕᒪᔪᖅ bot-ᒧᑦ DM-ᖁᔭᐅᓂᖅ ᐊᓕᐊᒍᑎᑦ ᓇᓗᓇᐃᒃᑯᑕᖃᖏᑦᑐᖅ.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ᐊᖏᕐᕋᖅ ᑕᕐᕋᖅ ID',
-        help: 'ᑕᕐᕋᖅ bot ᓯᕗᓂᒃᓴᕐᒥ ᐅᖃᐅᓯᖅᑕᐅᔪᓂᒃ ᓄᓇᖅᑲᑎᑦᑎᔪᖅ (cron ᖃᓄᐃᓕᐅᕐᓂᖅ, ᐃᖅᑲᐅᒍᑎᑦ).',
+        help: 'ᑕᕐᕋᖅ bot ᓯᕗᓂᒃᓴᕐᒥ ᐅᖃᐅᓯᖅᑕᐅᔪᓂᒃ ᓄᓇᖅᑲᑎᑦᑎᔪᖅ (cron ᖃᓄᐃᓕᐅᕐᓂᖅ, ᐃᖅᑲᐅᒍᑎᑦ).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'ᐊᖏᕐᕋᖅ ᑕᕐᕋᖅ ᐊᑎᖓ',
-        help: 'ᐊᖏᕐᕋᖅ ᑕᕐᕋᖅ ᑕᐃᒎᓯᖓ logs-ᒧᑦ ᐊᒻᒪᓗ status-ᒧᑦ ᓇᓗᓇᐃᔭᐅᔪᖅ.',
+        help: 'ᐊᖏᕐᕋᖅ ᑕᕐᕋᖅ ᑕᐃᒎᓯᖓ logs-ᒧᑦ ᐊᒻᒪᓗ status-ᒧᑦ ᓇᓗᓇᐃᔭᐅᔪᖅ.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'iMessage ᐊᑐᖅᑎᓂᒃ ᑕᒪᐃᓐᓂᒃ ᐊᓕᐊᒍᑎᑦ',
-        help: 'ᓇᓗᓇᐃᖅᑕᐅᓯᒪᑉᐸᑦ, BlueBubbles ᐊᓕᐊᒍᑎᑦ ᓇᓗᓇᐃᒃᑯᑕᖓ ᐊᑐᖅᑕᐅᓂᐊᖏᑦᑐᖅ.',
+        help: 'ᓇᓗᓇᐃᖅᑕᐅᓯᒪᑉᐸᑦ, BlueBubbles ᐊᓕᐊᒍᑎᑦ ᓇᓗᓇᐃᒃᑯᑕᖓ ᐊᑐᖅᑕᐅᓂᐊᖏᑦᑐᖅ.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Mattermost ᐊᑐᖅᑎᓂᒃ ᑕᒪᐃᓐᓂᒃ ᐊᓕᐊᒍᑎᑦ',
+        label: 'Mattermost ᐊᑐᖅᑎᓂᒃ ᑕᒪᐃᓐᓂᒃ ᐊᓕᐊᒍᑎᑦ'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'ᐊᖏᕐᕋᖅ ᑕᕐᕋᖅ',
+        label: 'ᐊᖏᕐᕋᖅ ᑕᕐᕋᖅ'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'QQ ᐊᑐᖅᑎᓂᒃ ᑕᒪᐃᓐᓂᒃ ᐊᓕᐊᒍᑎᑦ',
+        label: 'QQ ᐊᑐᖅᑎᓂᒃ ᑕᒪᐃᓐᓂᒃ ᐊᓕᐊᒍᑎᑦ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ ᐊᖏᕐᕋᖅ ᑕᕐᕋᖅ',
-        help: 'cron-ᑯᑦ ᓄᓇᖅᑲᑎᑦᑎᓂᕐᒧᑦ ᓇᓗᓇᐃᖅᑕᐅᓯᒪᔪᖅ ᑕᕐᕋᖅ ᐅᕝᕙᓘᓐᓃᑦ ᑲᑎᒪᔨᑦ.',
+        help: 'cron-ᑯᑦ ᓄᓇᖅᑲᑎᑦᑎᓂᕐᒧᑦ ᓇᓗᓇᐃᖅᑕᐅᓯᒪᔪᖅ ᑕᕐᕋᖅ ᐅᕝᕙᓘᓐᓃᑦ ᑲᑎᒪᔨᑦ.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ ᐊᖏᕐᕋᖅ ᑕᕐᕋᖅ ᐊᑎᖓ',
+        label: 'QQ ᐊᖏᕐᕋᖅ ᑕᕐᕋᖅ ᐊᑎᖓ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack bot ᑕᐅᑲᓐ',
         help: 'Slack app-ᖅ ᐃᓕᔭᐅᖃᑦᑕᕐᑎᓗᒍ OAuth & Permissions-ᒥᑦ bot ᑕᐅᑲᓐ ᐊᑐᕐᓗᒍ.',
-        placeholder: 'Slack bot ᑕᐅᑲᓐ ᒥᒃᓴᕐᓗᒍ',
+        placeholder: 'Slack bot ᑕᐅᑲᓐ ᒥᒃᓴᕐᓗᒍ'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack app ᑕᐅᑲᓐ',
         help: 'Socket Mode-mut piqutigijak app-token aturuk.',
-        placeholder: 'Slack app-token iliikkuk',
+        placeholder: 'Slack app-token iliikkuk'
       },
       SIGNAL_ACCOUNT: {
         help: 'ᓈᐹᖅ ᑎᑎᕋᖅᑕᐅᓯᒪᔪᖅ signal-cli bridge-ᒧᑦ.',
-        label: 'Telefoni namba',
+        label: 'Telefoni namba'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Signal ᐊᑐᖅᑎᑦ ᐊᑐᖅᑕᐅᔪᓐᓇᖅᑐᑦ',
-        help: 'ᓄᕙᒌᔭᖅᑕᐅᔪᖅ. Signal ID-ᑦ comma-ᒧᑦ ᐊᕕᒃᑕᐅᓯᒪᔪᑦ.',
+        help: 'ᓄᕙᒌᔭᖅᑕᐅᔪᖅ. Signal ID-ᑦ comma-ᒧᑦ ᐊᕕᒃᑕᐅᓯᒪᔪᑦ.'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp bridge ᐊᑐᖅᑕᐅᔪᓐᓇᖅᑎᑦᑎᓗᒍ',
-        help: 'automatic-ᒧᑦ ᐃᓂᖃᖅᑎᑕᐅᓯᒪᔪᖅ ᐊᑯᓂᐅᑉ toggle-ᒧᑦ. ᐊᑐᖅᑕᐅᓂᐊᖅᑐᖅ ᓇᓗᓇᐃᖅᓯᒪᙱᑦᑐᖅ.',
+        help: 'automatic-ᒧᑦ ᐃᓂᖃᖅᑎᑕᐅᓯᒪᔪᖅ ᐊᑯᓂᐅᑉ toggle-ᒧᑦ. ᐊᑐᖅᑕᐅᓂᐊᖅᑐᖅ ᓇᓗᓇᐃᖅᓯᒪᙱᑦᑐᖅ.'
       },
       WHATSAPP_MODE: {
-        label: 'Bridge ᐊᐅᓚᐅᑎ',
+        label: 'Bridge ᐊᐅᓚᐅᑎ'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'WhatsApp ᐊᑐᖅᑎᑦ ᐊᑐᖅᑕᐅᔪᓐᓇᖅᑐᑦ',
-        help: 'ᓄᕙᒌᔭᖅᑕᐅᔪᖅ. phone ᓈᐹᖅᑦ ᐅᕝᕙᓘᓐᓃᑦ WhatsApp ID-ᑦ comma-ᒧᑦ ᐊᕕᒃᑕᐅᓯᒪᔪᑦ.',
+        help: 'ᓄᕙᒌᔭᖅᑕᐅᔪᖅ. phone ᓈᐹᖅᑦ ᐅᕝᕙᓘᓐᓃᑦ WhatsApp ID-ᑦ comma-ᒧᑦ ᐊᕕᒃᑕᐅᓯᒪᔪᑦ.'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Slack user ID-t aturniqsaat',
-        help: 'Piusuutigijak. Komma-tikutaat Slack user ID-t.',
+        help: 'Piusuutigijak. Komma-tikutaat Slack user ID-t.'
       },
       MATTERMOST_URL: {
         placeholder: 'https://mattermost.example.com',
-        label: 'Savaagavik URL',
+        label: 'Savaagavik URL'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'User ID-t aturniqsaat',
-        help: 'Piusuutigijak. Komma-tikutaat Mattermost user ID-t.',
+        help: 'Piusuutigijak. Komma-tikutaat Mattermost user ID-t.'
       },
       MATRIX_HOMESERVER: {
         placeholder: 'https://matrix.org',
-        label: 'angirvik URL',
+        label: 'angirvik URL'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Matrix user ID-t aturniqsaat',
-        help: 'Piusuutigijak. Komma-tikutaat user ID-t @user:server format-imi.',
+        help: 'Piusuutigijak. Komma-tikutaat user ID-t @user:server format-imi.'
       },
       SIGNAL_HTTP_URL: {
         placeholder: 'http://127.0.0.1:8080',
         help: 'signal-cli REST bridge atuqtumik URL-a.',
-        label: 'Signal ikajuut URL',
+        label: 'Signal ikajuut URL'
       },
       MATRIX_USER_ID: {
         label: 'Bot atuisup ID-a',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATTERMOST_TOKEN: {
-        label: 'bot-up ilisimaniq',
+        label: 'bot-up ilisimaniq'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'iserneq ilisimaniq',
-      },
+        label: 'iserneq ilisimaniq'
+      }
     },
     advanced: count => `Advanced (${count})`,
     clearField: key => `Clear ${key}`,
@@ -1480,8 +1517,7 @@ export const iu = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     deleting: 'ᓂᖅᓴᐃᓂᖅ...',
@@ -1510,7 +1546,8 @@ export const iu = defineLocale({
     hint: 'Subscription-ᑦ ᐊᓯᔾᔨᖅᑕᐅᓯᒪᔪᑦ hot-reload-ᖅᑕᐅᓗᑎᒃ ᑐᓴᐅᑎᑦᑎᔪᖅ ᐊᐅᓚᓕᖅᑎᑕᐅᓚᐅᖅᑎᓪᓗᒍ. ᐊᑐᖅᑕᐅᔪᓐᓇᙱᑦᑐᑦ subscription-ᑦ ᑐᓂᔭᐅᔪᑦ ᐱᕕᖃᖅᑎᑕᐅᔪᑦ ᓄᖅᑲᖅᑕᐅᔪᑦ.',
     empty: 'Webhook subscription-ᑦ ᓱᓕ ᐱᙳᐊᖅᑕᐅᓯᒪᙱᑦᑐᑦ.',
     disabledTitle: 'Webhook ᑐᓴᐅᑎᑦᑎᔪᖅ ᓄᖅᑲᖅᑕᐅᓯᒪᔪᖅ',
-    disabledBody: 'Webhook-ᑦ ᓇᖕᒥᓂᖅ gateway platform-ᒥᒃ ᐊᑐᖅᑕᐅᔪᑦ. ᐅᕙᓂ ᐊᑐᖅᑕᐅᔪᓐᓇᖅᑎᑦᑎᓗᒋᑦ ᑐᓂᔭᐅᔪᑦ HTTP events ᐱᔪᓐᓇᖅᑎᑦᑎᓗᒋᑦ; chat channels ᐊᑐᖅᑕᐅᓂᐊᖅᑐᑦ ᑭᓯᐊᓂ subscription Telegram, Discord, Slack, ᐅᕝᕙᓘᓐᓃᑦ ᐊᓯᖏᓐᓂᒃ channel-ᒧᑦ ᑐᓂᔭᐅᖅᑎᓪᓗᒍ.',
+    disabledBody:
+      'Webhook-ᑦ ᓇᖕᒥᓂᖅ gateway platform-ᒥᒃ ᐊᑐᖅᑕᐅᔪᑦ. ᐅᕙᓂ ᐊᑐᖅᑕᐅᔪᓐᓇᖅᑎᑦᑎᓗᒋᑦ ᑐᓂᔭᐅᔪᑦ HTTP events ᐱᔪᓐᓇᖅᑎᑦᑎᓗᒋᑦ; chat channels ᐊᑐᖅᑕᐅᓂᐊᖅᑐᑦ ᑭᓯᐊᓂ subscription Telegram, Discord, Slack, ᐅᕝᕙᓘᓐᓃᑦ ᐊᓯᖏᓐᓂᒃ channel-ᒧᑦ ᑐᓂᔭᐅᖅᑎᓪᓗᒍ.',
     enable: 'Webhook-ᑦ ᐊᑐᖅᑕᐅᔪᓐᓇᖅᑎᑦᑎᓗᒋᑦ',
     enabling: 'ᐊᑐᖅᑕᐅᔪᓐᓇᖅᑎᑦᑎᓂᖓ...',
     enableRow: 'ᐊᑐᖅᑕᐅᔪᓐᓇᖅᑎᑦᑎ',
@@ -1537,7 +1574,7 @@ export const iu = defineLocale({
       discord: 'ᑎᔅᑯᕐᑦ',
       slack: 'ᓴᓪᐊᒃ',
       email: 'ᐃᒥᐊᓕ',
-      github_comment: 'GitHub uqautaujaq',
+      github_comment: 'GitHub uqautaujaq'
     },
     subscriptions: (count: number) => `Subscriptions (${count})`,
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -1545,7 +1582,7 @@ export const iu = defineLocale({
     deleteFailed: (name: string) => `Failed to delete "${name}"`,
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     renameMenu: 'ᐊᑎᖅᓯᐅᖅᓯᒋᑦ…',
@@ -1623,7 +1660,7 @@ export const iu = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   cron: {
     close: 'cron ᒪᑐᐃᕐᓂᖅ',
@@ -1637,14 +1674,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'ᓄᖅᑲᖅᑎᑕᐅᓯᒪᔪᖅ',
       disabled: 'ᐊᑐᐃᓐᓇᙱᑦᑐᖅ',
       error: 'ᑕᒻᒪᕆᒃ',
-      completed: 'ᐱᔭᕇᕐᓯᒪᔪᖅ',
+      completed: 'ᐱᔭᕇᕐᓯᒪᔪᖅ'
     },
     deliveryLabels: {
       local: 'ᐅᑯᐊ ᖃᕆᑕᐅᔭᐅᑉ ᐃᑭᐊᖓ',
       email: 'ᐃᒥᐊᓕᒃ',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     days: {
       '0': 'ᓄᕕᐊᖅ',
@@ -1654,7 +1691,7 @@ Leave blank to keep the ${mode} default.`,
       '4': 'ᓯᑕᒪᑦ',
       '5': 'ᑕᓪᓕᒪᑦ',
       '6': 'ᐊᕐᕕᓂᖅ',
-      '7': 'ᓄᓇᕐᔪᐊᖅ',
+      '7': 'ᓄᓇᕐᔪᐊᖅ'
     },
     topOfHour: 'ᐊᑕᐅᓯᖅᑐᒥ ᐃᑲᕐᕕᐅᑉ ᓯᕗᓪᓕᖓᓂ',
     newCron: 'ᓄᑖᖅ cron',
@@ -1694,7 +1731,8 @@ Leave blank to keep the ${mode} default.`,
     editTitle: 'Cron suliaq allannguut',
     createTitle: 'Cron suliaq nutaaq',
     editDesc: 'Pivalliq, apiqquq, nasiivik allannguut. Allangnuutit tunuliaq qanittumi atuutissaaq.',
-    createDesc: 'Apiqquq pivalliguk namminiq aturtaqullugu. Cron atuqausimik atauttikkut nalunaikkutamik "qulit tallimat minutit atuinnarummik".',
+    createDesc:
+      'Apiqquq pivalliguk namminiq aturtaqullugu. Cron atuqausimik atauttikkut nalunaikkutamik "qulit tallimat minutit atuinnarummik".',
     nameLabel: 'Atiq',
     namePlaceholder: 'Ullaakkut nalliuttuq',
     promptLabel: 'Apiqquq',
@@ -1716,7 +1754,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Cron-mik piliriaq',
     tabs: {
       jobs: 'Suliat',
-      blueprints: 'Upalungaijautit',
+      blueprints: 'Upalungaijautit'
     },
     blueprints: {
       tab: 'Upalungaijautit',
@@ -1730,7 +1768,7 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Upalungaijautit ikkunniq...',
       failedLoad: 'Upalungaijautit ikkunniq ajurput',
       emptyTitle: 'Upalungaijautit atuutilaakkaat',
-      emptyDesc: 'Ingerlatit upalungaijautit una backend-mi atuutilaakkaat.',
+      emptyDesc: 'Ingerlatit upalungaijautit una backend-mi atuutilaakkaat.'
     },
     scheduleLabels: {
       daily: 'ᐅᓪᓗᖓᓕᒫᖅ',
@@ -1739,7 +1777,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'ᑕᖅᑭᖓᓕᒫᖅ',
       hourly: 'ᐃᑲᕐᕋᖓᓕᒫᖅ',
       'every-15-minutes': '15-ᒥᓂᑦᑕᖓᓕᒫᖅ',
-      custom: 'ᓇᖕᒥᓂᖅ',
+      custom: 'ᓇᖕᒥᓂᖅ'
     },
     scheduleHints: {
       daily: 'ᐅᓪᓗᖓᓕᒫᖅ 9:00 AM',
@@ -1748,7 +1786,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'ᑕᖅᑭᖓᓕᒫᖅ ᓯᕗᓪᓕᖅᐹ ᐅᓪᓗᖅ 9:00 AM',
       hourly: 'ᐃᑲᕐᕋᖓᓕᒫᖅ ᓯᕗᓪᓕᖅᐸᐅᔪᖅ',
       'every-15-minutes': '15-ᒥᓂᑦᑕᖓᓕᒫᖅ',
-      custom: 'Cron ᑎᑎᕋᐅᓯᖅ ᐅᖃᐅᓯᓪᓘᓐᓃᑦ',
+      custom: 'Cron ᑎᑎᕋᐅᓯᖅ ᐅᖃᐅᓯᓪᓘᓐᓃᑦ'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -1757,7 +1795,7 @@ Leave blank to keep the ${mode} default.`,
     everyDayOfWeekAt: (day, time) => `Every ${day} at ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Monthly on day ${dayOfMonth} at ${time}`,
     everyHourAt: minute => `Every hour at :${minute}`,
-    actionsFor: title => `Actions for ${title}`,
+    actionsFor: title => `Actions for ${title}`
   },
   artifacts: {
     search: 'Artefaktit qinirniq...',
@@ -1791,14 +1829,14 @@ Leave blank to keep the ${mode} default.`,
     copyUrl: 'URL ᑲᑎᖅᓱᖅ',
     copyPath: 'ᐊᖅᑯᑦ ᑲᑎᖅᓱᖅ',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'ᓄᑖᖅ ᑲᑎᒪᓂᖅ',
       skills: 'ᐱᔪᓐᓇᐅᑎᑦ',
       messaging: 'ᑎᑎᕋᐅᑎᓂᖅ',
-      artifacts: 'ᓴᕿᔮᑦᑕᐅᔪᑦ',
+      artifacts: 'ᓴᕿᔮᑦᑕᐅᔪᑦ'
     },
     searchAria: 'ᑲᑎᒪᓂᑦ ᕿᓂᖅ',
     searchPlaceholder: 'ᑲᑎᒪᓂᑦ ᕿᓂᖅ…',
@@ -1849,7 +1887,8 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'ᐊᖅᑯᑎ ᐋᔩᖅᓯᓗᒍ',
       removeFromSidebar: 'ᓵᐃᑦᐸᕐᒥᑦ ᐃᔨᖅᓴᐃᓗᒍ',
       createFailed: 'ᐱᓕᕆᐊᖅ ᓴᖅᑭᑎᑦᓯᙱᑦᑐᖅ',
-      staleBackend: 'OpenAmer backend ᓄᑖᙳᖅᑎᑦᑎᓗᒍ ᐱᓕᕆᐊᓕᐅᕈᑎᓐᓂᒃ — backend ᐅᓄᖅᑐᒥᒃ ᐅᑎᖅᑮᓐᓂᖅᓴᐅᔪᖅ ᑖᓐᓇ desktop app-ᒥᒃ (Settings → Updates → Backend).',
+      staleBackend:
+        'OpenAmer backend ᓄᑖᙳᖅᑎᑦᑎᓗᒍ ᐱᓕᕆᐊᓕᐅᕈᑎᓐᓂᒃ — backend ᐅᓄᖅᑐᒥᒃ ᐅᑎᖅᑮᓐᓂᖅᓴᐅᔪᖅ ᑖᓐᓇ desktop app-ᒥᒃ (Settings → Updates → Backend).',
       deleteConfirm: 'ᑖᓐᓇ ᐲᔭᖅᑎᑦᑎᔪᖅ ᐱᓕᕆᐊᖅ ᓴᓂᕐᕙᖅᑕᐅᓯᒪᔪᖅ OpenAmer-ᒥ. Files, git repos, worktrees ᐊᓯᒃᓯᓇᙱᑦᑐᑦ.',
       startWork: 'ᓄᑖᖅ worktree',
       newWorktreeTitle: 'ᓄᑖᖅ worktree',
@@ -1870,14 +1909,16 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'ᐊᒃᓱᐃᑦ ᓇᓂᔭᐅᙱᑦᑐᑦ',
       removeWorktree: 'worktree ᐲᔭᖅᑎᓗᒍ',
       removeWorktreeFailed: 'Worktree-mik piijaisinnaanngittuq (asiijjutit nalunaiqsimanngittut?)',
-      removeWorktreeConfirm: 'Git-mit piijait (worktree-mik piijaippaa; branch-qaijaaq), imaluunniit lane sidebar-mit saimmatititsiuk worktree disk-miititsiuk.',
-      removeWorktreeDirty: 'Una worktree asiijjutinik nalunaiqsimanngittunik qaqtuq. Sangijumik piijait (asiijjutit piijait), imaluunniit lane saimmatititsiuk disk-mut.',
+      removeWorktreeConfirm:
+        'Git-mit piijait (worktree-mik piijaippaa; branch-qaijaaq), imaluunniit lane sidebar-mit saimmatititsiuk worktree disk-miititsiuk.',
+      removeWorktreeDirty:
+        'Una worktree asiijjutinik nalunaiqsimanngittunik qaqtuq. Sangijumik piijait (asiijjutit piijait), imaluunniit lane saimmatititsiuk disk-mut.',
       forceRemove: 'Sangijumik piijai',
       back: 'Pilirianit tamainit',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     loading: 'Usinngaaq…',
     loadMore: 'Alla usinngaaq',
@@ -1912,19 +1953,19 @@ Leave blank to keep the ${mode} default.`,
       actionsFor: title => `Actions for ${title}`,
       handoffOrigin: platform => `Handed off from ${platform}`,
       ownedByProfile: profile => `Profile: ${profile}`,
-      untitledChat: id => `Chat ${id}`,
+      untitledChat: id => `Chat ${id}`
     },
     dateDivider: {
       today: 'ᐅᓪᓗᒥ ᓱᓕ',
       yesterday: 'ᐃᑉᐱᖅᓯᐊᖅ',
       thisWeek: 'ᑕᒪᓐᓇ ᐱᓇᓱᐊᕈᓯᖅ ᓱᓕ',
       lastWeek: 'ᐱᓇᓱᐊᕈᓯᖅ ᐊᓂᒍᖅᑐᖅ',
-      thisMonth: 'ᑕᒪᓐᓇ ᑕᖅᑭᖅ ᓱᓕ',
+      thisMonth: 'ᑕᒪᓐᓇ ᑕᖅᑭᖅ ᓱᓕ'
     },
     noMatch: query => `No sessions match “${query}”.`,
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     placeholderStarting: 'OpenAmer ᐱᒋᐊᖅᑎᑦᑎᔪᖅ...',
@@ -1964,7 +2005,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'Kingulliup aturnirmik ingerlaqqik',
       '/details': 'Titiraqsimamik takutittiniq aqaqhai',
       '/copy': 'Kuupiq toqqukkut imaluunniit kingulliq ikayuqti upalungaijautaa',
-      '/quit': 'openamer-mit aniguk',
+      '/quit': 'openamer-mit aniguk'
     },
     hotkeyDescs: {
       'composer.mention': 'Ilitturutiit fayliit, qutuut, urls, git',
@@ -1974,7 +2015,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'tunuliaq sammititaq tumi nassiuguk',
       'keybinds.openPanel': 'tamait naqittautit ikinngutit',
       'composer.cancel': 'matuijaaq popover · nangit aqsaaq',
-      'composer.history': 'tumirliq popover / qanutuinirmik',
+      'composer.history': 'tumirliq popover / qanutuinirmik'
     },
     attachUrlTitle: 'ilaliut URL-mik',
     attachUrlDesc: 'OpenAmer qinngaijuq makpigaaq ilaliugaa tamatuma tumiup tungaanut',
@@ -1998,19 +2039,20 @@ Leave blank to keep the ${mode} default.`,
     snippets: {
       codeReview: {
         label: 'Qarasaujarmik qaujisarniq',
-        description: 'Qaujisarniq maanna asijjirniq uutirusimajunik, ilaliqpalliaqqaarnik, amma piqatigiqaqtunik qaujisautinik.',
-        text: 'Qaujisarniq una tammarniqsaurianik, uutirusimajunik, amma piqatigiqaqtunik qaujisautinik.',
+        description:
+          'Qaujisarniq maanna asijjirniq uutirusimajunik, ilaliqpalliaqqaarnik, amma piqatigiqaqtunik qaujisautinik.',
+        text: 'Qaujisarniq una tammarniqsaurianik, uutirusimajunik, amma piqatigiqaqtunik qaujisautinik.'
       },
       implementationPlan: {
         label: 'Piliurniq parnaut',
         description: 'Nalunaijaq piliaksaq qarasaujarmik atuinnaruq, asijjirniq kisutuqaq.',
-        text: 'Piliurniq parnaut naittuq qarasaujarmik asijjirniq.',
+        text: 'Piliurniq parnaut naittuq qarasaujarmik asijjirniq.'
       },
       explainThis: {
         label: 'Nalunaijaruk una',
         description: 'Nalunaijaq qanoq niruaqtaq qarasaujaq pijjutiqaqtut, amma atuqatigiik pimmariujunik titiqqanik.',
-        text: 'Nalunaijaruk qanoq una pijjutiqaqtut, amma takujautiguk pimmariujunik titiqqanik.',
-      },
+        text: 'Nalunaijaruk qanoq una pijjutiqaqtut, amma takujautiguk pimmariujunik titiqqanik.'
+      }
     },
     queueStuckTitle: 'ᑭᖑᓕᕐᓂᐊᖅᑐᖅ ᑐᑭᓯᒃᓴᖅ ᐊᔪᖅᑕᐅᓯᒪᙱᑦᑐᖅ',
     queueStuckBody: 'ᑭᖑᓕᕐᓂᐊᖅᑐᖅ ᐊᐅᓚᐅᑎ ᐊᔪᖅᑕᐅᔪᓐᓇᙱᓚᖅ. ᐃᓚᖓᔪᖅ ᑭᖑᓕᕐᓂᐊᖅᑐᖅ — ᐊᔪᖅᑕᐅᕙᓪᓕᐊᒋᐊᖅ.',
@@ -2041,7 +2083,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -2050,14 +2092,14 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
     attachments: count => `${count} attachment${count === 1 ? '' : 's'}`,
     previewLabel: label => `Preview ${label}`,
     couldNotPreview: label => `Could not preview ${label}`,
-    removeAttachment: label => `Remove ${label}`,
+    removeAttachment: label => `Remove ${label}`
   },
   statusStack: {
     agents: 'Piliriyit',
@@ -2097,7 +2139,8 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'PR ammuk',
       ghMissing: 'GitHub CLI (gh) instaluk, PR ammuinirmut iseriuk',
       agentShip: 'OpenAmer PR ammuinirmut apiriuk',
-      agentShipPrompt: 'Maannakkut allannguutit qimirrui, nalunairmik conventional-commit titiraq aturlugit kammit, branch pusi, pull request ammuk.',
+      agentShipPrompt:
+        'Maannakkut allannguutit qimirrui, nalunairmik conventional-commit titiraq aturlugit kammit, branch pusi, pull request ammuk.',
       newBranch: 'Branch nutaaq',
       worktrees: 'Worktree-it',
       commitPlaceholder: 'Nassuiaat (âŒ˜â†µ tunniq)',
@@ -2106,12 +2149,12 @@ Leave blank to keep the ${mode} default.`,
       behind: count => `${count} behind`,
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -2126,7 +2169,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'ᓄᑖᙳᖅᑎᑦᑎᓂᖅ ᐱᔭᕇᖅᓯᒪᔪᖅ',
       manual: 'ᑎᕐᒥᓇᓕᒃᑯᑦ ᓄᑖᙳᖅᑎᑦᑎᓗᒍ',
       guiSkew: 'ᑯᒻᐳᑕ ᐱᓕᕆᐊᖅ ᓄᑖᙳᖅᑎᑦᑎᓗᒍ',
-      error: 'ᓄᑖᙳᖅᑎᑦᑎᓂᖅ ᓄᖅᑲᖅᑎᑕᐅᓯᒪᔪᖅ',
+      error: 'ᓄᑖᙳᖅᑎᑦᑎᓂᖅ ᓄᖅᑲᖅᑎᑕᐅᓯᒪᔪᖅ'
     },
     checking: 'ᓄᑖᙳᖅᑎᑦᑎᓂᕐᓂᒃ ᕿᓂᕐᓂᖅ…',
     checkFailedTitle: 'ᓄᑖᙳᖅᑎᑦᑎᓂᕐᓂᒃ ᕿᒥᕐᕈᔾᔭᐅᔪᓐᓇᙱᑦᑐᖅ',
@@ -2149,28 +2192,32 @@ Leave blank to keep the ${mode} default.`,
       pulling: 'Backend ᓄᑖᖑᖅᑎᓂᖅ…',
       restarting: 'Backend ᐱᒋᐊᖅᑎᑕᐅᓂᐊᖅᐳᖅ ᓄᑖᖑᖅᑎᓂᕐᒥᒃ ᐃᓕᓴᖅᑎᓗᒍ…',
       notAvailable: 'ᑖᓐᓇ backend-ᒧᑦ ᓄᑖᖑᖅᑎᓂᖅ ᐊᑐᐃᓐᓇᙱᑦᑐᖅ.',
-      failed: 'Backend-ᒥ ᓄᑖᖑᖅᑎᓂᖅ ᐱᔭᐅᓯᒪᙱᑦᑐᖅ.',
+      failed: 'Backend-ᒥ ᓄᑖᖑᖅᑎᓂᖅ ᐱᔭᐅᓯᒪᙱᑦᑐᖅ.'
     },
     appErrors: {
-      updateLocked: 'Update aqunngitaqtuq: OpenAmer window allaa imaluunniit terminal openamer-mik aqaqtuaq install-mik matumik pigivaa. Matujaq, taqqik.',
-      updateFailed: 'Update naammagunngitquq. Uppirnaqannginnak — sunaitaaq piingitquq. Massakkut taqqik.',
+      updateLocked:
+        'Update aqunngitaqtuq: OpenAmer window allaa imaluunniit terminal openamer-mik aqaqtuaq install-mik matumik pigivaa. Matujaq, taqqik.',
+      updateFailed: 'Update naammagunngitquq. Uppirnaqannginnak — sunaitaaq piingitquq. Massakkut taqqik.'
     },
     maybeLater: 'ᐃᒻᒪᖄ ᑭᖑᓂᖅᓴᒧᑦ',
     manualTitle: 'terminal-ᒥᓂᑦ ᓄᑖᖑᖅᑎᓗᒍ',
     manualBody: 'OpenAmer ᐊᐅᓚᑦᑎᓂᕐᒧᑦ ᐳᓚᕋᕐᒥᑦ ᐃᓕᓴᖅᑎᑕᐅᓯᒪᔪᖅ, ᑖᒃᑯᐊᓗ ᓄᑖᖑᖅᑎᓂᕐᓂᒃ ᓇᒥᑐᐃᓐᓇᖅ ᐊᐅᓚᑦᑎᓲᖅ. ᑖᒃᑯᓂᖓ terminal-ᒥᓂᑦ ᐃᓕᓯᓗᒍ:',
     manualPickedUp: 'OpenAmer ᓄᑖᖅ ᐊᑐᐊᒐᖅ ᓇᓂᔭᐅᓂᐊᖅᐳᖅ ᐱᒋᐊᖅᑎᓐᓇᑦᑎᐊᖅᐸᑦ.',
     guiSkewTitle: 'Desktop app-ᒥ ᓄᑖᖑᖅᑎᓗᒍ',
-    guiSkewBody: 'Backend ᓄᑖᖑᖅᑎᑕᐅᓯᒪᔪᖅ, ᑭᓯᐊᓂᓕ ᑖᓐᓇ desktop app package ᐊᓯᔾᔨᕐᑕᐅᓯᒪᙱᑦᑐᖅ. OpenAmer desktop app-ᒥ ᓄᑖᖑᖅᑎᓗᒍ ᐅᕝᕙᓘᓐᓃᑦ ᐃᓕᓴᖅᑎᑦᑎᓗᒍ (AppImage / .deb / .rpm) ᐊᒃᑐᐃᓐᓇᕐᓗᒍ.',
+    guiSkewBody:
+      'Backend ᓄᑖᖑᖅᑎᑕᐅᓯᒪᔪᖅ, ᑭᓯᐊᓂᓕ ᑖᓐᓇ desktop app package ᐊᓯᔾᔨᕐᑕᐅᓯᒪᙱᑦᑐᖅ. OpenAmer desktop app-ᒥ ᓄᑖᖑᖅᑎᓗᒍ ᐅᕝᕙᓘᓐᓃᑦ ᐃᓕᓴᖅᑎᑦᑎᓗᒍ (AppImage / .deb / .rpm) ᐊᒃᑐᐃᓐᓇᕐᓗᒍ.',
     copy: 'ᐊᑎᖅᑎᓗᒍ',
     copied: 'ᐊᑎᖅᑎᑕᐅᓯᒪᔪᖅ',
     done: 'ᐱᔭᐅᓯᒪᔪᖅ',
-    applyingBody: 'OpenAmer updater ᐃᒻᒥᓂᖅ ᐃᓴᕐᕕᒻᒥ ᐊᐅᓚᑦᑎᓂᐊᖅᐳᖅ ᐊᒻᒪᓗ OpenAmer-ᒥ ᐊᒃᑯᓂᖅᓴᐅᑎᑦᑎᓂᐊᖅᐳᖅ ᓱᓕᕈᓂ. ᐊᔪᕐᓇᖅᐳᖅ, ᓄᑖᖑᖅᑎᓂᐅᖅᑲᐅᓂᖓᓂ OpenAmer-ᒥ ᐃᒻᒥᓂᖅ ᐱᒋᐊᖅᑎᑦᑎᓕᕈᓐᓇᙱᑦᑎᐊᖅᐳᑎᑦ.',
-    applyingBodyBackend: 'ᖃᓂᑦᑐᒥ backend ᓄᑖᖑᖅᑎᓂᕐᒥᒃ ᐱᔭᕆᐊᖅᑎᑦᑎᓂᐊᖅᐳᖅ ᐊᒻᒪᓗ ᐱᒋᐊᖅᑎᑦᑎᓂᐊᖅᐳᖅ. OpenAmer ᐊᒃᑯᓂᖅᓴᐅᑎᑦᑎᓂᐊᖅᐳᖅ ᐅᑎᓐᓇᑦᑎᐊᖅᐸᑦ.',
+    applyingBody:
+      'OpenAmer updater ᐃᒻᒥᓂᖅ ᐃᓴᕐᕕᒻᒥ ᐊᐅᓚᑦᑎᓂᐊᖅᐳᖅ ᐊᒻᒪᓗ OpenAmer-ᒥ ᐊᒃᑯᓂᖅᓴᐅᑎᑦᑎᓂᐊᖅᐳᖅ ᓱᓕᕈᓂ. ᐊᔪᕐᓇᖅᐳᖅ, ᓄᑖᖑᖅᑎᓂᐅᖅᑲᐅᓂᖓᓂ OpenAmer-ᒥ ᐃᒻᒥᓂᖅ ᐱᒋᐊᖅᑎᑦᑎᓕᕈᓐᓇᙱᑦᑎᐊᖅᐳᑎᑦ.',
+    applyingBodyBackend:
+      'ᖃᓂᑦᑐᒥ backend ᓄᑖᖑᖅᑎᓂᕐᒥᒃ ᐱᔭᕆᐊᖅᑎᑦᑎᓂᐊᖅᐳᖅ ᐊᒻᒪᓗ ᐱᒋᐊᖅᑎᑦᑎᓂᐊᖅᐳᖅ. OpenAmer ᐊᒃᑯᓂᖅᓴᐅᑎᑦᑎᓂᐊᖅᐳᖅ ᐅᑎᓐᓇᑦᑎᐊᖅᐸᑦ.',
     applyingClose: 'ᑖᓐᓇ ᐃᓴᕐᕕ ᒪᑐᐃᖅᑕᐅᓂᐊᖅᐳᖅ ᓄᑖᖑᖅᑎᓂᖅ ᐊᐅᓚᓐᓂᖓᓂ, ᑭᖑᓂᐊᒍᑦ OpenAmer ᐃᒻᒥᓂᖅ ᐱᒋᐊᖅᑎᑕᐅᓂᐊᖅᐳᖅ.',
     errorTitle: 'ᓄᑖᖑᖅᑎᓂᖅ ᐱᔭᐅᓯᒪᙱᑦᑐᖅ',
     errorBody: 'ᐃᓱᒪᔪᐃᓐᓇᖅ — ᓇᓕᐊᒐᖃᓚᐅᙱᑦᑐᖅ. ᒫᓐᓇ ᐅᑎᖅᑎᓐᓇᔪᓐᓇᖅᐳᑎᑦ.',
     notNow: 'ᒫᓐᓇᙱᑦᑐᖅ',
-    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
+    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`
   },
   install: {
     stageStates: {
@@ -2178,7 +2225,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'Installiliqtuq',
       succeeded: 'Naammatuq',
       skipped: 'Qitutaaqtuq',
-      failed: 'Ajurqtuq',
+      failed: 'Ajurqtuq'
     },
     oneTimeTitle: 'OpenAmer atausirmik install-mik pisitquq',
     installCommand: 'Install-aaqqiksuut',
@@ -2187,10 +2234,12 @@ Leave blank to keep the ${mode} default.`,
     installTo: 'Install-mut iluqtaaqtuq',
     retryAfterRun: 'Aqautigakka -- taqqik',
     setupChoiceTitle: 'OpenAmer Desktop aaqqiksaq',
-    setupChoiceDesc: 'Una app OpenAmer gateway-mut aqqutigilugu aqaqtuaq, imaluunniit OpenAmer una computer-mi nunakkut install-liuk.',
+    setupChoiceDesc:
+      'Una app OpenAmer gateway-mut aqqutigilugu aqaqtuaq, imaluunniit OpenAmer una computer-mi nunakkut install-liuk.',
     connectExistingTitle: 'OpenAmer aqaqtumut aqqutigi',
     connectExistingShort: 'Aqaqtumut aqqutigi',
-    connectExistingDesc: 'Remote backend session token-mik imaluunniit browser sign-in-mik atuk. Nunakkut install aallarniarnngitquq.',
+    connectExistingDesc:
+      'Remote backend session token-mik imaluunniit browser sign-in-mik atuk. Nunakkut install aallarniarnngitquq.',
     installLocalTitle: 'OpenAmer nunakkut install-liuk',
     incompleteTokenTest: 'Una gateway misilittagianginnagu, session token-mik allaguk.',
     testConnection: 'Attaqatigiingniq misilittak.',
@@ -2199,8 +2248,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Install naammagunngittuq.',
     settingUpTitle: 'OpenAmer Agent aaqqissuillugu.',
     finishingTitle: 'Naammagiallaqtuq.',
-    failedDesc: 'Install steps-igut atasaiq naammagunngittuq. Windows-mi, OpenAmer CLI imminut desktop-instance-mik atuqtillugu una naammagunngittuq. OpenAmer instance atuqtut tamarmik unitsittikkit, aammalu misilittakkit. Atuani uqauhiit imminut desktop log-mik transcript tamarmik takuguk.',
-    activeDesc: 'Una atausiq-siivaq setup. OpenAmer installer dependencies-mik downloadsiuqtuq aammalu machine-gik aaqqissuqtuq. Kingulingit launches una step-mik skip-giuk.',
+    failedDesc:
+      'Install steps-igut atasaiq naammagunngittuq. Windows-mi, OpenAmer CLI imminut desktop-instance-mik atuqtillugu una naammagunngittuq. OpenAmer instance atuqtut tamarmik unitsittikkit, aammalu misilittakkit. Atuani uqauhiit imminut desktop log-mik transcript tamarmik takuguk.',
+    activeDesc:
+      'Una atausiq-siivaq setup. OpenAmer installer dependencies-mik downloadsiuqtuq aammalu machine-gik aaqqissuqtuq. Kingulingit launches una step-mik skip-giuk.',
     fetchingManifest: 'Installer manifest-mik tiguniaruq...',
     error: 'Piluqtuq.',
     hideOutput: 'Installer output-mik nuqquttikkit.',
@@ -2232,13 +2283,14 @@ Leave blank to keep the ${mode} default.`,
     tokenDesc: 'ᖃᓂᐅᔪᖅ ᒐᑐᐃᐅᐃᑉ .env ᑎᑎᕋᐅᓯᖓᓂᑦ ᑭᐅᔪᖅᑳᖅᓯᐅᑎ token ᐃᓚᓕᐅᑦ.',
     pasteSessionToken: 'ᑭᐅᔪᖅᑳᖅᓯᐅᑎ token ᐃᓚᓕᐅᑦ',
     incompleteSignInTest: 'ᐃᓯᕆᑦ ᓯᕗᓪᓕᖅ OAuth-ᒧᑦ ᒐᑐᐃᐅᐃ ᐅᔾᔨᕆᓕᓂᐊᖅᑎᓪᓗᒍ.',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
     signInWith: provider => `Sign in with ${provider}`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'OpenAmer ᐱᓕᕆᔨᒧᑦ ᐋᖅᑭᒃᓯᓂᐊᕕᒃ',
@@ -2258,28 +2310,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'ᑐᖃᖅᑐᒃᑯᑦ ᒪᑯᓇᙳᐊᖅ API',
-        description: 'Fireworks AI-ᑯᑦ ᐊᖏᕐᕋᑎᑕᐅᓯᒪᔪᑦ ᒪᑯᓇᙳᐊᑦ ᑐᖃᖅᑐᒃᑯᑦ ᐊᑐᖅᑕᐅᔪᑦ.',
+        description: 'Fireworks AI-ᑯᑦ ᐊᖏᕐᕋᑎᑕᐅᓯᒪᔪᑦ ᒪᑯᓇᙳᐊᑦ ᑐᖃᖅᑐᒃᑯᑦ ᐊᑐᖅᑕᐅᔪᑦ.'
       },
       openrouter: {
         short: 'ᐊᑕᐅᓯᖅ ᑭᒍᑎ, ᐊᒥᓱᑦ ᒪᑯᓇᙳᐊᑦ',
-        description: 'ᑲᓇᑕᖅᓴᐃᔪᑦ ᒪᑯᓇᙳᐊᑦ ᐊᑕᐅᓯᕐᒧᑦ ᑭᒍᑎᒧᑦ ᐊᖏᕐᕋᑎᑦᑎᔪᖅ. ᓄᑖᑦ ᐋᖅᑭᒃᓯᓂᕐᒧᑦ ᐱᑐᖃᖅᑎᑕᐅᓯᒪᔪᖅ.',
+        description: 'ᑲᓇᑕᖅᓴᐃᔪᑦ ᒪᑯᓇᙳᐊᑦ ᐊᑕᐅᓯᕐᒧᑦ ᑭᒍᑎᒧᑦ ᐊᖏᕐᕋᑎᑦᑎᔪᖅ. ᓄᑖᑦ ᐋᖅᑭᒃᓯᓂᕐᒧᑦ ᐱᑐᖃᖅᑎᑕᐅᓯᒪᔪᖅ.'
       },
       openai: {
         short: 'GPT-ᒥᑦ ᐃᓚᒋᔭᐅᔪᑦ ᒪᑯᓇᙳᐊᑦ',
-        description: 'OpenAI ᒪᑯᓇᙳᐊᑦ ᑐᖃᖅᑐᒃᑯᑦ ᐊᑐᖅᑕᐅᔪᑦ.',
+        description: 'OpenAI ᒪᑯᓇᙳᐊᑦ ᑐᖃᖅᑐᒃᑯᑦ ᐊᑐᖅᑕᐅᔪᑦ.'
       },
       gemini: {
         short: 'Gemini-ᒧᑦ ᐊᑐᖅᑕᐅᔪᑦ',
-        description: 'Google Gemini-ᒧᑦ ᐊᑐᖅᑕᐅᔪᑦ ᓇᒥᓗᒍᑎᑦᓯᔪᖅ.',
+        description: 'Google Gemini-ᒧᑦ ᐊᑐᖅᑕᐅᔪᑦ ᓇᒥᓗᒍᑎᑦᓯᔪᖅ.'
       },
       xai: {
         short: 'Grok-ᒧᑦ ᐊᑐᖅᑕᐅᔪᑦ',
-        description: 'xAI Grok-ᒧᑦ ᐊᑐᖅᑕᐅᔪᑦ ᓇᒥᓗᒍᑎᑦᓯᔪᖅ.',
+        description: 'xAI Grok-ᒧᑦ ᐊᑐᖅᑕᐅᔪᑦ ᓇᒥᓗᒍᑎᑦᓯᔪᖅ.'
       },
       local: {
         short: 'ᓇᒥᓐᓂᕐᒥᒃ ᐊᑐᖅᑎᑦᓯᔪᖅ',
-        description: 'OpenAmer-ᒥᒃ ᓄᓇᓕᒻᒥ ᐅᕝᕙᓘᓐᓃᑦ ᓇᒥᓐᓂᕐᒥᒃ OpenAI-ᒧᑦ ᐊᔾᔨᒌᖅᑐᒧᑦ endpoint-ᒧᑦ ᑐᕌᖓᑎᑦᓯ (vLLM, llama.cpp, Ollama, ᐊᓯᖏᑦ).',
-      },
+        description:
+          'OpenAmer-ᒥᒃ ᓄᓇᓕᒻᒥ ᐅᕝᕙᓘᓐᓃᑦ ᓇᒥᓐᓂᕐᒥᒃ OpenAI-ᒧᑦ ᐊᔾᔨᒌᖅᑐᒧᑦ endpoint-ᒧᑦ ᑐᕌᖓᑎᑦᓯ (vLLM, llama.cpp, Ollama, ᐊᓯᖏᑦ).'
+      }
     },
     backToSignIn: 'ᐅᑎᕐᕕᒃ ᐃᓕᓴᐃᓂᕐᒧᑦ',
     getKey: 'ᑭᐅᑎᒃᓴᖅ ᐊᑐᐃᓐᓇᖅᑎᑦᓯ',
@@ -2292,7 +2345,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'ᐃᓕᓴᐃᓂᕐᒧᑦ browser-ᒥᒃ ᒪᑐᐃᖅᑎᑦᓯᔪᖅ, ᑭᓯᐊᓂ ᒪᓐᓇ ᑲᔪᓰᓐᓇᖅᑐᖅ',
       device_code: 'Browser-ᒥᒃ ᓇᓗᓇᐃᔭᕈᑎᒥᒃ ᒪᑐᐃᖅᑎᑦᓯᔪᖅ — OpenAmer ᐊᒡᒐᓕᐅᖅᑐᒥᒃ ᐃᓚᐅᑎᑦᓯᔪᖅ',
-      external: 'Terminal-ᒥ ᐊᑕᐅᓯᕐᒥᒃ ᐃᓕᓴᐃᓐᓇᕐᓗᑎᑦ, ᑭᓯᐊᓂ chat-ᒧᑦ ᐅᑎᕐᓗᑎᑦ',
+      external: 'Terminal-ᒥ ᐊᑕᐅᓯᕐᒥᒃ ᐃᓕᓴᐃᓐᓇᕐᓗᑎᑦ, ᑭᓯᐊᓂ chat-ᒧᑦ ᐅᑎᕐᓗᑎᑦ'
     },
     signInFailed: 'ᐃᓕᓴᐃᓂᖅ ᐊᑐᖅᑕᐅᙱᑦᑐᖅ. ᐊᒃᓱᕈᕐᓗᑎᑦ.',
     pickDifferentProvider: 'ᐊᓯᒥᒃ provider-ᒥᒃ ᓂᕈᐊᕐᓗᒍ',
@@ -2317,11 +2370,13 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'Matalimik allaguk',
@@ -2337,13 +2392,13 @@ Leave blank to keep the ${mode} default.`,
     free: 'ᐊᑭᑐᙱᑦᑐᖅ',
     freeTier: 'ᐊᑭᑐᙱᑦᑐᖅ ᐊᑯᓪᓗᖅ',
     priceTitle: 'ᐃᓕᔅᓯᒪᔪᖅ / ᐊᓂᔅᓯᒪᔪᖅ ᐊᑭᖓ ᒥᓕᐊᓐ ᑎᑎᕋᐅᓯᓄᑦ',
-    wasPrice: 'ᐃᓚᐅᖅᑐᖅ',
+    wasPrice: 'ᐃᓚᐅᖅᑐᖅ'
   },
   modelVisibility: {
     title: 'ᒪᑯᓴᑦ',
     search: 'ᒪᑯᓴᓂᒃ ᕿᓂᕐᓂᖅ',
     noAuthenticatedProviders: 'ᓇᓗᓇᐃᖅᑕᐅᓯᒪᔪᑦ ᐱᔨᑦᑎᕋᖅᑎᑦ ᑲᙳᖅᑐᑦ.',
-    addProvider: 'ᐱᔨᑦᑎᕋᖅᑎᒥᒃ ᐃᓚᓯᓗᒍ…',
+    addProvider: 'ᐱᔨᑦᑎᕋᖅᑎᒥᒃ ᐃᓚᓯᓗᒍ…'
   },
   shell: {
     windowControls: 'ᐃᒐᓛᖅ ᐊᐅᓚᑦᑎᔾᔪᑏᑦ',
@@ -2354,7 +2409,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'ᒪᑯᓴᑦ ᓇᓂᔭᐅᙱᑦᑐᑦ',
       editModels: 'ᒪᑯᓴᓂᒃ ᐋᖅᑭᒃᓯᓗᒋᑦ…',
       refreshModels: 'ᒪᑯᓴᓂᒃ ᓄᑖᙳᖅᑎᓗᒋᑦ',
-      fast: 'ᓱᒃᑲᐃᑦ',
+      fast: 'ᓱᒃᑲᐃᑦ'
     },
     gatewayMenu: {
       checkingInference: 'Isumaliurnirmik qaujisarniq',
@@ -2369,7 +2424,7 @@ Leave blank to keep the ${mode} default.`,
       offline: 'ᐃᓚᙱᑦᑐᖅ',
       inferenceReady: 'ᐃᓱᒪᒋᔭᐅᔪᖅ ᐊᑐᐃᓐᓇᖅ',
       inferenceNotReady: 'ᐃᓱᒪᒋᔭᐅᔪᖅ ᐊᑐᐃᓐᓇᙱᑦᑐᖅ',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'Aallaqqaasiutinik qanurli',
@@ -2379,7 +2434,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'Nammineq pijjutiqarnik qaujisarniq, apiqquq atuqtanginnit',
       off: 'Unitqit',
       offDescription: 'Aallaqqaasiutinik apirqanngitqatillugu aulalik',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'Nalunaiqtuq',
@@ -2419,19 +2474,21 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'Ilagiit aulattijit nallunaijautit',
           system_prompt: 'Aulattiji uqausiq',
           tool_definitions: 'Sanautit nallunaijautit',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Tukisigiarniq qaujimajautit suli sunait',
         loading: 'Ilivannniq qanuriliuqsimajut…',
         title: 'Tukisigiarniq atuqpallianingit',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Matuikkit tukisigiarniq atuqpallianingit qanuriliuqsimajut',
       session: 'Kattimajjut',
       runtimeSessionElapsed: 'Aulattijjut kattimajjut aturniq',
-      yoloOn: 'YOLO malittuq — ajurnaqtut aulattijjutit namminiq angiruttit. Qaijjut nungujjaujjarit. Shift+click tamainarmik asijjirijjut.',
-      yoloOff: 'YOLO nungujjuq — qaijjut ajurnaqtut aulattijjutit namminiq angiruttit. Shift+click tamainarmik asijjirijjut.',
+      yoloOn:
+        'YOLO malittuq — ajurnaqtut aulattijjutit namminiq angiruttit. Qaijjut nungujjaujjarit. Shift+click tamainarmik asijjirijjut.',
+      yoloOff:
+        'YOLO nungujjuq — qaijjut ajurnaqtut aulattijjutit namminiq angiruttit. Shift+click tamainarmik asijjirijjut.',
       modelNone: 'Sunait',
       noModel: 'Miksaq sunait',
       switchModel: 'Miksaq asijjirijjut',
@@ -2454,7 +2511,7 @@ Leave blank to keep the ${mode} default.`,
       running: count => `${count} running`,
       cron: 'Cron',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
     },
     modelOptions: {
       noOptions: 'ᑕᒪᓐᓇ ᒪᑭᕝᕕᐅᑉ ᓂᕈᐊᕈᑎᒃᓴᖃᙱᑦᑐᖅ.',
@@ -2470,8 +2527,8 @@ Leave blank to keep the ${mode} default.`,
       max: 'ᐊᖏᓛᖅ',
       ultra: 'ᐅᓪᑕᕋ',
       updateFailed: 'ᒪᑕᓕ ᓂᕈᐊᕈᑎ ᓄᑖᙳᕆᐊᖅᑎᑦᑎᓂᖅ ᐊᔪᙱᑦᑐᖅ',
-      fastFailed: 'ᓱᒃᑲᐃᔪᖅ ᐱᓕᕆᐊᖅ ᓄᑖᙳᕆᐊᖅᑎᑦᑎᓂᖅ ᐊᔪᙱᑦᑐᖅ',
-    },
+      fastFailed: 'ᓱᒃᑲᐃᔪᖅ ᐱᓕᕆᐊᖅ ᓄᑖᙳᕆᐊᖅᑎᑦᑎᓂᖅ ᐊᔪᙱᑦᑐᖅ'
+    }
   },
   rightSidebar: {
     aria: 'ᑎᑎᕋᐅᔭᒥ ᓴᐃᑕᐹᕐ',
@@ -2507,7 +2564,7 @@ Leave blank to keep the ${mode} default.`,
     addToChat: 'ᐅᖃᑎᒌᓐᓂᕐᒧᑦ ᐃᓚᓕᐅᑎᓂᖅ',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'ᓯᕗᓪᓕᖅᐸᐅᑎ',
@@ -2535,7 +2592,8 @@ Leave blank to keep the ${mode} default.`,
     editing: 'ᐋᖅᑭᒃᑕᐅᓂᖅ',
     unsavedChanges: 'ᓴᐃᒪᓐᓂᙱᑦᑐᑦ ᐊᓯᔾᔨᐅᓂᖏᑦ',
     diskChangedTitle: 'ᐱᔾᔪᓯᖅ ᐊᓯᔾᔨᖅᑕᐅᓯᒪᔪᖅ ᑎᑎᕋᐅᓯᕐᒥ',
-    diskChangedBody: 'ᐅᑯᐊ ᐱᔾᔪᓯᖅ ᐊᓯᔾᔨᖅᑕᐅᓯᒪᔪᖅ ᒪᑐᖅᑕᐅᓂᕐᓂᑦ. ᐊᓯᔾᔨᖅᑕᐅᓗᓂ ᐱᓕᕆᐊᕆᔭᐃᑦ ᓄᑖᑦ, ᐅᕝᕙᓘᓐᓃᑦ ᓴᐃᒪᓐᓂᙱᑦᑐᑦ ᐊᓯᔾᔨᐅᓂᖏᑦ ᓴᐃᒻᒪᑕ ᐊᒻᒪ ᐅᐊᔪᖅᑕᐅᓗᓂ?',
+    diskChangedBody:
+      'ᐅᑯᐊ ᐱᔾᔪᓯᖅ ᐊᓯᔾᔨᖅᑕᐅᓯᒪᔪᖅ ᒪᑐᖅᑕᐅᓂᕐᓂᑦ. ᐊᓯᔾᔨᖅᑕᐅᓗᓂ ᐱᓕᕆᐊᕆᔭᐃᑦ ᓄᑖᑦ, ᐅᕝᕙᓘᓐᓃᑦ ᓴᐃᒪᓐᓂᙱᑦᑐᑦ ᐊᓯᔾᔨᐅᓂᖏᑦ ᓴᐃᒻᒪᑕ ᐊᒻᒪ ᐅᐊᔪᖅᑕᐅᓗᓂ?',
     overwrite: 'ᐊᓯᖏᓗᒍ',
     discardReload: 'ᐲᔭᕐᓗᒍ ᐊᒻᒪᓗ ᐅᓯᕐᓗᒍ',
     console: {
@@ -2556,7 +2614,7 @@ Leave blank to keep the ${mode} default.`,
       sentTitle: 'ᐊᖏᖅᑲᖅᑎᑕᐅᓯᒪᔪᖅ',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'ᓇᓗᓇᐃᕈᑎ ᐱᓕᕆᔾᔪᑎ ᐊᐅᓚᔪᓐᓇᙱᑦᑐᖅ',
@@ -2579,7 +2637,8 @@ Leave blank to keep the ${mode} default.`,
       restartFailedMessage: 'OpenAmer ᓴᕕᖅ ᐅᑎᖅᑎᕆᔪᓐᓇᙱᑦᑐᖅ.',
       stillWorking: 'OpenAmer ᓱᓕ ᐱᕙᓪᓕᐊᔪᖅ, ᑭᓯᐊᓂ ᐅᑎᖅᑎᕆᓂᖅ ᖃᓄᐃᓕᓐᓂᖓ ᑎᑭᙱᑦᑐᖅ. ᓴᕕᖅ ᐊᖅᑯᑎᖓ ᓯᕗᓂᒃᑯᕕᒃ ᐱᕙᓪᓕᐊᔪᖅ.',
       workspaceReloading: 'ᐱᓕᕆᐊᖑᔪᖅ ᐊᓯᑦᑎᓚᐅᖅᓯᒪᔪᖅ, ᕿᒥᕐᕈᑎ ᐅᑎᖅᑎᕆᔪᖅ',
-      moduleMimeDescription: 'Module ᑎᑎᕋᐅᓯᖅ MIME type ᐊᒃᑐᖅᑕᐅᔪᖅ ᑐᖃᐅᑎᑕᐅᔪᖅ. ᑕᒪᓐᓇ ᐅᓄᖅᑐᖅ ᓇᓗᓇᐃᖅᓯᔪᖅ static file ᓴᕕᖅ Vite/React app ᑐᖃᐅᑎᑦᑎᔪᖅ, project dev ᓴᕕᖅ ᐃᓚᒋᔭᐅᙱᑦᑐᖅ.',
+      moduleMimeDescription:
+        'Module ᑎᑎᕋᐅᓯᖅ MIME type ᐊᒃᑐᖅᑕᐅᔪᖅ ᑐᖃᐅᑎᑕᐅᔪᖅ. ᑕᒪᓐᓇ ᐅᓄᖅᑐᖅ ᓇᓗᓇᐃᖅᓯᔪᖅ static file ᓴᕕᖅ Vite/React app ᑐᖃᐅᑎᑦᑎᔪᖅ, project dev ᓴᕕᖅ ᐃᓚᒋᔭᐅᙱᑦᑐᖅ.',
       unreachableDescription: 'ᕿᒥᕐᕈᑎ ᒪᒃᐱᖅ ᐊᔪᙱᑦᑐᖅ.',
       fallbackTitle: 'ᕿᒥᕐᕈᑎ',
       lookingRestart: taskId => `OpenAmer is looking for a preview server to restart (${taskId})`,
@@ -2590,14 +2649,14 @@ Leave blank to keep the ${mode} default.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     linkHint: 'âŒ˜/Ctrl-click takugaat panna',
     closeTab: label => `Close ${label}`,
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   zones: {
     showHeader: 'ᖁᓛᓂ ᓴᖅᑭᑎᑦᑎ',
@@ -2605,7 +2664,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'ᒥᑭᔪᐊᖅᑎᑦᑎ',
     restore: 'ᐅᑎᖅᑎᑦᑎ',
     closeRunningTitle: 'ᐱᕙᓪᓕᐊᔪᒥᒃ ᑕᐱᕐᒥᒃ ᒪᑐᐃᖅᓯᓂᐊᕕᑦ?',
-    closeRunningBody: 'ᐅᓇ ᐅᖃᓕᒫᕐᓂᖅ ᐱᓕᕆᐊᖃᖅᐳᖅ (ᐅᕝᕙᓘᓐᓃᑦ ᐃᓕᓴᐃᔾᔪᑎᓐᓂᒃ ᐅᑕᖅᑭᐊᖅᑐᖅ). ᑕᐱᕐᒥᒃ ᒪᑐᐃᖅᓯᐊᖅᑎᓪᓗᒍ ᐃᔾᔪᐊᖅᑎᑦᑎᐳᖅ — ᑲᑎᒪᓂᖅ ᐱᕙᓪᓕᐊᓂᖓᓂᒃ ᓄᖅᑲᖅᑎᑦᑎᙱᑦᑐᖅ ᐊᒻᒪ ᓴᓂᐊᓃᑦᑐᖅ ᐅᑎᖅᑎᑦᑎᔪᓐᓇᖅᐳᖅ.',
+    closeRunningBody:
+      'ᐅᓇ ᐅᖃᓕᒫᕐᓂᖅ ᐱᓕᕆᐊᖃᖅᐳᖅ (ᐅᕝᕙᓘᓐᓃᑦ ᐃᓕᓴᐃᔾᔪᑎᓐᓂᒃ ᐅᑕᖅᑭᐊᖅᑐᖅ). ᑕᐱᕐᒥᒃ ᒪᑐᐃᖅᓯᐊᖅᑎᓪᓗᒍ ᐃᔾᔪᐊᖅᑎᑦᑎᐳᖅ — ᑲᑎᒪᓂᖅ ᐱᕙᓪᓕᐊᓂᖓᓂᒃ ᓄᖅᑲᖅᑎᑦᑎᙱᑦᑐᖅ ᐊᒻᒪ ᓴᓂᐊᓃᑦᑐᖅ ᐅᑎᖅᑎᑦᑎᔪᓐᓇᖅᐳᖅ.',
     closeRunningConfirm: 'ᑕᐱᖅ ᒪᑐᐃᖅᓯ',
     closeOthers: 'ᐊᓯᖏᑦ ᒪᑐᐃᖅᓯᒋᑦ',
     closeToRight: 'ᑎᓄᐊᕐᒧᑦ ᒪᑐᐃᖅᓯᒋᑦ',
@@ -2642,7 +2702,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
@@ -2673,11 +2733,12 @@ Leave blank to keep the ${mode} default.`,
       goForward: 'ᓯᑎᑦᑎᓂᖅ',
       sendEdited: 'ᐋᖅᑭᒃᑕᐅᓯᒪᔪᒥᒃ ᑐᓴᐅᑎᒐᕐᒥᒃ ᑐᓴᐅᑎᑦᑎᓂᖅ',
       attachingFile: 'ᐃᓚᒋᔭᐅᑎᑦᑎᓂᖅ…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
-      yesterday: time => `Yesterday, ${time}`,
+      yesterday: time => `Yesterday, ${time}`
     },
     approval: {
       gatewayDisconnected: 'OpenAmer aqqutikkuutaq katinnganngitsoq',
@@ -2691,7 +2752,8 @@ Leave blank to keep the ${mode} default.`,
       reject: 'Pittaaqtit',
       alwaysTitle: 'Apayuqtaq una atugagait aallarli?',
       alwaysAllow: 'Atugagait aallarli',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
       notReady: 'Nalunaiyautitaujumik apiriaq nalliinaqpaaq',
@@ -2705,7 +2767,7 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'Ingirlaq',
       lateAnswerTip: 'ᐅᓇ ᑭᐅᔾᔪᑎ ᑭᖑᓂᐊᒐᒃ ᑐᓴᐅᑎᒥᒃ ᓄᖅᑲᖅᑎᓗᒍ',
       lateAnswerHint: 'ᐅᓇ ᐊᐱᖅᑯᑎ ᐅᑎᖅᑎᑕᐅᓕᖅᑐᖅ. ᑭᖑᓂᐊᒐᒃ ᑐᓴᐅᑎᒥᒃ ᓄᖅᑲᖅᑎᓗᒍ ᓂᕈᐊᕆᓗᒍ.',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     tool: {
       code: 'ᑎᑎᕋᐅᓯᖅ',
@@ -2739,123 +2801,123 @@ Leave blank to keep the ${mode} default.`,
         ran: 'ᐊᐅᓚᓯᒪᔪᖅ',
         running: 'ᐊᐅᓚᖅᑐᖅ',
         ranCode: 'ᑎᑎᕋᐅᑎᒥᒃ ᐊᐅᓚᓯᒪᔪᖅ',
-        runningCode: 'ᑎᑎᕋᐅᑎᓕᕆᓂᖅ',
+        runningCode: 'ᑎᑎᕋᐅᑎᓕᕆᓂᖅ'
       },
       prefixes: {
         browser: 'ᖃᕆᑕᐅᔭᒃᑯᑦ ᕿᓂᕈᑎ',
-        web: 'ᖃᕆᑕᐅᔭᒃᑯᑦ',
+        web: 'ᖃᕆᑕᐅᔭᒃᑯᑦ'
       },
       titles: {
         browser_click: {
           done: 'ᒪᑉᐱᕐᓗᒃ ᐃᓚᒋᔭᐅᔪᖅ ᓇᕿᓯᒪᔪᖅ',
           pending: 'ᒪᑉᐱᕐᓗᒃ ᐃᓚᒋᔭᐅᔪᖅ ᓇᕿᖅᑐᖅ',
-          pendingAction: 'ᓇᕿᖅᑐᖅ',
+          pendingAction: 'ᓇᕿᖅᑐᖅ'
         },
         browser_fill: {
           done: 'ᑎᑎᕋᐅᑎᒥᒃ ᐃᓚᒋᔭᐅᔪᖅ ᑎᑎᕋᓯᒪᔪᖅ',
           pending: 'ᑎᑎᕋᐅᑎᒥᒃ ᐃᓚᒋᔭᐅᔪᖅ ᑎᑎᕋᖅᑐᖅ',
-          pendingAction: 'ᐃᑦᑕᕐᑎᓯᓂᖅ',
+          pendingAction: 'ᐃᑦᑕᕐᑎᓯᓂᖅ'
         },
         browser_navigate: {
           done: 'ᒪᒃᐱᒐᖅ ᒪᑐᖅᑕᐅᓯᒪᔪᖅ',
           pending: 'ᒪᒃᐱᒐᖅ ᒪᑐᖅᑕᖅᑐᖅ',
-          pendingAction: 'ᒪᑐᖅᑕᖅᑐᖅ',
+          pendingAction: 'ᒪᑐᖅᑕᖅᑐᖅ'
         },
         browser_snapshot: {
           done: 'ᒪᒃᐱᒐᖅ ᓴᖅᑭᔮᖅᑎᑕᐅᓯᒪᔪᖅ',
           pending: 'ᒪᒃᐱᒐᖅ ᓴᖅᑭᔮᖅᑎᑕᖅᑐᖅ',
-          pendingAction: 'ᑕᕐᕆᔭᖅᑕᖅᑐᖅ',
+          pendingAction: 'ᑕᕐᕆᔭᖅᑕᖅᑐᖅ'
         },
         browser_take_screenshot: {
           done: 'ᓴᖅᑭᔮᖅᑎ ᑕᕐᕆᔭᖅᑕᐅᓯᒪᔪᖅ',
           pending: 'ᓴᖅᑭᔮᖅᑎ ᑕᕐᕆᔭᖅᑕᖅᑐᖅ',
-          pendingAction: 'ᑕᕐᕆᔭᖅᑕᖅᑐᖅ',
+          pendingAction: 'ᑕᕐᕆᔭᖅᑕᖅᑐᖅ'
         },
         browser_type: {
           done: 'ᒪᒃᐱᒐᖅᑎᒍᑦ ᑎᑎᕋᖅᑕᐅᓯᒪᔪᖅ',
           pending: 'ᒪᒃᐱᒐᖅᑎᒍᑦ ᑎᑎᕋᖅᑐᖅ',
-          pendingAction: 'ᑎᑎᕋᖅᑐᖅ',
+          pendingAction: 'ᑎᑎᕋᖅᑐᖅ'
         },
         clarify: {
           done: 'ᐊᐱᖅᓱᖅᑕᐅᓯᒪᔪᖅ',
           pending: 'ᐊᐱᖅᓱᖅᑐᖅ',
-          pendingAction: 'ᐊᐱᖅᓱᓂᖅ',
+          pendingAction: 'ᐊᐱᖅᓱᓂᖅ'
         },
         cronjob: {
           done: 'Cron ᐱᓕᕆᐊᖅ',
           pending: 'Cron ᐱᓕᕆᐊᖅ ᐅᓪᓗᓕᕆᓂᖅ',
-          pendingAction: 'ᐅᓪᓗᓕᕆᓂᖅ',
+          pendingAction: 'ᐅᓪᓗᓕᕆᓂᖅ'
         },
         edit_file: {
           done: 'ᑎᑎᕋᐅᓯᖅ ᐋᖅᑭᒃᑕᐅᓯᒪᔪᖅ',
           pending: 'ᑎᑎᕋᐅᓯᖅ ᐋᖅᑭᒃᑕᐅᓂᖅ',
-          pendingAction: 'ᐋᖅᑭᒃᑕᐅᓂᖅ',
+          pendingAction: 'ᐋᖅᑭᒃᑕᐅᓂᖅ'
         },
         execute_code: {
           done: 'ᑎᑎᕋᐅᓯᖅ ᐊᐅᓚᑕᐅᓯᒪᔪᖅ',
           pending: 'ᑎᑎᕋᐅᓯᖅᓴᐅᓂᖅ',
-          pendingAction: 'ᑎᑎᕋᐅᓯᖅᓴᐅᓂᖅ',
+          pendingAction: 'ᑎᑎᕋᐅᓯᖅᓴᐅᓂᖅ'
         },
         image_generate: {
           done: 'ᐊᔾᔨᓕᐊᖅ ᓴᖅᑭᑕᐅᓯᒪᔪᖅ',
           pending: 'ᐊᔾᔨᓕᐊᖅ ᓴᖅᑭᑕᐅᓂᖅ',
-          pendingAction: 'ᓴᖅᑭᑕᐅᓂᖅ',
+          pendingAction: 'ᓴᖅᑭᑕᐅᓂᖅ'
         },
         list_files: {
           done: 'ᑎᑎᕋᐅᓯᑦ ᑕᐃᒎᓯᖅᑕᐅᓯᒪᔪᑦ',
           pending: 'ᑎᑎᕋᐅᓯᑦ ᑕᐃᒎᓯᖅᑕᐅᓂᖏᑦ',
-          pendingAction: 'ᑕᐃᒎᓯᖅᑕᐅᓂᖅ',
+          pendingAction: 'ᑕᐃᒎᓯᖅᑕᐅᓂᖅ'
         },
         patch: {
           done: 'ᑎᑎᕋᐅᓯᖅ ᐱᐊᑦᓯᖅᑕᐅᓯᒪᔪᖅ',
           pending: 'ᑎᑎᕋᐅᓯᖅ ᐱᐊᑦᓯᖅᑕᐅᓂᖅ',
-          pendingAction: 'ᐱᐊᑦᓯᖅᑕᐅᓂᖅ',
+          pendingAction: 'ᐱᐊᑦᓯᖅᑕᐅᓂᖅ'
         },
         read_file: {
           done: 'ᑎᑎᕋᐅᓯᖅ ᓂᖅᓴᖅᑕᐅᓯᒪᔪᖅ',
           pending: 'ᑎᑎᕋᐅᓯᖅ ᓂᖅᓴᖅᑕᐅᓂᖅ',
-          pendingAction: 'ᓂᖅᓴᖅᑕᐅᓂᖅ',
+          pendingAction: 'ᓂᖅᓴᖅᑕᐅᓂᖅ'
         },
         search_files: {
           done: 'ᑎᑎᕋᐅᓯᑦ ᕿᓂᖅᑕᐅᓯᒪᔪᑦ',
           pending: 'ᑎᑎᕋᐅᓯᑦ ᕿᓂᖅᑕᐅᓂᖏᑦ',
-          pendingAction: 'ᕿᓂᖅᑕᐅᓂᖅ',
+          pendingAction: 'ᕿᓂᖅᑕᐅᓂᖅ'
         },
         session_search_recall: {
           done: 'ᑲᑎᒪᓂᕐᒧᑦ ᖃᓄᐃᓕᖓᓂᕐᒥᒃ ᕿᓂᖅᓯᒪᔪᖅ',
           pending: 'ᑲᑎᒪᓂᕐᒧᑦ ᖃᓄᐃᓕᖓᓂᕐᒥᒃ ᕿᓂᕐᓂᖅ',
-          pendingAction: 'ᕿᓂᕐᓂᖅ',
+          pendingAction: 'ᕿᓂᕐᓂᖅ'
         },
         terminal: {
           done: 'ᐊᐅᓚᑦᑎᔾᔪᑎᒥᒃ ᐊᐅᓚᑦᑎᓚᐅᖅᑐᖅ',
           pending: 'ᐊᐅᓚᑦᑎᔾᔪᑎᒥᒃ ᐊᐅᓚᑦᑎᓂᖅ',
-          pendingAction: 'ᐊᐅᓚᑦᑎᓂᖅ',
+          pendingAction: 'ᐊᐅᓚᑦᑎᓂᖅ'
         },
         todo: {
           done: 'ᐱᔭᕆᐊᖃᖅᑐᓂᒃ ᓄᑖᖑᑎᑦᑎᓚᐅᖅᑐᖅ',
           pending: 'ᐱᔭᕆᐊᖃᖅᑐᓂᒃ ᓄᑖᖑᑎᑦᑎᓂᖅ',
-          pendingAction: 'ᓄᑖᖑᑎᑦᑎᓂᖅ',
+          pendingAction: 'ᓄᑖᖑᑎᑦᑎᓂᖅ'
         },
         vision_analyze: {
           done: 'ᐊᔾᔨᓕᐅᖅᑕᐅᔪᒥᒃ ᖃᐅᔨᓴᖅᓯᒪᔪᖅ',
           pending: 'ᐊᔾᔨᓕᐅᖅᑕᐅᔪᒥᒃ ᖃᐅᔨᓴᕐᓂᖅ',
-          pendingAction: 'ᖃᐅᔨᓴᕐᓂᖅ',
+          pendingAction: 'ᖃᐅᔨᓴᕐᓂᖅ'
         },
         web_extract: {
           done: 'ᖃᕆᓴᐅᔭᒃᑯᑦ ᒪᒃᐱᒐᕐᒥᒃ ᐅᖃᓕᒫᓚᐅᖅᑐᖅ',
           pending: 'ᖃᕆᓴᐅᔭᒃᑯᑦ ᒪᒃᐱᒐᕐᒥᒃ ᐅᖃᓕᒫᕐᓂᖅ',
-          pendingAction: 'ᐅᖃᓕᒫᕐᓂᖅ',
+          pendingAction: 'ᐅᖃᓕᒫᕐᓂᖅ'
         },
         web_search: {
           done: 'ᖃᕆᓴᐅᔭᒃᑯᑦ ᕿᓂᖅᓯᒪᔪᖅ',
           pending: 'ᖃᕆᓴᐅᔭᒃᑯᑦ ᕿᓂᕐᓂᖅ',
-          pendingAction: 'ᕿᓂᕐᓂᖅ',
+          pendingAction: 'ᕿᓂᕐᓂᖅ'
         },
         write_file: {
           done: 'ᕿᒥᕐᕈᐊᒐᕐᒥᒃ ᐋᖅᑭᒃᓯᓚᐅᖅᑐᖅ',
           pending: 'ᕿᒥᕐᕈᐊᒐᕐᒥᒃ ᐋᖅᑭᒃᓯᕐᓂᖅ',
-          pendingAction: 'Aaqqiksimaniq',
-        },
+          pendingAction: 'Aaqqiksimaniq'
+        }
       },
       recoveredMany: count => `Recovered after ${count} failed steps`,
       failedMany: count => `${count} steps failed`,
@@ -2865,9 +2927,9 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
+    }
   },
   desktop: {
     yoloToggleFailed: 'YOLO-mik allanngortitsinngitsoq',
@@ -2879,7 +2941,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'Allanngortitsinngitsoq',
     resumeFailed: 'Taarsiinngitsoq',
     resumeStrandedTitle: 'Una uqaqatigiinniq ijujaanngitsoq',
-    resumeStrandedBody: 'Una uqaqatigiinnirmik attaveqaqtuni ajurunniiqtuq, namminiq aturtaaqqitit nipaagiarput. Gateway aturunniiqtuq qaujigiaruk, aturtaaqqit.',
+    resumeStrandedBody:
+      'Una uqaqatigiinnirmik attaveqaqtuni ajurunniiqtuq, namminiq aturtaaqqitit nipaagiarput. Gateway aturunniiqtuq qaujigiaruk, aturtaaqqit.',
     resumeRetry: 'Aturtaaqqit',
     nothingToBranch: 'Aaqqutilijaanngitsoq',
     branchNeedsChat: 'Aaqqutiliniarnirnut uqaqatigiinniq aallartittikkit taarsiullugitlu.',
@@ -2918,7 +2981,7 @@ Leave blank to keep the ${mode} default.`,
       timedOut: 'ᐊᖅᑯᑎᒥᒃ ᐅᑕᖅᑭᐊᖅᑕᐅᓂᖅ ᐊᑕᔭᐅᓯᒪᔪᖅ. `openamer gateway` ᐊᐅᓚᔪᖅ?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     audioReadFailed: 'ᓈᓚᐅᑎᓯᒪᔪᖅ ᓂᐱᖅ ᓈᓚᐅᑎᔪᓐᓇᙱᑦᑐᖅ',
     sessionUnavailable: 'ᐱᓕᕆᐊᖅ ᐊᑐᐃᓐᓇᙱᑦᑐᖅ',
@@ -2933,34 +2996,35 @@ Leave blank to keep the ${mode} default.`,
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
-    branchTitle: n => `Draft: Branch #${n}`,
+    branchTitle: n => `Draft: Branch #${n}`
   },
   errors: {
     genericFailure: 'ᐊᑕᔭᐅᓯᒪᔪᖅ',
     boundaryTitle: 'ᐃᓕᖅᑯᑎᒥ ᐊᑕᔭᐅᓯᒪᔪᖅ',
     boundaryDesc: 'ᑕᑯᒃᓴᐅᑎᒥ ᓇᓕᒧᒌᙱᑦᑐᖅ ᐱᕋᔭᒃᑕᐅᓯᒪᔪᖅ. ᐅᖃᕐᓯᐅᑎᑎᑦ ᐃᓂᒃᑯᑦ ᓴᐳᔾᔨᓯᒪᔪᑦ.',
     reloadWindow: 'ᐅᐊᔾᔨᒧᑦ ᓄᑖᖑᑎᑦ',
-    openLogs: 'ᓄᐊᑦᓴᖅᑕᐅᔪᑦ ᒪᑐᖅᓯᑦ',
+    openLogs: 'ᓄᐊᑦᓴᖅᑕᐅᔪᑦ ᒪᑐᖅᓯᑦ'
   },
   ui: {
     search: {
-      clear: 'ᕿᓂᕐᓂᖅ ᐴᖅᑲᐃᑦ',
+      clear: 'ᕿᓂᕐᓂᖅ ᐴᖅᑲᐃᑦ'
     },
     pagination: {
       label: 'ᒪᒃᐱᒐᐃᑦ ᓇᔪᒐᖅᑕᐅᓂᖏᑦ',
       previous: 'ᑕᐃᒪᓐᖓᓂ',
       previousAria: 'ᑕᐃᒪᓐᖓᓂ ᒪᒃᐱᒐᖅᒧᑦ ᑎᑭᑦ',
       next: 'ᑭᖑᓂᖓᓂ',
-      nextAria: 'ᑭᖑᓂᖓᓂ ᒪᒃᐱᒐᖅᒧᑦ ᑎᑭᑦ',
+      nextAria: 'ᑭᖑᓂᖓᓂ ᒪᒃᐱᒐᖅᒧᑦ ᑎᑭᑦ'
     },
     sidebar: {
       title: 'ᓴᐃᑦᐸᐊᖅ',
       description: 'ᒪᐅᑲᖅ ᓴᐃᑦᐸᐊᕐᒥᒃ ᑕᑯᒃᓴᐅᑎᑦᑎᔪᖅ.',
-      toggle: 'ᓴᐃᑦᐸᐊᖅ ᐊᓯᑦᑕᐅᑎᑦ',
-    },
+      toggle: 'ᓴᐃᑦᐸᐊᖅ ᐊᓯᑦᑕᐅᑎᑦ'
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer isuruti kattimangittuq',
@@ -2971,9 +3035,10 @@ Leave blank to keep the ${mode} default.`,
     sudoPlaceholder: 'sudo ᐃᓯᓴᐅᑎ',
     secretTitle: 'ᐃᓗᓕᖅ ᐱᔭᕆᐊᖃᖅᐳᖅ',
     secretDesc: 'OpenAmer ᑲᔪᓯᑎᓐᓂᐊᕐᓗᓂ ᐊᖏᕈᑎᒥᒃ ᐱᔭᕆᐊᖃᖅᐳᖅ.',
-    secretPlaceholder: 'ᐃᓗᓕᖅ ᓇᓗᓇᐃᔭᐅᔪᖅ',
+    secretPlaceholder: 'ᐃᓗᓕᖅ ᓇᓗᓇᐃᔭᐅᔪᖅ'
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
-  },
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
+  }
 })

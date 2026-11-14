@@ -45,7 +45,7 @@ export const la = defineLocale({
     update: 'Actualizare',
     on: 'Accensum',
     off: 'Extinctum',
-    tryHint: term => `Try “${term}”`,
+    tryHint: term => `Try “${term}”`
   },
   fileMenu: {
     revealFileManager: 'Aperi folderium continens',
@@ -60,7 +60,7 @@ export const la = defineLocale({
     pathCopied: 'Iter copiatum',
     revealFinder: 'Ostendere in Finder',
     revealExplorer: 'Ostendere in File Explorer',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop paratum est',
@@ -69,7 +69,7 @@ export const la = defineLocale({
       loadingSettings: 'Onera configurationes OpenAmer',
       loadingSessions: 'Onera sessiones recentes',
       startingDesktopConnection: 'Incipit coniunctio desktop',
-      startingOpenAmerDesktop: 'Incipit OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Incipit OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Processus auxiliaris OpenAmer exivit.',
@@ -78,13 +78,15 @@ export const la = defineLocale({
       desktopBootFailed: 'Initium desktop frustravit',
       gatewayConnectionLost: 'Conexus ad portam interruptus est',
       gatewaySignInRequired: 'Signatio ad portam requiritur',
-      ipcBridgeUnavailable: 'Pons IPC desktop non praesto est.',
+      ipcBridgeUnavailable: 'Pons IPC desktop non praesto est.'
     },
     failure: {
       title: 'OpenAmer non potuit initium capere',
-      description: 'Porta in background non surrexit. Conare munitus exsequendis quae sequuntur. Nihil hic deliberationes tuas aut configurationes delet.',
+      description:
+        'Porta in background non surrexit. Conare munitus exsequendis quae sequuntur. Nihil hic deliberationes tuas aut configurationes delet.',
       remoteTitle: 'Signatio ad portam remotam requiritur',
-      remoteDescription: 'Sessio tua ad portam remotam expivit. Iterum signare ut reconnectas. Nihil hic deliberationes tuas aut configurationes delet.',
+      remoteDescription:
+        'Sessio tua ad portam remotam expivit. Iterum signare ut reconnectas. Nihil hic deliberationes tuas aut configurationes delet.',
       retry: 'Conare iterum',
       repairInstall: 'Repara installationem',
       useLocalGateway: 'Usa portam localem',
@@ -103,10 +105,11 @@ export const la = defineLocale({
       signInFailed: 'Conatus ingressus defecit',
       signInToRemoteGateway: 'Ingrese ad portam remotam',
       identityProvider: 'identitatem vestram',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   notifications: {
     region: 'Notificationes',
@@ -118,7 +121,8 @@ export const la = defineLocale({
     copyDetail: 'Explicitationem describere',
     copyDetailFailed: 'Explicitationem notificationis describere non potuit',
     backendOutOfDateTitle: 'Backend vetustior',
-    backendOutOfDateMessage: 'Backend OpenAmer vester antiquior est quam haec versio desktop et fortasse non recte functionabitur. Ut congruent, renovate.',
+    backendOutOfDateMessage:
+      'Backend OpenAmer vester antiquior est quam haec versio desktop et fortasse non recte functionabitur. Ut congruent, renovate.',
     installMethodUnsupportedTitle: 'Methodus institutionis non sustentata',
     updateOpenAmer: 'Renovare OpenAmer',
     updateReadyTitle: 'Renovatio parata',
@@ -127,11 +131,12 @@ export const la = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT indiget ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs clavem API rejecit (401).',
       gatewayAuthFailed: 'Authenticatio gateway defecit — verifica `API_SERVER_KEY`.',
-      methodNotAllowed: 'Backend OpenAmer Desktop requestum rejecit (405 Methodus Non Permissa). Conare ut OpenAmer Desktop repraestartes.',
+      methodNotAllowed:
+        'Backend OpenAmer Desktop requestum rejecit (405 Methodus Non Permissa). Conare ut OpenAmer Desktop repraestartes.',
       microphonePermission: 'Permissio microfoni negata est.',
       openaiRejectedApiKey: 'OpenAI clavem API rejecit.',
       openaiTtsNeedsKey: 'OpenAI TTS eget `VOICE_TOOLS_OPENAI_KEY` vel `OPENAI_API_KEY`.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Configura transcriptionem vocis ut modo vocali utaris.',
@@ -150,7 +155,7 @@ export const la = defineLocale({
       transcriptionFailed: 'Transcriptio vocis defecit',
       transcriptionUnavailable: 'Transcriptio vocis nondum disponibilis est.',
       tryRecordingAgain: 'Iterum conare vocem recordare.',
-      unavailable: 'Vox indisponibilis',
+      unavailable: 'Vox indisponibilis'
     },
     native: {
       approvalTitle: 'Approbatio necessaria',
@@ -163,10 +168,10 @@ export const la = defineLocale({
       turnErrorTitle: 'Actus defecit.',
       backgroundDoneTitle: 'Munus asynchrone finitum',
       backgroundFailedTitle: 'Munus asynchrone defecit',
-      creditsTitle: 'Credita',
+      creditsTitle: 'Credita'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   billingBlock: {
     titleOpenamer: 'Credita OpenAmer exhausta sunt',
@@ -174,7 +179,7 @@ export const la = defineLocale({
     openBilling: 'Aperi rationem',
     addCredits: 'Credita adde',
     dismiss: 'Dismitte',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Panelem lateralem absconde',
@@ -191,7 +196,7 @@ export const la = defineLocale({
     openStarmap: 'Aperi graphum memoriae',
     openKeybinds: 'Compendia clavium',
     layoutEditor: 'Editor dispositionis',
-    layoutEditorTitle: 'Editor dispositionis â€” clic âŒ˜ reinitializes layout',
+    layoutEditorTitle: 'Editor dispositionis â€” clic âŒ˜ reinitializes layout'
   },
   keybinds: {
     title: 'Compendia clavium',
@@ -206,7 +211,7 @@ export const la = defineLocale({
       profiles: 'Personae',
       session: 'Sessio',
       navigation: 'Navigatio',
-      view: 'Vista',
+      view: 'Vista'
     },
     actions: {
       'keybinds.openPanel': 'Abre compendia claviaturae',
@@ -285,10 +290,10 @@ export const la = defineLocale({
       'composer.slash': 'Palette mandati uncini',
       'composer.help': 'Auxilium rapidum',
       'composer.history': 'Alterna fenestrulam / historiam',
-      'composer.cancel': 'Claude fenestrulam · cancela cursum',
+      'composer.cancel': 'Claude fenestrulam · cancela cursum'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   language: {
     label: 'Lingua',
@@ -297,7 +302,7 @@ export const la = defineLocale({
     saveError: 'Renovatio linguae frustravit',
     switchTo: 'Permuta linguam',
     searchPlaceholder: 'Quaere linguas…',
-    noResults: 'Nullae linguae inventae',
+    noResults: 'Nullae linguae inventae'
   },
   settings: {
     closeSettings: 'Claude configurationes',
@@ -322,56 +327,58 @@ export const la = defineLocale({
       billing: 'Facturatio',
       notifications: 'Notificiationes',
       plugins: 'Pluginia',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       empty: 'Nondum plugin desktop installed.',
       kinds: {
         bundled: 'inclusus',
         disk: 'in disco',
-        runtime: 'tempus exsecutionis',
+        runtime: 'tempus exsecutionis'
       },
       title: 'Pluginia desktopis',
-      blurb: 'Extensiones interfaciei in hac app ampliatas — cum compilatione inclusae, vel in folderem `desktop-plugins` deiectae (inclusis illis quas OpenAmer scribit). Deactivatio pluginium statim eximit eam et post repostas persistit.',
+      blurb:
+        'Extensiones interfaciei in hac app ampliatas — cum compilatione inclusae, vel in folderem `desktop-plugins` deiectae (inclusis illis quas OpenAmer scribit). Deactivatio pluginium statim eximit eam et post repostas persistit.',
       openFolder: 'Aperi folderum pluginiorum',
       rescan: 'Iterum recognosce',
       reveal: 'Ostende in gestore files',
       enable: 'Active',
       disable: 'Deactive',
       failed: 'falsum',
-      count: n => `${n} installed`,
+      count: n => `${n} installed`
     },
     notifications: {
       title: 'Notificationes',
-      intro: 'Notificationes nativas desktop, separataes de notificationibus intra applicationem. Hae sunt locales huic computatro — quisque computator proprias configurationes servat.',
+      intro:
+        'Notificationes nativas desktop, separataes de notificationibus intra applicationem. Hae sunt locales huic computatro — quisque computator proprias configurationes servat.',
       enableAll: 'Activa notificationes',
       enableAllDesc: 'Commutator principalis. Hunc extingue ad omnes notificationes infra silendas.',
       focusedHint: 'Alertae completionis solum emittuntur dum OpenAmer in fundo versatur.',
       kinds: {
         approval: {
           label: 'Approbatio necessaria',
-          description: 'Mandatum exspectat ut ipsum approbes aut respicias.',
+          description: 'Mandatum exspectat ut ipsum approbes aut respicias.'
         },
         input: {
           label: 'Datum necessarium',
-          description: 'OpenAmer quaestionem posuit aut verbum secretum aut secretum eget.',
+          description: 'OpenAmer quaestionem posuit aut verbum secretum aut secretum eget.'
         },
         turnDone: {
           label: 'Responsum paratum',
-          description: 'Turnus desiit dum OpenAmer in fundo versabatur.',
+          description: 'Turnus desiit dum OpenAmer in fundo versabatur.'
         },
         turnError: {
           label: 'Turnus defecit',
-          description: 'Turnus cum errore desiit.',
+          description: 'Turnus cum errore desiit.'
         },
         backgroundDone: {
           label: 'Munus in fundo finitum',
-          description: 'Mandatum terminale in fundo exfectum est.',
+          description: 'Mandatum terminale in fundo exfectum est.'
         },
         credits: {
           label: 'Alertae creditorum',
-          description: 'Aditus ad creditum interruptus est vel restitutus.',
-        },
+          description: 'Aditus ad creditum interruptus est vel restitutus.'
+        }
       },
       test: 'Nuntium probationis mitte',
       testTitle: 'OpenAmer',
@@ -380,7 +387,7 @@ export const la = defineLocale({
       testUnsupported: 'Hoc systema nuntia nativa non suscipit.',
       completionSoundTitle: 'Sonus completionis',
       completionSoundDesc: 'Sonat cum vice agentialis finitur. Praescriptum elige et hic proba.',
-      completionSoundPreview: 'Proba',
+      completionSoundPreview: 'Proba'
     },
     sections: {
       model: 'Modelus',
@@ -390,7 +397,7 @@ export const la = defineLocale({
       safety: 'Salus',
       memory: 'Memoria et Contextus',
       voice: 'Vox',
-      advanced: 'Avanzatum',
+      advanced: 'Avanzatum'
     },
     searchPlaceholder: {
       about: 'De programate OpenAmer',
@@ -398,25 +405,26 @@ export const la = defineLocale({
       gateway: 'Connectio gateway...',
       keys: 'Quaere claves API...',
       mcp: 'Quaere servos MCP...',
-      sessions: 'Quaere sessiones archivatas...',
+      sessions: 'Quaere sessiones archivatas...'
     },
     modeOptions: {
       light: {
         label: 'Lucidus',
-        description: 'Superficies desktopi clarae',
+        description: 'Superficies desktopi clarae'
       },
       dark: {
         label: 'Obscurus',
-        description: 'Spatium laboris sine nitoris',
+        description: 'Spatium laboris sine nitoris'
       },
       system: {
         label: 'Systema',
-        description: 'Sequi aspectum systematis',
-      },
+        description: 'Sequi aspectum systematis'
+      }
     },
     appearance: {
       title: 'Aspectus',
-      intro: 'Hae sunt praeferentiae visualizationis solum pro desktop. Modus regit claritatem; thema regit palettam accentuum et stilum superficiei colloquii.',
+      intro:
+        'Hae sunt praeferentiae visualizationis solum pro desktop. Modus regit claritatem; thema regit palettam accentuum et stilum superficiei colloquii.',
       colorMode: 'Modus colorum',
       colorModeDesc: 'Elige modum fixum vel permitte OpenAmer ut systematis tuum sequatur.',
       toolViewTitle: 'Ostensio invocationum instrumentorum',
@@ -427,8 +435,10 @@ export const la = defineLocale({
       backdropTitle: 'Fundus colloquii',
       backdropDesc: 'Imago statuae tenuis post colloquium.',
       pet: {
-        intro: 'Adopta mascottedem animatam petdex, quae super appem volat et ad OpenAmer actiones respondet: dum instrumenta exsequuntur currit, in successo exsultat, in erroribus maerore afficitur.',
-        restartHint: 'Bestiae celeris resurrectione indigent — applicatio currens ante hanc facultatem incepta est. Exi et OpenAmer iterum aperi, deinde huc redi.',
+        intro:
+          'Adopta mascottedem animatam petdex, quae super appem volat et ad OpenAmer actiones respondet: dum instrumenta exsequuntur currit, in successo exsultat, in erroribus maerore afficitur.',
+        restartHint:
+          'Bestiae celeris resurrectione indigent — applicatio currens ante hanc facultatem incepta est. Exi et OpenAmer iterum aperi, deinde huc redi.',
         on: 'Actum',
         off: 'Inactive',
         scaleTitle: 'Magnitudo',
@@ -461,10 +471,11 @@ export const la = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
       embedsTitle: 'Incorporationes inlined',
-      embedsDesc: 'Praevisus locupletatos ex fontibus tertiis (YouTube, X, …) onero. Interroga locum-tenentem ostendit, dum cuique permittis; Semper eos sponte onerat; Extrinsecus simplices nexus conservat.',
+      embedsDesc:
+        'Praevisus locupletatos ex fontibus tertiis (YouTube, X, …) onero. Interroga locum-tenentem ostendit, dum cuique permittis; Semper eos sponte onerat; Extrinsecus simplices nexus conservat.',
       embedsAsk: 'Interroga',
       embedsAlways: 'Semper',
       embedsOff: 'Extrinsecus',
@@ -475,17 +486,19 @@ export const la = defineLocale({
       themeTitle: 'Thema',
       themeDesc: 'Tantum paleti desktop. Modus selectus superponitur.',
       installTitle: 'Installe ex VS Code',
-      installDesc: 'Id extensionis Marketplace insere (e.g. dracula-theme.theme-dracula) ut thema coloratum in paletum desktop convertas.',
+      installDesc:
+        'Id extensionis Marketplace insere (e.g. dracula-theme.theme-dracula) ut thema coloratum in paletum desktop convertas.',
       installButton: 'Installa',
       installing: 'Installatur…',
       installError: 'Thema illud installari non potuit.',
       removeTheme: 'Thema elimina',
       importedBadge: 'Importatum',
       installPlaceholder: 'editor.extensio',
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     about: {
       heading: 'OpenAmer Tabula',
@@ -503,7 +516,8 @@ export const la = defineLocale({
       tapCheck: 'Tange "Nunc quaere" ut novitates quaeras.',
       justNowSuffix: '· iam nunc',
       automaticUpdates: 'Novitates automaticae',
-      automaticUpdatesDesc: 'OpenAmer novitates automatice post tergum quaerit et te certiorem facit cum una parata sit.',
+      automaticUpdatesDesc:
+        'OpenAmer novitates automatice post tergum quaerit et te certiorem facit cum una parata sit.',
       never: 'numquam',
       justNow: 'iam nunc',
       version: value => `Version ${value}`,
@@ -512,7 +526,7 @@ export const la = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     credentials: {
       saving: 'Salvestatio',
@@ -522,7 +536,7 @@ export const la = defineLocale({
       couldNotSave: 'Credentiale salvare non potuit.',
       remove: 'Removere',
       getKey: 'Obtine clavem',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     envActions: {
       credentialActions: 'Actiones credentialium',
@@ -533,7 +547,7 @@ export const la = defineLocale({
       replace: 'Substitue',
       set: 'Constitue',
       clear: 'Vacua fac',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     gateway: {
       loading: 'Configurationes portae onerantur...',
@@ -541,16 +555,18 @@ export const la = defineLocale({
       unavailableDesc: 'Pons IPC desktopicus configurationes portae non exhibet.',
       title: 'Nexus portae',
       envOverride: 'Supressio ambientalis',
-      intro: 'OpenAmer Desktop initio propriam portam localem incipit. Utere porta remota cum vis hoc programma regere OpenAmer backend iam in.functione in alia machina vel post proxy fidum. Elige profilum infra ut proprium hostem remotum habeat.',
+      intro:
+        'OpenAmer Desktop initio propriam portam localem incipit. Utere porta remota cum vis hoc programma regere OpenAmer backend iam in.functione in alia machina vel post proxy fidum. Elige profilum infra ut proprium hostem remotum habeat.',
       appliesTo: 'Applicatur ad',
       allProfiles: 'Omnia profila',
       defaultConnection: 'Nexus praedefinitus omni profilo sine propria suppressione.',
       envOverrideTitle: 'Variabiles ambientales hanc sessionem desktopicam regunt.',
-      envOverrideDesc: 'Dele OPENAMER_DESKTOP_REMOTE_URL et OPENAMER_DESKTOP_REMOTE_TOKEN ut configurationem servatam infra utaris.',
+      envOverrideDesc:
+        'Dele OPENAMER_DESKTOP_REMOTE_URL et OPENAMER_DESKTOP_REMOTE_TOKEN ut configurationem servatam infra utaris.',
       cloudNoAgents: {
         before: 'Nulli agentes in hoc ratione inventi sunt. Unum crea in',
         linkText: 'portali OpenAmer',
-        after: ', deinde rursus redactionem fac.',
+        after: ', deinde rursus redactionem fac.'
       },
       cloudRefresh: 'Recarga',
       cloudConnect: 'Coniunge',
@@ -564,18 +580,22 @@ export const la = defineLocale({
       cloudConnectedPill: 'Coniunctum',
       cloudAgentProvisioning: 'Provisionatur…',
       remoteUrlTitle: 'URL remotum',
-      remoteUrlDesc: 'URL basalis pro backend tabularum remoto. Praefixes pathorum adiuvuntur, exempli gratia /openamer.',
+      remoteUrlDesc:
+        'URL basalis pro backend tabularum remoto. Praefixes pathorum adiuvuntur, exempli gratia /openamer.',
       probing: 'Modum authenticationis huius portae comprobans…',
-      probeError: 'Hanc portam adhuc attingere non potuit. URLum verifica — methodus authenticationis apparebit cum respondeat.',
+      probeError:
+        'Hanc portam adhuc attingere non potuit. URLum verifica — methodus authenticationis apparebit cum respondeat.',
       signedIn: 'Ingressus',
       signIn: 'Ingressus',
       signOut: 'Exi',
       authTitle: 'Authenticatio',
       authSignedInPassword: 'Haec porta nomen usoris et secretum adhibet. Accedisti; sessio sponte renovatur.',
       authSignedInOauth: 'Haec porta OAuth adhibet. Accedisti; sessio sponte renovatur.',
-      authNeedsPassword: 'Haec porta nomen usoris et secretum adhibet. Accede ut hanc applicationem fenestrae auctorizes.',
+      authNeedsPassword:
+        'Haec porta nomen usoris et secretum adhibet. Accede ut hanc applicationem fenestrae auctorizes.',
       tokenTitle: 'Tessera sessionis',
-      tokenDesc: 'Tessera sessionis tabulae, quae aditum REST et WebSocket praebet. Vacua relinque ut tessera servata retineatur.',
+      tokenDesc:
+        'Tessera sessionis tabulae, quae aditum REST et WebSocket praebet. Vacua relinque ut tessera servata retineatur.',
       savedToken: 'servatum',
       pasteSessionToken: 'Insere tesseram sessionis',
       testRemote: 'Proba remotionem',
@@ -604,13 +624,16 @@ export const la = defineLocale({
       applyFailed: 'Parametri portae applicari non potuerunt',
       saveFailed: 'Parametri portae servari non potuerunt',
       sshTitle: 'Per SSH connecte',
-      sshDesc: 'OpenAmer in systemate remoto per SSH launching, ad hanc applicationem per tunnelum ductum — nihil est quod initium facias vel te ipsum exponas. Aditum functioning ad machinam per SSH clavibus fundatum requiritur.',
+      sshDesc:
+        'OpenAmer in systemate remoto per SSH launching, ad hanc applicationem per tunnelum ductum — nihil est quod initium facias vel te ipsum exponas. Aditum functioning ad machinam per SSH clavibus fundatum requiritur.',
       sshTrustHint: 'Prima clavis machinae praesentatae fidem habet et adfixa est; variationes posteriores probantur.',
       sshHostTitle: 'Machina',
       sshHostDesc: 'user@host, aut alias Host ex ~/.ssh/config.',
       sshHostPick: 'Elige machinam…',
-      sshErrNotInstalled: 'OpenAmer non est instalatum in hosto remoto. Installe illud ibi (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) aut constitue iter OpenAmer.',
-      sshErrPlatform: 'Platforma remota non supportata. Modus OpenAmer Desktop SSH hostes remotos Linux, macOS et Windows sustinet.',
+      sshErrNotInstalled:
+        'OpenAmer non est instalatum in hosto remoto. Installe illud ibi (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) aut constitue iter OpenAmer.',
+      sshErrPlatform:
+        'Platforma remota non supportata. Modus OpenAmer Desktop SSH hostes remotos Linux, macOS et Windows sustinet.',
       sshErrTimeout: 'Connexio SSH tempore expiravit. Host fortasse non attingitur aut dormit.',
       sshErrUpdateRequired: 'Ammoda OpenAmer in hosto remoto ante connexionem cum Desktop SSH.',
       sshErrUnknown: 'Connexio SSH frustata est.',
@@ -632,8 +655,10 @@ export const la = defineLocale({
       sshButtonsHint: 'Salva in proximo initio valebit. Coniunge nunc rursus.',
       sshIncompleteHost: 'Hospem SSH ante connexionem introduce.',
       sshErrUnreachable: 'Non potuisti hospem illum per SSH adire. Hospem, portum, et rete tuum verifica.',
-      sshErrAuth: 'Authenticationem SSH defecit. Clavem tuam in ssh-agent (ssh-add) inice vel IdentityFile in ~/.ssh/config statue — OpenAmer ssh non interactive exsequitur.',
-      sshErrHostKey: 'Clavis hospitis MUTATA est ex quo novissime coniunctus es. Confirma hoc exspectatum esse, deinde ssh-keygen -R <host> exsequere et rursus coniunge.',
+      sshErrAuth:
+        'Authenticationem SSH defecit. Clavem tuam in ssh-agent (ssh-add) inice vel IdentityFile in ~/.ssh/config statue — OpenAmer ssh non interactive exsequitur.',
+      sshErrHostKey:
+        'Clavis hospitis MUTATA est ex quo novissime coniunctus es. Confirma hoc exspectatum esse, deinde ssh-keygen -R <host> exsequere et rursus coniunge.',
       modeTitle: 'Modus connexionis',
       localTitle: 'Porta localis',
       localDesc: 'Inicia backend privatum OpenAmer in localhost. Hoc est praedefinitum et离线 non dependet.',
@@ -641,7 +666,8 @@ export const la = defineLocale({
       inheritDesc: 'Superpositionem huius profili elimina et utere connexione praedefinita.',
       remoteTitle: 'Porta remota',
       remoteDesc: 'Hanc fenestrulam loci connects ad backend remotum OpenAmer.',
-      remoteAuthHint: 'Portae ap remotae OAuth aut nomen et tessera utuntur; ea ipsis servitio praeditae token sessionis uti possunt.',
+      remoteAuthHint:
+        'Portae ap remotae OAuth aut nomen et tessera utuntur; ea ipsis servitio praeditae token sessionis uti possunt.',
       cloudDesc: 'Semel in OpenAmer Cloudcum inita et ex agentibus in ratione tua elige — nullum URL ad glutendum est.',
       cloudSignIn: 'In OpenAmer Cloud inita',
       cloudSignedIn: 'In OpenAmer Cloud initus es',
@@ -654,7 +680,8 @@ export const la = defineLocale({
       cloudLoadingAgents: 'Agentes tui onerantur…',
       cloudTitle: 'OpenAmer Nubes',
       cloudSignInTitle: 'OpenAmer Nubes',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudOrgRole: role => `Role: ${role}`,
       cloudConnectedTo: name => `Connected to ${name}.`,
       cloudStatusLabel: status => `Status: ${status}`,
@@ -662,12 +689,12 @@ export const la = defineLocale({
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     keys: {
       loading: 'Onus clavium API et credenzialium...',
       failedLoad: 'Onus clavium API frustatum est',
-      empty: 'Nihil adhuc in hac categoria configuratum est.',
+      empty: 'Nihil adhuc in hac categoria configuratum est.'
     },
     mcp: {
       loading: 'Onus servisorum MCP...',
@@ -729,10 +756,11 @@ export const la = defineLocale({
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       authenticatedMessage: (server, count) => `${server}: ${count} tools`,
       enableTool: tool => `Enable ${tool}`,
-      disableTool: tool => `Disable ${tool}`,
+      disableTool: tool => `Disable ${tool}`
     },
     providers: {
       disconnectInTerminal: 'Disconnecte (executat imperium ablationis in terminali)',
@@ -742,7 +770,8 @@ export const la = defineLocale({
       noKeysMatch: 'Nemo praebitor inquisitioni tuae consentit.',
       localEndpoint: {
         title: 'Endpointum locale / proprium',
-        description: 'Dirige OpenAmer ad quemcumque endpointum OpenAI-compatibilem (Zyphra, vLLM, llama.cpp, Ollama, etc.).',
+        description:
+          'Dirige OpenAmer ad quemcumque endpointum OpenAI-compatibilem (Zyphra, vLLM, llama.cpp, Ollama, etc.).'
       },
       loading: 'Praebitores onerantes...',
       connectAccount: 'Accountum iunge',
@@ -756,10 +785,11 @@ export const la = defineLocale({
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     sessions: {
       loading: 'Sessions archivatas onerantes…',
@@ -770,12 +800,14 @@ export const la = defineLocale({
       deletePermanently: 'Delere perpetuo',
       restored: 'Restitutum',
       autoArchiveTitle: 'Auto-archivare conversaciones vetustas',
-      autoArchiveDesc: 'Automate archiva conversationes quas diu non tetigisti. Conversationes fixae numquam archivantur, et nihil deletur — conversationes archivatae tantum huc moventur.',
+      autoArchiveDesc:
+        'Automate archiva conversationes quas diu non tetigisti. Conversationes fixae numquam archivantur, et nihil deletur — conversationes archivatae tantum huc moventur.',
       autoArchiveDaysLabel: 'Archivare post',
       autoArchiveDaysUnit: 'dies inactivityis',
       autoArchiveFailed: 'Ex archivio automatico renovari non potuit',
       defaultDirTitle: 'Directorium praescriptum operis',
-      defaultDirDesc: 'Sessiones novae in hoc directorio incipiunt, nisi aliud elegeris. E indefinitum relinque ut directorio domus tuae utaris.',
+      defaultDirDesc:
+        'Sessiones novae in hoc directorio incipiunt, nisi aliud elegeris. E indefinitum relinque ut directorio domus tuae utaris.',
       change: 'Muta',
       choose: 'Elige',
       clear: 'Purga',
@@ -785,11 +817,12 @@ export const la = defineLocale({
       deleteFailed: 'Deletio frustra fuit',
       updateDirFailed: 'Directorium praescriptum mutari non potuit',
       clearDirFailed: 'Directorium praescriptum purgari non potuit',
-      archivedIntro: 'Chattera archiva lateri obscurantur, sed omnes nuntios suos retinent. Ctrl/âŒ˜-clic chatteram in latero ut archivetur.',
+      archivedIntro:
+        'Chattera archiva lateri obscurantur, sed omnes nuntios suos retinent. Ctrl/âŒ˜-clic chatteram in latero ut archivetur.',
       defaultDirUpdated: 'Directorium的项目 by default updated...',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
       loadingConfig: 'Configuratio in cursu',
@@ -799,7 +832,8 @@ export const la = defineLocale({
       notSet: 'Non praescriptum',
       selectedTitle: 'Fons electus',
       failedLoad: 'Configuratio instrumentorum colligi non potuit',
-      noProviderOptions: 'Haec instrumenta nullos praestatores habent — activa, et cum configuratione tua_CURRENTE funginuntur.',
+      noProviderOptions:
+        'Haec instrumenta nullos praestatores habent — activa, et cum configuratione tua_CURRENTE funginuntur.',
       noProviders: 'Nunc huic instrumentorum coceptui nulli praestatorespraesto sunt.',
       ready: 'Paratum',
       needsSignIn: 'Inscriptionem requirit',
@@ -841,7 +875,7 @@ export const la = defineLocale({
         selectedTitle: 'Motor selectus',
         needsSetupHint: 'Hunc motorem iam potes eligere; mandata deficient antequam configuratio perficiatur.',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       savedMessage: key => `${key} updated.`,
       removedMessage: key => `${key} removed.`,
@@ -851,8 +885,10 @@ export const la = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -862,7 +898,7 @@ export const la = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     config: {
       none: 'Nihil',
@@ -878,11 +914,13 @@ export const la = defineLocale({
       imported: 'Configuratio importata',
       invalidJson: 'Configuratio JSON invalida',
       keepAwakeTitle: 'Computerem vigilem servare',
-      keepAwakeDesc: 'Impedite huic machinae ut dormiat, ut processus longi vel nocturni per totam noctem continuantur. Monitum tamen obscurari potest.',
+      keepAwakeDesc:
+        'Impedite huic machinae ut dormiat, ut processus longi vel nocturni per totam noctem continuantur. Monitum tamen obscurari potest.'
     },
     model: {
       loading: 'Configuratio modeli oneratur...',
-      appliesDesc: 'Applicatur sessionibus novis. Utere selectorem modeli in compositorio ad chatem activam celeriter commutandam.',
+      appliesDesc:
+        'Applicatur sessionibus novis. Utere selectorem modeli in compositorio ad chatem activam celeriter commutandam.',
       provider: 'Provisor',
       model: 'Modelum',
       applying: 'Applicatur...',
@@ -892,51 +930,53 @@ export const la = defineLocale({
       defaultsFailed: 'Errōrum in servandīs praefinitīs modelī',
       auxiliaryTitle: 'Modela auxiliaria',
       resetAllToMain: 'Omnia ad prīncipālem redīni',
-      auxiliaryDesc: 'Taska auxiliaria ex tūm per modēlum prīncipālem currunt. Modēlum proprium cuilibet taskō adscrībe ut praefīnītum excedat.',
+      auxiliaryDesc:
+        'Taska auxiliaria ex tūm per modēlum prīncipālem currunt. Modēlum proprium cuilibet taskō adscrībe ut praefīnītum excedat.',
       setToMain: 'Ad prīncipālem statuere',
       change: 'Mūtā',
       autoUseMain: 'automaticum · uterere modēlō prīncipālī',
       providerDefault: '(praefīnitum prōvidēris)',
       fallbackAdd: 'Adde modēlum alternātum',
       fallbackEmpty: 'Nōn sunt modela alternātīva — modēlum praefīnītum adhibētur, nisi cadit.',
-      notInCatalog: 'nōn est in inventōriō modelōrum huius prōvidēris — vocātiōnes ad modēlum servātum recurrere possunt.',
+      notInCatalog:
+        'nōn est in inventōriō modelōrum huius prōvidēris — vocātiōnes ad modēlum servātum recurrere possunt.',
       tasks: {
         vision: {
           label: 'Vīsus',
-          hint: 'Analysīs imaginis',
+          hint: 'Analysīs imaginis'
         },
         web_extract: {
           label: 'Extractio ex web',
-          hint: 'Summārium pāgīnae',
+          hint: 'Summārium pāgīnae'
         },
         compression: {
           label: 'Compressio',
-          hint: 'Contextus compactio',
+          hint: 'Contextus compactio'
         },
         skills_hub: {
           label: 'Hub habilitatum',
-          hint: 'Investigatio habilitatum',
+          hint: 'Investigatio habilitatum'
         },
         approval: {
           label: 'Approbatio',
-          hint: 'Approbatio automatica sapiens',
+          hint: 'Approbatio automatica sapiens'
         },
         mcp: {
           hint: 'Dirigere instrumentorum MCP',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Generatio tituli',
-          hint: 'Tituli sessionum',
+          hint: 'Tituli sessionum'
         },
         curator: {
           hint: 'Recensio usus habilitatum',
-          label: 'Custōs',
-        },
-      },
+          label: 'Custōs'
+        }
+      }
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     skillArchivedTitle: 'Habilitas in archivis',
@@ -948,7 +988,8 @@ export const la = defineLocale({
       connectingHubs: 'Connectitur ad fora habilitatum...',
       connectedHubs: 'Fora conexa:',
       featured: 'Habilitates praecipuae',
-      landingHint: 'Quaere in foro ut habilitates instalabiles ex indice officiali, GitHub et fontibus communitatis explores.',
+      landingHint:
+        'Quaere in foro ut habilitates instalabiles ex indice officiali, GitHub et fontibus communitatis explores.',
       noResults: 'Nulla habilitas congrua in foro inventa est.',
       installed: 'Installata',
       install: 'Installa',
@@ -966,7 +1007,7 @@ export const la = defineLocale({
       trust: {
         builtin: 'Integratum',
         trusted: 'Fidele',
-        community: 'Communitas',
+        community: 'Communitas'
       },
       verdictSafe: 'Tutum',
       verdictCaution: 'Cave',
@@ -986,7 +1027,7 @@ export const la = defineLocale({
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     tabSkills: 'Aptitudines',
     tabToolsets: 'Instrumenta',
@@ -1004,7 +1045,8 @@ export const la = defineLocale({
     noDescription: 'Nulla descriptio.',
     configured: 'Configuratae',
     needsKeys: 'Claves requirit',
-    visionModelHint: 'Visus configurationem auxiliaris tui modelli adhibet — modelum capax imaginis ibi eligitur, non apud quemque provisionatorem hic.',
+    visionModelHint:
+      'Visus configurationem auxiliaris tui modelli adhibet — modelum capax imaginis ibi eligitur, non apud quemque provisionatorem hic.',
     visionModelLink: 'Modelum visionis elige in Configuratione → Modelis',
     skillsLoadFailed: 'Aptitudines non onerari',
     toolsetsRefreshFailed: 'Renovatio instrumentariorum frustrata est',
@@ -1022,7 +1064,7 @@ export const la = defineLocale({
     provenance: {
       agent: 'Doctum',
       bundled: 'Praeintegratum',
-      hub: 'Nexus',
+      hub: 'Nexus'
     },
     changesApplyNewSessions: 'Mutationes sessionibus novis applicantur.',
     skillUpdated: 'Facultas renovata',
@@ -1039,7 +1081,7 @@ export const la = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     importEmpty: 'Codicem mappae insere ut eam carreges.',
@@ -1058,7 +1100,8 @@ export const la = defineLocale({
     emptyTitle: 'Nihil adhuc didactum',
     emptyDesc: 'Cum OpenAmer facultates et memoriae pro vestro labore exstruat, hic apparent.',
     share: 'Mappam communica',
-    shareHint: 'Codice hanc mappam communica aut insere codicem ad eam onerandam. Solum layoutum continet, non vestrorum memoriae vel facultatis textum.',
+    shareHint:
+      'Codice hanc mappam communica aut insere codicem ad eam onerandam. Solum layoutum continet, non vestrorum memoriae vel facultatis textum.',
     shareTitle: 'Mappam importa / exporta',
     sharePlaceholder: 'Insere codicem mappae…',
     copy: 'Codice mappae copia',
@@ -1066,7 +1109,7 @@ export const la = defineLocale({
     importMap: 'Mappam importa',
     importBtn: 'Onerare',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Agentes claudere',
@@ -1096,7 +1139,7 @@ export const la = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'Centrum imperii claudere',
@@ -1125,7 +1168,7 @@ export const la = defineLocale({
       generatedTag: 'Generatae',
       adoptFailed: 'Bestiam adoptare non potuit.',
       toggleFailed: 'Bestiae statum mutare non potuit.',
-      noneAvailable: 'Nullae bestiae praesto sunt — unam infra elige ad installandum.',
+      noneAvailable: 'Nullae bestiae praesto sunt — unam infra elige ad installandum.'
     },
     generatePet: {
       title: 'Genera bestiam',
@@ -1154,55 +1197,55 @@ export const la = defineLocale({
       referenceImageInvalid: 'Imaginem referentiae legere non potuit. PNG, JPG, WebP, aut GIF utere.',
       adopt: 'Adopta',
       startOver: 'Iterum incipe',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     sections: {
       system: 'Systema',
       usage: 'Usus',
       maintenance: 'Sustentatio',
-      sessions: 'Sessiones',
+      sessions: 'Sessiones'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostica, exemplaria, custos, et memoria',
       sessions: 'Quaere et dirige sessiones',
       system: 'Status, libri, et actiones systematis',
-      usage: 'Activitas tokenorum,uminum, et peritiae temporis',
+      usage: 'Activitas tokenorum,uminum, et peritiae temporis'
     },
     nav: {
       newChat: {
         title: 'Sessio nova',
-        detail: 'Incipe sessionem novam',
+        detail: 'Incipe sessionem novam'
       },
       settings: {
         title: 'Configurationes',
-        detail: 'Configura OpenAmer desktop',
+        detail: 'Configura OpenAmer desktop'
       },
       skills: {
         title: 'Capacitates',
-        detail: 'Peritia, instrumenta, et servitores MCP',
+        detail: 'Peritia, instrumenta, et servitores MCP'
       },
       messaging: {
         title: 'Nuntii',
-        detail: 'Configura Telegram, Slack, Discord, et alia',
+        detail: 'Configura Telegram, Slack, Discord, et alia'
       },
       artifacts: {
         title: 'Artefacta',
-        detail: 'Explora producta generata',
-      },
+        detail: 'Explora producta generata'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Conspectum sessionum',
-        detail: 'Quaere, fige, et dirige sessiones',
+        detail: 'Quaere, fige, et dirige sessiones'
       },
       system: {
         title: 'Conspectum systematis',
-        detail: 'Status portae, libri, repete/upgrade',
+        detail: 'Status portae, libri, repete/upgrade'
       },
       usage: {
         title: 'Tabula usūs',
-        detail: 'Activitas tokenorum, sumptuum et facultatum',
-      },
+        detail: 'Activitas tokenorum, sumptuum et facultatum'
+      }
     },
     providerNavigate: 'Navigāre',
     providerSessions: 'Sessionēs',
@@ -1285,7 +1328,7 @@ export const la = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     installTheme: {
       title: 'Thema installe…',
@@ -1297,7 +1340,7 @@ export const la = defineLocale({
       install: 'Installe',
       installing: 'Installatur…',
       installed: 'Installatum est',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Campi configurationis',
     mcpServers: 'Servores MCP',
@@ -1307,7 +1350,7 @@ export const la = defineLocale({
     days: count => `${count}d`,
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   messaging: {
     disabled: 'Disable',
@@ -1323,124 +1366,124 @@ export const la = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Token bot',
         help: 'Crea bot cum @BotFather, deinde insere token quod tibi dabit.',
-        placeholder: 'Insere token bot Telegram',
+        placeholder: 'Insere token bot Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'ID usorum Telegram permissi',
-        help: 'Commendatum. ID numerici separati virgulis ex @userinfobot. Sine hoc, quivis bot tuum epistulam directe potest scribere.',
+        help: 'Commendatum. ID numerici separati virgulis ex @userinfobot. Sine hoc, quivis bot tuum epistulam directe potest scribere.'
       },
       TELEGRAM_PROXY: {
         label: 'URL proxini',
-        help: 'Necessarium solum in retis quibus Telegram obstructus est.',
+        help: 'Necessarium solum in retis quibus Telegram obstructus est.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token bot',
-        help: 'Crea applicationem in Discord Developer Portal, adde bot, deinde insere token eius.',
+        help: 'Crea applicationem in Discord Developer Portal, adde bot, deinde insere token eius.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'ID usorum Discord permissi',
-        help: 'Commendatum. ID usorum Discord separati virgulis.',
+        help: 'Commendatum. ID usorum Discord separati virgulis.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Modus responsionis',
-        help: 'primum, omnes, vel nullum.',
+        help: 'primum, omnes, vel nullum.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Admitte omnes utentes Discord',
-        help: 'Solum developmenti. Cum verum sit, quislibet potest bot nuntium directum mittere sine lista admissionis.',
+        help: 'Solum developmenti. Cum verum sit, quislibet potest bot nuntium directum mittere sine lista admissionis.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID canalis principalis',
-        help: 'Canalis in quo bot nuntios proactivos mittit (output cron, admonitiones).',
+        help: 'Canalis in quo bot nuntios proactivos mittit (output cron, admonitiones).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Nomen canalis principalis',
-        help: 'Nomen ostensivum canalis principalis in logis et outputs statusus.',
+        help: 'Nomen ostensivum canalis principalis in logis et outputs statusus.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Admitte omnes utentes iMessage',
-        help: 'Cum verum sit, omne iMessage et BlueBubbles omittatur.',
+        help: 'Cum verum sit, omne iMessage et BlueBubbles omittatur.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Admitte omnes utentes Mattermost',
+        label: 'Admitte omnes utentes Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Canalis principalis',
+        label: 'Canalis principalis'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Admitte omnes utentes QQ',
+        label: 'Admitte omnes utentes QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Canalis principalis QQ',
-        help: 'Canalis vel coetus praecipuus ad tradendum cron.',
+        help: 'Canalis vel coetus praecipuus ad tradendum cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Nomen canalis principalis QQ',
+        label: 'Nomen canalis principalis QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token botis Slack',
         help: 'Usa token botis ex OAuth et Permissionibus post installationem app tuae Slack.',
-        placeholder: 'Paste token botis Slack',
+        placeholder: 'Paste token botis Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token app Slack',
         help: 'Usa tokenum applicationis necessarium pro Socket Mode.',
-        placeholder: 'Inserere tokenum app Slack',
+        placeholder: 'Inserere tokenum app Slack'
       },
       SIGNAL_ACCOUNT: {
         help: 'Numerus apud pontem tuum signal-cli registratus.',
-        label: 'Numerus telephonicus',
+        label: 'Numerus telephonicus'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Utilizatores Signal permessi',
-        help: 'Commissum. Identificatores Signal per virgula separati.',
+        help: 'Commissum. Identificatores Signal per virgula separati.'
       },
       WHATSAPP_ENABLED: {
         label: 'Activa pontem WhatsApp',
-        help: 'Per tabulam infra automatice statuitur. Ne muta nisi scias te indigere.',
+        help: 'Per tabulam infra automatice statuitur. Ne muta nisi scias te indigere.'
       },
       WHATSAPP_MODE: {
-        label: 'Modus pontis',
+        label: 'Modus pontis'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Utilizatores WhatsApp permessi',
-        help: 'Commissum. Numeri telefonici vel ID WhatsApp per virgula separati.',
+        help: 'Commissum. Numeri telefonici vel ID WhatsApp per virgula separati.'
       },
       SLACK_ALLOWED_USERS: {
         label: 'ID utentium Slack permissa',
-        help: 'Commendatum. ID utentium Slack separata per commas.',
+        help: 'Commendatum. ID utentium Slack separata per commas.'
       },
       MATTERMOST_URL: {
         label: 'URL serveris',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Tokenum bot',
+        label: 'Tokenum bot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'ID utentium permissa',
-        help: 'Commendatum. ID utentium Mattermost separata per commas.',
+        help: 'Commendatum. ID utentium Mattermost separata per commas.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL serveris principalis',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Tokenum accessus',
+        label: 'Tokenum accessus'
       },
       MATRIX_USER_ID: {
         label: 'ID utentis bot',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'ID utentium Matrix permissa',
-        help: 'Commendatum. ID utentium separata per commas in formato @user:server.',
+        help: 'Commendatum. ID utentium separata per commas in formato @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL pontis Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL pontis REST signal-cli operantis.',
-      },
+        help: 'URL pontis REST signal-cli operantis.'
+      }
     },
     states: {
       connecting: 'Connecto',
@@ -1451,7 +1494,7 @@ export const la = defineLocale({
       retrying: 'Conatus iteratur',
       startup_failed: 'Initium defecit',
       connected: 'Conexum',
-      fatal: 'Erratum',
+      fatal: 'Erratum'
     },
     unknown: 'Ignotum',
     hintPendingRestart: 'Restartum portae nuntiorum ex barra status ad hoc mutatum applicandum.',
@@ -1463,7 +1506,8 @@ export const la = defineLocale({
     openSetupGuide: 'Aperi indicem configurationis',
     required: 'Necessarium',
     recommended: 'Commendatum',
-    noTokenNeeded: 'Haec platforma hic tesseram non requirit. Utere indice configurationis supra, deinde id infra activa.',
+    noTokenNeeded:
+      'Haec platforma hic tesseram non requirit. Utere indice configurationis supra, deinde id infra activa.',
     enabled: 'Activatum',
     search: 'Nuntia quaere...',
     loading: 'Platformae nuntiorum caricantur...',
@@ -1480,8 +1524,7 @@ export const la = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Quaere webhooks...',
@@ -1490,7 +1533,8 @@ export const la = defineLocale({
     hint: 'Postquam receptor currit, mutationes subscriptionis statim adhibentur. Subscriptiones inhibitae eventus adventuros respiciunt.',
     empty: 'Nondum ullae subscriptiones webhook.',
     disabledTitle: 'Receptor webhook disactivatus',
-    disabledBody: 'Webhooks sunt propria platforma gateway. Hic eos activa ut eventus HTTP ingredientes accipias; canales colloquii tantum necessarii sunt cum subscriptionis ad Telegram, Discord, Slack, vel alium canalem pervenitur.',
+    disabledBody:
+      'Webhooks sunt propria platforma gateway. Hic eos activa ut eventus HTTP ingredientes accipias; canales colloquii tantum necessarii sunt cum subscriptionis ad Telegram, Discord, Slack, vel alium canalem pervenitur.',
     enable: 'Activa webhooks',
     enabling: 'Activatio...',
     enableRow: 'Activa',
@@ -1537,7 +1581,7 @@ export const la = defineLocale({
       github_comment: 'Commentarium GitHub',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     subscriptions: (count: number) => `Subscriptions (${count})`,
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -1545,7 +1589,7 @@ export const la = defineLocale({
     deleteFailed: (name: string) => `Failed to delete "${name}"`,
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     renameMenu: 'Renomina…',
@@ -1589,7 +1633,8 @@ export const la = defineLocale({
     deleted: 'Profilus deletus',
     setupCopied: 'Mandatum constitutionis copiatum',
     close: 'Claudere configurationes',
-    nameHint: 'Litterae minores, numeri, hyphena et lineae initialis subscriptae. Musci incipiere a littera vel numero.',
+    nameHint:
+      'Litterae minores, numeri, hyphena et lineae initialis subscriptae. Musci incipiere a littera vel numero.',
     title: 'Configurationes',
     search: 'Quaerere configurationes...',
     loading: 'Onerare configurationes...',
@@ -1623,7 +1668,7 @@ export const la = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   cron: {
     days: {
@@ -1634,11 +1679,12 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Dies Iovis',
       '5': 'Dies Veneris',
       '6': 'Dies Saturni',
-      '7': 'Dies Solis',
+      '7': 'Dies Solis'
     },
     topOfHour: 'In initio cuiusque horae',
     newCron: 'Novum cron',
-    emptyDescNew: 'Programma promptum secundum expressionem cron exsequendum. OpenAmer illum exsequetur et spatula destinatum.',
+    emptyDescNew:
+      'Programma promptum secundum expressionem cron exsequendum. OpenAmer illum exsequetur et spatula destinatum.',
     emptyDescSearch: 'Proba quaestionem latiorem.',
     emptyTitleNew: 'Nulla munera cron programmata adhuc',
     emptyTitleSearch: 'Nullum inventum',
@@ -1673,7 +1719,8 @@ Leave blank to keep the ${mode} default.`,
     failedSave: 'Saving cron job failed',
     editTitle: 'Edita cron job',
     createTitle: 'Novum cron job',
-    editDesc: 'Apta programmatum, promptum vel destinationem traditionis. Mutationes in proxima executione applicantur.',
+    editDesc:
+      'Apta programmatum, promptum vel destinationem traditionis. Mutationes in proxima executione applicantur.',
     createDesc: 'Programma promptum ut automate exsequatur. Utere syntaxin cron vel phrasem sicut "quovis 15 minutis".',
     nameLabel: 'Nomen',
     namePlaceholder: 'Briefing matutinum',
@@ -1701,14 +1748,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'intermissum',
       disabled: 'inactivum',
       completed: 'completum',
-      error: 'erratum',
+      error: 'erratum'
     },
     deliveryLabels: {
       local: 'Haec tabula',
       email: 'Tabella electronica',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     scheduleLabels: {
       daily: 'Cotidie',
@@ -1717,7 +1764,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Mensatim',
       hourly: 'Singula hora',
       'every-15-minutes': 'Singulis 15 minutis',
-      custom: 'Personalizatum',
+      custom: 'Personalizatum'
     },
     scheduleHints: {
       daily: 'Cotidie hora 9:00 AM',
@@ -1726,7 +1773,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Primo die cuiusque mensis hora 9:00 AM',
       hourly: 'In principio cuiusque horae',
       'every-15-minutes': 'Singulis 15 minutis',
-      custom: 'Syntaxis cron aut sermo naturalis',
+      custom: 'Syntaxis cron aut sermo naturalis'
     },
     scheduleRequired: 'Schedulatio requiritur.',
     scriptOnlyEditHint: 'Officium tantum scripto (nullum promptum AI). Id officii:',
@@ -1734,7 +1781,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Crea cron',
     tabs: {
       jobs: 'Officia',
-      blueprints: 'Exemplaria',
+      blueprints: 'Exemplaria'
     },
     blueprints: {
       tab: 'Exemplaria',
@@ -1748,7 +1795,7 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Ona exemplaria...',
       failedLoad: 'Ona exemplaria fallita',
       emptyTitle: 'Nulla exemplaria praesto sunt',
-      emptyDesc: 'Nulla exemplaria automatismorum in hoc backend praesto sunt.',
+      emptyDesc: 'Nulla exemplaria automatismorum in hoc backend praesto sunt.'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -1757,7 +1804,7 @@ Leave blank to keep the ${mode} default.`,
     everyDayOfWeekAt: (day, time) => `Every ${day} at ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Monthly on day ${dayOfMonth} at ${time}`,
     everyHourAt: minute => `Every hour at :${minute}`,
-    actionsFor: title => `Actions for ${title}`,
+    actionsFor: title => `Actions for ${title}`
   },
   artifacts: {
     refreshing: 'Aktualizans artefakta',
@@ -1791,14 +1838,14 @@ Leave blank to keep the ${mode} default.`,
     search: 'Quaere artefacta...',
     refresh: 'Renova artefacta',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'Nova sessio',
       skills: 'Facultates',
       messaging: 'Nuntii',
-      artifacts: 'Producta',
+      artifacts: 'Producta'
     },
     searchAria: 'Sessiones quaerere',
     searchPlaceholder: 'Sessiones quaerere…',
@@ -1849,8 +1896,10 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'Itineris conscriptionem facere',
       removeFromSidebar: 'A laterali parte abscondere',
       createFailed: 'Projectum creare non potuit',
-      staleBackend: 'Affic ut OpenAmer backend ut projecta creet — backend tuus hoc app desktop antiquior est (Settings → Updates → Backend).',
-      deleteConfirm: 'Hoc proiectum salvatum ex OpenAmer removit. Fila, repositoria git et arbores laboris intacta manent.',
+      staleBackend:
+        'Affic ut OpenAmer backend ut projecta creet — backend tuus hoc app desktop antiquior est (Settings → Updates → Backend).',
+      deleteConfirm:
+        'Hoc proiectum salvatum ex OpenAmer removit. Fila, repositoria git et arbores laboris intacta manent.',
       startWork: 'Nova arbor laboris',
       newWorktreeTitle: 'Nova arbor laboris',
       newWorktreeDesc: 'Indica nomen rami huius arboris laboris.',
@@ -1870,14 +1919,16 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'Nulli rami inventi sunt',
       removeWorktree: 'Remove arborem laboris',
       removeWorktreeFailed: 'Non potuit removere arborem laboris (mutationes non commissae?)',
-      removeWorktreeConfirm: 'Remove eam ex git (delimitur directorium arboris laboris; ramus manet), vel solum occulta semitam et relinque arborem laboris in disco.',
-      removeWorktreeDirty: 'Haec arbor laboris mutationes non commissas habet. Forzatim remove eas, vel solum occulta semitam et eam in disco retine.',
+      removeWorktreeConfirm:
+        'Remove eam ex git (delimitur directorium arboris laboris; ramus manet), vel solum occulta semitam et relinque arborem laboris in disco.',
+      removeWorktreeDirty:
+        'Haec arbor laboris mutationes non commissas habet. Forzatim remove eas, vel solum occulta semitam et eam in disco retine.',
       forceRemove: 'Forzatim remove',
       back: 'Omnia projecta',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     loading: 'Caricum…',
     loadMore: 'Carica plura',
@@ -1912,19 +1963,19 @@ Leave blank to keep the ${mode} default.`,
       untitledChat: id => `Chat ${id}`,
       ageDay: 'd',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Prius hodie',
       yesterday: 'Heri',
       thisWeek: 'Prius hac hebdomade',
       lastWeek: 'Hebdomade praeterita',
-      thisMonth: 'Prius hoc mense',
+      thisMonth: 'Prius hoc mense'
     },
     noMatch: query => `No sessions match “${query}”.`,
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     placeholderStarting: 'Initium OpenAmer...',
@@ -1955,7 +2006,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.history': 'alternare fenestram / historiam',
       'composer.mention': 'refer documenta, plica, urls, git',
       'composer.slash': 'tabula commandorum slash',
-      'composer.help': 'hoc auxilium breve (delete ut dimittatur)',
+      'composer.help': 'hoc auxilium breve (delete ut dimittatur)'
     },
     attachUrlTitle: 'adiungere URL',
     attachUrlDesc: 'OpenAmer paginam.fetchabit et eam contextui huius conversationis adiunget.',
@@ -1989,7 +2040,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'sessionem priorem resume',
       '/details': 'gradum detalii transcripti regit',
       '/copy': 'selectionem aut ultimum nuntium assistentis describit',
-      '/quit': 'exe openamer',
+      '/quit': 'exe openamer'
     },
     snippetsTitle: 'Exempla promptorum',
     snippetsDesc: 'Elige promptum initialem in compositorem inserendum.',
@@ -1998,19 +2049,20 @@ Leave blank to keep the ${mode} default.`,
     snippets: {
       codeReview: {
         label: 'Recensio codicis',
-        description: 'Recognosce mutationem currentem ut regressions, casus边缘 omissos et probationes desideratas invenias.',
-        text: 'Hanc recensionem quaeso ut regressions, errores et probationes desideratas invenias.',
+        description:
+          'Recognosce mutationem currentem ut regressions, casus边缘 omissos et probationes desideratas invenias.',
+        text: 'Hanc recensionem quaeso ut regressions, errores et probationes desideratas invenias.'
       },
       implementationPlan: {
         label: 'Consilium implementationis',
         description: 'Delinea rationem antequam codicem tangas ut differentia focussed maneat.',
-        text: 'Consilium implementationis concisum fac priusquam codicem mutes.',
+        text: 'Consilium implementationis concisum fac priusquam codicem mutes.'
       },
       explainThis: {
         label: 'Hoc explica',
         description: 'Percurre ut codex selectus operetur et ad nexos claveos refers.',
-        text: 'Quaeso explica ut hoc operetur et ad nexos claveos me dirige.',
-      },
+        text: 'Quaeso explica ut hoc operetur et ad nexos claveos me dirige.'
+      }
     },
     message: 'Nuntius',
     queueStuckTitle: 'Nuntius in tabula missus est',
@@ -2041,7 +2093,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -2050,14 +2102,14 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
     attachments: count => `${count} attachment${count === 1 ? '' : 's'}`,
     previewLabel: label => `Preview ${label}`,
     couldNotPreview: label => `Could not preview ${label}`,
-    removeAttachment: label => `Remove ${label}`,
+    removeAttachment: label => `Remove ${label}`
   },
   statusStack: {
     agents: 'Agentes',
@@ -2080,8 +2132,10 @@ Leave blank to keep the ${mode} default.`,
       viewAsList: 'Videre ut lista',
       revert: 'Restituere',
       revertAll: 'Restituere omnia',
-      revertConfirm: 'Excludere mutationes huic tabulae et restituere eam ad statum confirmatum? Hoc non potest emendi.',
-      revertAllConfirm: 'Excludere omnes mutationes et restituere tabulas ad statum confirmatum? Hoc non potest emendi.',
+      revertConfirm:
+        'Excludere mutationes huic tabulae et restituere eam ad statum confirmatum? Hoc non potest emendi.',
+      revertAllConfirm:
+        'Excludere omnes mutationes et restituere tabulas ad statum confirmatum? Hoc non potest emendi.',
       staged: 'In area',
       noChanges: 'Nullae mutationes',
       notRepo: 'Non est repositorium Git',
@@ -2097,7 +2151,8 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'Aperire PR',
       ghMissing: 'Installare GitHub CLI (gh) et inire ut PR aperiantur',
       agentShip: 'Petere ab OpenAmer ut aperiat PR',
-      agentShipPrompt: 'Recensere mutationes currentes, eas committere cum nuntio conventional-commit perspicuo, ramum premere et petitionem tractionis aperire.',
+      agentShipPrompt:
+        'Recensere mutationes currentes, eas committere cum nuntio conventional-commit perspicuo, ramum premere et petitionem tractionis aperire.',
       newBranch: 'Ramus novus',
       worktrees: 'Arboriae',
       commitPlaceholder: 'Nuntius (âŒ˜â†µ ut confirmes)',
@@ -2106,12 +2161,12 @@ Leave blank to keep the ${mode} default.`,
       behind: count => `${count} behind`,
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -2126,7 +2181,7 @@ Leave blank to keep the ${mode} default.`,
       pull: 'Prope finem…',
       pydeps: 'Conficitur…',
       update: 'Renovatio OpenAmer…',
-      rebuild: 'Aedificatur applicatio desktop…',
+      rebuild: 'Aedificatur applicatio desktop…'
     },
     checking: 'Quaeruntur actualizationes…',
     checkFailedTitle: 'Actualizationes inveniri non potuerunt',
@@ -2149,28 +2204,33 @@ Leave blank to keep the ${mode} default.`,
       pulling: 'Pars posterior renovatur…',
       restarting: 'Backendum rursus orditur ut updateum applicetur…',
       notAvailable: 'Updateum pro hoc backendo non disponitur.',
-      failed: 'Updateum backendi defecit.',
+      failed: 'Updateum backendi defecit.'
     },
     appErrors: {
-      updateLocked: 'Update abortus: aliud fenestrum OpenAmer aut terminale quod openamer exsequitur hanc installationem apertam tenet. Claude et iterum conare.',
-      updateFailed: 'Update non completus est. Nihil perditum est. Nunc iterum conare.',
+      updateLocked:
+        'Update abortus: aliud fenestrum OpenAmer aut terminale quod openamer exsequitur hanc installationem apertam tenet. Claude et iterum conare.',
+      updateFailed: 'Update non completus est. Nihil perditum est. Nunc iterum conare.'
     },
     maybeLater: 'Postea fortasse',
     manualTitle: 'Actualiza ex terminali tuo',
-    manualBody: 'OpenAmer ex linea imperandi instalasti, itaque novitates ibi quoque instituuntur. Hoc in terminali tuo insere:',
+    manualBody:
+      'OpenAmer ex linea imperandi instalasti, itaque novitates ibi quoque instituuntur. Hoc in terminali tuo insere:',
     manualPickedUp: 'OpenAmer novam versionem proxima vice accipiet, cum eum aperies.',
     guiSkewTitle: 'Actualiza programma mensae',
-    guiSkewBody: 'Pars posterior renovata est, sed hoc programma mensae non mutatum est. Programma mensae OpenAmer (AppImage tuum / .deb / .rpm) ad concordiam actualiza vel reinstalla.',
+    guiSkewBody:
+      'Pars posterior renovata est, sed hoc programma mensae non mutatum est. Programma mensae OpenAmer (AppImage tuum / .deb / .rpm) ad concordiam actualiza vel reinstalla.',
     copy: 'Exempla',
     copied: 'Exemplatum',
     done: 'Factum',
-    applyingBody: 'Instrumentum updates OpenAmer in fenestra sua recipit et OpenAmer, cum finierit, sponte aperit. Please ne aperias OpenAmer, dum reverditur.',
-    applyingBodyBackend: 'Pars posterior remotus renovationem instituit et rursus exsurgit. OpenAmer, cum redierit, sponte conectitur.',
+    applyingBody:
+      'Instrumentum updates OpenAmer in fenestra sua recipit et OpenAmer, cum finierit, sponte aperit. Please ne aperias OpenAmer, dum reverditur.',
+    applyingBodyBackend:
+      'Pars posterior remotus renovationem instituit et rursus exsurgit. OpenAmer, cum redierit, sponte conectitur.',
     applyingClose: 'Haec fenestra claudetur, dum renovatio agitur, deinde OpenAmer sponte aperietur.',
     errorTitle: 'Renovatio non perfecit',
     errorBody: 'Nihil perditum est. Nunc rursus conari potes.',
     notNow: 'Non nunc',
-    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
+    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`
   },
   install: {
     stageStates: {
@@ -2178,7 +2238,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'Instalans',
       succeeded: 'Confectum',
       skipped: 'Praetermissum',
-      failed: 'Non successit',
+      failed: 'Non successit'
     },
     oneTimeTitle: 'OpenAmer installationem singularem requirit',
     installCommand: 'Mandatum installationis',
@@ -2187,15 +2247,19 @@ Leave blank to keep the ${mode} default.`,
     installTo: 'Installabitur in',
     retryAfterRun: 'Mandatum exsecutus sum -- iterum conare',
     setupChoiceTitle: 'OpenAmer Desktop para',
-    setupChoiceDesc: 'Hanc app ad ianuam OpenAmer quam iam exsequis coniunge, aut OpenAmer localiter in hoc computatro installa.',
+    setupChoiceDesc:
+      'Hanc app ad ianuam OpenAmer quam iam exsequis coniunge, aut OpenAmer localiter in hoc computatro installa.',
     connectExistingTitle: 'Ad OpenAmer praesentem coniunge',
     connectExistingShort: 'Coniunge praesens',
-    connectExistingDesc: 'Backend remotum cum token sessionis aut inscriptione per browser utere. Installatio localis non incipit.',
+    connectExistingDesc:
+      'Backend remotum cum token sessionis aut inscriptione per browser utere. Installatio localis non incipit.',
     installLocalTitle: 'OpenAmer localiter installa',
-    installLocalDesc: 'Descarga OpenAmer, crea circumstantiam Python eius et exsequere servitium posterius in hoc computatro.',
+    installLocalDesc:
+      'Descarga OpenAmer, crea circumstantiam Python eius et exsequere servitium posterius in hoc computatro.',
     localStartUnavailable: 'Installatio localis incipere non potuit. Redincia OpenAmer Desktop et iterum conare.',
     remoteSetupTitle: 'Coniunge te cum OpenAmer existente.',
-    remoteSetupDesc: 'Indica URL portae tuae. OpenAmer Desktop deteget utrum tokenum aut ingressum per navigatrium requirat.',
+    remoteSetupDesc:
+      'Indica URL portae tuae. OpenAmer Desktop deteget utrum tokenum aut ingressum per navigatrium requirat.',
     remoteUrlTitle: 'URL portae',
     remoteUrlDesc: 'Utere URL basali portae OpenAmer, incluso https:// cum remota.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2219,8 +2283,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Installatio defecit',
     settingUpTitle: 'Installatur OpenAmer Agent',
     finishingTitle: 'Conficitur',
-    failedDesc: 'Unum e gradibus installationis defecit. In Windows, hoc evenire potest si aliud OpenAmer CLI aut exemplum desktop activum est. Omnia exempla OpenAmer activa impedisce, deinde iterum conare. Transcriptum plenum infra vel in logbook desktop consule.',
-    activeDesc: 'Hic est praestatio initialis. Installer OpenAmer dependentias discat et machinam tuam configurat. Initia subsequentia hunc gradum praeterebunt.',
+    failedDesc:
+      'Unum e gradibus installationis defecit. In Windows, hoc evenire potest si aliud OpenAmer CLI aut exemplum desktop activum est. Omnia exempla OpenAmer activa impedisce, deinde iterum conare. Transcriptum plenum infra vel in logbook desktop consule.',
+    activeDesc:
+      'Hic est praestatio initialis. Installer OpenAmer dependentias discat et machinam tuam configurat. Initia subsequentia hunc gradum praeterebunt.',
     fetchingManifest: 'Manifestum installeris accersitur...',
     error: 'Erratum',
     hideOutput: 'Output installeris absconde',
@@ -2232,13 +2298,14 @@ Leave blank to keep the ${mode} default.`,
     copiedOutput: 'Copiatum!',
     copyOutput: 'Output copia',
     reloadRetry: 'Recarga et retenta',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
     signInWith: provider => `Sign in with ${provider}`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'Praeparemus te cum OpenAmer Agent',
@@ -2258,28 +2325,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'directa API modelorum',
-        description: 'Directus accessus ad modela ab Fireworks AI servata.',
+        description: 'Directus accessus ad modela ab Fireworks AI servata.'
       },
       openrouter: {
         short: 'una clavis, multa modela',
-        description: 'Centena modela sub una clave servat. Bona electio novis installationibus.',
+        description: 'Centena modela sub una clave servat. Bona electio novis installationibus.'
       },
       openai: {
         short: 'modela classis GPT',
-        description: 'Directus accessus ad modela OpenAI.',
+        description: 'Directus accessus ad modela OpenAI.'
       },
       gemini: {
         short: 'Modelos Gemini',
-        description: 'Accessus directus ad modelos Google Gemini.',
+        description: 'Accessus directus ad modelos Google Gemini.'
       },
       xai: {
         short: 'Modelos Grok',
-        description: 'Accessus directus ad modelos xAI Grok.',
+        description: 'Accessus directus ad modelos xAI Grok.'
       },
       local: {
         short: 'In proprio dominio',
-        description: 'Indica OpenAmer endpointum localem aut in proprio dominio, compatible cum OpenAI (vLLM, llama.cpp, Ollama, etc.).',
-      },
+        description:
+          'Indica OpenAmer endpointum localem aut in proprio dominio, compatible cum OpenAI (vLLM, llama.cpp, Ollama, etc.).'
+      }
     },
     backToSignIn: 'Redi ad identificationem',
     getKey: 'Obtine clavem',
@@ -2292,7 +2360,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'Aperit browserum tuum ad identificationem, deinde hic pergit',
       device_code: 'Aperit paginam verificationis in browsero tuo — OpenAmer automatice conectatur',
-      external: 'Semel in terminali tuo adde, deinde redi ad colloquendum',
+      external: 'Semel in terminali tuo adde, deinde redi ad colloquendum'
     },
     signInFailed: 'Identificatio frustravit. Iterum conare.',
     pickDifferentProvider: 'Elige alium praebitorem',
@@ -2317,11 +2385,13 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'Mutate modelum',
@@ -2337,13 +2407,13 @@ Leave blank to keep the ${mode} default.`,
     free: 'Gratis',
     freeTier: 'Gradus gratuitus',
     priceTitle: 'Pretium input/output per milione tokenorum',
-    wasPrice: 'erat',
+    wasPrice: 'erat'
   },
   modelVisibility: {
     title: 'Modelli',
     search: 'Quaere modellos',
     noAuthenticatedProviders: 'Nulli provitores authenticati.',
-    addProvider: 'Adde provisor…',
+    addProvider: 'Adde provisor…'
   },
   shell: {
     windowControls: 'Controles fenestrae',
@@ -2354,7 +2424,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'Nulli modelli inventi',
       editModels: 'Edita modellos…',
       refreshModels: 'Aggiorna modelli',
-      fast: 'Celer',
+      fast: 'Celer'
     },
     modelOptions: {
       noOptions: 'Nullae optiones istius modeli',
@@ -2370,7 +2440,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'Maximus',
       ultra: 'Extremus',
       updateFailed: 'Mutatio optationis modeli defecit',
-      fastFailed: 'Mutatio modi celeris defecit',
+      fastFailed: 'Mutatio modi celeris defecit'
     },
     gatewayMenu: {
       gateway: 'Ianua',
@@ -2385,7 +2455,7 @@ Leave blank to keep the ${mode} default.`,
       recentActivity: 'Acta recentia',
       viewAllLogs: 'Omnes libros vide →',
       messagingPlatforms: 'Platformae nuntiorum',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'Modus approbationis',
@@ -2395,7 +2465,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'Actus automatice aestimа et, cum opus sit, interroga',
       off: 'Inactive',
       offDescription: 'Sine admonitionibus approbationis exsequere',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'ignotum',
@@ -2435,13 +2505,13 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'Definitiones subagentium',
           system_prompt: 'Systematis praeceptum',
           tool_definitions: 'Definitiones instrumentorum',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Nondum ulla data contextus',
         loading: 'Decompositionis onus…',
         title: 'Usus contextus',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Aperere decompositionem usus contextus',
       session: 'Sessio',
@@ -2449,8 +2519,10 @@ Leave blank to keep the ${mode} default.`,
       modelNone: 'Nullum',
       noModel: 'Nullum modelum',
       switchModel: 'Commutare modelum',
-      yoloOn: 'YOLO active — mandata periculosa automatice approbantur. Click ut desacc. Shift+click eum globaliter toggulat.',
-      yoloOff: 'YOLO inactive — click ut mandata periculosa automatice approbentur. Shift+click eum globaliter toggulat.',
+      yoloOn:
+        'YOLO active — mandata periculosa automatice approbantur. Click ut desacc. Shift+click eum globaliter toggulat.',
+      yoloOff:
+        'YOLO inactive — click ut mandata periculosa automatice approbentur. Shift+click eum globaliter toggulat.',
       webhooks: 'Retiuncī',
       commitsBehind: (count, branch) => `${count} commit${count === 1 ? '' : 's'} behind ${branch}`,
       desktopVersion: version => `OpenAmer Desktop v${version}`,
@@ -2470,8 +2542,8 @@ Leave blank to keep the ${mode} default.`,
       running: count => `${count} running`,
       cron: 'Cron',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     emptyTitle: 'Vacuum',
@@ -2507,7 +2579,7 @@ Leave blank to keep the ${mode} default.`,
     unreadableTitle: 'Illegibilis',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'Praevisum',
@@ -2535,7 +2607,8 @@ Leave blank to keep the ${mode} default.`,
     editing: 'Edendo',
     unsavedChanges: 'Mutationes non salvae',
     diskChangedTitle: 'Fasciculus in disco mutatus est',
-    diskChangedBody: 'Hic fasciculus mutatus est ex quo eum aperuisti. Eum tua versione obruere, an mutationes tuas abolere et reloader?',
+    diskChangedBody:
+      'Hic fasciculus mutatus est ex quo eum aperuisti. Eum tua versione obruere, an mutationes tuas abolere et reloader?',
     overwrite: 'Superscribere',
     discardReload: 'Excludere et recaricare',
     console: {
@@ -2556,7 +2629,7 @@ Leave blank to keep the ${mode} default.`,
       sentTitle: 'Ad colloquium missum',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Applicatio praevisa coepisse non potuit',
@@ -2577,9 +2650,11 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'Praevisium nunc reponitur.',
       restartFailedTitle: 'Renovatio praevisii frustravit',
       restartFailedMessage: 'OpenAmer non potuit servitorem renovare.',
-      stillWorking: 'OpenAmer adhuc laborat, sed nullus renovationis eventus adhuc advenit. Mandatum servitoris fortasse in primo plano currit.',
+      stillWorking:
+        'OpenAmer adhuc laborat, sed nullus renovationis eventus adhuc advenit. Mandatum servitoris fortasse in primo plano currit.',
       workspaceReloading: 'Area laboris mutata est, praevisium reponitur',
-      moduleMimeDescription: 'Scripta modulorum cum typo MIME erroneo serviuntur. Hoc saepe significat servitorem statarium applicationem Vite/React servire, non devservitorem proiecti.',
+      moduleMimeDescription:
+        'Scripta modulorum cum typo MIME erroneo serviuntur. Hoc saepe significat servitorem statarium applicationem Vite/React servire, non devservitorem proiecti.',
       unreachableDescription: 'Pagina praevisii attingi non potuit.',
       fallbackTitle: 'Praevisium',
       lookingRestart: taskId => `OpenAmer is looking for a preview server to restart (${taskId})`,
@@ -2590,14 +2665,14 @@ Leave blank to keep the ${mode} default.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     linkHint: 'âŒ˜/Ctrl-clic pro tabula praevisum',
     closeTab: label => `Close ${label}`,
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   zones: {
     showHeader: 'Ostendere caput',
@@ -2605,7 +2680,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Minimare',
     restore: 'Restaurare',
     closeRunningTitle: 'Tabulam currentem claudere?',
-    closeRunningBody: 'Haec colloquatio adhuc laborat vel inputum tuum exspectat. Tabulam claudere eam abscondit — sessio progressum suum servat et ex margine laterali iterum aperiri potest.',
+    closeRunningBody:
+      'Haec colloquatio adhuc laborat vel inputum tuum exspectat. Tabulam claudere eam abscondit — sessio progressum suum servat et ex margine laterali iterum aperiri potest.',
     closeRunningConfirm: 'Tabulam claudere',
     closeOthers: 'Alias claudere',
     closeToRight: 'Ad dexteram claudere',
@@ -2642,7 +2718,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
@@ -2673,11 +2749,12 @@ Leave blank to keep the ${mode} default.`,
       goForward: 'Procedere',
       sendEdited: 'Nuntium editum mittere',
       attachingFile: 'Adiungitur...',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
-      yesterday: time => `Yesterday, ${time}`,
+      yesterday: time => `Yesterday, ${time}`
     },
     approval: {
       gatewayDisconnected: 'Porta OpenAmer non est conexa',
@@ -2691,7 +2768,8 @@ Leave blank to keep the ${mode} default.`,
       reject: 'Recusare',
       alwaysTitle: 'Semper hoc mandatum permittere?',
       alwaysAllow: 'Semper permittere',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
       notReady: 'Petitio clarificationis nondum parata est',
@@ -2705,7 +2783,7 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'Pergere',
       lateAnswerTip: 'Hanc responsionem ut nuntiumsequentem componere',
       lateAnswerHint: 'Hoc rogatum non amplius exspectat. Elige optionem ut id ut nuntiumsequentem componas.',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     tool: {
       code: 'Codex',
@@ -2739,123 +2817,123 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Executum',
         running: 'Exiens',
         ranCode: 'Codice executum',
-        runningCode: 'Scribens',
+        runningCode: 'Scribens'
       },
       prefixes: {
         browser: 'Navigator',
-        web: 'Rete',
+        web: 'Rete'
       },
       titles: {
         browser_click: {
           done: 'Elementum paginae clicatum',
           pending: 'Elementum paginae clicandum',
-          pendingAction: 'Clicans',
+          pendingAction: 'Clicans'
         },
         browser_fill: {
           done: 'Campum formae impletum',
           pending: 'Campum formae implens',
-          pendingAction: 'Impletio',
+          pendingAction: 'Impletio'
         },
         browser_navigate: {
           done: 'Pagina aperta',
           pending: 'Aperiend paginam',
-          pendingAction: 'Aperiendo',
+          pendingAction: 'Aperiendo'
         },
         browser_snapshot: {
           done: 'Imago paginae capta',
           pending: 'Captam imaginem paginae',
-          pendingAction: 'Capturando',
+          pendingAction: 'Capturando'
         },
         browser_take_screenshot: {
           done: 'Screenshot captum',
           pending: 'Captando screenshot',
-          pendingAction: 'Capturando',
+          pendingAction: 'Capturando'
         },
         browser_type: {
           done: 'In pagina scriptum',
           pending: 'In pagina scribendum',
-          pendingAction: 'Scribendo',
+          pendingAction: 'Scribendo'
         },
         clarify: {
           done: 'Quaestio posita',
           pending: 'Ponens quaestionem',
-          pendingAction: 'Interrogando',
+          pendingAction: 'Interrogando'
         },
         cronjob: {
           done: 'Munus cronologicum',
           pending: 'Schedulans munus cronologicum',
-          pendingAction: 'Schedulans',
+          pendingAction: 'Schedulans'
         },
         edit_file: {
           done: 'Documentum editum',
           pending: 'Editatio tabulae',
-          pendingAction: 'Editatio',
+          pendingAction: 'Editatio'
         },
         execute_code: {
           done: 'Executio codicis',
           pending: 'Scriptio',
-          pendingAction: 'Scriptio',
+          pendingAction: 'Scriptio'
         },
         image_generate: {
           done: 'Imago generata',
           pending: 'Generatio imaginis',
-          pendingAction: 'Generatio',
+          pendingAction: 'Generatio'
         },
         list_files: {
           done: 'Tabulae enumeratae',
           pending: 'Enumeratio tabularum',
-          pendingAction: 'Enumeratio',
+          pendingAction: 'Enumeratio'
         },
         patch: {
           done: 'Tabula emendata',
           pending: 'Emendatio tabulae',
-          pendingAction: 'Emendatio',
+          pendingAction: 'Emendatio'
         },
         read_file: {
           done: 'Lectio tabulae',
           pending: 'Lectio tabulae',
-          pendingAction: 'Lectio',
+          pendingAction: 'Lectio'
         },
         search_files: {
           done: 'Tabulae quaesitae',
           pending: 'Quaesitio tabularum',
-          pendingAction: 'Quaesitio',
+          pendingAction: 'Quaesitio'
         },
         session_search_recall: {
           done: 'Historia sessionis quaesita',
           pending: 'Historiam sessionis quaerens',
-          pendingAction: 'Quaerens',
+          pendingAction: 'Quaerens'
         },
         terminal: {
           done: 'Mandatum exsecutum',
           pending: 'Mandatum exsequens',
-          pendingAction: 'Exsequens',
+          pendingAction: 'Exsequens'
         },
         todo: {
           done: 'Lista rerum actualizata',
           pending: 'Listam rerum actualizans',
-          pendingAction: 'Actualizans',
+          pendingAction: 'Actualizans'
         },
         vision_analyze: {
           done: 'Imago analysata',
           pending: 'Imaginem analysans',
-          pendingAction: 'Analysans',
+          pendingAction: 'Analysans'
         },
         web_extract: {
           done: 'Pagina web lecta',
           pending: 'Paginam web legens',
-          pendingAction: 'Legens',
+          pendingAction: 'Legens'
         },
         web_search: {
           done: 'Web quaesita',
           pending: 'In web quaerens',
-          pendingAction: 'Quaerens',
+          pendingAction: 'Quaerens'
         },
         write_file: {
           done: 'Tabella modificata',
           pending: 'Tabellam modificans',
-          pendingAction: 'Editans',
-        },
+          pendingAction: 'Editans'
+        }
       },
       recoveredMany: count => `Recovered after ${count} failed steps`,
       failedMany: count => `${count} steps failed`,
@@ -2865,14 +2943,15 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
+    }
   },
   desktop: {
     cwdChangeFailed: 'Mutatio directorii operativi_FAILED',
     cwdStagedTitle: 'Directorium operativum praeparatum',
-    cwdStagedMessage: 'Reinicia backendum desktopii ut mutationes directorii operativi huic sessioni activae applicentur.',
+    cwdStagedMessage:
+      'Reinicia backendum desktopii ut mutationes directorii operativi huic sessioni activae applicentur.',
     modelSwitchFailed: 'Mutatio modeli_FAILED',
     sessionExported: 'Sessio exportata',
     sessionExportFailed: 'Sessio exportari non potuit',
@@ -2899,7 +2978,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'Editatio non successit',
     resumeFailed: 'Resumptio non successit',
     resumeStrandedTitle: 'Sessionem hanc caricare non potuit',
-    resumeStrandedBody: 'Conexus ad hanc sessionem interruptus est et renitationes automaticae defecerunt. Confirma portam in motu esse, deinde iterum conare.',
+    resumeStrandedBody:
+      'Conexus ad hanc sessionem interruptus est et renitationes automaticae defecerunt. Confirma portam in motu esse, deinde iterum conare.',
     resumeRetry: 'Iterum conare',
     nothingToBranch: 'Nihil ad ramificandum',
     branchNeedsChat: 'Colloquium incipe aut resume antequam ramifices.',
@@ -2918,7 +2998,7 @@ Leave blank to keep the ${mode} default.`,
       timedOut: 'Exspectatio gateway defecit. Num `openamer gateway` est in cursu?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     audioReadFailed: 'Legi non potuit audio registrata',
     sessionUnavailable: 'Sessio indisponibilis est',
@@ -2933,47 +3013,50 @@ Leave blank to keep the ${mode} default.`,
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
-    branchTitle: n => `Draft: Branch #${n}`,
+    branchTitle: n => `Draft: Branch #${n}`
   },
   errors: {
     genericFailure: 'Aliquid male evenit',
     boundaryTitle: 'Aliquid in interfacie defecit',
     boundaryDesc: 'Error insperatus in conspectu occurrit. Colloquia et configurationes tuae tuta sunt.',
     reloadWindow: 'Recarga fenestram',
-    openLogs: 'Aperi logarithmos',
+    openLogs: 'Aperi logarithmos'
   },
   ui: {
     search: {
-      clear: 'Vacua quaesitionem',
+      clear: 'Vacua quaesitionem'
     },
     pagination: {
       label: 'Paginatio',
       previous: 'Prae',
       previousAria: 'I ad paginam praecedentem',
       next: 'Sequens',
-      nextAria: 'I ad paginamsequentem',
+      nextAria: 'I ad paginamsequentem'
     },
     sidebar: {
       title: 'Bar laterale',
       description: 'Bar lateralem mobilem ostendit.',
-      toggle: 'Commuta bar laterale',
-    },
+      toggle: 'Commuta bar laterale'
+    }
   },
   prompts: {
     gatewayDisconnected: 'Porta OpenAmer non connected',
     sudoSendFailed: 'Nuntiari non potuit tessera sudo',
     secretSendFailed: 'Nuntiari non potuit secretum',
     sudoTitle: 'Tessera administratoris',
-    sudoDesc: 'OpenAmer eget tessera sudo tua ut mandatum privilegiatum exsequatur. Haec ad agendum localem tuum solum mittitur.',
+    sudoDesc:
+      'OpenAmer eget tessera sudo tua ut mandatum privilegiatum exsequatur. Haec ad agendum localem tuum solum mittitur.',
     sudoPlaceholder: 'Tessera sudo',
     secretTitle: 'Secretum requiritur',
     secretDesc: 'OpenAmer eget credentiali ut pergas.',
-    secretPlaceholder: 'Valor secreti',
+    secretPlaceholder: 'Valor secreti'
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
-  },
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
+  }
 })

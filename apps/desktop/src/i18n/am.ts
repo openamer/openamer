@@ -45,7 +45,7 @@ export const am = defineLocale({
     update: 'አዘምን',
     on: 'በርቷል',
     off: 'ጠፍቷል',
-    tryHint: term => `Try “${term}”`,
+    tryHint: term => `Try “${term}”`
   },
   fileMenu: {
     revealFinder: 'በFinder አሳይ',
@@ -60,7 +60,7 @@ export const am = defineLocale({
     renameLabel: 'አዲስ ስም',
     deleteBody: 'ወደ መጣያ ይዛወራል — ከዚያ መመለስ ይችላሉ።',
     pathCopied: 'መንገድ ተቀድቷል',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop ዝግጁ ነው',
@@ -69,7 +69,7 @@ export const am = defineLocale({
       loadingSettings: 'የOpenAmer ቅንብሮች በመጫን ላይ',
       loadingSessions: 'የቅርብ ክፍለ ጊዜዎች በመጫን ላይ',
       startingDesktopConnection: 'የዴስክቶፕ ግንኙነት በመጀመር ላይ',
-      startingOpenAmerDesktop: 'OpenAmer Desktop በመጀመር ላይ…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop በመጀመር ላይ…'
     },
     errors: {
       backgroundExited: 'የOpenAmer የጀርባ ሂደት ወጥቷል።',
@@ -78,7 +78,7 @@ export const am = defineLocale({
       desktopBootFailed: 'የዴስክቶፕ ጅምር አልተሳካም',
       gatewayConnectionLost: 'ከጌትዌይ ጋር ያለው ግንኙነት ተቋርጧል',
       gatewaySignInRequired: 'በጌትዌይ መግባት ያስፈልጋል',
-      ipcBridgeUnavailable: 'የዴስክቶፕ IPC ድልድይ አይገኝም።',
+      ipcBridgeUnavailable: 'የዴስክቶፕ IPC ድልድይ አይገኝም።'
     },
     failure: {
       title: 'OpenAmer መጀመር አልቻለም',
@@ -103,10 +103,11 @@ export const am = defineLocale({
       signInFailed: 'መግባት አልተሳካም።',
       signInToRemoteGateway: 'ወደ ሩቅ ጌትዌይ ይግቡ',
       identityProvider: 'የማንነት አቅራቢዎ',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   notifications: {
     region: 'ማሳወቂያዎች',
@@ -131,7 +132,7 @@ export const am = defineLocale({
       microphonePermission: 'የማይክሮፎን ፈቃድ ተከልክሏል።',
       openaiRejectedApiKey: 'OpenAI የAPI ቁልፍን ውድቅ አደረገ።',
       openaiTtsNeedsKey: 'OpenAI TTS VOICE_TOOLS_OPENAI_KEY ወይም OPENAI_API_KEY ይፈልጋል።',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'የንግግር-ወደ-ጽሑፍን የድምፅ ሁነታ እንዲጠቀም ያዋቅሩ።',
@@ -150,7 +151,7 @@ export const am = defineLocale({
       transcriptionFailed: 'የድምፅ ጽሑፍ ማስተላለፍ አልተሳካም።',
       transcriptionUnavailable: 'የድምጽ ጽሑፍ ማስተላለፍ ገና አይገኝም።',
       tryRecordingAgain: 'እንደገና በመቅዳት ይሞክሩ።',
-      unavailable: 'ድምጽ አይገኝም',
+      unavailable: 'ድምጽ አይገኝም'
     },
     native: {
       approvalTitle: 'ማረጋገጫ ያስፈልጋል',
@@ -163,10 +164,10 @@ export const am = defineLocale({
       turnErrorTitle: 'ዙሩ አልተሳካም',
       backgroundDoneTitle: 'የበስተጀርባ ተግባር ተጠናቅቋል',
       backgroundFailedTitle: 'የበስተጀርባ ተግባር አልተሳካም',
-      creditsTitle: 'ክሬዲቶች',
+      creditsTitle: 'ክሬዲቶች'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   billingBlock: {
     titleOpenamer: 'የOpenAmer ክሬዲቶች አልቀቀዋል',
@@ -174,7 +175,7 @@ export const am = defineLocale({
     openBilling: 'ክፍያን ክፈት',
     addCredits: 'ክሬዲት ጨምር',
     dismiss: 'አሰናብት',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   titlebar: {
     hideSidebar: 'የጎን አሞሌን ደብቅ',
@@ -191,7 +192,7 @@ export const am = defineLocale({
     openStarmap: 'የማስታወሻ ግራፍ ክፈት',
     openKeybinds: 'የቁልፍ አቋራጮች',
     layoutEditor: 'የአቀማመጥ አርታዒ',
-    layoutEditorTitle: 'የአቀማመጥ አርታዒ — ⌘ መጫን አቀማመጡን ዳግም ያስጀምራል',
+    layoutEditorTitle: 'የአቀማመጥ አርታዒ — ⌘ መጫን አቀማመጡን ዳግም ያስጀምራል'
   },
   keybinds: {
     title: 'የቁልፍ አቋራጮች',
@@ -206,7 +207,7 @@ export const am = defineLocale({
       profiles: 'መገለጫዎች',
       session: 'ክፍለ ጊዜ',
       navigation: 'አሰሳ',
-      view: 'እይታ',
+      view: 'እይታ'
     },
     actions: {
       'keybinds.openPanel': 'የቁልፍ አቋራጮችን ክፈት',
@@ -285,10 +286,10 @@ export const am = defineLocale({
       'composer.slash': 'የስላሽ ትዕዛዝ ፓሌት',
       'composer.help': 'ፈጣን እርዳታ',
       'composer.history': 'ብቅ-ባይ / ታሪክ ቀያይር',
-      'composer.cancel': 'ብቅ-ባይ ዝጋ · ሩጫ ሰርዝ',
+      'composer.cancel': 'ብቅ-ባይ ዝጋ · ሩጫ ሰርዝ'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   language: {
     label: 'ቋንቋ',
@@ -297,7 +298,7 @@ export const am = defineLocale({
     saveError: 'ቋንቋ ማዘመን አልተሳካም',
     switchTo: 'ቋንቋ ቀያይር',
     searchPlaceholder: 'ቋንቋዎችን ይፈልጉ…',
-    noResults: 'ምንም ቋንቋ አልተገኘም',
+    noResults: 'ምንም ቋንቋ አልተገኘም'
   },
   settings: {
     closeSettings: 'ቅንብሮችን ዝጋ',
@@ -322,11 +323,12 @@ export const am = defineLocale({
       about: 'ስለ',
       billing: 'ክፍያ',
       notifications: 'ማሳወቂያዎች',
-      plugins: 'ፕላጊኖች',
+      plugins: 'ፕላጊኖች'
     },
     plugins: {
       title: 'የዴስክቶፕ ፕላጊኖች',
-      blurb: 'ወደዚህ መተግበሪያ የተጫኑ የUI ቅጥያዎች — ከግንባታው ጋር የተያዙ፣ ወይም ወደ desktop-plugins አቃፊ የተጣሉ (OpenAmer የሚጽፋቸውን ጨምሮ)። ማሰናከል ፕላጊንን በቀጥታ ያወጣል እና ከዳግም ጅምር በኋላም ይቆያል።',
+      blurb:
+        'ወደዚህ መተግበሪያ የተጫኑ የUI ቅጥያዎች — ከግንባታው ጋር የተያዙ፣ ወይም ወደ desktop-plugins አቃፊ የተጣሉ (OpenAmer የሚጽፋቸውን ጨምሮ)። ማሰናከል ፕላጊንን በቀጥታ ያወጣል እና ከዳግም ጅምር በኋላም ይቆያል።',
       openFolder: 'የፕላጊኖች አቃፊ ክፈት',
       rescan: 'እንደገና ስካን አድርግ',
       reveal: 'በፋይል አስተዳዳሪ አሳይ',
@@ -337,41 +339,42 @@ export const am = defineLocale({
       kinds: {
         bundled: 'የተካተተ',
         disk: 'በዲስክ ላይ',
-        runtime: 'የሩጫ ጊዜ',
+        runtime: 'የሩጫ ጊዜ'
       },
-      count: n => `${n} installed`,
+      count: n => `${n} installed`
     },
     notifications: {
       title: 'ማሳወቂያዎች',
-      intro: 'ቤተኛ የዴስክቶፕ ማሳወቂያዎች፣ ከመተግበሪያ ውስጥ ጊዜያዊ ማሳወቂያዎች የተለዩ። እነዚህ በመሣሪያ አካባቢያዊ ናቸው — እያንዳንዱ ኮምፒውተር የራሱን ቅንብሮች ይይዛል።',
+      intro:
+        'ቤተኛ የዴስክቶፕ ማሳወቂያዎች፣ ከመተግበሪያ ውስጥ ጊዜያዊ ማሳወቂያዎች የተለዩ። እነዚህ በመሣሪያ አካባቢያዊ ናቸው — እያንዳንዱ ኮምፒውተር የራሱን ቅንብሮች ይይዛል።',
       enableAll: 'ማሳወቂያዎችን አንቃ',
       enableAllDesc: 'ዋና መቀየሪያ። ከታች ያሉትን ሁሉንም ማሳወቂያዎች ዝም ለማድረግ ይህን አጥፋ።',
       focusedHint: 'የማጠናቀቂያ ማንቂያዎች የሚነሱት OpenAmer በስተጀርባ ሳለ ብቻ ነው።',
       kinds: {
         approval: {
           label: 'ማጽደቅ ያስፈልጋል',
-          description: 'አንድ ትዕዛዝ እርስዎ እንዲያጸድቁት ወይም እንዲውድቁት በመጠበቅ ላይ ነው።',
+          description: 'አንድ ትዕዛዝ እርስዎ እንዲያጸድቁት ወይም እንዲውድቁት በመጠበቅ ላይ ነው።'
         },
         input: {
           label: 'ግቤት ያስፈልጋል',
-          description: 'OpenAmer ጥያቄ ጠይቋል ወይም የይለፍ ቃል ወይም ምስጢር ያስፈልገዋል።',
+          description: 'OpenAmer ጥያቄ ጠይቋል ወይም የይለፍ ቃል ወይም ምስጢር ያስፈልገዋል።'
         },
         turnDone: {
           label: 'ምላሽ ዝግጁ ነው',
-          description: 'OpenAmer በስተጀርባ ሳለ አንድ ዙር ተጠናቅቋል።',
+          description: 'OpenAmer በስተጀርባ ሳለ አንድ ዙር ተጠናቅቋል።'
         },
         turnError: {
           label: 'ዙር አልተሳካም',
-          description: 'አንድ ዙር በስህተት ተጠናቅቋል።',
+          description: 'አንድ ዙር በስህተት ተጠናቅቋል።'
         },
         backgroundDone: {
           label: 'የበስተጀርባ ተግባር ተጠናቅቋል',
-          description: 'በስተጀርባ የተሰራ የተርሚናል ትዕዛዝ ተጠናቅቋል።',
+          description: 'በስተጀርባ የተሰራ የተርሚናል ትዕዛዝ ተጠናቅቋል።'
         },
         credits: {
           label: 'የክሬዲት ማንቂያዎች',
-          description: 'የክሬዲት መዳረሻ ቆሟል ወይም ተመልሷል።',
-        },
+          description: 'የክሬዲት መዳረሻ ቆሟል ወይም ተመልሷል።'
+        }
       },
       test: 'የሙከራ ማሳወቂያ ላክ',
       testTitle: 'OpenAmer',
@@ -380,7 +383,7 @@ export const am = defineLocale({
       testUnsupported: 'ይህ ስርዓት ቤተኛ ማሳወቂያዎችን አይደግፍም።',
       completionSoundTitle: 'የማጠናቀቂያ ድምጽ',
       completionSoundDesc: 'የወኪል ዙር ሲጠናቀቅ ይጫወታል። ቅድመ ቅንብር መርጠው እዚህ ቅድመ እይታ ይመልከቱ።',
-      completionSoundPreview: 'ቅድመ እይታ',
+      completionSoundPreview: 'ቅድመ እይታ'
     },
     sections: {
       model: 'ሞዴል',
@@ -390,7 +393,7 @@ export const am = defineLocale({
       safety: 'ደህንነት',
       memory: 'ማህደረ ትውስታ እና አውድ',
       voice: 'ድምጽ',
-      advanced: 'የላቀ',
+      advanced: 'የላቀ'
     },
     searchPlaceholder: {
       about: 'ስለ OpenAmer Desktop',
@@ -398,21 +401,21 @@ export const am = defineLocale({
       gateway: 'የጌትዌይ ግንኙነት...',
       keys: 'የAPI ቁልፎችን ይፈልጉ...',
       mcp: 'የMCP ሰርቨሮችን ይፈልጉ...',
-      sessions: 'የተመዘገቡ ክፍለ ጊዜዎችን ይፈልጉ...',
+      sessions: 'የተመዘገቡ ክፍለ ጊዜዎችን ይፈልጉ...'
     },
     modeOptions: {
       light: {
         label: 'ብርሃን',
-        description: 'ብሩህ የዴስክቶፕ ገጽታዎች',
+        description: 'ብሩህ የዴስክቶፕ ገጽታዎች'
       },
       dark: {
         label: 'ጨለማ',
-        description: 'ዝቅተኛ ብርሃን የስራ ቦታ',
+        description: 'ዝቅተኛ ብርሃን የስራ ቦታ'
       },
       system: {
         label: 'ሲስተም',
-        description: 'የOS መልክን ይከተሉ',
-      },
+        description: 'የOS መልክን ይከተሉ'
+      }
     },
     appearance: {
       title: 'መልክ',
@@ -427,7 +430,8 @@ export const am = defineLocale({
       backdropTitle: 'የውይይት ዳራ',
       backdropDesc: 'ከውይይቱ በስተጀርባ ያለው ደብዘዝ ያለ የሐውልት ምስል።',
       embedsTitle: 'የመስመር ውስጥ ማቀፊያዎች',
-      embedsDesc: 'የበለጸጉ ቅድመ-እይታዎች ከሶስተኛ ወገን ጣቢያዎች (YouTube, X, …) ይጫናሉ። ጠይቅ ለእያንዳንዱ እስክትፈቅድ ድረስ ቦታ ይይዛል፤ ሁልጊዜ በራስ-ሰር ይጫናቸዋል፤ ጠፍቷል ቀላል አገናኞችን ይይዛል።',
+      embedsDesc:
+        'የበለጸጉ ቅድመ-እይታዎች ከሶስተኛ ወገን ጣቢያዎች (YouTube, X, …) ይጫናሉ። ጠይቅ ለእያንዳንዱ እስክትፈቅድ ድረስ ቦታ ይይዛል፤ ሁልጊዜ በራስ-ሰር ይጫናቸዋል፤ ጠፍቷል ቀላል አገናኞችን ይይዛል።',
       embedsAsk: 'ጠይቅ',
       embedsAlways: 'ሁልጊዜ',
       embedsOff: 'ጠፍቷል',
@@ -447,8 +451,10 @@ export const am = defineLocale({
       importedBadge: 'ተገብቷል',
       pet: {
         title: 'የቤት እንስሳ',
-        intro: 'በመተግበሪያው ላይ የሚንሳፈፍ እና OpenAmer ምን እያደረገ እንደሆነ ምላሽ የሚሰጥ እንቅስቃሴ ያለው የpetdex ማስኮት ውሰድ — መሣሪያዎች ሲሠሩ ይሮጣል፣ ሲሳካ ያከብራል፣ ስህተት ሲፈጠር ይቆጣል።',
-        restartHint: 'የቤት እንስሳት ፈጣን ዳግም ማስጀመሪያ ያስፈልጋቸዋል — የሚሠራው መተግበሪያ ይህ ባህሪ ከመጨመሩ በፊት ተጀምሯል። OpenAmerን ዝጋና እንደገና ክፈት፣ ከዚያ ወደዚህ ተመለስ።',
+        intro:
+          'በመተግበሪያው ላይ የሚንሳፈፍ እና OpenAmer ምን እያደረገ እንደሆነ ምላሽ የሚሰጥ እንቅስቃሴ ያለው የpetdex ማስኮት ውሰድ — መሣሪያዎች ሲሠሩ ይሮጣል፣ ሲሳካ ያከብራል፣ ስህተት ሲፈጠር ይቆጣል።',
+        restartHint:
+          'የቤት እንስሳት ፈጣን ዳግም ማስጀመሪያ ያስፈልጋቸዋል — የሚሠራው መተግበሪያ ይህ ባህሪ ከመጨመሩ በፊት ተጀምሯል። OpenAmerን ዝጋና እንደገና ክፈት፣ ከዚያ ወደዚህ ተመለስ።',
         on: 'በርቷል',
         off: 'ጠፍቷል',
         scaleTitle: 'መጠን',
@@ -480,12 +486,13 @@ export const am = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     about: {
       heading: 'OpenAmer ዴስክቶፕ',
@@ -512,7 +519,7 @@ export const am = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     config: {
       none: 'የለም',
@@ -528,7 +535,7 @@ export const am = defineLocale({
       imported: 'ውቅር ገብቷል',
       invalidJson: 'ልክ ያልሆነ ውቅር JSON',
       keepAwakeTitle: 'ኮምፒውተሩን ነቅቶ ያቁው',
-      keepAwakeDesc: 'ይህ መሣሪያ ረጅም ጊዜ ወይም በሌሊት በሚቀጥሉ ስራዎች እንዳይተኛ ያድርጉ። ማሳያው አሁንም ሊደበዝዝ ይችላል።',
+      keepAwakeDesc: 'ይህ መሣሪያ ረጅም ጊዜ ወይም በሌሊት በሚቀጥሉ ስራዎች እንዳይተኛ ያድርጉ። ማሳያው አሁንም ሊደበዝዝ ይችላል።'
     },
     credentials: {
       pasteKey: 'ቁልፍ ይለጥፉ',
@@ -538,7 +545,7 @@ export const am = defineLocale({
       remove: 'አስወግድ',
       getKey: 'ቁልፍ ያግኙ',
       saving: 'በማስቀመጥ ላይ',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     envActions: {
       credentialActions: 'የማስረጃ እርምጃዎች',
@@ -549,7 +556,7 @@ export const am = defineLocale({
       replace: 'ተካ',
       set: 'አዘጋጅ',
       clear: 'አጽዳ',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     gateway: {
       loading: 'የጌትዌይ ቅንብሮች በመጫን ላይ...',
@@ -557,12 +564,14 @@ export const am = defineLocale({
       unavailableDesc: 'የዴስክቶፕ IPC ድልድይ የጌትዌይ ቅንብሮችን አያጋልጥም።',
       title: 'የጌትዌይ ግንኙነት',
       envOverride: 'የenv ማሻሻያ',
-      intro: 'OpenAmer Desktop በነባሪነት የራሱን አካባቢያዊ ጌትዌይ ይጀምራል። ይህ መተግበሪያ በሌላ ማሽን ላይ ወይም በታመነ ፕሮክሲ ጀርባ የሚሠራ OpenAmer ባክኤንድን እንዲቆጣጠር ከፈለጉ ርቀት ላይ ያለ ጌትዌይ ይጠቀሙ። የራሱ ርቀት ላይ ያለ አስተናጋጅ እንዲኖረው ከታች መገለጫ ይምረጡ።',
+      intro:
+        'OpenAmer Desktop በነባሪነት የራሱን አካባቢያዊ ጌትዌይ ይጀምራል። ይህ መተግበሪያ በሌላ ማሽን ላይ ወይም በታመነ ፕሮክሲ ጀርባ የሚሠራ OpenAmer ባክኤንድን እንዲቆጣጠር ከፈለጉ ርቀት ላይ ያለ ጌትዌይ ይጠቀሙ። የራሱ ርቀት ላይ ያለ አስተናጋጅ እንዲኖረው ከታች መገለጫ ይምረጡ።',
       appliesTo: 'የሚመለከተው',
       allProfiles: 'ሁሉም መገለጫዎች',
       defaultConnection: 'የራሱ ማሻሻያ ለሌለው ለእያንዳንዱ መገለጫ ነባሪ ግንኙነት።',
       envOverrideTitle: 'የአካባቢ ተለዋዋጮች ይህን የዴስክቶፕ ክፍለ ጊዜ እየቆጣጠሩ ነው።',
-      envOverrideDesc: 'ከታች ያለውን የተቀመጠ ቅንብር ለመጠቀም OPENAMER_DESKTOP_REMOTE_URL እና OPENAMER_DESKTOP_REMOTE_TOKEN ን አስወግድ።',
+      envOverrideDesc:
+        'ከታች ያለውን የተቀመጠ ቅንብር ለመጠቀም OPENAMER_DESKTOP_REMOTE_URL እና OPENAMER_DESKTOP_REMOTE_TOKEN ን አስወግድ።',
       modeTitle: 'የግንኙነት ሁነታ',
       localTitle: 'የአካባቢ ጌትዌይ',
       localDesc: 'በlocalhost ላይ የግል OpenAmer ባክኤንድ ይጀምሩ። ይህ ነባሪ ነው እና ከመስመር ውጭ ይሰራል።',
@@ -586,7 +595,7 @@ export const am = defineLocale({
       cloudNoAgents: {
         before: 'በዚህ መለያ ላይ ምንም ወኪሎች አልተገኙም። አንዱን በ',
         linkText: 'OpenAmer ፖርታል',
-        after: 'ውስጥ ይፍጠሩ፣ ከዚያ ያድሱ።',
+        after: 'ውስጥ ይፍጠሩ፣ ከዚያ ያድሱ።'
       },
       cloudRefresh: 'አድስ',
       cloudConnect: 'አገናኝ',
@@ -640,7 +649,8 @@ export const am = defineLocale({
       applyFailed: 'የጌትዌይ ቅንብሮችን መተግበር አልተቻለም',
       saveFailed: 'የጌትዌይ ቅንብሮችን ማስቀመጥ አልተቻለም',
       sshTitle: 'በSSH ይገናኙ',
-      sshDesc: 'OpenAmer በርቀት ላይ በSSH ይጀመራል እና ወደዚህ መተግበሪያ በቱንል ይመጣል — እራስዎ የሚጀምሩት ወይም የሚያጋልጡት ነገር የለም። ወደ አስተናጋጁ የሚሠራ በቁልፍ ላይ የተመሠረተ የSSH መዳረሻ ይፈልጋል።',
+      sshDesc:
+        'OpenAmer በርቀት ላይ በSSH ይጀመራል እና ወደዚህ መተግበሪያ በቱንል ይመጣል — እራስዎ የሚጀምሩት ወይም የሚያጋልጡት ነገር የለም። ወደ አስተናጋጁ የሚሠራ በቁልፍ ላይ የተመሠረተ የSSH መዳረሻ ይፈልጋል።',
       sshTrustHint: 'መጀመሪያ የቀረበው የአስተናጋጅ ቁልፍ ይታመናል እና ይሰካል፤ በኋላ የሚደረጉ ለውጦች ውድቅ ይደረጋሉ።',
       sshHostTitle: 'አስተናጋጅ',
       sshHostDesc: 'user@host፣ ወይም ከ~/.ssh/config የHost አሊያስ።',
@@ -663,14 +673,18 @@ export const am = defineLocale({
       sshButtonsHint: 'ማስቀመጥ በሚቀጥለው ጅምር ላይ ይተገበራል። ያገናኝ አሁን እንደገና ያገናኛል።',
       sshIncompleteHost: 'ከመገናኘት በፊት የSSH አስተናጋጅ ያስገቡ።',
       sshErrUnreachable: 'በSSH ወደዚያ አስተናጋጅ መድረስ አልተቻለም። አስተናጋጁን፣ ወደቡን እና ኔትወርክዎን ያረጋግጡ።',
-      sshErrAuth: 'የSSH ማረጋገጫ አልተሳካም። ቁልፍዎን ወደ ssh-agent (ssh-add) ይጫኑ ወይም IdentityFile በ~/.ssh/config ያዘጋጁ — OpenAmer sshን በይነተገናኝ ባልሆነ መንገድ ያካሂዳል።',
-      sshErrHostKey: 'የአስተናጋጅ ቁልፍ ካለፈው ግንኙነት ጀምሮ ተለውጧል። ይህ የተጠበቀ መሆኑን ያረጋግጡ፣ ከዚያ ssh-keygen -R <host> ያሂዱ እና እንደገና ይገናኙ።',
-      sshErrNotInstalled: 'OpenAmer በርቀት አስተናጋጅ ላይ አልተጫነም። በዚያ ይጫኑት (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ወይም የOpenAmer መንገድን ያዘጋጁ።',
+      sshErrAuth:
+        'የSSH ማረጋገጫ አልተሳካም። ቁልፍዎን ወደ ssh-agent (ssh-add) ይጫኑ ወይም IdentityFile በ~/.ssh/config ያዘጋጁ — OpenAmer sshን በይነተገናኝ ባልሆነ መንገድ ያካሂዳል።',
+      sshErrHostKey:
+        'የአስተናጋጅ ቁልፍ ካለፈው ግንኙነት ጀምሮ ተለውጧል። ይህ የተጠበቀ መሆኑን ያረጋግጡ፣ ከዚያ ssh-keygen -R <host> ያሂዱ እና እንደገና ይገናኙ።',
+      sshErrNotInstalled:
+        'OpenAmer በርቀት አስተናጋጅ ላይ አልተጫነም። በዚያ ይጫኑት (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ወይም የOpenAmer መንገድን ያዘጋጁ።',
       sshErrPlatform: 'የማይደገፍ የርቀት መድረክ። የOpenAmer Desktop SSH ሁነታ Linux፣ macOS እና Windows የርቀት አስተናጋጆችን ይደግፋል።',
       sshErrTimeout: 'የSSH ግንኙነት ጊዜው አልፎበታል። አስተናጋጁ ላይደረስ ወይም በእንቅልፍ ላይ ሊሆን ይችላል።',
       sshErrUpdateRequired: 'ከDesktop SSH ጋር ከመገናኘትዎ በፊት OpenAmerን በርቀት አስተናጋጅ ላይ ያዘምኑ።',
       sshErrUnknown: 'የSSH ግንኙነት አልተሳካም።',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudOrgRole: role => `Role: ${role}`,
       cloudConnectedTo: name => `Connected to ${name}.`,
       cloudStatusLabel: status => `Status: ${status}`,
@@ -678,12 +692,12 @@ export const am = defineLocale({
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     keys: {
       loading: 'የAPI ቁልፎችን እና ማስረጃዎችን በመጫን ላይ...',
       failedLoad: 'የAPI ቁልፎችን መጫን አልተሳካም',
-      empty: 'በዚህ ምድብ ውስጥ እስካሁን ምንም አልተዋቀረም።',
+      empty: 'በዚህ ምድብ ውስጥ እስካሁን ምንም አልተዋቀረም።'
     },
     mcp: {
       loading: 'የMCP አገልጋዮችን በመጫን ላይ...',
@@ -745,10 +759,11 @@ export const am = defineLocale({
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       authenticatedMessage: (server, count) => `${server}: ${count} tools`,
       enableTool: tool => `Enable ${tool}`,
-      disableTool: tool => `Disable ${tool}`,
+      disableTool: tool => `Disable ${tool}`
     },
     model: {
       loading: 'የሞዴል ውቅር በመጫን ላይ...',
@@ -773,37 +788,37 @@ export const am = defineLocale({
       tasks: {
         vision: {
           label: 'እይታ',
-          hint: 'የምስል ትንተና',
+          hint: 'የምስል ትንተና'
         },
         web_extract: {
           label: 'የድር ማውጣት',
-          hint: 'የገጽ ማጠቃለያ',
+          hint: 'የገጽ ማጠቃለያ'
         },
         compression: {
           label: 'መጭመቅ',
-          hint: 'የአውድ መጭመቅ',
+          hint: 'የአውድ መጭመቅ'
         },
         skills_hub: {
           label: 'የክህሎቶች ማዕከል',
-          hint: 'የክህሎት ፍለጋ',
+          hint: 'የክህሎት ፍለጋ'
         },
         approval: {
           label: 'ማጽደቅ',
-          hint: 'ብልህ ራስ-ማጽደቅ',
+          hint: 'ብልህ ራስ-ማጽደቅ'
         },
         mcp: {
           label: 'MCP',
-          hint: 'የMCP መሣሪያ ማዞር',
+          hint: 'የMCP መሣሪያ ማዞር'
         },
         title_generation: {
           label: 'የርዕስ ማመንጨት',
-          hint: 'የክፍለ ጊዜ ርዕሶች',
+          hint: 'የክፍለ ጊዜ ርዕሶች'
         },
         curator: {
           label: 'አስተባባሪ',
-          hint: 'የክህሎት አጠቃቀም ግምገማ',
-        },
-      },
+          hint: 'የክህሎት አጠቃቀም ግምገማ'
+        }
+      }
     },
     providers: {
       connectAccount: 'መለያ ያገናኙ',
@@ -821,16 +836,17 @@ export const am = defineLocale({
       noKeysMatch: 'ከፍለጋዎ ጋር የሚዛመድ አቅራቢ የለም።',
       localEndpoint: {
         title: 'የአካባቢ / ብጁ ኤንድፖይንት',
-        description: 'OpenAmerን ከOpenAI ጋር ተኳኋኝ ወደሆነ ማንኛውም ኤንድፖይንት ያመላክቱ (Zyphra, vLLM, llama.cpp, Ollama, ወዘተ)።',
+        description: 'OpenAmerን ከOpenAI ጋር ተኳኋኝ ወደሆነ ማንኛውም ኤንድፖይንት ያመላክቱ (Zyphra, vLLM, llama.cpp, Ollama, ወዘተ)።'
       },
       loading: 'አቅራቢዎችን በመጫን ላይ...',
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     sessions: {
       loading: 'በማህደር የተቀመጡ ክፍለ ጊዜዎችን በመጫን ላይ…',
@@ -842,7 +858,8 @@ export const am = defineLocale({
       deletePermanently: 'በቋሚነት ሰርዝ',
       restored: 'ተመልሷል',
       autoArchiveTitle: 'ያረጁ ውይይቶችን በራስ-ሰር በማህደር አስቀምጥ',
-      autoArchiveDesc: 'በተወሰነ ጊዜ ያልነኳቸውን ውይይቶች በራስ-ሰር በማህደር ያስቀምጣል። የተጣበቁ ውይይቶች በፍጹም አይመዘገቡም፣ እና ምንም አይሰረዝም — የተመዘገቡ ውይይቶች ወደዚህ ብቻ ይሸጋገራሉ።',
+      autoArchiveDesc:
+        'በተወሰነ ጊዜ ያልነኳቸውን ውይይቶች በራስ-ሰር በማህደር ያስቀምጣል። የተጣበቁ ውይይቶች በፍጹም አይመዘገቡም፣ እና ምንም አይሰረዝም — የተመዘገቡ ውይይቶች ወደዚህ ብቻ ይሸጋገራሉ።',
       autoArchiveDaysLabel: 'ከዚህ በኋላ በማህደር አስቀምጥ',
       autoArchiveDaysUnit: 'የእንቅስቃሴ አለመኖር ቀናት',
       autoArchiveFailed: 'ራስ-ሰር ማህደር ማዘመን አልተቻለም',
@@ -860,7 +877,7 @@ export const am = defineLocale({
       clearDirFailed: 'ነባሪ ማውጫን ማጽዳት አልተቻለም',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
       loadingConfig: 'ውቅርን በመጫን ላይ',
@@ -912,7 +929,7 @@ export const am = defineLocale({
         selectedTitle: 'ባክኤንድ ተመርጧል',
         needsSetupHint: 'አሁን ይህን ባክኤንድ መምረጥ ይችላሉ — ማዋቀሩ እስኪጠናቀቅ ድረስ ትዕዛዞች አይሳኩም።',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       savedMessage: key => `${key} updated.`,
       removedMessage: key => `${key} removed.`,
@@ -922,8 +939,10 @@ export const am = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -933,10 +952,10 @@ export const am = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     tabSkills: 'ክህሎቶች',
@@ -975,7 +994,7 @@ export const am = defineLocale({
     provenance: {
       agent: 'ተምሯል',
       bundled: 'አብሮ የተካተተ',
-      hub: 'ማዕከል',
+      hub: 'ማዕከል'
     },
     changesApplyNewSessions: 'ለውጦች በአዲስ ክፍለ ጊዜዎች ላይ ይተገበራሉ።',
     skillUpdated: 'ክህሎት ተዘምኗል',
@@ -1008,7 +1027,7 @@ export const am = defineLocale({
       trust: {
         builtin: 'አብሮ የተሰራ',
         trusted: 'የታመነ',
-        community: 'ማህበረሰብ',
+        community: 'ማህበረሰብ'
       },
       verdictSafe: 'ደህንነቱ የተጠበቀ',
       verdictCaution: 'ጥንቃቄ',
@@ -1028,7 +1047,7 @@ export const am = defineLocale({
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} toolsets enabled`,
     configureToolset: label => `Configure ${label}`,
@@ -1039,7 +1058,7 @@ export const am = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     title: 'የትውስታ ግራፍ',
@@ -1066,7 +1085,7 @@ export const am = defineLocale({
     importedBadge: 'የገባ ካርታ',
     resetToMine: 'ወደ የእኔ ካርታ ተመለስ',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'ወኪሎችን ዝጋ',
@@ -1096,7 +1115,7 @@ export const am = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'የትዕዛዝ ማዕከልን ዝጋ',
@@ -1125,7 +1144,7 @@ export const am = defineLocale({
       generatedTag: 'ተፈጥሯል',
       adoptFailed: 'ያንን እንስሳ መውሰድ አልተቻለም።',
       toggleFailed: 'እንስሳውን መቀያየር አልተቻለም።',
-      noneAvailable: 'ምንም እንስሳት የሉም — ለመጫን ከታች አንዱን ይምረጡ።',
+      noneAvailable: 'ምንም እንስሳት የሉም — ለመጫን ከታች አንዱን ይምረጡ።'
     },
     generatePet: {
       title: 'የቤት እንስሳ ፍጠር',
@@ -1154,7 +1173,7 @@ export const am = defineLocale({
       referenceImageInvalid: 'ያንን የማጣቀሻ ምስል ማንበብ አልተቻለም። PNG፣ JPG፣ WebP ወይም GIF ይሞክሩ።',
       adopt: 'ተቀበል',
       startOver: 'እንደገና ጀምር',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     installTheme: {
       title: 'ገጽታ ጫን…',
@@ -1166,7 +1185,7 @@ export const am = defineLocale({
       install: 'ጫን',
       installing: 'በመጫን ላይ...',
       installed: 'ተጭኗል',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'የቅንብሮች መስኮች',
     mcpServers: 'MCP አገልጋዮች',
@@ -1175,49 +1194,49 @@ export const am = defineLocale({
       maintenance: 'ጥገና',
       sessions: 'ክፍለ ጊዜዎች',
       system: 'ስርዓት',
-      usage: 'አጠቃቀም',
+      usage: 'አጠቃቀም'
     },
     sectionDescriptions: {
       maintenance: 'ምርመራዎች፣ ምትኬዎች፣ ኩሬተር እና የማስታወስ ውሂብ',
       sessions: 'ክፍለ ጊዜዎችን ይፈልጉ እና ያስተዳድሩ',
       system: 'ሁኔታ፣ መዝገቦች እና የስርዓት እርምጃዎች',
-      usage: 'በጊዜ ሂደት የቶከን፣ ወጪ እና የክህሎት እንቅስቃሴ',
+      usage: 'በጊዜ ሂደት የቶከን፣ ወጪ እና የክህሎት እንቅስቃሴ'
     },
     nav: {
       newChat: {
         title: 'አዲስ ክፍለ ጊዜ',
-        detail: 'አዲስ ክፍለ ጊዜ ይጀምሩ',
+        detail: 'አዲስ ክፍለ ጊዜ ይጀምሩ'
       },
       settings: {
         title: 'ቅንብሮች',
-        detail: 'OpenAmer ዴስክቶፕን ያዋቅሩ',
+        detail: 'OpenAmer ዴስክቶፕን ያዋቅሩ'
       },
       skills: {
         title: 'ችሎታዎች',
-        detail: 'ክህሎቶች፣ መሣሪያዎች እና የMCP አገልጋዮች',
+        detail: 'ክህሎቶች፣ መሣሪያዎች እና የMCP አገልጋዮች'
       },
       messaging: {
         title: 'መልዕክት',
-        detail: 'Telegram፣ Slack፣ Discord እና ሌሎችን ያዘጋጁ',
+        detail: 'Telegram፣ Slack፣ Discord እና ሌሎችን ያዘጋጁ'
       },
       artifacts: {
         title: 'አርቲፋክቶች',
-        detail: 'የተፈጠሩ ውጤቶችን ያስሱ',
-      },
+        detail: 'የተፈጠሩ ውጤቶችን ያስሱ'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'የክፍለ ጊዜዎች ፓነል',
-        detail: 'ክፍለ ጊዜዎችን ይፈልጉ፣ ይሰኩ እና ያስተዳድሩ',
+        detail: 'ክፍለ ጊዜዎችን ይፈልጉ፣ ይሰኩ እና ያስተዳድሩ'
       },
       system: {
         title: 'የስርዓት ፓነል',
-        detail: 'የጌትዌይ ሁኔታ፣ መዝገቦች፣ እንደገና ማስጀመር/ማዘመን',
+        detail: 'የጌትዌይ ሁኔታ፣ መዝገቦች፣ እንደገና ማስጀመር/ማዘመን'
       },
       usage: {
         title: 'የአጠቃቀም ፓነል',
-        detail: 'የቶከን፣ ወጪ እና ክህሎት እንቅስቃሴ',
-      },
+        detail: 'የቶከን፣ ወጪ እና ክህሎት እንቅስቃሴ'
+      }
     },
     providerNavigate: 'ዳስስ',
     providerSessions: 'ክፍለ ጊዜዎች',
@@ -1300,14 +1319,14 @@ export const am = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     startInBranch: branch => `New conversation in ${branch}`,
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · Active sessions ${count}`,
     days: count => `${count}d`,
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   messaging: {
     search: 'መልእክት ፈልግ...',
@@ -1322,7 +1341,7 @@ export const am = defineLocale({
       not_configured: 'ማዋቀር ይፈልጋል',
       pending_restart: 'እንደገና ማስጀመር ያስፈልጋል',
       retrying: 'በድጋሚ በመሞከር ላይ',
-      startup_failed: 'ማስጀመር አልተሳካም',
+      startup_failed: 'ማስጀመር አልተሳካም'
     },
     unknown: 'የማይታወቅ',
     hintPendingRestart: 'ይህን ለውጥ ለመተግበር ጌትዌይን ከሁኔታ አሞሌ እንደገና ያስጀምሩ።',
@@ -1349,124 +1368,124 @@ export const am = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'የቦት ቶከን',
         help: 'በ@BotFather ቦት ፍጠር፣ ከዚያ የሚሰጥህን ቶከን ለጥፍ።',
-        placeholder: 'የTelegram ቦት ቶከን ለጥፍ',
+        placeholder: 'የTelegram ቦት ቶከን ለጥፍ'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'የተፈቀዱ የTelegram ተጠቃሚ መለያዎች',
-        help: 'ይመከራል። ከ@userinfobot በኮማ የተለዩ የቁጥር መለያዎች። ይህ ከሌለ ማንኛውም ሰው ለቦትዎ ቀጥታ መልእክት መላክ ይችላል።',
+        help: 'ይመከራል። ከ@userinfobot በኮማ የተለዩ የቁጥር መለያዎች። ይህ ከሌለ ማንኛውም ሰው ለቦትዎ ቀጥታ መልእክት መላክ ይችላል።'
       },
       TELEGRAM_PROXY: {
         label: 'የፕሮክሲ URL',
-        help: 'Telegram በተዘጋባቸው ኔትወርኮች ላይ ብቻ ያስፈልጋል።',
+        help: 'Telegram በተዘጋባቸው ኔትወርኮች ላይ ብቻ ያስፈልጋል።'
       },
       DISCORD_BOT_TOKEN: {
         label: 'የቦት ቶከን',
-        help: 'በDiscord Developer Portal ውስጥ መተግበሪያ ፍጠር፣ ቦት ጨምር፣ ከዚያ ቶከኑን ለጥፍ።',
+        help: 'በDiscord Developer Portal ውስጥ መተግበሪያ ፍጠር፣ ቦት ጨምር፣ ከዚያ ቶከኑን ለጥፍ።'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'የተፈቀዱ የDiscord ተጠቃሚ መለያዎች',
-        help: 'ይመከራል። በኮማ የተለዩ የDiscord ተጠቃሚ መለያዎች።',
+        help: 'ይመከራል። በኮማ የተለዩ የDiscord ተጠቃሚ መለያዎች።'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'የምላሽ ዘይቤ',
-        help: 'መጀመሪያ፣ ሁሉም፣ ወይም ጠፍቷል።',
+        help: 'መጀመሪያ፣ ሁሉም፣ ወይም ጠፍቷል።'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'ሁሉንም የDiscord ተጠቃሚዎች ፍቀድ',
-        help: 'ለልማት ብቻ። እውነት ሲሆን፣ ማንኛውም ሰው ያለ የፈቃድ ዝርዝር ለቦቱ DM ማድረግ ይችላል።',
+        help: 'ለልማት ብቻ። እውነት ሲሆን፣ ማንኛውም ሰው ያለ የፈቃድ ዝርዝር ለቦቱ DM ማድረግ ይችላል።'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'የመነሻ ቻናል መታወቂያ',
-        help: 'ቦቱ በራስ ተነሳሽነት የሚልክባቸው መልዕክቶች (የcron ውጤት፣ አስታዋሾች) የሚላኩበት ቻናል።',
+        help: 'ቦቱ በራስ ተነሳሽነት የሚልክባቸው መልዕክቶች (የcron ውጤት፣ አስታዋሾች) የሚላኩበት ቻናል።'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'የመነሻ ቻናል ስም',
-        help: 'በምዝገባዎች እና በሁኔታ ውጤት ውስጥ ለመነሻ ቻናል የሚታይ ስም።',
+        help: 'በምዝገባዎች እና በሁኔታ ውጤት ውስጥ ለመነሻ ቻናል የሚታይ ስም።'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'ሁሉንም የiMessage ተጠቃሚዎች ፍቀድ',
-        help: 'እውነት ሲሆን፣ የBlueBubbles የፈቃድ ዝርዝርን ዝለል።',
+        help: 'እውነት ሲሆን፣ የBlueBubbles የፈቃድ ዝርዝርን ዝለል።'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'ሁሉንም የMattermost ተጠቃሚዎች ፍቀድ',
+        label: 'ሁሉንም የMattermost ተጠቃሚዎች ፍቀድ'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'የመነሻ ቻናል',
+        label: 'የመነሻ ቻናል'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'ሁሉንም የQQ ተጠቃሚዎች ፍቀድ',
+        label: 'ሁሉንም የQQ ተጠቃሚዎች ፍቀድ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'የQQ መነሻ ቻናል',
-        help: 'ለcron አቅርቦት ነባሪ ቻናል ወይም ቡድን።',
+        help: 'ለcron አቅርቦት ነባሪ ቻናል ወይም ቡድን።'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'የQQ መነሻ ቻናል ስም',
+        label: 'የQQ መነሻ ቻናል ስም'
       },
       SLACK_BOT_TOKEN: {
         label: 'የSlack ቦት ቶከን',
         help: 'የSlack መተግበሪያዎን ከጫኑ በኋላ ከOAuth & Permissions የቦት ቶከን ይጠቀሙ።',
-        placeholder: 'የSlack ቦት ቶከን ይለጥፉ',
+        placeholder: 'የSlack ቦት ቶከን ይለጥፉ'
       },
       SLACK_APP_TOKEN: {
         label: 'የSlack መተግበሪያ ቶከን',
         help: 'ለSocket Mode የሚያስፈልገውን የመተግበሪያ ደረጃ ቶከን ይጠቀሙ።',
-        placeholder: 'የSlack መተግበሪያ ቶከን ይለጥፉ',
+        placeholder: 'የSlack መተግበሪያ ቶከን ይለጥፉ'
       },
       SLACK_ALLOWED_USERS: {
         label: 'የተፈቀዱ የSlack ተጠቃሚ መለያዎች',
-        help: 'ይመከራል። በኮማ የተለዩ የSlack ተጠቃሚ መለያዎች።',
+        help: 'ይመከራል። በኮማ የተለዩ የSlack ተጠቃሚ መለያዎች።'
       },
       MATTERMOST_URL: {
         label: 'የአገልጋይ URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'የቦት ቶከን',
+        label: 'የቦት ቶከን'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'የተፈቀዱ የተጠቃሚ መለያዎች',
-        help: 'ይመከራል። በኮማ የተለዩ የMattermost ተጠቃሚ መለያዎች።',
+        help: 'ይመከራል። በኮማ የተለዩ የMattermost ተጠቃሚ መለያዎች።'
       },
       MATRIX_HOMESERVER: {
         label: 'የHomeserver URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'የመዳረሻ ቶከን',
+        label: 'የመዳረሻ ቶከን'
       },
       MATRIX_USER_ID: {
         label: 'የቦት ተጠቃሚ መለያ',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'የተፈቀዱ የMatrix ተጠቃሚ መለያዎች',
-        help: 'ይመከራል። በኮማ የተለዩ የተጠቃሚ መለያዎች በ@user:server ቅርጸት።',
+        help: 'ይመከራል። በኮማ የተለዩ የተጠቃሚ መለያዎች በ@user:server ቅርጸት።'
       },
       SIGNAL_HTTP_URL: {
         label: 'የSignal ድልድይ URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'የሚሰራ የsignal-cli REST ድልድይ URL።',
+        help: 'የሚሰራ የsignal-cli REST ድልድይ URL።'
       },
       SIGNAL_ACCOUNT: {
         label: 'የስልክ ቁጥር',
-        help: 'በ signal-cli ድልድይዎ የተመዘገበው ቁጥር።',
+        help: 'በ signal-cli ድልድይዎ የተመዘገበው ቁጥር።'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'የተፈቀዱ የSignal ተጠቃሚዎች',
-        help: 'ይመከራል። በኮማ የተለዩ የSignal መለያዎች።',
+        help: 'ይመከራል። በኮማ የተለዩ የSignal መለያዎች።'
       },
       WHATSAPP_ENABLED: {
         label: 'የWhatsApp ድልድይ አንቃ',
-        help: 'ከታች ባለው መቀየሪያ በራስ-ሰር ይቀመጣል። እንደሚያስፈልግዎ ካላወቁ አይንኩት።',
+        help: 'ከታች ባለው መቀየሪያ በራስ-ሰር ይቀመጣል። እንደሚያስፈልግዎ ካላወቁ አይንኩት።'
       },
       WHATSAPP_MODE: {
-        label: 'የድልድይ ሁነታ',
+        label: 'የድልድይ ሁነታ'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'የተፈቀዱ የWhatsApp ተጠቃሚዎች',
-        help: 'ይመከራል። በኮማ የተለዩ ስልክ ቁጥሮች ወይም የWhatsApp መለያዎች።',
-      },
+        help: 'ይመከራል። በኮማ የተለዩ ስልክ ቁጥሮች ወይም የWhatsApp መለያዎች።'
+      }
     },
     advanced: count => `Advanced (${count})`,
     clearField: key => `Clear ${key}`,
@@ -1480,8 +1499,7 @@ export const am = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'ዌብሁኮችን ፈልግ...',
@@ -1490,7 +1508,8 @@ export const am = defineLocale({
     hint: 'የደንበኝነት ለውጦች ተቀባዩ ሲሠራ ወዲያውኑ ይጫናሉ። የተሰናከሉ ደንበኝነቶች የሚመጡ ክስተቶችን ይክዳሉ።',
     empty: 'እስካሁን የዌብሁክ ደንበኝነት የለም።',
     disabledTitle: 'የዌብሁክ ተቀባይ ተሰናክሏል',
-    disabledBody: 'ዌብሁኮች የራሳቸው የጌትዌይ መድረክ ናቸው። የሚመጡ የHTTP ክስተቶችን ለመቀበል እዚህ ያንቁዋቸው፤ የውይይት ቻናሎች የሚያስፈልጉት ደንበኝነት ወደ Telegram፣ Discord፣ Slack ወይም ሌላ ቻናል ሲልክ ብቻ ነው።',
+    disabledBody:
+      'ዌብሁኮች የራሳቸው የጌትዌይ መድረክ ናቸው። የሚመጡ የHTTP ክስተቶችን ለመቀበል እዚህ ያንቁዋቸው፤ የውይይት ቻናሎች የሚያስፈልጉት ደንበኝነት ወደ Telegram፣ Discord፣ Slack ወይም ሌላ ቻናል ሲልክ ብቻ ነው።',
     enable: 'ዌብሁኮችን አንቃ',
     enabling: 'በማንቃት ላይ...',
     enableRow: 'አንቃ',
@@ -1537,7 +1556,7 @@ export const am = defineLocale({
       discord: 'ዲስኮርድ',
       slack: 'ስላክ',
       email: 'ኢሜይል',
-      github_comment: 'የGitHub አስተያየት',
+      github_comment: 'የGitHub አስተያየት'
     },
     subscriptions: (count: number) => `Subscriptions (${count})`,
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -1545,7 +1564,7 @@ export const am = defineLocale({
     deleteFailed: (name: string) => `Failed to delete "${name}"`,
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     close: 'መገለጫዎችን ዝጋ',
@@ -1623,7 +1642,7 @@ export const am = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `The system prompt / persona for this profile.
 Leave blank to keep the ${mode} default.`,
-    invalidName: hint => `Invalid name. ${hint}`,
+    invalidName: hint => `Invalid name. ${hint}`
   },
   cron: {
     close: 'cron ዝጋ',
@@ -1637,14 +1656,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'ቆመ',
       disabled: 'ተሰናክሏል',
       error: 'ስህተት',
-      completed: 'ተጠናቋል',
+      completed: 'ተጠናቋል'
     },
     deliveryLabels: {
       local: 'ይህ ዴስክቶፕ',
       telegram: 'ቴሌግራም',
       discord: 'ዲስኮርድ',
       slack: 'ስላክ',
-      email: 'ኢሜይል',
+      email: 'ኢሜይል'
     },
     scheduleLabels: {
       daily: 'በየቀኑ',
@@ -1653,7 +1672,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'በየወሩ',
       hourly: 'በየሰዓቱ',
       'every-15-minutes': 'በየ15 ደቂቃው',
-      custom: 'ብጁ',
+      custom: 'ብጁ'
     },
     scheduleHints: {
       daily: 'በየቀኑ በጠዋቱ 9:00',
@@ -1662,7 +1681,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'በየወሩ የመጀመሪያ ቀን በጠዋቱ 9:00',
       hourly: 'በየሰዓቱ መጀመሪያ ላይ',
       'every-15-minutes': 'በየ15 ደቂቃው',
-      custom: 'የCron አጻጻፍ ወይም ተፈጥሯዊ ቋንቋ',
+      custom: 'የCron አጻጻፍ ወይም ተፈጥሯዊ ቋንቋ'
     },
     days: {
       '0': 'እሁድ',
@@ -1672,7 +1691,7 @@ Leave blank to keep the ${mode} default.`,
       '4': 'ሐሙስ',
       '5': 'አርብ',
       '6': 'ቅዳሜ',
-      '7': 'እሁድ',
+      '7': 'እሁድ'
     },
     topOfHour: 'በየሰዓቱ መጀመሪያ ላይ',
     newCron: 'አዲስ ክሮን',
@@ -1734,7 +1753,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'cron ፍጠር',
     tabs: {
       jobs: 'ሥራዎች',
-      blueprints: 'ንድፎች',
+      blueprints: 'ንድፎች'
     },
     blueprints: {
       tab: 'ንድፎች',
@@ -1748,7 +1767,7 @@ Leave blank to keep the ${mode} default.`,
       loading: 'ንድፎችን በመጫን ላይ...',
       failedLoad: 'ንድፎችን መጫን አልተሳካም',
       emptyTitle: 'ምንም ንድፎች አይገኙም',
-      emptyDesc: 'በዚህ ባክኤንድ ላይ ምንም የአውቶሜሽን ንድፎች አይገኙም።',
+      emptyDesc: 'በዚህ ባክኤንድ ላይ ምንም የአውቶሜሽን ንድፎች አይገኙም።'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -1757,7 +1776,7 @@ Leave blank to keep the ${mode} default.`,
     everyDayOfWeekAt: (day, time) => `Every ${day} at ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Monthly on day ${dayOfMonth} at ${time}`,
     everyHourAt: minute => `Every hour at :${minute}`,
-    actionsFor: title => `Actions for ${title}`,
+    actionsFor: title => `Actions for ${title}`
   },
   artifacts: {
     search: 'አርቲፋክቶችን ፈልግ...',
@@ -1791,14 +1810,14 @@ Leave blank to keep the ${mode} default.`,
     copyUrl: 'URL ቅዳ',
     copyPath: 'መንገድ ቅዳ',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'አዲስ ክፍለ ጊዜ',
       skills: 'ችሎታዎች',
       messaging: 'መልዕክት',
-      artifacts: 'ቅርሶች',
+      artifacts: 'ቅርሶች'
     },
     searchAria: 'ክፍለ ጊዜዎችን ፈልግ',
     searchPlaceholder: 'ክፍለ ጊዜዎችን ፈልግ…',
@@ -1849,7 +1868,8 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'መንገድ ቅዳ',
       removeFromSidebar: 'ከጎን አሞሌ ደብቅ',
       createFailed: 'ፕሮጀክት መፍጠር አልተቻለም',
-      staleBackend: 'ፕሮጀክቶችን ለመፍጠር የOpenAmer ባክኤንድን ያዘምኑ — የእርስዎ ባክኤንድ ከዚህ ዴስክቶፕ መተግበሪያ ያረጀ ነው (ቅንብሮች → ዝመናዎች → ባክኤንድ)።',
+      staleBackend:
+        'ፕሮጀክቶችን ለመፍጠር የOpenAmer ባክኤንድን ያዘምኑ — የእርስዎ ባክኤንድ ከዚህ ዴስክቶፕ መተግበሪያ ያረጀ ነው (ቅንብሮች → ዝመናዎች → ባክኤንድ)።',
       deleteConfirm: 'ይህ የተቀመጠውን ፕሮጀክት ከOpenAmer ያስወግዳል። ፋይሎች፣ የgit ማከማቻዎች እና ወርክትሪዎች ሳይነኩ ይቆያሉ።',
       startWork: 'አዲስ ወርክትሪ',
       newWorktreeTitle: 'አዲስ ወርክትሪ',
@@ -1870,14 +1890,15 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'ምንም ቅርንጫፎች አልተገኙም',
       removeWorktree: 'ወርክትሪ አስወግድ',
       removeWorktreeFailed: 'የሥራ ዛፍ ማስወገድ አልተቻለም (ያልተመዘገቡ ለውጦች?)',
-      removeWorktreeConfirm: 'ከ git አስወግደው (የሥራ ዛፍ ማህደሩን ይሰርዛል፤ ቅርንጫፉ ይቆያል)፣ ወይም ሌይኑን ከጎን አሞሌ ደብቀው የሥራ ዛፉን በዲስክ ላይ ይተዉት።',
+      removeWorktreeConfirm:
+        'ከ git አስወግደው (የሥራ ዛፍ ማህደሩን ይሰርዛል፤ ቅርንጫፉ ይቆያል)፣ ወይም ሌይኑን ከጎን አሞሌ ደብቀው የሥራ ዛፉን በዲስክ ላይ ይተዉት።',
       removeWorktreeDirty: 'ይህ የሥራ ዛፍ ያልተመዘገቡ ለውጦች አሉት። በኃይል አስወግደው (እነዚያን ለውጦች ይጥላል)፣ ወይም ሌይኑን ብቻ ደብቀው በዲስክ ላይ ይተዉት።',
       forceRemove: 'በኃይል አስወግድ',
       back: 'ሁሉም ፕሮጀክቶች',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     loading: 'በመጫን ላይ…',
     loadMore: 'ተጨማሪ ጫን',
@@ -1912,19 +1933,19 @@ Leave blank to keep the ${mode} default.`,
       actionsFor: title => `Actions for ${title}`,
       handoffOrigin: platform => `Handed off from ${platform}`,
       ownedByProfile: profile => `Profile: ${profile}`,
-      untitledChat: id => `Chat ${id}`,
+      untitledChat: id => `Chat ${id}`
     },
     dateDivider: {
       today: 'ዛሬ ቀደም ሲል',
       yesterday: 'ትናንት',
       thisWeek: 'በዚህ ሳምንት ቀደም ሲል',
       lastWeek: 'ባለፈው ሳምንት',
-      thisMonth: 'በዚህ ወር ቀደም ሲል',
+      thisMonth: 'በዚህ ወር ቀደም ሲል'
     },
     noMatch: query => `No sessions match “${query}”.`,
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     message: 'መልእክት',
@@ -1965,7 +1986,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'ቀደም ያለውን ክፍለ ጊዜ ቀጥል',
       '/details': 'የጽሑፍ ዝርዝር ደረጃን ቁጥጥር አድርግ',
       '/copy': 'የተመረጠውን ወይም የመጨረሻውን የአጋዥ መልእክት ቅዳ',
-      '/quit': 'ከ openamer ውጣ',
+      '/quit': 'ከ openamer ውጣ'
     },
     hotkeyDescs: {
       'composer.mention': 'ፋይሎችን፣ አቃፊዎችን፣ urls እና git ማጣቀስ',
@@ -1975,7 +1996,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'ቀጣዩን በሰልፍ ያለውን ዙር ላክ',
       'keybinds.openPanel': 'ሁሉም የኪቦርድ አቋራጮች',
       'composer.cancel': 'ፖፖቨር ዝጋ · ሩጫ ሰርዝ',
-      'composer.history': 'ፖፖቨር / ታሪክ ቀያይር',
+      'composer.history': 'ፖፖቨር / ታሪክ ቀያይር'
     },
     attachUrlTitle: 'URL አጣብቅ',
     attachUrlDesc: 'OpenAmer ገጹን አምጥቶ ለዚህ ዙር እንደ ዐውድ ያካትታል።',
@@ -2020,18 +2041,18 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'የኮድ ግምገማ',
         description: 'የአሁኑን ለውጥ ለተመላሽ ችግሮች፣ ለተዘለሉ የጠርዝ ጉዳዮች እና ለጎደሉ ሙከራዎች ይመርምሩ።',
-        text: 'እባክዎ ይህን ለስህተቶች፣ ለተመላሽ ችግሮች እና ለጎደሉ ሙከራዎች ይገምግሙ።',
+        text: 'እባክዎ ይህን ለስህተቶች፣ ለተመላሽ ችግሮች እና ለጎደሉ ሙከራዎች ይገምግሙ።'
       },
       implementationPlan: {
         label: 'የትግበራ እቅድ',
         description: 'ኮድን ከመንካት በፊት ልዩነቱ ትኩረት እንዲያተኩር አቀራረብን ይዘርዝሩ።',
-        text: 'እባክዎ ኮድ ከመቀየርዎ በፊት አጭር የትግበራ እቅድ ያዘጋጁ።',
+        text: 'እባክዎ ኮድ ከመቀየርዎ በፊት አጭር የትግበራ እቅድ ያዘጋጁ።'
       },
       explainThis: {
         label: 'ይህን ያብራሩ',
         description: 'የተመረጠው ኮድ እንዴት እንደሚሰራ ያብራሩ እና ወደ ቁልፍ ፋይሎች አገናኝ ይስጡ።',
-        text: 'እባክዎ ይህ እንዴት እንደሚሰራ ያብራሩ እና ወደ ቁልፍ ፋይሎች ይጠቁሙኝ።',
-      },
+        text: 'እባክዎ ይህ እንዴት እንደሚሰራ ያብራሩ እና ወደ ቁልፍ ፋይሎች ይጠቁሙኝ።'
+      }
     },
     wakingProfile: profile => `Waking up ${profile}…`,
     newSessionPlaceholders: [
@@ -2041,7 +2062,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -2050,14 +2071,14 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
     attachments: count => `${count} attachment${count === 1 ? '' : 's'}`,
     previewLabel: label => `Preview ${label}`,
     couldNotPreview: label => `Could not preview ${label}`,
-    removeAttachment: label => `Remove ${label}`,
+    removeAttachment: label => `Remove ${label}`
   },
   statusStack: {
     agents: 'ኤጀንቶች',
@@ -2106,12 +2127,12 @@ Leave blank to keep the ${mode} default.`,
       behind: count => `${count} behind`,
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -2126,7 +2147,7 @@ Leave blank to keep the ${mode} default.`,
       pull: 'ተቃርቧል…',
       pydeps: 'በማጠናቀቅ ላይ…',
       update: 'OpenAmer በመዘመን ላይ…',
-      rebuild: 'የዴስክቶፕ መተግበሪያውን እንደገና በመገንባት ላይ…',
+      rebuild: 'የዴስክቶፕ መተግበሪያውን እንደገና በመገንባት ላይ…'
     },
     checking: 'ማሻሻያዎችን በመፈለግ ላይ…',
     checkFailedTitle: 'ማሻሻያዎችን ማረጋገጥ አልተቻለም',
@@ -2148,11 +2169,13 @@ Leave blank to keep the ${mode} default.`,
     manualBody: 'OpenAmerን ከትዕዛዝ መስመር ስለጫኑት፣ ዝመናዎችም እዚያ ይከናወናሉ። ይህን ወደ ተርሚናልዎ ይለጥፉ፦',
     manualPickedUp: 'OpenAmer በሚቀጥለው ሲከፈት አዲሱን ስሪት ይወስዳል።',
     guiSkewTitle: 'የዴስክቶፕ መተግበሪያውን ያዘምኑ',
-    guiSkewBody: 'ባክኤንድ ተዘምኗል፣ ግን ይህ የዴስክቶፕ መተግበሪያ ጥቅል አልተቀየረም። እንዲገጥም OpenAmer የዴስክቶፕ መተግበሪያውን (AppImage / .deb / .rpm) ያዘምኑ ወይም እንደገና ይጫኑ።',
+    guiSkewBody:
+      'ባክኤንድ ተዘምኗል፣ ግን ይህ የዴስክቶፕ መተግበሪያ ጥቅል አልተቀየረም። እንዲገጥም OpenAmer የዴስክቶፕ መተግበሪያውን (AppImage / .deb / .rpm) ያዘምኑ ወይም እንደገና ይጫኑ።',
     copy: 'ቅዳ',
     copied: 'ተቀድቷል',
     done: 'ተከናውኗል',
-    applyingBody: 'የOpenAmer አዘማኒ በራሱ መስኮት ውስጥ ይሠራል፣ ሲጨርስ ደግሞ OpenAmerን በራስ-ሰር እንደገና ይከፍታል። እባክዎ በሚዘምንበት ጊዜ OpenAmerን እራስዎ አይክፈቱ።',
+    applyingBody:
+      'የOpenAmer አዘማኒ በራሱ መስኮት ውስጥ ይሠራል፣ ሲጨርስ ደግሞ OpenAmerን በራስ-ሰር እንደገና ይከፍታል። እባክዎ በሚዘምንበት ጊዜ OpenAmerን እራስዎ አይክፈቱ።',
     applyingBodyBackend: 'ሩቅ ባክኤንድ ዝመናውን እየተግባራ ነው እና እንደገና ይጀምራል። OpenAmer ሲመለስ በራስ-ሰር እንደገና ይገናኛል።',
     applyingClose: 'ዝመናው በሚሠራበት ጊዜ ይህ መስኮት ይዘጋል፣ ከዚያ OpenAmer በራሱ እንደገና ይከፈታል።',
     errorTitle: 'ዝመናው አልተጠናቀቀም',
@@ -2164,13 +2187,13 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'ባክኤንድ ዝመናውን ለመጫን እንደገና በመጀመር ላይ…',
       notAvailable: 'ዝመና ለዚህ ባክኤንድ አይገኝም።',
       failed: 'የባክኤንድ ዝመና አልተሳካም።',
-      noReturn: 'ባክኤንድ በመስመር ላይ አልተመለሰም። ዝመናው ላይጠናቀቅ ይችላል — የባክኤንድ አስተናጋጁን ያረጋግጡ።',
+      noReturn: 'ባክኤንድ በመስመር ላይ አልተመለሰም። ዝመናው ላይጠናቀቅ ይችላል — የባክኤንድ አስተናጋጁን ያረጋግጡ።'
     },
     appErrors: {
       updateLocked: 'ዝመናው ተቋርጧል፦ ሌላ የOpenAmer መስኮት ወይም openamer የሚያሄድ ተርሚናል ይህን ጭነት ክፍት አድርጎታል። ይዘጋትና እንደገና ይሞክሩ።',
-      updateFailed: 'ዝመናው አልተጠናቀቀም። አይጨነቁ — ምንም አልጠፋም። አሁን እንደገና መሞከር ይችላሉ።',
+      updateFailed: 'ዝመናው አልተጠናቀቀም። አይጨነቁ — ምንም አልጠፋም። አሁን እንደገና መሞከር ይችላሉ።'
     },
-    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
+    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`
   },
   install: {
     stageStates: {
@@ -2178,7 +2201,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'በመጫን ላይ',
       succeeded: 'ተጠናቅቋል',
       skipped: 'ተዘሏል',
-      failed: 'አልተሳካም',
+      failed: 'አልተሳካም'
     },
     oneTimeTitle: 'OpenAmer አንድ ጊዜ መጫን ይፈልጋል',
     installCommand: 'የመጫኛ ትዕዛዝ',
@@ -2219,7 +2242,8 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'ጭነት አልተሳካም',
     settingUpTitle: 'OpenAmer ኤጀንትን በማዘጋጀት ላይ',
     finishingTitle: 'በማጠናቀቅ ላይ',
-    failedDesc: 'አንድ የጭነት ደረጃ አልተሳካም። በWindows ላይ፣ ሌላ OpenAmer CLI ወይም የዴስክቶፕ ኢንስታንስ እየሰራ ከሆነ ይህ ሊከሰት ይችላል። እየሰሩ ያሉ OpenAmer ኢንስታንሶችን ያቁሙ፣ ከዚያ እንደገና ይሞክሩ። ሙሉ ግልባጩን ለማየት ከዚህ በታች ያሉትን ዝርዝሮች ወይም የዴስክቶፕ ሎግን ያረጋግጡ።',
+    failedDesc:
+      'አንድ የጭነት ደረጃ አልተሳካም። በWindows ላይ፣ ሌላ OpenAmer CLI ወይም የዴስክቶፕ ኢንስታንስ እየሰራ ከሆነ ይህ ሊከሰት ይችላል። እየሰሩ ያሉ OpenAmer ኢንስታንሶችን ያቁሙ፣ ከዚያ እንደገና ይሞክሩ። ሙሉ ግልባጩን ለማየት ከዚህ በታች ያሉትን ዝርዝሮች ወይም የዴስክቶፕ ሎግን ያረጋግጡ።',
     activeDesc: 'ይህ የአንድ ጊዜ ማዋቀሪያ ነው። OpenAmer ጫኚው ጥገኞችን በማውረድ ማሽንዎን በማዋቀር ላይ ነው። ቀጣይ ጅምሮች ይህን ደረጃ ይዘልቃሉ።',
     fetchingManifest: 'የጫኚ ማኒፌስት በማምጣት ላይ...',
     error: 'ስህተት',
@@ -2232,40 +2256,41 @@ Leave blank to keep the ${mode} default.`,
     copiedOutput: 'ተቀድቷል!',
     copyOutput: 'ውጤት ቅዳ',
     reloadRetry: 'አድስ እና እንደገና ሞክር',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
     signInWith: provider => `Sign in with ${provider}`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     apiKeyOptions: {
       gemini: {
         short: 'የGemini ሞዴሎች',
-        description: 'ቀጥተኛ መዳረሻ ወደ Google Gemini ሞዴሎች።',
+        description: 'ቀጥተኛ መዳረሻ ወደ Google Gemini ሞዴሎች።'
       },
       xai: {
         short: 'የGrok ሞዴሎች',
-        description: 'ቀጥተኛ መዳረሻ ወደ xAI Grok ሞዴሎች።',
+        description: 'ቀጥተኛ መዳረሻ ወደ xAI Grok ሞዴሎች።'
       },
       local: {
         short: 'በራስ የተስተናገደ',
-        description: 'OpenAmer ን ወደ አካባቢያዊ ወይም በራስ የተስተናገደ OpenAI-ተኳኋኝ ኤንድፖይንት (vLLM, llama.cpp, Ollama, ወዘተ) ያመላክቱ።',
+        description: 'OpenAmer ን ወደ አካባቢያዊ ወይም በራስ የተስተናገደ OpenAI-ተኳኋኝ ኤንድፖይንት (vLLM, llama.cpp, Ollama, ወዘተ) ያመላክቱ።'
       },
       fireworks: {
         short: 'ቀጥታ የሞዴል API',
-        description: 'በFireworks AI የሚስተናገዱ ሞዴሎችን ቀጥታ መድረስ።',
+        description: 'በFireworks AI የሚስተናገዱ ሞዴሎችን ቀጥታ መድረስ።'
       },
       openrouter: {
         short: 'አንድ ቁልፍ፣ ብዙ ሞዴሎች',
-        description: 'በመቶዎች የሚቆጠሩ ሞዴሎችን በአንድ ቁልፍ ያስተናግዳል። ለአዲስ ጭነቶች ጥሩ ነባሪ።',
+        description: 'በመቶዎች የሚቆጠሩ ሞዴሎችን በአንድ ቁልፍ ያስተናግዳል። ለአዲስ ጭነቶች ጥሩ ነባሪ።'
       },
       openai: {
         short: 'የGPT ደረጃ ሞዴሎች',
-        description: 'የOpenAI ሞዴሎችን ቀጥታ መድረስ።',
-      },
+        description: 'የOpenAI ሞዴሎችን ቀጥታ መድረስ።'
+      }
     },
     backToSignIn: 'ወደ መግቢያ ተመለስ',
     getKey: 'ቁልፍ ያግኙ',
@@ -2278,7 +2303,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'አሳሽዎን ለመግቢያ ይከፍታል፣ ከዚያ እዚህ ይቀጥላል',
       device_code: 'በአሳሽዎ ውስጥ የማረጋገጫ ገጽ ይከፍታል — OpenAmer በራስሰር ይገናኛል',
-      external: 'በተርሚናልዎ አንድ ጊዜ ይግቡ፣ ከዚያ ወደ ውይይት ይመለሱ',
+      external: 'በተርሚናልዎ አንድ ጊዜ ይግቡ፣ ከዚያ ወደ ውይይት ይመለሱ'
     },
     signInFailed: 'መግቢያ አልተሳካም። እንደገና ይሞክሩ።',
     pickDifferentProvider: 'ሌላ አቅራቢ ይምረጡ',
@@ -2317,11 +2342,13 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'ሞዴል ቀይር',
@@ -2337,13 +2364,13 @@ Leave blank to keep the ${mode} default.`,
     free: 'ነፃ',
     freeTier: 'ነፃ ደረጃ',
     priceTitle: 'የግብዓት / ውጤት ዋጋ በአንድ ሚሊዮን ቶከኖች',
-    wasPrice: 'ነበር',
+    wasPrice: 'ነበር'
   },
   modelVisibility: {
     title: 'ሞዴሎች',
     search: 'ሞዴሎችን ፈልግ',
     noAuthenticatedProviders: 'የተረጋገጡ አቅራቢዎች የሉም።',
-    addProvider: 'አቅራቢ አክል…',
+    addProvider: 'አቅራቢ አክል…'
   },
   shell: {
     windowControls: 'የመስኮት መቆጣጠሪያዎች',
@@ -2354,7 +2381,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'ምንም ሞዴሎች አልተገኙም',
       editModels: 'ሞዴሎችን አስተካክል…',
       refreshModels: 'ሞዴሎችን አድስ',
-      fast: 'ፈጣን',
+      fast: 'ፈጣን'
     },
     modelOptions: {
       noOptions: 'ለዚህ ሞዴል አማራጮች የሉም',
@@ -2370,7 +2397,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'ከፍተኛው',
       ultra: 'አልትራ',
       updateFailed: 'የሞዴል አማራጭ ማዘመን አልተሳካም',
-      fastFailed: 'የፈጣን ሁነታ ማዘመን አልተሳካም',
+      fastFailed: 'የፈጣን ሁነታ ማዘመን አልተሳካም'
     },
     gatewayMenu: {
       gateway: 'ጌትዌይ',
@@ -2385,7 +2412,7 @@ Leave blank to keep the ${mode} default.`,
       recentActivity: 'የቅርብ ጊዜ እንቅስቃሴ',
       viewAllLogs: 'ሁሉንም ሎጎች ይመልከቱ →',
       messagingPlatforms: 'የመልእክት መድረኮች',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'የማጽደቅ ሁነታ',
@@ -2395,7 +2422,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'ድርጊቶችን በራስ-ሰር ገምግም እና አስፈላጊ ሲሆን ጠይቅ',
       off: 'ጠፍቷል',
       offDescription: 'ያለ የማጽደቅ ጥያቄዎች አስኪድ',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'ያልታወቀ',
@@ -2435,13 +2462,13 @@ Leave blank to keep the ${mode} default.`,
           skills: 'ክህሎቶች',
           subagent_definitions: 'የንዑስ ወኪል ፍቺዎች',
           system_prompt: 'የስርዓት መመሪያ',
-          tool_definitions: 'የመሳሪያ ፍቺዎች',
+          tool_definitions: 'የመሳሪያ ፍቺዎች'
         },
         empty: 'እስካሁን የአውድ መረጃ የለም',
         loading: 'ክፍፍል በመጫን ላይ…',
         title: 'የአውድ አጠቃቀም',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'የአውድ አጠቃቀም ክፍፍልን ክፈት',
       session: 'ክፍለ ጊዜ',
@@ -2470,8 +2497,8 @@ Leave blank to keep the ${mode} default.`,
       failed: count => `${count} failed`,
       running: count => `${count} running`,
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'የቀኝ የጎን አሞሌ',
@@ -2507,7 +2534,7 @@ Leave blank to keep the ${mode} default.`,
     addToChat: 'ወደ ውይይት አክል',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'ቅድመ እይታ',
@@ -2557,7 +2584,7 @@ Leave blank to keep the ${mode} default.`,
       sentTitle: 'ወደ ውይይት ተልኳል',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'የቅድመ እይታ መተግበሪያ መጀመር አልቻለም',
@@ -2580,7 +2607,8 @@ Leave blank to keep the ${mode} default.`,
       restartFailedMessage: 'OpenAmer አገልጋዩን እንደገና ማስጀመር አልቻለም።',
       stillWorking: 'OpenAmer አሁንም እየሰራ ነው፣ ነገር ግን የእንደገና ማስጀመር ውጤት እስካሁን አልመጣም። የአገልጋዩ ትዕዛዝ በፊተኛው ክፍል እየሰራ ሊሆን ይችላል።',
       workspaceReloading: 'የስራ ቦታ ተቀይሯል፣ ቅድመ-እይታን እንደገና በመጫን ላይ',
-      moduleMimeDescription: 'የሞጁል ስክሪፕቶች በተሳሳተ MIME አይነት እየቀረቡ ነው። ይህ አብዛኛውን ጊዜ ማለት የስታቲክ ፋይል አገልጋይ የVite/React መተግበሪያን ከፕሮጀክቱ የልማት አገልጋይ ይልቅ እያቀረበ ነው ማለት ነው።',
+      moduleMimeDescription:
+        'የሞጁል ስክሪፕቶች በተሳሳተ MIME አይነት እየቀረቡ ነው። ይህ አብዛኛውን ጊዜ ማለት የስታቲክ ፋይል አገልጋይ የVite/React መተግበሪያን ከፕሮጀክቱ የልማት አገልጋይ ይልቅ እያቀረበ ነው ማለት ነው።',
       unreachableDescription: 'የቅድመ-እይታ ገጹ ሊደረስበት አልቻለም።',
       fallbackTitle: 'ቅድመ-እይታ',
       lookingRestart: taskId => `OpenAmer is looking for a preview server to restart (${taskId})`,
@@ -2591,13 +2619,13 @@ Leave blank to keep the ${mode} default.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     closeTab: label => `Close ${label}`,
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   zones: {
     showHeader: 'ራስጌ አሳይ',
@@ -2605,7 +2633,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'አሳንስ',
     restore: 'መልስ',
     closeRunningTitle: 'የሚሰራውን ትር ዝጋ?',
-    closeRunningBody: 'ይህ ውይይት አሁንም በስራ ላይ ነው (ወይም ግብዓትዎን እየጠበቀ ነው)። ትሩን መዝጋት ይደብቀዋል — ክፍለ ጊዜው ሂደቱን ይይዛል እና ከጎን አሞሌ እንደገና መከፈት ይችላል።',
+    closeRunningBody:
+      'ይህ ውይይት አሁንም በስራ ላይ ነው (ወይም ግብዓትዎን እየጠበቀ ነው)። ትሩን መዝጋት ይደብቀዋል — ክፍለ ጊዜው ሂደቱን ይይዛል እና ከጎን አሞሌ እንደገና መከፈት ይችላል።',
     closeRunningConfirm: 'ትር ዝጋ',
     closeOthers: 'ሌሎችን ዝጋ',
     closeToRight: 'ወደ ቀኝ ያሉትን ዝጋ',
@@ -2642,7 +2671,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
@@ -2673,11 +2702,12 @@ Leave blank to keep the ${mode} default.`,
       goForward: 'ወደፊት ሂድ',
       sendEdited: 'የተስተካከለውን መልእክት ላክ',
       attachingFile: 'በማያያዝ ላይ...',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
-      yesterday: time => `Yesterday, ${time}`,
+      yesterday: time => `Yesterday, ${time}`
     },
     approval: {
       gatewayDisconnected: 'OpenAmer ጌትዌይ አልተገናኘም',
@@ -2691,7 +2721,8 @@ Leave blank to keep the ${mode} default.`,
       reject: 'ውድቅ አድርግ',
       alwaysTitle: 'ይህን ትዕዛዝ ሁልጊዜ ፍቀድ?',
       alwaysAllow: 'ሁልጊዜ ፍቀድ',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
       notReady: 'የማብራሪያ ጥያቄ ገና ዝግጁ አይደለም',
@@ -2705,7 +2736,7 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'ቀጥል',
       lateAnswerTip: 'ይህን መልስ እንደ ተከታይ መልእክት አዘጋጅ',
       lateAnswerHint: 'ይህ ጥያቄ ከእንግዲህ አይጠብቅም። እንደ ተከታይ መልእክት ለማዘጋጀት አማራጭ ይምረጡ።',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     tool: {
       code: 'ኮድ',
@@ -2739,123 +2770,123 @@ Leave blank to keep the ${mode} default.`,
         ran: 'ተፈጽሟል',
         running: 'በሂደት ላይ',
         ranCode: 'ኮድ ተፈጽሟል',
-        runningCode: 'ስክሪፕት በማድረግ ላይ',
+        runningCode: 'ስክሪፕት በማድረግ ላይ'
       },
       prefixes: {
         browser: 'አሳሽ',
-        web: 'ዌብ',
+        web: 'ዌብ'
       },
       titles: {
         browser_click: {
           done: 'የገጽ አካል ተጭኗል',
           pending: 'የገጽ አካል በመጫን ላይ',
-          pendingAction: 'በመጫን ላይ',
+          pendingAction: 'በመጫን ላይ'
         },
         browser_fill: {
           done: 'የቅጽ መስክ ተሞልቷል',
           pending: 'የቅጽ መስክ በመሙላት ላይ',
-          pendingAction: 'በመሙላት',
+          pendingAction: 'በመሙላት'
         },
         browser_navigate: {
           done: 'ገጽ ተከፍቷል',
           pending: 'ገጽ በመክፈት',
-          pendingAction: 'በመክፈት',
+          pendingAction: 'በመክፈት'
         },
         browser_snapshot: {
           done: 'የገጽ ቅጽበታዊ ምስል ተይዟል',
           pending: 'የገጽ ቅጽበታዊ ምስል በመያዝ',
-          pendingAction: 'በመያዝ',
+          pendingAction: 'በመያዝ'
         },
         browser_take_screenshot: {
           done: 'ስክሪንሾት ተይዟል',
           pending: 'ስክሪንሾት በመያዝ',
-          pendingAction: 'በመያዝ',
+          pendingAction: 'በመያዝ'
         },
         browser_type: {
           done: 'በገጹ ላይ ተተየበ',
           pending: 'በገጽ ላይ በመተየብ',
-          pendingAction: 'በመተየብ',
+          pendingAction: 'በመተየብ'
         },
         clarify: {
           done: 'ጥያቄ ተጠየቀ',
           pending: 'ጥያቄ በመጠየቅ',
-          pendingAction: 'በመጠየቅ',
+          pendingAction: 'በመጠየቅ'
         },
         cronjob: {
           done: 'የCron ስራ',
           pending: 'የCron ስራን መርሐግብር ማስያዝ',
-          pendingAction: 'መርሐግብር ማስያዝ',
+          pendingAction: 'መርሐግብር ማስያዝ'
         },
         edit_file: {
           done: 'ፋይል ተስተካክሏል',
           pending: 'ፋይልን በማርትዕ ላይ',
-          pendingAction: 'በማርትዕ ላይ',
+          pendingAction: 'በማርትዕ ላይ'
         },
         execute_code: {
           done: 'ኮድ አሂዷል',
           pending: 'ስክሪፕት በመጻፍ ላይ',
-          pendingAction: 'ስክሪፕት በመጻፍ ላይ',
+          pendingAction: 'ስክሪፕት በመጻፍ ላይ'
         },
         image_generate: {
           done: 'ምስል ተፈጥሯል',
           pending: 'ምስል በመፍጠር ላይ',
-          pendingAction: 'በመፍጠር ላይ',
+          pendingAction: 'በመፍጠር ላይ'
         },
         list_files: {
           done: 'ፋይሎች ተዘርዝረዋል',
           pending: 'ፋይሎችን በመዘርዘር ላይ',
-          pendingAction: 'በመዘርዘር ላይ',
+          pendingAction: 'በመዘርዘር ላይ'
         },
         patch: {
           done: 'ፋይል ተጠግኗል',
           pending: 'ፋይል በመጠገን ላይ',
-          pendingAction: 'በመጠገን ላይ',
+          pendingAction: 'በመጠገን ላይ'
         },
         read_file: {
           done: 'ፋይል ተነብቧል',
           pending: 'ፋይል በማንበብ ላይ',
-          pendingAction: 'በማንበብ ላይ',
+          pendingAction: 'በማንበብ ላይ'
         },
         search_files: {
           done: 'ፋይሎች ተፈልገዋል',
           pending: 'ፋይሎችን በመፈለግ ላይ',
-          pendingAction: 'በመፈለግ ላይ',
+          pendingAction: 'በመፈለግ ላይ'
         },
         session_search_recall: {
           done: 'የክፍለ ጊዜ ታሪክ ተፈልጎ',
           pending: 'የክፍለ ጊዜ ታሪክ በመፈለግ ላይ',
-          pendingAction: 'በመፈለግ ላይ',
+          pendingAction: 'በመፈለግ ላይ'
         },
         terminal: {
           done: 'ትዕዛዝ ተፈጽሟል',
           pending: 'ትዕዛዝ በመፈጸም ላይ',
-          pendingAction: 'በመፈጸም ላይ',
+          pendingAction: 'በመፈጸም ላይ'
         },
         todo: {
           done: 'ተግባሮች ተዘምነዋል',
           pending: 'ተግባሮች በመዘመን ላይ',
-          pendingAction: 'በመዘመን ላይ',
+          pendingAction: 'በመዘመን ላይ'
         },
         vision_analyze: {
           done: 'ምስል ተተንትኗል',
           pending: 'ምስል በመተንተን ላይ',
-          pendingAction: 'በመተንተን ላይ',
+          pendingAction: 'በመተንተን ላይ'
         },
         web_extract: {
           done: 'ድረ-ገጽ ተነብቧል',
           pending: 'ድረ-ገጽ በማንበብ ላይ',
-          pendingAction: 'በማንበብ ላይ',
+          pendingAction: 'በማንበብ ላይ'
         },
         web_search: {
           done: 'ድረ-መረብ ተፈልጎ',
           pending: 'ድረ-መረብ በመፈለግ ላይ',
-          pendingAction: 'በመፈለግ ላይ',
+          pendingAction: 'በመፈለግ ላይ'
         },
         write_file: {
           done: 'ፋይል ተስተካክሏል',
           pending: 'ፋይል በመስተካከል ላይ',
-          pendingAction: 'ማርትዕ',
-        },
+          pendingAction: 'ማርትዕ'
+        }
       },
       recoveredMany: count => `Recovered after ${count} failed steps`,
       failedMany: count => `${count} steps failed`,
@@ -2865,9 +2896,9 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer ጌትዌይ አልተገናኘም።',
@@ -2878,7 +2909,7 @@ Leave blank to keep the ${mode} default.`,
     sudoPlaceholder: 'sudo የይለፍ ቃል',
     secretTitle: 'ምስጢር ያስፈልጋል',
     secretDesc: 'OpenAmer ለመቀጠል ምስክርነት ይፈልጋል።',
-    secretPlaceholder: 'የምስጢር እሴት',
+    secretPlaceholder: 'የምስጢር እሴት'
   },
   desktop: {
     audioReadFailed: 'የተቀረጸ ድምጽ ማንበብ አልተቻለም።',
@@ -2939,41 +2970,43 @@ Leave blank to keep the ${mode} default.`,
       timedOut: 'ጌትዌይን በመጠበቅ ጊዜው አልፏል። `openamer gateway` እየሰራ ነው?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     skillCommandsAvailable: count => `${count} skill commands available.`,
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
-    branchTitle: n => `Draft: Branch #${n}`,
+    branchTitle: n => `Draft: Branch #${n}`
   },
   errors: {
     genericFailure: 'የሆነ ችግር ተፈጥሯል',
     boundaryTitle: 'በገጽታው ውስጥ የሆነ ነገር ተበላሽቷል',
     boundaryDesc: 'እይታው ያልተጠበቀ ስህተት አጋጥሞታል። ውይይቶችዎ እና ቅንብሮችዎ ደህንነታቸው የተጠበቀ ነው።',
     reloadWindow: 'መስኮትን እንደገና ጫን',
-    openLogs: 'መዝገቦችን ክፈት',
+    openLogs: 'መዝገቦችን ክፈት'
   },
   ui: {
     search: {
-      clear: 'ፍለጋን አጽዳ',
+      clear: 'ፍለጋን አጽዳ'
     },
     pagination: {
       label: 'ገጽ ክፍፍል',
       previous: 'ቀዳሚ',
       previousAria: 'ወደ ቀዳሚ ገጽ ይሂዱ',
       next: 'ቀጣይ',
-      nextAria: 'ወደ ቀጣይ ገጽ ይሂዱ',
+      nextAria: 'ወደ ቀጣይ ገጽ ይሂዱ'
     },
     sidebar: {
       title: 'የጎን አሞሌ',
       description: 'የሞባይል ጎን አሞሌን ያሳያል።',
-      toggle: 'የጎን አሞሌን ቀያይር',
-    },
+      toggle: 'የጎን አሞሌን ቀያይር'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
-  },
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
+  }
 })

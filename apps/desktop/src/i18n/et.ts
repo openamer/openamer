@@ -44,7 +44,7 @@ export const et = defineLocale({
     update: 'Värskenda',
     tryHint: term => `Proovi „${term}“`,
     on: 'Sisse lülitatud',
-    off: 'Välja lülitatud',
+    off: 'Välja lülitatud'
   },
   fileMenu: {
     revealFinder: 'Näita Finderis',
@@ -59,7 +59,7 @@ export const et = defineLocale({
     renameLabel: 'Uus nimi',
     deleteTitle: name => `Kustutada ${name}?`,
     deleteBody: 'See liigutatakse prügikasti — sealt saad selle taastada.',
-    pathCopied: 'Tee kopeeritud',
+    pathCopied: 'Tee kopeeritud'
   },
   boot: {
     ready: 'OpenAmer Desktop on valmis',
@@ -69,7 +69,7 @@ export const et = defineLocale({
       loadingSettings: 'Laadin OpenAmeri seadistusi',
       loadingSessions: 'Laadin hiljutisi sessioone',
       startingDesktopConnection: 'Käivitan töölaua ühendust',
-      startingOpenAmerDesktop: 'Käivitan OpenAmer Desktopi…',
+      startingOpenAmerDesktop: 'Käivitan OpenAmer Desktopi…'
     },
     errors: {
       backgroundExited: 'OpenAmeri taustaprotsess lõpetas töö.',
@@ -78,13 +78,15 @@ export const et = defineLocale({
       desktopBootFailed: 'Töölauakeskkonna käivitamine ebaõnnestus',
       gatewayConnectionLost: 'Ühendus lüüsiga kadus',
       gatewaySignInRequired: 'Vajalik on lüüsi sisselogimine',
-      ipcBridgeUnavailable: 'Töölaua IPC-sild ei ole saadaval.',
+      ipcBridgeUnavailable: 'Töölaua IPC-sild ei ole saadaval.'
     },
     failure: {
-      title: "OpenAmer ei suutnud käivituda",
-      description: "Taustal lüüs ei käivitunud. Proovi allpool mõnda taastamisvõimalust. Ükski siin olev toiming ei kustuta su vestlusi ega seadistusi.",
+      title: 'OpenAmer ei suutnud käivituda',
+      description:
+        'Taustal lüüs ei käivitunud. Proovi allpool mõnda taastamisvõimalust. Ükski siin olev toiming ei kustuta su vestlusi ega seadistusi.',
       remoteTitle: 'Vajalik on kauglüüsi sisselogimine',
-      remoteDescription: 'Sinu kauglüüsi sessioon on aegunud. Logi uuesti sisse, et uuesti ühenduda. Ükski siin olev toiming ei kustuta su vestlusi ega seadistusi.',
+      remoteDescription:
+        'Sinu kauglüüsi sessioon on aegunud. Logi uuesti sisse, et uuesti ühenduda. Ükski siin olev toiming ei kustuta su vestlusi ega seadistusi.',
       retry: 'Proovi uuesti',
       repairInstall: 'Paranda paigaldus',
       useLocalGateway: 'Kasuta kohalikku lüüsi',
@@ -92,7 +94,8 @@ export const et = defineLocale({
       back: 'Tagasi',
       openLogs: 'Ava logid',
       repairHint: 'Parandus käivitab paigaldaja uuesti ja võib uuel masinal võtta mõne minuti.',
-      remoteSignInHint: signInLabel => `Lõpetab salvestatud kaugsessiooni brauseris ja avab seejärel ${signInLabel}. Kasuta „Kasuta kohalikku lüüsi“, et lülituda kaasasolevale taustateenusele.`,
+      remoteSignInHint: signInLabel =>
+        `Lõpetab salvestatud kaugsessiooni brauseris ja avab seejärel ${signInLabel}. Kasuta „Kasuta kohalikku lüüsi“, et lülituda kaasasolevale taustateenusele.`,
       signOutAndSignIn: 'Logi välja ja sisse',
       remoteFailureHint: 'Kontrolli lüüsi seadistustes URL-i ja sisselogimist, või lülita kohaliku lüüsi peale.',
       hideRecentLogs: 'Peida hiljutised logid',
@@ -104,8 +107,8 @@ export const et = defineLocale({
       signInFailed: 'Sisselogimine ebaõnnestus',
       signInToRemoteGateway: 'Logi sisse kauglüüsi',
       signInWithProvider: provider => `Logi sisse teenusega ${provider}`,
-      identityProvider: 'oma identiteedipakkuja',
-    },
+      identityProvider: 'oma identiteedipakkuja'
+    }
   },
   notifications: {
     region: 'Teavitused',
@@ -118,21 +121,23 @@ export const et = defineLocale({
     copyDetail: 'Kopeeri üksikasjad',
     copyDetailFailed: 'Teavituse üksikasjade kopeerimine ebaõnnestus',
     backendOutOfDateTitle: 'Taustateenus on aegunud',
-    backendOutOfDateMessage: 'Sinu OpenAmeri taustateenus on vanem kui see töölauaversioon ja võib korralikult ei töötada. Värskenda, et need vastaksid.',
+    backendOutOfDateMessage:
+      'Sinu OpenAmeri taustateenus on vanem kui see töölauaversioon ja võib korralikult ei töötada. Värskenda, et need vastaksid.',
     installMethodUnsupportedTitle: 'Paigaldusmeetod ei ole toetatud',
     updateOpenAmer: 'Värskenda OpenAmerit',
     updateReadyTitle: 'Värskendus on valmis',
     updateReadyMessage: count => `${count} uus muudatus${count === 1 ? 'muudatus' : 'muudatused'} saadaval.`,
-    seeWhatsNew: "Vaata uudiseid",
+    seeWhatsNew: 'Vaata uudiseid',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT vajab muutujat ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs lükkas API-võtme tagasi (401).',
       gatewayAuthFailed: 'Lüüsi autentimine ebaõnnestus — kontrolli oma API_SERVER_KEY.',
-      methodNotAllowed: 'Töölaua taustateenus lükkas selle päringu tagasi (405 Method Not Allowed). Proovi OpenAmer Desktop uuesti käivitada.',
+      methodNotAllowed:
+        'Töölaua taustateenus lükkas selle päringu tagasi (405 Method Not Allowed). Proovi OpenAmer Desktop uuesti käivitada.',
       microphonePermission: 'Mikrofoni luba keelduti.',
       openaiRejectedApiKey: 'OpenAI lükkas API-võtme tagasi.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI lükkas API-võtme tagasi (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS vajab muutujat VOICE_TOOLS_OPENAI_KEY või OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS vajab muutujat VOICE_TOOLS_OPENAI_KEY või OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Seadista kõnest tekstiks, et kasutada häälrežiimi.',
@@ -151,7 +156,7 @@ export const et = defineLocale({
       transcriptionFailed: 'Kõne transkribeerimine ebaõnnestus',
       transcriptionUnavailable: 'Kõne transkribeerimine ei ole veel saadaval.',
       tryRecordingAgain: 'Proovi uuesti salvestada.',
-      unavailable: 'Hääl ei ole saadaval',
+      unavailable: 'Hääl ei ole saadaval'
     },
     native: {
       approvalTitle: 'Vajalik on heakskiit',
@@ -164,11 +169,12 @@ export const et = defineLocale({
       turnErrorTitle: 'Voor ebaõnnestus',
       backgroundDoneTitle: 'Taustaülesanne on lõpetatud',
       backgroundFailedTitle: 'Taustaülesanne ebaõnnestus',
-      creditsTitle: 'Krediidid',
-    },
+      creditsTitle: 'Krediidid'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Tarkvaraline renderdamine aktiivne — tuvastati kaugkuva (${reason}). GPU kiirendus on välja lülitatud, et vältida virvendamist.`,
+    message: reason =>
+      `Tarkvaraline renderdamine aktiivne — tuvastati kaugkuva (${reason}). GPU kiirendus on välja lülitatud, et vältida virvendamist.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmeri krediidid on otsas',
@@ -176,7 +182,7 @@ export const et = defineLocale({
     fallbackMessage: 'Sinu kontol ei ole krediidide. Jätka jätkamiseks lisa krediidide.',
     openBilling: 'Ava arveldus',
     addCredits: 'Lisa krediidid',
-    dismiss: 'Sulge',
+    dismiss: 'Sulge'
   },
   titlebar: {
     hideSidebar: 'Peida külgriba',
@@ -193,7 +199,7 @@ export const et = defineLocale({
     openStarmap: 'Ava mälugraaf',
     openKeybinds: 'Kiirklahvid',
     layoutEditor: 'Paigutustoimetaja',
-    layoutEditorTitle: 'Paigutustoimetaja — Cmd/Ctrl+klik taastab paigutuse',
+    layoutEditorTitle: 'Paigutustoimetaja — Cmd/Ctrl+klik taastab paigutuse'
   },
   keybinds: {
     title: 'Klaviatuuri kiirklahvid',
@@ -210,7 +216,7 @@ export const et = defineLocale({
       profiles: 'Profiilid',
       session: 'Seanss',
       navigation: 'Navigeerimine',
-      view: 'Vaade',
+      view: 'Vaade'
     },
     actions: {
       'keybinds.openPanel': 'Ava klaviatuuri kiirklahvid',
@@ -289,8 +295,8 @@ export const et = defineLocale({
       'composer.slash': 'Kaldkriipsukäskude palett',
       'composer.help': 'Kiire abi',
       'composer.history': 'Vaheta hüpikakent / ajalugu',
-      'composer.cancel': 'Sulge hüpikaken · tühista käivitus',
-    },
+      'composer.cancel': 'Sulge hüpikaken · tühista käivitus'
+    }
   },
   language: {
     label: 'Keel',
@@ -299,7 +305,7 @@ export const et = defineLocale({
     saveError: 'Keelen värskendamine ebaõnnestus',
     switchTo: 'Vaheta keelt',
     searchPlaceholder: 'Otsi keeli…',
-    noResults: 'Keeli ei leitud',
+    noResults: 'Keeli ei leitud'
   },
   settings: {
     closeSettings: 'Sulge seadistused',
@@ -324,11 +330,12 @@ export const et = defineLocale({
       about: 'Teave',
       billing: 'Arveldus',
       notifications: 'Teavitused',
-      plugins: 'Pluginad',
+      plugins: 'Pluginad'
     },
     plugins: {
       title: 'Töölaua pluginad',
-      blurb: 'Sellesse rakendusse laaditud kasutajaliidese laiendused — koos ehitusega pakendatud või desktop-plugins kausta lisatud (sealhulgas need, mille OpenAmer kirjutab). Keelamine eemaldab plugina kohe ja keeld jääb kehtima ka taaskäivitustel.',
+      blurb:
+        'Sellesse rakendusse laaditud kasutajaliidese laiendused — koos ehitusega pakendatud või desktop-plugins kausta lisatud (sealhulgas need, mille OpenAmer kirjutab). Keelamine eemaldab plugina kohe ja keeld jääb kehtima ka taaskäivitustel.',
       count: n => `${n} paigaldatud`,
       openFolder: 'Ava pluginakaust',
       rescan: 'Skanni uuesti',
@@ -340,49 +347,51 @@ export const et = defineLocale({
       kinds: {
         bundled: 'kaasas',
         disk: 'kettal',
-        runtime: 'käitusaeg',
-      },
+        runtime: 'käitusaeg'
+      }
     },
     notifications: {
       title: 'Teavitused',
-      intro: 'Natiivsed töölauateavitused, eraldi rakendusesisestest teavitustest. Need on seadmepõhised — igal arvutil on omad seaded.',
+      intro:
+        'Natiivsed töölauateavitused, eraldi rakendusesisestest teavitustest. Need on seadmepõhised — igal arvutil on omad seaded.',
       enableAll: 'Luba teavitused',
       enableAllDesc: 'Pealüliti. Selle väljalülitamisel vaigistatakse kõik allolevad teavitused.',
       focusedHint: 'Lõpetamisteated edastatakse ainult siis, kui OpenAmer on taustal.',
       kinds: {
         approval: {
           label: 'Vajab kinnitust',
-          description: 'Käsk ootab kinnitamist või tagasilükkamist.',
+          description: 'Käsk ootab kinnitamist või tagasilükkamist.'
         },
         input: {
           label: 'Vajab sisendit',
-          description: 'OpenAmer esitas küsimuse või vajab parooli või saladust.',
+          description: 'OpenAmer esitas küsimuse või vajab parooli või saladust.'
         },
         turnDone: {
           label: 'Vastus valmis',
-          description: 'Voor lõppes, kui OpenAmer oli taustal.',
+          description: 'Voor lõppes, kui OpenAmer oli taustal.'
         },
         turnError: {
           label: 'Voor ebaõnnestus',
-          description: 'Voor lõppes veaga.',
+          description: 'Voor lõppes veaga.'
         },
         backgroundDone: {
           label: 'Taustülesanne valmis',
-          description: 'Taustal käivitatud terminalikäsk lõppes.',
+          description: 'Taustal käivitatud terminalikäsk lõppes.'
         },
         credits: {
           label: 'Krediiditeavitused',
-          description: 'Krediidide kasutamine on peatatud või taastatud.',
-        },
+          description: 'Krediidide kasutamine on peatatud või taastatud.'
+        }
       },
       test: 'Saada testteade',
       testTitle: 'OpenAmer',
       testBody: 'Teated töötavad.',
-      testSent: 'Test saadetud. Kui midagi ei ilmne, kontrolli oma operatsioonisüsteemi teateõigusi ning Focus/Do Not Disturb seadeid.',
+      testSent:
+        'Test saadetud. Kui midagi ei ilmne, kontrolli oma operatsioonisüsteemi teateõigusi ning Focus/Do Not Disturb seadeid.',
       testUnsupported: 'See süsteem ei toeta natiivseid teateid.',
       completionSoundTitle: 'Lõpetuse heli',
       completionSoundDesc: 'Kordub, kui agendi käik lõpeb. Vali preset ja kuula eelvaadet siin.',
-      completionSoundPreview: 'Eelvaade',
+      completionSoundPreview: 'Eelvaade'
     },
     sections: {
       model: 'Mudel',
@@ -392,7 +401,7 @@ export const et = defineLocale({
       safety: 'Ohutus',
       memory: 'Mälu ja kontekst',
       voice: 'Hääl',
-      advanced: 'Täpsemad',
+      advanced: 'Täpsemad'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop kohta',
@@ -400,37 +409,40 @@ export const et = defineLocale({
       gateway: 'Gateway ühendus...',
       keys: 'Otsi API võtmeid...',
       mcp: 'Otsi MCP servereid...',
-      sessions: 'Otsi arhiveeritud sessioone...',
+      sessions: 'Otsi arhiveeritud sessioone...'
     },
     modeOptions: {
       light: {
         label: 'Hele',
-        description: 'Heledad pinnad',
+        description: 'Heledad pinnad'
       },
       dark: {
         label: 'Tume',
-        description: 'Vähese säraga ruum',
+        description: 'Vähese säraga ruum'
       },
       system: {
         label: 'Süsteem',
-        description: 'Järgi süsteemi välimust',
-      },
+        description: 'Järgi süsteemi välimust'
+      }
     },
     appearance: {
       title: 'Välimus',
-      intro: 'Need on ainult töölauale kuuluvad kuvaeelistused. Režiim juhib heledust; teema juhib aktsentide paletti ja vestluse stiili.',
+      intro:
+        'Need on ainult töölauale kuuluvad kuvaeelistused. Režiim juhib heledust; teema juhib aktsentide paletti ja vestluse stiili.',
       colorMode: 'Värvirežiim',
       colorModeDesc: 'Vali fikseeritud režiim või lase OpenAmeril järgida süsteemi seadistust.',
       toolViewTitle: 'Tööriistakutse esitlus',
       toolViewDesc: 'Toode peidab tööriistade toorandmed; Tehniline näitab täielikke sisendeid/väljundeid.',
       uiScaleTitle: 'Liidese skaala',
-      uiScaleDesc: (percent: number) => `Skaalab teksti ja juhtelemente kogu rakenduses. Töötab ka Cmd/Ctrl koos +, - ja 0. Praegu: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Skaalab teksti ja juhtelemente kogu rakenduses. Töötab ka Cmd/Ctrl koos +, - ja 0. Praegu: ${percent}%.`,
       translucencyTitle: 'Akna läbipaistvus',
       translucencyDesc: 'Näe oma töölauda akna kaudu. Ainult macOS ja Windows.',
       backdropTitle: 'Vestluse taust',
       backdropDesc: 'Vestluse taga olev suur statuu-pilt.',
       embedsTitle: 'Manussisud',
-      embedsDesc: 'Eelvaated laadivad kolmandate osapoolte saitidelt (YouTube, X, …). Küsi näitab kohatäitjat, kuni igaühe lubad; Alati laadib need automaatselt; Väljas jätab ainult lingid.',
+      embedsDesc:
+        'Eelvaated laadivad kolmandate osapoolte saitidelt (YouTube, X, …). Küsi näitab kohatäitjat, kuni igaühe lubad; Alati laadib need automaatselt; Väljas jätab ainult lingid.',
       embedsAsk: 'Küsi',
       embedsAlways: 'Alati',
       embedsOff: 'Väljas',
@@ -443,7 +455,8 @@ export const et = defineLocale({
       themeDesc: 'Ainult töölaua paletid. Valitud režiim rakendatakse peale.',
       themeProfileNote: profile => `Salvestatud profiili ${profile} jaoks — igal profiilil on oma teema.`,
       installTitle: 'Paigalda VS Code’ist',
-      installDesc: 'Kleep Marketplace’i laienduse ID (nt dracula-theme.theme-dracula), et teisendada oma värviteema töölaua paletiks.',
+      installDesc:
+        'Kleep Marketplace’i laienduse ID (nt dracula-theme.theme-dracula), et teisendada oma värviteema töölaua paletiks.',
       installPlaceholder: 'publisher.extension',
       installButton: 'Paigalda',
       installing: 'Paigaldan…',
@@ -453,8 +466,10 @@ export const et = defineLocale({
       importedBadge: 'Imporditud',
       pet: {
         title: 'Loom',
-        intro: 'Võta vastu animatsiooniga petdex-maskott, mis hõljub rakenduse kohal ja reageerib sellele, mida OpenAmer teeb — liigub tööriistade täitmisel, tähistab edu ja muutub tõsiseks vigade korral.',
-        restartHint: 'Loomad vajavad kiiret taaskäivitust — töötav rakendus käivitus enne selle funktsiooni lisamist. Sulge ja ava OpenAmer uuesti ning tule siia tagasi.',
+        intro:
+          'Võta vastu animatsiooniga petdex-maskott, mis hõljub rakenduse kohal ja reageerib sellele, mida OpenAmer teeb — liigub tööriistade täitmisel, tähistab edu ja muutub tõsiseks vigade korral.',
+        restartHint:
+          'Loomad vajavad kiiret taaskäivitust — töötav rakendus käivitus enne selle funktsiooni lisamist. Sulge ja ava OpenAmer uuesti ning tule siia tagasi.',
         on: 'Sees',
         off: 'Väljas',
         scaleTitle: 'Suurus',
@@ -464,7 +479,7 @@ export const et = defineLocale({
         chooseTitle: 'Vali lemmik',
         chooseDesc: 'Valimine paigaldab selle (vajadusel) ja aktiveerib.',
         searchPlaceholder: 'Otsi lemmikuid…',
-        unreachable: "petdex galeriile ei õnnestunud ligi pääseda. Kontrolli ühendust ja ava see leht uuesti.",
+        unreachable: 'petdex galeriile ei õnnestunud ligi pääseda. Kontrolli ühendust ja ava see leht uuesti.',
         noMatch: query => `Ükski lemmik ei vasta otsingule "${query}".`,
         installedTag: 'paigaldatud',
         generatedTag: 'Loodud',
@@ -473,7 +488,7 @@ export const et = defineLocale({
         uninstall: name => `Eemalda ${name}`,
         delete: name => `Kustuta ${name}`,
         deleteTitle: name => `Kustuta ${name}?`,
-        deleteBody: "See kustutab lemmiku jäädavalt — seda ei saa uuesti paigaldada.",
+        deleteBody: 'See kustutab lemmiku jäädavalt — seda ei saa uuesti paigaldada.',
         deleteConfirm: 'Kustuta',
         rename: name => `Nimeta ${name} ümber`,
         renameTitle: 'Nimeta lemmik ümber',
@@ -486,8 +501,8 @@ export const et = defineLocale({
         exportFailed: slug => `Ei saanud ${slug} eksportida`,
         noneAvailable: 'Praegu pole ühtegi lemmikut, mille saaks sisse lülitada.',
         turnOnFailed: 'Lemmiklooma ei õnnestunud sisse lülitada.',
-        turnOffFailed: 'Lemmiklooma ei õnnestunud välja lülitada.',
-      },
+        turnOffFailed: 'Lemmiklooma ei õnnestunud välja lülitada.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -498,15 +513,16 @@ export const et = defineLocale({
       updates: 'Värskendused',
       checkNow: 'Kontrolli kohe',
       checking: 'Kontrollin…',
-      seeWhatsNew: "Vaata uudiseid",
+      seeWhatsNew: 'Vaata uudiseid',
       updateNow: 'Värskenda kohe',
       releaseNotes: 'Väljalasemärkmed',
-      onLatest: "Oled uusimal versioonil.",
+      onLatest: 'Oled uusimal versioonil.',
       installing: 'Värskendust paigaldatakse.',
-      cantUpdate: "Seda järgu ei saa rakenduse seest värskendada.",
-      cantReach: "Värskendusserveriga ei saanud ühendust.",
+      cantUpdate: 'Seda järgu ei saa rakenduse seest värskendada.',
+      cantReach: 'Värskendusserveriga ei saanud ühendust.',
       tapCheck: 'Puuduta „Kontrolli kohe“, et otsida värskendusi.',
-      updateReady: count => `Uus uuendus on valmis (sisaldab ${count} muudatust${count === 1 ? 'muudatus' : 'muudatused'}).`,
+      updateReady: count =>
+        `Uus uuendus on valmis (sisaldab ${count} muudatust${count === 1 ? 'muudatus' : 'muudatused'}).`,
       lastChecked: age => `Viimati kontrollitud ${age}`,
       justNowSuffix: ' · kohe praegu',
       automaticUpdates: 'Automaatsed värskendused',
@@ -516,7 +532,7 @@ export const et = defineLocale({
       justNow: 'kohe praegu',
       minAgo: count => `${count} min tagasi`,
       hoursAgo: count => `${count} tundi tagasi`,
-      daysAgo: count => `${count} päeva tagasi`,
+      daysAgo: count => `${count} päeva tagasi`
     },
     config: {
       none: 'Puudub',
@@ -532,7 +548,8 @@ export const et = defineLocale({
       imported: 'Konfiguratsioon imporditud',
       invalidJson: 'Vigane konfiguratsiooni JSON',
       keepAwakeTitle: 'Hoia arvuti ärkvel',
-      keepAwakeDesc: 'Takista sellel masinal magama minemast, et pikad või üleöö kestvad tööd jätkuksid. Ekraan võib siiski hämarduda.',
+      keepAwakeDesc:
+        'Takista sellel masinal magama minemast, et pikad või üleöö kestvad tööd jätkuksid. Ekraan võib siiski hämarduda.'
     },
     credentials: {
       pasteKey: 'Kleebi võti',
@@ -542,7 +559,7 @@ export const et = defineLocale({
       couldNotSave: 'Tunnust ei õnnestunud salvestada.',
       remove: 'Eemalda',
       getKey: 'Hangi võti',
-      saving: 'Salvestamine',
+      saving: 'Salvestamine'
     },
     envActions: {
       actionsFor: label => `Toimingud: ${label}`,
@@ -553,7 +570,7 @@ export const et = defineLocale({
       revealValue: 'Näita väärtust',
       replace: 'Asenda',
       set: 'Määra',
-      clear: 'Tühjenda',
+      clear: 'Tühjenda'
     },
     gateway: {
       loading: 'Lüüsi seadete laadimine...',
@@ -561,21 +578,25 @@ export const et = defineLocale({
       unavailableDesc: 'Töölaua IPC-sild ei avalda lüüsi seadeid.',
       title: 'Lüüsi ühendus',
       envOverride: 'Keskkonnamuutuja alistus',
-      intro: 'OpenAmer Desktop käivitab vaikimisi oma kohaliku lüüsi. Kasuta kauglüüsi, kui soovid, et see rakendus juhiks juba töötavat OpenAmer taustarakendust teises masinas või usaldusväärse puhverserveri taga. Vali allpool profiil, et anda sellele oma kaughost.',
+      intro:
+        'OpenAmer Desktop käivitab vaikimisi oma kohaliku lüüsi. Kasuta kauglüüsi, kui soovid, et see rakendus juhiks juba töötavat OpenAmer taustarakendust teises masinas või usaldusväärse puhverserveri taga. Vali allpool profiil, et anda sellele oma kaughost.',
       appliesTo: 'Kehtib',
       allProfiles: 'Kõik profiilid',
       defaultConnection: 'Vaikeühendus igale profiilile, millel pole oma alistust.',
-      profileConnection: profile => `Ühendus, mida kasutatakse ainult siis, kui aktiivne profiil on „${profile}”. Vali „Kasuta vaikelüüsi”, et selle alistus eemaldada.`,
+      profileConnection: profile =>
+        `Ühendus, mida kasutatakse ainult siis, kui aktiivne profiil on „${profile}”. Vali „Kasuta vaikelüüsi”, et selle alistus eemaldada.`,
       envOverrideTitle: 'Seda töölauaseanssi juhivad keskkonnamuutujad.',
-      envOverrideDesc: 'Tühista OPENAMER_DESKTOP_REMOTE_URL ja OPENAMER_DESKTOP_REMOTE_TOKEN, et kasutada allpool salvestatud seadet.',
+      envOverrideDesc:
+        'Tühista OPENAMER_DESKTOP_REMOTE_URL ja OPENAMER_DESKTOP_REMOTE_TOKEN, et kasutada allpool salvestatud seadet.',
       modeTitle: 'Ühendusrežiim',
       localTitle: 'Kohalik lüüs',
       localDesc: 'Käivita privaatne OpenAmer-i backend localhostis. See on vaikimisi valik ja töötab võrguühenduseta.',
       inheritTitle: 'Kasuta vaikelüüsi',
-      inheritDesc: "Eemalda selle profiili ülekirjutus ja kasuta vaikeühendust.",
+      inheritDesc: 'Eemalda selle profiili ülekirjutus ja kasuta vaikeühendust.',
       remoteTitle: 'Kauglüüs',
       remoteDesc: 'Ühenda see töölauakest kaugema OpenAmeri taustarakendusega.',
-      remoteAuthHint: 'Majutatud lüüsid kasutavad OAuthi või kasutajanime ja parooli; isemajutatud lüüsid võivad kasutada sessiooniluba.',
+      remoteAuthHint:
+        'Majutatud lüüsid kasutavad OAuthi või kasutajanime ja parooli; isemajutatud lüüsid võivad kasutada sessiooniluba.',
       cloudTitle: 'OpenAmer pilv',
       cloudDesc: 'Logi üks kord OpenAmer Cloudi sisse ja vali oma konto agendid — URL-i pole vaja kleepida.',
       cloudSignInTitle: 'OpenAmer pilv',
@@ -592,7 +613,7 @@ export const et = defineLocale({
       cloudNoAgents: {
         before: 'Sellel kontol agente ei leitud. Loo üks ',
         linkText: 'OpenAmer portaal',
-        after: ', seejärel värskenda.',
+        after: ', seejärel värskenda.'
       },
       cloudRefresh: 'Värskenda',
       cloudConnect: 'Ühenda',
@@ -610,18 +631,23 @@ export const et = defineLocale({
       remoteUrlTitle: 'Kaugserveri URL',
       remoteUrlDesc: 'Kauge juhtpaneeli backendi baas-URL. Toetatud on teeprefiksid, näiteks /openamer.',
       probing: 'Kontrollitakse, kuidas see lüüs autentib…',
-      probeError: 'Selle lüüsi pole veel võimalik kätte saada. Kontrolli URL-i — autentimisviis kuvatakse, kui lüüs vastab.',
+      probeError:
+        'Selle lüüsi pole veel võimalik kätte saada. Kontrolli URL-i — autentimisviis kuvatakse, kui lüüs vastab.',
       signedIn: 'Sisse logitud',
       signIn: 'Logi sisse',
       signOut: 'Logi välja',
       signInWith: provider => `Logi sisse ${provider}-ga`,
       authTitle: 'Autentimine',
-      authSignedInPassword: 'See lüüs kasutab kasutajanime ja parooli. Oled sisse logitud; sessioon uuendatakse automaatselt.',
+      authSignedInPassword:
+        'See lüüs kasutab kasutajanime ja parooli. Oled sisse logitud; sessioon uuendatakse automaatselt.',
       authSignedInOauth: 'See lüüs kasutab OAuth-i. Oled sisse logitud; sessioon uuendatakse automaatselt.',
-      authNeedsPassword: 'See lüüs kasutab kasutajanime ja parooli. Logi sisse, et anda sellele töölaua rakendusele luba.',
-      authNeedsOauth: provider => `See lüüs kasutab OAuthi. Selle töölauarakenduse autoriseerimiseks logi sisse ${provider} abil.`,
+      authNeedsPassword:
+        'See lüüs kasutab kasutajanime ja parooli. Logi sisse, et anda sellele töölaua rakendusele luba.',
+      authNeedsOauth: provider =>
+        `See lüüs kasutab OAuthi. Selle töölauarakenduse autoriseerimiseks logi sisse ${provider} abil.`,
       tokenTitle: 'Sessioonitoken',
-      tokenDesc: 'Armatuurlaua sessioonitoken REST- ja WebSocketi juurdepääsuks. Jäta tühjaks, et salvestatud token alles jääks.',
+      tokenDesc:
+        'Armatuurlaua sessioonitoken REST- ja WebSocketi juurdepääsuks. Jäta tühjaks, et salvestatud token alles jääks.',
       existingToken: value => `Olemasolev token ${value}`,
       savedToken: 'salvestatud',
       pasteSessionToken: 'Kleebi sessioonitoken',
@@ -652,7 +678,8 @@ export const et = defineLocale({
       applyFailed: 'Värava seadeid ei saanud rakendada',
       saveFailed: 'Värava seadeid ei saanud salvestada',
       sshTitle: 'Ühenda SSH kaudu',
-      sshDesc: 'OpenAmer käivitatakse kaugmasinas SSH kaudu ja tunnelitakse sellesse rakendusse — midagi ei pea ise käivitama ega avalikustama. Nõuab töötavat võtmepõhist SSH-juurdepääsu hostile.',
+      sshDesc:
+        'OpenAmer käivitatakse kaugmasinas SSH kaudu ja tunnelitakse sellesse rakendusse — midagi ei pea ise käivitama ega avalikustama. Nõuab töötavat võtmepõhist SSH-juurdepääsu hostile.',
       sshTrustHint: 'Esimene esitatud hostivõti usaldatakse ja kinnitatakse; hilisemad muudatused lükatakse tagasi.',
       sshHostTitle: 'Server',
       sshHostDesc: 'user@host või Host-alias failist ~/.ssh/config.',
@@ -676,18 +703,22 @@ export const et = defineLocale({
       sshReachable: (host, platform) => `Kättesaadav: ${host} (${platform}) — OpenAmer leitud`,
       sshIncompleteHost: 'Sisesta enne ühendamist SSH-host.',
       sshErrUnreachable: 'SSH kaudu ei õnnestunud selle hostini jõuda. Kontrolli hosti, porti ja võrku.',
-      sshErrAuth: 'SSH autentimine ebaõnnestus. Laadi oma võti ssh-agenti (ssh-add) või määra ~/.ssh/config failis IdentityFile — OpenAmer käivitab ssh-d mitteinteraktiivselt.',
-      sshErrHostKey: 'Hosti võti on pärast viimast ühendust MUUTUNUD. Kontrolli, kas see on ootuspärane, seejärel käivita ssh-keygen -R <host> ja ühenda uuesti.',
-      sshErrNotInstalled: 'OpenAmer ei ole kaughostis installitud. Installi see sinna (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) või määra OpenAmeri tee.',
-      sshErrPlatform: 'Toetamata kaugplatvorm. OpenAmeri töölaua-SSH režiim toetab Linuxi, macOS-i ja Windowsi kaughoste.',
+      sshErrAuth:
+        'SSH autentimine ebaõnnestus. Laadi oma võti ssh-agenti (ssh-add) või määra ~/.ssh/config failis IdentityFile — OpenAmer käivitab ssh-d mitteinteraktiivselt.',
+      sshErrHostKey:
+        'Hosti võti on pärast viimast ühendust MUUTUNUD. Kontrolli, kas see on ootuspärane, seejärel käivita ssh-keygen -R <host> ja ühenda uuesti.',
+      sshErrNotInstalled:
+        'OpenAmer ei ole kaughostis installitud. Installi see sinna (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) või määra OpenAmeri tee.',
+      sshErrPlatform:
+        'Toetamata kaugplatvorm. OpenAmeri töölaua-SSH režiim toetab Linuxi, macOS-i ja Windowsi kaughoste.',
       sshErrTimeout: 'SSH-ühendus aegus. Host võib olla kättesaamatu või unerežiimis.',
       sshErrUpdateRequired: 'Enne töölaua-SSH-ga ühendamist uuenda OpenAmerit kaughostis.',
-      sshErrUnknown: 'SSH-ühendus ebaõnnestus.',
+      sshErrUnknown: 'SSH-ühendus ebaõnnestus.'
     },
     keys: {
       loading: 'Laadin API-võtmeid ja mandaate...',
       failedLoad: 'API-võtmete laadimine ebaõnnestus',
-      empty: 'Selles kategoorias pole veel midagi seadistatud.',
+      empty: 'Selles kategoorias pole veel midagi seadistatud.'
     },
     mcp: {
       loading: 'MCP-serverite laadimine...',
@@ -739,7 +770,8 @@ export const et = defineLocale({
       catalogInstallFailed: name => `${name} paigaldamine ebaõnnestus`,
       catalogEnvPrompt: name => `${name} vajab tunnusandmeid`,
       catalogEnvRequired: 'Täitke enne paigaldamist nõutud väärtused.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} lubatud`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} lubatud`,
       statusConnecting: 'Ühendamine…',
       statusNeedsAuth: 'Vajab autentimist',
       statusError: 'Viga',
@@ -752,7 +784,7 @@ export const et = defineLocale({
       unsavedConnect: 'Salvestamata — ühendamiseks salvesta mcp.json.',
       enableTool: tool => `Luba ${tool}`,
       disableTool: tool => `Keela ${tool}`,
-      noOutput: 'Väljundit veel pole.',
+      noOutput: 'Väljundit veel pole.'
     },
     model: {
       loading: 'Mudeli konfiguratsiooni laadimine...',
@@ -773,46 +805,47 @@ export const et = defineLocale({
       providerDefault: '(pakkuja vaikeväärtus)',
       fallbackAdd: 'Lisa varumudel',
       fallbackEmpty: 'Varumudeleid pole — vaikemudelit kasutatakse, kui see just ei ebaõnnestu.',
-      notInCatalog: "ei ole selle pakkuja mudeliloendis — kutsed võivad minna varumudelile.",
+      notInCatalog: 'ei ole selle pakkuja mudeliloendis — kutsed võivad minna varumudelile.',
       tasks: {
         vision: {
           label: 'Visioon',
-          hint: 'Pildianalüüs',
+          hint: 'Pildianalüüs'
         },
         web_extract: {
           label: 'Veebi väljavõte',
-          hint: 'Lehe kokkuvõte',
+          hint: 'Lehe kokkuvõte'
         },
         compression: {
           label: 'Pakkimine',
-          hint: 'Konteksti tihendamine',
+          hint: 'Konteksti tihendamine'
         },
         skills_hub: {
           label: 'Oskuste keskus',
-          hint: 'Oskuste otsing',
+          hint: 'Oskuste otsing'
         },
         approval: {
           label: 'Kinnitus',
-          hint: 'Nutikas automaatne kinnitus',
+          hint: 'Nutikas automaatne kinnitus'
         },
         mcp: {
           label: 'MCP',
-          hint: 'MCP tööriistade suunamine',
+          hint: 'MCP tööriistade suunamine'
         },
         title_generation: {
           label: 'Pealkirjade loomine',
-          hint: 'Sessioonide pealkirjad',
+          hint: 'Sessioonide pealkirjad'
         },
         curator: {
           label: 'Kuraator',
-          hint: 'Oskuste kasutuse ülevaade',
-        },
-      },
+          hint: 'Oskuste kasutuse ülevaade'
+        }
+      }
     },
     providers: {
       connectAccount: 'Ühenda konto',
       haveApiKey: 'Kas teil on hoopis API võti?',
-      intro: 'Logi sisse tellimusega — API võtit pole vaja kopeerida. OpenAmer käivitab brauseris sisselogimise sinu eest, otse rakenduses.',
+      intro:
+        'Logi sisse tellimusega — API võtit pole vaja kopeerida. OpenAmer käivitab brauseris sisselogimise sinu eest, otse rakenduses.',
       connected: 'Ühendatud',
       collapse: 'Ahenda',
       connectAnother: 'Ühenda veel teenusepakkuja',
@@ -822,7 +855,8 @@ export const et = defineLocale({
       removeConfirm: provider => `Eemalda ${provider}?`,
       removeExternalGeneric: provider => `${provider} hallatakse eraldi CLI kaudu — eemalda see sealt.`,
       removeKeyManaged: provider => `${provider} on seadistatud API võtme abil. Eemalda see API võtmetest.`,
-      removeTerminalConfirm: (provider, command) => `Ühenda lahti ${provider}? See käivitab terminalis käsu "${command}", et eemaldada volimendus.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Ühenda lahti ${provider}? See käivitab terminalis käsu "${command}", et eemaldada volimendus.`,
       removeTerminalRunning: provider => `Käivitatakse ${provider} lahtiühendamine terminalis…`,
       removedTitle: 'Konto eemaldatud',
       removedMessage: provider => `${provider} eemaldati.`,
@@ -832,14 +866,15 @@ export const et = defineLocale({
       noKeysMatch: 'Otsinguga ei ühti ükski teenusepakkuj.',
       localEndpoint: {
         title: 'Kohalik / kohandatud lõpp-punkt',
-        description: 'Suunake OpenAmer mis tahes OpenAI-ga ühilduva lõpp-punkti (Zyphra, vLLM, llama.cpp, Ollama jne).',
+        description: 'Suunake OpenAmer mis tahes OpenAI-ga ühilduva lõpp-punkti (Zyphra, vLLM, llama.cpp, Ollama jne).'
       },
-      loading: 'Teenusepakkujate laadimine...',
+      loading: 'Teenusepakkujate laadimine...'
     },
     sessions: {
       loading: 'Arhiveeritud sessioonide laadimine…',
       archivedTitle: 'Arhiveeritud sessioonid',
-      archivedIntro: 'Arhiveeritud vestlused on külgribalt peidetud, kuid nende kõik sõnumid säilivad. Arhiveerimiseks klõpsake külgribal olevat vestlust Ctrl/⌘-klõpsuga.',
+      archivedIntro:
+        'Arhiveeritud vestlused on külgribalt peidetud, kuid nende kõik sõnumid säilivad. Arhiveerimiseks klõpsake külgribal olevat vestlust Ctrl/⌘-klõpsuga.',
       emptyArchivedTitle: 'Midagi pole arhiveeritud',
       emptyArchivedDesc: 'Arhiveerige vestlus, et see siin peidetud oleks.',
       unarchive: 'Taasta arhiivist',
@@ -848,12 +883,14 @@ export const et = defineLocale({
       restored: 'Taastatud',
       deleteConfirm: title => `Kustutada "${title}" jäädavalt? Seda ei saa tagasi võtta.`,
       autoArchiveTitle: 'Vananenud vestluste automaatne arhiveerimine',
-      autoArchiveDesc: "Arhiveerige automaatselt vestlused, mida te pole piksti puudutanud. Kleitud vestlusi ei arhiveerita ja midagi ei kustutata — arhiveeritud vestlused liiguvad lihtsalt siia.",
+      autoArchiveDesc:
+        'Arhiveerige automaatselt vestlused, mida te pole piksti puudutanud. Kleitud vestlusi ei arhiveerita ja midagi ei kustutata — arhiveeritud vestlused liiguvad lihtsalt siia.',
       autoArchiveDaysLabel: 'Arhiveeri pärast',
       autoArchiveDaysUnit: 'päeva tegevusetust',
       autoArchiveFailed: 'Automaatarhiveerimise uuendamine ebaõnnestus',
       defaultDirTitle: 'Projekti vaikekataloog',
-      defaultDirDesc: 'Uued seansid algavad selles kaustas, kui te ei vali teist. Jätke see määramata, et kasutada kodukataloogi.',
+      defaultDirDesc:
+        'Uued seansid algavad selles kaustas, kui te ei vali teist. Jätke see määramata, et kasutada kodukataloogi.',
       defaultDirUpdated: 'Projekti vaikekataloog uuendatud — jõustumiseks alustage uut vestlust (Ctrl/⌘+N)',
       defaultsTo: label => `Vaikeväärtus on ${label}.`,
       change: 'Muuda',
@@ -864,7 +901,7 @@ export const et = defineLocale({
       unarchiveFailed: 'Arhiivist eemaldamine ebaõnnestus',
       deleteFailed: 'Kustutamine ebaõnnestus',
       updateDirFailed: 'Vaikekataloogi uuendamine ebaõnnestus',
-      clearDirFailed: 'Vaikekataloogi tühjendamine ebaõnnestus',
+      clearDirFailed: 'Vaikekataloogi tühjendamine ebaõnnestus'
     },
     toolsets: {
       loadingConfig: 'Konfiguratsiooni laadimine',
@@ -882,20 +919,23 @@ export const et = defineLocale({
       selectedMessage: provider => `${provider} on nüüd aktiivne.`,
       failedSelect: provider => `${provider} valimine ebaõnnestus`,
       failedLoad: 'Tööriistade seadistuse laadimine ebaõnnestus',
-      noProviderOptions: 'Sellel tööriistakomplektil pole pakkuja valikuid — lubage see ja see töötab teie praeguse seadistusega.',
+      noProviderOptions:
+        'Sellel tööriistakomplektil pole pakkuja valikuid — lubage see ja see töötab teie praeguse seadistusega.',
       noProviders: 'Selle tööriistakomplekti jaoks pole praegu ühtegi pakkujat saadaval.',
       ready: 'Valmis',
       needsSignIn: 'Vajab sisselogimist',
       needsSetup: 'Vajab seadistamist',
       openamerIncluded: 'Sisaldub OpenAmeri tellimusega — aktiveerimiseks logige sisse OpenAmer Portalis.',
       openamerAuthNeededTitle: 'Logige sisse OpenAmer Portalis',
-      openamerAuthNeededMessage: provider => `${provider} on salvestatud, kuid ei aktiveeru enne, kui logite sisse OpenAmer Portalis.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} on salvestatud, kuid ei aktiveeru enne, kui logite sisse OpenAmer Portalis.`,
       openamerAuthSignIn: 'Logi sisse',
       openamerAuthDoneTitle: 'OpenAmer Portal ühendatud',
       openamerAuthDoneMessage: 'Teie tellimuse taustarakendused on nüüd aktiivsed.',
       openamerAuthFailed: 'OpenAmer Portalisse sisselogimine ei lõppenud',
       noApiKeyRequired: 'API-võtit pole vaja.',
-      postSetupHint: step => `See taustarakendus vajab ühekordset paigaldust (${step}). Töötab selles arvutis — võib võtta paar minutit.`,
+      postSetupHint: step =>
+        `See taustarakendus vajab ühekordset paigaldust (${step}). Töötab selles arvutis — võib võtta paar minutit.`,
       postSetupInstalledHint: 'Paigaldatud. Käivitage seadistamine uuesti ainult siis, kui midagi on katki.',
       postSetupRun: 'Käivita seadistamine',
       postSetupRerun: 'Käivita seadistamine uuesti',
@@ -936,9 +976,9 @@ export const et = defineLocale({
         selectedTitle: 'Taustarakendus valitud',
         selectedMessage: backend => `Terminalikäsud käivitatakse nüüd ${backend} kaudu. Kehtib uutele sessioonidele.`,
         failedSelect: backend => `${backend} valimine ebaõnnestus`,
-        needsSetupHint: 'Saad selle taustarakenduse kohe valida — käsud ebaõnnestuvad, kuni seadistamine on lõpetatud.',
-      },
-    },
+        needsSetupHint: 'Saad selle taustarakenduse kohe valida — käsud ebaõnnestuvad, kuni seadistamine on lõpetatud.'
+      }
+    }
   },
   skills: {
     tabSkills: 'Oskused',
@@ -958,7 +998,8 @@ export const et = defineLocale({
     noDescription: 'Kirjeldus puudub.',
     configured: 'Seadistatud',
     needsKeys: 'Vajab võtmeid',
-    visionModelHint: 'Vision kasutab sinu abimudeli konfiguratsiooni — pilditõimeline mudel valitakse seal, mitte siin teenusepakkaja kohta.',
+    visionModelHint:
+      'Vision kasutab sinu abimudeli konfiguratsiooni — pilditõimeline mudel valitakse seal, mitte siin teenusepakkaja kohta.',
     visionModelLink: 'Valige nägemismudel Seaded → Mudelid',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} tööriistekompletid aktiveeritud`,
     configureToolset: label => `Konfigureeri ${label}`,
@@ -984,7 +1025,7 @@ export const et = defineLocale({
     provenance: {
       agent: 'Õpitud',
       bundled: 'Sisseehitatud',
-      hub: 'Keskus',
+      hub: 'Keskus'
     },
     emptyNoneFound: noun => `${noun} ei leitud`,
     emptyNothingMatches: query => `Midagi ei vasta „${query}“.`,
@@ -1002,9 +1043,11 @@ export const et = defineLocale({
       connectingHubs: 'Ühendatakse oskuste keskustega...',
       connectedHubs: 'Ühendatud keskused:',
       featured: 'Esiletõstetud oskused',
-      landingHint: 'Otsi keskusest, et vaadata installitavaid oskusi ametlikust indeksist, GitHubist ja kogukonna allikatest.',
+      landingHint:
+        'Otsi keskusest, et vaadata installitavaid oskusi ametlikust indeksist, GitHubist ja kogukonna allikatest.',
       noResults: 'Keskuses ei leitud sobivaid oskuseid.',
-      resultCount: (count, ms) => `${count} tulemus${count === 1 ? 'tulemus' : 'tulemused'}${ms !== null ? ` in ${ms}ms` : ''}`,
+      resultCount: (count, ms) =>
+        `${count} tulemus${count === 1 ? 'tulemus' : 'tulemused'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Aegunud: ${sources}`,
       installed: 'Paigaldatud',
       install: 'Paigalda',
@@ -1022,7 +1065,7 @@ export const et = defineLocale({
       trust: {
         builtin: 'sisseehitatud',
         trusted: 'usaldusväärne',
-        community: 'kogukond',
+        community: 'kogukond'
       },
       verdictSafe: 'Ohutu',
       verdictCaution: 'Ettevaatust',
@@ -1040,8 +1083,8 @@ export const et = defineLocale({
       loadFailed: 'Oskuste keskuse laadimine ebaõnnestus',
       previewFailed: 'Oskuste eelvaate laadimine ebaõnnestus',
       scanFailed: 'Turvaskaneerimine ebaõnnestus',
-      searchFailed: 'Keskuse otsing ebaõnnestus',
-    },
+      searchFailed: 'Keskuse otsing ebaõnnestus'
+    }
   },
   starmap: {
     title: 'Mälugraaf',
@@ -1058,7 +1101,8 @@ export const et = defineLocale({
     emptyTitle: 'Veel pole midagi õpitud',
     emptyDesc: 'Kui OpenAmer loob sinu töö jaoks oskusi ja mälestusi, ilmuvad need siia.',
     share: 'Jaga kaarti',
-    shareHint: 'Kopeeri kood selle kaardi jagamiseks või kleebi kood laadimiseks. See sisaldab ainult paigutust, mitte sinu mälu- ega oskuseteksti.',
+    shareHint:
+      'Kopeeri kood selle kaardi jagamiseks või kleebi kood laadimiseks. See sisaldab ainult paigutust, mitte sinu mälu- ega oskuseteksti.',
     shareTitle: 'Impordi / ekspordi kaart',
     sharePlaceholder: 'Kleebi kaardikood…',
     copy: 'Kopeeri kaardikood',
@@ -1068,7 +1112,7 @@ export const et = defineLocale({
     importEmpty: 'Kleebi kaardikood selle laadimiseks.',
     importSuccess: nodes => `Laaditud kaart koos ${nodes} ${nodes === 1 ? 'sõlm' : 'sõlmed'}.`,
     importedBadge: 'imporditud kaart',
-    resetToMine: 'Tagasi minu kaardile',
+    resetToMine: 'Tagasi minu kaardile'
   },
   agents: {
     close: 'Sulge agendid',
@@ -1098,7 +1142,7 @@ export const et = defineLocale({
     ageDays: days => `${days}p tagasi`,
     durationSeconds: seconds => `${seconds} s`,
     durationMinutes: (minutes, seconds) => `${minutes} min ${seconds} s`,
-    tokens: value => `${value} tokenit`,
+    tokens: value => `${value} tokenit`
   },
   commandCenter: {
     close: 'Sulge käsukeskus',
@@ -1120,7 +1164,8 @@ export const et = defineLocale({
       placeholder: 'Otsi lemmikloomi…',
       loading: 'Laadin petdex galeriid…',
       error: 'Ei õnnestunud jõuda petdex galeriini.',
-      staleBackend: 'Lemmikloomade kasutamiseks taaskäivita OpenAmer — taustaprogramm on sellest funktsioonist varasem.',
+      staleBackend:
+        'Lemmikloomade kasutamiseks taaskäivita OpenAmer — taustaprogramm on sellest funktsioonist varasem.',
       empty: 'Sobivaid lemmikloomi pole.',
       turnOff: 'Lülita välja',
       turnOn: 'Lülita sisse',
@@ -1128,7 +1173,7 @@ export const et = defineLocale({
       generatedTag: 'Genereeritud',
       adoptFailed: 'Seda lemmiklooma ei õnnestunud adopteerida.',
       toggleFailed: 'Lemmiklooma ei õnnestunud ümber lülitada.',
-      noneAvailable: 'Ühtegi lemmiklooma pole saadaval — vali allpool üks, et paigaldada.',
+      noneAvailable: 'Ühtegi lemmiklooma pole saadaval — vali allpool üks, et paigaldada.'
     },
     generatePet: {
       title: 'Genereeri lemmikloom',
@@ -1157,19 +1202,19 @@ export const et = defineLocale({
       referenceImageTooLarge: 'Viitepilt on liiga suur. Kasuta pilti, mis on alla 16 MB.',
       referenceImageInvalid: 'Seda viitepilti ei õnnestunud lugeda. Proovi PNG-, JPG-, WebP- või GIF-faili.',
       adopt: 'Võta kasutusele',
-      startOver: 'Alusta uuesti',
+      startOver: 'Alusta uuesti'
     },
     installTheme: {
       title: 'Paigalda teema…',
       pageTitle: 'Paigalda teema',
-      placeholder: 'Otsi VS Code Marketplace\'ist...',
-      loading: 'Marketplace\'i otsimine...',
-      error: 'Marketplace\'iga ei õnnestunud ühendust saada.',
+      placeholder: "Otsi VS Code Marketplace'ist...",
+      loading: "Marketplace'i otsimine...",
+      error: "Marketplace'iga ei õnnestunud ühendust saada.",
       empty: 'Sobivaid teemasid ei leitud.',
       install: 'Paigalda',
       installing: 'Paigaldamine...',
       installed: 'Paigaldatud',
-      installs: count => `${count} paigaldust`,
+      installs: count => `${count} paigaldust`
     },
     settingsFields: 'Seadete väljad',
     mcpServers: 'MCP serverid',
@@ -1178,49 +1223,49 @@ export const et = defineLocale({
       maintenance: 'Hooldus',
       sessions: 'Seansid',
       system: 'Süsteem',
-      usage: 'Kasutus',
+      usage: 'Kasutus'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostika, varukoopiad, kuraator ja mäluandmed',
       sessions: 'Otsi ja halda sessioone',
       system: 'Olek, logid ja süsteemitoimingud',
-      usage: 'Tokenite, kulude ja oskuste aktiivsus ajas',
+      usage: 'Tokenite, kulude ja oskuste aktiivsus ajas'
     },
     nav: {
       newChat: {
         title: 'Uus sessioon',
-        detail: 'Alusta uut sessiooni',
+        detail: 'Alusta uut sessiooni'
       },
       settings: {
         title: 'Seaded',
-        detail: 'Seadista OpenAmeri töölauarakendus',
+        detail: 'Seadista OpenAmeri töölauarakendus'
       },
       skills: {
         title: 'Võimalused',
-        detail: 'Oskused, tööriistad ja MCP-serverid',
+        detail: 'Oskused, tööriistad ja MCP-serverid'
       },
       messaging: {
         title: 'Sõnumside',
-        detail: 'Seadista Telegram, Slack, Discord ja muu',
+        detail: 'Seadista Telegram, Slack, Discord ja muu'
       },
       artifacts: {
         title: 'Artefaktid',
-        detail: 'Sirvi loodud väljundeid',
-      },
+        detail: 'Sirvi loodud väljundeid'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Sessioonide paneel',
-        detail: 'Otsi, kinnita ja halda sessioone',
+        detail: 'Otsi, kinnita ja halda sessioone'
       },
       system: {
         title: 'Süsteemipaneel',
-        detail: 'Lüüsi olek, logid, taaskäivitus/värskendus',
+        detail: 'Lüüsi olek, logid, taaskäivitus/värskendus'
       },
       usage: {
         title: 'Kasutusepaneel',
-        detail: 'Tokenite, kulude ja oskuste aktiivsus',
-      },
+        detail: 'Tokenite, kulude ja oskuste aktiivsus'
+      }
     },
     providerNavigate: 'Navigeeri',
     providerSessions: 'Sessioonid',
@@ -1275,7 +1320,8 @@ export const et = defineLocale({
       backup: 'Loo varukoopia',
       backupDesc: 'Pakenda seadistus, mälud, oskused ja sessioonid ZIP-i',
       debugShare: 'Jaga silumisinfot',
-      debugShareDesc: 'Laadi üles redigeeritud raport + logid, saa jagatavad lingid (kustub automaatselt 6 tunni pärast)',
+      debugShareDesc:
+        'Laadi üles redigeeritud raport + logid, saa jagatavad lingid (kustub automaatselt 6 tunni pärast)',
       debugShareRunning: 'Laadin silumisraportit üles...',
       debugShareLinks: 'Jagamislingid',
       debugShareFailed: 'Jagamise tõrkeotsing ebaõnnestus',
@@ -1308,8 +1354,8 @@ export const et = defineLocale({
       actionStarted: name => `${name} käivitus — logi jälgimine...`,
       actionFailed: name => `${name} käivitamine ebaõnnestus`,
       running: 'Töötab...',
-      viewLog: 'Toimingute logi',
-    },
+      viewLog: 'Toimingute logi'
+    }
   },
   messaging: {
     search: 'Otsi sõnumside platvorme...',
@@ -1324,7 +1370,7 @@ export const et = defineLocale({
       not_configured: 'Vajab seadistamist',
       pending_restart: 'Vajab taaskäivitust',
       retrying: 'Proovin uuesti',
-      startup_failed: 'Käivitamine ebaõnnestus',
+      startup_failed: 'Käivitamine ebaõnnestus'
     },
     unknown: 'Teadmata',
     hintPendingRestart: 'Selle muudatuse rakendamiseks taaskäivitage lüüs olekuribalt.',
@@ -1337,7 +1383,8 @@ export const et = defineLocale({
     required: 'Nõutud',
     recommended: 'Soovitatav',
     advanced: count => `Täpsemad (${count})`,
-    noTokenNeeded: 'See platvorm ei vaja siin tokenit. Järgi ülalolevat seadistusjuhendit ja luba see seejärel allpool.',
+    noTokenNeeded:
+      'See platvorm ei vaja siin tokenit. Järgi ülalolevat seadistusjuhendit ja luba see seejärel allpool.',
     enabled: 'Lubatud',
     disabled: 'Keelatud',
     unsavedChanges: 'Salvestamata muudatused',
@@ -1363,127 +1410,126 @@ export const et = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Boti märgis',
         help: 'Loo bot @BotFatheri abil ja kleebi seejärel selle antud token.',
-        placeholder: 'Kleebi Telegrami boti token',
+        placeholder: 'Kleebi Telegrami boti token'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Lubatud Telegrami kasutaja ID-d',
-        help: 'Soovitatav. Komaga eraldatud numbrilised ID-d @userinfobotist. Ilma selleta saab igaüks sinu botile DM-i saata.',
+        help: 'Soovitatav. Komaga eraldatud numbrilised ID-d @userinfobotist. Ilma selleta saab igaüks sinu botile DM-i saata.'
       },
       TELEGRAM_PROXY: {
         label: 'Puhverserveri URL',
-        help: 'Vajalik ainult võrkudes, kus Telegram on blokeeritud.',
+        help: 'Vajalik ainult võrkudes, kus Telegram on blokeeritud.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Boti märgis',
-        help: 'Loo Discord Developer Portal\'is rakendus, lisa bot ja kleebi seejärel selle token.',
+        help: "Loo Discord Developer Portal'is rakendus, lisa bot ja kleebi seejärel selle token."
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Lubatud Discordi kasutaja ID-d',
-        help: 'Soovitatav. Komaga eraldatud Discordi kasutaja ID-d.',
+        help: 'Soovitatav. Komaga eraldatud Discordi kasutaja ID-d.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Vastuse stiil',
-        help: 'esimene, kõik või väljas.',
+        help: 'esimene, kõik või väljas.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Luba kõigil Discordi kasutajatel',
-        help: 'Ainult arenduseks. Kui true, võib igaüks botile DM-i saata ilma lubatud nimekirjata.',
+        help: 'Ainult arenduseks. Kui true, võib igaüks botile DM-i saata ilma lubatud nimekirjata.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Kodukanali ID',
-        help: 'Kanal, kuhu bot saadab proaktiivseid sõnumeid (cron-väljund, meeldetuletused).',
+        help: 'Kanal, kuhu bot saadab proaktiivseid sõnumeid (cron-väljund, meeldetuletused).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Kodukanali nimi',
-        help: 'Kodukanali kuvatav nimi logides ja olekuväljundis.',
+        help: 'Kodukanali kuvatav nimi logides ja olekuväljundis.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
-        label: 'Luba kõigil iMessage\'i kasutajatel',
-        help: 'Kui true, jäta BlueBubblesi lubatud nimekiri vahele.',
+        label: "Luba kõigil iMessage'i kasutajatel",
+        help: 'Kui true, jäta BlueBubblesi lubatud nimekiri vahele.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Luba kõigil Mattermosti kasutajatel',
+        label: 'Luba kõigil Mattermosti kasutajatel'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Kodukanal',
+        label: 'Kodukanal'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Luba kõigil QQ kasutajatel',
+        label: 'Luba kõigil QQ kasutajatel'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ kodukanal',
-        help: 'Vaikekanal või -grupp croni saatmiseks.',
+        help: 'Vaikekanal või -grupp croni saatmiseks.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ kodukanali nimi',
+        label: 'QQ kodukanali nimi'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slacki boti märgis',
         help: 'Kasuta pärast Slacki rakenduse installimist boti tokenit jaotisest OAuth & Permissions.',
-        placeholder: 'Kleebi Slacki boti token',
+        placeholder: 'Kleebi Slacki boti token'
       },
       SLACK_APP_TOKEN: {
         label: 'Slacki rakenduse token',
-        help: 'Kasuta Socket Mode\'i jaoks nõutavat rakenduse taseme tokenit.',
-        placeholder: 'Kleebi Slacki rakenduse token',
+        help: "Kasuta Socket Mode'i jaoks nõutavat rakenduse taseme tokenit.",
+        placeholder: 'Kleebi Slacki rakenduse token'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Lubatud Slacki kasutaja-ID-d',
-        help: 'Soovitatav. Slacki kasutaja-ID-d komadega eraldatult.',
+        help: 'Soovitatav. Slacki kasutaja-ID-d komadega eraldatult.'
       },
       MATTERMOST_URL: {
         label: 'Serveri URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Boti märgis',
+        label: 'Boti märgis'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Lubatud kasutaja-ID-d',
-        help: 'Soovitatav. Mattermosti kasutaja-ID-d komadega eraldatult.',
+        help: 'Soovitatav. Mattermosti kasutaja-ID-d komadega eraldatult.'
       },
       MATRIX_HOMESERVER: {
         label: 'Koduserveri URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Juurdepääsutoken',
+        label: 'Juurdepääsutoken'
       },
       MATRIX_USER_ID: {
         label: 'Boti kasutaja-ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Lubatud Matrixi kasutaja-ID-d',
-        help: 'Soovitatav. Kasutaja-ID-d komadega eraldatult vormingus @user:server.',
+        help: 'Soovitatav. Kasutaja-ID-d komadega eraldatult vormingus @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signali silla URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'Töötava signal-cli REST-silla URL.',
+        help: 'Töötava signal-cli REST-silla URL.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Telefoninumber',
-        help: 'Sinu signal-cli sillaga registreeritud number.',
+        help: 'Sinu signal-cli sillaga registreeritud number.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Lubatud Signali kasutajad',
-        help: 'Soovitatav. Komadega eraldatud Signali identifikaatorid.',
+        help: 'Soovitatav. Komadega eraldatud Signali identifikaatorid.'
       },
       WHATSAPP_ENABLED: {
         label: 'Luba WhatsAppi sild',
-        help: 'Määratakse automaatselt alloleva lülitiga. Ära muuda, kui sa ei tea, et seda vajad.',
+        help: 'Määratakse automaatselt alloleva lülitiga. Ära muuda, kui sa ei tea, et seda vajad.'
       },
       WHATSAPP_MODE: {
-        label: 'Silla režiim',
+        label: 'Silla režiim'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Lubatud WhatsAppi kasutajad',
-        help: 'Soovitatav. Komadega eraldatud telefoninumbrid või WhatsAppi ID-d.',
-      },
+        help: 'Soovitatav. Komadega eraldatud telefoninumbrid või WhatsAppi ID-d.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Otsi veebikonksusid...',
@@ -1493,7 +1539,8 @@ export const et = defineLocale({
     hint: 'Tellimuste muudatused laaditakse kuumalt uuesti, kui vastuvõtja töötab. Keelatud tellimused lükkavad sissetulevad sündmused tagasi.',
     empty: 'Veebikonksu tellimusi veel pole.',
     disabledTitle: 'Veebikonksu vastuvõtja on keelatud',
-    disabledBody: 'Veebikonksud on omaette lüüsplatvorm. Luba need siin, et vastu võtta sissetulevaid HTTP-sündmusi; vestluskanalid on vajalikud ainult siis, kui tellimus edastab Telegrami, Discordi, Slacki või muusse kanalisse.',
+    disabledBody:
+      'Veebikonksud on omaette lüüsplatvorm. Luba need siin, et vastu võtta sissetulevaid HTTP-sündmusi; vestluskanalid on vajalikud ainult siis, kui tellimus edastab Telegrami, Discordi, Slacki või muusse kanalisse.',
     enable: 'Luba veebikonksud',
     enabling: 'Lubamine...',
     enabled: (name: string) => `Lubatud: "${name}"`,
@@ -1546,8 +1593,8 @@ export const et = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'E-post',
-      github_comment: 'GitHubi kommentaar',
-    },
+      github_comment: 'GitHubi kommentaar'
+    }
   },
   profiles: {
     close: 'Sulge profiilid',
@@ -1625,7 +1672,7 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     failedLoadSoul: 'SOUL.md laadimine ebaõnnestus',
     failedSaveSoul: 'SOUL.md salvestamine ebaõnnestus',
     failedCreate: 'Profiili loomine ebaõnnestus',
-    failedRename: 'Profiili ümbernimetamine ebaõnnestus',
+    failedRename: 'Profiili ümbernimetamine ebaõnnestus'
   },
   cron: {
     close: 'Sulge cron',
@@ -1640,14 +1687,14 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       paused: 'peatatud',
       disabled: 'välja lülitatud',
       error: 'viga',
-      completed: 'lõpetatud',
+      completed: 'lõpetatud'
     },
     deliveryLabels: {
       local: 'See arvuti',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'E-post',
+      email: 'E-post'
     },
     scheduleLabels: {
       daily: 'Igal päeval',
@@ -1656,7 +1703,7 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       monthly: 'Igal kuul',
       hourly: 'Igal tunnil',
       'every-15-minutes': 'Iga 15 minutit',
-      custom: 'Kohandatud',
+      custom: 'Kohandatud'
     },
     scheduleHints: {
       daily: 'Igal päeval kell 9:00',
@@ -1665,7 +1712,7 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       monthly: 'Iga kuu esimesel päeval kell 9:00',
       hourly: 'Iga tunni alguses',
       'every-15-minutes': 'Iga 15 minutit',
-      custom: 'Cron-sintaks või loomulik keel',
+      custom: 'Cron-sintaks või loomulik keel'
     },
     days: {
       '0': 'Pühapäev',
@@ -1675,7 +1722,7 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       '4': 'Neljapäev',
       '5': 'Reede',
       '6': 'Laupäev',
-      '7': 'Pühapäev',
+      '7': 'Pühapäev'
     },
     dayFallback: value => `päev ${value}`,
     everyDayAt: time => `Iga päev kell ${time}`,
@@ -1685,7 +1732,8 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     topOfHour: 'Iga tunni alguses',
     everyHourAt: minute => `Iga tund kell :${minute}`,
     newCron: 'Uus cron',
-    emptyDescNew: 'Ajasta viip käivituma cron-avaldise järgi. OpenAmer käivitab selle ja toimetab tulemused sinu valitud sihtkohta.',
+    emptyDescNew:
+      'Ajasta viip käivituma cron-avaldise järgi. OpenAmer käivitab selle ja toimetab tulemused sinu valitud sihtkohta.',
     emptyDescSearch: 'Proovi laiemat otsingupäringut.',
     emptyTitleNew: 'Ajastatud töid veel pole',
     emptyTitleSearch: 'Vasteid pole',
@@ -1722,7 +1770,8 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     editTitle: 'Muuda cron-tööd',
     createTitle: 'Uus cron-töö',
     editDesc: 'Uuenda ajakava, viipa või tarne sihtkohta. Muudatused rakenduvad järgmisel käivitamisel.',
-    createDesc: 'Ajasta viip automaatselt käivituma. Kasuta cron-süntaksit või loomulikku väljendit nagu "iga 15 minuti järel".',
+    createDesc:
+      'Ajasta viip automaatselt käivituma. Kasuta cron-süntaksit või loomulikku väljendit nagu "iga 15 minuti järel".',
     nameLabel: 'Nimi',
     namePlaceholder: 'Hommikune ülevaade',
     promptLabel: 'Viip',
@@ -1744,7 +1793,7 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     createAction: 'Loo cron',
     tabs: {
       jobs: 'Tööd',
-      blueprints: 'Mallid',
+      blueprints: 'Mallid'
     },
     blueprints: {
       tab: 'Mallid',
@@ -1758,8 +1807,8 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       loading: 'Mallide laadimine...',
       failedLoad: 'Mallide laadimine ebaõnnestus',
       emptyTitle: 'Malle pole saadaval',
-      emptyDesc: 'Sellel backendil pole automatsioonimalle saadaval.',
-    },
+      emptyDesc: 'Sellel backendil pole automatsioonimalle saadaval.'
+    }
   },
   artifacts: {
     search: 'Otsi artefakte...',
@@ -1793,14 +1842,14 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     kindLink: 'viide',
     chat: 'Vestlus',
     copyUrl: 'Kopeeri URL',
-    copyPath: 'Kopeeri tee',
+    copyPath: 'Kopeeri tee'
   },
   sidebar: {
     nav: {
       'new-session': 'Uus sessioon',
       skills: 'Võimalused',
       messaging: 'Sõnumid',
-      artifacts: 'Artefaktid',
+      artifacts: 'Artefaktid'
     },
     searchAria: 'Otsi sessioone',
     searchPlaceholder: 'Otsi sessioone…',
@@ -1832,7 +1881,7 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       namePlaceholder: 'nt Skunkworks',
       foldersLabel: 'Kaustad',
       ideaLabel: 'Idee',
-      ideaPlaceholder: "Millest see projekt räägib? (salvestatakse faili IDEA.md)",
+      ideaPlaceholder: 'Millest see projekt räägib? (salvestatakse faili IDEA.md)',
       ideaGenerate: 'Loo idee',
       ideaGenerating: 'Genereerin…',
       ideaShuffle: 'Sega malle',
@@ -1852,7 +1901,8 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       copyPath: 'Kopeeri tee',
       removeFromSidebar: 'Peida külgribalt',
       createFailed: 'Projekti loomine ebaõnnestus',
-      staleBackend: 'Projektide loomiseks uuenda OpenAmeri taustaprogrammi — sinu taustaprogramm on sellest töölauarakendusest vanem (Seaded → Uuendused → Taustaprogramm).',
+      staleBackend:
+        'Projektide loomiseks uuenda OpenAmeri taustaprogrammi — sinu taustaprogramm on sellest töölauarakendusest vanem (Seaded → Uuendused → Taustaprogramm).',
       deleteConfirm: 'See eemaldab salvestatud projekti OpenAmerist. Failid, git-hoidlad ja tööpuud jäävad puutumata.',
       startWork: 'Uus tööpuu',
       newWorktreeTitle: 'Uus tööpuu',
@@ -1874,13 +1924,15 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       noBranches: 'Harusid ei leitud',
       removeWorktree: 'Eemalda tööpuu',
       removeWorktreeFailed: 'Tööpuu eemaldamine ebaõnnestus (kinnitamata muudatused?)',
-      removeWorktreeConfirm: 'Eemalda see gitist (kustutab tööpuu kataloogi; haru jääb alles) või peida rada külgribalt ja jäta tööpuu kettale.',
-      removeWorktreeDirty: 'Sellel tööpuul on kinnitamata muudatused. Eemalda see jõuga (hülgab need muudatused) või peida rada ja jäta see kettale.',
+      removeWorktreeConfirm:
+        'Eemalda see gitist (kustutab tööpuu kataloogi; haru jääb alles) või peida rada külgribalt ja jäta tööpuu kettale.',
+      removeWorktreeDirty:
+        'Sellel tööpuul on kinnitamata muudatused. Eemalda see jõuga (hülgab need muudatused) või peida rada ja jäta see kettale.',
       forceRemove: 'Eemalda jõuga',
       enter: label => `Ava ${label}`,
       reorder: label => `Järjesta ümber ${label}`,
       toggle: label => `Lülita ${label} sessioonid`,
-      back: 'Kõik projektid',
+      back: 'Kõik projektid'
     },
     newSessionIn: label => `Uus sessioon ${label} sees`,
     showMoreIn: (count, label) => `Näita veel ${count} jaotises ${label}`,
@@ -1918,15 +1970,15 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       ageNow: 'praegu',
       ageDay: 'p',
       ageHour: 't',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Täna varem',
       yesterday: 'Eile',
       thisWeek: 'Sel nädalal varem',
       lastWeek: 'Eelmisel nädalal',
-      thisMonth: 'Sel kuul varem',
-    },
+      thisMonth: 'Sel kuul varem'
+    }
   },
   composer: {
     message: 'Sõnum',
@@ -1937,20 +1989,20 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     newSessionPlaceholders: [
       'Mida me ehitame?',
       'Anna OpenAmerile ülesanne',
-      "Mis sul mõttes on?",
+      'Mis sul mõttes on?',
       'Kirjelda, mida vajad',
       'Millega tegeleme?',
       'Küsi ükskõik mida',
-      'Alusta eesmärgist',
+      'Alusta eesmärgist'
     ],
     followUpPlaceholders: [
       'Saada järelküsimus',
       'Lisa rohkem konteksti',
       'Täpsusta päringut',
-      "Mis järgmiseks?",
+      'Mis järgmiseks?',
       'Jätka',
       'Mine kaugemale',
-      'Kohanda või jätka',
+      'Kohanda või jätka'
     ],
     startVoice: 'Alusta häälvestlust',
     queueMessage: 'Pane sõnum järjekorda',
@@ -1986,7 +2038,7 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       '/resume': 'jätka varasemat seanssi',
       '/details': 'halda transkriptsiooni detailsustaset',
       '/copy': 'kopeeri valik või viimane assistendi sõnum',
-      '/quit': 'välju openamer',
+      '/quit': 'välju openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'viita failidele, kaustadele, URL-idele, gitile',
@@ -1996,7 +2048,7 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       'composer.sendQueued': 'saada järgmine järjekorras olev voor',
       'keybinds.openPanel': 'kõik kiirklahvid',
       'composer.cancel': 'sulge hüpikaken · tühista käivitamine',
-      'composer.history': 'vaheta hüpikakent / ajalugu',
+      'composer.history': 'vaheta hüpikakent / ajalugu'
     },
     attachUrlTitle: 'Lisa URL',
     attachUrlDesc: 'OpenAmer laadib lehe ja lisab selle käesoleva vooru kontekstiks.',
@@ -2017,7 +2069,8 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     queueResume: 'Jätka',
     queueResumeTip: 'Peatatud nupuga Peata — jätka järjekorras olevate voorude saatmist',
     queueStuckTitle: 'Järjekorras olev sõnum jäi saatmata',
-    queueStuckBody: 'Järjekorras oleva vooru saatmine ebaõnnestus korduvalt. See on endiselt järjekorras — proovi uuesti saata.',
+    queueStuckBody:
+      'Järjekorras oleva vooru saatmine ebaõnnestus korduvalt. See on endiselt järjekorras — proovi uuesti saata.',
     previewUnavailable: 'Eelvaade pole saadaval',
     previewLabel: label => `Eelvaade ${label}`,
     couldNotPreview: label => `Ei saa ${label} eelvaadata`,
@@ -2046,20 +2099,21 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     snippets: {
       codeReview: {
         label: 'Koodiülevaatus',
-        description: 'Auditeeri praegust muudatust regressioonide, välja jäänud erijuhtude ja puuduvate testide suhtes.',
-        text: 'Palun kontrolli seda vigade, regressioonide ja puuduvate testide suhtes.',
+        description:
+          'Auditeeri praegust muudatust regressioonide, välja jäänud erijuhtude ja puuduvate testide suhtes.',
+        text: 'Palun kontrolli seda vigade, regressioonide ja puuduvate testide suhtes.'
       },
       implementationPlan: {
         label: 'Rakenduskava',
         description: 'Kirjelda lähenemist enne koodi muutmist, et muudatuste vaade püsiks fokuseeritud.',
-        text: 'Palun tee enne koodi muutmist lühike rakenduskava.',
+        text: 'Palun tee enne koodi muutmist lühike rakenduskava.'
       },
       explainThis: {
         label: 'Selgita seda',
         description: 'Selgita, kuidas valitud kood töötab, ja viita võtmefailidele.',
-        text: 'Palun selgita, kuidas see töötab, ja osuta võtmefailidele.',
-      },
-    },
+        text: 'Palun selgita, kuidas see töötab, ja osuta võtmefailidele.'
+      }
+    }
   },
   statusStack: {
     agents: 'Agendid',
@@ -2089,8 +2143,10 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       viewAsList: 'Kuva loendina',
       revert: 'Pööra tagasi',
       revertAll: 'Pööra kõik tagasi',
-      revertConfirm: 'Kas soovid hüljata selle faili muutused ja taastada selle commititud olek? Seda ei saa tagasi pöörata.',
-      revertAllConfirm: 'Kas soovid hüljata kõik muutused ja taastada failid commititud olekusse? Seda ei saa tagasi pöörata.',
+      revertConfirm:
+        'Kas soovid hüljata selle faili muutused ja taastada selle commititud olek? Seda ei saa tagasi pöörata.',
+      revertAllConfirm:
+        'Kas soovid hüljata kõik muutused ja taastada failid commititud olekusse? Seda ei saa tagasi pöörata.',
       staged: 'Indeksis',
       noChanges: 'Muutused puuduvad',
       notRepo: 'Ei ole gitihoidla',
@@ -2107,13 +2163,14 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       openPr: 'Ava PR',
       ghMissing: 'Paigalda GitHub CLI (gh) ja logi sisse, et avada PR-e',
       agentShip: 'Palu OpenAmeril avada PR',
-      agentShipPrompt: 'Vaada praegused muudatused üle, commit\'i need selge conventional-commit sõnumiga, push\'i haru ja ava pull request.',
+      agentShipPrompt:
+        "Vaada praegused muudatused üle, commit'i need selge conventional-commit sõnumiga, push'i haru ja ava pull request.",
       newBranch: 'Uus haru',
       branchOffFrom: base => `Uus haru alates ${base}`,
       switchTo: branch => `Lülitu ${branch}`,
       switchFailed: branch => `Üleminek ${branch} ebaõnnestus`,
-      worktrees: 'Tööpuud',
-    },
+      worktrees: 'Tööpuud'
+    }
   },
   updates: {
     stages: {
@@ -2128,7 +2185,7 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       done: 'Uuendus valmis',
       manual: 'Uuenda terminalist',
       guiSkew: 'Uuenda töölaua rakendust',
-      error: 'Uuendus peatatud',
+      error: 'Uuendus peatatud'
     },
     checking: 'Otsin uuendusi…',
     checkFailedTitle: 'Uuenduste kontrollimine ebaõnnestus',
@@ -2151,12 +2208,15 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     manualBody: 'Paigaldasid OpenAmeri käsurealt, seega käivituvad värskendused seal. Kopeeri see oma terminali:',
     manualPickedUp: 'OpenAmer võtab uue versiooni kasutusele järgmisel käivitamisel.',
     guiSkewTitle: 'Värskenda töölaurea',
-    guiSkewBody: 'Taustserver värskendati, kuid seda töölaurea paketti ei muudetud. Värskenda või paigalda OpenAmeri töölaurea uuesti (oma AppImage / .deb / .rpm), et see vastaks.',
+    guiSkewBody:
+      'Taustserver värskendati, kuid seda töölaurea paketti ei muudetud. Värskenda või paigalda OpenAmeri töölaurea uuesti (oma AppImage / .deb / .rpm), et see vastaks.',
     copy: 'Kopeeri',
     copied: 'Kopeeritud',
     done: 'Valmis',
-    applyingBody: 'OpenAmeri värskendaja võtab üle omaette aknas ja avab OpenAmeri automaatselt uuesti, kui valmis. Ära ava OpenAmer ise uuesti, kui see värskendub.',
-    applyingBodyBackend: 'Kauge taustserver rakendab värskenduse ja käivitub uuesti. OpenAmer ühendub automaatselt uuesti, kui see on tagasi.',
+    applyingBody:
+      'OpenAmeri värskendaja võtab üle omaette aknas ja avab OpenAmeri automaatselt uuesti, kui valmis. Ära ava OpenAmer ise uuesti, kui see värskendub.',
+    applyingBodyBackend:
+      'Kauge taustserver rakendab värskenduse ja käivitub uuesti. OpenAmer ühendub automaatselt uuesti, kui see on tagasi.',
     applyingClose: 'See aken sulgub värskenduse ajal ning OpenAmer avaneb seejärel ise uuesti.',
     errorTitle: 'Värskendus ei lõpetnud',
     errorBody: 'Ära muretse — midagi ei läinud kaotsi. Võid kohe uuesti proovida.',
@@ -2167,12 +2227,13 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       restarting: 'Backendi taaskäivitamine uuenduse laadimiseks…',
       notAvailable: 'Selle backendi jaoks ei ole uuendust saadaval.',
       failed: 'Backendi uuendamine ebaõnnestus.',
-      noReturn: 'Backend ei tulnud tagasi võrku. Uuendus ei pruugi olla lõpetatud — kontrolli backendi hosti.',
+      noReturn: 'Backend ei tulnud tagasi võrku. Uuendus ei pruugi olla lõpetatud — kontrolli backendi hosti.'
     },
     appErrors: {
-      updateLocked: 'Uuendus tühistati: teine OpenAmeri aknas või terminal, milles töötab openamer, hoiab seda paigaldust avatuna. Sulge see ja proovi uuesti.',
-      updateFailed: 'Uuendus ei lõpetunud. Mitte murelik — midagi ei läinud kaotsi. Võid nüüd uuesti proovida.',
-    },
+      updateLocked:
+        'Uuendus tühistati: teine OpenAmeri aknas või terminal, milles töötab openamer, hoiab seda paigaldust avatuna. Sulge see ja proovi uuesti.',
+      updateFailed: 'Uuendus ei lõpetunud. Mitte murelik — midagi ei läinud kaotsi. Võid nüüd uuesti proovida.'
+    }
   },
   install: {
     stageStates: {
@@ -2180,25 +2241,30 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       running: 'Paigaldamine',
       succeeded: 'Valmis',
       skipped: 'Jäetud vahele',
-      failed: 'Ebaõnnestus',
+      failed: 'Ebaõnnestus'
     },
     oneTimeTitle: 'OpenAmer vajab ühekordset paigaldust',
-    unsupportedDesc: platform => `Automatiseeritud paigaldus esimesel käivitamisel ei ole veel ${platform} puhul saadaval. Ava terminal ja käivita allolev käsk, seejärel käivita see rakendus uuesti. Järgmistel käivitamisel see etapp vahetatakse ära.`,
+    unsupportedDesc: platform =>
+      `Automatiseeritud paigaldus esimesel käivitamisel ei ole veel ${platform} puhul saadaval. Ava terminal ja käivita allolev käsk, seejärel käivita see rakendus uuesti. Järgmistel käivitamisel see etapp vahetatakse ära.`,
     installCommand: 'Paigalduskäsk',
     copyCommand: 'Kopeeri käsk',
     viewDocs: 'Vaata paigaldusjuhiseid',
     installTo: 'Paigalduskoht',
     retryAfterRun: 'Olen käivitanud — proovi uuesti',
     setupChoiceTitle: 'Seadista OpenAmer Desktop',
-    setupChoiceDesc: 'Ühenda see rakendus juba töötava OpenAmeri lüüsiga või paigalda OpenAmer sellele arvutile lokaalselt.',
+    setupChoiceDesc:
+      'Ühenda see rakendus juba töötava OpenAmeri lüüsiga või paigalda OpenAmer sellele arvutile lokaalselt.',
     connectExistingTitle: 'Ühenda olemasoleva OpenAmeriga',
     connectExistingShort: 'Ühenda olemasolev',
-    connectExistingDesc: 'Kasuta kaugset taustserverit sessioonitokeni või brauseris sisselogimisega. Kohalik paigaldus ei käivitu.',
+    connectExistingDesc:
+      'Kasuta kaugset taustserverit sessioonitokeni või brauseris sisselogimisega. Kohalik paigaldus ei käivitu.',
     installLocalTitle: 'Paigalda OpenAmer kohapeal',
     installLocalDesc: 'Laadi OpenAmer alla, loo selle Pythoni keskkond ja käivita backend selles arvutis.',
-    localStartUnavailable: 'Kohalik installimine ei saanud alustada. Käivitage OpenAmer Desktop uuesti ja proovige veel kord.',
+    localStartUnavailable:
+      'Kohalik installimine ei saanud alustada. Käivitage OpenAmer Desktop uuesti ja proovige veel kord.',
     remoteSetupTitle: 'Ühendu olemasoleva OpenAmeriga',
-    remoteSetupDesc: 'Sisestage oma väravateeladress (URL). OpenAmer Desktop tuvastab, kas on vaja tokent või brauseri sisselogimist.',
+    remoteSetupDesc:
+      'Sisestage oma väravateeladress (URL). OpenAmer Desktop tuvastab, kas on vaja tokent või brauseri sisselogimist.',
     remoteUrlTitle: 'Väravateeladress',
     remoteUrlDesc: 'Kasutage OpenAmeri värava põhisteeladressi, lisades kaugeldasjuletakse https://',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2225,8 +2291,10 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     failedTitle: 'Paigaldamine ebaõnnestus',
     settingUpTitle: 'OpenAmer Agendi seadistamine',
     finishingTitle: 'Viimaste sammude lõpetamine',
-    failedDesc: 'Üks paigaldussammudest ebaõnnestus. Windowsis võib see juhtuda, kui töötab mõni muu OpenAmer CLI või töölaua instants. Peatage kõik töötavad OpenAmeri instantsid ja proovi uuesti. Täieliku logi leidmiseks vaadake allolevaid üksikasju või töölaua logi.',
-    activeDesc: 'See on ühekordne seadistus. OpenAmeri paigaldaja laadib sõltuvused ja seadistab teie arvuti. Järgnevad käivitused jätavad selle sammu vahele.',
+    failedDesc:
+      'Üks paigaldussammudest ebaõnnestus. Windowsis võib see juhtuda, kui töötab mõni muu OpenAmer CLI või töölaua instants. Peatage kõik töötavad OpenAmeri instantsid ja proovi uuesti. Täieliku logi leidmiseks vaadake allolevaid üksikasju või töölaua logi.',
+    activeDesc:
+      'See on ühekordne seadistus. OpenAmeri paigaldaja laadib sõltuvused ja seadistab teie arvuti. Järgnevad käivitused jätavad selle sammu vahele.',
     progress: (completed, total) => `${completed} / ${total} sammu lõpetatud`,
     currentStage: stage => ` -- nüüd: ${stage}`,
     fetchingManifest: 'Paigaldaja manifesti laadimine...',
@@ -2240,10 +2308,10 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     transcriptSaved: 'Täielik logi salvestatud asukohasse',
     copiedOutput: 'Kopeeritud!',
     copyOutput: 'Kopeeri väljund',
-    reloadRetry: 'Laadi uuesti ja proovi uuesti',
+    reloadRetry: 'Laadi uuesti ja proovi uuesti'
   },
   onboarding: {
-    headerTitle: "Seadistame OpenAmer Agendi kasutuseks",
+    headerTitle: 'Seadistame OpenAmer Agendi kasutuseks',
     headerDesc: 'Ühenda mudelipakkuja, et alustada vestlust. Enamik valikuid on ühe klõpsuga.',
     preparingInstall: 'OpenAmer lõpetab paigaldamise. Esimesel käivitamisel võtab see tavaliselt alla minuti.',
     starting: 'OpenAmer käivitub…',
@@ -2251,7 +2319,7 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     collapse: 'Ahenda',
     otherProviders: 'Muud pakkujad',
     haveApiKey: 'Mul on API-võti',
-    chooseLater: "Valin pakkuja hiljem",
+    chooseLater: 'Valin pakkuja hiljem',
     recommended: 'Soovitatav',
     connected: 'Ühendatud',
     featuredPitch: 'Üks tellimus, 300+ tipptasemel mudelit — soovitatav viis OpenAmeri käitamiseks',
@@ -2260,28 +2328,29 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     apiKeyOptions: {
       fireworks: {
         short: 'otsene mudeli-API',
-        description: 'Otsene juurdepääs Fireworks AI majutatud mudelitele.',
+        description: 'Otsene juurdepääs Fireworks AI majutatud mudelitele.'
       },
       openrouter: {
         short: 'üks võti, palju mudeleid',
-        description: 'Sadad mudeleid ühe võtme taga. Hea vaikevalik uutele paigaldustele.',
+        description: 'Sadad mudeleid ühe võtme taga. Hea vaikevalik uutele paigaldustele.'
       },
       openai: {
         short: 'GPT-klassi mudelid',
-        description: 'Otsene juurdepääs OpenAI mudelitele.',
+        description: 'Otsene juurdepääs OpenAI mudelitele.'
       },
       gemini: {
         short: 'Gemini mudelid',
-        description: 'Otsene juurdepääs Google Gemini mudelitele.',
+        description: 'Otsene juurdepääs Google Gemini mudelitele.'
       },
       xai: {
         short: 'Grok mudelid',
-        description: 'Otsene juurdepääs xAI Groki mudelitele.',
+        description: 'Otsene juurdepääs xAI Groki mudelitele.'
       },
       local: {
         short: 'isemajutatud',
-        description: 'Suuna OpenAmer kohalikule või isemajutatud OpenAI-ga ühilduvale lõpp-punktile (vLLM, llama.cpp, Ollama jne).',
-      },
+        description:
+          'Suuna OpenAmer kohalikule või isemajutatud OpenAI-ga ühilduvale lõpp-punktile (vLLM, llama.cpp, Ollama jne).'
+      }
     },
     backToSignIn: 'Tagasi sisselogimise juurde',
     getKey: 'Hangi võti',
@@ -2294,7 +2363,7 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     flowSubtitles: {
       pkce: 'Avab brauseri sisselogimiseks, seejärel jätkab siin',
       device_code: 'Avab brauseris kinnituslehe — OpenAmer ühendub automaatselt',
-      external: 'Logi üks kord terminalis sisse ja tule seejärel vestlusesse tagasi',
+      external: 'Logi üks kord terminalis sisse ja tule seejärel vestlusesse tagasi'
     },
     startingSignIn: provider => `Alustan sisselogimist: ${provider}...`,
     verifyingCode: provider => `Kontrollin sinu koodi: ${provider}...`,
@@ -2308,11 +2377,13 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     copyAuthCode: 'Kopeeri autoriseerimiskood ja kleebi see allpool.',
     pasteAuthCode: 'Kleebi autoriseerimiskood',
     reopenAuthPage: 'Ava autoriseerimisleht uuesti',
-    autoBrowser: provider => `Avasime ${provider} sinu brauseris. Autoriseeri OpenAmer seal ja ühendus luuakse automaatselt — midagi ei pea kopeerima ega kleepima.`,
+    autoBrowser: provider =>
+      `Avasime ${provider} sinu brauseris. Autoriseeri OpenAmer seal ja ühendus luuakse automaatselt — midagi ei pea kopeerima ega kleepima.`,
     reopenSignInPage: 'Ava sisselogimisleht uuesti',
     waitingAuthorize: 'Ootan sinu autoriseerimist...',
-    externalPending: provider => `${provider} logib sisse oma CLI kaudu. Käivita see käsk terminalis, seejärel tule tagasi ja vali „Olen sisse loginud”:`,
-    signedIn: "Olen sisse logitud",
+    externalPending: provider =>
+      `${provider} logib sisse oma CLI kaudu. Käivita see käsk terminalis, seejärel tule tagasi ja vali „Olen sisse loginud”:`,
+    signedIn: 'Olen sisse logitud',
     deviceCodeOpened: provider => `Avasime ${provider} sinu brauseris. Sisesta see kood sinna:`,
     reopenVerification: 'Ava kinnitusside uuesti',
     copy: 'Kopeeri',
@@ -2323,7 +2394,7 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     price: (input, output) => `${input} sisse / ${output} välja Mtoki kohta`,
     change: 'Muuda',
     startChatting: 'Alusta',
-    docs: provider => `${provider} dokumenti`,
+    docs: provider => `${provider} dokumenti`
   },
   modelPicker: {
     title: 'Vaheta mudelit',
@@ -2339,13 +2410,13 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     free: 'Tasuta',
     freeTier: 'Tasuta tasem',
     priceTitle: 'Sisendi / väljundi hind miljoni tokeni kohta',
-    wasPrice: 'oli',
+    wasPrice: 'oli'
   },
   modelVisibility: {
     title: 'Mudelid',
     search: 'Otsi mudeleid',
     noAuthenticatedProviders: 'Autenditud pakkujaid pole.',
-    addProvider: 'Lisa pakkuja…',
+    addProvider: 'Lisa pakkuja…'
   },
   shell: {
     windowControls: 'Akna juhtnupud',
@@ -2356,7 +2427,7 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       noModels: 'Mudeleid ei leitud',
       editModels: 'Muuda mudeleid…',
       refreshModels: 'Värskenda mudeleid',
-      fast: 'Kiire',
+      fast: 'Kiire'
     },
     modelOptions: {
       noOptions: 'Selle mudeli jaoks pole valikuid',
@@ -2372,7 +2443,7 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       max: 'Maks',
       ultra: 'Ultra',
       updateFailed: 'Mudeli valiku uuendamine ebaõnnestus',
-      fastFailed: 'Kiirrežiimi uuendamine ebaõnnestus',
+      fastFailed: 'Kiirrežiimi uuendamine ebaõnnestus'
     },
     gatewayMenu: {
       gateway: 'Lüüs',
@@ -2387,7 +2458,7 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       connection: label => `Ühendus: ${label}`,
       recentActivity: 'Hiljutine tegevus',
       viewAllLogs: 'Vaata kõiki logisid →',
-      messagingPlatforms: 'Sõnumiplatvormid',
+      messagingPlatforms: 'Sõnumiplatvormid'
     },
     approvalMode: {
       title: 'Kinnitusrežiim',
@@ -2397,7 +2468,7 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       smart: 'Nutikas',
       smartDescription: 'Hinda toiminguid automaatselt ja küsi vajadusel',
       off: 'Väljas',
-      offDescription: 'Käivita ilma kinnitusküsimusteta',
+      offDescription: 'Käivita ilma kinnitusküsimusteta'
     },
     statusbar: {
       unknown: 'teadmata',
@@ -2453,18 +2524,19 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
           skills: 'Oskused',
           subagent_definitions: 'Alamagentide definitsioonid',
           system_prompt: 'Süsteemi viip',
-          tool_definitions: 'Tööriistade definitsioonid',
+          tool_definitions: 'Tööriistade definitsioonid'
         },
         empty: 'Kontekstiandmeid veel pole',
         loading: 'Jaotuse laadimine…',
         percentFull: percent => `${percent}% täis`,
         title: 'Konteksti kasutus',
-        tokenSummary: (used, max) => `${used} / ${max} tokenit`,
+        tokenSummary: (used, max) => `${used} / ${max} tokenit`
       },
       openContextUsage: 'Ava konteksti kasutuse jaotus',
       session: 'Seanss',
       runtimeSessionElapsed: 'Seansi kulunud aeg',
-      yoloOn: 'YOLO sees — ohtlikud käsud kinnitatakse automaatselt. Klõpsa väljalülitamiseks. Shift+klõps lülitab selle globaalselt.',
+      yoloOn:
+        'YOLO sees — ohtlikud käsud kinnitatakse automaatselt. Klõpsa väljalülitamiseks. Shift+klõps lülitab selle globaalselt.',
       yoloOff: 'YOLO väljas — klõpsa, et ohtlikud käsud automaatselt kinnitada. Shift+klõps lülitab selle globaalselt.',
       modelNone: 'puudub',
       noModel: 'mudel puudub',
@@ -2472,8 +2544,8 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       openModelPicker: 'Ava mudelivalija',
       modelPinned: 'sinu kinnitatud; uued vestlused kasutavad seda seadete vaikeväärtuse asemel',
       modelTitle: (provider, model) => `Mudel · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Parempoolne külgriba',
@@ -2509,7 +2581,7 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     terminalNew: 'Uus terminal',
     terminalCloseOthers: 'Sulge teised',
     terminalCloseAll: 'Sulge kõik',
-    addToChat: 'Lisa vestlusse',
+    addToChat: 'Lisa vestlusse'
   },
   preview: {
     tab: 'Eelvaade',
@@ -2543,7 +2615,8 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     unsavedChanges: 'Salvestamata muudatused',
     saveFailed: message => `Salvestamine ebaõnnestus: ${message}`,
     diskChangedTitle: 'Fail on kettal muutunud',
-    diskChangedBody: 'See fail on pärast avamist muutunud. Kas kirjutada see oma versiooniga üle või loobuda muudatustest ja laadida uuesti?',
+    diskChangedBody:
+      'See fail on pärast avamist muutunud. Kas kirjutada see oma versiooniga üle või loobuda muudatustest ja laadida uuesti?',
     overwrite: 'Kirjuta üle',
     discardReload: 'Loobu ja laadi uuesti',
     console: {
@@ -2564,7 +2637,7 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       empty: 'Konsoolisõnumeid veel pole.',
       promptHeader: 'Eelvaate konsool:',
       sentTitle: 'Saadetud vestlusesse',
-      sentMessage: count => `${count} logisõnum ${count === 1 ? 'y' : 'ies'} lisatud koostajale`,
+      sentMessage: count => `${count} logisõnum ${count === 1 ? 'y' : 'ies'} lisatud koostajale`
     },
     web: {
       appFailedToBoot: 'Eelvaate rakenduse käivitamine ebaõnnestus',
@@ -2589,17 +2662,19 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       reloadingNow: 'Eelvaade laaditakse uuesti.',
       restartFailedTitle: 'Eelvaate taaskäivitamine ebaõnnestus',
       restartFailedMessage: 'OpenAmer ei saanud serverit taaskäivitada.',
-      stillWorking: 'OpenAmer töötab endiselt, kuid taaskäivituse tulemus pole veel saabunud. Serveri käsk võib töötada esiplaanil.',
+      stillWorking:
+        'OpenAmer töötab endiselt, kuid taaskäivituse tulemus pole veel saabunud. Serveri käsk võib töötada esiplaanil.',
       workspaceReloading: 'Tööruum muutus, eelvaade laaditakse uuesti',
       fileChanged: url => `Fail muutus, eelvaade laaditakse uuesti: ${url}`,
       filesChanged: (count, url) => `${count} failimuudatust, eelvaade laaditakse uuesti: ${url}`,
       watchFailed: message => `Eelvaatefaili jälgimine ebaõnnestus: ${message}`,
-      moduleMimeDescription: 'Mooduliskripte serveeritakse vale MIME-tüübiga. See tähendab tavaliselt, et staatiliste failide server serveerib Vite/Reacti rakendust, mitte projekti arendusserverit.',
+      moduleMimeDescription:
+        'Mooduliskripte serveeritakse vale MIME-tüübiga. See tähendab tavaliselt, et staatiliste failide server serveerib Vite/Reacti rakendust, mitte projekti arendusserverit.',
       loadFailedConsole: (code, message) => `Laadimine ebaõnnestus${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Eelvaatelehele ei saanud ligi.',
       openTarget: url => `Ava ${url}`,
-      fallbackTitle: 'Eelvaade',
-    },
+      fallbackTitle: 'Eelvaade'
+    }
   },
   zones: {
     showHeader: 'Kuva päis',
@@ -2607,7 +2682,8 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     minimize: 'Minimeeri',
     restore: 'Taasta',
     closeRunningTitle: 'Sulgeda töötav vahekaart?',
-    closeRunningBody: 'See vestlus töötab endiselt (või ootab sinu sisendit). Vahekaardi sulgemine peidab selle — sessioon säilitab oma edenemise ja selle saab külgribalt uuesti avada.',
+    closeRunningBody:
+      'See vestlus töötab endiselt (või ootab sinu sisendit). Vahekaardi sulgemine peidab selle — sessioon säilitab oma edenemise ja selle saab külgribalt uuesti avada.',
     closeRunningConfirm: 'Sulge vahekaart',
     closeOthers: 'Sulge teised',
     closeToRight: 'Sulge parempoolsed',
@@ -2633,7 +2709,8 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     deletePreset: name => `Kustuta ${name}`,
     zoneEditorTitle: 'Tsooniredaktor',
     editorHintPre: 'klõpsa jagamiseks · ',
-    editorHintPost: ' pöörab joone · tsoonide ühendamiseks lohista üle tsoonide · suuruse muutmiseks lohista ühiseid servi',
+    editorHintPost:
+      ' pöörab joone · tsoonide ühendamiseks lohista üle tsoonide · suuruse muutmiseks lohista ühiseid servi',
     templateColumns: 'Veerud',
     templateRows: 'Read',
     templateGrid: 'Ruudustik',
@@ -2644,29 +2721,16 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     layoutNamePlaceholder: fallback => `Paigutuse nimi (${fallback})`,
     saveApply: 'Salvesta ja rakenda',
     notExpressible: 'see paigutus põimub (tuulik) — seda ei saa veel pesastatud jaotustena esitada',
-    zoneCount: count => `${count} tsooni`,
+    zoneCount: count => `${count} tsooni`
   },
   assistant: {
     thread: {
       loadingSession: 'Seansi laadimine',
       showEarlier: 'Kuva varasemad sõnumid',
       loadingResponse: 'OpenAmer laadib vastust',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Mõtleb',
       today: time => `Täna, ${time}`,
@@ -2693,7 +2757,7 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       restoreNext: 'Taasta järgmine kontrollpunkt',
       goForward: 'Mine edasi',
       sendEdited: 'Saada muudetud sõnum',
-      attachingFile: 'Manustamine…',
+      attachingFile: 'Manustamine…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmeri lüüs ei ole ühendatud',
@@ -2706,8 +2770,9 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       jumpToApproval: 'Vajab kinnitust',
       reject: 'Lükka tagasi',
       alwaysTitle: 'Kas lubada seda käsku alati?',
-      alwaysDescription: pattern => `See lisab mustri “${pattern}” sinu püsivasse lubatud loendisse (~/.openamer/config.yaml). OpenAmer ei küsi selliste käskude puhul enam uuesti — ei selles ega üheski tulevases seansis.`,
-      alwaysAllow: 'Luba alati',
+      alwaysDescription: pattern =>
+        `See lisab mustri “${pattern}” sinu püsivasse lubatud loendisse (~/.openamer/config.yaml). OpenAmer ei küsi selliste käskude puhul enam uuesti — ei selles ega üheski tulevases seansis.`,
+      alwaysAllow: 'Luba alati'
     },
     clarify: {
       notReady: 'Täpsustustaotlus ei ole veel valmis',
@@ -2721,7 +2786,7 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       continueLabel: 'Jätka',
       lateAnswer: (question, choice) => `Vastuseks: "${question}" — minu vastus: ${choice}`,
       lateAnswerTip: 'Koosta see vastus järelteatena',
-      lateAnswerHint: 'See viip ei oota enam. Vali suvand, et koostada see järelteatena.',
+      lateAnswerHint: 'See viip ei oota enam. Vali suvand, et koostada see järelteatena.'
     },
     tool: {
       code: 'Kood',
@@ -2757,11 +2822,11 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
         ran: 'Käivitatud',
         running: 'Käivitamine',
         ranCode: 'Kood käivitatud',
-        runningCode: 'Skriptimine',
+        runningCode: 'Skriptimine'
       },
       prefixes: {
         browser: 'Brauser',
-        web: 'Veeb',
+        web: 'Veeb'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2769,132 +2834,133 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Käivitamine ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Käivitamine ${action.toLowerCase()}`,
+        runningTool: action => `Käivitamine ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Lehe elemendile klõpsatud',
           pending: 'Lehe elemendile klõpsamine',
-          pendingAction: 'Klõpsamine',
+          pendingAction: 'Klõpsamine'
         },
         browser_fill: {
           done: 'Vormiväli täidetud',
           pending: 'Vormivälja täitmine',
-          pendingAction: 'Täitmine',
+          pendingAction: 'Täitmine'
         },
         browser_navigate: {
           done: 'Leht avatud',
           pending: 'Lehe avamine',
-          pendingAction: 'Avamine',
+          pendingAction: 'Avamine'
         },
         browser_snapshot: {
           done: 'Lehe hetktõmmis tehtud',
           pending: 'Lehe hetktõmmise tegemine',
-          pendingAction: 'Jäädvustamine',
+          pendingAction: 'Jäädvustamine'
         },
         browser_take_screenshot: {
           done: 'Kuvatõmmis tehtud',
           pending: 'Kuvatõmmise tegemine',
-          pendingAction: 'Jäädvustamine',
+          pendingAction: 'Jäädvustamine'
         },
         browser_type: {
           done: 'Lehele kirjutatud',
           pending: 'Lehele kirjutamine',
-          pendingAction: 'Kirjutamine',
+          pendingAction: 'Kirjutamine'
         },
         clarify: {
           done: 'Küsimus esitatud',
           pending: 'Küsimuse esitamine',
-          pendingAction: 'Küsimine',
+          pendingAction: 'Küsimine'
         },
         cronjob: {
           done: 'Cron-töö',
           pending: 'Cron-töö planeerimine',
-          pendingAction: 'Planeerimine',
+          pendingAction: 'Planeerimine'
         },
         edit_file: {
           done: 'Fail muudetud',
           pending: 'Faili muutmine',
-          pendingAction: 'Muutmine',
+          pendingAction: 'Muutmine'
         },
         execute_code: {
           done: 'Kood käivitatud',
           pending: 'Skriptimine',
-          pendingAction: 'Skriptimine',
+          pendingAction: 'Skriptimine'
         },
         image_generate: {
           done: 'Genereeritud pilt',
           pending: 'Pildi genereerimine',
-          pendingAction: 'Genereerimine',
+          pendingAction: 'Genereerimine'
         },
         list_files: {
           done: 'Loetletud failid',
           pending: 'Failide loetlemine',
-          pendingAction: 'Loetlemine',
+          pendingAction: 'Loetlemine'
         },
         patch: {
           done: 'Paigatud fail',
           pending: 'Faili paikamine',
-          pendingAction: 'Paikamine',
+          pendingAction: 'Paikamine'
         },
         read_file: {
           done: 'Loetud fail',
           pending: 'Faili lugemine',
-          pendingAction: 'Lugemine',
+          pendingAction: 'Lugemine'
         },
         search_files: {
           done: 'Otsitud failid',
           pending: 'Failide otsimine',
-          pendingAction: 'Otsimine',
+          pendingAction: 'Otsimine'
         },
         session_search_recall: {
           done: 'Otsitud seansi ajalugu',
           pending: 'Seansi ajaloo otsimine',
-          pendingAction: 'Otsimine',
+          pendingAction: 'Otsimine'
         },
         terminal: {
           done: 'Käsk täidetud',
           pending: 'Käsu täitmine',
-          pendingAction: 'Täitmine',
+          pendingAction: 'Täitmine'
         },
         todo: {
           done: 'Uuendatud ülesanded',
           pending: 'Ülesannete uuendamine',
-          pendingAction: 'Uuendamine',
+          pendingAction: 'Uuendamine'
         },
         vision_analyze: {
           done: 'Analüüsitud pilt',
           pending: 'Pildi analüüsimine',
-          pendingAction: 'Analüüsimine',
+          pendingAction: 'Analüüsimine'
         },
         web_extract: {
           done: 'Veebileht loetud',
           pending: 'Veebilehe lugemine',
-          pendingAction: 'Lugemine',
+          pendingAction: 'Lugemine'
         },
         web_search: {
           done: 'Veebist otsitud',
           pending: 'Veebist otsimine',
-          pendingAction: 'Otsimine',
+          pendingAction: 'Otsimine'
         },
         write_file: {
           done: 'Fail muudetud',
           pending: 'Faili muutmine',
-          pendingAction: 'Muutmine',
-        },
-      },
-    },
+          pendingAction: 'Muutmine'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer lüüs ei ole ühendatud',
     sudoSendFailed: 'Sudo parooli ei õnnestunud saata',
     secretSendFailed: 'Saladust ei õnnestunud saata',
     sudoTitle: 'Administraatori parool',
-    sudoDesc: 'OpenAmer vajab privilegeeritud käsu käivitamiseks sinu sudo parooli. See saadetakse ainult sinu kohalikule agendile.',
+    sudoDesc:
+      'OpenAmer vajab privilegeeritud käsu käivitamiseks sinu sudo parooli. See saadetakse ainult sinu kohalikule agendile.',
     sudoPlaceholder: 'sudo parool',
     secretTitle: 'Saladus nõutav',
     secretDesc: 'OpenAmer vajab jätkamiseks mandaati.',
-    secretPlaceholder: 'saladuse väärtus',
+    secretPlaceholder: 'saladuse väärtus'
   },
   desktop: {
     audioReadFailed: 'Salvestatud heli ei õnnestunud lugeda',
@@ -2911,7 +2977,8 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     yoloSystem: active => `YOLO ${active ? 'sees' : 'väljas'} selle seansi jaoks`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'YOLO lülitamine ebaõnnestus',
-    profileStatus: current => `Profiil: ${current}. Kasuta /profile <nimi> või „Uus seanss” valijat, et alustada vestlust teises profiilis.`,
+    profileStatus: current =>
+      `Profiil: ${current}. Kasuta /profile <nimi> või „Uus seanss” valijat, et alustada vestlust teises profiilis.`,
     unknownProfile: 'Tundmatu profiil',
     noProfileNamed: (target, available) => `Profiili nimega „${target}” pole. Saadaval: ${available}`,
     newChatsProfile: name => `Uued vestlused kasutavad profiili ${name}.`,
@@ -2921,8 +2988,9 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     regenerateFailed: 'Uuesti genereerimine ebaõnnestus',
     editFailed: 'Muutmine ebaõnnestus',
     resumeFailed: 'Jätkamine ebaõnnestus',
-    resumeStrandedTitle: "Seda seanssi ei saanud laadida",
-    resumeStrandedBody: 'Ühendus selle seansiga ebaõnnestus ja automaatsed uusimised lõppesid. Kontrolli, kas lüüs töötab, seejärel proovi uuesti.',
+    resumeStrandedTitle: 'Seda seanssi ei saanud laadida',
+    resumeStrandedBody:
+      'Ühendus selle seansiga ebaõnnestus ja automaatsed uusimised lõppesid. Kontrolli, kas lüüs töötab, seejärel proovi uuesti.',
     resumeRetry: 'Proovi uuesti',
     nothingToBranch: 'Pole midagi hargneda',
     branchNeedsChat: 'Enne haru loomist alusta või jätka vestlust.',
@@ -2936,7 +3004,8 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
     archiveFailed: 'Arhiveerimine ebaõnnestus',
     cwdChangeFailed: 'Töökataloogi muutmine ebaõnnestus',
     cwdStagedTitle: 'Töökataloogi muudatus ette valmistatud',
-    cwdStagedMessage: 'Taaskäivitage töölaua taustaprogramm, et rakendada töökataloogi muudatused selles aktiivses seansis.',
+    cwdStagedMessage:
+      'Taaskäivitage töölaua taustaprogramm, et rakendada töökataloogi muudatused selles aktiivses seansis.',
     modelSwitchFailed: 'Mudeli vahetamine ebaõnnestus',
     sessionExported: 'Seanss eksporditud',
     sessionExportFailed: 'Seanssi ei saanud eksportida',
@@ -2962,31 +3031,31 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       success: platform => `Üle antud rakendusele ${platform}. Jätka siin igal ajal.`,
       systemNote: platform => `↻ Üle antud rakendusele ${platform} — jätka siin igal ajal.`,
       failed: error => `Üleandmine ebaõnnestus: ${error}`,
-      timedOut: 'Värava ootamine aegus. Kas `openamer gateway` töötab?',
-    },
+      timedOut: 'Värava ootamine aegus. Kas `openamer gateway` töötab?'
+    }
   },
   errors: {
     genericFailure: 'Midagi läks valesti',
     boundaryTitle: 'Kasutajaliideses läks midagi katki',
     boundaryDesc: 'Vaates tekkis ootamatu viga. Sinu vestlused ja seaded on turvalised.',
     reloadWindow: 'Laadi aken uuesti',
-    openLogs: 'Ava logid',
+    openLogs: 'Ava logid'
   },
   ui: {
     search: {
-      clear: 'Tühjenda otsing',
+      clear: 'Tühjenda otsing'
     },
     pagination: {
       label: 'leheküljestamine',
       previous: 'Eelmine',
       previousAria: 'Mine eelmisele lehele',
       next: 'Järgmine',
-      nextAria: 'Mine järgmisele lehele',
+      nextAria: 'Mine järgmisele lehele'
     },
     sidebar: {
       title: 'Külgriba',
       description: 'Kuvab mobiilset külgriba.',
-      toggle: 'Lülita külgriba',
-    },
-  },
+      toggle: 'Lülita külgriba'
+    }
+  }
 })
