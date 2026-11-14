@@ -112,6 +112,18 @@ def test_one_tick_caps_spawns_even_with_large_config(tick, board, tmp_path):
     assert len(calls) == len(result["spawned"]) == 1
 
 
+def test_configured_zero_spawn_budget_keeps_recovery_but_never_spawns(tick, board, tmp_path):
+    tid = task(board, tmp_path)
+    kb.claim_task(board, tid)
+    with kb.write_txn(board):
+        board.execute("UPDATE tasks SET claim_lock=NULL,claim_expires=NULL WHERE id=?", (tid,))
+    result = tick.run_tick(config={"kanban": {"max_spawn": 0}},
+                           spawn_fn=lambda *a, **k: pytest.fail("configured pause bypassed"))
+    assert result["reconciled_orphans"] == [tid]
+    assert result["spawned"] == []
+    assert kb.get_task(board, tid).status == "ready"
+
+
 def test_real_process_death_resumes_once_and_preserves_live_successor(tick, board, tmp_path):
     tid = task(board, tmp_path)
     kb.claim_task(board, tid)

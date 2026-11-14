@@ -44,6 +44,13 @@ def run_tick(*, config=None, spawn_fn=None):
     # One is a ceiling, not one extra process per tick. Both caps are checked
     # by the existing dispatcher after reclaim, under its existing tick lock.
     settings.update(max_spawn=1, max_in_progress=1, max_in_progress_per_profile=1)
+    # Allow tests to override the ceiling (e.g. max_spawn=0 to verify
+    # recovery runs without spawning). Production callers omit config so
+    # the default max_spawn=1 from _resolve_dispatcher_settings applies.
+    if config and isinstance(config.get("kanban"), dict):
+        configured_spawn = config["kanban"].get("max_spawn")
+        if configured_spawn is not None:
+            settings["max_spawn"] = configured_spawn
     conn = kb.connect(board="default")
     try:
         result = dispatch.dispatch_once(conn, board="default", spawn_fn=spawn_fn, **settings)
