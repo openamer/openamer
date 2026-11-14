@@ -173,7 +173,7 @@ import {
 import { installStdioGuards } from './stdio-guard'
 import { nativeOverlayWidth as computeNativeOverlayWidth, macTitleBarOverlayHeight } from './titlebar-overlay-width'
 import { resolveBehindCount, shouldCountCommits } from './update-count'
-import { readLiveUpdateMarker, waitForUpdateRelease, writeUpdateMarker } from './update-marker'
+import { claimUpdateWorkerDrain, readLiveUpdateMarker, releaseUpdateWorkerDrain, waitForUpdateRelease, writeUpdateMarker } from './update-marker'
 import { runRebuildWithRetry } from './update-rebuild'
 import {
   buildRelaunchScript,
@@ -185,6 +185,7 @@ import {
   sandboxPreflight
 } from './update-relaunch'
 import { isOfficialSshRemote, OFFICIAL_REPO_HTTPS_URL } from './update-remote'
+import { activeUpdateWorkers, waitForUpdateWorkers } from './update-workers'
 import { spawnUpdaterProcess } from './updater-process'
 import { fetchMarketplaceThemes, searchMarketplaceThemes } from './vscode-marketplace'
 import {
@@ -2771,6 +2772,7 @@ async function applyUpdates(opts = {}) {
   }
 
   updateInFlight = true
+  let workerDrainClaimed = false
 
   try {
     const updater = resolveUpdaterBinary()
@@ -2839,6 +2841,22 @@ async function applyUpdates(opts = {}) {
 
     const venvBin = path.join(updateRoot, 'venv', IS_WINDOWS ? 'Scripts' : 'bin')
 
+    // Reuse the existing update marker to defer new dispatcher spawns while
+    // active workers finish. Do this BEFORE backup/teardown: a busy worker is
+    // not an invitation to kill its task or disconnect the current chat.
+    if (IS_WINDOWS) {
+      claimUpdateWorkerDrain(OPENAMER_HOME, process.pid)
+      workerDrainClaimed = true
+      await waitForUpdateWorkers({
+        inspect: () => activeUpdateWorkers(updateRoot, windowsPowerShellPath()),
+        onWait: pids => emitUpdateProgress({
+          stage: 'restart',
+          message: `Waiting for active development workers (${pids.join(', ')}) to finish before updating.`,
+          percent: null
+        })
+      })
+    }
+
     // ── Pre-flight state.db integrity guard (#68474) ─────────────────
     // Emergency backup and header verification before the update touches
     // anything.  Runs while the backend is still alive.
@@ -2904,6 +2922,7 @@ async function applyUpdates(opts = {}) {
 
     return { ok: true, handedOff: true, updater }
   } finally {
+    if (workerDrainClaimed) { releaseUpdateWorkerDrain(OPENAMER_HOME, process.pid) }
     updateInFlight = false
   }
 }
@@ -7857,6 +7876,7 @@ async function ensureBackend(profile) {
     if (backendPool.get(key) === entry) {
       backendPool.delete(key)
     }
+
     throw error
   })
   backendPool.set(key, entry)
