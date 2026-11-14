@@ -5161,10 +5161,20 @@ def complete_task(
     else:
         verified_cards = []
 
+    # Collect remote evidence before taking the SQLite writer lock. Recheck
+    # its ownership/contract snapshot in the terminal transaction below.
+    from openamer_cli.kanban_pr_acceptance_store import prepare_acceptance, record_acceptance
+
+    acceptance = prepare_acceptance(conn, task_id, expected_run_id, metadata)
+    if acceptance is False:
+        return False
+
     metadata = _merge_completion_prose_artifacts(
         conn, task_id, metadata, summary=summary, result=result,
     )
     with write_txn(conn):
+        if acceptance is not None and not record_acceptance(conn, task_id, acceptance):
+            return False
         if expected_run_id is None:
             cur = conn.execute(
                 """
