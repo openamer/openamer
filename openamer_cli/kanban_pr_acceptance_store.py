@@ -15,10 +15,12 @@ def prepare_acceptance(conn, task_id, expected_run_id, metadata):
     if snapshot is None:
         return False
     run_id, status, contract = snapshot
-    if not contract or contract == "local-only":
-        return None
     if status not in {"running", "ready", "blocked", "review"} or (expected_run_id is not None and run_id != expected_run_id):
         return False
+    if not contract or contract == "local-only":
+        # Even a local completion must not bypass a concurrently added PR
+        # contract (or finish a replacement worker's run).
+        return snapshot, None
     published_pr = metadata.get("published_pr") if isinstance(metadata, dict) else None
     match = _PR.fullmatch(published_pr) if isinstance(published_pr, str) else None
     # Publication binds once. Retrying cannot replace the task's PR with a green sibling.
@@ -38,6 +40,8 @@ def record_acceptance(conn, task_id, acceptance):
     snapshot, receipt = acceptance
     if _snapshot(conn, task_id) != snapshot:
         return False
+    if receipt is None:
+        return True
     _append_event(conn, task_id, "pr_acceptance", receipt, run_id=snapshot[0])
     if not receipt["ok"]:
         detail = f"PR acceptance {receipt['classification']}: {receipt.get('detail', '')} {receipt['recovery']}"
