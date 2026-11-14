@@ -4671,6 +4671,170 @@ def claim_review_task(
         return get_task(conn, task_id)
 
 
+def request_review(
+    conn: sqlite3.Connection,
+    task_id: str,
+    *,
+    summary: Optional[str] = None,
+    metadata: Optional[dict] = None,
+    reviewer: Optional[str] = None,
+    expected_run_id: Optional[int] = None,
+    with_reason: bool = False,
+):
+    """Transition ``running|ready -> review`` and hand off to a reviewer.
+
+    The first-class review phase: the implementation is done, so the
+    implementer stops here instead of completing. The dispatcher's review
+    queue (:func:`claim_review_task`) picks the card up and spawns the
+    reviewer profile (assignee), recording ``source_status=review`` so a
+    crash/timeout returns the card to ``review`` rather than ``ready``.
+
+    Returns ``(ok, reason)`` when ``with_reason`` is true, else ``ok``.
+
+    Mirrors :func:`complete_task`'s discipline: ``expected_run_id`` is a CAS
+    so a stale worker cannot move a newer run, and the run closes with the
+    handoff summary/metadata. The scratch workspace is *kept* — the reviewer
+    still needs the artifacts — and dependents are NOT promoted (only
+    ``done`` promotes), so a review never releases a child early.
+    """
+    metadata = _merge_completion_prose_artifacts(
+        conn, task_id, metadata, summary=summary, result=None,
+    )
+    with write_txn(conn):
+        if expected_run_id is None:
+            cur = conn.execute(
+                """
+                UPDATE tasks
+                   SET status       = 'review',
+                       claim_lock   = NULL,
+                       claim_expires= NULL,
+                       worker_pid   = NULL
+                 WHERE id = ?
+                   AND status IN ('running', 'ready')
+                """,
+                (task_id,),
+            )
+        else:
+            cur = conn.execute(
+                """
+                UPDATE tasks
+                   SET status       = 'review',
+                       claim_lock   = NULL,
+                       claim_expires= NULL,
+                       worker_pid   = NULL
+                 WHERE id = ?
+                   AND status IN ('running', 'ready')
+                   AND current_run_id = ?
+                """,
+                (task_id, int(expected_run_id)),
+            )
+        if cur.rowcount != 1:
+            return (False, "unknown id or not in running/ready") if with_reason else False
+        # Reviewer routing rides the assignee; claim_review_task records the
+        # provenance. The tool layer validates the profile before this point.
+        if reviewer:
+            conn.execute(
+                "UPDATE tasks SET assignee = ? WHERE id = ?",
+                (reviewer, task_id),
+            )
+        if isinstance(metadata, dict):
+            _persist_scratch_completion_artifacts(conn, task_id, metadata)
+        run_id = _end_run(
+            conn, task_id,
+            outcome="review_requested", status="review",
+            summary=summary,
+            metadata=metadata,
+        )
+        ev_summary = (summary or "").strip().splitlines()[0][:400] if summary else ""
+        payload: dict = {"reviewer": reviewer, "summary": ev_summary or None}
+        if isinstance(metadata, dict) and isinstance(metadata.get("artifacts"), (list, tuple)):
+            cleaned = [
+                str(p).strip() for p in metadata["artifacts"]
+                if isinstance(p, str) and str(p).strip()
+            ]
+            if cleaned:
+                payload["artifacts"] = cleaned
+        _append_event(conn, task_id, "review_requested", payload, run_id=run_id)
+    return (True, None) if with_reason else True
+
+
+def request_changes(
+    conn: sqlite3.Connection,
+    task_id: str,
+    *,
+    reason: Optional[str] = None,
+    expected_run_id: Optional[int] = None,
+) -> tuple[bool, Optional[str]]:
+    """Return a reviewer-owned ``running`` task to its implementer.
+
+    The review counterpart of :func:`request_review`: a claimed review run
+    goes back to ``ready`` (or ``todo`` while parents are unfinished) so the
+    dispatcher respawns the implementer, carrying ``reason`` as the handoff.
+    Returns ``(ok, implementer)``; ``implementer`` is the profile the task
+    was returned to, or a failure detail.
+    """
+    now = int(time.time())
+    with write_txn(conn):
+        row = conn.execute(
+            "SELECT assignee, current_run_id FROM tasks WHERE id = ? AND status = 'running'",
+            (task_id,),
+        ).fetchone()
+        if not row:
+            return (False, "unknown id or not in running")
+        if expected_run_id is not None and (
+            not row["current_run_id"] or int(row["current_run_id"]) != int(expected_run_id)
+        ):
+            return (False, "stale run id")
+        # A review run is identified by its claimed event carrying
+        # source_status=review (see claim_review_task). Without that marker
+        # this is an ordinary implementer run and must not be bounced.
+        run_id = _current_run_id(conn, task_id)
+        if run_id is not None:
+            event = _latest_event(conn, task_id, "claimed", run_id)
+            payload = _json_dict(_row_get(event, "payload"))
+            if payload.get("source_status") != "review":
+                return (False, "not a review run")
+        # Re-gate parents exactly like unblock_task: an unfinished parent
+        # keeps the card in todo so recompute_ready promotes it later.
+        undone = conn.execute(
+            """
+            SELECT 1 FROM task_links l
+              JOIN tasks p ON p.id = l.parent_id
+             WHERE l.child_id = ? AND p.status != 'done' LIMIT 1
+            """,
+            (task_id,),
+        ).fetchone()
+        new_status = "todo" if undone else "ready"
+        cur = conn.execute(
+            """
+            UPDATE tasks
+               SET status        = ?,
+                   claim_lock    = NULL,
+                   claim_expires = NULL,
+                   worker_pid    = NULL,
+                   block_kind    = NULL,
+                   block_recurrences = 0
+             WHERE id = ? AND status = 'running'
+            """,
+            (new_status, task_id),
+        )
+        if cur.rowcount != 1:
+            return (False, "concurrent state change")
+        _end_run(
+            conn, task_id,
+            outcome="changes_requested", status="changes_requested",
+            summary=reason, error=reason,
+        )
+        _append_event(
+            conn, task_id, "changes_requested",
+            {"reason": reason, "returned_to": new_status},
+            run_id=run_id,
+        )
+        implementer = row["assignee"]
+    recompute_ready(conn)
+    return (True, implementer)
+
+
 def heartbeat_claim(
     conn: sqlite3.Connection,
     task_id: str,
