@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-11-11T23:10:00",
+  "timestamp": "2026-11-13T23:15:16",
   "mode": "apply",
-  "population": 1288,
-  "avg_score": 38.4,
+  "population": 1293,
+  "avg_score": 38.5,
   "kept": [
     {
       "skill": "agent-experience",
@@ -11,24 +11,6 @@
       "delta": 42,
       "fixes": [
         "✅ Frontmatter hinzugefügt für 'agent-experience'"
-      ]
-    },
-    {
-      "skill": "cordis-composition-reference",
-      "before": 0,
-      "after": 42,
-      "delta": 42,
-      "fixes": [
-        "✅ Frontmatter hinzugefügt für 'cordis-composition-reference'"
-      ]
-    },
-    {
-      "skill": "cordis-plugin-development",
-      "before": 0,
-      "after": 44,
-      "delta": 44,
-      "fixes": [
-        "✅ Frontmatter hinzugefügt für 'cordis-plugin-development'"
       ]
     },
     {
@@ -92,6 +74,24 @@
       "delta": 50,
       "fixes": [
         "✅ Frontmatter hinzugefügt für 'dsh-cua-macos-signing'"
+      ]
+    },
+    {
+      "skill": "dsh-doc",
+      "before": 0,
+      "after": 44,
+      "delta": 44,
+      "fixes": [
+        "✅ Frontmatter hinzugefügt für 'dsh-doc'"
+      ]
+    },
+    {
+      "skill": "dsh-doc-writing",
+      "before": 0,
+      "after": 45,
+      "delta": 45,
+      "fixes": [
+        "✅ Frontmatter hinzugefügt für 'dsh-doc-writing'"
       ]
     }
   ],

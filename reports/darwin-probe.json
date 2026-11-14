@@ -1,7 +1,7 @@
 {
-  "updated": "2026-11-12T22:12:30.259261+00:00",
+  "updated": "2026-11-13T22:15:53.824408+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 1291,
+  "total": 1293,
   "skills": {
     "auto-competitor-intelligence-claudepowered-ai": {
       "refs": 0,
@@ -2193,6 +2193,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-home-verification-evidence-db-failed": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-home-where-scripts-training-does-not": {
       "refs": 0,
       "ok": 0,
@@ -2902,6 +2908,12 @@
       "missing": []
     },
     "darwin-harvested-workflows-publish-vscode-yml": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-wt-autonomous-scaffold": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -6554,6 +6566,12 @@
       "score": 1.0,
       "missing": []
     },
+    "dsh-doc-writing": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "dsh-error-handling": {
       "refs": 0,
       "ok": 0,
@@ -7327,12 +7345,6 @@
     "desktop-i18n-locale-addition": {
       "refs": 1,
       "ok": 1,
-      "score": 1.0,
-      "missing": []
-    },
-    "dogfood": {
-      "refs": 0,
-      "ok": 0,
       "score": 1.0,
       "missing": []
     },

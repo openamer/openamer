@@ -1,20 +1,14 @@
-[autopatch] validating population (2026-11-12T23:10:28) ...
-Traceback (most recent call last):
-  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 189, in <module>
-    sys.exit(main())
-             ^^^^^^
-  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 110, in main
-    before_report = run_validator_json()
-                    ^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 49, in run_validator_json
-    r = subprocess.run(
-        ^^^^^^^^^^^^^^^
-  File "C:\Users\damir\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\subprocess.py", line 550, in run
-    stdout, stderr = process.communicate(input, timeout=timeout)
-                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\damir\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\subprocess.py", line 1209, in communicate
-    stdout, stderr = self._communicate(input, endtime, timeout)
-                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\damir\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\subprocess.py", line 1630, in _communicate
-    raise TimeoutExpired(self.args, orig_timeout)
-subprocess.TimeoutExpired: Command '['C:\\Users\\damir\\AppData\\Roaming\\uv\\python\\cpython-3.11-windows-x86_64-none\\pythonw.exe', 'C:\\Users\\damir\\openamer-repo\\scripts\\skill-validator.py', '--all', '--json']' timed out after 1800 seconds
+[autopatch] validating population (2026-11-13T23:15:16) ...
+[autopatch] population: 1293 skills, avg 38.5
+[autopatch] 10 weak skills: agent-experience(0), cordis-styling-nitpicking(0), dsh-archive-agent-notes(0), dsh-ci-test-reliability(0), dsh-client-ui-ux(0), dsh-code-review(0), dsh-create-upgrade-guide(0), dsh-cua-macos-signing(0), dsh-doc(0), dsh-doc-writing(0)
+[autopatch] ✅ agent-experience: 0 → 42
+[autopatch] ✅ cordis-styling-nitpicking: 0 → 45
+[autopatch] ✅ dsh-archive-agent-notes: 0 → 42
+[autopatch] ✅ dsh-ci-test-reliability: 0 → 45
+[autopatch] ✅ dsh-client-ui-ux: 0 → 47
+[autopatch] ✅ dsh-code-review: 0 → 45
+[autopatch] ✅ dsh-create-upgrade-guide: 0 → 50
+[autopatch] ✅ dsh-cua-macos-signing: 0 → 50
+[autopatch] ✅ dsh-doc: 0 → 44
+[autopatch] ✅ dsh-doc-writing: 0 → 45
+[autopatch] report → C:\Users\damir\openamer-repo\reports\darwin-autopatch.md
