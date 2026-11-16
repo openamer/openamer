@@ -435,7 +435,7 @@ export const wa = defineLocale({
       embedsAsk: 'Dimander',
       embedsAlways: 'Toddi',
       embedsOff: 'Nén metou',
-      embedsReset: (count: number) => `Rimete ${count} service ${count === 1 ? 'service' : 'services'} permetous`,
+      embedsReset: (count: number) => `Rimete ${count} ${count === 1 ? 'service' : 'services'} permetous`,
       product: 'Producte',
       productDesc: 'Activité des usteyes åjheye a lére avou des rascourcis.',
       technical: 'Tecnike',

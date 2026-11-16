@@ -2064,7 +2064,7 @@ export const ja = defineLocale({
   statusStack: {
     agents: 'エージェント',
     background: count => `バックグラウンド ${count} 件`,
-    subagents: count => `${count} サブエージェント ${count === 1 ? 'サブエージェント' : 'サブエージェント'}`,
+    subagents: count => `${count} ${count === 1 ? 'サブエージェント' : 'サブエージェント'}`,
     todos: (done, total) => `タスク ${done}/${total}`,
     running: '実行中',
     stop: '停止',
@@ -2432,7 +2432,7 @@ export const ja = defineLocale({
       agents: 'エージェント',
       closeAgents: 'エージェントを閉じる',
       openAgents: 'エージェントを開く',
-      subagents: count => `${count} サブエージェント ${count === 1 ? 'サブエージェント' : 'サブエージェント'}`,
+      subagents: count => `${count} ${count === 1 ? 'サブエージェント' : 'サブエージェント'}`,
       failed: count => `${count} 失敗`,
       running: count => `${count} 実行中`,
       cron: 'Cron',

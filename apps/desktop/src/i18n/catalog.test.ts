@@ -60,4 +60,33 @@ describe('desktop i18n catalog', () => {
 
     expect(offenders).toEqual([])
   })
+
+  // Measured 2026-11-16: the German update dialog rendered
+  // "+ 1 weitere ÄnderungÄnderung enthalten" because the template already ended
+  // with "Änderung" and the singular branch appended the word again. The same
+  // generator shape existed in 37 locales (314 duplicates), e.g. bg
+  // "нова промяна" + 'промяна'. A duplicated stem word is always a defect: the
+  // branch is supposed to SUPPLY the word, not repeat it.
+  it('never duplicates a stem word in the "more changes" line', () => {
+    const offenders: string[] = []
+
+    for (const [code, tree] of Object.entries(TRANSLATIONS)) {
+      const updates = (tree as Record<string, unknown>)['updates'] as Record<string, unknown> | undefined
+      const moreChanges = updates?.['moreChanges']
+
+      if (typeof moreChanges !== 'function') {
+        continue
+      }
+
+      for (const count of [1, 2, 5]) {
+        const text = String((moreChanges as (n: number) => string)(count))
+
+        if (/(\p{L}{4,})\1/u.test(text)) {
+          offenders.push(`${code}(${count}): ${text}`)
+        }
+      }
+    }
+
+    expect(offenders).toEqual([])
+  })
 })
