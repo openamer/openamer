@@ -918,7 +918,7 @@ export const th = defineLocale({
       failedSelectCapability: provider => `ตั้งค่า ${provider} ไม่สำเร็จ`,
       loadingModels: 'กำลังโหลดแค็ตตาล็อกโมเดล...',
       modelSectionTitle: 'โมเดล',
-      modelCount: count => `${count} โมเดล ${count === 1 ? 'โมเดล' : 'โมเดล'}`,
+      modelCount: count => `${count} ${count === 1 ? 'โมเดล' : 'โมเดล'}`,
       modelInUse: 'กำลังใช้งาน',
       modelDefault: 'ค่าเริ่มต้น',
       modelInactiveHint: 'เลือกแบ็กเอนด์นี้ก่อนเพื่อเปลี่ยนโมเดล',

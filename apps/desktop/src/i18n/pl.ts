@@ -918,7 +918,7 @@ export const pl = defineLocale({
       failedSelectCapability: provider => `Nie udało się ustawić ${provider}`,
       loadingModels: 'Ładowanie katalogu modeli...',
       modelSectionTitle: 'Model',
-      modelCount: count => `${count} model${count === 1 ? 'model' : 'modele'}`,
+      modelCount: count => `${count} ${count === 1 ? 'model' : 'modele'}`,
       modelInUse: 'W użyciu',
       modelDefault: 'domyślny',
       modelInactiveHint: 'Najpierw wybierz ten backend, aby zmienić jego model.',
