@@ -1,7 +1,7 @@
 {
-  "updated": "2026-11-13T22:15:53.824408+00:00",
+  "updated": "2026-11-15T22:25:38.244047+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 1293,
+  "total": 1298,
   "skills": {
     "auto-competitor-intelligence-claudepowered-ai": {
       "refs": 0,
@@ -2325,6 +2325,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-n-n-a-test-that-writes-into-the-chec": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-n-n-command-timed-out-after-180s": {
       "refs": 0,
       "ok": 0,
@@ -2541,7 +2547,19 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-scaffold-verify-demo-cli-no-such-fil": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-scripts": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-scripts-autonomous-dev-tick-py": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2884,6 +2902,12 @@
       "missing": []
     },
     "darwin-harvested-usersdamiropenamer-reposcriptsgithub": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-verify-fastapi-demo-fastapi-no-such-": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -7038,6 +7062,12 @@
       "score": 1.0,
       "missing": []
     },
+    "independent-review": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "rsi-phase2-learned-proposals": {
       "refs": 0,
       "ok": 0,
@@ -7337,10 +7367,14 @@
       "missing": []
     },
     "desktop-i18n-locale-add": {
-      "refs": 8,
-      "ok": 8,
-      "score": 1.0,
-      "missing": []
+      "refs": 10,
+      "ok": 7,
+      "score": 0.7,
+      "missing": [
+        "scripts/build_swarm_backends.py",
+        "scripts/start_translation_swarm.py",
+        "scripts/i18n_hand_batch.py"
+      ]
     },
     "desktop-i18n-locale-addition": {
       "refs": 1,
@@ -7453,9 +7487,11 @@
     },
     "i18n-catalog-translation": {
       "refs": 3,
-      "ok": 3,
-      "score": 1.0,
-      "missing": []
+      "ok": 2,
+      "score": 0.667,
+      "missing": [
+        "scripts/i18n_hand_batch.py"
+      ]
     },
     "install-scoped-home-resolution": {
       "refs": 0,
@@ -7693,9 +7729,11 @@
     },
     "ui-string-catalog-translation": {
       "refs": 5,
-      "ok": 5,
-      "score": 1.0,
-      "missing": []
+      "ok": 4,
+      "score": 0.8,
+      "missing": [
+        "scripts/i18n_hand_batch.py"
+      ]
     },
     "unquoted-path-in-shell-command": {
       "refs": 0,
