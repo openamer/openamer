@@ -28,7 +28,7 @@ import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
 import i18n_translate_locale as tr  # noqa: E402
-from i18n_deliver_locales import REAL_GAP  # noqa: E402
+from i18n_deliver_locales import extract, real_gaps  # noqa: E402
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
 TMP = REPO / "tmp"
@@ -38,14 +38,9 @@ HINT = ("Short interface text. Translate it into the target language even when i
         "product names, identifiers and code unchanged.")
 
 
-def real_gaps(locale: str) -> tuple[dict[str, str], list[str]]:
-    en_text = {l["path"]: l["text"] for l in tr.load_leaves("en")
-               if l["kind"] in ("string", "func")}
-    tgt = {l["path"]: l["text"] for l in tr.load_leaves(locale)
-           if l["kind"] in ("string", "func")}
-    gaps = [p for p, text in en_text.items()
-            if tgt.get(p) in (None, text) and REAL_GAP(p, text)]
-    return en_text, gaps
+def gaps_of(locale: str) -> tuple[dict[str, str], list[str]]:
+    en_text = extract("en") or {}
+    return en_text, real_gaps(locale, en_text)
 
 
 def main() -> int:
@@ -55,7 +50,7 @@ def main() -> int:
     ap.add_argument("--limit", type=int, default=60)
     args = ap.parse_args()
 
-    en_text, gaps = real_gaps(args.locale)
+    en_text, gaps = gaps_of(args.locale)
     gaps = gaps[: args.limit]
     print(f"{args.locale}: {len(gaps)} real gaps")
     if args.dry_run or not gaps:

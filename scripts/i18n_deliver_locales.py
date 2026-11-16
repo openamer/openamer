@@ -122,6 +122,20 @@ KEYS = _translatable_keys()
 HAND = _audit_module().hand_table
 
 
+def real_gaps(locale: str, en: dict[str, str], values: dict[str, str] | None = None) -> list[str]:
+    """Paths that are genuinely still to translate in this locale.
+
+    One definition, used by the metric, the converge loop and the strict filler:
+    in scope (string/func), open (absent or identical to English), a real gap by
+    the audit's own predicate, and not already answered by the hand table.
+    """
+    values = values if values is not None else (extract(locale) or {})
+    accepted = HAND(locale)
+    return [path for path, text in en.items()
+            if path in KEYS and values.get(path) in (None, text)
+            and REAL_GAP(path, text) and path not in accepted]
+
+
 def measure(locale: str, en: dict[str, str]) -> dict | None:
     values = extract(locale)
     if values is None:
@@ -129,12 +143,7 @@ def measure(locale: str, en: dict[str, str]) -> dict | None:
     scope = {p: t for p, t in en.items() if p in KEYS}
     translated = sum(1 for path, text in scope.items() if values.get(path) not in (None, text))
     total = len(scope)
-    open_paths = [path for path, text in scope.items() if values.get(path) in (None, text)]
-    # A locale's hand table records strings the language legitimately spells the
-    # same way (de: 'Details', 'Name', 'Optional'). Those are answers, not gaps.
-    accepted = HAND(locale)
-    real = [path for path in open_paths
-            if REAL_GAP(path, en[path]) and path not in accepted]
+    real = real_gaps(locale, en, values)
     return {
         "locale": locale,
         "total": total,
