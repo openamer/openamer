@@ -95,6 +95,8 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--budget-minutes", type=float, default=25.0)
     ap.add_argument("--only", default="")
+    ap.add_argument("--order", choices=["worst", "nearest"], default="nearest",
+                    help="nearest = close the almost-done locales first")
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--json", default="")
     args = ap.parse_args()
@@ -114,7 +116,14 @@ def main() -> int:
         row = measure(locale, en)
         if row:
             rows.append(row)
-    rows.sort(key=lambda r: r["share"])
+    # Order matters for what "progress" looks like. `nearest` closes the locales
+    # that are almost done first - measured 2026-11-16: 60 locales sat at >=90%,
+    # i.e. ~25-250 strings each, which is a few minutes of work per locale and
+    # turns "0 locales complete" into a real number. `worst` is the old order.
+    if args.order == "nearest":
+        rows.sort(key=lambda r: (r["share"] < TARGET, -(r["share"])))
+    else:
+        rows.sort(key=lambda r: r["share"])
 
     pending = [r for r in rows if r["share"] < TARGET]
     done = len(rows) - len(pending)

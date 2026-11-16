@@ -26,12 +26,15 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 import pathlib
 import subprocess
 import sys
+from collections.abc import Callable
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
+SCRIPTS = REPO / "scripts"
 I18N = REPO / "apps" / "desktop" / "src" / "i18n"
 TMP = REPO / "tmp"
 EXTRACT = REPO / "scripts" / "i18n_extract_locale.mjs"
@@ -80,18 +83,42 @@ def cache(locale: str) -> dict[str, str] | None:
     return data if isinstance(data, dict) else None
 
 
+def _real_gap() -> Callable[[str, str], bool]:
+    """The audit's own "is there anything to translate here" predicate.
+
+    Without it, a raw `!= English` count never converges: measured 2026-11-16,
+    `el` sat at 99.1% with 22 "open" strings that were the product name
+    `OpenAmer`, the constants `FIELD_LABELS`/`FIELD_DESCRIPTIONS`, URLs, `'.'`,
+    `'0'`, and templates like `${provider} · ${model}`. Nothing there is text.
+    """
+    spec = importlib.util.spec_from_file_location(
+        "i18n_audit_locales", SCRIPTS / "i18n_audit_locales.py")
+    if spec is None or spec.loader is None:
+        raise ImportError("cannot load i18n_audit_locales")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.is_real_gap
+
+
+REAL_GAP: Callable[[str, str], bool] = _real_gap()
+
+
 def measure(locale: str, en: dict[str, str]) -> dict | None:
     values = extract(locale)
     if values is None:
         return None
     translated = sum(1 for path, text in en.items() if values.get(path) not in (None, text))
     total = len(en)
+    open_paths = [path for path, text in en.items() if values.get(path) in (None, text)]
+    real = [path for path in open_paths if REAL_GAP(path, en[path])]
     return {
         "locale": locale,
         "total": total,
         "translated": translated,
         "share": round(translated / total, 4) if total else 0.0,
         "missing_paths": sum(1 for path in en if path not in values),
+        "real_gaps": len(real),
+        "share_real": round((total - len(real)) / total, 4) if total else 0.0,
     }
 
 
