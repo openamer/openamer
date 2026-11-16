@@ -37,6 +37,9 @@ from i18n_deliver_locales import extract, measure  # noqa: E402
 
 PY = sys.executable
 TARGET = 0.999
+BATCH_SIZE = 20
+SECONDS_PER_BATCH = 25      # measured ~20s/batch on this host; the limit is a ceiling
+SLICE_SECONDS = 8 * 60      # one locale per slice, so one slot can advance two locales
 HOME = pathlib.Path(os.environ.get(
     "OPENAMER_HOME",
     str(pathlib.Path.home() / "AppData" / "Local" / "openamer-laptop"),
@@ -60,14 +63,24 @@ def deliver(locale: str) -> bool:
     return r.returncode == 0
 
 
-def translate(locale: str, seconds: float) -> bool:
-    """Fill the cache for one locale within the remaining budget."""
+def translate(locale: str, seconds: float) -> tuple[bool, str]:
+    """Fill the cache for one locale, bounded by BATCH COUNT, not by a kill.
+
+    i18n_translate_locale.py writes its cache once, at the end. Killing it on a
+    timeout throws away every batch it completed - measured 2026-11-16 on the
+    first cron pass: `sn` and `ie` came out at exactly their starting coverage
+    with `translated: false`, because a 12-minute slice killed runs that needed
+    ~35. So the slice is a `--limit <batches>` count: the child finishes and
+    writes its own cache.
+    """
+    batches = max(4, int(seconds // SECONDS_PER_BATCH))
+    cmd = [PY, str(SCRIPTS / "i18n_translate_locale.py"), locale,
+           "--workers", "3", "--batch-size", str(BATCH_SIZE), "--limit", str(batches)]
     try:
-        r = run([PY, str(SCRIPTS / "i18n_translate_locale.py"), locale,
-                 "--workers", "3", "--batch-size", "20"], seconds)
+        r = run(cmd, batches * SECONDS_PER_BATCH * 3 + 120)
     except subprocess.TimeoutExpired:
-        return False
-    return r.returncode == 0
+        return False, "timeout"
+    return r.returncode == 0, ("" if r.returncode == 0 else r.stderr.strip()[-160:])
 
 
 def ledger(row: dict) -> None:
@@ -117,17 +130,19 @@ def main() -> int:
                 break
             locale = row["locale"]
             before = row["share"]
-            slice_s = min(remaining * 0.8, 12 * 60)
-            translated = translate(locale, slice_s)
+            slice_s = min(remaining * 0.8, SLICE_SECONDS)
+            translated, reason = translate(locale, slice_s)
             delivered = deliver(locale)
             normalize(locale)
             after_row = measure(locale, en)
             after = after_row["share"] if after_row else before
             ledger({"locale": locale, "before": before, "after": after,
-                    "translated": translated, "delivered": delivered,
-                    "budget_s": round(slice_s)})
+                    "translated": translated, "reason": reason,
+                    "delivered": delivered, "budget_s": round(slice_s),
+                    "delta_pts": round((after - before) * 100, 2)})
             print(f"  {locale:>8} {before*100:5.1f}% -> {after*100:5.1f}%"
-                  f"{'  (cap reached)' if after < TARGET else '  DONE'}")
+                  f"{'  (cap reached)' if after < TARGET else '  DONE'}"
+                  f"{'  [' + reason + ']' if reason else ''}")
 
     final = [measure(r["locale"], en) for r in rows]
     final = [r for r in final if r]
