@@ -26,4 +26,38 @@ describe('desktop i18n catalog', () => {
 
     expect(unlisted).toEqual([])
   })
+
+  // A hotkey marker belongs on a visible label, never inside an ARIA label:
+  // screen readers announce "[e]" verbatim, so the user hears "bracket e
+  // bracket page précédente". Measured in `ln`, which shipped
+  // `previousAria: 'Y[e] page précédente'` and `nextAria: 'Y[e] page suivante'`.
+  it('keeps hotkey markers out of aria labels', () => {
+    const offenders: string[] = []
+
+    const walk = (node: unknown, path: string): void => {
+      if (node === null || typeof node !== 'object') {
+        return
+      }
+
+      for (const [key, value] of Object.entries(node as Record<string, unknown>)) {
+        const next = path ? `${path}.${key}` : key
+
+        if (typeof value === 'string') {
+          if (/aria/i.test(key) && /\[[A-Za-z0-9]\]/.test(value)) {
+            offenders.push(next)
+          }
+
+          continue
+        }
+
+        walk(value, next)
+      }
+    }
+
+    for (const [code, tree] of Object.entries(TRANSLATIONS)) {
+      walk(tree, code)
+    }
+
+    expect(offenders).toEqual([])
+  })
 })
