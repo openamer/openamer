@@ -49,8 +49,15 @@ SCRIPTS_DIR = HOME / "scripts"
 OPENAMER_CONFIG = OPENAMER_HOME / "config.yaml"
 
 # ── Defaults ────────────────────────────────────────────────────────────────
-OLLAMA_URL = "http://localhost:11434"
+# IPv4 explizit, NICHT "localhost": auf diesem Host loest "localhost" zuerst auf
+# ::1 (IPv6) auf, der Ollama-Server lauscht aber nur auf 127.0.0.1. urllib
+# probiert die getaddrinfo-Liste in Reihenfolge und hat KEINEN Fallback auf die
+# naechste Adresse -> jeder Request verbrannte den vollen Timeout (5s/30s) und
+# meldete danach faelschlich "Ollama nicht verfuegbar".
+# Gemessen 2026-10-25: /api/tags via 127.0.0.1 = 200, via localhost = Timeout.
+OLLAMA_URL = "http://127.0.0.1:11434"
 OLLAMA_TAGS_URL = f"{OLLAMA_URL}/api/tags"
+LLAMACPP_URL = "http://127.0.0.1:8080"
 DEFAULT_LOCAL_MODEL = "qwen3.5:4b-q4_K_M"  # 9.7B ('latest') eats 6GB RAM and OOMs the loops; 4b-q4 costs ~3.4GB (verified tag)
 LOCAL_MODEL_FALLBACK = "phi4-mini:latest"
 TINY_MODEL = "qwen3:1.7b"  # CPU-Modus (kleines Modell)
@@ -58,7 +65,11 @@ TINY_MODEL = "qwen3:1.7b"  # CPU-Modus (kleines Modell)
 # Für OpenRouter als Primary (falls in .env oder config.yaml)
 PRIMARY_PROVIDER_URL = "https://openrouter.ai/api/v1/chat/completions"
 PRIMARY_TIMEOUT = 10
-LOCAL_TIMEOUT = 30
+LOCAL_TIMEOUT = 60
+# /api/tags braucht unter Windows 6-17s (alle Manifeste werden gescannt).
+# Gemessen 2026-10-25. 5s war zu knapp -> Health-Check meldete faelschlich
+# "Ollama nicht verfuegbar".
+OLLAMA_TAGS_TIMEOUT = 30
 FAILOVER_THRESHOLD = 3
 
 
@@ -94,16 +105,48 @@ def _http_json(url: str, timeout: int = 10) -> tuple[int, Any, float]:
 # ═══════════════════════════════════════════════════════════════════════════════
 
 def check_ollama() -> dict:
-    """Prüft ob Ollama läuft und listet verfügbare Modelle."""
+    """Prüft ob Ollama läuft und listet verfügbare Modelle.
+
+    Zwei Stufen, weil /api/tags unter Windows SEHR langsam ist: der Ollama-App
+    scannt dafuer alle Modell-Manifeste auf Platte. Gemessen 2026-10-25:
+    /api/version = 0.02s, /api/tags = 6-17s (41 Modelle). Mit einem 5s-Timeout
+    auf /api/tags meldete der Health-Check faelschlich "Ollama nicht
+    verfuegbar", obwohl der Server laeuft.
+
+    Also: /api/version (schnell) entscheidet die Verfuegbarkeit, /api/tags
+    liefert nur die Modelliste und ist best-effort - ein Timeout dort darf die
+    Verfuegbarkeit NICHT verneinen.
+    """
     result: dict[str, Any] = {
         "available": False,
         "version": None,
         "models": [],
         "error": None,
     }
-    status, data, elapsed = _http_json(OLLAMA_TAGS_URL, timeout=5)
+    # Stufe 1: Liveness (schnell, fail-closed fuer "available")
+    # Ein einzelner Fehlschlag ist noch kein Ausfall: gemessen 2026-11-16
+    # scheiterten 36 von 183 Laeufen in SCHUEBEN (12 in einer Stunde, 10 in
+    # einer anderen) — der Server ist unter Last kurz busy bzw. startet neu.
+    # Ein Retry mit kurzer Pause trennt "Huster" von "wirklich weg"; ein echter
+    # Ausfall scheitert weiterhin an BEIDEN Versuchen und failt korrekt.
+    vstatus, vdata, _ = _http_json(f"{OLLAMA_URL}/api/version", timeout=5)
+    if vstatus != 200:
+        time.sleep(1.0)
+        vstatus, vdata, _ = _http_json(f"{OLLAMA_URL}/api/version", timeout=5)
+    if vstatus != 200:
+        result["error"] = f"HTTP {vstatus}" if vstatus else "unreachable"
+        return result
+
+    result["available"] = True
+    result["version"] = (
+        vdata.get("version", "ollama (unknown ver)")
+        if isinstance(vdata, dict)
+        else "ollama (unknown ver)"
+    )
+
+    # Stufe 2: Modelliste (langsam, best-effort)
+    status, data, elapsed = _http_json(OLLAMA_TAGS_URL, timeout=OLLAMA_TAGS_TIMEOUT)
     if status == 200 and data and "models" in data:
-        result["available"] = True
         result["models"] = [
             {
                 "name": m.get("name", "?"),
@@ -112,18 +155,16 @@ def check_ollama() -> dict:
             }
             for m in data["models"]
         ]
-        # Version aus Response-Header oder erstem Model
-        result["version"] = "ollama (unknown ver)"
-        # Prüf ob empfehlenswerte Modelle da sind
+        # Pruef ob empfehlenswerte Modelle da sind
         model_names = {m.get("name", "") for m in data["models"]}
         result["has_coder_model"] = any("deepseek-coder" in n for n in model_names)
         result["has_qwen_coder"] = any("qwen2.5-coder" in n for n in model_names)
         result["has_tiny"] = any("llama3.2:1b" in n for n in model_names) or any("tiny" in n for n in model_names)
-    elif status != 0:
-        result["error"] = f"HTTP {status}"
     else:
-        err = data.get("_error", "unreachable") if data else "unreachable"
-        result["error"] = err
+        # Liveness steht fest - nur die Liste fehlt. Nicht als Fehler werten.
+        result["model_list_error"] = (
+            f"HTTP {status}" if status else (data or {}).get("_error", "unreachable")
+        )
     return result
 
 
@@ -148,11 +189,11 @@ def check_llamacpp() -> dict:
     """Prüft ob llama.cpp server (localhost:8080) läuft."""
     result: dict[str, Any] = {
         "available": False,
-        "endpoint": "http://localhost:8080",
+        "endpoint": LLAMACPP_URL,
         "models": [],
         "error": None,
     }
-    status, data, elapsed = _http_json("http://localhost:8080/v1/models", timeout=4)
+    status, data, elapsed = _http_json(f"{LLAMACPP_URL}/v1/models", timeout=4)
     if status == 200 and data:
         result["available"] = True
         if isinstance(data, dict) and "data" in data:
@@ -236,6 +277,9 @@ def check_local_health(config: dict) -> dict:
     # keep_alive=0: der 5-Minuten-Probe darf das Modell NICHT im RAM festhalten.
     # Ohne das blieb ein 3-6 GB Modell dauerhaft geladen (RAM ~90%) und die
     # Cloud-Calls anderer Cron-Jobs liefen in den 600s-Idle-Timeout.
+    # Timeout 60s (vorher 30s): gemessene Generate-Latenz 11-14s, auf
+    # ausgelastetem Host bis 25s. Bei 30s lief der Check ins Timeout und
+    # meldete faelschlich "Local nicht verfuegbar". Gemessen 2026-10-25.
     t0 = time.monotonic()
     try:
         payload = json.dumps({
@@ -263,6 +307,22 @@ def check_local_health(config: dict) -> dict:
     except (urllib.error.URLError, ConnectionError, TimeoutError, OSError) as e:
         result["error"] = str(e)
         result["latency_ms"] = round((time.monotonic() - t0) * 1000)
+
+    # Ein langsamer Generate-Call ist kein Ausfall.
+    # Gemessen 2026-11-16: der 5-Minuten-Probe kippte in Schueben auf
+    # "kein Provider" (36 von 183 Laeufen), obwohl der Ollama-Server weiterhin
+    # antwortete — der Generate-Call lief unter Last in seinen Timeout. Eine
+    # REACHABILITY-Probe (/api/version, kein Modell-Load) trennt "Server weg"
+    # von "Server langsam": erreichbar -> degraded=True, verfuegbar=True.
+    # Ein echter Ausfall bleibt ein Ausfall, weil /api/version dann ebenfalls
+    # scheitert.
+    if not result["available"]:
+        lstatus, _ldata, _ = _http_json(f"{OLLAMA_URL}/api/version", timeout=5)
+        if lstatus == 200:
+            result["available"] = True
+            result["degraded"] = True
+            result["provider"] = "ollama"
+            result["note"] = "reachable, generate probe failed or timed out"
     return result
 
 
@@ -633,11 +693,16 @@ def cmd_check() -> int:
         print(f"    Fehler:       {primary['error']}")
 
     # Local Health
-    print(f"\n🏠  Local:        {'✅ Verfügbar' if local['available'] else '❌ Nicht verfügbar'}")
+    _local_label = "✅ Verfügbar" if local["available"] else "❌ Nicht verfügbar"
+    if local.get("degraded"):
+        _local_label = "⚠️  Verfügbar (degraded)"
+    print(f"\n🏠  Local:        {_local_label}")
     if local.get("latency_ms"):
         print(f"    Latenz:       {local['latency_ms']} ms")
     if local.get("model"):
         print(f"    Modell:       {local['model']}")
+    if local.get("note"):
+        print(f"    Hinweis:      {local['note']}")
     if local.get("error"):
         print(f"    Fehler:       {local['error']}")
 
