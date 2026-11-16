@@ -2406,7 +2406,7 @@ export const yi = defineLocale({
       update: 'דערהײַנטיקן',
       updateInProgress: 'דערהײַנטיקונג לויפֿט',
       commitsBehind: (count, branch) => `${count} commit${count === 1 ? '' : 's'} הינטער ${branch}`,
-      desktopVersion: version => `OpenAmer Desktop v${version}`,
+      desktopVersion: version => `OpenAmer ꃅꏢ v${version}`,
       backendVersion: version => `סערווירער v${version}`,
       clientLabel: version => `קליענט v${version}`,
       connectionSsh: host => `SSH: ${host}`,

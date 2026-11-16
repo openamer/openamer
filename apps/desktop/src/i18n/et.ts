@@ -444,7 +444,7 @@ export const et = defineLocale({
       themeProfileNote: profile => `Salvestatud profiili ${profile} jaoks — igal profiilil on oma teema.`,
       installTitle: 'Paigalda VS Code’ist',
       installDesc: 'Kleep Marketplace’i laienduse ID (nt dracula-theme.theme-dracula), et teisendada oma värviteema töölaua paletiks.',
-      installPlaceholder: 'publisher.extension',
+      installPlaceholder: 'väljaandja.laiendus',
       installButton: 'Paigalda',
       installing: 'Paigaldan…',
       installError: 'Seda teemat ei saanud paigaldada.',

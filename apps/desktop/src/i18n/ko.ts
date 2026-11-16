@@ -1918,7 +1918,7 @@ ${mode} 기본값을 유지하려면 비워 두세요.`,
       ageNow: '지금',
       ageDay: '일',
       ageHour: '시',
-      ageMin: 'm',
+      ageMin: '분',
     },
     dateDivider: {
       today: '오늘 이른 시간',

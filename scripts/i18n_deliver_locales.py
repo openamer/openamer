@@ -83,6 +83,16 @@ def cache(locale: str) -> dict[str, str] | None:
     return data if isinstance(data, dict) else None
 
 
+def _audit_module():
+    spec = importlib.util.spec_from_file_location(
+        "i18n_audit_locales", SCRIPTS / "i18n_audit_locales.py")
+    if spec is None or spec.loader is None:
+        raise ImportError("cannot load i18n_audit_locales")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 def _real_gap() -> Callable[[str, str], bool]:
     """The audit's own "is there anything to translate here" predicate.
 
@@ -91,26 +101,40 @@ def _real_gap() -> Callable[[str, str], bool]:
     `OpenAmer`, the constants `FIELD_LABELS`/`FIELD_DESCRIPTIONS`, URLs, `'.'`,
     `'0'`, and templates like `${provider} · ${model}`. Nothing there is text.
     """
-    spec = importlib.util.spec_from_file_location(
-        "i18n_audit_locales", SCRIPTS / "i18n_audit_locales.py")
-    if spec is None or spec.loader is None:
-        raise ImportError("cannot load i18n_audit_locales")
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module.is_real_gap
+    return _audit_module().is_real_gap
 
 
 REAL_GAP: Callable[[str, str], bool] = _real_gap()
+
+
+def _translatable_keys() -> set[str]:
+    """The paths the translator actually works on.
+
+    `i18n_extract_locale.mjs` also returns `raw`, `ref` and `array` leaves (3 + 2 +
+    2 of 2539 measured). The translator only touches `string` and `func`, so
+    counting the others as "open" invents gaps nothing can ever close.
+    """
+    from i18n_translate_locale import load_leaves
+    return {leaf["path"] for leaf in load_leaves("en") if leaf["kind"] in ("string", "func")}
+
+
+KEYS = _translatable_keys()
+HAND = _audit_module().hand_table
 
 
 def measure(locale: str, en: dict[str, str]) -> dict | None:
     values = extract(locale)
     if values is None:
         return None
-    translated = sum(1 for path, text in en.items() if values.get(path) not in (None, text))
-    total = len(en)
-    open_paths = [path for path, text in en.items() if values.get(path) in (None, text)]
-    real = [path for path in open_paths if REAL_GAP(path, en[path])]
+    scope = {p: t for p, t in en.items() if p in KEYS}
+    translated = sum(1 for path, text in scope.items() if values.get(path) not in (None, text))
+    total = len(scope)
+    open_paths = [path for path, text in scope.items() if values.get(path) in (None, text)]
+    # A locale's hand table records strings the language legitimately spells the
+    # same way (de: 'Details', 'Name', 'Optional'). Those are answers, not gaps.
+    accepted = HAND(locale)
+    real = [path for path in open_paths
+            if REAL_GAP(path, en[path]) and path not in accepted]
     return {
         "locale": locale,
         "total": total,
@@ -148,7 +172,23 @@ def deliver(locale: str, en: dict[str, str], current: dict | None = None) -> tup
         return False, "no cache"
     cur = current if current is not None else measure(locale, en)
     if cur and cached_q < cur["translated"]:
-        return False, f"refused: cache {cached_q} < catalog {cur['translated']}"
+        # Merge instead of refusing: keep every value the catalog already has and
+        # only then regenerate. Measured 2026-11-16 on `vo`/`ms` - the cache held
+        # three fresh translations AND ten stale English values, so a plain
+        # refusal threw the three away.
+        values = extract(locale) or {}
+        cached = cache(locale) or {}
+        gained = 0
+        for path, text in values.items():
+            if text and text != en.get(path) and cached.get(path) in (None, en.get(path)):
+                cached[path] = text
+                gained += 1
+        if gained:
+            (TMP / f"i18n_{locale}_translations.json").write_text(
+                json.dumps(cached, ensure_ascii=False, indent=1), encoding="utf-8")
+            cached_q = cache_quality(locale, en)
+        if cur and cached_q < cur["translated"]:
+            return False, f"refused: cache {cached_q} < catalog {cur['translated']}"
     r = node([str(WRITE), str(I18N / f"{locale}.ts"),
               str(TMP / f"i18n_{locale}_translations.json")])
     if r.returncode != 0:
