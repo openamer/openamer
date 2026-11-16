@@ -1543,8 +1543,8 @@ export const th = defineLocale({
     deliverOptions: {
       log: 'บันทึก',
       telegram: 'เทเลแกรม',
-      discord: 'Discord',
-      slack: 'Slack',
+      discord: 'ดิสคอร์ด',
+      slack: 'สแล็ก',
       email: 'อีเมล',
       github_comment: 'คอมเมนต์ GitHub',
     },
@@ -1644,9 +1644,9 @@ export const th = defineLocale({
     },
     deliveryLabels: {
       local: 'เดสก์ท็อปนี้',
-      telegram: 'Telegram',
-      discord: 'Discord',
-      slack: 'Slack',
+      telegram: 'เทเลแกรม',
+      discord: 'ดิสคอร์ด',
+      slack: 'สแล็ก',
       email: 'อีเมล',
     },
     scheduleLabels: {

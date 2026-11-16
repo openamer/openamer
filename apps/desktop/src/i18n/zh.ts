@@ -2158,7 +2158,7 @@ export const zh = defineLocale({
       ageNow: '刚刚',
       ageDay: '天',
       ageHour: '时',
-      ageMin: 'm',
+      ageMin: '米',
     },
     dateDivider: {
       today: '今天早些时候',

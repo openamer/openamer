@@ -1918,7 +1918,7 @@ export const ja = defineLocale({
       ageNow: 'たった今',
       ageDay: '日',
       ageHour: '時間',
-      ageMin: 'm',
+      ageMin: '分',
     },
     dateDivider: {
       today: '今日の早い時間',
