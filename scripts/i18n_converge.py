@@ -37,9 +37,9 @@ from i18n_deliver_locales import extract, measure  # noqa: E402
 
 PY = sys.executable
 TARGET = 0.999
-BATCH_SIZE = 20
+BATCH_SIZE = 40
 WORKERS = 5                 # measured 69 strings/min at 3 workers (vo, 2416 in ~35 min)
-SECONDS_PER_BATCH = 22      # 20 strings/batch at 5 workers, wall clock per batch
+SECONDS_PER_BATCH = 27      # measured 200 strings in 133 s at batch 40 x 5 workers (~90/min)
 SLICE_SECONDS = 12 * 60     # one locale per slice, so one slot can advance two locales
 HOME = pathlib.Path(os.environ.get(
     "OPENAMER_HOME",
