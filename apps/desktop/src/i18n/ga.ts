@@ -193,7 +193,7 @@ export const ga = defineLocale({
     openStarmap: 'Oscail an ghraf cuimhne',
     openKeybinds: 'Aisceanna méarchláir',
     layoutEditor: 'Eagarthóir leagan amach',
-    layoutEditorTitle: 'Eagarthóir leagan amach — Cmd/Ctrl+cliceáil aiseoidh an leagan amach',
+    layoutEditorTitle: 'Eagarthóir leagan amach — cliceáil ⌘ athshocraíonn an leagan amach',
   },
   keybinds: {
     title: 'Aicearraí méarchláir',

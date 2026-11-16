@@ -1500,9 +1500,9 @@ export const ln = defineLocale({
     pagination: {
       label: 'Pagination',
       previous: 'Précédent',
-      previousAria: 'Page précédente',
+      previousAria: 'Ye page précédente',
       next: 'Suivant',
-      nextAria: 'Page suivante',
+      nextAria: 'Ye page suivante',
     },
     sidebar: {
       title: 'Barre latérale',
