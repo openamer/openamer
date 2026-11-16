@@ -17,11 +17,55 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from pathlib import Path
 from urllib.parse import urlparse
 
+
+# ── Console encoding ───────────────────────────────────────────────────────
+def _configure_stdio():
+    """Force UTF-8 on stdout/stderr.
+
+    On Windows the default console encoding is cp1252, so any status line that
+    carries an emoji raised ``UnicodeEncodeError`` inside ``main()`` and killed
+    the process AFTER the socket was bound — the dashboard never survived a
+    start. Reconfiguring the streams fixes the whole class, not just the lines
+    that happen to be non-ASCII today. Under ``pythonw.exe`` the streams can be
+    ``None``; that is fine, there is nowhere to write.
+    """
+    for stream in (sys.stdout, sys.stderr):
+        if stream is None:
+            continue
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except (AttributeError, ValueError, OSError):
+            pass
+
+
+_configure_stdio()
+
+
 # ── Paths ──────────────────────────────────────────────────────────────────
-OPENAMER_HOME = Path(os.environ.get(
-    "OPENAMER_HOME",
-    str(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))),
-))
+def _resolve_home() -> Path:
+    """Resolve the OpenAmer home directory.
+
+    ``OPENAMER_HOME`` wins. Otherwise probe the known install locations and
+    take the first one that actually holds a cron directory — a bare
+    ``Path.home() / "AppData/Local/openamer"`` default resolved to an EMPTY
+    directory on installs whose home is ``openamer-laptop``, which rendered a
+    dashboard full of zeros.
+    """
+    env = os.environ.get("OPENAMER_HOME")
+    if env:
+        return Path(env)
+    candidates = [
+        Path.home() / "AppData" / "Local" / "openamer-laptop",
+        Path.home() / "AppData" / "Local" / "openamer",
+        Path.home() / ".openamer",
+    ]
+    for cand in candidates:
+        if (cand / "cron").is_dir():
+            return cand
+    return candidates[0]
+
+
+OPENAMER_HOME = _resolve_home()
 CRON_DIR = OPENAMER_HOME / "cron"
 SCRIPTS_DIR = OPENAMER_HOME / "scripts"
 SECURITY_DIR = OPENAMER_HOME / ".security-cve"
@@ -217,6 +261,81 @@ def collect_security():
     result["packages"] = known
     result["status"] = "ok"
     return result
+
+
+def collect_discovery():
+    """Autonomous Discovery & Evolution — the self-directed learning loop.
+
+    Reads the state written by ``scripts/autonomous_discovery.py`` so the
+    dashboard shows what the agent found ON ITS OWN: research signals,
+    capability comparisons, decisions, and the improvements it verified.
+    Nothing here is computed from a template — an empty store reports
+    ``available: False`` instead of inventing numbers.
+    """
+    state_path = OPENAMER_HOME / "memory" / "discovery" / "state.json"
+    ledger_path = OPENAMER_HOME / "memory" / "discovery" / "ledger.jsonl"
+
+    if not state_path.exists():
+        return {
+            "available": False,
+            "brand": "OpenAmer — Autonomous Discovery & Evolution",
+            "hint": "no discovery cycle yet — run scripts/autonomous_discovery.py --cycle",
+        }
+
+    try:
+        with open(state_path, encoding="utf-8") as fh:
+            state = json.load(fh)
+    except (OSError, ValueError) as exc:
+        return {"available": False, "error": f"state unreadable: {exc}"}
+
+    stage_counts = {}
+    ledger_rows = 0
+    recent = []
+    try:
+        with open(ledger_path, encoding="utf-8") as fh:
+            rows = fh.readlines()[-300:]
+        for line in rows:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                row = json.loads(line)
+            except ValueError:
+                continue
+            ledger_rows += 1
+            stage_counts[row.get("stage", "?")] = stage_counts.get(row.get("stage", "?"), 0) + 1
+            recent.append({"ts": row.get("ts"), "stage": row.get("stage"),
+                           "cycle": row.get("cycle")})
+    except OSError:
+        pass
+
+    return {
+        "available": True,
+        "brand": state.get("brand", "OpenAmer — Autonomous Discovery & Evolution"),
+        "cycle_count": state.get("cycle_count", 0),
+        "last_cycle": state.get("last_cycle", {}),
+        "stage_totals": state.get("stage_totals", {}),
+        "ledger_stages": stage_counts,
+        "ledger_rows": ledger_rows,
+        "queue": state.get("queue", []),
+        "findings": [
+            {
+                "id": f.get("id"),
+                "title": f.get("title"),
+                "domain": f.get("domain"),
+                "origin": f.get("origin"),
+                "status": (f.get("capability") or {}).get("status"),
+                "score": (f.get("decision") or {}).get("score"),
+                "authority": (f.get("decision") or {}).get("authority"),
+                "reason": (f.get("decision") or {}).get("reason"),
+                "evidence": (f.get("capability") or {}).get("evidence", [])[:3],
+            }
+            for f in (state.get("findings") or [])[:12]
+        ],
+        "improvements": state.get("improvements", [])[-10:],
+        "improvement_count": state.get("improvement_count", 0),
+        "recent_events": recent[-8:],
+    }
 
 
 def collect_graph():
@@ -515,6 +634,30 @@ HTML = r"""<!DOCTYPE html>
   </table>
 </div>
 
+<div class="card full" id="discovery-card">
+  <h2>🔭 Autonomous Discovery</h2>
+  <div class="timestamp" id="discovery-brand" style="margin-bottom:10px">OpenAmer — Autonomous Discovery &amp; Evolution</div>
+  <div class="stat-row" id="discovery-stats">
+    <div class="stat"><div class="value" id="disc-cycles">-</div><div class="label">Zyklen</div></div>
+    <div class="stat"><div class="value" id="disc-signals">-</div><div class="label">Signale (extern/intern)</div></div>
+    <div class="stat"><div class="value" id="disc-findings">-</div><div class="label">Befunde / akzeptiert</div></div>
+    <div class="stat"><div class="value" id="disc-improvements">-</div><div class="label">Verifizierte Verbesserungen</div></div>
+  </div>
+  <div id="discovery-empty" class="timestamp" style="display:none"></div>
+  <table id="disc-pipeline" style="margin-top:10px">
+    <thead><tr><th>Stufe</th><th>Läufe</th></tr></thead>
+    <tbody id="disc-pipeline-body"></tbody>
+  </table>
+  <table id="disc-findings" style="margin-top:14px">
+    <thead><tr><th>ID</th><th>Befund</th><th>Domain</th><th>Fähigkeit</th><th>Score</th><th>Entscheidung</th></tr></thead>
+    <tbody id="disc-findings-body"></tbody>
+  </table>
+  <table id="disc-improvements" style="margin-top:14px">
+    <thead><tr><th>Verbesserung</th><th>vorher</th><th>nachher</th><th>Beleg</th></tr></thead>
+    <tbody id="disc-improvements-body"></tbody>
+  </table>
+</div>
+
 <div class="footer">
   OpenAmer Dashboard · <span id="footer-time">–</span> · Auto-Refresh alle 60s
 </div>
@@ -787,6 +930,67 @@ function renderExecutions(data) {
   }).join("");
 }
 
+// ── Autonomous Discovery Panel ─────────────────────────────────────────
+function renderDiscovery(data) {
+  const empty = document.getElementById("discovery-empty");
+  if (!data || data.available === false) {
+    empty.style.display = "block";
+    empty.textContent = (data && (data.hint || data.error)) || "Noch keine Discovery-Daten";
+    document.getElementById("disc-pipeline-body").innerHTML = "";
+    document.getElementById("disc-findings-body").innerHTML = "";
+    document.getElementById("disc-improvements-body").innerHTML = "";
+    return;
+  }
+  empty.style.display = "none";
+  if (data.brand) document.getElementById("discovery-brand").textContent = data.brand;
+
+  const lc = data.last_cycle || {};
+  document.getElementById("disc-cycles").textContent = data.cycle_count ?? 0;
+  document.getElementById("disc-signals").textContent =
+    `${lc.external_signals ?? 0}/${lc.internal_signals ?? 0}`;
+  document.getElementById("disc-findings").textContent =
+    `${lc.findings ?? 0}/${lc.accepted ?? 0}`;
+  document.getElementById("disc-improvements").textContent = data.improvement_count ?? 0;
+
+  const stages = data.stage_totals || {};
+  const pipeBody = document.getElementById("disc-pipeline-body");
+  const order = ["discover","understand","compare","decide","develop","test","verify"];
+  pipeBody.innerHTML = order.map(s => `<tr>
+      <td>${s}</td><td>${stages[s] ?? 0}</td>
+    </tr>`).join("");
+
+  const fb = document.getElementById("disc-findings-body");
+  const findings = data.findings || [];
+  if (findings.length === 0) {
+    fb.innerHTML = "<tr><td colspan='6' style='color:var(--muted)'>Keine Befunde im letzten Zyklus</td></tr>";
+  } else {
+    fb.innerHTML = findings.map(f => {
+      const cls = f.status === "MISSING" ? "error" : f.status === "PARTIAL" ? "scheduled" : "ok";
+      return `<tr>
+        <td><code>${f.id ?? "?"}</code></td>
+        <td>${(f.title ?? "").replace(/</g, "&lt;")}</td>
+        <td class="timestamp">${f.domain ?? "?"}</td>
+        <td><span class="badge ${cls}">${f.status ?? "?"}</span></td>
+        <td>${f.score ?? "?"}</td>
+        <td class="timestamp">${f.authority ?? "?"}<br>${(f.reason ?? "").slice(0, 60)}</td>
+      </tr>`;
+    }).join("");
+  }
+
+  const ib = document.getElementById("disc-improvements-body");
+  const imps = data.improvements || [];
+  if (imps.length === 0) {
+    ib.innerHTML = "<tr><td colspan='4' style='color:var(--muted)'>Noch keine verifizierte Verbesserung</td></tr>";
+  } else {
+    ib.innerHTML = imps.slice().reverse().map(i => `<tr>
+        <td>${(i.title ?? "").replace(/</g, "&lt;")}</td>
+        <td class="timestamp">${(i.before ?? "").slice(0, 70)}</td>
+        <td class="timestamp">${(i.after ?? "").slice(0, 70)}</td>
+        <td class="timestamp">${(i.evidence ?? "").slice(0, 60)}</td>
+      </tr>`).join("");
+  }
+}
+
 // ── Refresh ────────────────────────────────────────────────────────────
 async function refresh() {
   const ts = Date.now();
@@ -796,6 +1000,7 @@ async function refresh() {
     renderHealth(data.health);
     renderSecurity(data.security);
     renderGraph(data.graph);
+    renderDiscovery(data.discovery);
     renderExecutions(data.cron);
     document.getElementById("last-updated").textContent = "Letztes Update: " + new Date().toLocaleTimeString("de-DE");
     document.getElementById("footer-time").textContent = new Date().toLocaleString("de-DE");
@@ -830,6 +1035,8 @@ class DashboardHandler(BaseHTTPRequestHandler):
             self._serve_json(_cached("security", collect_security))
         elif path == "/api/graph":
             self._serve_json(_cached("graph", collect_graph, ttl=30))
+        elif path == "/api/discovery":
+            self._serve_json(_cached("discovery", collect_discovery, ttl=30))
         else:
             self.send_response(404)
             self.send_header("Content-Type", "text/plain")
@@ -842,6 +1049,7 @@ class DashboardHandler(BaseHTTPRequestHandler):
             "health": _cached("health", collect_health, ttl=10),
             "security": _cached("security", collect_security),
             "graph": _cached("graph", collect_graph, ttl=30),
+            "discovery": _cached("discovery", collect_discovery, ttl=30),
             "timestamp": datetime.now(timezone.utc).isoformat(),
         }
 
