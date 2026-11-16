@@ -28,7 +28,33 @@ def fake_world(tmp_path, monkeypatch):
     return tmp_path
 
 
-def test_generate_tasks_from_gaps_creates_tasks(fake_world):
+@pytest.fixture
+def gaps_world(fake_world, monkeypatch):
+    """A world whose metacognition gaps are known, not inherited.
+
+    `generate_tasks_from_gaps()` loads `darwin_metacognition` from REPO and calls
+    `introspect()`, which reads live Darwin state. On a developer machine that
+    finds gaps and the test passes; in CI there is none, so the list comes back
+    empty and `assert first` fails although the generator is fine. The test must
+    build the source it reads.
+    """
+    scripts = fake_world / "scripts"
+    scripts.mkdir()
+    (scripts / "darwin_metacognition.py").write_text(
+        'def introspect():\n'
+        '    return {"gaps": [\n'
+        '        {"type": "weak-population", "detail": "1 of 3 capabilities covered",\n'
+        '         "capability": "evolution"},\n'
+        '        {"type": "stagnation", "detail": "no new record in 5 cycles",\n'
+        '         "capability": "evolution"},\n'
+        '    ]}\n',
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(loop, "REPO", fake_world)
+    return fake_world
+
+
+def test_generate_tasks_from_gaps_creates_tasks(gaps_world):
     import swarm_os
     tids = loop.generate_tasks_from_gaps()
     assert len(tids) >= 1
@@ -38,7 +64,7 @@ def test_generate_tasks_from_gaps_creates_tasks(fake_world):
     assert all(t["status"] == "pending" for t in auto_tasks)
 
 
-def test_generate_tasks_deduplicates(fake_world):
+def test_generate_tasks_deduplicates(gaps_world):
     first = loop.generate_tasks_from_gaps()
     second = loop.generate_tasks_from_gaps()
     assert first and not second  # same gap types -> no duplicates
