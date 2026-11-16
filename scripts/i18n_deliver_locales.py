@@ -95,16 +95,39 @@ def measure(locale: str, en: dict[str, str]) -> dict | None:
     }
 
 
-def deliver(locale: str) -> bool:
-    """Regenerate the catalog from its cache. Returns True when it was written."""
-    if cache(locale) is None:
-        return False
+def cache_quality(locale: str, en: dict[str, str]) -> int:
+    """How many catalog paths the cache would actually translate.
+
+    -1 means "no usable cache". A count is needed because presence alone is not
+    translation: a cache entry identical to English is a gap.
+    """
+    cached = cache(locale)
+    if not cached:
+        return -1
+    return sum(1 for path, text in en.items() if cached.get(path) not in (None, text))
+
+
+def deliver(locale: str, en: dict[str, str], current: dict | None = None) -> tuple[bool, str]:
+    """Regenerate the catalog from its cache - never at the cost of the catalog.
+
+    The cache and the catalog are two sources and either can be ahead. Measured
+    2026-11-16: delivering `vo` from its cache cut the catalog from 2453 to 2443
+    translated strings, because a later translation pass had written ten English
+    values back into the cache. Overwriting a better catalog with a poorer cache
+    is silent data loss, so the write is refused and the caller reports why.
+    """
+    cached_q = cache_quality(locale, en)
+    if cached_q < 0:
+        return False, "no cache"
+    cur = current if current is not None else measure(locale, en)
+    if cur and cached_q < cur["translated"]:
+        return False, f"refused: cache {cached_q} < catalog {cur['translated']}"
     r = node([str(WRITE), str(I18N / f"{locale}.ts"),
               str(TMP / f"i18n_{locale}_translations.json")])
     if r.returncode != 0:
         print(f"  write failed {locale}: {r.stderr.strip()[-160:]}", file=sys.stderr)
-        return False
-    return True
+        return False, "write failed"
+    return True, ""
 
 
 def main() -> int:
@@ -121,13 +144,17 @@ def main() -> int:
         return 2
 
     todo = [s for s in (args.only.split(",") if args.only else locales()) if s]
-    rows, delivered = [], 0
+    rows, delivered, refused = [], 0, []
     for locale in todo:
         cached = cache(locale)
+        current = measure(locale, en)
         if args.deliver and cached:
-            if deliver(locale):
+            wrote, why = deliver(locale, en, current)
+            if wrote:
                 delivered += 1
-        row = measure(locale, en)
+            elif why.startswith("refused"):
+                refused.append(locale)
+        row = current
         if row is None:
             continue
         row["cache_entries"] = len(cached) if cached else 0
@@ -138,8 +165,10 @@ def main() -> int:
     median = shares[len(shares) // 2] if shares else 0
     full = sum(1 for s in shares if s >= 0.999)
     below50 = sum(1 for s in shares if s < 0.5)
-    print(f"locales={len(rows)} delivered={delivered} median={median*100:.1f}% "
+    print(f"locales={len(rows)} delivered={delivered} refused={len(refused)} "
+          f"median={median*100:.1f}% "
           f"min={shares[0]*100:.1f}% max={shares[-1]*100:.1f}% at100={full} below50={below50}")
+
     print("worst:", " ".join(f"{r['locale']}:{r['share']*100:.0f}%" for r in rows[:10]))
 
     if args.json:

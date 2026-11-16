@@ -38,8 +38,9 @@ from i18n_deliver_locales import extract, measure  # noqa: E402
 PY = sys.executable
 TARGET = 0.999
 BATCH_SIZE = 20
-SECONDS_PER_BATCH = 25      # measured ~20s/batch on this host; the limit is a ceiling
-SLICE_SECONDS = 8 * 60      # one locale per slice, so one slot can advance two locales
+WORKERS = 5                 # measured 69 strings/min at 3 workers (vo, 2416 in ~35 min)
+SECONDS_PER_BATCH = 22      # 20 strings/batch at 5 workers, wall clock per batch
+SLICE_SECONDS = 12 * 60     # one locale per slice, so one slot can advance two locales
 HOME = pathlib.Path(os.environ.get(
     "OPENAMER_HOME",
     str(pathlib.Path.home() / "AppData" / "Local" / "openamer-laptop"),
@@ -75,7 +76,7 @@ def translate(locale: str, seconds: float) -> tuple[bool, str]:
     """
     batches = max(4, int(seconds // SECONDS_PER_BATCH))
     cmd = [PY, str(SCRIPTS / "i18n_translate_locale.py"), locale,
-           "--workers", "3", "--batch-size", str(BATCH_SIZE), "--limit", str(batches)]
+           "--workers", str(WORKERS), "--batch-size", str(BATCH_SIZE), "--limit", str(batches)]
     try:
         r = run(cmd, batches * SECONDS_PER_BATCH * 3 + 120)
     except subprocess.TimeoutExpired:
