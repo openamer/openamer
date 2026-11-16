@@ -59,6 +59,18 @@ def normalize(locale: str) -> None:
     run([PY, str(SCRIPTS / "i18n_fix_aria_hotkeys.py"), "--apply"], 120)
 
 
+def strict(locale: str) -> tuple[bool, str]:
+    """Close the last few real gaps that the batch translator leaves English.
+
+    The batch pass deliberately does not push: a short word answered in English
+    stays English. Without this step the loop sits at 98-99% forever (measured
+    2026-11-16: `sk 98.3% -> 98.4%`, `se 96.9% -> 97.3%`). Cheap when there is
+    nothing to do: it measures first and returns immediately.
+    """
+    r = run([PY, str(SCRIPTS / "i18n_strict_fill.py"), locale], 420)
+    return r.returncode == 0, ("" if r.returncode == 0 else r.stderr.strip()[-160:])
+
+
 def deliver(locale: str) -> bool:
     r = run([PY, str(SCRIPTS / "i18n_deliver_locales.py"), "--deliver", "--only", locale], 240)
     return r.returncode == 0
@@ -142,12 +154,14 @@ def main() -> int:
             before = row["share"]
             slice_s = min(remaining * 0.8, SLICE_SECONDS)
             translated, reason = translate(locale, slice_s)
+            strict_ok, strict_reason = strict(locale)
             delivered = deliver(locale)
             normalize(locale)
             after_row = measure(locale, en)
             after = after_row["share"] if after_row else before
             ledger({"locale": locale, "before": before, "after": after,
                     "translated": translated, "reason": reason,
+                    "strict": strict_ok, "strict_reason": strict_reason,
                     "delivered": delivered, "budget_s": round(slice_s),
                     "delta_pts": round((after - before) * 100, 2)})
             print(f"  {locale:>8} {before*100:5.1f}% -> {after*100:5.1f}%"
