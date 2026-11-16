@@ -53,9 +53,13 @@ def repair_line(line: str) -> tuple[str, list[str]]:
         # Only the branch's FIRST word can repeat the stem word that sits
         # immediately before the interpolation. A looser "any word" test
         # destroyed legitimate phrases (ar "حيوان أليف" -> "حيوان").
-        sing_first = (WORD.findall(sing) or [""])[0].lower()[:6]
-        plur_first = (WORD.findall(plur) or [""])[0].lower()[:6]
-        if stem.lower()[:6] not in (sing_first, plur_first):
+        sing_first = (WORD.findall(sing) or [""])[0].lower()
+        plur_first = (WORD.findall(plur) or [""])[0].lower()
+        stem_l = stem.lower()
+        # Two shapes are duplicates: the branch word equals the stem word, or the
+        # stem is a FRAGMENT of it (cs "změn" + "změna" -> "změnzměna").
+        if not any(f and (f[:6] == stem_l[:6] or f.startswith(stem_l))
+                   for f in (sing_first, plur_first)):
             continue
         cut_from = m.start()
         while cut_from > literal_start and line[cut_from - 1] == " ":
