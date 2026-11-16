@@ -2973,7 +2973,7 @@ Leave blank to keep the ${mode} default.`,
     sidebar: {
       title: 'Sidebar',
       description: 'Displays the mobile sidebar.',
-      toggle: 'Toggle Sidebar',
+      toggle: 'Gũtũra mũgĩkũyũ',
     },
   },
 })

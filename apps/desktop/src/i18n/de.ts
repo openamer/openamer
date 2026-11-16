@@ -2145,7 +2145,7 @@ export const de = defineLocale({
     availableBodyNoChangelog: 'Eine neuere Version ist bereit. Für diesen Installationstyp sind keine Versionshinweise verfügbar.',
     updateNow: 'Jetzt aktualisieren',
     maybeLater: 'Vielleicht später',
-    moreChanges: count => `+ ${count} weitere Änderung${count === 1 ? '' : 'en'} enthalten.`,
+    moreChanges: count => `+ ${count} weitere ${count === 1 ? 'Änderung' : 'Änderungen'} enthalten.`,
     manualTitle: 'Vom Terminal aus aktualisieren',
     manualBody: 'Du hast OpenAmer von der Befehlszeile aus installiert, daher werden Updates auch dort ausgeführt. Füge dies in dein Terminal ein:',
     manualPickedUp: 'OpenAmer verwendet die neue Version beim nächsten Start.',

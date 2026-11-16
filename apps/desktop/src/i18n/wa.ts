@@ -1134,8 +1134,8 @@ export const wa = defineLocale({
     generatePet: {
       title: 'Ahiver ene mascote',
       placeholder: 'Discrijhoz ene mascote a ahiver…',
-      promptHint: 'Tapîz on discrijhaedje, pu broyîz so Intrêye po droughî cwate airs.',
-      readyHint: 'Broyîz so Intrêye po droughî cwate airs di vosse discrijhaedje.',
+      promptHint: 'Ecrivez one descrizion, pué apeyez Enter po eskisser quatre mines.',
+      readyHint: 'Apeyez Enter po eskisser quatre mines di vot\' descrizion.',
       generate: 'Ahiver',
       generating: 'Ahivaedje…',
       retry: 'Risayî',

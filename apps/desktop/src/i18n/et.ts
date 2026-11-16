@@ -193,7 +193,7 @@ export const et = defineLocale({
     openStarmap: 'Ava mälugraaf',
     openKeybinds: 'Kiirklahvid',
     layoutEditor: 'Paigutustoimetaja',
-    layoutEditorTitle: 'Paigutustoimetaja — Cmd/Ctrl+klik taastab paigutuse',
+    layoutEditorTitle: 'Paigutuse redaktor — ⌘-klõps nullib paigutuse',
   },
   keybinds: {
     title: 'Klaviatuuri kiirklahvid',

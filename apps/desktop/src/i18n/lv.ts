@@ -194,7 +194,7 @@ export const lv = defineLocale({
     openStarmap: 'Atvērt atmiņas grafu',
     openKeybinds: 'Tastatūras saīsnes',
     layoutEditor: 'Izkārtojuma redaktors',
-    layoutEditorTitle: 'Izkārtojuma redaktors — Cmd/Ctrl+klikšķis atjauno izkārtojumu',
+    layoutEditorTitle: 'Izklājuma redaktors — ⌘-klikšķis atiestata izklājumu',
   },
   keybinds: {
     title: 'Tastatūras saīsnes',
