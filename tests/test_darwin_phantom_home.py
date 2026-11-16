@@ -293,11 +293,24 @@ def test_cron_wrapper_reaches_real_population():
         errors="replace", timeout=420, env=env,
     )
     out = proc.stdout + proc.stderr
-    # The scratch dir existed, so the poison was live: reaching the real
-    # population means it was rejected without crashing the cycle.
+    # The scratch dir existed, so the poison was live.
+    #
+    # The invariant is NOT "a real install is always found" - that depends on the
+    # machine. Measured 2026-11-16: a CI checkout carries only `cron/` of the
+    # home markers (`config.yaml`, `.env`, `memories`, `openamer-agent` are not
+    # committed), so it is not an install root and refusing is the CORRECT
+    # outcome there. Asserting "REFUSING not in out" made the test pass on a
+    # developer machine and fail on every runner, for a product that was right.
+    #
+    # What must hold everywhere: the phantom population is never scored, the
+    # scratch home is never written to, and the cycle ends in exactly one of the
+    # two honest states - reached a real population, or refused loudly.
     assert "fitness computed for 0 skills" not in out, out
-    assert "REFUSING" not in out, out
-    # Never evolve the scratch dir -- no darwin state may be written there.
     assert not (scratch / "darwin").exists(), (
         f"darwin state was written into the scratch home {scratch}")
+    reached = "fitness computed for" in out
+    refused = "REFUSING" in out
+    assert reached or refused, out
+    if reached:
+        assert "REFUSING" not in out, out
     shutil.rmtree(scratch, ignore_errors=True)
