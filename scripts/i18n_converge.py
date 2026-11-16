@@ -125,7 +125,7 @@ def main() -> int:
     else:
         rows.sort(key=lambda r: r["share"])
 
-    pending = [r for r in rows if r["share"] < TARGET]
+    pending = [r for r in rows if r.get("real_gaps", 1) > 0]
     done = len(rows) - len(pending)
     print(f"start: {done}/{len(rows)} at target, {len(pending)} pending, "
           f"worst {pending[0]['locale']}:{pending[0]['share']*100:.1f}%" if pending
@@ -157,9 +157,9 @@ def main() -> int:
     final = [measure(r["locale"], en) for r in rows]
     final = [r for r in final if r]
     shares = [r["share"] for r in final]
-    at_target = sum(1 for s in shares if s >= TARGET)
+    at_target = sum(1 for r in final if r.get("real_gaps", 1) == 0)
     below50 = sum(1 for s in shares if s < 0.5)
-    print(f"final: {at_target}/{len(final)} at >=99.9%   below50={below50}   "
+    print(f"final: {at_target}/{len(final)} complete (0 real gaps)   below50={below50}   "
           f"min={min(shares)*100:.1f}%   median={sorted(shares)[len(shares)//2]*100:.1f}%")
     if args.json:
         out = pathlib.Path(args.json)

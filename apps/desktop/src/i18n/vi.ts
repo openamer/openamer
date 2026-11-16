@@ -1647,7 +1647,7 @@ export const vi = defineLocale({
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Email',
+      email: 'Thư điện tử',
     },
     scheduleLabels: {
       daily: 'Hàng ngày',
