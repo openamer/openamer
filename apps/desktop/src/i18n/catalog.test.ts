@@ -71,7 +71,7 @@ describe('desktop i18n catalog', () => {
     const offenders: string[] = []
 
     for (const [code, tree] of Object.entries(TRANSLATIONS)) {
-      const updates = (tree as Record<string, unknown>)['updates'] as Record<string, unknown> | undefined
+      const updates = (tree as unknown as Record<string, unknown>)['updates'] as Record<string, unknown> | undefined
       const moreChanges = updates?.['moreChanges']
 
       if (typeof moreChanges !== 'function') {
