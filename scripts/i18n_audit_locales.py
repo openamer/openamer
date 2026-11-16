@@ -141,6 +141,15 @@ def is_real_gap(path: str, text: str) -> bool:
         words = re.findall(r"[A-Za-z]+", rest)
         if words and all(w in LOANWORDS for w in words):
             return False
+    # An identifier in SCREAMING_SNAKE_CASE is a field/key name, not prose.
+    # Measured 2026-11-16: `settings.fieldLabels` is literally "FIELD_LABELS";
+    # translating it would rename a key the code looks up.
+    if re.fullmatch(r"[A-Z][A-Z0-9]*(_[A-Z0-9]+)+", t):
+        return False
+    # A code fragment: it carries JS object/arrow syntax rather than a sentence.
+    # Measured: `sidebar.projects.branchOff` is "({ after: '', before: 'branch off ' })".
+    if re.search(r"\(\{|\}\)|=>|:\s*'", t) and not re.search(r"[.!?]\s*$", t):
+        return False
     return True
 
 
