@@ -88,6 +88,26 @@ def git(*args: str) -> subprocess.CompletedProcess:
     )
 
 
+def push_main(attempts: int = 3) -> subprocess.CompletedProcess:
+    """Push the release commit to origin/main, surviving concurrent cron pushes.
+
+    `main` moves underneath this job: the report cron auto-commits every couple of
+    hours, so the first push is routinely rejected as non-fast-forward. Rebase the
+    version bump on top of whatever landed and try again, instead of leaving the
+    commit local (which is how a tag ended up on a commit no install could reach).
+    """
+    last = git("push", "origin", "HEAD:main")
+    for _ in range(attempts):
+        if last.returncode == 0:
+            return last
+        rebase = git("pull", "--rebase", "--autostash", "origin", "main")
+        if rebase.returncode != 0:
+            git("rebase", "--abort")
+            return rebase
+        last = git("push", "origin", "HEAD:main")
+    return last
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--publish", action="store_true", help="Actually create + push the release")
@@ -132,9 +152,34 @@ def main() -> int:
         print(f"commit failed: {cr.stderr.strip()}")
         return 1
 
-    git("push", "origin", "main")
+    # The bump commit MUST reach origin/main before anything is tagged. This
+    # used to be `git("push", "origin", "main")` with the result thrown away, and
+    # the tag was pushed regardless -- measured 2026-11-17: main stayed at
+    # 2026.11.14 while tag v261117 carried 2026.11.17 on a commit that never
+    # landed, so every install (which reads main) kept reporting the old version
+    # while the release page showed the new one.
+    push = push_main()
+    if push.returncode != 0:
+        print(f"push to main failed: {push.stderr.strip()[:400]}")
+        print("Refusing to create the tag: a tag on an unpushed commit publishes a "
+              "version no install can reach. Re-run once main accepts the push.")
+        return 1
+
+    head = git("rev-parse", "HEAD").stdout.strip()
+    remote = git("rev-parse", "origin/main").stdout.strip()
+    if head != remote:
+        print(f"origin/main is at {remote[:9]}, local release commit is {head[:9]} - "
+              "refusing to tag a commit that is not on main")
+        return 1
+
     gt = git("tag", "-a", tag, "-m", f"OpenAmer daily release v{vernum}")
-    git("push", "origin", tag)
+    if gt.returncode != 0:
+        print(f"tag failed: {gt.stderr.strip()[:400]}")
+        return 1
+    pt = git("push", "origin", tag)
+    if pt.returncode != 0:
+        print(f"tag push failed: {pt.stderr.strip()[:400]}")
+        return 1
 
     rel = subprocess.run(
         ["gh", "release", "create", tag,
