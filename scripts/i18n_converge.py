@@ -73,7 +73,7 @@ def strict(locale: str) -> tuple[bool, str]:
     return r.returncode == 0, ("" if r.returncode == 0 else r.stderr.strip()[-160:])
 
 
-def deliver(locale: str) -> bool:
+def deliver(locale: str) -> tuple[bool, str]:
     """Deliver a locale from its cache -- but never across writing systems.
 
     Measured 2026-11-17: the translator answered several locales in the wrong
@@ -82,19 +82,25 @@ def deliver(locale: str) -> bool:
     before/after delivery makes the switch visible: if the catalog gained
     foreign-script strings the previous file is restored and the delivery counts
     as failed, so the next pass translates again instead of keeping garbage.
+
+    Returns (ok, reason). Measured 2026-11-17 on `ve`: the delivery was refused
+    silently (`delivered: false`, empty reason) while the cache held 50.8 % real
+    translations against a 41.4 % catalog. Two 12-minute passes were lost with no
+    trace of why, so the reason is now carried out to the ledger.
     """
     target = REPO / "apps" / "desktop" / "src" / "i18n" / f"{locale}.ts"
     before = target.read_bytes() if target.exists() else None
     r = run([PY, str(SCRIPTS / "i18n_deliver_locales.py"), "--deliver", "--only", locale], 240)
     if r.returncode != 0:
-        return False
+        detail = (r.stderr or r.stdout or "").strip().splitlines()
+        return False, (detail[-1][:160] if detail else f"deliver exit {r.returncode}")
     ok, why = script_ok(locale, before, target)
     if not ok:
         if before is not None:
             target.write_bytes(before)
         print(f"  {locale:>8} delivery rejected: {why}", file=sys.stderr)
-        return False
-    return True
+        return False, f"script-rejected: {why}"
+    return True, ""
 
 
 def script_mod():
@@ -237,7 +243,9 @@ def main() -> int:
             snapshot = target.read_bytes() if target.exists() else None
             translated, reason = translate(locale, slice_s)
             strict_ok, strict_reason = strict(locale)
-            delivered = deliver(locale)
+            delivered, deliver_reason = deliver(locale)
+            if not delivered and deliver_reason:
+                reason = f"{reason} deliver: {deliver_reason}".strip()
             if not args.no_normalize:
                 normalize(locale)
             clean, why = script_ok(locale, snapshot, target)
