@@ -52,20 +52,28 @@ def test_han_and_kana_are_one_family(mod):
     assert mod.letter_script("か") == "CJK"
     assert mod.letter_script("カ") == "CJK"
     # Japanese is not a foreign-script catalog
-    assert mod.expected_script("ja", "") == "CJK"
+    assert mod.expected_script("ja", "") == frozenset({"CJK"})
 
 
 def test_latin_locale_expects_latin(mod):
     # ku/nv/mh had contaminated baselines; the map must win over the baseline.
-    assert mod.expected_script("nv", "\u13a0" * 400) is None
-    assert mod.expected_script("mh", "б" * 400) is None
+    assert mod.expected_script("nv", "\u13a0" * 400) == frozenset()
+    assert mod.expected_script("mh", "б" * 400) == frozenset()
 
 
 def test_non_latin_locale_expects_its_script(mod):
-    assert mod.expected_script("ab", "") == "Cyrillic"
-    assert mod.expected_script("dz", "") == "Tibetan"
-    assert mod.expected_script("dv", "") == "Thaana"
-    assert mod.expected_script("kn", "") == "Kannada"
+    assert mod.expected_script("ab", "") == frozenset({"Cyrillic"})
+    assert mod.expected_script("dz", "") == frozenset({"Tibetan"})
+    assert mod.expected_script("dv", "") == frozenset({"Thaana"})
+    assert mod.expected_script("kn", "") == frozenset({"Kannada"})
+
+
+def test_bilingual_locale_accepts_both_scripts(mod):
+    # Kashmiri is written in Perso-Arabic and Devanagari; both belong in one
+    # catalog, so neither may be reported as foreign.
+    expected = mod.expected_script("ks", "")
+    assert expected == frozenset({"Arabic", "Devanagari"})
+    assert mod.foreign_values(["تنظیم", "सेटिंग"], expected) == []
 
 
 def test_foreign_values_flags_wrong_script(mod):
@@ -74,17 +82,17 @@ def test_foreign_values_flags_wrong_script(mod):
         "${label} के लिए क्रिया",             # correct
         "OpenAmer Desktop v${version}",       # Latin is always tolerated
     ]
-    bad = mod.foreign_values(texts, "Devanagari")
+    bad = mod.foreign_values(texts, frozenset({"Devanagari"}))
     assert len(bad) == 1
     assert bad[0][1] == {"Hangul": 8}
 
 
 def test_foreign_values_tolerates_short_borrowings(mod):
     # Two stray letters are a loanword, not a language switch.
-    assert mod.foreign_values(["ok 漢"], "Cyrillic") == []
+    assert mod.foreign_values(["ok 漢"], frozenset({"Cyrillic"})) == []
 
 
 def test_baseline_fallback_needs_dominance(mod):
     # Fragmented baseline (no single script >=90%) must not define an expectation.
     fragmented = '"' + "\u13a0\u13a1" * 10 + "б" * 10 + "\u0d15\u0d16" * 10 + '"'
-    assert mod.expected_script("zz-unknown", fragmented) is None
+    assert mod.expected_script("zz-unknown", fragmented) == frozenset()

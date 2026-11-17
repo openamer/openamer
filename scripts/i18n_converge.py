@@ -201,10 +201,21 @@ def main() -> int:
             locale = row["locale"]
             before = row["share"]
             slice_s = min(remaining * 0.8, SLICE_SECONDS)
+            # One snapshot for the WHOLE pass: translate, strict, deliver and
+            # normalize can each touch the catalog, so the writing-system rule is
+            # enforced once at the end rather than on the delivery step alone.
+            target = REPO / "apps" / "desktop" / "src" / "i18n" / f"{locale}.ts"
+            snapshot = target.read_bytes() if target.exists() else None
             translated, reason = translate(locale, slice_s)
             strict_ok, strict_reason = strict(locale)
             delivered = deliver(locale)
             normalize(locale)
+            clean, why = script_ok(locale, snapshot, target)
+            if not clean:
+                if snapshot is not None:
+                    target.write_bytes(snapshot)
+                delivered = False
+                reason = f"{reason} script-rejected: {why}".strip()
             after_row = measure(locale, en)
             after = after_row["share"] if after_row else before
             ledger({"locale": locale, "before": before, "after": after,

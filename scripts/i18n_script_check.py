@@ -117,7 +117,7 @@ def letter_script(ch: str) -> str | None:
 # committed baseline, but only when the baseline is unambiguous (>=90% of its
 # non-Latin characters in one script) -- a polluted baseline must never define the
 # expectation it is then measured against.
-LOCALE_SCRIPT: dict[str, str] = {
+LOCALE_SCRIPT: dict[str, str | tuple[str, ...]] = {
     # Cyrillic
     "ab": "Cyrillic", "av": "Cyrillic", "ba": "Cyrillic", "be": "Cyrillic", "bg": "Cyrillic",
     "bua": "Cyrillic", "ce": "Cyrillic", "cv": "Cyrillic", "kk": "Cyrillic", "kv": "Cyrillic",
@@ -125,8 +125,8 @@ LOCALE_SCRIPT: dict[str, str] = {
     "sah": "Cyrillic", "sr": "Cyrillic", "tg": "Cyrillic", "torbeski": "Cyrillic", "tt": "Cyrillic",
     "udm": "Cyrillic", "uk": "Cyrillic", "xal": "Cyrillic",
     # Arabic script
-    "ar": "Arabic", "ckb": "Arabic", "fa": "Arabic", "ks": "Arabic", "ps": "Arabic",
-    "sd": "Arabic", "ug": "Arabic", "ur": "Arabic",
+    "ar": "Arabic", "ckb": "Arabic", "fa": "Arabic", "ks": ("Arabic", "Devanagari"),
+    "ps": "Arabic", "sd": "Arabic", "ug": "Arabic", "ur": "Arabic",
     # Other non-Latin alphabets
     "el": "Greek", "he": "Hebrew", "hy": "Armenian", "ka": "Georgian", "yi": "Hebrew",
     # Indic
@@ -181,29 +181,36 @@ def script_counts(texts: list[str]) -> collections.Counter:
     return c
 
 
-def expected_script(locale: str, committed: str) -> str | None:
-    """The script this locale must use. None = Latin only."""
-    if locale in LOCALE_SCRIPT:
-        return LOCALE_SCRIPT[locale]
+def expected_script(locale: str, committed: str) -> frozenset[str]:
+    """The scripts this locale may use. Empty = Latin only.
+
+    A few languages are genuinely bilingual in writing system -- Kashmiri is
+    written in Perso-Arabic *and* Devanagari, and one catalog may use both. Those
+    declare a tuple in LOCALE_SCRIPT; everything else gets exactly one script.
+    """
+    declared = LOCALE_SCRIPT.get(locale)
+    if declared is not None:
+        return frozenset((declared,) if isinstance(declared, str) else declared)
     if locale in LATIN_LOCALES:
-        return None
+        return frozenset()
     c = script_counts(values(committed))
     if not c:
-        return None
+        return frozenset()
     name, n = c.most_common(1)[0]
     total = sum(c.values())
     if n >= 500 and n / total >= 0.90:
-        return name
-    return None
+        return frozenset((name,))
+    return frozenset()
 
 
-def foreign_values(texts: list[str], expected: str | None, threshold: int = 3) -> list[tuple[str, dict[str, int]]]:
+def foreign_values(texts: list[str], expected: frozenset[str],
+                   threshold: int = 3) -> list[tuple[str, dict[str, int]]]:
     bad = []
     for t in texts:
         per: collections.Counter = collections.Counter()
         for ch in t:
             s = letter_script(ch)
-            if s and s != expected:
+            if s and s not in expected:
                 per[s] += 1
         if sum(per.values()) >= threshold:
             bad.append((t, dict(per)))
@@ -260,7 +267,7 @@ def main() -> int:
             verdict = "WARN"
         rows.append({
             "locale": loc,
-            "expected": exp or "Latin",
+            "expected": "/".join(sorted(exp)) or "Latin",
             "values": len(texts),
             "foreign_values": len(bad),
             "ratio": round(ratio, 4),
