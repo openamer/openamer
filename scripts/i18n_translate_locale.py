@@ -27,6 +27,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import random
 import re
 import subprocess
 import sys
@@ -197,8 +198,30 @@ def load_env() -> dict[str, str]:
     return env
 
 
+def _retry_after_seconds(exc: Exception) -> float | None:
+    """Seconds the server asked us to wait, if it said so."""
+    headers = getattr(exc, "headers", None)
+    if not headers:
+        return None
+    raw = headers.get("Retry-After") or headers.get("retry-after")
+    if not raw:
+        return None
+    try:
+        return max(0.0, float(raw))
+    except (TypeError, ValueError):
+        return None
+
+
 def call_model(url: str, model: str, key: str, messages: list, max_tokens: int = 4000,
-               timeout: int = 180) -> str:
+               timeout: int = 180, attempts: int = 4) -> str:
+    """Call the model, backing off on rate limits and transient failures.
+
+    Measured 2026-11-17: the free backends answer HTTP 429 as soon as more than
+    ~2 locale chains run in parallel, and the translator had no retry at all --
+    a throttled batch was dropped, the batch budget shrank, and the locale made
+    no progress. A 429 is a "come back later", not a failure, so it is retried
+    with exponential backoff (honouring Retry-After when the server sends it).
+    """
     body = json.dumps({
         "model": model,
         "messages": messages,
@@ -209,9 +232,35 @@ def call_model(url: str, model: str, key: str, messages: list, max_tokens: int =
         url, data=body,
         headers={"Content-Type": "application/json", "Authorization": f"Bearer {key}"},
     )
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        data = json.loads(resp.read().decode())
-    return data["choices"][0]["message"]["content"]
+    delay = 3.0
+    last: Exception | None = None
+    for attempt in range(1, attempts + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                data = json.loads(resp.read().decode())
+            return data["choices"][0]["message"]["content"]
+        except urllib.error.HTTPError as exc:
+            last = exc
+            # 4xx other than 408/429 is our fault: retrying wastes the budget.
+            if exc.code not in (408, 429, 500, 502, 503, 504):
+                raise
+            if attempt == attempts:
+                raise
+            wait = _retry_after_seconds(exc) or delay
+            if exc.code != 429:
+                wait = min(wait, delay)
+            print(f"    [{model}] HTTP {exc.code} -> retry {attempt}/{attempts - 1} "
+                  f"in {wait:.0f}s", file=sys.stderr)
+        except (urllib.error.URLError, TimeoutError, OSError, json.JSONDecodeError) as exc:
+            last = exc
+            if attempt == attempts:
+                raise
+            wait = delay
+            print(f"    [{model}] {type(exc).__name__} -> retry {attempt}/{attempts - 1} "
+                  f"in {wait:.0f}s", file=sys.stderr)
+        time.sleep(wait + random.uniform(0, 1.5))
+        delay = min(delay * 2, 30.0)
+    raise last if last else RuntimeError("call_model exhausted attempts")
 
 
 def mask_placeholders(text: str) -> tuple[str, list[str]]:
