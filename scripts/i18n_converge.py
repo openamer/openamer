@@ -38,9 +38,10 @@ from i18n_deliver_locales import extract, measure  # noqa: E402
 
 PY = sys.executable
 TARGET = 0.999
-BATCH_SIZE = 40
-WORKERS = 5                 # measured 69 strings/min at 3 workers (vo, 2416 in ~35 min)
-SECONDS_PER_BATCH = 27      # measured 200 strings in 133 s at batch 40 x 5 workers (~90/min)
+BATCH_SIZE = 12             # models consistently return full arrays for <= 12; larger batches
+                            # return empty or wrong-length arrays (measured 2026-11-17 on ik/ps/ve)
+WORKERS = 4                 # fewer workers = more headroom per model; total concurrency ~same
+SECONDS_PER_BATCH = 35      # remeasured at BATCH_SIZE 12: ~12 strings in 25-35 s (~20-30/min/worker)
 SLICE_SECONDS = 12 * 60     # one locale per slice, so one slot can advance two locales
 HOME = pathlib.Path(os.environ.get(
     "OPENAMER_HOME",
