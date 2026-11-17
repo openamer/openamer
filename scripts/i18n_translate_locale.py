@@ -116,6 +116,75 @@ LANGUAGE_NAMES = {
 
 MASK = "\uE000"  # private use area marker
 
+# Human names for the writing systems we pin in the prompt. A model that is only
+# told "translate into Pashto" will happily answer in Urdu, Persian or Russian;
+# naming the script removes that freedom (measured 2026-11-17: `ps` came back in
+# Cyrillic, `ve` in CJK, both rejected by the delivery gate).
+SCRIPT_HUMAN = {
+    "Arabic": "the Perso-Arabic script",
+    "Cyrillic": "the Cyrillic script",
+    "Hebrew": "the Hebrew script",
+    "Greek": "the Greek alphabet",
+    "Armenian": "the Armenian script",
+    "Georgian": "the Georgian script",
+    "Devanagari": "the Devanagari script",
+    "Bengali": "the Bengali script",
+    "Gurmukhi": "the Gurmukhi script",
+    "Gujarati": "the Gujarati script",
+    "Oriya": "the Odia script",
+    "Tamil": "the Tamil script",
+    "Telugu": "the Telugu script",
+    "Kannada": "the Kannada script",
+    "Malayalam": "the Malayalam script",
+    "Sinhala": "the Sinhala script",
+    "Thai": "the Thai script",
+    "Lao": "the Lao script",
+    "Tibetan": "the Tibetan script",
+    "Myanmar": "the Myanmar script",
+    "Khmer": "the Khmer script",
+    "Ethiopic": "the Ethiopic (Ge'ez) script",
+    "Cherokee": "the Cherokee syllabary",
+    "CanadianAboriginal": "Canadian Aboriginal syllabics",
+    "Yi": "the Yi syllabary",
+    "Hangul": "Hangul",
+    "CJK": "Chinese characters (and kana for Japanese)",
+    "Thaana": "the Thaana script",
+    "NKo": "the N'Ko script",
+    "OlChiki": "the Ol Chiki script",
+}
+
+
+def script_requirement(locale: str) -> str:
+    """A prompt sentence pinning the target writing system, or '' if unknown."""
+    try:
+        from i18n_script_check import LOCALE_SCRIPT, LATIN_LOCALES
+    except ImportError:
+        return ""
+    if locale in LATIN_LOCALES:
+        return ("Write the translations in the Latin alphabet (product names such as "
+                "OpenAmer stay as they are).")
+    declared = LOCALE_SCRIPT.get(locale)
+    if not declared:
+        return ""
+    names = [declared] if isinstance(declared, str) else list(declared)
+    human = " or ".join(SCRIPT_HUMAN.get(n, f"the {n} script") for n in names)
+    return (f"Write every translation in {human}. Text in any other writing system "
+            f"is wrong output, even if it is the right language spoken in another country.")
+
+
+def foreign_ratio(texts: list[str], locale: str) -> float:
+    """Share of non-empty strings written in a script this locale does not use."""
+    try:
+        from i18n_script_check import expected_script, foreign_values
+    except ImportError:
+        return 0.0
+    useful = [t for t in texts if t.strip()]
+    if not useful:
+        return 0.0
+    expected = expected_script(locale, "")
+    return len(foreign_values(useful, expected)) / len(useful)
+
+
 
 def load_env() -> dict[str, str]:
     env: dict[str, str] = {}
@@ -332,7 +401,8 @@ def unmask_variables(text: str, found: list[str]) -> str:
 
 
 def translate_batch(items: list[str], language: str, backend: tuple, env: dict,
-                   force_translate: bool = False, extra_hint: str = "") -> list[str] | None:
+                   force_translate: bool = False, extra_hint: str = "",
+                   locale: str = "") -> list[str] | None:
     name, url, keyenv, model = backend
     key = env.get(keyenv, "")
     if not key:
@@ -380,6 +450,9 @@ def translate_batch(items: list[str], language: str, backend: tuple, env: dict,
             "name, acronyms like MCP and URLs stay as they are; "
             "output ONLY a JSON array of strings, no commentary, no code fence."
         )
+    requirement = script_requirement(locale) if locale else ""
+    if requirement:
+        system += " " + requirement
     if extra_hint:
         system += " " + extra_hint
     messages = [
@@ -411,6 +484,12 @@ def translate_batch(items: list[str], language: str, backend: tuple, env: dict,
     if broken:
         print(f"    [{name}] {broken} string(s) with broken placeholders -> English kept",
               file=sys.stderr)
+    if locale:
+        ratio = foreign_ratio(out, locale)
+        if ratio > 0.15:
+            print(f"    [{name}] {ratio*100:.0f}% of this batch came back in a foreign "
+                  f"script -> batch rejected, retrying", file=sys.stderr)
+            return None
     return out
 
 
@@ -587,7 +666,7 @@ def main() -> int:
         items = [en_text[p] for p in batch]
         result = None
         for backend in backends:
-            result = translate_batch(items, language, backend, env)
+            result = translate_batch(items, language, backend, env, locale=locale)
             if result is not None:
                 break
         with lock:
