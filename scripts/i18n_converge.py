@@ -124,6 +124,28 @@ def script_ok(locale: str, before: bytes | None, target: pathlib.Path) -> tuple[
     return True, ""
 
 
+def script_gap_count(locale: str) -> int:
+    """How many catalog values carry a foreign writing system right now.
+
+    A catalog can be 100% "complete" by coverage and still be wrong: the converge
+    loop once declared 6 locales finished while they held Arabic, Hangul or CJK
+    text. Those never come back as pending on a coverage-only rule, so they would
+    stay wrong forever. Counting them makes the selection honest.
+    """
+    mod = script_mod()
+    target = REPO / "apps" / "desktop" / "src" / "i18n" / f"{locale}.ts"
+    if mod is None or not target.exists():
+        return 0
+    text = target.read_text(encoding="utf-8", errors="replace")
+    expected = mod.expected_script(locale, text)
+    return len(mod.foreign_values(mod.values(text), expected))
+
+
+def needs_work(row: dict) -> bool:
+    """A locale is pending when it misses strings OR speaks a foreign script."""
+    return (row.get("real_gaps", 1) > 0) or (row.get("script_gaps", 0) > 0)
+
+
 def translate(locale: str, seconds: float) -> tuple[bool, str]:
     """Fill the cache for one locale, bounded by BATCH COUNT, not by a kill.
 
@@ -159,6 +181,10 @@ def main() -> int:
                     help="nearest = close the almost-done locales first")
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--json", default="")
+    ap.add_argument("--no-normalize", action="store_true",
+                    help="skip the global catalog fixers; required when several converge "
+                         "processes run in parallel, because those fixers rewrite every "
+                         "catalog and would clobber a sibling process's delivery")
     args = ap.parse_args()
 
     en = extract("en")
@@ -185,7 +211,9 @@ def main() -> int:
     else:
         rows.sort(key=lambda r: r["share"])
 
-    pending = [r for r in rows if r.get("real_gaps", 1) > 0]
+    for row in rows:
+        row["script_gaps"] = script_gap_count(row["locale"])
+    pending = [r for r in rows if needs_work(r)]
     done = len(rows) - len(pending)
     print(f"start: {done}/{len(rows)} at target, {len(pending)} pending, "
           f"worst {pending[0]['locale']}:{pending[0]['share']*100:.1f}%" if pending
@@ -209,7 +237,8 @@ def main() -> int:
             translated, reason = translate(locale, slice_s)
             strict_ok, strict_reason = strict(locale)
             delivered = deliver(locale)
-            normalize(locale)
+            if not args.no_normalize:
+                normalize(locale)
             clean, why = script_ok(locale, snapshot, target)
             if not clean:
                 if snapshot is not None:
@@ -222,6 +251,7 @@ def main() -> int:
                     "translated": translated, "reason": reason,
                     "strict": strict_ok, "strict_reason": strict_reason,
                     "delivered": delivered, "budget_s": round(slice_s),
+                    "script_gaps_before": row.get("script_gaps", 0),
                     "delta_pts": round((after - before) * 100, 2)})
             print(f"  {locale:>8} {before*100:5.1f}% -> {after*100:5.1f}%"
                   f"{'  (cap reached)' if after < TARGET else '  DONE'}"
@@ -231,9 +261,12 @@ def main() -> int:
     final = [r for r in final if r]
     shares = [r["share"] for r in final]
     at_target = sum(1 for r in final if r.get("real_gaps", 1) == 0)
+    script_dirty = [r["locale"] for r in final if script_gap_count(r["locale"]) > 0]
     below50 = sum(1 for s in shares if s < 0.5)
     print(f"final: {at_target}/{len(final)} complete (0 real gaps)   below50={below50}   "
           f"min={min(shares)*100:.1f}%   median={sorted(shares)[len(shares)//2]*100:.1f}%")
+    if script_dirty:
+        print(f"foreign script still present in {len(script_dirty)}: {','.join(sorted(script_dirty)[:20])}")
     if args.json:
         out = pathlib.Path(args.json)
         out.parent.mkdir(parents=True, exist_ok=True)
