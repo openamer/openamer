@@ -28,6 +28,7 @@ from __future__ import annotations
 import argparse
 import importlib.util
 import json
+import os
 import pathlib
 import subprocess
 import sys
@@ -57,7 +58,11 @@ def locales() -> list[str]:
 
 
 def extract(locale: str) -> dict[str, str] | None:
-    out = TMP / f"_deliver_{locale}.json"
+    # Per-process temp name: several converge processes run at once during a
+    # backfill and all of them extract `en`. A shared filename made the second
+    # process fail with PermissionError while the first still held the file open
+    # (measured 2026-11-17: worker 3 died on tmp/_deliver_en.json).
+    out = TMP / f"_deliver_{locale}_{os.getpid()}.json"
     r = node([str(EXTRACT), str(I18N / f"{locale}.ts"), str(out)])
     if r.returncode != 0:
         print(f"  extract failed {locale}: {r.stderr.strip()[-160:]}", file=sys.stderr)
@@ -167,6 +172,41 @@ def cache_quality(locale: str, en: dict[str, str]) -> int:
     return sum(1 for path, text in en.items() if cached.get(path) not in (None, text))
 
 
+def drop_foreign_values(locale: str) -> int:
+    """Remove cache entries written in a script this locale does not use.
+
+    One transliterated word must not block 2 500 good strings. Measured
+    2026-11-17: `ps` had 2 521 correct Pashto values and 13 that spelled
+    "agent" with Cyrillic letters -- the whole delivery was rejected and the
+    locale made no progress. Dropping the bad entries makes them fall back to
+    English, and the rest ships.
+    """
+    path = TMP / f"i18n_{locale}_translations.json"
+    if not path.exists():
+        return 0
+    try:
+        from i18n_script_check import expected_script, foreign_values
+    except ImportError:
+        return 0
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return 0
+    if not isinstance(data, dict):
+        return 0
+    expected = expected_script(locale, "")
+    bad = {text for text, _ in foreign_values(
+        [v for v in data.values() if isinstance(v, str)], expected)}
+    if not bad:
+        return 0
+    kept = {k: v for k, v in data.items() if v not in bad}
+    try:
+        path.write_text(json.dumps(kept, ensure_ascii=False, indent=1), encoding="utf-8")
+    except OSError:
+        return 0
+    return len(data) - len(kept)
+
+
 def deliver(locale: str, en: dict[str, str], current: dict | None = None) -> tuple[bool, str]:
     """Regenerate the catalog from its cache - never at the cost of the catalog.
 
@@ -198,6 +238,10 @@ def deliver(locale: str, en: dict[str, str], current: dict | None = None) -> tup
             cached_q = cache_quality(locale, en)
         if cur and cached_q < cur["translated"]:
             return False, f"refused: cache {cached_q} < catalog {cur['translated']}"
+    dropped = drop_foreign_values(locale)
+    if dropped:
+        print(f"  {locale}: dropped {dropped} foreign-script value(s) from the cache",
+              file=sys.stderr)
     r = node([str(WRITE), str(I18N / f"{locale}.ts"),
               str(TMP / f"i18n_{locale}_translations.json")])
     if r.returncode != 0:
