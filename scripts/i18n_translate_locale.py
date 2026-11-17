@@ -28,6 +28,7 @@ from __future__ import annotations
 import argparse
 import base64
 import json
+import os
 import random
 import re
 import subprocess
@@ -716,7 +717,10 @@ def translate_labels(items: list[str], language: str, backend: tuple, env: dict)
 
 def load_leaves(locale: str) -> list[dict]:
     """Extract the leaves of a locale via the Node extractor."""
-    out_file = REPO / "tmp" / f"i18n_{locale}.json"
+    # Per-process file: six backfill workers extract `en` at the same moment,
+    # and a shared path meant one of them read a half-written file and lost the
+    # whole batch. Measured 2026-11-17: `[en] extractor wrote an empty file`.
+    out_file = REPO / "tmp" / f"i18n_{locale}_{os.getpid()}.json"
     out_file.parent.mkdir(parents=True, exist_ok=True)
     src = I18N / f"{locale}.ts"
     r = subprocess.run(
