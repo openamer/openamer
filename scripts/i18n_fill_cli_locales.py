@@ -65,14 +65,20 @@ BATCH_PAUSE_S = float(os.environ.get("OPENAMER_I18N_BATCH_PAUSE", "1.0"))
 RETRIES = 3
 
 # Model backends, tried in order: (name, url, env var, model).
+# Order copied from the measured desktop chain (scripts/i18n_backend_bench.py,
+# 2026-11-17): Codex OAuth first (no daily cap, ~95 strings/min), then the
+# Ollama cloud models. OpenRouter sat first here for months and answered every
+# request with `free-models-per-day-high-balance`, which burned the retry ladder
+# (10/20/40 s) on a limit that only resets the next day.
 BACKENDS = [
-    # Prefer the configured free route; Ollama session quota is shared by models.
-    ("openrouter-nemotron", "https://openrouter.ai/api/v1/chat/completions",
-     "OPENROUTER_API_KEY", "nvidia/nemotron-3-ultra-550b-a55b:free"),
+    ("codex-gpt61", "https://chatgpt.com/backend-api/codex/responses",
+     "CODEX_OAUTH", "gpt-6.1-sol"),
     ("ollama-deepseek", "https://ollama.com/v1/chat/completions",
      "OLLAMA_API_KEY", "deepseek-v4.1-flash"),
     ("ollama-minimax", "https://ollama.com/v1/chat/completions",
      "OLLAMA_API_KEY", "minimax-m3.1-flash"),
+    ("pollinations", "https://text.pollinations.ai/openai",
+     "NO_AUTH", "openai-fast"),
 ]
 
 # English names used in the prompt. locales/_languages.json is the single source
@@ -195,6 +201,12 @@ def load_env() -> dict[str, str]:
 
 def call_model(url: str, model: str, key: str, messages: list,
                max_tokens: int = 4000, timeout: int = 180) -> str:
+    if "/codex/responses" in url:
+        # Codex OAuth: the same backend the desktop backfill uses, and the only
+        # one here that is not capped by a free tier (measured 2026-11-17,
+        # ~95 strings/min against ~20 for the throttled free models).
+        from i18n_translate_locale import call_codex
+        return call_codex(url, model, messages, timeout=timeout)
     payload = {
         "model": model, "messages": messages,
         "max_tokens": max_tokens, "temperature": 0,
@@ -208,7 +220,8 @@ def call_model(url: str, model: str, key: str, messages: list,
     body = json.dumps(payload).encode()
     req = urllib.request.Request(
         url, data=body,
-        headers={"Content-Type": "application/json", "Authorization": f"Bearer {key}"},
+        headers={"Content-Type": "application/json",
+                 **({"Authorization": f"Bearer {key}"} if key != "NO_AUTH" else {})},
     )
     for attempt in range(4):  # up to 3 retries (0,1,2,3)
         try:
@@ -260,10 +273,20 @@ def parse_json_object(reply: str) -> dict | None:
     return obj if isinstance(obj, dict) else None
 
 
+def backend_key(keyenv: str, env: dict) -> str:
+    """Resolve a backend's credential, including the two non-env cases."""
+    if keyenv == "CODEX_OAUTH":
+        from i18n_translate_locale import codex_credentials
+        return "codex" if codex_credentials() else ""
+    if keyenv == "NO_AUTH":
+        return "NO_AUTH"
+    return env.get(keyenv, "")
+
+
 def translate_batch(keys: list[str], texts: list[str], lang: str,
                     backend: tuple, env: dict) -> dict[str, str] | None:
     name, url, keyenv, model = backend
-    api_key = env.get(keyenv, "")
+    api_key = backend_key(keyenv, env)
     if not api_key:
         return None
     masked = [mask(t) for t in texts]
@@ -500,7 +523,7 @@ def translate_locale(lang: str, en_flat: dict[str, str], force: bool,
         return ("cached", 0, total)
 
     env = load_env()
-    backends = [cand for cand in BACKENDS if env.get(cand[2])]
+    backends = [cand for cand in BACKENDS if backend_key(cand[2], env)]
     if not backends:
         write_catalog(lang, table, en_flat)
         return ("no-backend", len(todo), total)

@@ -88,6 +88,17 @@ def main() -> int:
         tail = (r.stdout or "").strip().splitlines()
         log(f"strip exit {r.returncode}: {tail[-1][:160] if tail else ''}")
 
+        # Second catalog layer: the CLI/agent messages in locales/<code>.yaml.
+        # The desktop backfill only touches apps/desktop/src/i18n/*.ts, so a
+        # language can be 100 % in the UI and still answer in English on the
+        # command line. Measured 2026-11-17: 7 940 of 330 x 185 keys were
+        # missing or still English, with eight locales at 330/330.
+        log("filling the CLI locale layer (locales/*.yaml)")
+        r = subprocess.run([str(PY), str(REPO / "scripts" / "i18n_fill_cli_locales.py")],
+                           cwd=str(REPO), capture_output=True, text=True)
+        tail = (r.stdout or "").strip().splitlines()
+        log(f"cli-fill exit {r.returncode}: {tail[-1][:200] if tail else ''}")
+
         out = REPORTS / "i18n-final-state.json"
         log("measuring all locales")
         r = subprocess.run([str(PY), str(REPO / "scripts" / "i18n_converge.py"),
