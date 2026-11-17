@@ -61,6 +61,54 @@ def test_foreign_ratio_ignores_english_and_empty(mod):
     assert mod.foreign_ratio(["", "OpenAmer Desktop v1"], "ps") == 0.0
 
 
+def test_daily_cap_is_not_retried(mod, monkeypatch):
+    """A daily cap will not clear in 30 s — retrying only burns the budget.
+
+    Measured 2026-11-17: OpenRouter answered every free-model request with
+    `free-models-per-day-high-balance`.
+    """
+    import io
+
+    calls = {"n": 0}
+
+    def fake_urlopen(req, timeout=0):
+        calls["n"] += 1
+        body = io.BytesIO(b'{"error":{"message":"Rate limit exceeded: free-models-per-day-high-balance"}}')
+        raise urllib.error.HTTPError(req.full_url, 429, "Too Many Requests", {}, body)
+
+    monkeypatch.setattr(mod.urllib.request, "urlopen", fake_urlopen)
+    monkeypatch.setattr(mod.time, "sleep", lambda s: None)
+    with pytest.raises(urllib.error.HTTPError):
+        mod.call_model("https://openrouter.ai/api/v1/chat/completions", "m", "k",
+                       [{"role": "user", "content": "hi"}])
+    assert calls["n"] == 1
+
+
+def test_keyless_backend_sends_no_authorization(mod, monkeypatch):
+    """Pollinations needs no key; a dummy bearer would be wrong, absence is right."""
+    seen = {}
+
+    class FakeResp:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+        def read(self):
+            return b'{"choices":[{"message":{"content":"[\\"ok\\"]"}}]}'
+
+    def fake_urlopen(req, timeout=0):
+        seen["headers"] = {k.lower(): v for k, v in req.header_items()}
+        return FakeResp()
+
+    monkeypatch.setattr(mod.urllib.request, "urlopen", fake_urlopen)
+    out = mod.call_model("https://text.pollinations.ai/openai", "openai-fast", "NO_AUTH",
+                         [{"role": "user", "content": "hi"}])
+    assert out == '["ok"]'
+    assert "authorization" not in seen["headers"]
+
+
 def test_codex_credentials_reads_the_oauth_pool(mod, tmp_path, monkeypatch):
     """Codex runs on the ChatGPT subscription, so the token comes from auth.json.
 

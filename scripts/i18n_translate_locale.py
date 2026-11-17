@@ -89,13 +89,12 @@ def find_placeholders(text: str) -> list[tuple[int, int, str]]:
         out.append((start, j, text[start:j]))
         i = j
     return out
-
 # Model backends, tried in order. Each is (name, url, env-var, model).
-# Order comes from scripts/i18n_backend_bench.py (measured 2026-11-17):
-# Codex OAuth is fastest per string and not capped by a free tier; the Ollama
-# cloud models answer in 1.5-4.5 s; Pollinations needs no key at all.
-# OpenRouter's :free tier was exhausted (`free-models-per-day-high-balance`) and
-# sits last on purpose — a daily cap must not cost every batch a retry budget.
+# Order comes from scripts/i18n_backend_bench.py (measured 2026-11-17): Codex
+# OAuth is fastest per string and not capped by a free tier; the Ollama cloud
+# models answer in 1.5-4.5 s; Pollinations needs no key at all. OpenRouter's
+# :free tier was exhausted (`free-models-per-day-high-balance`) and sits last on
+# purpose -- a daily cap must not cost every batch a retry budget.
 BACKENDS = [
     # Codex OAuth (ChatGPT Plus subscription) — the Responses API, not
     # chat/completions. Credentials come from OpenAmer's own auth.json, so no
@@ -326,7 +325,8 @@ def call_model(url: str, model: str, key: str, messages: list, max_tokens: int =
         }).encode()
         req = urllib.request.Request(
             url, data=body,
-            headers={"Content-Type": "application/json", "Authorization": f"Bearer {key}"},
+            headers={"Content-Type": "application/json",
+                     **({"Authorization": f"Bearer {key}"} if key != "NO_AUTH" else {})},
         )
     delay = 3.0
     last: Exception | None = None
@@ -341,6 +341,16 @@ def call_model(url: str, model: str, key: str, messages: list, max_tokens: int =
             last = exc
             # 4xx other than 408/429 is our fault: retrying wastes the budget.
             if exc.code not in (408, 429, 500, 502, 503, 504):
+                raise
+            # A daily cap is not a rate limit: it will not clear in 30 seconds.
+            # Measured 2026-11-17: OpenRouter answered every request with
+            # `free-models-per-day-high-balance`, and each retry burned the
+            # batch's remaining budget for nothing.
+            try:
+                detail = exc.read().decode("utf-8", "replace")[:300].lower()
+            except (OSError, ValueError):
+                detail = ""
+            if "per-day" in detail or "per day" in detail or "daily" in detail:
                 raise
             if attempt == attempts:
                 raise
@@ -554,6 +564,9 @@ def translate_batch(items: list[str], language: str, backend: tuple, env: dict,
     if keyenv == "CODEX_OAUTH":
         # OAuth credentials live in OpenAmer's pool, not in .env.
         key = "codex" if codex_credentials() else ""
+    elif keyenv == "NO_AUTH":
+        # Keyless endpoints (Pollinations) reject nothing when no bearer is sent.
+        key = "NO_AUTH"
     else:
         key = env.get(keyenv, "")
     if not key:
@@ -660,6 +673,8 @@ def translate_labels(items: list[str], language: str, backend: tuple, env: dict)
     if keyenv == "CODEX_OAUTH":
         # OAuth credentials live in OpenAmer's pool, not in .env.
         key = "codex" if codex_credentials() else ""
+    elif keyenv == "NO_AUTH":
+        key = "NO_AUTH"
     else:
         key = env.get(keyenv, "")
     if not key:
