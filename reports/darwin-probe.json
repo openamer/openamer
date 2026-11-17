@@ -1,7 +1,7 @@
 {
-  "updated": "2026-11-15T22:25:38.244047+00:00",
+  "updated": "2026-11-16T22:25:50.871454+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 1298,
+  "total": 1297,
   "skills": {
     "auto-competitor-intelligence-claudepowered-ai": {
       "refs": 0,
@@ -1638,6 +1638,12 @@
     "autonomous-completion": {
       "refs": 0,
       "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "autonomous-discovery": {
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -6916,12 +6922,6 @@
       "score": 1.0,
       "missing": []
     },
-    "plugin-api": {
-      "refs": 1,
-      "ok": 1,
-      "score": 1.0,
-      "missing": []
-    },
     "airtable": {
       "refs": 0,
       "ok": 0,
@@ -7673,12 +7673,6 @@
       "score": 1.0,
       "missing": []
     },
-    "skill-validator": {
-      "refs": 1,
-      "ok": 1,
-      "score": 1.0,
-      "missing": []
-    },
     "small-model-codegen": {
       "refs": 0,
       "ok": 0,
@@ -7728,9 +7722,9 @@
       "missing": []
     },
     "ui-string-catalog-translation": {
-      "refs": 5,
-      "ok": 4,
-      "score": 0.8,
+      "refs": 11,
+      "ok": 10,
+      "score": 0.909,
       "missing": [
         "scripts/i18n_hand_batch.py"
       ]
@@ -7781,8 +7775,8 @@
       "missing": []
     },
     "windows-subprocess-robustness": {
-      "refs": 1,
-      "ok": 1,
+      "refs": 2,
+      "ok": 2,
       "score": 1.0,
       "missing": []
     },
