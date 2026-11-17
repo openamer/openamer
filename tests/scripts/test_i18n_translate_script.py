@@ -61,6 +61,77 @@ def test_foreign_ratio_ignores_english_and_empty(mod):
     assert mod.foreign_ratio(["", "OpenAmer Desktop v1"], "ps") == 0.0
 
 
+def test_codex_credentials_reads_the_oauth_pool(mod, tmp_path, monkeypatch):
+    """Codex runs on the ChatGPT subscription, so the token comes from auth.json.
+
+    Measured 2026-11-17: the plain OPENAI_API_KEY answered
+    `credit_balance_exhausted`, while the pooled OAuth token answered HTTP 200.
+    """
+    import base64
+    import json
+
+    payload = base64.urlsafe_b64encode(json.dumps(
+        {"https://api.openai.com/auth": {"chatgpt_account_id": "acct-1"}}).encode()
+    ).decode().rstrip("=")
+    token = f"h.{payload}.s"
+    (tmp_path / "auth.json").write_text(json.dumps(
+        {"credential_pool": {"openai-codex": [{"access_token": token}]}}), encoding="utf-8")
+    monkeypatch.setattr(mod, "HOME", tmp_path)
+    assert mod.codex_credentials() == (token, "acct-1")
+
+
+def test_codex_credentials_missing_pool_gives_none(mod, tmp_path, monkeypatch):
+    monkeypatch.setattr(mod, "HOME", tmp_path)
+    assert mod.codex_credentials() is None
+
+
+def test_call_codex_parses_the_sse_stream(mod, monkeypatch):
+    """The Codex endpoint streams `response.output_text.delta` events."""
+    import json
+
+    class Line(bytes):
+        pass
+
+    events = [
+        b'data: {"type":"response.output_text.delta","delta":"[\\"Hallo\\""}\n',
+        b'data: {"type":"response.output_text.delta","delta":", \\"Welt\\"]"}\n',
+        b'data: {"type":"response.completed"}\n',
+    ]
+
+    class FakeResp:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+        def __iter__(self):
+            return iter(events)
+
+    monkeypatch.setattr(mod, "codex_credentials", lambda: ("tok", "acct"))
+    monkeypatch.setattr(mod.urllib.request, "urlopen", lambda req, timeout=0: FakeResp())
+    out = mod.call_codex("https://chatgpt.com/backend-api/codex/responses", "gpt-6.1-sol",
+                        [{"role": "system", "content": "sys"}, {"role": "user", "content": "hi"}])
+    assert out == '["Hallo", "Welt"]'
+
+
+def test_call_model_routes_codex_urls_and_still_retries(mod, monkeypatch):
+    calls = {"n": 0}
+
+    def fake_codex(url, model, messages, timeout=180):
+        calls["n"] += 1
+        if calls["n"] == 1:
+            raise urllib.error.HTTPError(url, 429, "Too Many Requests", {}, None)
+        return '["ok"]'
+
+    monkeypatch.setattr(mod, "call_codex", fake_codex)
+    monkeypatch.setattr(mod.time, "sleep", lambda s: None)
+    out = mod.call_model("https://chatgpt.com/backend-api/codex/responses", "gpt-6.1-sol", "",
+                         [{"role": "user", "content": "hi"}])
+    assert calls["n"] == 2
+    assert out == '["ok"]'
+
+
 def test_retry_after_header_is_honoured(mod):
     class Err(Exception):
         headers = {"Retry-After": "7"}

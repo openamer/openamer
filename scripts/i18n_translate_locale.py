@@ -26,6 +26,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import base64
 import json
 import random
 import re
@@ -90,15 +91,29 @@ def find_placeholders(text: str) -> list[tuple[int, int, str]]:
     return out
 
 # Model backends, tried in order. Each is (name, url, env-var, model).
+# Order comes from scripts/i18n_backend_bench.py (measured 2026-11-17):
+# Codex OAuth is fastest per string and not capped by a free tier; the Ollama
+# cloud models answer in 1.5-4.5 s; Pollinations needs no key at all.
+# OpenRouter's :free tier was exhausted (`free-models-per-day-high-balance`) and
+# sits last on purpose — a daily cap must not cost every batch a retry budget.
 BACKENDS = [
-    ("nemotron-free", "https://openrouter.ai/api/v1/chat/completions",
-     "OPENROUTER_API_KEY", "nvidia/nemotron-3-ultra-550b-a55b:free"),
+    # Codex OAuth (ChatGPT Plus subscription) — the Responses API, not
+    # chat/completions. Credentials come from OpenAmer's own auth.json, so no
+    # API key is needed and no per-token billing applies.
+    ("codex-gpt61", "https://chatgpt.com/backend-api/codex/responses",
+     "CODEX_OAUTH", "gpt-6.1-sol"),
     ("ollama-deepseek", "https://ollama.com/v1/chat/completions",
      "OLLAMA_API_KEY", "deepseek-v4.1-flash"),
     ("ollama-minimax", "https://ollama.com/v1/chat/completions",
      "OLLAMA_API_KEY", "minimax-m3.1-flash"),
+    ("pollinations", "https://text.pollinations.ai/openai",
+     "NO_AUTH", "openai-fast"),
+    ("ollama-gptoss", "https://ollama.com/v1/chat/completions",
+     "OLLAMA_API_KEY", "gpt-oss:20b-cloud"),
     ("ollama-gemma", "https://ollama.com/v1/chat/completions",
      "OLLAMA_API_KEY", "gemma4:31b"),
+    ("nemotron-free", "https://openrouter.ai/api/v1/chat/completions",
+     "OPENROUTER_API_KEY", "nvidia/nemotron-3-ultra-550b-a55b:free"),
 ]
 
 # The language name to put in the prompt, per locale code.
@@ -212,6 +227,85 @@ def _retry_after_seconds(exc: Exception) -> float | None:
         return None
 
 
+def codex_credentials() -> tuple[str, str] | None:
+    """(access_token, chatgpt_account_id) from OpenAmer's own OAuth pool.
+
+    The Codex backend runs on the ChatGPT subscription, not on platform
+    credits: measured 2026-11-17, the plain OPENAI_API_KEY answered
+    `credit_balance_exhausted` while this OAuth token answered HTTP 200.
+    """
+    p = HOME / "auth.json"
+    if not p.exists():
+        return None
+    try:
+        pool = json.loads(p.read_text(encoding="utf-8")).get("credential_pool", {})
+        entries = pool.get("openai-codex") or []
+        cred = entries[0] if entries else {}
+        token = cred.get("access_token") or ""
+        if not token:
+            return None
+        part = token.split(".")[1]
+        part += "=" * (-len(part) % 4)
+        claims = json.loads(base64.urlsafe_b64decode(part))
+        account = claims.get("https://api.openai.com/auth", {}).get("chatgpt_account_id", "")
+        return (token, account) if account else None
+    except (OSError, ValueError, IndexError, KeyError):
+        return None
+
+
+def call_codex(url: str, model: str, messages: list, timeout: int = 180) -> str:
+    """Call the Codex Responses API and return the assistant text.
+
+    Same wire protocol as the openai-codex provider: `store` must be false, the
+    answer arrives as an SSE stream (`response.output_text.delta` events).
+    """
+    creds = codex_credentials()
+    if creds is None:
+        raise RuntimeError("no Codex OAuth credentials in auth.json")
+    token, account = creds
+    system = "\n\n".join(m["content"] for m in messages if m.get("role") == "system")
+    user = "\n\n".join(m["content"] for m in messages if m.get("role") != "system")
+    body = json.dumps({
+        "model": model,
+        "instructions": system,
+        "input": [{"type": "message", "role": "user",
+                   "content": [{"type": "input_text", "text": user}]}],
+        "store": False,
+        "stream": True,
+    }).encode()
+    req = urllib.request.Request(
+        url, data=body,
+        headers={"Content-Type": "application/json",
+                 "Authorization": f"Bearer {token}",
+                 "chatgpt-account-id": account,
+                 "Accept": "text/event-stream",
+                 "OpenAI-Beta": "responses=experimental"})
+    out: list[str] = []
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        for raw in resp:
+            line = raw.decode("utf-8", "replace").strip()
+            if not line.startswith("data:"):
+                continue
+            payload = line[5:].strip()
+            if payload in ("", "[DONE]"):
+                continue
+            try:
+                event = json.loads(payload)
+            except json.JSONDecodeError:
+                continue
+            kind = event.get("type")
+            if kind == "response.output_text.delta":
+                out.append(event.get("delta", ""))
+            elif kind == "response.failed":
+                raise RuntimeError(f"codex failed: {json.dumps(event)[:200]}")
+            elif kind == "response.completed":
+                break
+    text = "".join(out)
+    if not text.strip():
+        raise RuntimeError("codex returned an empty answer")
+    return text
+
+
 def call_model(url: str, model: str, key: str, messages: list, max_tokens: int = 4000,
                timeout: int = 180, attempts: int = 4) -> str:
     """Call the model, backing off on rate limits and transient failures.
@@ -222,20 +316,24 @@ def call_model(url: str, model: str, key: str, messages: list, max_tokens: int =
     no progress. A 429 is a "come back later", not a failure, so it is retried
     with exponential backoff (honouring Retry-After when the server sends it).
     """
-    body = json.dumps({
-        "model": model,
-        "messages": messages,
-        "max_tokens": max_tokens,
-        "temperature": 0,
-    }).encode()
-    req = urllib.request.Request(
-        url, data=body,
-        headers={"Content-Type": "application/json", "Authorization": f"Bearer {key}"},
-    )
+    is_codex = "/codex/responses" in url
+    if not is_codex:
+        body = json.dumps({
+            "model": model,
+            "messages": messages,
+            "max_tokens": max_tokens,
+            "temperature": 0,
+        }).encode()
+        req = urllib.request.Request(
+            url, data=body,
+            headers={"Content-Type": "application/json", "Authorization": f"Bearer {key}"},
+        )
     delay = 3.0
     last: Exception | None = None
     for attempt in range(1, attempts + 1):
         try:
+            if is_codex:
+                return call_codex(url, model, messages, timeout=timeout)
             with urllib.request.urlopen(req, timeout=timeout) as resp:
                 data = json.loads(resp.read().decode())
             return data["choices"][0]["message"]["content"]
@@ -453,7 +551,11 @@ def translate_batch(items: list[str], language: str, backend: tuple, env: dict,
                    force_translate: bool = False, extra_hint: str = "",
                    locale: str = "") -> list[str] | None:
     name, url, keyenv, model = backend
-    key = env.get(keyenv, "")
+    if keyenv == "CODEX_OAUTH":
+        # OAuth credentials live in OpenAmer's pool, not in .env.
+        key = "codex" if codex_credentials() else ""
+    else:
+        key = env.get(keyenv, "")
     if not key:
         return None
     masked = []
@@ -555,7 +657,11 @@ def translate_labels(items: list[str], language: str, backend: tuple, env: dict)
     untranslated — those are real exceptions, and they are named.
     """
     name, url, keyenv, model = backend
-    key = env.get(keyenv, "")
+    if keyenv == "CODEX_OAUTH":
+        # OAuth credentials live in OpenAmer's pool, not in .env.
+        key = "codex" if codex_credentials() else ""
+    else:
+        key = env.get(keyenv, "")
     if not key:
         return None
     system = (
