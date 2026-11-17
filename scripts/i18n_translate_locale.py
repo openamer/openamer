@@ -606,7 +606,15 @@ def load_leaves(locale: str) -> list[dict]:
     )
     if r.returncode != 0:
         raise SystemExit(f"extract failed for {locale}: {r.stderr[-500:]}")
-    return json.loads(out_file.read_text(encoding="utf-8"))["leaves"]
+    raw = out_file.read_text(encoding="utf-8", errors="replace").strip()
+    if not raw:
+        # Measured 2026-11-17: the Node extractor occasionally writes an empty
+        # file with rc=0. Crashing here kills the whole worker, so fall back to
+        # an empty leaf list and let the caller degrade gracefully instead of
+        # taking down 19 pending locales with it.
+        print(f"    [{locale}] extractor wrote an empty file, no leaves", file=sys.stderr)
+        return []
+    return json.loads(raw)["leaves"]
 
 
 def load_overlay(locale: str) -> dict[str, str]:
