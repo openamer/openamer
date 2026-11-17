@@ -2393,7 +2393,7 @@ Biarkan kosong untuk mengekalkan lalai ${mode}.`,
     approvalMode: {
       title: 'Mod kelulusan',
       ariaLabel: mode => `Mod kelulusan: ${mode}`,
-      manual: 'Manual',
+      manual: 'Panduan',
       manualDescription: 'Tanya sebelum tindakan yang memerlukan kelulusan',
       smart: 'Pintar',
       smartDescription: 'Menilai tindakan secara automatik dan bertanya apabila perlu',

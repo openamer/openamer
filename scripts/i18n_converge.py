@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import importlib.util
 import json
 import os
 import pathlib
@@ -72,8 +73,55 @@ def strict(locale: str) -> tuple[bool, str]:
 
 
 def deliver(locale: str) -> bool:
+    """Deliver a locale from its cache -- but never across writing systems.
+
+    Measured 2026-11-17: the translator answered several locales in the wrong
+    script entirely (Arabic in Dzongkha, Korean in Bhojpuri, Cyrillic in Cree).
+    Coverage went UP, so every earlier gate called it progress. A snapshot
+    before/after delivery makes the switch visible: if the catalog gained
+    foreign-script strings the previous file is restored and the delivery counts
+    as failed, so the next pass translates again instead of keeping garbage.
+    """
+    target = REPO / "apps" / "desktop" / "src" / "i18n" / f"{locale}.ts"
+    before = target.read_bytes() if target.exists() else None
     r = run([PY, str(SCRIPTS / "i18n_deliver_locales.py"), "--deliver", "--only", locale], 240)
-    return r.returncode == 0
+    if r.returncode != 0:
+        return False
+    ok, why = script_ok(locale, before, target)
+    if not ok:
+        if before is not None:
+            target.write_bytes(before)
+        print(f"  {locale:>8} delivery rejected: {why}", file=sys.stderr)
+        return False
+    return True
+
+
+def script_mod():
+    """Load the writing-system gate (scripts/i18n_script_check.py) by path."""
+    path = SCRIPTS / "i18n_script_check.py"
+    spec = importlib.util.spec_from_file_location("i18n_script_check", path)
+    if spec is None or spec.loader is None:
+        return None
+    module = importlib.util.module_from_spec(spec)
+    sys.modules.setdefault("i18n_script_check", module)
+    spec.loader.exec_module(module)
+    return module
+
+
+def script_ok(locale: str, before: bytes | None, target: pathlib.Path) -> tuple[bool, str]:
+    """True when the delivery introduced no text from a foreign script."""
+    mod = script_mod()
+    if mod is None or before is None or not target.exists():
+        return True, ""
+    old = before.decode("utf-8", errors="replace")
+    new = target.read_text(encoding="utf-8", errors="replace")
+    expected = mod.expected_script(locale, old)
+    was = len(mod.foreign_values(mod.values(old), expected))
+    bad = mod.foreign_values(mod.values(new), expected)
+    if len(bad) > was:
+        hint = f" e.g. {bad[0][1]}" if bad else ""
+        return False, f"foreign-script values {was} -> {len(bad)}{hint}"
+    return True, ""
 
 
 def translate(locale: str, seconds: float) -> tuple[bool, str]:
