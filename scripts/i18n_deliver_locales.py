@@ -207,6 +207,43 @@ def drop_foreign_values(locale: str) -> int:
     return len(data) - len(kept)
 
 
+def strip_foreign_in_catalog(locale: str, en: dict[str, str]) -> int:
+    """Replace foreign-script values in the CATALOG with their English source.
+
+    `drop_foreign_values()` only cleans the cache. Measured 2026-11-17 on `ve`:
+    the delivery was still rejected with "foreign-script values 0 -> 1" although
+    the cache was clean, because `i18n_strict_fill.py` writes the last few gaps
+    straight into the catalog and never passes through the cache. One CJK string
+    cost the locale its whole 1 000-string delivery, twice.
+
+    So the catalog itself gets the same treatment: the offending values fall back
+    to English, everything else stays.
+    """
+    cur = extract(locale)
+    if not cur:
+        return 0
+    try:
+        from i18n_script_check import expected_script, foreign_values
+    except ImportError:
+        return 0
+    expected = expected_script(locale, "")
+    bad = {text for text, _ in foreign_values(list(cur.values()), expected)}
+    if not bad:
+        return 0
+    fixed = {path: (en.get(path, text) if text in bad else text)
+             for path, text in cur.items()}
+    tmp = TMP / f"_strip_{locale}_{os.getpid()}.json"
+    try:
+        tmp.write_text(json.dumps(fixed, ensure_ascii=False), encoding="utf-8")
+        r = node([str(WRITE), str(I18N / f"{locale}.ts"), str(tmp)])
+        if r.returncode != 0:
+            print(f"  strip failed {locale}: {r.stderr.strip()[-160:]}", file=sys.stderr)
+            return 0
+    finally:
+        tmp.unlink(missing_ok=True)
+    return len(bad)
+
+
 def deliver(locale: str, en: dict[str, str], current: dict | None = None) -> tuple[bool, str]:
     """Regenerate the catalog from its cache - never at the cost of the catalog.
 

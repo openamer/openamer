@@ -34,7 +34,7 @@ REPO = pathlib.Path(__file__).resolve().parent.parent
 SCRIPTS = REPO / "scripts"
 sys.path.insert(0, str(SCRIPTS))
 
-from i18n_deliver_locales import extract, measure  # noqa: E402
+from i18n_deliver_locales import extract, measure, strip_foreign_in_catalog  # noqa: E402
 
 PY = sys.executable
 TARGET = 0.999
@@ -242,10 +242,21 @@ def main() -> int:
                 normalize(locale)
             clean, why = script_ok(locale, snapshot, target)
             if not clean:
-                if snapshot is not None:
-                    target.write_bytes(snapshot)
-                delivered = False
-                reason = f"{reason} script-rejected: {why}".strip()
+                # Second chance instead of throwing the pass away: the offending
+                # values fall back to English and the rest of the delivery stays.
+                # Measured 2026-11-17 on `ve`: one CJK string rejected ~1 000
+                # good strings, twice, because strict_fill writes into the
+                # catalog and never passes the cache filter.
+                stripped = strip_foreign_in_catalog(locale, en)
+                if stripped:
+                    clean, why = script_ok(locale, snapshot, target)
+                    if clean:
+                        reason = f"{reason} stripped {stripped} foreign-script value(s)".strip()
+                if not clean:
+                    if snapshot is not None:
+                        target.write_bytes(snapshot)
+                    delivered = False
+                    reason = f"{reason} script-rejected: {why}".strip()
             after_row = measure(locale, en)
             after = after_row["share"] if after_row else before
             ledger({"locale": locale, "before": before, "after": after,
