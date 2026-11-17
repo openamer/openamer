@@ -19,6 +19,7 @@ import { DesktopInstallOverlay } from '@/components/desktop-install-overlay'
 import { GatewayConnectingOverlay } from '@/components/gateway-connecting-overlay'
 import { NotificationStack } from '@/components/notifications'
 import { DesktopOnboardingOverlay } from '@/components/onboarding'
+import { DesktopLanguagePickerOverlay } from '@/components/onboarding/language-picker'
 import { $newSessionTabAction } from '@/components/pane-shell/tree/store'
 import { FloatingPet } from '@/components/pet/floating-pet'
 import { RemoteDisplayBanner } from '@/components/remote-display-banner'
@@ -930,6 +931,16 @@ export function ContribWiring({ children }: { children: ReactNode }) {
       {/* The full real overlay set (mirrors DesktopController's `overlays`). */}
       <RemoteDisplayBanner />
       {!isSecondaryWindow() && <DesktopInstallOverlay />}
+      {!isSecondaryWindow() && (
+        <DesktopLanguagePickerOverlay
+          enabled={gatewayState === 'open'}
+          onCompleted={() => {
+            void refreshOpenAmerConfig()
+            void refreshCurrentModel()
+            void queryClient.invalidateQueries({ queryKey: ['model-options'] })
+          }}
+        />
+      )}
       {!isSecondaryWindow() && (
         <DesktopOnboardingOverlay
           enabled={gatewayState === 'open'}
