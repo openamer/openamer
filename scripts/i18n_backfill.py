@@ -23,8 +23,8 @@ REPO = pathlib.Path.home() / "openamer-repo"
 HOME = pathlib.Path(os.path.expanduser("~/AppData/Local/openamer-laptop"))
 LOG = HOME / "reports" / "i18n-backfill.log"
 CRON_ID = "34a170dc3892"
-WORKERS = 4
-BUDGET_MIN = 90
+WORKERS = 6
+BUDGET_MIN = 120
 
 
 def log(msg: str) -> None:
