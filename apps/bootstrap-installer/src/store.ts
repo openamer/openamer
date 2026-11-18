@@ -1,9 +1,8 @@
 import { invoke } from '@tauri-apps/api/core'
 import { listen, type UnlistenFn } from '@tauri-apps/api/event'
-
-import { $lang } from './i18n'
 import { atom, computed } from 'nanostores'
 
+import { $lang } from './i18n'
 import {
   countDone,
   mergeManifest,

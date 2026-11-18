@@ -64,7 +64,7 @@ export default function Failure({ bootstrap }: FailureProps) {
           )}
         </div>
 
-        <div className="flex min-w-0 flex-1 flex-col justify-center border-l border-foreground/10 px-7 py-8">
+        <div className="flex min-w-0 flex-1 flex-col justify-center border-s border-foreground/10 px-7 py-8">
           <ul className="space-y-2.5">
             {s.failure.help.map((line, i) => (
               <li className="flex items-start gap-2.5 text-[12px] leading-relaxed text-muted-foreground" key={line}>

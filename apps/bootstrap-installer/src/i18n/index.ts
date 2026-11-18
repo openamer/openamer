@@ -88,6 +88,29 @@ export function useStrings(): Strings {
   return useMemo(() => strings(lang), [lang])
 }
 
+/**
+ * Right-to-left languages. The setup window flips the whole document for these
+ * (`dir="rtl"`), exactly like the app does — Arabic text laid out left-to-right
+ * reads as broken, not as translated.
+ */
+export const RTL_LANGUAGES: ReadonlySet<Lang> = new Set<Lang>([
+  'ar',
+  'ckb',
+  'dv',
+  'fa',
+  'he',
+  'ku',
+  'ps',
+  'sd',
+  'ug',
+  'ur',
+  'yi'
+])
+
+export function isRtl(lang: Lang): boolean {
+  return RTL_LANGUAGES.has(lang)
+}
+
 export interface LanguageEntry {
   code: Lang
   endonym: string

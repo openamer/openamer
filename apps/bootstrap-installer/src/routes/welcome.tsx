@@ -70,7 +70,7 @@ export default function Welcome() {
               label={
                 <span className="inline-flex items-center gap-2">
                   {isUpdate ? s.welcome.ctaUpdate : s.welcome.cta}
-                  <ArrowRight className="size-3 text-primary/70" />
+                  <ArrowRight className="size-3 text-primary/70 rtl:-scale-x-100" />
                 </span>
               }
               onClick={() => void startInstall()}
@@ -84,7 +84,7 @@ export default function Welcome() {
             squeezed: a cramped illustration beside cramped text is worse than a
             clean single column, and scaled displays can leave the webview
             narrower than the window config suggests. */}
-        <div className="hidden min-w-0 flex-1 border-l border-foreground/10 px-7 py-7 min-[860px]:flex">
+        <div className="hidden min-w-0 flex-1 border-s border-foreground/10 px-7 py-7 min-[860px]:flex">
           <CapabilityStage capabilities={s.capabilities} />
         </div>
       </div>

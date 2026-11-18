@@ -55,7 +55,9 @@ function toError(error: unknown): Error {
   return error instanceof Error ? error : new Error(String(error))
 }
 
-const RTL_LOCALES = new Set<Locale>(['ar'])
+// Right-to-left scripts. Arabic was the only entry here, so Hebrew, Persian,
+// Urdu and the rest rendered left-to-right — fluent text in a broken layout.
+const RTL_LOCALES = new Set<string>(['ar', 'ckb', 'dv', 'fa', 'he', 'ku', 'ps', 'sd', 'ug', 'ur', 'yi'])
 
 function applyDocumentLocale(locale: Locale) {
   if (typeof document === 'undefined') {
