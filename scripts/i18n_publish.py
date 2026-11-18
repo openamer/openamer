@@ -134,12 +134,17 @@ def publish(locales: list[str], dry: bool) -> int:
 
     try:
         base = git("-C", str(WORKTREE), "rev-parse", "HEAD").stdout.strip()
-        existing = git("ls-remote", "--heads", "origin", BRANCH).stdout.split()
-        if existing:
-            # Continue the rolling branch: reset the tree onto its tip so the PR
-            # grows by one commit instead of colliding with the previous one.
-            git("-C", str(WORKTREE), "fetch", "-q", "origin", BRANCH, timeout=180)
-            git("-C", str(WORKTREE), "checkout", "-q", "-B", BRANCH, "FETCH_HEAD")
+        # Continue the rolling branch ONLY while its PR is still open. Once that
+        # PR merges, the branch tip is already inside main: appending to it would
+        # base the next PR on an older main for no reason. Measured 2026-11-18:
+        # PR #437 merged, the branch stayed behind, and the next batch needed a
+        # fresh branch instead of a commit on the merged one.
+        url = open_pr()
+        branch = BRANCH if url else f"{BRANCH}-{datetime.now(timezone.utc):%Y%m%d-%H%M}"
+        existing = git("ls-remote", "--heads", "origin", branch).stdout.split()
+        if existing and url:
+            git("-C", str(WORKTREE), "fetch", "-q", "origin", branch, timeout=180)
+            git("-C", str(WORKTREE), "checkout", "-q", "-B", branch, "FETCH_HEAD")
 
         copied = 0
         for loc in locales:
@@ -168,16 +173,15 @@ def publish(locales: list[str], dry: bool) -> int:
 
         sha = git("-C", str(WORKTREE), "rev-parse", "HEAD").stdout.strip()
         push = git("-C", str(WORKTREE), "push", "-q", "origin",
-                   f"HEAD:refs/heads/{BRANCH}", timeout=300)
+                   f"HEAD:refs/heads/{branch}", timeout=300)
         if push.returncode != 0:
             log(f"push failed: {(push.stderr or push.stdout)[-300:]}")
             return 1
-        log(f"pushed {sha[:10]} ({copied} file(s), base {base[:10]}) to {BRANCH}")
+        log(f"pushed {sha[:10]} ({copied} file(s), base {base[:10]}) to {branch}")
 
-        url = open_pr()
         if not url:
             created = subprocess.run(
-                [GH, "pr", "create", "--base", "main", "--head", BRANCH,
+                [GH, "pr", "create", "--base", "main", "--head", branch,
                  "--title", "feat(i18n): publish translated catalogs (rolling)",
                  "--body", "Rolling PR written by `scripts/i18n_publish.py`.\n\n"
                            "Each commit is one converge batch that already passed\n"
