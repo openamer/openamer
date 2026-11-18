@@ -175,10 +175,23 @@ providers:
 // ── Electron launch ────────────────────────────────────────────────────
 
 function findElectron() {
-  const local = path.join(REPO_ROOT, 'node_modules', 'electron', 'dist', 'electron')
-  if (fs.existsSync(local)) return local
-  const r = spawnSync('which', ['electron'], { encoding: 'utf8' })
-  if (r.status === 0 && r.stdout.trim()) return r.stdout.trim()
+  // Windows ships `electron.exe`; the extension-less name exists only on POSIX.
+  // Measured 2026-11-18: the bare name made this script fall through to
+  // `which electron`, which hands back an MSYS path
+  // (`/c/Users/.../node_modules/.bin/electron`) that spawn cannot execute —
+  // the whole dev:mock mode died with ENOENT before opening a window.
+  const dist = path.join(REPO_ROOT, 'node_modules', 'electron', 'dist')
+  for (const name of ['electron.exe', 'electron']) {
+    const candidate = path.join(dist, name)
+    if (fs.existsSync(candidate)) return candidate
+  }
+  const locator = process.platform === 'win32' ? 'where' : 'which'
+  const r = spawnSync(locator, ['electron'], { encoding: 'utf8' })
+  if (r.status === 0 && r.stdout.trim()) {
+    // First line only (Windows `where` can list several), without a trailing CR.
+    const firstLine = r.stdout.trim().split(String.fromCharCode(10))[0]
+    return firstLine.split(String.fromCharCode(13)).join('')
+  }
   throw new Error('Electron binary not found. Run "npm install" from the repo root.')
 }
 
