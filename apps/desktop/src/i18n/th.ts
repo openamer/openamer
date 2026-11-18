@@ -345,7 +345,7 @@ export const th = defineLocale({
     },
     notifications: {
       title: 'การแจ้งเตือน',
-      intro: 'Native desktop notifications, separate from in-app toasts. These are device-local — each computer keeps its own settings.',
+      intro: 'การแจ้งเตือนเดสก์ท็อปแบบเนทีฟ แยกจากทอสต์ในแอป การตั้งค่าเหล่านี้เป็นแบบเฉพาะอุปกรณ์ — แต่ละคอมพิวเตอร์จะเก็บการตั้งค่าของตัวเอง',
       enableAll: 'เปิดการแจ้งเตือน',
       enableAllDesc: 'สวิตช์หลัก ปิดสิ่งนี้เพื่อปิดการแจ้งเตือนทั้งหมดด้านล่าง',
       focusedHint: 'การแจ้งเตือนเมื่อทำงานเสร็จจะแสดงเฉพาะเมื่อ OpenAmer อยู่เบื้องหลัง',
@@ -1451,7 +1451,7 @@ export const th = defineLocale({
       },
       MATRIX_USER_ID: {
         label: 'ID ผู้ใช้บอต',
-        placeholder: '@openamer:example.org',
+        placeholder: '@โอเพนอาเมอร์:เอ็กแซมเพิล.ออร์ก',
       },
       MATRIX_ALLOWED_USERS: {
         label: 'ID ผู้ใช้ Matrix ที่อนุญาต',
@@ -1778,7 +1778,7 @@ export const th = defineLocale({
     itemsLink: 'ลิงก์',
     itemsFile: 'ไฟล์',
     itemsGeneric: 'รายการ',
-    zero: '0',
+    zero: '๐',
     rangeOf: (start, end, total) => `${start}-${end} จาก ${total}`,
     goToPage: (itemLabel, page) => `ไปที่ ${itemLabel} หน้า ${page}`,
     colTitleLink: 'ชื่อลิงก์',
@@ -1918,7 +1918,7 @@ export const th = defineLocale({
       ageNow: 'ตอนนี้',
       ageDay: 'วัน',
       ageHour: 'ชม.',
-      ageMin: 'm',
+      ageMin: 'ม.',
     },
     dateDivider: {
       today: 'วันนี้ก่อนหน้านี้',
