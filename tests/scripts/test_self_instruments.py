@@ -99,7 +99,7 @@ def test_wilson_interval_is_bounded_and_widens_with_few_items(bench):
 # ── episode_recall: the German/English bridge and the contradiction flag ───
 
 def test_tokens_bridges_german_diagnosis_vocabulary(recall):
-    assert "false positive" .split()[0] in " ".join(recall.tokens("falsch positiv"))
+    assert {"false", "positive"} <= recall.tokens("falsch positiv")
     assert recall.tokens("Platzhalter") & recall.tokens("placeholder")
 
 

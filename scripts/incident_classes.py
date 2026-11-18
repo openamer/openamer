@@ -27,6 +27,7 @@ Exit 0 always — this is a report, not a gate. The gate lives in the class rule
 from __future__ import annotations
 
 import argparse
+import datetime
 import json
 import os
 import re
@@ -84,6 +85,12 @@ CLASSES: dict[str, dict] = {
         "rule": ("Validate the model/provider/credential against the live registry at "
                  "start, and fail with the resolved value in the message."),
     },
+    "no_message": {
+        "patterns": [r"^$"],
+        "rule": ("A failure with no error text is a logging defect: the job must record WHY it "
+                 "failed. An empty message is indistinguishable from a crash and cannot be fixed "
+                 "twice if the first one is only known as 'failed'."),
+    },
     "unknown_outcome": {
         "patterns": [
             r"scheduler restarted", r"owner exited", r"side effects ran is unknown",
@@ -113,7 +120,9 @@ FIXTURES = [
 
 
 def classify(text: str) -> str:
-    low = (text or "").lower()
+    low = (text or "").strip().lower()
+    if not low:
+        return "no_message"
     best, best_hits = "unknown", 0
     for name, spec in CLASSES.items():
         hits = sum(1 for pat in spec["patterns"] if re.search(pat, low, re.I))
@@ -163,7 +172,7 @@ def main(argv: list[str]) -> int:
         samples.setdefault(cls, (row["error"] or "")[:220].replace("\n", " "))
 
     payload = {
-        "ts": __import__("datetime").datetime.now().isoformat(timespec="seconds"),
+        "ts": datetime.datetime.now().isoformat(timespec="seconds"),
         "days": args.days,
         "failures": len(rows),
         "classes": {cls: {"count": n, "rule": CLASSES.get(cls, {}).get("rule", "unclassified"),

@@ -11,7 +11,7 @@ A goal without a kill criterion is not ambition, it is a treadmill: the verifier
 reverts a claim, the next tick re-promotes it, and the count of cycles grows
 while the state stays the same. This audit names that pattern per goal:
 
-    TREADMILL     a milestone was promoted and reverted >= 2 times
+    TREADMILL     a milestone was promoted and then reverted (a cycle)
     STALLED       no verify_ts newer than --stale-days
     NO_KILL       the goal declares no `kill_if` (the structural finding)
     ON_TRACK      verified milestones exist, none of the above
@@ -108,8 +108,8 @@ def audit_goal(goal: dict, stale_days: float) -> dict:
     if "TREADMILL" in verdicts:
         worst = treadmill[0]
         text = next((m["text"] for m in ms if m["id"] == worst), worst)
-        suggestion = (f'kill_if: "milestone {worst} ({text[:60]}) reverted twice more '
-                      f'without a new approach"')
+        suggestion = (f'kill_if: "milestone {worst} ({text[:60]}) promoted and reverted '
+                      f'again without a new approach"')
     elif "STALLED" in verdicts:
         suggestion = (f'kill_if: "no milestone promoted in {int(stale_days) + 1} days"')
 
