@@ -63,14 +63,31 @@ export default function ProgressScreen({ bootstrap }: ProgressProps) {
   const pct = Math.round(progress.fraction * 100)
   const running = bootstrap.status === 'running'
 
+  // The headline is the biggest text on the screen, so it must be in the chosen
+  // language: the manifest ships English stage titles, the catalogue carries the
+  // translation. Without this the update window read "Downloading the latest
+  // version" in the middle of an otherwise German screen.
+  const currentStageName = bootstrap.currentStage
   const currentTitle =
-    bootstrap.currentStage != null ? bootstrap.stages[bootstrap.currentStage]?.info.title : null
+    currentStageName != null
+      ? (s.stages[currentStageName] ?? bootstrap.stages[currentStageName]?.info.title ?? null)
+      : null
 
   return (
     <div className="openamer-fade-in flex h-full flex-col">
-      <div className="flex min-h-0 flex-1">
-        {/* Left: the number, then the steps */}
-        <div className="flex w-[46%] min-w-0 flex-col border-e border-foreground/10 px-7 py-6">
+      <div className={clsx('flex min-h-0 flex-1', !showLogs && 'justify-center')}>
+        {/* Left: the number, then the steps. With the log closed this column
+            takes the whole window instead of leaving a dead grey panel. */}
+        <div
+          className={clsx(
+            'flex min-w-0 flex-col px-7 py-6',
+            showLogs
+              ? 'w-[46%] border-e border-foreground/10'
+              : // Closed log: the block sits in the optical middle instead of
+                // hanging off the top edge with half the window empty below.
+                'w-full max-w-[640px] justify-center'
+          )}
+        >
           <div className="flex items-center gap-2.5">
             <BrandMark className="size-7 rounded" />
             <span className="text-[10.5px] font-semibold tracking-[0.2em] text-foreground/45 uppercase">
@@ -79,13 +96,19 @@ export default function ProgressScreen({ bootstrap }: ProgressProps) {
           </div>
 
           <div className="mt-4 flex items-center gap-4">
-            <div className="relative size-[92px] shrink-0 text-primary">
+            <div className="relative size-[104px] shrink-0 text-primary">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -inset-3 rounded-full bg-primary/[0.07] blur-xl"
+              />
               <ProgressRing pct={pct} />
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <span className="text-[19px] leading-none font-semibold tabular-nums text-foreground">{pct}%</span>
-                <span className="mt-0.5 text-[9px] tracking-[0.14em] text-foreground/40 uppercase">
-                  {bootstrap.status === 'completed' ? s.progress.done : `${progress.done}/${progress.total}`}
-                </span>
+                <span className="text-[21px] leading-none font-semibold tabular-nums text-foreground">{pct}%</span>
+                {bootstrap.status === 'completed' && (
+                  <span className="mt-1 text-[9px] tracking-[0.14em] text-foreground/45 uppercase">
+                    {s.progress.done}
+                  </span>
+                )}
               </div>
             </div>
             <div className="min-w-0">
@@ -102,7 +125,14 @@ export default function ProgressScreen({ bootstrap }: ProgressProps) {
             {isUpdate ? s.progress.leadUpdate : s.progress.lead}
           </p>
 
-          <ol className="mt-4 min-h-0 flex-1 space-y-0.5 overflow-y-auto pr-1">
+          <ol
+            className={clsx(
+              'mt-5 ms-1.5 space-y-1 border-s border-foreground/10 ps-4 pe-1',
+              // Only scroll when the log is open and space is actually tight;
+              // otherwise the rail would stretch past the last step.
+              showLogs && 'min-h-0 flex-1 overflow-y-auto'
+            )}
+          >
             {bootstrap.stageOrder.map((name) => {
               const rec = bootstrap.stages[name]
 
@@ -120,13 +150,27 @@ export default function ProgressScreen({ bootstrap }: ProgressProps) {
               return (
                 <li
                   className={clsx(
-                    'flex items-center gap-2.5 rounded-md px-2 py-1.5 text-[12.5px]',
+                    'relative flex items-center gap-2.5 rounded-md px-2 py-1.5 text-[12.5px]',
                     rec.state === 'running'
                       ? 'bg-primary/[0.07] font-medium text-foreground'
-                      : 'text-muted-foreground'
+                      : 'text-muted-foreground',
+                    rec.state == null ? 'opacity-55' : ''
                   )}
                   key={name}
                 >
+                  <span
+                    aria-hidden="true"
+                    className={clsx(
+                      'absolute -start-[21px] top-1/2 size-1.5 -translate-y-1/2 rounded-full',
+                      rec.state === 'running'
+                        ? 'bg-primary ring-2 ring-primary/25'
+                        : rec.state === 'succeeded'
+                          ? 'bg-primary/60'
+                          : rec.state === 'failed'
+                            ? 'bg-destructive'
+                            : 'bg-foreground/20'
+                    )}
+                  />
                   {rec.state === 'running' && <Loader className="-ms-1.5 size-5 shrink-0" />}
                   <span className="flex-1 truncate">{s.stages[name] ?? rec.info.title}</span>
                   {meta && <span className="text-[10.5px] tabular-nums text-muted-foreground/60">{meta}</span>}
@@ -137,8 +181,8 @@ export default function ProgressScreen({ bootstrap }: ProgressProps) {
           </ol>
         </div>
 
-        {/* Right: live output, collapsible */}
-        <div className="flex min-w-0 flex-1 flex-col px-6 py-6">
+        {/* Right: live output, only when it is actually open */}
+        <div className={clsx('flex min-w-0 flex-1 flex-col px-6 py-6', !showLogs && 'hidden')}>
           <div className="flex items-center justify-between">
             <span className="text-[10.5px] font-semibold tracking-[0.18em] text-foreground/40 uppercase">
               {s.progress.liveOutput}
@@ -150,8 +194,7 @@ export default function ProgressScreen({ bootstrap }: ProgressProps) {
 
           <div
             className={clsx(
-              'installer-log mt-2 min-h-0 flex-1 overflow-y-auto rounded-lg border border-foreground/10 bg-foreground/[0.03] px-3 py-2 font-mono text-[10.5px] leading-relaxed',
-              !showLogs && 'opacity-60'
+              'installer-log mt-2 min-h-0 flex-1 overflow-y-auto rounded-lg border border-foreground/10 bg-foreground/[0.03] px-3 py-2 font-mono text-[10.5px] leading-relaxed'
             )}
           >
             {bootstrap.logs.length === 0 ? (
