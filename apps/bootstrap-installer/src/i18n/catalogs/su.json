@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer ngarencanakeun pancén, ngalaksanakeunana ku pakakas nyata — terminal, panyungsi, berkas, kode — sarta nyimpen cara anu hasil.",
+      "title": "Agén anu milu mikir"
+    },
+    {
+      "body": "Paguneman, mémori, jeung modél aya dina komputer ieu. Euweuh anu diunggah iwal anjeun ménta.",
+      "title": "Pakakas anjeun, data anjeun"
+    },
+    {
+      "body": "186 basa, masing-masing maké aksara anu anjeun baca. Layar mimiti aplikasi nanyakeun basa pilihan anjeun.",
+      "title": "Basa anjeun, sakumaha kuduna"
+    },
+    {
+      "body": "Kaahlian disimpen tina pagawéan sorangan, jadi pancén sapopoé beuki singget lamun beuki lila dipaké.",
+      "title": "Kamampuh anu terus mekar"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Pariksa yén komputer ieu bisa nyambung ka internét.",
+      "Jalankeun deui pangaturan — léngkah anu geus réngsé moal diulang.",
+      "Lamun gagal dua kali, buka catetan; baris panungtung nyebutkeun léngkahna."
+    ],
+    "lead": "Euweuh parobahan anu dibolaykeun cicingeun — OpenAmer eureun di tempatna, jadi lamun dijalankeun deui bakal nuluykeun ti dinya.",
+    "leadUpdate": "OpenAmer masih dina vérsi saméméhna sarta tetep jalan. Euweuh anu diganti satengahna.",
+    "log": "Catetan",
+    "openLogs": "Buka catetan",
+    "retry": "Cobian deui",
+    "retryUpdate": "Cobian deui apdet",
+    "title": "Pangaturan can réngsé",
+    "titleUpdate": "Apdet can réngsé"
+  },
+  "language": {
+    "continue": "Teraskeun",
+    "lead": "Pangaturan diteruskeun dina basa anu anjeun pilih di dieu. Engké bisa dirobah dina aplikasi.",
+    "search": "Téangan basa",
+    "title": "Pilih basa anjeun"
+  },
+  "progress": {
+    "cancel": "Bolay",
+    "done": "Siap",
+    "hideDetails": "Sumputkeun wincikan",
+    "lead": "Pangaturan sakali: OpenAmer keur ngundeur pangabutuhna sarta ngatur komputer ieu. Engké dibuka deui, ieu kabéh moal diulang.",
+    "leadUpdate": "OpenAmer keur ngaganti vérsi saméméhna. Sési, mémori, jeung setélan anjeun tetep teu robah.",
+    "lines": "baris",
+    "liveOutput": "Kaluaran langsung",
+    "showDetails": "Témbongkeun wincikan",
+    "stepsComplete": "{done} tina {total} léngkah réngsé",
+    "title": "Keur ngatur OpenAmer",
+    "titleUpdate": "Keur ngapdet OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Keur nandaan pamasangan réngsé",
+    "config-templates": "Keur nulis citakan konfigurasi",
+    "configure": "Keur ngatur konci API jeung modél",
+    "dependencies": "Keur masang kagumantungan Python",
+    "desktop": "Keur ngawangun aplikasi desktop",
+    "gateway": "Keur ngamimitian gerbang talatah",
+    "git": "Keur masang Git",
+    "handoff": "Keur nyiapkeun apdet",
+    "install": "Keur masang apdet",
+    "node": "Keur ngadeteksi Node.js",
+    "node-deps": "Keur masang kagumantungan Node.js",
+    "path": "Keur nambahkeun OpenAmer kana PATH",
+    "platform-sdks": "Keur masang SDK platform talatah",
+    "python": "Keur mariksa Python",
+    "rebuild": "Keur ngawangun deui aplikasi desktop",
+    "repository": "Keur nyalin répositori OpenAmer",
+    "system-packages": "Keur masang ripgrep jeung ffmpeg",
+    "update": "Keur ngundeur vérsi panganyarna",
+    "uv": "Keur masang pangatur pakét uv",
+    "venv": "Keur nyieun lingkungan virtual Python"
+  },
+  "stepper": {
+    "done": "Siap",
+    "install": "Pasang",
+    "language": "Basa",
+    "update": "Apdet",
+    "welcome": "Wilujeng sumping"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Buka aplikasi sarta jelaskeun naon anu hayang diréngsékeun. OpenAmer digawé di latar tukang sarta ngalaporkeun hasilna.",
+        "title": "Mimitian ku sakalimah"
+      },
+      {
+        "body": "Setélan → Pintonan → Basa. 186 lokal, bisa diganti iraha waé.",
+        "title": "Pilih basa anjeun"
+      },
+      {
+        "body": "Pagawéan anu diulang jadi kaahlian — engké cukup ku hiji paréntah.",
+        "title": "Anteup sina inget"
+      }
+    ],
+    "command": "atawa jalankeun engké tina terminal:",
+    "cta": "Jalankeun OpenAmer",
+    "errorTitle": "Teu bisa ngajalankeun aplikasi desktop",
+    "launching": "Keur ngajalankeun",
+    "lead": "Kabéh geus siap. Ayeuna OpenAmer milik anjeun — dina komputer ieu, dina basa anjeun.",
+    "title": "OpenAmer geus siap"
+  },
+  "welcome": {
+    "bullets": [
+      "Jalan sacara lokal — paguneman anjeun tetep dina komputer ieu",
+      "186 basa, kaasup aksara anu anjeun baca",
+      "Kabéh bisa dirobah engké; euweuh anu permanén"
+    ],
+    "cta": "Pasang",
+    "ctaUpdate": "Apdet ayeuna",
+    "kicker": "Pangaturan sakali",
+    "lead": "Agén anjeun sorangan. Dina pakakas anjeun. Dina basa anjeun.",
+    "leadUpdate": "OpenAmer anu leuwih anyar geus siap. Ieu ngaganti vérsi saméméhna sarta ngajaga sakabéh sési jeung setélan.",
+    "note": "Butuh sababaraha menit dina sambungan normal.",
+    "title": "Wilujeng sumping di OpenAmer",
+    "titleUpdate": "Apdet OpenAmer"
+  }
+}

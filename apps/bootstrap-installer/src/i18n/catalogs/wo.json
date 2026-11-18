@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer dafay tëral liggéey, def ko ak jumtukaay yu dëgg — konsolu ndigal, joowukaay, dencukaay, kod — te denc li ànd.",
+      "title": "Ab jëwriñ bu lay àndal ci xalaat"
+    },
+    {
+      "body": "Waxtaan yi, li mu fàttaliku ak model yi ci masin bii lañu nekk. Duñu yónnee dara su fekkee ne laajoo ko.",
+      "title": "Sa jumtukaay, say rootaan"
+    },
+    {
+      "body": "186 làkk, bu nekk ak mbind mi ngay jàng dëgg. Xëtu njëkk bi ci jëfekaay bi dafay la laaj bi nga bëgg.",
+      "title": "Sa làkk, ni mu ware"
+    },
+    {
+      "body": "Mën-mën yi dañuy dence ci liggéey bi ci boppam, ba liggéeyu bés bu nekk gën a gaaw ni ngay gën a jëfandikoo ko.",
+      "title": "Mën-mën gu di yokku"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Wóorallil ne masin bii mën na jot ci internet.",
+      "Doxalaat samp gi — jéego yi jeex duñu leen defaat.",
+      "Su lajjul ñaari yoon, ubbi dencukaayi xew-xew yi; rëdd yi mujj dañuy tudd jéego bi."
+    ],
+    "lead": "Amul soppi guñu dindi ci nëbbu — OpenAmer dafay taxaw fa mu taxawoon, ba doxal gi ci topp mën a tàmbaliwaat foofu.",
+    "leadUpdate": "OpenAmer mi ngi ci sumb bi jiitu te di liggéey ba tey. Amul lenn luñu wuutal ci genn-wàll.",
+    "log": "Dencukaayu xew-xew",
+    "openLogs": "Ubbi dencukaayi xew-xew",
+    "retry": "Jéemaat",
+    "retryUpdate": "Jéemaat yeesal gi",
+    "title": "Samp gi jeexul",
+    "titleUpdate": "Yeesal gi jeexul"
+  },
+  "language": {
+    "continue": "Wéyal",
+    "lead": "Samp gi dina wéy ci làkk bi nga tànn fii. Mën nga ko soppi ci jëfekaay bi ci kanam.",
+    "search": "Seet làkk yi",
+    "title": "Tànnal sa làkk"
+  },
+  "progress": {
+    "cancel": "Neenal",
+    "done": "Jeex na",
+    "hideDetails": "Nëbb benn-bennal yi",
+    "lead": "Samp gu benn yoon: OpenAmer mi ngi yebbi li mu soxla te di jekk-jekkal masin bii. Boo ko ubbiwaatee, dina tëb lépp loolu.",
+    "leadUpdate": "OpenAmer mi ngi wuutal sumb bi jiitu. Say sesiyoŋ, li mu fàttaliku ak say jekk-jekkal duñu laal.",
+    "lines": "rëdd",
+    "liveOutput": "Li mu génne ci saa si",
+    "showDetails": "Wone benn-bennal yi",
+    "stepsComplete": "{done} ci {total} jéego jeex nañu",
+    "title": "Mi ngi samp OpenAmer",
+    "titleUpdate": "Mi ngi yeesal OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Mi ngi màndargaal ne samp gi jeex na",
+    "config-templates": "Mi ngi bind royukaayi jekk-jekkal",
+    "configure": "Mi ngi jekk-jekkal caabi API yi ak model yi",
+    "dependencies": "Mi ngi samp li Python soxla",
+    "desktop": "Mi ngi tabax jëfekaayu ordinatëër bi",
+    "gateway": "Mi ngi tàmbali buntub bataaxal yi",
+    "git": "Mi ngi samp Git",
+    "handoff": "Mi ngi waajal yeesal gi",
+    "install": "Mi ngi samp yeesal gi",
+    "node": "Mi ngi seet Node.js",
+    "node-deps": "Mi ngi samp li Node.js soxla",
+    "path": "Mi ngi yokk OpenAmer ci PATH",
+    "platform-sdks": "Mi ngi samp SDK yi ñeel dalub bataaxal yi",
+    "python": "Mi ngi seetlu Python",
+    "rebuild": "Mi ngi tabaxaat jëfekaayu ordinatëër bi",
+    "repository": "Mi ngi duppi dencukaayu OpenAmer",
+    "system-packages": "Mi ngi samp ripgrep ak ffmpeg",
+    "update": "Mi ngi yebbi sumb bi gën a bees",
+    "uv": "Mi ngi samp saytukatu pakke uv",
+    "venv": "Mi ngi sos wëralaanu Python wu ñuul"
+  },
+  "stepper": {
+    "done": "Jeex na",
+    "install": "Samp",
+    "language": "Làkk",
+    "update": "Yeesal",
+    "welcome": "Dalal ak jàmm"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Ubbil jëfekaay bi te nga leeral li nga bëgg ñu def. OpenAmer dafay liggéey ci ginnaaw te xamal la li mu def.",
+        "title": "Tàmbalil ak ab kàddu"
+      },
+      {
+        "body": "Jekk-jekkal → Wone → Làkk. 186 tànneefi làkk, yu nga mën a soppi saa su nekk.",
+        "title": "Tànnal sa làkk"
+      },
+      {
+        "body": "Liggéey buy dellusi dafay nekk mën-mën — yoon wi ci topp, benn ndigal doy na.",
+        "title": "May ko mu fàttaliku"
+      }
+    ],
+    "command": "walla nga tàmbali ko ci kanam ci ab konsolu ndigal:",
+    "cta": "Tàmbali OpenAmer",
+    "errorTitle": "Mëneesul a tàmbali jëfekaayu ordinatëër bi",
+    "launching": "Mi ngi tàmbali",
+    "lead": "Lépp jekk na. OpenAmer sa bos la léegi — ci masin bii, ci sa làkk.",
+    "title": "OpenAmer jekk na"
+  },
+  "welcome": {
+    "bullets": [
+      "Dafay dox ci sa masin — say waxtaan ci masin bii lañuy des",
+      "186 làkk, boole ci mbind mi ngay jàng",
+      "Mën nga soppi lépp ci kanam; amul lu sax dàkk"
+    ],
+    "cta": "Samp",
+    "ctaUpdate": "Yeesal léegi",
+    "kicker": "Samp gu benn yoon",
+    "lead": "Sa jëwriñu bopp. Ci say jumtukaay. Ci sa làkk.",
+    "leadUpdate": "Am na sumbub OpenAmer bu gën a bees bu jekk. Dina wuutal sumb bi jiitu te denc sesiyoŋ yépp ak jekk-jekkal yépp.",
+    "note": "Dafay jël ay simili ci lëkkalookay bu yam.",
+    "title": "Dalal ak jàmm ci OpenAmer",
+    "titleUpdate": "Yeesal OpenAmer"
+  }
+}

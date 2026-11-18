@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer huk ruwanata wakichin, chiqap llamk'anakunawan ruwan — kamachiy qillqana, llikata puriq, willañiqikuna, kuyu qillqa — hinaspa allin ruwasqanta waqaychan.",
+      "title": "Qanwan kuska yuyaymanakuq yanapaq"
+    },
+    {
+      "body": "Rimanakuykuna, yuyay waqaychana, modelokunapas kay computadorapi kanku. Mana mañakuptiykiqa imapas mana apachikunchu.",
+      "title": "Computadorayki, willayniyki"
+    },
+    {
+      "body": "186 simikuna, sapa huk ñawinchasqayki qillqawan. Llamk'anap ñawpaqnin qhawaynin mayqintachus munanki chayta tapusunki.",
+      "title": "Simiyki, allin ruwasqa"
+    },
+    {
+      "body": "Yachaykuna kikin llamk'aymanta waqaychakunku, chaymi sapa p'unchaw ruwanaykuna aswan utqay tukukun aswan unay llamk'achiptiyki.",
+      "title": "Wiñaq atiy"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Kay computadora internetman haykuyta atinchu chayta qhaway.",
+      "Wakichiyta hukmanta qallariy — tukusqa puriykunaqa mana kutichikunchu.",
+      "Iskay kuti pantaptinqa, qillqa willaykunata kichariy; qhipa sinr'akuna mayqin puriy kasqanta ninku."
+    ],
+    "lead": "Mana ima tikraypas upallalla kutichisqachu — OpenAmer maypichus sayasqa chaypi sayan, chaymi hukmanta qallariyqa chaymanta qatipan.",
+    "leadUpdate": "OpenAmer ñawpaq rikch'ayninpi kachkanraq, llamk'achkanraqpas. Manam imapas chawpilla rantichisqachu.",
+    "log": "Qillqa willay",
+    "openLogs": "Qillqa willaykunata kichariy",
+    "retry": "Hukmanta malliy",
+    "retryUpdate": "Musuqchayta hukmanta malliy",
+    "title": "Wakichiy mana tukukurqanchu",
+    "titleUpdate": "Musuqchay mana tukukurqanchu"
+  },
+  "language": {
+    "continue": "Qatipay",
+    "lead": "Wakichiy kaypi akllasqayki simipi qatipanqa. Qhipaman llamk'anapi tikrayta atinki.",
+    "search": "Simikunata maskhay",
+    "title": "Simiykita akllay"
+  },
+  "progress": {
+    "cancel": "Sayachiy",
+    "done": "Wakisqa",
+    "hideDetails": "K'itikunata pakay",
+    "lead": "Huk kutilla wakichiy: OpenAmer necesitasqanta uraykachichkan, kay computadoratapas wakichichkan. Qhipa qallariykunapiqa kaykuna mana ruwakunqachu.",
+    "leadUpdate": "OpenAmer ñawpaq rikch'ayninta rantichichkan. Rimanakuy mit'aykikuna, yuyay waqaychanayki, tupachiykikunapas mana kuyurinqachu.",
+    "lines": "sinr'akuna",
+    "liveOutput": "Kunan lluqsimuq willay",
+    "showDetails": "K'itikunata rikuchiy",
+    "stepsComplete": "{done}/{total} wank'ita piñaq",
+    "title": "OpenAmer wakichichkan",
+    "titleUpdate": "OpenAmer musuqchakuchkan"
+  },
+  "stages": {
+    "bootstrap-marker": "Churay tukusqata chimpuchachkan",
+    "config-templates": "Wakichiy qallariy qillqakunata qillqachkan",
+    "configure": "API kichanakunata modelokunatapas tupachichkan",
+    "dependencies": "Pythonpa necesitasqan yanapakusqakunata churachkan",
+    "desktop": "Hamp'ara llamk'anata rurachkan",
+    "gateway": "Willanakuy punkuta qallarichichkan",
+    "git": "Git churachkan",
+    "handoff": "Musuqchanapaq wakichikuchkan",
+    "install": "Musuqchayta churachkan",
+    "node": "Node.js maskhachkan",
+    "node-deps": "Node.jspa necesitasqan yanapakusqakunata churachkan",
+    "path": "OpenAmerta PATHman yapachkan",
+    "platform-sdks": "Willanakuy patakunap SDKkunata churachkan",
+    "python": "Python chiqaqchachkan",
+    "rebuild": "Hamp'ara llamk'anata hukmanta rurachkan",
+    "repository": "OpenAmer waqaychanata iskaychachkan",
+    "system-packages": "ripgrep hinaspa ffmpeg churachkan",
+    "update": "Aswan musuq rikch'ayta uraykachichkan",
+    "uv": "uv q'ipi kamachiqta churachkan",
+    "venv": "Pythonpa muyuriq yaqa pachanta rurachkan"
+  },
+  "stepper": {
+    "done": "Wakisqa",
+    "install": "Churay",
+    "language": "Simi",
+    "update": "Musuqchay",
+    "welcome": "Allin hamusqa"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Llamk'anata kichariy, imata ruwachiyta munanki chayta willay. OpenAmer qhipapi llamk'an, hinaspa ruwasqanta willasunki.",
+        "title": "Huk rimaywan qallariy"
+      },
+      {
+        "body": "Tupachiykuna → Qhaway → Simi. 186 llaqta simi tupachiykuna, mayk'aqpas tikrana.",
+        "title": "Simiykita akllay"
+      },
+      {
+        "body": "Kutipakuq llamk'ay yachayman tukun — hamuq kutipi huk kamachiyllam kanqa.",
+        "title": "Yuyarinanpaq saqiy"
+      }
+    ],
+    "command": "utaq qhipaman kamachiy qillqanamanta qallarichiy:",
+    "cta": "OpenAmer qallarichiy",
+    "errorTitle": "Hamp'ara llamk'anata mana qallarichiyta atikurqanchu",
+    "launching": "Qallarichkan",
+    "lead": "Tukuy ima wakisqaña. OpenAmer kunan qampaqña — kay computadorapi, simiykipi.",
+    "title": "OpenAmer wakisqaña"
+  },
+  "welcome": {
+    "bullets": [
+      "Kay computadorapi llamk'an — rimanakuykikuna kaypi qhipanku",
+      "186 simikuna, ñawinchasqayki qillqawanpas",
+      "Tukuy imata qhipaman tikrayta atinki; manam imapas wiñaypaqchu"
+    ],
+    "cta": "Churay",
+    "ctaUpdate": "Kunan musuqchay",
+    "kicker": "Huk kutilla wakichiy",
+    "lead": "Kikiykip yanapaqniyki. Computadoraykipi. Simiykipi.",
+    "leadUpdate": "Aswan musuq OpenAmer wakisqaña. Kayqa ñawpaq rikch'ayta rantichin, llapan rimanakuy mit'akunata tupachiykunatapas waqaychan.",
+    "note": "Allin tinkiywanqa pisi minutukunallata unayan.",
+    "title": "OpenAmerman allin hamusqa",
+    "titleUpdate": "OpenAmer musuqchay"
+  }
+}

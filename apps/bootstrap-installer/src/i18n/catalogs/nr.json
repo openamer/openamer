@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "I-OpenAmer ihlela umsebenzi, iwenze ngamathulusi wamambala — itheminali, isiphequluli, amafayela, ikhowudi — bese ibulunga okusebenzile.",
+      "title": "Umsizi ocabanga nawe"
+    },
+    {
+      "body": "Iingcoco, imemori namamodeli kuhlala kukhomphyutha le. Akunalitho elilayitjhwa ngaphandle kobana ubawe.",
+      "title": "Iinsetjenziswa zakho, idatha yakho"
+    },
+    {
+      "body": "Amalimi ali-186, ngalinye ngendlela yokutlola oyifundako. Isikrini sokuthoma sehlelo sikubuza bona ukhetha liphi.",
+      "title": "Ilimi lakho, ngendlela efaneleko"
+    },
+    {
+      "body": "Amakghono abulungwa emsebenzini ngokwawo, ngalokho imisebenzi yangamalanga iba mifitjhani nawuragela phambili nokuyisebenzisa.",
+      "title": "Ikghono elikhulako"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Hlola bona ikhomphyutha le iyakwazi ukufikelela ku-inthanethi.",
+      "Thomisa ukuhlelwa godu — amagadango aqediweko awaphindwa.",
+      "Nange kubhalelwa kabili, vula amarekhodi; imida yokugcina itjho igama legadango."
+    ],
+    "lead": "Akunamatjhuguluko abuyiselwe emuva ngaphandle kokukwazisa — i-OpenAmer ijama lapho ijame khona, ngalokho ukuyithomisa kwesibili kuragela phambili lapho.",
+    "leadUpdate": "I-OpenAmer isese yinguqulo yangaphambilini begodu isasebenza. Akunalitho elitjhugululwe ingcenye kwaphela.",
+    "log": "Irekhodi",
+    "openLogs": "Vula amarekhodi",
+    "retry": "Linga godu",
+    "retryUpdate": "Linga ukubuyekeza godu",
+    "title": "Ukuhlelwa akukapheli",
+    "titleUpdate": "Ukubuyekeza akukapheli"
+  },
+  "language": {
+    "continue": "Ragela phambili",
+    "lead": "Ukuhlelwa kuragela phambili ngelimi olikhetha lapha. Ungalitjhugulula ngokukhamba kwesikhathi ehlelweni.",
+    "search": "Funa amalimi",
+    "title": "Khetha ilimi lakho"
+  },
+  "progress": {
+    "cancel": "Khansela",
+    "done": "Kulungele",
+    "hideDetails": "Fihla imininingwana",
+    "lead": "Ukuhlelwa kwakanye: I-OpenAmer ikhuphela ekutlhogako begodu ihlela ikhomphyutha le. Nayithonyiswa ngokuzako, koke lokhu kuyeqiwa.",
+    "leadUpdate": "I-OpenAmer ijamiselela inguqulo yangaphambilini. Iinkhathi zakho zokusebenza, imemori namasethingi akutjhugululwa.",
+    "lines": "imida",
+    "liveOutput": "Imiphumela yanje",
+    "showDetails": "Veza imininingwana",
+    "stepsComplete": "Kuqedwe amagadango angu-{done} kwangu-{total}",
+    "title": "Kuhlelwa i-OpenAmer",
+    "titleUpdate": "Kubuyekezwa i-OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Kutshwaywa bona ukufaka kuphelile",
+    "config-templates": "Kutlolwa iifanekiso zokuhlela",
+    "configure": "Kuhlelwa abokhiye be-API namamodeli",
+    "dependencies": "Kufakwa iinsekelo ze-Python",
+    "desktop": "Kwakhiwa ihlelo lekhomphyutha",
+    "gateway": "Kuthonyiswa isango lemilayezo",
+    "git": "Kufakwa i-Git",
+    "handoff": "Kulungiselelwa ukubuyekeza",
+    "install": "Kufakwa isibuyekezo",
+    "node": "Kufunyanwa i-Node.js",
+    "node-deps": "Kufakwa iinsekelo ze-Node.js",
+    "path": "Kungezelelwa i-OpenAmer ku-PATH",
+    "platform-sdks": "Kufakwa ama-SDK weenkundla zemilayezo",
+    "python": "Kuqinisekiswa i-Python",
+    "rebuild": "Kwakhiwa kabutjha ihlelo lekhomphyutha",
+    "repository": "Kukotjwa ibulungelo le-OpenAmer",
+    "system-packages": "Kufakwa i-ripgrep ne-ffmpeg",
+    "update": "Kukhutjhelwa inguqulo yakamuva",
+    "uv": "Kufakwa umphathi wamaphakheji we-uv",
+    "venv": "Kwakhiwa ibhoduluko elingokomfanekiso le-Python"
+  },
+  "stepper": {
+    "done": "Kulungele",
+    "install": "Faka",
+    "language": "Ilimi",
+    "update": "Buyekeza",
+    "welcome": "Siyakwamukela"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Vula ihlelo bese uhlathulula ofuna kwenziwe. I-OpenAmer isebenza ngemuva bese ikubikela.",
+        "title": "Thoma ngomutjho"
+      },
+      {
+        "body": "Amasethingi → Ukuvezwa → Ilimi. Amalimi ali-186, ongawatjhugulula ngananyana ngisiphi isikhathi.",
+        "title": "Khetha ilimi lakho"
+      },
+      {
+        "body": "Umsebenzi obuyelelwako uba likghono — ngokuzako utlhoga umlayo owodwa.",
+        "title": "Ivumele ikhumbule"
+      }
+    ],
+    "command": "namkha uyithomise ngokukhamba kwesikhathi kutheminali:",
+    "cta": "Thomisa i-OpenAmer",
+    "errorTitle": "Akukghonakalanga ukuthomisa ihlelo lekhomphyutha",
+    "launching": "Kuyathonyiswa",
+    "lead": "Koke sekulungile. I-OpenAmer seyeyakho — kukhomphyutha le, ngelimi lakho.",
+    "title": "I-OpenAmer seyilungele"
+  },
+  "welcome": {
+    "bullets": [
+      "Isebenza kukhomphyutha yakho — iingcoco zakho zihlala kiyo",
+      "Amalimi ali-186, kufaka hlangana indlela yokutlola oyifundako",
+      "Koke kungatjhugululwa ngokukhamba kwesikhathi; akunalitho elingasatjhugululekiko"
+    ],
+    "cta": "Faka",
+    "ctaUpdate": "Buyekeza nje",
+    "kicker": "Ukuhlelwa kwakanye",
+    "lead": "Umsizi wakho. Eensetjenzisweni zakho. Ngelimi lakho.",
+    "leadUpdate": "I-OpenAmer etja seyilungele. Le ij amiselela inguqulo yangaphambilini begodu ibulunga zoke iinkhathi zokusebenza namasethingi.",
+    "note": "Kuthatha imizuzu embalwa ngokuxhumeka okujayelekileko.",
+    "title": "Siyakwamukela ku-OpenAmer",
+    "titleUpdate": "Buyekeza i-OpenAmer"
+  }
+}

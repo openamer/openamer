@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer e rulaganya tiro, e e dira ka didirisiwa tsa mmatota — theminale, sebatli, difaele, khoutu — mme e boloka se se dirileng.",
+      "title": "Moemedi yo o akanyang le wena"
+    },
+    {
+      "body": "Dipuisano, dikgakologelo le dimmotlele di nna mo khomphiutheng eno. Ga go sepe se se romelwang kwa inthaneteng ntle le fa o se kopa.",
+      "title": "Didirisiwa tsa gago, tshedimosetso ya gago"
+    },
+    {
+      "body": "Dipuo di le 186, nngwe le nngwe ka mokwalo o o o buisang. Sekirini sa ntlha sa porokeramo se botsa gore o batla efe.",
+      "title": "Puo ya gago, ka tshwanelo"
+    },
+    {
+      "body": "Bokgoni bo bolokwa go tswa mo tirong ka boyone, ka jalo ditiro tsa letsatsi le letsatsi di nna dikhutshwane fa o ntse o e dirisa.",
+      "title": "Bokgoni jo bo golang"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Netefatsa gore khomphiutha eno e kgona go tsena mo inthaneteng.",
+      "Simolola thulaganyo gape — dikgato tse di fedileng ga di boelediwe.",
+      "Fa e palelwa gabedi, bula direkoto; mela ya bofelo e supa kgato."
+    ],
+    "lead": "Ga go diphetogo tse di buseditsweng morago ka tidimalo — OpenAmer e ema fa e emisitseng teng, gore fa e tsamaisiwa gape e tswelele go tswa foo.",
+    "leadUpdate": "OpenAmer e sa ntse e le mo kgatisong ya pele mme e tswelela go dira. Ga go sepe se se emisiseditsweng ka bontlhanngwe.",
+    "log": "Rekoto",
+    "openLogs": "Bula direkoto",
+    "retry": "Leka gape",
+    "retryUpdate": "Leka ntšhwafatso gape",
+    "title": "Thulaganyo ga e a fela",
+    "titleUpdate": "Ntšhwafatso ga e a fela"
+  },
+  "language": {
+    "continue": "Tswelela",
+    "lead": "Thulaganyo e tswelela ka puo e o e tlhophang fano. O ka e fetola moragonyana mo porokeramong.",
+    "search": "Batla dipuo",
+    "title": "Tlhopha puo ya gago"
+  },
+  "progress": {
+    "cancel": "Khansela",
+    "done": "E siametse",
+    "hideDetails": "Fitlha dintlha",
+    "lead": "Thulaganyo ya gangwe fela: OpenAmer e kopolola se e se tlhokang mme e baakanya khomphiutha eno. Fa e bulwa gape, e tlola tsotlhe tseno.",
+    "leadUpdate": "OpenAmer e emisetsa kgatiso ya pele. Ditiragalo tsa gago, dikgakologelo le dithulaganyo ga di fetolwe.",
+    "lines": "mela",
+    "liveOutput": "Diphetho tse di tswang ka tlhamalalo",
+    "showDetails": "Bontsha dintlha",
+    "stepsComplete": "Go fedile dikgato di le {done} mo go {total}",
+    "title": "Go rulaganya OpenAmer",
+    "titleUpdate": "Go ntšhwafatsa OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Go tshwaya gore go tsenya go fedile",
+    "config-templates": "Go kwala dithempleite tsa thulaganyo",
+    "configure": "Go rulaganya dikonopo tsa API le dimmotlele",
+    "dependencies": "Go tsenya diphuthelwana tse Python e di tlhokang",
+    "desktop": "Go aga porokeramo ya khomphiutha",
+    "gateway": "Go simolola kgoro ya melaetsa",
+    "git": "Go tsenya Git",
+    "handoff": "Go ipaakanyetsa go ntšhwafatsa",
+    "install": "Go tsenya ntšhwafatso",
+    "node": "Go batla Node.js",
+    "node-deps": "Go tsenya diphuthelwana tse Node.js e di tlhokang",
+    "path": "Go tsenya OpenAmer mo PATH",
+    "platform-sdks": "Go tsenya di-SDK tsa diforamo tsa melaetsa",
+    "python": "Go netefatsa Python",
+    "rebuild": "Go aga porokeramo ya khomphiutha sesha",
+    "repository": "Go dira khopi ya bobolokelo jwa OpenAmer",
+    "system-packages": "Go tsenya ripgrep le ffmpeg",
+    "update": "Go kopolola kgatiso ya bosheng",
+    "uv": "Go tsenya motsamaisi wa diphuthelwana wa uv",
+    "venv": "Go tlhama tikologo ya Python ya maitirelo"
+  },
+  "stepper": {
+    "done": "E siametse",
+    "install": "Tsenya",
+    "language": "Puo",
+    "update": "Ntšhwafatsa",
+    "welcome": "O amogetswe"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Bula porokeramo mme o tlhalose se o batlang se dirwa. OpenAmer e dira kwa morago mme e go begela diphetho.",
+        "title": "Simolola ka polelo"
+      },
+      {
+        "body": "Dithulaganyo → Pontsho → Puo. Ditlhopho tsa puo le kgaolo di le 186, tse o ka di fetolang nako nngwe le nngwe.",
+        "title": "Tlhopha puo ya gago"
+      },
+      {
+        "body": "Tiro e e boelediwang e nna bokgoni — mo nakong e e tlang e tlhoka taelo e le nngwe fela.",
+        "title": "E letle go gakologelwa"
+      }
+    ],
+    "command": "kgotsa e simolole moragonyana mo theminaleng:",
+    "cta": "Simolola OpenAmer",
+    "errorTitle": "Go paletswe go simolola porokeramo ya khomphiutha",
+    "launching": "Go simolola",
+    "lead": "Dilo tsotlhe di mo maemong a tsone. OpenAmer jaanong ke ya gago — mo khomphiutheng eno, ka puo ya gago.",
+    "title": "OpenAmer e siametse"
+  },
+  "welcome": {
+    "bullets": [
+      "E dira mo khomphiutheng ya gago — dipuisano tsa gago di nna mo khomphiutheng eno",
+      "Dipuo di le 186, go akaretsa mokwalo o o o buisang",
+      "Sengwe le sengwe se ka fetolwa moragonyana; ga go sepe se se nnelang ruri"
+    ],
+    "cta": "Tsenya",
+    "ctaUpdate": "Ntšhwafatsa jaanong",
+    "kicker": "Thulaganyo ya gangwe fela",
+    "lead": "Moemedi wa gago. Mo didirisiweng tsa gago. Ka puo ya gago.",
+    "leadUpdate": "OpenAmer e ntšhwa e siametse. E emisetsa kgatiso ya pele mme e boloka ditiragalo tsotlhe le dithulaganyo.",
+    "note": "Go tsaya metsotso e se kae ka kgolagano e e tlwaelegileng.",
+    "title": "O amogetswe mo OpenAmer",
+    "titleUpdate": "Ntšhwafatsa OpenAmer"
+  }
+}

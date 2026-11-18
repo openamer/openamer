@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer inoronga basa, yoriita nematurusi chaiwo — chiteshi chemirairo, bhurawuza, mafaira, kodhi — uye inochengeta zvakashanda.",
+      "title": "Mumiriri anofunga newe"
+    },
+    {
+      "body": "Hurukuro, ndangariro nemamodheru zvinogara pamuchina uyu. Hapana chinotumirwa kunze kunze kwekunge wakumbira.",
+      "title": "Muchina wako, mashoko ako"
+    },
+    {
+      "body": "Mitauro 186, mumwe nemumwe nemanyorerwo aunoverenga. Peji rekutanga reapp rinokubvunza waunoda.",
+      "title": "Mutauro wako, nemazvo"
+    },
+    {
+      "body": "Unyanzvi hunochengetwa kubva pabasa racho, saka mabasa ezuva nezuva anokurumidza paunoramba uchiishandisa.",
+      "title": "Kugona kunokura"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Tarisa kuti muchina uyu unokwanisa kubatana neindaneti.",
+      "Tangazve kugadzirira — nhanho dzapera hadzidzokororwi.",
+      "Kana zvikaramba kaviri, vhura zvinyorwa; mitsetse yekupedzisira inotaura nhanho yacho."
+    ],
+    "lead": "Hapana shanduko dzakadzoserwa kumashure chinyararire — OpenAmer inomira payamira, saka paunoimhanyisa kechipiri inoenderera ipapo.",
+    "leadUpdate": "OpenAmer ichiri pashanduro yapfuura uye ichiri kushanda. Hapana chakatsiviwa nepakati.",
+    "log": "Chinyorwa",
+    "openLogs": "Vhura zvinyorwa",
+    "retry": "Edza zvakare",
+    "retryUpdate": "Edzazve kuvandudza",
+    "title": "Kugadzirira hakuna kupera",
+    "titleUpdate": "Kuvandudza hakuna kupera"
+  },
+  "language": {
+    "continue": "Enderera",
+    "lead": "Kugadzirira kunoenderera mumutauro waunosarudza pano. Unogona kuuchinja gare gare muapp.",
+    "search": "Tsvaga mitauro",
+    "title": "Sarudza mutauro wako"
+  },
+  "progress": {
+    "cancel": "Kanzura",
+    "done": "Zvagadzirira",
+    "hideDetails": "Viga zvakadzama",
+    "lead": "Kugadzirira kamwe chete: OpenAmer iri kudhaunirodha zvainoda nekugadzirisa muchina uyu. Paunozoivhura zvakare, zvose izvi zvinosvetukwa.",
+    "leadUpdate": "OpenAmer iri kutsiva shanduro yapfuura. Zvirongwa zvako zvebasa, ndangariro nemasetingi hazvichinjwi.",
+    "lines": "mitsetse",
+    "liveOutput": "Zviri kubuda izvozvi",
+    "showDetails": "Ratidza zvakadzama",
+    "stepsComplete": "Nhanho {done} pa{total} dzapera",
+    "title": "Kugadzirira OpenAmer",
+    "titleUpdate": "Kuvandudza OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Kumaka kuti kuisa kwapera",
+    "config-templates": "Kunyora matemplate emasetingi",
+    "configure": "Kugadzirisa makiyi eAPI nemamodheru",
+    "dependencies": "Kuisa zvinodiwa nePython",
+    "desktop": "Kuvaka app yepakombiyuta",
+    "gateway": "Kutanga gedhi remameseji",
+    "git": "Kuisa Git",
+    "handoff": "Kugadzirira kuvandudza",
+    "install": "Kuisa shanduro itsva",
+    "node": "Kutsvaga Node.js",
+    "node-deps": "Kuisa zvinodiwa neNode.js",
+    "path": "Kuwedzera OpenAmer kuPATH",
+    "platform-sdks": "Kuisa maSDK emapuratifomu emameseji",
+    "python": "Kuongorora Python",
+    "rebuild": "Kuvakazve app yepakombiyuta",
+    "repository": "Kukopa dura rekodhi reOpenAmer",
+    "system-packages": "Kuisa ripgrep neffmpeg",
+    "update": "Kudhaunirodha shanduro yazvino",
+    "uv": "Kuisa maneja wemapakeji weuv",
+    "venv": "Kugadzira nharaunda yakazvimirira yePython"
+  },
+  "stepper": {
+    "done": "Zvagadzirira",
+    "install": "Isa",
+    "language": "Mutauro",
+    "update": "Vandudza",
+    "welcome": "Mauya"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Vhura app utsanangure zvaunoda kuti zviitwe. OpenAmer inoshanda nechekumashure yozokuudza zvabuda.",
+        "title": "Tanga nemutsara"
+      },
+      {
+        "body": "Masetingi → Chitarisiko → Mutauro. Mitauro nenzvimbo 186, zvinochinjika chero nguva.",
+        "title": "Sarudza mutauro wako"
+      },
+      {
+        "body": "Basa rinodzokororwa rinova unyanzvi — nguva inotevera rinongoda murairo mumwe chete.",
+        "title": "Rega irangarire"
+      }
+    ],
+    "command": "kana kuitanga gare gare kubva muchiteshi chemirairo:",
+    "cta": "Tanga OpenAmer",
+    "errorTitle": "Hatina kukwanisa kutanga app yepakombiyuta",
+    "launching": "Kutangisa",
+    "lead": "Zvose zvagadzirira. OpenAmer yava yako — pamuchina uyu, mumutauro wako.",
+    "title": "OpenAmer yagadzirira"
+  },
+  "welcome": {
+    "bullets": [
+      "Inoshanda pamuchina wako — hurukuro dzako dzinogara pamuchina uyu",
+      "Mitauro 186, kusanganisira manyorerwo aunoverenga",
+      "Zvose zvinogona kuchinjwa gare gare; hapana chisingachinjiki"
+    ],
+    "cta": "Isa",
+    "ctaUpdate": "Vandudza izvozvi",
+    "kicker": "Kugadzirira kamwe chete",
+    "lead": "Mumiriri wako wega. Pamuchina wako. Mumutauro wako.",
+    "leadUpdate": "Shanduro itsva yeOpenAmer yagadzirira. Inotsiva shanduro yapfuura ichichengeta zvirongwa zvose zvebasa nemasetingi.",
+    "note": "Zvinotora maminitsi mashoma kana indaneti ichishanda zvakanaka.",
+    "title": "Mauya kuOpenAmer",
+    "titleUpdate": "Vandudza OpenAmer"
+  }
+}

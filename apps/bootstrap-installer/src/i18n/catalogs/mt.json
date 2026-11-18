@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer jippjana kompitu, iwettqu b'għodod reali — terminal, brawżer, fajls, kodiċi — u jżomm dak li ħadem.",
+      "title": "Aġent li jaħseb miegħek"
+    },
+    {
+      "body": "Il-konversazzjonijiet, il-memorja u l-mudelli jibqgħu fuq dan il-kompjuter. Ma jittella' xejn sakemm ma titlobx int.",
+      "title": "Il-ħardwer tiegħek, id-data tiegħek"
+    },
+    {
+      "body": "186 lingwa, kull waħda bl-iskrittura li fil-fatt taqra. L-ewwel skrin tal-app jistaqsik liema trid.",
+      "title": "Il-lingwa tiegħek, kif suppost"
+    },
+    {
+      "body": "Il-ħiliet jiġu ssejvjati mix-xogħol innifsu, għalhekk il-kompiti ta' kuljum jieħdu inqas ħin aktar ma tużah.",
+      "title": "Kapaċità li tikber"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Iċċekkja li dan il-kompjuter jista' jaċċessa l-internet.",
+      "Erġa' ħaddem il-konfigurazzjoni — il-passi lesti ma jiġux ripetuti.",
+      "Jekk ifalli darbtejn, iftaħ ir-reġistri; l-aħħar linji jsemmu l-pass."
+    ],
+    "lead": "L-ebda bidla ma nqalbet lura bil-moħbi — OpenAmer jieqaf fejn ikun wasal, u t-tieni tħaddim ikompli minn hemm.",
+    "leadUpdate": "OpenAmer għadu fuq il-verżjoni ta' qabel u jibqa' jaħdem. Xejn ma ġie sostitwit bin-nofs.",
+    "log": "Reġistru",
+    "openLogs": "Iftaħ ir-reġistri",
+    "retry": "Erġa' pprova",
+    "retryUpdate": "Erġa' pprova l-aġġornament",
+    "title": "Il-konfigurazzjoni ma tlestietx",
+    "titleUpdate": "L-aġġornament ma tlestiex"
+  },
+  "language": {
+    "continue": "Kompli",
+    "lead": "Il-konfigurazzjoni tkompli bil-lingwa li tagħżel hawn. Tista' tibdilha aktar tard fl-app.",
+    "search": "Fittex lingwi",
+    "title": "Agħżel il-lingwa tiegħek"
+  },
+  "progress": {
+    "cancel": "Ikkanċella",
+    "done": "Lest",
+    "hideDetails": "Aħbi d-dettalji",
+    "lead": "Konfigurazzjoni ta' darba: OpenAmer qed iniżżel dak li jeħtieġ u jikkonfigura dan il-kompjuter. Meta terġa' tiftħu, jaqbeż dan kollu.",
+    "leadUpdate": "OpenAmer qed jissostitwixxi l-verżjoni ta' qabel. Is-sessjonijiet, il-memorja u s-settings tiegħek jibqgħu bla mittiefsa.",
+    "lines": "linji",
+    "liveOutput": "Ħruġ dirett",
+    "showDetails": "Uri d-dettalji",
+    "stepsComplete": "{done} minn {total} passi lesti",
+    "title": "Qed jiġi kkonfigurat OpenAmer",
+    "titleUpdate": "Qed jiġi aġġornat OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Qed tiġi mmarkata l-installazzjoni bħala lesta",
+    "config-templates": "Qed jinkitbu l-mudelli tal-konfigurazzjoni",
+    "configure": "Qed jiġu kkonfigurati ċ-ċwievet API u l-mudelli",
+    "dependencies": "Qed jiġu installati d-dipendenzi ta' Python",
+    "desktop": "Qed tinbena l-app tad-desktop",
+    "gateway": "Qed jinbeda l-gateway tal-messaġġi",
+    "git": "Qed jiġi installat Git",
+    "handoff": "Qed jitħejja l-aġġornament",
+    "install": "Qed jiġi installat l-aġġornament",
+    "node": "Qed jinstab Node.js",
+    "node-deps": "Qed jiġu installati d-dipendenzi ta' Node.js",
+    "path": "Qed jiżdied OpenAmer ma' PATH",
+    "platform-sdks": "Qed jiġu installati l-SDKs tal-pjattaformi tal-messaġġi",
+    "python": "Qed jiġi vverifikat Python",
+    "rebuild": "Qed tinbena mill-ġdid l-app tad-desktop",
+    "repository": "Qed jiġi kklonat ir-repożitorju ta' OpenAmer",
+    "system-packages": "Qed jiġu installati ripgrep u ffmpeg",
+    "update": "Qed titniżżel l-aħħar verżjoni",
+    "uv": "Qed jiġi installat il-maniġer tal-pakketti uv",
+    "venv": "Qed jinħoloq l-ambjent virtwali ta' Python"
+  },
+  "stepper": {
+    "done": "Lest",
+    "install": "Installa",
+    "language": "Lingwa",
+    "update": "Aġġorna",
+    "welcome": "Merħba"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Iftaħ l-app u ddeskrivi x'tixtieq li jsir. OpenAmer jaħdem fl-isfond u jgħarrfek bir-riżultat.",
+        "title": "Ibda b'sentenza"
+      },
+      {
+        "body": "Settings → Dehra → Lingwa. 186 lokalità, tista' taqleb bejniethom fi kwalunkwe ħin.",
+        "title": "Agħżel il-lingwa tiegħek"
+      },
+      {
+        "body": "Xogħol ripetut isir ħila — id-darba li jmiss ikun jeħtieġ kmand wieħed.",
+        "title": "Ħallih jiftakar"
+      }
+    ],
+    "command": "jew ibdieh aktar tard minn terminal:",
+    "cta": "Iftaħ OpenAmer",
+    "errorTitle": "Ma setgħetx tinfetaħ l-app tad-desktop",
+    "launching": "Qed tinfetaħ",
+    "lead": "Kollox f'postu. OpenAmer issa tiegħek — fuq dan il-kompjuter, bil-lingwa tiegħek.",
+    "title": "OpenAmer lest"
+  },
+  "welcome": {
+    "bullets": [
+      "Jaħdem lokalment — il-konversazzjonijiet tiegħek jibqgħu fuq dan il-kompjuter",
+      "186 lingwa, inkluża l-iskrittura li taqra",
+      "Kollox jista' jinbidel aktar tard; xejn mhu permanenti"
+    ],
+    "cta": "Installa",
+    "ctaUpdate": "Aġġorna issa",
+    "kicker": "Konfigurazzjoni ta' darba",
+    "lead": "L-aġent tiegħek stess. Fuq il-ħardwer tiegħek. Bil-lingwa tiegħek.",
+    "leadUpdate": "Verżjoni aktar ġdida ta' OpenAmer lesta. Din tissostitwixxi l-verżjoni ta' qabel u żżomm kull sessjoni u setting.",
+    "note": "Jieħu ftit minuti b'konnessjoni normali.",
+    "title": "Merħba f'OpenAmer",
+    "titleUpdate": "Aġġorna OpenAmer"
+  }
+}

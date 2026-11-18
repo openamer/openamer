@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer naalnish baa nitsáhákees, bee naalnishi tʼáá aaníigo bee naalnish — bee ajítʼíní, bee naʼazhnígíí, naaltsoos dóó bee naalnish bikʼehgo — dóó yáʼátʼééhgo ályaaígíí yikʼíníłnih.",
+      "title": "Nihíł nitsáhákeesígíí"
+    },
+    {
+      "body": "Naaltsoos haaneʼ, hwiinidzin dóó bee nitsáhákeesi díí béésh biyiʼ dah sidoh. Tʼáá shǫǫdííʼ nínízin daatsʼígo doo tʼááłáʼí náánáádaalyeeda.",
+      "title": "Níbéesh, nínaaltsoos"
+    },
+    {
+      "body": "186 saad, tʼáá bí bee akʼehjįʼ nídíníłtaʼígíí. Díí bee naalnish tʼáá ałtsé saad tʼááłáʼí nił bééhózin.",
+      "title": "Nizaad, tʼáá íiyisí"
+    },
+    {
+      "body": "Naalnish ályaaígíí bąąh bee bééhózinii ádaalyaa dóó dah siʼą́. Tʼáá sáhí náníłnishgo naalnish baa áko daatʼéego yázhígo ádaatʼé.",
+      "title": "Bee hazʼą́ą́ʼ náás ádaatʼé"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Díí béésh internet yichʼįʼ dah naaznilígíí bikʼé hólǫ́ǫgo áłtsé.",
+      "Bee áníłʼį́į́hígíí náánááłnish — ályaaígíí doo náánáádaalniish da.",
+      "Naakidi doo yáʼátʼéehgo ályaa da dehgo, naaltsoos ályaaígíí náníłʼį́; bikʼiis naaltsoos ályaaígíí naalnish yiká ałkid."
+    ],
+    "lead": "Doo níł bééhózin daago tʼááłáʼí doo náánáádaalyeeda — OpenAmer háágóó yilzhishígíí bitsʼą́ą́ʼ sízį́, áádóó náánááłnish.",
+    "leadUpdate": "OpenAmer tʼáá ałtso dah naaznilígíí bee naalnish. Tʼááłáʼí doo ałnánáshdláa da.",
+    "log": "Naaltsoos ályaaígíí",
+    "openLogs": "Naaltsoos ályaaígíí náníłʼį́",
+    "retry": "Náánááʼíínééh",
+    "retryUpdate": "Ániidígíí náánááʼíínééh",
+    "title": "Doo bee áníłʼį́į́hígíí ałtso ályaa da",
+    "titleUpdate": "Doo ániidígíí ałtso ályaa da"
+  },
+  "language": {
+    "continue": "Náás daah",
+    "lead": "Saad díígi níyíníłtsoozígíí bee bee áníłʼį́į́hígíí náás daagóó. Tʼáadoo leʼé app biyiʼ saad ałnánáshłééh.",
+    "search": "Saad náneełʼį́",
+    "title": "Nizaad níyíníłtsooz"
+  },
+  "progress": {
+    "cancel": "Tʼáadoo áníléiʼ",
+    "done": "Tʼáá ałtso ályaa",
+    "hideDetails": "Baa ákonítʼínígíí náályééh",
+    "lead": "Tʼááłáʼídi bee áníłʼį́į́h: OpenAmer bee yáhootʼééhígíí naanááłtʼį́ dóó díí béésh yáʼátʼéehgo áníłʼį́. Tʼáadoo leʼé náánááʼíínééhgo díí doo náánáádaalniish da.",
+    "leadUpdate": "OpenAmer tʼáá ałtso dah naaznilígíí biyiʼ náánááłtʼį́. Ninaalnish, hwiinidzin dóó bee áníłʼį́į́hígíí doo ałnánádaalyeeda.",
+    "lines": "naaltsoos tséél",
+    "liveOutput": "Tʼáá íiyisí ályaaígíí",
+    "showDetails": "Baa ákonítʼínígíí haaníłtį́",
+    "stepsComplete": "{done} éí {total} ninaʼí bitsʼą́ą́dóó hazʼą́",
+    "title": "OpenAmer bee áníłʼį́į́h",
+    "titleUpdate": "OpenAmer ániidígíí ádaalyaa"
+  },
+  "stages": {
+    "bootstrap-marker": "Biyiʼ níłtį́į́ʼígíí ałtso ályaa níigo áníłʼį́",
+    "config-templates": "Bee áníłʼį́į́hígíí bikʼehgo naaltsoos akʼééʼéélʼį́",
+    "configure": "API bee aháyą́ą́ʼ dóó bee nitsáhákeesi áníłʼį́",
+    "dependencies": "Python bee yáhootʼééhígíí biyiʼ níłtį́",
+    "desktop": "Béésh biyiʼ bee naalnish ádaalyaa",
+    "gateway": "Naaltsoos bee ałhaʼnígíí dáádį́į́ł",
+    "git": "Git biyiʼ níłtį́",
+    "handoff": "Ániidígíí bá áníłʼį́",
+    "install": "Ániidígíí biyiʼ níłtį́",
+    "node": "Node.js náneełʼį́",
+    "node-deps": "Node.js bee yáhootʼééhígíí biyiʼ níłtį́",
+    "path": "OpenAmer PATH yiih níłtį́",
+    "platform-sdks": "Naaltsoos bee ałhaʼnígíí SDKs biyiʼ níłtį́",
+    "python": "Python yáʼátʼéehígíí bikʼé hólǫ́",
+    "rebuild": "Béésh biyiʼ bee naalnish náánáádleeh",
+    "repository": "OpenAmer naaltsoos dah naaznilígíí achʼįʼ náánáádleeh",
+    "system-packages": "ripgrep dóó ffmpeg biyiʼ níłtį́",
+    "update": "Tʼáá íiyisí ániidígíí naanááłtʼį́",
+    "uv": "uv bee naaltsoos nídáálʼį́į́hígíí biyiʼ níłtį́",
+    "venv": "Python naalnish bá hooghan ádaalyaa"
+  },
+  "stepper": {
+    "done": "Tʼáá ałtso ályaa",
+    "install": "Biyiʼ níłtį́",
+    "language": "Saad",
+    "update": "Ániidígíí ádaalyaa",
+    "welcome": "Yáʼátʼééh"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Bee naalnish náníłʼį́ dóó haʼátʼíí nínízinígíí baa haneʼ. OpenAmer tłʼóoʼdi naalnish dóó nił bééhózin dooleeł.",
+        "title": "Saad ałʼąą áníłʼį́"
+      },
+      {
+        "body": "Bee áníłʼį́į́hígíí → Bee haaníʼánígíí → Saad. 186 saad, tʼáá háida ánízin biniinaa ałnánáshłééh.",
+        "title": "Nizaad níyíníłtsooz"
+      },
+      {
+        "body": "Naalnish náánáádaalnishígíí bee bééhózinii ádaalyaa — tʼáadoo leʼé tʼááłáʼí bee ajítʼíní tʼéiyá baa hólneʼ.",
+        "title": "Yikʼíníłnih"
+      }
+    ],
+    "command": "éí doodago tʼáadoo leʼé bee ajítʼínígíí biyiʼ dáádį́į́ł:",
+    "cta": "OpenAmer dáádį́į́ł",
+    "errorTitle": "Béésh biyiʼ bee naalnish doo dáádį́į́ł da",
+    "launching": "Dáádį́į́ł",
+    "lead": "Tʼáá ałtso yáʼátʼééh. OpenAmer kʼad nihí bee — díí béésh biyiʼ, nizaad bee.",
+    "title": "OpenAmer tʼáá ałtso ályaa"
+  },
+  "welcome": {
+    "bullets": [
+      "Díí béésh biyiʼ naalnish — ninaaltsoos haaneʼ díígi dah sidoh",
+      "186 saad, bí bee akʼehjįʼ nídíníłtaʼígíí áádóó",
+      "Tʼáadoo leʼé tʼáá ałtso ałnánáshłééh; tʼááłáʼí doo tʼáá bíhólnííh da"
+    ],
+    "cta": "Biyiʼ níłtį́",
+    "ctaUpdate": "Kʼad ániidígíí áníłʼį́",
+    "kicker": "Tʼááłáʼídi bee áníłʼį́į́h",
+    "lead": "Nihí bee naalnishi. Níbéesh biyiʼ. Nizaad bee.",
+    "leadUpdate": "OpenAmer ániidígíí tʼáá ałtso ályaa. Díí ałtso dah naaznilígíí biyiʼ náánááłtʼį́ dóó naalnish dóó bee áníłʼį́į́hígíí tʼáá ałtso dah siʼą́.",
+    "note": "Internet yáʼátʼéehgo naakidi dóó táadi dah dííjį́ʼ bee hólǫ́.",
+    "title": "OpenAmer góneʼ yáʼátʼééh",
+    "titleUpdate": "OpenAmer ániidígíí áníłʼį́"
+  }
+}

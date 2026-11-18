@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer vazifani rejalashtiradi, uni haqiqiy vositalar — terminal, brauzer, fayllar, kod — yordamida bajaradi va ish bergan usullarni saqlaydi.",
+      "title": "Siz bilan birga fikrlaydigan agent"
+    },
+    {
+      "body": "Suhbatlar, xotira va modellar shu kompyuterda saqlanadi. Siz so‘ramaguningizcha hech narsa yuklab yuborilmaydi.",
+      "title": "O‘z qurilmangiz, o‘z ma’lumotlaringiz"
+    },
+    {
+      "body": "186 ta til, har biri siz o‘qiydigan yozuvda. Ilovaning ilk ekranida tilni tanlaysiz.",
+      "title": "Tilingizga munosib yondashuv"
+    },
+    {
+      "body": "Ko‘nikmalar ish jarayonining o‘zidan saqlanadi, shuning uchun undan qancha ko‘p foydalansangiz, kundalik ishlar shuncha tez bajariladi.",
+      "title": "O‘sib boruvchi imkoniyatlar"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Bu kompyuter internetga ulana olishini tekshiring.",
+      "Sozlashni qayta ishga tushiring — bajarilgan bosqichlar takrorlanmaydi.",
+      "Ikki marta bajarilmasa, jurnallarni oching; oxirgi satrlarda bosqich nomi ko‘rsatiladi."
+    ],
+    "lead": "Hech qanday o‘zgarish bildirmasdan bekor qilinmadi — OpenAmer to‘xtagan joyida qoladi, qayta ishga tushirilganda o‘sha yerdan davom etadi.",
+    "leadUpdate": "OpenAmer hali ham oldingi versiyada va ishlashda davom etadi. Hech narsa chala almashtirilmadi.",
+    "log": "Jurnal",
+    "openLogs": "Jurnallarni ochish",
+    "retry": "Qayta urinish",
+    "retryUpdate": "Yangilashga qayta urinish",
+    "title": "Sozlash tugamadi",
+    "titleUpdate": "Yangilash tugamadi"
+  },
+  "language": {
+    "continue": "Davom etish",
+    "lead": "Sozlash bu yerda tanlagan tilingizda davom etadi. Uni keyin ilovada o‘zgartirishingiz mumkin.",
+    "search": "Tillarni qidirish",
+    "title": "Tilingizni tanlang"
+  },
+  "progress": {
+    "cancel": "Bekor qilish",
+    "done": "Tayyor",
+    "hideDetails": "Tafsilotlarni yashirish",
+    "lead": "Bir martalik sozlash: OpenAmer kerakli narsalarni yuklab olib, bu kompyuterni sozlamoqda. Keyingi ishga tushirishlarda bular o‘tkazib yuboriladi.",
+    "leadUpdate": "OpenAmer oldingi versiyani almashtirmoqda. Seanslar, xotira va sozlamalaringiz o‘zgarishsiz qoladi.",
+    "lines": "satr",
+    "liveOutput": "Jonli chiqish",
+    "showDetails": "Tafsilotlarni ko‘rsatish",
+    "stepsComplete": "{done} / {total} bosqich bajarildi",
+    "title": "OpenAmer sozlanmoqda",
+    "titleUpdate": "OpenAmer yangilanmoqda"
+  },
+  "stages": {
+    "bootstrap-marker": "O‘rnatish tugallangan deb belgilanmoqda",
+    "config-templates": "Sozlama andozalari yozilmoqda",
+    "configure": "API kalitlari va modellar sozlanmoqda",
+    "dependencies": "Python bog‘liqliklari o‘rnatilmoqda",
+    "desktop": "Kompyuter ilovasi yig‘ilmoqda",
+    "gateway": "Xabar almashish shlyuzi ishga tushirilmoqda",
+    "git": "Git o‘rnatilmoqda",
+    "handoff": "Yangilashga tayyorlanmoqda",
+    "install": "Yangilanish o‘rnatilmoqda",
+    "node": "Node.js aniqlanmoqda",
+    "node-deps": "Node.js bog‘liqliklari o‘rnatilmoqda",
+    "path": "OpenAmer PATH ga qo‘shilmoqda",
+    "platform-sdks": "Xabar almashish platformalari SDK lari o‘rnatilmoqda",
+    "python": "Python tekshirilmoqda",
+    "rebuild": "Kompyuter ilovasi qayta yig‘ilmoqda",
+    "repository": "OpenAmer repozitoriysi nusxalanmoqda",
+    "system-packages": "ripgrep va ffmpeg o‘rnatilmoqda",
+    "update": "Eng so‘nggi versiya yuklab olinmoqda",
+    "uv": "uv paket boshqaruvchisi o‘rnatilmoqda",
+    "venv": "Python virtual muhiti yaratilmoqda"
+  },
+  "stepper": {
+    "done": "Tayyor",
+    "install": "O‘rnatish",
+    "language": "Til",
+    "update": "Yangilash",
+    "welcome": "Xush kelibsiz"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Ilovani oching va nima qilish kerakligini yozing. OpenAmer fonda ishlab, natijani xabar qiladi.",
+        "title": "Bir jumladan boshlang"
+      },
+      {
+        "body": "Sozlamalar → Ko‘rinish → Til. 186 ta til va hudud varianti, istalgan payt almashtirish mumkin.",
+        "title": "Tilingizni tanlang"
+      },
+      {
+        "body": "Takroriy ish ko‘nikmaga aylanadi — keyingi safar bitta buyruq kifoya.",
+        "title": "Eslab qolishiga ruxsat bering"
+      }
+    ],
+    "command": "yoki keyinroq terminaldan ishga tushiring:",
+    "cta": "OpenAmer ni ishga tushirish",
+    "errorTitle": "Kompyuter ilovasini ishga tushirib bo‘lmadi",
+    "launching": "Ishga tushirilmoqda",
+    "lead": "Hammasi tayyor. OpenAmer endi sizniki — shu kompyuterda, o‘z tilingizda.",
+    "title": "OpenAmer tayyor"
+  },
+  "welcome": {
+    "bullets": [
+      "Mahalliy ishlaydi — suhbatlaringiz shu kompyuterda qoladi",
+      "186 ta til, jumladan siz o‘qiydigan yozuvda",
+      "Hammasini keyin o‘zgartirish mumkin; hech narsa doimiy emas"
+    ],
+    "cta": "O‘rnatish",
+    "ctaUpdate": "Hozir yangilash",
+    "kicker": "Bir martalik sozlash",
+    "lead": "O‘z agentingiz. O‘z qurilmangizda. O‘z tilingizda.",
+    "leadUpdate": "OpenAmer ning yangi versiyasi tayyor. U oldingi versiyani almashtiradi va barcha seanslar hamda sozlamalarni saqlab qoladi.",
+    "note": "Oddiy ulanishda bir necha daqiqa ketadi.",
+    "title": "OpenAmer ga xush kelibsiz",
+    "titleUpdate": "OpenAmer ni yangilash"
+  }
+}

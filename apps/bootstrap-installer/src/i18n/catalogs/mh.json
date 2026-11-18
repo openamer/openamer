@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer ej karōk jerbal, kōm̧m̧ane kōn kein jerbal ko m̧ool — jikin jeje kōm̧m̧an, kein etale web, file, im code — im kōjparok men ko rar jerbal.",
+      "title": "Juon ri-jipan̄ eo ej ļōmņak ippam"
+    },
+    {
+      "body": "Bwebwenato ko, kememej im joñak ko rej pād ilo kein jerbal in. Ejjeļo̧k men ej jilkinļo̧k ñan internet ñe kwōjab kajjitōk.",
+      "title": "Kein jerbal eo am̧, meļeļe ko am̧"
+    },
+    {
+      "body": "186 kajin, kajjojo ilo wāween jeje eo kwōmaron̄ riiti. Peij eo kein kajuon ilo būrookraam eo ej kajjitōk kajin ta.",
+      "title": "Kajin eo am̧, ilo jimwe"
+    },
+    {
+      "body": "Māletlet ko rej kōjparok jān jerbal eo make, kōn men in jerbal ko aolep raan rej dikļo̧k ñe kwōkōjerbale ium̧win juon iien aitok.",
+      "title": "Maron̄ eo ej eddekļo̧k"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Lale bwe kein jerbal in emaron̄ deļo̧ñ internet.",
+      "Bar jinoe kōpooj eo — buñten ne ko em̧ōj aer tōprak reban bar kōm̧m̧an.",
+      "Ñe ejjab tōprak ruo alen, kōpeļļo̧k laajrak in jerbal ko; lain ko āliktata rej kwaļo̧k etan buñten ne eo."
+    ],
+    "lead": "Ejjeļo̧k oktak em̧ōj karool ilo ettino — OpenAmer ej bōjrak ilo jikin eo ear bōjrak ie, kōn men in bar jinoe ej wōnmaanļo̧k jān ijo.",
+    "leadUpdate": "OpenAmer ej pād wōt ilo kōttōpar eo jinoin im ej jerbal wōt. Ejjeļo̧k men em̧ōj ukote jimettan.",
+    "log": "Laajrak in jerbal",
+    "openLogs": "Kōpeļļo̧k laajrak in jerbal ko",
+    "retry": "Bar kajjioñ",
+    "retryUpdate": "Bar kajjioñ kōkāāl",
+    "title": "Kōpooj eo ejjab dedeļo̧k",
+    "titleUpdate": "Kōkāāl eo ejjab dedeļo̧k"
+  },
+  "language": {
+    "continue": "Wōnmaanļo̧k",
+    "lead": "Kōpooj eo ej wōnmaanļo̧k ilo kajin eo kwōj kāāle ilo jikin in. Kwōmaron̄ ukote tokālik ilo būrookraam eo.",
+    "search": "Pukot kajin ko",
+    "title": "Kāāl kajin eo am̧"
+  },
+  "progress": {
+    "cancel": "Bōjrak",
+    "done": "Pojak",
+    "hideDetails": "Tilek meļeļe ko",
+    "lead": "Kōpooj juon alen wōt: OpenAmer ej bōk men ko ej aikuj jān internet im kōpooj kein jerbal in. Ñe ej bar jino tokālik, ejjab aikuj bar kōm̧m̧an men kein.",
+    "leadUpdate": "OpenAmer ej ukot kōttōpar eo jinoin. Iien jerbal ko am̧, kememej im karōk ko reban oktak.",
+    "lines": "lain ko",
+    "liveOutput": "Tōprak ko ilo iien in",
+    "showDetails": "Kwaļo̧k meļeļe ko",
+    "stepsComplete": "{done} jān {total} buñten ne em̧ōj",
+    "title": "Ej kōpooj OpenAmer",
+    "titleUpdate": "Ej kōkāāl OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Ej kakōļļe bwe likūt eo em̧ōj",
+    "config-templates": "Ej jeje joñak in karōk ko",
+    "configure": "Ej karōk kī in API im joñak ko",
+    "dependencies": "Ej likūt men ko Python ej aikuj",
+    "desktop": "Ej kalōk būrookraam eo an kein jerbal in",
+    "gateway": "Ej jinoe jikin etal im itok in ennaan",
+    "git": "Ej likūt Git",
+    "handoff": "Ej kōpooj ñan kōkāāl",
+    "install": "Ej likūt kōkāāl eo",
+    "node": "Ej pukot Node.js",
+    "node-deps": "Ej likūt men ko Node.js ej aikuj",
+    "path": "Ej kobaik OpenAmer ñan PATH",
+    "platform-sdks": "Ej likūt SDK ko an jikin ennaan ko",
+    "python": "Ej lale bwe Python ej jimwe",
+    "rebuild": "Ej bar kalōk būrookraam eo an kein jerbal in",
+    "repository": "Ej kōm̧m̧an juon kape in jikin kōjparok eo an OpenAmer",
+    "system-packages": "Ej likūt ripgrep im ffmpeg",
+    "update": "Ej bōk kōttōpar eo ekāāltata jān internet",
+    "uv": "Ej likūt kein lale peekeij eo uv",
+    "venv": "Ej kōm̧m̧an juon jikin jerbal eo an Python"
+  },
+  "stepper": {
+    "done": "Pojak",
+    "install": "Likūt",
+    "language": "Kajin",
+    "update": "Kōkāāl",
+    "welcome": "Iakwe"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Kōpeļļo̧k būrookraam eo im kōmeļeļeik ta eo kwōkōņaan bwe en kōm̧m̧an. OpenAmer ej jerbal ilikin im ba tok tōprak eo.",
+        "title": "Jino kōn juon jeje in naan"
+      },
+      {
+        "body": "Karōk ko → Kwaļo̧k → Kajin. 186 karōk in kajin im jikin, kwōmaron̄ ukoti jabdewōt iien.",
+        "title": "Kāāl kajin eo am̧"
+      },
+      {
+        "body": "Jerbal eo ej walōk elōñ alen ej erom juon māletlet — ilo alen eo tok juon, ej aikuj juon kōm̧m̧an wōt.",
+        "title": "Kōtļo̧k bwe en kememej"
+      }
+    ],
+    "command": "ak jinoe tokālik jān juon jikin jeje kōm̧m̧an:",
+    "cta": "Jinoe OpenAmer",
+    "errorTitle": "Kar jab maron̄ jinoe būrookraam eo an kein jerbal in",
+    "launching": "Ej jino",
+    "lead": "Aolep men rej pojak. OpenAmer ej am̧ kiiō — ilo kein jerbal in, ilo kajin eo am̧.",
+    "title": "OpenAmer epojāk"
+  },
+  "welcome": {
+    "bullets": [
+      "Ej jerbal ilo kein jerbal in — bwebwenato ko am̧ rej pād wōt ilo kein jerbal in",
+      "186 kajin, ekoba wāween jeje eo kwōj riiti",
+      "Kwōmaron̄ ukot aolep men tokālik; ejjeļo̧k men ej pād ñan indeeo"
+    ],
+    "cta": "Likūt",
+    "ctaUpdate": "Kōkāāl kiiō",
+    "kicker": "Kōpooj juon alen wōt",
+    "lead": "Ri-jipan̄ eo am̧ make. Ilo kein jerbal eo am̧. Ilo kajin eo am̧.",
+    "leadUpdate": "Juon kōttōpar ekāālļo̧k an OpenAmer epojāk. Ej ukot kōttōpar eo jinoin im kōjparok aolep iien jerbal im karōk.",
+    "note": "Ej bōk jejjo minit ilo juon koba ñan internet eo ekkā.",
+    "title": "Iakwe im̧aan OpenAmer",
+    "titleUpdate": "Kōkāāl OpenAmer"
+  }
+}

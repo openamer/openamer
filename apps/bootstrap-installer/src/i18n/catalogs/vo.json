@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer disänon jäfodi, dunon oni me jonäds jenöfik — komandöm, büröm, ragivs, kod — e kipon utosi, kelos eplöpon.",
+      "title": "Lasumel, kel tikon ko ol"
+    },
+    {
+      "body": "Bespiks, mem e models binons su nünöm at. Nos löpüsedon, plasä ol flagol osi.",
+      "title": "Dünem olik, nüns olik"
+    },
+    {
+      "body": "Püks 186, alik me penam, keli jenöfo reidol. Visot balid programa säkon, keli vilol.",
+      "title": "Pük olik, verätiko"
+    },
+    {
+      "body": "Kakäls kipons de vob it, sodas jäfods delik brefikons, plü lunüko gebol oni.",
+      "title": "Kakäl, kel glofon"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Kontrololös, das nünöm at kanon kosädön ko bevüresod.",
+      "Dunolös pladükami dönu — stegs pefinüköl no padunons dönu.",
+      "If atos no plöponna tel, maifükolös jenotalisedis; liens lätik nemons stegi."
+    ],
+    "lead": "Votükams nonik pegeükons seilölo — OpenAmer stopon kö estopon, sodas dunam telid fovon usao.",
+    "leadUpdate": "OpenAmer nog gebon fomami büik e fovon vobi. Nos pereplädon lafiko.",
+    "log": "Jenotalised",
+    "openLogs": "Maifükolös jenotalisedis",
+    "retry": "Steifülolös dönu",
+    "retryUpdate": "Steifülolös nulükami dönu",
+    "title": "Pladükam no efinikon",
+    "titleUpdate": "Nulükam no efinikon"
+  },
+  "language": {
+    "continue": "Föfiö",
+    "lead": "Pladükam fovon me pük, keli välol is. Kanol votükön oni latikumo in program.",
+    "search": "Sukolös pükis",
+    "title": "Välolös püki olik"
+  },
+  "progress": {
+    "cancel": "Nosükön",
+    "done": "Küpik",
+    "hideDetails": "Klänedön patis",
+    "lead": "Pladükam balnaik: OpenAmer donädon utosi, kelosi nedon, e parameton nünömi at. Startams latikum nedons osi no plu.",
+    "leadUpdate": "OpenAmer replädon fomami büik. Sean olik, mem e paramets no pavotükons.",
+    "lines": "liens",
+    "liveOutput": "Segivam anuik",
+    "showDetails": "Jonön patis",
+    "stepsComplete": "{done} de stegs {total} pefinükons",
+    "title": "Pladükam ela OpenAmer",
+    "titleUpdate": "Nulükam ela OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Malükan pladükami äsä pefinüköl",
+    "config-templates": "Penam samafomas parametama",
+    "configure": "Parametam kikas API e modelas",
+    "dependencies": "Pladükam neseses ela Python",
+    "desktop": "Bumam programa vobamafäda",
+    "gateway": "Startam leyanömola nunama",
+    "git": "Pladükam ela Git",
+    "handoff": "Preparön nulükami",
+    "install": "Pladükam nulükama",
+    "node": "Tuvam ela Node.js",
+    "node-deps": "Pladükam neseses ela Node.js",
+    "path": "Läükam ela OpenAmer lü PATH",
+    "platform-sdks": "Pladükam SDKs nunamaplatädas",
+    "python": "Kontrolam ela Python",
+    "rebuild": "Dönubumam programa vobamafäda",
+    "repository": "Kopiedam ragivema ela OpenAmer",
+    "system-packages": "Pladükam elas ripgrep e ffmpeg",
+    "update": "Donädam fomama nulikün",
+    "uv": "Pladükam pakenaguvana uv",
+    "venv": "Jafam vüra virik ela Python"
+  },
+  "stepper": {
+    "done": "Küpik",
+    "install": "Pladükön",
+    "language": "Pük",
+    "update": "Nulükön",
+    "welcome": "Benokömö"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Maifükolös programi e bepenolös utosi, kelosi vilol dunön. OpenAmer vobon in pödaglun e nunon oli tefü sek.",
+        "title": "Beginolös me set"
+      },
+      {
+        "body": "Paramets → Jonam → Pük. Pükaparametems 186, votoviks ün tim alik.",
+        "title": "Välolös püki olik"
+      },
+      {
+        "body": "Vob dönuik vedon kakäl — ün fovik atos nedon komandi te bali.",
+        "title": "Lebolös oni memön"
+      }
+    ],
+    "command": "u startolös oni latikumo se komandöm:",
+    "cta": "Startön OpenAmer",
+    "errorTitle": "No eplöpos ad startön programi vobamafäda",
+    "launching": "Startam",
+    "lead": "Val binon su plad lönik. OpenAmer binon nu olik — su nünöm at, me pük olik.",
+    "title": "OpenAmer binon küpik"
+  },
+  "welcome": {
+    "bullets": [
+      "Vobon topiko — bespiks olik blibons su nünöm at",
+      "Püks 186, keninükamü penam, keli reidol",
+      "Val kanon pavotükön latikumo; nos binon laidik"
+    ],
+    "cta": "Pladükön",
+    "ctaUpdate": "Nulükön anu",
+    "kicker": "Pladükam balnaik",
+    "lead": "Lasumel lönik olik. Su dünem olik. Me pük olik.",
+    "leadUpdate": "OpenAmer nulikum binon küpik. Atos replädon fomami büik e kipon seani e parameti alik.",
+    "note": "Nedon minudis anik pö yümam nomik.",
+    "title": "Benokömö lü OpenAmer",
+    "titleUpdate": "Nulükön OpenAmer"
+  }
+}

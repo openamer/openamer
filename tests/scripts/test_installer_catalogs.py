@@ -114,3 +114,45 @@ def test_language_names_have_both_fields() -> None:
     for code, entry in names.items():
         assert entry.get("endonym"), f"{code}: no endonym"
         assert entry.get("englishName"), f"{code}: no englishName"
+
+
+def test_no_catalogue_is_just_the_english_source() -> None:
+    """A catalogue may not be an English echo dressed in a language code.
+
+    Measured 2026-11-18: aa, gv, hz, iu, ki, kj, kw shipped at 0 % translated and
+    ff/ho at 19.5 %/26.8 %, so the picker offered those languages and the window
+    ran in English. The installer's own contract (src/i18n/index.ts): "a language
+    offered and then answered in English mid-flow is worse than one that is not
+    offered." Values that are legitimately identical stay below the bound.
+    """
+    source = dict(flat(load("en")))
+    echo = []
+    for code in codes():
+        if code == "en":
+            continue
+        target = dict(flat(load(code)))
+        identical = sum(1 for path, text in target.items() if text == source.get(path))
+        share = identical / len(source)
+        if share > 0.10:
+            echo.append(f"{code} {share:.0%}")
+
+    assert not echo, (
+        "these catalogues echo the English source instead of translating it, so "
+        "the setup window would offer a language and then run in English: "
+        + ", ".join(echo)
+    )
+
+
+def test_the_english_echo_guard_rejects_an_echo() -> None:
+    """The generator's own gate must reject what this test rejects."""
+    sys.path.insert(0, str(REPO / "scripts"))
+    import i18n_installer_catalogs as gen
+
+    english = gen.flatten(load("en"))
+    echo_reply = [text for _, text in english]
+
+    reason = gen.verify("de", english, echo_reply)
+
+    assert reason is not None and "English" in reason, (
+        f"an untranslated reply must be rejected, got {reason!r}"
+    )

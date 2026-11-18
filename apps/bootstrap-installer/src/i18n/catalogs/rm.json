@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer planisescha ina incumbensa, l'exequescha cun utensils reals — terminal, navigatur, datotecas, code — e mantegna quai che ha funcziunà.",
+      "title": "In agent che pensa cun tai"
+    },
+    {
+      "body": "Conversaziuns, memoria e models restan sin quest computer. Nagut na vegn transferì senza tia dumonda.",
+      "title": "Tia hardware, tias datas"
+    },
+    {
+      "body": "186 linguas, mintgina en la scrittira che ti legias propi. L'emprim visur da l'app ta dumonda tgenina.",
+      "title": "Tia lingua, sco tutga"
+    },
+    {
+      "body": "Abilitads vegnan memorisadas ord la lavur sezza, uschia che las incumbensas quotidianas dovran adina main temp pli ditg che ti dovras l'app.",
+      "title": "Abilitads che creschan"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Controllescha che quest computer possia acceder a l'internet.",
+      "Exequescha danovamain la configuraziun — pass terminads na vegnan betg repetids.",
+      "Sch'i na gartegia betg duas giadas, avra ils protocols; las ultimas lingias inditgeschan il pass."
+    ],
+    "lead": "Naginas midadas n'èn vegnidas revocadas senza avis — OpenAmer sa ferma al punct cuntanschì, uschia ch'ina segunda execuziun cuntinuescha da là.",
+    "leadUpdate": "OpenAmer è anc sin la versiun precedenta e funcziuna vinavant. Nagut n'è vegnì remplazzà mo per mez.",
+    "log": "Protocol",
+    "openLogs": "Avrir ils protocols",
+    "retry": "Empruvar danovamain",
+    "retryUpdate": "Reempruvar l'actualisaziun",
+    "title": "La configuraziun n'è betg terminada",
+    "titleUpdate": "L'actualisaziun n'è betg terminada"
+  },
+  "language": {
+    "continue": "Cuntinuar",
+    "lead": "La configuraziun cuntinuescha en la lingua che ti tschernas qua. Ti pos la midar pli tard en l'app.",
+    "search": "Tschertgar linguas",
+    "title": "Tscherna tia lingua"
+  },
+  "progress": {
+    "cancel": "Interrumper",
+    "done": "Pront",
+    "hideDetails": "Zuppentar ils detagls",
+    "lead": "Configuraziun unica: OpenAmer telechargia quai ch'i dovra e configurescha quest computer. Ils proxims aviaments sursiglian tut quai.",
+    "leadUpdate": "OpenAmer remplazza la versiun precedenta. Tias sesidas, tia memoria e tes parameters restan intactes.",
+    "lines": "lingias",
+    "liveOutput": "Emissiun en temp real",
+    "showDetails": "Mussar ils detagls",
+    "stepsComplete": "{done} da {total} pass terminads",
+    "title": "Configuraziun dad OpenAmer",
+    "titleUpdate": "Actualisaziun dad OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Marcar l'installaziun sco terminada",
+    "config-templates": "Scriver ils models da configuraziun",
+    "configure": "Configurar las clavs API ed ils models",
+    "dependencies": "Installar las dependenzas da Python",
+    "desktop": "Cumpilar l'app da desktop",
+    "gateway": "Aviar la passarella da messadis",
+    "git": "Installar Git",
+    "handoff": "Preparar l'actualisaziun",
+    "install": "Installar l'actualisaziun",
+    "node": "Detectar Node.js",
+    "node-deps": "Installar las dependenzas da Node.js",
+    "path": "Agiuntar OpenAmer a PATH",
+    "platform-sdks": "Installar ils SDK da las plattafurmas da messadis",
+    "python": "Verifitgar Python",
+    "rebuild": "Recumpilar l'app da desktop",
+    "repository": "Clonar il repositori dad OpenAmer",
+    "system-packages": "Installar ripgrep e ffmpeg",
+    "update": "Telechargiar l'ultima versiun",
+    "uv": "Installar l'administratur da pachets uv",
+    "venv": "Crear l'ambient virtual da Python"
+  },
+  "stepper": {
+    "done": "Pront",
+    "install": "Installar",
+    "language": "Lingua",
+    "update": "Actualisar",
+    "welcome": "Bainvegni"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Avra l'app e descriva quai che ti vuls laschar far. OpenAmer lavura davos las culissas e rapporta ils resultats.",
+        "title": "Cumenzar cun ina frasa"
+      },
+      {
+        "body": "Parameters → Visualisaziun → Lingua. 186 variantas localas, midablas da tut temp.",
+        "title": "Tscherna tia lingua"
+      },
+      {
+        "body": "Lavur repetitiva daventa in'abilitad — la proxima giada basta in cumond.",
+        "title": "Lascha memorisar"
+      }
+    ],
+    "command": "u l'avia pli tard d'in terminal:",
+    "cta": "Aviar OpenAmer",
+    "errorTitle": "Impussibel dad aviar l'app da desktop",
+    "launching": "Aviament",
+    "lead": "Tut è pront. OpenAmer è ussa tes — sin quest computer, en tia lingua.",
+    "title": "OpenAmer è pront"
+  },
+  "welcome": {
+    "bullets": [
+      "Funcziuna localmain — tias conversaziuns restan sin quest computer",
+      "186 linguas, inclus la scrittira che ti legias",
+      "Tut po vegnir midà pli tard; nagut n'è permanent"
+    ],
+    "cta": "Installar",
+    "ctaUpdate": "Actualisar ussa",
+    "kicker": "Configuraziun unica",
+    "lead": "Tes agen agent. Sin tia hardware. En tia lingua.",
+    "leadUpdate": "Ina versiun pli nova dad OpenAmer è pronta. Ella remplazza la versiun precedenta e mantegna tut las sesidas e tut ils parameters.",
+    "note": "Dovra in pèr minutas cun ina connexiun normala.",
+    "title": "Bainvegni tar OpenAmer",
+    "titleUpdate": "Actualisar OpenAmer"
+  }
+}

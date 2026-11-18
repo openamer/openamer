@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer i dzudzanya mushumo, ya u ita nga zwishumiswa zwa vhukuma — theminali, tshiswaswari, faela na khoudu — ya vhulunga zwe zwa shuma.",
+      "title": "Muimeleli ane a humbula na inwi"
+    },
+    {
+      "body": "Nyambedzano, muhumbulo na modele zwi dzula kha uyu mutshini. A hu na tshine tsha rumelwa nṱha arali ni songo humbela.",
+      "title": "Zwishumiswa zwaṋu, datha yaṋu"
+    },
+    {
+      "body": "Nyambo dza 186, luṅwe na luṅwe nga maṅwalwa ane na a vhala. Tshikirini tsha u thoma tsha mbekanyamushumo tshi ni vhudzisa uri ni ṱoḓa lufhio.",
+      "title": "Luambo lwaṋu, nga nḓila yo teaho"
+    },
+    {
+      "body": "Vhukoni vhu vhulungwa kha mushumo une wa itwa, uri mishumo ya ḓuvha ḽiṅwe na ḽiṅwe i fhungudzee musi ni tshi bvela phanḓa na u i shumisa.",
+      "title": "Vhukoni vhune ha aluwa"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Sedzani uri uyu mutshini u kona u swikelela inthanethe.",
+      "Itani nzudzanyo hafhu — maga o fhelaho ha nga dovhololwi.",
+      "Arali zwa kundelwa luvhili, vulani rekhodo; mitaladzi ya u fhedza i bula ḽiga."
+    ],
+    "lead": "A hu na tshanduko dzo humiselwa murahu hu songo ḓivhadzwa — OpenAmer i ima he ya guma hone, uri musi i tshi dovha ya tshimbidzwa i bvele phanḓa henefho.",
+    "leadUpdate": "OpenAmer i kha ḓi vha kha lushaka lwa kale nahone i kha ḓi shuma. A hu na tsho tshintshiwaho nga hafu.",
+    "log": "Rekhodo",
+    "openLogs": "Vulani rekhodo",
+    "retry": "Lingedzani hafhu",
+    "retryUpdate": "Lingedzani u khwinifhadza hafhu",
+    "title": "Nzudzanyo a yo ngo fhela",
+    "titleUpdate": "Khwinifhadzo a yo ngo fhela"
+  },
+  "language": {
+    "continue": "Bvelani phanḓa",
+    "lead": "Nzudzanyo i bvela phanḓa nga luambo lune na khetha fhano. Ni nga lu shandula nga murahu kha mbekanyamushumo.",
+    "search": "Ṱoḓani nyambo",
+    "title": "Khethani luambo lwaṋu"
+  },
+  "progress": {
+    "cancel": "Fhelisani",
+    "done": "Zwo lugela",
+    "hideDetails": "Dzumbani zwidodombedzwa",
+    "lead": "Nzudzanyo ya luthihi: OpenAmer i khou dzhenisa zwine ya zwi ṱoḓa na u dzudzanya uyu mutshini. Musi i tshi vulwa nga murahu, hezwi zwoṱhe zwi a pfukwa.",
+    "leadUpdate": "OpenAmer i khou dzhiela lushaka lwa kale vhudzulo. Zwifhinga zwaṋu zwa mushumo, muhumbulo na nzudzanyo a zwi kwamiwi.",
+    "lines": "mitaladzi",
+    "liveOutput": "Mvelelo dza zwino",
+    "showDetails": "Sumbedzani zwidodombedzwa",
+    "stepsComplete": "Maga a {done} kha {total} o fhela",
+    "title": "Hu khou dzudzanywa OpenAmer",
+    "titleUpdate": "Hu khou khwinifhadzwa OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Hu khou swaywa u dzhenisa sa ho fhelaho",
+    "config-templates": "Hu khou ṅwalwa thempuḽeithi dza nzudzanyo",
+    "configure": "Hu khou dzudzanywa khii dza API na modele",
+    "dependencies": "Hu khou dzheniswa zwine Python ya zwi ṱoḓa",
+    "desktop": "Hu khou fhaṱiwa mbekanyamushumo ya khomphyutha",
+    "gateway": "Hu khou thomiwa khoro ya milaedza",
+    "git": "Hu khou dzheniswa Git",
+    "handoff": "Hu khou lugiselelwa u khwinifhadza",
+    "install": "Hu khou dzheniswa khwinifhadzo",
+    "node": "Hu khou ṱoḓiwa Node.js",
+    "node-deps": "Hu khou dzheniswa zwine Node.js ya zwi ṱoḓa",
+    "path": "Hu khou engedzwa OpenAmer kha PATH",
+    "platform-sdks": "Hu khou dzheniswa SDK dza zwiṱara zwa milaedza",
+    "python": "Hu khou khwaṱhisedzwa Python",
+    "rebuild": "Hu khou fhaṱululwa mbekanyamushumo ya khomphyutha",
+    "repository": "Hu khou kopiwa vhuvhealo ha OpenAmer",
+    "system-packages": "Hu khou dzheniswa ripgrep na ffmpeg",
+    "update": "Hu khou dzheniswa lushaka lwa zwinozwino",
+    "uv": "Hu khou dzheniswa mulanguli wa phakhethe wa uv",
+    "venv": "Hu khou sikiwa vhupo ha khumbulelwa ha Python"
+  },
+  "stepper": {
+    "done": "Zwo lugela",
+    "install": "Dzhenisani",
+    "language": "Luambo",
+    "update": "Khwinifhadzani",
+    "welcome": "No ṱanganedzwa"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Vulani mbekanyamushumo ni ṱaluse zwine na ṱoḓa zwi tshi itwa. OpenAmer i shuma murahu nahone ya ni vhiga mvelelo.",
+        "title": "Thomani nga fhungo"
+      },
+      {
+        "body": "Nzudzanyo → Musumbedzo → Luambo. Nyambo dza 186 dza vhupo, dzi shandulea tshifhinga tshiṅwe na tshiṅwe.",
+        "title": "Khethani luambo lwaṋu"
+      },
+      {
+        "body": "Mushumo u dovhololwaho u vha vhukoni — tshifhinga tshi ḓaho u ṱoḓa ndaela nthihi fhedzi.",
+        "title": "I tendeleni i humbule"
+      }
+    ],
+    "command": "kana ni i thome nga murahu kha theminali:",
+    "cta": "Thomani OpenAmer",
+    "errorTitle": "Zwo kundelwa u thoma mbekanyamushumo ya khomphyutha",
+    "launching": "Hu khou thomiwa",
+    "lead": "Zwoṱhe zwo luga. OpenAmer zwino ndi yaṋu — kha uyu mutshini, nga luambo lwaṋu.",
+    "title": "OpenAmer yo lugela"
+  },
+  "welcome": {
+    "bullets": [
+      "I shuma kha uyu mutshini — nyambedzano dzaṋu dzi dzula henefha",
+      "Nyambo dza 186, hu tshi katelwa maṅwalwa ane na a vhala",
+      "Zwoṱhe zwi nga shandulwa nga murahu; a hu na tsha tshoṱhe"
+    ],
+    "cta": "Dzhenisani",
+    "ctaUpdate": "Khwinifhadzani zwino",
+    "kicker": "Nzudzanyo ya luthihi",
+    "lead": "Muimeleli waṋu. Kha zwishumiswa zwaṋu. Nga luambo lwaṋu.",
+    "leadUpdate": "OpenAmer ntswa yo lugela. I dzhiela lushaka lwa kale vhudzulo ya vhulunga tshifhinga tshiṅwe na tshiṅwe tsha mushumo na nzudzanyo yoṱhe.",
+    "note": "Zwi dzhia mimunithi i si gathi kha vhuṱumani ho ḓoweleaho.",
+    "title": "No ṱanganedzwa kha OpenAmer",
+    "titleUpdate": "Khwinifhadzani OpenAmer"
+  }
+}

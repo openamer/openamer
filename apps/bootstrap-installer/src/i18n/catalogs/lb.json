@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer plangt eng Aufgab, féiert se mat richtegen Tools aus — Kommandozeil, Browser, Fichieren, Code — a behält, wat funktionéiert huet.",
+      "title": "En Agent, dee matdenkt"
+    },
+    {
+      "body": "Gespréicher, Erënnerungen a Modeller bleiwen op dësem Computer. Näischt gëtt eropgelueden, ausser Dir frot et.",
+      "title": "Är Hardware, Är Donnéeën"
+    },
+    {
+      "body": "186 Sproochen, all an där Schrëft, déi Dir liest. Den éischten Ecran vun der App freet Iech, wéi eng Dir wëllt.",
+      "title": "Är Sprooch, richteg ëmgesat"
+    },
+    {
+      "body": "Fäegkeete ginn aus der Aarbecht selwer gespäichert, sou datt alldeeglech Aufgaben ëmsou méi séier ginn, wat Dir d'App méi laang benotzt.",
+      "title": "Fäegkeeten, déi wuessen"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Kontrolléiert, ob dëse Computer op den Internet zougräife kann.",
+      "Féiert d'Ariichtung nach eng Kéier aus — ofgeschlosse Schrëtt ginn net widderholl.",
+      "Wann et zweemol feelgeschloen ass, maacht d'Protokoller op; déi lescht Zeile nennen de Schrëtt."
+    ],
+    "lead": "Keng Ännerunge goufen heemlech réckgängeg gemaach — OpenAmer bleift do stoen, wou et opgehalen huet, sou datt en zweete Laf vun do aus weidergeet.",
+    "leadUpdate": "OpenAmer ass nach op der viregter Versioun a funktionéiert weider. Näischt gouf hallef ersat.",
+    "log": "Protokoll",
+    "openLogs": "Protokoller opmaachen",
+    "retry": "Nach eng Kéier probéieren",
+    "retryUpdate": "Aktualiséierung nach eng Kéier probéieren",
+    "title": "Ariichtung net ofgeschloss",
+    "titleUpdate": "Aktualiséierung net ofgeschloss"
+  },
+  "language": {
+    "continue": "Weider",
+    "lead": "D'Ariichtung geet an där Sprooch weider, déi Dir hei auswielt. Dir kënnt se spéider an der App änneren.",
+    "search": "Sprooche sichen",
+    "title": "Wielt Är Sprooch"
+  },
+  "progress": {
+    "cancel": "Ofbriechen",
+    "done": "Prett",
+    "hideDetails": "Detailer verstoppen",
+    "lead": "Eemoleg Ariichtung: OpenAmer luet erof, wat et brauch, a konfiguréiert dëse Computer. Bei spéidere Starte gëtt dat alles iwwersprongen.",
+    "leadUpdate": "OpenAmer ersetzt déi viregt Versioun. Är Sessiounen, Erënnerungen an Astellunge bleiwen onverännert.",
+    "lines": "Zeilen",
+    "liveOutput": "Live-Ausgab",
+    "showDetails": "Detailer weisen",
+    "stepsComplete": "{done} vu {total} Schrëtt ofgeschloss",
+    "title": "OpenAmer gëtt ageriicht",
+    "titleUpdate": "OpenAmer gëtt aktualiséiert"
+  },
+  "stages": {
+    "bootstrap-marker": "Installatioun gëtt als ofgeschloss markéiert",
+    "config-templates": "Konfiguratiounsvirlage gi geschriwwen",
+    "configure": "API-Schlësselen a Modeller gi konfiguréiert",
+    "dependencies": "Python-Ofhängegkeete ginn installéiert",
+    "desktop": "Desktop-App gëtt gebaut",
+    "gateway": "Messagerie-Paart gëtt gestart",
+    "git": "Git gëtt installéiert",
+    "handoff": "Aktualiséierung gëtt virbereet",
+    "install": "Aktualiséierung gëtt installéiert",
+    "node": "Node.js gëtt erkannt",
+    "node-deps": "Node.js-Ofhängegkeete ginn installéiert",
+    "path": "OpenAmer gëtt zu PATH bäigefüügt",
+    "platform-sdks": "SDKe fir Messagerie-Plattforme ginn installéiert",
+    "python": "Python gëtt iwwerpréift",
+    "rebuild": "Desktop-App gëtt nei gebaut",
+    "repository": "OpenAmer-Repository gëtt gekloont",
+    "system-packages": "ripgrep an ffmpeg ginn installéiert",
+    "update": "Neist Versioun gëtt erofgelueden",
+    "uv": "uv-Pakverwaltung gëtt installéiert",
+    "venv": "Virtuell Python-Ëmwelt gëtt erstallt"
+  },
+  "stepper": {
+    "done": "Prett",
+    "install": "Installéieren",
+    "language": "Sprooch",
+    "update": "Aktualiséierung",
+    "welcome": "Wëllkomm"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Maacht d'App op a beschreift, wat Dir gemaach wëllt hunn. OpenAmer schafft am Hannergrond a mellt sech mat de Resultater.",
+        "title": "Fänkt mat engem Saz un"
+      },
+      {
+        "body": "Astellungen → Usiicht → Sprooch. 186 Sproochastellungen, zu all Moment wiesselbar.",
+        "title": "Wielt Är Sprooch"
+      },
+      {
+        "body": "Widderhuelend Aarbecht gëtt zu enger Fäegkeet — déi nächste Kéier geet ee Kommando duer.",
+        "title": "Loosst et sech Saache mierken"
+      }
+    ],
+    "command": "oder start et spéider iwwer eng Kommandozeil:",
+    "cta": "OpenAmer starten",
+    "errorTitle": "Desktop-App konnt net gestart ginn",
+    "launching": "Gëtt gestart",
+    "lead": "Alles ass prett. OpenAmer gehéiert elo Iech — op dësem Computer, an Ärer Sprooch.",
+    "title": "OpenAmer ass prett"
+  },
+  "welcome": {
+    "bullets": [
+      "Leeft lokal — Är Gespréicher bleiwen op dësem Computer",
+      "186 Sproochen, och an där Schrëft, déi Dir liest",
+      "Alles kann herno geännert ginn; näischt ass definitiv"
+    ],
+    "cta": "Installéieren",
+    "ctaUpdate": "Elo aktualiséieren",
+    "kicker": "Eemoleg Ariichtung",
+    "lead": "Ären eegenen Agent. Op Ärer Hardware. An Ärer Sprooch.",
+    "leadUpdate": "Eng méi nei Versioun vun OpenAmer ass prett. Si ersetzt déi viregt Versioun a behält all Sessioun an Astellung.",
+    "note": "Dauert e puer Minutte mat enger normaler Verbindung.",
+    "title": "Wëllkomm bei OpenAmer",
+    "titleUpdate": "OpenAmer aktualiséieren"
+  }
+}

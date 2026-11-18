@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer hyehyɛ adwuma, de nnwinnade ankasa — ahyɛde mfɛnsere, intanɛt hwɛfo, fael ne koodu — yɛ, na ɛkora nea ɛyɛɛ yiye so.",
+      "title": "Ɔboafo a ɔne wo susuw nneɛma ho"
+    },
+    {
+      "body": "Nkɔmmɔ, nkae ne nhwɛso ahorow wɔ saa afiri yi so. Wɔmfa biribiara nkɔ intanɛt so gye sɛ wobisa.",
+      "title": "Wo mfiri, wo nsɛm"
+    },
+    {
+      "body": "Kasa 186, biara wɔ nkyerɛwee a wokenkan mu. App no kratafa a edi kan bisa nea wopɛ.",
+      "title": "Wo kasa, sɛnea ɛfata"
+    },
+    {
+      "body": "Wɔkora nimdeɛ a efi adwuma no ankasa mu so, enti dodow a wode di dwuma no, dodow no ara na daa nnwuma gye bere tiaa.",
+      "title": "Tumi a ɛkɔ so nyin"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Hwɛ sɛ saa afiri yi tumi kɔ intanɛt so.",
+      "Yɛ nhyehyɛe no bio — wɔrensan nyɛ anammɔn a wɔawie no.",
+      "Sɛ ɛdi nkogu mprenu a, bue dwumadi kyerɛwtohɔ no; nkyerɛwde a etwa to no kyerɛ anammɔn no din."
+    ],
+    "lead": "Wɔansan akyi wɔ nsakrae biara mu wɔ sum ase — OpenAmer gyina nea ɛgyinae no, enti sɛ wosan yɛ a, ɛtoa so fi hɔ.",
+    "leadUpdate": "OpenAmer da so wɔ nea edi kan no so na ɛkɔ so yɛ adwuma. Wɔannyɛ nsakrae biara fã pɛ.",
+    "log": "Dwumadi kyerɛwtohɔ",
+    "openLogs": "Bue dwumadi kyerɛwtohɔ",
+    "retry": "Sɔ hwɛ bio",
+    "retryUpdate": "Sɔ foforoyɛ no hwɛ bio",
+    "title": "Nhyehyɛe no anwie",
+    "titleUpdate": "Foforoyɛ no anwie"
+  },
+  "language": {
+    "continue": "Toa so",
+    "lead": "Nhyehyɛe no bɛtoa so wɔ kasa a wopaw wɔ ha no mu. Wubetumi asesa no akyiri yi wɔ app no mu.",
+    "search": "Hwehwɛ kasa",
+    "title": "Paw wo kasa"
+  },
+  "progress": {
+    "cancel": "Twa mu",
+    "done": "Ayɛ krado",
+    "hideDetails": "Fa nkyerɛkyerɛmu sie",
+    "lead": "Nhyehyɛe a wɔyɛ pɛnkoro: OpenAmer retwe nea ehia na ɛresiesie saa afiri yi. Sɛ wobue no akyiri yi a, ɛrentwam saa anammɔn yi mu bio.",
+    "leadUpdate": "OpenAmer de foforo rehyɛ nea edi kan no ananmu. Wɔrenka wo dwumadi bere, nkae ne nhyehyɛe.",
+    "lines": "nkyerɛwde",
+    "liveOutput": "Nea ɛreba seesei",
+    "showDetails": "Kyerɛ nkyerɛkyerɛmu",
+    "stepsComplete": "Anammɔn {done} wɔ {total} mu awie",
+    "title": "Wɔrehyehyɛ OpenAmer",
+    "titleUpdate": "Wɔreyɛ OpenAmer foforo"
+  },
+  "stages": {
+    "bootstrap-marker": "Wɔrehyɛ sɛ wɔawie afiriso gu no",
+    "config-templates": "Wɔrekyerɛw nhyehyɛe nhwɛso",
+    "configure": "Wɔrehyehyɛ API nsafoa ne nhwɛso ahorow",
+    "dependencies": "Wɔde nneɛma a Python hia regu afiri so",
+    "desktop": "Wɔresi kɔmputa app no",
+    "gateway": "Wɔrefi nkrasɛm kwan no ase",
+    "git": "Wɔde Git regu afiri so",
+    "handoff": "Wɔresiesie ama foforoyɛ",
+    "install": "Wɔde foforoyɛ no regu afiri so",
+    "node": "Wɔrehwehwɛ Node.js",
+    "node-deps": "Wɔde nneɛma a Node.js hia regu afiri so",
+    "path": "Wɔde OpenAmer reka PATH ho",
+    "platform-sdks": "Wɔde nkrasɛm akwan SDKs regu afiri so",
+    "python": "Wɔrehwɛ sɛ Python yɛ adwuma",
+    "rebuild": "Wɔresan asi kɔmputa app no",
+    "repository": "Wɔreyɛ OpenAmer koodu akorae no bi",
+    "system-packages": "Wɔde ripgrep ne ffmpeg regu afiri so",
+    "update": "Wɔretwe nea ɛyɛ foforo paa no",
+    "uv": "Wɔde uv nneɛma sohwɛfo regu afiri so",
+    "venv": "Wɔreyɛ Python adwumayɛbea soronko"
+  },
+  "stepper": {
+    "done": "Ayɛ krado",
+    "install": "Fa gu afiri so",
+    "language": "Kasa",
+    "update": "Yɛ foforo",
+    "welcome": "Akwaaba"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Bue app no na kyerɛ adwuma a wopɛ sɛ wɔyɛ. OpenAmer yɛ adwuma wɔ akyi na ɛbɔ wo amanneɛ.",
+        "title": "Fa kasamu bi fi ase"
+      },
+      {
+        "body": "Nhyehyɛe → Nkyerɛ → Kasa. Kasa nhyehyɛe 186, wubetumi asesa bere biara.",
+        "title": "Paw wo kasa"
+      },
+      {
+        "body": "Adwuma a ɛsan ba bɛyɛ nimdeɛ — bere foforo no, ahyɛde baako pɛ na ehia.",
+        "title": "Ma ɛnkae"
+      }
+    ],
+    "command": "anaa fi ase akyiri yi fi ahyɛde mfɛnsere mu:",
+    "cta": "Bue OpenAmer",
+    "errorTitle": "Wantumi ambue kɔmputa app no",
+    "launching": "Ɛrebue",
+    "lead": "Biribiara wɔ ne sibea. Afei OpenAmer yɛ wo de — wɔ saa afiri yi so, wɔ wo kasa mu.",
+    "title": "OpenAmer ayɛ krado"
+  },
+  "welcome": {
+    "bullets": [
+      "Ɛyɛ adwuma wɔ w'afiri so — wo nkɔmmɔ tena saa afiri yi so",
+      "Kasa 186, a nkyerɛwee a wokenkan ka ho",
+      "Wubetumi asesa biribiara akyiri yi; biribiara ntena hɔ afebɔɔ"
+    ],
+    "cta": "Fa gu afiri so",
+    "ctaUpdate": "Yɛ foforo seesei",
+    "kicker": "Nhyehyɛe a wɔyɛ pɛnkoro",
+    "lead": "W'ankasa boafo. W'afiri so. Wo kasa mu.",
+    "leadUpdate": "OpenAmer foforo ayɛ krado. Eyi hyɛ nea edi kan no ananmu na ɛkora dwumadi bere ne nhyehyɛe biara so.",
+    "note": "Ɛgye simma kakraa wɔ intanɛt nkitahodi a ɛyɛ papa so.",
+    "title": "Akwaaba ba OpenAmer",
+    "titleUpdate": "Yɛ OpenAmer foforo"
+  }
+}

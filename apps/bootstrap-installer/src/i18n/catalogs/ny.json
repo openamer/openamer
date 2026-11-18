@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer imakonza ntchito, kuichita ndi zida zenizeni — potumizira malamulo, msakatuli, mafayilo, khodi — ndipo imasunga zomwe zagwira bwino.",
+      "title": "Wothandizira amene amaganiza nanu"
+    },
+    {
+      "body": "Zokambirana, zokumbukira ndi mitundu ya luntha lochita kupanga zimakhala pa kompyuta iyi. Palibe chomwe chimatumizidwa pokhapokha mutapempha.",
+      "title": "Zipangizo zanu, deta yanu"
+    },
+    {
+      "body": "Zinenero 186, chilichonse m'malembo amene mumawerenga. Tsamba loyamba la pulogalamuyi limakufunsani kusankha chinenero.",
+      "title": "Chinenero chanu, moyenera"
+    },
+    {
+      "body": "Maluso amasungidwa kuchokera kuntchito yeniyeni, motero ntchito za tsiku ndi tsiku zimachepa nthawi pamene mukuigwiritsa ntchito.",
+      "title": "Luso lomwe likukula"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Onetsetsani kuti kompyuta iyi imatha kulumikiza intaneti.",
+      "Yambitsaninso kukonza koyambirira — magawo omalizidwa sabwerezedwa.",
+      "Ikalephera kawiri, tsegulani zolemba; mizere yomaliza imatchula gawo lomwe lalephera."
+    ],
+    "lead": "Palibe zosintha zomwe zabwezeretsedwa mwakachetechete — OpenAmer imayima pomwe yayimira, kotero kuyambitsanso kumapitiriza kuchokera pamenepo.",
+    "leadUpdate": "OpenAmer ikadali pa mtundu wakale ndipo ikugwirabe ntchito. Palibe chomwe chasinthidwa theka lokha.",
+    "log": "Zolemba",
+    "openLogs": "Tsegulani zolemba",
+    "retry": "Yesaninso",
+    "retryUpdate": "Yesaninso kusintha",
+    "title": "Kukonza koyambirira sikunathe",
+    "titleUpdate": "Kusintha sikunathe"
+  },
+  "language": {
+    "continue": "Pitirizani",
+    "lead": "Kukonza koyambirira kupitiriza m'chinenero chomwe mwasankha pano. Mutha kuchisintha pambuyo pake mu pulogalamuyi.",
+    "search": "Sakani zinenero",
+    "title": "Sankhani chinenero chanu"
+  },
+  "progress": {
+    "cancel": "Letsani",
+    "done": "Zakonzeka",
+    "hideDetails": "Bisani tsatanetsatane",
+    "lead": "Kukonza koyamba kokha: OpenAmer ikutsitsa zofunika ndi kukonza kompyuta iyi. Mukadzaiyambitsanso, zonsezi sizidzabwerezedwa.",
+    "leadUpdate": "OpenAmer ikulowa m'malo mwa mtundu wakale. Magawo anu ogwirira ntchito, zokumbukira ndi zoikamo sizikhudzidwa.",
+    "lines": "mizere",
+    "liveOutput": "Zotuluka panopa",
+    "showDetails": "Onetsani tsatanetsatane",
+    "stepsComplete": "Magawo {done} mwa {total} atha",
+    "title": "Ikukonza OpenAmer",
+    "titleUpdate": "Ikusintha OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Ikulemba kuti kuika kwatha",
+    "config-templates": "Ikulemba zitsanzo za zoikamo",
+    "configure": "Ikukonza makiyi a API ndi mitundu ya luntha lochita kupanga",
+    "dependencies": "Ikuika zofunikira za Python",
+    "desktop": "Ikumanga pulogalamu ya pakompyuta",
+    "gateway": "Ikuyambitsa njira yolumikizira mauthenga",
+    "git": "Ikuika Git",
+    "handoff": "Ikukonzekera kusintha",
+    "install": "Ikuika zosintha",
+    "node": "Ikuyang'ana Node.js",
+    "node-deps": "Ikuika zofunikira za Node.js",
+    "path": "Ikuwonjezera OpenAmer ku PATH",
+    "platform-sdks": "Ikuika ma SDK a nsanja zotumizirana mauthenga",
+    "python": "Ikutsimikizira Python",
+    "rebuild": "Ikumanganso pulogalamu ya pakompyuta",
+    "repository": "Ikukopera nkhokwe ya OpenAmer",
+    "system-packages": "Ikuika ripgrep ndi ffmpeg",
+    "update": "Ikutsitsa mtundu waposachedwa",
+    "uv": "Ikuika uv yoyang'anira mapaketi",
+    "venv": "Ikupanga malo apadera a Python"
+  },
+  "stepper": {
+    "done": "Zakonzeka",
+    "install": "Ikani",
+    "language": "Chinenero",
+    "update": "Sinthani",
+    "welcome": "Takulandirani"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Tsegulani pulogalamuyi ndipo fotokozani zomwe mukufuna zichitike. OpenAmer imagwira ntchito kumbuyo ndi kukubweretserani zotsatira.",
+        "title": "Yambani ndi chiganizo"
+      },
+      {
+        "body": "Zoikamo → Mawonekedwe → Chinenero. Zosankha za zinenero ndi madera 186, zosinthika nthawi iliyonse.",
+        "title": "Sankhani chinenero chanu"
+      },
+      {
+        "body": "Ntchito yobwerezabwereza imakhala luso — ulendo wotsatira imangofuna lamulo limodzi.",
+        "title": "Iloleni ikumbukire"
+      }
+    ],
+    "command": "kapena iyambitseni pambuyo pake kuchokera potumizira malamulo:",
+    "cta": "Yambitsani OpenAmer",
+    "errorTitle": "Sitinathe kuyambitsa pulogalamu ya pakompyuta",
+    "launching": "Ikuyambitsa",
+    "lead": "Zonse zili m'malo. OpenAmer tsopano ndi yanu — pa kompyuta iyi, m'chinenero chanu.",
+    "title": "OpenAmer yakonzeka"
+  },
+  "welcome": {
+    "bullets": [
+      "Imagwira ntchito pa kompyuta yanu — zokambirana zanu zimakhalabe pa kompyuta iyi",
+      "Zinenero 186, kuphatikiza malembo amene mumawerenga",
+      "Zonse zitha kusinthidwa pambuyo pake; palibe chokhalitsa"
+    ],
+    "cta": "Ikani",
+    "ctaUpdate": "Sinthani tsopano",
+    "kicker": "Kukonza koyamba kokha",
+    "lead": "Wothandizira wanu. Pa zipangizo zanu. M'chinenero chanu.",
+    "leadUpdate": "OpenAmer yatsopano yakonzeka. Ilowa m'malo mwa mtundu wakale ndikusunga magawo onse ogwirira ntchito ndi zoikamo zonse.",
+    "note": "Zimatenga mphindi zochepa pa intaneti yabwinobwino.",
+    "title": "Takulandirani ku OpenAmer",
+    "titleUpdate": "Sinthani OpenAmer"
+  }
+}

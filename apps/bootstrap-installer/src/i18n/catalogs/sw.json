@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer hupanga kazi, huitekeleza kwa zana halisi — terminali, kivinjari, faili, msimbo — na huhifadhi yaliyofaa.",
+      "title": "Wakala anayefikiri pamoja nawe"
+    },
+    {
+      "body": "Mazungumzo, kumbukumbu na modeli hubaki kwenye kompyuta hii. Hakuna kinachopakiwa isipokuwa ukiomba.",
+      "title": "Vifaa vyako, data yako"
+    },
+    {
+      "body": "Lugha 186, kila moja katika hati unayosoma. Skrini ya kwanza ya programu hukuuliza uchague lugha.",
+      "title": "Lugha yako, kwa usahihi"
+    },
+    {
+      "body": "Ujuzi huhifadhiwa kutokana na kazi yenyewe, hivyo kazi za kila siku huchukua muda mfupi kadiri unavyoitumia.",
+      "title": "Uwezo unaokua"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Hakikisha kompyuta hii inaweza kuunganika kwenye intaneti.",
+      "Endesha usanidi tena — hatua zilizokamilika hazitarudiwa.",
+      "Ikishindwa mara mbili, fungua kumbukumbu za matukio; mistari ya mwisho hutaja hatua."
+    ],
+    "lead": "Hakuna mabadiliko yaliyotenguliwa kimyakimya — OpenAmer hubaki pale iliposimama, hivyo ukiendesha tena itaendelea kutoka hapo.",
+    "leadUpdate": "OpenAmer bado iko kwenye toleo la awali na inaendelea kufanya kazi. Hakuna kilichobadilishwa nusu.",
+    "log": "Kumbukumbu ya matukio",
+    "openLogs": "Fungua kumbukumbu za matukio",
+    "retry": "Jaribu tena",
+    "retryUpdate": "Jaribu kusasisha tena",
+    "title": "Usanidi haukukamilika",
+    "titleUpdate": "Usasishaji haukukamilika"
+  },
+  "language": {
+    "continue": "Endelea",
+    "lead": "Usanidi unaendelea kwa lugha utakayochagua hapa. Unaweza kuibadilisha baadaye kwenye programu.",
+    "search": "Tafuta lugha",
+    "title": "Chagua lugha yako"
+  },
+  "progress": {
+    "cancel": "Ghairi",
+    "done": "Tayari",
+    "hideDetails": "Ficha maelezo",
+    "lead": "Usanidi wa mara moja: OpenAmer inapakua inachohitaji na kusanidi kompyuta hii. Ukizindua baadaye, hatua hizi zote zitarukwa.",
+    "leadUpdate": "OpenAmer inachukua nafasi ya toleo la awali. Vipindi, kumbukumbu na mipangilio yako havitabadilishwa.",
+    "lines": "mistari",
+    "liveOutput": "Matokeo ya moja kwa moja",
+    "showDetails": "Onyesha maelezo",
+    "stepsComplete": "Hatua {done} kati ya {total} zimekamilika",
+    "title": "Inasanidi OpenAmer",
+    "titleUpdate": "Inasasisha OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Inaweka alama kuwa usakinishaji umekamilika",
+    "config-templates": "Inaandika violezo vya usanidi",
+    "configure": "Inasanidi funguo za API na modeli",
+    "dependencies": "Inasakinisha vitegemezi vya Python",
+    "desktop": "Inaunda programu ya kompyuta",
+    "gateway": "Inaanzisha lango la ujumbe",
+    "git": "Inasakinisha Git",
+    "handoff": "Inajiandaa kusasisha",
+    "install": "Inasakinisha sasisho",
+    "node": "Inatambua Node.js",
+    "node-deps": "Inasakinisha vitegemezi vya Node.js",
+    "path": "Inaongeza OpenAmer kwenye PATH",
+    "platform-sdks": "Inasakinisha SDK za majukwaa ya ujumbe",
+    "python": "Inathibitisha Python",
+    "rebuild": "Inaunda upya programu ya kompyuta",
+    "repository": "Inanakili hazina ya OpenAmer",
+    "system-packages": "Inasakinisha ripgrep na ffmpeg",
+    "update": "Inapakua toleo jipya zaidi",
+    "uv": "Inasakinisha kidhibiti vifurushi cha uv",
+    "venv": "Inaunda mazingira pepe ya Python"
+  },
+  "stepper": {
+    "done": "Tayari",
+    "install": "Sakinisha",
+    "language": "Lugha",
+    "update": "Sasisha",
+    "welcome": "Karibu"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Fungua programu na ueleze unachotaka kifanywe. OpenAmer hufanya kazi chinichini na kukupa taarifa.",
+        "title": "Anza kwa sentensi"
+      },
+      {
+        "body": "Mipangilio → Mwonekano → Lugha. Chaguo 186 za lugha na eneo, unazoweza kubadilisha wakati wowote.",
+        "title": "Chagua lugha yako"
+      },
+      {
+        "body": "Kazi inayojirudia hugeuka kuwa ujuzi — wakati ujao itahitaji amri moja tu.",
+        "title": "Iruhusu ikumbuke"
+      }
+    ],
+    "command": "au ianzishe baadaye kupitia terminali:",
+    "cta": "Zindua OpenAmer",
+    "errorTitle": "Imeshindwa kuzindua programu ya kompyuta",
+    "launching": "Inazindua",
+    "lead": "Kila kitu kiko tayari. Sasa OpenAmer ni yako — kwenye kompyuta hii, kwa lugha yako.",
+    "title": "OpenAmer iko tayari"
+  },
+  "welcome": {
+    "bullets": [
+      "Hufanya kazi ndani ya kompyuta — mazungumzo yako hubaki kwenye kompyuta hii",
+      "Lugha 186, ikiwemo hati unayosoma",
+      "Kila kitu kinaweza kubadilishwa baadaye; hakuna cha kudumu"
+    ],
+    "cta": "Sakinisha",
+    "ctaUpdate": "Sasisha sasa",
+    "kicker": "Usanidi wa mara moja",
+    "lead": "Wakala wako mwenyewe. Kwenye vifaa vyako. Kwa lugha yako.",
+    "leadUpdate": "Toleo jipya zaidi la OpenAmer liko tayari. Litachukua nafasi ya toleo la awali na kuhifadhi kila kipindi na mpangilio.",
+    "note": "Huchukua dakika chache kwa muunganisho wa kawaida.",
+    "title": "Karibu kwenye OpenAmer",
+    "titleUpdate": "Sasisha OpenAmer"
+  }
+}

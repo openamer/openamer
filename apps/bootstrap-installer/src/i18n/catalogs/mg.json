@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer dia mandamina asa, manatanteraka izany amin’ny fitaovana tena izy — terminaly, mpitety tranonkala, rakitra, kaody — ary mitahiry izay nahomby.",
+      "title": "Mpanampy miara-misaina aminao"
+    },
+    {
+      "body": "Eto amin’ity solosaina ity ny resaka, ny fitadidiana ary ny maodely. Tsy misy alefa any ivelany raha tsy angatahinao.",
+      "title": "Ny fitaovanao, ny angonao"
+    },
+    {
+      "body": "Fiteny 186, samy amin’ny soratra vakinao. Manontany izay hofidinao ny efijery voalohany amin’ny rindranasa.",
+      "title": "Ny fiteninao, araka ny tokony ho izy"
+    },
+    {
+      "body": "Voatahiry avy amin’ny asa vita ny fahaiza-manao, ka mihahaingana ny asa andavanandro arakaraka ny ampiasanao azy.",
+      "title": "Fahaiza-manao mitombo"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Hamarino fa afaka mifandray amin’ny aterineto ity solosaina ity.",
+      "Avereno ny fanamboarana — tsy averina ny dingana efa vita.",
+      "Raha tsy mahomby indroa, sokafy ny diarin’asa; ny andalana farany no milaza ilay dingana."
+    ],
+    "lead": "Tsy nisy fanovana nofoanana mangingina — mijanona eo amin’izay nijanonany ny OpenAmer, ka manohy eo rehefa alefa fanindroany.",
+    "leadUpdate": "Mbola amin’ny kinova teo aloha ny OpenAmer ary mbola miasa. Tsy nisy nosoloina tapany.",
+    "log": "Diarin’asa",
+    "openLogs": "Sokafy ny diarin’asa",
+    "retry": "Andramo indray",
+    "retryUpdate": "Avereno ny fanavaozana",
+    "title": "Tsy vita ny fanamboarana",
+    "titleUpdate": "Tsy vita ny fanavaozana"
+  },
+  "language": {
+    "continue": "Tohizo",
+    "lead": "Hitohy amin’ny fiteny fidinao eto ny fanamboarana. Azonao ovana ao amin’ny rindranasa izany any aoriana.",
+    "search": "Karohy ny fiteny",
+    "title": "Fidio ny fiteninao"
+  },
+  "progress": {
+    "cancel": "Aoka ihany",
+    "done": "Vonona",
+    "hideDetails": "Afeno ny antsipiriany",
+    "lead": "Fanamboarana indray mandeha: maka izay ilainy ny OpenAmer ary manamboatra ity solosaina ity. Tsy haverina izany rehefa alefa any aoriana.",
+    "leadUpdate": "Manolo ny kinova teo aloha ny OpenAmer. Tsy ovana ny fotoam-piasanao, ny fitadidiana ary ny kiranao.",
+    "lines": "andalana",
+    "liveOutput": "Vokatra mivantana",
+    "showDetails": "Asehoy ny antsipiriany",
+    "stepsComplete": "Dingana {done} amin’ny {total} no vita",
+    "title": "Manamboatra OpenAmer",
+    "titleUpdate": "Manavao OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Manamarika fa vita ny fametrahana",
+    "config-templates": "Manoratra ny môdelin’ny kira",
+    "configure": "Mandrindra ny fanalahidy API sy ny maodely",
+    "dependencies": "Mametraka ny fiankinan’ny Python",
+    "desktop": "Manangana ny rindranasan’ny solosaina",
+    "gateway": "Manomboka ny vavahadin’ny hafatra",
+    "git": "Mametraka Git",
+    "handoff": "Miomana hanavao",
+    "install": "Mametraka ny fanavaozana",
+    "node": "Mitady Node.js",
+    "node-deps": "Mametraka ny fiankinan’ny Node.js",
+    "path": "Manampy OpenAmer ao amin’ny PATH",
+    "platform-sdks": "Mametraka ny SDK an’ny sehatra fandefasan-kafatra",
+    "python": "Manamarina Python",
+    "rebuild": "Manangana indray ny rindranasan’ny solosaina",
+    "repository": "Mandika ny tahirin-kaodin’ny OpenAmer",
+    "system-packages": "Mametraka ripgrep sy ffmpeg",
+    "update": "Maka ny kinova farany",
+    "uv": "Mametraka ny mpitantana fonosana uv",
+    "venv": "Mamorona ny tontolo virtoaly Python"
+  },
+  "stepper": {
+    "done": "Vonona",
+    "install": "Apetraho",
+    "language": "Fiteny",
+    "update": "Havaozy",
+    "welcome": "Tongasoa"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Sokafy ny rindranasa ary farito izay tianao hatao. Miasa ao ambadika ny OpenAmer ary mitatitra ny vokatra.",
+        "title": "Atombohy amin’ny fehezanteny"
+      },
+      {
+        "body": "Kira → Fampisehoana → Fiteny. Safidy fiteny sy faritra 186, azo ovana amin’ny fotoana rehetra.",
+        "title": "Fidio ny fiteninao"
+      },
+      {
+        "body": "Lasa fahaiza-manao ny asa miverimberina — baiko iray sisa no ilaina amin’ny manaraka.",
+        "title": "Avelao izy hitadidy"
+      }
+    ],
+    "command": "na alefaso any aoriana avy amin’ny terminaly:",
+    "cta": "Alefaso OpenAmer",
+    "errorTitle": "Tsy afaka nandefa ny rindranasan’ny solosaina",
+    "launching": "Mandefa",
+    "lead": "Efa vonona ny zava-drehetra. Anao izao ny OpenAmer — eto amin’ity solosaina ity, amin’ny fiteninao.",
+    "title": "Vonona ny OpenAmer"
+  },
+  "welcome": {
+    "bullets": [
+      "Miasa eto an-toerana — mijanona eto amin’ity solosaina ity ny resakao",
+      "Fiteny 186, anisan’izany ny soratra vakinao",
+      "Azo ovana any aoriana ny zava-drehetra; tsy misy raikitra"
+    ],
+    "cta": "Apetraho",
+    "ctaUpdate": "Havaozy izao",
+    "kicker": "Fanamboarana indray mandeha",
+    "lead": "Ny mpanampinao manokana. Amin’ny fitaovanao. Amin’ny fiteninao.",
+    "leadUpdate": "Vonona ny kinova vaovao kokoa an’ny OpenAmer. Hisolo ny kinova teo aloha izy io ary hitahiry ny fotoam-piasana sy ny kira rehetra.",
+    "note": "Maharitra minitra vitsy amin’ny fifandraisana mahazatra.",
+    "title": "Tongasoa eto amin’ny OpenAmer",
+    "titleUpdate": "Havaozy OpenAmer"
+  }
+}

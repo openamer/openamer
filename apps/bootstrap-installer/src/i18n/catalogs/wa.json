@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer aprestêye ene bouye, l' execute avou des vrais usteyes — terminå, betchteu, fitchîs, côde — et wåde çou k' a roté.",
+      "title": "On adjint ki tuze avou vos"
+    },
+    {
+      "body": "Les copinaedjes, li memwere et les modeles dimorèt so ciste éndjin ci. I gn a rén d' evoyî tant k' vos nel dimandez nén.",
+      "title": "Vosse éndjin, vos dnêyes"
+    },
+    {
+      "body": "186 lingaedjes, tchaeke avou l' sicripture ki vos lijhoz. Li prumî waitroûle do programe vos dimande li ké.",
+      "title": "Vosse lingaedje, comifåt"
+    },
+    {
+      "body": "Les saveurs fé sont wårdés a pårti del bouye li minme, po ki les bouyes di tos les djoûs prindixhe di moens en moens di tins.",
+      "title": "Des capåcités ki crexhèt"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Verifyîz ki ciste éndjin ci pout s' raloyî al Daegntoele.",
+      "Renondez l' astalaedje — les etapes dedja fwaite ni seront nén rfwaites.",
+      "Si ça fale deus côps, drovoz les djournås ; les dierinnès royes dijhèt li kéne etape."
+    ],
+    "lead": "Nou candjmint n' a stî disfwait sins vos l' dire — OpenAmer s' arestêye la k' il a stî djusk' asteure, et li côp d' après riprind di dila.",
+    "leadUpdate": "OpenAmer est todi sol modêye di dvant et continouwe di roter. Rén n' a stî replaecî a mitan.",
+    "log": "Djournå",
+    "openLogs": "Drovi les djournås",
+    "retry": "Rissayî",
+    "retryUpdate": "Rissayî li metaedje a djoû",
+    "title": "L' astalaedje n' est nén fini",
+    "titleUpdate": "Li metaedje a djoû n' est nén fini"
+  },
+  "language": {
+    "continue": "Continouwer",
+    "lead": "L' astalaedje continouwe dins l' lingaedje ki vos tchoezixhoz chal. Vos l' pôroz candjî pus tård dins l' programe.",
+    "search": "Cweri des lingaedjes",
+    "title": "Tchoezi vosse lingaedje"
+  },
+  "progress": {
+    "cancel": "Rinoncî",
+    "done": "Presse",
+    "hideDetails": "Catchî les detays",
+    "lead": "Astalaedje on seul côp : OpenAmer aberwete çou k' i lyi fåt et apontia ciste éndjin ci. Les côps d' après, tot çoula serè passé.",
+    "leadUpdate": "OpenAmer replaecêye li modêye di dvant. Vos sessions, vosse memwere et vos apontiaedjes ni candjèt nén.",
+    "lines": "royes",
+    "liveOutput": "Rexhowe e direk",
+    "showDetails": "Mostrer les detays",
+    "stepsComplete": "{done} etapes fwaites so {total}",
+    "title": "Astalaedje d' OpenAmer",
+    "titleUpdate": "Metaedje a djoû d' OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Marcaedje di l' astalaedje come fini",
+    "config-templates": "Sicrijhaedje des modeles d' apontiaedje",
+    "configure": "Apontiaedje des clés API et des modeles",
+    "dependencies": "Astalaedje des depindances Python",
+    "desktop": "Bastixhaedje do programe di scribanne",
+    "gateway": "Enondaedje del passele di messaedjreye",
+    "git": "Astalaedje di Git",
+    "handoff": "Aprestaedje do metaedje a djoû",
+    "install": "Astalaedje do metaedje a djoû",
+    "node": "Deteccion di Node.js",
+    "node-deps": "Astalaedje des depindances Node.js",
+    "path": "Radjoutaedje d' OpenAmer a PATH",
+    "platform-sdks": "Astalaedje des SDK des platfôrmes di messaedjreye",
+    "python": "Verifiaedje di Python",
+    "rebuild": "Ribastixhaedje do programe di scribanne",
+    "repository": "Clônaedje do depot OpenAmer",
+    "system-packages": "Astalaedje di ripgrep et ffmpeg",
+    "update": "Aberwetaedje del dierinne modêye",
+    "uv": "Astalaedje do manaedjeu di pacaedjes uv",
+    "venv": "Ahivaedje di l' evironmint virtouwel Python"
+  },
+  "stepper": {
+    "done": "Presse",
+    "install": "Astaler",
+    "language": "Lingaedje",
+    "update": "Mete a djoû",
+    "welcome": "Bénvnowe"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Drovoz l' programe et discrijhoz çou k' vos vloz fé. OpenAmer overe e fond et vos rinde conte.",
+        "title": "Atakîz avou ene frase"
+      },
+      {
+        "body": "Apontiaedjes → Håynaedje → Lingaedje. 186 lingaedjes, a candjî cwand k' vos vloz.",
+        "title": "Tchoezixhoz vosse lingaedje"
+      },
+      {
+        "body": "Ene bouye ki rvént divént on saveur fé — li côp d' après, ene seule comande sufît.",
+        "title": "Leyîz l' si sovni"
+      }
+    ],
+    "command": "ou enondez l' pus tård d' on terminå :",
+    "cta": "Enonder OpenAmer",
+    "errorTitle": "Dji n' a savou enonder li programe di scribanne",
+    "launching": "Enondaedje",
+    "lead": "Tot est e plaece. OpenAmer est asteure da vosse — so ciste éndjin ci, dins vosse lingaedje.",
+    "title": "OpenAmer est presse"
+  },
+  "welcome": {
+    "bullets": [
+      "Rote locålmint — vos copinaedjes dimorèt so ciste éndjin ci",
+      "186 lingaedjes, avou l' sicripture ki vos lijhoz",
+      "Tot pout esse candjî pus tård ; rén n' est definitif"
+    ],
+    "cta": "Astaler",
+    "ctaUpdate": "Mete a djoû asteure",
+    "kicker": "Astalaedje on seul côp",
+    "lead": "Vosse prôpe adjint. So vosse éndjin. Dins vosse lingaedje.",
+    "leadUpdate": "Ene novele modêye d' OpenAmer est presse. Ele replaecêye li modêye di dvant et wåde totes les sessions et tos les apontiaedjes.",
+    "note": "Ça prind kékes munutes avou on raloyaedje normå.",
+    "title": "Bénvnowe dins OpenAmer",
+    "titleUpdate": "Mete OpenAmer a djoû"
+  }
+}

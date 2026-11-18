@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer wuxuu qorsheeyaa hawl, wuxuu ku fuliyaa qalab dhab ah — khadka amarrada, biraawsar, faylal, koodh — wuxuuna xafidaa wixii shaqeeyay.",
+      "title": "Kaaliye kula fikira"
+    },
+    {
+      "body": "Wada sheekaysiga, xusuusta iyo moodelladu waxay ku jiraan kombiyuutarkan. Waxba lama geliyo internetka ilaa aad codsato.",
+      "title": "Qalabkaaga, xogtaada"
+    },
+    {
+      "body": "186 luqadood, mid walba farta aad dhab ahaan akhrido. Shaashadda koowaad ee abka ayaa ku weydiinaysa midda aad rabto.",
+      "title": "Luqaddaada, si sax ah"
+    },
+    {
+      "body": "Xirfadaha waxaa laga kaydiyaa shaqada lafteeda, sidaas darteed hawlaha maalinlaha ahi way soo gaabtaan mar kasta oo aad isticmaasho.",
+      "title": "Awood sii kobcaysa"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Hubi in kombiyuutarkani geli karo internetka.",
+      "Mar kale socodsii dejinta — tallaabooyinka dhammaaday laguma celinayo.",
+      "Haddii ay laba jeer fashilanto, fur diiwaannada; sadarrada ugu dambeeya ayaa sheegaya tallaabada."
+    ],
+    "lead": "Wax isbeddel ah si qarsoodi ah looma celin — OpenAmer wuxuu ku hakadaa halkii uu joogay, sidaas darteed socodsiinta xigta ayaa halkaas ka sii wadaysa.",
+    "leadUpdate": "OpenAmer weli wuxuu ku jiraa noocii hore wuuna shaqaynayaa. Waxba nus ahaan looma beddelin.",
+    "log": "Diiwaan",
+    "openLogs": "Fur diiwaannada",
+    "retry": "Mar kale isku day",
+    "retryUpdate": "Mar kale isku day cusboonaysiinta",
+    "title": "Dejintu ma dhammaan",
+    "titleUpdate": "Cusboonaysiintu ma dhammaan"
+  },
+  "language": {
+    "continue": "Sii wad",
+    "lead": "Dejintu waxay ku sii soconaysaa luqadda aad halkan ku doorato. Mar dambe ayaad abka ka beddeli kartaa.",
+    "search": "Raadi luqadaha",
+    "title": "Dooro luqaddaada"
+  },
+  "progress": {
+    "cancel": "Jooji",
+    "done": "Diyaar",
+    "hideDetails": "Qari faahfaahinta",
+    "lead": "Dejin hal mar ah: OpenAmer wuxuu soo dejinayaa waxa uu u baahan yahay, wuxuuna habaynayaa kombiyuutarkan. Furitaannada dambe intaas oo dhan way ka boodaan.",
+    "leadUpdate": "OpenAmer wuxuu beddelayaa noocii hore. Fadhiyadaada, xusuustaada iyo dejimahaaga lama taabanayo.",
+    "lines": "sadar",
+    "liveOutput": "Wax-soo-saarka tooska ah",
+    "showDetails": "Muuji faahfaahinta",
+    "stepsComplete": "{done} ka mid ah {total} tallaabo ayaa dhammaaday",
+    "title": "Dejinta OpenAmer",
+    "titleUpdate": "Cusboonaysiinta OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Rakibidda oo loo calaamadinayo inay dhammaatay",
+    "config-templates": "Qorista qaababka habaynta",
+    "configure": "Habaynta furayaasha API iyo moodellada",
+    "dependencies": "Rakibidda waxyaabaha Python ku tiirsan yahay",
+    "desktop": "Dhisidda abka kombiyuutarka",
+    "gateway": "Bilaabidda marinka farriimaha",
+    "git": "Rakibidda Git",
+    "handoff": "Diyaarinta cusboonaysiinta",
+    "install": "Rakibidda cusboonaysiinta",
+    "node": "Ogaanshaha Node.js",
+    "node-deps": "Rakibidda waxyaabaha Node.js ku tiirsan yahay",
+    "path": "Ku darista OpenAmer ee PATH",
+    "platform-sdks": "Rakibidda SDK-yada madallada farriimaha",
+    "python": "Xaqiijinta Python",
+    "rebuild": "Dib u dhisidda abka kombiyuutarka",
+    "repository": "Nuqul ka samaynta kaydka OpenAmer",
+    "system-packages": "Rakibidda ripgrep iyo ffmpeg",
+    "update": "Soo dejinta nooca ugu dambeeya",
+    "uv": "Rakibidda maamulaha xirmooyinka uv",
+    "venv": "Abuurista deegaanka dalwaddii ee Python"
+  },
+  "stepper": {
+    "done": "Diyaar",
+    "install": "Rakib",
+    "language": "Luqad",
+    "update": "Cusboonaysii",
+    "welcome": "Soo dhowow"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Fur abka oo sharax waxa aad rabto in la qabto. OpenAmer wuxuu ka shaqeeyaa gadaal, dabadeedna wuu kuu soo sheegaa.",
+        "title": "Ku bilow jumlad"
+      },
+      {
+        "body": "Dejimaha → Muuqaalka → Luqadda. 186 luqadood iyo deegaan, waadna beddeli kartaa wakhti kasta.",
+        "title": "Dooro luqaddaada"
+      },
+      {
+        "body": "Shaqada soo noqnoqota waxay noqotaa xirfad — marka xigta waxay u baahan tahay hal amar.",
+        "title": "U oggolow inuu xusuusto"
+      }
+    ],
+    "command": "ama mar dambe ka bilow khadka amarrada:",
+    "cta": "Fur OpenAmer",
+    "errorTitle": "Lama furi karin abka kombiyuutarka",
+    "launching": "Furaya",
+    "lead": "Wax walba waa diyaar. OpenAmer hadda adigaa leh — kombiyuutarkan, luqaddaada.",
+    "title": "OpenAmer waa diyaar"
+  },
+  "welcome": {
+    "bullets": [
+      "Wuxuu ku shaqeeyaa kombiyuutarkaaga — wada sheekaysigaagu halkan ayuu joogayaa",
+      "186 luqadood, oo ay ku jirto farta aad akhrido",
+      "Wax walba mar dambe waa la beddeli karaa; wax joogto ahi ma jiraan"
+    ],
+    "cta": "Rakib",
+    "ctaUpdate": "Hadda cusboonaysii",
+    "kicker": "Dejin hal mar ah",
+    "lead": "Kaaliyahaaga gaarka ah. Qalabkaaga. Luqaddaada.",
+    "leadUpdate": "Nooc cusub oo OpenAmer ah ayaa diyaar ah. Wuxuu beddelayaa noocii hore, wuxuuna ilaalinayaa fadhi iyo dejin kasta.",
+    "note": "Waxay qaadanaysaa dhowr daqiiqo haddii xiriirku caadi yahay.",
+    "title": "Ku soo dhowow OpenAmer",
+    "titleUpdate": "Cusboonaysii OpenAmer"
+  }
+}

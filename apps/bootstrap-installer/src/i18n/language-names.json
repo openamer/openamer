@@ -311,37 +311,225 @@
     "endonym": "Kikongo",
     "englishName": "Kongo"
   },
+  "ki": {
+    "endonym": "Gĩkũyũ",
+    "englishName": "Kikuyu"
+  },
+  "kj": {
+    "endonym": "Kuanyama",
+    "englishName": "Kuanyama"
+  },
+  "kk": {
+    "endonym": "Қазақша",
+    "englishName": "Kazakh"
+  },
+  "kl": {
+    "endonym": "Kalaallisut",
+    "englishName": "Kalaallisut"
+  },
+  "km": {
+    "endonym": "ខ្មែរ",
+    "englishName": "Khmer"
+  },
+  "kn": {
+    "endonym": "ಕನ್ನಡ",
+    "englishName": "Kannada"
+  },
   "ko": {
     "endonym": "한국어",
     "englishName": "Korean"
+  },
+  "kr": {
+    "endonym": "Kanuri",
+    "englishName": "Kanuri"
+  },
+  "ks": {
+    "endonym": "کٲشُر",
+    "englishName": "Kashmiri"
+  },
+  "ku": {
+    "endonym": "Kurdî",
+    "englishName": "Kurdish"
+  },
+  "kv": {
+    "endonym": "Komi",
+    "englishName": "Komi"
+  },
+  "kw": {
+    "endonym": "Cornish",
+    "englishName": "Cornish"
+  },
+  "ky": {
+    "endonym": "Кыргызча",
+    "englishName": "Kyrgyz"
+  },
+  "la": {
+    "endonym": "Latina",
+    "englishName": "Latin"
+  },
+  "lb": {
+    "endonym": "Lëtzebuergesch",
+    "englishName": "Luxembourgish"
+  },
+  "lg": {
+    "endonym": "Luganda",
+    "englishName": "Ganda"
+  },
+  "li": {
+    "endonym": "Limburgish",
+    "englishName": "Limburgish"
+  },
+  "ln": {
+    "endonym": "Lingála",
+    "englishName": "Lingala"
+  },
+  "lo": {
+    "endonym": "ລາວ",
+    "englishName": "Lao"
   },
   "lt": {
     "endonym": "Lietuvių",
     "englishName": "Lithuanian"
   },
+  "lu": {
+    "endonym": "Tshiluba",
+    "englishName": "Luba-Katanga"
+  },
   "lv": {
     "endonym": "Latviešu",
     "englishName": "Latvian"
+  },
+  "mg": {
+    "endonym": "Malagasy",
+    "englishName": "Malagasy"
+  },
+  "mh": {
+    "endonym": "Kajin M̧ajeļ",
+    "englishName": "Marshallese"
+  },
+  "mi": {
+    "endonym": "Te Reo Māori",
+    "englishName": "Maori"
   },
   "mk": {
     "endonym": "Македонски",
     "englishName": "Macedonian"
   },
+  "ml": {
+    "endonym": "മലയാളം",
+    "englishName": "Malayalam"
+  },
+  "mn": {
+    "endonym": "Монгол",
+    "englishName": "Mongolian"
+  },
+  "mr": {
+    "endonym": "मराठी",
+    "englishName": "Marathi"
+  },
+  "ms": {
+    "endonym": "Bahasa Melayu",
+    "englishName": "Malay"
+  },
+  "mt": {
+    "endonym": "Malti",
+    "englishName": "Maltese"
+  },
+  "my": {
+    "endonym": "မြန်မာ",
+    "englishName": "Burmese"
+  },
+  "na": {
+    "endonym": "Dorerin Naoero",
+    "englishName": "Nauru"
+  },
   "nb": {
     "endonym": "Norwegian Bokmal",
     "englishName": "Norwegian Bokmal"
+  },
+  "nd": {
+    "endonym": "isiNdebele",
+    "englishName": "North Ndebele"
+  },
+  "ne": {
+    "endonym": "नेपाली",
+    "englishName": "Nepali"
+  },
+  "ng": {
+    "endonym": "Ndonga",
+    "englishName": "Ndonga"
   },
   "nl": {
     "endonym": "Nederlands",
     "englishName": "Dutch"
   },
+  "nn": {
+    "endonym": "Norwegian Nynorsk",
+    "englishName": "Norwegian Nynorsk"
+  },
+  "no": {
+    "endonym": "Norsk",
+    "englishName": "Norwegian"
+  },
+  "nr": {
+    "endonym": "isiNdebele",
+    "englishName": "South Ndebele"
+  },
+  "nv": {
+    "endonym": "Diné bizaad",
+    "englishName": "Navajo"
+  },
+  "ny": {
+    "endonym": "Chichewa",
+    "englishName": "Chichewa"
+  },
+  "oc": {
+    "endonym": "Occitan",
+    "englishName": "Occitan"
+  },
+  "om": {
+    "endonym": "Afaan Oromoo",
+    "englishName": "Oromo"
+  },
+  "or": {
+    "endonym": "ଓଡ଼ିଆ",
+    "englishName": "Oriya"
+  },
+  "os": {
+    "endonym": "Ирон",
+    "englishName": "Ossetian"
+  },
+  "pa": {
+    "endonym": "ਪੰਜਾਬੀ",
+    "englishName": "Punjabi"
+  },
+  "pi": {
+    "endonym": "पालि",
+    "englishName": "Pali"
+  },
   "pl": {
     "endonym": "Polski",
     "englishName": "Polish"
   },
+  "ps": {
+    "endonym": "پښتو",
+    "englishName": "Pashto"
+  },
   "pt": {
     "endonym": "Português",
     "englishName": "Portuguese"
+  },
+  "qu": {
+    "endonym": "Runa Simi",
+    "englishName": "Quechua"
+  },
+  "rm": {
+    "endonym": "Rumantsch",
+    "englishName": "Romansh"
+  },
+  "rn": {
+    "endonym": "Ikirundi",
+    "englishName": "Kirundi"
   },
   "ro": {
     "endonym": "Română",
@@ -351,6 +539,34 @@
     "endonym": "Русский",
     "englishName": "Russian"
   },
+  "rw": {
+    "endonym": "Ikinyarwanda",
+    "englishName": "Kinyarwanda"
+  },
+  "sa": {
+    "endonym": "संस्कृतम्",
+    "englishName": "Sanskrit"
+  },
+  "sc": {
+    "endonym": "Sardu",
+    "englishName": "Sardinian"
+  },
+  "sd": {
+    "endonym": "سنڌي",
+    "englishName": "Sindhi"
+  },
+  "se": {
+    "endonym": "Davvisámegiella",
+    "englishName": "Northern Sami"
+  },
+  "sg": {
+    "endonym": "Sängö",
+    "englishName": "Sango"
+  },
+  "si": {
+    "endonym": "සිංහල",
+    "englishName": "Sinhala"
+  },
   "sk": {
     "endonym": "Slovenčina",
     "englishName": "Slovak"
@@ -358,6 +574,18 @@
   "sl": {
     "endonym": "Slovenščina",
     "englishName": "Slovenian"
+  },
+  "sm": {
+    "endonym": "Gagana Samoa",
+    "englishName": "Samoan"
+  },
+  "sn": {
+    "endonym": "chiShona",
+    "englishName": "Shona"
+  },
+  "so": {
+    "endonym": "Soomaali",
+    "englishName": "Somali"
   },
   "sq": {
     "endonym": "Shqip",
@@ -367,25 +595,133 @@
     "endonym": "Српски",
     "englishName": "Serbian"
   },
+  "ss": {
+    "endonym": "siSwati",
+    "englishName": "Swati"
+  },
+  "st": {
+    "endonym": "Sesotho",
+    "englishName": "Southern Sotho"
+  },
+  "su": {
+    "endonym": "Basa Sunda",
+    "englishName": "Sundanese"
+  },
   "sv": {
     "endonym": "Svenska",
     "englishName": "Swedish"
+  },
+  "sw": {
+    "endonym": "Kiswahili",
+    "englishName": "Swahili"
+  },
+  "ta": {
+    "endonym": "தமிழ்",
+    "englishName": "Tamil"
+  },
+  "te": {
+    "endonym": "తెలుగు",
+    "englishName": "Telugu"
+  },
+  "tg": {
+    "endonym": "Тоҷикӣ",
+    "englishName": "Tajik"
   },
   "th": {
     "endonym": "ไทย",
     "englishName": "Thai"
   },
+  "ti": {
+    "endonym": "ትግርኛ",
+    "englishName": "Tigrinya"
+  },
+  "tk": {
+    "endonym": "Türkmençe",
+    "englishName": "Turkmen"
+  },
+  "tl": {
+    "endonym": "Tagalog",
+    "englishName": "Tagalog"
+  },
+  "tn": {
+    "endonym": "Setswana",
+    "englishName": "Tswana"
+  },
+  "to": {
+    "endonym": "Lea faka-Tonga",
+    "englishName": "Tonga"
+  },
   "tr": {
     "endonym": "Türkçe",
     "englishName": "Turkish"
+  },
+  "ts": {
+    "endonym": "Xitsonga",
+    "englishName": "Tsonga"
+  },
+  "tt": {
+    "endonym": "Татарча",
+    "englishName": "Tatar"
+  },
+  "tw": {
+    "endonym": "Twi",
+    "englishName": "Twi"
+  },
+  "ty": {
+    "endonym": "Reo Tahiti",
+    "englishName": "Tahitian"
+  },
+  "ug": {
+    "endonym": "ئۇيغۇرچە",
+    "englishName": "Uyghur"
   },
   "uk": {
     "endonym": "Українська",
     "englishName": "Ukrainian"
   },
+  "ur": {
+    "endonym": "اردو",
+    "englishName": "Urdu"
+  },
+  "uz": {
+    "endonym": "Oʻzbekcha",
+    "englishName": "Uzbek"
+  },
+  "ve": {
+    "endonym": "Tshivenḓa",
+    "englishName": "Venda"
+  },
   "vi": {
     "endonym": "Tiếng Việt",
     "englishName": "Vietnamese"
+  },
+  "vo": {
+    "endonym": "Volapük",
+    "englishName": "Volapuk"
+  },
+  "wa": {
+    "endonym": "Walon",
+    "englishName": "Walloon"
+  },
+  "wo": {
+    "endonym": "Wolof",
+    "englishName": "Wolof"
+  },
+  "xh": {
+    "endonym": "isiXhosa",
+    "englishName": "Xhosa"
+  },
+  "yi": {
+    "endonym": "ייִדיש",
+    "englishName": "Yiddish"
+  },
+  "yo": {
+    "endonym": "Yorùbá",
+    "englishName": "Yoruba"
+  },
+  "za": {
+    "endonym": "Vahcuengh",
+    "englishName": "Zhuang"
   },
   "zh": {
     "endonym": "简体中文",
@@ -394,5 +730,9 @@
   "zh-hant": {
     "endonym": "繁體中文",
     "englishName": "Traditional Chinese"
+  },
+  "zu": {
+    "endonym": "isiZulu",
+    "englishName": "Zulu"
   }
 }

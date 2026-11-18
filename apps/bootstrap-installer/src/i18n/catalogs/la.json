@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer planat munus, exsequitur cum instrumentis realibus — terminale, navigatorem, fasciculi, codicem — et servat quod operatur.",
+      "title": "Agens qui cogitat simul"
+    },
+    {
+      "body": "Conversationes, memoria et exemplar vivunt in hac machina. Nihil uploadatur nisi petis.",
+      "title": "Hardware tuum, data tua"
+    },
+    {
+      "body": "186 linguae, una in scriptura quam vere legis. Prima mensura app quaerit quaenam.",
+      "title": "Lingua tua, recte"
+    },
+    {
+      "body": "Artes a opere ipsis servantur, ita cotidie munera breviorem fiunt quanto diutius utaris.",
+      "title": "Capacitas crescit"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Verifica machinam hanc ad interrete accedere.",
+      "Reexecute configurationem — gradus finiti non iterantur.",
+      "Si bis fallit, aperi logos; ultimae lineae gradum nominant."
+    ],
+    "lead": "Nullae mutationes tacite revertuntur — OpenAmer desinit ubi cessavit, ita secunda ex eo continuatur.",
+    "leadUpdate": "OpenAmer adhuc in praecedenti versione est et operatur. Nihil dimidie substitutum est.",
+    "log": "Log",
+    "openLogs": "Aperi logos",
+    "retry": "Iterum conare",
+    "retryUpdate": "Rerum renovatio iterum",
+    "title": "Configuratio non finita",
+    "titleUpdate": "Renovatio non finita"
+  },
+  "language": {
+    "continue": "Prosecute",
+    "lead": "Configuratio in lingua tua eligitur. Postea mutari potest in app.",
+    "search": "Quaere linguae",
+    "title": "Elige tuam linguam"
+  },
+  "progress": {
+    "cancel": "Cancel",
+    "done": "Paratus",
+    "hideDetails": "Detegere detales",
+    "lead": "Una tantum configuratio: OpenAmer downloadat quod opus est et machinam configurat. Posteriores initia omnia praeterunt.",
+    "leadUpdate": "OpenAmer praecedentem versionem substituit. Sessiones, memoria et configuratio intacts manent.",
+    "lines": "lineae",
+    "liveOutput": "Output vivum",
+    "showDetails": "Monstra detales",
+    "stepsComplete": "{done} ex {total} gradibus completis",
+    "title": "OpenAmer configurans",
+    "titleUpdate": "OpenAmer renovans"
+  },
+  "stages": {
+    "bootstrap-marker": "Installatio finita",
+    "config-templates": "Scribere configurationes",
+    "configure": "Configuratio API clavium et exemplarum",
+    "dependencies": "Installa Python dependentias",
+    "desktop": "Construere app desktop",
+    "gateway": "Incipere gateway communicationis",
+    "git": "Installa Git",
+    "handoff": "Parare ad renovandum",
+    "install": "Installa renovatio",
+    "node": "Detectare Node.js",
+    "node-deps": "Installa Node.js dependentias",
+    "path": "Addere OpenAmer ad PATH",
+    "platform-sdks": "Installa SDKs platformae communicationis",
+    "python": "Verificare Python",
+    "rebuild": "Reconstructio app desktop",
+    "repository": "Clonare repository OpenAmer",
+    "system-packages": "Installa ripgrep et ffmpeg",
+    "update": "Downloadare ultimam versionem",
+    "uv": "Installa uv package manager",
+    "venv": "Creare environment virtuale Python"
+  },
+  "stepper": {
+    "done": "Paratus",
+    "install": "Installa",
+    "language": "Lingua",
+    "update": "Renovatio",
+    "welcome": "Salve"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Aperi app et describere quid vis facere. OpenAmer in background operatur et responsum dat.",
+        "title": "Incipe cum sententia"
+      },
+      {
+        "body": "Settings → Display → Language. 186 locales, mutabiles quocumque tempore.",
+        "title": "Elige tuam linguam"
+      },
+      {
+        "body": "Operatio recurrens fit arte — postea unam instructionem accipit.",
+        "title": "Permitte memorare"
+      }
+    ],
+    "command": "vel initium de terminale:",
+    "cta": "Lance OpenAmer",
+    "errorTitle": "Non potuit app desktop lanciari",
+    "launching": "Lanciando",
+    "lead": "Omnia in loco sunt. OpenAmer nunc tibi est — in hac machina, in tua lingua.",
+    "title": "OpenAmer paratus"
+  },
+  "welcome": {
+    "bullets": [
+      "Operatur localiter — conversationes tuae in hac machina manent",
+      "186 linguae, inclusa scriptura quam legis",
+      "Omnia postea mutari possunt; nihil permanet"
+    ],
+    "cta": "Installa",
+    "ctaUpdate": "Renovare nunc",
+    "kicker": "Una tantum configuratio",
+    "lead": "Tuus agent. In hardware tuo. In tua lingua.",
+    "leadUpdate": "Nova OpenAmer parata. Hoc praecedentem versionem substituit et omnem sessionem et configurationem servat.",
+    "note": "Pauca minuta in conexione normalis",
+    "title": "Salve in OpenAmer",
+    "titleUpdate": "Renovare OpenAmer"
+  }
+}

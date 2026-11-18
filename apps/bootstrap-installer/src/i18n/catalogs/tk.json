@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer işi meýilleşdirýär, ony hakyky gurallar — terminal, brauzer, faýllar, kod — bilen ýerine ýetirýär we peýda beren zatlary ýatda saklaýar.",
+      "title": "Siziň bilen bile pikirlenýän agent"
+    },
+    {
+      "body": "Söhbetler, ýat we modeller şu kompýuterde saklanýar. Siz soramasaňyz, hiç zat ýüklenmeýär.",
+      "title": "Öz enjamyňyz, öz maglumatlaryňyz"
+    },
+    {
+      "body": "186 dil, her biri siziň okaýan ýazuwyňyzda. Programmanyň ilkinji ekrany dili saýlamagy soraýar.",
+      "title": "Öz diliňiz, bolmalysy ýaly"
+    },
+    {
+      "body": "Başarnyklar işiň özünden ýatda saklanýar, şonuň üçin näçe köp ulansaňyz, gündelik işler şonça az wagt alýar.",
+      "title": "Ösýän mümkinçilikler"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Bu kompýuteriň internete birigip bilýändigini barlaň.",
+      "Gurnamany täzeden işlediň — tamamlanan ädimler gaýtalanmaz.",
+      "Iki gezek şowsuz bolsa, žurnallary açyň; soňky setirlerde ädimiň ady görkezilýär."
+    ],
+    "lead": "Hiç bir üýtgetme duýdurmazdan yzyna gaýtarylmady — OpenAmer duran ýerinde galýar, şonuň üçin gaýtadan işledilende şol ýerden dowam edýär.",
+    "leadUpdate": "OpenAmer öňki wersiýasynda galýar we işlemegini dowam etdirýär. Hiç zat ýarym çalşylmady.",
+    "log": "Žurnal",
+    "openLogs": "Žurnallary aç",
+    "retry": "Gaýtadan synanyş",
+    "retryUpdate": "Täzelemäni gaýtadan synanyş",
+    "title": "Gurnama tamamlanmady",
+    "titleUpdate": "Täzeleme tamamlanmady"
+  },
+  "language": {
+    "continue": "Dowam et",
+    "lead": "Gurnama şu ýerde saýlan diliňizde dowam eder. Ony soň programmada üýtgedip bilersiňiz.",
+    "search": "Dilleri gözle",
+    "title": "Diliňizi saýlaň"
+  },
+  "progress": {
+    "cancel": "Ýatyr",
+    "done": "Taýýar",
+    "hideDetails": "Jikme-jiklikleri gizle",
+    "lead": "Bir gezeklik gurnama: OpenAmer zerur zatlaryny göçürip alýar we bu kompýuteri sazlaýar. Soňky açylyşlarda bularyň hiç biri gaýtalanmaz.",
+    "leadUpdate": "OpenAmer öňki wersiýany çalyşýar. Seanslaryňyz, ýadyňyz we sazlamalaryňyz üýtgemez.",
+    "lines": "setir",
+    "liveOutput": "Göni çykyş",
+    "showDetails": "Jikme-jiklikleri görkez",
+    "stepsComplete": "{done} / {total} ädim tamamlandy",
+    "title": "OpenAmer gurnalýar",
+    "titleUpdate": "OpenAmer täzelenýär"
+  },
+  "stages": {
+    "bootstrap-marker": "Gurnama tamamlandy diýlip bellenýär",
+    "config-templates": "Sazlama şablonlary ýazylýar",
+    "configure": "API açarlary we modeller sazlanýar",
+    "dependencies": "Python baglylyklary gurnalýar",
+    "desktop": "Iş stoly programmasy gurulýar",
+    "gateway": "Habarlaşma şlýuzy işe girizilýär",
+    "git": "Git gurnalýar",
+    "handoff": "Täzelemäge taýýarlanylýar",
+    "install": "Täzeleme gurnalýar",
+    "node": "Node.js anyklanýar",
+    "node-deps": "Node.js baglylyklary gurnalýar",
+    "path": "OpenAmer PATH-a goşulýar",
+    "platform-sdks": "Habarlaşma platformalarynyň SDK-lary gurnalýar",
+    "python": "Python barlanýar",
+    "rebuild": "Iş stoly programmasy täzeden gurulýar",
+    "repository": "OpenAmer ammary klonlanýar",
+    "system-packages": "ripgrep we ffmpeg gurnalýar",
+    "update": "Iň täze wersiýa göçürilip alynýar",
+    "uv": "uv paket dolandyryjysy gurnalýar",
+    "venv": "Python wirtual gurşawy döredilýär"
+  },
+  "stepper": {
+    "done": "Taýýar",
+    "install": "Gurna",
+    "language": "Dil",
+    "update": "Täzele",
+    "welcome": "Hoş geldiňiz"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Programmany açyň we näme edilmegini isleýändigiňizi düşündiriň. OpenAmer fonda işleýär we netijäni habar berýär.",
+        "title": "Bir sözlem bilen başlaň"
+      },
+      {
+        "body": "Sazlamalar → Görkeziş → Dil. 186 dil sazlamasy, islän wagtyňyz çalşyp bilersiňiz.",
+        "title": "Diliňizi saýlaň"
+      },
+      {
+        "body": "Gaýtalanýan iş başarnyga öwrülýär — indiki gezek bir buýruk ýeterlik.",
+        "title": "Ýatda saklasyn"
+      }
+    ],
+    "command": "ýa-da soň terminaldan işlediň:",
+    "cta": "OpenAmer-i işe giriz",
+    "errorTitle": "Iş stoly programmasyny işe girizip bolmady",
+    "launching": "Işe girizilýär",
+    "lead": "Hemme zat ýerbe-ýer. OpenAmer indi siziňki — şu kompýuterde, öz diliňizde.",
+    "title": "OpenAmer taýýar"
+  },
+  "welcome": {
+    "bullets": [
+      "Ýerli işleýär — söhbetleriňiz şu kompýuterde galýar",
+      "186 dil, şol sanda siziň okaýan ýazuwyňyz",
+      "Hemme zady soň üýtgedip bolýar; hiç zat hemişelik däl"
+    ],
+    "cta": "Gurna",
+    "ctaUpdate": "Häzir täzele",
+    "kicker": "Bir gezeklik gurnama",
+    "lead": "Öz agentiňiz. Öz enjamyňyzda. Öz diliňizde.",
+    "leadUpdate": "OpenAmer-iň täze wersiýasy taýýar. Ol öňki wersiýany çalşyp, ähli seanslary we sazlamalary saklar.",
+    "note": "Adaty birikmede birnäçe minut alýar.",
+    "title": "OpenAmer-e hoş geldiňiz",
+    "titleUpdate": "OpenAmer-i täzele"
+  }
+}

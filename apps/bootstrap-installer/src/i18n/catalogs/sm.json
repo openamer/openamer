@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "E fuafua e OpenAmer se galuega, faatino i meafaigaluega moni — laina poloaiga, su'esu'e upega, faila, tulafono polokalame — ma teu mea na aogā.",
+      "title": "Se sui fesoasoani e mafaufau faatasi ma oe"
+    },
+    {
+      "body": "E teu talanoaga, manatuaga ma fa'ata'ita'iga i lenei masini. E leai se mea e lafo i luga se'i vagana ua e talosaga.",
+      "title": "O au meafaigaluega, o au fa'amaumauga"
+    },
+    {
+      "body": "E 186 gagana, e ta'itasi ma le tusitusiga e te faitau ai. E fesili le lau muamua o le polokalame po o lē fea e te mana'o ai.",
+      "title": "O lau gagana, i le auala sa'o"
+    },
+    {
+      "body": "E teu tomai mai galuega lava ia, ina ia fa'apu'upu'u galuega masani a o fa'aauau ona e fa'aaogāina.",
+      "title": "Tomai e fa'atupula'ia"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Siaki pe mafai e lenei masini ona feso'ota'i i le initaneti.",
+      "Toe fai le fa'atulagaina — e lē toe faia la'asaga ua mae'a.",
+      "Afai e lē manuia fa'alua, tatala fa'amaumauga; o laina mulimuli e ta'u mai ai le la'asaga."
+    ],
+    "lead": "E leai ni suiga na toe fa'afo'i fa'alilolilo — e taofi OpenAmer i le mea na gata ai, ma e fa'aauau ai pe a toe fa'agasolo.",
+    "leadUpdate": "O lo'o fa'aaogā pea e OpenAmer le lomiga muamua ma o lo'o galue pea. E leai se mea na na'o se vaega na sui.",
+    "log": "Fa'amaumauga",
+    "openLogs": "Tatala fa'amaumauga",
+    "retry": "Toe taumafai",
+    "retryUpdate": "Toe taumafai le fa'afouga",
+    "title": "E le'i mae'a le fa'atulagaina",
+    "titleUpdate": "E le'i mae'a le fa'afouga"
+  },
+  "language": {
+    "continue": "Fa'aauau",
+    "lead": "E fa'aauau le fa'atulagaina i le gagana e te filifilia iinei. E mafai ona e suia mulimuli ane i le polokalame.",
+    "search": "Su'e gagana",
+    "title": "Filifili lau gagana"
+  },
+  "progress": {
+    "cancel": "Fa'aleaogā",
+    "done": "Sauni",
+    "hideDetails": "Nana fa'amatalaga",
+    "lead": "Fa'atulagaina e tasi lava le taimi: o lo'o la'u mai e OpenAmer mea e mana'omia ma fa'atulaga lenei masini. E lē toe faia nei mea pe a toe tatala.",
+    "leadUpdate": "O lo'o sui e OpenAmer le lomiga muamua. E lē suia au sauniga, manatuaga ma fa'atulagaga.",
+    "lines": "laina",
+    "liveOutput": "I'uga i le taimi nei",
+    "showDetails": "Fa'aali fa'amatalaga",
+    "stepsComplete": "Ua mae'a la'asaga e {done} mai le {total}",
+    "title": "O lo'o fa'atulaga OpenAmer",
+    "titleUpdate": "O lo'o fa'afou OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "O lo'o fa'ailoga ua mae'a le fa'apipi'iga",
+    "config-templates": "O lo'o tusia mamanu o fa'atulagaga",
+    "configure": "O lo'o fa'atulaga ki API ma fa'ata'ita'iga",
+    "dependencies": "O lo'o fa'apipi'i polokalame lagolago mo Python",
+    "desktop": "O lo'o fausia le polokalame mo le komepiuta",
+    "gateway": "O lo'o amata le faitoto'a o fe'au",
+    "git": "O lo'o fa'apipi'i Git",
+    "handoff": "O lo'o sauni e fa'afou",
+    "install": "O lo'o fa'apipi'i le fa'afouga",
+    "node": "O lo'o su'e Node.js",
+    "node-deps": "O lo'o fa'apipi'i polokalame lagolago mo Node.js",
+    "path": "O lo'o fa'aopoopo OpenAmer i le PATH",
+    "platform-sdks": "O lo'o fa'apipi'i SDK mo faiga o fe'au",
+    "python": "O lo'o fa'amaonia Python",
+    "rebuild": "O lo'o toe fausia le polokalame mo le komepiuta",
+    "repository": "O lo'o kopi le faleteuoloa a OpenAmer",
+    "system-packages": "O lo'o fa'apipi'i ripgrep ma ffmpeg",
+    "update": "O lo'o la'u mai le lomiga fou",
+    "uv": "O lo'o fa'apipi'i le pule o afifi uv",
+    "venv": "O lo'o faia le si'osi'omaga fa'akomepiuta a Python"
+  },
+  "stepper": {
+    "done": "Sauni",
+    "install": "Fa'apipi'i",
+    "language": "Gagana",
+    "update": "Fa'afou",
+    "welcome": "Susu mai"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Tatala le polokalame ma fa'amatala le galuega e te mana'o e fai. E galue OpenAmer i tua ma toe lipoti mai.",
+        "title": "Amata i se fuaiupu"
+      },
+      {
+        "body": "Fa'atulagaga → Fa'aaliga → Gagana. E 186 gagana fa'aitulagi, e mafai ona sui i so'o se taimi.",
+        "title": "Filifili lau gagana"
+      },
+      {
+        "body": "E avea galuega fai soo ma tomai — e tasi lava le poloaiga e mana'omia i le isi taimi.",
+        "title": "Tuu i ai e manatua"
+      }
+    ],
+    "command": "pe amata mulimuli ane mai se laina poloaiga:",
+    "cta": "Tatala OpenAmer",
+    "errorTitle": "Ua lē mafai ona tatala le polokalame mo le komepiuta",
+    "launching": "O lo'o tatala",
+    "lead": "Ua saunia mea uma. Ua fai nei OpenAmer mo oe — i lenei masini, i lau gagana.",
+    "title": "Ua sauni OpenAmer"
+  },
+  "welcome": {
+    "bullets": [
+      "E galue i lau masini — e tumau ai au talanoaga",
+      "E 186 gagana, e aofia ai le tusitusiga e te faitau ai",
+      "E mafai ona suia mea uma mulimuli ane; e leai se mea e tumau"
+    ],
+    "cta": "Fa'apipi'i",
+    "ctaUpdate": "Fa'afou nei",
+    "kicker": "Fa'atulagaina e tasi lava le taimi",
+    "lead": "O lou lava sui fesoasoani. I au meafaigaluega. I lau gagana.",
+    "leadUpdate": "Ua sauni se lomiga fou o OpenAmer. E sui ai le lomiga muamua ae teu uma sauniga ma fa'atulagaga.",
+    "note": "E na'o ni nai minute i se feso'ota'iga masani.",
+    "title": "Susu mai i OpenAmer",
+    "titleUpdate": "Fa'afou OpenAmer"
+  }
+}

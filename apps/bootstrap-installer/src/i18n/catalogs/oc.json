@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer planifica una tasca, l’executa amb d’aisinas realas — terminal, navegador, fichièrs, còdi — e garda çò qu’a foncionat.",
+      "title": "Un agent que pensa amb vos"
+    },
+    {
+      "body": "Las conversacions, la memòria e los modèls demòran sus aquesta maquina. Res es pas enviat sens vòstra demanda.",
+      "title": "Vòstre material, vòstras donadas"
+    },
+    {
+      "body": "186 lengas, caduna dins l’escritura que legissètz. Lo primièr ecran de l’aplicacion vos demanda de ne causir una.",
+      "title": "Vòstra lenga, coma cal"
+    },
+    {
+      "body": "Las competéncias son enregistradas a partir del trabalh meteis : las tascas quotidianas venon mai cortas a mesura que l’utilizatz.",
+      "title": "De capacitats que creisson"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Verificatz qu’aquesta maquina pòt accedir a Internet.",
+      "Tornatz aviar la configuracion — las etapas acabadas son pas repetidas.",
+      "Se fracassa dos còps, dobrissètz los jornals ; las darrièras linhas indican l’etapa."
+    ],
+    "lead": "Cap de cambiament es pas estat anullat en silenci — OpenAmer s’arrèsta ont s’es arrestat, e una segonda execucion reprend d’aquí.",
+    "leadUpdate": "OpenAmer es encara sus la version precedenta e contunha de foncionar. Res es pas estat remplaçat a mitat.",
+    "log": "Jornal",
+    "openLogs": "Dobrir los jornals",
+    "retry": "Tornar ensajar",
+    "retryUpdate": "Tornar ensajar la mesa a jorn",
+    "title": "La configuracion s’es pas acabada",
+    "titleUpdate": "La mesa a jorn s’es pas acabada"
+  },
+  "language": {
+    "continue": "Contunhar",
+    "lead": "La configuracion contunha dins la lenga causida aicí. La poiretz cambiar mai tard dins l’aplicacion.",
+    "search": "Cercar de lengas",
+    "title": "Causissètz vòstra lenga"
+  },
+  "progress": {
+    "cancel": "Anullar",
+    "done": "Prèst",
+    "hideDetails": "Amagar los detalhs",
+    "lead": "Configuracion unica : OpenAmer telecarga çò que li cal e configura aquesta maquina. Los aviaments seguents sautan aquelas etapas.",
+    "leadUpdate": "OpenAmer remplaça la version precedenta. Vòstras sessions, vòstra memòria e vòstres paramètres demòran intactes.",
+    "lines": "linhas",
+    "liveOutput": "Sortida en dirècte",
+    "showDetails": "Mostrar los detalhs",
+    "stepsComplete": "{done} etapas acabadas sus {total}",
+    "title": "Configuracion d’OpenAmer",
+    "titleUpdate": "Mesa a jorn d’OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Marcatge de l’installacion coma acabada",
+    "config-templates": "Escritura dels modèls de configuracion",
+    "configure": "Configuracion de las claus API e dels modèls",
+    "dependencies": "Installacion de las dependéncias Python",
+    "desktop": "Construccion de l’aplicacion de burèu",
+    "gateway": "Aviament de la palanca de messatjariá",
+    "git": "Installacion de Git",
+    "handoff": "Preparacion de la mesa a jorn",
+    "install": "Installacion de la mesa a jorn",
+    "node": "Deteccion de Node.js",
+    "node-deps": "Installacion de las dependéncias Node.js",
+    "path": "Apondon d’OpenAmer a PATH",
+    "platform-sdks": "Installacion dels SDK de las plataformas de messatjariá",
+    "python": "Verificacion de Python",
+    "rebuild": "Reconstruccion de l’aplicacion de burèu",
+    "repository": "Clonatge del depaus OpenAmer",
+    "system-packages": "Installacion de ripgrep e ffmpeg",
+    "update": "Telecargament de la darrièra version",
+    "uv": "Installacion del gestionari de paquets uv",
+    "venv": "Creacion de l’environament virtual Python"
+  },
+  "stepper": {
+    "done": "Prèst",
+    "install": "Installar",
+    "language": "Lenga",
+    "update": "Mesa a jorn",
+    "welcome": "Benvenguda"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Dobrissètz l’aplicacion e descrivètz çò que volètz far. OpenAmer trabalha en rèireplan e vos ne rend compte.",
+        "title": "Començatz amb una frasa"
+      },
+      {
+        "body": "Paramètres → Afichatge → Lenga. 186 lengas, que podètz cambiar quand volètz.",
+        "title": "Causissètz vòstra lenga"
+      },
+      {
+        "body": "Lo trabalh recurrent ven una competéncia — lo còp venent, una comanda sufís.",
+        "title": "Daissatz-lo se remembrar"
+      }
+    ],
+    "command": "o aviatz-lo mai tard dempuèi un terminal :",
+    "cta": "Aviar OpenAmer",
+    "errorTitle": "Impossible d’aviar l’aplicacion de burèu",
+    "launching": "Aviament",
+    "lead": "Tot es en plaça. OpenAmer es ara vòstre — sus aquesta maquina, dins vòstra lenga.",
+    "title": "OpenAmer es prèst"
+  },
+  "welcome": {
+    "bullets": [
+      "Fonciona localament — vòstras conversacions demòran sus aquesta maquina",
+      "186 lengas, amb l’escritura que legissètz",
+      "Tot se pòt cambiar mai tard ; res es pas definitiu"
+    ],
+    "cta": "Installar",
+    "ctaUpdate": "Metre a jorn ara",
+    "kicker": "Configuracion unica",
+    "lead": "Vòstre pròpri agent. Sus vòstre material. Dins vòstra lenga.",
+    "leadUpdate": "Una version mai recenta d’OpenAmer es prèsta. Remplaça la version precedenta e consèrva totas las sessions e totes los paramètres.",
+    "note": "Pren qualques minutas amb una connexion normala.",
+    "title": "Benvenguda dins OpenAmer",
+    "titleUpdate": "Metre a jorn OpenAmer"
+  }
+}

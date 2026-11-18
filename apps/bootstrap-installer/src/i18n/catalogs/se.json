@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer pláne barggu, ollašuhttá dan duohta reaidduiguin — terminála, fierpmádatlogan, fiillat, koda — ja vurke dan mii doaimmai.",
+      "title": "Ageanta mii jurddaša duinna"
+    },
+    {
+      "body": "Ságastallamat, muitu ja modeallat leat dán mašiinnas. Mihkkege ii sáddojuvvo bajás jus it ieš dáhtu dan.",
+      "title": "Du duorggut, du dieđut"
+    },
+    {
+      "body": "186 giela, juohkehaš dan čállinvuogis maid don lohkat. Prográmma vuosttaš šearbma jearrá man válljet.",
+      "title": "Du giella, rievttes láhkai"
+    },
+    {
+      "body": "Dáiddut vurkejuvvojit barggus iežas, nu ahte árgabeaivválaš barggut jotnejuvvojit mađi guhkit geavahat dan.",
+      "title": "Máhttu mii šaddá"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Dárkkis ahte dát mašiidna beassá internehttii.",
+      "Vuolggat heiveheami ođđasit — geargan muttut eai dahkkojuvvo ođđasit.",
+      "Jus dat filte guovtte geardde, raba loggaid; maŋimuš linnját muitalit guđe muddui dat bissehii."
+    ],
+    "lead": "Rievdadusat eai máhcahuvvon čiegusvuođas — OpenAmer bisána dasa gosa bisánii, nu ahte nubbi vuolggadeapmi joatká das.",
+    "leadUpdate": "OpenAmer lea ain ovddit veršuvnnas ja doaimmá ain. Mihkkege ii lonuhuvvon bealohahkii.",
+    "log": "Logga",
+    "openLogs": "Raba loggaid",
+    "retry": "Geahččal ođđasit",
+    "retryUpdate": "Geahččal ođasmahttima ođđasit",
+    "title": "Heiveheapmi ii geargan",
+    "titleUpdate": "Ođasmahttin ii geargan"
+  },
+  "language": {
+    "continue": "Joatkke",
+    "lead": "Heiveheapmi joatká dan gillii maid dás válljet. Sáhtát rievdadit dan maŋŋá prográmmas.",
+    "search": "Oza gielaid",
+    "title": "Vállje iežat giela"
+  },
+  "progress": {
+    "cancel": "Gaskkalduhte",
+    "done": "Gárvvis",
+    "hideDetails": "Čiega dieđuid",
+    "lead": "Oktageardásaš heiveheapmi: OpenAmer viežžá dan maid dárbbaša ja heiveha dán mašiinna. Maŋit vuolggademat njuiket dán badjel.",
+    "leadUpdate": "OpenAmer lonuha ovddit veršuvnna. Du bargovuorut, muitu ja heivehusat eai rievdda.",
+    "lines": "linnjá",
+    "liveOutput": "Olggosboađus duohtaáiggis",
+    "showDetails": "Čájet dieđuid",
+    "stepsComplete": "{done} muttu {total} muttus geargan",
+    "title": "Heiveheamen OpenAmer",
+    "titleUpdate": "Ođasmahttimin OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Merken sajáiduhttima geargan",
+    "config-templates": "Čállimin heivehusmálle",
+    "configure": "Heiveheamen API-čoavdagiid ja modeallaid",
+    "dependencies": "Sajáiduhttimin Python-sorjjavašvuođaid",
+    "desktop": "Huksemin beavdeprográmma",
+    "gateway": "Vuolggadeamen dieđáhusgaskkusteaddji",
+    "git": "Sajáiduhttimin Git",
+    "handoff": "Ráhkkaneamen ođasmahttimii",
+    "install": "Sajáiduhttimin ođasmahttima",
+    "node": "Áican Node.js",
+    "node-deps": "Sajáiduhttimin Node.js-sorjjavašvuođaid",
+    "path": "Lasáheamen OpenAmer PATH:ii",
+    "platform-sdks": "Sajáiduhttimin dieđáhusvuogádagaid SDK-páhkaid",
+    "python": "Dárkkisteamen Python",
+    "rebuild": "Huksemin beavdeprográmma ođđasit",
+    "repository": "Klonemin OpenAmer-vuorkká",
+    "system-packages": "Sajáiduhttimin ripgrep ja ffmpeg",
+    "update": "Viežžamin ođđaseamos veršuvnna",
+    "uv": "Sajáiduhttimin uv-páhkkagieđahalli",
+    "venv": "Ráhkadeamen Python-virtuálabirrasa"
+  },
+  "stepper": {
+    "done": "Gárvvis",
+    "install": "Sajáiduhte",
+    "language": "Giella",
+    "update": "Ođasmahte",
+    "welcome": "Bures boahtin"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Raba prográmma ja čilge maid háliidat dahkkot. OpenAmer bargá duogážis ja dieđiha bohtosiid.",
+        "title": "Álggat ovttain cealkagiin"
+      },
+      {
+        "body": "Heivehusat → Čájeheapmi → Giella. 186 báikkálaš heivehusa, molso goas beare.",
+        "title": "Vállje iežat giela"
+      },
+      {
+        "body": "Geardduhuvvon bargu šaddá dáidun — boahtte háve dárbbašat dušše ovtta gohččuma.",
+        "title": "Divtte dan muitit"
+      }
+    ],
+    "command": "dahje vuolggat dan maŋŋá terminálas:",
+    "cta": "Vuolggat OpenAmer",
+    "errorTitle": "Beavdeprográmma ii sáhttán vuolggahuvvot",
+    "launching": "Vuolggadeamen",
+    "lead": "Buot lea sajis. OpenAmer lea dál du — dán mašiinnas, du gillii.",
+    "title": "OpenAmer lea gárvvis"
+  },
+  "welcome": {
+    "bullets": [
+      "Doaimmá báikkálaččat — du ságastallamat bissot dán mašiinnas",
+      "186 giela, maiddái dan čállinvuogis maid don lohkat",
+      "Buot sáhttá rievdadit maŋŋá; mihkkege ii leat bistevaš"
+    ],
+    "cta": "Sajáiduhte",
+    "ctaUpdate": "Ođasmahte dál",
+    "kicker": "Oktageardásaš heiveheapmi",
+    "lead": "Du iežat ageanta. Du duorgguin. Du gillii.",
+    "leadUpdate": "Ođđasit OpenAmer lea gárvvis. Dat lonuha ovddit veršuvnna ja seailluha buot bargovuoruid ja heivehusaid.",
+    "note": "Dábálaš oktavuođain ádjána moadde minuhta.",
+    "title": "Bures boahtin OpenAmer:ii",
+    "titleUpdate": "Ođasmahte OpenAmer"
+  }
+}
