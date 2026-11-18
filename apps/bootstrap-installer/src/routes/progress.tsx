@@ -8,7 +8,7 @@ import { Button } from '../components/button'
 import { ProgressRing } from '../components/illustrations'
 import { Loader } from '../components/loader'
 import { Stepper } from '../components/stepper'
-import { detectLang, strings } from '../i18n/strings'
+import { fmt, useStrings } from '../i18n'
 import {
   $mode,
   $progress,
@@ -38,7 +38,7 @@ export default function ProgressScreen({ bootstrap }: ProgressProps) {
   const [now, setNow] = useState(() => Date.now())
   const logEndRef = useRef<HTMLDivElement>(null)
 
-  const s = strings(detectLang())
+  const s = useStrings()
 
   useEffect(() => {
     if (showLogs && logEndRef.current) {
@@ -93,7 +93,7 @@ export default function ProgressScreen({ bootstrap }: ProgressProps) {
                 {currentTitle ?? (isUpdate ? s.progress.titleUpdate : s.progress.title)}
               </p>
               <p className="mt-1 text-[11px] text-muted-foreground">
-                {s.progress.stepsComplete(progress.done, progress.total)}
+                {fmt(s.progress.stepsComplete, { done: progress.done, total: progress.total })}
               </p>
             </div>
           </div>
@@ -128,7 +128,7 @@ export default function ProgressScreen({ bootstrap }: ProgressProps) {
                   key={name}
                 >
                   {rec.state === 'running' && <Loader className="-ml-1.5 size-5 shrink-0" />}
-                  <span className="flex-1 truncate">{rec.info.title}</span>
+                  <span className="flex-1 truncate">{s.stages[name] ?? rec.info.title}</span>
                   {meta && <span className="text-[10.5px] tabular-nums text-muted-foreground/60">{meta}</span>}
                   <StateIcon state={rec.state ?? null} />
                 </li>
@@ -175,7 +175,14 @@ export default function ProgressScreen({ bootstrap }: ProgressProps) {
       </div>
 
       <div className="flex shrink-0 items-center justify-between border-t border-foreground/10 px-7 py-2.5">
-        <Stepper current={1} labels={s.stepper} update={isUpdate} />
+        <Stepper
+          current={isUpdate ? 1 : 2}
+          steps={
+            isUpdate
+              ? [s.stepper.update, s.stepper.install, s.stepper.done]
+              : [s.stepper.language, s.stepper.welcome, s.stepper.install, s.stepper.done]
+          }
+        />
 
         <div className="flex items-center gap-4">
           <button

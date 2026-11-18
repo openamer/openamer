@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer kavandab ülesande, täidab selle päris tööriistadega — terminali, brauseri, failide ja koodiga — ning jätab meelde, mis toimis.",
+      "title": "Agent, kes mõtleb kaasa"
+    },
+    {
+      "body": "Vestlused, mälu ja mudelid asuvad selles arvutis. Midagi ei laadita üles, kui sa seda ei palu.",
+      "title": "Sinu riistvara, sinu andmed"
+    },
+    {
+      "body": "186 keelt, igaüks kirjas, mida sa päriselt loed. Rakenduse esimene kuva küsib, millist neist soovid.",
+      "title": "Sinu keel, nagu peab"
+    },
+    {
+      "body": "Oskused salvestatakse töö käigus, nii et mida kauem rakendust kasutad, seda vähem aega kulub igapäevatoimingutele.",
+      "title": "Võimekus, mis kasvab"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Kontrolli, kas sellel arvutil on internetiühendus.",
+      "Käivita seadistus uuesti — lõpetatud samme ei korrata.",
+      "Kui see ebaõnnestub kaks korda, ava logid; viimastel ridadel on näha, milline samm ebaõnnestus."
+    ],
+    "lead": "Ühtegi muudatust ei võetud märkamatult tagasi — OpenAmer peatub seal, kus töö pooleli jäi, ja jätkab järgmisel käivitusel samast kohast.",
+    "leadUpdate": "OpenAmer kasutab endiselt eelmist versiooni ja töötab edasi. Midagi ei asendatud poolikult.",
+    "log": "Logi",
+    "openLogs": "Ava logid",
+    "retry": "Proovi uuesti",
+    "retryUpdate": "Proovi uuesti uuendada",
+    "title": "Seadistus jäi pooleli",
+    "titleUpdate": "Uuendamine jäi pooleli"
+  },
+  "language": {
+    "continue": "Jätka",
+    "lead": "Seadistus jätkub siin valitud keeles. Saad seda hiljem rakenduses muuta.",
+    "search": "Otsi keeli",
+    "title": "Vali oma keel"
+  },
+  "progress": {
+    "cancel": "Loobu",
+    "done": "Valmis",
+    "hideDetails": "Peida üksikasjad",
+    "lead": "Ühekordne seadistus: OpenAmer laadib alla vajaliku ja seadistab selle arvuti. Järgmistel käivitustel jäetakse see kõik vahele.",
+    "leadUpdate": "OpenAmer asendab eelmist versiooni. Sinu seansid, mälu ja seaded jäävad puutumata.",
+    "lines": "rida",
+    "liveOutput": "Väljund reaalajas",
+    "showDetails": "Näita üksikasju",
+    "stepsComplete": "{done}/{total} sammu tehtud",
+    "title": "OpenAmeri seadistamine",
+    "titleUpdate": "OpenAmeri uuendamine"
+  },
+  "stages": {
+    "bootstrap-marker": "Paigalduse lõpetatuks märkimine",
+    "config-templates": "Seadistusmallide kirjutamine",
+    "configure": "API-võtmete ja mudelite seadistamine",
+    "dependencies": "Pythoni sõltuvuste paigaldamine",
+    "desktop": "Töölauarakenduse ehitamine",
+    "gateway": "Sõnumilüüsi käivitamine",
+    "git": "Giti paigaldamine",
+    "handoff": "Uuendamiseks valmistumine",
+    "install": "Uuenduse paigaldamine",
+    "node": "Node.js-i tuvastamine",
+    "node-deps": "Node.js-i sõltuvuste paigaldamine",
+    "path": "OpenAmeri lisamine keskkonnamuutujasse PATH",
+    "platform-sdks": "Sõnumiplatvormide SDK-de paigaldamine",
+    "python": "Pythoni kontrollimine",
+    "rebuild": "Töölauarakenduse uuesti ehitamine",
+    "repository": "OpenAmeri hoidla kloonimine",
+    "system-packages": "ripgrepi ja ffmpegi paigaldamine",
+    "update": "Uusima versiooni allalaadimine",
+    "uv": "Paketihalduri uv paigaldamine",
+    "venv": "Pythoni virtuaalkeskkonna loomine"
+  },
+  "stepper": {
+    "done": "Valmis",
+    "install": "Paigalda",
+    "language": "Keel",
+    "update": "Uuenda",
+    "welcome": "Tere tulemast"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Ava rakendus ja kirjelda, mida soovid teha lasta. OpenAmer töötab taustal ja annab tulemusest teada.",
+        "title": "Alusta ühest lausest"
+      },
+      {
+        "body": "Seaded → Kuva → Keel. 186 keelevalikut, mida saad igal ajal vahetada.",
+        "title": "Vali oma keel"
+      },
+      {
+        "body": "Korduv töö muutub oskuseks — järgmisel korral piisab ühest käsust.",
+        "title": "Lase tal meelde jätta"
+      }
+    ],
+    "command": "või käivita see hiljem terminalist:",
+    "cta": "Käivita OpenAmer",
+    "errorTitle": "Töölauarakenduse käivitamine ebaõnnestus",
+    "launching": "Käivitamine",
+    "lead": "Kõik on paigas. OpenAmer on nüüd sinu — selles arvutis ja sinu keeles.",
+    "title": "OpenAmer on valmis"
+  },
+  "welcome": {
+    "bullets": [
+      "Töötab kohalikult — sinu vestlused jäävad sellesse arvutisse",
+      "186 keelt, sealhulgas kirjas, mida sa loed",
+      "Kõike saab hiljem muuta; miski pole püsiv"
+    ],
+    "cta": "Paigalda",
+    "ctaUpdate": "Uuenda kohe",
+    "kicker": "Ühekordne seadistus",
+    "lead": "Sinu enda agent. Sinu riistvaral. Sinu keeles.",
+    "leadUpdate": "OpenAmeri uuem versioon on valmis. See asendab eelmise versiooni ning säilitab kõik seansid ja seaded.",
+    "note": "Tavalise internetiühendusega kulub mõni minut.",
+    "title": "Tere tulemast OpenAmeri",
+    "titleUpdate": "Uuenda OpenAmer"
+  }
+}

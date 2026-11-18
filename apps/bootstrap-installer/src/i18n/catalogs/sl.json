@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer načrtuje nalogo, jo izvede s pravimi orodji — terminalom, brskalnikom, datotekami, kodo — in si zapomni, kaj je delovalo.",
+      "title": "Agent, ki razmišlja z vami"
+    },
+    {
+      "body": "Pogovori, pomnilnik in modeli ostanejo v tem računalniku. Nič se ne naloži v splet, razen če to zahtevate.",
+      "title": "Vaša strojna oprema, vaši podatki"
+    },
+    {
+      "body": "186 jezikov, vsak v pisavi, ki jo dejansko berete. Na prvem zaslonu aplikacije izberete svojega.",
+      "title": "Vaš jezik, kot se spodobi"
+    },
+    {
+      "body": "Veščine se shranjujejo med samim delom, zato vsakdanja opravila z daljšo uporabo vzamejo manj časa.",
+      "title": "Zmogljivost, ki raste"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Preverite, ali ima ta računalnik dostop do interneta.",
+      "Znova zaženite nastavitev — dokončani koraki se ne ponovijo.",
+      "Če dvakrat ne uspe, odprite dnevnike; zadnje vrstice navedejo korak."
+    ],
+    "lead": "Nobena sprememba ni bila tiho razveljavljena — OpenAmer se ustavi tam, kjer je prišlo do težave, in ob ponovnem zagonu nadaljuje od tam.",
+    "leadUpdate": "OpenAmer je še vedno na prejšnji različici in deluje naprej. Nič ni bilo zamenjano le napol.",
+    "log": "Dnevnik",
+    "openLogs": "Odpri dnevnike",
+    "retry": "Poskusi znova",
+    "retryUpdate": "Ponovi posodobitev",
+    "title": "Nastavitev ni bila dokončana",
+    "titleUpdate": "Posodobitev ni bila dokončana"
+  },
+  "language": {
+    "continue": "Nadaljuj",
+    "lead": "Nastavitev se nadaljuje v jeziku, ki ga izberete tukaj. Pozneje ga lahko spremenite v aplikaciji.",
+    "search": "Poišči jezik",
+    "title": "Izberite svoj jezik"
+  },
+  "progress": {
+    "cancel": "Prekliči",
+    "done": "Pripravljeno",
+    "hideDetails": "Skrij podrobnosti",
+    "lead": "Enkratna nastavitev: OpenAmer prenaša, kar potrebuje, in nastavlja ta računalnik. Ob poznejših zagonih se vse to preskoči.",
+    "leadUpdate": "OpenAmer nadomešča prejšnjo različico. Vaše seje, pomnilnik in nastavitve ostanejo nedotaknjeni.",
+    "lines": "vrstic",
+    "liveOutput": "Sprotni izpis",
+    "showDetails": "Pokaži podrobnosti",
+    "stepsComplete": "Dokončanih korakov: {done} od {total}",
+    "title": "Nastavljanje OpenAmer",
+    "titleUpdate": "Posodabljanje OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Označevanje namestitve kot dokončane",
+    "config-templates": "Zapisovanje predlog nastavitev",
+    "configure": "Nastavljanje ključev API in modelov",
+    "dependencies": "Nameščanje odvisnosti za Python",
+    "desktop": "Gradnja namizne aplikacije",
+    "gateway": "Zaganjanje prehoda za sporočanje",
+    "git": "Nameščanje Gita",
+    "handoff": "Priprava na posodobitev",
+    "install": "Nameščanje posodobitve",
+    "node": "Zaznavanje Node.js",
+    "node-deps": "Nameščanje odvisnosti za Node.js",
+    "path": "Dodajanje OpenAmer v PATH",
+    "platform-sdks": "Nameščanje SDK-jev za platforme za sporočanje",
+    "python": "Preverjanje Pythona",
+    "rebuild": "Ponovna gradnja namizne aplikacije",
+    "repository": "Kloniranje repozitorija OpenAmer",
+    "system-packages": "Nameščanje ripgrep in ffmpeg",
+    "update": "Prenašanje najnovejše različice",
+    "uv": "Nameščanje upravitelja paketov uv",
+    "venv": "Ustvarjanje navideznega okolja Python"
+  },
+  "stepper": {
+    "done": "Pripravljeno",
+    "install": "Namesti",
+    "language": "Jezik",
+    "update": "Posodobitev",
+    "welcome": "Dobrodošli"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Odprite aplikacijo in opišite, kaj želite opraviti. OpenAmer dela v ozadju in poroča o rezultatih.",
+        "title": "Začnite s stavkom"
+      },
+      {
+        "body": "Nastavitve → Prikaz → Jezik. 186 jezikovnih okolij, med katerimi lahko kadar koli preklapljate.",
+        "title": "Izberite svoj jezik"
+      },
+      {
+        "body": "Ponavljajoče se delo postane veščina — naslednjič bo dovolj en ukaz.",
+        "title": "Naj si zapomni"
+      }
+    ],
+    "command": "ali ga pozneje zaženite iz terminala:",
+    "cta": "Zaženi OpenAmer",
+    "errorTitle": "Namizne aplikacije ni bilo mogoče zagnati",
+    "launching": "Zaganjanje",
+    "lead": "Vse je pripravljeno. OpenAmer je zdaj vaš — v tem računalniku, v vašem jeziku.",
+    "title": "OpenAmer je pripravljen"
+  },
+  "welcome": {
+    "bullets": [
+      "Deluje lokalno — vaši pogovori ostanejo v tem računalniku",
+      "186 jezikov, tudi v pisavi, ki jo berete",
+      "Vse lahko pozneje spremenite; nič ni trajno"
+    ],
+    "cta": "Namesti",
+    "ctaUpdate": "Posodobi zdaj",
+    "kicker": "Enkratna nastavitev",
+    "lead": "Vaš lastni agent. Na vaši strojni opremi. V vašem jeziku.",
+    "leadUpdate": "Novejša različica OpenAmer je pripravljena. Nadomestila bo prejšnjo in ohranila vse seje in nastavitve.",
+    "note": "Pri običajni povezavi traja nekaj minut.",
+    "title": "Dobrodošli v OpenAmer",
+    "titleUpdate": "Posodobi OpenAmer"
+  }
+}

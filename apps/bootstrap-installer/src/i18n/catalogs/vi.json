@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer lập kế hoạch, thực hiện bằng các công cụ thực tế — dòng lệnh, trình duyệt, tệp, mã — và ghi nhớ những cách hiệu quả.",
+      "title": "Một tác nhân cùng bạn suy nghĩ"
+    },
+    {
+      "body": "Cuộc trò chuyện, bộ nhớ và mô hình đều nằm trên máy này. Không có gì được tải lên trừ khi bạn yêu cầu.",
+      "title": "Phần cứng của bạn, dữ liệu của bạn"
+    },
+    {
+      "body": "186 ngôn ngữ, mỗi ngôn ngữ dùng đúng hệ chữ bạn đọc. Màn hình đầu tiên của ứng dụng sẽ hỏi bạn muốn dùng ngôn ngữ nào.",
+      "title": "Ngôn ngữ của bạn, đúng chuẩn"
+    },
+    {
+      "body": "Kỹ năng được lưu lại từ chính công việc, giúp các tác vụ hằng ngày gọn hơn khi bạn dùng lâu hơn.",
+      "title": "Năng lực ngày càng phát triển"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Kiểm tra xem máy này có kết nối được Internet không.",
+      "Chạy lại thiết lập — các bước đã hoàn tất sẽ không lặp lại.",
+      "Nếu thất bại hai lần, hãy mở nhật ký; những dòng cuối cho biết bước gặp lỗi."
+    ],
+    "lead": "Không có thay đổi nào bị âm thầm hoàn tác — OpenAmer giữ nguyên tại điểm dừng để lần chạy tiếp theo tiếp tục từ đó.",
+    "leadUpdate": "OpenAmer vẫn ở phiên bản trước và tiếp tục hoạt động. Không có thành phần nào bị thay thế dở dang.",
+    "log": "Nhật ký",
+    "openLogs": "Mở nhật ký",
+    "retry": "Thử lại",
+    "retryUpdate": "Thử cập nhật lại",
+    "title": "Thiết lập chưa hoàn tất",
+    "titleUpdate": "Cập nhật chưa hoàn tất"
+  },
+  "language": {
+    "continue": "Tiếp tục",
+    "lead": "Quá trình thiết lập sẽ tiếp tục bằng ngôn ngữ bạn chọn ở đây. Bạn có thể đổi sau trong ứng dụng.",
+    "search": "Tìm ngôn ngữ",
+    "title": "Chọn ngôn ngữ của bạn"
+  },
+  "progress": {
+    "cancel": "Hủy",
+    "done": "Sẵn sàng",
+    "hideDetails": "Ẩn chi tiết",
+    "lead": "Thiết lập một lần: OpenAmer đang tải xuống các thành phần cần thiết và cấu hình máy này. Những lần khởi chạy sau sẽ bỏ qua toàn bộ quá trình này.",
+    "leadUpdate": "OpenAmer đang thay thế phiên bản trước. Các phiên làm việc, bộ nhớ và cài đặt của bạn được giữ nguyên.",
+    "lines": "dòng",
+    "liveOutput": "Đầu ra trực tiếp",
+    "showDetails": "Hiện chi tiết",
+    "stepsComplete": "Đã hoàn tất {done}/{total} bước",
+    "title": "Đang thiết lập OpenAmer",
+    "titleUpdate": "Đang cập nhật OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Đánh dấu cài đặt hoàn tất",
+    "config-templates": "Ghi các mẫu cấu hình",
+    "configure": "Cấu hình khóa API và mô hình",
+    "dependencies": "Cài đặt các gói phụ thuộc Python",
+    "desktop": "Biên dịch ứng dụng máy tính",
+    "gateway": "Khởi động cổng nhắn tin",
+    "git": "Cài đặt Git",
+    "handoff": "Chuẩn bị cập nhật",
+    "install": "Cài đặt bản cập nhật",
+    "node": "Phát hiện Node.js",
+    "node-deps": "Cài đặt các gói phụ thuộc Node.js",
+    "path": "Thêm OpenAmer vào PATH",
+    "platform-sdks": "Cài đặt SDK cho các nền tảng nhắn tin",
+    "python": "Kiểm tra Python",
+    "rebuild": "Biên dịch lại ứng dụng máy tính",
+    "repository": "Sao chép kho mã OpenAmer",
+    "system-packages": "Cài đặt ripgrep và ffmpeg",
+    "update": "Tải xuống phiên bản mới nhất",
+    "uv": "Cài đặt trình quản lý gói uv",
+    "venv": "Tạo môi trường ảo Python"
+  },
+  "stepper": {
+    "done": "Sẵn sàng",
+    "install": "Cài đặt",
+    "language": "Ngôn ngữ",
+    "update": "Cập nhật",
+    "welcome": "Chào mừng"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Mở ứng dụng và mô tả việc bạn muốn làm. OpenAmer sẽ làm việc trong nền và báo lại.",
+        "title": "Bắt đầu bằng một câu"
+      },
+      {
+        "body": "Cài đặt → Hiển thị → Ngôn ngữ. 186 lựa chọn ngôn ngữ và vùng, có thể đổi bất cứ lúc nào.",
+        "title": "Chọn ngôn ngữ của bạn"
+      },
+      {
+        "body": "Công việc lặp lại trở thành kỹ năng — lần sau chỉ cần một lệnh.",
+        "title": "Để ứng dụng ghi nhớ"
+      }
+    ],
+    "command": "hoặc khởi chạy sau từ cửa sổ dòng lệnh:",
+    "cta": "Khởi chạy OpenAmer",
+    "errorTitle": "Không thể khởi chạy ứng dụng máy tính",
+    "launching": "Đang khởi chạy",
+    "lead": "Mọi thứ đã sẵn sàng. OpenAmer giờ là của bạn — trên máy này, bằng ngôn ngữ của bạn.",
+    "title": "OpenAmer đã sẵn sàng"
+  },
+  "welcome": {
+    "bullets": [
+      "Chạy cục bộ — các cuộc trò chuyện của bạn nằm trên máy này",
+      "186 ngôn ngữ, có cả hệ chữ bạn đọc",
+      "Mọi thứ đều có thể đổi sau; không có gì là cố định"
+    ],
+    "cta": "Cài đặt",
+    "ctaUpdate": "Cập nhật ngay",
+    "kicker": "Thiết lập một lần",
+    "lead": "Tác nhân riêng của bạn. Trên phần cứng của bạn. Bằng ngôn ngữ của bạn.",
+    "leadUpdate": "Đã có phiên bản OpenAmer mới hơn. Bản này sẽ thay thế phiên bản trước và giữ nguyên mọi phiên làm việc cùng cài đặt.",
+    "note": "Mất vài phút với kết nối thông thường.",
+    "title": "Chào mừng đến với OpenAmer",
+    "titleUpdate": "Cập nhật OpenAmer"
+  }
+}

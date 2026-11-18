@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { HackeryButton } from '../components/hackery-button'
 import { ReadyIllustration } from '../components/illustrations'
 import { Stepper } from '../components/stepper'
-import { detectLang, strings } from '../i18n/strings'
+import { useStrings } from '../i18n'
 import { launchOpenAmerDesktop } from '../store'
 
 /*
@@ -22,7 +22,7 @@ import { launchOpenAmerDesktop } from '../store'
 export default function Success() {
   const [error, setError] = useState<string | null>(null)
   const [launching, setLaunching] = useState(false)
-  const s = strings(detectLang())
+  const s = useStrings()
 
   async function handleLaunch() {
     setError(null)
@@ -102,7 +102,10 @@ export default function Success() {
       </div>
 
       <div className="flex shrink-0 items-center justify-between border-t border-foreground/10 px-9 py-3">
-        <Stepper current={2} labels={s.stepper} />
+        <Stepper
+          current={3}
+          steps={[s.stepper.language, s.stepper.welcome, s.stepper.install, s.stepper.done]}
+        />
         <span className="font-mono text-[10px] tracking-[0.18em] text-foreground/25 uppercase">openamer.dev</span>
       </div>
     </div>

@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer naplánuje úkol, provede ho pomocí skutečných nástrojů — terminálu, prohlížeče, souborů a kódu — a zapamatuje si, co fungovalo.",
+      "title": "Agent, který přemýšlí s vámi"
+    },
+    {
+      "body": "Konverzace, paměť i modely zůstávají na tomto počítači. Nic se nikam neodesílá, pokud o to nepožádáte.",
+      "title": "Váš hardware, vaše data"
+    },
+    {
+      "body": "186 jazyků, každý v písmu, které běžně čtete. Jazyk si vyberete hned na první obrazovce aplikace.",
+      "title": "Váš jazyk, jak má být"
+    },
+    {
+      "body": "Dovednosti se ukládají přímo při práci, takže čím déle aplikaci používáte, tím méně času zaberou běžné úkoly.",
+      "title": "Schopnosti, které rostou"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Ověřte, že se tento počítač může připojit k internetu.",
+      "Spusťte nastavení znovu — dokončené kroky se neopakují.",
+      "Pokud selže dvakrát, otevřete protokoly; poslední řádky uvádějí daný krok."
+    ],
+    "lead": "Žádné změny nebyly bez upozornění vráceny zpět — OpenAmer zůstává tam, kde skončil, a při dalším spuštění naváže.",
+    "leadUpdate": "OpenAmer zůstává na předchozí verzi a dál funguje. Nic nebylo nahrazeno jen napůl.",
+    "log": "Protokol",
+    "openLogs": "Otevřít protokoly",
+    "retry": "Zkusit znovu",
+    "retryUpdate": "Zkusit aktualizaci znovu",
+    "title": "Nastavení se nedokončilo",
+    "titleUpdate": "Aktualizace se nedokončila"
+  },
+  "language": {
+    "continue": "Pokračovat",
+    "lead": "Nastavení bude pokračovat v jazyce, který zde vyberete. Později ho můžete změnit v aplikaci.",
+    "search": "Hledat jazyky",
+    "title": "Vyberte jazyk"
+  },
+  "progress": {
+    "cancel": "Zrušit",
+    "done": "Připraveno",
+    "hideDetails": "Skrýt podrobnosti",
+    "lead": "Jednorázové nastavení: OpenAmer stahuje potřebné součásti a nastavuje tento počítač. Při dalších spuštěních už to nebude potřeba.",
+    "leadUpdate": "OpenAmer nahrazuje předchozí verzi. Vaše relace, paměť i nastavení zůstanou beze změny.",
+    "lines": "řádků",
+    "liveOutput": "Průběžný výstup",
+    "showDetails": "Zobrazit podrobnosti",
+    "stepsComplete": "Dokončené kroky: {done} z {total}",
+    "title": "Nastavování OpenAmer",
+    "titleUpdate": "Aktualizace OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Označování instalace jako dokončené",
+    "config-templates": "Zapisování šablon konfigurace",
+    "configure": "Nastavování klíčů API a modelů",
+    "dependencies": "Instalace závislostí Pythonu",
+    "desktop": "Sestavování desktopové aplikace",
+    "gateway": "Spouštění komunikační brány",
+    "git": "Instalace Gitu",
+    "handoff": "Příprava aktualizace",
+    "install": "Instalace aktualizace",
+    "node": "Zjišťování Node.js",
+    "node-deps": "Instalace závislostí Node.js",
+    "path": "Přidávání OpenAmer do PATH",
+    "platform-sdks": "Instalace SDK komunikačních platforem",
+    "python": "Ověřování Pythonu",
+    "rebuild": "Opětovné sestavování desktopové aplikace",
+    "repository": "Klonování repozitáře OpenAmer",
+    "system-packages": "Instalace ripgrep a ffmpeg",
+    "update": "Stahování nejnovější verze",
+    "uv": "Instalace správce balíčků uv",
+    "venv": "Vytváření virtuálního prostředí Pythonu"
+  },
+  "stepper": {
+    "done": "Připraveno",
+    "install": "Nainstalovat",
+    "language": "Jazyk",
+    "update": "Aktualizace",
+    "welcome": "Vítejte"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Otevřete aplikaci a popište, co chcete udělat. OpenAmer pracuje na pozadí a oznámí vám výsledek.",
+        "title": "Začněte jednou větou"
+      },
+      {
+        "body": "Nastavení → Zobrazení → Jazyk. 186 jazykových variant, které můžete kdykoli přepnout.",
+        "title": "Vyberte si jazyk"
+      },
+      {
+        "body": "Opakovaná práce se stane dovedností — příště stačí jeden příkaz.",
+        "title": "Nechte ho pamatovat si"
+      }
+    ],
+    "command": "nebo ho spusťte později z terminálu:",
+    "cta": "Spustit OpenAmer",
+    "errorTitle": "Desktopovou aplikaci se nepodařilo spustit",
+    "launching": "Spouštění",
+    "lead": "Vše je připraveno. OpenAmer je teď váš — na tomto počítači, ve vašem jazyce.",
+    "title": "OpenAmer je připraven"
+  },
+  "welcome": {
+    "bullets": [
+      "Běží místně — vaše konverzace zůstávají na tomto počítači",
+      "186 jazyků včetně písma, které používáte",
+      "Vše lze později změnit; nic není natrvalo"
+    ],
+    "cta": "Nainstalovat",
+    "ctaUpdate": "Aktualizovat nyní",
+    "kicker": "Jednorázové nastavení",
+    "lead": "Váš vlastní agent. Na vašem hardwaru. Ve vašem jazyce.",
+    "leadUpdate": "Je připravena novější verze OpenAmer. Nahradí předchozí verzi a zachová všechny relace i nastavení.",
+    "note": "Při běžném připojení to zabere několik minut.",
+    "title": "Vítejte v OpenAmer",
+    "titleUpdate": "Aktualizovat OpenAmer"
+  }
+}

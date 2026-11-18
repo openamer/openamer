@@ -5,7 +5,7 @@ import { BrandMark } from '../components/brand-mark'
 import { CapabilityStage } from '../components/capability-stage'
 import { HackeryButton } from '../components/hackery-button'
 import { Stepper } from '../components/stepper'
-import { detectLang, strings } from '../i18n/strings'
+import { useStrings } from '../i18n'
 import { $mode, startInstall } from '../store'
 
 /*
@@ -24,7 +24,7 @@ const BULLET_ICONS = [Lock, Languages, Sparkles]
 
 export default function Welcome() {
   const mode = useStore($mode)
-  const s = strings(detectLang())
+  const s = useStrings()
   const isUpdate = mode === 'update'
 
   return (
@@ -90,7 +90,14 @@ export default function Welcome() {
       </div>
 
       <div className="flex shrink-0 items-center justify-between border-t border-foreground/10 px-9 py-3">
-        <Stepper current={0} labels={s.stepper} update={isUpdate} />
+        <Stepper
+          current={isUpdate ? 0 : 1}
+          steps={
+            isUpdate
+              ? [s.stepper.update, s.stepper.install, s.stepper.done]
+              : [s.stepper.language, s.stepper.welcome, s.stepper.install, s.stepper.done]
+          }
+        />
         <span className="font-mono text-[10px] tracking-[0.18em] text-foreground/25 uppercase">openamer.dev</span>
       </div>
     </div>

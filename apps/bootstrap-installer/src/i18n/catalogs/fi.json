@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer suunnittelee tehtävän, suorittaa sen oikeilla työkaluilla — päätteellä, selaimella, tiedostoilla ja koodilla — ja tallentaa toimivat ratkaisut.",
+      "title": "Agentti, joka ajattelee kanssasi"
+    },
+    {
+      "body": "Keskustelut, muisti ja mallit ovat tällä koneella. Mitään ei lähetetä verkkoon ilman pyyntöäsi.",
+      "title": "Sinun laitteesi, sinun tietosi"
+    },
+    {
+      "body": "186 kieltä, jokainen tutulla kirjoitusjärjestelmällä. Sovelluksen ensimmäinen näkymä kysyy kielivalintaasi.",
+      "title": "Oma kielesi, kunnolla toteutettuna"
+    },
+    {
+      "body": "Taidot tallentuvat itse työstä, joten arkiset tehtävät nopeutuvat käytön myötä.",
+      "title": "Kasvava osaaminen"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Tarkista, että tämä kone pääsee internetiin.",
+      "Suorita käyttöönotto uudelleen — valmiita vaiheita ei toisteta.",
+      "Jos se epäonnistuu kahdesti, avaa lokit. Viimeisillä riveillä näkyy vaihe."
+    ],
+    "lead": "Mitään muutoksia ei peruttu huomaamatta — OpenAmer pysähtyy siihen, mihin jäi, ja jatkaa siitä seuraavalla kerralla.",
+    "leadUpdate": "OpenAmer on yhä edellisessä versiossa ja toimii edelleen. Mitään ei korvattu vain osittain.",
+    "log": "Loki",
+    "openLogs": "Avaa lokit",
+    "retry": "Yritä uudelleen",
+    "retryUpdate": "Yritä päivitystä uudelleen",
+    "title": "Käyttöönotto jäi kesken",
+    "titleUpdate": "Päivitys jäi kesken"
+  },
+  "language": {
+    "continue": "Jatka",
+    "lead": "Käyttöönotto jatkuu tässä valitsemallasi kielellä. Voit vaihtaa kielen myöhemmin sovelluksessa.",
+    "search": "Hae kieliä",
+    "title": "Valitse kielesi"
+  },
+  "progress": {
+    "cancel": "Peruuta",
+    "done": "Valmis",
+    "hideDetails": "Piilota tiedot",
+    "lead": "Kertaluonteinen käyttöönotto: OpenAmer lataa tarvitsemansa tiedostot ja määrittää tämän koneen asetukset. Myöhemmillä käynnistyskerroilla tämä ohitetaan.",
+    "leadUpdate": "OpenAmer korvaa edellisen version. Istuntosi, muistisi ja asetuksesi säilyvät ennallaan.",
+    "lines": "riviä",
+    "liveOutput": "Reaaliaikainen tuloste",
+    "showDetails": "Näytä tiedot",
+    "stepsComplete": "{done}/{total} vaihetta valmiina",
+    "title": "OpenAmerin käyttöönotto",
+    "titleUpdate": "OpenAmerin päivitys"
+  },
+  "stages": {
+    "bootstrap-marker": "Merkitään asennus valmiiksi",
+    "config-templates": "Kirjoitetaan määritysmalleja",
+    "configure": "Määritetään API-avaimet ja mallit",
+    "dependencies": "Asennetaan Python-riippuvuuksia",
+    "desktop": "Koostetaan työpöytäsovellusta",
+    "gateway": "Käynnistetään viestiyhdyskäytävää",
+    "git": "Asennetaan Git",
+    "handoff": "Valmistellaan päivitystä",
+    "install": "Asennetaan päivitystä",
+    "node": "Tunnistetaan Node.js",
+    "node-deps": "Asennetaan Node.js-riippuvuuksia",
+    "path": "Lisätään OpenAmer PATH-muuttujaan",
+    "platform-sdks": "Asennetaan viestialustojen SDK-paketteja",
+    "python": "Tarkistetaan Python",
+    "rebuild": "Koostetaan työpöytäsovellus uudelleen",
+    "repository": "Kloonataan OpenAmer-koodivarastoa",
+    "system-packages": "Asennetaan ripgrep ja ffmpeg",
+    "update": "Ladataan uusinta versiota",
+    "uv": "Asennetaan uv-paketinhallintaa",
+    "venv": "Luodaan Python-virtuaaliympäristöä"
+  },
+  "stepper": {
+    "done": "Valmis",
+    "install": "Asenna",
+    "language": "Kieli",
+    "update": "Päivitä",
+    "welcome": "Tervetuloa"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Avaa sovellus ja kuvaile, mitä haluat tehtävän. OpenAmer työskentelee taustalla ja raportoi tulokset.",
+        "title": "Aloita yhdellä lauseella"
+      },
+      {
+        "body": "Asetukset → Näyttö → Kieli. 186 kieli- ja alueasetusta, vaihdettavissa milloin tahansa.",
+        "title": "Valitse kielesi"
+      },
+      {
+        "body": "Toistuva työ muuttuu taidoksi — seuraavalla kerralla riittää yksi komento.",
+        "title": "Anna sen muistaa"
+      }
+    ],
+    "command": "tai käynnistä se myöhemmin päätteestä:",
+    "cta": "Käynnistä OpenAmer",
+    "errorTitle": "Työpöytäsovelluksen käynnistys epäonnistui",
+    "launching": "Käynnistetään",
+    "lead": "Kaikki on valmista. OpenAmer on nyt sinun — tällä koneella, omalla kielelläsi.",
+    "title": "OpenAmer on valmis"
+  },
+  "welcome": {
+    "bullets": [
+      "Toimii paikallisesti — keskustelusi pysyvät tällä koneella",
+      "186 kieltä tutulla kirjoitusjärjestelmällä",
+      "Kaikkea voi muuttaa myöhemmin, mikään ei ole pysyvää"
+    ],
+    "cta": "Asenna",
+    "ctaUpdate": "Päivitä nyt",
+    "kicker": "Kertaluonteinen käyttöönotto",
+    "lead": "Oma agenttisi. Omalla laitteellasi. Omalla kielelläsi.",
+    "leadUpdate": "Uudempi OpenAmer on valmis. Se korvaa edellisen version ja säilyttää kaikki istunnot ja asetukset.",
+    "note": "Tavallisella yhteydellä tähän kuluu muutama minuutti.",
+    "title": "Tervetuloa OpenAmeriin",
+    "titleUpdate": "Päivitä OpenAmer"
+  }
+}

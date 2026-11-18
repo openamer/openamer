@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "Pleanálann OpenAmer tasc, cuireann sé i gcrích é le fíoruirlisí — teirminéal, brabhsálaí, comhaid, cód — agus coimeádann sé an méid a d’oibrigh.",
+      "title": "Gníomhaire a smaoiníonn leat"
+    },
+    {
+      "body": "Fanann comhráite, cuimhne agus samhlacha ar an ríomhaire seo. Ní uaslódáiltear aon rud mura n-iarrann tú é.",
+      "title": "Do chrua-earraí, do shonraí"
+    },
+    {
+      "body": "186 teanga, gach ceann sa chóras scríbhneoireachta a léann tú. Iarrann an chéad scáileán den aip ort ceann a roghnú.",
+      "title": "Do theanga, mar is ceart"
+    },
+    {
+      "body": "Sábháiltear scileanna ón obair féin, mar sin éiríonn tascanna laethúla níos tapúla dá mhéad a úsáideann tú é.",
+      "title": "Cumas a fhásann"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Seiceáil gur féidir leis an ríomhaire seo ceangal leis an idirlíon.",
+      "Rith an socrú arís — ní dhéantar céimeanna críochnaithe arís.",
+      "Má theipeann air faoi dhó, oscail na logaí; ainmnítear an chéim sna línte deiridh."
+    ],
+    "lead": "Níor cealaíodh aon athruithe go ciúin — fanann OpenAmer san áit ar stop sé, mar sin leanann an dara rith ar aghaidh uaidh sin.",
+    "leadUpdate": "Tá OpenAmer fós ar an leagan roimhe seo agus leanann sé ag obair. Níor fágadh aon rud leath-athsholáthraithe.",
+    "log": "Loga",
+    "openLogs": "Oscail logaí",
+    "retry": "Bain triail eile as",
+    "retryUpdate": "Bain triail eile as an nuashonrú",
+    "title": "Níor críochnaíodh an socrú",
+    "titleUpdate": "Níor críochnaíodh an nuashonrú"
+  },
+  "language": {
+    "continue": "Lean ar aghaidh",
+    "lead": "Leanfaidh an socrú ar aghaidh sa teanga a roghnaíonn tú anseo. Is féidir leat í a athrú san aip níos déanaí.",
+    "search": "Cuardaigh teangacha",
+    "title": "Roghnaigh do theanga"
+  },
+  "progress": {
+    "cancel": "Cealaigh",
+    "done": "Réidh",
+    "hideDetails": "Folaigh sonraí",
+    "lead": "Socrú aonuaire: tá OpenAmer ag íoslódáil a bhfuil de dhíth air agus ag cumrú an ríomhaire seo. Ní bheidh gá leis seo ar fad nuair a sheolfar arís é.",
+    "leadUpdate": "Tá OpenAmer ag cur an leagain nua in áit an tseanleagain. Ní athrófar do sheisiúin, do chuimhne ná do shocruithe.",
+    "lines": "líne",
+    "liveOutput": "Aschur beo",
+    "showDetails": "Taispeáin sonraí",
+    "stepsComplete": "{done} de {total} céim críochnaithe",
+    "title": "OpenAmer á shocrú",
+    "titleUpdate": "OpenAmer á nuashonrú"
+  },
+  "stages": {
+    "bootstrap-marker": "Ag marcáil na suiteála mar chríochnaithe",
+    "config-templates": "Ag scríobh teimpléid chumraíochta",
+    "configure": "Ag cumrú eochracha API agus samhlacha",
+    "dependencies": "Ag suiteáil spleáchais Python",
+    "desktop": "Ag tógáil an aip deisce",
+    "gateway": "Ag tosú an gheata teachtaireachtaí",
+    "git": "Ag suiteáil Git",
+    "handoff": "Ag ullmhú don nuashonrú",
+    "install": "Ag suiteáil an nuashonraithe",
+    "node": "Ag aimsiú Node.js",
+    "node-deps": "Ag suiteáil spleáchais Node.js",
+    "path": "Ag cur OpenAmer le PATH",
+    "platform-sdks": "Ag suiteáil SDKanna na n-ardán teachtaireachtaí",
+    "python": "Ag fíorú Python",
+    "rebuild": "Ag atógáil an aip deisce",
+    "repository": "Ag clónáil stór OpenAmer",
+    "system-packages": "Ag suiteáil ripgrep agus ffmpeg",
+    "update": "Ag íoslódáil an leagain is déanaí",
+    "uv": "Ag suiteáil an bhainisteora pacáistí uv",
+    "venv": "Ag cruthú thimpeallacht fhíorúil Python"
+  },
+  "stepper": {
+    "done": "Réidh",
+    "install": "Suiteáil",
+    "language": "Teanga",
+    "update": "Nuashonraigh",
+    "welcome": "Fáilte"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Oscail an aip agus déan cur síos ar a bhfuil uait. Oibríonn OpenAmer sa chúlra agus tugann sé tuairisc duit.",
+        "title": "Tosaigh le habairt"
+      },
+      {
+        "body": "Socruithe → Taispeáint → Teanga. 186 logán, agus is féidir athrú eatarthu am ar bith.",
+        "title": "Roghnaigh do theanga"
+      },
+      {
+        "body": "Déantar scil d’obair athfhillteach — an chéad uair eile, ní theastaíonn ach ordú amháin.",
+        "title": "Lig dó cuimhneamh"
+      }
+    ],
+    "command": "nó seol níos déanaí é ó theirminéal:",
+    "cta": "Seol OpenAmer",
+    "errorTitle": "Níorbh fhéidir an aip deisce a sheoladh",
+    "launching": "Á sheoladh",
+    "lead": "Tá gach rud réidh. Is leatsa OpenAmer anois — ar an ríomhaire seo, i do theanga.",
+    "title": "Tá OpenAmer réidh"
+  },
+  "welcome": {
+    "bullets": [
+      "Ritheann sé go háitiúil — fanann do chomhráite ar an ríomhaire seo",
+      "186 teanga, lena n-áirítear an córas scríbhneoireachta a léann tú",
+      "Is féidir gach rud a athrú níos déanaí; níl aon rud buan"
+    ],
+    "cta": "Suiteáil",
+    "ctaUpdate": "Nuashonraigh anois",
+    "kicker": "Socrú aonuaire",
+    "lead": "Do ghníomhaire féin. Ar do chrua-earraí. I do theanga.",
+    "leadUpdate": "Tá leagan níos nuaí de OpenAmer réidh. Cuirtear é in áit an leagain roimhe seo agus coimeádtar gach seisiún agus socrú.",
+    "note": "Tógann sé cúpla nóiméad ar ghnáthcheangal.",
+    "title": "Fáilte go OpenAmer",
+    "titleUpdate": "Nuashonraigh OpenAmer"
+  }
+}
