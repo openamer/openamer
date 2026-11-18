@@ -253,6 +253,10 @@ def codex_credentials() -> tuple[str, str] | None:
         return None
 
 
+# A runaway answer cannot be useful, and must not be able to fill memory.
+MAX_STREAM_BYTES = 4 * 1024 * 1024
+
+
 def call_codex(url: str, model: str, messages: list, timeout: int = 180) -> str:
     """Call the Codex Responses API and return the assistant text.
 
@@ -281,8 +285,20 @@ def call_codex(url: str, model: str, messages: list, timeout: int = 180) -> str:
                  "Accept": "text/event-stream",
                  "OpenAI-Beta": "responses=experimental"})
     out: list[str] = []
+    # `urlopen(timeout=…)` bounds each socket read, not the call: a model that
+    # streams a repetition loop keeps every individual read inside the timeout
+    # and the request never ends. Measured 2026-11-18 on Tibetan (`bo`): the
+    # process sat in `ssl.read` forever, and the caller had no way out. So the
+    # deadline is wall-clock, and the answer also has a size ceiling.
+    deadline = time.monotonic() + timeout
+    streamed = 0
     with urllib.request.urlopen(req, timeout=timeout) as resp:
         for raw in resp:
+            if time.monotonic() > deadline:
+                raise TimeoutError(f"codex stream exceeded {timeout}s")
+            streamed += len(raw)
+            if streamed > MAX_STREAM_BYTES:
+                raise RuntimeError(f"codex stream exceeded {MAX_STREAM_BYTES} bytes")
             line = raw.decode("utf-8", "replace").strip()
             if not line.startswith("data:"):
                 continue
@@ -560,7 +576,7 @@ def unmask_variables(text: str, found: list[str]) -> str:
 
 def translate_batch(items: list[str], language: str, backend: tuple, env: dict,
                    force_translate: bool = False, extra_hint: str = "",
-                   locale: str = "") -> list[str] | None:
+                   locale: str = "", timeout: int | None = None) -> list[str] | None:
     name, url, keyenv, model = backend
     if keyenv == "CODEX_OAUTH":
         # OAuth credentials live in OpenAmer's pool, not in .env.
@@ -625,7 +641,13 @@ def translate_batch(items: list[str], language: str, backend: tuple, env: dict,
         {"role": "user", "content": payload},
     ]
     try:
-        reply = call_model(url, model, key, messages)
+        # A caller with its own deadline gets fewer retries: retrying a model
+        # that just streamed a runaway answer for 90s only multiplies the wait.
+        reply = (
+            call_model(url, model, key, messages, timeout=timeout, attempts=2)
+            if timeout
+            else call_model(url, model, key, messages)
+        )
     except (urllib.error.URLError, urllib.error.HTTPError, OSError, TimeoutError, KeyError, ValueError,
             json.JSONDecodeError) as exc:
         print(f"    [{name}] failed: {type(exc).__name__} {str(exc)[:120]}", file=sys.stderr)

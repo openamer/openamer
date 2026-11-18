@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer planas taskon, lanĉas ĝin per realaj iloj — terminalo, retumilo, dosieroj, kodo — kaj konservas tion, kio funkciis.",
+      "title": "Agianto kiu pensas kune"
+    },
+    {
+      "body": "Konversacioj, memoro kaj modeloj vivas sur ĉi tiu maŝino. Neniu estas alŝutita krom se vi petas ĝin.",
+      "title": "Via aparataro, viaj datumoj"
+    },
+    {
+      "body": "186 lingvoj, ĉiu en la skribo, kiun vi vere legas. La unua ekrano de la aplikaĵo demandas kiu unu.",
+      "title": "Via lingvo, ĝuste"
+    },
+    {
+      "body": "Kapabloj estas konservitaj de la laboro mem, do ĉiutagaj taskoj fariĝas mallongaj ju pli longe vi uzas ĝin.",
+      "title": "Kapablo kiu kreskas"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Kontrolu ke ĉi tiu maŝino povas atingi la interreton.",
+      "Rulu la agordadon denove — finitaj paŝoj ne ripetiĝas.",
+      "Se ĝi malsukcesas dufoje, malfermu la protokolojn; la lastaj linioj nomas la paŝon."
+    ],
+    "lead": "Neniu ŝanĝo estis silentaj reiri; OpenAmer ĉesas kie ĝi ĉesis, do dua rulo daŭrigas de tie.",
+    "leadUpdate": "OpenAmer ankoraŭ estas en la antaŭa versio kaj daŭre funkcias. Neniu estis duobla-replacita.",
+    "log": "Protokolo",
+    "openLogs": "Malfermi protokolojn",
+    "retry": "Provu denove",
+    "retryUpdate": "Rekuri ĝisdatigon",
+    "title": "La agordo ne finiĝis",
+    "titleUpdate": "La ĝisdatigo ne finiĝis"
+  },
+  "language": {
+    "continue": "Daŭrigi",
+    "lead": "La agordo daŭrigas en la lingvo, kiun vi elektas ĉi tie. Vi povas ŝanĝi ĝin poste en la aplikaĵo.",
+    "search": "Serĉi lingvojn",
+    "title": "Elektu vian lingvon"
+  },
+  "progress": {
+    "cancel": "Nuligi",
+    "done": "Preta",
+    "hideDetails": "Kaŝi detalojn",
+    "lead": "Unufoja agordo: OpenAmer elŝutas tion, kio necesas, kaj agordas ĉi tiun maŝinon. Postaj lanĉoj saltas ĉion.",
+    "leadUpdate": "OpenAmer anstataŭigas la antaŭan version. Viaj sesioj, memoro kaj agordoj restas neŝanĝitaj.",
+    "lines": "linioj",
+    "liveOutput": "Viva eligo",
+    "showDetails": "Montri detalojn",
+    "stepsComplete": "{done} de {total} paŝoj kompletiĝis",
+    "title": "Agordante OpenAmer",
+    "titleUpdate": "Ĝisdatigante OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Markante instalon kompleta",
+    "config-templates": "Skribante agordajn ŝablonojn",
+    "configure": "Agordante API-ŝlosilojn kaj modelojn",
+    "dependencies": "Instalante Python-dipendaĵojn",
+    "desktop": "Konstrui labortablan aplikaĵon",
+    "gateway": "Startigante mesaĝan poŝton",
+    "git": "Instalante Git",
+    "handoff": "Pretigante ĝisdatigon",
+    "install": "Instalante la ĝisdatigon",
+    "node": "Detekti Node.js",
+    "node-deps": "Instalante Node.js-dipendaĵojn",
+    "path": "Aldonante OpenAmer al PATH",
+    "platform-sdks": "Instalante SDK-ojn de mesaĝa platformo",
+    "python": "Konfirmante Python",
+    "rebuild": "Rekonstrui la labortablan aplikaĵon",
+    "repository": "Klonante la OpenAmer-dosierujon",
+    "system-packages": "Instalante ripgrep kaj ffmpeg",
+    "update": "Elŝutante la plej lastan version",
+    "uv": "Instalante la uv-ĵonpakadministranton",
+    "venv": "Kreante la Python-virtualaĵon"
+  },
+  "stepper": {
+    "done": "Preta",
+    "install": "Instali",
+    "language": "Lingvo",
+    "update": "Ĝisdatigi",
+    "welcome": "Bonvenon"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Malfermu la aplikaĵon kaj priskribu kion vi volas fari. OpenAmer funkcias en la fono kaj raportas reen.",
+        "title": "Komencu per frazo"
+      },
+      {
+        "body": "Agordoj → Montri → Lingvo. 186 lokalaĵoj, ŝanĝeblaj je ajn tempo.",
+        "title": "Elektu vian lingvon"
+      },
+      {
+        "body": "Regula laboro fariĝas kapablo — la sekva fojo ĝi prenas unu komandon.",
+        "title": "Lasu ĝin memori"
+      }
+    ],
+    "command": "aŭ startu ĝin poste de terminalo:",
+    "cta": "Lanĉi OpenAmer",
+    "errorTitle": "Ne povis lanĉi la labortablan aplikaĵon",
+    "launching": "Lanĉante",
+    "lead": "Ĉio estas en loko. OpenAmer nun estas via — sur ĉi tiu maŝino, en via lingvo.",
+    "title": "OpenAmer estas preta"
+  },
+  "welcome": {
+    "bullets": [
+      "Ruligas lokale — viaj konversacioj restas sur ĉi tiu maŝino",
+      "186 lingvoj, inkluzive de la skribo, kiun vi legas",
+      "Ĉio povas esti ŝanĝita poste; neniu estas daŭra"
+    ],
+    "cta": "Instali",
+    "ctaUpdate": "Ĝisdatigi nun",
+    "kicker": "Unufoja agordo",
+    "lead": "Via propra agianto. Sur via aparataro. En via lingvo.",
+    "leadUpdate": "Nova OpenAmer estas preta. Ĉi tio anstataŭigas la antaŭan version kaj konservas ĉiun sesion kaj agordon.",
+    "note": "Ĝi prenas kelkajn minutojn sur ordinara konekto.",
+    "title": "Bonvenon al OpenAmer",
+    "titleUpdate": "Ĝisdatigi OpenAmer"
+  }
+}

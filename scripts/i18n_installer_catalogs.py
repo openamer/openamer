@@ -167,6 +167,7 @@ def repair_placeholders(
             backend,
             env,
             locale=code,
+            timeout=90,
             extra_hint=(
                 "Keep every {placeholder} exactly as written, same spelling, same "
                 "number of them. Everything else must be translated."
@@ -216,7 +217,7 @@ def translate_locale(code: str, english: list[tuple[str, str]], env: dict, force
 
     for backend in backend_chain(env):
         try:
-            translated = translate.translate_batch(texts, language_name(code), backend, env, locale=code)
+            translated = translate.translate_batch(texts, language_name(code), backend, env, locale=code, timeout=90)
         except Exception as exc:  # noqa: BLE001 - a dead backend is a retry, not a crash
             print(f"  {backend[0]}: {type(exc).__name__}: {exc}".rstrip())
             continue
@@ -298,7 +299,10 @@ def main() -> int:
     for code in selected:
         if code == "en":
             continue
-        result = translate_locale(code, english, env, force)
+        try:
+            result = translate_locale(code, english, env, force)
+        except Exception as exc:  # noqa: BLE001 - one language must not end the run
+            result = f"FAILED ({type(exc).__name__}: {exc})"
         print(f"{code:8} {result}")
         if result.startswith("FAILED"):
             failures.append(code)

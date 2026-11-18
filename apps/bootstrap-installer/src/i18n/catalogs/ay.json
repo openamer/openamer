@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer ukax mä luräwi wakichi, chiqpach irnaqañ yänakampi phuqhi — kamachinak qillqañ uta, llika uñakipiri, qillqat imatanaka, chimpu qillqa — ukat kunatix askïki uk imi.",
+      "title": "Jumamp chika amuyiri mä yanapiri"
+    },
+    {
+      "body": "Aruskipäwinaka, amtañ uta ukat amuyt'añ uñacht'äwinakax aka makinan imatäxiwa. Juman mayitamatakikiw kunas apayatäni.",
+      "title": "Juman makinamsa, juman yatiyäwinakama"
+    },
+    {
+      "body": "186 arunaka, sapa mayax jumax ullktas uka qillqampi. Luräwin nayrïr uñacht'ayawipax kawkïr arsa munta uk jiskt'i.",
+      "title": "Juman aruma, kunjamäñapäki ukham"
+    },
+    {
+      "body": "Yatiñanakax pachpa irnaqäwit imatäxiwa, ukhamat juk'amp apnaqasax sapür luräwinakax juk'amp jank'ak lurasxi.",
+      "title": "Ch'amanchasiri yatiña"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Aka makinax internet ukar mantaspati janicha uk uñakipam.",
+      "Wakichäwi mayampi apnaqam — tukuyat luräwinakax janiw mayampi luraskaniti.",
+      "Pä kuti pantjaschi ukhax luräwi qillqatanak jist'aram; qhipa siqinakax kawkïr luräwinsa pantjasi uk uñacht'ayi."
+    ],
+    "lead": "Janiw kuna mayjt'äwis jamasat kutt'ayatäkiti — OpenAmer ukax kawkhantix sayt'käna ukankaskiwa, ukhamat mayampi apnaqasax ukhat sarantaski.",
+    "leadUpdate": "OpenAmer ukax nayra mistäwipankaskiwa ukat irnaqaskakiwa. Janiw kunas chikak turkatäkiti.",
+    "log": "Luräwi qillqata",
+    "openLogs": "Luräwi qillqatanak jist'aram",
+    "retry": "Mayampi yant'am",
+    "retryUpdate": "Machaqt'äwi mayampi yant'am",
+    "title": "Wakichäwix janiw tukuykiti",
+    "titleUpdate": "Machaqt'äwix janiw tukuykiti"
+  },
+  "language": {
+    "continue": "Sarantam",
+    "lead": "Wakichäwix akan ajllit aruman sarantani. Qhipat luräwin mayjt'ayasmawa.",
+    "search": "Arunak thaqham",
+    "title": "Arum ajllim"
+  },
+  "progress": {
+    "cancel": "Jan sañam",
+    "done": "Wakicht'ata",
+    "hideDetails": "Juk'amp yatiyäwinak imantam",
+    "lead": "Mä kutik wakichäwi: OpenAmer ukax kunatix wakiski uk apaqaski ukat aka makina wakichaski. Qhipa qalltäwinakanx janiw ukanak lurxaniti.",
+    "leadUpdate": "OpenAmer ukax nayra mistäw turkaski. Irnaqäwinakama, amtañ utamsa ukat wakichäwinakamas janiw llamkt'atäkaniti.",
+    "lines": "siqinaka",
+    "liveOutput": "Jichha mistuwi",
+    "showDetails": "Juk'amp yatiyäwinak uñacht'ayam",
+    "stepsComplete": "{done} / {total} pasonaka tukuyata",
+    "title": "OpenAmer wakichasa",
+    "titleUpdate": "OpenAmer machaqt'ayasa"
+  },
+  "stages": {
+    "bootstrap-marker": "Utt'ayäwi tukuyatat chimpuntasa",
+    "config-templates": "Wakichäwi uñacht'äwinak qillqasa",
+    "configure": "API llavenak ukat amuyt'añ uñacht'äwinak wakichasa",
+    "dependencies": "Python ukatak wakisir yänak utt'ayasa",
+    "desktop": "Makinan luräwip lurasa",
+    "gateway": "Yatiyäwinak apayir punku qalltasa",
+    "git": "Git utt'ayasa",
+    "handoff": "Machaqt'ayañatak wakichasa",
+    "install": "Machaqt'äwi utt'ayasa",
+    "node": "Node.js jikxatasa",
+    "node-deps": "Node.js ukatak wakisir yänak utt'ayasa",
+    "path": "OpenAmer uk PATH ukar yapxatasa",
+    "platform-sdks": "Yatiyäwi apayir utt'äwinakan SDK yänakap utt'ayasa",
+    "python": "Python uñakipasa",
+    "rebuild": "Makinan luräwip wasitat lurasa",
+    "repository": "OpenAmer imañ utap kupiyasa",
+    "system-packages": "ripgrep ukat ffmpeg utt'ayasa",
+    "update": "Qhipa mistäwi apaqasa",
+    "uv": "uv q'ipinak apnaqiri utt'ayasa",
+    "venv": "Python ukatak k'ari irnaqañ uta lurasa"
+  },
+  "stepper": {
+    "done": "Wakicht'ata",
+    "install": "Utt'ayam",
+    "language": "Aru",
+    "update": "Machaqt'ayam",
+    "welcome": "Aski jutäwi"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Luräwi jist'aram ukat kun lurañsa munta uk qillqam. OpenAmer ukax qhipäxan irnaqi ukat kuns luri uk yatiyi.",
+        "title": "Mä amuyu qillqas qallt'am"
+      },
+      {
+        "body": "Wakichäwinaka → Uñacht'ayaña → Aru. 186 aru wakichäwinaka, kunapachas mayjt'ayasmawa.",
+        "title": "Arum ajllim"
+      },
+      {
+        "body": "Wasitat lurasiñ irnaqäwix mä yatiñaruw tuku — jutïr kutix mä kamachik munasini.",
+        "title": "Amtapxpan"
+      }
+    ],
+    "command": "jan ukax qhipat kamachinak qillqañ utat qallt'am:",
+    "cta": "OpenAmer qallt'am",
+    "errorTitle": "Makinan luräwip janiw qalltañjamäkiti",
+    "launching": "Qalltasa",
+    "lead": "Taqi kunas wakicht'atawa. OpenAmer ukax jichhax jumankiwa — aka makinana, juman arumana.",
+    "title": "OpenAmer ukax wakicht'atawa"
+  },
+  "welcome": {
+    "bullets": [
+      "Aka makinan irnaqi — aruskipäwinakamax aka makinan imatäxiwa",
+      "186 arunaka, jumax ullktas uka qillqamp chika",
+      "Taqi kunas qhipat mayjt'ayasispawa; janiw kunas wiñayatakikiti"
+    ],
+    "cta": "Utt'ayam",
+    "ctaUpdate": "Jichhax machaqt'ayam",
+    "kicker": "Mä kutik wakichäwi",
+    "lead": "Pachpa yanapirima. Juman makinaman. Juman aruman.",
+    "leadUpdate": "OpenAmer ukan juk'amp machaq mistäwipax wakicht'atawa. Nayra mistäw turkani ukat taqi irnaqäwinakama ukat wakichäwinakama imani.",
+    "note": "Mä uñt'at internet mayachäwimpix mä qawqha t'ijtak munasi.",
+    "title": "OpenAmer ukar aski jutäwi",
+    "titleUpdate": "OpenAmer machaqt'ayam"
+  }
+}

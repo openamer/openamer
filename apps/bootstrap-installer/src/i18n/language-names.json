@@ -1,23 +1,127 @@
 {
+  "aa": {
+    "endonym": "Afaraf",
+    "englishName": "Afar"
+  },
+  "ab": {
+    "endonym": "Аҧсуа",
+    "englishName": "Abkhazian"
+  },
+  "ae": {
+    "endonym": "Avesta",
+    "englishName": "Avestan"
+  },
+  "af": {
+    "endonym": "Afrikaans",
+    "englishName": "Afrikaans"
+  },
+  "ak": {
+    "endonym": "Akan",
+    "englishName": "Akan"
+  },
+  "am": {
+    "endonym": "አማርኛ",
+    "englishName": "Amharic"
+  },
+  "an": {
+    "endonym": "Aragonés",
+    "englishName": "Aragonese"
+  },
   "ar": {
     "endonym": "العربية",
     "englishName": "Arabic"
+  },
+  "as": {
+    "endonym": "অসমীয়া",
+    "englishName": "Assamese"
+  },
+  "av": {
+    "endonym": "Авар",
+    "englishName": "Avaric"
+  },
+  "ay": {
+    "endonym": "Aymar aru",
+    "englishName": "Aymara"
+  },
+  "az": {
+    "endonym": "Azərbaycan",
+    "englishName": "Azerbaijani"
+  },
+  "ba": {
+    "endonym": "Башҡортса",
+    "englishName": "Bashkir"
+  },
+  "be": {
+    "endonym": "Беларуская",
+    "englishName": "Belarusian"
   },
   "bg": {
     "endonym": "Български",
     "englishName": "Bulgarian"
   },
+  "bh": {
+    "endonym": "भोजपुरी",
+    "englishName": "Bihari"
+  },
+  "bi": {
+    "endonym": "Bislama",
+    "englishName": "Bislama"
+  },
+  "bm": {
+    "endonym": "Bamanankan",
+    "englishName": "Bambara"
+  },
   "bn": {
     "endonym": "বাংলা",
     "englishName": "Bengali"
+  },
+  "bo": {
+    "endonym": "བོད་སྐད",
+    "englishName": "Tibetan"
+  },
+  "br": {
+    "endonym": "Brezhoneg",
+    "englishName": "Breton"
   },
   "bs": {
     "endonym": "Bosanski",
     "englishName": "Bosnian"
   },
+  "ca": {
+    "endonym": "Català",
+    "englishName": "Catalan"
+  },
+  "ce": {
+    "endonym": "Нохчийн",
+    "englishName": "Chechen"
+  },
+  "ch": {
+    "endonym": "Chamoru",
+    "englishName": "Chamorro"
+  },
+  "co": {
+    "endonym": "Corsu",
+    "englishName": "Corsican"
+  },
+  "cr": {
+    "endonym": "Cree",
+    "englishName": "Cree"
+  },
   "cs": {
     "endonym": "Čeština",
     "englishName": "Czech"
+  },
+  "cu": {
+    "endonym": "Словѣньскъ",
+    "englishName": "Church Slavic"
+  },
+  "cv": {
+    "endonym": "Чӑвашла",
+    "englishName": "Chuvash"
+  },
+  "cy": {
+    "endonym": "Cymraeg",
+    "englishName": "Welsh"
   },
   "da": {
     "endonym": "Dansk",
@@ -27,6 +131,18 @@
     "endonym": "Deutsch",
     "englishName": "German"
   },
+  "dv": {
+    "endonym": "ދިވެހި",
+    "englishName": "Divehi"
+  },
+  "dz": {
+    "endonym": "རྫོང་ཁ",
+    "englishName": "Dzongkha"
+  },
+  "ee": {
+    "endonym": "Eʋegbe",
+    "englishName": "Ewe"
+  },
   "el": {
     "endonym": "Ελληνικά",
     "englishName": "Greek"
@@ -34,6 +150,10 @@
   "en": {
     "endonym": "English",
     "englishName": "English"
+  },
+  "eo": {
+    "endonym": "Esperanto",
+    "englishName": "Esperanto"
   },
   "es": {
     "endonym": "Español",
@@ -43,13 +163,25 @@
     "endonym": "Eesti",
     "englishName": "Estonian"
   },
+  "eu": {
+    "endonym": "Euskara",
+    "englishName": "Basque"
+  },
   "fa": {
     "endonym": "فارسی",
     "englishName": "Persian"
   },
+  "ff": {
+    "endonym": "Fulfulde",
+    "englishName": "Fulah"
+  },
   "fi": {
     "endonym": "Suomi",
     "englishName": "Finnish"
+  },
+  "fj": {
+    "endonym": "Na Vosa Vakaviti",
+    "englishName": "Fijian"
   },
   "fr": {
     "endonym": "Français",

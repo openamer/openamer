@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer ɖoa dɔ ɖe ɖoɖo nu, wɔa dɔ la kple dɔwɔnu ŋutɔŋutɔwo — sededeƒe, nyatakakadzraɖoƒe, agbalẽwo, kɔda — eye wòdzraa nu siwo dze edzi ɖo.",
+      "title": "Kpeɖeŋutɔ si bua tame kpli wò"
+    },
+    {
+      "body": "Dzeɖoɖowo, ŋkuɖoɖo kple mɔdelwo nɔa mɔ̃ sia dzi. Wometsɔa naneke ɖoa ɖe Internet dzi o, negbe nèbia be woawɔe.",
+      "title": "Wò mɔ̃, wò nyatakakawo"
+    },
+    {
+      "body": "Gbewo 186, ɖe sia ɖe le nuŋɔŋlɔ si nèxlẽna ŋutɔ me. Dɔwɔnu la ƒe axa gbã biaa be nàtia ɖeka.",
+      "title": "Wò gbe, abe ale si wòle be wòanɔ ene"
+    },
+    {
+      "body": "Wodzraa aɖaŋuwo ɖo tso dɔ la ŋutɔ me, ale be gbesiagbe dɔwo wɔwɔ ɖea ɣeyiɣi ɖe edzi esi nèzãnɛ ɖaa.",
+      "title": "Ŋutetewo tsi ɖea edzi"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Kpɔ ɖa be mɔ̃ sia ate ŋu ado ka kple Internet.",
+      "Gadze ɖoɖowɔwɔ la gɔme — womagawɔ akpa siwo wu enu la o.",
+      "Ne medze edzi zi eve o la, ʋu nuŋlɔɖiwo; fli mamlɛawo gblɔa akpa si me wòtɔ."
+    ],
+    "lead": "Womeɖe tɔtrɔ aɖeke megbe le ɣaɣla me o — OpenAmer tɔna ɖe afi si wòtɔ, ale be ne ègadzee gɔme la, wòyi edzi tso afi ma.",
+    "leadUpdate": "OpenAmer gale eƒe tɔtrɔ xoxo la dzi eye wògale dɔ wɔm. Womeɖɔ li aɖeke ƒe afã teƒe o.",
+    "log": "Nuŋlɔɖi",
+    "openLogs": "Ʋu nuŋlɔɖiwo",
+    "retry": "Gadze agbagba",
+    "retryUpdate": "Gadze yeyewɔwɔ gɔme",
+    "title": "Ɖoɖowɔwɔ mewu enu o",
+    "titleUpdate": "Yeyewɔwɔ mewu enu o"
+  },
+  "language": {
+    "continue": "Yi edzi",
+    "lead": "Ɖoɖowɔwɔ la ayi edzi le gbe si nètia le afii me. Àte ŋu atrɔe emegbe le dɔwɔnu la me.",
+    "search": "Di gbewo",
+    "title": "Tia wò gbe"
+  },
+  "progress": {
+    "cancel": "Tee",
+    "done": "Esɔ gbɔ",
+    "hideDetails": "Ɣla numeɖeɖewo",
+    "lead": "Zi ɖeka ɖoɖowɔwɔ: OpenAmer le nu siwo hiãna nɛ xɔm eye wòle mɔ̃ sia ɖom ɖe ɖoɖo nu. Ne èʋui emegbe la, magahiã be nàgawɔ esiawo o.",
+    "leadUpdate": "OpenAmer le eƒe tɔtrɔ xoxo la teƒe ɖɔm. Wò dɔwɔɣiwo, ŋkuɖoɖo kple ɖoɖowo manɔ tɔtrɔ aɖeke me o.",
+    "lines": "fliwo",
+    "liveOutput": "Nusiwo le dzɔdzɔm fifia",
+    "showDetails": "Fia numeɖeɖewo",
+    "stepsComplete": "Akpa {done} le {total} me wu enu",
+    "title": "Wole OpenAmer ɖom ɖe ɖoɖo nu",
+    "titleUpdate": "Wole OpenAmer wɔm yeye"
+  },
+  "stages": {
+    "bootstrap-marker": "Wole dzesim be mɔ̃didzi wu enu",
+    "config-templates": "Wole ɖoɖowɔwɔ ƒe kpɔɖeŋuwo ŋlɔm",
+    "configure": "Wole API ƒe safuiwo kple mɔdelwo ɖom ɖe ɖoɖo nu",
+    "dependencies": "Wole dɔwɔnu siwo Python hiã la dem mɔ̃ dzi",
+    "desktop": "Wole kɔmputa dzi dɔwɔnu la tum",
+    "gateway": "Wole gbedasiwo ƒe mɔnu dem dɔ me",
+    "git": "Wole Git dem mɔ̃ dzi",
+    "handoff": "Wole dzadzram ɖo ɖe yeyewɔwɔ ŋu",
+    "install": "Wole tɔtrɔ yeye la dem mɔ̃ dzi",
+    "node": "Wole Node.js dim",
+    "node-deps": "Wole dɔwɔnu siwo Node.js hiã la dem mɔ̃ dzi",
+    "path": "Wole OpenAmer tsɔm kpe ɖe PATH ŋu",
+    "platform-sdks": "Wole gbedasiɖoɖo ƒe SDK-wo dem mɔ̃ dzi",
+    "python": "Wole Python ƒe nyateƒenyenye kpɔm",
+    "rebuild": "Wole kɔmputa dzi dɔwɔnu la gbugbɔm tum",
+    "repository": "Wole OpenAmer ƒe kɔda dzraɖoƒe la ƒe kɔpi wɔm",
+    "system-packages": "Wole ripgrep kple ffmpeg dem mɔ̃ dzi",
+    "update": "Wole tɔtrɔ yeye kekeake la xɔm",
+    "uv": "Wole uv ƒe dɔwɔnu akpa dzikpɔla dem mɔ̃ dzi",
+    "venv": "Wole Python ƒe dɔwɔƒe aɖetɔ trɔ̃ la wɔm"
+  },
+  "stepper": {
+    "done": "Esɔ gbɔ",
+    "install": "De mɔ̃ dzi",
+    "language": "Gbe",
+    "update": "Wɔ yeye",
+    "welcome": "Woezɔ"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Ʋu dɔwɔnu la eye nàɖɔ nusi nèdi be woawɔ la me. OpenAmer wɔa dɔ le megbe eye wògblɔa emetsonuwo na wò.",
+        "title": "Dze egɔme kple nyaɖegbe ɖeka"
+      },
+      {
+        "body": "Ɖoɖowo → Dɔwɔnu ƒe dzedzeme → Gbe. Gbedodo ƒe ɖoɖowo 186, àte ŋu atrɔ wo ɣesiaɣi.",
+        "title": "Tia wò gbe"
+      },
+      {
+        "body": "Dɔ si nèwɔna enuenu trɔna zu aɖaŋu — zi si gbɔna la, sedede ɖeka koe wòhiã.",
+        "title": "Na wòaɖo ŋku edzi"
+      }
+    ],
+    "command": "alo nàdze egɔme emegbe tso sededeƒe:",
+    "cta": "Dze OpenAmer gɔme",
+    "errorTitle": "Womete ŋu dze kɔmputa dzi dɔwɔnu la gɔme o",
+    "launching": "Wole edzem gɔme",
+    "lead": "Nusianu le eƒe teƒe. OpenAmer nye tɔwò fifia — le mɔ̃ sia dzi, le wò gbe me.",
+    "title": "OpenAmer sɔ gbɔ"
+  },
+  "welcome": {
+    "bullets": [
+      "Wɔa dɔ le mɔ̃ sia dzi — wò dzeɖoɖowo nɔa mɔ̃ sia dzi",
+      "Gbewo 186, kple nuŋɔŋlɔ si nèxlẽna",
+      "Àte ŋu atrɔ nusianu emegbe; naneke metsi ɖe teƒe ɖeka tegbee o"
+    ],
+    "cta": "De mɔ̃ dzi",
+    "ctaUpdate": "Wɔ yeye fifia",
+    "kicker": "Zi ɖeka ɖoɖowɔwɔ",
+    "lead": "Wò ŋutɔ ƒe kpeɖeŋutɔ. Le wò mɔ̃ dzi. Le wò gbe me.",
+    "leadUpdate": "OpenAmer ƒe tɔtrɔ yeyetɔ aɖe sɔ gbɔ. Esia aɖɔ tɔtrɔ xoxo la teƒe eye wòalé dɔwɔɣi ɖe sia ɖe kple ɖoɖo ɖe sia ɖe ɖe asi.",
+    "note": "Exɔa miniti ʋɛ aɖewo ne Internet ƒe kadodo nyo.",
+    "title": "Woezɔ ɖe OpenAmer",
+    "titleUpdate": "Wɔ OpenAmer yeye"
+  }
+}
