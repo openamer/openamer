@@ -42,7 +42,34 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 I18N = REPO / "apps" / "desktop" / "src" / "i18n"
-HOME = REPO.parent / "AppData" / "Local" / "openamer-laptop"
+
+
+def _install_home() -> Path:
+    """The OpenAmer install home that holds `auth.json` and `.env`.
+
+    This used to be hardcoded as ``REPO.parent / "AppData" / "Local" /
+    "openamer-laptop"``, which only resolves on an install whose repo lives at
+    ``<drive>:\\openamer-agent``. On this laptop the repo sits *inside* the home
+    (``<home>/openamer-agent``), so the path doubled into
+    ``<home>/AppData/Local/openamer-laptop`` — a directory that does not exist.
+    `codex_credentials()` then returned None and every i18n script silently
+    skipped the Codex-OAuth backend (the one that costs nothing), fell through
+    to the keyless endpoint and failed with `402 Payment Required`.
+
+    Resolution order: explicit `OPENAMER_HOME`, then the repo's parent when it
+    actually carries `auth.json`/`.env`, then `~/.openamer` (the pip-install
+    location every other module in `openamer_cli` uses).
+    """
+    env = os.environ.get("OPENAMER_HOME", "").strip()
+    if env:
+        return Path(env).expanduser()
+    for candidate in (REPO.parent, Path.home() / ".openamer"):
+        if (candidate / "auth.json").exists() or (candidate / ".env").exists():
+            return candidate
+    return Path.home() / ".openamer"
+
+
+HOME = _install_home()
 ENV_FILE = HOME / ".env"
 
 # Placeholders that must survive verbatim.
