@@ -302,6 +302,11 @@ def main() -> int:
         print(f"{code:8} {result}")
         if result.startswith("FAILED"):
             failures.append(code)
+        else:
+            # After every catalogue, not just at the end: the picker's names file
+            # and the catalogue set are one invariant, and an interrupted run must
+            # not leave a catalogue the picker cannot name.
+            write_language_names()
 
     count = write_language_names()
     print(f"\nlanguage-names.json: {count} entries")
