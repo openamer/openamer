@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer ꆹ ꁱꂷ ꃅꐨ ꌧꅉꃅꄉ，ꃅꄿꇬ、ꋒꃅꇬ、ꁱꂷꃅꇬ、ꁱꂷꌠꌤ ꏭꃅꄉ，ꃅꐨꉪꐨꌠ ꍈꄉ。",
+      "title": "ꆏꑍꈀꐥ ꉪꐨꌠ ꃅꄿꌠ"
+    },
+    {
+      "body": "ꅇꄜ、ꉪꐨ ꅇꄉꌠ ꌋꆀ ꃅꐨ ꆹ ꇈꁱꌠ ꈀꐥꌠꇬ ꐥ。ꆏ ꀋꄿꑴꆏ ꈀꌠꂷꀋꃅ ꏭꃅꀋꌠ。",
+      "title": "ꆏꊿ ꇈꁱꌠ，ꆏꊿ ꁱꂷ"
+    },
+    {
+      "body": "ꉙꅇ ꏃꉈꃅ ꐥ，ꉙꅇ ꈀꌠꂷꃅ ꆏ ꇖꄿꌠ ꁱꂷ ꌤꃅꄉ。ꃅꄿꌠ ꄓꅑꇬ ꆏ ꈍꃅ ꉙꅇ ꌤꑴꌠ ꅇꄜ。",
+      "title": "ꆏꊿ ꉙꅇ，ꃅꐨꉪꐨ"
+    },
+    {
+      "body": "ꃅꐨ ꆹ ꁱꂷ ꃅꄉꌠꇬꈴ ꍈꄉ，ꌤꑴꄉꌠ ꉬꑴꆏ ꑍꃅ ꁱꂷ ꃅꐨ ꌡꇁ。",
+      "title": "ꃅꄿꐨ ꉘꇁꌠ"
+    }
+  ],
+  "failure": {
+    "help": [
+      "ꇈꁱꌠ ꈀꐥꌠ ꆹ ꋒꃅꇬ ꐊꄿꀋꄿ ꉜ。",
+      "ꄓꅑ ꃅꐨ ꉈꑴ ꃅ — ꃅꉬꄉꌠ ꉈꑴ ꀋꃅ。",
+      "ꑍꃅ ꀋꄿꑴꆏ，ꃅꐨ ꁱꂷ ꁱꄉꌠ ꇖ；ꄓꅑꂷꇬ ꀋꄿꌠ ꃅꐨ ꂷ ꁱꄉ。"
+    ],
+    "lead": "ꃅꐨ ꈀꌠꂷꃅ ꀋꅇꄜꃅ ꉈꑴ ꀋꃅ — OpenAmer ꆹ ꄉꌠꇬ ꄉꄉ，ꉈꑴ ꃅꑴꆏ ꀉꄂꇬꈴ ꃅꇁ。",
+    "leadUpdate": "OpenAmer ꆹ ꀉꂿꌠꇬ ꐥꄉ ꃅꄿꀕ。ꈀꌠꂷꃅ ꀋꉬꀋꃅꃅ ꀋꄻ。",
+    "log": "ꃅꐨꁱꂷ",
+    "openLogs": "ꃅꐨꁱꂷ ꇖ",
+    "retry": "ꉈꑴ ꃅꉜ",
+    "retryUpdate": "ꉈꑴ ꀉꋂ ꄻ",
+    "title": "ꄓꅑ ꃅꐨ ꀋꉬ",
+    "titleUpdate": "ꀉꋂ ꄻꐨ ꀋꉬ"
+  },
+  "language": {
+    "continue": "ꃅꇁ",
+    "lead": "ꄓꅑ ꃅꐨ ꆹ ꆏ ꈀꇬ ꌤꌠ ꉙꅇ ꌤꃅꄉ ꃅꇁ。ꄓꅑꇬ ꃅꄿꌠ ꌤꃅꄉ ꄻꄿ。",
+    "search": "ꉙꅇ ꎹ",
+    "title": "ꆏꊿ ꉙꅇ ꌤ"
+  },
+  "progress": {
+    "cancel": "ꀋꃅ",
+    "done": "ꃅꉬꄉ",
+    "hideDetails": "ꀉꑌ ꁱꂷ ꉜꀋꄿꃅ ꄉ",
+    "lead": "ꄓꅑ ꃅꐨ ꋍꃅꌤ：OpenAmer ꆹ ꌤꑴꌠ ꏭꃅꄉ ꇈꁱꌠ ꈀꐥꌠ ꃅꐨ ꄻꄉ。ꄓꅑꇬ ꁱꃅꑴꆏ ꀉꄂ ꈀꌠꂷꃅ ꀋꃅ。",
+    "leadUpdate": "OpenAmer ꆹ ꀉꂿꌠ ꄻꄉ。ꆏꊿ ꅇꄜ、ꉪꐨ ꅇꄉꌠ ꌋꆀ ꃅꐨ ꄻꄉꌠ ꀋꄻ。",
+    "lines": "ꁱꂷꈤ",
+    "liveOutput": "ꃅꄉꌠ ꁱꂷ",
+    "showDetails": "ꀉꑌ ꁱꂷ ꉜꄿꃅ ꄉ",
+    "stepsComplete": "{done}/{total} ꈌꈬꃅꀐ",
+    "title": "OpenAmer ꄓꅑ ꃅꄉ",
+    "titleUpdate": "OpenAmer ꀉꋂ ꄻꄉ"
+  },
+  "stages": {
+    "bootstrap-marker": "ꄉꉬꄉꌠ ꁱꄉ",
+    "config-templates": "ꃅꐨ ꄻꐨ ꁱꂷ ꁱꄉ",
+    "configure": "API ꏦꃅ ꌋꆀ ꃅꐨ ꄻꄉ",
+    "dependencies": "ꄓꌋꌒ ꌤꑴꌠ ꄉꄉ",
+    "desktop": "ꇈꁱꌠ ꃅꄿꌠ ꄻꄉ",
+    "gateway": "ꅇꏭꇁꌠ ꄓꅑ ꁱꄉ",
+    "git": "ꇖꄉ ꄉꄉ",
+    "handoff": "ꀉꋂ ꄻꐨ ꃅꄉ",
+    "install": "ꀉꋂꌠ ꄉꄉ",
+    "node": "ꆏꄓꇈꑌ ꎹꉜꄉ",
+    "node-deps": "ꆏꄓꇈꑌ ꌤꑴꌠ ꄉꄉ",
+    "path": "OpenAmer ꆹ PATH ꇬ ꄉꄉ",
+    "platform-sdks": "ꅇꏭꇁꌠ SDK ꄉꄉ",
+    "python": "ꄓꌋꌒ ꃅꐨ ꉜꄉ",
+    "rebuild": "ꇈꁱꌠ ꃅꄿꌠ ꉈꑴ ꄻꄉ",
+    "repository": "OpenAmer ꁱꂷ ꍈꄉꌠ ꁱꄻꄉ",
+    "system-packages": "ꇓꇖꄓ ꌋꆀ ꀎꀎꂷꄓꇖ ꄉꄉ",
+    "update": "ꀉꋂꇬꌠ ꏭꃅꄉ",
+    "uv": "ꑳꃃ ꁱꂷ ꄉꄿꌠ ꄉꄉ",
+    "venv": "ꄓꌋꌒ ꃅꄿꇬ ꄻꄉ"
+  },
+  "stepper": {
+    "done": "ꃅꉬꄉ",
+    "install": "ꄉ",
+    "language": "ꉙꅇ",
+    "update": "ꀉꋂ ꄻ",
+    "welcome": "ꇁꎻ"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "ꃅꄿꌠ ꁱꄉ，ꆏ ꈍꃅꌠ ꃅꎻꇁ ꅇꄜ。OpenAmer ꆹ ꀉꑌꇬ ꃅꄉ ꃅꐨ ꆏꏭ ꅇꄜꇁ。",
+        "title": "ꅇꄜꋍꁱꂷ ꌤꃅꄉ ꄓꅑꃅ"
+      },
+      {
+        "body": "ꃅꐨꄻ → ꉜꄿꐨ → ꉙꅇ。ꉙꅇ ꏃꉈꃅ，ꈍꄮꃅ ꄻꄿ。",
+        "title": "ꆏꊿ ꉙꅇ ꌤ"
+      },
+      {
+        "body": "ꉈꑴ ꃅꌠ ꁱꂷ ꆹ ꃅꐨ ꋍꈨ ꉬꇁ — ꄓꅑꋍꃅꇬ ꅇꄜꋍꃅ ꌤꆏ ꃅꄿ。",
+        "title": "ꀉꄂ ꉪꄉꎻ"
+      }
+    ],
+    "command": "ꀋꉬꑌ ꄓꅑꇬ ꃅꄿꇬꈴ ꁱ：",
+    "cta": "OpenAmer ꁱ",
+    "errorTitle": "ꇈꁱꌠ ꃅꄿꌠ ꁱꀋꄿ",
+    "launching": "ꁱꄉ",
+    "lead": "ꈀꌠꂷꃅ ꃅꉬꄉ。OpenAmer ꆹ ꆏꊿꌠ ꉬꀐ — ꇈꁱꌠ ꈀꐥꌠꇬ，ꆏꊿ ꉙꅇ ꌤꃅꄉ。",
+    "title": "OpenAmer ꃅꉬꄉ"
+  },
+  "welcome": {
+    "bullets": [
+      "ꇈꁱꌠ ꈀꐥꌠꇬ ꃅ — ꆏꊿ ꅇꄜ ꈀꇬ ꍈꄉ",
+      "ꉙꅇ ꏃꉈꃅ，ꆏ ꇖꄿꌠ ꁱꂷ ꑌ ꐊ",
+      "ꈀꌠꂷꃅ ꄓꅑꇬ ꄻꄿ；ꀋꄻꄿꌠ ꈀꌠꂷꃅ ꀋꐥ"
+    ],
+    "cta": "ꄉ",
+    "ctaUpdate": "ꀋꃅ ꀉꋂ ꄻ",
+    "kicker": "ꄓꅑ ꃅꐨ ꋍꃅꌤ",
+    "lead": "ꆏꊿ ꃅꄿꌠ。ꆏꊿ ꇈꁱꌠꇬ。ꆏꊿ ꉙꅇ ꌤꃅꄉ。",
+    "leadUpdate": "OpenAmer ꀉꋂꌠ ꃅꉬꄉ。ꀉꄂ ꆹ ꀉꂿꌠ ꄻꄉ ꅇꄜ ꌋꆀ ꃅꐨ ꄻꄉꌠ ꈀꌠꂷꃅ ꍈꄉ。",
+    "note": "ꋒꃅꇬ ꐊꄿꐨ ꈍꃅꀋꉬꑴꆏ ꄮꇬ ꑍꌕ ꌤꑴ。",
+    "title": "OpenAmer ꏭ ꇁꎻ",
+    "titleUpdate": "OpenAmer ꀉꋂ ꄻ"
+  }
+}

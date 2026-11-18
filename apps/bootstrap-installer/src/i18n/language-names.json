@@ -271,6 +271,10 @@
     "endonym": "Igbo",
     "englishName": "Igbo"
   },
+  "ii": {
+    "endonym": "Sichuan Yi",
+    "englishName": "Sichuan Yi"
+  },
   "ik": {
     "endonym": "Inupiaq",
     "englishName": "Inupiaq"
@@ -298,6 +302,10 @@
   "jv": {
     "endonym": "Basa Jawa",
     "englishName": "Javanese"
+  },
+  "ka": {
+    "endonym": "ქართული",
+    "englishName": "Georgian"
   },
   "ko": {
     "endonym": "한국어",
