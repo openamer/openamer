@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer planifica unha tarefa, execútaa con ferramentas reais — terminal, navegador, ficheiros, código — e garda o que funcionou.",
+      "title": "Un axente que pensa contigo"
+    },
+    {
+      "body": "As conversacións, a memoria e os modelos viven nesta máquina. Nada se descarga a menos que o pidas.",
+      "title": "O teu hardware, os teus datos"
+    },
+    {
+      "body": "186 linguas, cada unha no alfabeto que lees. A primeira pantalla da aplicación pregunta cal preferes.",
+      "title": "A túa lingua, correctamente"
+    },
+    {
+      "body": "As habilidades gardanse a partir do propio traballo, polo que as tarefas diarias fanse máis curtas canto máis o uses.",
+      "title": "Capacidade que medra"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Comproba que esta máquina ten acceso a internet.",
+      "Executa a configuración de novo — os pasos finalizados non se repiten.",
+      "Se falla dúas veces, abre os rexistros; as últimas liñas indican o paso."
+    ],
+    "lead": "Non se revertiu ningún cambio silenciosamente — OpenAmer detense onde quedou, polo que unha segunda execución continúa desde alí.",
+    "leadUpdate": "OpenAmer segue na versión anterior e continúa funcionando. Nada foi substituído parcialmente.",
+    "log": "Rexistro",
+    "openLogs": "Abrir rexistros",
+    "retry": "Tentar de novo",
+    "retryUpdate": "Reintentar actualización",
+    "title": "A configuración non rematou",
+    "titleUpdate": "A actualización non rematou"
+  },
+  "language": {
+    "continue": "Continuar",
+    "lead": "A configuración continúa na lingua que escollas aquí. Podes cambiala máis tarde na aplicación.",
+    "search": "Buscar linguas",
+    "title": "Escolle a túa lingua"
+  },
+  "progress": {
+    "cancel": "Cancelar",
+    "done": "Listo",
+    "hideDetails": "Ocultar detalles",
+    "lead": "Configuración única: OpenAmer está descargando o necesario e configurando esta máquina. Os seguintes lanzamentos saltarán todo isto.",
+    "leadUpdate": "OpenAmer está substituindo a versión anterior. As túas sesións, memoria e axustes permanecen intactos.",
+    "lines": "liñas",
+    "liveOutput": "Saída en directo",
+    "showDetails": "Mostrar detalles",
+    "stepsComplete": "{done} de {total} pasos completados",
+    "title": "Configurando OpenAmer",
+    "titleUpdate": "Actualizando OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Marcando instalación como completa",
+    "config-templates": "Escribindo modelos de configuración",
+    "configure": "Configurando chaves API e modelos",
+    "dependencies": "Instalando dependencias de Python",
+    "desktop": "Construindo aplicación de escritorio",
+    "gateway": "Iniciando pasarela de mensaxería",
+    "git": "Instalando Git",
+    "handoff": "Preparando a actualización",
+    "install": "Instalando a actualización",
+    "node": "Detectando Node.js",
+    "node-deps": "Instalando dependencias de Node.js",
+    "path": "Engadindo OpenAmer ao PATH",
+    "platform-sdks": "Instalando SDKs de plataforma de mensaxería",
+    "python": "Verificando Python",
+    "rebuild": "Reconstruindo a aplicación de escritorio",
+    "repository": "Clonando o repositorio de OpenAmer",
+    "system-packages": "Instalando ripgrep e ffmpeg",
+    "update": "Descargando a última versión",
+    "uv": "Instalando o xestor de paquetes uv",
+    "venv": "Creando o ambiente virtual de Python"
+  },
+  "stepper": {
+    "done": "Listo",
+    "install": "Instalar",
+    "language": "Lingua",
+    "update": "Actualizar",
+    "welcome": "Benvido"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Abre a aplicación e describe o que queres facer. OpenAmer traballa en segundo plano e informa dos resultados.",
+        "title": "Comeza cunha frase"
+      },
+      {
+        "body": "Axustes → Pantalla → Lingua. 186 localidades, cambiables en calquera momento.",
+        "title": "Escolle a túa lingua"
+      },
+      {
+        "body": "O traballo recurrente convértese nunha habilidade — a próxima vez só require un comando.",
+        "title": "Deixa que o lembre"
+      }
+    ],
+    "command": "ou iníciao máis tarde desde un terminal:",
+    "cta": "Lanzar OpenAmer",
+    "errorTitle": "Non foi posible lanzar a aplicación de escritorio",
+    "launching": "Lanzando",
+    "lead": "Todo está no seu lugar. OpenAmer é agora teu — nesta máquina, na túa lingua.",
+    "title": "OpenAmer está listo"
+  },
+  "welcome": {
+    "bullets": [
+      "Execúcase localmente — as túas conversacións quedan nesta máquina",
+      "186 linguas, incluído o alfabeto que lees",
+      "Todo se pode cambiar máis tarde; nada é permanente"
+    ],
+    "cta": "Instalar",
+    "ctaUpdate": "Actualizar agora",
+    "kicker": "Configuración única",
+    "lead": "O teu propio axente. No teu hardware. Na túa lingua.",
+    "leadUpdate": "Hai un OpenAmer máis novo listo. Isto substitúe a versión anterior e mantén cada sesión e axuste.",
+    "note": "Leva uns minutos cunha conexión normal.",
+    "title": "Benvido a OpenAmer",
+    "titleUpdate": "Actualizar OpenAmer"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer ngrancang tugas, nglakokake nganggo piranti nyata — terminal, browser, file, kode — lan njaga sing berhasil.",
+      "title": "Agen sing mikir bareng"
+    },
+    {
+      "body": "Percakapan, memori lan model tetep ing mesin iki. Ora ana sing diunggah kajaba sampeyan njaluk.",
+      "title": "Perangkat keras sampeyan, data sampeyan"
+    },
+    {
+      "body": "186 basa, saben ing skrip sing bener-bener sampeyan maca. Layar pisanan aplikasi takon sing endi.",
+      "title": "Basa sampeyan, kanthi bener"
+    },
+    {
+      "body": "Ketrampilan disimpen saka kerja dhewe, supaya tugas saben dina dadi luwih cendhak sakdurunge sampeyan nggunakake.",
+      "title": "Kemampuan sing mundhak"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Priksa manawa mesin iki bisa nyambung menyang internet.",
+      "Jalankan setelan maneh — langkah sing wis rampung ora diulang.",
+      "Yen gagal kaping loro, bukak log; baris pungkasan jenenge langkah."
+    ],
+    "lead": "Ora ana owah-owahan sing dibalik kanthi senyap — OpenAmer mandheg ing panggonan sing mandheg, dadi run kapindho nerusake saka kono.",
+    "leadUpdate": "OpenAmer isih ing versi sadurunge lan tetep kerja. Ora ana sing setengah diganti.",
+    "log": "Log",
+    "openLogs": "Bukak log",
+    "retry": "Coba maneh",
+    "retryUpdate": "Ulangi nganyari",
+    "title": "Setelan durung rampung",
+    "titleUpdate": "Nganyari durung rampung"
+  },
+  "language": {
+    "continue": "Terusake",
+    "lead": "Setelan nerusake ing basa sing sampeyan pilih kene. Sampeyan bisa ngganti sawise ing aplikasi.",
+    "search": "Telusuri basa",
+    "title": "Pilih basa sampeyan"
+  },
+  "progress": {
+    "cancel": "Batal",
+    "done": "Sampun",
+    "hideDetails": "Wenehi rincian",
+    "lead": "Setelan sakwiji: OpenAmer lagi ngundhuh apa sing dibutuhake lan nyetel mesin iki. Luncuran sabanjure nglirwakake kabeh.",
+    "leadUpdate": "OpenAmer ngganti versi sadurunge. Sesi, memori lan setelan sampeyan tetep ora diowahi.",
+    "lines": "baris",
+    "liveOutput": "Output langsung",
+    "showDetails": "Tampil rincian",
+    "stepsComplete": "{done} saka {total} langkah rampung",
+    "title": "Nyiapake OpenAmer",
+    "titleUpdate": "Nganyari OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Nandhani instalasi rampung",
+    "config-templates": "Nulis templat konfigurasi",
+    "configure": "Nyiapake kunci API lan model",
+    "dependencies": "Pasang dependensi Python",
+    "desktop": "Nggawe aplikasi desktop",
+    "gateway": "Miwi gateway pesen",
+    "git": "Pasang Git",
+    "handoff": "Nyiyapake nganyari",
+    "install": "Pasang nganyari",
+    "node": "Ndeteksi Node.js",
+    "node-deps": "Pasang dependensi Node.js",
+    "path": "Nambah OpenAmer menyang PATH",
+    "platform-sdks": "Pasang SDK platform pesen",
+    "python": "Verifikasi Python",
+    "rebuild": "Nggarap maneh aplikasi desktop",
+    "repository": "Ngclone repositori OpenAmer",
+    "system-packages": "Pasang ripgrep lan ffmpeg",
+    "update": "Ngundhuh versi paling anyar",
+    "uv": "Pasang manajer paket uv",
+    "venv": "Nggawe lingkungan virtual Python"
+  },
+  "stepper": {
+    "done": "Sampun",
+    "install": "Pasang",
+    "language": "Basa",
+    "update": "Nganyari",
+    "welcome": "Sugeng rawuh"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Bukak aplikasi lan critakake apa sing pengin ditindakake. OpenAmer kerja ing latar mburi lan nglaporake bali.",
+        "title": "Miwi nganggo ukara"
+      },
+      {
+        "body": "Setelan → Tampilan → Basa. 186 lokal, bisa diganti kapan wae.",
+        "title": "Pilih basa sampeyan"
+      },
+      {
+        "body": "Kerja rutin dadi ketrampilan — kaping pisanan njupuk siji perintah.",
+        "title": "Ngidini dheweke éling"
+      }
+    ],
+    "command": "utawa miwiti saka terminal:",
+    "cta": "Luncur OpenAmer",
+    "errorTitle": "Ora bisa ngluncurake aplikasi desktop",
+    "launching": "Ngluncurake",
+    "lead": "Kabeh wis siap. OpenAmer saiki dadi sampeyan — ing mesin iki, ing basa sampeyan.",
+    "title": "OpenAmer wis siyap"
+  },
+  "welcome": {
+    "bullets": [
+      "Laku ing lokal — percakapan sampeyan tetep ing mesin iki",
+      "186 basa, kalebu skrip sing sampeyan maca",
+      "Kabeh bisa diowahi sawise; ora ana sing permanen"
+    ],
+    "cta": "Pasang",
+    "ctaUpdate": "Nganyari saiki",
+    "kicker": "Setelan sakwiji",
+    "lead": "Agen sampeyan. Ing perangkat keras sampeyan. Ing basa sampeyan.",
+    "leadUpdate": "OpenAmer anyar wis siyap. Iki ngganti versi sadurunge lan njaga saben sesi lan setelan.",
+    "note": "Nglampahi sawetara menit ing sambungan normal.",
+    "title": "Sugeng rawuh ing OpenAmer",
+    "titleUpdate": "Nganyari OpenAmer"
+  }
+}
