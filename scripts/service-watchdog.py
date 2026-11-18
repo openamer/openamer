@@ -23,6 +23,9 @@ from pathlib import Path
 SC = Path(os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts"))
 DETACHED = 0x00000008 | 0x00000200  # DETACHED_PROCESS | CREATE_NEW_PROCESS_GROUP
 
+sys.path.insert(0, str(SC))
+from dashboard_identity import drift, heal  # noqa: E402
+
 SERVICES = [
     # (name, port, probe_path, command)
     ("dashboard",   8899, "/",        [sys.executable, str(SC / "dashboard-server.py")]),
@@ -30,6 +33,15 @@ SERVICES = [
     ("snapshot",    8898, "/",        [sys.executable, str(SC / "system-snapshot.py"), "--serve"]),
     ("webhook",     8900, "/health",  [sys.executable, str(SC / "webhook-engine.py"), "--start"]),
 ]
+
+# Services that publish their build identity on /api/build. For these, "the
+# port answers" is not health: a STALE or DUPLICATE process answers too.
+# Measured 2026-11-18: /api/discovery returned 404 for hours while the file on
+# disk served it, because the process predated the route and the watchdog only
+# asked whether the port was open.
+IDENTITY = {
+    "dashboard": SC / "dashboard-server.py",
+}
 
 
 def probe(port: int, path: str) -> int | None:
@@ -60,8 +72,19 @@ def ensure_running(name: str, port: int, path: str, cmd: list, restart: bool = T
 
 
 def main() -> int:
-    failures, started = [], []
+    failures, started, healed = [], [], []
     for name, port, path, cmd in SERVICES:
+        script = IDENTITY.get(name)
+        if script is not None:
+            needs, reason = drift(port, script)
+            if needs:
+                ok, info = heal(port, script, cmd)
+                if ok:
+                    started.append(name)
+                    healed.append(f"{name}(:{port}): {reason} -> {info}")
+                else:
+                    failures.append(f"{name}(:{port}): {reason} -> {info}")
+                continue
         was = probe(port, path)
         if was is None:
             ok, info = ensure_running(name, port, path, cmd)
@@ -74,6 +97,7 @@ def main() -> int:
         "ok": not failures,
         "services": {n: {"port": p, "up": probe(p, pa) is not None} for n, p, pa, _ in SERVICES},
         "restarted": started,
+        "healed": healed,
         "failures": failures,
         "ts": time.strftime("%Y-%m-%dT%H:%M:%S"),
     }
