@@ -138,9 +138,17 @@ pub async fn resolve(
             ));
         }
         _ => {
-            return Err(anyhow!(
-                "no install-script pin supplied — installer cannot resolve a script source"
-            ));
+            // A build made without BUILD_PIN_BRANCH / BUILD_PIN_COMMIT still has
+            // to be able to install. Measured 2026-11-18: a pin-less
+            // OpenAmer-Setup.exe died *before its first stage* with
+            //   resolve install script failed: no install-script pin supplied
+            // and the window offered only "Einrichtung nicht abgeschlossen" —
+            // a dead end with nothing to retry, for a binary that could simply
+            // have followed the default branch.
+            emit_log(
+                "[bootstrap] no build pin supplied; tracking the default branch 'main'",
+            );
+            ("main".to_string(), false)
         }
     };
 
