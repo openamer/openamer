@@ -28,7 +28,7 @@ I18N = REPO / "apps" / "desktop" / "src" / "i18n"
 SCRIPTS = REPO / "scripts"
 
 sys.path.insert(0, str(SCRIPTS))
-from i18n_translate_locale import find_placeholders  # noqa: E402
+from i18n_translate_locale import placeholders_intact  # noqa: E402
 
 SKIP = {
     "catalog.ts", "types.ts", "index.ts", "define-locale.ts", "plugin-i18n.ts",
@@ -80,13 +80,16 @@ def verify(locale: str, en: dict) -> dict:
     missing = sorted(en_paths - paths)
     extra = sorted(paths - en_paths)
 
-    # placeholder integrity
+    # placeholder integrity — compare VARIABLES, not the words inside a
+    # ternary: translating `${count === 1 ? 'item' : 'items'}` into another
+    # language necessarily rewrites 'item'/'items', and an exact string
+    # comparison reads that correct translation as a dropped placeholder.
     broken_ph = []
     for p, t in tgt_text.items():
         src = en_text.get(p)
         if src is None or not isinstance(t, str):
             continue
-        if [x for _, _, x in find_placeholders(src)] != [x for _, _, x in find_placeholders(t)]:
+        if not placeholders_intact(src, t):
             broken_ph.append(p)
 
     # brand + marker

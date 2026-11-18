@@ -501,25 +501,34 @@ def placeholder_shape(placeholder: str) -> tuple[bool, frozenset[str], frozenset
 
 
 def placeholders_intact(original: str, translated: str) -> bool:
-    """True when the translated string carries exactly the source placeholders.
+    """True when the translated string carries the same interpolations.
 
     The model must not add, drop or rename an interpolation. The WORDS
     inside a ternary may change — that is the translation:
 
         ${count === 1 ? 'message' : 'messages'}
-        -> ${count === 1 ? 'message' : 'messages'}
+        -> ${count === 1 ? 'Nachricht' : 'Nachrichten'}
 
-    The variable names and the brace structure must survive; the literal
-    words are the translator's business.
+    The ORDER may change too, because word order is language-specific —
+    measured 2026-11-18, Japanese and Korean legitimately render
+    ``${action} ${command}`` as ``${command} を${action}``, and a positional
+    comparison called that "broken" in 8 strings. What must survive is the
+    multiset of referenced variables.
     """
-    src = [ph for _, _, ph in find_placeholders(original)]
-    dst = [ph for _, _, ph in find_placeholders(translated)]
+    src = [variables_in(ph) for _, _, ph in find_placeholders(original)]
+    dst = [variables_in(ph) for _, _, ph in find_placeholders(translated)]
     if len(src) != len(dst):
         return False
-    for a, b in zip(src, dst):
-        if variables_in(a) != variables_in(b):
-            return False
-    return True
+    return sorted(v for vs in src for v in vs) == sorted(v for vs in dst for v in vs)
+
+
+# JS keywords that appear inside an interpolation but name nothing: they must
+# not count as variables, because a translation never touches them and a
+# renamed-variable check would drown in false positives.
+_LITERAL_WORDS = {
+    "null", "true", "false", "undefined", "typeof", "void",
+    "new", "in", "of", "instanceof", "return",
+}
 
 
 def variables_in(placeholder: str) -> list[str]:
@@ -527,8 +536,66 @@ def variables_in(placeholder: str) -> list[str]:
 
     ``${count === 1 ? 'item' : 'items'}`` -> ['count']
     ``${ms !== null ? ` in ${ms}ms` : ''}`` -> ['ms', 'ms']
+
+    Identifiers inside a quoted string or template literal are user-facing
+    WORDS, not variables — translating them is exactly the translator's job,
+    so they must not take part in the integrity comparison.
+
+    Measured 2026-11-18: the naive regex returned
+    ``['count', 'item', 'items']``, so every translated plural read as a
+    dropped placeholder — 891 strings across 39 locales were declared broken
+    while being perfectly correct. A gate that rejects correct work is worse
+    than no gate: it trains everyone to ignore it.
     """
-    return re.findall(r"[A-Za-z_$][A-Za-z0-9_$]*", placeholder)
+    body = _code_only(placeholder)
+    body = body.replace("${", " ").replace("{", " ").replace("}", " ")
+    names = re.findall(r"[A-Za-z_$][A-Za-z0-9_$]*", body)
+    return [n for n in names if n not in _LITERAL_WORDS]
+
+
+def _code_only(text: str) -> str:
+    """Strip quoted literals from an interpolation, keeping its code.
+
+    A template literal may hold its own interpolation
+    (``\u0060 in ${ms}ms\u0060``); those variables ARE real references, so
+    their code is kept while the literal words around them are dropped.
+    """
+    out: list[str] = []
+    i, n = 0, len(text)
+    while i < n:
+        c = text[i]
+        if c not in "'\"`":
+            out.append(c)
+            i += 1
+            continue
+        quote = c
+        i += 1
+        while i < n:
+            if text[i] == "\\":
+                i += 2
+                continue
+            if quote == "`" and text.startswith("${", i):
+                depth, j = 0, i
+                while j < n:
+                    if text.startswith("${", j):
+                        depth += 1
+                        j += 2
+                        continue
+                    if text[j] == "}":
+                        depth -= 1
+                        if depth == 0:
+                            j += 1
+                            break
+                    j += 1
+                out.append(" " + _code_only(text[i + 2:j - 1]) + " ")
+                i = j
+                continue
+            if text[i] == quote:
+                i += 1
+                break
+            i += 1
+        out.append(" ")
+    return "".join(out)
 
 
 def mask_variables_only(text: str) -> tuple[str, list[str]]:
