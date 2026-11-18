@@ -11,6 +11,8 @@
  * would be offered and then fall back to English mid-flow, which is worse than
  * not offering it. So the picker is built from the catalogues that exist.
  */
+import english from './catalogs/en.json'
+
 export type Lang = string
 
 /** Text with `{name}` placeholders. Kept as data so it can be translated. */
@@ -91,11 +93,39 @@ export interface Strings {
 /** Fallback: the source language. Every catalogue is checked against its keys. */
 export const FALLBACK: Lang = 'en'
 
-const MODULES = import.meta.glob<{ default: Strings }>('./catalogs/*.json', { eager: true })
+/*
+ * Catalogues are loaded lazily, one chunk per language. With 185 of them an
+ * eager bundle would be ~2 MB parsed before the first frame — for a window that
+ * shows six rows. English is imported statically because it is the fallback for
+ * every key, so there is always a catalogue to paint with.
+ */
+const MODULES = import.meta.glob<{ default: Strings }>('./catalogs/*.json')
 
-/** code -> catalogue, discovered from the bundled JSON files. */
-export const CATALOGS: Record<Lang, Strings> = Object.fromEntries(
-  Object.entries(MODULES).map(([path, mod]) => [path.slice(path.lastIndexOf('/') + 1, -5), mod.default])
-)
+function codeOf(path: string): Lang {
+  return path.slice(path.lastIndexOf('/') + 1, -5)
+}
 
-export const LANGUAGES: Lang[] = Object.keys(CATALOGS).sort()
+export const LANGUAGES: Lang[] = Object.keys(MODULES).map(codeOf).sort()
+
+/** Catalogues loaded so far. `en` is always present. */
+export const CATALOGS: Record<Lang, Strings> = { en: english as Strings }
+
+/** Load one catalogue if it is not in memory yet. Resolves instantly once cached. */
+export async function loadCatalogue(lang: Lang): Promise<Strings | undefined> {
+  const cached = CATALOGS[lang]
+
+  if (cached) {
+    return cached
+  }
+
+  const loader = MODULES[`./catalogs/${lang}.json`]
+
+  if (!loader) {
+    return undefined
+  }
+
+  const mod = await loader()
+  CATALOGS[lang] = mod.default
+
+  return mod.default
+}

@@ -3,7 +3,7 @@ import { atom } from 'nanostores'
 import { useMemo } from 'react'
 
 import names from './language-names.json'
-import { CATALOGS, FALLBACK, type Lang, LANGUAGES, type Strings, type Template } from './strings'
+import { CATALOGS, FALLBACK, type Lang, LANGUAGES, loadCatalogue, type Strings, type Template } from './strings'
 
 export * from './strings'
 
@@ -48,7 +48,10 @@ function stored(): Lang | null {
   try {
     const value = window.localStorage.getItem(STORAGE_KEY)
 
-    return value && value in CATALOGS ? value : null
+    // LANGUAGES, not CATALOGS: catalogues are now per-language chunks, so at
+    // startup only English is in memory. Validating against the loaded ones
+    // silently dropped a remembered choice and fell back to the OS language.
+    return value && LANGUAGES.includes(value) ? value : null
   } catch {
     return null
   }
@@ -62,8 +65,12 @@ function stored(): Lang | null {
  */
 export const $lang = atom<Lang>(stored() ?? detectLang() ?? FALLBACK)
 
-export function setLang(lang: Lang): void {
-  if (!(lang in CATALOGS)) {
+/**
+ * Switch language. The catalogue is a separate chunk, so it is awaited first:
+ * publishing the atom earlier would paint one frame of English.
+ */
+export async function setLang(lang: Lang): Promise<void> {
+  if (!(await loadCatalogue(lang))) {
     return
   }
 
@@ -74,6 +81,11 @@ export function setLang(lang: Lang): void {
   } catch {
     // Private mode / locked storage: the choice still applies to this run.
   }
+}
+
+/** Load the initial language's chunk before the first paint. */
+export async function preloadInitialLanguage(): Promise<void> {
+  await loadCatalogue($lang.get())
 }
 
 /** Catalogue for a language, falling back to English for a missing key. */

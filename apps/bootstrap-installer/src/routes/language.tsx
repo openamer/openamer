@@ -98,7 +98,7 @@ export default function Language() {
                         : 'border-foreground/10 hover:border-foreground/25 hover:bg-foreground/[0.04]'
                     )}
                     lang={entry.code}
-                    onClick={() => setLang(entry.code)}
+                    onClick={() => void setLang(entry.code)}
                     type="button"
                   >
                     <span className="min-w-0 flex-1">
