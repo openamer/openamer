@@ -65,3 +65,60 @@ def test_setup_ui_sends_the_chosen_language() -> None:
     assert "language: " in source and "$lang.get()" in source, (
         "startInstall must send the language that was chosen on the first screen"
     )
+
+
+# ---------------------------------------------------------------------------
+# The chain in the OTHER direction: an update window must speak the language the
+# installed app is running in.
+#
+# Measured 2026-11-18: the desktop was German (config.yaml display.language: de)
+# while the update window rendered Bosnian ("AŽURIRANJE APLIKACIJE OPENAMER"),
+# because the window resolved its language from localStorage and the OS locale
+# only — the app's own setting was never consulted.
+# ---------------------------------------------------------------------------
+
+
+def test_tauri_exposes_the_installed_app_language() -> None:
+    source = (INSTALLER / "src-tauri" / "src" / "lib.rs").read_text(encoding="utf-8")
+
+    assert "fn app_language()" in source, "the frontend needs a command that reads the installed language"
+    assert "config.yaml" in source, "the language must come from the installed config, not from a guess"
+    assert "app_language," in source, "the command must be registered in the invoke handler"
+
+
+def test_update_window_resolves_the_app_language_before_the_first_paint() -> None:
+    source = (INSTALLER / "src" / "i18n" / "index.ts").read_text(encoding="utf-8")
+
+    assert "invoke<string | null>('app_language')" in source, (
+        "the setup UI must ask Tauri for the installed app's language"
+    )
+
+    start = source.find("export async function preloadInitialLanguage")
+    assert start != -1, "preloadInitialLanguage must exist"
+
+    body = source[start : source.find("\n}", start) + 2]
+
+    assert "appLanguage()" in body, "the app language must be resolved during preload"
+    assert body.find("appLanguage()") < body.find("loadCatalogue"), (
+        "the app's language must be applied before the catalogue for the first paint loads"
+    )
+
+
+def test_app_language_is_validated_against_the_shipped_catalogues() -> None:
+    """The validation must live in appLanguage, not merely somewhere in the file.
+
+    `LANGUAGES.includes(value)` already existed in `stored()` before this change,
+    so asserting it file-wide passed against the pre-fix source — a guard that
+    cannot fail is not a guard.
+    """
+    source = (INSTALLER / "src" / "i18n" / "index.ts").read_text(encoding="utf-8")
+
+    start = source.find("export async function appLanguage")
+    assert start != -1, "appLanguage() must exist"
+
+    body = source[start : source.find("\n}", start) + 2]
+
+    assert "invoke<string | null>('app_language')" in body, "appLanguage must call the command"
+    assert "LANGUAGES.includes(value)" in body, (
+        "a code from config.yaml that the installer cannot speak must not be adopted"
+    )

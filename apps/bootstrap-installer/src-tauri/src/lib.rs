@@ -91,6 +91,69 @@ fn get_mode(state: tauri::State<'_, Arc<AppState>>) -> AppMode {
     state.mode
 }
 
+/// The language the installed desktop app is currently set to.
+///
+/// The setup window used to answer this from `localStorage` and the OS locale
+/// only, so an app running in German updated itself in Bosnian: measured
+/// 2026-11-18, the window read `AŽURIRANJE APLIKACIJE OPENAMER` while the app
+/// behind it was German. `display.language` in the installed `config.yaml` is
+/// the app's own answer, so it wins over any guess.
+///
+/// Returns `None` when nothing is installed yet (fresh install), when the file
+/// is unreadable, or when no `display.language` is set — the frontend then keeps
+/// its existing order (remembered pick, OS locale, English).
+#[tauri::command]
+fn app_language() -> Option<String> {
+    let config = std::path::PathBuf::from(paths::get_openamer_home()).join("config.yaml");
+    let text = std::fs::read_to_string(config).ok()?;
+
+    // Deliberately a scanner, not a YAML parse: this crate has no YAML
+    // dependency, and the value needed is one scalar in one known top-level block.
+    let mut in_display = false;
+
+    for line in text.lines() {
+        let indented = line.starts_with(' ') || line.starts_with('\t');
+
+        if !indented {
+            // A top-level key ends the block we were watching.
+            in_display = line.trim_end().starts_with("display:");
+
+            // `display: {language: de}` — inline mapping, handled in place.
+            if let Some(rest) = line.trim().strip_prefix("display:") {
+                if let Some(value) = language_value(rest.trim()) {
+                    return Some(value);
+                }
+            }
+
+            continue;
+        }
+
+        if in_display {
+            if let Some(value) = language_value(line.trim()) {
+                return Some(value);
+            }
+        }
+    }
+
+    None
+}
+
+/// `language: de` / `{language: de}` / `"de"` → `Some("de")`.
+fn language_value(text: &str) -> Option<String> {
+    let stripped = text.trim_start_matches('{').trim();
+    let rest = stripped.strip_prefix("language:")?.trim();
+    let value = rest
+        .trim_matches(|c: char| c == ',' || c == '}' || c == '"' || c == '\'')
+        .trim();
+
+    if value.is_empty() || value == "''" {
+        return None;
+    }
+
+    Some(value.to_string())
+}
+
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     // Tracing → bootstrap-installer.log under OPENAMER_HOME/logs/ so install
@@ -215,6 +278,9 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             // Mode (install vs update)
             get_mode,
+            // The language the installed app is set to — the update window
+            // speaks the app's language, not the OS locale's.
+            app_language,
             // Bootstrap lifecycle
             bootstrap::start_bootstrap,
             bootstrap::cancel_bootstrap,
