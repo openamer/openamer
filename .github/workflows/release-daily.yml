@@ -102,3 +102,48 @@ jobs:
           $exe = Get-ChildItem -Path apps/desktop/release -Filter "OpenAmer-*-win-x64.exe" | Select-Object -First 1
           if (-not $exe) { Write-Error "No installer built"; exit 1 }
           gh release upload "${{ needs.daily-release.outputs.tag }}" "$($exe.FullName)" --clobber
+
+  setup-window:
+    # The setup/update window is its own small Tauri binary (8-9 MB). It used to
+    # live only on whatever machine happened to build it, so a release never
+    # carried the screen people actually see first. Built here from the same tag
+    # and attached next to the app installer.
+    needs: daily-release
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.daily-release.outputs.tag }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install dependencies
+        # apps/bootstrap-installer is a workspace member (apps/*) with no lockfile
+        # of its own, so its deps come from the root lockfile.
+        run: npm ci
+
+      - name: Build the setup window
+        working-directory: apps/bootstrap-installer
+        run: |
+          npm run build
+          cd src-tauri
+          cargo build --release --features tauri/custom-protocol
+
+      - name: Upload setup window to release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $exe = "apps/bootstrap-installer/src-tauri/target/release/OpenAmer-Setup.exe"
+          if (-not (Test-Path $exe)) { Write-Error "No setup window built"; exit 1 }
+          $tag = "${{ needs.daily-release.outputs.tag }}"
+          $name = "OpenAmer-Setup-$($tag.TrimStart('v'))-win-x64.exe"
+          Copy-Item $exe $name
+          gh release upload $tag $name --clobber
