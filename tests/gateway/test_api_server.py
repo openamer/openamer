@@ -988,7 +988,16 @@ class TestHealthDetailedEndpoint:
             "active_agents": 2,
             "exit_reason": None,
             "updated_at": "2026-04-14T00:00:00Z",
-        }), patch("gateway.run._resolve_gateway_model", return_value="test/model"):
+        }), patch("gateway.run._resolve_gateway_model", return_value="test/model"), patch(
+            # /health/detailed folds in the disk probe, so leaving it unpatched
+            # makes this endpoint test depend on the host's free space: any box
+            # past the 90% fill threshold reports "degraded" and the assertion
+            # below fails for a reason unrelated to the endpoint.
+            "gateway.readiness.shutil.disk_usage",
+            return_value=types.SimpleNamespace(
+                total=100 * 1024**3, used=40 * 1024**3, free=60 * 1024**3
+            ),
+        ):
             async with TestClient(TestServer(app)) as cli:
                 resp = await cli.get("/health/detailed")
                 assert resp.status == 200
