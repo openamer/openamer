@@ -50,7 +50,7 @@ interface DesktopLanguagePickerOverlayProps {
 }
 
 export function DesktopLanguagePickerOverlay({ enabled, onCompleted }: DesktopLanguagePickerOverlayProps) {
-  const { t, isSavingLocale, setLocale } = useI18n()
+  const { configuredLanguage, t, isSavingLocale, setLocale } = useI18n()
   const [chosen, setChosen] = useState(readChosen)
   const [query, setQuery] = useState('')
   const [error, setError] = useState<string | null>(null)
@@ -94,7 +94,12 @@ export function DesktopLanguagePickerOverlay({ enabled, onCompleted }: DesktopLa
     [finish, setLocale, t.language.saveError]
   )
 
-  if (!enabled || chosen) {
+  // The setup window asks this question on its FIRST screen and writes the answer
+  // into `display.language`. A config value that exists therefore means the
+  // question is already answered — whether the installer set it or the person
+  // changed it later in Settings. Derived, not stored: the config arrives
+  // asynchronously, so a value captured at mount would miss it.
+  if (!enabled || chosen || Boolean(configuredLanguage)) {
     return null
   }
 

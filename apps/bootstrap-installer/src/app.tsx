@@ -2,6 +2,7 @@ import { useStore } from '@nanostores/react'
 import { useEffect } from 'react'
 
 import { Backdrop } from './components/backdrop'
+import { $lang, isRtl } from './i18n'
 import Failure from './routes/failure'
 import Language from './routes/language'
 import Progress from './routes/progress'
@@ -22,10 +23,19 @@ import { $bootstrap, $route, initialize } from './store'
 export default function App() {
   const route = useStore($route)
   const bootstrap = useStore($bootstrap)
+  const lang = useStore($lang)
 
   useEffect(() => {
     void initialize()
   }, [])
+
+  // Direction is a property of the document, not of a component: Arabic or
+  // Hebrew laid out left-to-right reads as broken rather than as translated.
+  useEffect(() => {
+    const root = document.documentElement
+    root.lang = lang
+    root.dir = isRtl(lang) ? 'rtl' : 'ltr'
+  }, [lang])
 
   return (
     <div className="relative flex h-full flex-col overflow-hidden bg-background text-foreground">

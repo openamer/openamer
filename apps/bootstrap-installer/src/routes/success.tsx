@@ -57,7 +57,7 @@ export default function Success() {
               label={
                 <span className="inline-flex items-center gap-2">
                   {launching ? s.success.launching : s.success.cta}
-                  <ArrowRight className="size-3 text-primary/70" />
+                  <ArrowRight className="size-3 text-primary/70 rtl:-scale-x-100" />
                 </span>
               }
               loading={launching}
@@ -83,7 +83,7 @@ export default function Success() {
           )}
         </div>
 
-        <div className="flex min-w-0 flex-1 flex-col justify-center border-l border-foreground/10 px-7 py-8">
+        <div className="flex min-w-0 flex-1 flex-col justify-center border-s border-foreground/10 px-7 py-8">
           <span className="text-[10.5px] font-semibold tracking-[0.2em] text-foreground/35 uppercase">
             {s.stepper.done}
           </span>
@@ -94,7 +94,7 @@ export default function Success() {
                   <span className="font-mono text-[10px] tabular-nums text-primary/60">{String(i + 1).padStart(2, '0')}</span>
                   <h3 className="text-[13px] font-medium tracking-tight text-foreground">{card.title}</h3>
                 </div>
-                <p className="mt-1 pl-[22px] text-[11.5px] leading-relaxed text-muted-foreground">{card.body}</p>
+                <p className="mt-1 ps-[22px] text-[11.5px] leading-relaxed text-muted-foreground">{card.body}</p>
               </li>
             ))}
           </ul>

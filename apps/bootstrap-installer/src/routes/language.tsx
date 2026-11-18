@@ -69,11 +69,11 @@ export default function Language() {
         <p className="mt-2 max-w-[62ch] text-[13px] leading-relaxed text-muted-foreground">{s.language.lead}</p>
 
         <label className="relative mt-5 block max-w-[420px]">
-          <Search aria-hidden="true" className="absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2 text-foreground/35" />
+          <Search aria-hidden="true" className="absolute top-1/2 start-2.5 size-3.5 -translate-y-1/2 text-foreground/35" />
           <input
             aria-label={s.language.search}
             autoFocus
-            className="w-full rounded-md border border-foreground/15 bg-foreground/[0.03] py-1.5 pr-3 pl-8 text-[12.5px] text-foreground outline-none placeholder:text-foreground/30 focus-visible:border-primary/60"
+            className="w-full rounded-md border border-foreground/15 bg-foreground/[0.03] py-1.5 pe-3 ps-8 text-[12.5px] text-foreground outline-none placeholder:text-foreground/30 focus-visible:border-primary/60"
             onChange={event => setQuery(event.target.value)}
             placeholder={s.language.search}
             spellCheck={false}
@@ -82,7 +82,7 @@ export default function Language() {
           />
         </label>
 
-        <div className="mt-3 min-h-0 flex-1 overflow-y-auto pr-1 pb-3">
+        <div className="mt-3 min-h-0 flex-1 overflow-y-auto pe-1 pb-3">
           <ul className="grid grid-cols-2 gap-1 min-[1000px]:grid-cols-3">
             {entries.map(entry => {
               const selected = entry.code === active
@@ -92,7 +92,7 @@ export default function Language() {
                   <button
                     aria-pressed={selected}
                     className={clsx(
-                      'flex w-full cursor-pointer items-center gap-2 rounded-md border px-2 py-1.5 text-left transition-colors',
+                      'flex w-full cursor-pointer items-center gap-2 rounded-md border px-2 py-1.5 text-start transition-colors',
                       selected
                         ? 'border-primary/70 bg-primary/[0.08]'
                         : 'border-foreground/10 hover:border-foreground/25 hover:bg-foreground/[0.04]'
@@ -133,7 +133,7 @@ export default function Language() {
             label={
               <span className="inline-flex items-center gap-2">
                 {s.language.continue}
-                <ArrowRight className="size-3 text-primary/70" />
+                <ArrowRight className="size-3 text-primary/70 rtl:-scale-x-100" />
               </span>
             }
             onClick={() => $route.set('welcome')}

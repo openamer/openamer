@@ -70,7 +70,7 @@ export default function ProgressScreen({ bootstrap }: ProgressProps) {
     <div className="openamer-fade-in flex h-full flex-col">
       <div className="flex min-h-0 flex-1">
         {/* Left: the number, then the steps */}
-        <div className="flex w-[46%] min-w-0 flex-col border-r border-foreground/10 px-7 py-6">
+        <div className="flex w-[46%] min-w-0 flex-col border-e border-foreground/10 px-7 py-6">
           <div className="flex items-center gap-2.5">
             <BrandMark className="size-7 rounded" />
             <span className="text-[10.5px] font-semibold tracking-[0.2em] text-foreground/45 uppercase">
@@ -127,7 +127,7 @@ export default function ProgressScreen({ bootstrap }: ProgressProps) {
                   )}
                   key={name}
                 >
-                  {rec.state === 'running' && <Loader className="-ml-1.5 size-5 shrink-0" />}
+                  {rec.state === 'running' && <Loader className="-ms-1.5 size-5 shrink-0" />}
                   <span className="flex-1 truncate">{s.stages[name] ?? rec.info.title}</span>
                   {meta && <span className="text-[10.5px] tabular-nums text-muted-foreground/60">{meta}</span>}
                   <StateIcon state={rec.state ?? null} />
@@ -192,7 +192,7 @@ export default function ProgressScreen({ bootstrap }: ProgressProps) {
           >
             <FileText size={13} />
             {showLogs ? s.progress.hideDetails : s.progress.showDetails}
-            <ChevronRight className={clsx('transition-transform', showLogs && 'rotate-90')} size={11} />
+            <ChevronRight className={clsx('transition-transform rtl:-scale-x-100', showLogs && 'rotate-90')} size={11} />
           </button>
 
           {running && (

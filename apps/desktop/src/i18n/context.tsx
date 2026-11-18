@@ -55,7 +55,9 @@ function toError(error: unknown): Error {
   return error instanceof Error ? error : new Error(String(error))
 }
 
-const RTL_LOCALES = new Set<Locale>(['ar'])
+// Right-to-left scripts. Arabic was the only entry here, so Hebrew, Persian,
+// Urdu and the rest rendered left-to-right — fluent text in a broken layout.
+const RTL_LOCALES = new Set<string>(['ar', 'ckb', 'dv', 'fa', 'he', 'ku', 'ps', 'sd', 'ug', 'ur', 'yi'])
 
 function applyDocumentLocale(locale: Locale) {
   if (typeof document === 'undefined') {
@@ -67,6 +69,11 @@ function applyDocumentLocale(locale: Locale) {
 }
 
 export interface I18nContextValue {
+  /** `display.language` as it sits in the config file, or null when nothing has
+   * ever chosen a language. The setup window writes this at install time, so a
+   * non-null value means "already decided" — the first-run picker must not ask
+   * the same question a second time. */
+  configuredLanguage: string | null
   configLoadError: Error | null
   isLoadingConfig: boolean
   isSavingLocale: boolean
@@ -77,6 +84,7 @@ export interface I18nContextValue {
 }
 
 const I18nContext = createContext<I18nContextValue>({
+  configuredLanguage: null,
   configLoadError: null,
   isLoadingConfig: false,
   isSavingLocale: false,
@@ -94,6 +102,7 @@ export interface I18nProviderProps {
 
 export function I18nProvider({ children, configClient = defaultConfigClient, initialLocale }: I18nProviderProps) {
   const [locale, setLocaleState] = useState<Locale>(() => normalizeLocale(initialLocale))
+  const [configuredLanguage, setConfiguredLanguage] = useState<string | null>(null)
   const [isLoadingConfig, setIsLoadingConfig] = useState(false)
   const [isSavingLocale, setIsSavingLocale] = useState(false)
   const [configLoadError, setConfigLoadError] = useState<Error | null>(null)
@@ -121,7 +130,9 @@ export function I18nProvider({ children, configClient = defaultConfigClient, ini
       .getConfig()
       .then(config => {
         if (!cancelled) {
-          setLocaleState(normalizeLocale(getConfigDisplayLanguage(config)))
+          const fromConfig = getConfigDisplayLanguage(config)
+          setConfiguredLanguage(typeof fromConfig === 'string' && fromConfig.trim() ? fromConfig : null)
+          setLocaleState(normalizeLocale(fromConfig))
         }
       })
       .catch(error => {
@@ -177,6 +188,7 @@ export function I18nProvider({ children, configClient = defaultConfigClient, ini
 
   const value = useMemo<I18nContextValue>(
     () => ({
+      configuredLanguage,
       configLoadError,
       isLoadingConfig,
       isSavingLocale,
@@ -185,7 +197,7 @@ export function I18nProvider({ children, configClient = defaultConfigClient, ini
       setLocale,
       t: TRANSLATIONS[locale]
     }),
-    [configLoadError, isLoadingConfig, isSavingLocale, locale, saveError, setLocale]
+    [configuredLanguage, configLoadError, isLoadingConfig, isSavingLocale, locale, saveError, setLocale]
   )
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>
