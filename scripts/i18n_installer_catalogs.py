@@ -65,6 +65,14 @@ INT = re.compile(r"^\d+$")
 # English mid-flow is worse than one that is not offered."
 MAX_ENGLISH_SHARE = 0.10
 
+# Per-backend deadline for one catalogue (82 strings). 90 s was too tight
+# for a low-resource language: measured 2026-11-18, Codex answered Ojibwe
+# only after the stream deadline had already fired ('codex stream exceeded
+# 90s'), and the same run's fallback came back with 81 of 82 strings. The
+# deadline exists to stop a runaway repetition loop, not to rush a slow
+# translation, so it matches the library default (180 s), 2 attempts.
+CATALOG_TIMEOUT_S = 180
+
 
 def flatten(node: object, prefix: str = "") -> list[tuple[str, str]]:
     """Ordered (path, text) pairs. Array indices become numeric path segments."""
@@ -182,7 +190,7 @@ def repair_placeholders(
             backend,
             env,
             locale=code,
-            timeout=90,
+            timeout=CATALOG_TIMEOUT_S,
             extra_hint=(
                 "Keep every {placeholder} exactly as written, same spelling, same "
                 "number of them. Everything else must be translated."
@@ -232,7 +240,7 @@ def translate_locale(code: str, english: list[tuple[str, str]], env: dict, force
 
     for backend in backend_chain(env):
         try:
-            translated = translate.translate_batch(texts, language_name(code), backend, env, locale=code, timeout=90)
+            translated = translate.translate_batch(texts, language_name(code), backend, env, locale=code, timeout=CATALOG_TIMEOUT_S)
         except Exception as exc:  # noqa: BLE001 - a dead backend is a retry, not a crash
             print(f"  {backend[0]}: {type(exc).__name__}: {exc}".rstrip())
             continue
@@ -258,9 +266,15 @@ def translate_locale(code: str, english: list[tuple[str, str]], env: dict, force
 
         merged = existing | {path: value for (path, _), value in zip(todo, translated)}
         ordered = [(path, merged[path]) for path, _ in english if path in merged]
+        # newline="\n": on Windows `write_text` defaults to os.linesep, so a
+        # generated catalogue landed as CRLF while the committed ones are LF.
+        # Measured 2026-11-18: 76 catalogues from one run differed from their
+        # siblings in every line, and any regeneration on Linux would flip them
+        # all back — a phantom rewrite of the whole directory.
         out.write_text(
             json.dumps(rebuild(ordered), ensure_ascii=False, indent=2, sort_keys=True) + "\n",
             encoding="utf-8",
+            newline="\n",
         )
 
         added = f"+{len(todo)}" if existing else f"{len(todo)}"
