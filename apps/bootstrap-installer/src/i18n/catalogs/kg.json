@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer planuyet zadachu, vypolnyayet yeyo realnymi instrumentami — terminalom, brauzerom, faylami, kodom — i sokhranyayet to, chto srabotalo.",
+      "title": "Agent, kotoryy dumayet vmeste s vami"
+    },
+    {
+      "body": "Razgovory, pamyat i modeli nahodyatsya na etoy mashine. Nichyego ne zagruzhayetsya bez vashego zaprosa.",
+      "title": "Vashe zhelezo, vashi dannye"
+    },
+    {
+      "body": "186 yazykov, kazhdyy na tom pis'me, kotorym vy pol'zuyetes'. Na pervom ekrane prilozheniya nuzhno vybrat' yazyk.",
+      "title": "Vash yazyk, pravil'no"
+    },
+    {
+      "body": "Navyki sokhranyayutsya v protsesse raboty, poetomu povsednevnye zadachi stanovyatsya koroche s vremenem.",
+      "title": "Vozrastayushchaya vozmozhnost'"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Prover'te, imeyet li eta mashina dostup k internetu.",
+      "Zapustite ustanovku snova — zavershennye shagi ne povtoryayutsya.",
+      "Yesli oshibka povtoritsya dvizhy, otkroyte logi; v poslednih strokah ukazana etapa."
+    ],
+    "lead": "Nikakie izmeneniya ne byli otmeneny tikhon'ko — OpenAmer ostanovilsya tam, gde proizoshel sboy, poetomu povtornyy zapusk prodolzhitsya s etogo mesta.",
+    "leadUpdate": "OpenAmer ostayetsya na predydushchey versii i prodolzhayet rabotat'. Nichyego ne bylo zameneno chastichno.",
+    "log": "Log",
+    "openLogs": "Otkryt' logi",
+    "retry": "Poprobovat' snova",
+    "retryUpdate": "Povtorit' obnovleniye",
+    "title": "Ustanovka ne zavershena",
+    "titleUpdate": "Obnovleniye ne zaversheno"
+  },
+  "language": {
+    "continue": "Prodolzhit'",
+    "lead": "Ustanovka prodolzhitsya na yazyke, kotoryy vy vyberete zdes'. Vy mozhete izmenit' yego pozheye v prilozhenii.",
+    "search": "Poisk yazykov",
+    "title": "Vyberite vash yazyk"
+  },
+  "progress": {
+    "cancel": "Otmena",
+    "done": "Gotovo",
+    "hideDetails": "Skryt' detali",
+    "lead": "Ednorazovaya ustanovka: OpenAmer zagruzhayet neobkhodimye dannye i konfiguriruyet etu mashinu. Sleduyushchie zapuski proputyat etot etap.",
+    "leadUpdate": "OpenAmer zamenyayet predydushchuyu versiyu. Vashi sessii, pamyat' i nastroyki ostayutsya neizmennymi.",
+    "lines": "strok",
+    "liveOutput": "Vyvod v real'nom vremeni",
+    "showDetails": "Pokazat' detali",
+    "stepsComplete": "{done} iz {total} shagov zaversheno",
+    "title": "Ustanovka OpenAmer",
+    "titleUpdate": "Obnovleniye OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Otmetka o zavershenii ustanovki",
+    "config-templates": "Zapis' shablonov konfiguratsii",
+    "configure": "Konfiguratsiya API klyuchey i modeley",
+    "dependencies": "Ustanovka zavisimostey Python",
+    "desktop": "Sborka desktop-prilozheniya",
+    "gateway": "Zapusk shlyuza soobshcheniy",
+    "git": "Ustanovka Git",
+    "handoff": "Podgotovka k obnovleniyu",
+    "install": "Ustanovka obnovleniya",
+    "node": "Opredeleniye Node.js",
+    "node-deps": "Ustanovka zavisimostey Node.js",
+    "path": "Dobavleniye OpenAmer v PATH",
+    "platform-sdks": "Ustanovka SDK platformy soobshcheniy",
+    "python": "Proverka Python",
+    "rebuild": "Peresborka desktop-prilozheniya",
+    "repository": "Klonirovaniye repozitoriya OpenAmer",
+    "system-packages": "Ustanovka ripgrep i ffmpeg",
+    "update": "Zagruzka posledney versii",
+    "uv": "Ustanovka menedzhera paketov uv",
+    "venv": "Sozdaniye virtual'nogo okruzheniya Python"
+  },
+  "stepper": {
+    "done": "Gotovo",
+    "install": "Ustanovit'",
+    "language": "Yazyk",
+    "update": "Obnovit'",
+    "welcome": "Dobro pozhalovat'"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Otkroyte prilozheniye i opishite, chto nuzhno sdelat'. OpenAmer rabotayet v fone i otpravlyayet otchety.",
+        "title": "Nachnite s predlozheniya"
+      },
+      {
+        "body": "Nastroyki → Ekran → Yazyk. 186 lokalizatsiy, dostupnykh dlya pereklucheniya v lyuboy moment.",
+        "title": "Vyberite vash yazyk"
+      },
+      {
+        "body": "Povtoryayushchayasya rabota stanovitsya navykom — v sleduyushchiy raz potrebuetsya odna komanda.",
+        "title": "Pozvol'te yemu pomnit'"
+      }
+    ],
+    "command": "ili zapustite yego pozheye iz terminala:",
+    "cta": "Zapustit' OpenAmer",
+    "errorTitle": "Ne udalos' zapustit' desktop-prilozheniye",
+    "launching": "Zapusk",
+    "lead": "Vsyo gotovo. OpenAmer teper' vash — na etoy mashine, na vashem yazyke.",
+    "title": "OpenAmer gotov"
+  },
+  "welcome": {
+    "bullets": [
+      "Rabotayet lokal'no — vashi razgovory ostayutsya na etoy mashine",
+      "186 yazykov, vklyuchaya pis'mo, kotorym vy pol'zuyetes'",
+      "Vsyo mozhno izmenit' pozheye; nichego ne yavlyayetsya postoyannym"
+    ],
+    "cta": "Ustanovit'",
+    "ctaUpdate": "Obnovit' seychas",
+    "kicker": "Ednorazovaya ustanovka",
+    "lead": "Vash sobstvennyy agent. Na vashem zheleze. Na vashem yazyke.",
+    "leadUpdate": "Gotova novaya versiya OpenAmer. Ona zamenit predydushchuyu versiyu i sokhranit vse sessii i nastroyki.",
+    "note": "Zaymet neskol'ko minut pri obychnom podklyuchenii.",
+    "title": "Dobro pozhalovat' v OpenAmer",
+    "titleUpdate": "Obnovit' OpenAmer"
+  }
+}
