@@ -1,17 +1,17 @@
-# 🧬 Darwin Auto-Patch Report — 2026-11-16T23:25:47
+# 🧬 Darwin Auto-Patch Report — 2026-11-17T23:30:06
 
-- Population: 1297 skills, avg 38.8
+- Population: 1300 skills, avg 38.4
 - Mode: **apply**
 
 ## Improved (kept)
 
-- ✅ `dsh-error-handling`: 0 → 51 (+51)
-- ✅ `dsh-find-simplifications`: 0 → 42 (+42)
-- ✅ `dsh-merging-stacked-prs`: 0 → 50 (+50)
-- ✅ `dsh-official-plugin-artwork`: 0 → 42 (+42)
-- ✅ `dsh-pr-description`: 0 → 50 (+50)
-- ✅ `dsh-pre-push-checks`: 0 → 50 (+50)
-- ✅ `dsh-prose-standard`: 0 → 42 (+42)
-- ✅ `dsh-responsive-ui`: 0 → 42 (+42)
-- ✅ `dsh-session-projection`: 0 → 45 (+45)
-- ✅ `dsh-speed-up-perf`: 0 → 44 (+44)
+- ✅ `agent-experience`: 0 → 42 (+42)
+- ✅ `cordis-styling-nitpicking`: 0 → 45 (+45)
+- ✅ `dsh-archive-agent-notes`: 0 → 42 (+42)
+- ✅ `dsh-ci-test-reliability`: 0 → 45 (+45)
+- ✅ `dsh-client-ui-ux`: 0 → 47 (+47)
+- ✅ `dsh-code-review`: 0 → 45 (+45)
+- ✅ `dsh-create-upgrade-guide`: 0 → 50 (+50)
+- ✅ `dsh-cua-macos-signing`: 0 → 50 (+50)
+- ✅ `dsh-doc`: 0 → 44 (+44)
+- ✅ `dsh-doc-writing`: 0 → 45 (+45)
