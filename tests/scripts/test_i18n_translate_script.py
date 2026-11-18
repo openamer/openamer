@@ -133,6 +133,41 @@ def test_codex_credentials_missing_pool_gives_none(mod, tmp_path, monkeypatch):
     assert mod.codex_credentials() is None
 
 
+def test_install_home_honours_openamer_home(mod, tmp_path, monkeypatch):
+    """An explicit OPENAMER_HOME wins — it was set and ignored before."""
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "explicit"))
+    assert mod._install_home() == tmp_path / "explicit"
+
+
+def test_install_home_reads_the_home_around_the_repo(mod, tmp_path, monkeypatch):
+    """A repo living inside the home (<home>/openamer-agent) resolves to <home>.
+
+    This is the measured regression: the old hardcoded
+    ``REPO.parent/"AppData"/"Local"/"openamer-laptop"`` produced
+    ``<home>/AppData/Local/openamer-laptop``, so `auth.json` was never found and
+    the Codex backend was skipped in silence.
+    """
+    monkeypatch.delenv("OPENAMER_HOME", raising=False)
+    home = tmp_path / "install-home"
+    repo = home / "openamer-agent"
+    repo.mkdir(parents=True)
+    (home / "auth.json").write_text("{}", encoding="utf-8")
+    monkeypatch.setattr(mod, "REPO", repo)
+    assert mod._install_home() == home
+
+
+def test_install_home_never_returns_a_path_built_from_a_bare_repo_parent(
+        mod, tmp_path, monkeypatch):
+    """With no markers anywhere, fall back to ~/.openamer — not a doubled path."""
+    monkeypatch.delenv("OPENAMER_HOME", raising=False)
+    repo = tmp_path / "openamer-agent"
+    repo.mkdir()
+    monkeypatch.setattr(mod, "REPO", repo)
+    resolved = mod._install_home()
+    assert resolved == pathlib.Path.home() / ".openamer"
+    assert resolved != repo.parent / "AppData" / "Local" / "openamer-laptop"
+
+
 def test_call_codex_parses_the_sse_stream(mod, monkeypatch):
     """The Codex endpoint streams `response.output_text.delta` events."""
     import json
