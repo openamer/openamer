@@ -101,7 +101,22 @@ jobs:
         run: |
           $exe = Get-ChildItem -Path apps/desktop/release -Filter "OpenAmer-*-win-x64.exe" | Select-Object -First 1
           if (-not $exe) { Write-Error "No installer built"; exit 1 }
-          gh release upload "${{ needs.daily-release.outputs.tag }}" "$($exe.FullName)" --clobber
+          $tag = "${{ needs.daily-release.outputs.tag }}"
+          $repo = "${{ github.repository }}"
+          # Measured 2026-11-18: this step failed with "release not found" against a
+          # published release that the REST API resolved fine (id 450165465) and that
+          # an owner token could upload to minutes later. Retry a bounded number of
+          # times - and print the release gh actually sees on failure, so the next
+          # occurrence names its own cause instead of just dead-ending.
+          $ok = $false
+          for ($i = 1; $i -le 3; $i++) {
+            gh release upload $tag "$($exe.FullName)" --repo $repo --clobber
+            if ($LASTEXITCODE -eq 0) { $ok = $true; break }
+            Write-Warning "upload attempt $i for $tag failed; what gh sees:"
+            gh release view $tag --repo $repo --json tagName,isDraft,assets 2>&1 | Out-Host
+            Start-Sleep -Seconds 15
+          }
+          if (-not $ok) { Write-Error "Could not upload $($exe.Name) to $tag after 3 attempts"; exit 1 }
 
   setup-window:
     # The setup/update window is its own small Tauri binary (8-9 MB). It used to
@@ -144,6 +159,17 @@ jobs:
           $exe = "apps/bootstrap-installer/src-tauri/target/release/OpenAmer-Setup.exe"
           if (-not (Test-Path $exe)) { Write-Error "No setup window built"; exit 1 }
           $tag = "${{ needs.daily-release.outputs.tag }}"
+          $repo = "${{ github.repository }}"
           $name = "OpenAmer-Setup-$($tag.TrimStart('v'))-win-x64.exe"
           Copy-Item $exe $name
-          gh release upload $tag $name --clobber
+          # Same guard as the installer upload: never let one "release not found"
+          # turn a built setup window into a missing release asset.
+          $ok = $false
+          for ($i = 1; $i -le 3; $i++) {
+            gh release upload $tag $name --repo $repo --clobber
+            if ($LASTEXITCODE -eq 0) { $ok = $true; break }
+            Write-Warning "upload attempt $i for $tag failed; what gh sees:"
+            gh release view $tag --repo $repo --json tagName,isDraft,assets 2>&1 | Out-Host
+            Start-Sleep -Seconds 15
+          }
+          if (-not $ok) { Write-Error "Could not upload $name to $tag after 3 attempts"; exit 1 }

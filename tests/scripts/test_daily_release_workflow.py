@@ -53,6 +53,30 @@ def test_tag_only_after_the_commit_is_on_the_remote() -> None:
 
     assert guard_index < tag_index, "the reachability check must run before the tag is created"
 
+
+def test_both_artifact_jobs_retry_and_name_the_release() -> None:
+    """A failed upload must not be the end of the release.
+
+    Measured 2026-11-18 (run 44333660100): both artifact jobs built fine, then
+    `gh release upload` answered "release not found" for a published release the
+    REST API resolved (id 450165465) and an owner token could upload to minutes
+    later. Two upload sites, one bare command, no retry, no diagnostics — the
+    release shipped empty and the log named no cause.
+    """
+    workflow = WORKFLOW.read_text(encoding="utf-8")
+    uploads = [line.strip() for line in workflow.splitlines() if "gh release upload" in line]
+
+    assert len(uploads) == 2, f"expected two upload sites, found {len(uploads)}: {uploads}"
+    for line in uploads:
+        assert "--repo $repo" in line, f"the upload must name the repo, not infer it: {line}"
+        assert "--clobber" in line, f"a re-run must replace the asset: {line}"
+
+    retries = "for ($i = 1; $i -le 3; $i++)"
+    assert workflow.count(retries) == 2, "both upload sites must retry a bounded number of times"
+    assert workflow.count("gh release view $tag --repo $repo") == 2, (
+        "on failure the step must print the release gh sees, or the next occurrence hides its cause"
+    )
+
 # --------------------------------------------------------------------------
 # The decision logic, exercised without the network: push ok + merge refused
 # must still count as "published", because the release ships from the branch.
