@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer 规划任务，使用终端、浏览器、文件、代码等真实工具执行，并记住有效的做法。",
+      "title": "与你一起思考的智能体"
+    },
+    {
+      "body": "对话、记忆和模型都保存在本机。未经你允许，不会上传任何内容。",
+      "title": "你的硬件，你的数据"
+    },
+    {
+      "body": "支持 186 种语言，均采用你熟悉的文字。应用首屏即可选择。",
+      "title": "用你熟悉的语言"
+    },
+    {
+      "body": "技能从实际工作中积累，越用越能轻松完成日常任务。",
+      "title": "能力不断成长"
+    }
+  ],
+  "failure": {
+    "help": [
+      "检查这台电脑能否连接互联网。",
+      "重新运行安装程序，已完成的步骤不会重复执行。",
+      "如果失败两次，请打开日志；最后几行会指出出错的步骤。"
+    ],
+    "lead": "没有任何更改被悄悄撤销。OpenAmer 会停在中断处，再次运行时从那里继续。",
+    "leadUpdate": "OpenAmer 仍使用上一版本，可继续正常工作。没有任何组件被替换到一半。",
+    "log": "日志",
+    "openLogs": "打开日志",
+    "retry": "重试",
+    "retryUpdate": "重试更新",
+    "title": "安装未完成",
+    "titleUpdate": "更新未完成"
+  },
+  "language": {
+    "continue": "继续",
+    "lead": "安装将使用你在此选择的语言继续。之后可在应用中更改。",
+    "search": "搜索语言",
+    "title": "选择语言"
+  },
+  "progress": {
+    "cancel": "取消",
+    "done": "就绪",
+    "hideDetails": "隐藏详情",
+    "lead": "一次性安装：OpenAmer 正在下载所需内容并配置本机。以后启动时无需重复。",
+    "leadUpdate": "OpenAmer 正在替换上一版本。你的会话、记忆和设置保持不变。",
+    "lines": "行",
+    "liveOutput": "实时输出",
+    "showDetails": "显示详情",
+    "stepsComplete": "已完成 {done} 步，共 {total} 步",
+    "title": "正在安装 OpenAmer",
+    "titleUpdate": "正在更新 OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "标记安装完成",
+    "config-templates": "写入配置模板",
+    "configure": "配置 API 密钥和模型",
+    "dependencies": "安装蟒蛇语言依赖项",
+    "desktop": "构建桌面应用",
+    "gateway": "启动消息网关",
+    "git": "安装版本控制工具",
+    "handoff": "准备更新",
+    "install": "安装更新",
+    "node": "检测节点运行时",
+    "node-deps": "安装节点运行时依赖项",
+    "path": "将 OpenAmer 添加到 PATH",
+    "platform-sdks": "安装消息平台 SDK",
+    "python": "验证蟒蛇语言环境",
+    "rebuild": "重新构建桌面应用",
+    "repository": "克隆 OpenAmer 代码仓库",
+    "system-packages": "安装文本搜索和音视频处理工具",
+    "update": "下载最新版本",
+    "uv": "安装包管理器",
+    "venv": "创建蟒蛇语言虚拟环境"
+  },
+  "stepper": {
+    "done": "就绪",
+    "install": "安装",
+    "language": "语言",
+    "update": "更新",
+    "welcome": "欢迎"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "打开应用，描述你想完成的任务。OpenAmer 会在后台执行并向你汇报。",
+        "title": "从一句话开始"
+      },
+      {
+        "body": "设置 → 显示 → 语言。支持 186 种语言区域设置，随时切换。",
+        "title": "选择语言"
+      },
+      {
+        "body": "重复的工作会成为技能，下次只需一条指令。",
+        "title": "让它记住"
+      }
+    ],
+    "command": "也可以稍后从终端启动：",
+    "cta": "启动 OpenAmer",
+    "errorTitle": "无法启动桌面应用",
+    "launching": "正在启动",
+    "lead": "一切就绪。OpenAmer 现在属于你，在本机上，用你的语言。",
+    "title": "OpenAmer 已就绪"
+  },
+  "welcome": {
+    "bullets": [
+      "本地运行，对话留在本机",
+      "支持 186 种语言，采用你熟悉的文字",
+      "所有选项以后都能更改，不会永久固定"
+    ],
+    "cta": "安装",
+    "ctaUpdate": "立即更新",
+    "kicker": "一次性安装",
+    "lead": "你的专属智能体。在你的硬件上，用你的语言。",
+    "leadUpdate": "新版 OpenAmer 已就绪。更新将替换上一版本，并保留所有会话和设置。",
+    "note": "正常网络连接下需要几分钟。",
+    "title": "欢迎使用 OpenAmer",
+    "titleUpdate": "更新 OpenAmer"
+  }
+}

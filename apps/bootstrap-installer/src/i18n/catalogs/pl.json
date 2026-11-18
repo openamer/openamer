@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer planuje zadanie, wykonuje je za pomocą prawdziwych narzędzi — terminala, przeglądarki, plików i kodu — i zapamiętuje to, co się sprawdziło.",
+      "title": "Agent, który myśli razem z tobą"
+    },
+    {
+      "body": "Rozmowy, pamięć i modele pozostają na tym komputerze. Nic nie jest wysyłane bez twojej zgody.",
+      "title": "Twój sprzęt, twoje dane"
+    },
+    {
+      "body": "186 języków, każdy w piśmie, którego używasz. Język wybierasz na pierwszym ekranie aplikacji.",
+      "title": "Twój język, jak należy"
+    },
+    {
+      "body": "Umiejętności są zapisywane podczas pracy, więc im dłużej korzystasz z aplikacji, tym szybciej wykonujesz codzienne zadania.",
+      "title": "Możliwości, które rosną"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Sprawdź, czy ten komputer ma dostęp do internetu.",
+      "Uruchom konfigurację ponownie — ukończone kroki nie będą powtarzane.",
+      "Jeśli druga próba się nie powiedzie, otwórz dzienniki. Ostatnie wiersze wskażą krok."
+    ],
+    "lead": "Żadnych zmian nie cofnięto po cichu — OpenAmer zatrzymuje się w miejscu błędu, a kolejne uruchomienie wznawia pracę od tego miejsca.",
+    "leadUpdate": "OpenAmer nadal działa w poprzedniej wersji. Żaden element nie został wymieniony częściowo.",
+    "log": "Dziennik",
+    "openLogs": "Otwórz dzienniki",
+    "retry": "Spróbuj ponownie",
+    "retryUpdate": "Ponów aktualizację",
+    "title": "Konfiguracja nie została ukończona",
+    "titleUpdate": "Aktualizacja nie została ukończona"
+  },
+  "language": {
+    "continue": "Kontynuuj",
+    "lead": "Konfiguracja będzie kontynuowana w wybranym tutaj języku. Możesz go później zmienić w aplikacji.",
+    "search": "Szukaj języków",
+    "title": "Wybierz język"
+  },
+  "progress": {
+    "cancel": "Anuluj",
+    "done": "Gotowe",
+    "hideDetails": "Ukryj szczegóły",
+    "lead": "Jednorazowa konfiguracja: OpenAmer pobiera potrzebne składniki i konfiguruje ten komputer. Przy kolejnych uruchomieniach ten etap jest pomijany.",
+    "leadUpdate": "OpenAmer zastępuje poprzednią wersję. Twoje sesje, pamięć i ustawienia pozostają bez zmian.",
+    "lines": "wiersze",
+    "liveOutput": "Dane wyjściowe na żywo",
+    "showDetails": "Pokaż szczegóły",
+    "stepsComplete": "Ukończone kroki: {done} z {total}",
+    "title": "Konfigurowanie OpenAmer",
+    "titleUpdate": "Aktualizowanie OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Oznaczanie instalacji jako ukończonej",
+    "config-templates": "Zapisywanie szablonów konfiguracji",
+    "configure": "Konfigurowanie kluczy API i modeli",
+    "dependencies": "Instalowanie zależności Pythona",
+    "desktop": "Budowanie aplikacji komputerowej",
+    "gateway": "Uruchamianie bramy wiadomości",
+    "git": "Instalowanie Gita",
+    "handoff": "Przygotowywanie do aktualizacji",
+    "install": "Instalowanie aktualizacji",
+    "node": "Wykrywanie Node.js",
+    "node-deps": "Instalowanie zależności Node.js",
+    "path": "Dodawanie OpenAmer do PATH",
+    "platform-sdks": "Instalowanie SDK platform komunikacyjnych",
+    "python": "Sprawdzanie Pythona",
+    "rebuild": "Ponowne budowanie aplikacji komputerowej",
+    "repository": "Klonowanie repozytorium OpenAmer",
+    "system-packages": "Instalowanie ripgrep i ffmpeg",
+    "update": "Pobieranie najnowszej wersji",
+    "uv": "Instalowanie menedżera pakietów uv",
+    "venv": "Tworzenie środowiska wirtualnego Pythona"
+  },
+  "stepper": {
+    "done": "Gotowe",
+    "install": "Zainstaluj",
+    "language": "Język",
+    "update": "Aktualizacja",
+    "welcome": "Witaj"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Otwórz aplikację i opisz, co chcesz zrobić. OpenAmer działa w tle i informuje o wynikach.",
+        "title": "Zacznij od jednego zdania"
+      },
+      {
+        "body": "Ustawienia → Wyświetlanie → Język. 186 wersji językowych, które możesz zmieniać w każdej chwili.",
+        "title": "Wybierz język"
+      },
+      {
+        "body": "Powtarzalna praca staje się umiejętnością — następnym razem wystarczy jedno polecenie.",
+        "title": "Pozwól mu zapamiętać"
+      }
+    ],
+    "command": "lub uruchom później z terminala:",
+    "cta": "Uruchom OpenAmer",
+    "errorTitle": "Nie udało się uruchomić aplikacji komputerowej",
+    "launching": "Uruchamianie",
+    "lead": "Wszystko gotowe. OpenAmer jest teraz twój — na tym komputerze, w twoim języku.",
+    "title": "OpenAmer jest gotowy"
+  },
+  "welcome": {
+    "bullets": [
+      "Działa lokalnie — twoje rozmowy pozostają na tym komputerze",
+      "186 języków, także w piśmie, którego używasz",
+      "Wszystko można później zmienić; nic nie jest na stałe"
+    ],
+    "cta": "Zainstaluj",
+    "ctaUpdate": "Aktualizuj teraz",
+    "kicker": "Jednorazowa konfiguracja",
+    "lead": "Twój własny agent. Na twoim sprzęcie. W twoim języku.",
+    "leadUpdate": "Nowsza wersja OpenAmer jest gotowa. Zastąpi poprzednią wersję i zachowa wszystkie sesje oraz ustawienia.",
+    "note": "Przy typowym połączeniu zajmie to kilka minut.",
+    "title": "Witaj w OpenAmer",
+    "titleUpdate": "Zaktualizuj OpenAmer"
+  }
+}

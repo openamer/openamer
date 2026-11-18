@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer bir görevi planlar, gerçek araçlarla çalıştırır — terminal, tarayıcı, dosyalar, kod — ve işe yarayanı saklar.",
+      "title": "Yanı sıra düşünen bir ajan"
+    },
+    {
+      "body": "Konuşmalar, hafıza ve modeller bu makinede yaşar. İstediğinizde yüklenmez.",
+      "title": "Donanımınız, verileriniz"
+    },
+    {
+      "body": "186 dil, okuduğunuz yazı tipinde. Uygulamanın ilk ekranı hangisi olduğunu sorar.",
+      "title": "Diliniz doğru şekilde"
+    },
+    {
+      "body": "Beceriler, işten kendiliğinden kaydedilir, bu yüzden günlük görevler kullanım arttıkça kısalır.",
+      "title": "Büyüyen yetenek"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Bu makinenin internete erişebildiğini kontrol edin.",
+      "Kurulumu tekrar çalıştırın — tamamlanan adımlar tekrarlanmaz.",
+      "İki kez başarısız olursa, günlükleri açın; son satırlar adımı belirtir."
+    ],
+    "lead": "Değişiklikler sessizce geri alınmadı — OpenAmer durduğu yerden devam eder, ikinci çalıştırma oradan devam eder.",
+    "leadUpdate": "OpenAmer hâlâ önceki sürümde ve çalışmaya devam ediyor. Hiçbir şey yarı değiştirilmeyecek.",
+    "log": "Günlük",
+    "openLogs": "Günlükleri aç",
+    "retry": "Tekrar dene",
+    "retryUpdate": "Güncellemeyi yeniden dene",
+    "title": "Kurulum tamamlanmadı",
+    "titleUpdate": "Güncelleme tamamlanmadı"
+  },
+  "language": {
+    "continue": "Devam et",
+    "lead": "Kurulum burada seçtiğiniz dilde devam eder. Daha sonra uygulamada değiştirebilirsiniz.",
+    "search": "Diller ara",
+    "title": "Dilini seç"
+  },
+  "progress": {
+    "cancel": "İptal",
+    "done": "Hazır",
+    "hideDetails": "Ayrıntıları gizle",
+    "lead": "Tek seferlik kurulum: OpenAmer ihtiyaç duyduğu dosyaları indiriyor ve bu makineyi yapılandırıyor. Sonraki başlatmalarda hepsi atlanır.",
+    "leadUpdate": "OpenAmer önceki sürümü değiştiriyor. Oturumlarınız, hafızanız ve ayarlarınız dokunulmaz kalır.",
+    "lines": "satırlar",
+    "liveOutput": "Canlı çıktı",
+    "showDetails": "Ayrıntıları göster",
+    "stepsComplete": "{done} / {total} adım tamamlandı",
+    "title": "OpenAmer kuruluyor",
+    "titleUpdate": "OpenAmer güncelleniyor"
+  },
+  "stages": {
+    "bootstrap-marker": "Kurulum tamamlandı olarak işaretleniyor",
+    "config-templates": "Yapılandırma şablonları yazılıyor",
+    "configure": "API anahtarları ve modeller yapılandırılıyor",
+    "dependencies": "Python bağımlılıkları yükleniyor",
+    "desktop": "Masaüstü uygulaması derleniyor",
+    "gateway": "Mesajlaşma ağ geçidi başlatılıyor",
+    "git": "Git yükleniyor",
+    "handoff": "Güncellemeye hazırlanılıyor",
+    "install": "Güncelleme yükleniyor",
+    "node": "Node.js algılanıyor",
+    "node-deps": "Node.js bağımlılıkları yükleniyor",
+    "path": "OpenAmer, PATH'e ekleniyor",
+    "platform-sdks": "Mesajlaşma platformu SDK'ları yükleniyor",
+    "python": "Python doğrulanıyor",
+    "rebuild": "Masaüstü uygulaması yeniden derleniyor",
+    "repository": "OpenAmer deposu klonlanıyor",
+    "system-packages": "ripgrep ve ffmpeg yükleniyor",
+    "update": "En son sürüm indiriliyor",
+    "uv": "uv paket yöneticisi yükleniyor",
+    "venv": "Python sanal ortamı oluşturuluyor"
+  },
+  "stepper": {
+    "done": "Hazır",
+    "install": "Kur",
+    "language": "Dil",
+    "update": "Güncelle",
+    "welcome": "Hoşgeldiniz"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Uygulamayı açın ve yapmak istediğinizi anlatın. OpenAmer arka planda çalışır ve geri bildirir.",
+        "title": "Bir cümleyle başlayın"
+      },
+      {
+        "body": "Ayarlar → Görünüm → Dil. 186 yerel dil, istediğiniz zaman değiştirilebilir.",
+        "title": "Dilinizi seçin"
+      },
+      {
+        "body": "Yinelenen iş bir beceri haline gelir — bir sonraki sefer tek komutla çalışır.",
+        "title": "Hatırlamasını sağlayın"
+      }
+    ],
+    "command": "veya daha sonra bir terminalden başlatın:",
+    "cta": "OpenAmer'ı başlat",
+    "errorTitle": "Masaüstü uygulaması başlatılamadı",
+    "launching": "Başlatılıyor",
+    "lead": "Her şey hazır. OpenAmer artık sizin — bu makinede, dilinizde.",
+    "title": "OpenAmer hazır"
+  },
+  "welcome": {
+    "bullets": [
+      "Yerel olarak çalışır — konuşmalarınız bu makinede kalır",
+      "186 dil, okuduğunuz yazı tipinde",
+      "Her şey daha sonra değiştirilebilir; hiçbir şey kalıcı değil"
+    ],
+    "cta": "Kur",
+    "ctaUpdate": "Şimdi güncelle",
+    "kicker": "Tek seferlik kurulum",
+    "lead": "Kendi ajanın. Donanımınızda. Dilinizde.",
+    "leadUpdate": "Yeni bir OpenAmer hazır. Bu önceki sürümü değiştirir ve her oturumu ve ayarı korur.",
+    "note": "Normal bir bağlantıda birkaç dakika sürer.",
+    "title": "OpenAmer'a hoş geldiniz",
+    "titleUpdate": "OpenAmer'ı güncelle"
+  }
+}

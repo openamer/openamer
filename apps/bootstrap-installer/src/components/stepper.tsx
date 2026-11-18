@@ -6,32 +6,25 @@ import { cn } from '../lib/utils'
 /*
  * Stepper — the "where am I" line an OS installer always has.
  *
- * Three steps, not four: welcome / install / ready. The failure screen keeps the
- * same stepper with step 2 marked as the one that stopped, so a person never
- * loses their place. Update mode collapses to two visible steps because there is
- * no provider onboarding afterwards.
+ * Steps are passed in rather than derived from a fixed total: an install runs
+ * four (language, welcome, install, ready) and an update runs three (update,
+ * install, ready). Baking a number into the component made the update path
+ * claim a step it never shows.
  */
 export interface StepperProps {
   className?: string
-  current: 0 | 1 | 2
-  labels: { done: string; install: string; update: string; welcome: string }
-  update?: boolean
+  current: number
+  steps: string[]
 }
 
-export function Stepper({ className, current, labels, update = false }: StepperProps) {
-  const steps = [
-    { key: 'welcome', label: update ? labels.update : labels.welcome },
-    { key: 'install', label: labels.install },
-    { key: 'done', label: labels.done }
-  ]
-
+export function Stepper({ className, current, steps }: StepperProps) {
   return (
     <ol aria-label="Setup progress" className={cn('flex items-center gap-2 text-[11px]', className)}>
-      {steps.map((step, i) => {
+      {steps.map((label, i) => {
         const state = i < current ? 'past' : i === current ? 'active' : 'future'
 
         return (
-          <li className="flex items-center gap-2" key={step.key}>
+          <li className="flex items-center gap-2" key={`${label}-${i}`}>
             {i > 0 && (
               <span
                 aria-hidden="true"
@@ -52,13 +45,13 @@ export function Stepper({ className, current, labels, update = false }: StepperP
               </span>
               <span
                 className={clsx(
-                  'tracking-tight',
+                  'whitespace-nowrap tracking-tight',
                   state === 'active' && 'font-medium text-foreground',
                   state === 'past' && 'text-foreground/55',
                   state === 'future' && 'text-foreground/35'
                 )}
               >
-                {step.label}
+                {label}
               </span>
             </span>
           </li>

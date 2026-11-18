@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 
 import { Backdrop } from './components/backdrop'
 import Failure from './routes/failure'
+import Language from './routes/language'
 import Progress from './routes/progress'
 import Success from './routes/success'
 import Welcome from './routes/welcome'
@@ -30,6 +31,7 @@ export default function App() {
     <div className="relative flex h-full flex-col overflow-hidden bg-background text-foreground">
       <Backdrop />
       <main className="relative z-10 flex flex-1 flex-col overflow-hidden">
+        {route === 'language' && <Language />}
         {route === 'welcome' && <Welcome />}
         {route === 'progress' && <Progress bootstrap={bootstrap} />}
         {route === 'success' && <Success />}

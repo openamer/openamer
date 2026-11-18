@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer planifikon një detyrë, e kryen me mjete reale — terminal, shfletues, skedarë, kod — dhe ruan atë që funksionoi.",
+      "title": "Një agjent që mendon bashkë me ju"
+    },
+    {
+      "body": "Bisedat, kujtesa dhe modelet ruhen në këtë pajisje. Asgjë nuk ngarkohet pa kërkesën tuaj.",
+      "title": "Pajisja juaj, të dhënat tuaja"
+    },
+    {
+      "body": "186 gjuhë, secila me alfabetin që lexoni. Ekrani i parë i aplikacionit ju pyet cilën dëshironi.",
+      "title": "Gjuha juaj, siç duhet"
+    },
+    {
+      "body": "Aftësitë ruhen nga vetë puna, ndaj detyrat e përditshme marrin më pak kohë sa më gjatë ta përdorni.",
+      "title": "Aftësi që rriten"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Kontrolloni nëse kjo pajisje mund të lidhet me internetin.",
+      "Niseni sërish konfigurimin — hapat e përfunduar nuk përsëriten.",
+      "Nëse dështon dy herë, hapni regjistrat; rreshtat e fundit tregojnë hapin."
+    ],
+    "lead": "Asnjë ndryshim nuk u zhbë në heshtje — OpenAmer ndalet aty ku mbeti, ndaj nisja e dytë vazhdon prej aty.",
+    "leadUpdate": "OpenAmer mbetet në versionin e mëparshëm dhe vazhdon të punojë. Asgjë nuk u zëvendësua pjesërisht.",
+    "log": "Regjistri",
+    "openLogs": "Hap regjistrat",
+    "retry": "Provo sërish",
+    "retryUpdate": "Riprovo përditësimin",
+    "title": "Konfigurimi nuk përfundoi",
+    "titleUpdate": "Përditësimi nuk përfundoi"
+  },
+  "language": {
+    "continue": "Vazhdo",
+    "lead": "Konfigurimi vazhdon në gjuhën që zgjidhni këtu. Mund ta ndryshoni më vonë në aplikacion.",
+    "search": "Kërko gjuhë",
+    "title": "Zgjidhni gjuhën tuaj"
+  },
+  "progress": {
+    "cancel": "Anulo",
+    "done": "Gati",
+    "hideDetails": "Fshih hollësitë",
+    "lead": "Konfigurim vetëm një herë: OpenAmer po shkarkon çfarë i nevojitet dhe po konfiguron këtë pajisje. Nisjet e mëvonshme i anashkalojnë të gjitha këto.",
+    "leadUpdate": "OpenAmer po zëvendëson versionin e mëparshëm. Seancat, kujtesa dhe cilësimet tuaja mbeten të paprekura.",
+    "lines": "rreshta",
+    "liveOutput": "Dalja në kohë reale",
+    "showDetails": "Shfaq hollësitë",
+    "stepsComplete": "U përfunduan {done} nga {total} hapa",
+    "title": "Po konfigurohet OpenAmer",
+    "titleUpdate": "Po përditësohet OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Po shënohet instalimi si i përfunduar",
+    "config-templates": "Po shkruhen shabllonet e konfigurimit",
+    "configure": "Po konfigurohen çelësat API dhe modelet",
+    "dependencies": "Po instalohen varësitë e Python",
+    "desktop": "Po ndërtohet aplikacioni për kompjuter",
+    "gateway": "Po niset porta e mesazheve",
+    "git": "Po instalohet Git",
+    "handoff": "Po përgatitet përditësimi",
+    "install": "Po instalohet përditësimi",
+    "node": "Po zbulohet Node.js",
+    "node-deps": "Po instalohen varësitë e Node.js",
+    "path": "Po shtohet OpenAmer në PATH",
+    "platform-sdks": "Po instalohen SDK-të e platformave të mesazheve",
+    "python": "Po verifikohet Python",
+    "rebuild": "Po rindërtohet aplikacioni për kompjuter",
+    "repository": "Po klonohet depoja e OpenAmer",
+    "system-packages": "Po instalohen ripgrep dhe ffmpeg",
+    "update": "Po shkarkohet versioni më i fundit",
+    "uv": "Po instalohet menaxheri i paketave uv",
+    "venv": "Po krijohet mjedisi virtual i Python"
+  },
+  "stepper": {
+    "done": "Gati",
+    "install": "Instalo",
+    "language": "Gjuha",
+    "update": "Përditëso",
+    "welcome": "Mirë se vini"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Hapni aplikacionin dhe përshkruani çfarë dëshironi të bëhet. OpenAmer punon në sfond dhe ju raporton.",
+        "title": "Filloni me një fjali"
+      },
+      {
+        "body": "Cilësimet → Shfaqja → Gjuha. 186 variante gjuhësore, që mund t'i ndërroni në çdo kohë.",
+        "title": "Zgjidhni gjuhën tuaj"
+      },
+      {
+        "body": "Puna e përsëritur bëhet aftësi — herën tjetër mjafton një komandë.",
+        "title": "Lëreni të mbajë mend"
+      }
+    ],
+    "command": "ose niseni më vonë nga një terminal:",
+    "cta": "Nis OpenAmer",
+    "errorTitle": "Aplikacioni për kompjuter nuk mund të nisej",
+    "launching": "Po niset",
+    "lead": "Gjithçka është gati. OpenAmer tani është juaji — në këtë pajisje, në gjuhën tuaj.",
+    "title": "OpenAmer është gati"
+  },
+  "welcome": {
+    "bullets": [
+      "Ekzekutohet lokalisht — bisedat tuaja mbeten në këtë pajisje",
+      "186 gjuhë, përfshirë alfabetin që lexoni",
+      "Gjithçka mund të ndryshohet më vonë; asgjë nuk është e përhershme"
+    ],
+    "cta": "Instalo",
+    "ctaUpdate": "Përditëso tani",
+    "kicker": "Konfigurim vetëm një herë",
+    "lead": "Agjenti juaj. Në pajisjen tuaj. Në gjuhën tuaj.",
+    "leadUpdate": "Një version më i ri i OpenAmer është gati. Ai zëvendëson versionin e mëparshëm dhe ruan çdo seancë e cilësim.",
+    "note": "Zgjat disa minuta me një lidhje normale.",
+    "title": "Mirë se vini në OpenAmer",
+    "titleUpdate": "Përditëso OpenAmer"
+  }
+}
