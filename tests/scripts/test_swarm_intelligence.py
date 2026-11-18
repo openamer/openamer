@@ -46,15 +46,30 @@ class _Proc:
         self.stdout, self.returncode = stdout, returncode
 
 
-def test_ssh_probe_carries_connect_timeout(monkeypatch, si):
-    """A powered-down host must fail fast, not hang the whole cycle."""
+def test_no_hardcoded_remote_host_is_probed(monkeypatch, si):
+    """Discovery must not shell out to ssh for a baked-in address.
+
+    The GPU PC (192.168.178.23) was decommissioned on 2026-11-18. Its probe used
+    to carry ConnectTimeout=8 so a powered-down box could not hang the cycle
+    (observed 2026-09-14: >60 s block, cron killed mid-run). Both the host and
+    the probe are gone, so that contract has nothing left to describe; what
+    matters now is that discovery stays network-free and a remote node can only
+    arrive by being registered.
+    """
     seen: dict = {}
     monkeypatch.setattr(si.subprocess, "run",
                         lambda cmd, **kw: seen.update(cmd=cmd) or _Proc())
+
     si.discover_agents()
-    cmd = seen["cmd"]
-    assert "ConnectTimeout=8" in cmd
-    assert "-o" in cmd
+
+    assert "cmd" not in seen, f"discovery shelled out: {seen.get('cmd')!r}"
+
+    source = Path(si.__file__).read_text(encoding="utf-8")
+    assert "192.168." not in source, "a hardcoded LAN host is back in the routing table"
+    assert "ConnectTimeout" not in source, (
+        "an ssh probe came back without the fail-fast flags; bring back the "
+        "2026-09-14 regression test with it"
+    )
 
 
 def test_update_identity_reuses_passed_agents(monkeypatch, si):
@@ -72,9 +87,17 @@ def test_update_identity_reuses_passed_agents(monkeypatch, si):
     assert calls["n"] == 1
 
 
-def test_static_route_also_carries_connect_timeout(monkeypatch, si):
+def test_knowledge_synthesis_needs_no_remote(monkeypatch, si):
+    """Synthesis must work with no reachable remote at all.
+
+    The old test asserted the static route carried an ssh ConnectTimeout; the
+    route is local-only now, so the property worth pinning is that synthesis
+    completes without touching the network.
+    """
     seen: dict = {}
     monkeypatch.setattr(si.subprocess, "run",
                         lambda cmd, **kw: seen.update(cmd=cmd) or _Proc())
+
     si.synthesize_knowledge("x", remote_insight=None)
-    assert "ConnectTimeout=8" in seen["cmd"]
+
+    assert "cmd" not in seen, f"synthesis shelled out: {seen.get('cmd')!r}"
