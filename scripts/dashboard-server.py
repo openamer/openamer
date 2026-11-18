@@ -5,8 +5,10 @@ OpenAmer Live Dashboard — Port 8899
 Cron-Status, System-Health, Security-Status, Skill-Graph
 Built with Python stdlib only (http.server).
 """
+import hashlib
 import json
 import os
+import socket
 import sqlite3
 import subprocess
 import sys
@@ -16,6 +18,50 @@ from functools import lru_cache
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from pathlib import Path
 from urllib.parse import urlparse
+
+
+# ── Build identity ─────────────────────────────────────────────────────────
+#
+# A supervisor can only heal a stale dashboard if the server can say WHICH
+# bytes it is serving. Measured 2026-11-18: the file on disk had routes the
+# running process did not, so /api/discovery answered 404 while a grep of the
+# same path found the route — the process was older than the file.
+def _build_id(path: Path | None = None) -> str:
+    """Short content hash of this script — the served build's identity."""
+    try:
+        return hashlib.md5((path or Path(__file__)).read_bytes()).hexdigest()[:12]
+    except OSError:
+        return "unknown"
+
+
+BUILD = _build_id()
+STARTED_AT = datetime.now(timezone.utc).isoformat()
+
+# The routes this build actually serves. A supervisor comparing this list with
+# the one it expects is how a stale process is caught even when its byte hash
+# cannot be read (a locked file, a different interpreter).
+ROUTES = ["/", "/api/all", "/api/cron", "/api/health", "/api/security",
+          "/api/graph", "/api/discovery", "/api/build"]
+
+
+class ExclusiveHTTPServer(HTTPServer):
+    """An HTTP server that cannot silently share its port.
+
+    ``HTTPServer`` sets ``allow_reuse_address = 1``, and on Windows
+    ``SO_REUSEADDR`` lets a SECOND process bind a port another process is
+    already serving. Measured 2026-11-18 on this install: three supervisors
+    (dashboard-watchdog.py, service-watchdog.py, the supervisor organ list)
+    each start the server when the port looks closed, so a stale instance kept
+    answering /api/* with old routes while a fresh one "successfully" started.
+    The loser now fails loudly instead of serving a second, invisible truth.
+    """
+
+    allow_reuse_address = os.name != "nt"
+
+    def server_bind(self):
+        if os.name == "nt" and hasattr(socket, "SO_EXCLUSIVEADDRUSE"):
+            self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_EXCLUSIVEADDRUSE, 1)
+        super().server_bind()
 
 
 # ── Console encoding ───────────────────────────────────────────────────────
@@ -1037,6 +1083,14 @@ class DashboardHandler(BaseHTTPRequestHandler):
             self._serve_json(_cached("graph", collect_graph, ttl=30))
         elif path == "/api/discovery":
             self._serve_json(_cached("discovery", collect_discovery, ttl=30))
+        elif path == "/api/build":
+            self._serve_json({
+                "build": BUILD,
+                "pid": os.getpid(),
+                "started_at": STARTED_AT,
+                "script": str(Path(__file__).resolve()),
+                "routes": ROUTES,
+            })
         else:
             self.send_response(404)
             self.send_header("Content-Type", "text/plain")
@@ -1076,8 +1130,14 @@ class DashboardHandler(BaseHTTPRequestHandler):
 
 def main():
     port = 8899
-    server = HTTPServer(("127.0.0.1", port), DashboardHandler)
-    print(f"🚀 OpenAmer Dashboard → http://127.0.0.1:{port}")
+    try:
+        server = ExclusiveHTTPServer(("127.0.0.1", port), DashboardHandler)
+    except OSError as exc:
+        print(f"⛔ Port {port} is already served (this build {BUILD}): {exc}")
+        print("   Refusing to start a second instance — run dashboard-watchdog.py "
+              "to replace the running one.")
+        return 3
+    print(f"🚀 OpenAmer Dashboard → http://127.0.0.1:{port} (build {BUILD})")
     print(f"📂 OpenAmer Home: {OPENAMER_HOME}")
     print(f"⏱  Cache TTL: {CACHE_TTL}s / Health: 10s / Graph: 30s")
     try:
@@ -1087,4 +1147,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
