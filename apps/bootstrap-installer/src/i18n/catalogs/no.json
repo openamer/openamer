@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer planlegger en oppgave, utfører den med ekte verktøy — terminal, nettleser, filer, kode — og tar vare på det som fungerte.",
+      "title": "En agent som tenker sammen med deg"
+    },
+    {
+      "body": "Samtaler, minne og modeller ligger på denne maskinen. Ingenting lastes opp uten at du ber om det.",
+      "title": "Din maskinvare, dine data"
+    },
+    {
+      "body": "186 språk, alle med skriften du faktisk leser. På appens første skjerm velger du språk.",
+      "title": "Ditt språk, på ordentlig"
+    },
+    {
+      "body": "Ferdigheter lagres fra selve arbeidet, så hverdagsoppgaver går raskere jo mer du bruker appen.",
+      "title": "Evner som vokser"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Sjekk at denne maskinen har tilgang til internett.",
+      "Kjør oppsettet på nytt — fullførte trinn gjentas ikke.",
+      "Hvis det mislykkes to ganger, åpne loggene. De siste linjene viser hvilket trinn det gjelder."
+    ],
+    "lead": "Ingen endringer ble tilbakestilt i det skjulte — OpenAmer stopper der det stoppet, slik at neste kjøring fortsetter derfra.",
+    "leadUpdate": "OpenAmer bruker fortsatt forrige versjon og fungerer som før. Ingenting ble delvis erstattet.",
+    "log": "Logg",
+    "openLogs": "Åpne logger",
+    "retry": "Prøv igjen",
+    "retryUpdate": "Prøv oppdateringen på nytt",
+    "title": "Oppsettet ble ikke fullført",
+    "titleUpdate": "Oppdateringen ble ikke fullført"
+  },
+  "language": {
+    "continue": "Fortsett",
+    "lead": "Oppsettet fortsetter på språket du velger her. Du kan endre det senere i appen.",
+    "search": "Søk etter språk",
+    "title": "Velg språk"
+  },
+  "progress": {
+    "cancel": "Avbryt",
+    "done": "Klar",
+    "hideDetails": "Skjul detaljer",
+    "lead": "Engangsoppsett: OpenAmer laster ned det som trengs og konfigurerer denne maskinen. Dette hoppes over ved senere oppstarter.",
+    "leadUpdate": "OpenAmer erstatter forrige versjon. Økter, minne og innstillinger beholdes uendret.",
+    "lines": "linjer",
+    "liveOutput": "Løpende utdata",
+    "showDetails": "Vis detaljer",
+    "stepsComplete": "{done} av {total} trinn fullført",
+    "title": "Setter opp OpenAmer",
+    "titleUpdate": "Oppdaterer OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Markerer installasjonen som fullført",
+    "config-templates": "Skriver konfigurasjonsmaler",
+    "configure": "Konfigurerer API-nøkler og modeller",
+    "dependencies": "Installerer Python-avhengigheter",
+    "desktop": "Bygger skrivebordsappen",
+    "gateway": "Starter meldingsportalen",
+    "git": "Installerer Git",
+    "handoff": "Forbereder oppdatering",
+    "install": "Installerer oppdateringen",
+    "node": "Ser etter Node.js",
+    "node-deps": "Installerer Node.js-avhengigheter",
+    "path": "Legger OpenAmer til i PATH",
+    "platform-sdks": "Installerer SDK-er for meldingsplattformer",
+    "python": "Kontrollerer Python",
+    "rebuild": "Bygger skrivebordsappen på nytt",
+    "repository": "Kloner OpenAmer-kodelageret",
+    "system-packages": "Installerer ripgrep og ffmpeg",
+    "update": "Laster ned nyeste versjon",
+    "uv": "Installerer pakkebehandleren uv",
+    "venv": "Oppretter det virtuelle Python-miljøet"
+  },
+  "stepper": {
+    "done": "Klar",
+    "install": "Installer",
+    "language": "Språk",
+    "update": "Oppdater",
+    "welcome": "Velkommen"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Åpne appen og beskriv hva du vil ha gjort. OpenAmer jobber i bakgrunnen og gir deg beskjed.",
+        "title": "Start med en setning"
+      },
+      {
+        "body": "Innstillinger → Visning → Språk. 186 språkvalg, som du kan bytte mellom når som helst.",
+        "title": "Velg språk"
+      },
+      {
+        "body": "Gjentakende arbeid blir en ferdighet — neste gang holder det med én kommando.",
+        "title": "La den huske"
+      }
+    ],
+    "command": "eller start den senere fra en terminal:",
+    "cta": "Start OpenAmer",
+    "errorTitle": "Kunne ikke starte skrivebordsappen",
+    "launching": "Starter",
+    "lead": "Alt er på plass. OpenAmer er nå ditt — på denne maskinen, på ditt språk.",
+    "title": "OpenAmer er klar"
+  },
+  "welcome": {
+    "bullets": [
+      "Kjører lokalt — samtalene dine blir på denne maskinen",
+      "186 språk, med skriften du leser",
+      "Alt kan endres senere. Ingenting er permanent"
+    ],
+    "cta": "Installer",
+    "ctaUpdate": "Oppdater nå",
+    "kicker": "Engangsoppsett",
+    "lead": "Din egen agent. På din maskinvare. På ditt språk.",
+    "leadUpdate": "En nyere versjon av OpenAmer er klar. Den erstatter forrige versjon og beholder alle økter og innstillinger.",
+    "note": "Tar noen minutter med en vanlig internettilkobling.",
+    "title": "Velkommen til OpenAmer",
+    "titleUpdate": "Oppdater OpenAmer"
+  }
+}

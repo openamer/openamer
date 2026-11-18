@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "E fa'anaho OpenAmer i te hō'ē 'ohipa, e rave i te reira ma te mau mauha'a mau — te fa'auera'a, te hi'opo'a itenati, te mau putu'ite, te tapa'o porotarāma — e e tāpe'a i tei manuia.",
+      "title": "Hō'ē tauturu e feruri 'e 'oe"
+    },
+    {
+      "body": "Tei ni'a i teie roro uira te mau 'āparaura'a, te mau ha'amana'ora'a e te mau hōho'a. 'Aita e mea e haponohia maori rā e ani 'oe.",
+      "title": "Tā 'oe mauha'a, tā 'oe mau ha'amāramaramara'a"
+    },
+    {
+      "body": "186 reo, te tāta'itahi ma te pāpa'ira'a tā 'oe e tai'o mau nei. E ani te 'api mātāmua o te fa'anahora'a i tā 'oe reo.",
+      "title": "Tō 'oe reo, ma te tano"
+    },
+    {
+      "body": "E tāpe'ahia te mau 'aravihi nō roto mai i te 'ohipa iho, nō reira e poto noa atu te mau 'ohipa o te mau mahana ato'a ia tāmau 'oe i te fa'a'ohipa.",
+      "title": "Te 'aravihi e tupu noa"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Hi'opo'a e e nehenehe teie roro uira e tū'ati i te itenati.",
+      "Ha'amata fa'ahou i te fa'aineinera'a — e'ita te mau tuha'a i oti e rave-fa'ahou-hia.",
+      "Ia manuia 'ore e piti taime, 'a hi'o i te mau buka tāpa'opa'ora'a; e fa'a'ite te mau rēni hope'a i te tuha'a."
+    ],
+    "lead": "'Aita e tauiraa i fa'a'ore-noa-hia — e fa'aea OpenAmer i te vāhi i fa'aea ai, e e tāmau te raveraa piti mai reira mai.",
+    "leadUpdate": "Tei ni'a noa OpenAmer i te huru tahito e tē 'ohipa noa nei. 'Aita e mea i monohia 'āfa noa.",
+    "log": "Buka tāpa'opa'ora'a",
+    "openLogs": "Hi'o i te mau buka tāpa'opa'ora'a",
+    "retry": "Tāmata fa'ahou",
+    "retryUpdate": "Tāmata fa'ahou i te fa'a'āpīra'a",
+    "title": "'Aita te fa'aineinera'a i oti",
+    "titleUpdate": "'Aita te fa'a'āpīra'a i oti"
+  },
+  "language": {
+    "continue": "Tāmau",
+    "lead": "E tāmau te fa'aineinera'a i roto i te reo tā 'oe e mā'iti i 'ō nei. E nehenehe 'oe e taui i te reira i muri iho i roto i te fa'anahora'a.",
+    "search": "'Imi i te mau reo",
+    "title": "Mā'iti i tō 'oe reo"
+  },
+  "progress": {
+    "cancel": "Fa'a'ore",
+    "done": "Ineine",
+    "hideDetails": "Huna i te mau ha'amāramaramara'a",
+    "lead": "Fa'aineinera'a hō'ē noa taime: tē fa'auta mai nei OpenAmer i te mau mea e hina'arohia e ana e tē fa'atano nei i teie roro uira. E'ita teie mau 'ohipa e rave-fa'ahou-hia i te mau ha'amatara'a i muri iho.",
+    "leadUpdate": "Tē mono nei OpenAmer i te huru tahito. E vai noa tā 'oe mau tau 'ohipara'a, mau ha'amana'ora'a e mau fa'atanora'a.",
+    "lines": "rēni",
+    "liveOutput": "Fa'a'itera'a ti'a",
+    "showDetails": "Fa'a'ite i te mau ha'amāramaramara'a",
+    "stepsComplete": "{done} tuha'a i oti i ni'a i te {total}",
+    "title": "Fa'aineinera'a ia OpenAmer",
+    "titleUpdate": "Fa'a'āpīra'a ia OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Tāpa'ora'a ē ua oti te ha'amaura'a",
+    "config-templates": "Pāpa'ira'a i te mau hōho'a fa'atanora'a",
+    "configure": "Fa'atanora'a i te mau tāviri API e te mau hōho'a",
+    "dependencies": "Ha'amaura'a i te mau mea tāpiri Python e hina'arohia",
+    "desktop": "Hāmanira'a i te fa'anahora'a roro uira",
+    "gateway": "Ha'amatara'a i te 'ūputa poro'i",
+    "git": "Ha'amaura'a ia Git",
+    "handoff": "Fa'aineinera'a nō te fa'a'āpī",
+    "install": "Ha'amaura'a i te fa'a'āpīra'a",
+    "node": "'Imira'a ia Node.js",
+    "node-deps": "Ha'amaura'a i te mau mea tāpiri Node.js e hina'arohia",
+    "path": "Tāpirira'a ia OpenAmer i roto i te PATH",
+    "platform-sdks": "Ha'amaura'a i te mau SDK o te mau tahua poro'i",
+    "python": "Hi'opo'ara'a ia Python",
+    "rebuild": "Hāmani-fa'ahou-ra'a i te fa'anahora'a roro uira",
+    "repository": "Fa'ahōho'ara'a i te vairaa tapa'o o OpenAmer",
+    "system-packages": "Ha'amaura'a ia ripgrep e ffmpeg",
+    "update": "Fa'autara'a mai i te huru 'āpī roa a'e",
+    "uv": "Ha'amaura'a i te fa'anahora'a fa'atere pū'ohu uv",
+    "venv": "Hāmanira'a i te vāhi 'ohipara'a mariko Python"
+  },
+  "stepper": {
+    "done": "Ineine",
+    "install": "Ha'amau",
+    "language": "Reo",
+    "update": "Fa'a'āpī",
+    "welcome": "Mānava"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Ha'amata i te fa'anahora'a e fa'ata'a i tā 'oe e hina'aro ia ravehia. E 'ohipa OpenAmer i muri mai e e fa'a'ite mai i te hope'ara'a.",
+        "title": "Ha'amata ma te hō'ē pereota"
+      },
+      {
+        "body": "Fa'atanora'a → Fa'a'itera'a → Reo. 186 fa'atanora'a reo, e nehenehe e taui i te mau taime ato'a.",
+        "title": "Mā'iti i tō 'oe reo"
+      },
+      {
+        "body": "E riro te 'ohipa e rave-tāmau-hia 'ei 'aravihi — i te taime i muri iho, hō'ē noa fa'auera'a e nava'i.",
+        "title": "Vaiiho iāna ia ha'amana'o"
+      }
+    ],
+    "command": "'aore rā, ha'amata i muri iho nā roto i te hō'ē vāhi fa'auera'a:",
+    "cta": "Ha'amata ia OpenAmer",
+    "errorTitle": "'Aita i nehenehe e ha'amata i te fa'anahora'a roro uira",
+    "launching": "Ha'amatara'a",
+    "lead": "Ua ineine te mau mea ato'a. Nā 'oe OpenAmer i teienei — i ni'a i teie roro uira, i roto i tō 'oe reo.",
+    "title": "Ua ineine OpenAmer"
+  },
+  "welcome": {
+    "bullets": [
+      "E 'ohipa i ni'a i tō 'oe roro uira — e vai tā 'oe mau 'āparaura'a i ni'a i teie roro uira",
+      "186 reo, e tae noa atu i te pāpa'ira'a tā 'oe e tai'o",
+      "E nehenehe te mau mea ato'a e tauihia i muri iho; 'aita e mea e vai tāmau"
+    ],
+    "cta": "Ha'amau",
+    "ctaUpdate": "Fa'a'āpī i teienei",
+    "kicker": "Fa'aineinera'a hō'ē noa taime",
+    "lead": "Tā 'oe iho tauturu. I ni'a i tā 'oe mauha'a. I roto i tō 'oe reo.",
+    "leadUpdate": "Ua ineine te hō'ē huru 'āpī a'e o OpenAmer. E mono te reira i te huru tahito ma te tāpe'a i te mau tau 'ohipara'a e te mau fa'atanora'a ato'a.",
+    "note": "Tau minuti noa i ni'a i te hō'ē tū'atira'a mātauhia.",
+    "title": "Mānava i OpenAmer",
+    "titleUpdate": "Fa'a'āpī ia OpenAmer"
+  }
+}

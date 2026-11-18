@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "Nagpaplano ang OpenAmer ng gawain, ginagawa ito gamit ang mga totoong kasangkapan — terminal, browser, mga file, kodigo — at tinatandaan ang gumana.",
+      "title": "Isang ahenteng kasabay mong mag-isip"
+    },
+    {
+      "body": "Nasa makinang ito ang mga pag-uusap, alaala at modelo. Walang ia-upload maliban kung hilingin mo.",
+      "title": "Hardware mo, datos mo"
+    },
+    {
+      "body": "186 na wika, bawat isa sa sulat na talagang binabasa mo. Sa unang screen ng app, pipili ka ng wika.",
+      "title": "Wika mo, nang tama"
+    },
+    {
+      "body": "Naiipon ang mga kasanayan mula mismo sa trabaho, kaya mas bumibilis ang pang-araw-araw na gawain habang ginagamit mo ito.",
+      "title": "Kakayahang lumalago"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Tiyaking nakakakonekta sa internet ang makinang ito.",
+      "Patakbuhin muli ang pag-setup — hindi uulitin ang mga natapos na hakbang.",
+      "Kung mabigo nang dalawang beses, buksan ang mga tala; nakasaad sa mga huling linya ang hakbang."
+    ],
+    "lead": "Walang pagbabagong lihim na binalik sa dati — nananatili ang OpenAmer sa hakbang kung saan ito huminto, kaya doon magpapatuloy ang susunod na pagpapatakbo.",
+    "leadUpdate": "Nasa dating bersyon pa rin ang OpenAmer at gumagana pa rin. Walang bahagyang napalitan.",
+    "log": "Tala",
+    "openLogs": "Buksan ang mga tala",
+    "retry": "Subukan muli",
+    "retryUpdate": "Subukang i-update muli",
+    "title": "Hindi natapos ang pag-setup",
+    "titleUpdate": "Hindi natapos ang pag-update"
+  },
+  "language": {
+    "continue": "Magpatuloy",
+    "lead": "Magpapatuloy ang pag-setup sa wikang pipiliin mo rito. Maaari mo itong baguhin sa app sa ibang pagkakataon.",
+    "search": "Maghanap ng wika",
+    "title": "Piliin ang iyong wika"
+  },
+  "progress": {
+    "cancel": "Kanselahin",
+    "done": "Handa",
+    "hideDetails": "Itago ang mga detalye",
+    "lead": "Isang beses na pag-setup: Dina-download ng OpenAmer ang kailangan nito at kino-configure ang makinang ito. Lalaktawan ito sa mga susunod na pagbukas.",
+    "leadUpdate": "Pinapalitan ng OpenAmer ang dating bersyon. Hindi gagalawin ang iyong mga sesyon, alaala at setting.",
+    "lines": "linya",
+    "liveOutput": "Kasalukuyang resulta",
+    "showDetails": "Ipakita ang mga detalye",
+    "stepsComplete": "{done} sa {total} hakbang ang tapos na",
+    "title": "Sine-set up ang OpenAmer",
+    "titleUpdate": "Ina-update ang OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Minamarkahang tapos na ang pag-install",
+    "config-templates": "Isinusulat ang mga padron ng pagsasaayos",
+    "configure": "Isinasaayos ang mga API key at modelo",
+    "dependencies": "Ini-install ang mga kinakailangang pakete ng Python",
+    "desktop": "Binubuo ang app para sa desktop",
+    "gateway": "Sinisimulan ang gateway ng pagmemensahe",
+    "git": "Ini-install ang Git",
+    "handoff": "Naghahanda sa pag-update",
+    "install": "Ini-install ang update",
+    "node": "Tinutukoy ang Node.js",
+    "node-deps": "Ini-install ang mga kinakailangang pakete ng Node.js",
+    "path": "Idinaragdag ang OpenAmer sa PATH",
+    "platform-sdks": "Ini-install ang mga SDK ng plataporma ng pagmemensahe",
+    "python": "Sinusuri ang Python",
+    "rebuild": "Muling binubuo ang app para sa desktop",
+    "repository": "Kinokopya ang imbakan ng OpenAmer",
+    "system-packages": "Ini-install ang ripgrep at ffmpeg",
+    "update": "Dina-download ang pinakabagong bersyon",
+    "uv": "Ini-install ang tagapamahala ng pakete na uv",
+    "venv": "Ginagawa ang birtuwal na kapaligiran ng Python"
+  },
+  "stepper": {
+    "done": "Handa",
+    "install": "I-install",
+    "language": "Wika",
+    "update": "I-update",
+    "welcome": "Maligayang pagdating"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Buksan ang app at ilarawan ang gusto mong ipagawa. Kumikilos ang OpenAmer sa likuran at ibinabalita ang resulta.",
+        "title": "Magsimula sa isang pangungusap"
+      },
+      {
+        "body": "Mga Setting → Pagpapakita → Wika. 186 na lokal, puwedeng palitan anumang oras.",
+        "title": "Piliin ang iyong wika"
+      },
+      {
+        "body": "Nagiging kasanayan ang paulit-ulit na gawain — sa susunod, isang utos na lang.",
+        "title": "Hayaan itong makaalala"
+      }
+    ],
+    "command": "o simulan ito mamaya mula sa terminal:",
+    "cta": "Buksan ang OpenAmer",
+    "errorTitle": "Hindi mabuksan ang app para sa desktop",
+    "launching": "Binubuksan",
+    "lead": "Nakahanda na ang lahat. Iyo na ang OpenAmer — sa makinang ito, sa iyong wika.",
+    "title": "Handa na ang OpenAmer"
+  },
+  "welcome": {
+    "bullets": [
+      "Tumatakbo nang lokal — nananatili sa makinang ito ang iyong mga pag-uusap",
+      "186 na wika, kasama ang sulat na binabasa mo",
+      "Mababago ang lahat sa ibang pagkakataon; walang permanente"
+    ],
+    "cta": "I-install",
+    "ctaUpdate": "I-update ngayon",
+    "kicker": "Isang beses na pag-setup",
+    "lead": "Sarili mong ahente. Sa hardware mo. Sa wika mo.",
+    "leadUpdate": "Handa na ang mas bagong OpenAmer. Papalitan nito ang dating bersyon at pananatilihin ang lahat ng sesyon at setting.",
+    "note": "Tumatagal ng ilang minuto sa karaniwang koneksyon.",
+    "title": "Maligayang pagdating sa OpenAmer",
+    "titleUpdate": "I-update ang OpenAmer"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer yi kunguhata ntiro, yi wu endla hi switirhisiwa swa xiviri — theminali, xihlamusela-marito xa webu, tifayili, khodi — kutani yi hlayisa leswi tirhaka.",
+      "title": "Ejente leyi ehleketaka na wena"
+    },
+    {
+      "body": "Mimbulavurisano, miehleketo leyi hlayisiweke ni timodeli swi le ka muchini lowu. A ku rhumeriwi xilo handle ko va u swi komberile.",
+      "title": "Switirhisiwa swa wena, datha ya wena"
+    },
+    {
+      "body": "Tindzimi ta 186, yin'wana ni yin'wana hi matsalelo lawa u ma hlayaka. Xikombiso xo sungula xa app xi ku vutisa leswaku u lava rihi.",
+      "title": "Ririmi ra wena, hi ndlela leyi faneleke"
+    },
+    {
+      "body": "Vuswikoti byi hlayisiwa eka ntiro lowu endliwaka, leswaku mintirho ya siku ni siku yi hatlisa loko u ya u yi tirhisa.",
+      "title": "Vuswikoti byo kula"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Kambela leswaku muchini lowu wu kota ku nghena eka inthanete.",
+      "Tlhela u sungula malulamiselo — magoza lama hetiweke a ma phindhiwi.",
+      "Loko swi tsandza kambirhi, pfula tirhekhodo; tilayini to hetelela ti vula goza leri tsandzekeke."
+    ],
+    "lead": "Ku hava ku cinca loku tlheriseriweke endzhaku exihundleni — OpenAmer yi yima laha yi yimeke kona, leswaku loko yi tlhela yi tirhisiwa yi ya mahlweni ku suka kwalaho.",
+    "leadUpdate": "OpenAmer ya ha ri eka nkandziyiso wa khale naswona ya ha tirha. A ku cinciwanga xilo xi sala xi nga helanga.",
+    "log": "Rhekhodo",
+    "openLogs": "Pfula tirhekhodo",
+    "retry": "Ringeta nakambe",
+    "retryUpdate": "Tlhela u ringeta ku pfuxeta",
+    "title": "Malulamiselo a ma helanga",
+    "titleUpdate": "Ku pfuxeta a ku helanga"
+  },
+  "language": {
+    "continue": "Yana mahlweni",
+    "lead": "Malulamiselo ma ya mahlweni hi ririmi leri u ri hlawulaka laha. U nga ri cinca endzhaku eka app.",
+    "search": "Lavisisa tindzimi",
+    "title": "Hlawula ririmi ra wena"
+  },
+  "progress": {
+    "cancel": "Khansela",
+    "done": "Swi lunghekile",
+    "hideDetails": "Fihla vuxokoxoko",
+    "lead": "Malulamiselo ya kan'we: OpenAmer yi dawuniloda leswi yi swi lavaka ni ku lulamisa muchini lowu. Loko yi sungula enkarhini lowu taka, yi ta tlulela leswi hinkwaro.",
+    "leadUpdate": "OpenAmer yi siva nkandziyiso wa khale. Tiseshini, miehleketo leyi hlayisiweke ni swiyimiso swa wena a swi cinciwi.",
+    "lines": "tilayini",
+    "liveOutput": "Vuyelo bya nkarhi wolowo",
+    "showDetails": "Kombisa vuxokoxoko",
+    "stepsComplete": "Ku hetiwile magoza ya {done} eka {total}",
+    "title": "Ku lulamisa OpenAmer",
+    "titleUpdate": "Ku pfuxeta OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Ku fungha ku nghenisa ku ri loku hetiweke",
+    "config-templates": "Ku tsala tithempleyiti ta malulamiselo",
+    "configure": "Ku lulamisa swilotlelo swa API ni timodeli",
+    "dependencies": "Ku nghenisa swiengetelo leswi lavekaka swa Python",
+    "desktop": "Ku aka app ya khompyuta",
+    "gateway": "Ku sungula nyangwa ya marungula",
+    "git": "Ku nghenisa Git",
+    "handoff": "Ku lunghiselela ku pfuxeta",
+    "install": "Ku nghenisa mpfuxeto",
+    "node": "Ku kuma Node.js",
+    "node-deps": "Ku nghenisa swiengetelo leswi lavekaka swa Node.js",
+    "path": "Ku engetela OpenAmer eka PATH",
+    "platform-sdks": "Ku nghenisa ti-SDK ta tipulatifomo ta marungula",
+    "python": "Ku tiyisisa Python",
+    "rebuild": "Ku aka app ya khompyuta nakambe",
+    "repository": "Ku kopa vuhlayiselo bya OpenAmer",
+    "system-packages": "Ku nghenisa ripgrep na ffmpeg",
+    "update": "Ku dawuniloda nkandziyiso wa sweswinyana",
+    "uv": "Ku nghenisa mulawuri wa tiphakheji wa uv",
+    "venv": "Ku tumbuluxa ndhawu ya xiviri ya Python"
+  },
+  "stepper": {
+    "done": "Swi lunghekile",
+    "install": "Nghenisa",
+    "language": "Ririmi",
+    "update": "Pfuxeta",
+    "welcome": "Amukelekile"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Pfula app kutani u hlamusela leswi u lavaka swi endliwa. OpenAmer yi tirha endzhaku kutani yi ku vikela.",
+        "title": "Sungula hi xivulwa"
+      },
+      {
+        "body": "Swiyimiso → Nkombiso → Ririmi. Tindzimi ta 186, leti u nga ti cincaka nkarhi wihi na wihi.",
+        "title": "Hlawula ririmi ra wena"
+      },
+      {
+        "body": "Ntiro lowu phindhiwaka wu hundzuka vuswikoti — enkarhini lowu taka wu lava xileriso xin'we ntsena.",
+        "title": "Yi pfumelele yi tsundzuka"
+      }
+    ],
+    "command": "kumbe yi sungule endzhaku eka theminali:",
+    "cta": "Sungula OpenAmer",
+    "errorTitle": "A swi kotekanga ku sungula app ya khompyuta",
+    "launching": "Ku sungula",
+    "lead": "Hinkwaswo swi lulamile. OpenAmer sweswi i ya wena — eka muchini lowu, hi ririmi ra wena.",
+    "title": "OpenAmer yi lunghekile"
+  },
+  "welcome": {
+    "bullets": [
+      "Yi tirha laha — mimbulavurisano ya wena yi sala eka muchini lowu",
+      "Tindzimi ta 186, ku katsa ni matsalelo lawa u ma hlayaka",
+      "Hinkwaswo swi nga cinciwa endzhaku; ku hava xa nkarhi hinkwawu"
+    ],
+    "cta": "Nghenisa",
+    "ctaUpdate": "Pfuxeta sweswi",
+    "kicker": "Malulamiselo ya kan'we",
+    "lead": "Ejente ya wena. Eka switirhisiwa swa wena. Hi ririmi ra wena.",
+    "leadUpdate": "OpenAmer leyintshwa yi lunghekile. Yi siva nkandziyiso wa khale yi hlayisa seshini yin'wana ni yin'wana ni swiyimiso.",
+    "note": "Swi teka timinete ti nga ri tingani eka vuhlanganisi bya ntolovelo.",
+    "title": "Amukelekile eka OpenAmer",
+    "titleUpdate": "Pfuxeta OpenAmer"
+  }
+}

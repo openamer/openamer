@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer hojii karoorsee, meeshaalee dhugaa — tarminaalii, sakatta'aa, faayilootaa fi koodii — fayyadamuun raawwata; waan milkaa'es ni yaadata.",
+      "title": "Bakka bu'aa si waliin yaadu"
+    },
+    {
+      "body": "Mariin, yaadannoo fi moodeelonni kompiitara kana irra jiraatu. Yoo ati gaafatte malee homtuu hin olkaa'amu.",
+      "title": "Meeshaa kee, deetaa kee"
+    },
+    {
+      "body": "Afaanota 186, tokkoon tokkoon isaanii qubee ati dubbistuun. Fuulli jalqabaa appichaa isa kam akka barbaaddu si gaafata.",
+      "title": "Afaan kee, sirnaan"
+    },
+    {
+      "body": "Dandeettiin hojii hojjetame irraa kuufama; kanaaf hammuma itti fayyadamtuun hojiiwwan guyyaa guyyaa saffisaan raawwatamu.",
+      "title": "Dandeettii guddachaa deemu"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Kompiitarri kun interneetii qunnamuu akka danda'u mirkaneessi.",
+      "Qindaa'ina irra deebi'ii raawwadhu — tarkaanfiiwwan xumuraman hin irra deebi'aman.",
+      "Yoo yeroo lama kufe, galmeewwan bani; sararoonni dhumaa tarkaanficha ni ibsu."
+    ],
+    "lead": "Jijjiiramni tokko illee dhoksaadhaan duubatti hin deebine — OpenAmer iddoo dhaabate irratti hafa; irra deebi'anii jalqabuun achii itti fufa.",
+    "leadUpdate": "OpenAmer ammallee gulantaa duraanii irra jira, hojjechuus itti fufa. Homtuu gartokkeen hin bakka buufamne.",
+    "log": "Galmee",
+    "openLogs": "Galmeewwan bani",
+    "retry": "Irra deebi'ii yaali",
+    "retryUpdate": "Haaromsuu irra deebi'ii yaali",
+    "title": "Qindaa'inni hin xumuramne",
+    "titleUpdate": "Haaromsi hin xumuramne"
+  },
+  "language": {
+    "continue": "Itti fufi",
+    "lead": "Qindaa'inni afaan ati asitti filattuun itti fufa. Booda appicha keessatti jijjiiruu dandeessa.",
+    "search": "Afaanota barbaadi",
+    "title": "Afaan kee filadhu"
+  },
+  "progress": {
+    "cancel": "Haqi",
+    "done": "Qophaa'eera",
+    "hideDetails": "Bal'ina dhoksi",
+    "lead": "Qindaa'ina yeroo tokkoo: OpenAmer waan isa barbaachisu buusaa fi kompiitara kana qindeessaa jira. Yeroo itti aanu banamu kana hunda irra darba.",
+    "leadUpdate": "OpenAmer gulantaa duraanii bakka buusaa jira. Taa'amoonni, yaadannoo fi qindaa'inoonni kee osoo hin tuqamin turu.",
+    "lines": "sararoota",
+    "liveOutput": "Bu'aa kallattii",
+    "showDetails": "Bal'ina agarsiisi",
+    "stepsComplete": "{done} tarkaanfiiwwan {total} keessaa xumuraman",
+    "title": "OpenAmer qindeessaa jira",
+    "titleUpdate": "OpenAmer haaromsaa jira"
+  },
+  "stages": {
+    "bootstrap-marker": "Dhaabbiin xumuramuu mallatteessaa jira",
+    "config-templates": "Unkaalee qindaa'inaa barreessaa jira",
+    "configure": "Furtuuwwan API fi moodeelota qindeessaa jira",
+    "dependencies": "Hirkattoota Python dhaabaa jira",
+    "desktop": "Appii deeskitooppii ijaaraa jira",
+    "gateway": "Karra ergaa jalqabsiisaa jira",
+    "git": "Git dhaabaa jira",
+    "handoff": "Haaromsuuf qophaa'aa jira",
+    "install": "Haaromsa dhaabaa jira",
+    "node": "Node.js sakatta'aa jira",
+    "node-deps": "Hirkattoota Node.js dhaabaa jira",
+    "path": "OpenAmer gara PATH dabalaa jira",
+    "platform-sdks": "SDK waltajjiiwwan ergaa dhaabaa jira",
+    "python": "Python mirkaneessaa jira",
+    "rebuild": "Appii deeskitooppii irra deebi'ee ijaaraa jira",
+    "repository": "Kuusaa OpenAmer garagalchaa jira",
+    "system-packages": "ripgrep fi ffmpeg dhaabaa jira",
+    "update": "Gulantaa haaraa buusaa jira",
+    "uv": "Bulchaa paakeejii uv dhaabaa jira",
+    "venv": "Naannoo varchuwaalii Python uumaa jira"
+  },
+  "stepper": {
+    "done": "Qophaa'eera",
+    "install": "Dhaabi",
+    "language": "Afaan",
+    "update": "Haaromsi",
+    "welcome": "Baga nagaan dhufte"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Appicha baniitii waan akka hojjetamu barbaaddu ibsi. OpenAmer duubaan hojjetee bu'aa siif gabaasa.",
+        "title": "Hima tokkoon jalqabi"
+      },
+      {
+        "body": "Qindaa'inoota → Agarsiisa → Afaan. Filannoowwan afaanii 186, yeroo kamiyyuu jijjiiramuu danda'u.",
+        "title": "Afaan kee filadhu"
+      },
+      {
+        "body": "Hojiin irra deddeebi'amu dandeettii ta'a — yeroo itti aanu ajaja tokko qofaan raawwatama.",
+        "title": "Akka yaadatu taasisi"
+      }
+    ],
+    "command": "yookaan booda tarminaalii irraa jalqabsiisi:",
+    "cta": "OpenAmer jalqabsiisi",
+    "errorTitle": "Appii deeskitooppii jalqabsiisuun hin danda'amne",
+    "launching": "Jalqabsiisaa jira",
+    "lead": "Wanti hundi qophaa'eera. OpenAmer amma kan keeti — kompiitara kana irratti, afaan keetiin.",
+    "title": "OpenAmer qophaa'eera"
+  },
+  "welcome": {
+    "bullets": [
+      "Kompiitara kee irratti hojjeta — mariin kee kompiitara kana irra tura",
+      "Afaanota 186, qubee ati dubbistu dabalatee",
+      "Wanti hundi booda jijjiiramuu danda'a; homtuu dhaabbataa miti"
+    ],
+    "cta": "Dhaabi",
+    "ctaUpdate": "Amma haaromsi",
+    "kicker": "Qindaa'ina yeroo tokkoo",
+    "lead": "Bakka bu'aa mataa kee. Meeshaa kee irratti. Afaan keetiin.",
+    "leadUpdate": "OpenAmer haaraan qophaa'eera. Kun gulantaa duraanii bakka buusa; taa'ama fi qindaa'ina hunda ni eega.",
+    "note": "Qunnamtii idileetiin daqiiqaawwan muraasa fudhata.",
+    "title": "Baga gara OpenAmer nagaan dhufte",
+    "titleUpdate": "OpenAmer haaromsi"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer suliassamik pilersaarusiortarpoq, sakkunik piviusunik ingerlatsisarluni — peqqussutinik allaffik, nittartakkanik alakkarterivik, fiilit, kodi — iluatsittullu eqqaamasarlugit.",
+      "title": "Ikiorti ilagalutit eqqarsartoq"
+    },
+    {
+      "body": "Oqaloqatigiinnerit, eqqaamasat modellillu qarasaasiami matumaniipput. Qinnuiginninngikkuit sunniarfinilluunniit nassiussisoqassanngilaq.",
+      "title": "Illit atortutit, illit paasissutissaatitit"
+    },
+    {
+      "body": "Oqaatsit 186-it, tamarmik ilinnut atuarsinnaasannik allanneqartut. Appip saqqaa siulleq sorliit atorniarnerit aperisarpoq.",
+      "title": "Illit oqaatsitit, eqqortumik"
+    },
+    {
+      "body": "Piginnaasat sulinermit namminermit toqqorneqartarput, taamaattumik appi atorluarnerujartortillugu ulluinnarni suliassat sivikilliartortarput.",
+      "title": "Piginnaasat ineriartortut"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Qarasaasiap matuma internettimut attaveqarsinnaanera misissuguk.",
+      "Inissitsiterineq aallartiguk — alloriarnerit naammassereersut uteqqinneqassanngillat.",
+      "Marloriarluni iluatsinngippat, nalunaarsuutit ammaruk; titarnerit kingulliit alloriarneq sorliunersoq nalunaarutigisarpaat."
+    ],
+    "lead": "Allannguutit nipangiutiinnarlugit utertinneqanngillat — OpenAmer uniffigisamini unittarpoq, taamaattumik tulliani tassaniit nangissaaq.",
+    "leadUpdate": "OpenAmer suli saqqummersitamik siulianik atuivoq sulilu ingerlalluni. Arlaannaalluunniit ilaannakortumik taarserneqanngilaq.",
+    "log": "Nalunaarsuut",
+    "openLogs": "Nalunaarsuutit ammaruk",
+    "retry": "Misileqqiguk",
+    "retryUpdate": "Nutarterineq misileqqiguk",
+    "title": "Inissitsiterineq naammassinngilaq",
+    "titleUpdate": "Nutarterineq naammassinngilaq"
+  },
+  "language": {
+    "continue": "Nangiguk",
+    "lead": "Inissitsiterineq oqaatsit maani toqqakkatit atorlugit nangissaaq. Kingusinnerusukkut appimi allanngortissinnaavatit.",
+    "search": "Oqaatsinik ujarlerit",
+    "title": "Oqaatsitit toqqakkit"
+  },
+  "progress": {
+    "cancel": "Unitsiguk",
+    "done": "Piareerpoq",
+    "hideDetails": "Sukumiinerusut toqqukkit",
+    "lead": "Ataasiarluni inissitsiterineq: OpenAmer pisariaqartitaminik aallerpoq qarasaasiarlu manna inissitsiterlugu. Kingusinnerusukkut aallartinnerni tamanna pisariaqassanngilaq.",
+    "leadUpdate": "OpenAmer saqqummersitamik siulianik taarsiivoq. Sulineritit, eqqaamasatit inissititernerillu attorneqassanngillat.",
+    "lines": "titarnerit",
+    "liveOutput": "Maannakkut aniasut",
+    "showDetails": "Sukumiinerusut takukkit",
+    "stepsComplete": "{done} af {total} skridt færdi",
+    "title": "OpenAmer inissitsiterneqarpoq",
+    "titleUpdate": "OpenAmer nutarterneqarpoq"
+  },
+  "stages": {
+    "bootstrap-marker": "Ikkussinerup naammassineranik nalunaaqutsiineq",
+    "config-templates": "Inissititerinermut ilisserutinik allanneq",
+    "configure": "API-mut matuersaatinik modellinillu inissitsiterineq",
+    "dependencies": "Pythonip pisariaqartitaanik ikkussuineq",
+    "desktop": "Qarasaasiamut appimik sanaartorneq",
+    "gateway": "Nalunaaruteqaqatigiinnermut ikaarsaartitsivimmik aallartitsineq",
+    "git": "Git ikkussorneqarpoq",
+    "handoff": "Nutarterinissamut piareersarneq",
+    "install": "Nutarterummik ikkussuineq",
+    "node": "Node.js-imik nassaarniarneq",
+    "node-deps": "Node.js-ip pisariaqartitaanik ikkussuineq",
+    "path": "OpenAmer PATH-imut ilanngunneqarpoq",
+    "platform-sdks": "Nalunaaruteqaqatigiinnermut SDK-nik ikkussuineq",
+    "python": "Pythonimik misissuisoqarpoq",
+    "rebuild": "Qarasaasiamut appimik sanaartoqqinneq",
+    "repository": "OpenAmerip toqqorsivianik assiliineq",
+    "system-packages": "ripgrep-imik ffmpeg-imillu ikkussuineq",
+    "update": "Saqqummersitamik nutaajunerpaamik aallerneq",
+    "uv": "Poortukkanik aqutsissummik uv-mik ikkussuineq",
+    "venv": "Pythonimut avatangiisinik piviusuunngitsunik pilersitsineq"
+  },
+  "stepper": {
+    "done": "Piareerpoq",
+    "install": "Ikkuguk",
+    "language": "Oqaatsit",
+    "update": "Nutartiguk",
+    "welcome": "Tikilluarit"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Appi ammaruk suliaritinniakkallu nassuiarlugu. OpenAmer tunuliaqutaalluni sulissaaq kingornalu nalunaaruteqarluni.",
+        "title": "Oqaaseqatigiimmik aallartigit"
+      },
+      {
+        "body": "Inissititernerit → Saqqummiussineq → Oqaatsit. Oqaatsinut sumiiffinnullu inissititernerit 186-it, qaqugukkulluunniit taarserneqarsinnaapput.",
+        "title": "Oqaatsitit toqqakkit"
+      },
+      {
+        "body": "Suliassaq uteqattaartartoq piginnaasanngortarpoq — tulliani peqqussut ataasiinnaq naammapoq.",
+        "title": "Eqqaamasinnaatiguuk"
+      }
+    ],
+    "command": "imaluunniit kingusinnerusukkut peqqussutinik allaffimmit aallartiguk:",
+    "cta": "OpenAmer aallartiguk",
+    "errorTitle": "Qarasaasiamut appi aallartinneqarsinnaanngilaq",
+    "launching": "Aallartinneqarpoq",
+    "lead": "Suulluunniit inissaminiipput. OpenAmer maanna pigaat — qarasaasiami matumani, illit oqaatsitit atorlugit.",
+    "title": "OpenAmer piareerpoq"
+  },
+  "welcome": {
+    "bullets": [
+      "Qarasaasiami maani ingerlasarpoq — oqaloqatigiinneritit qarasaasiami matumaniiginnassapput",
+      "Oqaatsit 186-it, ilinnut atuarsinnaasannik allanneqartut",
+      "Suulluunniit kingusinnerusukkut allanngortinneqarsinnaapput; sunaluunniiit ataavartuunngilaq"
+    ],
+    "cta": "Ikkuguk",
+    "ctaUpdate": "Maanna nutartiguk",
+    "kicker": "Ataasiarluni inissitsiterineq",
+    "lead": "Illit nammineq ikiortit. Illit atortunni. Illit oqaatsitit atorlugit.",
+    "leadUpdate": "OpenAmer nutaajunerusoq piareerpoq. Saqqummersitaq siulleq taarserneqassaaq, sulinerillu inissititernerillu tamarmik pigiinnarneqassallutik.",
+    "note": "Attaveqaat nalinginnaasoq atorlugu minutsit qassikattannguit ingerlassapput.",
+    "title": "OpenAmerimut tikilluarit",
+    "titleUpdate": "OpenAmer nutartiguk"
+  }
+}

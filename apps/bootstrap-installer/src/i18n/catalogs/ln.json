@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer ebongisaka mosala, esalaka yango na bisaleli ya solo — terminale, navigateur, bafisye, kode — mpe ebatelaka oyo esalaki malamu.",
+      "title": "Mosungi oyo akanisaka elongo na yo"
+    },
+    {
+      "body": "Masolo, makundoli mpe modele ebatelami na masini oyo. Eloko moko te etindamaka soki osengi te.",
+      "title": "Masini na yo, badone na yo"
+    },
+    {
+      "body": "Minɔkɔ 186, mokomoko na lolenge ya bokomi oyo otángaka. Lokasa ya liboso ya aplike esɛngaka opona monɔkɔ.",
+      "title": "Monɔkɔ na yo, ndenge esengeli"
+    },
+    {
+      "body": "Mayele ebatelamaka na misala oyo esalemi, yango wana misala ya mokolo na mokolo ezwaka ntango moke soki ozali kosalela yango mingi.",
+      "title": "Makoki oyo ekolaka"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Talá soki masini oyo ekoki kokɔta na internet.",
+      "Bandá kobongisa lisusu — matambe oyo esili ekozongelama te.",
+      "Soki elongi te mbala mibale, fungolá mikanda ya makambo; milɔngɔ ya nsuka elakisi litambe."
+    ],
+    "lead": "Mbongwana moko te elongolami na nkuku — OpenAmer etikalaka esika etɛlɛmaki, mpo soki obandi lisusu ekoba wana.",
+    "leadUpdate": "OpenAmer ezali kaka na ebimeli ya liboso mpe ezali kosala. Eloko moko te ebongwani ndambo.",
+    "log": "Mokanda ya makambo",
+    "openLogs": "Fungolá mikanda ya makambo",
+    "retry": "Meká lisusu",
+    "retryUpdate": "Meká lisusu kozongisa na sika",
+    "title": "Kobongisa esili te",
+    "titleUpdate": "Kozongisa na sika esili te"
+  },
+  "language": {
+    "continue": "Kobá",
+    "lead": "Kobongisa ekokoba na monɔkɔ oyo oponi awa. Okoki kobongola yango na nsima na aplike.",
+    "search": "Luká minɔkɔ",
+    "title": "Poná monɔkɔ na yo"
+  },
+  "progress": {
+    "cancel": "Longolá",
+    "done": "Ebongi",
+    "hideDetails": "Bombá makambo ya sikisiki",
+    "lead": "Kobongisa mbala moko: OpenAmer ezali kozwa oyo esengeli mpe kobongisa masini oyo. Soki ofungoli yango na nsima, ekosɛnga lisusu nyonso wana te.",
+    "leadUpdate": "OpenAmer ezali kotya ebimeli ya sika na esika ya oyo ya liboso. Misala na yo, makundoli mpe mabongisi ekotikala ndenge ezali.",
+    "lines": "milɔngɔ",
+    "liveOutput": "Bimoniseli ya ntango oyo",
+    "showDetails": "Lakisá makambo ya sikisiki",
+    "stepsComplete": "Matambe {done} kati na {total} esili",
+    "title": "Kobongisa OpenAmer",
+    "titleUpdate": "Kozongisa OpenAmer na sika"
+  },
+  "stages": {
+    "bootstrap-marker": "Kotia elembo ete kotya esili",
+    "config-templates": "Kokoma bandakisa ya mabongisi",
+    "configure": "Kobongisa bafungola ya API mpe modele",
+    "dependencies": "Kotia biloko oyo Python esengeli na yango",
+    "desktop": "Kotonga aplike ya biro",
+    "gateway": "Kobandisa ekuke ya bansango",
+    "git": "Kotia Git",
+    "handoff": "Komibongisa mpo na kozongisa na sika",
+    "install": "Kotia ebimeli ya sika",
+    "node": "Koluka Node.js",
+    "node-deps": "Kotia biloko oyo Node.js esengeli na yango",
+    "path": "Kobakisa OpenAmer na PATH",
+    "platform-sdks": "Kotia SDK ya baestrade ya bansango",
+    "python": "Kotala soki Python ezali malamu",
+    "rebuild": "Kotonga lisusu aplike ya biro",
+    "repository": "Kosala kopi ya ebombelo ya OpenAmer",
+    "system-packages": "Kotia ripgrep mpe ffmpeg",
+    "update": "Kozwa ebimeli ya sika koleka",
+    "uv": "Kotia motambwisi ya bapakɛ uv",
+    "venv": "Kosala esika ya mosala ya Python ya komekola"
+  },
+  "stepper": {
+    "done": "Ebongi",
+    "install": "Tyá",
+    "language": "Monɔkɔ",
+    "update": "Zongisá na sika",
+    "welcome": "Boyei malamu"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Fungolá aplike mpe limbolá oyo olingi esalema. OpenAmer esalaka na nsima mpe epesaka yo nsango ya matomba.",
+        "title": "Bandá na fraze moko"
+      },
+      {
+        "body": "Mabongisi → Bomonisi → Monɔkɔ. Minɔkɔ ya bisika 186, okoki kobongola yango ntango nyonso.",
+        "title": "Poná monɔkɔ na yo"
+      },
+      {
+        "body": "Mosala oyo ezongelamaka ekómaka mayele — mbala ya nsima, etinda moko ekoki.",
+        "title": "Tiká yango ekanisa"
+      }
+    ],
+    "command": "to bandisá yango na nsima na terminale:",
+    "cta": "Bandisá OpenAmer",
+    "errorTitle": "Ekoki kobandisa aplike ya biro te",
+    "launching": "Kobandisa",
+    "lead": "Nyonso ebongi. OpenAmer ezali sikoyo ya yo — na masini oyo, na monɔkɔ na yo.",
+    "title": "OpenAmer ebongi"
+  },
+  "welcome": {
+    "bullets": [
+      "Esalaka na masini na yo — masolo na yo etikalaka awa",
+      "Minɔkɔ 186, na lolenge ya bokomi oyo otángaka",
+      "Okoki kobongola nyonso na nsima; eloko moko te ekotikala libela"
+    ],
+    "cta": "Tyá",
+    "ctaUpdate": "Zongisá na sika sikoyo",
+    "kicker": "Kobongisa mbala moko",
+    "lead": "Mosungi na yo moko. Na masini na yo. Na monɔkɔ na yo.",
+    "leadUpdate": "Ebimeli ya sika ya OpenAmer ebongi. Ekozwa esika ya oyo ya liboso mpe ekobatela misala mpe mabongisi nyonso.",
+    "note": "Ezwaka mwa miniti soki internet ezali malamu.",
+    "title": "Boyei malamu na OpenAmer",
+    "titleUpdate": "Zongisá OpenAmer na sika"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer ayeke leke kua, sara ni na kua-ündä ti tî — tereminäle, ngbanga ti Interenête, afishe, kode — na bata yê so asara kua nzönî.",
+      "title": "Wakua so abûngbi li na mo"
+    },
+    {
+      "body": "Lisoro, yê ti bîrî na amodêle ayeke na ordinatêre so. Yê oko akpe na yângâ pëpe, sêngê na pekô ti hûnda ti mo.",
+      "title": "Ordinatêre ti mo, adonê ti mo"
+    },
+    {
+      "body": "Ayângâ 186, oko oko na mbëtï so mo hînga dîko ni. Yângâ ti app ti kozo ahûnda mo ti soro oko.",
+      "title": "Yângâ ti mo, na lêgë ni"
+    },
+    {
+      "body": "Aye so alîngbi ti sara ayeke bata na yâ ti kua ni mveni, sô kua ti lâ oko oko aga kêtê na pekô ti nzöni kua ti mo na ni.",
+      "title": "Ndâra ti kua so ayeke gue na li"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Bâa sô ordinatêre so alîngbi ti lî na Interenête.",
+      "Tô na lêgë ti leke ni encore — akota-kua so awe ayeke sara encore pëpe.",
+      "Tongana ni alîngbi pëpe fâni ûse, zi mbëtï ti kua; alîni ti ndângâ asû iri ti kota-kua ni."
+    ],
+    "lead": "Aye so achangé azînga na pekô na hunda pëpe — OpenAmer akpe na ndo so lo akpe dä, sô tongana mo tô ni encore, lo akomanse dä.",
+    "leadUpdate": "OpenAmer angbâ na sêndâ ti kôzo na ayeke sara kua. Aye oko achangé na pâsi pëpe.",
+    "log": "Mbëtï ti kua",
+    "openLogs": "Zi ambëtï ti kua",
+    "retry": "Tara encore",
+    "retryUpdate": "Tara ti mû sêndâ fini encore",
+    "title": "Lekengo ni awe pëpe",
+    "titleUpdate": "Mûngo sêndâ fini awe pëpe"
+  },
+  "language": {
+    "continue": "Gue na li",
+    "lead": "Lekengo ni ayeke gue na li na yângâ so mo soro na ndo so. Mo lîngbi ti changé ni na pekô na yâ ti app.",
+    "search": "Gi ayângâ",
+    "title": "Soro yângâ ti mo"
+  },
+  "progress": {
+    "cancel": "Lungula",
+    "done": "Awe",
+    "hideDetails": "Bata ndâ ti ni",
+    "lead": "Lekengo fâni oko: OpenAmer ayeke mû aye so lo yeke na bezöin ni na leke ordinatêre so. Tongana mo zi ni na pekô, kua so kûê ayeke sara encore pëpe.",
+    "leadUpdate": "OpenAmer ayeke mû ndo ti sêndâ ti kôzo. Asesio, yê ti bîrî na alekengo ti mo angbâ tongaso.",
+    "lines": "alîni",
+    "liveOutput": "Yê so ayeke fa fadeso",
+    "showDetails": "Fa ndâ ti ni",
+    "stepsComplete": "Akota-kua {done} na yâ ti {total} awe",
+    "title": "Ayeke leke OpenAmer",
+    "titleUpdate": "Ayeke mû sêndâ fini ti OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Ayeke sû sô ziango ni awe",
+    "config-templates": "Ayeke sû amodêle ti lekengo",
+    "configure": "Ayeke leke akle API na amodêle",
+    "dependencies": "Ayeke zia aye so Python ahûnda",
+    "desktop": "Ayeke leke app ti ordinatêre",
+    "gateway": "Ayeke tô lêgë ti tokua ambëtï",
+    "git": "Ayeke zia Git",
+    "handoff": "Ayeke leke ti mû sêndâ fini",
+    "install": "Ayeke zia sêndâ fini",
+    "node": "Ayeke gi Node.js",
+    "node-deps": "Ayeke zia aye so Node.js ahûnda",
+    "path": "Ayeke zia OpenAmer na PATH",
+    "platform-sdks": "Ayeke zia aSDK ti ando ti tokua ambëtï",
+    "python": "Ayeke bâa sô Python ayeke nzönî",
+    "rebuild": "Ayeke leke app ti ordinatêre encore",
+    "repository": "Ayeke mû kôpi ti ndo ti akode ti OpenAmer",
+    "system-packages": "Ayeke zia ripgrep na ffmpeg",
+    "update": "Ayeke mû sêndâ ti ndângâ",
+    "uv": "Ayeke zia gbângerê ti apakê uv",
+    "venv": "Ayeke sara ndo ti kua ti Python ti kpë"
+  },
+  "stepper": {
+    "done": "Awe",
+    "install": "Zia",
+    "language": "Yângâ",
+    "update": "Mû sêndâ fini",
+    "welcome": "Mo ga nzönî"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Zi app na fa yê so mo ye ti sara. OpenAmer ayeke sara kua na pekô na fa gbâ ti kua na mo.",
+        "title": "Komanse na mbîrîmbîrî oko"
+      },
+      {
+        "body": "Alekengo → Fango → Yângâ. Ayângâ 186, mo lîngbi ti changé ni na ngoi kûê.",
+        "title": "Soro yângâ ti mo"
+      },
+      {
+        "body": "Kua so ayeke zînga ayeke ga ndâra ti kua — na pekô, têndâ oko alîngbi.",
+        "title": "Zia lo ti bîrî"
+      }
+    ],
+    "command": "wala tô ni na pekô na tereminäle:",
+    "cta": "Tô OpenAmer",
+    "errorTitle": "Alîngbi ti tô app ti ordinatêre pëpe",
+    "launching": "Ayeke tô ni",
+    "lead": "Yê kûê ayeke na ndo ni. OpenAmer ayeke ti mo fadeso — na ordinatêre so, na yângâ ti mo.",
+    "title": "OpenAmer ayeke prêt"
+  },
+  "welcome": {
+    "bullets": [
+      "Ayeke sara kua na ordinatêre ti mo — alisoro ti mo angbâ na ordinatêre so",
+      "Ayângâ 186, na mbëtï so mo hînga dîko ni",
+      "Mo lîngbi ti changé yê kûê na pekô; yê oko angbâ teti lakue lakue pëpe"
+    ],
+    "cta": "Zia",
+    "ctaUpdate": "Mû sêndâ fini fadeso",
+    "kicker": "Lekengo fâni oko",
+    "lead": "Wakua ti mo mveni. Na ordinatêre ti mo. Na yângâ ti mo.",
+    "leadUpdate": "Sêndâ ti OpenAmer so ayeke fini mingi ayeke dä. Lo mû ndo ti sêndâ ti kôzo na bata asesio na alekengo kûê.",
+    "note": "Ni ayeke mû aminiti kêtê na lêgë ti Interenête ti lâ oko oko.",
+    "title": "Mo ga nzönî na OpenAmer",
+    "titleUpdate": "Mû sêndâ fini ti OpenAmer"
+  }
+}

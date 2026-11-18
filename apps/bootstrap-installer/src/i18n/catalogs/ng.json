@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer otayi longekidha oshilonga, tayi shi longo niilongitho yenene — oshihokololi shomalombwelo, omutali gwointaneta, omafaela, okoodi — nokuhupitha shoka sha longo nawa.",
+      "title": "Omuyakuli ta dhiladhila pamwe nangoye"
+    },
+    {
+      "body": "Omapopyo, edhimbuluko noonkalantumwa dhounongo otadhi kala mokompiuta ndjika. Kapuna shoka tashi tumwa pombanda ngele ino shi pula.",
+      "title": "Iikwatelwa yoye, uuyelele woye"
+    },
+    {
+      "body": "Omalaka 186, kehe limwe moshinyolwa shoka ho lesha. Epandja lyotango lyopolohalama otali ku pula hogolole limwe.",
+      "title": "Elaka lyoye, mondjila"
+    },
+    {
+      "body": "Uunongo otawu hupithwa miilonga yene, opo iilonga yokehe esiku yi kale ya pumbwa ethimbo eshona sho to yi longitha.",
+      "title": "Uunongo tawu koko"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Tala ngele okompiuta ndjika otayi vulu okuya kointaneta.",
+      "Alulula elongekidho — oonkatu ndhoka dha pwa itadhi alululwa.",
+      "Ngele sha nyono luvali, egulula omakonakono; omikweyo dha hugunina otadhi holola onkatu."
+    ],
+    "lead": "Kapuna omalundululo ga alululwa ko inaashi tseyithwa — OpenAmer otayi thikama mpoka ya thikama, opo elongekidho etiyali li tsikilepo mpoka.",
+    "leadUpdate": "OpenAmer otayi tsikile nokulongitha oshipewa shoshito nokulonga. Kapuna shoka sha pingathanwa oshindambo.",
+    "log": "Ekonakono",
+    "openLogs": "Egulula omakonakono",
+    "retry": "Endulula",
+    "retryUpdate": "Endulula ehwepopaleko",
+    "title": "Elongekidho inali pwa",
+    "titleUpdate": "Ehwepopaleko inali pwa"
+  },
+  "language": {
+    "continue": "Tsikila",
+    "lead": "Elongekidho otali tsikile melaka ndyoka to hogolola mpaka. Oto vulu oku li lundulula konima mopolohalama.",
+    "search": "Konga omalaka",
+    "title": "Hogolola elaka lyoye"
+  },
+  "progress": {
+    "cancel": "Thiga",
+    "done": "Sha longekidhwa",
+    "hideDetails": "Holeka uuyelele",
+    "lead": "Elongekidho lyolumwe: OpenAmer otayi hulu shoka ya pumbwa nokulongekidha okompiuta ndjika. Ngele tayi tamekwa konima, inayi pumbwa okuninga ishi natango.",
+    "leadUpdate": "OpenAmer otayi pingathana oshipewa shoshito. Iikala yoye, edhimbuluko nomalongekidho otayi kala inaayi lundululwa.",
+    "lines": "omikweyo",
+    "liveOutput": "Oshizemo sho pethimbo ndika",
+    "showDetails": "Ulika uuyelele",
+    "stepsComplete": "Oonkatu {done} momwa {total} dha pwa",
+    "title": "Ta longekidha OpenAmer",
+    "titleUpdate": "Ta hwepopaleke OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Ta ndhindhilike kutya okutula kwa pwa",
+    "config-templates": "Ta nyola oombapila dhomalongekidho",
+    "configure": "Ta longekidha iishapi ya API noonkalantumwa dhounongo",
+    "dependencies": "Ta tula iipumbiwa ya Python",
+    "desktop": "Ta tungu opolohalama yokompiuta",
+    "gateway": "Ta tameke omukanka gwomatumo",
+    "git": "Ta tula Git",
+    "handoff": "Ta ilongekidhile ehwepopaleko",
+    "install": "Ta tula ehwepopaleko",
+    "node": "Ta mono Node.js",
+    "node-deps": "Ta tula iipumbiwa ya Node.js",
+    "path": "Ta gwedha OpenAmer mu PATH",
+    "platform-sdks": "Ta tula ii-SDK yoonkalo dhomatumo",
+    "python": "Ta konakona Python",
+    "rebuild": "Ta tungu natango opolohalama yokompiuta",
+    "repository": "Ta kopolola oshihupithilo sha OpenAmer",
+    "system-packages": "Ta tula ripgrep na ffmpeg",
+    "update": "Ta hulu oshipewa shipe",
+    "uv": "Ta tula omuleli gwiipakete uv",
+    "venv": "Ta shiti onkalo yokulongela ya Python"
+  },
+  "stepper": {
+    "done": "Sha longekidhwa",
+    "install": "Tula",
+    "language": "Elaka",
+    "update": "Hwepopaleka",
+    "welcome": "Tu ku tambula"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Egulula opolohalama nokuhokolola shoka wa hala shi ningwe. OpenAmer otayi longo pombunda nokukugalulila epopiyo.",
+        "title": "Tameka nefatululo limwe"
+      },
+      {
+        "body": "Omalongekidho → Eulikilo → Elaka. Oonkalo dhomalaka 186, dhi na okulundululwa ethimbo kehe.",
+        "title": "Hogolola elaka lyoye"
+      },
+      {
+        "body": "Iilonga tayi endululwa otayi ningi uunongo — ethimbo lya landula otayi pumbwa elombwelo limwe ashike.",
+        "title": "Yi pitika yi dhimbulukwe"
+      }
+    ],
+    "command": "nenge yi tameka konima moshihokololi shomalombwelo:",
+    "cta": "Tameka OpenAmer",
+    "errorTitle": "Inashi vulika okutameka opolohalama yokompiuta",
+    "launching": "Ta tameke",
+    "lead": "Kehe shimwe sha longekidhwa. OpenAmer ngashingeyi oyoye — mokompiuta ndjika, melaka lyoye.",
+    "title": "OpenAmer ya longekidhwa"
+  },
+  "welcome": {
+    "bullets": [
+      "Otayi longo mokompiuta yoye — omapopyo goye otaga kala mokompiuta ndjika",
+      "Omalaka 186, mwa kwatelwa oshinyolwa shoka ho lesha",
+      "Kehe shimwe otashi vulu okulundululwa konima; kapuna shoka sha thikamena aluhe"
+    ],
+    "cta": "Tula",
+    "ctaUpdate": "Hwepopaleka ngashingeyi",
+    "kicker": "Elongekidho lyolumwe",
+    "lead": "Omuyakuli gwoye mwene. Miikwatelwa yoye. Melaka lyoye.",
+    "leadUpdate": "OpenAmer oshipewa shipe ya longekidhwa. Otashi pingathana oshipewa shoshito nokuhupitha iikala nomalongekidho agehe.",
+    "note": "Otashi pula oominute oshona pethimbo lyekwatathano lyointaneta lya yela.",
+    "title": "Tu ku tambula mu OpenAmer",
+    "titleUpdate": "Hwepopaleka OpenAmer"
+  }
+}

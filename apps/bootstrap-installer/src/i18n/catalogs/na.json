@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer a riring an makur, a makur ngune ian teminal, brauser, babijo me kod, me a kawor met e ar epon.",
+      "title": "Ajen ae a dorer me eiy imin am nukabwan"
+    },
+    {
+      "body": "Am dorer, anem me model e mi ian kompiuta aiy. Eko imin e aijeda ngaga wo eko ebōk.",
+      "title": "Am kompiuta, am data"
+    },
+    {
+      "body": "186 dorer, ngune korin dorer ae wo ereda. Ijin moen app a ebōk am dorer.",
+      "title": "Am dorer, ngune an epon"
+    },
+    {
+      "body": "An makur a kawor ian makur am riring, me makur in ar an eawe ngaga wo aeoen ngune.",
+      "title": "Aren makur ae a tsimor"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Ribim kompiuta aiy e kona ar internet.",
+      "Aeoen riring an oagada — eko riring edae imin ar oyon.",
+      "Ngaga eko epon erab, bedu babijon an makur; kor in imwin a engame met eko oyon."
+    ],
+    "lead": "Eko imin ar aduwawe ngune eko dorer — OpenAmer a eow ijin e ar eow, me ngaga wo aeoen riring, a ngago ijin.",
+    "leadUpdate": "OpenAmer e mi ngune berjon an mo me a makur. Eko imin ar aduwawe ian etang.",
+    "log": "Babijon makur",
+    "openLogs": "Bedu babijon makur",
+    "retry": "Aeoen riring",
+    "retryUpdate": "Aeoen riring an edae",
+    "title": "An oagada eko oyon",
+    "titleUpdate": "An edae eko oyon"
+  },
+  "language": {
+    "continue": "Ngago",
+    "lead": "An oagada a ngago ngune dorer wo rine ijin. Wo kona aduwawe ian app imwin.",
+    "search": "Awe dorer",
+    "title": "Rine am dorer"
+  },
+  "progress": {
+    "cancel": "Eow",
+    "done": "Ar oyon",
+    "hideDetails": "Ateiy imin an makur",
+    "lead": "Oagada etai: OpenAmer a bwouda imin e eo me a oagada kompiuta aiy. An edae imwin eko aeoen riring.",
+    "leadUpdate": "OpenAmer a aduwawe berjon an mo. Am dorer, anem me oagada eko aduwawe.",
+    "lines": "kor",
+    "liveOutput": "Imin an makur ngage",
+    "showDetails": "Engame imin an makur",
+    "stepsComplete": "{done} ian {total} makur ar oyon",
+    "title": "Oagada OpenAmer",
+    "titleUpdate": "Edae OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Engame an ita ar oyon",
+    "config-templates": "Riring babijon oagada",
+    "configure": "Oagada API kii me model",
+    "dependencies": "Ita imin Python e eo",
+    "desktop": "Riring app in kompiuta",
+    "gateway": "Oij ebwano an dorer",
+    "git": "Ita Git",
+    "handoff": "Oagada an edae",
+    "install": "Ita an edae",
+    "node": "Awe Node.js",
+    "node-deps": "Ita imin Node.js e eo",
+    "path": "Ita OpenAmer ian PATH",
+    "platform-sdks": "Ita SDK an ebwano dorer",
+    "python": "Ribim Python",
+    "rebuild": "Aeoen riring app in kompiuta",
+    "repository": "Riring etai an babijon OpenAmer",
+    "system-packages": "Ita ripgrep me ffmpeg",
+    "update": "Bwouda berjon an edae",
+    "uv": "Ita uv an oagada pakij",
+    "venv": "Riring ijin Python an makur"
+  },
+  "stepper": {
+    "done": "Ar oyon",
+    "install": "Ita",
+    "language": "Dorer",
+    "update": "Edae",
+    "welcome": "Ekamawir omo"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Bedu app me dorer imin wo eo ar riring. OpenAmer a makur ian imwin me a engame an makur.",
+        "title": "Oij ngune etai korin dorer"
+      },
+      {
+        "body": "Oagada → Engame → Dorer. 186 dorer, wo kona aduwawe ian ewak ijin.",
+        "title": "Rine am dorer"
+      },
+      {
+        "body": "Makur ae ar aeoen a riring an makur — edae imwin, etai dorer an makur a kona.",
+        "title": "Iturun eiy anem"
+      }
+    ],
+    "command": "me oij imwin ian teminal:",
+    "cta": "Oij OpenAmer",
+    "errorTitle": "Eko kona oij app in kompiuta",
+    "launching": "Oij",
+    "lead": "Imin ikot ar oagada. OpenAmer am ngage — ian kompiuta aiy, ngune am dorer.",
+    "title": "OpenAmer ar oyon"
+  },
+  "welcome": {
+    "bullets": [
+      "A makur ian am kompiuta — am dorer a mi ian kompiuta aiy",
+      "186 dorer, me korin dorer ae wo ereda",
+      "Wo kona aduwawe imin ikot imwin; eko imin a mi ngune an ngage atsin"
+    ],
+    "cta": "Ita",
+    "ctaUpdate": "Edae ngage",
+    "kicker": "Oagada etai",
+    "lead": "Am ajen. Ian am kompiuta. Ngune am dorer.",
+    "leadUpdate": "OpenAmer an edae ar oyon. A aduwawe berjon an mo me a kawor am dorer me oagada ikot.",
+    "note": "A eo minit ekau ngune internet ae epon.",
+    "title": "Ekamawir omo ian OpenAmer",
+    "titleUpdate": "Edae OpenAmer"
+  }
+}

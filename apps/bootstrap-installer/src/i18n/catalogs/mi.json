@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "Ka whakamahere a OpenAmer i tētahi mahi, ka whakahaere mā ngā utauta tūturu — te kāpeka, te pūtirotiro, ngā kōnae, te waehere — ka pupuri hoki i ngā mea i whai hua.",
+      "title": "He māngai ka whakaaro tahi me koe"
+    },
+    {
+      "body": "Kei tēnei rorohiko ngā kōrerorero, te pūmahara me ngā tauira. Kāore he mea e tukuatu, ki te kore koe e tono.",
+      "title": "Ō pūmārō, ō raraunga"
+    },
+    {
+      "body": "186 ngā reo, kei te momo tuhi e pānui ana koe. Ka pātai te mata tuatahi o te taupānga ko tēhea.",
+      "title": "Tō reo, kia tika"
+    },
+    {
+      "body": "Ka tiakina ngā pūkenga mai i ngā mahi tonu, nō reira ka tere ake ngā mahi o ia rā i a koe e whakamahi ana.",
+      "title": "He āheinga e tipu ana"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Tirohia mēnā ka taea e tēnei rorohiko te hono ki te ipurangi.",
+      "Whakahaere anō i te tatūnga — kāore e tāruaruatia ngā hipanga kua oti.",
+      "Ki te rahua rua ngā wā, whakatuwheratia ngā rangitaki; kei ngā rārangi whakamutunga te ingoa o te hipanga."
+    ],
+    "lead": "Kāore he panonitanga i whakahokia puku — ka noho a OpenAmer ki te wāhi i tū ai, kia haere tonu ai te whakahaere tuarua mai i reira.",
+    "leadUpdate": "Kei te putanga o mua tonu a OpenAmer, ā, e mahi tonu ana. Kāore he mea i whakakapia haurua.",
+    "log": "Rangitaki",
+    "openLogs": "Whakatuwhera rangitaki",
+    "retry": "Ngana anō",
+    "retryUpdate": "Ngana anō ki te whakahou",
+    "title": "Kāore te tatūnga i oti",
+    "titleUpdate": "Kāore te whakahou i oti"
+  },
+  "language": {
+    "continue": "Haere tonu",
+    "lead": "Ka haere tonu te tatūnga i te reo ka kōwhiria e koe i konei. Ka taea te huri ā muri ake i te taupānga.",
+    "search": "Rapu reo",
+    "title": "Kōwhiria tō reo"
+  },
+  "progress": {
+    "cancel": "Whakakore",
+    "done": "Kua rite",
+    "hideDetails": "Huna taipitopito",
+    "lead": "Tatūnga kotahi anake: e tikiake ana a OpenAmer i ngā mea e hiahiatia ana, e whirihora ana hoki i tēnei rorohiko. Ka tīpoka ēnei katoa i ngā whakarewanga o muri.",
+    "leadUpdate": "E whakakapi ana a OpenAmer i te putanga o mua. Ka noho tonu ō wātū, tō pūmahara me ō tautuhinga.",
+    "lines": "rārangi",
+    "liveOutput": "Putanga mataora",
+    "showDetails": "Whakaatu taipitopito",
+    "stepsComplete": "Kua oti ngā hipanga {done} o te {total}",
+    "title": "E tatū ana i a OpenAmer",
+    "titleUpdate": "E whakahou ana i a OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "E tohu ana kua oti te tāuta",
+    "config-templates": "E tuhi ana i ngā tātauira whirihoranga",
+    "configure": "E whirihora ana i ngā kī API me ngā tauira",
+    "dependencies": "E tāuta ana i ngā mea e whirinaki ana a Python",
+    "desktop": "E hanga ana i te taupānga papamahi",
+    "gateway": "E tīmata ana i te tomokanga karere",
+    "git": "E tāuta ana i a Git",
+    "handoff": "E whakarite ana ki te whakahou",
+    "install": "E tāuta ana i te whakahou",
+    "node": "E kimi ana i a Node.js",
+    "node-deps": "E tāuta ana i ngā mea e whirinaki ana a Node.js",
+    "path": "E tāpiri ana i a OpenAmer ki PATH",
+    "platform-sdks": "E tāuta ana i ngā SDK mō ngā pūnaha karere",
+    "python": "E manatoko ana i a Python",
+    "rebuild": "E hanga anō ana i te taupānga papamahi",
+    "repository": "E tārua ana i te pātaka waehere o OpenAmer",
+    "system-packages": "E tāuta ana i a ripgrep me ffmpeg",
+    "update": "E tikiake ana i te putanga hōu rawa",
+    "uv": "E tāuta ana i te kaiwhakahaere mōkī uv",
+    "venv": "E waihanga ana i te taiao mariko Python"
+  },
+  "stepper": {
+    "done": "Kua rite",
+    "install": "Tāuta",
+    "language": "Reo",
+    "update": "Whakahou",
+    "welcome": "Nau mai"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Whakatuwheratia te taupānga, ka whakaahua i te mahi e hiahia ana koe kia oti. Ka mahi a OpenAmer ki muri, ka pūrongo mai.",
+        "title": "Tīmata ki tētahi rerenga kōrero"
+      },
+      {
+        "body": "Tautuhinga → Whakaaturanga → Reo. 186 ngā tautuhinga ā-rohe, ka taea te huri i ngā wā katoa.",
+        "title": "Kōwhiria tō reo"
+      },
+      {
+        "body": "Ka noho ngā mahi auau hei pūkenga — ā muri ake, kotahi noa te whakahau.",
+        "title": "Tukua kia maumahara"
+      }
+    ],
+    "command": "tīmatahia rānei ā muri ake mai i tētahi kāpeka:",
+    "cta": "Whakarewa OpenAmer",
+    "errorTitle": "Kāore i taea te whakarewa i te taupānga papamahi",
+    "launching": "E whakarewa ana",
+    "lead": "Kua rite katoa. Nōu a OpenAmer ināianei — kei tēnei rorohiko, kei tō reo.",
+    "title": "Kua rite a OpenAmer"
+  },
+  "welcome": {
+    "bullets": [
+      "Ka whakahaere ā-roto — ka noho ō kōrerorero ki tēnei rorohiko",
+      "186 ngā reo, tae atu ki te momo tuhi e pānui ana koe",
+      "Ka taea ngā mea katoa te huri ā muri ake; kāore he mea e pūmau"
+    ],
+    "cta": "Tāuta",
+    "ctaUpdate": "Whakahou ināianei",
+    "kicker": "Tatūnga kotahi anake",
+    "lead": "Tō ake māngai. Kei ō pūmārō. Kei tō reo.",
+    "leadUpdate": "Kua rite tētahi OpenAmer hōu ake. Ka whakakapi tēnei i te putanga o mua, ka pupuri hoki i ngā wātū me ngā tautuhinga katoa.",
+    "note": "He meneti ruarua i runga i tētahi hononga noa.",
+    "title": "Nau mai ki OpenAmer",
+    "titleUpdate": "Whakahou OpenAmer"
+  }
+}

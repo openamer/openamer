@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer ihlela umsebenti, iwente ngemathuluzi langempela — sitheminali, siphequluli, emafayela, ikhodi — bese igcina lokusebentile.",
+      "title": "Umsiti locabanga nawe"
+    },
+    {
+      "body": "Tingcoco, inkhumbulo nemamodeli kuhlala kulomshini. Kute lokulayishwako ngaphandle kwekutsi ucele.",
+      "title": "Umshini wakho, idatha yakho"
+    },
+    {
+      "body": "Tilwimi letingu-186, ngalunye ngendlela yekubhala loyifundzako. Sikrini sekucala seluhlelo sikubuta kutsi ufuna luphi.",
+      "title": "Lulwimi lwakho, ngendlela lefanele"
+    },
+    {
+      "body": "Emakhono agcinwa emsebentini lowentiwako, ngako imisebenti yamalanga onkhe iba mifishane nawuchubeka uyisebentisa.",
+      "title": "Likhono lelikhulako"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Hlola kutsi lomshini uyakhona kufinyelela ku-inthanethi.",
+      "Phindza usebentise kusetha — tinyatselo letiphelile atiphindvwa.",
+      "Nangabe kwehluleka kabili, vula emalogi; imigca yekugcina isho sinyatselo."
+    ],
+    "lead": "Kute tingucuko letibuyiselwe emuva buthule — OpenAmer ima lapho ime khona, ngako kuyisebentisa kwesibili kuchubeka lapho.",
+    "leadUpdate": "OpenAmer isasenguculweni yangaphambilini futsi iyachubeka isebenta. Kute lokushintjwe kwayekelwa emkhatsini.",
+    "log": "Ilogi",
+    "openLogs": "Vula emalogi",
+    "retry": "Phindza wetame",
+    "retryUpdate": "Phindza wetame kubuyeketa",
+    "title": "Kusetha akukapheli",
+    "titleUpdate": "Kubuyeketa akukapheli"
+  },
+  "language": {
+    "continue": "Chubeka",
+    "lead": "Kusetha kuchubeka ngelulwimi lolukhetsa lapha. Ungalushintja kamuva eluhlelweni.",
+    "search": "Sesha tilwimi",
+    "title": "Khetsa lulwimi lwakho"
+  },
+  "progress": {
+    "cancel": "Khansela",
+    "done": "Sekulungile",
+    "hideDetails": "Fihla imininingwane",
+    "lead": "Kusetha kwenteka kanye: OpenAmer ilanda lokudzingako futsi ilungisa lomshini. Nawuyivula kamuva, konkhe loku kuyeqiwa.",
+    "leadUpdate": "OpenAmer ifaka esikhundleni senguculo yangaphambilini. Tikhatsi takho tekusebenta, inkhumbulo netilungiselelo akutsintfwa.",
+    "lines": "imigca",
+    "liveOutput": "Lokukhishwako nyalo",
+    "showDetails": "Khombisa imininingwane",
+    "stepsComplete": "Kuphele tinyatselo letingu-{done} kuletingu-{total}",
+    "title": "Kusethwa OpenAmer",
+    "titleUpdate": "Kubuyeketwa OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Kumakwa kutsi kufaka kuphelile",
+    "config-templates": "Kubhalwa tithempulethi tekulungiselela",
+    "configure": "Kulungiselelwa tikhiye te-API nemamodeli",
+    "dependencies": "Kufakwa lokudzingwa yi-Python",
+    "desktop": "Kwakhiwa luhlelo lwedeskithophu",
+    "gateway": "Kucaliswa lisango lemilayeto",
+    "git": "Kufakwa Git",
+    "handoff": "Kulungiselelwa kubuyeketa",
+    "install": "Kufakwa sibuyeketo",
+    "node": "Kufunwa Node.js",
+    "node-deps": "Kufakwa lokudzingwa yi-Node.js",
+    "path": "Kwengetwa OpenAmer ku-PATH",
+    "platform-sdks": "Kufakwa ema-SDK etinkhundla temilayeto",
+    "python": "Kuhlolwa Python",
+    "rebuild": "Kwakhiwa kabusha luhlelo lwedeskithophu",
+    "repository": "Kukopishwa ligcogco lekhodi le-OpenAmer",
+    "system-packages": "Kufakwa ripgrep ne-ffmpeg",
+    "update": "Kulandvwa inguculo yakamuva",
+    "uv": "Kufakwa umphatsi wemaphakheji we-uv",
+    "venv": "Kwakhiwa indzawo yekusebentela lengasiyo yangempela ye-Python"
+  },
+  "stepper": {
+    "done": "Sekulungile",
+    "install": "Faka",
+    "language": "Lulwimi",
+    "update": "Buyeketa",
+    "welcome": "Siyakwamukela"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Vula luhlelo bese uchaza lofuna kwentiwe. OpenAmer isebenta ngemuva bese ikubikela.",
+        "title": "Cala ngemusho"
+      },
+      {
+        "body": "Tilungiselelo → Lokubonakalako → Lulwimi. Tindzawo telulwimi letingu-186, ungashintja nome kunini.",
+        "title": "Khetsa lulwimi lwakho"
+      },
+      {
+        "body": "Umsebenti lophindvwako uba likhono — ngekulandzelako udzinga umyalo munye.",
+        "title": "Yivumele ikhumbule"
+      }
+    ],
+    "command": "nome uyicale kamuva kusitheminali:",
+    "cta": "Vula OpenAmer",
+    "errorTitle": "Akukakhonakali kuvula luhlelo lwedeskithophu",
+    "launching": "Kuyavulwa",
+    "lead": "Konkhe sekulungile. OpenAmer seyiyakho — kulomshini, ngelulwimi lwakho.",
+    "title": "OpenAmer seyilungile"
+  },
+  "welcome": {
+    "bullets": [
+      "Isebenta kulomshini — tingcoco takho tihlala kulomshini",
+      "Tilwimi letingu-186, letifaka nendlela yekubhala loyifundzako",
+      "Konkhe kungashintjwa kamuva; kute lokungasashintjeki"
+    ],
+    "cta": "Faka",
+    "ctaUpdate": "Buyeketa nyalo",
+    "kicker": "Kusetha kwenteka kanye",
+    "lead": "Umsiti wakho. Emshinini wakho. Ngelulwimi lwakho.",
+    "leadUpdate": "Inguculo lensha ye-OpenAmer seyilungile. Ingena esikhundleni senguculo yangaphambilini futsi igcina tonkhe tikhatsi tekusebenta netilungiselelo.",
+    "note": "Kutsatsa emaminithi lambalwa ngeluchumano loluvamile.",
+    "title": "Siyakwamukela ku-OpenAmer",
+    "titleUpdate": "Buyeketa OpenAmer"
+  }
+}

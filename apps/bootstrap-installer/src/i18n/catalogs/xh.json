@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "I-OpenAmer icwangcisa umsebenzi, iwuqhube ngezixhobo zokwenene — itheminali, isikhangeli, iifayile, ikhowudi — ize igcine okusebenzileyo.",
+      "title": "Iarhente ecinga kunye nawe"
+    },
+    {
+      "body": "Iincoko, inkumbulo neemodeli zigcinwa kulo matshini. Akukho nto ilayishwayo ngaphandle kokuba uyicele.",
+      "title": "Izixhobo zakho, idatha yakho"
+    },
+    {
+      "body": "Iilwimi ezili-186, nganye ibhalwe ngendlela oyifundayo. Isikrini sokuqala se-app sikubuza ukuba ukhetha oluphi.",
+      "title": "Ulwimi lwakho, ngendlela eyiyo"
+    },
+    {
+      "body": "Izakhono zigcinwa kumsebenzi ngokwawo, ngoko imisebenzi yemihla ngemihla ithatha ixesha elincinane okukhona uyisebenzisa.",
+      "title": "Ubuchule obukhulayo"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Jonga ukuba lo matshini uyakwazi na ukufikelela kwi-intanethi.",
+      "Qhuba useto kwakhona — amanyathelo agqityiweyo akaphindwa.",
+      "Ukuba iyasilela kabini, vula iilog; imigca yokugqibela ichaza inyathelo."
+    ],
+    "lead": "Akukho lutshintsho lubuyiselwe umva ungaxelelwanga — i-OpenAmer ima apho ime khona, ukuze ukuqhubeka kwakhona kuqale apho.",
+    "leadUpdate": "I-OpenAmer isekwinguqulelo yangaphambili kwaye iyaqhubeka isebenza. Akukho nto itshintshwe ngokuyinxenye.",
+    "log": "Ilog",
+    "openLogs": "Vula iilog",
+    "retry": "Zama kwakhona",
+    "retryUpdate": "Phinda uzame uhlaziyo",
+    "title": "Useto alugqitywanga",
+    "titleUpdate": "Uhlaziyo alugqitywanga"
+  },
+  "language": {
+    "continue": "Qhubeka",
+    "lead": "Useto luya kuqhubeka ngolwimi olukhetha apha. Ungalutshintsha kamva kwi-app.",
+    "search": "Khangela iilwimi",
+    "title": "Khetha ulwimi lwakho"
+  },
+  "progress": {
+    "cancel": "Rhoxisa",
+    "done": "Ilungile",
+    "hideDetails": "Fihla iinkcukacha",
+    "lead": "Useto lwexesha elinye: i-OpenAmer ikhuphela oko ikufunayo kwaye iqwalasela lo matshini. Xa iphinda ivulwa, iyakutsiba konke oku.",
+    "leadUpdate": "I-OpenAmer ithatha indawo yenguqulelo yangaphambili. Iiseshoni zakho, inkumbulo neesetingi azichatshazelwa.",
+    "lines": "imigca",
+    "liveOutput": "Imveliso ephilayo",
+    "showDetails": "Bonisa iinkcukacha",
+    "stepsComplete": "Kugqitywe amanyathelo ayi-{done} kwangama-{total}",
+    "title": "Kusetwa i-OpenAmer",
+    "titleUpdate": "Kuhlaziywa i-OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Kuphawulwa ukuba ufakelo lugqityiwe",
+    "config-templates": "Kubhalwa iitempleyithi zoqwalaselo",
+    "configure": "Kuqwalaselwa izitshixo ze-API neemodeli",
+    "dependencies": "Kufakwa izinto ezixhomekeke kuzo i-Python",
+    "desktop": "Kwakhiwa i-app yedesktop",
+    "gateway": "Kuqaliswa isango lokuthumela imiyalezo",
+    "git": "Kufakwa i-Git",
+    "handoff": "Kulungiselelwa ukuhlaziya",
+    "install": "Kufakwa uhlaziyo",
+    "node": "Kukhangelwa i-Node.js",
+    "node-deps": "Kufakwa izinto ezixhomekeke kuzo i-Node.js",
+    "path": "Kongezwa i-OpenAmer kwi-PATH",
+    "platform-sdks": "Kufakwa ii-SDK zamaqonga emiyalezo",
+    "python": "Kuqinisekiswa i-Python",
+    "rebuild": "Kwakhiwa kwakhona i-app yedesktop",
+    "repository": "Kwenziwa ikopi yogcino lwekhowudi ye-OpenAmer",
+    "system-packages": "Kufakwa i-ripgrep ne-ffmpeg",
+    "update": "Kukhutshelwa inguqulelo yamva nje",
+    "uv": "Kufakwa umphathi weephakheji we-uv",
+    "venv": "Kwenziwa imeko-bume ebonakalayo ye-Python"
+  },
+  "stepper": {
+    "done": "Ilungile",
+    "install": "Faka",
+    "language": "Ulwimi",
+    "update": "Hlaziya",
+    "welcome": "Wamkelekile"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Vula i-app uze uchaze into ofuna yenziwe. I-OpenAmer isebenza ngasemva ize ikunike ingxelo.",
+        "title": "Qala ngesivakalisi"
+      },
+      {
+        "body": "Iisetingi → Umboniso → Ulwimi. Kukho iisetingi zolwimi nezommandla ezili-186, ungazitshintsha nanini na.",
+        "title": "Khetha ulwimi lwakho"
+      },
+      {
+        "body": "Umsebenzi ophindaphindwayo uba sisakhono — kwixesha elizayo uthatha umyalelo omnye.",
+        "title": "Yivumele ikhumbule"
+      }
+    ],
+    "command": "okanye yiqalise kamva kwitheminali:",
+    "cta": "Qalisa i-OpenAmer",
+    "errorTitle": "Ayikwazanga ukuqalisa i-app yedesktop",
+    "launching": "Iyaqaliswa",
+    "lead": "Yonke into ilungile. I-OpenAmer yeyakho ngoku — kulo matshini, ngolwimi lwakho.",
+    "title": "I-OpenAmer ilungile"
+  },
+  "welcome": {
+    "bullets": [
+      "Isebenza kwalapha — iincoko zakho zihlala kulo matshini",
+      "Iilwimi ezili-186, kuquka indlela yokubhala oyifundayo",
+      "Yonke into ingatshintshwa kamva; akukho nto isisigxina"
+    ],
+    "cta": "Faka",
+    "ctaUpdate": "Hlaziya ngoku",
+    "kicker": "Useto lwexesha elinye",
+    "lead": "Iarhente yakho. Kwizixhobo zakho. Ngolwimi lwakho.",
+    "leadUpdate": "I-OpenAmer entsha ilungile. Ithatha indawo yenguqulelo yangaphambili ize igcine zonke iiseshoni neesetingi.",
+    "note": "Kuthatha imizuzu embalwa kuqhagamshelo oluqhelekileyo.",
+    "title": "Wamkelekile kwi-OpenAmer",
+    "titleUpdate": "Hlaziya i-OpenAmer"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer itungulula mwingilo, iwenza na bipangilo bya bine — ditungilu dia malajilu, kisakilo, mikanda ne kode — ne ilama byendele bimpe.",
+      "title": "Mwambuluishi ulanga nobe"
+    },
+    {
+      "body": "Miyukilu, bivulukilu ne bilejilu bilama mu kino kyuma. Kintu nakimo kitumwa pa mbelu su tokilombe.",
+      "title": "Kyuma kyobe, bipebwa byobe"
+    },
+    {
+      "body": "Mwakulu 186, yonso na mifundilo yotanga. Lupapulo lwa kumpala lwa kipangilo lukwipusha wa kusala.",
+      "title": "Mwakulu wobe, mu muswelo muya"
+    },
+    {
+      "body": "Buyuki bulamibwa kufuma mu mwingilo mwine, pa kuti mingilo ya mafuku yonso yikale mipi panyuma pa kuyikwingidisha.",
+      "title": "Bukomokomo bukula"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Talapo su kino kyuma kibasha kufika ku internet.",
+      "Endesha kutekanya monka — bitupa bipwile tabipitululwa.",
+      "Su byafilwa misusa ibidi, shingula mikanda ya bilondeshilu; milongo ya ku mpelo itela kitupa."
+    ],
+    "lead": "Kakuna byalululwa mu bufyama — OpenAmer ileka po yalekele, pa kuti kuendesha kwa bubidi kutwalile kufuma apo.",
+    "leadUpdate": "OpenAmer ikyadi pa lupeta lwa kala ne itwalila mwingilo. Kakuna kintu kyaluledilwe kipindji.",
+    "log": "Mukanda wa bilondeshilu",
+    "openLogs": "Shingula mikanda ya bilondeshilu",
+    "retry": "Esha monka",
+    "retryUpdate": "Esha kulululula monka",
+    "title": "Kutekanya takupwile",
+    "titleUpdate": "Kulululula takupwile"
+  },
+  "language": {
+    "continue": "Twalila",
+    "lead": "Kutekanya kutwalila mu mwakulu wosala pano. Ubasha kuwaluula kunyima mu kipangilo.",
+    "search": "Keba mwakulu",
+    "title": "Sala mwakulu wobe"
+  },
+  "progress": {
+    "cancel": "Leka",
+    "done": "Byatekane",
+    "hideDetails": "Fya bishinte",
+    "lead": "Kutekanya kwa mususa umo: OpenAmer ibuusha bintu byayifwaninwa ne itekanya kino kyuma. Pa kutendeka kunyima, bino byonso tabipitululwa.",
+    "leadUpdate": "OpenAmer itenteka lupeta lupya pa kyaba kya lwa kala. Miyukilu yobe, bivulukilu ne matekanyino tabikumbibwa.",
+    "lines": "milongo",
+    "liveOutput": "Bifumamo bya pano pene",
+    "showDetails": "Leja bishinte",
+    "stepsComplete": "Bitupa {done} pa {total} bipwile",
+    "title": "Kutekanya OpenAmer",
+    "titleUpdate": "Kulululula OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Kuleja'mba kuteka kwapwa",
+    "config-templates": "Kufunda bilejilu bya matekanyino",
+    "configure": "Kutekanya myinshi ya API ne bilejilu",
+    "dependencies": "Kuteka bintu byafwaninwa ku Python",
+    "desktop": "Kutunga kipangilo kya pa kyuma",
+    "gateway": "Kutendeka mushindu wa kupisha misapu",
+    "git": "Kuteka Git",
+    "handoff": "Kwiteakanya kulululula",
+    "install": "Kuteka lululwilo",
+    "node": "Kukeba Node.js",
+    "node-deps": "Kuteka bintu byafwaninwa ku Node.js",
+    "path": "Kubweja OpenAmer ku PATH",
+    "platform-sdks": "Kuteka SDKs ya mashinda a misapu",
+    "python": "Kutala su Python idi bimpe",
+    "rebuild": "Kutunga monka kipangilo kya pa kyuma",
+    "repository": "Kukopa dilamino dia OpenAmer",
+    "system-packages": "Kuteka ripgrep ne ffmpeg",
+    "update": "Kubuusha lupeta lwa mpelo",
+    "uv": "Kuteka mulombodi wa biputu uv",
+    "venv": "Kutunga kyaba kya mwingilo kya Python kya mu kyuma"
+  },
+  "stepper": {
+    "done": "Byatekane",
+    "install": "Teka",
+    "language": "Mwakulu",
+    "update": "Lululula",
+    "welcome": "Tambula"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Shingula kipangilo ne lombolola kyolonda kyenzeke. OpenAmer yenza mwingilo ku numa ne ikulesha bifumamo.",
+        "title": "Tendeka na mulongo wa maloba"
+      },
+      {
+        "body": "Matekanyino → Kuleja → Mwakulu. Mwakulu 186, ubasha kuwaluula kyaba kyonso.",
+        "title": "Sala mwakulu wobe"
+      },
+      {
+        "body": "Mwingilo upitulukila waluka buyuki — mususa ukulonda ulomba dikendeka dimo.",
+        "title": "Ilekele ivuluke"
+      }
+    ],
+    "command": "nansha uyitendeke kunyima mu ditungilu dia malajilu:",
+    "cta": "Tendeka OpenAmer",
+    "errorTitle": "Kipangilo kya pa kyuma takibashile kutendeka",
+    "launching": "Kutendeka",
+    "lead": "Byonso byatekane. OpenAmer idi yobe mpindji ino — pa kino kyuma, mu mwakulu wobe.",
+    "title": "OpenAmer yatekane"
+  },
+  "welcome": {
+    "bullets": [
+      "Yenza mwingilo pa kino kyuma — miyukilu yobe ilama pano",
+      "Mwakulu 186, na mifundilo yotanga",
+      "Byonso bibasha kwaluulwa kunyima; kakuna kintu kya kulama myaka yonso"
+    ],
+    "cta": "Teka",
+    "ctaUpdate": "Lululula mpindji ino",
+    "kicker": "Kutekanya kwa mususa umo",
+    "lead": "Mwambuluishi wobe mwine. Pa kyuma kyobe. Mu mwakulu wobe.",
+    "leadUpdate": "Lupeta lupya lwa OpenAmer lwatekane. Lufuta lwa kala, lulama miyukilu yonso ne matekanyino onso.",
+    "note": "Bitola minite mityetye pa kulumbakana kwa internet kwa buluba.",
+    "title": "Tambula mu OpenAmer",
+    "titleUpdate": "Lululula OpenAmer"
+  }
+}

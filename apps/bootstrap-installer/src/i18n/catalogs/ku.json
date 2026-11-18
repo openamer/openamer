@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer karekî plan dike, bi amûrên rastîn — termînal, gerok, pel, kod — pêk tîne û tiştên ku bi kar hatin diparêze.",
+      "title": "Agentek ku bi te re difikire"
+    },
+    {
+      "body": "Axaftin, bîr û model li ser vê makîneyê dimînin. Heta tu nexwazî tiştek nayê barkirin.",
+      "title": "Alavên te, daneyên te"
+    },
+    {
+      "body": "186 ziman, her yek bi nivîsa ku tu dixwînî. Ekrana yekem a sepanê dipirse ka tu kîjanî dixwazî.",
+      "title": "Zimanê te, bi awayê rast"
+    },
+    {
+      "body": "Jêhatîbûn ji xebatê bixwe tên tomarkirin, ji ber vê yekê her ku tu bêtir bi kar tînî, karên rojane kurttir dibin.",
+      "title": "Şiyaneke ku mezin dibe"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Kontrol bike ka ev makîne dikare bigihîje înternetê.",
+      "Sazkirinê dîsa bimeşîne — gavên qediyayî nayên dubarekirin.",
+      "Heke du caran têk biçe, qeydan veke; rêzên dawî navê gavê nîşan didin."
+    ],
+    "lead": "Tu guherîn bê agahdarkirin nehat paşvebirin — OpenAmer li cihê ku rawestiya dimîne, ji ber vê yekê di meşandina duyem de ji wir berdewam dike.",
+    "leadUpdate": "OpenAmer hîn li ser guhertoya berê ye û dixebite. Tu tişt nîvco nehat guherandin.",
+    "log": "Qeyd",
+    "openLogs": "Qeydan veke",
+    "retry": "Dîsa biceribîne",
+    "retryUpdate": "Nûkirinê dîsa biceribîne",
+    "title": "Sazkirin neqediya",
+    "titleUpdate": "Nûkirin neqediya"
+  },
+  "language": {
+    "continue": "Berdewam bike",
+    "lead": "Sazkirin bi zimanê ku tu li vir hildibijêrî berdewam dike. Tu dikarî paşê di sepanê de biguherînî.",
+    "search": "Li zimanan bigere",
+    "title": "Zimanê xwe hilbijêre"
+  },
+  "progress": {
+    "cancel": "Betal bike",
+    "done": "Amade",
+    "hideDetails": "Hûrguliyan veşêre",
+    "lead": "Sazkirina yekcarî: OpenAmer tiştên pêwîst dadixe û vê makîneyê saz dike. Di vekirinên paşîn de van hemûyan derbas dike.",
+    "leadUpdate": "OpenAmer guhertoya berê diguherîne. Danişîn, bîr û mîhengên te nayên destlêdan.",
+    "lines": "rêz",
+    "liveOutput": "Derana zindî",
+    "showDetails": "Hûrguliyan nîşan bide",
+    "stepsComplete": "{done} ji {total} gavan qediyan",
+    "title": "OpenAmer tê sazkirin",
+    "titleUpdate": "OpenAmer tê nûkirin"
+  },
+  "stages": {
+    "bootstrap-marker": "Sazkirin wek qediyayî tê nîşankirin",
+    "config-templates": "Şablonên mîhengkirinê tên nivîsandin",
+    "configure": "Mifteyên API û model tên mîhengkirin",
+    "dependencies": "Pêdiviyên Python tên sazkirin",
+    "desktop": "Sepana sermaseyê tê avakirin",
+    "gateway": "Dergehê peyamdanê tê destpêkirin",
+    "git": "Git tê sazkirin",
+    "handoff": "Amadekariya nûkirinê tê kirin",
+    "install": "Nûkirin tê sazkirin",
+    "node": "Node.js tê dîtin",
+    "node-deps": "Pêdiviyên Node.js tên sazkirin",
+    "path": "OpenAmer li PATH tê zêdekirin",
+    "platform-sdks": "SDK-yên platformên peyamdanê tên sazkirin",
+    "python": "Python tê piştrastkirin",
+    "rebuild": "Sepana sermaseyê ji nû ve tê avakirin",
+    "repository": "Depoya OpenAmer tê kopîkirin",
+    "system-packages": "ripgrep û ffmpeg tên sazkirin",
+    "update": "Guhertoya herî nû tê daxistin",
+    "uv": "Rêvebirê pakêtan uv tê sazkirin",
+    "venv": "Jîngeha rastînî ya Python tê afirandin"
+  },
+  "stepper": {
+    "done": "Amade",
+    "install": "Saz bike",
+    "language": "Ziman",
+    "update": "Nû bike",
+    "welcome": "Bi xêr hatî"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Sepanê veke û vebêje ka tu dixwazî çi bê kirin. OpenAmer di paşperdeyê de dixebite û encamê radigihîne.",
+        "title": "Bi hevokekê dest pê bike"
+      },
+      {
+        "body": "Mîheng → Nîşandan → Ziman. 186 vebijarkên herêmî, her dem dikarin bên guherandin.",
+        "title": "Zimanê xwe hilbijêre"
+      },
+      {
+        "body": "Karê dubare dibe jêhatîbûnek — cara din bi fermanekê pêk tê.",
+        "title": "Bihêle bi bîr bîne"
+      }
+    ],
+    "command": "an paşê ji termînalekê dest pê bike:",
+    "cta": "OpenAmer bide destpêkirin",
+    "errorTitle": "Sepana sermaseyê nehat destpêkirin",
+    "launching": "Tê destpêkirin",
+    "lead": "Her tişt amade ye. OpenAmer êdî yê te ye — li ser vê makîneyê, bi zimanê te.",
+    "title": "OpenAmer amade ye"
+  },
+  "welcome": {
+    "bullets": [
+      "Li ser makîneya te dixebite — axaftinên te li ser vê makîneyê dimînin",
+      "186 ziman, bi nivîsa ku tu dixwînî jî",
+      "Her tişt paşê dikare bê guherandin; tiştek mayînde nîne"
+    ],
+    "cta": "Saz bike",
+    "ctaUpdate": "Niha nû bike",
+    "kicker": "Sazkirina yekcarî",
+    "lead": "Agenta te ya taybet. Li ser alavên te. Bi zimanê te.",
+    "leadUpdate": "Guhertoyeke nûtir a OpenAmer amade ye. Ev guhertoya berê diguherîne û hemû danişîn û mîhengan diparêze.",
+    "note": "Bi girêdaneke asayî çend deqeyan digire.",
+    "title": "Bi xêr hatî OpenAmer",
+    "titleUpdate": "OpenAmer nû bike"
+  }
+}

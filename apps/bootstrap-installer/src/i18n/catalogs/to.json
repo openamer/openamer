@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "ʻOku palani ʻe OpenAmer ha ngāue, fakahoko ia ʻaki e ngaahi meʻangāue moʻoni — tēminale, palausa, faile mo e kouti — pea tauhi ʻa e meʻa naʻe ola lelei.",
+      "title": "Ko ha fakafofonga ʻoku fakakaukau fakataha mo koe"
+    },
+    {
+      "body": "ʻOku tauhi ʻa e ngaahi fepōtalanoaʻaki, manatu mo e mōtolo ʻi he mīsini ni. ʻOku ʻikai ʻave ha meʻa tuku kehe kapau te ke kole.",
+      "title": "Ko hoʻo meʻangāue, ko hoʻo fakamatala"
+    },
+    {
+      "body": "Ngaahi lea ʻe 186, takitaha ʻi he faʻahinga mataʻitohi ʻokú ke lau. ʻOku ʻeke atu ʻi he ʻuluaki peesi ʻo e polokalama ʻa e lea te ke fili.",
+      "title": "Ko hoʻo lea, ʻi he founga totonu"
+    },
+    {
+      "body": "ʻOku tauhi e ngaahi poto mei he ngāue tonu, ko ia ʻoku vave ange ai e ngaahi ngāue fakaʻaho ʻi he lahi ange hoʻo fakaʻaongaʻi ia.",
+      "title": "Malava ʻoku tupulaki"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Vakaiʻi pe ʻoku lava ʻa e mīsini ni ʻo fetuʻutaki ki he ʻinitaneti.",
+      "Toe fakahoko e teuteu — he ʻikai toe fai e ngaahi sitepu kuo ʻosi.",
+      "Kapau ʻe taʻelava tuʻo ua, fakaava e ngaahi lekooti; ʻoku fakahā ʻe he ngaahi laine fakaʻosi ʻa e sitepu."
+    ],
+    "lead": "Naʻe ʻikai fakafoki fakalongolongo ha liliu — ʻoku tuʻu ʻa OpenAmer ʻi he feituʻu naʻe ngata aí, ko ia ʻe hoko atu mei ai ʻi hono toe fakahoko.",
+    "leadUpdate": "ʻOku kei ʻi he tatau motuʻa ʻa OpenAmer pea kei ngāue pē. Naʻe ʻikai fakahoko fakakonga ha fetongi.",
+    "log": "Lekooti",
+    "openLogs": "Fakaava e ngaahi lekooti",
+    "retry": "Toe feinga",
+    "retryUpdate": "Toe feinga ke fakafoʻou",
+    "title": "Naʻe ʻikai ʻosi e teuteu",
+    "titleUpdate": "Naʻe ʻikai ʻosi e fakafoʻou"
+  },
+  "language": {
+    "continue": "Hoko atu",
+    "lead": "ʻE hoko atu e teuteu ʻi he lea te ke fili ʻi hení. Te ke lava ʻo liliu ia kimui ʻi he polokalama.",
+    "search": "Kumi ha lea",
+    "title": "Fili hoʻo lea"
+  },
+  "progress": {
+    "cancel": "Kaniseli",
+    "done": "Mateuteu",
+    "hideDetails": "Fufū e fakaikiiki",
+    "lead": "Teuteu tuʻo taha: ʻOku tukuhifo ʻe OpenAmer ʻa e meʻa ʻoku ne fiemaʻu pea fokotuʻutuʻu ʻa e mīsini ni. He ʻikai toe fai ia ʻi he ngaahi fakaava ka hoko.",
+    "leadUpdate": "ʻOku fetongi ʻe OpenAmer ʻa e tatau motuʻa. ʻOku ʻikai liliu hoʻo ngaahi taimi ngāue, manatu mo e fokotuʻutuʻu.",
+    "lines": "ngaahi laine",
+    "liveOutput": "Ola ʻi he taimi ni",
+    "showDetails": "Fakahā e fakaikiiki",
+    "stepsComplete": "Kuo ʻosi e sitepu ʻe {done} mei he {total}",
+    "title": "ʻOku teuteuʻi ʻa OpenAmer",
+    "titleUpdate": "ʻOku fakafoʻou ʻa OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "ʻOku fakaʻilongaʻi kuo ʻosi e fokotuʻu",
+    "config-templates": "ʻOku hiki e ngaahi sīpinga fokotuʻutuʻu",
+    "configure": "ʻOku fokotuʻutuʻu e ngaahi kī API mo e mōtolo",
+    "dependencies": "ʻOku fokotuʻu e ngaahi polokalama ʻoku fiemaʻu ʻe Python",
+    "desktop": "ʻOku faʻu e polokalama ki he komipiuta",
+    "gateway": "ʻOku kamata e matapā fetuʻutaki pōpoaki",
+    "git": "ʻOku fokotuʻu ʻa Git",
+    "handoff": "ʻOku teuteu ke fakafoʻou",
+    "install": "ʻOku fokotuʻu e fakafoʻou",
+    "node": "ʻOku kumi ʻa Node.js",
+    "node-deps": "ʻOku fokotuʻu e ngaahi polokalama ʻoku fiemaʻu ʻe Node.js",
+    "path": "ʻOku tānaki ʻa OpenAmer ki he PATH",
+    "platform-sdks": "ʻOku fokotuʻu e ngaahi SDK ki he ngaahi tauʻanga pōpoaki",
+    "python": "ʻOku fakapapauʻi ʻa Python",
+    "rebuild": "ʻOku toe faʻu e polokalama ki he komipiuta",
+    "repository": "ʻOku hiki ha tatau ʻo e tukuʻanga kouti OpenAmer",
+    "system-packages": "ʻOku fokotuʻu ʻa ripgrep mo ffmpeg",
+    "update": "ʻOku tukuhifo e tatau fakamuimui taha",
+    "uv": "ʻOku fokotuʻu e pule puʻolo uv",
+    "venv": "ʻOku faʻu e ʻātakai fakakomipiuta ʻo Python"
+  },
+  "stepper": {
+    "done": "Mateuteu",
+    "install": "Fokotuʻu",
+    "language": "Lea",
+    "update": "Fakafoʻou",
+    "welcome": "Talitali lelei"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Fakaava e polokalama pea fakamatalaʻi e meʻa ʻokú ke loto ke fai. ʻOku ngāue ʻa OpenAmer ʻi mui pea fakahā atu e ola.",
+        "title": "Kamata ʻaki ha sētesi"
+      },
+      {
+        "body": "Fokotuʻutuʻu → Fakaʻaliʻali → Lea. Ngaahi fili fakafeituʻu ʻe 186, te ke lava ʻo liliu ʻi ha taimi pē.",
+        "title": "Fili hoʻo lea"
+      },
+      {
+        "body": "ʻOku hoko e ngāue ʻoku toutou fai ko ha poto — ʻi he kahaʻú ʻoku fiemaʻu pē ha fekau ʻe taha.",
+        "title": "Tuku ke ne manatuʻi"
+      }
+    ],
+    "command": "pe kamataʻi kimui mei ha tēminale:",
+    "cta": "Fakaava ʻa OpenAmer",
+    "errorTitle": "Naʻe ʻikai lava ʻo fakaava e polokalama ki he komipiuta",
+    "launching": "ʻOku fakaava",
+    "lead": "Kuo maau e meʻa kotoa. Ko hoʻo OpenAmer eni — ʻi he mīsini ni, ʻi hoʻo lea.",
+    "title": "Kuo mateuteu ʻa OpenAmer"
+  },
+  "welcome": {
+    "bullets": [
+      "ʻOku ngāue ʻi hoʻo mīsini — ʻoku nofo pē hoʻo ngaahi fepōtalanoaʻaki ʻi he mīsini ni",
+      "Ngaahi lea ʻe 186, kau ai e faʻahinga mataʻitohi ʻokú ke lau",
+      "ʻE lava ʻo liliu e meʻa kotoa kimui; ʻoku ʻikai ha meʻa ʻe tuʻumaʻu"
+    ],
+    "cta": "Fokotuʻu",
+    "ctaUpdate": "Fakafoʻou he taimí ni",
+    "kicker": "Teuteu tuʻo taha",
+    "lead": "Ko hoʻo fakafofonga pē ʻaʻau. ʻI hoʻo meʻangāue. ʻI hoʻo lea.",
+    "leadUpdate": "Kuo mateuteu ha tatau foʻou ange ʻo OpenAmer. ʻE fetongi ʻe he meʻá ni e tatau motuʻa pea tauhi e ngaahi taimi ngāue mo e fokotuʻutuʻu kotoa.",
+    "note": "ʻOku fiemaʻu ha ngaahi miniti siʻi ʻi ha fetuʻutaki angamaheni.",
+    "title": "Talitali lelei ki OpenAmer",
+    "titleUpdate": "Fakafoʻou ʻa OpenAmer"
+  }
+}

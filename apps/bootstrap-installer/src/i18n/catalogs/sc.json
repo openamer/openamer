@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer pianìficat un'incàrrigu, lu eseguit cun ainas reales — terminale, navigadore, documentos, còdighe — e sarvat su chi at funtzionadu.",
+      "title": "Un'agente chi pensat cun tegus"
+    },
+    {
+      "body": "Cunversatziones, memòria e modellos abarrant in custa màchina. Nudda est carrigadu si no lu pedis tue.",
+      "title": "Su hardware tuo, is datos tuos"
+    },
+    {
+      "body": "186 limbas, ognuna in s'alfabetu chi legis a beru. Sa prima ischermada de s'aplicatzione ti preguntat cale cheres.",
+      "title": "Sa limba tua, comente si tocat"
+    },
+    {
+      "body": "Sas cumpetèntzias si sarvant dae su traballu etotu, pro chi is fainas de cada die siant prus lestras cantu prus l'impreas.",
+      "title": "Capatzidades chi creschent"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Controlla chi custa màchina potzat atzèdere a internet.",
+      "Torra a eseguire sa cunfiguratzione — is passos cumpletados non si repitint.",
+      "Si fallit duas bortas, aberi is registros; is ùrtimas lìnias indicant su passu."
+    ],
+    "lead": "Nissuna modìfica est istada annullada a cua — OpenAmer si firmat in su puntu in ue est arribadu, duncas un'àtera esecutzione sighit dae in cue.",
+    "leadUpdate": "OpenAmer est ancora in sa versione pretzedente e sighit a funtzionare. Nudda est istadu remplassadu a mesu.",
+    "log": "Registru",
+    "openLogs": "Aberi is registros",
+    "retry": "Torra a proare",
+    "retryUpdate": "Torra a proare s'agiornamentu",
+    "title": "Sa cunfiguratzione no est agabbada",
+    "titleUpdate": "S'agiornamentu no est agabbadu"
+  },
+  "language": {
+    "continue": "Sighi",
+    "lead": "Sa cunfiguratzione sighit in sa limba chi sèberas inoghe. La podes mudare a pustis in s'aplicatzione.",
+    "search": "Chirca limbas",
+    "title": "Sèbera sa limba tua"
+  },
+  "progress": {
+    "cancel": "Annulla",
+    "done": "Prontu",
+    "hideDetails": "Cua is detàllios",
+    "lead": "Cunfiguratzione ùnica: OpenAmer est iscarrigande su chi li serbit e cunfigurande custa màchina. Is aviamentos chi sighint brìncant totu custu.",
+    "leadUpdate": "OpenAmer est remplassande sa versione pretzedente. Is sessiones, sa memòria e is impostatziones tuas abarrant intatas.",
+    "lines": "lìnias",
+    "liveOutput": "Essida in tempus reale",
+    "showDetails": "Ammustra is detàllios",
+    "stepsComplete": "{done} passos cumpletados de {total}",
+    "title": "Cunfigurende OpenAmer",
+    "titleUpdate": "Agiornende OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Sinnalende s'installatzione comente cumpletada",
+    "config-templates": "Iscriende is modellos de cunfiguratzione",
+    "configure": "Cunfigurende is craes API e is modellos",
+    "dependencies": "Installende is dipendèntzias de Python",
+    "desktop": "Cumpilende s'aplicatzione pro s'iscrivania",
+    "gateway": "Aviende su portale de messagìstica",
+    "git": "Installende Git",
+    "handoff": "Preparende s'agiornamentu",
+    "install": "Installende s'agiornamentu",
+    "node": "Rilevende Node.js",
+    "node-deps": "Installende is dipendèntzias de Node.js",
+    "path": "Agiunghende OpenAmer a PATH",
+    "platform-sdks": "Installende is SDK de is prataformas de messagìstica",
+    "python": "Verifichende Python",
+    "rebuild": "Torrende a cumpilare s'aplicatzione pro s'iscrivania",
+    "repository": "Clonende su depòsitu de OpenAmer",
+    "system-packages": "Installende ripgrep e ffmpeg",
+    "update": "Iscarrighende s'ùrtima versione",
+    "uv": "Installende su gestore de pachetes uv",
+    "venv": "Creende s'ambiente virtuale de Python"
+  },
+  "stepper": {
+    "done": "Prontu",
+    "install": "Installa",
+    "language": "Limba",
+    "update": "Agiorna",
+    "welcome": "Bene bènnidu"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Aberi s'aplicatzione e descrie su chi cheres fàghere. OpenAmer traballat in segundu pianu e ti comunicat is resurtados.",
+        "title": "Cumintza cun una frase"
+      },
+      {
+        "body": "Impostatziones → Visualizatzione → Limba. 186 cunfiguratziones locales, chi podes mudare in cale si siat momentu.",
+        "title": "Sèbera sa limba tua"
+      },
+      {
+        "body": "Su traballu chi si repitit devenit una cumpetèntzia — sa borta imbeniente bastat unu cumandu.",
+        "title": "Lassa chi si lu regordet"
+      }
+    ],
+    "command": "o àvialu a pustis dae unu terminale:",
+    "cta": "Àvia OpenAmer",
+    "errorTitle": "No at fatu a aviare s'aplicatzione pro s'iscrivania",
+    "launching": "Aviende",
+    "lead": "Totu est prontu. OpenAmer est tuo immoe — in custa màchina, in sa limba tua.",
+    "title": "OpenAmer est prontu"
+  },
+  "welcome": {
+    "bullets": [
+      "Funtzionat in locale — is cunversatziones tuas abarrant in custa màchina",
+      "186 limbas, cun s'alfabetu chi legis tue",
+      "Podes mudare totu a pustis; nudda est permanente"
+    ],
+    "cta": "Installa",
+    "ctaUpdate": "Agiorna immoe",
+    "kicker": "Cunfiguratzione ùnica",
+    "lead": "S'agente tuo. In su hardware tuo. In sa limba tua.",
+    "leadUpdate": "Una versione prus noa de OpenAmer est pronta. Remplassat sa versione pretzedente e mantènnit totu is sessiones e is impostatziones.",
+    "note": "Bi cherent pagos minutos cun una connessione normale.",
+    "title": "Bene bènnidu in OpenAmer",
+    "titleUpdate": "Agiorna OpenAmer"
+  }
+}

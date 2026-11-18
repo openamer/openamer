@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer merancang tugas, melaksanakannya dengan alat sebenar — terminal, pelayar, fail, kod — dan menyimpan cara yang berkesan.",
+      "title": "Ejen yang berfikir bersama anda"
+    },
+    {
+      "body": "Perbualan, ingatan dan model disimpan pada komputer ini. Tiada apa yang dimuat naik melainkan anda memintanya.",
+      "title": "Perkakasan anda, data anda"
+    },
+    {
+      "body": "186 bahasa, setiap satu dalam tulisan yang anda baca. Skrin pertama aplikasi meminta anda memilih bahasa.",
+      "title": "Bahasa anda, dengan betul"
+    },
+    {
+      "body": "Kemahiran disimpan daripada kerja itu sendiri, jadi tugas harian menjadi lebih ringkas semakin lama anda menggunakannya.",
+      "title": "Keupayaan yang berkembang"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Pastikan komputer ini boleh mengakses internet.",
+      "Jalankan persediaan semula — langkah yang selesai tidak akan diulang.",
+      "Jika gagal dua kali, buka log; baris terakhir menyatakan langkah yang gagal."
+    ],
+    "lead": "Tiada perubahan yang dibatalkan secara senyap — OpenAmer berhenti di tempat ia terhenti, jadi percubaan kedua menyambung dari situ.",
+    "leadUpdate": "OpenAmer masih menggunakan versi sebelumnya dan terus berfungsi. Tiada komponen yang diganti separuh jalan.",
+    "log": "Log",
+    "openLogs": "Buka log",
+    "retry": "Cuba lagi",
+    "retryUpdate": "Cuba kemas kini semula",
+    "title": "Persediaan tidak selesai",
+    "titleUpdate": "Kemas kini tidak selesai"
+  },
+  "language": {
+    "continue": "Teruskan",
+    "lead": "Persediaan diteruskan dalam bahasa yang anda pilih di sini. Anda boleh menukarnya kemudian dalam aplikasi.",
+    "search": "Cari bahasa",
+    "title": "Pilih bahasa anda"
+  },
+  "progress": {
+    "cancel": "Batal",
+    "done": "Sedia",
+    "hideDetails": "Sembunyikan butiran",
+    "lead": "Persediaan sekali sahaja: OpenAmer sedang memuat turun keperluannya dan mengkonfigurasi komputer ini. Pelancaran seterusnya melangkau semua ini.",
+    "leadUpdate": "OpenAmer sedang menggantikan versi sebelumnya. Sesi, ingatan dan tetapan anda kekal tanpa perubahan.",
+    "lines": "baris",
+    "liveOutput": "Output langsung",
+    "showDetails": "Tunjukkan butiran",
+    "stepsComplete": "{done} daripada {total} langkah selesai",
+    "title": "Menyediakan OpenAmer",
+    "titleUpdate": "Mengemas kini OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Menandakan pemasangan selesai",
+    "config-templates": "Menulis templat konfigurasi",
+    "configure": "Mengkonfigurasi kunci API dan model",
+    "dependencies": "Memasang kebergantungan Python",
+    "desktop": "Membina aplikasi desktop",
+    "gateway": "Memulakan get laluan pemesejan",
+    "git": "Memasang Git",
+    "handoff": "Bersedia untuk mengemas kini",
+    "install": "Memasang kemas kini",
+    "node": "Mengesan Node.js",
+    "node-deps": "Memasang kebergantungan Node.js",
+    "path": "Menambah OpenAmer pada PATH",
+    "platform-sdks": "Memasang SDK platform pemesejan",
+    "python": "Mengesahkan Python",
+    "rebuild": "Membina semula aplikasi desktop",
+    "repository": "Mengklon repositori OpenAmer",
+    "system-packages": "Memasang ripgrep dan ffmpeg",
+    "update": "Memuat turun versi terkini",
+    "uv": "Memasang pengurus pakej uv",
+    "venv": "Mencipta persekitaran maya Python"
+  },
+  "stepper": {
+    "done": "Sedia",
+    "install": "Pasang",
+    "language": "Bahasa",
+    "update": "Kemas kini",
+    "welcome": "Selamat datang"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Buka aplikasi dan terangkan perkara yang anda mahu selesaikan. OpenAmer bekerja di latar belakang dan melaporkan hasilnya.",
+        "title": "Mulakan dengan satu ayat"
+      },
+      {
+        "body": "Tetapan → Paparan → Bahasa. 186 tetapan bahasa, boleh ditukar pada bila-bila masa.",
+        "title": "Pilih bahasa anda"
+      },
+      {
+        "body": "Kerja berulang menjadi kemahiran — lain kali hanya perlu satu arahan.",
+        "title": "Biarkannya mengingati"
+      }
+    ],
+    "command": "atau mulakannya kemudian melalui terminal:",
+    "cta": "Lancarkan OpenAmer",
+    "errorTitle": "Tidak dapat melancarkan aplikasi desktop",
+    "launching": "Melancarkan",
+    "lead": "Semuanya sudah tersedia. OpenAmer kini milik anda — pada komputer ini, dalam bahasa anda.",
+    "title": "OpenAmer sudah sedia"
+  },
+  "welcome": {
+    "bullets": [
+      "Berjalan secara setempat — perbualan anda kekal pada komputer ini",
+      "186 bahasa, termasuk tulisan yang anda baca",
+      "Semuanya boleh diubah kemudian; tiada yang kekal"
+    ],
+    "cta": "Pasang",
+    "ctaUpdate": "Kemas kini sekarang",
+    "kicker": "Persediaan sekali sahaja",
+    "lead": "Ejen anda sendiri. Pada perkakasan anda. Dalam bahasa anda.",
+    "leadUpdate": "Versi OpenAmer yang lebih baharu sudah sedia. Ini menggantikan versi sebelumnya dan mengekalkan semua sesi dan tetapan.",
+    "note": "Mengambil masa beberapa minit dengan sambungan biasa.",
+    "title": "Selamat datang ke OpenAmer",
+    "titleUpdate": "Kemas kini OpenAmer"
+  }
+}

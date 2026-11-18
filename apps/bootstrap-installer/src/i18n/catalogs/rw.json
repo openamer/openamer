@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer itegura igikorwa, ikagikora ikoresheje ibikoresho nyabyo — umurongo w'amabwiriza, mushakisha, amadosiye, kode — kandi ikabika ibyagenze neza.",
+      "title": "Umufasha utekerezanya nawe"
+    },
+    {
+      "body": "Ibiganiro, ibyo yibuka n'imodeli biguma kuri iyi mudasobwa. Nta cyo yohereza utabimusabye.",
+      "title": "Ibikoresho byawe, amakuru yawe"
+    },
+    {
+      "body": "Indimi 186, buri rumwe mu nyandiko usanzwe usoma. Mugaragaza ya mbere ya porogaramu ikubaza urwo uhitamo.",
+      "title": "Ururimi rwawe, uko bikwiye"
+    },
+    {
+      "body": "Ubumenyi bubikwa buvuye mu mirimo ikorwa, bityo imirimo ya buri munsi ikarushaho kwihuta uko uyikoresha.",
+      "title": "Ubushobozi bukura"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Reba ko iyi mudasobwa ishobora kugera kuri interineti.",
+      "Ongera utangize iyinjizamo — intambwe zarangiye ntizisubirwamo.",
+      "Ninanirwa kabiri, fungura inyandiko z'ibikorwa; imirongo ya nyuma igaragaza intambwe byahagazeho."
+    ],
+    "lead": "Nta mpinduka zasubijwe inyuma utabimenyeshejwe — OpenAmer ihagarara aho yari igeze, ku buryo niwongera kuyitangiza izakomereza aho.",
+    "leadUpdate": "OpenAmer iracyari kuri verisiyo ya mbere kandi iracyakora. Nta cyasimbujwe igice gusa.",
+    "log": "Inyandiko y'ibikorwa",
+    "openLogs": "Fungura inyandiko z'ibikorwa",
+    "retry": "Ongera ugerageze",
+    "retryUpdate": "Ongera ugerageze kuvugurura",
+    "title": "Iyinjizamo ntiryarangiye",
+    "titleUpdate": "Ivugurura ntiryarangiye"
+  },
+  "language": {
+    "continue": "Komeza",
+    "lead": "Iyinjizamo rirakomeza mu rurimi uhitamo hano. Ushobora kuruhindura nyuma muri porogaramu.",
+    "search": "Shakisha indimi",
+    "title": "Hitamo ururimi rwawe"
+  },
+  "progress": {
+    "cancel": "Reka",
+    "done": "Biriteguye",
+    "hideDetails": "Hisha ibisobanuro",
+    "lead": "Iyinjizamo rikorwa rimwe gusa: OpenAmer iri kuvana kuri interineti ibyo ikeneye no kugena iyi mudasobwa. Mu kuyitangiza ubutaha, ibi byose ntibizongera gukorwa.",
+    "leadUpdate": "OpenAmer iri gusimbura verisiyo ya mbere. Ibihe byawe by'akazi, ibyo yibuka n'amagenamiterere ntibihinduka.",
+    "lines": "imirongo",
+    "liveOutput": "Ibisohoka ako kanya",
+    "showDetails": "Erekana ibisobanuro",
+    "stepsComplete": "Intambwe {done} kuri {total} zarangiye",
+    "title": "Kwinjiza OpenAmer",
+    "titleUpdate": "Kuvugurura OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Kwemeza ko iyinjizamo ryarangiye",
+    "config-templates": "Kwandika inyandikorugero z'amagenamiterere",
+    "configure": "Kugena imfunguzo za API n'imodeli",
+    "dependencies": "Kwinjiza ibikenewe bya Python",
+    "desktop": "Kubaka porogaramu ya mudasobwa",
+    "gateway": "Gutangira irembo ry'ubutumwa",
+    "git": "Kwinjiza Git",
+    "handoff": "Kwitegura kuvugurura",
+    "install": "Kwinjiza ivugurura",
+    "node": "Gushakisha Node.js",
+    "node-deps": "Kwinjiza ibikenewe bya Node.js",
+    "path": "Kongera OpenAmer muri PATH",
+    "platform-sdks": "Kwinjiza SDK z'imbuga z'ubutumwa",
+    "python": "Kugenzura Python",
+    "rebuild": "Kongera kubaka porogaramu ya mudasobwa",
+    "repository": "Gukoporora ububiko bwa OpenAmer",
+    "system-packages": "Kwinjiza ripgrep na ffmpeg",
+    "update": "Kuvana verisiyo nshya kuri interineti",
+    "uv": "Kwinjiza uv icunga amapaki",
+    "venv": "Kurema ahantu hihariye ha Python"
+  },
+  "stepper": {
+    "done": "Biriteguye",
+    "install": "Injiza",
+    "language": "Ururimi",
+    "update": "Vugurura",
+    "welcome": "Ikaze"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Fungura porogaramu usobanure icyo ushaka ko ikora. OpenAmer ikorera mu bwihisho ikakumenyesha ibivuyemo.",
+        "title": "Tangirira ku nteruro"
+      },
+      {
+        "body": "Amagenamiterere → Imigaragarire → Ururimi. Indimi n'uturere 186, ushobora kubihindura igihe cyose.",
+        "title": "Hitamo ururimi rwawe"
+      },
+      {
+        "body": "Umurimo usubirwamo uhinduka ubumenyi — ubutaha ukenera ibwiriza rimwe gusa.",
+        "title": "Reka yibuke"
+      }
+    ],
+    "command": "cyangwa uyitangize nyuma ukoresheje umurongo w'amabwiriza:",
+    "cta": "Tangiza OpenAmer",
+    "errorTitle": "Ntibyashobotse gutangiza porogaramu ya mudasobwa",
+    "launching": "Gutangira",
+    "lead": "Byose biri mu mwanya wabyo. OpenAmer ubu ni iyawe — kuri iyi mudasobwa, mu rurimi rwawe.",
+    "title": "OpenAmer iriteguye"
+  },
+  "welcome": {
+    "bullets": [
+      "Ikorera kuri iyi mudasobwa — ibiganiro byawe biguma kuri yo",
+      "Indimi 186, harimo n'inyandiko usoma",
+      "Byose bishobora guhindurwa nyuma; nta kidahinduka"
+    ],
+    "cta": "Injiza",
+    "ctaUpdate": "Vugurura ubu",
+    "kicker": "Iyinjizamo rikorwa rimwe gusa",
+    "lead": "Umufasha wawe bwite. Ku bikoresho byawe. Mu rurimi rwawe.",
+    "leadUpdate": "Verisiyo nshya ya OpenAmer iriteguye. Isimbura iya mbere kandi ikagumana ibihe byose by'akazi n'amagenamiterere.",
+    "note": "Bifata iminota mike kuri interineti isanzwe.",
+    "title": "Ikaze muri OpenAmer",
+    "titleUpdate": "Vugurura OpenAmer"
+  }
+}

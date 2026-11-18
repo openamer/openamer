@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer-neun jageobeul gyehoekhago teomineol, beuraujeo, pail, kodeu deung silje doguro silhaenghamyeo, seonggonghan bangbeobeul gieokhamnida.",
+      "title": "Hamkke saenggakhaneun eijeonteu"
+    },
+    {
+      "body": "Daehwa, gieok, modeleun i giegie boegwandoemnida. Yocheonghaji aneumyeon amugeotdo eopllodeuhaji anseumnida.",
+      "title": "Nae hadeuweeo, nae deiteo"
+    },
+    {
+      "body": "186gae eoneoreul siljero ilgneun munjaro jegonghamnida. Aep cheot hwamyeoneseo eoneoreul seontaekhamnida.",
+      "title": "Nae eoneoreul jedaero"
+    },
+    {
+      "body": "Jageop gwajeongeseo seukireul jeojangh므로, oraeseul surok ilsang jageobi ganpyeonhaejimnida.",
+      "title": "Jeomjeom keojineun neungnyeok"
+    }
+  ],
+  "failure": {
+    "help": [
+      "I gigiui inteonet yeongyeoreul hwaginhaseyo.",
+      "Seolchireul dasi silhaenghaseyo. Wanryohan dangyeneun banbokhaji anseumnida.",
+      "Du beon silpaehamyeon girogeul yeoseyo. Majimak jure dan'gye ireumi naomnida."
+    ],
+    "lead": "Byeongyeong sahangeul mollae doedolliji anasseumnida. OpenAmer-neun meomchun sangtaereul yujih므로, dasi silhaenghamyeon geu jijeombuteo gyesokhamnida.",
+    "leadUpdate": "OpenAmer-neun ijeon beojeoneuro gyesok jakdonghamnida. Ilbuman gyochedoen hangeun eopseumnida.",
+    "log": "Girok",
+    "openLogs": "Girok yeolgi",
+    "retry": "Dasi sido",
+    "retryUpdate": "Eopdeiteu dasi sido",
+    "title": "Seolchireul wanryohaji mothaetseumnida",
+    "titleUpdate": "Eopdeiteureul wanryohaji mothaetseumnida"
+  },
+  "language": {
+    "continue": "Gyesok",
+    "lead": "Yeogiseo seontaekhan eoneoro seolchireul gyesokhamnida. Najunge aeबहeseo bakkul su itseumnida.",
+    "search": "Eoneo geomsaek",
+    "title": "Eoneo seontaek"
+  },
+  "progress": {
+    "cancel": "Chwiso",
+    "done": "Junbi wanryo",
+    "hideDetails": "Sangse jeongbo sumgigi",
+    "lead": "Chohoe seolchi: OpenAmer-ga piryohan hangmogeul daunlodeuhago i gigireul guseonghamnida. Daeum silhaengbuteoneun i gwajeongeul geonneottwimnida.",
+    "leadUpdate": "OpenAmer-ga ijeon beojeoneul gyochehago itseumnida. Sesyeon, gieok, seoljeongeun geudaero yujidoemnida.",
+    "lines": "jul",
+    "liveOutput": "Silsigan chullyeok",
+    "showDetails": "Sangse jeongbo bogi",
+    "stepsComplete": "{done} / {total} dan-gye wallyo",
+    "title": "OpenAmer seolchi jung",
+    "titleUpdate": "OpenAmer eopdeiteu jung"
+  },
+  "stages": {
+    "bootstrap-marker": "Seolchi wanryo pyosi jung",
+    "config-templates": "Guseong teompeullit jakseong jung",
+    "configure": "API kiwa model guseong jung",
+    "dependencies": "Python uijonseong seolchi jung",
+    "desktop": "Deseukeutop aep bildeu jung",
+    "gateway": "Mesijing geiteuwei sijak jung",
+    "git": "Git seolchi jung",
+    "handoff": "Eopdeiteu junbi jung",
+    "install": "Eopdeiteu seolchi jung",
+    "node": "Node.js tamji jung",
+    "node-deps": "Node.js uijonseong seolchi jung",
+    "path": "PATH-e OpenAmer chuga jung",
+    "platform-sdks": "Mesijing peullaetpom SDK seolchi jung",
+    "python": "Python hwagin jung",
+    "rebuild": "Deseukeutop aep dasi bildeu jung",
+    "repository": "OpenAmer jeojangso bokje jung",
+    "system-packages": "ripgrep mit ffmpeg seolchi jung",
+    "update": "Choesin beojeon daunlodeu jung",
+    "uv": "uv paekiji gwanlija seolchi jung",
+    "venv": "Python gasang hwangyeong saengseong jung"
+  },
+  "stepper": {
+    "done": "Junbi wanryo",
+    "install": "Seolchi",
+    "language": "Eoneo",
+    "update": "Eopdeiteu",
+    "welcome": "Hwan yeong"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Aepeul yeolgo wonhaneun jageobeul seolmyeonghaseyo. OpenAmer-ga baekgeuraundeueseo jageophago gyeolgwareul allyeodeurimnida.",
+        "title": "Han munjang euro sijakhaseyo"
+      },
+      {
+        "body": "Seoljeong → Hwasi → Eoneo. 186gae jiyeok seoljeongeul eonjedeun bakkul su itseumnida.",
+        "title": "Eoneoreul goreuseyo"
+      },
+      {
+        "body": "Banbok jageobi seukiri doemnida. Daeumbuteoneun myeongnyeong han beonimyeon doemnida.",
+        "title": "Gieokhage haseyo"
+      }
+    ],
+    "command": "Ttoneun najunge teomineoreseo sijakhaseyo:",
+    "cta": "OpenAmer silhaeng",
+    "errorTitle": "Deseukeutop aepeul silhaenghaji mothaetseumnida",
+    "launching": "Silhaeng jung",
+    "lead": "Modeun junbiga kkeunnatseumnida. Ije OpenAmer-neun i gigieseo nae eoneoro sseuneun namanui eijeonteuimnida.",
+    "title": "OpenAmer junbi wanryo"
+  },
+  "welcome": {
+    "bullets": [
+      "Rokeoreseo silhaeng — daehwaneun i gigie namseumnida",
+      "Ilgneun munjakkaji jiwonhaneun 186gae eoneo",
+      "Modeun geoseun najunge bakkul su itseumnida. Yeonggujeogin seoljeongeun eopseumnida"
+    ],
+    "cta": "Seolchi",
+    "ctaUpdate": "Jigeum eopdeiteu",
+    "kicker": "Chohoe seolchi",
+    "lead": "Namanui eijeonteu. Nae hadeuweeoeseo. Nae eoneoro.",
+    "leadUpdate": "Deo saeroun OpenAmer-ga junbidoeeotseumnida. Ijeon beojeoneul gyochehago modeun sesyeongwa seoljeongeul yujihamnida.",
+    "note": "Ilbanjeogin yeongyeoreseo myeot bun jeongdo geollimnida.",
+    "title": "OpenAmer-e osin geoseul hwanyeonghamnida",
+    "titleUpdate": "OpenAmer eopdeiteu"
+  }
+}

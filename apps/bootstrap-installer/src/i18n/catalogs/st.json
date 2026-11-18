@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer e rera mosebetsi, e o etsa ka dithulusi tsa sebele — theminale, sebatli, difaele, khoutu — mme e boloka se sebeditse.",
+      "title": "Moemedi ya nahanang le wena"
+    },
+    {
+      "body": "Dipuisano, mohopolo le dimotlele di dula khomphutheng ena. Ha ho letho le kenngwang inthaneteng ntle le ha o kopa.",
+      "title": "Disebediswa tsa hao, data ya hao"
+    },
+    {
+      "body": "Dipuo tse 186, e nngwe le e nngwe ka mongolo oo o o balang. Skrine sa pele sa app se o botsa hore na o kgetha efe.",
+      "title": "Puo ya hao, ka nepo"
+    },
+    {
+      "body": "Bokgoni bo bolokwa ho tswa mosebetsing ka boona, kahoo mesebetsi ya letsatsi le letsatsi e potlaka ha o ntse o e sebedisa.",
+      "title": "Bokgoni bo holang"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Hlahloba hore khomphutha ena e kgona ho kena inthaneteng.",
+      "Qala tlhophiso hape — mehato e qetilweng ha e phetwe.",
+      "Ha e hloleha habedi, bula direkoto; mela ya ho qetela e bolela mohato."
+    ],
+    "lead": "Ha ho diphetoho tse kgutlisitsweng morao ka lekunutu — OpenAmer e ema moo e emisitseng teng, kahoo ha e qalwa hape e tswela pele ho tloha moo.",
+    "leadUpdate": "OpenAmer e ntse e le mofuteng o fetileng mme e ntse e sebetsa. Ha ho letho le nkettsweng sebaka ka halofo.",
+    "log": "Rekoto",
+    "openLogs": "Bula direkoto",
+    "retry": "Leka hape",
+    "retryUpdate": "Leka ntlafatso hape",
+    "title": "Tlhophiso ha ya phetheha",
+    "titleUpdate": "Ntlafatso ha ya phetheha"
+  },
+  "language": {
+    "continue": "Tswela pele",
+    "lead": "Tlhophiso e tswela pele ka puo eo o e kgethang mona. O ka e fetola hamorao ka hara app.",
+    "search": "Batla dipuo",
+    "title": "Kgetha puo ya hao"
+  },
+  "progress": {
+    "cancel": "Hlakola",
+    "done": "E lokile",
+    "hideDetails": "Pata dintlha",
+    "lead": "Tlhophiso ya hang feela: OpenAmer e jarolla seo e se hlokang mme e hlophisa khomphutha ena. Ha e qalwa hamorao e tlola tsena tsohle.",
+    "leadUpdate": "OpenAmer e nkela mofuta o fetileng sebaka. Dinako tsa hao tsa tshebetso, mohopolo le ditlhophiso ha di fetolwe.",
+    "lines": "mela",
+    "liveOutput": "Sephetho se hlahang hona jwale",
+    "showDetails": "Bontsha dintlha",
+    "stepsComplete": "Mehato e {done} ho e {total} e phethilwe",
+    "title": "Ho hlophisa OpenAmer",
+    "titleUpdate": "Ho ntlafatsa OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Ho tshwaya hore ho kenya ho phethilwe",
+    "config-templates": "Ho ngola ditempleite tsa tlhophiso",
+    "configure": "Ho hlophisa dinotlolo tsa API le dimotlele",
+    "dependencies": "Ho kenya diphuthelwana tse hlokehang tsa Python",
+    "desktop": "Ho aha app ya komporong",
+    "gateway": "Ho qala kgoro ya melaetsa",
+    "git": "Ho kenya Git",
+    "handoff": "Ho itokisetsa ho ntlafatsa",
+    "install": "Ho kenya ntlafatso",
+    "node": "Ho lemoha Node.js",
+    "node-deps": "Ho kenya diphuthelwana tse hlokehang tsa Node.js",
+    "path": "Ho kenya OpenAmer ho PATH",
+    "platform-sdks": "Ho kenya di-SDK tsa dipolanete tsa melaetsa",
+    "python": "Ho netefatsa Python",
+    "rebuild": "Ho aha app ya komporong hape",
+    "repository": "Ho kopitsa polokelo ya OpenAmer",
+    "system-packages": "Ho kenya ripgrep le ffmpeg",
+    "update": "Ho jarolla mofuta wa moraorao",
+    "uv": "Ho kenya molaodi wa diphuthelwana wa uv",
+    "venv": "Ho etsa tikoloho ya sebele ya Python"
+  },
+  "stepper": {
+    "done": "E lokile",
+    "install": "Kenya",
+    "language": "Puo",
+    "update": "Ntlafatsa",
+    "welcome": "Rea o amohela"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Bula app mme o hlalose seo o batlang hore se etswe. OpenAmer e sebetsa ka morao mme e o tlalehela.",
+        "title": "Qala ka polelo"
+      },
+      {
+        "body": "Ditlhophiso → Pontsho → Puo. Dikgetho tsa puo le sebaka tse 186, di ka fetolwa neng kapa neng.",
+        "title": "Kgetha puo ya hao"
+      },
+      {
+        "body": "Mosebetsi o iphetang o fetoha bokgoni — nakong e tlang o hloka taelo e le nngwe feela.",
+        "title": "E dumelle ho hopola"
+      }
+    ],
+    "command": "kapa o e qale hamorao ho theminale:",
+    "cta": "Qala OpenAmer",
+    "errorTitle": "Ha ho a kgoneha ho qala app ya komporong",
+    "launching": "E a qala",
+    "lead": "Tsohle di lokile. OpenAmer jwale ke ya hao — khomphutheng ena, ka puo ya hao.",
+    "title": "OpenAmer e lokile"
+  },
+  "welcome": {
+    "bullets": [
+      "E sebetsa khomphutheng ya hao — dipuisano tsa hao di dula mona",
+      "Dipuo tse 186, ho kenyeletswa mongolo oo o o balang",
+      "Tsohle di ka fetolwa hamorao; ha ho letho le sa fetoheng"
+    ],
+    "cta": "Kenya",
+    "ctaUpdate": "Ntlafatsa hona jwale",
+    "kicker": "Tlhophiso ya hang feela",
+    "lead": "Moemedi wa hao. Disebedisweng tsa hao. Ka puo ya hao.",
+    "leadUpdate": "Mofuta o motjha wa OpenAmer o lokile. O nkela mofuta o fetileng sebaka mme o boloka dinako tsohle tsa tshebetso le ditlhophiso tsohle.",
+    "note": "Ho nka metsotso e seng mekae ka kgokelo e tlwaelehileng.",
+    "title": "Rea o amohela ho OpenAmer",
+    "titleUpdate": "Ntlafatsa OpenAmer"
+  }
+}

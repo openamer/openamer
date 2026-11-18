@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer vagsuek hong, yungh gij gungguek caen — cang minglingh, gij liuzlanj, vwnzgenh, daemjmaz — daeuj guh, caemh liuz gij banhfap miz yungh.",
+      "title": "Daihligj bouhbangj aen siengj"
+    },
+    {
+      "body": "Gij doiqvah, gij geiq’it caeuq mozyangh youq gwnz daiz gih neix. Cijmiz mwngz yieuq cij sengh cij uenx.",
+      "title": "Gij yiengngeih mwngz, gij soqcawj mwngz"
+    },
+    {
+      "body": "186 cungj vah, moix cungj cungj yungh gij saw mwngz doeg. Naij yiemh daih’it yiengh vunghung cix cam mwngz senj cungj lawz.",
+      "title": "Gij vah mwngz, yungh ndaej hab"
+    },
+    {
+      "body": "Gij ginhyienh aeu ndaej congz hong caenhguh dauq cienz hwnj, yienghneix mwngz yungh ndaej naenz, hong binz ndaej raeuz.",
+      "title": "Gij laeg ningz ndaej sang"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Gienz caz daiz gih neix ndaej raemx caeuq mungx.",
+      "Yungh cihvuengh yiet daeuq — gij bouh guh sat laeuj mbouj guh daeuq.",
+      "Danghnaeuz mbouj ndaej song baez, hai gij geiqloeg; gij hangz gvaqlaeng naeuz bouh lawz miz saeh."
+    ],
+    "lead": "Mbouj miz gij gaij bienq dawz dauq mbouj naeuz — OpenAmer dingz youq giz dingz, yienghneix yungh baez song cix caenh gij giz de gwnz guh daeuq.",
+    "leadUpdate": "OpenAmer lij dwg banj gauh gaxgonq, lij ndaej yungh. Mbouj miz gij saeh aen vuenh ndaej faenh ndeu.",
+    "log": "Geiqloeg",
+    "openLogs": "Hai geiqloeg",
+    "retry": "Lwnh daeuq",
+    "retryUpdate": "Lwnh daeuq gaijmoq",
+    "title": "Cihvuengh mbouj sat",
+    "titleUpdate": "Gaijmoq mbouj sat"
+  },
+  "language": {
+    "continue": "Guh daeuq",
+    "lead": "Cihvuengh yungh gij vah mwngz senj youq neix guh daeuq. Mwngz ndaej gajlaeng gaij youq ndaw vunghung.",
+    "search": "Ra gij vah",
+    "title": "Senj gij vah mwngz"
+  },
+  "progress": {
+    "cancel": "Dingz",
+    "done": "Cingj ndei",
+    "hideDetails": "Sou gij vah ciengz",
+    "lead": "Cihvuengh baez ndeu: OpenAmer dangx dawz gij souh yiengh de yieuq dauq caemh cihvuengh daiz gih neix. Gajlaeng hai mbouj guh daeuq.",
+    "leadUpdate": "OpenAmer dangx vuenh banj gauh gaxgonq. Gij caezvah, geiq’it caeuq cihvuengh mwngz mbouj bienq.",
+    "lines": "hangz",
+    "liveOutput": "Gij ok saedseiz",
+    "showDetails": "Hienj gij vah ciengz",
+    "stepsComplete": "Guh sat {done} bouh, gungh {total} bouh",
+    "title": "Dangx cihvuengh OpenAmer",
+    "titleUpdate": "Dangx gaijmoq OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Dangx dajbiau caeuq sat",
+    "config-templates": "Dangx sij gij mozyangh cihvuengh",
+    "configure": "Dangx cihvuengh gij bit API caeuq mozyangh",
+    "dependencies": "Dangx caeuq gij bouh Python yieuq",
+    "desktop": "Dangx ciengj vunghung dienhnaeuz",
+    "gateway": "Dangx hai dou caeuq swenj saenq",
+    "git": "Dangx caeuq Git",
+    "handoff": "Dangx cingj ndei gaijmoq",
+    "install": "Dangx caeuq gij gaijmoq",
+    "node": "Dangx caz Node.js",
+    "node-deps": "Dangx caeuq gij bouh Node.js yieuq",
+    "path": "Dangx dem OpenAmer haeuj PATH",
+    "platform-sdks": "Dangx caeuq gij SDK daiz saenq",
+    "python": "Dangx gienz Python",
+    "rebuild": "Dangx ciengj daeuq vunghung dienhnaeuz",
+    "repository": "Dangx fuzcih gij cang OpenAmer",
+    "system-packages": "Dangx caeuq ripgrep caeuq ffmpeg",
+    "update": "Dangx dawz banj moqnyik dauq",
+    "uv": "Dangx caeuq gij guenj bau uv",
+    "venv": "Dangx ciengj vanzgingj hi Python"
+  },
+  "stepper": {
+    "done": "Cingj ndei",
+    "install": "Caeuq",
+    "language": "Vah",
+    "update": "Gaijmoq",
+    "welcome": "Ndaej nienz"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Hai vunghung caemh naeuz mwngz yieuq guh gijmaz. OpenAmer guh hong youq laeng caemh dauq naeuz mwngz.",
+        "title": "Yungh gouq vah ndeu haijcingj"
+      },
+      {
+        "body": "Cihvuengh → Hienj → Vah. 186 cungj vah, seizlawz cungj ndaej vuenh.",
+        "title": "Senj gij vah mwngz"
+      },
+      {
+        "body": "Gij hong guh daeuq binz ginhyienh — baezlaeng minglingh diuz ndeu cix ndaej.",
+        "title": "Haeujsaeh de geiq ndaej"
+      }
+    ],
+    "command": "roxnaj gajlaeng hai de congz cang minglingh:",
+    "cta": "Hai OpenAmer",
+    "errorTitle": "Hai vunghung dienhnaeuz mbouj ndaej",
+    "launching": "Dangx hai",
+    "lead": "Gij souh cungj ndei lo. OpenAmer seizneix dwg gij mwngz — youq gwnz daiz gih neix, yungh gij vah mwngz.",
+    "title": "OpenAmer cingj ndei lo"
+  },
+  "welcome": {
+    "bullets": [
+      "Yungh youq daiz gih neix — gij doiqvah mwngz liuz youq daiz gih neix",
+      "186 cungj vah, caeuq gij saw mwngz doeg",
+      "Gijmaz gajlaeng cungj ndaej gaij; mbouj miz gijmaz dingh raeuz"
+    ],
+    "cta": "Caeuq",
+    "ctaUpdate": "Gaijmoq seizneix",
+    "kicker": "Cihvuengh baez ndeu",
+    "lead": "Daihligj mwngz bonjfaenh. Youq gwnz yiengngeih mwngz. Yungh gij vah mwngz.",
+    "leadUpdate": "OpenAmer banj moq cingj ndei lo. De vuenh banj gauh gaxgonq caemh liuz moix aen caezvah caeuq cihvuengh.",
+    "note": "Yungh gij mungx bingzseiz yieuq geij faenz cung.",
+    "title": "Ndaej nienz daeuj OpenAmer",
+    "titleUpdate": "Gaijmoq OpenAmer"
+  }
+}

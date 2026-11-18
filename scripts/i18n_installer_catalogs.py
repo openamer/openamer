@@ -57,6 +57,14 @@ def targets() -> list[str]:
 PLACEHOLDER = re.compile(r"\{(\w+)\}")
 INT = re.compile(r"^\d+$")
 
+# A reply may not simply echo the English source. Measured 2026-11-18: seven
+# catalogues (aa, gv, hz, iu, ki, kj, kw) were written at 0 % translated and two
+# more (ff 19.5 %, ho 26.8 %) were mostly English, because a Latin-script target
+# passes the script check with an English answer. The installer's own contract
+# (src/i18n/index.ts) is the opposite: "a language offered and then answered in
+# English mid-flow is worse than one that is not offered."
+MAX_ENGLISH_SHARE = 0.10
+
 
 def flatten(node: object, prefix: str = "") -> list[tuple[str, str]]:
     """Ordered (path, text) pairs. Array indices become numeric path segments."""
@@ -124,6 +132,13 @@ def verify(code: str, english: list[tuple[str, str]], translated: list[str]) -> 
 
     if foreign:
         return f"foreign script in {len(foreign)} value(s): {foreign[0]!r}"
+
+    identical = sum(1 for (_, source), value in zip(english, translated) if source == value)
+    if identical / len(english) > MAX_ENGLISH_SHARE:
+        return (
+            f"answered in English ({identical}/{len(english)} strings identical to "
+            f"the source) — the picker would offer this language and then run in English"
+        )
 
     return None
 

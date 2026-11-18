@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer plant ein taak, veurt ze oet mit echte hulpmiddele — terminal, browser, bestanje, code — en bewaart wat wirkde.",
+      "title": "Ein agent dae mitdink"
+    },
+    {
+      "body": "Gesprekke, geheugen en modelle blieve op deze computer. Niks weurt geüpload, tenzij doe d'róm vraogs.",
+      "title": "Dien apparatuur, dien gegaeves"
+    },
+    {
+      "body": "186 tale, eder in 't sjrif dat doe werkelik laes. 't Eerste sjirm van de app vraog welke taal doe wils.",
+      "title": "Dien taal, good gedaon"
+    },
+    {
+      "body": "Vaerdighede waere oet 't werk zelf opgeslage, zoedat daagelikse take minder tied koste naogelaank doe 't langer gebroeks.",
+      "title": "Vaerdighede die groeje"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Controleer of deze computer verbinding mit internet kin make.",
+      "Veer de installatie opnuuj oet — aafgerónde sjtappe waere neet herhaold.",
+      "Es 't twie kier misluk, euver de logbeuk; de lètste regels neume de sjtap."
+    ],
+    "lead": "Gein verangeringe zeen ongemerk trökgedrejd — OpenAmer sjtop op de plek wo 't vasleup, zoedat ein tweede poging daovanof wiedergeit.",
+    "leadUpdate": "OpenAmer gebroek nog de veurege versie en blief wirke. Niks is mer half vervange.",
+    "log": "Logbook",
+    "openLogs": "Logbeuk euvere",
+    "retry": "Opnuuj prebere",
+    "retryUpdate": "Opnuuj probere bie te wirke",
+    "title": "Installatie neet aafgerónd",
+    "titleUpdate": "Biewirking neet aafgerónd"
+  },
+  "language": {
+    "continue": "Wieder",
+    "lead": "De installatie geit wieder in de taal die doe hie keus. Doe kins die later in de app verangere.",
+    "search": "Tale zeuke",
+    "title": "Kees dien taal"
+  },
+  "progress": {
+    "cancel": "Annulere",
+    "done": "Gereid",
+    "hideDetails": "Details verberge",
+    "lead": "Einmaolige installatie: OpenAmer downloadt wat 't neudig haet en stelt deze computer in. Bie later sjtarte weurt dit allemaol euvergesjlage.",
+    "leadUpdate": "OpenAmer vervink de veurege versie. Dien sessies, geheugen en insjtèllinge blieve ónaangeraak.",
+    "lines": "regels",
+    "liveOutput": "Live oetveur",
+    "showDetails": "Details tuine",
+    "stepsComplete": "{done} van {total} sjtappe aafgerónd",
+    "title": "OpenAmer insjtèlle",
+    "titleUpdate": "OpenAmer biewirke"
+  },
+  "stages": {
+    "bootstrap-marker": "Installatie es aafgerónd markere",
+    "config-templates": "Insjtèl-sjablone sjrieve",
+    "configure": "API-sjleutels en modelle insjtèlle",
+    "dependencies": "Python-aafhenkelikhede installere",
+    "desktop": "Bureaublad-app bouwe",
+    "gateway": "Berichtepoort sjtarte",
+    "git": "Git installere",
+    "handoff": "Biewirking veurbereide",
+    "install": "Biewirking installere",
+    "node": "Node.js opsjpeure",
+    "node-deps": "Node.js-aafhenkelikhede installere",
+    "path": "OpenAmer aan PATH toveuge",
+    "platform-sdks": "SDKs veur berichteplatforms installere",
+    "python": "Python controlere",
+    "rebuild": "De bureaublad-app opnuuj bouwe",
+    "repository": "De OpenAmer-opslage klonere",
+    "system-packages": "ripgrep en ffmpeg installere",
+    "update": "De nuutste versie downloade",
+    "uv": "De uv-pakketbeheerder installere",
+    "venv": "De virtuele Python-ómgaeving aanmake"
+  },
+  "stepper": {
+    "done": "Gereid",
+    "install": "Installere",
+    "language": "Taal",
+    "update": "Biewirke",
+    "welcome": "Wilkóm"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Euver de app en besjrief wat doe gedaon wils höbbe. OpenAmer wirk op de achtergrónd en meldt zich trök.",
+        "title": "Begin mit ein zin"
+      },
+      {
+        "body": "Insjtèllinge → Weergaaf → Taal. 186 taalinsjtèllinge, op eder momènt te wissele.",
+        "title": "Kees dien taal"
+      },
+      {
+        "body": "Trökkierend werk weurt ein vaerdigheid — de volgende kier is ein opdrach genóg.",
+        "title": "Laot 't óntjhawwe"
+      }
+    ],
+    "command": "of sjtart 't later vanoet ein terminal:",
+    "cta": "OpenAmer sjtarte",
+    "errorTitle": "De bureaublad-app kós neet gesjtart waere",
+    "launching": "Sjtarte",
+    "lead": "Alles sjteit klaor. OpenAmer is noe van dich — op deze computer, in dien taal.",
+    "title": "OpenAmer is gereid"
+  },
+  "welcome": {
+    "bullets": [
+      "Werk lokaal — dien gesprekke blieve op deze computer",
+      "186 tale, inclusief 't sjrif dat doe laes",
+      "Alles kin later verangerd waere; niks is definitief"
+    ],
+    "cta": "Installere",
+    "ctaUpdate": "Noe biewirke",
+    "kicker": "Einmaolige installatie",
+    "lead": "Dienen eige agent. Op dien apparatuur. In dien taal.",
+    "leadUpdate": "Ein nuujere OpenAmer sjteit klaor. Deze vervink de veurege versie en behilt alle sessies en insjtèllinge.",
+    "note": "Duuert ein paar minute bie ein normale verbinding.",
+    "title": "Wilkóm bie OpenAmer",
+    "titleUpdate": "OpenAmer biewirke"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer eteekateeka omulimu, n'egukola ng'ekozesa ebikozesebwa ebituufu — ekifo ky'ebiragiro, omutimbaganyi, fayiro, kodi — n'etereka ebyakola obulungi.",
+      "title": "Omuyambi alowooza naawe"
+    },
+    {
+      "body": "Emboozi, ebijjukirwa ne modeli bisigala ku kyuma kino. Tewali kiweerezebwa ku mutimbagano okuggyako ng'okisabye.",
+      "title": "Ebyuma byo, ebikwata ku ggwe"
+    },
+    {
+      "body": "Ennimi 186, buli lulimi mu nnukuta z'osoma. Olutimbe olusooka olukusaba okulonda olulimi.",
+      "title": "Olulimi lwo, mu ngeri entuufu"
+    },
+    {
+      "body": "Obukugu buterekebwa okuva mu mirimu egikoleddwa, emirimu egya bulijjo ne gyanguwa gy'okoma okugikozesa.",
+      "title": "Obusobozi obweyongera"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Kebera nti ekyuma kino kisobola okuyungibwa ku yintaneeti.",
+      "Ddamu okuteekateeka — emitendera egyaggwa tegiddibwamu.",
+      "Bwe kiremwa emirundi ebiri, ggulawo ebiwandiiko by'ebibaddewo; ennyiriri ezisembayo ziraga omutendera."
+    ],
+    "lead": "Tewali nkyukakyuka zizziddwa mabega mu kasirise — OpenAmer esigala we yakoma, bw'oddamu etandikira awo.",
+    "leadUpdate": "OpenAmer ekyali ku nfulumya eyasooka era ekyakola. Tewali kyakyusiddwa kitundu kyokka.",
+    "log": "Ekiwandiiko ky'ebibaddewo",
+    "openLogs": "Ggulawo ebiwandiiko by'ebibaddewo",
+    "retry": "Ddamu ogezeeko",
+    "retryUpdate": "Ddamu okuzza obuggya",
+    "title": "Okuteekateeka tekwawedde",
+    "titleUpdate": "Okuzza obuggya tekwawedde"
+  },
+  "language": {
+    "continue": "Weeyongereyo",
+    "lead": "Okuteekateeka kweyongera mu lulimi lw'olonze wano. Osobola okulukyusa oluvannyuma mu pulogulaamu.",
+    "search": "Noonya ennimi",
+    "title": "Londa olulimi lwo"
+  },
+  "progress": {
+    "cancel": "Sazaamu",
+    "done": "Kyeteeseteese",
+    "hideDetails": "Kweka ebisingawo",
+    "lead": "Okuteekateeka okw'omulundi gumu: OpenAmer ewanula ebyetaagisa era eteekateeka ekyuma kino. Bw'ogitandika oluvannyuma, bino byonna tebiddaamu.",
+    "leadUpdate": "OpenAmer ekyusaamu enfulumya eyasooka. Entuula zo, ebijjukirwa n'enteekateeka tebituusibwako.",
+    "lines": "ennyiriri",
+    "liveOutput": "Ebivaamu nga bigenda mu maaso",
+    "showDetails": "Laga ebisingawo",
+    "stepsComplete": "Emitendera {done} ku {total} giwedde",
+    "title": "Okuteekateeka OpenAmer",
+    "titleUpdate": "Okuzza OpenAmer obuggya"
+  },
+  "stages": {
+    "bootstrap-marker": "Okulamba nti okuteeka ku kyuma kuwedde",
+    "config-templates": "Okuwandiika ebikozesebwa ng'ebyokulabirako by'enteekateeka",
+    "configure": "Okuteekateeka ebisumuluzo bya API ne modeli",
+    "dependencies": "Okuteeka ebyetaagisa bya Python ku kyuma",
+    "desktop": "Okuzimba pulogulaamu y'oku kyuma",
+    "gateway": "Okutandika omulyango gw'obubaka",
+    "git": "Okuteeka Git ku kyuma",
+    "handoff": "Okwetegekera okuzza obuggya",
+    "install": "Okuteeka enfulumya empya ku kyuma",
+    "node": "Okuzuula Node.js",
+    "node-deps": "Okuteeka ebyetaagisa bya Node.js ku kyuma",
+    "path": "Okwongera OpenAmer ku PATH",
+    "platform-sdks": "Okuteeka SDKs z'emikutu gy'obubaka ku kyuma",
+    "python": "Okukakasa Python",
+    "rebuild": "Okuddamu okuzimba pulogulaamu y'oku kyuma",
+    "repository": "Okukola kkopi y'etterekero lya OpenAmer",
+    "system-packages": "Okuteeka ripgrep ne ffmpeg ku kyuma",
+    "update": "Okuwanula enfulumya esembayo",
+    "uv": "Okuteeka omuteesiteesi w'ebipakiti uv ku kyuma",
+    "venv": "Okutondawo embeera eyeetongodde eya Python"
+  },
+  "stepper": {
+    "done": "Kyeteeseteese",
+    "install": "Teeka ku kyuma",
+    "language": "Olulimi",
+    "update": "Zza obuggya",
+    "welcome": "Tukusanyukidde"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Ggulawo pulogulaamu era onnyonnyole ky'oyagala kikolebwe. OpenAmer ekolera emabega n'ekutegeeza ebivuddemu.",
+        "title": "Tandika n'emboozi emu"
+      },
+      {
+        "body": "Enteekateeka → Endabika → Olulimi. Enteekateeka z'ennimi n'ebitundu 186, osobola okukyusa essaawa yonna.",
+        "title": "Londa olulimi lwo"
+      },
+      {
+        "body": "Omulimu oguddibwamu gufuuka bukugu — omulundi oguddako gwetaaga ekiragiro kimu kyokka.",
+        "title": "Gireke ejjukire"
+      }
+    ],
+    "command": "oba gitandike oluvannyuma okuva mu kifo ky'ebiragiro:",
+    "cta": "Tandika OpenAmer",
+    "errorTitle": "Pulogulaamu y'oku kyuma tesobodde kutandika",
+    "launching": "Etandika",
+    "lead": "Byonna biri mu kifo kyabyo. OpenAmer kati yiyo — ku kyuma kino, mu lulimi lwo.",
+    "title": "OpenAmer yeeteeseteese"
+  },
+  "welcome": {
+    "bullets": [
+      "Ekolera ku kyuma kino — emboozi zo zisigala wano",
+      "Ennimi 186, nga mulimu n'ennukuta z'osoma",
+      "Byonna bisobola okukyusibwa oluvannyuma; tewali kya lubeerera"
+    ],
+    "cta": "Teeka ku kyuma",
+    "ctaUpdate": "Zza obuggya kati",
+    "kicker": "Okuteekateeka okw'omulundi gumu",
+    "lead": "Omuyambi wo. Ku byuma byo. Mu lulimi lwo.",
+    "leadUpdate": "Enfulumya ya OpenAmer empya yeeteeseteese. Eno edda mu kifo ky'enfulumya eyasooka era ekuuma buli lutuula na buli nteekateeka.",
+    "note": "Kitwala eddakiika ntono ku yintaneeti eya bulijjo.",
+    "title": "Tukusanyukidde ku OpenAmer",
+    "titleUpdate": "Zza OpenAmer obuggya"
+  }
+}

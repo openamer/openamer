@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer ń gbero iṣẹ́, ó ń ṣe é pẹ̀lú àwọn irinṣẹ́ gidi — táńmínà, aṣàwákiri, fáìlì, kóòdù — ó sì ń pa ohun tó ṣiṣẹ́ mọ́.",
+      "title": "Aṣojú tó ń bá ọ ronú"
+    },
+    {
+      "body": "Àwọn ìjíròrò, ìrántí àti àwòṣe wà lórí ẹ̀rọ yìí. A kì í gbé ohunkóhun sókè àyàfi tí o bá béèrè.",
+      "title": "Ẹ̀rọ rẹ, dátà rẹ"
+    },
+    {
+      "body": "Èdè 186, ọ̀kọ̀ọ̀kan pẹ̀lú ìlànà ìkọ̀wé tí o ń kà gan-an. Ojú ìwé àkọ́kọ́ ìṣàfilọ́lẹ̀ náà béèrè èyí tí o fẹ́.",
+      "title": "Èdè rẹ, bí ó ṣe yẹ"
+    },
+    {
+      "body": "A ń fi ọgbọ́n iṣẹ́ pamọ́ láti inú iṣẹ́ fúnra rẹ̀, kí iṣẹ́ ojoojúmọ́ lè máa kúrú bí o ṣe ń lò ó sí i.",
+      "title": "Agbára tó ń dàgbà"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Ṣàyẹ̀wò pé ẹ̀rọ yìí lè wọ ayélujára.",
+      "Tún ètò ìbẹ̀rẹ̀ ṣe — a kì í tún àwọn ìgbésẹ̀ tó ti parí ṣe.",
+      "Tí ó bá kùnà lẹ́ẹ̀mejì, ṣí àkọsílẹ̀; àwọn ìlà tó gbẹ̀yìn sọ ìgbésẹ̀ náà."
+    ],
+    "lead": "A kò fagilé ìyípadà kankan ní ìkọ̀kọ̀ — OpenAmer dúró níbi tó dé, nítorí náà ìgbìyànjú kejì yóò tẹ̀síwájú láti ibẹ̀.",
+    "leadUpdate": "OpenAmer ṣì wà lórí ẹ̀dà ìṣáájú, ó sì ń ṣiṣẹ́. Kò sí ohun tí a rọ́pò láìparí.",
+    "log": "Àkọsílẹ̀",
+    "openLogs": "Ṣí àwọn àkọsílẹ̀",
+    "retry": "Gbìyànjú lẹ́ẹ̀kan sí i",
+    "retryUpdate": "Tún ìmúdójúìwọ̀n gbìyànjú",
+    "title": "Ètò ìbẹ̀rẹ̀ kò parí",
+    "titleUpdate": "Ìmúdójúìwọ̀n kò parí"
+  },
+  "language": {
+    "continue": "Tẹ̀síwájú",
+    "lead": "Ètò ìbẹ̀rẹ̀ yóò tẹ̀síwájú ní èdè tí o yàn níbí. O lè yí i padà nínú ìṣàfilọ́lẹ̀ náà nígbà míì.",
+    "search": "Wá èdè",
+    "title": "Yan èdè rẹ"
+  },
+  "progress": {
+    "cancel": "Fagilé",
+    "done": "Ó ti ṣe tán",
+    "hideDetails": "Fi àlàyé pamọ́",
+    "lead": "Ètò ìbẹ̀rẹ̀ ẹ̀ẹ̀kan ṣoṣo: OpenAmer ń ṣe ìgbàsílẹ̀ ohun tó nílò, ó sì ń ṣètò ẹ̀rọ yìí. Kì yóò tún èyí ṣe nígbà tí o bá ṣí i lẹ́yìn náà.",
+    "leadUpdate": "OpenAmer ń rọ́pò ẹ̀dà ìṣáájú. Àwọn sáà iṣẹ́, ìrántí àti ètò rẹ yóò wà láìyípadà.",
+    "lines": "àwọn ìlà",
+    "liveOutput": "Àbájáde lójú ẹsẹ̀",
+    "showDetails": "Fi àlàyé hàn",
+    "stepsComplete": "Ìgbésẹ̀ {done} nínú {total} ti parí",
+    "title": "Ń ṣètò OpenAmer",
+    "titleUpdate": "Ń ṣe ìmúdójúìwọ̀n OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Ń sàmì sí fífi sí ẹ̀rọ gẹ́gẹ́ bí èyí tó parí",
+    "config-templates": "Ń kọ àwọn àwòṣe ètò",
+    "configure": "Ń ṣètò àwọn kọ́kọ́rọ́ API àti àwòṣe",
+    "dependencies": "Ń fi àwọn àfikún tí Python nílò sí ẹ̀rọ",
+    "desktop": "Ń kọ́ ìṣàfilọ́lẹ̀ orí kọ̀ǹpútà",
+    "gateway": "Ń bẹ̀rẹ̀ ẹnu ọ̀nà ìfiránṣẹ́",
+    "git": "Ń fi Git sí ẹ̀rọ",
+    "handoff": "Ń múra fún ìmúdójúìwọ̀n",
+    "install": "Ń fi ìmúdójúìwọ̀n sí ẹ̀rọ",
+    "node": "Ń wá Node.js",
+    "node-deps": "Ń fi àwọn àfikún tí Node.js nílò sí ẹ̀rọ",
+    "path": "Ń fi OpenAmer kún PATH",
+    "platform-sdks": "Ń fi àwọn SDK fún pẹpẹ ìfiránṣẹ́ sí ẹ̀rọ",
+    "python": "Ń jẹ́rìí sí Python",
+    "rebuild": "Ń tún ìṣàfilọ́lẹ̀ orí kọ̀ǹpútà kọ́",
+    "repository": "Ń ṣe ẹ̀dà ibi ìpamọ́ kóòdù OpenAmer",
+    "system-packages": "Ń fi ripgrep àti ffmpeg sí ẹ̀rọ",
+    "update": "Ń ṣe ìgbàsílẹ̀ ẹ̀dà tuntun jù lọ",
+    "uv": "Ń fi olùṣàkóso àkójọpọ̀ uv sí ẹ̀rọ",
+    "venv": "Ń ṣẹ̀dá àyíká àfojúrí Python"
+  },
+  "stepper": {
+    "done": "Ó ti ṣe tán",
+    "install": "Fi sí ẹ̀rọ",
+    "language": "Èdè",
+    "update": "Ìmúdójúìwọ̀n",
+    "welcome": "Káàbọ̀"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Ṣí ìṣàfilọ́lẹ̀ náà, kí o sì ṣàlàyé ohun tí o fẹ́ ṣe. OpenAmer yóò ṣiṣẹ́ lábẹ́lẹ̀, yóò sì fi èsì ránṣẹ́ sí ọ.",
+        "title": "Bẹ̀rẹ̀ pẹ̀lú gbólóhùn kan"
+      },
+      {
+        "body": "Ètò → Ìfihàn → Èdè. Àṣàyàn èdè àti agbègbè 186, tí o lè yí padà nígbàkigbà.",
+        "title": "Yan èdè rẹ"
+      },
+      {
+        "body": "Iṣẹ́ tí a ń ṣe léraléra di ọgbọ́n iṣẹ́ — nígbà tó kàn, àṣẹ kan ṣoṣo ni yóò gbà.",
+        "title": "Jẹ́ kí ó rántí"
+      }
+    ],
+    "command": "tàbí bẹ̀rẹ̀ rẹ̀ nígbà míì láti táńmínà:",
+    "cta": "Ṣí OpenAmer",
+    "errorTitle": "Kò ṣeé ṣí ìṣàfilọ́lẹ̀ orí kọ̀ǹpútà",
+    "launching": "Ń ṣí",
+    "lead": "Ohun gbogbo ti wà ní sẹpẹ́. OpenAmer ti di tìrẹ báyìí — lórí ẹ̀rọ yìí, ní èdè rẹ.",
+    "title": "OpenAmer ti ṣe tán"
+  },
+  "welcome": {
+    "bullets": [
+      "Ó ń ṣiṣẹ́ lórí ẹ̀rọ rẹ — àwọn ìjíròrò rẹ dúró lórí ẹ̀rọ yìí",
+      "Èdè 186, pẹ̀lú ìlànà ìkọ̀wé tí o ń kà",
+      "O lè yí ohun gbogbo padà nígbà míì; kò sí ohun tó wà títí láé"
+    ],
+    "cta": "Fi sí ẹ̀rọ",
+    "ctaUpdate": "Ṣe ìmúdójúìwọ̀n báyìí",
+    "kicker": "Ètò ìbẹ̀rẹ̀ ẹ̀ẹ̀kan ṣoṣo",
+    "lead": "Aṣojú tìrẹ. Lórí ẹ̀rọ rẹ. Ní èdè rẹ.",
+    "leadUpdate": "Ẹ̀dà OpenAmer tuntun ti ṣe tán. Èyí yóò rọ́pò ẹ̀dà ìṣáájú, yóò sì pa gbogbo sáà iṣẹ́ àti ètò mọ́.",
+    "note": "Ó máa ń gba ìṣẹ́jú díẹ̀ lórí ìsopọ̀ tó péye.",
+    "title": "Káàbọ̀ sí OpenAmer",
+    "titleUpdate": "Ṣe ìmúdójúìwọ̀n OpenAmer"
+  }
+}
