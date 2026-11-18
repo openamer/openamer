@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer tapşırığı planlaşdırır, real alətlərlə — terminal, brauzer, fayllar, kod — icra edir və işə yarayanları yadda saxlayır.",
+      "title": "Sizinlə birlikdə düşünən agent"
+    },
+    {
+      "body": "Söhbətlər, yaddaş və modellər bu kompüterdə qalır. Siz istəmədikcə heç nə yüklənmir.",
+      "title": "Avadanlığınız, məlumatlarınız"
+    },
+    {
+      "body": "186 dil, hər biri oxuduğunuz əlifbada. Tətbiqin ilk ekranında dilinizi seçirsiniz.",
+      "title": "Diliniz, olduğu kimi"
+    },
+    {
+      "body": "Bacarıqlar görülən işlərdən yadda saxlanılır, buna görə istifadə etdikcə gündəlik tapşırıqlar daha az vaxt aparır.",
+      "title": "Artan imkanlar"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Bu kompüterin internetə qoşula bildiyini yoxlayın.",
+      "Quraşdırmanı yenidən başladın — tamamlanmış addımlar təkrarlanmayacaq.",
+      "İki dəfə alınmasa, jurnalları açın; son sətirlər addımı göstərir."
+    ],
+    "lead": "Heç bir dəyişiklik xəbərsiz geri qaytarılmayıb — OpenAmer dayandığı yerdə qalır və növbəti cəhd oradan davam edir.",
+    "leadUpdate": "OpenAmer əvvəlki versiyada qalır və işləməyə davam edir. Heç nə yarımçıq əvəzlənməyib.",
+    "log": "Jurnal",
+    "openLogs": "Jurnalları aç",
+    "retry": "Yenidən cəhd et",
+    "retryUpdate": "Yeniləməyə yenidən cəhd et",
+    "title": "Quraşdırma tamamlanmadı",
+    "titleUpdate": "Yeniləmə tamamlanmadı"
+  },
+  "language": {
+    "continue": "Davam et",
+    "lead": "Quraşdırma burada seçdiyiniz dildə davam edəcək. Dili sonra tətbiqdə dəyişə bilərsiniz.",
+    "search": "Dil axtar",
+    "title": "Dilinizi seçin"
+  },
+  "progress": {
+    "cancel": "Ləğv et",
+    "done": "Hazırdır",
+    "hideDetails": "Təfərrüatları gizlət",
+    "lead": "Birdəfəlik quraşdırma: OpenAmer lazım olanları endirir və bu kompüteri sazlayır. Sonrakı açılışlarda bunlar təkrarlanmayacaq.",
+    "leadUpdate": "OpenAmer əvvəlki versiyanı əvəzləyir. Sessiyalarınız, yaddaşınız və ayarlarınız dəyişməz qalır.",
+    "lines": "sətir",
+    "liveOutput": "Canlı çıxış",
+    "showDetails": "Təfərrüatları göstər",
+    "stepsComplete": "{done} / {total} addım tamamlandı",
+    "title": "OpenAmer quraşdırılır",
+    "titleUpdate": "OpenAmer yenilənir"
+  },
+  "stages": {
+    "bootstrap-marker": "Quraşdırma tamamlanmış kimi işarələnir",
+    "config-templates": "Konfiqurasiya şablonları yazılır",
+    "configure": "API açarları və modellər sazlanır",
+    "dependencies": "Python asılılıqları quraşdırılır",
+    "desktop": "Masaüstü tətbiqi yığılır",
+    "gateway": "Mesajlaşma şlüzü başladılır",
+    "git": "Git quraşdırılır",
+    "handoff": "Yeniləməyə hazırlanır",
+    "install": "Yeniləmə quraşdırılır",
+    "node": "Node.js aşkarlanır",
+    "node-deps": "Node.js asılılıqları quraşdırılır",
+    "path": "OpenAmer PATH dəyişəninə əlavə edilir",
+    "platform-sdks": "Mesajlaşma platformalarının SDK-ları quraşdırılır",
+    "python": "Python yoxlanılır",
+    "rebuild": "Masaüstü tətbiqi yenidən yığılır",
+    "repository": "OpenAmer repozitoriyası klonlanır",
+    "system-packages": "ripgrep və ffmpeg quraşdırılır",
+    "update": "Ən son versiya endirilir",
+    "uv": "uv paket meneceri quraşdırılır",
+    "venv": "Python virtual mühiti yaradılır"
+  },
+  "stepper": {
+    "done": "Hazırdır",
+    "install": "Quraşdır",
+    "language": "Dil",
+    "update": "Yenilə",
+    "welcome": "Xoş gəlmisiniz"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Tətbiqi açın və nə etmək istədiyinizi təsvir edin. OpenAmer arxa planda işləyir və nəticəni bildirir.",
+        "title": "Bir cümlə ilə başlayın"
+      },
+      {
+        "body": "Ayarlar → Görünüş → Dil. 186 dil və region seçimi, istənilən vaxt dəyişə bilərsiniz.",
+        "title": "Dilinizi seçin"
+      },
+      {
+        "body": "Təkrarlanan iş bacarığa çevrilir — növbəti dəfə bir əmr kifayətdir.",
+        "title": "Qoy yadda saxlasın"
+      }
+    ],
+    "command": "və ya sonra terminaldan başladın:",
+    "cta": "OpenAmer-i başlat",
+    "errorTitle": "Masaüstü tətbiqini başlatmaq alınmadı",
+    "launching": "Başladılır",
+    "lead": "Hər şey hazırdır. OpenAmer artıq sizindir — bu kompüterdə, sizin dilinizdə.",
+    "title": "OpenAmer hazırdır"
+  },
+  "welcome": {
+    "bullets": [
+      "Yerli işləyir — söhbətləriniz bu kompüterdə qalır",
+      "186 dil, oxuduğunuz əlifba da daxil olmaqla",
+      "Hər şeyi sonra dəyişmək olar; heç nə daimi deyil"
+    ],
+    "cta": "Quraşdır",
+    "ctaUpdate": "İndi yenilə",
+    "kicker": "Birdəfəlik quraşdırma",
+    "lead": "Öz agentiniz. Öz avadanlığınızda. Öz dilinizdə.",
+    "leadUpdate": "OpenAmer-in daha yeni versiyası hazırdır. Əvvəlki versiyanı əvəzləyir, bütün sessiyaları və ayarları saxlayır.",
+    "note": "Normal bağlantıda bir neçə dəqiqə çəkir.",
+    "title": "OpenAmer-ə xoş gəlmisiniz",
+    "titleUpdate": "OpenAmer-i yenilə"
+  }
+}

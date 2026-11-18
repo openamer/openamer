@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer bɛ baara labɛn, a kɛ ni baarakɛminɛn lakikaw ye — cikanw sɛbɛnyɔrɔ, ɛntɛrinɛti ɲininiyɔrɔ, dosiyew, porogaramu sɛbɛn — ani ka fɛn min bɛ baara kɛ mara.",
+      "title": "Dɛmɛbaga min bɛ miiri i fɛ"
+    },
+    {
+      "body": "Barow, hakilijagabɔ ani miiri misaliw bɛ mara nin masin kan. Foyi tɛ ci ɛntɛrinɛti kan ni i ma a ɲini.",
+      "title": "I ka masin, i ka kunnafonidaw"
+    },
+    {
+      "body": "Kan 186, kelen kelen bɛɛ ni i bɛ sɛbɛnni suguya min kalan. Porogaramu ɲɛfɔlɔ bɛ i ɲininka i ka kan na.",
+      "title": "I ka kan, a ɲɛnama"
+    },
+    {
+      "body": "Kɔrɔlenyaw bɛ mara ka bɔ baara yɛrɛ la, o la don o don baara bɛ nɔgɔya i bɛ a kɛcogo la.",
+      "title": "Se min bɛ bonya"
+    }
+  ],
+  "failure": {
+    "help": [
+      "A lajɛ ni nin masin bɛ se ka don ɛntɛrinɛti kan.",
+      "Labɛnni daminɛ tuguni — taabolo dafalenw tɛ kɛ tuguni.",
+      "Ni a ma ɲɛ siɲɛ fila, kɛwalew sɛbɛnw dayɛlɛ; sɛbɛn kun labanw bɛ taabolo tɔgɔ jira."
+    ],
+    "lead": "Yɛlɛma si ma bɔ yen dogo la — OpenAmer bɛ to a jɔyɔrɔ la, o la daminɛni filanan bɛ taa ɲɛ o yɔrɔ la.",
+    "leadUpdate": "OpenAmer bɛ a suguya kɔrɔ la hali bi, a bɛ baara kɛ. Foyi ma falen ka to tilancɛ la.",
+    "log": "Kɛwalew sɛbɛn",
+    "openLogs": "Kɛwalew sɛbɛnw dayɛlɛ",
+    "retry": "A lajɛ tuguni",
+    "retryUpdate": "Lakuralikan lajɛ tuguni",
+    "title": "Labɛnni ma dafa",
+    "titleUpdate": "Lakuralikan ma dafa"
+  },
+  "language": {
+    "continue": "Taa ɲɛ",
+    "lead": "Labɛnni bɛ taa ɲɛ ni i ye kan min sugandi yan. I bɛ se ka a yɛlɛma kɔfɛ porogaramu kɔnɔ.",
+    "search": "Kanw ɲini",
+    "title": "I ka kan sugandi"
+  },
+  "progress": {
+    "cancel": "A dabila",
+    "done": "A labɛnnen don",
+    "hideDetails": "Kunnafoni dafalanw dogo",
+    "lead": "Labɛnni siɲɛ kelen: OpenAmer bɛ a mago fɛnw telesarse ka nin masin labɛn. Daminɛni nataw tɛ o kɛ tuguni.",
+    "leadUpdate": "OpenAmer bɛ suguya kɔrɔ falen. I ka baarada ɲɛnabɔw, hakilijagabɔ ani labɛnniw tɛ maga.",
+    "lines": "sɛbɛn kunw",
+    "liveOutput": "Kunnafoni bɔlenw o waati yɛrɛ la",
+    "showDetails": "Kunnafoni dafalanw jira",
+    "stepsComplete": "Taabolo {done} dafalen don {total} la",
+    "title": "OpenAmer labɛnni",
+    "titleUpdate": "OpenAmer lakuralikan"
+  },
+  "stages": {
+    "bootstrap-marker": "Sigili dafalen taamasiyɛn dɔli",
+    "config-templates": "Labɛnni misaliw sɛbɛnni",
+    "configure": "API kilɛw ani miiri misaliw labɛnni",
+    "dependencies": "Python mago porogaramuw sigili",
+    "desktop": "Ordinatɛri porogaramu jɔli",
+    "gateway": "Cikan ci dɔnko daminɛni",
+    "git": "Git sigili",
+    "handoff": "Lakuralikan labɛnni",
+    "install": "Lakuralikan sigili",
+    "node": "Node.js ɲinini",
+    "node-deps": "Node.js mago porogaramuw sigili",
+    "path": "OpenAmer fara PATH kan",
+    "platform-sdks": "Cikan cibaarakɛyɔrɔw ka SDKw sigili",
+    "python": "Python lajɛli",
+    "rebuild": "Ordinatɛri porogaramu jɔli tuguni",
+    "repository": "OpenAmer marayɔrɔ kopi kɛli",
+    "system-packages": "ripgrep ani ffmpeg sigili",
+    "update": "Suguya kura laban telesarseli",
+    "uv": "uv pake ɲɛnabɔbaga sigili",
+    "venv": "Python baarakɛyɔrɔ kɛrɛnkɛrɛnnen dan"
+  },
+  "stepper": {
+    "done": "A labɛnnen don",
+    "install": "A sigi",
+    "language": "Kan",
+    "update": "A lakuraya",
+    "welcome": "I ni sɛ"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Porogaramu dayɛlɛ ka baara min ka kan ka kɛ ɲɛfɔ. OpenAmer bɛ baara kɛ kɔfɛ ka a jaabi lase i ma.",
+        "title": "A daminɛ ni kumasen ye"
+      },
+      {
+        "body": "Labɛnniw → Jirali → Kan. Kan ni jamana labɛnni 186, i bɛ se ka u yɛlɛma waati bɛɛ.",
+        "title": "I ka kan sugandi"
+      },
+      {
+        "body": "Baara seginseginnen bɛ kɛ kɔrɔlenya ye — a nata la, cikan kelen bɛ bɔ a la.",
+        "title": "A to a ka hakili to a la"
+      }
+    ],
+    "command": "walima a daminɛ kɔfɛ cikanw sɛbɛnyɔrɔ la:",
+    "cta": "OpenAmer daminɛ",
+    "errorTitle": "Ordinatɛri porogaramu ma se ka daminɛ",
+    "launching": "A bɛ daminɛ",
+    "lead": "Fɛn bɛɛ labɛnnen don. Sisan OpenAmer ye i ta ye — nin masin kan, i ka kan na.",
+    "title": "OpenAmer labɛnnen don"
+  },
+  "welcome": {
+    "bullets": [
+      "A bɛ baara kɛ nin masin kan — i ka barow bɛ to nin masin kan",
+      "Kan 186, i bɛ sɛbɛnni suguya min kalan fana bɛ a la",
+      "I bɛ se ka fɛn bɛɛ yɛlɛma kɔfɛ; foyi tɛ to cogo kelen na abada"
+    ],
+    "cta": "A sigi",
+    "ctaUpdate": "A lakuraya sisan",
+    "kicker": "Labɛnni siɲɛ kelen",
+    "lead": "I yɛrɛ ka dɛmɛbaga. I ka masin kan. I ka kan na.",
+    "leadUpdate": "OpenAmer suguya kuraman labɛnnen don. Nin bɛ suguya kɔrɔ falen ka baarada ɲɛnabɔw ni labɛnniw bɛɛ mara.",
+    "note": "A bɛ miniti damadɔ ta ɛntɛrinɛti jɛɲɔgɔnya ɲuman kan.",
+    "title": "I ni sɛ OpenAmer la",
+    "titleUpdate": "OpenAmer lakuraya"
+  }
+}

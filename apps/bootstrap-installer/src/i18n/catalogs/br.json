@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer a steuñv un trevell, a seven anezhañ gant ostilhoù gwirion — termenell, merdeer, restroù, kod — hag a vir ar pezh en deus graet berzh.",
+      "title": "Ur gwezher a soñj ganeoc'h"
+    },
+    {
+      "body": "Ar c'hendivizoù, ar memor hag ar patromoù a chom war an urzhiataer-mañ. Netra ne vez kaset enlinenn hep ho koulenn.",
+      "title": "Ho peurlies, ho roadennoù"
+    },
+    {
+      "body": "186 yezh, pep hini gant ar skritur a lennit. Skramm kentañ an arload a c'houlenn pehini a fell deoc'h.",
+      "title": "Ho yezh, evel ma'z eo dleet"
+    },
+    {
+      "body": "Ar barregezhioù a vez enrollet diwar al labour e-unan, evit ma vo berroc'h an trevelloù pemdeziek seul vui ma implijit anezhañ.",
+      "title": "Barregezhioù a gresk"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Gwiriit e c'hall an urzhiataer-mañ kevreañ ouzh ar genrouedad.",
+      "Adloc'hit ar staliadur — ne vo ket adgraet ar pazennoù echuet.",
+      "Ma c'hwit div wech, digorit ar c'herzhlevrioù; al linennoù diwezhañ a veneg ar bazenn."
+    ],
+    "lead": "N'eus bet nullet kemm ebet dre guzh — OpenAmer a chom el lec'h m'eo chomet a-sav, evit ma kendalc'ho un eil lañsadenn adalek alese.",
+    "leadUpdate": "OpenAmer zo c'hoazh war an handelv kent ha mont a ra en-dro. Netra n'eo bet erlec'hiet dre hanter.",
+    "log": "Kerzhlevr",
+    "openLogs": "Digeriñ ar c'herzhlevrioù",
+    "retry": "Klask en-dro",
+    "retryUpdate": "Adklask an hizivadur",
+    "title": "N'eo ket echu ar staliadur",
+    "titleUpdate": "N'eo ket echu an hizivadur"
+  },
+  "language": {
+    "continue": "Kenderc'hel",
+    "lead": "Ar staliadur a gendalc'h er yezh a zibabit amañ. Gallout a reot he cheñch diwezhatoc'h en arload.",
+    "search": "Klask yezhoù",
+    "title": "Dibabit ho yezh"
+  },
+  "progress": {
+    "cancel": "Nullañ",
+    "done": "Prest",
+    "hideDetails": "Kuzhat ar munudoù",
+    "lead": "Staliadur ur wech hepken: OpenAmer a bellgarg ar pezh en deus ezhomm hag a gefluni an urzhiataer-mañ. Ne vo ket adgraet kement-se pa vo adlañset.",
+    "leadUpdate": "OpenAmer a erlec'h an handelv kent. Ho talc'hoù, ho memor hag hoc'h arventennoù a chom digemm.",
+    "lines": "linenn",
+    "liveOutput": "Ec'hank war-eeun",
+    "showDetails": "Diskouez ar munudoù",
+    "stepsComplete": "{done} pazenn echuet diwar {total}",
+    "title": "O staliañ OpenAmer",
+    "titleUpdate": "Oc'h hizivaat OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "O verkañ ar staliadur evel echuet",
+    "config-templates": "O skrivañ patromoù kefluniañ",
+    "configure": "O kefluniañ alc'hwezioù API ha patromoù",
+    "dependencies": "O staliañ amzalc'hoù Python",
+    "desktop": "O sevel an arload burev",
+    "gateway": "O loc'hañ ar gloued kemennerezh",
+    "git": "O staliañ Git",
+    "handoff": "O prientiñ an hizivadur",
+    "install": "O staliañ an hizivadur",
+    "node": "O tinoiñ Node.js",
+    "node-deps": "O staliañ amzalc'hoù Node.js",
+    "path": "Oc'h ouzhpennañ OpenAmer da PATH",
+    "platform-sdks": "O staliañ SDKoù ar savennoù kemennerezh",
+    "python": "O wiriañ Python",
+    "rebuild": "Oc'h adsevel an arload burev",
+    "repository": "O klonañ mirlec'h OpenAmer",
+    "system-packages": "O staliañ ripgrep ha ffmpeg",
+    "update": "O pellgargañ an handelv diwezhañ",
+    "uv": "O staliañ ar merour pakadoù uv",
+    "venv": "O krouiñ endro galloudel Python"
+  },
+  "stepper": {
+    "done": "Prest",
+    "install": "Staliañ",
+    "language": "Yezh",
+    "update": "Hizivaat",
+    "welcome": "Degemer mat"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Digorit an arload ha deskrivit ar pezh a fell deoc'h ober. OpenAmer a labour en drekleur hag a ro deoc'h an disoc'hoù.",
+        "title": "Krogit gant ur frazenn"
+      },
+      {
+        "body": "Arventennoù → Diskwel → Yezh. 186 yezh, a c'haller cheñch forzh pegoulz.",
+        "title": "Dibabit ho yezh"
+      },
+      {
+        "body": "Al labour a vez graet ingal a zeu da vezañ ur varregezh — ar wech a zeu e vo trawalc'h gant un urzh.",
+        "title": "Lezit anezhañ da zerc'hel soñj"
+      }
+    ],
+    "command": "pe lañsit anezhañ diwezhatoc'h eus un termenell:",
+    "cta": "Lañsañ OpenAmer",
+    "errorTitle": "N'eus ket bet gallet lañsañ an arload burev",
+    "launching": "O lañsañ",
+    "lead": "Pep tra zo prest. OpenAmer zo deoc'h bremañ — war an urzhiataer-mañ, en ho yezh.",
+    "title": "OpenAmer zo prest"
+  },
+  "welcome": {
+    "bullets": [
+      "Mont a ra en-dro ent-lec'hel — ho kendivizoù a chom war an urzhiataer-mañ",
+      "186 yezh, gant ar skritur a lennit",
+      "Pep tra a c'hall bezañ cheñchet diwezhatoc'h; netra n'eo peurbadus"
+    ],
+    "cta": "Staliañ",
+    "ctaUpdate": "Hizivaat bremañ",
+    "kicker": "Staliadur ur wech hepken",
+    "lead": "Ho kwezher deoc'h. War ho peurlies. En ho yezh.",
+    "leadUpdate": "Un handelv nevesoc'h eus OpenAmer zo prest. Erlec'hiañ a ra an handelv kent ha mirout a ra an holl zalc'hoù hag arventennoù.",
+    "note": "Un nebeud munutennoù gant ur gevreadenn reizh.",
+    "title": "Degemer mat e OpenAmer",
+    "titleUpdate": "Hizivaat OpenAmer"
+  }
+}

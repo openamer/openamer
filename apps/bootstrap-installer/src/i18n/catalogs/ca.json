@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer planifica una tasca, l'executa amb eines reals — terminal, navegador, fitxers, codi — i conserva el que ha funcionat.",
+      "title": "Un agent que pensa amb tu"
+    },
+    {
+      "body": "Les converses, la memòria i els models es desen en aquest ordinador. No es puja res tret que ho demanis.",
+      "title": "El teu maquinari, les teves dades"
+    },
+    {
+      "body": "186 llengües, cadascuna amb el sistema d'escriptura que fas servir. La primera pantalla de l'aplicació et demana quina vols.",
+      "title": "La teva llengua, com cal"
+    },
+    {
+      "body": "Les habilitats es desen a partir de la feina feta, de manera que les tasques quotidianes s'escurcen com més el fas servir.",
+      "title": "Capacitats que creixen"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Comprova que aquest ordinador tingui accés a Internet.",
+      "Torna a executar la configuració: els passos completats no es repeteixen.",
+      "Si falla dues vegades, obre els registres; les últimes línies indiquen el pas."
+    ],
+    "lead": "No s'ha desfet cap canvi sense avisar: OpenAmer s'atura on s'ha quedat i, en tornar-lo a executar, continua des d'allà.",
+    "leadUpdate": "OpenAmer continua amb la versió anterior i segueix funcionant. No ha quedat res substituït a mitges.",
+    "log": "Registre",
+    "openLogs": "Obre els registres",
+    "retry": "Torna-ho a provar",
+    "retryUpdate": "Torna a provar l'actualització",
+    "title": "La configuració no s'ha completat",
+    "titleUpdate": "L'actualització no s'ha completat"
+  },
+  "language": {
+    "continue": "Continua",
+    "lead": "La configuració continua en la llengua que triïs aquí. La pots canviar més endavant a l'aplicació.",
+    "search": "Cerca llengües",
+    "title": "Tria la teva llengua"
+  },
+  "progress": {
+    "cancel": "Cancel·la",
+    "done": "A punt",
+    "hideDetails": "Amaga els detalls",
+    "lead": "Configuració única: OpenAmer està baixant el que necessita i configurant aquest ordinador. En les properes arrencades, tot això s'omet.",
+    "leadUpdate": "OpenAmer està substituint la versió anterior. Les sessions, la memòria i la configuració es mantenen intactes.",
+    "lines": "línies",
+    "liveOutput": "Sortida en directe",
+    "showDetails": "Mostra els detalls",
+    "stepsComplete": "{done} de {total} passos completats",
+    "title": "S'està configurant OpenAmer",
+    "titleUpdate": "S'està actualitzant OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "S'està marcant la instal·lació com a completada",
+    "config-templates": "S'estan escrivint les plantilles de configuració",
+    "configure": "S'estan configurant les claus d'API i els models",
+    "dependencies": "S'estan instal·lant les dependències de Python",
+    "desktop": "S'està compilant l'aplicació d'escriptori",
+    "gateway": "S'està iniciant la passarel·la de missatgeria",
+    "git": "S'està instal·lant Git",
+    "handoff": "S'està preparant l'actualització",
+    "install": "S'està instal·lant l'actualització",
+    "node": "S'està detectant Node.js",
+    "node-deps": "S'estan instal·lant les dependències de Node.js",
+    "path": "S'està afegint OpenAmer al PATH",
+    "platform-sdks": "S'estan instal·lant els SDK de les plataformes de missatgeria",
+    "python": "S'està verificant Python",
+    "rebuild": "S'està recompilant l'aplicació d'escriptori",
+    "repository": "S'està clonant el repositori d'OpenAmer",
+    "system-packages": "S'estan instal·lant ripgrep i ffmpeg",
+    "update": "S'està baixant l'última versió",
+    "uv": "S'està instal·lant el gestor de paquets uv",
+    "venv": "S'està creant l'entorn virtual de Python"
+  },
+  "stepper": {
+    "done": "A punt",
+    "install": "Instal·la",
+    "language": "Llengua",
+    "update": "Actualitza",
+    "welcome": "Benvinguda"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Obre l'aplicació i descriu què vols que faci. OpenAmer treballa en segon pla i t'informa dels resultats.",
+        "title": "Comença amb una frase"
+      },
+      {
+        "body": "Configuració → Pantalla → Llengua. 186 configuracions regionals que pots canviar en qualsevol moment.",
+        "title": "Tria la teva llengua"
+      },
+      {
+        "body": "La feina recurrent es converteix en una habilitat: la propera vegada només cal una ordre.",
+        "title": "Deixa que ho recordi"
+      }
+    ],
+    "command": "o inicia'l més endavant des d'un terminal:",
+    "cta": "Inicia OpenAmer",
+    "errorTitle": "No s'ha pogut iniciar l'aplicació d'escriptori",
+    "launching": "S'està iniciant",
+    "lead": "Tot és a punt. OpenAmer ja és teu: en aquest ordinador, en la teva llengua.",
+    "title": "OpenAmer està a punt"
+  },
+  "welcome": {
+    "bullets": [
+      "S'executa localment: les converses es queden en aquest ordinador",
+      "186 llengües, amb el sistema d'escriptura que fas servir",
+      "Tot es pot canviar més endavant; res no és permanent"
+    ],
+    "cta": "Instal·la",
+    "ctaUpdate": "Actualitza ara",
+    "kicker": "Configuració única",
+    "lead": "El teu propi agent. Al teu maquinari. En la teva llengua.",
+    "leadUpdate": "Hi ha una versió nova d'OpenAmer disponible. Substitueix la versió anterior i conserva totes les sessions i la configuració.",
+    "note": "Triga uns minuts amb una connexió normal.",
+    "title": "Et donem la benvinguda a OpenAmer",
+    "titleUpdate": "Actualitza OpenAmer"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "Mae OpenAmer yn cynllunio tasg, yn ei chyflawni gydag offer go iawn — terfynell, porwr, ffeiliau, cod — ac yn cadw'r hyn a weithiodd.",
+      "title": "Asiant sy'n meddwl gyda chi"
+    },
+    {
+      "body": "Mae sgyrsiau, cof a modelau ar y peiriant hwn. Ni chaiff dim ei uwchlwytho oni bai eich bod yn gofyn.",
+      "title": "Eich caledwedd, eich data"
+    },
+    {
+      "body": "186 o ieithoedd, pob un yn y sgript rydych yn ei darllen. Mae sgrin gyntaf yr ap yn gofyn pa un.",
+      "title": "Eich iaith, yn iawn"
+    },
+    {
+      "body": "Caiff sgiliau eu cadw o'r gwaith ei hun, felly mae tasgau bob dydd yn mynd yn fyrrach po hiraf y byddwch yn ei ddefnyddio.",
+      "title": "Gallu sy'n tyfu"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Gwiriwch fod y peiriant hwn yn gallu cysylltu â'r rhyngrwyd.",
+      "Rhedwch y gosodiad eto — ni chaiff camau sydd wedi gorffen eu hailadrodd.",
+      "Os bydd yn methu ddwywaith, agorwch y cofnodion; mae'r llinellau olaf yn enwi'r cam."
+    ],
+    "lead": "Ni chafodd unrhyw newidiadau eu dadwneud yn dawel — mae OpenAmer yn aros lle stopiodd, felly mae ail rediad yn parhau o'r fan honno.",
+    "leadUpdate": "Mae OpenAmer yn dal ar y fersiwn flaenorol ac yn dal i weithio. Ni chafodd dim ei hanner ddisodli.",
+    "log": "Cofnod",
+    "openLogs": "Agor cofnodion",
+    "retry": "Rhoi cynnig arall arni",
+    "retryUpdate": "Ailgynnig diweddaru",
+    "title": "Ni orffennodd y gosodiad",
+    "titleUpdate": "Ni orffennodd y diweddariad"
+  },
+  "language": {
+    "continue": "Parhau",
+    "lead": "Bydd y gosodiad yn parhau yn yr iaith a ddewiswch yma. Gallwch ei newid yn nes ymlaen yn yr ap.",
+    "search": "Chwilio ieithoedd",
+    "title": "Dewiswch eich iaith"
+  },
+  "progress": {
+    "cancel": "Canslo",
+    "done": "Yn barod",
+    "hideDetails": "Cuddio manylion",
+    "lead": "Gosod unwaith: mae OpenAmer yn lawrlwytho'r hyn sydd ei angen ac yn ffurfweddu'r peiriant hwn. Caiff hyn i gyd ei hepgor wrth gychwyn yn nes ymlaen.",
+    "leadUpdate": "Mae OpenAmer yn disodli'r fersiwn flaenorol. Ni chaiff eich sesiynau, cof na gosodiadau eu newid.",
+    "lines": "llinellau",
+    "liveOutput": "Allbwn byw",
+    "showDetails": "Dangos manylion",
+    "stepsComplete": "{done} o {total} cam wedi'u cwblhau",
+    "title": "Yn gosod OpenAmer",
+    "titleUpdate": "Yn diweddaru OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Yn nodi bod y gosod wedi'i gwblhau",
+    "config-templates": "Yn ysgrifennu templedi ffurfweddu",
+    "configure": "Yn ffurfweddu allweddi API a modelau",
+    "dependencies": "Yn gosod dibyniaethau Python",
+    "desktop": "Yn adeiladu'r ap bwrdd gwaith",
+    "gateway": "Yn cychwyn y porth negeseuon",
+    "git": "Yn gosod Git",
+    "handoff": "Yn paratoi i ddiweddaru",
+    "install": "Yn gosod y diweddariad",
+    "node": "Yn canfod Node.js",
+    "node-deps": "Yn gosod dibyniaethau Node.js",
+    "path": "Yn ychwanegu OpenAmer at PATH",
+    "platform-sdks": "Yn gosod SDKs platfformau negeseuon",
+    "python": "Yn gwirio Python",
+    "rebuild": "Yn ailadeiladu'r ap bwrdd gwaith",
+    "repository": "Yn clonio ystorfa OpenAmer",
+    "system-packages": "Yn gosod ripgrep ac ffmpeg",
+    "update": "Yn lawrlwytho'r fersiwn ddiweddaraf",
+    "uv": "Yn gosod y rheolwr pecynnau uv",
+    "venv": "Yn creu amgylchedd rhithwir Python"
+  },
+  "stepper": {
+    "done": "Yn barod",
+    "install": "Gosod",
+    "language": "Iaith",
+    "update": "Diweddaru",
+    "welcome": "Croeso"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Agorwch yr ap a disgrifiwch yr hyn rydych am ei wneud. Mae OpenAmer yn gweithio yn y cefndir ac yn adrodd yn ôl.",
+        "title": "Dechreuwch gyda brawddeg"
+      },
+      {
+        "body": "Gosodiadau → Arddangos → Iaith. 186 o leoliadau iaith, a gallwch newid unrhyw bryd.",
+        "title": "Dewiswch eich iaith"
+      },
+      {
+        "body": "Mae gwaith ailadroddus yn troi'n sgil — y tro nesaf, un gorchymyn sydd ei angen.",
+        "title": "Gadewch iddo gofio"
+      }
+    ],
+    "command": "neu ei gychwyn yn nes ymlaen o derfynell:",
+    "cta": "Cychwyn OpenAmer",
+    "errorTitle": "Methu cychwyn yr ap bwrdd gwaith",
+    "launching": "Yn cychwyn",
+    "lead": "Mae popeth yn ei le. Mae OpenAmer bellach yn eiddo i chi — ar y peiriant hwn, yn eich iaith.",
+    "title": "Mae OpenAmer yn barod"
+  },
+  "welcome": {
+    "bullets": [
+      "Yn rhedeg yn lleol — mae eich sgyrsiau'n aros ar y peiriant hwn",
+      "186 o ieithoedd, gan gynnwys y sgript rydych yn ei darllen",
+      "Gellir newid popeth yn nes ymlaen; nid oes dim yn barhaol"
+    ],
+    "cta": "Gosod",
+    "ctaUpdate": "Diweddaru nawr",
+    "kicker": "Gosod unwaith",
+    "lead": "Eich asiant eich hun. Ar eich caledwedd. Yn eich iaith.",
+    "leadUpdate": "Mae fersiwn newydd o OpenAmer yn barod. Mae hon yn disodli'r fersiwn flaenorol ac yn cadw pob sesiwn a gosodiad.",
+    "note": "Mae'n cymryd ychydig funudau ar gysylltiad arferol.",
+    "title": "Croeso i OpenAmer",
+    "titleUpdate": "Diweddaru OpenAmer"
+  }
+}
