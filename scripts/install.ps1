@@ -1537,7 +1537,18 @@ function Install-Repository {
                     git -c windows.appendAtomically=false checkout --detach "refs/tags/$Tag"
                     if ($LASTEXITCODE -ne 0) { throw "git checkout tag $Tag failed (exit $LASTEXITCODE)" }
                 } else {
-                    git -c windows.appendAtomically=false checkout $Branch
+                    # `git fetch origin <branch>` writes FETCH_HEAD and, when the
+                    # branch has no remote-tracking ref yet, does NOT create
+                    # refs/remotes/origin/<branch>. A plain `git checkout <branch>`
+                    # then dies with "pathspec ... did not match any file(s) known
+                    # to git" although the fetch succeeded. Measured 2026-11-18 on
+                    # a locally built OpenAmer-Setup.exe pinned to a dev branch: the
+                    # repository stage aborted with
+                    #   git checkout feat/setup-language-persistence failed (exit 1)
+                    # while the log showed "* branch ... -> FETCH_HEAD" right above
+                    # it. Naming FETCH_HEAD makes the fetched commit reachable by
+                    # name, which the following pull/reset already assumes.
+                    git -c windows.appendAtomically=false checkout -B $Branch FETCH_HEAD
                     if ($LASTEXITCODE -ne 0) { throw "git checkout $Branch failed (exit $LASTEXITCODE)" }
                     # Managed installs should follow origin/$Branch exactly. If
                     # the checkout has diverged (or has local-only commits),
