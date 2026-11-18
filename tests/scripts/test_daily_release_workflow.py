@@ -10,7 +10,9 @@ branch, a PR is opened, and only a commit that exists on a remote is tagged.
 """
 from __future__ import annotations
 
+import importlib.util
 import pathlib
+import types
 
 REPO = pathlib.Path(__file__).resolve().parents[2]
 SCRIPT = REPO / "scripts" / "daily-release.py"
@@ -50,3 +52,71 @@ def test_tag_only_after_the_commit_is_on_the_remote() -> None:
     guard_index = source.index("refusing to tag")
 
     assert guard_index < tag_index, "the reachability check must run before the tag is created"
+
+# --------------------------------------------------------------------------
+# The decision logic, exercised without the network: push ok + merge refused
+# must still count as "published", because the release ships from the branch.
+# --------------------------------------------------------------------------
+import importlib.util  # noqa: E402
+import subprocess  # noqa: E402
+import types  # noqa: E402
+
+
+def _release_module() -> types.ModuleType:
+    spec = importlib.util.spec_from_file_location("daily_release", SCRIPT)
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+class _Result:
+    def __init__(self, returncode: int = 0, stderr: str = "") -> None:
+        self.returncode = returncode
+        self.stdout = ""
+        self.stderr = stderr
+
+
+def _fake_git(returncode: int = 0):
+    def git(*_args: str) -> _Result:
+        return _Result(returncode)
+    return git
+
+
+def test_unmerged_pr_still_counts_as_published(monkeypatch, capsys) -> None:
+    module = _release_module()
+    monkeypatch.setattr(module, "git", _fake_git(0))
+
+    seen: list[list[str]] = []
+
+    def fake_run(cmd, **_kwargs):
+        seen.append(cmd)
+        return _Result(1, "refusing to allow a GitHub App to merge") if "merge" in cmd else _Result(0)
+
+    monkeypatch.setattr(module.subprocess, "run", fake_run)
+
+    pushed, merged = module.publish_version_bump("release/vTEST", "vTEST", "2026.11.18")
+
+    assert pushed is True, "the branch push is what makes the release possible"
+    assert merged is False
+    assert any("pr" in cmd and "create" in cmd for cmd in seen), "a PR must be opened"
+    assert "needs a human merge" in capsys.readouterr().out
+
+
+def test_merged_pr_reports_merged(monkeypatch) -> None:
+    module = _release_module()
+    monkeypatch.setattr(module, "git", _fake_git(0))
+    monkeypatch.setattr(module.subprocess, "run", lambda cmd, **_kw: _Result(0))
+
+    pushed, merged = module.publish_version_bump("release/vTEST", "vTEST", "2026.11.18")
+
+    assert (pushed, merged) == (True, True)
+
+
+def test_failed_branch_push_stops_the_release(monkeypatch) -> None:
+    module = _release_module()
+    module.git = _fake_git(1)
+
+    pushed, merged = module.publish_version_bump("release/vTEST", "vTEST", "2026.11.18")
+
+    assert (pushed, merged) == (False, False)
