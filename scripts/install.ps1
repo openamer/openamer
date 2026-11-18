@@ -24,6 +24,9 @@ param(
     [string]$Commit = "",
     [string]$Tag = "",
     [string]$OpenAmerHome = $(if ($env:OPENAMER_HOME) { $env:OPENAMER_HOME } else { "$env:LOCALAPPDATA\openamer" }),
+    # The language the setup window asked for. Persisted into the installed
+    # config so the app opens in it and never asks again.
+    [string]$UiLanguage = "",
     [string]$InstallDir = $(if ($env:OPENAMER_HOME) { "$env:OPENAMER_HOME\openamer-agent" } else { "$env:LOCALAPPDATA\openamer\openamer-agent" }),
 
     # --- Stage protocol (additive; default invocation behaves as before) ----
@@ -3940,11 +3943,51 @@ function Stage-Dependencies     { Resolve-UvCmd; Install-Dependencies }
 function Stage-NodeDeps         { Install-NodeDeps }
 function Stage-Desktop          { Install-Desktop }
 function Stage-Path             { Set-PathVariable }
-function Stage-ConfigTemplates  { Copy-ConfigTemplates }
+function Stage-ConfigTemplates  { Copy-ConfigTemplates; Set-UiLanguageFromSetup }
 function Stage-PlatformSdks     { Resolve-UvCmd; Install-PlatformSdks }
 function Stage-BootstrapMarker  { Write-BootstrapMarker }
 function Stage-Configure        { Invoke-SetupWizard }
 function Stage-Gateway          { Start-GatewayIfConfigured }
+
+# Persist the language chosen in the setup window, so the app opens in it and
+# never asks again. Written through the installed CLI (not by editing YAML here)
+# so config.yaml stays a schema-valid file that the CLI can keep migrating.
+function Set-UiLanguageFromSetup {
+    if ([string]::IsNullOrWhiteSpace($UiLanguage)) { return }
+    if ($UiLanguage -notmatch '^[a-z]{2,3}(-[A-Za-z]{2,8})?$') {
+        Write-Warn "Ignoring unexpected setup language '$UiLanguage'"
+        return
+    }
+    $pythonExe = "$InstallDir\venv\Scripts\python.exe"
+    if (-not (Test-Path $pythonExe)) {
+        Write-Warn "Cannot save setup language: no venv python at $pythonExe"
+        return
+    }
+    Push-Location $InstallDir
+    try {
+        # UTF-8 for the child: the CLI prints a checkmark the active codepage
+        # cannot encode on zh-CN/CP936, which would break this stage's frame.
+        $prevPythonioencoding = $env:PYTHONIOENCODING
+        $prevPythonutf8 = $env:PYTHONUTF8
+        $env:PYTHONIOENCODING = "utf-8"
+        $env:PYTHONUTF8 = "1"
+        try {
+            $cliArgs = @("-m", "openamer_cli.main", "config", "set", "display.language", $UiLanguage)
+            $output = & $pythonExe @cliArgs 2>$null
+            $code = $LASTEXITCODE
+            if ($code -eq 0) {
+                Write-Success "Setup language saved: $UiLanguage"
+            } else {
+                Write-Warn "Could not save setup language $UiLanguage (exit $code)"
+            }
+        } finally {
+            $env:PYTHONIOENCODING = $prevPythonioencoding
+            $env:PYTHONUTF8 = $prevPythonutf8
+        }
+    } finally {
+        Pop-Location
+    }
+}
 
 function Get-InstallStage {
     param([string]$Name)

@@ -1,5 +1,7 @@
 import { invoke } from '@tauri-apps/api/core'
 import { listen, type UnlistenFn } from '@tauri-apps/api/event'
+
+import { $lang } from './i18n'
 import { atom, computed } from 'nanostores'
 
 import {
@@ -293,7 +295,7 @@ export async function initialize(): Promise<void> {
 // Actions
 // ---------------------------------------------------------------------------
 
-export async function startInstall(opts?: { branch?: string }): Promise<void> {
+export async function startInstall(opts?: { branch?: string; language?: string }): Promise<void> {
   const fake = fakeMode()
 
   if (fake) {
@@ -311,6 +313,7 @@ export async function startInstall(opts?: { branch?: string }): Promise<void> {
       commit: null,
       branch: opts?.branch ?? null,
       include_desktop: true,
+      language: opts?.language ?? $lang.get(),
       openamer_home: null
     }
   })

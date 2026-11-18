@@ -46,6 +46,11 @@ pub struct StartBootstrapArgs {
     /// Optional override for OPENAMER_HOME. Tests use this; production
     /// almost always falls back to the OS default.
     pub openamer_home: Option<String>,
+    /// Language chosen on the setup window's first screen. Passed to the
+    /// install script, which persists it as `display.language` so the app
+    /// opens in it and never asks again.
+    #[serde(default)]
+    pub language: Option<String>,
 }
 
 fn default_true() -> bool {
@@ -523,6 +528,10 @@ async fn run_bootstrap(
         stage_args.extend(manifest_args.clone());
         if args.include_desktop {
             stage_args.push("-IncludeDesktop".to_string());
+        }
+        if let Some(language) = args.language.as_deref() {
+            stage_args.push("-UiLanguage".to_string());
+            stage_args.push(language.to_string());
         }
 
         // Each stage gets its own cancel receiver because tokio::select!
