@@ -5,7 +5,10 @@ import { useEffect, useRef, useState } from 'react'
 
 import { BrandMark } from '../components/brand-mark'
 import { Button } from '../components/button'
+import { ProgressRing } from '../components/illustrations'
 import { Loader } from '../components/loader'
+import { Stepper } from '../components/stepper'
+import { fmt, useStrings } from '../i18n'
 import {
   $mode,
   $progress,
@@ -19,9 +22,14 @@ interface ProgressProps {
 }
 
 /*
- * Progress screen — drives a stage list + collapsible log panel. Uses
- * the DS <Progress> for the top bar so its motion + ring match the rest
- * of the product.
+ * Progress — step 2 of 3.
+ *
+ * Layout change from the previous screen: the number, the ring and the step list
+ * are one object on the left (where the eye goes for "how long"), the log is a
+ * panel that slides in from the right only when asked for. The stage list keeps
+ * its semantics — only the running step is opaque, a running step shows a live
+ * elapsed clock, and terminal markers stay neutral (a muted check, no
+ * celebratory green: finishing a step is not the finish).
  */
 export default function ProgressScreen({ bootstrap }: ProgressProps) {
   const progress = useStore($progress)
@@ -29,6 +37,8 @@ export default function ProgressScreen({ bootstrap }: ProgressProps) {
   const [showLogs, setShowLogs] = useState(false)
   const [now, setNow] = useState(() => Date.now())
   const logEndRef = useRef<HTMLDivElement>(null)
+
+  const s = useStrings()
 
   useEffect(() => {
     if (showLogs && logEndRef.current) {
@@ -50,53 +60,55 @@ export default function ProgressScreen({ bootstrap }: ProgressProps) {
   }, [bootstrap.status])
 
   const isUpdate = mode === 'update'
-  const title = bootstrap.status === 'completed' ? 'Done' : isUpdate ? 'Updating OpenAmer' : 'Setting up OpenAmer Agent'
-
-  const description = isUpdate
-    ? 'OpenAmer is updating to the latest version — this only takes a moment.'
-    : 'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.'
-
   const pct = Math.round(progress.fraction * 100)
+  const running = bootstrap.status === 'running'
+
+  const currentTitle =
+    bootstrap.currentStage != null ? bootstrap.stages[bootstrap.currentStage]?.info.title : null
 
   return (
     <div className="openamer-fade-in flex h-full flex-col">
-      {/* Header: brand + title + description, matching the desktop install overlay. */}
-      <div className="flex shrink-0 items-start gap-4 px-6 pt-6 pb-4">
-        <BrandMark className="size-11" />
-        <div className="min-w-0">
-          <h2 className="text-xl font-semibold tracking-tight">{title}</h2>
-          <p className="mt-1.5 text-sm text-muted-foreground">{description}</p>
-        </div>
-      </div>
+      <div className="flex min-h-0 flex-1">
+        {/* Left: the number, then the steps */}
+        <div className="flex w-[46%] min-w-0 flex-col border-r border-foreground/10 px-7 py-6">
+          <div className="flex items-center gap-2.5">
+            <BrandMark className="size-7 rounded" />
+            <span className="text-[10.5px] font-semibold tracking-[0.2em] text-foreground/45 uppercase">
+              {isUpdate ? s.progress.titleUpdate : s.progress.title}
+            </span>
+          </div>
 
-      <div className="flex flex-1 overflow-hidden">
-        <div className="flex-1 overflow-y-auto px-6 pt-2 pb-4">
-          {/* Progress line + bar; the count shimmers while the install runs.
-              pt-2 matches the log header's py-2 so the "steps complete" line and
-              the "Live output" header share a baseline. */}
-          <div className="mb-4">
-            <div className="mb-1 flex items-center justify-between text-xs text-muted-foreground">
-              <span className={clsx(bootstrap.status === 'running' && 'shimmer')}>
-                {progress.done} of {progress.total} steps complete
-              </span>
-              <span className="tabular-nums">{pct}%</span>
+          <div className="mt-4 flex items-center gap-4">
+            <div className="relative size-[92px] shrink-0 text-primary">
+              <ProgressRing pct={pct} />
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <span className="text-[19px] leading-none font-semibold tabular-nums text-foreground">{pct}%</span>
+                <span className="mt-0.5 text-[9px] tracking-[0.14em] text-foreground/40 uppercase">
+                  {bootstrap.status === 'completed' ? s.progress.done : `${progress.done}/${progress.total}`}
+                </span>
+              </div>
             </div>
-            <div className="h-1.5 w-full overflow-hidden rounded-full bg-(--ui-bg-tertiary)">
-              <div
-                className="h-full bg-primary transition-all duration-300 ease-out"
-                style={{ width: `${Math.max(2, progress.fraction * 100)}%` }}
-              />
+            <div className="min-w-0">
+              <p className={clsx('truncate text-[13px] font-medium text-foreground', running && 'shimmer')}>
+                {currentTitle ?? (isUpdate ? s.progress.titleUpdate : s.progress.title)}
+              </p>
+              <p className="mt-1 text-[11px] text-muted-foreground">
+                {fmt(s.progress.stepsComplete, { done: progress.done, total: progress.total })}
+              </p>
             </div>
           </div>
 
-          {/* Flat stage list: only the running step is opaque; the rest read as
-              muted. Running loader overhangs left so labels stay aligned; the
-              terminal check/cross sits right of the label. */}
-          <ol className="space-y-0.5">
+          <p className="mt-4 text-[11.5px] leading-relaxed text-muted-foreground/80">
+            {isUpdate ? s.progress.leadUpdate : s.progress.lead}
+          </p>
+
+          <ol className="mt-4 min-h-0 flex-1 space-y-0.5 overflow-y-auto pr-1">
             {bootstrap.stageOrder.map((name) => {
               const rec = bootstrap.stages[name]
 
-              if (!rec) {return null}
+              if (!rec) {
+                return null
+              }
 
               const meta =
                 rec.state === 'running' && rec.startedAt != null
@@ -108,16 +120,16 @@ export default function ProgressScreen({ bootstrap }: ProgressProps) {
               return (
                 <li
                   className={clsx(
-                    'flex items-center gap-2.5 px-3 py-1.5 text-sm',
+                    'flex items-center gap-2.5 rounded-md px-2 py-1.5 text-[12.5px]',
                     rec.state === 'running'
-                      ? 'font-medium text-foreground'
+                      ? 'bg-primary/[0.07] font-medium text-foreground'
                       : 'text-muted-foreground'
                   )}
                   key={name}
                 >
-                  {rec.state === 'running' && <Loader className="-ml-2 size-6 shrink-0" />}
-                  <span className="flex-1 truncate">{rec.info.title}</span>
-                  {meta && <span className="text-xs tabular-nums text-muted-foreground/70">{meta}</span>}
+                  {rec.state === 'running' && <Loader className="-ml-1.5 size-5 shrink-0" />}
+                  <span className="flex-1 truncate">{s.stages[name] ?? rec.info.title}</span>
+                  {meta && <span className="text-[10.5px] tabular-nums text-muted-foreground/60">{meta}</span>}
                   <StateIcon state={rec.state ?? null} />
                 </li>
               )
@@ -125,46 +137,70 @@ export default function ProgressScreen({ bootstrap }: ProgressProps) {
           </ol>
         </div>
 
-        {showLogs && (
-          <div className="flex w-1/2 flex-col border-l border-(--stroke-openamer)">
-            <div className="flex shrink-0 items-center justify-between border-b border-(--stroke-openamer) px-3 py-2 text-xs">
-              <span className="font-medium text-foreground/80">Live output</span>
-              <span className="tabular-nums text-muted-foreground">{bootstrap.logs.length} lines</span>
-            </div>
-            <div className="flex-1 overflow-y-auto px-3 py-2 font-mono text-[10.5px] leading-relaxed">
-              {bootstrap.logs.map((entry, idx) => (
+        {/* Right: live output, collapsible */}
+        <div className="flex min-w-0 flex-1 flex-col px-6 py-6">
+          <div className="flex items-center justify-between">
+            <span className="text-[10.5px] font-semibold tracking-[0.18em] text-foreground/40 uppercase">
+              {s.progress.liveOutput}
+            </span>
+            <span className="text-[10.5px] tabular-nums text-foreground/35">
+              {bootstrap.logs.length} {s.progress.lines}
+            </span>
+          </div>
+
+          <div
+            className={clsx(
+              'installer-log mt-2 min-h-0 flex-1 overflow-y-auto rounded-lg border border-foreground/10 bg-foreground/[0.03] px-3 py-2 font-mono text-[10.5px] leading-relaxed',
+              !showLogs && 'opacity-60'
+            )}
+          >
+            {bootstrap.logs.length === 0 ? (
+              <div className="text-foreground/25">—</div>
+            ) : (
+              bootstrap.logs.map((entry, idx) => (
                 <div
                   className={clsx(
                     'whitespace-pre-wrap',
-                    entry.stream === 'stderr' ? 'text-foreground/45' : 'text-foreground/70'
+                    entry.stream === 'stderr' ? 'text-foreground/40' : 'text-foreground/70'
                   )}
                   key={idx}
                 >
                   {entry.line}
                 </div>
-              ))}
-              <div ref={logEndRef} />
-            </div>
+              ))
+            )}
+            <div ref={logEndRef} />
           </div>
-        )}
+        </div>
       </div>
 
-      <div className="flex shrink-0 items-center justify-between border-t border-(--stroke-openamer) px-6 py-3">
-        <button
-          className="inline-flex cursor-pointer items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
-          onClick={() => setShowLogs((v) => !v)}
-          type="button"
-        >
-          <FileText size={14} />
-          {showLogs ? 'Hide details' : 'Show details'}
-          <ChevronRight className={clsx('transition-transform', showLogs && 'rotate-90')} size={12} />
-        </button>
+      <div className="flex shrink-0 items-center justify-between border-t border-foreground/10 px-7 py-2.5">
+        <Stepper
+          current={isUpdate ? 1 : 2}
+          steps={
+            isUpdate
+              ? [s.stepper.update, s.stepper.install, s.stepper.done]
+              : [s.stepper.language, s.stepper.welcome, s.stepper.install, s.stepper.done]
+          }
+        />
 
-        {bootstrap.status === 'running' && (
-          <Button onClick={() => void cancelInstall()} size="sm" variant="outline">
-            Cancel
-          </Button>
-        )}
+        <div className="flex items-center gap-4">
+          <button
+            className="inline-flex cursor-pointer items-center gap-1.5 text-[11px] text-muted-foreground transition-colors hover:text-foreground"
+            onClick={() => setShowLogs(v => !v)}
+            type="button"
+          >
+            <FileText size={13} />
+            {showLogs ? s.progress.hideDetails : s.progress.showDetails}
+            <ChevronRight className={clsx('transition-transform', showLogs && 'rotate-90')} size={11} />
+          </button>
+
+          {running && (
+            <Button onClick={() => void cancelInstall()} size="sm" variant="outline">
+              {s.progress.cancel}
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   )

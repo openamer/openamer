@@ -8,7 +8,7 @@ import { defineLocale } from './define-locale'
 export const zu = defineLocale({
   fileMenu: {
     revealFileManager: 'Vula ifolderi eququmiline',
-    revealInSidebar: 'Bonisa phakathi kwezinhlungo zes文件系统',
+    revealInSidebar: 'Reveal in filetree',
     copyPath: 'Khophela indlela',
     copyRelativePath: 'Khophela indlela ehlobene',
     rename: 'Qambiza igama…',

@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer planifică o sarcină, o execută cu instrumente reale — terminal, browser, fișiere, cod — și păstrează ce a funcționat.",
+      "title": "Un agent care gândește alături de tine"
+    },
+    {
+      "body": "Conversațiile, memoria și modelele rămân pe acest calculator. Nimic nu este încărcat fără să ceri.",
+      "title": "Calculatorul tău, datele tale"
+    },
+    {
+      "body": "186 de limbi, fiecare în sistemul de scriere pe care îl folosești. Primul ecran al aplicației te întreabă ce limbă alegi.",
+      "title": "Limba ta, așa cum trebuie"
+    },
+    {
+      "body": "Abilitățile sunt salvate chiar din activitatea desfășurată, așa că sarcinile zilnice durează tot mai puțin pe măsură ce îl folosești.",
+      "title": "Capacități care cresc"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Verifică dacă acest calculator se poate conecta la internet.",
+      "Reia configurarea — pașii finalizați nu se repetă.",
+      "Dacă eșuează de două ori, deschide jurnalele; ultimele rânduri indică pasul."
+    ],
+    "lead": "Nicio modificare nu a fost anulată pe ascuns — OpenAmer rămâne în punctul în care s-a oprit, iar o nouă rulare continuă de acolo.",
+    "leadUpdate": "OpenAmer folosește în continuare versiunea anterioară și funcționează. Nimic nu a fost înlocuit parțial.",
+    "log": "Jurnal",
+    "openLogs": "Deschide jurnalele",
+    "retry": "Încearcă din nou",
+    "retryUpdate": "Reîncearcă actualizarea",
+    "title": "Configurarea nu s-a finalizat",
+    "titleUpdate": "Actualizarea nu s-a finalizat"
+  },
+  "language": {
+    "continue": "Continuă",
+    "lead": "Configurarea continuă în limba aleasă aici. O poți schimba ulterior în aplicație.",
+    "search": "Caută limbi",
+    "title": "Alege limba"
+  },
+  "progress": {
+    "cancel": "Anulează",
+    "done": "Gata",
+    "hideDetails": "Ascunde detaliile",
+    "lead": "Configurare unică: OpenAmer descarcă ce îi trebuie și configurează acest calculator. La pornirile ulterioare, acești pași sunt omiși.",
+    "leadUpdate": "OpenAmer înlocuiește versiunea anterioară. Sesiunile, memoria și setările tale rămân intacte.",
+    "lines": "rânduri",
+    "liveOutput": "Ieșire în timp real",
+    "showDetails": "Arată detaliile",
+    "stepsComplete": "{done} din {total} pași finalizați",
+    "title": "Se configurează OpenAmer",
+    "titleUpdate": "Se actualizează OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Marcarea instalării ca finalizată",
+    "config-templates": "Scrierea șabloanelor de configurare",
+    "configure": "Configurarea cheilor API și a modelelor",
+    "dependencies": "Instalarea dependențelor Python",
+    "desktop": "Compilarea aplicației desktop",
+    "gateway": "Pornirea gateway-ului de mesagerie",
+    "git": "Instalarea Git",
+    "handoff": "Pregătirea actualizării",
+    "install": "Instalarea actualizării",
+    "node": "Detectarea Node.js",
+    "node-deps": "Instalarea dependențelor Node.js",
+    "path": "Adăugarea OpenAmer în PATH",
+    "platform-sdks": "Instalarea SDK-urilor pentru platformele de mesagerie",
+    "python": "Verificarea Python",
+    "rebuild": "Recompilarea aplicației desktop",
+    "repository": "Clonarea depozitului OpenAmer",
+    "system-packages": "Instalarea ripgrep și ffmpeg",
+    "update": "Descărcarea celei mai recente versiuni",
+    "uv": "Instalarea managerului de pachete uv",
+    "venv": "Crearea mediului virtual Python"
+  },
+  "stepper": {
+    "done": "Gata",
+    "install": "Instalează",
+    "language": "Limbă",
+    "update": "Actualizează",
+    "welcome": "Bun venit"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Deschide aplicația și descrie ce vrei să facă. OpenAmer lucrează în fundal și îți comunică rezultatele.",
+        "title": "Începe cu o propoziție"
+      },
+      {
+        "body": "Setări → Afișare → Limbă. 186 de opțiuni regionale, pe care le poți schimba oricând.",
+        "title": "Alege limba"
+      },
+      {
+        "body": "Activitățile repetitive devin abilități — data viitoare ajunge o singură comandă.",
+        "title": "Lasă-l să țină minte"
+      }
+    ],
+    "command": "sau pornește-l mai târziu dintr-un terminal:",
+    "cta": "Pornește OpenAmer",
+    "errorTitle": "Aplicația desktop nu a putut fi pornită",
+    "launching": "Se pornește",
+    "lead": "Totul este pregătit. OpenAmer este acum al tău — pe acest calculator, în limba ta.",
+    "title": "OpenAmer este gata"
+  },
+  "welcome": {
+    "bullets": [
+      "Rulează local — conversațiile tale rămân pe acest calculator",
+      "186 de limbi, inclusiv sistemul de scriere pe care îl folosești",
+      "Poți schimba totul mai târziu; nimic nu este definitiv"
+    ],
+    "cta": "Instalează",
+    "ctaUpdate": "Actualizează acum",
+    "kicker": "Configurare unică",
+    "lead": "Propriul tău agent. Pe calculatorul tău. În limba ta.",
+    "leadUpdate": "O versiune mai nouă de OpenAmer este gata. Aceasta înlocuiește versiunea anterioară și păstrează toate sesiunile și setările.",
+    "note": "Durează câteva minute cu o conexiune obișnuită.",
+    "title": "Bun venit în OpenAmer",
+    "titleUpdate": "Actualizează OpenAmer"
+  }
+}

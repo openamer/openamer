@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "Az OpenAmer megtervezi a feladatot, valódi eszközökkel végrehajtja — terminállal, böngészővel, fájlokkal, kóddal —, és megjegyzi, mi vált be.",
+      "title": "Egy ügynök, amely Önnel együtt gondolkodik"
+    },
+    {
+      "body": "A beszélgetések, az emlékek és a modellek ezen a gépen maradnak. Csak akkor töltünk fel bármit, ha Ön kéri.",
+      "title": "Az Ön hardvere, az Ön adatai"
+    },
+    {
+      "body": "186 nyelv, mind az Ön által használt írásrendszerrel. Az alkalmazás első képernyőjén választhat közülük.",
+      "title": "Az Ön nyelvén, ahogy kell"
+    },
+    {
+      "body": "A készségek munka közben rögzülnek, így a mindennapi feladatok egyre kevesebb időt igényelnek.",
+      "title": "Folyamatosan bővülő képességek"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Ellenőrizze, hogy a gép eléri-e az internetet.",
+      "Futtassa újra a beállítást — a kész lépések nem ismétlődnek meg.",
+      "Ha másodszor is sikertelen, nyissa meg a naplókat; az utolsó sorok megnevezik az érintett lépést."
+    ],
+    "lead": "Nem történt észrevétlen visszavonás — az OpenAmer ott marad, ahol leállt, így az újabb futtatás onnan folytatódik.",
+    "leadUpdate": "Az OpenAmer továbbra is az előző verzióval működik. Semmi sem lett félig lecserélve.",
+    "log": "Napló",
+    "openLogs": "Naplók megnyitása",
+    "retry": "Újrapróbálás",
+    "retryUpdate": "Frissítés újrapróbálása",
+    "title": "A beállítás nem fejeződött be",
+    "titleUpdate": "A frissítés nem fejeződött be"
+  },
+  "language": {
+    "continue": "Folytatás",
+    "lead": "A beállítás az itt kiválasztott nyelven folytatódik. Ezt később módosíthatja az alkalmazásban.",
+    "search": "Nyelvek keresése",
+    "title": "Válasszon nyelvet"
+  },
+  "progress": {
+    "cancel": "Mégse",
+    "done": "Kész",
+    "hideDetails": "Részletek elrejtése",
+    "lead": "Egyszeri beállítás: az OpenAmer letölti a szükséges összetevőket és beállítja a gépet. A későbbi indításoknál ez már kimarad.",
+    "leadUpdate": "Az OpenAmer lecseréli az előző verziót. A munkamenetek, az emlékek és a beállítások érintetlenek maradnak.",
+    "lines": "sor",
+    "liveOutput": "Élő kimenet",
+    "showDetails": "Részletek megjelenítése",
+    "stepsComplete": "{done} / {total} lépés kész",
+    "title": "Az OpenAmer beállítása",
+    "titleUpdate": "Az OpenAmer frissítése"
+  },
+  "stages": {
+    "bootstrap-marker": "A telepítés készre jelölése",
+    "config-templates": "Konfigurációs sablonok írása",
+    "configure": "API-kulcsok és modellek beállítása",
+    "dependencies": "Python-függőségek telepítése",
+    "desktop": "Asztali alkalmazás összeállítása",
+    "gateway": "Üzenetküldési átjáró indítása",
+    "git": "Git telepítése",
+    "handoff": "Frissítés előkészítése",
+    "install": "Frissítés telepítése",
+    "node": "Node.js keresése",
+    "node-deps": "Node.js-függőségek telepítése",
+    "path": "OpenAmer hozzáadása a PATH-hoz",
+    "platform-sdks": "Üzenetküldő platformok SDK-inak telepítése",
+    "python": "Python ellenőrzése",
+    "rebuild": "Asztali alkalmazás újraépítése",
+    "repository": "Az OpenAmer kódtár klónozása",
+    "system-packages": "ripgrep és ffmpeg telepítése",
+    "update": "A legújabb verzió letöltése",
+    "uv": "Az uv csomagkezelő telepítése",
+    "venv": "Python virtuális környezet létrehozása"
+  },
+  "stepper": {
+    "done": "Kész",
+    "install": "Telepítés",
+    "language": "Nyelv",
+    "update": "Frissítés",
+    "welcome": "Üdvözöljük"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Nyissa meg az alkalmazást, és írja le, mit szeretne elvégeztetni. Az OpenAmer a háttérben dolgozik, majd beszámol az eredményről.",
+        "title": "Kezdje egy mondattal"
+      },
+      {
+        "body": "Beállítások → Megjelenítés → Nyelv. 186 nyelvi beállítás, bármikor válthat közöttük.",
+        "title": "Válasszon nyelvet"
+      },
+      {
+        "body": "Az ismétlődő munka készséggé válik — legközelebb egyetlen utasítás is elég.",
+        "title": "Hagyja, hogy megjegyezze"
+      }
+    ],
+    "command": "vagy indítsa el később terminálból:",
+    "cta": "Az OpenAmer indítása",
+    "errorTitle": "Nem sikerült elindítani az asztali alkalmazást",
+    "launching": "Indítás",
+    "lead": "Minden a helyén van. Az OpenAmer mostantól az Öné — ezen a gépen, az Ön nyelvén.",
+    "title": "Az OpenAmer készen áll"
+  },
+  "welcome": {
+    "bullets": [
+      "Helyben fut — a beszélgetései ezen a gépen maradnak",
+      "186 nyelv, az Ön által használt írásrendszerrel",
+      "Később minden módosítható; semmi sem végleges"
+    ],
+    "cta": "Telepítés",
+    "ctaUpdate": "Frissítés most",
+    "kicker": "Egyszeri beállítás",
+    "lead": "Saját ügynök. Saját hardveren. Saját nyelven.",
+    "leadUpdate": "Elérhető az OpenAmer újabb verziója. Ez lecseréli az előzőt, és megőrzi az összes munkamenetet és beállítást.",
+    "note": "Átlagos internetkapcsolattal néhány percet vesz igénybe.",
+    "title": "Üdvözli az OpenAmer",
+    "titleUpdate": "Az OpenAmer frissítése"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer suplanuoja užduotį, atlieka ją tikrais įrankiais — terminalu, naršykle, failais, kodu — ir išsaugo tai, kas pasiteisino.",
+      "title": "Agentas, mąstantis kartu su jumis"
+    },
+    {
+      "body": "Pokalbiai, atmintis ir modeliai lieka šiame kompiuteryje. Niekas neįkeliama be jūsų prašymo.",
+      "title": "Jūsų įranga, jūsų duomenys"
+    },
+    {
+      "body": "186 kalbos, kiekviena jums įprastais rašmenimis. Kalbą pasirinksite jau pirmame programos lange.",
+      "title": "Jūsų kalba, kaip priklauso"
+    },
+    {
+      "body": "Įgūdžiai išsaugomi dirbant, tad kuo ilgiau naudojate, tuo greičiau atliekamos kasdienės užduotys.",
+      "title": "Augantys gebėjimai"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Patikrinkite, ar šis kompiuteris gali prisijungti prie interneto.",
+      "Paleiskite paruošimą dar kartą — atlikti veiksmai nebus kartojami.",
+      "Jei nepavyksta dukart, atverkite žurnalus; paskutinėse eilutėse nurodytas veiksmas."
+    ],
+    "lead": "Jokie pakeitimai nebuvo tyliai atšaukti — OpenAmer lieka ten, kur sustojo, tad paleidus dar kartą bus tęsiama nuo tos vietos.",
+    "leadUpdate": "OpenAmer tebėra ankstesnės versijos ir toliau veikia. Niekas nebuvo pakeista iš dalies.",
+    "log": "Žurnalas",
+    "openLogs": "Atverti žurnalus",
+    "retry": "Bandyti dar kartą",
+    "retryUpdate": "Kartoti naujinimą",
+    "title": "Paruošimas nebaigtas",
+    "titleUpdate": "Naujinimas nebaigtas"
+  },
+  "language": {
+    "continue": "Tęsti",
+    "lead": "Paruošimas bus tęsiamas čia pasirinkta kalba. Vėliau ją galėsite pakeisti programoje.",
+    "search": "Ieškoti kalbų",
+    "title": "Pasirinkite kalbą"
+  },
+  "progress": {
+    "cancel": "Atšaukti",
+    "done": "Paruošta",
+    "hideDetails": "Slėpti išsamią informaciją",
+    "lead": "Vienkartinis paruošimas: OpenAmer atsisiunčia, ko reikia, ir sukonfigūruoja šį kompiuterį. Vėliau paleidžiant visa tai praleidžiama.",
+    "leadUpdate": "OpenAmer keičia ankstesnę versiją. Jūsų seansai, atmintis ir nuostatos lieka nepakeisti.",
+    "lines": "eilutės",
+    "liveOutput": "Išvestis realiuoju laiku",
+    "showDetails": "Rodyti išsamią informaciją",
+    "stepsComplete": "Atlikta veiksmų: {done} iš {total}",
+    "title": "Ruošiama OpenAmer",
+    "titleUpdate": "Naujinama OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Diegimas žymimas kaip baigtas",
+    "config-templates": "Rašomi konfigūracijos šablonai",
+    "configure": "Konfigūruojami API raktai ir modeliai",
+    "dependencies": "Diegiamos Python priklausomybės",
+    "desktop": "Kuriama darbalaukio programa",
+    "gateway": "Paleidžiamas pranešimų šliuzas",
+    "git": "Diegiama Git",
+    "handoff": "Ruošiamasi atnaujinti",
+    "install": "Diegiamas naujinys",
+    "node": "Aptinkama Node.js",
+    "node-deps": "Diegiamos Node.js priklausomybės",
+    "path": "OpenAmer įtraukiama į PATH",
+    "platform-sdks": "Diegiami pranešimų platformų SDK",
+    "python": "Tikrinama Python",
+    "rebuild": "Iš naujo kuriama darbalaukio programa",
+    "repository": "Klonuojama OpenAmer saugykla",
+    "system-packages": "Diegiamos ripgrep ir ffmpeg",
+    "update": "Atsisiunčiama naujausia versija",
+    "uv": "Diegiama paketų tvarkyklė uv",
+    "venv": "Kuriama Python virtualioji aplinka"
+  },
+  "stepper": {
+    "done": "Paruošta",
+    "install": "Įdiegti",
+    "language": "Kalba",
+    "update": "Naujinti",
+    "welcome": "Sveiki"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Atverkite programą ir aprašykite, ką norite atlikti. OpenAmer dirba fone ir praneša apie rezultatus.",
+        "title": "Pradėkite nuo sakinio"
+      },
+      {
+        "body": "Nuostatos → Rodymas → Kalba. 186 lokalės, kurias galite bet kada keisti.",
+        "title": "Pasirinkite kalbą"
+      },
+      {
+        "body": "Pasikartojantis darbas tampa įgūdžiu — kitą kartą pakaks vienos komandos.",
+        "title": "Leiskite įsiminti"
+      }
+    ],
+    "command": "arba paleiskite vėliau terminale:",
+    "cta": "Paleisti OpenAmer",
+    "errorTitle": "Nepavyko paleisti darbalaukio programos",
+    "launching": "Paleidžiama",
+    "lead": "Viskas paruošta. OpenAmer jau jūsų — šiame kompiuteryje, jūsų kalba.",
+    "title": "OpenAmer paruošta"
+  },
+  "welcome": {
+    "bullets": [
+      "Veikia vietoje — jūsų pokalbiai lieka šiame kompiuteryje",
+      "186 kalbos, įskaitant jums įprastus rašmenis",
+      "Viską galėsite pakeisti vėliau; niekas nėra galutina"
+    ],
+    "cta": "Įdiegti",
+    "ctaUpdate": "Naujinti dabar",
+    "kicker": "Vienkartinis paruošimas",
+    "lead": "Jūsų agentas. Jūsų įrangoje. Jūsų kalba.",
+    "leadUpdate": "Paruošta naujesnė OpenAmer versija. Ji pakeis ankstesnę versiją ir išsaugos visus seansus bei nuostatas.",
+    "note": "Esant įprastam ryšiui, trunka kelias minutes.",
+    "title": "Sveiki atvykę į OpenAmer",
+    "titleUpdate": "Naujinti OpenAmer"
+  }
+}

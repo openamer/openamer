@@ -1,7 +1,7 @@
 {
-  "updated": "2026-11-13T22:15:53.824408+00:00",
+  "updated": "2026-11-17T22:30:08.757224+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 1293,
+  "total": 1300,
   "skills": {
     "auto-competitor-intelligence-claudepowered-ai": {
       "refs": 0,
@@ -1641,6 +1641,12 @@
       "score": 1.0,
       "missing": []
     },
+    "autonomous-discovery": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
     "autonomous-execution-discipline": {
       "refs": 2,
       "ok": 2,
@@ -2325,6 +2331,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-n-n-a-test-that-writes-into-the-chec": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-n-n-command-timed-out-after-180s": {
       "refs": 0,
       "ok": 0,
@@ -2541,7 +2553,19 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-scaffold-verify-demo-cli-no-such-fil": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-scripts": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-scripts-autonomous-dev-tick-py": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2884,6 +2908,12 @@
       "missing": []
     },
     "darwin-harvested-usersdamiropenamer-reposcriptsgithub": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-verify-fastapi-demo-fastapi-no-such-": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -6892,12 +6922,6 @@
       "score": 1.0,
       "missing": []
     },
-    "plugin-api": {
-      "refs": 1,
-      "ok": 1,
-      "score": 1.0,
-      "missing": []
-    },
     "airtable": {
       "refs": 0,
       "ok": 0,
@@ -7035,6 +7059,12 @@
     "firmware-artifact-triage": {
       "refs": 1,
       "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "independent-review": {
+      "refs": 0,
+      "ok": 0,
       "score": 1.0,
       "missing": []
     },
@@ -7337,10 +7367,14 @@
       "missing": []
     },
     "desktop-i18n-locale-add": {
-      "refs": 8,
-      "ok": 8,
-      "score": 1.0,
-      "missing": []
+      "refs": 10,
+      "ok": 7,
+      "score": 0.7,
+      "missing": [
+        "scripts/build_swarm_backends.py",
+        "scripts/start_translation_swarm.py",
+        "scripts/i18n_hand_batch.py"
+      ]
     },
     "desktop-i18n-locale-addition": {
       "refs": 1,
@@ -7453,6 +7487,14 @@
     },
     "i18n-catalog-translation": {
       "refs": 3,
+      "ok": 2,
+      "score": 0.667,
+      "missing": [
+        "scripts/i18n_hand_batch.py"
+      ]
+    },
+    "i18n-translation-pipeline": {
+      "refs": 3,
       "ok": 3,
       "score": 1.0,
       "missing": []
@@ -7488,6 +7530,12 @@
       "missing": []
     },
     "massive-upgrade-deployment": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "merge-landing-verification": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -7619,6 +7667,12 @@
       "score": 1.0,
       "missing": []
     },
+    "ship-changes": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "skill-knowledge-graph": {
       "refs": 1,
       "ok": 1,
@@ -7634,12 +7688,6 @@
     "skill-population-evolution": {
       "refs": 0,
       "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "skill-validator": {
-      "refs": 1,
-      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -7692,10 +7740,12 @@
       "missing": []
     },
     "ui-string-catalog-translation": {
-      "refs": 5,
-      "ok": 5,
-      "score": 1.0,
-      "missing": []
+      "refs": 11,
+      "ok": 10,
+      "score": 0.909,
+      "missing": [
+        "scripts/i18n_hand_batch.py"
+      ]
     },
     "unquoted-path-in-shell-command": {
       "refs": 0,
@@ -7743,8 +7793,8 @@
       "missing": []
     },
     "windows-subprocess-robustness": {
-      "refs": 1,
-      "ok": 1,
+      "refs": 2,
+      "ok": 2,
       "score": 1.0,
       "missing": []
     },

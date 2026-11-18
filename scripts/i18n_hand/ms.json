@@ -1,0 +1,5 @@
+{
+ "webhooks.deliverOptions.log": "Log",
+ "sidebar.row.ageMin": "m",
+ "shell.statusbar.desktopVersion": "OpenAmer Desktop v${version}"
+}

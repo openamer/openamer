@@ -135,6 +135,20 @@ jobs:
         # re-download, keeping the persisted cache small and fast to restore.
         run: uv cache prune --ci
 
+      # The i18n test lanes drive scripts/i18n_extract_locale.mjs end to end to
+      # read apps/desktop/src/i18n/*.ts. That script parses the catalogues with
+      # the TypeScript compiler API, so the Python lanes need Node and the
+      # typescript package installed even though no JavaScript test runs here.
+      # Without this the extraction exits MODULE_NOT_FOUND and takes the i18n
+      # delivery tests down with it.
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "22"
+
+      - name: Install typescript for the desktop locale extractor
+        run: npm install --no-save --no-audit --no-fund typescript@5
+
       - name: Run tests (slice ${{ matrix.slice.index }}/${{ inputs.slice_count }})
         # Per-file isolation via scripts/run_tests.sh: each test file runs
         # in its own freshly-spawned `python -m pytest <file>` subprocess

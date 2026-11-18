@@ -103,7 +103,11 @@ def test_stale_english_cache_does_not_override_translated_catalog(translator):
     }
 
 
-def test_partial_cache_is_materialized_even_without_a_backend(translator):
+def test_partial_cache_is_materialized_even_without_a_backend(translator, monkeypatch):
+    # A keyless backend is available by design, so an empty environment no
+    # longer means "no backend". Remove the backends explicitly to exercise the
+    # genuine no-backend path.
+    monkeypatch.setattr(translator, "BACKENDS", [])
     english = {"ui": {"greet": "Hello", "quit": "Quit"}}
     flat = seed(translator, english, catalog=english, cache={"ui.greet": "Hallo"})
 

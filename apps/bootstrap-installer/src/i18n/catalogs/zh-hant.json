@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer 規劃任務，使用終端機、瀏覽器、檔案與程式碼等實際工具執行，並記住有效的方法。",
+      "title": "會與你一起思考的代理"
+    },
+    {
+      "body": "對話、記憶與模型都存放在這台電腦上。除非你要求，否則不會上傳任何內容。",
+      "title": "你的硬體，你的資料"
+    },
+    {
+      "body": "支援 186 種語言，每種都採用你慣用的文字。應用程式的第一個畫面就會讓你選擇。",
+      "title": "以你熟悉的語言呈現"
+    },
+    {
+      "body": "技能會從實際工作中儲存下來，用得越久，日常任務就越省時。",
+      "title": "持續成長的能力"
+    }
+  ],
+  "failure": {
+    "help": [
+      "請確認這台電腦可以連上網際網路。",
+      "請重新執行設定，已完成的步驟不會重複。",
+      "若失敗兩次，請開啟記錄；最後幾行會指出出錯的步驟。"
+    ],
+    "lead": "沒有任何變更被悄悄還原。OpenAmer 會停在中斷處，再次執行時便會從那裡繼續。",
+    "leadUpdate": "OpenAmer 仍維持先前版本，可繼續使用。沒有任何內容只替換了一半。",
+    "log": "記錄",
+    "openLogs": "開啟記錄",
+    "retry": "再試一次",
+    "retryUpdate": "重試更新",
+    "title": "設定未完成",
+    "titleUpdate": "更新未完成"
+  },
+  "language": {
+    "continue": "繼續",
+    "lead": "設定程序會以你在此選擇的語言繼續。之後可在應用程式中變更。",
+    "search": "搜尋語言",
+    "title": "選擇你的語言"
+  },
+  "progress": {
+    "cancel": "取消",
+    "done": "已就緒",
+    "hideDetails": "隱藏詳細資訊",
+    "lead": "一次性設定：OpenAmer 正在下載所需內容並設定這台電腦。之後啟動時會略過這些步驟。",
+    "leadUpdate": "OpenAmer 正在替換先前版本。你的工作階段、記憶與設定都會保留。",
+    "lines": "行",
+    "liveOutput": "即時輸出",
+    "showDetails": "顯示詳細資訊",
+    "stepsComplete": "已完成 {done} 個步驟，共 {total} 個",
+    "title": "正在設定 OpenAmer",
+    "titleUpdate": "正在更新 OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "標記安裝完成",
+    "config-templates": "寫入設定範本",
+    "configure": "設定 API 金鑰與模型",
+    "dependencies": "安裝派森語言相依套件",
+    "desktop": "建置桌面應用程式",
+    "gateway": "啟動訊息閘道",
+    "git": "安裝版本控制工具",
+    "handoff": "準備更新",
+    "install": "安裝更新",
+    "node": "偵測節點執行環境",
+    "node-deps": "安裝節點執行環境相依套件",
+    "path": "將 OpenAmer 加入 PATH",
+    "platform-sdks": "安裝訊息平台 SDK",
+    "python": "驗證派森語言環境",
+    "rebuild": "重新建置桌面應用程式",
+    "repository": "複製 OpenAmer 儲存庫",
+    "system-packages": "安裝快速文字搜尋與影音處理工具",
+    "update": "下載最新版本",
+    "uv": "安裝套件管理工具",
+    "venv": "建立派森語言虛擬環境"
+  },
+  "stepper": {
+    "done": "已就緒",
+    "install": "安裝",
+    "language": "語言",
+    "update": "更新",
+    "welcome": "歡迎"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "開啟應用程式，描述你想完成的事。OpenAmer 會在背景執行並回報結果。",
+        "title": "從一句話開始"
+      },
+      {
+        "body": "設定 → 顯示 → 語言。支援 186 種語系，隨時可切換。",
+        "title": "選擇你的語言"
+      },
+      {
+        "body": "重複的工作會成為技能，下次只需一個指令。",
+        "title": "讓它記住"
+      }
+    ],
+    "command": "或稍後從終端機啟動：",
+    "cta": "啟動 OpenAmer",
+    "errorTitle": "無法啟動桌面應用程式",
+    "launching": "正在啟動",
+    "lead": "一切已就緒。OpenAmer 現在專屬於你，在這台電腦上，以你的語言運作。",
+    "title": "OpenAmer 已就緒"
+  },
+  "welcome": {
+    "bullets": [
+      "在本機執行，對話留在這台電腦上",
+      "支援 186 種語言，採用你慣用的文字",
+      "所有選項之後都能變更，沒有不可更改的設定"
+    ],
+    "cta": "安裝",
+    "ctaUpdate": "立即更新",
+    "kicker": "一次性設定",
+    "lead": "你的專屬代理。在你的硬體上，以你的語言運作。",
+    "leadUpdate": "新版 OpenAmer 已就緒。更新會替換先前版本，並保留所有工作階段與設定。",
+    "note": "一般網路連線下需幾分鐘。",
+    "title": "歡迎使用 OpenAmer",
+    "titleUpdate": "更新 OpenAmer"
+  }
+}

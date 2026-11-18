@@ -786,7 +786,7 @@ export const la = defineLocale({
       updateDirFailed: 'Directorium praescriptum mutari non potuit',
       clearDirFailed: 'Directorium praescriptum purgari non potuit',
       archivedIntro: 'Chattera archiva lateri obscurantur, sed omnes nuntios suos retinent. Ctrl/âŒ˜-clic chatteram in latero ut archivetur.',
-      defaultDirUpdated: 'Directorium的项目 by default updated...',
+      defaultDirUpdated: 'Default project directory updated — start a new chat (Ctrl/⌘+N) for it to take effect',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
       defaultsTo: label => `Defaults to ${label}.`,

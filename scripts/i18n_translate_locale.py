@@ -26,7 +26,10 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import base64
 import json
+import os
+import random
 import re
 import subprocess
 import sys
@@ -87,17 +90,30 @@ def find_placeholders(text: str) -> list[tuple[int, int, str]]:
         out.append((start, j, text[start:j]))
         i = j
     return out
-
 # Model backends, tried in order. Each is (name, url, env-var, model).
+# Order comes from scripts/i18n_backend_bench.py (measured 2026-11-17): Codex
+# OAuth is fastest per string and not capped by a free tier; the Ollama cloud
+# models answer in 1.5-4.5 s; Pollinations needs no key at all. OpenRouter's
+# :free tier was exhausted (`free-models-per-day-high-balance`) and sits last on
+# purpose -- a daily cap must not cost every batch a retry budget.
 BACKENDS = [
-    ("nemotron-free", "https://openrouter.ai/api/v1/chat/completions",
-     "OPENROUTER_API_KEY", "nvidia/nemotron-3-ultra-550b-a55b:free"),
+    # Codex OAuth (ChatGPT Plus subscription) — the Responses API, not
+    # chat/completions. Credentials come from OpenAmer's own auth.json, so no
+    # API key is needed and no per-token billing applies.
+    ("codex-gpt61", "https://chatgpt.com/backend-api/codex/responses",
+     "CODEX_OAUTH", "gpt-6.1-sol"),
     ("ollama-deepseek", "https://ollama.com/v1/chat/completions",
      "OLLAMA_API_KEY", "deepseek-v4.1-flash"),
     ("ollama-minimax", "https://ollama.com/v1/chat/completions",
      "OLLAMA_API_KEY", "minimax-m3.1-flash"),
+    ("pollinations", "https://text.pollinations.ai/openai",
+     "NO_AUTH", "openai-fast"),
+    ("ollama-gptoss", "https://ollama.com/v1/chat/completions",
+     "OLLAMA_API_KEY", "gpt-oss:20b-cloud"),
     ("ollama-gemma", "https://ollama.com/v1/chat/completions",
      "OLLAMA_API_KEY", "gemma4:31b"),
+    ("nemotron-free", "https://openrouter.ai/api/v1/chat/completions",
+     "OPENROUTER_API_KEY", "nvidia/nemotron-3-ultra-550b-a55b:free"),
 ]
 
 # The language name to put in the prompt, per locale code.
@@ -116,6 +132,75 @@ LANGUAGE_NAMES = {
 
 MASK = "\uE000"  # private use area marker
 
+# Human names for the writing systems we pin in the prompt. A model that is only
+# told "translate into Pashto" will happily answer in Urdu, Persian or Russian;
+# naming the script removes that freedom (measured 2026-11-17: `ps` came back in
+# Cyrillic, `ve` in CJK, both rejected by the delivery gate).
+SCRIPT_HUMAN = {
+    "Arabic": "the Perso-Arabic script",
+    "Cyrillic": "the Cyrillic script",
+    "Hebrew": "the Hebrew script",
+    "Greek": "the Greek alphabet",
+    "Armenian": "the Armenian script",
+    "Georgian": "the Georgian script",
+    "Devanagari": "the Devanagari script",
+    "Bengali": "the Bengali script",
+    "Gurmukhi": "the Gurmukhi script",
+    "Gujarati": "the Gujarati script",
+    "Oriya": "the Odia script",
+    "Tamil": "the Tamil script",
+    "Telugu": "the Telugu script",
+    "Kannada": "the Kannada script",
+    "Malayalam": "the Malayalam script",
+    "Sinhala": "the Sinhala script",
+    "Thai": "the Thai script",
+    "Lao": "the Lao script",
+    "Tibetan": "the Tibetan script",
+    "Myanmar": "the Myanmar script",
+    "Khmer": "the Khmer script",
+    "Ethiopic": "the Ethiopic (Ge'ez) script",
+    "Cherokee": "the Cherokee syllabary",
+    "CanadianAboriginal": "Canadian Aboriginal syllabics",
+    "Yi": "the Yi syllabary",
+    "Hangul": "Hangul",
+    "CJK": "Chinese characters (and kana for Japanese)",
+    "Thaana": "the Thaana script",
+    "NKo": "the N'Ko script",
+    "OlChiki": "the Ol Chiki script",
+}
+
+
+def script_requirement(locale: str) -> str:
+    """A prompt sentence pinning the target writing system, or '' if unknown."""
+    try:
+        from i18n_script_check import LOCALE_SCRIPT, LATIN_LOCALES
+    except ImportError:
+        return ""
+    if locale in LATIN_LOCALES:
+        return ("Write the translations in the Latin alphabet (product names such as "
+                "OpenAmer stay as they are).")
+    declared = LOCALE_SCRIPT.get(locale)
+    if not declared:
+        return ""
+    names = [declared] if isinstance(declared, str) else list(declared)
+    human = " or ".join(SCRIPT_HUMAN.get(n, f"the {n} script") for n in names)
+    return (f"Write every translation in {human}. Text in any other writing system "
+            f"is wrong output, even if it is the right language spoken in another country.")
+
+
+def foreign_ratio(texts: list[str], locale: str) -> float:
+    """Share of non-empty strings written in a script this locale does not use."""
+    try:
+        from i18n_script_check import expected_script, foreign_values
+    except ImportError:
+        return 0.0
+    useful = [t for t in texts if t.strip()]
+    if not useful:
+        return 0.0
+    expected = expected_script(locale, "")
+    return len(foreign_values(useful, expected)) / len(useful)
+
+
 
 def load_env() -> dict[str, str]:
     env: dict[str, str] = {}
@@ -128,21 +213,163 @@ def load_env() -> dict[str, str]:
     return env
 
 
-def call_model(url: str, model: str, key: str, messages: list, max_tokens: int = 4000,
-               timeout: int = 180) -> str:
+def _retry_after_seconds(exc: Exception) -> float | None:
+    """Seconds the server asked us to wait, if it said so."""
+    headers = getattr(exc, "headers", None)
+    if not headers:
+        return None
+    raw = headers.get("Retry-After") or headers.get("retry-after")
+    if not raw:
+        return None
+    try:
+        return max(0.0, float(raw))
+    except (TypeError, ValueError):
+        return None
+
+
+def codex_credentials() -> tuple[str, str] | None:
+    """(access_token, chatgpt_account_id) from OpenAmer's own OAuth pool.
+
+    The Codex backend runs on the ChatGPT subscription, not on platform
+    credits: measured 2026-11-17, the plain OPENAI_API_KEY answered
+    `credit_balance_exhausted` while this OAuth token answered HTTP 200.
+    """
+    p = HOME / "auth.json"
+    if not p.exists():
+        return None
+    try:
+        pool = json.loads(p.read_text(encoding="utf-8")).get("credential_pool", {})
+        entries = pool.get("openai-codex") or []
+        cred = entries[0] if entries else {}
+        token = cred.get("access_token") or ""
+        if not token:
+            return None
+        part = token.split(".")[1]
+        part += "=" * (-len(part) % 4)
+        claims = json.loads(base64.urlsafe_b64decode(part))
+        account = claims.get("https://api.openai.com/auth", {}).get("chatgpt_account_id", "")
+        return (token, account) if account else None
+    except (OSError, ValueError, IndexError, KeyError):
+        return None
+
+
+def call_codex(url: str, model: str, messages: list, timeout: int = 180) -> str:
+    """Call the Codex Responses API and return the assistant text.
+
+    Same wire protocol as the openai-codex provider: `store` must be false, the
+    answer arrives as an SSE stream (`response.output_text.delta` events).
+    """
+    creds = codex_credentials()
+    if creds is None:
+        raise RuntimeError("no Codex OAuth credentials in auth.json")
+    token, account = creds
+    system = "\n\n".join(m["content"] for m in messages if m.get("role") == "system")
+    user = "\n\n".join(m["content"] for m in messages if m.get("role") != "system")
     body = json.dumps({
         "model": model,
-        "messages": messages,
-        "max_tokens": max_tokens,
-        "temperature": 0,
+        "instructions": system,
+        "input": [{"type": "message", "role": "user",
+                   "content": [{"type": "input_text", "text": user}]}],
+        "store": False,
+        "stream": True,
     }).encode()
     req = urllib.request.Request(
         url, data=body,
-        headers={"Content-Type": "application/json", "Authorization": f"Bearer {key}"},
-    )
+        headers={"Content-Type": "application/json",
+                 "Authorization": f"Bearer {token}",
+                 "chatgpt-account-id": account,
+                 "Accept": "text/event-stream",
+                 "OpenAI-Beta": "responses=experimental"})
+    out: list[str] = []
     with urllib.request.urlopen(req, timeout=timeout) as resp:
-        data = json.loads(resp.read().decode())
-    return data["choices"][0]["message"]["content"]
+        for raw in resp:
+            line = raw.decode("utf-8", "replace").strip()
+            if not line.startswith("data:"):
+                continue
+            payload = line[5:].strip()
+            if payload in ("", "[DONE]"):
+                continue
+            try:
+                event = json.loads(payload)
+            except json.JSONDecodeError:
+                continue
+            kind = event.get("type")
+            if kind == "response.output_text.delta":
+                out.append(event.get("delta", ""))
+            elif kind == "response.failed":
+                raise RuntimeError(f"codex failed: {json.dumps(event)[:200]}")
+            elif kind == "response.completed":
+                break
+    text = "".join(out)
+    if not text.strip():
+        raise RuntimeError("codex returned an empty answer")
+    return text
+
+
+def call_model(url: str, model: str, key: str, messages: list, max_tokens: int = 4000,
+               timeout: int = 180, attempts: int = 4) -> str:
+    """Call the model, backing off on rate limits and transient failures.
+
+    Measured 2026-11-17: the free backends answer HTTP 429 as soon as more than
+    ~2 locale chains run in parallel, and the translator had no retry at all --
+    a throttled batch was dropped, the batch budget shrank, and the locale made
+    no progress. A 429 is a "come back later", not a failure, so it is retried
+    with exponential backoff (honouring Retry-After when the server sends it).
+    """
+    is_codex = "/codex/responses" in url
+    if not is_codex:
+        body = json.dumps({
+            "model": model,
+            "messages": messages,
+            "max_tokens": max_tokens,
+            "temperature": 0,
+        }).encode()
+        req = urllib.request.Request(
+            url, data=body,
+            headers={"Content-Type": "application/json",
+                     **({"Authorization": f"Bearer {key}"} if key != "NO_AUTH" else {})},
+        )
+    delay = 3.0
+    last: Exception | None = None
+    for attempt in range(1, attempts + 1):
+        try:
+            if is_codex:
+                return call_codex(url, model, messages, timeout=timeout)
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                data = json.loads(resp.read().decode())
+            return data["choices"][0]["message"]["content"]
+        except urllib.error.HTTPError as exc:
+            last = exc
+            # 4xx other than 408/429 is our fault: retrying wastes the budget.
+            if exc.code not in (408, 429, 500, 502, 503, 504):
+                raise
+            # A daily cap is not a rate limit: it will not clear in 30 seconds.
+            # Measured 2026-11-17: OpenRouter answered every request with
+            # `free-models-per-day-high-balance`, and each retry burned the
+            # batch's remaining budget for nothing.
+            try:
+                detail = exc.read().decode("utf-8", "replace")[:300].lower()
+            except (OSError, ValueError):
+                detail = ""
+            if "per-day" in detail or "per day" in detail or "daily" in detail:
+                raise
+            if attempt == attempts:
+                raise
+            wait = _retry_after_seconds(exc) or delay
+            if exc.code != 429:
+                wait = min(wait, delay)
+            print(f"    [{model}] HTTP {exc.code} -> retry {attempt}/{attempts - 1} "
+                  f"in {wait:.0f}s", file=sys.stderr)
+        except (urllib.error.URLError, TimeoutError, OSError, json.JSONDecodeError) as exc:
+            last = exc
+            if attempt == attempts:
+                raise
+            wait = delay
+            print(f"    [{model}] {type(exc).__name__} -> retry {attempt}/{attempts - 1} "
+                  f"in {wait:.0f}s", file=sys.stderr)
+        time.sleep(wait + random.uniform(0, 1.5))
+        delay = min(delay * 2, 30.0)
+    raise last if last else RuntimeError("call_model exhausted attempts")
 
 
 def mask_placeholders(text: str) -> tuple[str, list[str]]:
@@ -332,9 +559,17 @@ def unmask_variables(text: str, found: list[str]) -> str:
 
 
 def translate_batch(items: list[str], language: str, backend: tuple, env: dict,
-                   force_translate: bool = False, extra_hint: str = "") -> list[str] | None:
+                   force_translate: bool = False, extra_hint: str = "",
+                   locale: str = "") -> list[str] | None:
     name, url, keyenv, model = backend
-    key = env.get(keyenv, "")
+    if keyenv == "CODEX_OAUTH":
+        # OAuth credentials live in OpenAmer's pool, not in .env.
+        key = "codex" if codex_credentials() else ""
+    elif keyenv == "NO_AUTH":
+        # Keyless endpoints (Pollinations) reject nothing when no bearer is sent.
+        key = "NO_AUTH"
+    else:
+        key = env.get(keyenv, "")
     if not key:
         return None
     masked = []
@@ -380,6 +615,9 @@ def translate_batch(items: list[str], language: str, backend: tuple, env: dict,
             "name, acronyms like MCP and URLs stay as they are; "
             "output ONLY a JSON array of strings, no commentary, no code fence."
         )
+    requirement = script_requirement(locale) if locale else ""
+    if requirement:
+        system += " " + requirement
     if extra_hint:
         system += " " + extra_hint
     messages = [
@@ -411,6 +649,12 @@ def translate_batch(items: list[str], language: str, backend: tuple, env: dict,
     if broken:
         print(f"    [{name}] {broken} string(s) with broken placeholders -> English kept",
               file=sys.stderr)
+    if locale:
+        ratio = foreign_ratio(out, locale)
+        if ratio > 0.15:
+            print(f"    [{name}] {ratio*100:.0f}% of this batch came back in a foreign "
+                  f"script -> batch rejected, retrying", file=sys.stderr)
+            return None
     return out
 
 
@@ -427,7 +671,13 @@ def translate_labels(items: list[str], language: str, backend: tuple, env: dict)
     untranslated — those are real exceptions, and they are named.
     """
     name, url, keyenv, model = backend
-    key = env.get(keyenv, "")
+    if keyenv == "CODEX_OAUTH":
+        # OAuth credentials live in OpenAmer's pool, not in .env.
+        key = "codex" if codex_credentials() else ""
+    elif keyenv == "NO_AUTH":
+        key = "NO_AUTH"
+    else:
+        key = env.get(keyenv, "")
     if not key:
         return None
     system = (
@@ -467,7 +717,10 @@ def translate_labels(items: list[str], language: str, backend: tuple, env: dict)
 
 def load_leaves(locale: str) -> list[dict]:
     """Extract the leaves of a locale via the Node extractor."""
-    out_file = REPO / "tmp" / f"i18n_{locale}.json"
+    # Per-process file: six backfill workers extract `en` at the same moment,
+    # and a shared path meant one of them read a half-written file and lost the
+    # whole batch. Measured 2026-11-17: `[en] extractor wrote an empty file`.
+    out_file = REPO / "tmp" / f"i18n_{locale}_{os.getpid()}.json"
     out_file.parent.mkdir(parents=True, exist_ok=True)
     src = I18N / f"{locale}.ts"
     r = subprocess.run(
@@ -478,7 +731,15 @@ def load_leaves(locale: str) -> list[dict]:
     )
     if r.returncode != 0:
         raise SystemExit(f"extract failed for {locale}: {r.stderr[-500:]}")
-    return json.loads(out_file.read_text(encoding="utf-8"))["leaves"]
+    raw = out_file.read_text(encoding="utf-8", errors="replace").strip()
+    if not raw:
+        # Measured 2026-11-17: the Node extractor occasionally writes an empty
+        # file with rc=0. Crashing here kills the whole worker, so fall back to
+        # an empty leaf list and let the caller degrade gracefully instead of
+        # taking down 19 pending locales with it.
+        print(f"    [{locale}] extractor wrote an empty file, no leaves", file=sys.stderr)
+        return []
+    return json.loads(raw)["leaves"]
 
 
 def load_overlay(locale: str) -> dict[str, str]:
@@ -587,7 +848,7 @@ def main() -> int:
         items = [en_text[p] for p in batch]
         result = None
         for backend in backends:
-            result = translate_batch(items, language, backend, env)
+            result = translate_batch(items, language, backend, env, locale=locale)
             if result is not None:
                 break
         with lock:
