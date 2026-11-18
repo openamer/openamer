@@ -1,7 +1,7 @@
 {
-  "updated": "2026-11-16T22:25:50.871454+00:00",
+  "updated": "2026-11-17T22:30:08.757224+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 1297,
+  "total": 1300,
   "skills": {
     "auto-competitor-intelligence-claudepowered-ai": {
       "refs": 0,
@@ -7493,6 +7493,12 @@
         "scripts/i18n_hand_batch.py"
       ]
     },
+    "i18n-translation-pipeline": {
+      "refs": 3,
+      "ok": 3,
+      "score": 1.0,
+      "missing": []
+    },
     "install-scoped-home-resolution": {
       "refs": 0,
       "ok": 0,
@@ -7524,6 +7530,12 @@
       "missing": []
     },
     "massive-upgrade-deployment": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "merge-landing-verification": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -7652,6 +7664,12 @@
     "self-modify": {
       "refs": 2,
       "ok": 2,
+      "score": 1.0,
+      "missing": []
+    },
+    "ship-changes": {
+      "refs": 0,
+      "ok": 0,
       "score": 1.0,
       "missing": []
     },
