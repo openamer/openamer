@@ -183,13 +183,25 @@
     "endonym": "Na Vosa Vakaviti",
     "englishName": "Fijian"
   },
+  "fo": {
+    "endonym": "Føroyskt",
+    "englishName": "Faroese"
+  },
   "fr": {
     "endonym": "Français",
     "englishName": "French"
   },
+  "fy": {
+    "endonym": "Frysk",
+    "englishName": "Western Frisian"
+  },
   "ga": {
     "endonym": "Gaeilge",
     "englishName": "Irish"
+  },
+  "gd": {
+    "endonym": "Gàidhlig",
+    "englishName": "Scottish Gaelic"
   },
   "he": {
     "endonym": "עברית",
