@@ -155,6 +155,21 @@ pub fn run() {
             // First run / repair install, or Update mode: reveal the UI.
             match app.get_webview_window("main") {
                 Some(win) => {
+                    // Config width/height are applied as PHYSICAL pixels on
+                    // Windows, so on a 125% display a 1180px window would only
+                    // offer a ~944px CSS viewport — the two-column layout then
+                    // clips. Pin the design size in LOGICAL pixels instead, so
+                    // the CSS viewport is 1180x820 on every display.
+                    if let Err(err) = win.set_size(tauri::LogicalSize::new(1180.0, 820.0)) {
+                        tracing::warn!(?err, "could not apply logical window size");
+                    }
+                    if let Err(err) = win.set_min_size(Some(tauri::LogicalSize::new(900.0, 620.0)))
+                    {
+                        tracing::warn!(?err, "could not apply logical minimum size");
+                    }
+                    if let Err(err) = win.center() {
+                        tracing::warn!(?err, "could not centre the installer window");
+                    }
                     if let Err(err) = win.show() {
                         tracing::error!(?err, "failed to show main installer window");
                     }

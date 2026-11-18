@@ -31,7 +31,7 @@ export default function Welcome() {
     <div className="openamer-fade-in flex h-full flex-col">
       <div className="flex min-h-0 flex-1">
         {/* Decision column */}
-        <div className="flex min-w-0 flex-[1.05] flex-col justify-center px-9 py-8">
+        <div className="mx-auto flex w-full max-w-[620px] min-w-0 flex-[1.05] flex-col justify-center px-9 py-8 min-[1000px]:mx-0 min-[1000px]:max-w-none">
           <div className="mb-5 flex items-center gap-3">
             <BrandMark className="size-10 rounded-md" />
             <div className="min-w-0">
@@ -80,8 +80,11 @@ export default function Welcome() {
           <p className="mt-3 text-[11px] text-foreground/35">{s.welcome.note}</p>
         </div>
 
-        {/* Evidence column */}
-        <div className="min-w-0 flex-1 border-l border-foreground/10 px-7 py-7">
+        {/* Evidence column. Below 860px the drawing is dropped rather than
+            squeezed: a cramped illustration beside cramped text is worse than a
+            clean single column, and scaled displays can leave the webview
+            narrower than the window config suggests. */}
+        <div className="hidden min-w-0 flex-1 border-l border-foreground/10 px-7 py-7 min-[860px]:flex">
           <CapabilityStage capabilities={s.capabilities} />
         </div>
       </div>
