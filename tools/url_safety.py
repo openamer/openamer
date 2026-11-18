@@ -208,6 +208,17 @@ _MAX_SSRF_CONNECT_IPS = 8
 # VPNs, and some cloud internal networks.
 _CGNAT_NETWORK = ipaddress.ip_network("100.64.0.0/10")
 
+# 64:ff9b::/96 (RFC 6052 "Well-Known Prefix") is how a DNS64/NAT64 network
+# reaches public IPv4 hosts: the last 32 bits ARE the IPv4 address. Python's
+# ipaddress marks the whole prefix ``is_reserved``, so judging the v6 address
+# itself blocks legitimate public destinations — observed 2026-11-18 as
+# ``files.slack.com -> 64:ff9b::d21:bb0e`` being refused as
+# "private/internal", which silently broke every Slack attachment download on
+# a NAT64 network. Judge the embedded IPv4 instead; the recursion keeps private
+# and CGNAT targets blocked. The local-use prefix 64:ff9b:1::/48 is NOT decoded
+# — it may map to host-local space and stays blocked as reserved.
+_NAT64_NETWORK = ipaddress.ip_network("64:ff9b::/96")
+
 # ---------------------------------------------------------------------------
 # Global toggle: allow private/internal IP resolution
 # ---------------------------------------------------------------------------
@@ -284,6 +295,11 @@ def _is_blocked_ip(ip: ipaddress.IPv4Address | ipaddress.IPv6Address) -> bool:
                 embedded_ip.is_link_local or embedded_ip.is_reserved or
                 embedded_ip.is_multicast or embedded_ip.is_unspecified or
                 embedded_ip in _CGNAT_NETWORK)
+
+    # NAT64 (RFC 6052): the v6 address is a wrapper around a public IPv4 host,
+    # so the v4 address behind it is what gets connected to — judge that one.
+    if isinstance(ip, ipaddress.IPv6Address) and ip in _NAT64_NETWORK:
+        return _is_blocked_ip(ipaddress.IPv4Address(int(ip) & 0xFFFFFFFF))
 
     # Standard IPv4/IPv6 address checking
     if ip.is_private or ip.is_loopback or ip.is_link_local or ip.is_reserved:
