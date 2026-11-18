@@ -86,3 +86,202 @@
   --dt-destructive: #c0473a;
   --dt-destructive-foreground: #fef2f2;
 }
+
+/* ---------------------------------------------------------------------------
+ * Setup-window canvas and drawings.
+ *
+ * Everything below is installer-only: the desktop has its own motion budget and
+ * does not need a dot grid. Two rules govern it — the animation must be slow
+ * enough to read as "alive" rather than "busy" (3–5 s cycles), and all of it is
+ * disabled wholesale under prefers-reduced-motion, because a setup window that
+ * makes someone queasy is a defect, not a flourish.
+ * ------------------------------------------------------------------------- */
+
+.installer-dots {
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--ui-text-primary) 22%, transparent) 0.5px,
+    transparent 0.5px
+  );
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, black 20%, transparent 78%);
+}
+
+.installer-glow-cool {
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--theme-midground, #0053fd) 26%, transparent) 0%,
+    transparent 62%
+  );
+  filter: blur(8px);
+}
+
+.installer-glow-warm {
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--theme-warm, #ffe6cb) 14%, transparent) 0%,
+    transparent 64%
+  );
+  filter: blur(10px);
+}
+
+/* Capability card: a hairline panel that lifts a hair off the canvas. */
+.installer-card {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--ui-text-primary) 5%, transparent) 0%,
+    color-mix(in srgb, var(--ui-text-primary) 1.5%, transparent) 100%
+  );
+  backdrop-filter: blur(2px);
+}
+
+.installer-halo {
+  background: radial-gradient(
+    ellipse 60% 55% at 50% 45%,
+    color-mix(in srgb, currentColor 16%, transparent) 0%,
+    transparent 70%
+  );
+}
+
+/* Card swap: the illustration fades and settles instead of hard-cutting. */
+@keyframes installer-swap {
+  from {
+    opacity: 0;
+    transform: scale(0.985) translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.installer-swap {
+  animation: installer-swap 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Helix base pairs: a slow travelling brightening, like a read head. */
+@keyframes installer-rung {
+  0%,
+  100% {
+    stroke-opacity: 0.16;
+  }
+  50% {
+    stroke-opacity: 0.5;
+  }
+}
+
+.installer-rung {
+  animation: installer-rung 4.2s ease-in-out infinite;
+}
+
+/* Compute die: two rings expanding outward from the core. */
+@keyframes installer-pulse {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.82);
+  }
+  70% {
+    opacity: 0;
+    transform: scale(1.22);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.22);
+  }
+}
+
+.installer-pulse {
+  animation: installer-pulse 3.6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  transform-origin: 120px 90px;
+}
+
+.installer-pulse-late {
+  animation-delay: 1.8s;
+}
+
+/* Terminal caret. */
+@keyframes installer-caret {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  95% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.installer-caret {
+  animation: installer-caret 1.15s steps(1, end) infinite;
+}
+
+/* Skill graph: nodes breathe in a staggered order, one of them lit. */
+@keyframes installer-node {
+  0%,
+  100% {
+    opacity: 0.28;
+  }
+  50% {
+    opacity: 0.62;
+  }
+}
+
+.installer-node {
+  animation: installer-node 5s ease-in-out infinite;
+}
+
+.installer-node-lit {
+  animation-duration: 2.6s;
+}
+
+/* Ready: the ring draws itself once, then holds. */
+@keyframes installer-ring {
+  from {
+    stroke-dasharray: 0 400;
+  }
+  to {
+    stroke-dasharray: 400 400;
+  }
+}
+
+.installer-ring {
+  animation: installer-ring 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes installer-ray {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.55;
+  }
+}
+
+.installer-ray {
+  animation: installer-ray 1.8s ease-out infinite;
+}
+
+.installer-log::-webkit-scrollbar {
+  width: 6px;
+}
+
+.installer-log::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--ui-text-primary) 18%, transparent);
+  border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .installer-rung,
+  .installer-pulse,
+  .installer-caret,
+  .installer-node,
+  .installer-ray,
+  .installer-ring,
+  .installer-swap,
+  .openamer-fade-in {
+    animation: none !important;
+  }
+}
