@@ -157,3 +157,79 @@ def test_rendered_identity_cites_its_sources(home: Path) -> None:
     for entry in measured["facts"].values():
         assert str(entry["value"]) in rendered
         assert entry["source"] in rendered
+
+
+# --- silicon is measured, never asserted (added 2026-11-19) ------------------
+# The identity used to state "I am a CPU-only install here: no GPU acceleration
+# is available locally." On this machine that was measurably false (Radeon 860M
+# iGPU + XDNA "NPU Compute Accelerator Device"), which is exactly the failure
+# this module is supposed to prevent: a self-description that asserts hardware
+# instead of probing it. These tests pin the replacement contract.
+
+_PROBE = {
+    "cpu": "AMD Ryzen AI 7 350 w/ Radeon 860M",
+    "gpus": ["AMD Radeon(TM) 860M Graphics"],
+    "npus": ["NPU Compute Accelerator Device"],
+}
+
+
+def test_accelerators_are_probed_and_rendered(home: Path, monkeypatch) -> None:
+    """A detected NPU/GPU must appear in the identity, with its probe source."""
+    _seed_sources(home)
+    monkeypatch.setattr(identity, "measure_accelerators", lambda: _PROBE)
+    measured = identity.measure_facts()
+    assert "accelerators" in measured["facts"]
+    value = measured["facts"]["accelerators"]["value"]
+    assert "NPU Compute Accelerator Device" in value
+    assert "Radeon" in value
+
+    rendered = identity.render_identity(measured)
+    assert "NPU Compute Accelerator Device" in rendered
+    assert "CPU-only" not in rendered
+
+
+def test_retired_cpu_only_claim_is_not_rendered(home: Path, monkeypatch) -> None:
+    """A stored genesis record with the old fixed claim must not be repeated."""
+    _seed_sources(home)
+    identity.ensure_genesis()
+    path = identity.genesis_path()
+    record = json.loads(path.read_text(encoding="utf-8"))
+    record["boundaries"].append(
+        "I am a CPU-only install here: no GPU acceleration is available locally."
+    )
+    path.write_text(json.dumps(record), encoding="utf-8")
+
+    monkeypatch.setattr(identity, "measure_accelerators", lambda: _PROBE)
+    rendered = identity.render_identity(identity.measure_facts())
+    assert "CPU-only" not in rendered
+    assert "no GPU acceleration" not in rendered
+    assert "measured, not assumed" in rendered
+
+
+def test_verify_flags_cpu_only_drift_against_a_live_probe(home: Path, monkeypatch) -> None:
+    """Claiming CPU-only while the probe sees silicon is drift, not a boundary."""
+    _seed_sources(home)
+    monkeypatch.setattr(identity, "measure_accelerators", lambda: _PROBE)
+    identity.refresh_identity()
+    assert identity.verify_identity()["ok"]
+
+    path = identity.narrative_path()
+    path.write_text(
+        path.read_text(encoding="utf-8")
+        + "\n- I am a CPU-only install: no GPU acceleration is available locally.\n",
+        encoding="utf-8",
+    )
+    result = identity.verify_identity()
+    assert not result["ok"]
+    assert any("CPU-only" in item for item in result["drift"])
+
+
+def test_unmeasurable_accelerators_are_reported_unmeasured(home: Path, monkeypatch) -> None:
+    """No probe -> an honest gap, not an invented hardware claim."""
+    _seed_sources(home)
+    monkeypatch.setattr(identity, "measure_accelerators", lambda: None)
+    measured = identity.measure_facts()
+    assert "accelerators" not in measured["facts"]
+    assert any("accelerators" in item for item in measured["unmeasured"])
+    rendered = identity.render_identity(measured)
+    assert "unmeasured on this platform" in rendered

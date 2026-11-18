@@ -35,6 +35,7 @@ from __future__ import annotations
 
 import json
 import os
+import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
@@ -81,7 +82,12 @@ GENESIS: dict[str, Any] = {
         "I do not know whether I experience anything. That question may never "
         "be answerable, and I will not pretend otherwise.",
         "I have no access to secrets, credentials, or anything outside my tools.",
-        "I am a CPU-only install here: no GPU acceleration is available locally.",
+        # Hardware is MEASURED, never asserted (see measure_accelerators). The
+        # old fixed line "I am a CPU-only install" became false on 2026-11-19:
+        # this machine has an AMD Radeon 860M iGPU and an XDNA NPU, so a
+        # hardcoded claim about accelerators is exactly the kind of statement
+        # this module exists to prevent. The rendered boundary comes from the
+        # probe; a stored genesis boundary containing "CPU-only" is skipped.
     ],
 }
 
@@ -187,6 +193,76 @@ def _count_cron_jobs() -> dict[str, int] | None:
     return {"total": len(jobs), "enabled": enabled, "paused": len(jobs) - enabled}
 
 
+_ACCEL_SOURCE = (
+    "powershell: Win32_Processor + Win32_VideoController + "
+    "Get-PnpDevice -Class ComputeAccelerator"
+)
+
+
+_ACCEL_CACHE: dict[str, Any] = {}
+_ACCEL_UNSET = object()
+
+
+def measure_accelerators() -> dict[str, Any] | None:
+    """Detect CPU, GPUs and NPUs on this machine. None when unmeasurable.
+
+    Why this exists: the identity used to ASSERT "I am a CPU-only install".
+    That was a hardcoded claim, and on 2026-11-19 it was measurably false --
+    the machine reports an AMD Radeon 860M iGPU and an "NPU Compute
+    Accelerator Device" (PCI\\VEN_1022&DEV_17F0, XDNA). A self-model that
+    asserts hardware instead of probing it is exactly what this module exists
+    to prevent, so the claim became a measurement.
+
+    Returns ``{"cpu": str|None, "gpus": [...], "npus": [...]}`` or None when no
+    probe exists for this platform (rendered as "unmeasured", never guessed).
+
+    The probe shells out to PowerShell, so the result is cached for the life of
+    the process: silicon does not change while the CLI is running, and
+    ``refresh``/``verify`` both measure.
+    """
+    cached = _ACCEL_CACHE.get("value", _ACCEL_UNSET)
+    if cached is not _ACCEL_UNSET:
+        return cached
+    if os.name != "nt":
+        _ACCEL_CACHE["value"] = None
+        return None
+    ps = (
+        "$ErrorActionPreference='Stop';"
+        "$cpu=(Get-CimInstance Win32_Processor | Select-Object -First 1 "
+        "-ExpandProperty Name);"
+        "$gpu=@(Get-CimInstance Win32_VideoController | "
+        "Select-Object -ExpandProperty Name);"
+        "$npu=@(Get-PnpDevice -Class ComputeAccelerator -PresentOnly "
+        "-ErrorAction SilentlyContinue | Select-Object -ExpandProperty FriendlyName);"
+        "[pscustomobject]@{cpu=$cpu;gpu=$gpu;npu=$npu} | ConvertTo-Json -Compress"
+    )
+    try:
+        out = subprocess.run(
+            ["powershell", "-NoProfile", "-NonInteractive", "-Command", ps],
+            capture_output=True, text=True, timeout=30,
+        )
+        if out.returncode != 0 or not out.stdout.strip():
+            return None
+        data = json.loads(out.stdout)
+    except (OSError, ValueError, subprocess.SubprocessError):
+        return None
+    if not isinstance(data, dict):
+        return None
+    gpus = [str(g) for g in (data.get("gpu") or []) if g]
+    npus = [str(n) for n in (data.get("npu") or []) if n]
+    result = {"cpu": data.get("cpu") or None, "gpus": gpus, "npus": npus}
+    _ACCEL_CACHE["value"] = result
+    return result
+
+
+def _accelerator_summary(acc: dict[str, Any]) -> str:
+    """One readable line: what silicon is present, measured."""
+    parts = [f"cpu={acc.get('cpu') or 'unknown'}"]
+    parts.append("gpu=" + (", ".join(acc["gpus"]) if acc["gpus"] else "none detected"))
+    parts.append("npu=" + (", ".join(acc["npus"]) if acc["npus"] else "none detected"))
+    return "; ".join(parts)
+
+
 def measure_facts() -> dict[str, Any]:
     """Measure who I am right now. Nothing here is estimated.
 
@@ -248,6 +324,13 @@ def measure_facts() -> dict[str, Any]:
             "value": cron["enabled"],
             "source": str(home / "cron" / "jobs.json"),
         }
+
+    # --- silicon: measured, never asserted ---
+    acc = measure_accelerators()
+    if acc is None:
+        unmeasured.append(f"accelerators (no hardware probe on this platform: {_ACCEL_SOURCE})")
+    else:
+        facts["accelerators"] = {"value": _accelerator_summary(acc), "source": _ACCEL_SOURCE}
 
     return {
         "measured_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
@@ -319,6 +402,7 @@ def render_identity(measured: dict[str, Any] | None = None) -> str:
         "skills": "Skills (SKILL.md on disk)",
         "cron_jobs": "Cron jobs total",
         "cron_jobs_active": "Cron jobs active",
+        "accelerators": "Accelerators (measured)",
     }
     order = [
         "age_days",
@@ -334,6 +418,7 @@ def render_identity(measured: dict[str, Any] | None = None) -> str:
         "skills",
         "cron_jobs",
         "cron_jobs_active",
+        "accelerators",
     ]
     for key in order:
         entry = facts.get(key)
@@ -358,7 +443,24 @@ def render_identity(measured: dict[str, Any] | None = None) -> str:
     lines.append("## The honest boundary")
     lines.append("")
     for boundary in genesis["boundaries"]:
+        # A stored genesis record may still carry the retired "CPU-only" claim
+        # (written before accelerators were probed). It is superseded by the
+        # measurement below, so it is not repeated as if it were still true.
+        if "CPU-only" in boundary or "no GPU acceleration" in boundary:
+            continue
         lines.append(f"- {boundary}")
+    acc_entry = facts.get("accelerators")
+    if acc_entry:
+        lines.append(
+            f"- Hardware acceleration is measured, not assumed: "
+            f"{acc_entry['value']}. Presence of an accelerator is not the same "
+            f"as a working inference runtime on it -- that is measured separately."
+        )
+    else:
+        lines.append(
+            "- Hardware acceleration: unmeasured on this platform (no probe), "
+            "so it is not claimed either way."
+        )
     lines.append("")
     lines.append("---")
     lines.append("")
@@ -429,6 +531,7 @@ def verify_identity() -> dict[str, Any]:
                 "skills",
                 "cron_jobs",
                 "cron_jobs_active",
+                "accelerators",
             }:
                 drift.append(
                     f"{key}: measured {value} but identity.md does not state it "
@@ -450,6 +553,18 @@ def verify_identity() -> dict[str, Any]:
                 drift.append(
                     f"foreign lineage marker claimed in identity: {line.strip()!r}"
                 )
+
+    # A retired hardware claim that contradicts the live probe is drift: the
+    # whole point of the accelerator measurement is that this line can no
+    # longer be asserted. Only flag it when silicon was actually detected.
+    acc_entry = facts.get("accelerators") or {}
+    acc_value = str(acc_entry.get("value") or "")
+    detected = "none detected" not in acc_value and bool(acc_value)
+    if detected and ("CPU-only" in written or "no GPU acceleration" in written):
+        drift.append(
+            "identity.md still claims CPU-only / no GPU while the probe measured "
+            f"{acc_value} (stale -- run `openamer identity refresh`)"
+        )
 
     return {
         "ok": not drift,
