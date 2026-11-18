@@ -344,9 +344,10 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--local-model", default="mini-openamer")
     ap.add_argument("--ref-base", default="http://127.0.0.1:11434/v1")
     ap.add_argument("--ref-model", default="deepseek-v4.1-flash:cloud")
-    ap.add_argument("--gpu-base", default="http://192.168.178.23:8082/v1")
-    ap.add_argument("--gpu-model", default="qwen3.5:9b")
-    ap.add_argument("--subjects", default="local,ref,gpu")
+    # There is no GPU node: the PC worker was decommissioned 2026-11-18. A
+    # subject that cannot answer is not a subject — it would only ever print
+    # MODEL ERROR, so it is gone rather than carried as a permanent failure.
+    ap.add_argument("--subjects", default="local,ref")
     ap.add_argument("--json", action="store_true")
     args = ap.parse_args(argv)
 
@@ -356,8 +357,7 @@ def main(argv: list[str]) -> int:
     verify_tasks(tasks)
 
     known = {"local": {"name": "Mini-OpenAmer (2B, CPU)", "base": args.local_base, "model": args.local_model},
-             "ref": {"name": "reference (deepseek-v4.1-flash)", "base": args.ref_base, "model": args.ref_model},
-             "gpu": {"name": "GPU worker (qwen3.5:9b)", "base": args.gpu_base, "model": args.gpu_model}}
+             "ref": {"name": "reference (deepseek-v4.1-flash)", "base": args.ref_base, "model": args.ref_model}}
     subjects = [known[k.strip()] for k in args.subjects.split(",") if k.strip() in known]
 
     started = time.strftime("%Y-%m-%dT%H:%M:%S")
