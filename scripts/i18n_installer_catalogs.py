@@ -39,12 +39,20 @@ PRODUCT_LOCALES = REPO / "locales"
 # software in their own language rather than in English, minus the ones we cannot
 # verify: `torbeski` has no ISO code and its native strings are authored by the
 # project owner, never machine-generated.
-TARGETS = [
-    "ar", "bg", "bn", "bs", "cs", "da", "de", "el", "es", "et", "fa", "fi", "fr",
-    "ga", "he", "hi", "hr", "hu", "id", "it", "ja", "ko", "lt", "lv", "mk", "nb",
-    "nl", "pl", "pt", "ro", "ru", "sk", "sl", "sq", "sr", "sv", "th", "tr", "uk",
-    "vi", "zh", "zh-hant",
-]
+# The setup window speaks exactly what the product speaks: the target set is
+# derived from `locales/*.yaml`, so the two cannot drift apart. Only the codes
+# below are excluded, and each for a stated reason.
+EXCLUDED = {
+    # No ISO code. Its native strings are authored by the project owner; a model
+    # would invent them, which is worse than an English setup window.
+    "torbeski",
+}
+
+
+def targets() -> list[str]:
+    codes = sorted(path.stem for path in PRODUCT_LOCALES.glob("*.yaml"))
+
+    return [code for code in codes if code not in EXCLUDED]
 
 PLACEHOLDER = re.compile(r"\{(\w+)\}")
 INT = re.compile(r"^\d+$")
@@ -120,6 +128,68 @@ def verify(code: str, english: list[tuple[str, str]], translated: list[str]) -> 
     return None
 
 
+def repair_placeholders(
+    code: str,
+    english: list[tuple[str, str]],
+    translated: list[str],
+    env: dict,
+    prefer: tuple | None = None,
+) -> list[str] | None:
+    """Re-ask for the few strings whose {placeholders} drifted, keep the rest.
+
+    A model that translates 81 of 82 strings well and drops `{done}` in the
+    82nd has not failed — one line has. Throwing the whole reply away (and then
+    walking the entire backend chain) is what made small languages take minutes.
+    The repair is constrained: only the offending strings are re-requested, and
+    the result still has to pass `verify` before anything is written.
+    """
+    bad = [
+        index
+        for index, ((_, source), value) in enumerate(zip(english, translated))
+        if PLACEHOLDER.findall(source) != PLACEHOLDER.findall(str(value))
+    ]
+
+    if not bad:
+        return translated
+
+    subset = [english[index][1] for index in bad]
+
+    # Retry the backend that just got everything else right, first. The rest of
+    # the chain stays as a fallback, but it is not walked for a one-line fix.
+    chain = backend_chain(env)
+    if prefer:
+        chain = [prefer] + [b for b in chain if b[0] != prefer[0]]
+
+    for backend in chain:
+        got = translate.translate_batch(
+            subset,
+            language_name(code),
+            backend,
+            env,
+            locale=code,
+            extra_hint=(
+                "Keep every {placeholder} exactly as written, same spelling, same "
+                "number of them. Everything else must be translated."
+            ),
+        )
+
+        if not got or len(got) != len(subset):
+            continue
+
+        if all(
+            PLACEHOLDER.findall(source) == PLACEHOLDER.findall(str(value))
+            for source, value in zip(subset, got)
+        ):
+            patched = list(translated)
+            for offset, index in enumerate(bad):
+                patched[index] = got[offset]
+            return patched
+
+        print(f"    repair still drifts at {english[bad[0]][0]}")
+
+    return None
+
+
 def backend_chain(env: dict) -> list[tuple]:
     return translate.BACKENDS
 
@@ -155,6 +225,16 @@ def translate_locale(code: str, english: list[tuple[str, str]], env: dict, force
             continue
 
         reason = verify(code, todo, translated)
+
+        if reason and reason.startswith("placeholder drift"):
+            repaired = repair_placeholders(code, todo, translated, env, prefer=backend)
+
+            if repaired is not None:
+                translated = repaired
+                reason = verify(code, todo, translated)
+
+                if reason is None:
+                    print(f"  {backend[0]}: ok after repairing the placeholder line")
 
         if reason:
             print(f"  {backend[0]}: rejected — {reason}")
@@ -210,12 +290,12 @@ def main() -> int:
 
     env = translate.load_env()
     force = bool(args.force)
-    targets = args.force or TARGETS
+    selected = args.force or targets()
 
-    print(f"{len(english)} strings x {len(targets)} languages")
+    print(f"{len(english)} strings x {len(selected)} languages")
 
     failures = []
-    for code in targets:
+    for code in selected:
         if code == "en":
             continue
         result = translate_locale(code, english, env, force)
