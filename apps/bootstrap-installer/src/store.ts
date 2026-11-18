@@ -58,14 +58,16 @@ const INITIAL: BootstrapStateModel = {
 // Atoms
 // ---------------------------------------------------------------------------
 
-export type Route = 'welcome' | 'progress' | 'success' | 'failure'
+export type Route = 'language' | 'welcome' | 'progress' | 'success' | 'failure'
 
 /// How the installer was launched, mirrored from src-tauri AppMode.
 /// 'install' = first-run onboarding (bare launch). 'update' = driven by the
 /// desktop app handing off via `OpenAmer-Setup.exe --update`.
 export type AppMode = 'install' | 'update'
 
-export const $route = atom<Route>('welcome')
+// The installer opens on the language question, the way an OS installer does.
+// Update mode skips it: the desktop already handed off a known locale.
+export const $route = atom<Route>('language')
 export const $mode = atom<AppMode>('install')
 export const $bootstrap = atom<BootstrapStateModel>(INITIAL)
 export const $logPath = atom<string | null>(null)
@@ -181,6 +183,10 @@ export async function initialize(): Promise<void> {
     $logPath.set(logPath)
     $openamerHome.set(openamerHome)
     $mode.set(mode)
+
+    if (mode === 'update' && $route.get() === 'language') {
+      $route.set('welcome')
+    }
   } catch (err) {
     console.warn('failed to fetch installer paths', err)
   }

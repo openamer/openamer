@@ -4,7 +4,7 @@ import { FileText, RefreshCw } from 'lucide-react'
 import { Button } from '../components/button'
 import { LocalComputeIllustration } from '../components/illustrations'
 import { Stepper } from '../components/stepper'
-import { detectLang, strings } from '../i18n/strings'
+import { useStrings } from '../i18n'
 import { $logPath, $mode, type BootstrapStateModel, openLogDir, startInstall, startUpdate } from '../store'
 
 interface FailureProps {
@@ -22,7 +22,7 @@ export default function Failure({ bootstrap }: FailureProps) {
   const logPath = useStore($logPath)
   const mode = useStore($mode)
   const isUpdate = mode === 'update'
-  const s = strings(detectLang())
+  const s = useStrings()
 
   return (
     <div className="openamer-fade-in flex h-full flex-col">
@@ -79,7 +79,14 @@ export default function Failure({ bootstrap }: FailureProps) {
       </div>
 
       <div className="flex shrink-0 items-center justify-between border-t border-foreground/10 px-9 py-3">
-        <Stepper current={1} labels={s.stepper} update={isUpdate} />
+        <Stepper
+          current={isUpdate ? 1 : 2}
+          steps={
+            isUpdate
+              ? [s.stepper.update, s.stepper.install, s.stepper.done]
+              : [s.stepper.language, s.stepper.welcome, s.stepper.install, s.stepper.done]
+          }
+        />
         <span className="font-mono text-[10px] tracking-[0.18em] text-foreground/25 uppercase">openamer.dev</span>
       </div>
     </div>

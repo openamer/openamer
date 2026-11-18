@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer plant een taak, voert die uit met echte tools — opdrachtregel, browser, bestanden, code — en onthoudt wat werkte.",
+      "title": "Een agent die meedenkt"
+    },
+    {
+      "body": "Gesprekken, geheugen en modellen blijven op deze computer. Er wordt niets geüpload tenzij je daarom vraagt.",
+      "title": "Jouw hardware, jouw gegevens"
+    },
+    {
+      "body": "186 talen, elk in het schrift dat je echt leest. Op het eerste scherm van de app kies je je taal.",
+      "title": "Jouw taal, zoals het hoort"
+    },
+    {
+      "body": "Vaardigheden worden opgeslagen vanuit het werk zelf, zodat dagelijkse taken minder tijd kosten naarmate je de app langer gebruikt.",
+      "title": "Mogelijkheden die groeien"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Controleer of deze computer verbinding kan maken met internet.",
+      "Voer de installatie opnieuw uit — voltooide stappen worden overgeslagen.",
+      "Mislukt het twee keer? Open dan de logboeken; de laatste regels vermelden de stap."
+    ],
+    "lead": "Er zijn geen wijzigingen ongemerkt teruggedraaid — OpenAmer blijft waar het gestopt is, zodat een tweede poging daar verdergaat.",
+    "leadUpdate": "OpenAmer gebruikt nog steeds de vorige versie en blijft werken. Er is niets half vervangen.",
+    "log": "Logboek",
+    "openLogs": "Logboeken openen",
+    "retry": "Opnieuw proberen",
+    "retryUpdate": "Opnieuw bijwerken",
+    "title": "Installatie niet voltooid",
+    "titleUpdate": "Bijwerken niet voltooid"
+  },
+  "language": {
+    "continue": "Doorgaan",
+    "lead": "De installatie gaat verder in de taal die je hier kiest. Je kunt die later in de app wijzigen.",
+    "search": "Talen zoeken",
+    "title": "Kies je taal"
+  },
+  "progress": {
+    "cancel": "Annuleren",
+    "done": "Gereed",
+    "hideDetails": "Details verbergen",
+    "lead": "Eenmalige installatie: OpenAmer downloadt wat nodig is en configureert deze computer. Bij volgende keren opstarten wordt dit allemaal overgeslagen.",
+    "leadUpdate": "OpenAmer vervangt de vorige versie. Je sessies, geheugen en instellingen blijven ongewijzigd.",
+    "lines": "regels",
+    "liveOutput": "Live-uitvoer",
+    "showDetails": "Details tonen",
+    "stepsComplete": "{done} van {total} stappen voltooid",
+    "title": "OpenAmer installeren",
+    "titleUpdate": "OpenAmer bijwerken"
+  },
+  "stages": {
+    "bootstrap-marker": "Installatie als voltooid markeren",
+    "config-templates": "Configuratiesjablonen schrijven",
+    "configure": "API-sleutels en modellen configureren",
+    "dependencies": "Python-afhankelijkheden installeren",
+    "desktop": "Desktop-app bouwen",
+    "gateway": "Berichtengateway starten",
+    "git": "Git installeren",
+    "handoff": "Update voorbereiden",
+    "install": "Update installeren",
+    "node": "Node.js detecteren",
+    "node-deps": "Node.js-afhankelijkheden installeren",
+    "path": "OpenAmer aan PATH toevoegen",
+    "platform-sdks": "SDK's voor berichtenplatforms installeren",
+    "python": "Python controleren",
+    "rebuild": "Desktop-app opnieuw bouwen",
+    "repository": "OpenAmer-repository klonen",
+    "system-packages": "ripgrep en ffmpeg installeren",
+    "update": "Nieuwste versie downloaden",
+    "uv": "uv-pakketbeheerder installeren",
+    "venv": "Virtuele Python-omgeving maken"
+  },
+  "stepper": {
+    "done": "Gereed",
+    "install": "Installeren",
+    "language": "Taal",
+    "update": "Bijwerken",
+    "welcome": "Welkom"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Open de app en beschrijf wat je wilt laten doen. OpenAmer werkt op de achtergrond en meldt het resultaat.",
+        "title": "Begin met een zin"
+      },
+      {
+        "body": "Instellingen → Weergave → Taal. 186 taalvarianten, op elk moment te wisselen.",
+        "title": "Kies je taal"
+      },
+      {
+        "body": "Terugkerend werk wordt een vaardigheid — de volgende keer is één opdracht genoeg.",
+        "title": "Laat het onthouden"
+      }
+    ],
+    "command": "of start de app later via de opdrachtregel:",
+    "cta": "OpenAmer starten",
+    "errorTitle": "Kan de desktopapp niet starten",
+    "launching": "Bezig met starten",
+    "lead": "Alles staat klaar. OpenAmer is nu van jou — op deze computer, in jouw taal.",
+    "title": "OpenAmer is klaar"
+  },
+  "welcome": {
+    "bullets": [
+      "Werkt lokaal — je gesprekken blijven op deze computer",
+      "186 talen, ook in het schrift dat je leest",
+      "Alles kan later worden gewijzigd; niets ligt vast"
+    ],
+    "cta": "Installeren",
+    "ctaUpdate": "Nu bijwerken",
+    "kicker": "Eenmalige installatie",
+    "lead": "Je eigen agent. Op jouw hardware. In jouw taal.",
+    "leadUpdate": "Een nieuwere versie van OpenAmer staat klaar. Deze vervangt de vorige versie en behoudt alle sessies en instellingen.",
+    "note": "Duurt een paar minuten met een normale verbinding.",
+    "title": "Welkom bij OpenAmer",
+    "titleUpdate": "OpenAmer bijwerken"
+  }
+}

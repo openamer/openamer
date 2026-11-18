@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer merencanakan tugas, menjalankannya dengan alat nyata — terminal, peramban, berkas, kode — dan menyimpan cara yang berhasil.",
+      "title": "Agen yang ikut berpikir"
+    },
+    {
+      "body": "Percakapan, memori, dan model tersimpan di perangkat ini. Tidak ada yang diunggah kecuali Anda memintanya.",
+      "title": "Perangkat Anda, data Anda"
+    },
+    {
+      "body": "186 bahasa, masing-masing dengan aksara yang Anda baca. Layar pertama aplikasi meminta Anda memilih bahasa.",
+      "title": "Bahasa Anda, sebagaimana mestinya"
+    },
+    {
+      "body": "Keterampilan disimpan dari pekerjaan itu sendiri, sehingga tugas sehari-hari makin cepat diselesaikan seiring pemakaian.",
+      "title": "Kemampuan yang terus berkembang"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Pastikan perangkat ini dapat mengakses internet.",
+      "Jalankan penyiapan lagi — langkah yang selesai tidak akan diulang.",
+      "Jika gagal dua kali, buka catatan; baris terakhir menunjukkan langkah yang gagal."
+    ],
+    "lead": "Tidak ada perubahan yang dibatalkan diam-diam — OpenAmer tetap di titik terakhir, jadi proses berikutnya akan berlanjut dari sana.",
+    "leadUpdate": "OpenAmer masih memakai versi sebelumnya dan tetap berfungsi. Tidak ada komponen yang diganti setengah jalan.",
+    "log": "Catatan",
+    "openLogs": "Buka catatan",
+    "retry": "Coba lagi",
+    "retryUpdate": "Ulangi pembaruan",
+    "title": "Penyiapan belum selesai",
+    "titleUpdate": "Pembaruan belum selesai"
+  },
+  "language": {
+    "continue": "Lanjutkan",
+    "lead": "Penyiapan dilanjutkan dalam bahasa yang Anda pilih di sini. Anda dapat mengubahnya nanti di aplikasi.",
+    "search": "Cari bahasa",
+    "title": "Pilih bahasa Anda"
+  },
+  "progress": {
+    "cancel": "Batal",
+    "done": "Siap",
+    "hideDetails": "Sembunyikan detail",
+    "lead": "Penyiapan satu kali: OpenAmer sedang mengunduh komponen yang diperlukan dan mengonfigurasi perangkat ini. Semua ini akan dilewati saat aplikasi dibuka lagi.",
+    "leadUpdate": "OpenAmer sedang mengganti versi sebelumnya. Sesi, memori, dan pengaturan Anda tidak diubah.",
+    "lines": "baris",
+    "liveOutput": "Keluaran langsung",
+    "showDetails": "Tampilkan detail",
+    "stepsComplete": "{done} dari {total} langkah selesai",
+    "title": "Menyiapkan OpenAmer",
+    "titleUpdate": "Memperbarui OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Menandai instalasi selesai",
+    "config-templates": "Menulis templat konfigurasi",
+    "configure": "Mengonfigurasi kunci API dan model",
+    "dependencies": "Menginstal dependensi Python",
+    "desktop": "Membangun aplikasi desktop",
+    "gateway": "Memulai gerbang perpesanan",
+    "git": "Menginstal Git",
+    "handoff": "Menyiapkan pembaruan",
+    "install": "Menginstal pembaruan",
+    "node": "Mendeteksi Node.js",
+    "node-deps": "Menginstal dependensi Node.js",
+    "path": "Menambahkan OpenAmer ke PATH",
+    "platform-sdks": "Menginstal SDK platform perpesanan",
+    "python": "Memverifikasi Python",
+    "rebuild": "Membangun ulang aplikasi desktop",
+    "repository": "Mengkloning repositori OpenAmer",
+    "system-packages": "Menginstal ripgrep dan ffmpeg",
+    "update": "Mengunduh versi terbaru",
+    "uv": "Menginstal pengelola paket uv",
+    "venv": "Membuat lingkungan virtual Python"
+  },
+  "stepper": {
+    "done": "Siap",
+    "install": "Pasang",
+    "language": "Bahasa",
+    "update": "Perbarui",
+    "welcome": "Selamat datang"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Buka aplikasi dan jelaskan apa yang ingin Anda selesaikan. OpenAmer bekerja di latar belakang dan melaporkan hasilnya.",
+        "title": "Mulai dengan satu kalimat"
+      },
+      {
+        "body": "Pengaturan → Tampilan → Bahasa. 186 pilihan bahasa, dapat diganti kapan saja.",
+        "title": "Pilih bahasa Anda"
+      },
+      {
+        "body": "Pekerjaan berulang menjadi keterampilan — lain kali cukup satu perintah.",
+        "title": "Biarkan agen mengingat"
+      }
+    ],
+    "command": "atau jalankan nanti dari terminal:",
+    "cta": "Jalankan OpenAmer",
+    "errorTitle": "Tidak dapat menjalankan aplikasi desktop",
+    "launching": "Menjalankan",
+    "lead": "Semuanya sudah siap. OpenAmer kini milik Anda — di perangkat ini, dalam bahasa Anda.",
+    "title": "OpenAmer siap"
+  },
+  "welcome": {
+    "bullets": [
+      "Berjalan secara lokal — percakapan Anda tetap di perangkat ini",
+      "186 bahasa, termasuk aksara yang Anda baca",
+      "Semuanya dapat diubah nanti; tidak ada yang permanen"
+    ],
+    "cta": "Pasang",
+    "ctaUpdate": "Perbarui sekarang",
+    "kicker": "Penyiapan satu kali",
+    "lead": "Agen Anda sendiri. Di perangkat Anda. Dalam bahasa Anda.",
+    "leadUpdate": "Versi OpenAmer yang lebih baru sudah siap. Pembaruan ini mengganti versi sebelumnya dan mempertahankan semua sesi serta pengaturan.",
+    "note": "Perlu beberapa menit dengan koneksi normal.",
+    "title": "Selamat datang di OpenAmer",
+    "titleUpdate": "Perbarui OpenAmer"
+  }
+}

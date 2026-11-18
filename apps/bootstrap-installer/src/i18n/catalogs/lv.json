@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer plāno uzdevumu, veic to ar īstiem rīkiem — termināli, pārlūku, failiem, kodu — un saglabā to, kas noderēja.",
+      "title": "Aģents, kas domā līdzi"
+    },
+    {
+      "body": "Sarunas, atmiņa un modeļi paliek šajā datorā. Nekas netiek augšupielādēts bez jūsu lūguma.",
+      "title": "Jūsu aparatūra, jūsu dati"
+    },
+    {
+      "body": "186 valodas — katra rakstībā, ko patiešām lasāt. Valodu izvēlaties lietotnes pirmajā ekrānā.",
+      "title": "Jūsu valoda — kā nākas"
+    },
+    {
+      "body": "Prasmes tiek saglabātas darba gaitā, tāpēc, jo ilgāk lietojat, jo mazāk laika aizņem ikdienas uzdevumi.",
+      "title": "Spējas, kas aug"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Pārbaudiet, vai šim datoram ir piekļuve internetam.",
+      "Palaidiet iestatīšanu vēlreiz — pabeigtās darbības netiks atkārtotas.",
+      "Ja neizdodas divreiz, atveriet žurnālus; pēdējās rindās norādīta attiecīgā darbība."
+    ],
+    "lead": "Neviena izmaiņa nav atsaukta bez ziņas — OpenAmer apstājas tur, kur radās kļūme, un nākamajā reizē turpina no tās pašas vietas.",
+    "leadUpdate": "OpenAmer joprojām darbojas iepriekšējā versijā. Nekas nav aizstāts daļēji.",
+    "log": "Žurnāls",
+    "openLogs": "Atvērt žurnālus",
+    "retry": "Mēģināt vēlreiz",
+    "retryUpdate": "Atkārtot atjaunināšanu",
+    "title": "Iestatīšana nav pabeigta",
+    "titleUpdate": "Atjaunināšana nav pabeigta"
+  },
+  "language": {
+    "continue": "Turpināt",
+    "lead": "Iestatīšana turpināsies šeit izvēlētajā valodā. Vēlāk to varēsiet mainīt lietotnē.",
+    "search": "Meklēt valodas",
+    "title": "Izvēlieties valodu"
+  },
+  "progress": {
+    "cancel": "Atcelt",
+    "done": "Gatavs",
+    "hideDetails": "Slēpt informāciju",
+    "lead": "Vienreizēja iestatīšana: OpenAmer lejupielādē nepieciešamo un konfigurē šo datoru. Nākamajās palaišanas reizēs tas nebūs vajadzīgs.",
+    "leadUpdate": "OpenAmer aizstāj iepriekšējo versiju. Jūsu sesijas, atmiņa un iestatījumi paliek neskarti.",
+    "lines": "rindas",
+    "liveOutput": "Izvade reāllaikā",
+    "showDetails": "Rādīt informāciju",
+    "stepsComplete": "Pabeigtas {done} no {total} darbībām",
+    "title": "OpenAmer iestatīšana",
+    "titleUpdate": "OpenAmer atjaunināšana"
+  },
+  "stages": {
+    "bootstrap-marker": "Instalācijas atzīmēšana kā pabeigta",
+    "config-templates": "Konfigurācijas veidņu rakstīšana",
+    "configure": "API atslēgu un modeļu konfigurēšana",
+    "dependencies": "Python atkarību instalēšana",
+    "desktop": "Darbvirsmas lietotnes būvēšana",
+    "gateway": "Ziņapmaiņas vārtejas palaišana",
+    "git": "Git instalēšana",
+    "handoff": "Gatavošanās atjaunināšanai",
+    "install": "Atjauninājuma instalēšana",
+    "node": "Node.js noteikšana",
+    "node-deps": "Node.js atkarību instalēšana",
+    "path": "OpenAmer pievienošana PATH",
+    "platform-sdks": "Ziņapmaiņas platformu SDK instalēšana",
+    "python": "Python pārbaude",
+    "rebuild": "Darbvirsmas lietotnes pārbūvēšana",
+    "repository": "OpenAmer repozitorija klonēšana",
+    "system-packages": "ripgrep un ffmpeg instalēšana",
+    "update": "Jaunākās versijas lejupielāde",
+    "uv": "uv pakotņu pārvaldnieka instalēšana",
+    "venv": "Python virtuālās vides izveide"
+  },
+  "stepper": {
+    "done": "Gatavs",
+    "install": "Instalēt",
+    "language": "Valoda",
+    "update": "Atjaunināt",
+    "welcome": "Laipni lūdzam"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Atveriet lietotni un aprakstiet, ko vēlaties paveikt. OpenAmer strādā fonā un ziņo par rezultātu.",
+        "title": "Sāciet ar teikumu"
+      },
+      {
+        "body": "Iestatījumi → Attēlojums → Valoda. 186 lokalizācijas, ko var mainīt jebkurā brīdī.",
+        "title": "Izvēlieties valodu"
+      },
+      {
+        "body": "Atkārtots darbs kļūst par prasmi — nākamreiz pietiks ar vienu komandu.",
+        "title": "Ļaujiet tam atcerēties"
+      }
+    ],
+    "command": "vai palaidiet vēlāk no termināļa:",
+    "cta": "Palaist OpenAmer",
+    "errorTitle": "Neizdevās palaist darbvirsmas lietotni",
+    "launching": "Palaišana",
+    "lead": "Viss ir gatavs. OpenAmer tagad ir jūsu — šajā datorā, jūsu valodā.",
+    "title": "OpenAmer ir gatavs"
+  },
+  "welcome": {
+    "bullets": [
+      "Darbojas lokāli — sarunas paliek šajā datorā",
+      "186 valodas, arī jums ierastajā rakstībā",
+      "Vēlāk visu var mainīt; nekas nav neatgriezenisks"
+    ],
+    "cta": "Instalēt",
+    "ctaUpdate": "Atjaunināt tagad",
+    "kicker": "Vienreizēja iestatīšana",
+    "lead": "Jūsu pašu aģents. Jūsu aparatūrā. Jūsu valodā.",
+    "leadUpdate": "Ir pieejama jaunāka OpenAmer versija. Tā aizstās iepriekšējo versiju, saglabājot visas sesijas un iestatījumus.",
+    "note": "Ar parastu savienojumu tas aizņem dažas minūtes.",
+    "title": "Laipni lūdzam OpenAmer",
+    "titleUpdate": "Atjaunināt OpenAmer"
+  }
+}

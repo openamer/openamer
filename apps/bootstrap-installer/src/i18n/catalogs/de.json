@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer plant eine Aufgabe, führt sie mit echten Werkzeugen aus — Terminal, Browser, Dateien, Code — und behält, was funktioniert hat.",
+      "title": "Ein Agent, der mitdenkt"
+    },
+    {
+      "body": "Gespräche, Gedächtnis und Modelle bleiben auf diesem Rechner. Nichts wird hochgeladen, außer du willst es.",
+      "title": "Deine Hardware, deine Daten"
+    },
+    {
+      "body": "186 Sprachen, jede in der Schrift, die du wirklich liest. Der erste Bildschirm der App fragt danach.",
+      "title": "Deine Sprache, richtig"
+    },
+    {
+      "body": "Fähigkeiten entstehen aus der Arbeit selbst — wiederkehrende Aufgaben werden mit der Zeit kürzer.",
+      "title": "Fähigkeiten, die wachsen"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Prüfe, ob dieser Rechner das Internet erreicht.",
+      "Starte die Einrichtung erneut — fertige Schritte werden nicht wiederholt.",
+      "Scheitert es zweimal, öffne die Logs; die letzten Zeilen nennen den Schritt."
+    ],
+    "lead": "Es wurde nichts stillschweigend zurückgerollt — OpenAmer stoppt dort, wo es gestoppt hat, und ein zweiter Lauf macht von dort weiter.",
+    "leadUpdate": "OpenAmer läuft weiter auf der vorherigen Version. Nichts wurde halb ersetzt.",
+    "log": "Log",
+    "openLogs": "Logs öffnen",
+    "retry": "Erneut versuchen",
+    "retryUpdate": "Update wiederholen",
+    "title": "Einrichtung nicht abgeschlossen",
+    "titleUpdate": "Update nicht abgeschlossen"
+  },
+  "language": {
+    "continue": "Weiter",
+    "lead": "Die Einrichtung läuft in der Sprache, die du hier wählst. Später kannst du sie in der App ändern.",
+    "search": "Sprachen durchsuchen",
+    "title": "Wähle deine Sprache"
+  },
+  "progress": {
+    "cancel": "Abbrechen",
+    "done": "Fertig",
+    "hideDetails": "Details ausblenden",
+    "lead": "Einmalige Einrichtung: OpenAmer lädt herunter, was es braucht, und richtet diesen Rechner ein. Spätere Starts überspringen das.",
+    "leadUpdate": "OpenAmer ersetzt die vorherige Version. Sitzungen, Gedächtnis und Einstellungen bleiben unangetastet.",
+    "lines": "Zeilen",
+    "liveOutput": "Live-Ausgabe",
+    "showDetails": "Details anzeigen",
+    "stepsComplete": "{done} von {total} Schritten fertig",
+    "title": "OpenAmer wird eingerichtet",
+    "titleUpdate": "OpenAmer wird aktualisiert"
+  },
+  "stepper": {
+    "done": "Fertig",
+    "install": "Installation",
+    "language": "Sprache",
+    "update": "Update",
+    "welcome": "Willkommen"
+  },
+  "stages": {
+    "bootstrap-marker": "Installation wird als abgeschlossen markiert",
+    "config-templates": "Konfigurationsvorlagen werden geschrieben",
+    "configure": "API-Schlüssel und Modelle werden eingerichtet",
+    "dependencies": "Python-Abhängigkeiten werden installiert",
+    "desktop": "Desktop-App wird gebaut",
+    "gateway": "Messaging-Gateway wird gestartet",
+    "git": "Git wird installiert",
+    "handoff": "Update wird vorbereitet",
+    "install": "Update wird installiert",
+    "node": "Node.js wird erkannt",
+    "node-deps": "Node.js-Abhängigkeiten werden installiert",
+    "path": "OpenAmer wird zum PATH hinzugefügt",
+    "platform-sdks": "SDKs für Messaging-Plattformen werden installiert",
+    "python": "Python wird geprüft",
+    "rebuild": "Desktop-App wird neu gebaut",
+    "repository": "OpenAmer-Repository wird geklont",
+    "system-packages": "ripgrep und ffmpeg werden installiert",
+    "update": "Neueste Version wird geladen",
+    "uv": "uv-Paketmanager wird installiert",
+    "venv": "Virtuelle Python-Umgebung wird erstellt"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Öffne die App und beschreibe, was erledigt werden soll. OpenAmer arbeitet im Hintergrund und meldet sich zurück.",
+        "title": "Mit einem Satz anfangen"
+      },
+      {
+        "body": "Einstellungen → Anzeige → Sprache. 186 Sprachen, jederzeit wechselbar.",
+        "title": "Sprache wählen"
+      },
+      {
+        "body": "Wiederkehrende Arbeit wird ein Skill — beim nächsten Mal ein Befehl.",
+        "title": "Erinnern lassen"
+      }
+    ],
+    "command": "oder später aus einem Terminal starten:",
+    "cta": "OpenAmer starten",
+    "errorTitle": "Desktop-App konnte nicht gestartet werden",
+    "launching": "Startet",
+    "lead": "Alles ist eingerichtet. OpenAmer gehört jetzt dir — auf diesem Rechner, in deiner Sprache.",
+    "title": "OpenAmer ist bereit"
+  },
+  "welcome": {
+    "bullets": [
+      "Läuft lokal — deine Gespräche bleiben auf diesem Rechner",
+      "186 Sprachen, auch die Schrift, die du liest",
+      "Alles lässt sich später ändern; nichts ist festgeschrieben"
+    ],
+    "cta": "Installieren",
+    "ctaUpdate": "Jetzt aktualisieren",
+    "kicker": "Einmalige Einrichtung",
+    "lead": "Dein eigener Agent. Auf deiner Hardware. In deiner Sprache.",
+    "leadUpdate": "Eine neuere Version von OpenAmer ist bereit. Sie ersetzt die vorherige und behält jede Sitzung und Einstellung.",
+    "note": "Dauert bei normaler Verbindung ein paar Minuten.",
+    "title": "Willkommen bei OpenAmer",
+    "titleUpdate": "OpenAmer aktualisieren"
+  }
+}
