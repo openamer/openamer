@@ -1266,7 +1266,7 @@ export const kw = defineLocale({
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID kannel ek',
-        help: 'Kannel a ymlo eus an bot mesk proactive (output cron,不受蹄).',
+        help: 'Channel where the bot sends proactive messages (cron output, reminders).',
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Anv kannel ek',

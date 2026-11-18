@@ -89,7 +89,7 @@ export const ve = defineLocale({
     openStarmap: 'Vula tshengetedzo ya kuvhumbeleka',
     openKeybinds: 'Tinhwalo tia keyboard',
     layoutEditor: 'Mundzudisi wa ma布局',
-    layoutEditorTitle: 'Mundzudisi wa ma布局 — ⌘-click u resetisa ma布局',
+    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout',
   },
   keybinds: {
     title: 'Tinhwalo tia keyboard',
