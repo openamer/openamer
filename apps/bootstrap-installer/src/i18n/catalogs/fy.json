@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer plant in taak, rint it út mei echte ark — terminal, browser, bestannen, kode — en bewarret wat wurke.",
+      "title": "In agent dy't meidwaart"
+    },
+    {
+      "body": "Gesprekken, memorie en modellen leverje op dizze masine. Gjin oplaad, as it net fereaske wurdt.",
+      "title": "Dyn hardware, dyn data"
+    },
+    {
+      "body": "186 talen, elk yn it skrift datsto echt lêst. De earste skerm fan de app freget hokker.",
+      "title": "Dyn taal, korrekt"
+    },
+    {
+      "body": "Fertige wurde bewarre út it wurk sels, sadat alledagstaken korter wurde mei langer gebrûk.",
+      "title": "Kapasiteit dy't groeit"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Kontrolearje dat dizze masine it ynternet berikt.",
+      "Run de ynstellings opnij — foltôge stappen wurde net opnij dien.",
+      "As it twa kear mislearret, iepenje de protokollen; de lêste rigels neamje de stap."
+    ],
+    "lead": "Gjin feroaring wurde stille teruggehelle — OpenAmer stop op it plak wêr't it stoppe, dus in twadde run fierder troch fan dêr.",
+    "leadUpdate": "OpenAmer is noch op de foarige ferzje en wurket noch. Gjin diel is ferfange.",
+    "log": "Log",
+    "openLogs": "Iepen log",
+    "retry": "Besykje opnij",
+    "retryUpdate": "Opnij ferzje",
+    "title": "Ynstellings hat net foltôge",
+    "titleUpdate": "Ferzje hat net foltôge"
+  },
+  "language": {
+    "continue": "Trochgean",
+    "lead": "De ynstellings fierder troch yn de taal dy't hjir kiesst. Jo kinne it letter feroarje yn de app.",
+    "search": "Sykje talen",
+    "title": "Kies dyn taal"
+  },
+  "progress": {
+    "cancel": "Annulearje",
+    "done": "Klaar",
+    "hideDetails": "Ferbergje details",
+    "lead": "Éénkoppeling ynstellings: OpenAmer downloade wat it nedich hat en konfigurearret dizze masine. Letterste launchen skipje alles.",
+    "leadUpdate": "OpenAmer ferfange de foarige ferzje. Dyn sesjes, memorie en ynstellings bliuwen ûnberik.",
+    "lines": "rigels",
+    "liveOutput": "Live útfier",
+    "showDetails": "Toon details",
+    "stepsComplete": "{done} fan {total} stappen foltôge",
+    "title": "OpenAmer ynstelle",
+    "titleUpdate": "OpenAmer ferzje"
+  },
+  "stages": {
+    "bootstrap-marker": "Markearje ynstellings foltôge",
+    "config-templates": "Skriuw konfiguraasjonstriemplaten",
+    "configure": "Konfigurearje API-sletten en modellen",
+    "dependencies": "Python-afhinklikheden ynstelle",
+    "desktop": "Desktop-app bouwen",
+    "gateway": "Berjochtgateway starte",
+    "git": "Git ynstelle",
+    "handoff": "Opferme foar ferzje",
+    "install": "Ferzje ynstelle",
+    "node": "Node.js detectearje",
+    "node-deps": "Node.js-afhinklikheden ynstelle",
+    "path": "OpenAmer tafoegje oan PATH",
+    "platform-sdks": "Berjochtsplatform SDKs ynstelle",
+    "python": "Python ferifiearje",
+    "rebuild": "Desktop-app opnij bouwen",
+    "repository": "OpenAmer-repo klone",
+    "system-packages": "Ripgrep en ffmpeg ynstelle",
+    "update": "De lêste ferzje downloade",
+    "uv": "uv-pakketbehearder ynstelle",
+    "venv": "Python-virtual-omjouwing oanmeitsje"
+  },
+  "stepper": {
+    "done": "Klaar",
+    "install": "Ynstelle",
+    "language": "Taal",
+    "update": "Ferzje",
+    "welcome": "Wolkom"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Iepen de app en beskriuw wat jo wolle. OpenAmer wurket op de agtergrûn en rapportearret werom.",
+        "title": "Begjin mei in sin"
+      },
+      {
+        "body": "Ynstellings → Skerm → Taal. 186 lokaals, skakelber op elk momint.",
+        "title": "Kies dyn taal"
+      },
+      {
+        "body": "Herhalende wurk wurdt in ferdichheid — de folgjende kear neamd it ien kommando.",
+        "title": "Lit it ûnthâlde"
+      }
+    ],
+    "command": "of starte it letter út in terminal:",
+    "cta": "Start OpenAmer",
+    "errorTitle": "Koe de desktop-app net starte",
+    "launching": "Starte",
+    "lead": "Alles is op plak. OpenAmer is no dy — op dizze masine, yn dyn taal.",
+    "title": "OpenAmer is klaar"
+  },
+  "welcome": {
+    "bullets": [
+      "Dryn lokaal — dyn gesprekken bliuwen op dizze masine",
+      "186 talen, ynklusyf it skrift datsto lêst",
+      "Alles kin letter feroare wurde; gjin is permanent"
+    ],
+    "cta": "Ynstelle",
+    "ctaUpdate": "Ferzje no",
+    "kicker": "Éénkoppeling ynstellings",
+    "lead": "Dyn eigen agent. Op dyn hardware. Yn dyn taal.",
+    "leadUpdate": "In nij OpenAmer is klear. Dit ferfange de foarige ferzje en bewarret elke sesje en ynstelling.",
+    "note": "Neis in pear minuten op in standert ferbining.",
+    "title": "Wolkom by OpenAmer",
+    "titleUpdate": "Ferzje OpenAmer"
+  }
+}
