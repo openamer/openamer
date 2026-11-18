@@ -342,3 +342,59 @@ def test_security_pins_present_in_mirrored_lazy_features():
         "pyproject extras — the lazy install path would not enforce the "
         "CVE-patched floor:\n  " + "\n  ".join(problems)
     )
+
+
+# ---------------------------------------------------------------------------
+# Version bump <-> lockfile consistency
+#
+# A release bumps pyproject.toml (and openamer_cli/__init__.py) to the new
+# CalVer date. uv.lock carries the project's own version too, and every CI
+# test slice installs with `uv sync --locked`, which hard-fails with
+#
+#     The lockfile at `uv.lock` needs to be updated, but `--locked` was provided.
+#
+# so a bump that forgets `uv lock` red-lights Python tests, the desktop E2E
+# job and `uv lock --check` on main — long after the bump PR merged. Measured
+# 2026-11-18: #411 bumped the version files by hand, uv.lock stayed at
+# 2026.11.17, and main went red on three checks for the rest of the day.
+#
+# `scripts/daily-release.py` regenerates the lock, but nothing caught the
+# manual bump. This test does, in the fast slice that needs no uv sync.
+# ---------------------------------------------------------------------------
+
+
+def _project_version_from_pyproject() -> str:
+    data = tomllib.loads((REPO_ROOT / "pyproject.toml").read_text(encoding="utf-8"))
+    return data["project"]["version"]
+
+
+def _uv_lock_pinned_version(project_name: str) -> str | None:
+    """Return the version uv.lock resolves for *project_name*, or None."""
+    lock = (REPO_ROOT / "uv.lock").read_text(encoding="utf-8")
+    wanted = _canonical(project_name)
+    name: str | None = None
+    for line in lock.splitlines():
+        if line.startswith("[[package]]"):
+            name = None
+        elif line.startswith("name = "):
+            name = _canonical(line.split("=", 1)[1].strip().strip('"'))
+        elif line.startswith("version = ") and name == wanted:
+            return line.split("=", 1)[1].strip().strip('"')
+    return None
+
+
+def test_uv_lock_pins_the_pyproject_version():
+    """uv.lock must resolve the project to the version pyproject declares.
+
+    Asserted as a relation between the two files (never a frozen literal), so
+    the next release keeps it true without editing this test.
+    """
+    declared = _project_version_from_pyproject()
+    locked = _uv_lock_pinned_version("openamer-agent")
+    assert locked is not None, "openamer-agent not found in uv.lock"
+    assert locked == declared, (
+        f"uv.lock pins openamer-agent {locked} but pyproject.toml declares "
+        f"{declared} — run `uv lock` and commit the lockfile; `uv sync "
+        f"--locked` fails on every CI slice until then"
+    )
+
