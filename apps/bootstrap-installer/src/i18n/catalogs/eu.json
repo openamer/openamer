@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer ekintza bat planatzen du, benetako tresnak erabiliz exekutatzen du — terminala, nabigatzailea, fitxategiak, kodea — eta funtzionatzen duen guztia mantentzen du.",
+      "title": "Antolaketa bat den agentzia"
+    },
+    {
+      "body": "Elkarrizketak, oroitzapena eta modeloak makina honetan bizirik daude. Ez da ezer igoko eskatzen ez bada.",
+      "title": "Zure hardwarea, zure datuak"
+    },
+    {
+      "body": "186 hizkuntza, bakoitza zerrendatutako idazkera batean. Aplikazioaren lehen pantailak zein den galdetzen du.",
+      "title": "Zure hizkuntza, ondo"
+    },
+    {
+      "body": "Trebetasunak lanetik gordetzen dira, egunero egindako lanak laburtzen dira erabiltzen dituzunean.",
+      "title": "Hazi egiten duen gaitasuna"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Egiaztatu makina honek internetera iristea.",
+      "Egin berriro konfigurazioa — amaitutako urratsak ez dira berriz errepikatzen.",
+      "Bi aldiz huts egiten badu, ireki egunkariak; azken lerroek urratsa izendatzen dute."
+    ],
+    "lead": "Ez da aldaketarik itzuli bereizten — OpenAmer gelditu denetik gelditzen da, beraz bigarren exekuzioa bertatik jarraitzen du.",
+    "leadUpdate": "OpenAmer oraindik aurreko bertsioan dago eta funtzionatzen jarraitzen du. Ez da ezer erdian ordeztu.",
+    "log": "Egunkaria",
+    "openLogs": "Ireki egunkariak",
+    "retry": "Saiatu berriro",
+    "retryUpdate": "Eguneraketa berriro saiatu",
+    "title": "Konfigurazioa ez da amaitu",
+    "titleUpdate": "Eguneraketa ez da amaitu"
+  },
+  "language": {
+    "continue": "Jarraitu",
+    "lead": "Konfigurazioa zure aukeratutako hizkuntzan jarraitzen da. Geroago aldatu dezakezu aplikazioan.",
+    "search": "Hizkuntzak bilatu",
+    "title": "Aukeratu zure hizkuntza"
+  },
+  "progress": {
+    "cancel": "Ezeztatu",
+    "done": "Prest",
+    "hideDetails": "Xehetasunak ezkutatu",
+    "lead": "Behin behineko konfigurazioa: OpenAmer behar dena deskargatzen du eta makina hau konfiguratzen du. Hurrengo abiarazketetan guztia saltatzen da.",
+    "leadUpdate": "OpenAmer aurreko bertsioa ordezkatzen du. Zure saioak, oroitzapena eta ezarpenak ukitu gabe daude.",
+    "lines": "lerroak",
+    "liveOutput": "Irteera zuzena",
+    "showDetails": "Xehetasunak erakutsi",
+    "stepsComplete": "{done} / {total} urratsak osatu dira",
+    "title": "OpenAmer konfiguratzen",
+    "titleUpdate": "OpenAmer eguneratzen"
+  },
+  "stages": {
+    "bootstrap-marker": "Instalazioa osatuta markatuta",
+    "config-templates": "Konfigurazio txantiloiak idazten",
+    "configure": "API gakoak eta modeloak konfiguratzen",
+    "dependencies": "Python dependenteak instalatzen",
+    "desktop": "Desktop aplikazioa eraikitzen",
+    "gateway": "Mezularitza atebidea abiarazten",
+    "git": "Git instalatzen",
+    "handoff": "Eguneratua prestatzen",
+    "install": "Eguneraketa instalatzen",
+    "node": "Node.js detektatzen",
+    "node-deps": "Node.js dependenteak instalatzen",
+    "path": "OpenAmer PATH-era gehitzen",
+    "platform-sdks": "Mezularitza plataformako SDKak instalatzen",
+    "python": "Python egiaztatzen",
+    "rebuild": "Desktop aplikazioa berriro eraikitzen",
+    "repository": "OpenAmer biltegia klonatzen",
+    "system-packages": "ripgrep eta ffmpeg instalatzen",
+    "update": "Bertsio berriena deskargatzen",
+    "uv": "uv pakete kudeatzailea instalatzen",
+    "venv": "Python ingurune birtuala sortzen"
+  },
+  "stepper": {
+    "done": "Prest",
+    "install": "Instalatu",
+    "language": "Hizkuntza",
+    "update": "Eguneratu",
+    "welcome": "Ongi etorri"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Ireki aplikazioa eta deskribatu zer egin nahi duzun. OpenAmer atzeko planan funtzionatzen du eta itzultzen du.",
+        "title": "Hizkuntza batekin hasi"
+      },
+      {
+        "body": "Ezarpenak → Bistaratu → Hizkuntza. 186 lokalak, edozein unetan alda daitezke.",
+        "title": "Aukeratu zure hizkuntza"
+      },
+      {
+        "body": "Lan errepikagarria trebetasun bihurtzen da — hurrengo aldian komando bakar batek egiten du.",
+        "title": "Gogoratu"
+      }
+    ],
+    "command": "edo terminal batetik abiarazi geroago:",
+    "cta": "Abiarazi OpenAmer",
+    "errorTitle": "Ezin izan da desktop aplikazioa abiarazi",
+    "launching": "Abiarazten",
+    "lead": "Denak kokatuan daude. OpenAmer orain zurea da — makina honetan, zure hizkuntzan.",
+    "title": "OpenAmer prest dago"
+  },
+  "welcome": {
+    "bullets": [
+      "Lokalki exekutatzen du — zure elkarrizketak makina honetan daude",
+      "186 hizkuntza, irakurtzen duzun idazkera barne",
+      "Denak geroago aldatu daitezke; ezer ez da iraunkorra"
+    ],
+    "cta": "Instalatu",
+    "ctaUpdate": "Eguneratu orain",
+    "kicker": "Behin behineko konfigurazioa",
+    "lead": "Zure agentzia propioa. Zure hardwarean. Zure hizkuntzan.",
+    "leadUpdate": "OpenAmer berriagoa prest dago. Hau aurreko bertsioa ordezkatzen du eta saio eta ezarpen guztiak mantentzen ditu.",
+    "note": "Minutu batzuk behar ditu konekzio arrunta batean.",
+    "title": "Ongi etorri OpenAmer",
+    "titleUpdate": "Eguneratu OpenAmer"
+  }
+}

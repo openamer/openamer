@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer ha plånu i che'cho', ha cho'gue ni ramienta siha — tetminåt, nabegadót, atkibu siha, yan kódigo — ya ha na'salba i macho'gue maolek.",
+      "title": "Un ahente ni humuhungok yan manhassos yan hågu"
+    },
+    {
+      "body": "I kombetsasion siha, i memoria, yan i modélu siha manlå'la' gi este na kompyutadora. Tåya' mana'katga guatu yanggen ti un faisen.",
+      "title": "Kompyutadórå-mu, dåtos-mu"
+    },
+    {
+      "body": "186 na lengguåhi, kada unu gi i tinige' ni un taitai. I primet pantåya gi i prugråma ha faisen håfa un eskohe.",
+      "title": "I lengguåhi-mu, gi minagåhet"
+    },
+    {
+      "body": "Masasalba i kapasidåt ginen i che'cho' mismo, ya mas manmalå' i che'cho' kada diha mientras mas un usa.",
+      "title": "Kapasidåt ni dumadångkolo"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Chagi yanggen siña este na kompyutadora humålom gi internet.",
+      "Na'gåsgås ta'lo i instalasion — ti para u ma'ulon i manmåkpo na pasu siha.",
+      "Yanggen dos biåhi ti manå'i, baba i listan aktibidåt; i uttimo na raya siha ha sångan i pasu."
+    ],
+    "lead": "Tåya' tinilaika mana'na'lo ni ti un tungo' — OpenAmer ha para gi mismo na lugåt ni pumara, ya i sigiente na cho'gue ha kontinuha guihi.",
+    "leadUpdate": "OpenAmer gaige ha' gi i bihu na betsión ya machocho'cho' ha'. Tåya' mana'tulaika ni ti måkpo.",
+    "log": "Listan aktibidåt",
+    "openLogs": "Baba i listan aktibidåt",
+    "retry": "Chagi ta'lo",
+    "retryUpdate": "Chagi ta'lo i rinueba",
+    "title": "Ti måkpo i instalasion",
+    "titleUpdate": "Ti måkpo i rinueba"
+  },
+  "language": {
+    "continue": "Kontinuha",
+    "lead": "I instalasion ha kontinuha gi i lengguåhi ni un eskohe guini. Siña un tulaika despues gi i prugråma.",
+    "search": "Aligao lengguåhi",
+    "title": "Eskohe i lengguåhi-mu"
+  },
+  "progress": {
+    "cancel": "Kansela",
+    "done": "Listo",
+    "hideDetails": "Na'na' i detåye siha",
+    "lead": "Instalasion un biåhi ha': OpenAmer ha dedeskåtga i nisisita ya ha konfigura este na kompyutadora. I otro na tinutuhon siha ti para u cho'gue este ta'lo.",
+    "leadUpdate": "OpenAmer ha tulaika i bihu na betsión. Ti para u matulaika i sesion-mu siha, i memoria, yan i inayek-mu siha.",
+    "lines": "raya siha",
+    "liveOutput": "Resulta gi mismo na tiempo",
+    "showDetails": "Na'annok i detåye siha",
+    "stepsComplete": "{done} gi {total} na pasu manmåkpo",
+    "title": "Ma'instala OpenAmer",
+    "titleUpdate": "Marinueba OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Mana'seña na måkpo i instalasion",
+    "config-templates": "Matutuge' i plantiyan konfigurasion siha",
+    "configure": "Makonfigura i yaben API yan i modélu siha",
+    "dependencies": "Ma'instala i nisisitan Python siha",
+    "desktop": "Mafa'tinas i prugråman eskritoriu",
+    "gateway": "Matututuhon i entrada para mensåhi",
+    "git": "Ma'instala Git",
+    "handoff": "Mapripåra para u marinueba",
+    "install": "Ma'instala i rinueba",
+    "node": "Maaligao Node.js",
+    "node-deps": "Ma'instala i nisisitan Node.js siha",
+    "path": "Mana'dadåña' OpenAmer gi PATH",
+    "platform-sdks": "Ma'instala i SDK siha para i platafotman mensåhi",
+    "python": "Mabebetifika Python",
+    "rebuild": "Mafa'tinas ta'lo i prugråman eskritoriu",
+    "repository": "Makokopia i dipósiton OpenAmer",
+    "system-packages": "Ma'instala ripgrep yan ffmpeg",
+    "update": "Madedeskåtga i mas nuebu na betsión",
+    "uv": "Ma'instala i manehadón paketen uv",
+    "venv": "Mafa'tinas i bittuat na lugåt Python"
+  },
+  "stepper": {
+    "done": "Listo",
+    "install": "Instala",
+    "language": "Lengguåhi",
+    "update": "Rinueba",
+    "welcome": "Bienbenidu"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Baba i prugråma ya sångan håfa malago'-mu na u macho'gue. OpenAmer machocho'cho' gi tatte ya ha na'tungo' hao ni i resulta.",
+        "title": "Tutuhon ni un frasa"
+      },
+      {
+        "body": "Inayek siha → Pantåya → Lengguåhi. 186 na inayek lengguåhi yan lugåt, siña matulaika maseha ngai'an.",
+        "title": "Eskohe i lengguåhi-mu"
+      },
+      {
+        "body": "I che'cho' ni ma'ulon dumididi kapasidåt — gi sigiente na biåhi, un kumåndu ha' nisisita.",
+        "title": "Dingo na u hasso"
+      }
+    ],
+    "command": "pat tutuhon despues ginen un tetminåt:",
+    "cta": "Tutuhon OpenAmer",
+    "errorTitle": "Ti siña matutuhon i prugråman eskritoriu",
+    "launching": "Matututuhon",
+    "lead": "Todudu listo. OpenAmer iyo-mu på'go — gi este na kompyutadora, gi i lengguåhi-mu.",
+    "title": "Listo OpenAmer"
+  },
+  "welcome": {
+    "bullets": [
+      "Machocho'cho' guini ha' — i kombetsasion-mu siha manåga gi este na kompyutadora",
+      "186 na lengguåhi, kontodu i tinige' ni un taitai",
+      "Siña matulaika todudu despues; tåya' petmanente"
+    ],
+    "cta": "Instala",
+    "ctaUpdate": "Rinueba på'go",
+    "kicker": "Instalasion un biåhi ha'",
+    "lead": "I ahentem-mu mismo. Gi i kompyutadórå-mu. Gi i lengguåhi-mu.",
+    "leadUpdate": "Listo un mas nuebu na OpenAmer. Este ha tulaika i bihu na betsión ya ha na'salba todu i sesion yan inayek siha.",
+    "note": "Palu ha' na minutu yanggen regulåt i koneksion.",
+    "title": "Bienbenidu para OpenAmer",
+    "titleUpdate": "Rinueba OpenAmer"
+  }
+}

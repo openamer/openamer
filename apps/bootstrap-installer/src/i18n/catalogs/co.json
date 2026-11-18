@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer pianifica un compitu, l'esegue cù strumenti veri — terminale, navigatore, fugliali, codice — è tene ciò chì hà funziunatu.",
+      "title": "Un agente chì riflette cun voi"
+    },
+    {
+      "body": "E cunversazioni, a memoria è i mudelli fermanu nant'à st'urdinatore. Nunda ùn hè caricatu in linea senza a vostra dumanda.",
+      "title": "U vostru materiale, i vostri dati"
+    },
+    {
+      "body": "186 lingue, ognuna in a scrittura chì leghjite veramente. A prima schermata di l'app vi dumanda quale sceglie.",
+      "title": "A vostra lingua, cum'ellu ci vole"
+    },
+    {
+      "body": "E cumpetenze sò salvate da u travagliu stessu, cusì i compiti cutidiani piglianu menu tempu più l'adoprate.",
+      "title": "Capacità chì cresce"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Verificate chì st'urdinatore possi accede à Internet.",
+      "Rilanciate a cunfigurazione — e tappe compie ùn sò micca ripetute.",
+      "S'ella fiasca duie volte, aprite i registri; l'ultime righe indicanu a tappa."
+    ],
+    "lead": "Nisun cambiamentu hè statu annullatu senza avvisu — OpenAmer ferma induv'ellu s'hè arrestatu, è una seconda esecuzione ripiglia da quì.",
+    "leadUpdate": "OpenAmer hè sempre à a versione precedente è cuntinueghja à funziunà. Nunda ùn hè statu rimpiazzatu à mezu.",
+    "log": "Registru",
+    "openLogs": "Apre i registri",
+    "retry": "Pruvà torna",
+    "retryUpdate": "Ripruvà l'aghjurnamentu",
+    "title": "A cunfigurazione ùn hè micca finita",
+    "titleUpdate": "L'aghjurnamentu ùn hè micca finitu"
+  },
+  "language": {
+    "continue": "Cuntinuà",
+    "lead": "A cunfigurazione cuntinueghja in a lingua scelta quì. A puderete cambià più tardi in l'app.",
+    "search": "Circà lingue",
+    "title": "Sceglite a vostra lingua"
+  },
+  "progress": {
+    "cancel": "Annullà",
+    "done": "Prontu",
+    "hideDetails": "Piattà i ditagli",
+    "lead": "Cunfigurazione unica: OpenAmer scarica ciò chì li ci vole è cunfigureghja st'urdinatore. I prossimi avvii saltanu tuttu què.",
+    "leadUpdate": "OpenAmer rimpiazza a versione precedente. E vostre sessioni, a memoria è i paràmetri fermanu intatti.",
+    "lines": "righe",
+    "liveOutput": "Risultati in diretta",
+    "showDetails": "Mustrà i ditagli",
+    "stepsComplete": "{done} tappe compie nant'à {total}",
+    "title": "Cunfigurazione di OpenAmer",
+    "titleUpdate": "Aghjurnamentu di OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Marcatura di l'installazione cum'è compia",
+    "config-templates": "Scrittura di i mudelli di cunfigurazione",
+    "configure": "Cunfigurazione di e chjave API è di i mudelli",
+    "dependencies": "Installazione di e dipendenze Python",
+    "desktop": "Cumpilazione di l'app per l'urdinatore",
+    "gateway": "Avviu di a porta di messageria",
+    "git": "Installazione di Git",
+    "handoff": "Preparazione di l'aghjurnamentu",
+    "install": "Installazione di l'aghjurnamentu",
+    "node": "Rilevazione di Node.js",
+    "node-deps": "Installazione di e dipendenze Node.js",
+    "path": "Aghjunta di OpenAmer à PATH",
+    "platform-sdks": "Installazione di i SDK di e piattaforme di messageria",
+    "python": "Verificazione di Python",
+    "rebuild": "Ricumpilazione di l'app per l'urdinatore",
+    "repository": "Clunazione di u dipositu OpenAmer",
+    "system-packages": "Installazione di ripgrep è ffmpeg",
+    "update": "Scaricamentu di l'ultima versione",
+    "uv": "Installazione di u gestore di pacchetti uv",
+    "venv": "Creazione di l'ambiente virtuale Python"
+  },
+  "stepper": {
+    "done": "Prontu",
+    "install": "Installà",
+    "language": "Lingua",
+    "update": "Aghjurnà",
+    "welcome": "Benvenuti"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Aprite l'app è discrivite ciò chì vulete fà. OpenAmer travaglia in fondu è vi rende contu.",
+        "title": "Principiate cù una frasa"
+      },
+      {
+        "body": "Paràmetri → Visualizazione → Lingua. 186 lingue è varianti, da cambià quand'è vo vulete.",
+        "title": "Sceglite a vostra lingua"
+      },
+      {
+        "body": "U travagliu ripetitivu diventa una cumpetenza — a prossima volta basta un cumandu.",
+        "title": "Lasciatelu ricurdà"
+      }
+    ],
+    "command": "o avviatelu più tardi da un terminale:",
+    "cta": "Avvià OpenAmer",
+    "errorTitle": "Impussibule d'avvià l'app per l'urdinatore",
+    "launching": "Avviu in corsu",
+    "lead": "Tuttu hè prontu. OpenAmer hè avà vostru — nant'à st'urdinatore, in a vostra lingua.",
+    "title": "OpenAmer hè prontu"
+  },
+  "welcome": {
+    "bullets": [
+      "Funziuneghja lucalmente — e vostre cunversazioni fermanu nant'à st'urdinatore",
+      "186 lingue, ancu in a scrittura chì leghjite",
+      "Tuttu si pò cambià più tardi; nunda ùn hè permanente"
+    ],
+    "cta": "Installà",
+    "ctaUpdate": "Aghjurnà avà",
+    "kicker": "Cunfigurazione unica",
+    "lead": "U vostru agente. Nant'à u vostru materiale. In a vostra lingua.",
+    "leadUpdate": "Una versione più nova di OpenAmer hè pronta. Rimpiazza a versione precedente è mantene tutte e sessioni è tutti i paràmetri.",
+    "note": "Piglia qualchì minutu cù una cunnessione nurmale.",
+    "title": "Benvenuti in OpenAmer",
+    "titleUpdate": "Aghjurnà OpenAmer"
+  }
+}

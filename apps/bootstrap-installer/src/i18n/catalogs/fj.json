@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer planar ein uppgávu, keyrir hana við real verk — terminal, vafri, skrár, kóði — og heldur eftir, hvá er virkt.",
+      "title": "Ein ágripur, sum hugsað saman"
+    },
+    {
+      "body": "Samrøður, minnis og móltrar lifa á hesi maskini. Nóg er ikki lastað upp nema tú biðjir um tað.",
+      "title": "Tín maskini, tínar gøgn"
+    },
+    {
+      "body": "186 tungumál, hvørt í skráni tú lesir. Fyrsta skjáin spyr, hvørt tú vil.",
+      "title": "Tín tungumál, rætt"
+    },
+    {
+      "body": "Ferdir eru sparaðir frá arbeiði sjálvu, so dagliga uppgávur verða kortari, jo meira tú brúkar hana.",
+      "title": "Møguleiki, sum vaxir"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Staðfesti, at hesi maskini kan ná internetið.",
+      "Keyr setup aftur — fullførdir skref eru ikki endurteknir.",
+      "Um tað misstakar tvær gongur, opnar loggar; síðstir línur navnar skrefið."
+    ],
+    "lead": "Einki broytingar var roldar í stilling, OpenAmer stoppar, har tað stoppar, so ein annar run heldur frá hesi stað.",
+    "leadUpdate": "OpenAmer er enn á fyrri útgávi og heldur áfram at virka. Nóg var ikki halvt bytt.",
+    "log": "Logg",
+    "openLogs": "Opna loggar",
+    "retry": "Prøv aftur",
+    "retryUpdate": "Endurtaka uppdatering",
+    "title": "Setup er ikki fullførdur",
+    "titleUpdate": "Uppdatering er ikki fullførdur"
+  },
+  "language": {
+    "continue": "Halt",
+    "lead": "Setup heldur áfram í tungumálinum tú velur her. Tú kanst broyta tað seinari í appen.",
+    "search": "Leita tungumál",
+    "title": "Vel tín tungumál"
+  },
+  "progress": {
+    "cancel": "Avbryt",
+    "done": "Klar",
+    "hideDetails": "Gøgn skjul",
+    "lead": "Ein gong setup: OpenAmer lastar niður, hvørt tað er neyðugt, og stillir hesi maskini. Seinari start skippar alt hetta.",
+    "leadUpdate": "OpenAmer er byttur fyrri útgávi. Tínar øðrum, minnis og stillingar eru óbreytt.",
+    "lines": "línur",
+    "liveOutput": "Lívutgangur",
+    "showDetails": "Vís skjul",
+    "stepsComplete": "{done} av {total} skref fullførdir",
+    "title": "Set upp OpenAmer",
+    "titleUpdate": "Uppdaterar OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Markera installering fullførd",
+    "config-templates": "Skriva stillingarmalar",
+    "configure": "Stilla API-nøglar og móltrar",
+    "dependencies": "Installera Python-tilvik",
+    "desktop": "Byggja desktop app",
+    "gateway": "Starte messaging gateway",
+    "git": "Installera Git",
+    "handoff": "Undirbýggja at uppdatera",
+    "install": "Installera uppdatering",
+    "node": "Finna Node.js",
+    "node-deps": "Installera Node.js-tilvik",
+    "path": "Leggja OpenAmer til PATH",
+    "platform-sdks": "Installera messaging platform SDKs",
+    "python": "Stilla Python",
+    "rebuild": "Endurtaka desktop app",
+    "repository": "Klóna OpenAmer-repositoriet",
+    "system-packages": "Installera ripgrep og ffmpeg",
+    "update": "Lasta niður nýsta útgávi",
+    "uv": "Installera uv pakkastjórann",
+    "venv": "Skapa Python-virkni umhvørn"
+  },
+  "stepper": {
+    "done": "Klar",
+    "install": "Installera",
+    "language": "Tungumál",
+    "update": "Uppdatera",
+    "welcome": "Velkomin"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Opna appen og lýsa, hvørt tú vil at gerast. OpenAmer virkar í bakgrunni og svarar aftur.",
+        "title": "Starta við eina setning"
+      },
+      {
+        "body": "Stillingar → Skjár → Tungumál. 186 staðir, broytandi hvenær sum tú vil.",
+        "title": "Vel tín tungumál"
+      },
+      {
+        "body": "Endurkomandi arbeiði verður ein ferd — næstini tekur tað ein skipun.",
+        "title": "Lat tað hugsa"
+      }
+    ],
+    "command": "eller starta tað seinari frá terminal:",
+    "cta": "Starta OpenAmer",
+    "errorTitle": "Kundi ikki starta desktop appen",
+    "launching": "Starte",
+    "lead": "Alt er í stað. OpenAmer er nú tín — á hesi maskini, í tínum tungumáli.",
+    "title": "OpenAmer er klár"
+  },
+  "welcome": {
+    "bullets": [
+      "Virkar lokalt — tínar samrøður eru á hesi maskini",
+      "186 tungumál, inklusiv skráni tú lesir",
+      "Alt kann broytast seinari; nøg er ikki varanleg"
+    ],
+    "cta": "Installera",
+    "ctaUpdate": "Uppdatera nú",
+    "kicker": "Ein gong setup",
+    "lead": "Tín egna ágripur. Á tín maskini. Í tínum tungumáli.",
+    "leadUpdate": "Ein nýggja OpenAmer er klár. Hetta byttir fyrri útgávi og heldur allar øðrum og stillingar.",
+    "note": "Tíðar ein fæl minuttur á einum vanliga samband.",
+    "title": "Velkomin til OpenAmer",
+    "titleUpdate": "Uppdatera OpenAmer"
+  }
+}

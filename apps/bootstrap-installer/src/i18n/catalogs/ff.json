@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer yiɗi task, yiɗi e toolji ɗiɗi — terminal, browser, files, code — e ɗaɓɓiti ko woni",
+      "title": "Agent ɗiɗi ko ɓuri no"
+    },
+    {
+      "body": "Conversations, memory e models ɓuri e makko. Ko honɗun ko ɓuri, ko ɓuri no ɓe njiyataa",
+      "title": "Hardware maa, data maa"
+    },
+    {
+      "body": "186 languages, ko ɗiɗi e script maa ɓe njiyataa. Screen ɗiɗi e app ɗiɗi ko ɓuri no",
+      "title": "Language maa, ko ɓuri no"
+    },
+    {
+      "body": "Skills ɓe njiyataa e work ɗiɗi, ko ɓuri no ɓe njiyataa",
+      "title": "Capability ɓe njiyataa"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Check ko makko ɓuri internet",
+      "Run setup ɗiɗi — steps ɓe njiyataa ko ɓuri no",
+      "So ɓe njiyataa, open logs; last lines ɓe njiyataa step"
+    ],
+    "lead": "No changes ɓe njiyataa — OpenAmer ɓuri no ɓe njiyataa, ko ɓuri no ɓe njiyataa",
+    "leadUpdate": "OpenAmer ɓuri no ɓe njiyataa, ko ɓuri no ɓe njiyataa",
+    "log": "Log",
+    "openLogs": "Open logs",
+    "retry": "Try again",
+    "retryUpdate": "Retry update",
+    "title": "Setup didn’t finish",
+    "titleUpdate": "Update didn’t finish"
+  },
+  "language": {
+    "continue": "Continue",
+    "lead": "Setup ɓuri no ɓe njiyataa e language maa ɓe njiyataa. ɓe njiyataa e app",
+    "search": "Search languages",
+    "title": "Choose your language"
+  },
+  "progress": {
+    "cancel": "Cancel",
+    "done": "Ready",
+    "hideDetails": "Hide details",
+    "lead": "One-time setup: OpenAmer ɓuri no ɓe njiyataa e makko. Later launches skip all of it",
+    "leadUpdate": "OpenAmer ɓuri no ɓe njiyataa e previous version. Sessions, memory e settings ɓe njiyataa",
+    "lines": "lines",
+    "liveOutput": "Live output",
+    "showDetails": "Show details",
+    "stepsComplete": "{done} of {total} steps complete",
+    "title": "Setting up OpenAmer",
+    "titleUpdate": "Updating OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Marking install complete",
+    "config-templates": "Writing configuration templates",
+    "configure": "Configuring API keys and models",
+    "dependencies": "Installing Python dependencies",
+    "desktop": "Building desktop app",
+    "gateway": "Starting messaging gateway",
+    "git": "Installing Git",
+    "handoff": "Preparing to update",
+    "install": "Installing the update",
+    "node": "Detecting Node.js",
+    "node-deps": "Installing Node.js dependencies",
+    "path": "Adding OpenAmer to PATH",
+    "platform-sdks": "Installing messaging platform SDKs",
+    "python": "Verifying Python",
+    "rebuild": "Rebuilding the desktop app",
+    "repository": "Cloning the OpenAmer repository",
+    "system-packages": "Installing ripgrep and ffmpeg",
+    "update": "Downloading the latest version",
+    "uv": "Installing the uv package manager",
+    "venv": "Creating the Python virtual environment"
+  },
+  "stepper": {
+    "done": "Ready",
+    "install": "Install",
+    "language": "Language",
+    "update": "Update",
+    "welcome": "Welcome"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Open the app and describe what you want done. OpenAmer works in the background and reports back.",
+        "title": "Start with a sentence"
+      },
+      {
+        "body": "Settings → Display → Language. 186 locales, switchable at any time.",
+        "title": "Pick your language"
+      },
+      {
+        "body": "Recurring work becomes a skill — next time it takes one command.",
+        "title": "Let it remember"
+      }
+    ],
+    "command": "or start it later from a terminal:",
+    "cta": "Launch OpenAmer",
+    "errorTitle": "Couldn’t launch the desktop app",
+    "launching": "Launching",
+    "lead": "Everything is in place. OpenAmer is now yours — on this machine, in your language.",
+    "title": "OpenAmer is ready"
+  },
+  "welcome": {
+    "bullets": [
+      "Runs locally — your conversations stay on this machine",
+      "186 languages, including the script you read",
+      "Everything can be changed later; nothing is permanent"
+    ],
+    "cta": "Install",
+    "ctaUpdate": "Update now",
+    "kicker": "One-time setup",
+    "lead": "Your own agent. On your hardware. In your language.",
+    "leadUpdate": "A newer OpenAmer is ready. This replaces the previous version and keeps every session and setting.",
+    "note": "Takes a few minutes on a normal connection.",
+    "title": "Welcome to OpenAmer",
+    "titleUpdate": "Update OpenAmer"
+  }
+}

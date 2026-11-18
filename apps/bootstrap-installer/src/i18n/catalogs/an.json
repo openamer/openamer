@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer planifica una tasca, la executa con ferramientas reals — terminal, navegador, fichers, codigo — y alza lo que ha funcionau.",
+      "title": "Un achent que piensa con tu"
+    },
+    {
+      "body": "Las conversacions, la memoria y los modelos se quedan en esta maquina. No se puya cosa si no lo pides.",
+      "title": "Lo tuyo hardware, los tuyos datos"
+    },
+    {
+      "body": "186 luengas, cadaguna en la escritura que leyes. La primera pantalla de l'aplicación te pregunta quina quiers.",
+      "title": "La tuya luenga, como cal"
+    },
+    {
+      "body": "Las habilidatz s'alzan a partir d'o treballo mesmo, asinas que las tascas diarias prenen menos tiempo como mas lo fas servir.",
+      "title": "Una capacidat que creix"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Compreba que esta maquina puede connectar-se a internet.",
+      "Torna a executar la configuración — los pasos completados no se repiten.",
+      "Si falla dos vegadas, ubre los rechistros; las zagueras linias indican lo paso."
+    ],
+    "lead": "No s'ha desfeito garra cambio sin avisar — OpenAmer s'atura an ha fallau, asinas que la segunda execución contina dende astí.",
+    "leadUpdate": "OpenAmer sigue en la versión anterior y contina funcionando. No s'ha substituiu cosa a medias.",
+    "log": "Rechistro",
+    "openLogs": "Ubrir los rechistros",
+    "retry": "Tornar a intentar",
+    "retryUpdate": "Reintentar l'actualización",
+    "title": "La configuración no ha rematau",
+    "titleUpdate": "L'actualización no ha rematau"
+  },
+  "language": {
+    "continue": "Continar",
+    "lead": "La configuración contina en la luenga que trigas aquí. La puetz cambiar mas enta debant en l'aplicación.",
+    "search": "Buscar luengas",
+    "title": "Triga la tuya luenga"
+  },
+  "progress": {
+    "cancel": "Cancelar",
+    "done": "Presto",
+    "hideDetails": "Amagar los detalles",
+    "lead": "Configuración unica: OpenAmer ye descargando lo que ameneste y configurando esta maquina. En las siguients ubiertas no caldra fer-lo.",
+    "leadUpdate": "OpenAmer ye substituyindo la versión anterior. Las tuyas sesions, memoria y achustes no se cambian.",
+    "lines": "linias",
+    "liveOutput": "Salida en directo",
+    "showDetails": "Amostrar los detalles",
+    "stepsComplete": "{done} de {total} pasos completados",
+    "title": "Configurando OpenAmer",
+    "titleUpdate": "Actualizando OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Marcando la instalación como completada",
+    "config-templates": "Escribindo las plantillas de configuración",
+    "configure": "Configurando las claus d'API y los modelos",
+    "dependencies": "Instalando las dependencias de Python",
+    "desktop": "Compilando l'aplicación d'escritorio",
+    "gateway": "Encetando la pasarela de mensachería",
+    "git": "Instalando Git",
+    "handoff": "Preparando l'actualización",
+    "install": "Instalando l'actualización",
+    "node": "Detectando Node.js",
+    "node-deps": "Instalando las dependencias de Node.js",
+    "path": "Anyadindo OpenAmer a PATH",
+    "platform-sdks": "Instalando los SDK de plataformas de mensachería",
+    "python": "Verificando Python",
+    "rebuild": "Tornando a compilar l'aplicación d'escritorio",
+    "repository": "Clonando lo repositorio d'OpenAmer",
+    "system-packages": "Instalando ripgrep y ffmpeg",
+    "update": "Descargando la zaguera versión",
+    "uv": "Instalando lo chestor de paquetz uv",
+    "venv": "Creyando l'entorno virtual de Python"
+  },
+  "stepper": {
+    "done": "Presto",
+    "install": "Instalar",
+    "language": "Luenga",
+    "update": "Actualizar",
+    "welcome": "Bienveniu"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Ubre l'aplicación y describe lo que quiers fer. OpenAmer treballa en segundo plano y t'informa d'o resultau.",
+        "title": "Empecipia con una frase"
+      },
+      {
+        "body": "Achustes → Pantalla → Luenga. 186 configuracions rechionals que puetz cambiar en qualsiquier momento.",
+        "title": "Triga la tuya luenga"
+      },
+      {
+        "body": "Lo treballo repetiu se torna una habilidat — la siguient vegada nomás cal una orden.",
+        "title": "Deixa-lo recordar"
+      }
+    ],
+    "command": "u encieta-lo mas enta debant dende un terminal:",
+    "cta": "Encetar OpenAmer",
+    "errorTitle": "No s'ha puesto encetar l'aplicación d'escritorio",
+    "launching": "Encetando",
+    "lead": "Tot ye presto. OpenAmer ya ye tuyo — en esta maquina, en la tuya luenga.",
+    "title": "OpenAmer ye presto"
+  },
+  "welcome": {
+    "bullets": [
+      "S'executa localment — las tuyas conversacions se quedan en esta maquina",
+      "186 luengas, incluyindo la escritura que leyes",
+      "Tot se puede cambiar mas enta debant; cosa no ye permanent"
+    ],
+    "cta": "Instalar",
+    "ctaUpdate": "Actualizar agora",
+    "kicker": "Configuración unica",
+    "lead": "Lo tuyo propio achent. En lo tuyo hardware. En la tuya luenga.",
+    "leadUpdate": "I hai una versión mas nueva d'OpenAmer. Substituye la versión anterior y conserva totas las sesions y los achustes.",
+    "note": "Tarda bels minutos con una connexión normal.",
+    "title": "Bienveniu a OpenAmer",
+    "titleUpdate": "Actualizar OpenAmer"
+  }
+}

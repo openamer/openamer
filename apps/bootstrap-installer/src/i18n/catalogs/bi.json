@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer i planem wan wok, i mekem wetem ol tru tul — terminal, braosa, fael, kod — mo i holem wanem i wok gud.",
+      "title": "Wan ejen we i tingting wetem yu"
+    },
+    {
+      "body": "Ol storian, memori mo model oli stap long kompiuta ya. I no sanem wan samting i go antap sapos yu no askem.",
+      "title": "Kompiuta blong yu, data blong yu"
+    },
+    {
+      "body": "186 lanwis, wanwan wetem kaen raeting we yu save ridim. Fas skrin blong ap i askem yu blong jusum wan.",
+      "title": "Lanwis blong yu, long stret fasin"
+    },
+    {
+      "body": "I sevem ol save blong mekem wok taem i stap wok, mekem se ol wok blong evri dei oli tekem smol taem moa taem yu yusum moa.",
+      "title": "Save blong mekem wok i stap gru"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Jekem se kompiuta ya i save konek long intanet.",
+      "Statem rere bakegen — i no ripitim ol step we oli finis.",
+      "Sapos i fel tu taem, openem ol rekod; ol las laen oli talem step we i fel."
+    ],
+    "lead": "I no gat jenis we i bin tanem bak long haed — OpenAmer i stop long ples we i stop, mekem se taem yu statem bakegen, i gohed long ples ya.",
+    "leadUpdate": "OpenAmer i stap yet long olfala vesin mo i gohed blong wok. I no gat samting we i jenis haf nomo.",
+    "log": "Rekod",
+    "openLogs": "Openem ol rekod",
+    "retry": "Traem bakegen",
+    "retryUpdate": "Traem apdet bakegen",
+    "title": "Rere i no finis",
+    "titleUpdate": "Apdet i no finis"
+  },
+  "language": {
+    "continue": "Gohed",
+    "lead": "Rere i gohed long lanwis we yu jusum long ples ya. Yu save jenisim afta insaed long ap.",
+    "search": "Lukaotem ol lanwis",
+    "title": "Jusum lanwis blong yu"
+  },
+  "progress": {
+    "cancel": "Kanselem",
+    "done": "Rere",
+    "hideDetails": "Haedem ol ditel",
+    "lead": "Rere wan taem nomo: OpenAmer i stap daonlodem wanem i nidim mo setemap kompiuta ya. Taem yu openem afta, i no mekem ol samting ya bakegen.",
+    "leadUpdate": "OpenAmer i stap tekem ples blong olfala vesin. Ol sesen, memori mo seting blong yu oli stap semak.",
+    "lines": "laen",
+    "liveOutput": "Risalt we i stap kamaot",
+    "showDetails": "Soem ol ditel",
+    "stepsComplete": "{done} long {total} step oli finis",
+    "title": "Stap setemap OpenAmer",
+    "titleUpdate": "Stap apdetem OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Stap makem se instolesen i finis",
+    "config-templates": "Stap raetem ol templet blong seting",
+    "configure": "Stap setemap ol ki blong API mo ol model",
+    "dependencies": "Stap instolem ol pakij we Python i nidim",
+    "desktop": "Stap bildim ap blong kompiuta",
+    "gateway": "Stap statem getwe blong mesej",
+    "git": "Stap instolem Git",
+    "handoff": "Stap rere blong apdetem",
+    "install": "Stap instolem apdet",
+    "node": "Stap lukaotem Node.js",
+    "node-deps": "Stap instolem ol pakij we Node.js i nidim",
+    "path": "Stap ademap OpenAmer long PATH",
+    "platform-sdks": "Stap instolem ol SDK blong ol platfom blong mesej",
+    "python": "Stap jekem Python",
+    "rebuild": "Stap bildim ap blong kompiuta bakegen",
+    "repository": "Stap kopi repositori blong OpenAmer",
+    "system-packages": "Stap instolem ripgrep mo ffmpeg",
+    "update": "Stap daonlodem niufala vesin",
+    "uv": "Stap instolem uv we i manejem ol pakij",
+    "venv": "Stap mekem wan envaeromen blong Python we i stap hem wan"
+  },
+  "stepper": {
+    "done": "Rere",
+    "install": "Instolem",
+    "language": "Lanwis",
+    "update": "Apdetem",
+    "welcome": "Welkam"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Openem ap mo tokbaot wanem yu wantem blong i mekem. OpenAmer i wok long bakgraon mo i talem risalt long yu.",
+        "title": "Stat wetem wan sentens"
+      },
+      {
+        "body": "Ol seting → Displei → Lanwis. 186 lokel seting, yu save jenisim long eni taem.",
+        "title": "Jusum lanwis blong yu"
+      },
+      {
+        "body": "Wok we i ripit i kam wan save blong mekem wok — nekis taem wan oda nomo i naf.",
+        "title": "Letem i tingbaot"
+      }
+    ],
+    "command": "o statem afta long wan terminal:",
+    "cta": "Statem OpenAmer",
+    "errorTitle": "I no save statem ap blong kompiuta",
+    "launching": "Stap stat",
+    "lead": "Evri samting i rere. OpenAmer i blong yu nao — long kompiuta ya, long lanwis blong yu.",
+    "title": "OpenAmer i rere"
+  },
+  "welcome": {
+    "bullets": [
+      "I wok long kompiuta blong yu — ol storian blong yu oli stap long kompiuta ya",
+      "186 lanwis, wetem kaen raeting we yu save ridim",
+      "Yu save jenisim evri samting afta; i no gat samting we i mas stap olsem oltaem"
+    ],
+    "cta": "Instolem",
+    "ctaUpdate": "Apdetem nao",
+    "kicker": "Rere wan taem nomo",
+    "lead": "Ejen blong yu nomo. Long kompiuta blong yu. Long lanwis blong yu.",
+    "leadUpdate": "Wan niufala OpenAmer i rere. Hemia i tekem ples blong olfala vesin mo i kipim evri sesen mo seting.",
+    "note": "I tekem sam minit long wan nomol koneksen.",
+    "title": "Welkam long OpenAmer",
+    "titleUpdate": "Apdetem OpenAmer"
+  }
+}

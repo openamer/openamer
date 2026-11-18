@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer beplan 'n taak, voer dit met regte gereedskap uit — terminaal, blaaier, lêers, kode — en onthou wat gewerk het.",
+      "title": "'n Agent wat saam dink"
+    },
+    {
+      "body": "Gesprekke, geheue en modelle bly op hierdie rekenaar. Niks word opgelaai tensy jy daarvoor vra nie.",
+      "title": "Jou hardeware, jou data"
+    },
+    {
+      "body": "186 tale, elk in die skrif wat jy werklik lees. Die app se eerste skerm vra watter een.",
+      "title": "Jou taal, soos dit hoort"
+    },
+    {
+      "body": "Vaardighede word uit die werk self gestoor, sodat alledaagse take minder tyd neem hoe langer jy dit gebruik.",
+      "title": "Vermoë wat groei"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Maak seker dat hierdie rekenaar toegang tot die internet het.",
+      "Voer die opstelling weer uit — voltooide stappe word nie herhaal nie.",
+      "As dit twee keer misluk, maak die logboeke oop; die laaste reëls noem die stap."
+    ],
+    "lead": "Geen veranderinge is stilweg ongedaan gemaak nie — OpenAmer bly waar dit gestop het, sodat 'n tweede poging daarvandaan voortgaan.",
+    "leadUpdate": "OpenAmer is steeds op die vorige weergawe en werk steeds. Niks is halfpad vervang nie.",
+    "log": "Logboek",
+    "openLogs": "Maak logboeke oop",
+    "retry": "Probeer weer",
+    "retryUpdate": "Probeer opdatering weer",
+    "title": "Opstelling is nie voltooi nie",
+    "titleUpdate": "Opdatering is nie voltooi nie"
+  },
+  "language": {
+    "continue": "Gaan voort",
+    "lead": "Die opstelling gaan voort in die taal wat jy hier kies. Jy kan dit later in die app verander.",
+    "search": "Soek tale",
+    "title": "Kies jou taal"
+  },
+  "progress": {
+    "cancel": "Kanselleer",
+    "done": "Gereed",
+    "hideDetails": "Versteek besonderhede",
+    "lead": "Eenmalige opstelling: OpenAmer laai af wat dit nodig het en stel hierdie rekenaar op. Wanneer dit later begin, word dit alles oorgeslaan.",
+    "leadUpdate": "OpenAmer vervang die vorige weergawe. Jou sessies, geheue en instellings bly onaangeraak.",
+    "lines": "reëls",
+    "liveOutput": "Regstreekse uitvoer",
+    "showDetails": "Wys besonderhede",
+    "stepsComplete": "{done} van {total} stappe voltooi",
+    "title": "Besig om OpenAmer op te stel",
+    "titleUpdate": "Besig om OpenAmer op te dateer"
+  },
+  "stages": {
+    "bootstrap-marker": "Merk installasie as voltooi",
+    "config-templates": "Skryf konfigurasiesjablone",
+    "configure": "Stel API-sleutels en modelle op",
+    "dependencies": "Installeer Python-afhanklikhede",
+    "desktop": "Bou die lessenaarapp",
+    "gateway": "Begin die boodskappoort",
+    "git": "Installeer Git",
+    "handoff": "Berei voor vir opdatering",
+    "install": "Installeer die opdatering",
+    "node": "Bespeur Node.js",
+    "node-deps": "Installeer Node.js-afhanklikhede",
+    "path": "Voeg OpenAmer by PATH",
+    "platform-sdks": "Installeer boodskapplatform-SDK's",
+    "python": "Verifieer Python",
+    "rebuild": "Herbou die lessenaarapp",
+    "repository": "Kloon die OpenAmer-bewaarplek",
+    "system-packages": "Installeer ripgrep en ffmpeg",
+    "update": "Laai die jongste weergawe af",
+    "uv": "Installeer die uv-pakketbestuurder",
+    "venv": "Skep die virtuele Python-omgewing"
+  },
+  "stepper": {
+    "done": "Gereed",
+    "install": "Installeer",
+    "language": "Taal",
+    "update": "Opdatering",
+    "welcome": "Welkom"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Maak die app oop en beskryf wat jy gedoen wil hê. OpenAmer werk op die agtergrond en doen verslag.",
+        "title": "Begin met 'n sin"
+      },
+      {
+        "body": "Instellings → Vertoon → Taal. 186 taalstreke, wissel enige tyd.",
+        "title": "Kies jou taal"
+      },
+      {
+        "body": "Herhalende werk word 'n vaardigheid — volgende keer verg dit net een opdrag.",
+        "title": "Laat dit onthou"
+      }
+    ],
+    "command": "of begin dit later vanaf 'n terminaal:",
+    "cta": "Begin OpenAmer",
+    "errorTitle": "Kon nie die lessenaarapp begin nie",
+    "launching": "Besig om te begin",
+    "lead": "Alles is in plek. OpenAmer is nou joune — op hierdie rekenaar, in jou taal.",
+    "title": "OpenAmer is gereed"
+  },
+  "welcome": {
+    "bullets": [
+      "Loop plaaslik — jou gesprekke bly op hierdie rekenaar",
+      "186 tale, insluitend die skrif wat jy lees",
+      "Alles kan later verander word; niks is permanent nie"
+    ],
+    "cta": "Installeer",
+    "ctaUpdate": "Dateer nou op",
+    "kicker": "Eenmalige opstelling",
+    "lead": "Jou eie agent. Op jou hardeware. In jou taal.",
+    "leadUpdate": "'n Nuwer OpenAmer is gereed. Dit vervang die vorige weergawe en behou elke sessie en instelling.",
+    "note": "Neem 'n paar minute op 'n gewone verbinding.",
+    "title": "Welkom by OpenAmer",
+    "titleUpdate": "Dateer OpenAmer op"
+  }
+}
