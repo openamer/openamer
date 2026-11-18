@@ -1,4 +1,5 @@
 import { useStore } from '@nanostores/react'
+import { invoke } from '@tauri-apps/api/core'
 import { atom } from 'nanostores'
 import { useMemo } from 'react'
 
@@ -83,9 +84,39 @@ export async function setLang(lang: Lang): Promise<void> {
   }
 }
 
-/** Load the initial language's chunk before the first paint. */
+/**
+ * Load the initial language's chunk before the first paint.
+ *
+ * The installed app's own setting (`display.language`) outranks both the
+ * remembered pick and the OS guess: an app running in German must not update
+ * itself in Bosnian. Measured 2026-11-18 — the window said
+ * `AŽURIRANJE APLIKACIJE OPENAMER` while the desktop behind it was German,
+ * because this function only knew about `localStorage` and `navigator.language`.
+ */
 export async function preloadInitialLanguage(): Promise<void> {
+  const fromApp = await appLanguage()
+
+  if (fromApp) {
+    $lang.set(fromApp)
+  }
+
   await loadCatalogue($lang.get())
+}
+
+/**
+ * The language the installed app is set to, or `null` when there is none.
+ *
+ * `null` covers all three honest cases: a fresh install (no config.yaml yet),
+ * an install that never chose a language, and a browser/dev run without Tauri.
+ */
+export async function appLanguage(): Promise<Lang | null> {
+  try {
+    const value = await invoke<string | null>('app_language')
+
+    return value && LANGUAGES.includes(value) ? (value as Lang) : null
+  } catch {
+    return null
+  }
 }
 
 /** Catalogue for a language, falling back to English for a missing key. */
