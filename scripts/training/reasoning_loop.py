@@ -32,11 +32,11 @@ MAX_ROUNDS = 2
 
 os.makedirs(os.path.dirname(WORLD), exist_ok=True)
 
-def chat(messages, max_tokens=250):
+def chat(messages, max_tokens=250, result_only=False):
     # Follows the configured default model (config.yaml model.default).
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     from model_config import chat_default
-    return chat_default(messages, max_tokens=max_tokens)
+    return chat_default(messages, max_tokens=max_tokens, result_only=result_only)
 
 def embed(text):
     req = urllib.request.Request("http://localhost:11434/api/embeddings",
@@ -55,7 +55,8 @@ def recursive_ask(question, rounds=MAX_ROUNDS):
         critique_q = (f"Frage: {question}\n\nDeine bisherige Antwort:\n{answer}\n\n"
                       f"Prüfe diese Antwort kritisch: Was fehlt? Was ist falsch? "
                       f"Welche Annahmen sind ungetestet? Antworte kompakt.")
-        critique = chat([{"role": "user", "content": critique_q}], max_tokens=200)
+        critique = chat([{"role": "user", "content": critique_q}], max_tokens=200,
+                        result_only=True)
         if len(critique) < 50 or "nichts zu korrigieren" in critique.lower():
             break
         improve_q = (f"Frage: {question}\n\nEntwurf:\n{answer}\n\n"
@@ -64,7 +65,19 @@ def recursive_ask(question, rounds=MAX_ROUNDS):
         answer = chat([{"role": "user", "content": improve_q}], max_tokens=300)
         history.append(critique)
         history.append(answer)
-    return {"answer": answer, "rounds": len(history), "history": history}
+    # Honesty: an answer that ran out of budget is reported as such, never
+    # presented as complete. chat_default() already escalated the budget once.
+    from model_config import last_call_meta
+    meta = last_call_meta()
+    out = {"answer": answer, "rounds": len(history), "history": history,
+           "truncated": bool(meta.get("truncated")),
+           "budget": meta.get("budget"), "tries": meta.get("tries"),
+           "finish_reason": meta.get("finish_reason")}
+    if out["truncated"]:
+        print("WARN answer hit the token cap even after escalation "
+              f"(budget={out['budget']}, tries={out['tries']}) — reply is incomplete",
+              file=sys.stderr)
+    return out
 
 # ---- World Model (delegated to the central module) ----
 def observe(cause, effect):

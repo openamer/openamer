@@ -209,7 +209,77 @@ def summary() -> dict:
     }
 
 
-def chat_default(messages, max_tokens=400):
+# --- truncation-aware calls ---------------------------------------------------
+# Measured defect (2026-11-19): when the token budget is too small the provider
+# answers finish_reason="length" with an EMPTY `content` and the whole reply in
+# `reasoning` (an English chain-of-thought). chat_default() then handed that
+# trace fragment back as if it were the final answer — measured example:
+# "Eventually 2ct > a -> increments per step bigger." for a question asked in
+# German about quadratic growth. Nothing logged it, so every reasoning script
+# silently answered with a truncated thought.
+#
+# Fix: the budget is escalated automatically on finish_reason="length", and every
+# call appends one line to logs/model_calls.jsonl so the truncation rate is
+# measurable instead of invisible.
+_CALL_LOG = _HOME / "logs" / "model_calls.jsonl"
+_CALL_LOG_MAX_BYTES = 8 * 1024 * 1024
+_last_meta = {}
+
+
+def _log_call(rec):
+    """Best-effort one-line telemetry. Never raises into the caller."""
+    try:
+        _CALL_LOG.parent.mkdir(parents=True, exist_ok=True)
+        if _CALL_LOG.exists() and _CALL_LOG.stat().st_size > _CALL_LOG_MAX_BYTES:
+            _CALL_LOG.replace(_CALL_LOG.with_name("model_calls.jsonl.1"))
+        with open(_CALL_LOG, "a", encoding="utf-8") as fh:
+            fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
+    except Exception:
+        pass
+
+
+def last_call_meta() -> dict:
+    """Facts about the most recent chat_default() call in this process.
+
+    Keys: provider, model, budget (final tokens requested), tries, finish_reason,
+    truncated (bool, budget ran out even after escalation), completion_tokens,
+    chars, from_reasoning (the text came from the trace, not `content`).
+    """
+    return dict(_last_meta)
+
+
+def _post_chat(url, body, headers, timeout=30):
+    import urllib.request
+    req = urllib.request.Request(
+        url, data=json.dumps(body).encode(), headers=headers)
+    return json.load(urllib.request.urlopen(req, timeout=timeout))
+
+
+def _timeout_for(budget: int) -> int:
+    """Read timeout that matches the token budget instead of a fixed 30s.
+
+    A non-streaming reply sends nothing until it is finished, so the socket
+    timeout has to cover the whole generation. Measured ~58 tok/s on
+    ollama-cloud; assuming a 10 tok/s floor keeps a 2400-token escalation from
+    failing on a slow provider, while a small call still fails fast (a hung
+    HTTP 402 must not block a learning cycle for minutes).
+    """
+    return max(30, min(300, int(budget / 10) + 30))
+
+
+# Appended as a last resort when a thinking model spent the entire budget in
+# `reasoning` and never produced `content` (measured: 2400 tokens, finish length,
+# content empty). Without this the caller would receive raw chain-of-thought.
+_SALVAGE_INSTRUCTION = {
+    "role": "user",
+    "content": ("Antworte jetzt ausschließlich mit dem fertigen Ergebnis. "
+                "Keine Analyse, keine Zwischenschritte, kein Denkprotokoll — "
+                "so kurz wie möglich, aber vollständig."),
+}
+
+
+def chat_default(messages, max_tokens=400, escalate=True, budget_cap=2400,
+                 result_only=False):
     """One-call chat helper that follows the configured default model.
 
     For pure reasoning scripts (deep_task, reasoning_loop, analog, active_learn)
@@ -220,29 +290,96 @@ def chat_default(messages, max_tokens=400):
     DeepSeek-style models return their answer in a `reasoning` field when
     `content` is empty; we fall back to `reasoning` then. Strips thinking-trace
     preambles.
+
+    Truncation handling: on finish_reason="length" the call is retried with a
+    bigger budget (up to `budget_cap`) instead of returning half a thought as a
+    finished answer. Per-call facts land in `last_call_meta()`.
+
+    `result_only=True` asks for the result up front instead of after the budget
+    was burned. Measured on a utility prompt (critique step): 2400 tokens,
+    truncated, 483 usable chars without it — 1023 tokens, finish_reason="stop",
+    1342 chars with it. Use it for internal utility calls (critique, rewrite,
+    classify), not for the final user-facing answer where thinking helps.
     """
-    import urllib.request
     url = endpoint_for_default() + "/v1/chat/completions"
-    body = {"model": resolve_default_model(), "messages": messages,
-            "max_tokens": max_tokens}
     headers = {"Content-Type": "application/json"}
     headers.update(auth_headers())
-    req = urllib.request.Request(
-        url, data=json.dumps(body).encode(), headers=headers)
-    r = json.load(urllib.request.urlopen(req, timeout=300))
-    choice = r["choices"][0]
-    msg = choice["message"]
+    if result_only:
+        messages = list(messages) + [_SALVAGE_INSTRUCTION]
+
+    budget = max(int(max_tokens), 16)
+    tries = 0
+    while True:
+        tries += 1
+        body = {"model": resolve_default_model(), "messages": messages,
+                "max_tokens": budget}
+        r = _post_chat(url, body, headers, timeout=_timeout_for(budget))
+        choice = r["choices"][0]
+        msg = choice["message"]
+        finish = choice.get("finish_reason")
+        if finish == "length" and escalate and budget < budget_cap:
+            bigger = min(budget_cap, max(budget + 128, int(budget * 2.5)))
+            if bigger > budget:
+                budget = bigger
+                continue
+        break
+
     content = (msg.get("content") or "").strip()
+    truncated = finish == "length"
+    from_reasoning = False
+    salvaged = False
+    if escalate and truncated and not content and not result_only:
+        # The budget ran out inside the thinking trace: one explicit
+        # "result only" pass instead of handing the caller chain-of-thought.
+        try:
+            body = {"model": resolve_default_model(),
+                    "messages": list(messages) + [_SALVAGE_INSTRUCTION],
+                    "max_tokens": min(budget, 800)}
+            r2 = _post_chat(url, body, headers,
+                            timeout=_timeout_for(body["max_tokens"]))
+            choice2 = r2["choices"][0]
+            c2 = (choice2["message"].get("content") or "").strip()
+            tries += 1
+            if c2:
+                r, choice, msg = r2, choice2, choice2["message"]
+                finish = choice2.get("finish_reason")
+                content = c2
+                truncated = finish == "length"
+                salvaged = True
+        except Exception as exc:  # salvage is best-effort, never fatal
+            print(f"WARN salvage pass failed: {type(exc).__name__}: {exc}",
+                  file=__import__("sys").stderr)
+
     if not content:
         # DeepSeek-style models put the answer in `reasoning` when `content` is
         # empty — but on a truncated call (finish_reason=length) that field is
         # the raw chain-of-thought, not an answer. Only fall back when the trace
         # still yields something that is not meta-rambling.
         trace = (msg.get("reasoning") or "").strip()
-        if choice.get("finish_reason") == "length":
+        if truncated:
             trace = _last_clean_block(trace)
         content = trace if not _is_meta_rambling(trace) else ""
-    return _strip_thinking(content)
+        from_reasoning = bool(content)
+
+    text = _strip_thinking(content)
+    usage = r.get("usage") or {}
+    _last_meta.clear()
+    _last_meta.update({
+        "provider": resolve_provider(),
+        "model": resolve_default_model(),
+        "budget": budget,
+        "tries": tries,
+        "finish_reason": finish,
+        "truncated": truncated,
+        "completion_tokens": usage.get("completion_tokens"),
+        "chars": len(text),
+        "from_reasoning": from_reasoning,
+        "salvaged": salvaged,
+        "result_only": bool(result_only),
+    })
+    _log_call({"ts": __import__("datetime").datetime.now().isoformat(timespec="seconds"),
+               **_last_meta})
+    return text
 
 
 if __name__ == "__main__":
