@@ -105,8 +105,20 @@ def test_update_window_resolves_the_app_language_before_the_first_paint() -> Non
 
 
 def test_app_language_is_validated_against_the_shipped_catalogues() -> None:
+    """The validation must live in appLanguage, not merely somewhere in the file.
+
+    `LANGUAGES.includes(value)` already existed in `stored()` before this change,
+    so asserting it file-wide passed against the pre-fix source — a guard that
+    cannot fail is not a guard.
+    """
     source = (INSTALLER / "src" / "i18n" / "index.ts").read_text(encoding="utf-8")
 
-    assert "LANGUAGES.includes(value)" in source, (
+    start = source.find("export async function appLanguage")
+    assert start != -1, "appLanguage() must exist"
+
+    body = source[start : source.find("\n}", start) + 2]
+
+    assert "invoke<string | null>('app_language')" in body, "appLanguage must call the command"
+    assert "LANGUAGES.includes(value)" in body, (
         "a code from config.yaml that the installer cannot speak must not be adopted"
     )
