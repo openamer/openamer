@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer plánirir verkefni, keyrir það með raunverulegum verkfærum — skel, vafur, skrár, kóði — og heldur því sem virkaði.",
+      "title": "Aðili sem hugsar með"
+    },
+    {
+      "body": "Samræður, minni og líkön lifa á þessari vél. Ekki er hlaðið upp nema þú biður um það.",
+      "title": "Tæknin þín, gögnin þín"
+    },
+    {
+      "body": "186 tungumál, hvert í skriftu sem þú lesir. Fyrsta skjáforritið spyr hvaða þú vilt.",
+      "title": "Tungumálið þitt, rétt"
+    },
+    {
+      "body": "Hæfileikar eru vistaðir frá verkinu sjálfu, svo daglegar verk verða styttri eftir lengri notkun.",
+      "title": "Möguleiki sem vaxir"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Athugaðu að þessi vél geti tengst internetinu.",
+      "Keyrðu uppsetningu aftur — lokið skref eru ekki endurtekin.",
+      "Ef það mistekst tvisvar, opnaðu skrána; síðustu línur nefna skrefið."
+    ],
+    "lead": "Engar breytingar voru afturkallaðar í hljóði — OpenAmer hættir þar sem það hætti, svo annar keyrslan heldur áfram frá þar.",
+    "leadUpdate": "OpenAmer er enn á fyrri útgáfu og heldur áfram að virka. Ekki var hljóðlega skipt.",
+    "log": "Skrá",
+    "openLogs": "Opna skrá",
+    "retry": "Reyna aftur",
+    "retryUpdate": "Endurtaka uppfærslu",
+    "title": "Uppsetning ekki lokið",
+    "titleUpdate": "Uppfærsla ekki lokið"
+  },
+  "language": {
+    "continue": "Halda áfram",
+    "lead": "Uppsetning heldur áfram á tungumálinu sem þú velur hér. Þú getur breytt því síðar í forritinu.",
+    "search": "Leita að tungumálum",
+    "title": "Veldu tungumálið þitt"
+  },
+  "progress": {
+    "cancel": "Hætta við",
+    "done": "Klar",
+    "hideDetails": "Fela upplýsingar",
+    "lead": "Ein-kröftu uppsetning: OpenAmer er að hlaða niður því sem þarf og stilla þessa vél. Síðari ræsir sleppa öllu þessu.",
+    "leadUpdate": "OpenAmer er að skipta út fyrri útgáfu. Sýnir, minni og stillingar eru óbreyttar.",
+    "lines": "línur",
+    "liveOutput": "Lífandi úttak",
+    "showDetails": "Sýna upplýsingar",
+    "stepsComplete": "{done} af {total} skrefum lokið",
+    "title": "Stilla upp OpenAmer",
+    "titleUpdate": "Uppfæra OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Merki um lokun uppsetningar",
+    "config-templates": "Skrifa stillingarsniðmát",
+    "configure": "Stilla API lykla og líkön",
+    "dependencies": "Setja upp Python háþróun",
+    "desktop": "Byggja skjáforrit",
+    "gateway": "Ræsa skilaboðargátt",
+    "git": "Setja upp Git",
+    "handoff": "Undirbúa uppfærslu",
+    "install": "Setja upp uppfærslu",
+    "node": "Finna Node.js",
+    "node-deps": "Setja upp Node.js háþróun",
+    "path": "Bæta OpenAmer við PATH",
+    "platform-sdks": "Setja upp skilaboðaprógramm",
+    "python": "Staðfesta Python",
+    "rebuild": "Endurbyggja skjáforrit",
+    "repository": "Klóna OpenAmer geymslu",
+    "system-packages": "Setja upp ripgrep og ffmpeg",
+    "update": "Hlaða niður nýjustu útgáfu",
+    "uv": "Setja upp uv pakkastjórann",
+    "venv": "Búa til Python hljóðumhverfi"
+  },
+  "stepper": {
+    "done": "Klar",
+    "install": "Setja upp",
+    "language": "Tungumál",
+    "update": "Uppfæra",
+    "welcome": "Velkomin"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Opna forritið og lýsa hvað þú vilt gera. OpenAmer vinnur í bakgrunni og skilar aftur.",
+        "title": "Byrja með setningu"
+      },
+      {
+        "body": "Stillingar → Skjár → Tungumál. 186 staðsetningar, hægt að skipta á hvaða tíma sem er.",
+        "title": "Veldu tungumálið þitt"
+      },
+      {
+        "body": "Endurtekning verk verður hæfileiki — næst tekur það aðeins skipun.",
+        "title": "Leyfðu því að muna"
+      }
+    ],
+    "command": "eða byrja það síðar frá skel:",
+    "cta": "Ræsa OpenAmer",
+    "errorTitle": "Ekki tókst að ræsa skjáforritið",
+    "launching": "Ræsi",
+    "lead": "Allt er í stað. OpenAmer er nú þitt — á þessari vélinni, í þínu tungumáli.",
+    "title": "OpenAmer er tilbúinn"
+  },
+  "welcome": {
+    "bullets": [
+      "Keyrir staðvært — samræður þínar eru á þessari vélinni",
+      "186 tungumál, þar með skriftu sem þú lest",
+      "Allt má breyta síðar; ekkert er varanlegt"
+    ],
+    "cta": "Setja upp",
+    "ctaUpdate": "Uppfæra núna",
+    "kicker": "Ein-kröftu uppsetning",
+    "lead": "Þitt eigið aðili. Á þínu vélbúnaði. Í þínu tungumáli.",
+    "leadUpdate": "Nýr OpenAmer er tilbúinn. Þetta skiptir út fyrri útgáfu og heldur öllum setningum og stillingum.",
+    "note": "Tók nokkrar mínútur á venjulegri tengingu.",
+    "title": "Velkomin í OpenAmer",
+    "titleUpdate": "Uppfæra OpenAmer"
+  }
+}

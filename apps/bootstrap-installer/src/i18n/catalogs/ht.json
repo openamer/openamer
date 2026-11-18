@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer planifye yon travay, kouri li ak zouti reyèl — tèminal, navigatè, fichye, kòd — epi kenbe sa ki mache.",
+      "title": "Yon ajan ki panse an menm tan"
+    },
+    {
+      "body": "Konvèsasyon, memwa ak modèl ap viv sou machin sa a. Pa gen anyen ki telechaje sof si ou mande li.",
+      "title": "Hardware ou, done ou"
+    },
+    {
+      "body": "186 lang, chak nan ekriti ou li a. Premye ekran aplikasyon an mande ki sa ou chwazi.",
+      "title": "Lang ou, kòrèkteman"
+    },
+    {
+      "body": "Konpetans yo sove soti nan travay la li menm, konsa travay chak jou vin pi kout pi lontan ou itilize li.",
+      "title": "Kapabilite ki grandi"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Tcheke si machin sa a ka rive sou entènèt la.",
+      "Kouri rekòmansman an ankò — etap fini yo pa repete.",
+      "Si li echwe de fwa, louvri jounal yo; dènye liy yo rele etap la."
+    ],
+    "lead": "Pa gen chanjman ki retounen silansyèlman — OpenAmer sispann kote li te sispann, kidonk yon dezyèm kouri kontinye depi la.",
+    "leadUpdate": "OpenAmer toujou sou vèsyon an anvan an epi li kontinye travay. Pa gen anyen ki te ranplase an mwayen.",
+    "log": "Jounal",
+    "openLogs": "Louvri jounal yo",
+    "retry": "Eseye ankò",
+    "retryUpdate": "Reyès eseye mete ajou",
+    "title": "Rekòmansman pa fini",
+    "titleUpdate": "Mete ajou pa fini"
+  },
+  "language": {
+    "continue": "Kontinye",
+    "lead": "Rekòmansman an kontinye nan lang ou chwazi isit la. Ou ka chanje li pita nan aplikasyon an.",
+    "search": "Chèche lang",
+    "title": "Chwazi lang ou"
+  },
+  "progress": {
+    "cancel": "Anile",
+    "done": "Pare",
+    "hideDetails": "Kache detay yo",
+    "lead": "Rekòmansman yon sèl fwa: OpenAmer ap telechaje sa li bezwen epi konfigire machin sa a. Lanse pita yo sote tout sa.",
+    "leadUpdate": "OpenAmer ap ranplase vèsyon an anvan an. Sesyon ou yo, memwa ak anviwònman rete san chanjman.",
+    "lines": "liy",
+    "liveOutput": "Sòti vivan",
+    "showDetails": "Montre detay yo",
+    "stepsComplete": "{done} nan {total} etap konplete",
+    "title": "Ap mete kanpe OpenAmer",
+    "titleUpdate": "Ap mete ajou OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Mete kanpe enstalasyon an",
+    "config-templates": "Ekri modèl konfigirasyon yo",
+    "configure": "Konfigire kle API ak modèl yo",
+    "dependencies": "Enstale depandans Python",
+    "desktop": "Bati aplikasyon Desktop la",
+    "gateway": "Kòmanse pòtay mesaj",
+    "git": "Enstale Git",
+    "handoff": "Prepare pou mete ajou",
+    "install": "Enstale mete ajou a",
+    "node": "Detekte Node.js",
+    "node-deps": "Enstale depandans Node.js",
+    "path": "Ajoute OpenAmer nan PATH",
+    "platform-sdks": "Enstale SDK platfòm mesaj",
+    "python": "Verifye Python",
+    "rebuild": "Rekonstrui aplikasyon Desktop la",
+    "repository": "Klon repo OpenAmer la",
+    "system-packages": "Enstale ripgrep ak ffmpeg",
+    "update": "Telechaje dènye vèsyon an",
+    "uv": "Enstale manadjè pakè uv",
+    "venv": "Kreye anviwònman vityèl Python"
+  },
+  "stepper": {
+    "done": "Pare",
+    "install": "Enstale",
+    "language": "Lang",
+    "update": "Mete ajou",
+    "welcome": "Byenveni"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Louvri aplikasyon an epi dekri sa ou vle fè. OpenAmer ap travay an background epi rapòte tounen.",
+        "title": "Kòmanse ak yon fraz"
+      },
+      {
+        "body": "Anviwònman → Ekran → Lang. 186 lokal, chanje nenpòt ki lè.",
+        "title": "Chwazi lang ou"
+      },
+      {
+        "body": "Travay ki repete vin yon konpetans — pwochen fwa li pran yon sèl kòmand.",
+        "title": "Pèmèt li sonje"
+      }
+    ],
+    "command": "oswa kòmanse li pita soti nan yon tèminal:",
+    "cta": "Lanse OpenAmer",
+    "errorTitle": "Pa t kapab lanse aplikasyon Desktop la",
+    "launching": "Lanse",
+    "lead": "Tout bagay an plas. OpenAmer kounye a se ou — sou machin sa a, nan lang ou.",
+    "title": "OpenAmer pare"
+  },
+  "welcome": {
+    "bullets": [
+      "Fonksyone lokalman — konvèsasyon ou rete sou machin sa a",
+      "186 lang, ki gen ladan ekriti ou li a",
+      "Tout bagay ka chanje pita; pa gen anyen ki pèmanan"
+    ],
+    "cta": "Enstale",
+    "ctaUpdate": "Mete ajou kounye a",
+    "kicker": "Rekòmansman yon sèl fwa",
+    "lead": "Pwòp ajan ou. Sou hardware ou. Nan lang ou.",
+    "leadUpdate": "Yon nouvo OpenAmer pare. Sa a ranplase vèsyon an anvan an epi kenbe tout sesyon ak anviwònman.",
+    "note": "Pran kèk minit sou yon koneksyon nòmal.",
+    "title": "Byenveni nan OpenAmer",
+    "titleUpdate": "Mete ajou OpenAmer"
+  }
+}

@@ -203,6 +203,26 @@
     "endonym": "Gàidhlig",
     "englishName": "Scottish Gaelic"
   },
+  "gl": {
+    "endonym": "Galego",
+    "englishName": "Galician"
+  },
+  "gn": {
+    "endonym": "Avañe'ẽ",
+    "englishName": "Guarani"
+  },
+  "gu": {
+    "endonym": "ગુજરાતી",
+    "englishName": "Gujarati"
+  },
+  "gv": {
+    "endonym": "Manx",
+    "englishName": "Manx"
+  },
+  "ha": {
+    "endonym": "Hausa",
+    "englishName": "Hausa"
+  },
   "he": {
     "endonym": "עברית",
     "englishName": "Hebrew"
@@ -211,25 +231,73 @@
     "endonym": "हिन्दी",
     "englishName": "Hindi"
   },
+  "ho": {
+    "endonym": "Hiri Motu",
+    "englishName": "Hiri Motu"
+  },
   "hr": {
     "endonym": "Hrvatski",
     "englishName": "Croatian"
+  },
+  "ht": {
+    "endonym": "Kreyòl ayisyen",
+    "englishName": "Haitian Creole"
   },
   "hu": {
     "endonym": "Magyar",
     "englishName": "Hungarian"
   },
+  "hy": {
+    "endonym": "Հայերեն",
+    "englishName": "Armenian"
+  },
+  "hz": {
+    "endonym": "Otjiherero",
+    "englishName": "Herero"
+  },
+  "ia": {
+    "endonym": "Interlingua",
+    "englishName": "Interlingua"
+  },
   "id": {
     "endonym": "Bahasa Indonesia",
     "englishName": "Indonesian"
+  },
+  "ie": {
+    "endonym": "Interlingue",
+    "englishName": "Interlingue"
+  },
+  "ig": {
+    "endonym": "Igbo",
+    "englishName": "Igbo"
+  },
+  "ik": {
+    "endonym": "Inupiaq",
+    "englishName": "Inupiaq"
+  },
+  "io": {
+    "endonym": "Ido",
+    "englishName": "Ido"
+  },
+  "is": {
+    "endonym": "Íslenska",
+    "englishName": "Icelandic"
   },
   "it": {
     "endonym": "Italiano",
     "englishName": "Italian"
   },
+  "iu": {
+    "endonym": "ᐃᓄᒃᑎᑐᑦ",
+    "englishName": "Inuktitut"
+  },
   "ja": {
     "endonym": "日本語",
     "englishName": "Japanese"
+  },
+  "jv": {
+    "endonym": "Basa Jawa",
+    "englishName": "Javanese"
   },
   "ko": {
     "endonym": "한국어",

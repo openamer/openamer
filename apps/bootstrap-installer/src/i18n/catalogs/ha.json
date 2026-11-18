@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer na shirya aiki, yana gudanar da shi da kayan aiki na gaske — terminal, burauza, fayiloli, lambar — kuma yana riƙe abin da ya yi aiki.",
+      "title": "Mai aiki da tunani tare"
+    },
+    {
+      "body": "Tattaunawa, ƙwaƙwalwa da samfura suna rayuwa a wannan na'ura. Ba a ɗora komai sai dai idan ka tambaya.",
+      "title": "Na'urarka, bayananka"
+    },
+    {
+      "body": "Harsuna 186, kowannensu a rubutun da kake karantawa. Farkon allo na app yana tambayar wane ne.",
+      "title": "Harsunanka daidai"
+    },
+    {
+      "body": "Kwarewa ana adanawa daga aikin kansa, don haka ayyuka na yau da kullum suna taƙaice yayin da kake amfani da shi.",
+      "title": "Kwarewa da ke girma"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Tabbatar cewa wannan na'ura na iya isa intanet.",
+      "Gudanar da saitin sake — matakan da aka kammala ba a maimaita su ba.",
+      "Idan ya kasa sau biyu, buɗe log; layin ƙarshe suna nuni da mataki."
+    ],
+    "lead": "Babu canje-canje da aka mayar da su ba tare da sanarwa ba — OpenAmer yana dakatar inda ya tsaya, don haka gudu na biyu yana ci gaba daga nan.",
+    "leadUpdate": "OpenAmer har yanzu yana kan sigar da ta gabata kuma yana ci gaba da aiki. Ba a raba wani abu ba.",
+    "log": "Log",
+    "openLogs": "Bude log",
+    "retry": "Gwada sake",
+    "retryUpdate": "Sake gwada sabuntawa",
+    "title": "Saitin bai gama ba",
+    "titleUpdate": "Sabuntawa bai gama ba"
+  },
+  "language": {
+    "continue": "Ci gaba",
+    "lead": "Saitin yana ci gaba a harshen da ka zaɓa nan. Za ka iya canza shi daga baya a app.",
+    "search": "Bincika harsuna",
+    "title": "Zaɓi harshenka"
+  },
+  "progress": {
+    "cancel": "Cire",
+    "done": "Gabaɗaya",
+    "hideDetails": "Rufe bayanai",
+    "lead": "Saitin ɗaya: OpenAmer yana sauke abin da yake buƙata kuma yana saita wannan na'ura. Bayan haka, kowane farawa yana tsallake dukkanin.",
+    "leadUpdate": "OpenAmer yana maye gurbin sigar da ta gabata. Zama, ƙwaƙwalwa da saituna suna nan ba tare da canji ba.",
+    "lines": "layi",
+    "liveOutput": "Fitarwa kai tsaye",
+    "showDetails": "Nuna bayanai",
+    "stepsComplete": "{done} na {total} matakai sun kammala",
+    "title": "Saitin OpenAmer",
+    "titleUpdate": "Sabunta OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Alamar shigarwa ta kammala",
+    "config-templates": "Rubuta samfuran saituna",
+    "configure": "Saita maɓallan API da samfura",
+    "dependencies": "Shigar da dogaro na Python",
+    "desktop": "Gina app na tebur",
+    "gateway": "Fara hanyar sadarwa",
+    "git": "Shigar da Git",
+    "handoff": "Shirin sabuntawa",
+    "install": "Shigar da sabuntawa",
+    "node": "Gano Node.js",
+    "node-deps": "Shigar da dogaro na Node.js",
+    "path": "Ƙara OpenAmer zuwa PATH",
+    "platform-sdks": "Shigar da SDK na dandamali na sadarwa",
+    "python": "Tabbatar da Python",
+    "rebuild": "Sake gina app na tebur",
+    "repository": "Kwafi ma'ajiyar OpenAmer",
+    "system-packages": "Shigar da ripgrep da ffmpeg",
+    "update": "Sauke sabon sigar",
+    "uv": "Shigar da mai sarrafa fakitin uv",
+    "venv": "Kirkirar yanayin Python na ɓoye"
+  },
+  "stepper": {
+    "done": "Gabaɗaya",
+    "install": "Shigar",
+    "language": "Harshe",
+    "update": "Sabuntawa",
+    "welcome": "Barka da zuwa"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Bude app ɗin ka kuma bayyana abin da kake son yi. OpenAmer yana aiki a bango kuma yana ba da rahoto.",
+        "title": "Fara da jimla"
+      },
+      {
+        "body": "Saituna → Nuna → Harshe. 186 yankuna, za a iya canza su a kowane lokaci.",
+        "title": "Zaɓi harshenka"
+      },
+      {
+        "body": "Aikin da ake maimaitawa yana zama kwarewa — a gaba zai ɗauki umarni guda.",
+        "title": "Bari ya tuna"
+      }
+    ],
+    "command": "ko fara daga terminal:",
+    "cta": "Kaddamar da OpenAmer",
+    "errorTitle": "Ba a iya kaddamar da app na tebur",
+    "launching": "Kaddamarwa",
+    "lead": "Duk abu yana cikin wuri. OpenAmer yanzu naka — a wannan na'ura, a harshenka.",
+    "title": "OpenAmer ya shirya"
+  },
+  "welcome": {
+    "bullets": [
+      "Yana aiki a gida — tattaunawarka na nan a wannan na'ura",
+      "186 harsuna, ciki har da rubutun da kake karantawa",
+      "Duk wani abu na iya canzawa daga baya; babu wani abu da ya zama dindindin"
+    ],
+    "cta": "Shigar",
+    "ctaUpdate": "Sabunta yanzu",
+    "kicker": "Saitin ɗaya",
+    "lead": "Mai aiki naka. A kan na'urarka. A harshenka.",
+    "leadUpdate": "Sabon OpenAmer ya shirya. Wannan yana maye gurbin sigar da ta gabata kuma yana riƙe dukkan zama da saituna.",
+    "note": "Yana ɗaukar mintuna kaɗan a haɗin yanar gizo na al'ada.",
+    "title": "Barka da zuwa OpenAmer",
+    "titleUpdate": "Sabunta OpenAmer"
+  }
+}

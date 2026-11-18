@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer planifica un labor, lo executa con instrumentos real — terminal, navigator, files, codice — e conserva lo que functionava.",
+      "title": "Un agent que pensa in parallelo"
+    },
+    {
+      "body": "Conversation, memoria e modelos vive in iste machina. Nulle es cargate a menos que tu lo demande.",
+      "title": "Tu hardware, tu datos"
+    },
+    {
+      "body": "186 linguas, cata in le script que tu realmente legi. Le prime schermo del app demanda quale.",
+      "title": "Tu lingua, correctemente"
+    },
+    {
+      "body": "Competenze es salvate del labor in si, assi le labores quotidianes deveni plus breves quanto tu lo usa.",
+      "title": "Capacitate que cresce"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Verifica que iste machina pote acceder al internet.",
+      "Reexecuta le configuration — le passos completate non es repetite.",
+      "Si illo falle duas vices, aperi le logs; le ultime lineas nomina le passo."
+    ],
+    "lead": "Nulle modificationes es revertite silentiose — OpenAmer arresta ubi illo arrestava, assi un secunde execution continua de ille loco.",
+    "leadUpdate": "OpenAmer es ancora in le version precedente e continua a functionar. Nulle era semi-replaciate.",
+    "log": "Log",
+    "openLogs": "Aperi logs",
+    "retry": "Prova ancora",
+    "retryUpdate": "Reintenta le actualisation",
+    "title": "Le configuration non completate",
+    "titleUpdate": "Le actualisation non completate"
+  },
+  "language": {
+    "continue": "Continua",
+    "lead": "Le configuration continua in le lingua que tu selige hic. Tu pote cambiarlo plus tarde in le app.",
+    "search": "Cerca linguas",
+    "title": "Selige tu lingua"
+  },
+  "progress": {
+    "cancel": "Cancella",
+    "done": "Preste",
+    "hideDetails": "Oculta detalios",
+    "lead": "Configuration unic: OpenAmer discarga lo que illo necessita e configura iste machina. Le futuros lances omitte toto.",
+    "leadUpdate": "OpenAmer es replacante le version precedente. Tu sessiones, memoria e configurationes resta inalterate.",
+    "lines": "lineas",
+    "liveOutput": "Output live",
+    "showDetails": "Monstra detalios",
+    "stepsComplete": "{done} de {total} passos completate",
+    "title": "Configurante OpenAmer",
+    "titleUpdate": "Actualisante OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Marcat le installation completate",
+    "config-templates": "Scrive le plantillas de configuration",
+    "configure": "Configurante le claves API e le modelos",
+    "dependencies": "Installa le dependencias Python",
+    "desktop": "Construye le app de escritorio",
+    "gateway": "Inicia le gateway de message",
+    "git": "Installa Git",
+    "handoff": "Prepara le actualisation",
+    "install": "Installa le actualisation",
+    "node": "Detecta Node.js",
+    "node-deps": "Installa le dependencias Node.js",
+    "path": "Adde OpenAmer al PATH",
+    "platform-sdks": "Installa le SDKs de le platforma de message",
+    "python": "Verifica Python",
+    "rebuild": "Reconstruye le app de escritorio",
+    "repository": "Clona le repository OpenAmer",
+    "system-packages": "Installa ripgrep e ffmpeg",
+    "update": "Discarga le ultime version",
+    "uv": "Installa le gestor de pacchettos uv",
+    "venv": "Crea le ambiente virtual Python"
+  },
+  "stepper": {
+    "done": "Preste",
+    "install": "Installa",
+    "language": "Lingua",
+    "update": "Actualisa",
+    "welcome": "Benvenite"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Aperi le app e describe lo que tu vole facer. OpenAmer opera in le fundo e reporta.",
+        "title": "Inicia con un frase"
+      },
+      {
+        "body": "Configuration → Display → Lingua. 186 locales, cambiabile a qualque momento.",
+        "title": "Selige tu lingua"
+      },
+      {
+        "body": "Labor recurrent deveni un competenza — le proxime vice prende un sol comando.",
+        "title": "Permitte lo recordar"
+      }
+    ],
+    "command": "o initia lo plus tarde ex un terminal:",
+    "cta": "Lanza OpenAmer",
+    "errorTitle": "Non pote lanzar le app de escritorio",
+    "launching": "Lanzamento",
+    "lead": "Tutto es in loco. OpenAmer es ora tu — in iste machina, in tu lingua.",
+    "title": "OpenAmer es preste"
+  },
+  "welcome": {
+    "bullets": [
+      "Opera localmente — tu conversationes resta in iste machina",
+      "186 linguas, inclusive le script que tu legi",
+      "Tutto pote esser cambiate plus tarde; nulle es permanente"
+    ],
+    "cta": "Installa",
+    "ctaUpdate": "Actualisa ora",
+    "kicker": "Configuration unic",
+    "lead": "Tu proprio agent. In tu hardware. In tu lingua.",
+    "leadUpdate": "Un nove OpenAmer es preste. Isto replace le version precedente e conserva tote le sessiones e configurationes.",
+    "note": "Prende pauco minutas in un connexion normal.",
+    "title": "Benvenite a OpenAmer",
+    "titleUpdate": "Actualisa OpenAmer"
+  }
+}

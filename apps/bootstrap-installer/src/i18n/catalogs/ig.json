@@ -1,0 +1,120 @@
+{
+  "capabilities": [
+    {
+      "body": "OpenAmer na-eme atụmatụ ọrụ, na-eme ya na ngwaọrụ ziri ezi — terminal, nchọgharị, faịlụ, koodu — ma na-echekwa ihe rụrụ ọrụ.",
+      "title": "Onye ọrụ na-eche echiche n'usoro"
+    },
+    {
+      "body": "Mkparịta ụka, ncheta na ụdị na-adị ndụ na igwe a. Enweghị ihe a na-ebufe ma ọ bụrụ na ị jụrụ ya.",
+      "title": "Ụlọ ọrụ gị, data gị"
+    },
+    {
+      "body": "Asụsụ 186, nke ọ bụla na ederede ị na-agụ. Ụzọ mbụ nke ngwa ahụ na-ajụ gị ka ị họrọ nke a.",
+      "title": "Asụsụ gị, nke ọma"
+    },
+    {
+      "body": "Uru a na-echekwa site na ọrụ ahụ, ya mere ọrụ kwa ụbọchị na-eme ka ọ dị mkpụmkpụ ka ị na-eji ya ogologo oge.",
+      "title": "Uru na-eto"
+    }
+  ],
+  "failure": {
+    "help": [
+      "Lelee ma igwe a nwere ike iru intaneti.",
+      "Gbaa usoro ntọala ọzọ — nzọụkwụ emechara agaghị emegharịa.",
+      "Ọ bụrụ na ọ gbagha ugboro abụọ, mepee ndekọ; ahịrị ikpeazụ na-akọwa nzọụkwụ ahụ."
+    ],
+    "lead": "Enweghị mgbanwe e weghachiri nwayọọ — OpenAmer kwụsịrị ebe ọ kwụsịrị, ya mere ịgba ọsọ ọzọ na-aga n'ihu site na ebe ahụ.",
+    "leadUpdate": "OpenAmer ka nọ na ụdị gara aga ma na-anọgide na-arụ ọrụ. Enweghị ihe e weghachiri n'etiti.",
+    "log": "Ndekọ",
+    "openLogs": "Mepee ndekọ",
+    "retry": "Nwa ọzọ",
+    "retryUpdate": "Gbalịa melite",
+    "title": "Usoro ntọala agaghị emechaa",
+    "titleUpdate": "Melite agaghị emechaa"
+  },
+  "language": {
+    "continue": "Gaa n'ihu",
+    "lead": "Usoro ntọala na-aga n'ihu na asụsụ ị họrọ ebe a. Ị nwere ike gbanwee ya mgbe e mesịrị na ngwa ahụ.",
+    "search": "Chọwa asụsụ",
+    "title": "Họrọ asụsụ gị"
+  },
+  "progress": {
+    "cancel": "Kwụsị",
+    "done": "Kwadebere",
+    "hideDetails": "Zere nkọwa",
+    "lead": "Usoro otu oge: OpenAmer na-ebudata ihe ọ chọrọ ma na-emejuputa igwe a. Nchọpụta mgbe e mesịrị na-ebugharị ihe niile.",
+    "leadUpdate": "OpenAmer na-agbanwe ụdị gara aga. Nzukọ gị, ncheta na ntọala ga-anọgide na-enweghị mgbanwe.",
+    "lines": "ahịrị",
+    "liveOutput": "Nsonaazụ ndụ",
+    "showDetails": "Gosi nkọwa",
+    "stepsComplete": "{done} nke {total} nzọụkwụ zuru ezu",
+    "title": "Na-emejuputa OpenAmer",
+    "titleUpdate": "Na-emezi OpenAmer"
+  },
+  "stages": {
+    "bootstrap-marker": "Na-emejuputa wụnye zuru ezu",
+    "config-templates": "Na-ede akwụkwọ ntọala",
+    "configure": "Na-emejuputa API keys na ụdị",
+    "dependencies": "Wụnye dependencies Python",
+    "desktop": "Na-emejuputa ngwa kọmputa",
+    "gateway": "Na-amalite ọdụ ụgbọ mmiri ozi",
+    "git": "Wụnye Git",
+    "handoff": "Na-emejuputa melite",
+    "install": "Wụnye melite",
+    "node": "Na-achọpụta Node.js",
+    "node-deps": "Wụnye dependencies Node.js",
+    "path": "Tinye OpenAmer na PATH",
+    "platform-sdks": "Wụnye SDKs nke ọdụ ụgbọ mmiri ozi",
+    "python": "Na-emejuputa Python",
+    "rebuild": "Na-emejuputa ngwa kọmputa ọzọ",
+    "repository": "Na-emejuputa nchekwa OpenAmer",
+    "system-packages": "Wụnye ripgrep na ffmpeg",
+    "update": "Na-ebudata ụdị kachasị ọhụrụ",
+    "uv": "Wụnye onye njikwa uv package",
+    "venv": "Na-emejuputa gburugburu Python"
+  },
+  "stepper": {
+    "done": "Kwadebere",
+    "install": "Wụnye",
+    "language": "Asụsụ",
+    "update": "Melite",
+    "welcome": "Nabata"
+  },
+  "success": {
+    "cards": [
+      {
+        "body": "Mepee ngwa ahụ ma kọwaa ihe ịchọrọ ime. OpenAmer na-arụ ọrụ n'azụ ma na-eziga ozi azụ.",
+        "title": "Malite na okwu"
+      },
+      {
+        "body": "Ntọala → Nchọpụta → Asụsụ. 186 mpaghara, nwere ike ịgbanwe mgbe ọ bụla.",
+        "title": "Họrọ asụsụ gị"
+      },
+      {
+        "body": "Ọrụ na-emegharị na-eme ka ọ bụrụ uru — oge ọzọ ọ na-ewe naanị iwu otu.",
+        "title": "Kekọrịta ya"
+      }
+    ],
+    "command": "ma ọ bụ malite ya mgbe e mesịrị site na terminal:",
+    "cta": "Bido OpenAmer",
+    "errorTitle": "Enweghị ike ịmalite ngwa kọmputa",
+    "launching": "Na-amalite",
+    "lead": "Ihe niile dị na ebe. OpenAmer bụ nke gị ugbu a — na igwe a, na asụsụ gị.",
+    "title": "OpenAmer kwadebere"
+  },
+  "welcome": {
+    "bullets": [
+      "Na-arụ ọrụ n'ịntanetị — mkparịta ụka gị na-anọgide na igwe a",
+      "186 asụsụ, tinyere ederede ị na-agụ",
+      "Ihe niile nwere ike ịgbanwe mgbe e mesịrị; ihe ọ bụla adịghị adịgide"
+    ],
+    "cta": "Wụnye",
+    "ctaUpdate": "Melite ugbu a",
+    "kicker": "Usoro otu oge",
+    "lead": "Onye ọrụ gị. Na ngwaọrụ gị. Na asụsụ gị.",
+    "leadUpdate": "OpenAmer ọhụrụ kwadebere. Nke a na-agbanwe ụdị gara aga ma na-anọgide na nzukọ na ntọala niile.",
+    "note": "Na-ewe obere nkeji na njikọ dị mma.",
+    "title": "Nabata na OpenAmer",
+    "titleUpdate": "Melite OpenAmer"
+  }
+}
