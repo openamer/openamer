@@ -166,7 +166,7 @@ def main(mode: str) -> int:
         _run(script, "--days", "7")
     else:
         _run(script, "--items", os.environ.get("FRESH_BENCH_ITEMS", "6"),
-             "--subjects", "local,ref,gpu")
+             "--subjects", "local,ref")
 
     try:
         report = json.loads(report_path.read_text(encoding="utf-8"))

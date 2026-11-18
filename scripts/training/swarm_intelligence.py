@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 """Swarm Intelligence — multi-agent collaboration for Mini-OpenAmer.
 
-Laptop agent + PC agent work TOGETHER as a collective:
-  A. Task routing: simple→laptop, GPU-heavy→PC, frontier→cloud
-  B. Shared world-model: insights from both agents merge
+Every agent that is actually reachable works TOGETHER as a collective:
+  A. Task routing: everything on the laptop; the GPU PC that took the deep work
+     was decommissioned 2026-11-18 (no GPU on this network any more)
+  B. Shared world-model: insights from all agents merge
   C. Evidence-based consensus: conflicting learnings resolve by evidence count
   D. Shared identity: "We are OpenAmer" — collective self-model
 
-Runs over the Agent Mesh (Go-daemon :18920) + SSH to PC.
+Runs over the Agent Mesh (Go-daemon :18920). A remote node is added by
+registering it in discovery, never by hardcoding a host in the routing table.
 """
+
 import os
 import json, os, sys, time, datetime, subprocess, urllib.request, threading
 from pathlib import Path
@@ -18,8 +21,6 @@ SWARM_DIR = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppD
 SHARED_WM = os.path.join(SWARM_DIR, "shared_world_model.jsonl")
 SWARM_STATE = os.path.join(SWARM_DIR, "swarm_state.json")
 SWARM_IDENTITY = os.path.join(SWARM_DIR, "swarm_identity.md")
-PC_SSH = "damir@192.168.178.23"
-PC_AGENT_URL = "http://192.168.178.23:8081"  # tool_server on PC
 
 os.makedirs(SWARM_DIR, exist_ok=True)
 
@@ -46,44 +47,29 @@ def discover_agents():
                        "energy": "low", "capabilities": ["reasoning", "memory", "tools"]})
     except Exception:
         pass
-    # PC — frontier server. ConnectTimeout is essential: the GPU box is not a
-    # 24/7 machine, and without it a powered-down host makes ssh hang until the
-    # subprocess kill (observed 2026-09-14: the whole cycle blocked for >60s and
-    # the cron job was killed by a gateway shutdown mid-run).
-    try:
-        r = subprocess.run(["ssh", "-o", "StrictHostKeyChecking=no", "-o", "BatchMode=yes",
-            "-o", "ConnectTimeout=8", "-o", "ServerAliveInterval=5", "-o", "ServerAliveCountMax=1",
-            "damir@192.168.178.23", "curl -s -m 5 http://localhost:8082/health"],
-            capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=20)
-        if "alive" in r.stdout:
-            agents.append({"id": "pc-gpu-4b", "url": "http://localhost:8082 (via SSH)",
-                          "role": "frontier-reasoning", "tools": 1,
-                          "energy": "medium", "capabilities": ["deep-reasoning", "gpu-training"]})
-    except Exception:
-        pass
+    # The PC frontier node (RTX 3060 Ti, :8082) was decommissioned on
+    # 2026-11-18 — the owner has no GPU any more. It is not probed: a node that
+    # cannot come back is not a fallback, it is a timeout. Registering it again
+    # later is a one-line addition behind a config flag, not a hardcoded host.
     return agents
 
 # ---- B. Knowledge Synthesis: merge insights from both agents ----
 
 def synthesize_knowledge(local_insight, remote_insight=None):
-    """Merge insights from both agents."""
-    try:
-        if remote_insight is None:
-            r = subprocess.run(["ssh", "-o", "StrictHostKeyChecking=no", "-o", "BatchMode=yes",
-                "-o", "ConnectTimeout=8", "-o", "ServerAliveInterval=5", "-o", "ServerAliveCountMax=1",
-                "damir@192.168.178.23",
-                "curl -s -m 5 http://localhost:8081/health"],
-                capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=20)
-            if "alive" not in r.stdout:
-                return "remote agent down"
-            remote_insight = r.stdout.strip()
+    """Merge insights from the agents that actually exist.
 
+    The remote half used to be an SSH probe to the PC GPU node. That node was
+    decommissioned 2026-11-18, so an unset ``remote_insight`` now means "no
+    remote perspective" instead of "hang on ssh until the timeout".
+    """
+    try:
         synthesis = {
             "ts": datetime.datetime.now().isoformat(),
             "type": "synthesis",
             "local": (local_insight or "none")[:200],
             "remote": (remote_insight or "none")[:200],
-            "synthesized": "Laptop reasoning + PC GPU perspective merged",
+            "synthesized": ("laptop reasoning only — no remote node registered"
+                            if not remote_insight else "laptop reasoning + remote perspective merged"),
         }
         log_shared(synthesis)
         return synthesis
@@ -100,17 +86,19 @@ def route_task(task, complexity="auto"):
 
     # heuristic routing:
     # - simple/memory tasks → laptop (always on, low energy)
-    # - reasoning/GPU tasks → PC (has GPU, deeper model)
+    # - everything else → laptop too: the GPU PC that used to take the deep work
+    #   was decommissioned 2026-11-18
     if complexity == "auto":
-        # simple keywords → laptop, complex → PC
+        # simple keywords → laptop, complex → same agent, flagged as complex
         complex_keywords = ["analyze", "compare", "prove", "design", "architecture"]
         complexity = "complex" if any(k in task.lower() for k in complex_keywords) else "simple"
 
     if complexity == "simple":
         target = next((a for a in agents if a["id"] == "laptop-2b"), agents[0])
     else:
-        target = next((a for a in agents if a["id"] == "pc-gpu-4b"),
-                     next((a for a in agents if a["id"] == "laptop-2b"), agents[0]))
+        # No GPU node to escalate to since 2026-11-18: "complex" stays on the
+        # agent that exists instead of routing to a host that cannot answer.
+        target = next((a for a in agents if a["id"] == "laptop-2b"), agents[0])
 
     return {"task": task[:100], "routed_to": target["id"],
             "reason": f"complexity={complexity}, {target['role']}"}
@@ -136,9 +124,8 @@ def resolve_conflict(claim_a, claim_b, evidence_a, evidence_b):
 def update_swarm_identity(agents=None):
     """The 'WE' identity — collective self-model across agents.
 
-    `agents` is passed in by the caller when discovery already ran, so a full
-    cycle pays the (possibly slow, when the GPU PC is off) SSH probe once
-    instead of twice.
+    `agents` is passed in by the caller when discovery already ran, so one cycle
+    probes each registered agent once instead of twice.
     """
     if agents is None:
         agents = discover_agents()

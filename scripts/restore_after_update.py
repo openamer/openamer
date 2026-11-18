@@ -89,20 +89,6 @@ def restore():
         else:
             print(f"  .. {name}: missing or empty")
 
-    # 5. GPU worker (PC)
-    print()
-    print("  GPU worker (PC):")
-    try:
-        r = subprocess.run(["ssh", "-o", "StrictHostKeyChecking=no", "-o", "BatchMode=yes",
-            "damir@192.168.178.23", "curl -s -m 5 http://localhost:8082/health"],
-            capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=15)
-        if "alive" in r.stdout:
-            print("  OK GPU worker: running (4B on :8082)")
-        else:
-            print("  .. GPU worker: down. Restart: ssh damir@192.168.178.23 python scripts/training/frontier_server.py")
-    except Exception as e:
-        print(f"  .. GPU worker: unreachable ({str(e)[:50]})")
-
     print()
     print("=== RESTORE COMPLETE ===")
 
