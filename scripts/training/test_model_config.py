@@ -103,3 +103,142 @@ def test_last_clean_block_recovers_answer_from_truncated_trace():
 def test_strip_thinking_keeps_text_after_close_tag():
     assert mc._strip_thinking("Thinking... </think>Berlin.") == "Berlin."
     assert mc._strip_thinking("Eine Woche hat sieben Tage.") == "Eine Woche hat sieben Tage."
+
+
+# --- truncation control (added 2026-11-19) -----------------------------------
+# Live defect: max_tokens too small -> provider answers finish_reason="length"
+# with an EMPTY `content` and the answer still inside `reasoning` (an English
+# chain-of-thought). chat_default() handed that fragment back as the answer:
+# measured "Eventually 2ct > a -> increments per step bigger." for a German
+# question. These tests pin the two mechanisms that fix it: budget escalation
+# and the result-only salvage pass.
+
+def _fake_transport(mc, responses, seen=None):
+    """Replace the HTTP layer; return the list of budgets actually requested."""
+    budgets = []
+    it = iter(responses)
+
+    def fake_post(url, body, headers, timeout=30):
+        budgets.append(body["max_tokens"])
+        if seen is not None:
+            seen.append(body)
+        return next(it)
+
+    old = mc._post_chat
+    mc._post_chat = fake_post
+    return budgets, old
+
+
+def _resp(content="", reasoning="", finish="stop", tokens=10):
+    return {"choices": [{"message": {"content": content, "reasoning": reasoning},
+                         "finish_reason": finish}],
+            "usage": {"completion_tokens": tokens}}
+
+
+class _Patch:
+    """Neutralise provider resolution + telemetry for the duration of a test."""
+
+    def __enter__(self):
+        self.saved = (mc.endpoint_for_default, mc.auth_headers,
+                      mc.resolve_default_model, mc.resolve_provider, mc._log_call)
+        mc.endpoint_for_default = lambda: "http://fake"
+        mc.auth_headers = lambda: {}
+        mc.resolve_default_model = lambda: "fake-model"
+        mc.resolve_provider = lambda: "fake-provider"
+        mc._log_call = lambda rec: None
+        return self
+
+    def __exit__(self, *exc):
+        (mc.endpoint_for_default, mc.auth_headers, mc.resolve_default_model,
+         mc.resolve_provider, mc._log_call) = self.saved
+
+
+def test_chat_default_escalates_budget_on_length():
+    """finish_reason=length must trigger a bigger budget, not a half answer."""
+    with _Patch():
+        budgets, old = _fake_transport(mc, [_resp(finish="length"),
+                                            _resp(content="Vollständige Antwort.")])
+        try:
+            txt = mc.chat_default([{"role": "user", "content": "q"}], max_tokens=100)
+        finally:
+            mc._post_chat = old
+    assert budgets[0] == 100, budgets
+    assert budgets[1] > 100, f"budget did not escalate: {budgets}"
+    assert txt == "Vollständige Antwort.", txt
+    meta = mc.last_call_meta()
+    assert meta["tries"] == 2 and meta["truncated"] is False, meta
+
+
+def test_chat_default_salvages_when_reasoning_ate_the_budget():
+    """Truncated with empty content + CoT in reasoning -> explicit answer-only pass."""
+    cot = "We need answer in German. Let me analyze the question about growth."
+    with _Patch():
+        budgets, old = _fake_transport(mc, [
+            _resp(content="", reasoning=cot, finish="length", tokens=100),
+            _resp(content="", reasoning=cot, finish="length", tokens=120),
+            _resp(content="Quadrate wachsen schneller, weil der Zuwachs mitwächst.",
+                  finish="stop"),
+        ])
+        try:
+            # budget_cap == one escalation step, so the truncated-at-cap path
+            # (and with it the salvage pass) is reached deterministically.
+            txt = mc.chat_default([{"role": "user", "content": "q"}],
+                                  max_tokens=100, budget_cap=120)
+        finally:
+            mc._post_chat = old
+    assert txt.startswith("Quadrate wachsen"), txt
+    meta = mc.last_call_meta()
+    assert meta["salvaged"] is True, meta
+    assert meta["from_reasoning"] is False, meta
+    assert meta["truncated"] is False, meta
+
+
+def test_chat_default_marks_cot_fallback_honestly():
+    """If every pass truncates, the caller is told the text came from the trace."""
+    with _Patch():
+        budgets, old = _fake_transport(mc, [
+            _resp(content="", reasoning="Eine Woche hat sieben Tage, also", finish="length"),
+            _resp(content="", reasoning="Eine Woche hat sieben Tage, also", finish="length"),
+        ])
+        try:
+            mc.chat_default([{"role": "user", "content": "q"}],
+                            max_tokens=100, budget_cap=150)
+        finally:
+            mc._post_chat = old
+    meta = mc.last_call_meta()
+    assert meta["truncated"] is True, meta
+    assert meta["from_reasoning"] is True, meta
+
+
+def test_chat_default_escalation_can_be_disabled():
+    """A caller that wants a single cheap call gets exactly one request."""
+    with _Patch():
+        budgets, old = _fake_transport(mc, [_resp(content="ok")])
+        try:
+            mc.chat_default([{"role": "user", "content": "q"}],
+                            max_tokens=50, escalate=False)
+        finally:
+            mc._post_chat = old
+    assert budgets == [50], budgets
+
+
+def test_chat_default_result_only_asks_up_front():
+    """result_only must add the answer-only instruction to the FIRST request.
+
+    Measured on the live critique prompt: without it 2400 tokens truncated
+    (483 usable chars), with it 1023 tokens stop (1342 chars). The instruction
+    has to be in request #1, otherwise the budget is already spent.
+    """
+    seen = []
+    with _Patch():
+        budgets, old = _fake_transport(mc, [_resp(content="Antwort.")], seen=seen)
+        try:
+            mc.chat_default([{"role": "user", "content": "q"}],
+                            max_tokens=80, result_only=True)
+        finally:
+            mc._post_chat = old
+    assert budgets == [80], budgets            # exactly one request
+    assert len(seen) == 1, seen
+    last = seen[0]["messages"][-1]["content"]
+    assert "ausschließlich mit dem fertigen Ergebnis" in last, last
+    assert mc.last_call_meta()["result_only"] is True
