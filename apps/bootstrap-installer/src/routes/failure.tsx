@@ -87,7 +87,7 @@ export default function Failure({ bootstrap }: FailureProps) {
               : [s.stepper.language, s.stepper.welcome, s.stepper.install, s.stepper.done]
           }
         />
-        <span className="font-mono text-[10px] tracking-[0.18em] text-foreground/25 uppercase">openamer.dev</span>
+        <span className="font-mono text-[10px] tracking-[0.18em] text-foreground/25 uppercase">openamer.com</span>
       </div>
     </div>
   )
