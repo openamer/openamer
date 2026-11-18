@@ -1320,12 +1320,34 @@ def main() -> int:
     try:
         import datetime as _dt, json as _json, os as _os
         _home = _os.environ.get("OPENAMER_HOME", "").strip()
+        _home_resolution = "env"
         if not _home:
             _base = Path.home() / "AppData" / "Local"
             _cands = [_base / "openamer", _base / "openamer-laptop",
                       Path(__file__).resolve().parent.parent]
             _home = str(next((c for c in _cands if (c / "memory").is_dir()), _cands[-1]))
-        _out = Path(_home) / "logs" / "suite-verdict.json"
+            _home_resolution = f"fallback:{_home}"
+        # Only an unrestricted default discovery run can replace the suite
+        # anchor. Explicit file lists, shards, alternate roots and pytest
+        # passthrough (which can select tests, including through plugins) are
+        # conservatively targeted, even when they happen to select every test.
+        _scope = "targeted" if (
+            args.paths_positional or args.files or slice_count > 1
+            or _split_path_list(args.paths) != _DEFAULT_ROOTS
+            or pytest_passthrough
+        ) else "full"
+        _revision = None
+        try:
+            _git = subprocess.run(
+                ["git", "rev-parse", "HEAD"], cwd=repo_root,
+                capture_output=True, text=True, timeout=5, check=False,
+            )
+            if _git.returncode == 0:
+                _revision = _git.stdout.strip() or None
+        except (OSError, subprocess.TimeoutExpired):
+            pass  # A source archive need not have git installed or metadata.
+        _filename = "suite-verdict.json" if _scope == "full" else "suite-verdict-targeted.json"
+        _out = Path(_home) / "logs" / _filename
         _out.parent.mkdir(parents=True, exist_ok=True)
         _out.write_text(_json.dumps({
             "ts": _dt.datetime.now(_dt.timezone.utc).isoformat(),
@@ -1335,10 +1357,12 @@ def main() -> int:
             "tests_collected": tests_collected,
             "elapsed_s": round(elapsed, 1),
             "workers": args.jobs,
-            # Scope matters: a 7-test targeted run is a verdict, but it is
-            # not THE suite. The DIR-05 probe treats a targeted verdict as
-            # partial, so a green one-file run can never pass the gate.
-            "scope": "targeted" if getattr(args, "paths_positional", None) else "full",
+            "scope": _scope,
+            "repo_root": str(repo_root),
+            "revision": _revision,
+            "argv": list(sys.argv),
+            "cwd": str(Path.cwd()),
+            "home_resolution": _home_resolution,
             "source": "scripts/run_tests.sh",
         }, indent=2), encoding="utf-8")
         print(f"=== verdict written: {_out} (passed={tests_passed} failed={tests_failed}) ===")
