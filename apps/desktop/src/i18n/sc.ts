@@ -855,7 +855,7 @@ export const sc = defineLocale({
       generatedTag: 'Generadas',
       adoptFailed: 'No si podet adottare custa mascotida.',
       toggleFailed: 'No si podet activare o disactivare sa mascotida.',
-      noneAvailable: 'Non d sunt mascotidas disponibles —前回の彼は、新しい生成~~~~~~~~',
+      noneAvailable: 'No pets available — pick one below to install.',
     },
     goToSession: 'Bae a sa sessione',
     providerNavigate: 'Navega',

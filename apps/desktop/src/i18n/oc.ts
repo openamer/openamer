@@ -1518,7 +1518,7 @@ export const oc = defineLocale({
       restarting: 'OpenAmer se reinicia...',
       askRestart: 'Demandar a OpenAmer de reiniciar lo servidor',
       restartingTitle: 'Reiniciacion del servidor de prèvisualizacion',
-      restartingMessage: 'OpenAmer工作在 en fond. Seguiguèt la consola de prèvisualizacion per veire l\'avanciament.',
+      restartingMessage: 'OpenAmer is working in the background. Watch the preview console for progress.',
       restartFailed: 'Reiniciacion del servidor fracassada',
       hideConsole: 'Amagar la consola de prèvisualizacion',
       showConsole: 'Mostrar la consola de prèvisualizacion',

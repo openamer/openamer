@@ -345,7 +345,7 @@ export const th = defineLocale({
     },
     notifications: {
       title: 'การแจ้งเตือน',
-      intro: 'การแจ้งเตือนเดสก์ท็อปแบบเนทีฟ แยกจากทוסטในแอป การตั้งค่าเก็บไว้ในเครื่อง — แต่ละคอมพิวเตอร์มีการตั้งค่าของตัวเอง',
+      intro: 'Native desktop notifications, separate from in-app toasts. These are device-local — each computer keeps its own settings.',
       enableAll: 'เปิดการแจ้งเตือน',
       enableAllDesc: 'สวิตช์หลัก ปิดสิ่งนี้เพื่อปิดการแจ้งเตือนทั้งหมดด้านล่าง',
       focusedHint: 'การแจ้งเตือนเมื่อทำงานเสร็จจะแสดงเฉพาะเมื่อ OpenAmer อยู่เบื้องหลัง',
