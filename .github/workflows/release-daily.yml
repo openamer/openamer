@@ -18,6 +18,10 @@ on:
 
 permissions:
   contents: write
+  # The version bump can no longer be pushed to main (protected: changes must
+  # arrive through a PR), so the release job opens a PR and tries to merge it.
+  # Without this scope `gh pr create` fails and the release never happens.
+  pull-requests: write
 
 jobs:
   daily-release:
