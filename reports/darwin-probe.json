@@ -1,7 +1,7 @@
 {
-  "updated": "2026-11-17T22:30:08.757224+00:00",
+  "updated": "2026-11-18T22:40:24.749475+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 1300,
+  "total": 1316,
   "skills": {
     "auto-competitor-intelligence-claudepowered-ai": {
       "refs": 0,
@@ -228,6 +228,12 @@
     "auto-what-did-you-learn": {
       "refs": 0,
       "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "arxiv": {
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -826,6 +832,12 @@
       "missing": []
     },
     "auto-what-new-agent-architectures": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "capture-thinking": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2355,6 +2367,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-n-reports-trend-scout-20261117-19-md": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-n-titel-n-title-live-evolution": {
       "refs": 0,
       "ok": 0,
@@ -2955,6 +2973,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-wt-i18n-retry": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-wt-maincheck": {
       "refs": 0,
       "ok": 0,
@@ -2996,6 +3020,12 @@
     "multi-monitor-control": {
       "refs": 2,
       "ok": 2,
+      "score": 1.0,
+      "missing": []
+    },
+    "webview-window-verification": {
+      "refs": 0,
+      "ok": 0,
       "score": 1.0,
       "missing": []
     },
@@ -3254,9 +3284,11 @@
     },
     "remote-gpu-worker": {
       "refs": 3,
-      "ok": 3,
-      "score": 1.0,
-      "missing": []
+      "ok": 2,
+      "score": 0.667,
+      "missing": [
+        "scripts/verify_gpu_worker.py"
+      ]
     },
     "runtime-tree-verification": {
       "refs": 3,
@@ -3388,8 +3420,8 @@
       "missing": []
     },
     "green-merge-gate": {
-      "refs": 2,
-      "ok": 2,
+      "refs": 3,
+      "ok": 3,
       "score": 1.0,
       "missing": []
     },
@@ -6838,6 +6870,12 @@
       "score": 1.0,
       "missing": []
     },
+    "resilient-batch-generation": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "training-data-collection": {
       "refs": 1,
       "ok": 1,
@@ -6979,12 +7017,6 @@
     "teams-meeting-pipeline": {
       "refs": 0,
       "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "arxiv": {
-      "refs": 1,
-      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -7281,8 +7313,8 @@
       "missing": []
     },
     "best-in-world-workflow": {
-      "refs": 2,
-      "ok": 2,
+      "refs": 3,
+      "ok": 3,
       "score": 1.0,
       "missing": []
     },
@@ -7292,7 +7324,7 @@
       "score": 1.0,
       "missing": []
     },
-    "capture-thinking": {
+    "build-artifact-provenance": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -7441,6 +7473,12 @@
       "score": 1.0,
       "missing": []
     },
+    "git-state-safety": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "github-ci-debugging": {
       "refs": 6,
       "ok": 5,
@@ -7486,20 +7524,32 @@
       "missing": []
     },
     "i18n-catalog-translation": {
-      "refs": 3,
-      "ok": 2,
-      "score": 0.667,
+      "refs": 7,
+      "ok": 6,
+      "score": 0.857,
       "missing": [
         "scripts/i18n_hand_batch.py"
       ]
     },
     "i18n-translation-pipeline": {
-      "refs": 3,
-      "ok": 3,
+      "refs": 6,
+      "ok": 6,
+      "score": 1.0,
+      "missing": []
+    },
+    "in-process-fallback-chains": {
+      "refs": 0,
+      "ok": 0,
       "score": 1.0,
       "missing": []
     },
     "install-scoped-home-resolution": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "installer-pin-and-update-verification": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -7520,6 +7570,12 @@
     "live-claim-verification": {
       "refs": 1,
       "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "llm-batch-resilience": {
+      "refs": 0,
+      "ok": 0,
       "score": 1.0,
       "missing": []
     },
@@ -7629,6 +7685,24 @@
       "score": 1.0,
       "missing": []
     },
+    "project-verdict-audit": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "protected-branch-delivery": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "protected-main-shipping": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "python-debugpy": {
       "refs": 3,
       "ok": 3,
@@ -7636,6 +7710,12 @@
       "missing": []
     },
     "remote-state-verification": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "resumable-batch-generation": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -7664,6 +7744,18 @@
     "self-modify": {
       "refs": 2,
       "ok": 2,
+      "score": 1.0,
+      "missing": []
+    },
+    "setup-window-i18n": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "shell-safe-command-text": {
+      "refs": 0,
+      "ok": 0,
       "score": 1.0,
       "missing": []
     },
@@ -7739,10 +7831,16 @@
       "score": 1.0,
       "missing": []
     },
+    "ui-design-audit": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "ui-string-catalog-translation": {
-      "refs": 11,
-      "ok": 10,
-      "score": 0.909,
+      "refs": 12,
+      "ok": 11,
+      "score": 0.917,
       "missing": [
         "scripts/i18n_hand_batch.py"
       ]
