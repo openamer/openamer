@@ -981,7 +981,7 @@ export const ch = defineLocale({
     disableUnused: 'Desabilita ti usa',
     bulkUpdated: count => `Updated ${count} ${count === 1 ? 'item' : 'items'} for new sessions.`,
     bulkNoChange: 'Tåya\' para kambia.',
-    usageCount: count => `used ${count}×`,
+    usageCount: count => `使用 ${count}×`,
     provenance: {
       agent: 'Ininengge',
       bundled: 'Nåna',
