@@ -28,6 +28,41 @@ AVESTAN = re.compile(r"[\U00010B00-\U00010B3F]")
 # deliberately NOT here — it flagged every English sentence starting with "If".
 TURKIC = set("əğıöüşçƏĞİÖÜŞÇ")
 
+# Per-locale characters that CANNOT occur in that language. A value holding one
+# was written in some other language — measured, not guessed:
+#   mi.ts (Maori) held Polish    -> "Kopiowanie nie powiodło się", "Delegowanie"
+#   ae.ts (Avestan) held Turkic  -> "Söndür", "Yenidən skan et"
+#   ps.ts (Pashto) held Romanian -> Latin sentences in an Arabic-script catalog
+FORBIDDEN_CHARS: dict[str, set[str]] = {
+    "mi": set("ąćęłńśźżĄĆĘŁŃŚŹŻ"),   # Polish diacritics: impossible in Maori
+    "ae": TURKIC,
+    "ha": set("ąćęłńźżĄĆĘŁŃŹŻ"),     # Hausa writes ɓ ɗ ƙ, never Polish marks
+}
+
+# Locales whose writing system is not Latin at all: a Latin sentence in one of
+# these is foreign by definition. Mirrors i18n_verify_locales.NON_LATIN_SCRIPT.
+NON_LATIN_SCRIPT = {
+    "ar": r"[\u0600-\u06FF\u0750-\u077F]",
+    "fa": r"[\u0600-\u06FF\u0750-\u077F]",
+    "ps": r"[\u0600-\u06FF\u0750-\u077F]",
+    "ur": r"[\u0600-\u06FF\u0750-\u077F]",
+    "he": r"[\u0590-\u05FF]",
+    "yi": r"[\u0590-\u05FF]",
+    "ru": r"[\u0400-\u04FF]",
+    "uk": r"[\u0400-\u04FF]",
+    "bg": r"[\u0400-\u04FF]",
+    "sr": r"[\u0400-\u04FF]",
+    "mk": r"[\u0400-\u04FF]",
+    "el": r"[\u0370-\u03FF]",
+    "hi": r"[\u0900-\u097F]",
+    "mr": r"[\u0900-\u097F]",
+    "ne": r"[\u0900-\u097F]",
+    "th": r"[\u0E00-\u0E7F]",
+    "ko": r"[\uAC00-\uD7AF\u1100-\u11FF]",
+    "zh": r"[\u4E00-\u9FFF]",
+    "ja": r"[\u3040-\u30FF\u4E00-\u9FFF]",
+}
+
 KEY_RE = re.compile(r"[A-Za-z_$][\w$]*")
 
 
@@ -149,21 +184,43 @@ def values_by_path(path: Path) -> dict[str, str]:
     return {t.path: t.value for t in parse(path.read_text(encoding="utf-8"))}
 
 
-def is_foreign(text: str) -> bool:
-    """True when the value is visibly in a Turkic language."""
+def is_foreign(text: str, locale: str = "ae") -> bool:
+    """True when the value is visibly not written in ``locale``'s language.
+
+    Two independent signals, both measured on real breakage:
+
+    * a character that cannot occur in the language (Polish diacritics in Maori,
+      Turkish letters in Avestan) — decisive when present;
+    * a Latin sentence in a catalog that uses a different writing system
+      (Romanian in Pashto) — decisive for non-Latin targets.
+
+    Default ``locale='ae'`` keeps the original Turkic check callable on its own.
+    """
+    if not isinstance(text, str):
+        return False
     if AVESTAN.search(text):
         return False
     letters = [c for c in text if c.isalpha()]
     if len(letters) < 3:
         return False
-    return any(c in TURKIC for c in letters)
+
+    forbidden = FORBIDDEN_CHARS.get(locale)
+    if forbidden and any(c in forbidden for c in text):
+        return True
+
+    pattern = NON_LATIN_SCRIPT.get(locale)
+    if pattern and len(letters) >= 4 and not re.search(pattern, text):
+        return True
+
+    return False
 
 
 def check(code: str, verbose: bool = True) -> int:
     path = I18N / f"{code}.ts"
     en = values_by_path(I18N / "en.ts")
     tokens = parse(path.read_text(encoding="utf-8"))
-    foreign = [t for t in tokens if is_foreign(t.value)]
+    foreign = [t for t in tokens
+               if t.value != en.get(t.path) and is_foreign(t.value, code)]
     native = [t for t in tokens if AVESTAN.search(t.value)]
     english = [t for t in tokens if en.get(t.path) == t.value]
     if verbose:
@@ -172,6 +229,26 @@ def check(code: str, verbose: bool = True) -> int:
         for t in foreign[:8]:
             print(f"   FOREIGN {t.path} = {t.value[:64]}")
     return 0 if not foreign else 1
+
+
+def _reencode(value: str, quote: str) -> str:
+    """Re-delimit an already-escaped TS string value for a different quote.
+
+    The value comes out of the *source text*, so it is already escaped for
+    TypeScript. Escaping it again is a bug, not a safety net: a template holding
+    a real newline came back as a literal backslash-n and the UI printed "\\n".
+    Only the delimiter conflict is handled here — the target quote must be
+    escaped (and backticks / `${` when the target is not a template).
+    """
+    SENTINEL = "\x00"
+    if quote == "`":
+        # Inside a template literal a bare backtick ends the string.
+        return value.replace("\\`", SENTINEL).replace("`", "\\`").replace(SENTINEL, "\\`")
+    if quote == "'":
+        return value.replace("\\'", SENTINEL).replace("'", "\\'").replace(SENTINEL, "\\'")
+    if quote == '"':
+        return value.replace('\\"', SENTINEL).replace('"', '\\"').replace(SENTINEL, '\\"')
+    return value  # pragma: no cover - defensive
 
 
 def repair(code: str, dry: bool = False) -> int:
@@ -183,19 +260,12 @@ def repair(code: str, dry: bool = False) -> int:
     edits: list[tuple[int, int, str]] = []
     missing = 0
     for t in tokens:
-        if not is_foreign(t.value):
+        if t.value == en.get(t.path) or not is_foreign(t.value, code):
             continue
         if t.path not in en:
             missing += 1
             continue
-        repl = en[t.path]
-        if t.quote == "'":
-            repl = repl.replace("\\", "\\\\").replace("'", "\\'")
-        elif t.quote == '"':
-            repl = repl.replace("\\", "\\\\").replace('"', '\\"')
-        # template literal: keep ${...} interpolations live, escape the rest
-        repl = repl.replace("\\", "\\\\").replace(t.quote, "\\" + t.quote) \
-            if t.quote == "`" else repl
+        repl = _reencode(en[t.path], t.quote)
         edits.append((t.start, t.end, t.quote + repl + t.quote))
 
     for start, end, text in sorted(edits, reverse=True):
