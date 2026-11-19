@@ -68,6 +68,21 @@ def observe_world(cause, effect):
 
 # ---- Learning Actions ----
 
+def _insight_payload(insight):
+    """The row web_learn stores -- deliberately NOT labelled.
+
+    Measured 2026-11-19: this used to be f"Key insight: {insight}", and
+    `key insight:` is a marker in buffer_store._NAV_CHROME (it catches the
+    model echoing the instruction template). Every web_learn row therefore
+    tripped the junk gate on its own label, before its content was judged:
+    191 logged rejections with reason "junk", zero rows ever buffered. That
+    is the same failure shape as the 2026-09-22 self-critique leak -- the
+    caller's own scaffolding poisoned its own gate. The label added nothing
+    the user_text does not already say, so it goes.
+    """
+    return (insight or "").strip()
+
+
 def web_learn():
     """Search for new AI developments and extract learnings."""
     topics = [
@@ -99,7 +114,7 @@ def web_learn():
             # Report the REAL outcome: a silent REFUSAL of the writer gate must
             # not be reported as "web-learn: <insight>" (measured 2026-09-22).
             if not store_if_trainable(f"What did you learn about {topic}?",
-                                      f"Key insight: {insight}"):
+                                      _insight_payload(insight)):
                 return f"web-learn: not buffered ({len(insight)} chars gated)"
             return f"web-learn: {insight[:80]}"
         return "no insight extracted"
@@ -324,12 +339,79 @@ def cross_connect():
 # ---- Rotation ----
 ACTIONS = [web_learn, self_test, world_explore, skill_challenge, cross_connect]
 
+# Which rotation slot produced the current run (for the durable run log).
+_LAST_ROTATION = 0
+
+# Durable per-run log. Deriving it from T keeps repository and runtime copies
+# identical without hardcoding an install name: T = <home>/scripts/training,
+# so <home>/memory/active_learn_log.jsonl. Capped by rows, trimmed rarely.
+RUN_LOG = os.path.join(os.path.dirname(T), os.pardir, "memory", "active_learn_log.jsonl")
+RUN_LOG_MAX_ROWS = 20000
+
+
+def _buffer_tail():
+    """Fingerprint of the newest buffer row -- objective evidence of a write.
+
+    A real append can leave the line count unchanged once the buffer sits at
+    its cap (enforce_cap trims it back), so counting lines proves nothing.
+    """
+    try:
+        with open(BUFFER, "rb") as fh:
+            fh.seek(0, os.SEEK_END)
+            size = fh.tell()
+            fh.seek(max(0, size - 8192))
+            tail = fh.read().decode("utf-8", "replace").strip()
+        return tail.splitlines()[-1] if tail else ""
+    except Exception:
+        return ""
+
+
+def _log_run(action_name, result, elapsed, buffer_advanced):
+    """Append one run row; never let logging break the learning step.
+
+    `buffer_advanced` means the newest buffer row changed WHILE this action
+    ran -- it is not attribution. Measured 2026-11-19, minutes after this log
+    shipped: skill_challenge (which never writes the buffer) recorded True
+    because a concurrent learner cron appended during its 122s timeout. The
+    field was called `buffer_changed` then, which claimed more than the
+    measurement can support.
+    """
+    try:
+        row = {
+            "ts": datetime.datetime.now().isoformat(timespec="seconds"),
+            "rotation": _LAST_ROTATION,
+            "action": action_name,
+            "buffer_advanced": bool(buffer_advanced),
+            "elapsed_s": elapsed,
+            "result": (result or "")[:400],
+        }
+        os.makedirs(os.path.dirname(RUN_LOG), exist_ok=True)
+        with open(RUN_LOG, "a", encoding="utf-8") as fh:
+            fh.write(json.dumps(row, ensure_ascii=False) + "\n")
+        with open(RUN_LOG, "rb") as fh:
+            fh.seek(0, os.SEEK_END)
+            if fh.tell() > RUN_LOG_MAX_ROWS * 220:
+                with open(RUN_LOG, encoding="utf-8") as src:
+                    keep = src.readlines()[-RUN_LOG_MAX_ROWS:]
+                with open(RUN_LOG, "w", encoding="utf-8") as dst:
+                    dst.writelines(keep)
+    except Exception:
+        pass
+
 def get_next_action():
     """Round-robin through actions."""
     n = 0
     if os.path.exists(ROTATION_FILE):
-        with open(ROTATION_FILE, encoding="utf-8") as _fh:
-            n = int(_fh.read().strip() or 0)
+        try:
+            with open(ROTATION_FILE, encoding="utf-8") as _fh:
+                n = int(_fh.read().strip() or 0)
+        except (ValueError, OSError):
+            # A killed run can leave a truncated counter ("9" of "95")
+            # or an unreadable file. Learning must not stop because the
+            # bookkeeping is broken -- restart the round at 0.
+            n = 0
+    global _LAST_ROTATION
+    _LAST_ROTATION = n
     action = ACTIONS[n % len(ACTIONS)]
     with open(ROTATION_FILE, "w", encoding="utf-8") as f:
         f.write(str(n + 1))
@@ -337,6 +419,7 @@ def get_next_action():
 
 def run_one():
     action = get_next_action()
+    before = _buffer_tail()
     start = time.time()
     try:
         result = action()
@@ -344,6 +427,7 @@ def run_one():
         result = f"error: {str(e)[:100]}"
     elapsed = round(time.time() - start, 1)
     print(f"[active-learn] {action.__name__}: {result} ({elapsed}s)", flush=True)
+    _log_run(action.__name__, result, elapsed, _buffer_tail() != before)
     return result
 
 def run_loop(interval=600):
@@ -352,16 +436,45 @@ def run_loop(interval=600):
         run_one()
         time.sleep(interval)
 
-if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == "loop":
-        run_loop()
-    elif len(sys.argv) > 1 and sys.argv[1] == "once":
+def run_all():
+    """Run every action once -- the explicit sweep, printed for a human."""
+    for a in ACTIONS:
+        try:
+            r = a()
+            print(f"  {a.__name__}: {r}")
+        except Exception as e:
+            print(f"  {a.__name__}: ERR {str(e)[:80]}")
+
+
+def main(argv=None):
+    """Entry point: ONE rotation step by default.
+
+    The cron scheduler calls this file as `python active_learn.py` with no
+    arguments -- cron/scheduler.py::_run_job_script builds
+    `argv = [python_exe, str(path)]`. Measured 2026-11-19: the previous
+    `else:` branch read that bare call as "run all five for testing", so
+    `.learn_rotation` never advanced (frozen at 95 since 2026-09-10 while the
+    job recorded 8071 completed runs) and every 7 minutes did five actions
+    instead of the one the rotation is there to balance.
+
+    A bare run must therefore be the production path. The five-action sweep
+    stays available, but only when asked for: `python active_learn.py all`.
+    """
+    args = list(sys.argv[1:] if argv is None else argv)
+    cmd = args[0].strip().lower() if args else "once"
+    if cmd == "once":
         run_one()
-    else:
-        # run all 5 once for testing
-        for a in ACTIONS:
-            try:
-                r = a()
-                print(f"  {a.__name__}: {r}")
-            except Exception as e:
-                print(f"  {a.__name__}: ERR {str(e)[:80]}")
+        return 0
+    if cmd == "loop":
+        run_loop()
+        return 0
+    if cmd == "all":
+        run_all()
+        return 0
+    print(f"[active-learn] unknown command {cmd!r}: use once | loop | all",
+          file=sys.stderr)
+    return 2
+
+
+if __name__ == "__main__":
+    sys.exit(main())
