@@ -77,6 +77,9 @@ def judge(rows: list[dict]) -> tuple[bool, str]:
             problems.append(f"{len(row['missing_sections'])} missing")
         if row.get("extra"):
             problems.append(f"{len(row['extra'])} extra")
+        if row.get("wrong_script"):
+            problems.append(f"{len(row['wrong_script'])} in the wrong "
+                            "writing system (mistranslation)")
         if problems:
             bad.append(f"{row['locale']}: {', '.join(problems)}")
     if bad:

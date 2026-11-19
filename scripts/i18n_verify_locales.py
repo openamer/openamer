@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -66,6 +67,57 @@ def parse_errors(locale: str) -> list[str]:
         if line.strip().startswith("line "):
             out.append(line.strip())
     return out
+
+
+# Writing systems a locale MUST use. Only non-Latin ones are listed: for a
+# Latin-script target, Latin text is expected input and a wrong-language fill
+# cannot be told apart from a correct one without a language model, so no rule
+# is honest there. For these the check is unambiguous — and it is the check that
+# was missing when ps.ts (Pashto) shipped Romanian sentences and ae.ts
+# (Avestan) shipped Azerbaijani ones.
+NON_LATIN_SCRIPT = {
+    "ar": r"[\u0600-\u06FF\u0750-\u077F]",
+    "fa": r"[\u0600-\u06FF\u0750-\u077F]",
+    "ps": r"[\u0600-\u06FF\u0750-\u077F]",
+    "ur": r"[\u0600-\u06FF\u0750-\u077F]",
+    "he": r"[\u0590-\u05FF]",
+    "yi": r"[\u0590-\u05FF]",
+    "ru": r"[\u0400-\u04FF]",
+    "uk": r"[\u0400-\u04FF]",
+    "bg": r"[\u0400-\u04FF]",
+    "sr": r"[\u0400-\u04FF]",
+    "mk": r"[\u0400-\u04FF]",
+    "el": r"[\u0370-\u03FF]",
+    "hi": r"[\u0900-\u097F]",
+    "mr": r"[\u0900-\u097F]",
+    "ne": r"[\u0900-\u097F]",
+    "th": r"[\u0E00-\u0E7F]",
+    "ko": r"[\uAC00-\uD7AF\u1100-\u11FF]",
+    "zh": r"[\u4E00-\u9FFF]",
+    "ja": r"[\u3040-\u30FF\u4E00-\u9FFF]",
+}
+
+
+def wrong_script(locale: str, tgt_text: dict, en_text: dict) -> list[str]:
+    """Values that were 'translated' into a different writing system entirely.
+
+    Only counts values that actually differ from English: an untranslated
+    fallback string is legitimately Latin and must not be flagged. Four or more
+    letters is the threshold — codes, URLs and numbers carry no script.
+    """
+    pattern = NON_LATIN_SCRIPT.get(locale)
+    if not pattern:
+        return []
+    rx = re.compile(pattern)
+    bad = []
+    for path, text in tgt_text.items():
+        if not isinstance(text, str) or text == en_text.get(path):
+            continue
+        if len([c for c in text if c.isalpha()]) < 4:
+            continue
+        if not rx.search(text):
+            bad.append(path)
+    return bad
 
 
 def verify(locale: str, en: dict) -> dict:
@@ -120,6 +172,7 @@ def verify(locale: str, en: dict) -> dict:
         "untranslated": untranslated,
         "total_strings": len(translatable),
         "parse_errors": parse_errors(locale),
+        "wrong_script": wrong_script(locale, tgt_text, en_text),
     }
 
 
