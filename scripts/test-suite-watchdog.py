@@ -26,6 +26,7 @@ Exit codes:
 import json
 import os
 import re
+import signal
 import subprocess
 import sys
 import time
@@ -263,6 +264,68 @@ def _run_suite(command: list[str], env: dict, output_path: Path):
                                        output_path.read_text(encoding="utf-8"), "")
 
 
+def _announce_run(state_path: Path, target: str) -> None:
+    """Write an in-flight marker before the suite starts.
+
+    A full run takes over an hour here. If the process is killed from outside
+    (gateway restart, `taskkill /F`, machine sleep) nothing gets written at the
+    end — and a cron row with no verdict is indistinguishable from "never ran".
+    The marker makes the death visible: it stays behind with status "running"
+    and a start timestamp, so the next tick can report it.
+    """
+    state_path.parent.mkdir(parents=True, exist_ok=True)
+    state_path.write_text(json.dumps({
+        "status": "running",
+        "target": target,
+        "started": datetime.now().astimezone().isoformat(timespec="seconds"),
+        "started_epoch": int(time.time()),
+        "pid": os.getpid(),
+    }, indent=1), encoding="utf-8")
+
+
+def _previous_was_killed(state_path: Path) -> dict:
+    """Was the last recorded run left mid-flight?"""
+    try:
+        prev = json.loads(state_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    if isinstance(prev, dict) and prev.get("status") == "running":
+        return prev
+    return {}
+
+
+def _install_kill_handlers(state_path: Path, log_path: Path, target: str,
+                           started: float) -> None:
+    """Record an external kill where a handler gets the chance to run.
+
+    On POSIX a SIGTERM arrives before death; on Windows it usually does not,
+    which is exactly why `_announce_run` exists as the durable fallback. This
+    handler is the polite path, not the guarantee.
+    """
+    def _handler(signum, _frame):
+        elapsed = int(time.time() - started)
+        _log(log_path, f"KILLED by signal {signum} after {elapsed}s (target={target})")
+        try:
+            state_path.write_text(json.dumps({
+                "status": "killed",
+                "target": target,
+                "signal": int(signum),
+                "elapsed_s": elapsed,
+                "started_epoch": int(started),
+            }, indent=1), encoding="utf-8")
+        finally:
+            raise SystemExit(1)
+
+    for name in ("SIGTERM", "SIGINT", "SIGBREAK", "SIGHUP"):
+        sig = getattr(signal, name, None)
+        if sig is None:
+            continue
+        try:
+            signal.signal(sig, _handler)
+        except (OSError, ValueError):
+            pass
+
+
 def main() -> int:
     state_path = _env_override("STATE", STATE)
     log_path = _env_override("LOG", LOG)
@@ -273,12 +336,24 @@ def main() -> int:
         print(f"  python: {PYTHON} exists={PYTHON.exists()}")
         return 1
 
+    # Report a run that died without a verdict — otherwise it is invisible.
+    stale = _previous_was_killed(state_path)
+    if stale:
+        age = int(time.time()) - int(stale.get("started_epoch") or 0)
+        _log(log_path, f"PREVIOUS RUN DID NOT FINISH (target={stale.get('target')}, "
+                       f"started {stale.get('started')}, {age}s ago, pid={stale.get('pid')})")
+        print(f"TEST-WATCHDOG: the previous run never finished — it was killed "
+              f"after {age}s with no verdict (target={stale.get('target')}, "
+              f"pid={stale.get('pid')}). Starting a fresh run.")
+
     target = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_TARGET
     env = dict(os.environ)
     env["OPENAMER_PYTHON"] = str(PYTHON)
     started = time.time()
     output_path = state_path.with_suffix(".runner.log")
     timed_out = False
+    _announce_run(state_path, target)
+    _install_kill_handlers(state_path, log_path, target, started)
     try:
         proc = _run_suite([BASH, str(RUNNER), target, "-q"], env, output_path)
     except subprocess.TimeoutExpired:

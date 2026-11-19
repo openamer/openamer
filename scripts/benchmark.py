@@ -14,12 +14,22 @@ CLI:
   python benchmark.py --report       # Letzte Ergebnisse anzeigen
   python benchmark.py --cron         # Leichten Benchmark für Cron (10 Min)
 """
-import json, os, sys, datetime, subprocess, random, urllib.request, time
+import json, os, sys, datetime, subprocess, random, urllib.request, time, re
 from pathlib import Path
 
 HOME = Path(os.environ.get("OPENAMER_HOME", Path.home() / "AppData" / "Local" / "openamer-laptop"))
 BENCH_FILE = HOME / "memory" / "benchmarks.json"
 NOW = datetime.datetime.now().isoformat()
+
+# The item set is chosen through scripts/benchmark_items.py so that a score is
+# anchored to an auditable, rotating set instead of the same slice every run.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import benchmark_items  # noqa: E402
+
+#: Items scored per domain. The pool holds 10 per domain, so this leaves room
+#: for several distinct sets before the pool is exhausted.
+PER_DOMAIN = 4
+
 
 # ─── BENCHMARK SUITES ───
 
@@ -163,8 +173,10 @@ def load_results():
     and the legacy ("history") shape always resolve.
 
     A corrupted or half-written file must not kill the weekly cron: the read is
-    guarded, and the returned dict always carries all three keys so callers
-    never meet a KeyError.
+    guarded, and the returned dict always carries all four keys so callers
+    never meet a KeyError. "sets" is the rotation log — the list of item sets
+    already scored — and it must survive a load/save cycle or the instrument
+    forgets what it has already drilled.
     """
     if BENCH_FILE.exists():
         try:
@@ -172,12 +184,15 @@ def load_results():
         except (json.JSONDecodeError, OSError):
             data = {}
         runs = data.get("runs", data.get("history", []))
-        return {"runs": runs, "history": runs, "best": data.get("best", {})}
-    return {"runs": [], "history": [], "best": {}}
+        sets = data.get("sets", [])
+        return {"runs": runs, "history": runs, "best": data.get("best", {}),
+                "sets": sets if isinstance(sets, list) else []}
+    return {"runs": [], "history": [], "best": {}, "sets": []}
 
 
 def save_results(results):
     results.setdefault("history", results.get("runs", []))
+    results.setdefault("sets", [])
     BENCH_FILE.parent.mkdir(parents=True, exist_ok=True)
     BENCH_FILE.write_text(json.dumps(results, indent=2, ensure_ascii=False), encoding="utf-8")
 
@@ -216,29 +231,108 @@ def score_answer_gpt(question, expected):
         answer = (resp["choices"][0]["message"].get("content") or "").strip().lower()
         expected_lower = expected.lower().strip()
         
-        # Simple sub-string matching
-        correct = expected_lower in answer or any(
-            kw in answer for kw in expected_lower.split()
-        )
+        # Boundary-aware matching, not bare substring containment:
+        # score_answer_gpt("154","54") used to return True because "54" is a
+        # substring of "154", and ("earth","e") because "e" is inside "earth".
+        # A single-letter keyword must match a whole word.
+        correct = _score_text_match(answer, expected_lower)
         return {"correct": correct, "answer": answer[:100], "expected": expected[:100]}
     except Exception as e:
         return {"correct": None, "error": str(e)[:100], "expected": expected[:100]}
 
 
-def run_knowledge_benchmark(quick=False):
-    """Knowledge benchmark across domains."""
-    results = {"type": "knowledge", "questions": {}, "correct": 0, "total": 0}
-    
-    for domain, questions in MMLU_QUESTIONS.items():
-        if quick:
-            questions = questions[:2]  # only 2 per domain for quick mode
+# BEGIN deterministic scorer (kept identical in runtime and tracked script)
+def _is_numeric_token(tok: str) -> bool:
+    """Recognize signed integers, decimals and fractions, without float parsing."""
+    number = r"[+-]?(?:[0-9]+(?:\.[0-9]+)?|\.[0-9]+)"
+    return bool(re.fullmatch(number + r"(?:/" + number + r")?", tok))
+
+
+def _numeric_value(tok: str):
+    from fractions import Fraction
+
+    if not _is_numeric_token(tok):
+        return None
+    try:
+        parts = tok.split("/")
+        value = Fraction(parts[0])
+        return value / Fraction(parts[1]) if len(parts) == 2 else value
+    except (ValueError, ZeroDivisionError):
+        return None
+
+
+def score_answer(answer: str, expected: str) -> bool:
+    """Exact rational numbers or whole-word text overlap; never execute answers.
+
+    Numeric expectations match complete signed tokens, not pieces of decimals,
+    fractions, identifiers or malformed numbers. A single terminal period is
+    sentence punctuation. Scientific notation and grouped numbers are not
+    supported. Text remains a lexical heuristic, NOT semantic correctness:
+    multi-word answers require at least half of the significant unique words.
+    """
+    a = (answer or "").lower().strip()
+    e = (expected or "").lower().strip()
+    if not a or not e:
+        return False
+    if _is_numeric_token(e):
+        target = _numeric_value(e)
+        if target is None:
+            return False
+        # Keep malformed numeric spans intact so their pieces cannot score.
+        for token in re.findall(r"[\w.+/,\-]+", a):
+            if token.endswith(".") and not token.endswith(".."):
+                token = token[:-1]
+            if _numeric_value(token) == target:
+                return True
+        return False
+
+    a_words = set(re.findall(r"\w+", a))
+    e_words = set(re.findall(r"\w+", e))
+    if not e_words:
+        return False
+    if len(e_words) == 1:
+        return e_words <= a_words
+    significant = {word for word in e_words if len(word) >= 4}
+    if not significant:
+        return e_words <= a_words
+    return len(significant & a_words) >= (len(significant) + 1) // 2
+
+
+def _score_text_match(answer: str, expected: str) -> bool:
+    """Compatibility entry point for the tracked cloud benchmark."""
+    return score_answer(answer, expected)
+# END deterministic scorer
+
+
+def run_knowledge_benchmark(quick=False, history=None):
+    """Knowledge benchmark across domains, on a *rotating* item set.
+
+    The old body took ``questions[:2]`` in quick mode: the same slice of the
+    pool on every run, forever. The score was a recognition score and it could
+    not be told apart from memorisation. Now the set is chosen by
+    ``benchmark_items.select_items`` — least-recently-used items first, with a
+    deterministic ``set_id`` recorded so two runs can be proven identical or
+    proven different.
+
+    ``quick`` no longer means "the first two" but "fewer items per domain"; the
+    rotation is the same either way.
+    """
+    per_domain = 2 if quick else PER_DOMAIN
+    selection = benchmark_items.select_items(MMLU_QUESTIONS, per_domain, history or [])
+
+    results = {"type": "knowledge", "questions": {}, "correct": 0, "total": 0,
+               "set_id": selection["set_id"], "item_ids": selection["item_ids"],
+               "pool_exhausted": selection["exhausted"],
+               "pool_health": selection["health"]}
+
+    for domain, questions in selection["items"].items():
         for q in questions:
             score = score_answer_gpt(q["q"], q["a"])
             results["questions"][f"{domain}:{q['q'][:40]}"] = score
             if score.get("correct"):
                 results["correct"] += 1
             results["total"] += 1
-    
+
     results["accuracy"] = results["correct"] / max(results["total"], 1)
     return results
 
@@ -259,32 +353,51 @@ def run_reasoning_benchmark():
 
 
 def run_full(quick=False):
-    """Run full benchmark suite."""
+    """Run full benchmark suite on a rotating item set."""
     start = time.time()
-    
+
+    all_results = load_results()
+    # The rotation log drives the selection: items scored least often go first.
+    history = [{"set_id": s.get("set_id"), "item_ids": s.get("item_ids", [])}
+               for s in all_results.get("sets", []) if isinstance(s, dict)]
+
+    knowledge = run_knowledge_benchmark(quick, history=history)
+
     result = {
         "ts": NOW,
         "type": "full" if not quick else "quick",
-        "knowledge": run_knowledge_benchmark(quick),
+        "knowledge": knowledge,
         "reasoning": run_reasoning_benchmark(),
         "duration_seconds": 0,
+        # Instrument identity: which items produced this number.
+        "set_id": knowledge["set_id"],
+        "items_hash": knowledge["set_id"],
+        "pool_health": knowledge["pool_health"],
+        # A score from an exhausted pool is a repeat, not a measurement.
+        "comparable": not knowledge["pool_exhausted"],
     }
     result["duration_seconds"] = round(time.time() - start, 1)
-    
+
     # Overall score
     accs = [result["knowledge"]["accuracy"], result["reasoning"]["accuracy"]]
     result["overall_accuracy"] = round(sum(accs) / len(accs), 3)
-    
+
     # Save
-    all_results = load_results()
     all_results["runs"].append(result)
+    all_results["sets"].append({
+        "set_id": knowledge["set_id"],
+        "ts": NOW,
+        "item_ids": knowledge["item_ids"],
+        "items": knowledge["total"],
+        "pool_exhausted": knowledge["pool_exhausted"],
+    })
     all_results["best"] = {
         "overall": max(r.get("overall_accuracy", 0) for r in all_results["runs"]),
         "knowledge": max(r.get("knowledge", {}).get("accuracy", 0) for r in all_results["runs"]),
         "reasoning": max(r.get("reasoning", {}).get("accuracy", 0) for r in all_results["runs"]),
     }
     save_results(all_results)
-    
+
     return result
 
 
@@ -317,8 +430,44 @@ def report():
     return "\n".join(lines)
 
 
+def selftest() -> int:
+    cases = [
+        # (answer, expected, should_score)
+        ("The answer is 5050", "5050", True),
+        ("earth", "e", False),
+        ("Paris!", "Paris", True),
+        ("154", "54", False),
+        ("-54", "54", False),
+        ("54.1", "54", False),
+        ("3/8", "8", False),
+        ("0.375", "3/8", True),
+        ("9007199254740993", "9007199254740992", False),
+        ("0.10000000000000000001", "0.1", False),
+        ("I think it might be around nine", "5050", False),
+        ("mitochondria", "mitochondria", True),
+        ("the cell", "mitochondria", False),
+        ("ad - bc", "ad - bc", True),
+        ("banana", "BANANA", True),
+        ("Central Processing Unit", "Central Processing Unit", True),
+        ("", "anything", False),
+        ("Newton's second law", "Newton's second law", True),
+        ("energy is conserved", "entropy at absolute zero is constant", False),
+    ]
+    bad = 0
+    for ans, exp, want in cases:
+        got = score_answer(ans, exp)
+        flag = "ok " if got == want else "BAD"
+        if got != want:
+            bad += 1
+        print(f"  [{flag}] score({ans!r:45} , {exp!r:38}) = {got} (want {want})")
+    print(f"\nscorer selftest: {len(cases) - bad}/{len(cases)} correct")
+    return 0 if bad == 0 else 1
+
+
 if __name__ == "__main__":
-    if "--run" in sys.argv:
+    if "--selftest" in sys.argv:
+        sys.exit(selftest())
+    elif "--run" in sys.argv:
         result = run_full(quick=False)
         print(json.dumps(result, indent=2, ensure_ascii=False))
     elif "--quick" in sys.argv:

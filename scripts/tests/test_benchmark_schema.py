@@ -16,9 +16,7 @@ import json
 import sys
 from pathlib import Path
 
-SCRIPT = (
-    Path(r"C:\Users\damir\wt-bench\scripts\benchmark.py")
-)
+SCRIPT = Path(__file__).resolve().parents[2] / "scripts" / "benchmark.py"
 
 
 def _load(tmp_path, monkeypatch):

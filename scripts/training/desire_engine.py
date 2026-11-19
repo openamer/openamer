@@ -85,6 +85,21 @@ DESIRES = SELF_DIR / "desires.json"
 HISTORY = SELF_DIR / "desire_history.jsonl"
 DECISIONS = SELF_DIR / "decision_ledger.jsonl"
 SI_API = os.environ.get("OPENAMER_SI_API", "http://127.0.0.1:8123").rstrip("/")
+
+# Rotation proof lives with the item selector that produces the sets, so the
+# sensor and the instrument cannot drift apart on what "rotated" means.
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+try:
+    from benchmark_items import MAX_ITEM_EXPOSURES, rotation_proof as _rotation_proof
+except Exception:  # a runtime tree without the module must not crash a sensor
+    MAX_ITEM_EXPOSURES = 2
+
+    def _rotation_proof(sets, window=3):
+        ids = [s.get("set_id") for s in list(sets or [])[-window:]
+               if isinstance(s, dict) and s.get("set_id")]
+        return {"scored_sets": len(ids), "recent": ids,
+                "distinct_recent": len(set(ids)),
+                "rotated": len(ids) >= 2 and len(set(ids)) == len(ids)}
 T = HOME / "scripts" / "training"
 
 SELF_DIR.mkdir(parents=True, exist_ok=True)
@@ -242,20 +257,31 @@ def sense_mastery():
         return {"satisfaction": None, "measure": ABSENT,
                 "note": f"only {len(accs)} benchmark run(s) â€” no trend"}
 
-    # A score is only a capability measure while the item set is rotated. The
-    # file records no set identity, so rotation cannot be proven â€” and 22 runs
-    # of the same questions cannot be told apart from learning. That is UNKNOWN,
-    # not "at my best": reporting it as satisfied silences the one drive whose
-    # job is to make me smarter.
-    rotation_recorded = any(
-        k in data for k in ("set_id", "items_hash", "sets", "versions")
-    ) if isinstance(data, dict) else False
+    # A score is only a capability measure while the item set is ACTUALLY
+    # rotated and the pool still holds fresh material. A recorded "set_id" key
+    # proves nothing on its own — anyone can write one, and the previous
+    # version of THIS sensor accepted exactly that. What proves rotation is
+    # distinct set ids across consecutive scored runs, plus a pool that has not
+    # been exhausted.
+    sets = data.get("sets") if isinstance(data, dict) else None
+    sets = sets if isinstance(sets, list) else []
+    proof = _rotation_proof(sets)
+    recent = [s for s in sets[-3:] if isinstance(s, dict)]
+    pool_exhausted = any(s.get("pool_exhausted") for s in recent)
     scored_runs = len(accs)
-    if scored_runs >= 3 and not rotation_recorded:
+
+    if pool_exhausted:
         return {"satisfaction": None, "measure": SPENT,
-                "note": (f"instrument unverifiable: {scored_runs} runs on the same "
-                         f"{items}-item set, no rotation recorded â€” the score cannot "
-                         f"separate learning from repetition")}
+                "note": ("pool exhausted: every item has been scored "
+                         f"{MAX_ITEM_EXPOSURES}x — a further score is a repeat, "
+                         "not a measurement; grow the item pool")}
+
+    if scored_runs >= 3 and not proof["rotated"]:
+        return {"satisfaction": None, "measure": SPENT,
+                "note": (f"instrument unverifiable: {scored_runs} scored runs, "
+                         f"{proof['scored_sets']} recorded set(s), recent ids "
+                         f"{proof['recent'] or 'none'} — the score cannot "
+                         "separate learning from repetition")}
 
     best, last = max(accs), accs[-1]
     sat = last / best if best > 0 else 0.0
