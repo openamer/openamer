@@ -1,0 +1,130 @@
+---
+slug: /
+sidebar_position: 0
+title: "OpenAmer Agent – Documentação"
+description: "O agente de IA que se melhora sozinho, criado pelo projeto OpenAmer. Ciclo de aprendizado integrado: cria habilidades a partir da experiência, as melhora durante o uso e lembra entre sessões."
+hide_table_of_contents: true
+displayed_sidebar: docs
+---
+
+import Link from "@docusaurus/Link";
+
+# OpenAmer Agent
+
+O agente de IA que se melhora sozinho, criado por [o projeto OpenAmer](https://openamer.com). O único agente com ciclo de aprendizado integrado: cria habilidades a partir da experiência, as melhora enquanto as usa, se cobra para guardar conhecimento e constrói um modelo cada vez mais profundo de quem você é.
+
+<div
+  style={{
+    display: "flex",
+    gap: "1rem",
+    marginBottom: "2rem",
+    flexWrap: "wrap",
+  }}
+>
+  <Link
+    to="/getting-started/installation"
+    style={{
+      display: "inline-block",
+      padding: "0.6rem 1.2rem",
+      backgroundColor: "#FFD700",
+      color: "#07070d",
+      borderRadius: "8px",
+      fontWeight: 600,
+      textDecoration: "none",
+    }}
+  >
+    Começar →
+  </Link>
+  <a
+    href="https://openamer-agent.openamer.com/"
+    style={{
+      display: "inline-block",
+      padding: "0.6rem 1.2rem",
+      border: "1px solid rgba(255,215,0,0.2)",
+      borderRadius: "8px",
+      textDecoration: "none",
+    }}
+  >
+    Baixar desktop
+  </a>
+  <a
+    href="https://github.com/openamer/openamer-agent"
+    style={{
+      display: "inline-block",
+      padding: "0.6rem 1.2rem",
+      border: "1px solid rgba(255,215,0,0.2)",
+      borderRadius: "8px",
+      textDecoration: "none",
+    }}
+  >
+    Ver no GitHub
+  </a>
+</div>
+
+## Instalação
+
+### Windows ou macOS
+
+Para instalar facilmente a linha de comando e o aplicativo desktop, [baixe o instalador do OpenAmer Desktop](https://openamer-agent.openamer.com/) e execute-o.
+
+### Sem o OpenAmer Desktop:
+
+Para uma instalação apenas de linha de comando, sem o OpenAmer Desktop:
+
+#### Linux / macOS / WSL2 / Android (Termux)
+
+```bash
+curl -fsSL https://openamer-agent.openamer.com/install.sh | bash
+```
+
+#### Windows (native)
+
+```powershell
+iex (irm https://openamer-agent.openamer.com/install.ps1)
+```
+
+Veja o **[Guia de instalação](/getting-started/installation)** completo para saber o que o instalador faz, o layout por usuário vs root e as notas específicas do Windows. A matriz completa de plataformas está em **[Suporte a plataformas](/getting-started/platform-support)**.
+
+:::tip O caminho mais rápido para um agente funcionando
+Depois de instalar, execute `openamer setup --portal`: um único OAuth cobre um modelo e as quatro ferramentas do Tool Gateway (busca web, geração de imagens, TTS, navegador). Veja [seu provedor hospedado](/integrations/openamer-portal).
+:::
+
+## O que é o OpenAmer Agent?
+
+Não é um copiloto de código preso a uma IDE nem um chatbot em volta de uma única API. É um **agente autônomo** que fica mais capaz quanto mais tempo roda. Ele vive onde você o colocar: um VPS de 5 dólares, um cluster de GPU ou infraestrutura serverless (Daytona, Modal) que custa quase nada ociosa. Fale com ele pelo Telegram enquanto trabalha numa VM na nuvem em que você nunca entra por SSH. Ele não depende do seu notebook.
+
+## Acessos rápidos
+
+|  |  |
+| --- | --- |
+| 🚀 **[Instalação](/getting-started/installation)** | Instale em 60 segundos no Linux, macOS, WSL2, Windows nativo ou Android |
+| 📖 **[Tutorial de início rápido](/getting-started/quickstart)** | Sua primeira conversa e os recursos principais |
+| 🗺️ **[Trilha de aprendizado](/getting-started/learning-path)** | Encontre a documentação certa para seu nível |
+| ⚙️ **[Configuração](/user-guide/configuration)** | Arquivo de configuração, provedores, modelos e opções |
+| 💬 **[Gateway de mensagens](/user-guide/messaging)** | Configure Telegram, Discord, Slack, WhatsApp, Teams e mais |
+| 🔧 **[Ferramentas e toolsets](/user-guide/features/tools)** | Mais de 60 ferramentas integradas e como configurá-las |
+| 🧠 **[Sistema de memória](/user-guide/features/memory)** | Memória persistente que cresce entre sessões |
+| 📚 **[Sistema de habilidades](/user-guide/features/skills)** | Memória procedural que o agente cria e reutiliza |
+| 🔌 **[Integração MCP](/user-guide/features/mcp)** | Conecte servidores MCP, filtre suas ferramentas e estenda o OpenAmer com segurança |
+| 🔒 **[Segurança](/user-guide/security)** | Aprovação de comandos, autorização, isolamento em contêineres |
+| ❓ **[FAQ e solução de problemas](/reference/faq)** | Perguntas frequentes e soluções |
+
+## Recursos principais
+
+- **Ciclo de aprendizado fechado** — memória curada pelo agente com lembretes periódicos, criação autônoma de habilidades, autoaperfeiçoamento durante o uso, recuperação entre sessões com FTS5 e resumo por LLM
+- **Roda em qualquer lugar, não só no seu notebook** — 6 backends de terminal: local, Docker, SSH, Daytona, Singularity, Modal. Daytona e Modal oferecem persistência serverless: seu ambiente hiberna ocioso e custa quase nada
+- **Vive onde você vive** — CLI, Telegram, Discord, Slack, WhatsApp, Signal, Matrix, Mattermost, e-mail, SMS e mais: mais de 20 plataformas a partir de um único gateway
+- **Feito por treinadores de modelos** — desenvolvido por [o projeto OpenAmer](https://openamer.com). Funciona com [seu provedor hospedado](https://portal.openamer.com), [OpenRouter](https://openrouter.ai), OpenAI ou qualquer endpoint
+- **Automações agendadas** — cron integrado com entrega em qualquer plataforma
+- **Delega e paraleliza** — subagentes isolados para fluxos paralelos; Programmatic Tool Calling com `execute_code` reduz pipelines de várias etapas a uma única chamada de inferência
+- **Habilidades em padrão aberto** — compatível com [agentskills.io](https://agentskills.io); portáveis, compartilháveis e contribuídas pela comunidade
+- **Controle web completo** — busca, extração, navegação, visão, geração de imagens, TTS: uma assinatura agrupa tudo
+
+## Para LLMs e agentes de código
+
+Pontos de entrada legíveis por máquina para esta documentação:
+
+- **[`/llms.txt`](/llms.txt)** — índice curado de cada página com descrição curta. ~17 KB, seguro para carregar em um contexto de LLM.
+- **[`/llms-full.txt`](/llms-full.txt)** — todas as páginas concatenadas num único arquivo markdown para ingestão de uma vez. ~1,8 MB.
+
+Ambos os arquivos também respondem em `/docs/llms.txt` e `/docs/llms-full.txt`. Gerados novamente a cada deploy.
