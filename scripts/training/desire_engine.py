@@ -278,9 +278,10 @@ def sense_mastery():
 
     if scored_runs >= 3 and not proof["rotated"]:
         return {"satisfaction": None, "measure": SPENT,
-                "note": (f"instrument unverifiable: {scored_runs} scored runs, "
-                         f"{proof['scored_sets']} recorded set(s), recent ids "
-                         f"{proof['recent'] or 'none'} — the score cannot "
+                "note": (f"instrument unverifiable: no rotation recorded across "
+                         f"{scored_runs} scored runs ({proof['scored_sets']} "
+                         f"recorded set(s), recent ids "
+                         f"{proof['recent'] or 'none'}) — the score cannot "
                          "separate learning from repetition")}
 
     best, last = max(accs), accs[-1]

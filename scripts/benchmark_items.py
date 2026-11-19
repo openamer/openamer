@@ -55,6 +55,10 @@ def _history_sets(history: Iterable[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """
     out: List[Dict[str, Any]] = []
     for entry in history or []:
+        # A bare string is a set id — an older store wrote `sets: ["v1","v2"]`.
+        if isinstance(entry, str):
+            out.append({"set_id": entry, "item_ids": []})
+            continue
         if not isinstance(entry, dict):
             continue
         ids = entry.get("item_ids") or entry.get("items")
