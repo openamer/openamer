@@ -86,6 +86,21 @@ class TestEstimateConfidence:
         score = _estimate_confidence(text)
         assert score <= 0.6
 
+    def test_german_certainty_boosts(self):
+        """A German answer must earn the same credit as an English one.
+
+        Measured 2026-11-19: the live debate answered correctly in German and
+        scored exactly the 0.5 base, because no English marker matched.
+        """
+        text = ("91 = 7 x 13, also ist 91 durch 7 ohne Rest teilbar. "
+                "Das Ergebnis ist eindeutig und bewiesen: keine Primzahl.")
+        assert _estimate_confidence(text) > 0.5
+
+    def test_german_hedging_lowers(self):
+        text = ("Vielleicht ist das moeglicherweise so, aber es scheint unklar "
+                "und ich denke, das koennte auch anders sein.")
+        assert _estimate_confidence(text) < 0.5
+
 
 # ---------------------------------------------------------------------------
 # run_swarm_parallel — fan-out strategy
