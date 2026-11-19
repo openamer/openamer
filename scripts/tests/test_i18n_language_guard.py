@@ -92,3 +92,32 @@ def test_ae_keeps_its_avestan_values():
     vals = guard.values_by_path(ae)
     native = [v for v in vals.values() if guard.AVESTAN.search(v)]
     assert len(native) > 200, f"only {len(native)} Avestan values left"
+
+
+# ------------------------------------------------------------------ reencode
+@pytest.mark.parametrize("value,quote", [
+    ("plain text", "'"),
+    ("plain text", "`"),
+    ("line one\nline two", "`"),        # a real newline must stay a newline
+    ("line one\nline two", "'"),
+    ("${count} items", "`"),            # interpolation survives in a template
+    ("say 'hi'", "`"),                  # a quote is not the delimiter here
+    ('say "hi"', "'"),
+])
+def test_reencode_is_lossless_for_ordinary_values(value, quote):
+    """The value comes from source text, so it is already escaped.
+
+    Escaping it again turned a template's real newline into a literal
+    backslash-n and the UI printed '\\n'.
+    """
+    assert guard._reencode(value, quote) == value
+
+
+def test_reencode_escapes_a_conflicting_delimiter():
+    assert guard._reencode("it's fine", "'") == "it\\'s fine"
+    assert guard._reencode("a `tick` here", "`") == "a \\`tick\\` here"
+    assert guard._reencode('a "quote" here', '"') == 'a \\"quote\\" here'
+
+
+def test_reencode_does_not_double_an_existing_escape():
+    assert guard._reencode("it\\'s", "'") == "it\\'s"
