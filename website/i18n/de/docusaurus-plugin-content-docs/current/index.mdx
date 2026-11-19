@@ -1,0 +1,132 @@
+---
+slug: /
+sidebar_position: 0
+title: "OpenAmer Agent – Dokumentation"
+description: "Der sich selbst verbessernde KI-Agent des OpenAmer-Projekts. Eingebaute Lernschleife: erstellt Skills aus Erfahrung, verbessert sie im Einsatz und erinnert sich über Sitzungen hinweg."
+hide_table_of_contents: true
+displayed_sidebar: docs
+---
+
+import Link from "@docusaurus/Link";
+
+# OpenAmer Agent
+
+Der sich selbst verbessernde KI-Agent von [dem OpenAmer-Projekt](https://openamer.com). Der einzige Agent mit eingebauter Lernschleife — er erstellt Skills aus Erfahrung, verbessert sie im Einsatz, drängt sich selbst zum Festhalten von Wissen und baut über Sitzungen hinweg ein immer tieferes Modell davon, wer du bist.
+
+<div
+  style={{
+    display: "flex",
+    gap: "1rem",
+    marginBottom: "2rem",
+    flexWrap: "wrap",
+  }}
+>
+  <Link
+    to="/getting-started/installation"
+    style={{
+      display: "inline-block",
+      padding: "0.6rem 1.2rem",
+      backgroundColor: "#FFD700",
+      color: "#07070d",
+      borderRadius: "8px",
+      fontWeight: 600,
+      textDecoration: "none",
+    }}
+  >
+    Loslegen →
+  </Link>
+  <a
+    href="https://openamer-agent.openamer.com/"
+    style={{
+      display: "inline-block",
+      padding: "0.6rem 1.2rem",
+      border: "1px solid rgba(255,215,0,0.2)",
+      borderRadius: "8px",
+      textDecoration: "none",
+    }}
+  >
+    Desktop herunterladen
+  </a>
+  <a
+    href="https://github.com/openamer/openamer-agent"
+    style={{
+      display: "inline-block",
+      padding: "0.6rem 1.2rem",
+      border: "1px solid rgba(255,215,0,0.2)",
+      borderRadius: "8px",
+      textDecoration: "none",
+    }}
+  >
+    Auf GitHub ansehen
+  </a>
+</div>
+
+## Installation
+
+### Windows oder macOS
+
+Für die einfache Installation von Kommandozeile und Desktop-App [lade den OpenAmer Desktop Installer herunter](https://openamer-agent.openamer.com/) und starte ihn.
+
+### Ohne OpenAmer Desktop:
+
+Für eine reine Kommandozeilen-Installation ohne OpenAmer Desktop:
+
+#### Linux / macOS / WSL2 / Android (Termux)
+
+```bash
+curl -fsSL https://openamer-agent.openamer.com/install.sh | bash
+```
+
+#### Windows (native)
+
+```powershell
+iex (irm https://openamer-agent.openamer.com/install.ps1)
+```
+
+Die vollständige **[Installationsanleitung](/getting-started/installation)** erklärt, was der Installer tut, das Layout pro Benutzer vs. root und Windows-Besonderheiten. Die komplette Plattformmatrix steht unter **[Plattform-Unterstützung](/getting-started/platform-support)**.
+
+:::tip Schnellster Weg zum laufenden Agenten
+Nach der Installation `openamer setup --portal` ausführen — ein OAuth deckt ein Modell plus alle vier Tool-Gateway-Werkzeuge ab (Websuche, Bildgenerierung, TTS, Browser). Siehe [deinen gehosteten Anbieter](/integrations/openamer-portal).
+:::
+
+## Was ist OpenAmer Agent?
+
+Kein Coding-Copilot, der an eine IDE gebunden ist, und kein Chatbot-Wrapper um eine einzelne API. Es ist ein **autonomer Agent**, der mit längerer Laufzeit fähiger wird. Er lebt, wo du ihn hinstellst — ein 5-Dollar-VPS, ein GPU-Cluster oder serverlose Infrastruktur (Daytona, Modal), die im Leerlauf fast nichts kostet. Sprich per Telegram mit ihm, während er auf einer Cloud-VM arbeitet, in die du dich nie selbst einloggst. Er hängt nicht an deinem Laptop.
+
+## Schnellzugriff
+
+|  |  |
+| --- | --- |
+| 🚀 **[Installation](/getting-started/installation)** | In 60 Sekunden installieren – Linux, macOS, WSL2, natives Windows oder Android |
+| 📖 **[Quickstart-Tutorial](/getting-started/quickstart)** | Dein erstes Gespräch und die wichtigsten Funktionen |
+| 🗺️ **[Lernpfad](/getting-started/learning-path)** | Die richtigen Docs für dein Erfahrungsniveau |
+| ⚙️ **[Konfiguration](/user-guide/configuration)** | Konfigurationsdatei, Anbieter, Modelle und Optionen |
+| 💬 **[Messaging-Gateway](/user-guide/messaging)** | Telegram, Discord, Slack, WhatsApp, Teams und mehr einrichten |
+| 🔧 **[Werkzeuge & Toolsets](/user-guide/features/tools)** | Über 60 eingebaute Werkzeuge und ihre Konfiguration |
+| 🧠 **[Speichersystem](/user-guide/features/memory)** | Dauerhaftes Gedächtnis, das über Sitzungen wächst |
+| 📚 **[Skill-System](/user-guide/features/skills)** | Prozedurales Gedächtnis, das der Agent erstellt und wiederverwendet |
+| 🔌 **[MCP-Integration](/user-guide/features/mcp)** | MCP-Server anbinden, Werkzeuge filtern, OpenAmer sicher erweitern |
+| 🔒 **[Sicherheit](/user-guide/security)** | Kommando-Freigabe, Autorisierung, Container-Isolation |
+| ❓ **[FAQ & Fehlerbehebung](/reference/faq)** | Häufige Fragen und Lösungen |
+
+## Kernfunktionen
+
+- **Geschlossene Lernschleife** — vom Agenten kuratiertes Gedächtnis mit regelmäßigen Impulsen, autonome Skill-Erstellung, Selbstverbesserung der Skills im Einsatz, FTS5-Sitzungsabruf mit LLM-Zusammenfassung und [Honcho](https://github.com/plastic-labs/honcho)-Nutzerprofil
+- **Läuft überall, nicht nur auf deinem Laptop** — 6 Terminal-Backends: lokal, Docker, SSH, Daytona, Singularity, Modal. Daytona und Modal bieten serverlose Persistenz — deine Umgebung schläft im Leerlauf und kostet fast nichts
+- **Lebt, wo du lebst** — CLI, Telegram, Discord, Slack, WhatsApp, Signal, Matrix, Mattermost, E-Mail, SMS, DingTalk, Feishu, WeCom, Weixin, QQ Bot, Yuanbao, BlueBubbles, Home Assistant, Microsoft Teams, Google Chat und mehr — über 20 Plattformen aus einem Gateway
+- **Von Modelltrainern gebaut** — entwickelt von [dem OpenAmer-Projekt](https://openamer.com), dem Labor hinter OpenAmer, Nomos und Psyche. Funktioniert mit [deinem gehosteten Anbieter](https://portal.openamer.com), [OpenRouter](https://openrouter.ai), OpenAI oder jedem Endpunkt
+- **Geplante Automatisierungen** — eingebauter Cron mit Zustellung auf jede Plattform
+- **Delegiert & parallelisiert** — isolierte Subagenten für parallele Arbeitsströme. Programmatic Tool Calling über `execute_code` verdichtet mehrstufige Pipelines zu einzelnen Inferenzaufrufen
+- **Offene Standard-Skills** — kompatibel mit [agentskills.io](https://agentskills.io). Skills sind portabel, teilbar und community-beigetragen über den Skills Hub
+- **Volle Web-Kontrolle** — Suche, Extraktion, Browsing, Vision, Bildgenerierung, TTS — ein Abo über [deinen gehosteten Anbieter](/integrations/openamer-portal) bündelt alles
+- **MCP-Unterstützung** — jeden MCP-Server für erweiterte Werkzeugfähigkeiten anbinden
+- **Forschungsbereit** — Batch-Verarbeitung, Trajektorien-Export, RL-Training mit Atropos
+
+## Für LLMs und Coding-Agenten
+
+Maschinenlesbare Einstiegspunkte in diese Dokumentation:
+
+- **[`/llms.txt`](/llms.txt)** — kuratierter Index jeder Doc-Seite mit Kurzbeschreibung. ~17 KB, sicher in einen LLM-Kontext ladbar.
+- **[`/llms-full.txt`](/llms-full.txt)** — jede Doc-Seite zu einer einzigen Markdown-Datei zusammengefasst für die Einmal-Ingestion. ~1,8 MB.
+
+Beide Dateien sind auch unter `/docs/llms.txt` und `/docs/llms-full.txt` erreichbar. Bei jedem Deploy frisch erzeugt.
