@@ -439,7 +439,7 @@ export const ha = defineLocale({
       inheritDesc: 'Cire mada na wannan kuma yi amfani da haɗin kan ta default.',
       remoteTitle: 'Gabatarwa ta nesa',
       remoteDesc: 'Haɗa wannan desktop shell da sabon OpenAmer backend na nesa.',
-      remoteAuthHint: 'Gwamnatin shiga? No. Let\'s use: Gwamnatin shiga? No.',
+      remoteAuthHint: 'Hosted gateways use OAuth or a username and password; self-hosted ones may use a session token.',
       cloudSignIn: 'Sanya shiga zuwa OpenAmer Cloud',
       cloudSignedIn: 'An sanya shiga zuwa OpenAmer Cloud',
       cloudNeedsSignIn: 'Sanya shiga zuwa OpenAmer Cloud don gano \'yan sanda a cikin akauniyyarka.',
