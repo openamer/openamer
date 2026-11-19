@@ -63,6 +63,23 @@ NON_LATIN_SCRIPT = {
     "ja": r"[\u3040-\u30FF\u4E00-\u9FFF]",
 }
 
+# The reverse direction: a Latin-script locale holding text in a DIFFERENT
+# writing system. Measured 2026-11-19, an.ts (Aragonese) got
+#     backendVersion: `后端 v${version}`
+# from a translation run. Any non-Latin script inside a Latin catalog is a
+# mistranslation; a product name is never the only content of a UI string.
+OTHER_SCRIPTS = re.compile(
+    "[\u0600-\u06FF"      # Arabic
+    "\u0590-\u05FF"       # Hebrew
+    "\u0400-\u04FF"       # Cyrillic
+    "\u0370-\u03FF"       # Greek
+    "\u0900-\u097F"       # Devanagari
+    "\u0E00-\u0E7F"       # Thai
+    "\uAC00-\uD7AF"       # Hangul
+    "\u3040-\u30FF"       # Kana
+    "\u4E00-\u9FFF]"      # Han
+)
+
 KEY_RE = re.compile(r"[A-Za-z_$][\w$]*")
 
 
@@ -184,17 +201,29 @@ def values_by_path(path: Path) -> dict[str, str]:
     return {t.path: t.value for t in parse(path.read_text(encoding="utf-8"))}
 
 
-def is_foreign(text: str, locale: str = "ae") -> bool:
+def _locale_scripts(tokens) -> set[str]:
+    """The scripts this catalog actually uses, calibrated from its own values."""
+    import i18n_script_calibration as cal
+    return cal.locale_scripts([t.value for t in tokens])
+
+
+def is_foreign(text: str, locale: str = "ae",
+               allowed: "set[str] | None" = None) -> bool:
     """True when the value is visibly not written in ``locale``'s language.
 
-    Two independent signals, both measured on real breakage:
+    Three signals, in order of confidence:
 
     * a character that cannot occur in the language (Polish diacritics in Maori,
       Turkish letters in Avestan) — decisive when present;
-    * a Latin sentence in a catalog that uses a different writing system
-      (Romanian in Pashto) — decisive for non-Latin targets.
+    * with ``allowed`` given (the locale's own calibrated script set), a value
+      written in a script the rest of that file never uses;
+    * without it, the older rule: a Latin sentence in a catalog that uses a
+      different writing system.
 
-    Default ``locale='ae'`` keeps the original Turkic check callable on its own.
+    A hand-written table of "which script does language X use" was wrong twice
+    (46,046 false positives for Tajik/Tatar/Uyghur/Chinese, then again for
+    Telugu/Kannada/Malayalam), which is why calibration reads the scripts from
+    the file itself — see i18n_script_calibration.
     """
     if not isinstance(text, str):
         return False
@@ -208,8 +237,18 @@ def is_foreign(text: str, locale: str = "ae") -> bool:
     if forbidden and any(c in forbidden for c in text):
         return True
 
+    if allowed is not None:
+        if len(letters) >= 4:
+            import i18n_script_calibration as cal
+            return cal.is_outlier(text, allowed)
+        return False
+
     pattern = NON_LATIN_SCRIPT.get(locale)
     if pattern and len(letters) >= 4 and not re.search(pattern, text):
+        return True
+
+    # A Latin-script catalog must not contain another writing system at all.
+    if not pattern and OTHER_SCRIPTS.search(text):
         return True
 
     return False
@@ -219,8 +258,9 @@ def check(code: str, verbose: bool = True) -> int:
     path = I18N / f"{code}.ts"
     en = values_by_path(I18N / "en.ts")
     tokens = parse(path.read_text(encoding="utf-8"))
+    allowed = _locale_scripts(tokens)
     foreign = [t for t in tokens
-               if t.value != en.get(t.path) and is_foreign(t.value, code)]
+               if t.value != en.get(t.path) and is_foreign(t.value, code, allowed)]
     native = [t for t in tokens if AVESTAN.search(t.value)]
     english = [t for t in tokens if en.get(t.path) == t.value]
     if verbose:
@@ -256,11 +296,12 @@ def repair(code: str, dry: bool = False) -> int:
     src = path.read_text(encoding="utf-8")
     en = values_by_path(I18N / "en.ts")
     tokens = parse(src)
+    allowed = _locale_scripts(tokens)
 
     edits: list[tuple[int, int, str]] = []
     missing = 0
     for t in tokens:
-        if t.value == en.get(t.path) or not is_foreign(t.value, code):
+        if t.value == en.get(t.path) or not is_foreign(t.value, code, allowed):
             continue
         if t.path not in en:
             missing += 1
