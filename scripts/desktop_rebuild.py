@@ -33,7 +33,22 @@ import sys
 from pathlib import Path
 
 # The Desktop agent copy that holds the actual packaged app + source we build.
-DEFAULT_AGENT_DIR = Path.home() / "AppData/Local/openamer/openamer-agent"
+# Resolve the install home instead of hardcoding one machine's directory: this
+# host is `openamer-laptop`, so the hardcoded `openamer` path reported
+# exists=False for a desktop build that was right there. A check that says
+# "nothing to build" on a machine that has everything is worse than no check.
+def _install_home() -> Path:
+    env = os.environ.get("OPENAMER_HOME", "").strip()
+    if env:
+        return Path(env)
+    base = Path.home() / "AppData" / "Local"
+    for cand in (base / "openamer-laptop", base / "openamer"):
+        if (cand / "openamer-agent").is_dir():
+            return cand
+    return base / "openamer"
+
+
+DEFAULT_AGENT_DIR = _install_home() / "openamer-agent"
 DESKTOP_DIR = DEFAULT_AGENT_DIR / "apps/desktop"
 PACKED_EXE = DESKTOP_DIR / "release/win-unpacked/OpenAmer.exe"
 
