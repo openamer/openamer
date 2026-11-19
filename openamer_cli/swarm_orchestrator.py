@@ -165,18 +165,33 @@ def _invoke_agent(
 
 
 def _estimate_confidence(text: str) -> float:
-    """Heuristic confidence estimate based on output length and tone."""
+    """Heuristic confidence estimate based on output length and tone.
+
+    Language: the word lists are English AND German on purpose. Measured
+    2026-11-19 on a live debate run -- a correct German answer ("91 = 7 x 13,
+    also ... ERGEBNIS: NEIN") scored exactly the 0.5 base, because not a single
+    English marker matched. For a German-speaking user that makes the reported
+    confidence carry no information at all, so the same markers exist in German.
+    """
     if not text or len(text) < 20:
         return 0.3
+    lowered = text.lower()
     certainty_words = sum(
-        text.lower().count(w)
+        lowered.count(w)
         for w in ("recommend", "conclude", "find", "key", "should", "must",
-                  "proven", "established", "best practice", "definitely")
+                  "proven", "established", "best practice", "definitely",
+                  # German
+                  "empfohlen", "schlussfolg", "ergebnis", "bewiesen", "eindeutig",
+                  "definitiv", "muss", "sollte", "klar", "sicher")
     )
     hedge_words = sum(
-        text.lower().count(w)
+        lowered.count(w)
         for w in ("maybe", "possibly", "perhaps", "might", "could", "seems",
-                  "appears", "uncertain", "unclear", "i think")
+                  "appears", "uncertain", "unclear", "i think",
+                  # German
+                  "vielleicht", "moeglicherweise", "möglicherweise", "koennte",
+                  "könnte", "scheint", "unsicher", "unklar", "vermutlich",
+                  "ich denke")
     )
     raw = 0.5 + (certainty_words * 0.04) - (hedge_words * 0.03)
     return max(0.05, min(1.0, raw))
