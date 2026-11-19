@@ -336,6 +336,15 @@ def main() -> int:
         print(f"  python: {PYTHON} exists={PYTHON.exists()}")
         return 1
 
+    # Read the previous verdict BEFORE _announce_run writes the in-flight
+    # marker to the same path. Measured 2026-11-19: _announce_run (dba562c36,
+    # "make a killed test run visible") overwrites state.json with
+    # {"status": "running"} and no "failed" key, so the `prev` read after the
+    # run always came back empty -- the red -> green recovery line could never
+    # fire again, and a green suite said nothing at all. Silence after a red
+    # night is the one thing a watchdog must not do.
+    prev = _load_state(state_path)
+
     # Report a run that died without a verdict — otherwise it is invisible.
     stale = _previous_was_killed(state_path)
     if stale:
@@ -368,7 +377,6 @@ def main() -> int:
     m = SUMMARY_RE.search(out)
     no_verdict = _no_verdict_files(out)
     counts = {path: int(failed) for path, _passed, failed in FAILED_FILE_LINE_RE.findall(out)}
-    prev = _load_state(state_path)
     n_files, n_passed, n_failed = (int(g) for g in m.groups()) if m else (None, None, None)
     status = ("timeout" if timed_out else "incomplete" if m is None or no_verdict
               or "NO TESTS RAN" in out else "green" if n_failed == 0
