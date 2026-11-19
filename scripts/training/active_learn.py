@@ -366,14 +366,22 @@ def _buffer_tail():
         return ""
 
 
-def _log_run(action_name, result, elapsed, buffer_changed):
-    """Append one run row; never let logging break the learning step."""
+def _log_run(action_name, result, elapsed, buffer_advanced):
+    """Append one run row; never let logging break the learning step.
+
+    `buffer_advanced` means the newest buffer row changed WHILE this action
+    ran -- it is not attribution. Measured 2026-11-19, minutes after this log
+    shipped: skill_challenge (which never writes the buffer) recorded True
+    because a concurrent learner cron appended during its 122s timeout. The
+    field was called `buffer_changed` then, which claimed more than the
+    measurement can support.
+    """
     try:
         row = {
             "ts": datetime.datetime.now().isoformat(timespec="seconds"),
             "rotation": _LAST_ROTATION,
             "action": action_name,
-            "buffer_changed": bool(buffer_changed),
+            "buffer_advanced": bool(buffer_advanced),
             "elapsed_s": elapsed,
             "result": (result or "")[:400],
         }

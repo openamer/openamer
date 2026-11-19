@@ -178,16 +178,18 @@ def test_run_one_writes_one_durable_row(tmp_path, monkeypatch):
     assert len(rows) == 1
     assert rows[0]["action"] == "web_learn"
     assert rows[0]["rotation"] == 0
-    assert rows[0]["buffer_changed"] is False  # the fake action wrote nothing
+    assert rows[0]["buffer_advanced"] is False  # the fake action wrote nothing
     assert "ts" in rows[0] and "elapsed_s" in rows[0]
 
 
-def test_buffer_changed_is_measured_not_self_reported(tmp_path, monkeypatch):
+def test_buffer_advanced_is_measured_not_self_reported(tmp_path, monkeypatch):
     """The instrument must see a real write even at the buffer cap.
 
     Line counts stay flat once the buffer is full (enforce_cap trims it back),
     so the log compares the newest row instead. A lying action that reports
-    success without writing must still be recorded as buffer_changed=False.
+    success without writing must still be recorded as buffer_advanced=False.
+    (It is an advance, not attribution: a concurrent writer can set it too — see
+    the _log_run docstring. That is why the field is named for the observation.)
     """
     buf = tmp_path / "online_buffer.jsonl"
     buf.write_text('{"u": "old", "a": "old"}\n', encoding="utf-8")
@@ -210,7 +212,7 @@ def test_buffer_changed_is_measured_not_self_reported(tmp_path, monkeypatch):
     AL.run_one()  # liar: rotation 0
     AL.run_one()  # writer: rotation 1
     rows = [json.loads(l) for l in log.read_text(encoding="utf-8").splitlines()]
-    assert [(r["action"], r["buffer_changed"]) for r in rows] == [
+    assert [(r["action"], r["buffer_advanced"]) for r in rows] == [
         ("liar", False), ("writer", True)
     ]
 
