@@ -88,6 +88,64 @@ def git(*args: str) -> subprocess.CompletedProcess:
     )
 
 
+def release_action(tag_exists: bool, version_in_files: str, date_str: str) -> str:
+    """What today's run has to do. Pure, so it is testable without git/gh.
+
+    ``create`` — no release today: stamp, tag, publish.
+    ``noop``   — released today AND the version files already say so.
+    ``repair`` — released today, but the version files still name an older
+                 version: the bump PR never merged (measured 2026-11-20 — the
+                 workflow token cannot admin-merge a protected main, and
+                 `publish_version_bump` deliberately continues and publishes
+                 from the branch head). The release exists, installs never see
+                 it as newer, so the drift has to be fixed instead of skipped.
+    """
+    if not tag_exists:
+        return "create"
+
+    return "noop" if version_in_files.strip() == date_str else "repair"
+
+
+def repair_version_drift(tag: str, date_str: str) -> int:
+    """Put a published release's version bump on main.
+
+    Never creates a tag or a release — those already exist; this only repairs
+    the version files so ``openamer update`` and the desktop updater can see the
+    build as newer than what an install currently reports.
+    """
+    print(f"Tag {tag} exists but the version files say {current_version()}: "
+          f"repairing the unmerged bump to {date_str}")
+
+    update_version_files(tag[1:], date_str)
+
+    uv_resync = subprocess.run(
+        ["uv", "lock"], cwd=REPO_ROOT, capture_output=True, text=True,
+        encoding="utf-8", errors="replace",
+    )
+    if uv_resync.returncode != 0:
+        print(f"uv lock failed after version bump: {uv_resync.stderr.strip()[:400]}")
+        return 1
+
+    git("add", "-u")
+    cr = git("commit", "-m", f"chore(release): version {date_str} for {tag} (repair unmerged bump)")
+    if cr.returncode != 0 and cr.stderr and "nothing to commit" not in cr.stderr:
+        print(f"commit failed: {cr.stderr.strip()}")
+        return 1
+
+    pushed, merged = publish_version_bump(f"release/{tag}-bump", tag, date_str)
+    if not pushed:
+        print("repair: could not push the bump branch")
+        return 1
+
+    if not merged:
+        print(f"repair: version {date_str} is pushed but NOT on main — "
+              f"PR '{date_str}' needs a human merge before installs can update")
+        return 1
+
+    print(f"repair: version {date_str} is on main")
+    return 0
+
+
 def publish_version_bump(branch: str, tag: str, date_str: str) -> tuple[bool, bool]:
     """Publish the bump through a pull request, and say whether it merged.
 
@@ -148,15 +206,26 @@ def main() -> int:
     vernum = tag[1:]               # 260816
     date_str = today_date_str()    # 2026.8.16
 
-    # Already released today? No-op.
+    # Already released today? Then either nothing is left to do, or the version
+    # bump never made it onto main and today's artifact is unreachable for
+    # installs (see release_action).
     r = git("tag", "-l", tag)
-    if tag in r.stdout.splitlines():
-        print(f"Tag {tag} already exists — nothing to do.")
+    action = release_action(tag in r.stdout.splitlines(), current_version(), date_str)
+
+    if action == "noop":
+        print(f"Tag {tag} already exists and the version files say {date_str} — nothing to do.")
         return 0
 
     if not args.publish:
-        print(f"[dry-run] Would set version to v{vernum} ({date_str}) and create release {tag}")
+        if action == "repair":
+            print(f"[dry-run] Tag {tag} exists but version is {current_version()}: "
+                  f"would repair the bump to {date_str} (no new tag/release)")
+        else:
+            print(f"[dry-run] Would set version to v{vernum} ({date_str}) and create release {tag}")
         return 0
+
+    if action == "repair":
+        return repair_version_drift(tag, date_str)
 
     # Update version files, commit, tag, push, release.
     # Version uses the dotted CalVer date_str (valid semver + PEP-440);
