@@ -1,7 +1,7 @@
 {
-  "updated": "2026-11-18T22:40:24.749475+00:00",
+  "updated": "2026-11-19T22:56:06.507178+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 1316,
+  "total": 1318,
   "skills": {
     "auto-competitor-intelligence-claudepowered-ai": {
       "refs": 0,
@@ -7579,6 +7579,12 @@
       "score": 1.0,
       "missing": []
     },
+    "llm-call-reliability": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "loop-closure-verification": {
       "refs": 0,
       "ok": 0,
@@ -8012,6 +8018,12 @@
       "missing": []
     },
     "log-analyzer": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "measurement-integrity": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
