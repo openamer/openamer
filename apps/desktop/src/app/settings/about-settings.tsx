@@ -2,10 +2,11 @@ import { useStore } from '@nanostores/react'
 import { useEffect, useState } from 'react'
 
 import { BrandMark } from '@/components/brand-mark'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { Codicon } from '@/components/ui/codicon'
 import { type Translations, useI18n } from '@/i18n'
-import { CheckCircle2, ExternalLink, Loader2, RefreshCw } from '@/lib/icons'
+import { CheckCircle2, ExternalLink, RefreshCw } from '@/lib/icons'
 import { cn } from '@/lib/utils'
 import {
   $desktopVersion,
@@ -138,7 +139,7 @@ export function AboutSettings() {
               size="sm"
               variant="textStrong"
             >
-              {checking ? <Loader2 className="size-3 animate-spin" /> : <RefreshCw className="size-3" />}
+              {checking ? <BrandLoader className="size-3" decorative /> : <RefreshCw className="size-3" />}
               {checking ? a.checking : a.checkNow}
             </Button>
 

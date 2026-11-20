@@ -1,10 +1,11 @@
 import { type ReactNode, type RefObject, useState } from 'react'
 
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { Codicon } from '@/components/ui/codicon'
 import { Tip } from '@/components/ui/tooltip'
 import { useI18n } from '@/i18n'
-import { Loader2, Search } from '@/lib/icons'
+import { Search } from '@/lib/icons'
 import { cn } from '@/lib/utils'
 
 interface SearchFieldProps {
@@ -85,7 +86,7 @@ export function SearchField({
       />
       {trailingAction}
       {loading ? (
-        <Loader2 className="pointer-events-none size-3.5 shrink-0 animate-spin text-muted-foreground/70" />
+        <BrandLoader className="pointer-events-none size-3.5 shrink-0 text-muted-foreground/70" decorative />
       ) : value ? (
         <Tip label={t.ui.search.clear}>
           <Button

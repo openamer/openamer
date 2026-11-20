@@ -13,9 +13,10 @@ import { useEffect, useMemo } from 'react'
 import { HUD_ITEM, HUD_TEXT } from '@/app/floating-hud'
 import { useGatewayRequest } from '@/app/gateway/hooks/use-gateway-request'
 import { PetThumb } from '@/components/pet/pet-thumb'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { useI18n } from '@/i18n'
 import { triggerHaptic } from '@/lib/haptics'
-import { Check, Egg, Loader2, PawPrint } from '@/lib/icons'
+import { Check, Egg, PawPrint } from '@/lib/icons'
 import { cn } from '@/lib/utils'
 import {
   $petBusy,
@@ -59,7 +60,7 @@ export function PetPalettePage({ search, onGenerate }: PetPalettePageProps) {
   }
 
   if (status === 'loading' && !gallery) {
-    return <Status icon={<Loader2 className="size-3.5 animate-spin" />} text={copy.loading} />
+    return <Status icon={<BrandLoader className="size-3.5" decorative />} text={copy.loading} />
   }
 
   if (status === 'stale') {
@@ -139,7 +140,7 @@ export function PetPalettePage({ search, onGenerate }: PetPalettePageProps) {
               </span>
               <span className="ml-auto flex shrink-0 items-center text-[0.6875rem] text-muted-foreground">
                 {isBusy ? (
-                  <Loader2 className="size-3 animate-spin" />
+                  <BrandLoader className="size-3" decorative />
                 ) : isActive ? (
                   <Check className="size-3.5 text-foreground" />
                 ) : null}
@@ -194,7 +195,7 @@ export function PetInlineToggle() {
       title={enabled ? copy.turnOff : copy.turnOn}
       type="button"
     >
-      {busy ? <Loader2 className="size-4 animate-spin" /> : <PawPrint className="size-4" />}
+      {busy ? <BrandLoader className="size-4" decorative /> : <PawPrint className="size-4" />}
     </button>
   )
 }

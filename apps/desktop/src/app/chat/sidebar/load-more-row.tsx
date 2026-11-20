@@ -1,5 +1,5 @@
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Codicon } from '@/components/ui/codicon'
-import { GlyphSpinner } from '@/components/ui/glyph-spinner'
 import { Tip } from '@/components/ui/tooltip'
 import { useI18n } from '@/i18n'
 
@@ -26,7 +26,7 @@ export function SidebarLoadMoreRow({ step, onClick, loading = false }: SidebarLo
         type="button"
       >
         {loading ? (
-          <GlyphSpinner ariaLabel={label} className="text-[0.75rem]" />
+          <BrandLoader aria-label={label} className="text-[0.75rem]" />
         ) : (
           <Codicon name="ellipsis" size="0.75rem" />
         )}

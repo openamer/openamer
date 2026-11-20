@@ -3,6 +3,7 @@ import { type ReactNode, useEffect, useState } from 'react'
 
 import { useGatewayRequest } from '@/app/gateway/hooks/use-gateway-request'
 import { PetThumb } from '@/components/pet/pet-thumb'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
@@ -12,7 +13,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Tip } from '@/components/ui/tooltip'
 import { useI18n } from '@/i18n'
 import { triggerHaptic } from '@/lib/haptics'
-import { Download, Loader2, PawPrint, Pencil, Trash2 } from '@/lib/icons'
+import { Download, PawPrint, Pencil, Trash2 } from '@/lib/icons'
 import { selectableCardClass } from '@/lib/selectable-card'
 import { cn } from '@/lib/utils'
 import { $petInfo, $petRoam, setPetRoam } from '@/store/pet'
@@ -201,7 +202,7 @@ export function PetSettings() {
                                 {pet.installed ? ` · ${copy.installedTag}` : ''}
                               </span>
                             </span>
-                            {isBusy && <Loader2 className="size-4 shrink-0 animate-spin text-(--ui-text-tertiary)" />}
+                            {isBusy && <BrandLoader className="size-4 shrink-0 text-(--ui-text-tertiary)" decorative />}
                           </button>
                           {!isBusy && (pet.installed || pet.generated) && (
                             <div className="absolute right-1.5 top-1.5 flex gap-1 opacity-0 transition focus-within:opacity-100 group-hover:opacity-100">

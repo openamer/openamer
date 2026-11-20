@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import type { DesktopUninstallMode, DesktopUninstallSummary } from '@/global'
-import { AlertTriangle, Loader2, Trash2 } from '@/lib/icons'
+import { AlertTriangle, Trash2 } from '@/lib/icons'
 import { cn } from '@/lib/utils'
 
 import { SectionHeading } from './primitives'
@@ -127,7 +128,7 @@ export function UninstallSection() {
       <div className="rounded-xl border border-destructive/30 bg-destructive/5 px-4 py-3">
         {loading ? (
           <div className="flex items-center gap-2 py-2 text-sm text-muted-foreground">
-            <Loader2 className="size-3.5 animate-spin" />
+            <BrandLoader className="size-3.5" decorative />
             Checking what&apos;s installed…
           </div>
         ) : pendingOption ? (
@@ -142,7 +143,7 @@ export function UninstallSection() {
             {error && <p className="mt-2 text-xs text-destructive">{error}</p>}
             <div className="mt-3 flex flex-wrap items-center gap-3">
               <Button disabled={running} onClick={() => void handleConfirm()} size="sm" variant="destructive">
-                {running && <Loader2 className="size-3 animate-spin" />}
+                {running && <BrandLoader className="size-3" decorative />}
                 {running ? 'Uninstalling…' : 'Yes, uninstall'}
               </Button>
               <Button disabled={running} onClick={() => setPending(null)} size="sm" variant="text">

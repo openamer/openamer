@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
-import { AlertTriangle, Check, ExternalLink, Loader2, RefreshCw, X } from '@/lib/icons'
+import { AlertTriangle, Check, ExternalLink, RefreshCw, X } from '@/lib/icons'
 import { getActionStatus, getComputerUseStatus, grantComputerUsePermissions } from '@/openamer'
 import { upsertDesktopActionTask } from '@/store/activity'
 import { notify, notifyError } from '@/store/notifications'
@@ -136,7 +137,7 @@ export function ComputerUsePanel({ onConfiguredChange }: ComputerUsePanelProps) 
   if (loading) {
     return (
       <div className="flex items-center gap-2 px-1 text-xs text-muted-foreground">
-        <Loader2 className="size-3.5 animate-spin" />
+        <BrandLoader className="size-3.5" decorative />
         Checking Computer Use status…
       </div>
     )
@@ -230,7 +231,7 @@ export function ComputerUsePanel({ onConfiguredChange }: ComputerUsePanelProps) 
       ) : (
         status.can_grant && (
           <Button disabled={granting} onClick={() => void grant()} size="sm">
-            {granting ? <Loader2 className="size-3.5 animate-spin" /> : <ExternalLink className="size-3.5" />}
+            {granting ? <BrandLoader className="size-3.5" decorative /> : <ExternalLink className="size-3.5" />}
             {granting ? 'Waiting for approval…' : 'Grant permissions'}
           </Button>
         )

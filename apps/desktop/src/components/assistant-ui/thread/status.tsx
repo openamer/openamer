@@ -6,7 +6,6 @@ import { useElapsedSeconds } from '@/components/chat/activity-timer'
 import { ActivityTimerText } from '@/components/chat/activity-timer-text'
 import { BrandLoader } from '@/components/ui/brand-loader'
 import { Codicon } from '@/components/ui/codicon'
-import { GlyphSpinner } from '@/components/ui/glyph-spinner'
 import { useI18n } from '@/i18n'
 import { cn } from '@/lib/utils'
 import { $backgroundResume } from '@/store/background-delegation'
@@ -71,7 +70,7 @@ export const ResponseLoadingIndicator: FC = () => {
       data-slot="aui_response-loading"
       label={compacting ? COMPACTION_LABEL : t.assistant.thread.loadingResponse}
     >
-      <GlyphSpinner className="text-midground/80" decorative spinner="braille" />
+      <BrandLoader className="text-midground/80" decorative />
       {compacting && <CompactionHint />}
       <ActivityTimerText seconds={elapsed} />
     </StatusRow>
@@ -164,7 +163,7 @@ export const StreamStallIndicator: FC = () => {
       data-slot="aui_stream-stall"
       label={compacting ? COMPACTION_LABEL : 'OpenAmer is thinking'}
     >
-      <GlyphSpinner className="text-midground/80" decorative spinner="braille" />
+      <BrandLoader className="text-midground/80" decorative />
       {compacting && <CompactionHint />}
       <ActivityTimerText seconds={elapsed} />
     </StatusRow>

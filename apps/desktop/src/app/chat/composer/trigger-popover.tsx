@@ -1,8 +1,8 @@
 import type { Unstable_TriggerItem } from '@assistant-ui/core'
 import { Fragment } from 'react'
 
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Codicon } from '@/components/ui/codicon'
-import { GlyphSpinner } from '@/components/ui/glyph-spinner'
 import { useI18n } from '@/i18n'
 import { cn } from '@/lib/utils'
 
@@ -83,7 +83,7 @@ export function ComposerTriggerPopover({
       {items.length === 0 ? (
         loading ? (
           <div className="flex items-center gap-2 px-2 py-1.5 text-(--ui-text-tertiary)">
-            <GlyphSpinner ariaLabel={copy.lookupLoading} className="text-foreground/70" spinner="braille" />
+            <BrandLoader aria-label={copy.lookupLoading} className="text-foreground/70" />
             <span>{copy.lookupLoading}</span>
           </div>
         ) : (

@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useState } from 'react'
 
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Tip } from '@/components/ui/tooltip'
 import { useI18n } from '@/i18n'
 import { sessionTitle } from '@/lib/chat-runtime'
 import { triggerHaptic } from '@/lib/haptics'
-import { Archive, ArchiveOff, FolderOpen, Loader2, Trash2 } from '@/lib/icons'
+import { Archive, ArchiveOff, FolderOpen, Trash2 } from '@/lib/icons'
 import {
   deleteSession,
   getOpenAmerConfigRecord,
@@ -154,7 +155,7 @@ export function SessionsSettings() {
                         type="button"
                         variant="textStrong"
                       >
-                        {busy ? <Loader2 className="size-3.5 animate-spin" /> : <ArchiveOff className="size-3.5" />}
+                        {busy ? <BrandLoader className="size-3.5" decorative /> : <ArchiveOff className="size-3.5" />}
                         <span>{s.unarchive}</span>
                       </Button>
                       <Tip label={s.deletePermanently}>

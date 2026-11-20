@@ -1,7 +1,8 @@
 // Upstream-Derived: apps/desktop/src/components/ui/action-status.tsx @ f033b7dbf (MIT)
 import type { ReactNode } from 'react'
 
-import { Check, Loader2 } from '@/lib/icons'
+import { BrandLoader } from '@/components/ui/brand-loader'
+import { Check } from '@/lib/icons'
 
 // idle → saving → done label+icon for action buttons (create / rename / delete…).
 export function ActionStatus({
@@ -19,7 +20,7 @@ export function ActionStatus({
 }) {
   return (
     <>
-      {state === 'saving' ? <Loader2 className="animate-spin" /> : state === 'done' ? <Check /> : idleIcon}
+      {state === 'saving' ? <BrandLoader decorative /> : state === 'done' ? <Check /> : idleIcon}
       {state === 'saving' ? busy : state === 'done' ? done : idle}
     </>
   )

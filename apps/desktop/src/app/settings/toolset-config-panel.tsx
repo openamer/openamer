@@ -2,10 +2,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { SETTINGS_ROUTE } from '@/app/routes'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useI18n } from '@/i18n'
-import { Check, Loader2, Save, Terminal } from '@/lib/icons'
+import { Check, Save, Terminal } from '@/lib/icons'
 import { cn } from '@/lib/utils'
 import {
   deleteEnvVar,
@@ -199,7 +200,7 @@ function EnvVarField({ envVar, isSet, onSaved, onCleared }: EnvVarFieldProps) {
             value={value}
           />
           <Button disabled={busy || !value} onClick={() => void handleSave()} size="sm">
-            {busy ? <Loader2 className="size-3.5 animate-spin" /> : <Save />}
+            {busy ? <BrandLoader className="size-3.5" decorative /> : <Save />}
             {t.common.save}
           </Button>
           <Button onClick={() => setEditing(false)} size="sm" variant="text">
@@ -329,13 +330,13 @@ function PostSetupRunner({ toolset, postSetupKey, installed = false, onComplete 
               {copy.postSetupInstalled}
             </Pill>
             <Button disabled={running} onClick={() => void run()} size="sm" variant="text">
-              {running ? <Loader2 className="size-3.5 animate-spin" /> : <Terminal className="size-3.5" />}
+              {running ? <BrandLoader className="size-3.5" decorative /> : <Terminal className="size-3.5" />}
               {running ? copy.postSetupRunning : copy.postSetupRerun}
             </Button>
           </span>
         ) : (
           <Button disabled={running} onClick={() => void run()} size="sm">
-            {running ? <Loader2 className="size-3.5 animate-spin" /> : <Terminal className="size-3.5" />}
+            {running ? <BrandLoader className="size-3.5" decorative /> : <Terminal className="size-3.5" />}
             {running ? copy.postSetupRunning : copy.postSetupRun}
           </Button>
         )}
@@ -419,7 +420,7 @@ function ModelCatalogPicker({ toolset, providerName, isActiveBackend }: ModelCat
   if (loading) {
     return (
       <div className="flex items-center gap-2 px-1 py-2 text-[0.72rem] text-muted-foreground">
-        <Loader2 className="size-3 animate-spin" />
+        <BrandLoader className="size-3" decorative />
         {copy.loadingModels}
       </div>
     )
@@ -467,7 +468,7 @@ function ModelCatalogPicker({ toolset, providerName, isActiveBackend }: ModelCat
                   </Pill>
                 )}
                 {!isSelected && isDefault && <Pill>{copy.modelDefault}</Pill>}
-                {saving === model.id && <Loader2 className="size-3 animate-spin" />}
+                {saving === model.id && <BrandLoader className="size-3" decorative />}
               </span>
               <span className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-[0.68rem] text-muted-foreground">
                 {model.speed && <span>{model.speed}</span>}
@@ -702,7 +703,7 @@ export function ToolsetConfigPanel({ toolset, onConfiguredChange }: ToolsetConfi
     // config incoming" without reserving a tall empty area.
     return (
       <div className="flex items-center gap-2 px-1 text-xs text-muted-foreground">
-        <Loader2 className="size-3.5 animate-spin" />
+        <BrandLoader className="size-3.5" decorative />
         {copy.loadingConfig}
       </div>
     )
@@ -763,7 +764,7 @@ export function ToolsetConfigPanel({ toolset, onConfiguredChange }: ToolsetConfi
                 {isSearchBackend && <Pill tone="primary">{copy.webUsedForSearch}</Pill>}
                 {isExtractBackend && <Pill tone="primary">{copy.webUsedForExtract}</Pill>}
               </span>
-              {selecting === provider.name && <Loader2 className="size-3.5 shrink-0 animate-spin" />}
+              {selecting === provider.name && <BrandLoader className="size-3.5 shrink-0" decorative />}
             </button>
 
             {isActive && (

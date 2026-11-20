@@ -1,6 +1,7 @@
 import { useStore } from '@nanostores/react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -15,7 +16,6 @@ import {
   FileText,
   Globe,
   HelpCircle,
-  Loader2,
   LogIn,
   Monitor,
   RefreshCw,
@@ -1074,15 +1074,15 @@ export function GatewaySettings({ embedded = false }: { embedded?: boolean } = {
             disabled={state.envOverride}
             hint={g.remoteAuthHint}
             icon={Globe as any}
-                        onSelect={() => setState(current => ({ ...current, mode: 'remote' }))}
-                        title={g.remoteTitle}
-                      />
-                      <ModeCard
-                        active={state.mode === 'ssh'}
-                        description={g.sshDesc}
-                        disabled={state.envOverride}
-                        hint={g.sshTrustHint}
-                        icon={Terminal as any}
+            onSelect={() => setState(current => ({ ...current, mode: 'remote' }))}
+            title={g.remoteTitle}
+          />
+          <ModeCard
+            active={state.mode === 'ssh'}
+            description={g.sshDesc}
+            disabled={state.envOverride}
+            hint={g.sshTrustHint}
+            icon={Terminal as any}
             onSelect={() => setState(current => ({ ...current, mode: 'ssh' }))}
             title={g.sshTitle}
           />
@@ -1102,13 +1102,13 @@ export function GatewaySettings({ embedded = false }: { embedded?: boolean } = {
                     <Check className="size-3" /> {g.cloudSignedIn}
                   </Pill>
                   <Button disabled={cloudSigningIn} onClick={() => void cloudSignOut()} variant="outline">
-                    {cloudSigningIn ? <Loader2 className="animate-spin" /> : null}
+                    {cloudSigningIn ? <BrandLoader decorative /> : null}
                     {g.signOut}
                   </Button>
                 </div>
               ) : (
                 <Button disabled={cloudSigningIn} onClick={() => void cloudSignIn()}>
-                  {cloudSigningIn ? <Loader2 className="animate-spin" /> : <LogIn />}
+                  {cloudSigningIn ? <BrandLoader decorative /> : <LogIn />}
                   {g.cloudSignIn}
                 </Button>
               )
@@ -1166,7 +1166,7 @@ export function GatewaySettings({ embedded = false }: { embedded?: boolean } = {
                       size="sm"
                       variant="text"
                     >
-                      {cloudDiscover === 'loading' ? <Loader2 className="animate-spin" /> : <RefreshCw />}
+                      {cloudDiscover === 'loading' ? <BrandLoader decorative /> : <RefreshCw />}
                       {g.cloudRefresh}
                     </Button>
                   </div>
@@ -1174,7 +1174,7 @@ export function GatewaySettings({ embedded = false }: { embedded?: boolean } = {
 
                 {cloudDiscover === 'loading' ? (
                   <div className="flex items-center gap-2 py-3 text-[length:var(--conversation-caption-font-size)] text-(--ui-text-tertiary)">
-                    <Loader2 className="size-4 animate-spin" />
+                    <BrandLoader className="size-4" decorative />
                     {g.cloudLoadingAgents}
                   </div>
                 ) : cloudAgents.length === 0 ? (
@@ -1211,7 +1211,7 @@ export function GatewaySettings({ embedded = false }: { embedded?: boolean } = {
                                   onClick={() => void connectCloudAgent(agent)}
                                   size="sm"
                                 >
-                                  {cloudConnectingId === agent.id ? <Loader2 className="animate-spin" /> : null}
+                                  {cloudConnectingId === agent.id ? <BrandLoader decorative /> : null}
                                   {agent.dashboardUrl
                                     ? cloudConnectingId === agent.id
                                       ? g.cloudConnecting
@@ -1252,7 +1252,7 @@ export function GatewaySettings({ embedded = false }: { embedded?: boolean } = {
 
           {state.mode === 'remote' && probeStatus === 'probing' ? (
             <div className="flex items-center gap-2 py-3 text-[length:var(--conversation-caption-font-size)] text-(--ui-text-tertiary)">
-              <Loader2 className="size-4 animate-spin" />
+              <BrandLoader className="size-4" decorative />
               {g.probing}
             </div>
           ) : null}
@@ -1274,13 +1274,13 @@ export function GatewaySettings({ embedded = false }: { embedded?: boolean } = {
                       <Check className="size-3" /> {g.signedIn}
                     </Pill>
                     <Button disabled={signingIn || state.envOverride} onClick={() => void signOut()} variant="outline">
-                      {signingIn ? <Loader2 className="animate-spin" /> : null}
+                      {signingIn ? <BrandLoader decorative /> : null}
                       {g.signOut}
                     </Button>
                   </div>
                 ) : (
                   <Button disabled={signingIn || state.envOverride || !trimmedUrl} onClick={() => void signIn()}>
-                    {signingIn ? <Loader2 className="animate-spin" /> : <LogIn />}
+                    {signingIn ? <BrandLoader decorative /> : <LogIn />}
                     {isPasswordProvider ? g.signIn : g.signInWith(providerLabel)}
                   </Button>
                 )
@@ -1441,7 +1441,7 @@ export function GatewaySettings({ embedded = false }: { embedded?: boolean } = {
               size="sm"
               variant="text"
             >
-              {testing ? <Loader2 className="animate-spin" /> : null}
+              {testing ? <BrandLoader decorative /> : null}
               {g.testRemote}
             </Button>
           ) : state.mode === 'ssh' ? (
@@ -1452,7 +1452,7 @@ export function GatewaySettings({ embedded = false }: { embedded?: boolean } = {
               size="sm"
               variant="text"
             >
-              {testing ? <Loader2 className="animate-spin" /> : null}
+              {testing ? <BrandLoader decorative /> : null}
               {g.sshTestConnection}
             </Button>
           ) : null}
@@ -1467,7 +1467,7 @@ export function GatewaySettings({ embedded = false }: { embedded?: boolean } = {
             </Button>
           )}
           <Button disabled={state.envOverride || saving} onClick={() => void save(true)} size="sm">
-            {saving ? <Loader2 className="animate-spin" /> : null}
+            {saving ? <BrandLoader decorative /> : null}
             {g.saveAndReconnect}
           </Button>
         </div>

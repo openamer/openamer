@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
-import { Check, ExternalLink, Loader2 } from '@/lib/icons'
+import { Check, ExternalLink } from '@/lib/icons'
 import { getMemoryProviderOAuthStatus, startMemoryProviderOAuth } from '@/openamer'
 import { notifyError } from '@/store/notifications'
 import type { MemoryProviderOAuthStatus } from '@/types/openamer'
@@ -137,7 +138,7 @@ export function MemoryConnect({ provider }: { provider: string }) {
       {phase === 'pending' ? (
         <>
           <span className="inline-flex items-center gap-1.5 text-muted-foreground">
-            <Loader2 className="size-3 animate-spin" />
+            <BrandLoader className="size-3" decorative />
             Waiting for browser consent…
           </span>
           <Button className="h-auto p-0 text-xs" onClick={cancel} size="sm" type="button" variant="link">

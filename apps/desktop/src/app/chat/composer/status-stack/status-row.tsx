@@ -2,9 +2,9 @@ import { Fragment, memo, type ReactNode } from 'react'
 
 import { openAgentTerminal } from '@/app/right-sidebar/terminal/terminals'
 import { StatusRow } from '@/components/chat/status-row'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { Codicon } from '@/components/ui/codicon'
-import { GlyphSpinner } from '@/components/ui/glyph-spinner'
 import { Tip } from '@/components/ui/tooltip'
 import { type Translations, useI18n } from '@/i18n'
 import { capitalize } from '@/lib/text'
@@ -41,13 +41,7 @@ function leadingGlyph(item: ComposerStatusItem, s: Translations['statusStack']):
   }
 
   if (item.state === 'running') {
-    return (
-      <GlyphSpinner
-        ariaLabel={s.running}
-        className="text-[0.85rem] leading-none text-muted-foreground/80"
-        spinner="braille"
-      />
-    )
+    return <BrandLoader aria-label={s.running} className="text-[0.85rem] leading-none text-muted-foreground/80" />
   }
 
   return (

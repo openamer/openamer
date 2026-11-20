@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { ErrorIcon } from '@/components/ui/error-state'
 import { Input } from '@/components/ui/input'
 import { useI18n } from '@/i18n'
-import { ExternalLink, Loader2 } from '@/lib/icons'
+import { ExternalLink } from '@/lib/icons'
 import { cn } from '@/lib/utils'
 import { getGlobalModelOptions } from '@/openamer'
 import {
@@ -125,7 +125,7 @@ export function FlowPanel({
       <DeviceCode code={flow.start.user_code} copied={flow.copied} onCopy={() => void copyDeviceCode()} />
       <FlowFooter left={<DocsLink href={flow.start.verification_url}>{t.onboarding.reopenVerification}</DocsLink>}>
         <span className="flex items-center gap-2 text-xs text-muted-foreground">
-          <Loader2 className="size-3 animate-spin" />
+          <BrandLoader className="size-3" decorative />
           {t.onboarding.waitingAuthorize}
         </span>
         <CancelBtn size="sm" />

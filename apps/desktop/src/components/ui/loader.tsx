@@ -1,4 +1,9 @@
 // Upstream-Derived: apps/desktop/src/components/ui/loader.tsx @ ba4c0fbbd (MIT)
+//
+// Deprecated in the renderer: nothing here renders these curves any more —
+// OpenAmer's own `BrandLoader` (`components/ui/brand-loader.tsx`) is the single
+// loading mark. Kept (and still exported from `src/sdk/index.ts`) so
+// third-party plugins that imported it keep working.
 import { type ComponentProps, useEffect, useRef } from 'react'
 
 import { cn } from '@/lib/utils'

@@ -23,12 +23,12 @@ import { CompactMarkdown } from '@/components/chat/compact-markdown'
 import { FileDiffPanel } from '@/components/chat/diff-lines'
 import { DisclosureRow } from '@/components/chat/disclosure-row'
 import { ZoomableImage } from '@/components/chat/zoomable-image'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { Codicon } from '@/components/ui/codicon'
 import { CopyButton } from '@/components/ui/copy-button'
 import { FadeText } from '@/components/ui/fade-text'
 import { FileTypeIcon } from '@/components/ui/file-type-icon'
-import { GlyphSpinner } from '@/components/ui/glyph-spinner'
 import { ToolIcon } from '@/components/ui/tool-icon'
 import { Tip } from '@/components/ui/tooltip'
 import { useI18n } from '@/i18n'
@@ -141,10 +141,9 @@ export function technicalTrace(args: unknown, result: unknown): string {
 function statusGlyph(status: ToolStatus, copy: ToolStatusCopy): ReactNode {
   if (status === 'running') {
     return (
-      <GlyphSpinner
-        ariaLabel={copy.statusRunning}
+      <BrandLoader
+        aria-label={copy.statusRunning}
         className="size-3.5 shrink-0 text-[0.95rem] text-(--ui-text-tertiary)"
-        spinner="breathe"
       />
     )
   }

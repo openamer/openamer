@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { Loader2 } from '@/lib/icons'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { cn } from '@/lib/utils'
 
 // Borrowed from the gateway "connecting" overlay: a mono, letter-spaced label
@@ -162,7 +162,7 @@ export function HackeryButton({
       type="button"
     >
       <span className="text-primary/40 transition-colors group-hover:text-primary">[</span>
-      {loading ? <Loader2 className="size-3 animate-spin" /> : null}
+      {loading ? <BrandLoader className="size-3" decorative /> : null}
       <span className="-mr-[0.25em] pl-[0.25em] tracking-[0.25em]">{label}</span>
       <span className="text-primary/40 transition-colors group-hover:text-primary">]</span>
     </button>

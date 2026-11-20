@@ -4,11 +4,12 @@ import { PetSprite } from '@/components/pet/pet-sprite'
 import { PetStarShower } from '@/components/pet/pet-star-shower'
 import { PixelEggSprite } from '@/components/pet/pixel-egg-sprite'
 import { Alert, AlertDescription } from '@/components/ui/alert'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useI18n } from '@/i18n'
 import { triggerHaptic } from '@/lib/haptics'
-import { Loader2, PawPrint, RefreshCw } from '@/lib/icons'
+import { PawPrint, RefreshCw } from '@/lib/icons'
 import { type PetInfo } from '@/store/pet'
 
 import { frameCountForRow } from '../lib/frame-count'
@@ -145,7 +146,7 @@ export function HatchPreview({ pet, adopting, error, onAdopt, onDiscard }: Hatch
           {copy.startOver}
         </Button>
         <Button className="flex-1" disabled={adopting} onClick={() => onAdopt(name)}>
-          {adopting ? <Loader2 className="animate-spin" /> : <PawPrint />}
+          {adopting ? <BrandLoader decorative /> : <PawPrint />}
           {copy.adopt}
         </Button>
       </div>

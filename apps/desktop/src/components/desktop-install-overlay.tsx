@@ -15,7 +15,7 @@ import type {
   DesktopBootstrapState
 } from '@/global'
 import { useI18n } from '@/i18n'
-import { AlertCircle, ChevronDown, ChevronRight, Globe, iconSize, Loader2, Monitor } from '@/lib/icons'
+import { AlertCircle, ChevronDown, ChevronRight, Globe, iconSize, Monitor } from '@/lib/icons'
 import { capitalize } from '@/lib/text'
 import { cn } from '@/lib/utils'
 
@@ -443,7 +443,7 @@ export function DesktopInstallOverlay({ enabled = true }: DesktopInstallOverlayP
             >
               <div className="flex items-center gap-2 text-sm font-medium">
                 {localStarting ? (
-                  <Loader2 className="size-4 animate-spin text-muted-foreground" />
+                  <BrandLoader className="size-4 text-muted-foreground" decorative />
                 ) : (
                   <Monitor className="size-4 text-muted-foreground" />
                 )}

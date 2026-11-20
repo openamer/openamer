@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from 'react'
 
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { useI18n } from '@/i18n'
-import { AlertTriangle, Check, Loader2, RefreshCw } from '@/lib/icons'
+import { AlertTriangle, Check, RefreshCw } from '@/lib/icons'
 import { cn } from '@/lib/utils'
 import { getTerminalBackends, selectTerminalBackend } from '@/openamer'
 import { notify, notifyError } from '@/store/notifications'
@@ -100,7 +101,7 @@ export function TerminalBackendPanel({ onConfiguredChange }: TerminalBackendPane
   if (loading && !data) {
     return (
       <div className="flex items-center gap-2 px-1 text-xs text-muted-foreground">
-        <Loader2 className="size-3.5 animate-spin" />
+        <BrandLoader className="size-3.5" decorative />
         {copy.loading}
       </div>
     )
@@ -142,7 +143,7 @@ export function TerminalBackendPanel({ onConfiguredChange }: TerminalBackendPane
                   {copy.inUse}
                 </Pill>
               )}
-              {selecting === backend.name && <Loader2 className="size-3 animate-spin" />}
+              {selecting === backend.name && <BrandLoader className="size-3" decorative />}
             </span>
             <span className="text-[0.68rem] text-muted-foreground">{backend.description}</span>
             {backend.status !== 'ready' && backend.detail && (

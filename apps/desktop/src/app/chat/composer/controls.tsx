@@ -1,9 +1,10 @@
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { Codicon } from '@/components/ui/codicon'
 import { Tip, TipKeybindLabel } from '@/components/ui/tooltip'
 import { useI18n } from '@/i18n'
 import { triggerHaptic } from '@/lib/haptics'
-import { AudioLines, iconSize, Layers3, Loader2, Square, SteeringWheel, Volume2, VolumeX } from '@/lib/icons'
+import { AudioLines, iconSize, Layers3, Square, SteeringWheel, Volume2, VolumeX } from '@/lib/icons'
 import { cn } from '@/lib/utils'
 
 import type { ConversationStatus } from './hooks/use-voice-conversation'
@@ -244,7 +245,7 @@ function ConversationIndicator({
   speaking: boolean
 }) {
   if (speaking) {
-    return <Loader2 className={cn('animate-spin', iconSize.xs)} />
+    return <BrandLoader className={cn(iconSize.xs)} decorative />
   }
 
   const bars = [0.55, 0.85, 1, 0.85, 0.55]
@@ -337,7 +338,7 @@ function DictationButton({
         {status === 'recording' ? (
           <Square className={cn('fill-current', iconSize.xs)} />
         ) : status === 'transcribing' ? (
-          <Loader2 className={cn('animate-spin', iconSize.sm)} />
+          <BrandLoader className={cn(iconSize.sm)} decorative />
         ) : (
           <Codicon name="mic" size="0.875rem" />
         )}

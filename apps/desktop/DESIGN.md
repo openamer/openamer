@@ -168,10 +168,13 @@ Notes:
 
 - **Loading:** `BrandLoader` (`src/components/ui/brand-loader.tsx`) — the O/A
   monogram drawing itself (O track, sweeping arc, A written then faded). This is
-  OpenAmer's own mark, so it owns every app-level loading state: updater, install
-  and bootstrap, route/page load, session load, onboarding status. `Loader`
-  (`src/components/ui/loader.tsx`) keeps the generic math/ascii curves for
-  secondary, non-brand spots. Never ship the literal text "Loading…".
+  OpenAmer's own mark, so it is the app's ONLY loading indicator: updater,
+  install and bootstrap, route/page load, session load, onboarding, and every
+  inline busy state (buttons, rows, status bar). `decorative` when an ancestor
+  already owns the live region, `aria-label` when it does not. The generic
+  spinners (`ui/loader.tsx`, `ui/glyph-spinner.tsx`) are deprecated — kept only
+  because `src/sdk/index.ts` exports them to plugins. Never ship the literal
+  text "Loading…", and never add a new spinner of another shape.
 - **Errors:** `ErrorState` + the canonical `ErrorIcon` (no bg chip). One look
   for the React boundary, in-dialog errors, and the boot-failure banner. Pass
   nodes for title/description so Radix `DialogTitle`/`Description` can flow
