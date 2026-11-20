@@ -1533,9 +1533,9 @@ export const as = defineLocale({
     copy: 'কপি কৰক',
     deliverOptions: {
       log: 'লগ',
-      telegram: 'টেলিগ্ৰাম',
-      discord: 'ডিস্কৰ্ড',
-      slack: 'স্লেক',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ইমেইল',
       github_comment: 'GitHub মন্তব্য',
     },
@@ -1641,9 +1641,9 @@ export const as = defineLocale({
     },
     deliveryLabels: {
       local: 'এই ডেস্কটপ',
-      telegram: 'টেলিগ্ৰাম',
-      discord: 'ডিস্কৰ্ড',
-      slack: 'স্লেক',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ইমেইল',
     },
     scheduleLabels: {

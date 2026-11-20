@@ -1542,9 +1542,9 @@ export const el = defineLocale({
     copy: 'Αντιγραφή',
     deliverOptions: {
       log: 'Καταγραφή',
-      telegram: 'τέλεγραμ',
-      discord: 'Δισκόρδ',
-      slack: 'Σλακ',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'Ηλ. ταχυδρομείο',
       github_comment: 'Σχόλιο GitHub',
     },
@@ -1644,9 +1644,9 @@ export const el = defineLocale({
     },
     deliveryLabels: {
       local: 'Αυτός ο υπολογιστής',
-      telegram: 'τέλεγραμ',
-      discord: 'Δισκόρδ',
-      slack: 'Σλακ',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'Ηλ. ταχυδρομείο',
     },
     scheduleLabels: {

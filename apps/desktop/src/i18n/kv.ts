@@ -1445,9 +1445,9 @@ export const kv = defineLocale({
     deliverOptions: {
       log: 'Журнал',
       email: 'Электрон почта',
-      telegram: 'Телеграм',
-      discord: 'Дискорд',
-      slack: 'Слэк',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       github_comment: 'GitHub комментарий',
     },
     search: 'Вебхукъяс пондыш...',
@@ -1585,9 +1585,9 @@ export const kv = defineLocale({
     deliveryLabels: {
       local: 'Тайӧ рабочий стол',
       email: 'Электроннӧй почта',
-      telegram: 'Телеграм',
-      discord: 'Дискорд',
-      slack: 'Слак',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
     },
     scheduleLabels: {
       daily: 'Быд лун',

@@ -1731,7 +1731,7 @@ Deja en blanco para mantener el predeterminado de ${mode}.`,
       blueprints: 'Planos',
     },
     deliveryLabels: {
-      slack: 'Slak',
+      slack: 'Slack',
       email: 'Imeyl',
       local: 'Aka escritorio',
       telegram: 'Telegram',

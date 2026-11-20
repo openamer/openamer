@@ -1543,9 +1543,9 @@ export const kn = defineLocale({
     copy: 'ನಕಲಿಸಿ',
     deliverOptions: {
       log: 'ಲಾಗ್',
-      telegram: 'ಟೆಲಿಗ್ರಾಮ್',
-      discord: 'ಡಿಸ್ಕಾರ್ಡ್',
-      slack: 'ಸ್ಲ್ಯಾಕ್',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ಇಮೇಲ್',
       github_comment: 'GitHub ಟಿಪ್ಪಣಿ',
     },
@@ -1645,9 +1645,9 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
     },
     deliveryLabels: {
       local: 'ಈ ಡೆಸ್ಕ್ಟಾಪ್',
-      telegram: 'ಟೆಲಿಗ್ರಾಮ್',
-      discord: 'ಡಿಸ್ಕೋರ್ಡ್',
-      slack: 'ಸ್ಲ್ಯಾಕ್',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ಇಮೇಲ್',
     },
     scheduleLabels: {

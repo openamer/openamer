@@ -2167,9 +2167,9 @@ export const he = defineLocale({
     copy: 'העתק',
     deliverOptions: {
       log: 'יומן',
-      telegram: 'טלגרם',
-      discord: 'דיסקורד',
-      slack: 'סלאק',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'אימייל',
       github_comment: 'תגובת GitHub',
     },
@@ -2269,9 +2269,9 @@ export const he = defineLocale({
     },
     deliveryLabels: {
       local: 'שולחן העבודה הזה',
-      telegram: 'טלגרם',
-      discord: 'דיסקורד',
-      slack: 'סלאק',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'אימייל',
     },
     scheduleLabels: {

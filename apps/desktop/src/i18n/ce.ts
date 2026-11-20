@@ -1543,9 +1543,9 @@ export const ce = defineLocale({
     copy: 'Копи',
     deliverOptions: {
       log: 'Лог',
-      telegram: 'Телеграм',
-      discord: 'Дискорд',
-      slack: 'Слак',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'Имейл',
       github_comment: 'GitHub комментарий',
     },
@@ -1645,9 +1645,9 @@ ${mode}-н стандартан ма-хиллара дита лууш хилар
     },
     deliveryLabels: {
       local: 'ХӀара болх баран стоьл',
-      telegram: 'Телеграм',
-      discord: 'Дискорд',
-      slack: 'Слак',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'Электронан пошта',
     },
     scheduleLabels: {

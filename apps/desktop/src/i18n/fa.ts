@@ -1542,9 +1542,9 @@ export const fa = defineLocale({
     copy: 'کپی',
     deliverOptions: {
       log: 'گزارش',
-      telegram: 'تلگرام',
-      discord: 'دیسکورد',
-      slack: 'اسلک',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ایمیل',
       github_comment: 'نظر گیت‌هاب',
     },
@@ -1644,9 +1644,9 @@ export const fa = defineLocale({
     },
     deliveryLabels: {
       local: 'این دسکتاپ',
-      telegram: 'تلگرام',
-      discord: 'دیسکورد',
-      slack: 'اسلک',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ایمیل',
     },
     scheduleLabels: {

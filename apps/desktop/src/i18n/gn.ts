@@ -2410,7 +2410,7 @@ Leave blank to keep the ${mode} default.`,
     copy: 'Copiar',
     deliverOptions: {
       log: 'Registro',
-      telegram: 'Telegrama',
+      telegram: 'Telegram',
       email: 'Correo electrónico',
       github_comment: 'Comentario de GitHub',
       discord: 'Discord',

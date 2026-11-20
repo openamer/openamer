@@ -1533,9 +1533,9 @@ export const am = defineLocale({
     copy: 'ቅዳ',
     deliverOptions: {
       log: 'መዝገብ',
-      telegram: 'ቴሌግራም',
-      discord: 'ዲስኮርድ',
-      slack: 'ስላክ',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ኢሜይል',
       github_comment: 'የGitHub አስተያየት',
     },
@@ -1641,9 +1641,9 @@ export const am = defineLocale({
     },
     deliveryLabels: {
       local: 'ይህ ዴስክቶፕ',
-      telegram: 'ቴሌግራም',
-      discord: 'ዲስኮርድ',
-      slack: 'ስላክ',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ኢሜይል',
     },
     scheduleLabels: {

@@ -2406,7 +2406,7 @@ Wayqllayta qiyarichay ${mode} default qhipaq.`,
       local: 'Kay escritorio',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Paskasqa',
+      slack: 'Slack',
       email: 'Correo',
     },
     scheduleLabels: {

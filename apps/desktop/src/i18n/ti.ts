@@ -1979,9 +1979,9 @@ export const ti = defineLocale({
     },
     deliveryLabels: {
       local: 'እዚ ዴስክቶፕ',
-      telegram: 'ቴለግራም',
-      discord: 'ዲስኮርድ',
-      slack: 'ስላክ',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ኢመይል',
     },
     scheduleLabels: {
@@ -2716,9 +2716,9 @@ export const ti = defineLocale({
     copy: 'ቅዳሕ',
     deliverOptions: {
       log: 'መዝገብ',
-      telegram: 'ቴሌግራም',
-      discord: 'ዲስኮርድ',
-      slack: 'ስላክ',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ኢመይል',
       github_comment: 'GitHub ኣስተያየት',
     },

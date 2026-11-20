@@ -1533,9 +1533,9 @@ export const iu = defineLocale({
     copy: 'ᐊᔾᔨᒋᐊᕐᓗᒍ',
     deliverOptions: {
       log: 'ᑎᑎᕋᖅᓯᒪᔪᑦ',
-      telegram: 'ᑎᓕᒐᕐᒻ',
-      discord: 'ᑎᔅᑯᕐᑦ',
-      slack: 'ᓴᓪᐊᒃ',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ᐃᒥᐊᓕ',
       github_comment: 'GitHub uqautaujaq',
     },
@@ -1642,9 +1642,9 @@ export const iu = defineLocale({
     deliveryLabels: {
       local: 'ᐅᑯᐊ ᖃᕆᑕᐅᔭᐅᑉ ᐃᑭᐊᖓ',
       email: 'ᐃᒥᐊᓕᒃ',
-      telegram: 'ᑎᓕᒍᕌᒻ',
-      discord: 'ᑎᔅᑯᐊᑦ',
-      slack: 'ᓯᓛᒃ',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
     },
     days: {
       '0': 'ᓄᕕᐊᖅ',

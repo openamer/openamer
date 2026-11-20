@@ -695,9 +695,9 @@ Leave blank to keep the ${mode} default.`,
     },
     deliveryLabels: {
       local: 'هي ڊيسڪ ٽاپ',
-      telegram: 'ٽيليگرام',
-      discord: 'ڊسڪارڊ',
-      slack: 'سلڪ',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ايميل',
     },
     scheduleLabels: {

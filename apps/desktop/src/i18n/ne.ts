@@ -1533,9 +1533,9 @@ export const ne = defineLocale({
     copy: 'प्रतिलिपि',
     deliverOptions: {
       log: 'लग',
-      telegram: 'टेलिग्राम',
-      discord: 'डिस्कोर्ड',
-      slack: 'स्ल्याक',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'इमेल',
       github_comment: 'GitHub टिप्पणी',
     },
@@ -1641,9 +1641,9 @@ export const ne = defineLocale({
     },
     deliveryLabels: {
       local: 'यो डेस्कटप',
-      telegram: 'टेलिग्राम',
-      discord: 'डिस्कर्ड',
-      slack: 'स्ल्याक',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'इमेल',
     },
     scheduleLabels: {

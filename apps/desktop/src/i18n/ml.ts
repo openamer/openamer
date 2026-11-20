@@ -1823,9 +1823,9 @@ Leave blank to keep the ${mode} default.`,
     },
     deliveryLabels: {
       local: 'ഈ ഡെസ്ക്ടോപ്പ്',
-      telegram: 'ടെലിഗ്രാം',
-      discord: 'ഡിസ്കോർഡ്',
-      slack: 'സ്ലാക്ക്',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ഇമെയിൽ',
     },
     scheduleLabels: {

@@ -1542,9 +1542,9 @@ export const ar = defineLocale({
     copy: 'نسخ',
     deliverOptions: {
       log: 'سجل',
-      telegram: 'تيليجرام',
-      discord: 'ديسكورد',
-      slack: 'سلاك',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'بريد إلكتروني',
       github_comment: 'تعليق GitHub',
     },
@@ -1644,7 +1644,7 @@ export const ar = defineLocale({
     },
     deliveryLabels: {
       local: 'سطح المكتب هذا',
-      telegram: 'تيليجرام',
+      telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
       email: 'البريد الإلكتروني',
