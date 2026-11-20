@@ -1535,7 +1535,7 @@ export const rw = defineLocale({
       log: 'Ibyanditswe',
       email: 'Imeyili',
       github_comment: 'Igitekerezo kuri GitHub',
-      telegram: 'Telegaramu',
+      telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
     },

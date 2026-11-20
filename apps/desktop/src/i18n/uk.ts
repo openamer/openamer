@@ -1542,9 +1542,9 @@ export const uk = defineLocale({
     copy: 'Копіювати',
     deliverOptions: {
       log: 'Журнал',
-      telegram: 'Телеграм',
-      discord: 'Діскорд',
-      slack: 'Слак',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'Ел. пошта',
       github_comment: 'Коментар GitHub',
     },
@@ -1644,9 +1644,9 @@ export const uk = defineLocale({
     },
     deliveryLabels: {
       local: 'Цей комп’ютер',
-      telegram: 'Телеграм',
-      discord: 'Діскорд',
-      slack: 'Слак',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'Ел. пошта',
     },
     scheduleLabels: {

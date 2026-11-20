@@ -1641,9 +1641,9 @@ Leave blank to keep the ${mode} default.`,
     },
     deliveryLabels: {
       local: 'ដេស់ធ្យូនេះ',
-      telegram: 'តេលេលំហ្គ្រាម',
-      discord: 'ឌីសកូរ៑',
-      slack: 'ស្លាក',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'អ៊ីមែល',
     },
     scheduleLabels: {

@@ -1476,9 +1476,9 @@ export const si = defineLocale({
     copy: 'පිටපත් කරන්න',
     deliverOptions: {
       log: 'ලොගය',
-      telegram: 'ටෙලිග්‍රෑම්',
-      discord: 'ඩිස්කෝර්ඩ්',
-      slack: 'ස්ලැක්',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ඊමේල්',
       github_comment: 'GitHub අදහස',
     },
@@ -1584,9 +1584,9 @@ ${mode} පෙරනිමිය තබා ගැනීමට හිස්ව �
     },
     deliveryLabels: {
       local: 'මෙම ඩෙස්ක්ටොපය',
-      telegram: 'ටෙලිග්‍රෑම්',
-      discord: 'ඩිස්කෝඩ්',
-      slack: 'ස්ලැක්',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ඊමේල්',
     },
     scheduleLabels: {

@@ -1543,9 +1543,9 @@ export const dz = defineLocale({
     copy: 'འཕྲུ་བ།',
     deliverOptions: {
       log: 'རྟག་ཐོ།',
-      telegram: 'ཊེ་ལི་གཱ་རམ་',
-      discord: 'ཌིས་ཀོརཌ་',
-      slack: 'སི་ལེཀ་',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'དཔར་འབྲིན།',
       github_comment: 'GitHub བསྡུས་འཕྲིན།',
     },
@@ -1645,9 +1645,9 @@ ${mode} གི་སྔོན་སྒྲིག་བཞག་ནི་ལུ་
     },
     deliveryLabels: {
       local: 'དེསཀཏོཔ་འདི',
-      telegram: 'ཏེ་ལི་གྲམ',
-      discord: 'དིས་ཀོརཌ',
-      slack: 'སླག',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ཡི་མེལ',
     },
     scheduleLabels: {

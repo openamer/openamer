@@ -101,9 +101,9 @@ export const ps = defineLocale({
     deliveryLabels: {
       local: 'دا ډیسټاپ',
       email: 'ایمیل',
-      telegram: 'ټیلیګرام',
-      discord: 'ډسکارډ',
-      slack: 'سلاک',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
     },
     scheduleLabels: {
       daily: 'ورځنۍ',

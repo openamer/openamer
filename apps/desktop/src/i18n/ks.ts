@@ -1433,9 +1433,9 @@ export const ks = defineLocale({
     deliverOptions: {
       github_comment: 'GitHub تبصرہ',
       log: 'لاگ',
-      telegram: 'ٹیلیگرام',
-      discord: 'ڈِسکارڈ',
-      slack: 'سلیک',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ای میل',
     },
     deleting: 'حذف کرے وچ...',
@@ -1620,9 +1620,9 @@ ${mode} डिफॉल्ट रखने के लिए खाली छो�
     },
     deliveryLabels: {
       local: 'یہ ڈیسک ٹاپ',
-      telegram: 'ٹیلیگرام',
-      discord: 'ڈِسکارڈ',
-      slack: 'سلیٚک',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ای میل',
     },
     scheduleLabels: {

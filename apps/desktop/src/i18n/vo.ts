@@ -1982,7 +1982,7 @@ Lass vaku por behalt ${mode} standik.`,
       local: 'dis desktop',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slak',
+      slack: 'Slack',
       email: 'E-pöst',
     },
     scheduleLabels: {

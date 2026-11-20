@@ -1543,9 +1543,9 @@ export const or = defineLocale({
     },
     deliveryLabels: {
       local: 'ଏହି ଡେସ୍କଟପ',
-      telegram: 'ଟେଲିଗ୍ରାମ',
-      discord: 'ଡିସକର୍ଡ',
-      slack: 'ସ୍ଲାକ',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ଇମେଲ',
     },
     scheduleLabels: {

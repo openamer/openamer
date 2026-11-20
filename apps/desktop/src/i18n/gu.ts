@@ -1039,9 +1039,9 @@ export const gu = defineLocale({
   webhooks: {
     deliverOptions: {
       log: 'લોગ',
-      telegram: 'ટેલિગ્રામ',
-      discord: 'ડિસ્કોર્ડ',
-      slack: 'સ્લેક',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ઇમેઇલ',
       github_comment: 'GitHub ટિપ્પણી',
     },

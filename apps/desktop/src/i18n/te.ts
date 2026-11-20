@@ -1484,9 +1484,9 @@ export const te = defineLocale({
     copy: 'కాపీ చేయండి',
     deliverOptions: {
       log: 'లాగ్',
-      telegram: 'టెలిగ్రామ్',
-      discord: 'డిస్కార్డ్',
-      slack: 'స్లాక్',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ఇమెయిల్',
       github_comment: 'GitHub వ్యాఖ్య',
     },
@@ -1592,9 +1592,9 @@ ${mode} డిఫాల్ట్‌ను ఉంచడానికి ఖాళ�
     },
     deliveryLabels: {
       local: 'ఈ డెస్క్టాప్',
-      telegram: 'టెలిగ్రామ్',
-      discord: 'డిస్కార్డ్',
-      slack: 'స్లాక్',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ఇమెయిల్',
     },
     scheduleLabels: {

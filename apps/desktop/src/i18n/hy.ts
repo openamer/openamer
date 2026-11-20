@@ -1827,9 +1827,9 @@ export const hy = defineLocale({
     copy: 'Պատճենել',
     deliverOptions: {
       log: 'Մատյան',
-      telegram: 'Տելեգրամ',
-      discord: 'Դիսկորդ',
-      slack: 'Սլաք',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'Էլ. փոստ',
       github_comment: 'GitHub մեկնաբանություն',
     },
@@ -1929,9 +1929,9 @@ export const hy = defineLocale({
     },
     deliveryLabels: {
       local: 'Այս սեղանը',
-      telegram: 'Տելեգրամ',
-      discord: 'Դիսկորդ',
-      slack: 'Սլաք',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'Էլ. փոստ',
     },
     scheduleLabels: {

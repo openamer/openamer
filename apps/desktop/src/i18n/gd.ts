@@ -1642,9 +1642,9 @@ Fàg falamh airson a chumail a' bhun-roghainn ${mode}`,
     deliveryLabels: {
       local: 'An deasg seo',
       email: 'Post-d',
-      telegram: 'Teileagram',
-      discord: 'Eas-aonta',
-      slack: 'Fann',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
     },
     days: {
       '0': 'Didòmhnaich',

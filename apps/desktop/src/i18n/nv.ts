@@ -1347,9 +1347,9 @@ export const nv = defineLocale({
     deliveryLabels: {
       email: 'Hast\'ą́ą́ e-mail',
       local: 'Díí desktop',
-      telegram: 'Béésh bee haneʼ',
-      discord: 'Doo ałhééhózin da',
-      slack: 'Doo bił dah nahazʼą́ą da',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
     },
     scheduleLabels: {
       daily: 'Kikéyah',

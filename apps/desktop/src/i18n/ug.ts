@@ -1641,9 +1641,9 @@ Leave blank to keep the ${mode} default.`,
     },
     deliveryLabels: {
       local: 'بۇ ئۈسكۈنە',
-      telegram: 'تېلېگرام',
-      discord: 'دىسئورد',
-      slack: 'ئىسلاك',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'ئېمەيل',
     },
     scheduleLabels: {

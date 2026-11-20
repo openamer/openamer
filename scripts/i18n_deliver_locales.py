@@ -362,6 +362,8 @@ def main() -> int:
     ap.add_argument("--report", action="store_true", help="measure only")
     ap.add_argument("--only", default="", help="comma separated locale list")
     ap.add_argument("--json", default="", help="write the report to this path")
+    ap.add_argument("--brands", action="store_true",
+                    help="restore translated brand names in every catalog and report the count")
     args = ap.parse_args()
 
     en = extract("en")
@@ -370,6 +372,22 @@ def main() -> int:
         return 2
 
     todo = [s for s in (args.only.split(",") if args.only else locales()) if s]
+
+    if args.brands:
+        # The repair half of the guard wired into `i18n_converge.py`: the pass can
+        # only fix what it touches, so damage that shipped before the guard existed
+        # sits in the catalogs until something sweeps them.
+        total, touched = 0, []
+        for locale in todo:
+            fixed = strip_brand_names_in_catalog(locale, en)
+            if fixed:
+                total += fixed
+                touched.append(f"{locale}:{fixed}")
+        print(f"brands: restored {total} value(s) in {len(touched)} catalog(s)")
+        if touched:
+            print("  " + " ".join(touched))
+        return 0
+
     rows, delivered, refused = [], 0, []
     for locale in todo:
         cached = cache(locale)

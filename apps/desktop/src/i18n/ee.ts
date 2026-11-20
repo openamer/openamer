@@ -1533,7 +1533,7 @@ export const ee = defineLocale({
     deliverOptions: {
       log: 'Nyaŋlɔ',
       github_comment: 'GitHub nuŋlɔɖi',
-      telegram: 'Telegramm',
+      telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
       email: 'Ilektrik',
@@ -1642,7 +1642,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
     deliveryLabels: {
       local: 'Desktop sia',
       email: 'E-mail',
-      telegram: 'Telegramm',
+      telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
     },

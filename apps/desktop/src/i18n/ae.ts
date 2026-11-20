@@ -1348,9 +1348,9 @@ Leave blank to keep the ${mode} default.`,
     },
     deliveryLabels: {
       local: 'Aēša desktop',
-      telegram: 'Tēlēgram',
-      discord: 'Diskord',
-      slack: 'Slak',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'Ēmēl',
     },
     scheduleLabels: {

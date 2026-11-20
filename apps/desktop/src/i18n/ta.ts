@@ -1281,9 +1281,9 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     deliveryLabels: {
       local: 'இந்த டெஸ்க்டாப்',
       email: 'மின்னஞ்சல்',
-      telegram: 'டெலிகிராம்',
-      discord: 'டிஸ்கார்ட்',
-      slack: 'ஸ்லாக்',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
     },
     scheduleLabels: {
       daily: 'தினமும்',
@@ -2654,9 +2654,9 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     copy: 'நகலெடு',
     deliverOptions: {
       log: 'பதிவு',
-      telegram: 'டெலிகிராம்',
-      discord: 'டிஸ்கார்டு',
-      slack: 'ஸ்லாக்',
+      telegram: 'Telegram',
+      discord: 'Discord',
+      slack: 'Slack',
       email: 'மின்னஞ்சல்',
       github_comment: 'GitHub கருத்து',
     },
