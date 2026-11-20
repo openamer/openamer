@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 
 import { BrandMark } from '@/components/brand-mark'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { Codicon } from '@/components/ui/codicon'
 import { ErrorIcon } from '@/components/ui/error-state'
-import { Loader } from '@/components/ui/loader'
 import { LogView } from '@/components/ui/log-view'
 import { Progress } from '@/components/ui/progress'
 import type {
@@ -115,7 +115,7 @@ function StageRow({ descriptor, result, now }: StageRowProps) {
   const icon = useMemo(() => {
     switch (state) {
       case 'running':
-        return <Loader className="size-6" type="fourier-flow" />
+        return <BrandLoader className="size-6" />
 
       case 'succeeded':
 
@@ -583,7 +583,7 @@ export function DesktopInstallOverlay({ enabled = true }: DesktopInstallOverlayP
 
           {totalCount === 0 && state.active && (
             <div className="mb-4 flex items-center gap-2.5 text-sm text-muted-foreground">
-              <Loader className="size-5" type="fourier-flow" />
+              <BrandLoader className="size-5" />
               <span>{copy.fetchingManifest}</span>
             </div>
           )}
@@ -657,7 +657,7 @@ export function DesktopInstallOverlay({ enabled = true }: DesktopInstallOverlayP
                 size="sm"
                 variant="ghost"
               >
-                {cancelling ? <Loader className="size-4" type="fourier-flow" /> : null}
+                {cancelling ? <BrandLoader className="size-4" decorative /> : null}
                 {cancelling ? copy.cancelling : copy.cancelInstall}
               </Button>
             </div>

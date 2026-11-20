@@ -166,9 +166,12 @@ Notes:
 
 ## Feedback & empty/error/loading states
 
-- **Loading:** `Loader` (`src/components/ui/loader.tsx`) — animated math/ascii
-  curves (`lemniscate-bloom` for long ops). Never ship the literal text
-  "Loading…".
+- **Loading:** `BrandLoader` (`src/components/ui/brand-loader.tsx`) — the O/A
+  monogram drawing itself (O track, sweeping arc, A written then faded). This is
+  OpenAmer's own mark, so it owns every app-level loading state: updater, install
+  and bootstrap, route/page load, session load, onboarding status. `Loader`
+  (`src/components/ui/loader.tsx`) keeps the generic math/ascii curves for
+  secondary, non-brand spots. Never ship the literal text "Loading…".
 - **Errors:** `ErrorState` + the canonical `ErrorIcon` (no bg chip). One look
   for the React boundary, in-dialog errors, and the boot-failure banner. Pass
   nodes for title/description so Radix `DialogTitle`/`Description` can flow

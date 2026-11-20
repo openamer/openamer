@@ -1897,3 +1897,124 @@ text-* variant utilities. */ .btn-arc {
     opacity: 0.4;
   }
 }
+
+/* ── OpenAmer brand loader ───────────────────────────────────────────────────
+   The app's own loading mark (`components/ui/brand-loader.tsx`): the O/A
+   monogram that draws itself — a permanent O track, an arc sweeping it, and an
+   A written in two strokes, held, erased. Deliberately NOT one of the generic
+   `Loader` math curves: those come from `unicode-animations` and belong to any
+   product. Stops are sampled from `public/openamer.png`; the light-mode branch
+   deepens the same hue so the cyan keeps contrast on white. */
+
+:root {
+  --oa-loader-from: #5debfa;
+  --oa-loader-to: #17bfba;
+}
+
+:root:not(.dark) {
+  --oa-loader-from: #14b4d4;
+  --oa-loader-to: #0d8d94;
+}
+
+/* The finished mark must survive the blanket reduced-motion override (see the
+   top of this file), which shortens every animation to 0.01ms: with fill-mode
+   `none` the A would snap back to its erased keyframe and vanish. Pin it drawn
+   instead. */
+@media (prefers-reduced-motion: reduce) {
+  .oa-loader-ring-sweep,
+  .oa-loader-a-legs,
+  .oa-loader-a-bar {
+    animation: none !important;
+  }
+
+  .oa-loader-a-legs,
+  .oa-loader-a-bar {
+    opacity: 1 !important;
+    stroke-dashoffset: 0 !important;
+  }
+}
+
+.oa-loader-ring-track {
+  opacity: 0.16;
+}
+
+.oa-loader-ring-sweep {
+  animation: oa-loader-sweep 1.15s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.oa-loader-a-legs,
+.oa-loader-a-bar {
+  animation-duration: 2.6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.oa-loader-a-legs {
+  animation-name: oa-loader-write-legs;
+}
+
+/* Starts after the legs, so the A reads as handwritten rather than stamped. */
+.oa-loader-a-bar {
+  animation-name: oa-loader-write-bar;
+}
+
+@keyframes oa-loader-sweep {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes oa-loader-write-legs {
+  /* Write, hold, then FADE. Retracting the dash would collapse each stroke into
+     a round dot at its own start point, which reads as a rendering glitch; the
+     fade lets the whole mark leave as one gesture, and the dash reset happens
+     while it is invisible. */
+  0% {
+    opacity: 1;
+    stroke-dashoffset: 100;
+  }
+  30% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+  70% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+  82% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+  }
+  92%,
+  100% {
+    opacity: 0;
+    stroke-dashoffset: 100;
+  }
+}
+
+@keyframes oa-loader-write-bar {
+  0%,
+  12% {
+    opacity: 1;
+    stroke-dashoffset: 100;
+  }
+  40% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+  70% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+  82% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+  }
+  92%,
+  100% {
+    opacity: 0;
+    stroke-dashoffset: 100;
+  }
+}
