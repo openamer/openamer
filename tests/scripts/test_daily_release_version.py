@@ -98,3 +98,55 @@ def test_tag_stays_compact_but_version_is_dotted(dr):
     date_str = dr.today_date_str()
     assert date_str.count(".") == 2, f"date_str {date_str!r} must be YYYY.M.D"
 
+
+
+# ── version drift: a published release whose bump never merged ───────────────
+#
+# Measured 2026-11-20: the tag v261120 and its EXE existed, main still said
+# 2026.11.18, and `openamer update` therefore had no reason to offer the build.
+# The run used to exit at "Tag already exists — nothing to do", so the drift
+# could never heal itself.
+
+
+def test_release_action_creates_when_today_has_no_tag(dr):
+    assert dr.release_action(False, "2026.11.18", "2026.11.20") == "create"
+
+
+def test_release_action_noops_when_tag_and_version_agree(dr):
+    assert dr.release_action(True, "2026.11.20", "2026.11.20") == "noop"
+
+
+def test_release_action_repairs_a_drifted_version(dr):
+    assert dr.release_action(True, "2026.11.18", "2026.11.20") == "repair"
+
+
+def test_repair_stamps_the_version_and_never_creates_a_tag(dr, tmp_path, monkeypatch):
+    from types import SimpleNamespace
+
+    calls = []
+
+    def fake_git(*args):
+        calls.append(args)
+        return SimpleNamespace(returncode=0, stdout="", stderr="")
+
+    monkeypatch.setattr(dr, "git", fake_git)
+    monkeypatch.setattr(
+        dr.subprocess, "run", lambda *a, **k: SimpleNamespace(returncode=0, stdout="", stderr="")
+    )
+    published = []
+    monkeypatch.setattr(
+        dr,
+        "publish_version_bump",
+        lambda branch, tag, date_str: (published.append((branch, tag, date_str)), (True, True))[1],
+    )
+
+    assert dr.repair_version_drift("v261120", "2026.11.20") == 0
+
+    init = (tmp_path / "openamer_cli" / "__init__.py").read_text(encoding="utf-8")
+    pyproject = (tmp_path / "pyproject.toml").read_text(encoding="utf-8")
+    desktop = (tmp_path / "apps" / "desktop" / "package.json").read_text(encoding="utf-8")
+
+    assert '"2026.11.20"' in init and 'version = "2026.11.20"' in pyproject and '"2026.11.20"' in desktop
+    assert [c for c in calls if c and c[0] == "tag"] == [], "repair must not create a tag"
+    assert any(c and c[0] == "commit" for c in calls), "repair must commit the bump"
+    assert published == [("release/v261120-bump", "v261120", "2026.11.20")]
