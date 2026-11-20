@@ -116,7 +116,7 @@ export function TerminalBackendPanel({ onConfiguredChange }: TerminalBackendPane
       <div className="flex items-baseline justify-between gap-2 px-0.5">
         <span className="text-[0.72rem] font-medium">{copy.sectionTitle}</span>
         <Button disabled={loading} onClick={() => void refresh()} size="sm" variant="text">
-          <RefreshCw className={cn('size-3.5', loading && 'animate-spin')} />
+          {loading ? <BrandLoader className="size-3.5" decorative /> : <RefreshCw className="size-3.5" />}
         </Button>
       </div>
       <div className="grid gap-1">

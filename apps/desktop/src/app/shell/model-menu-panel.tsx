@@ -3,6 +3,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { createContext, useContext, useMemo, useState } from 'react'
 
 import { useSessionView } from '@/app/chat/session-view'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Codicon } from '@/components/ui/codicon'
 import {
   DropdownMenuGroup,
@@ -391,7 +392,7 @@ export function ModelMenuPanel({ gateway, onSelectModel, profile = 'default', re
           void refreshModels()
         }}
       >
-        <Codicon className={cn(refreshing && 'animate-spin')} name="sync" size="0.75rem" />
+        {refreshing ? <BrandLoader className="size-3" decorative /> : <Codicon name="sync" size="0.75rem" />}
         {copy.refreshModels}
       </DropdownMenuItem>
 
