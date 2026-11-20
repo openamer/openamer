@@ -4,9 +4,8 @@ import { type FC, type ReactNode, useEffect, useState } from 'react'
 
 import { useElapsedSeconds } from '@/components/chat/activity-timer'
 import { ActivityTimerText } from '@/components/chat/activity-timer-text'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Codicon } from '@/components/ui/codicon'
-import { GlyphSpinner } from '@/components/ui/glyph-spinner'
-import { Loader } from '@/components/ui/loader'
 import { useI18n } from '@/i18n'
 import { cn } from '@/lib/utils'
 import { $backgroundResume } from '@/store/background-delegation'
@@ -54,14 +53,7 @@ export const CenteredThreadSpinner: FC = () => {
       className="pointer-events-none absolute inset-0 z-1 grid place-items-center"
       role="status"
     >
-      <Loader
-        aria-hidden="true"
-        className="size-12 text-midground/70"
-        pathSteps={220}
-        role="presentation"
-        strokeScale={0.72}
-        type="rose-curve"
-      />
+      <BrandLoader className="size-12 opacity-80" decorative />
     </div>
   )
 }
@@ -78,7 +70,7 @@ export const ResponseLoadingIndicator: FC = () => {
       data-slot="aui_response-loading"
       label={compacting ? COMPACTION_LABEL : t.assistant.thread.loadingResponse}
     >
-      <GlyphSpinner className="text-midground/80" decorative spinner="braille" />
+      <BrandLoader className="text-midground/80" decorative />
       {compacting && <CompactionHint />}
       <ActivityTimerText seconds={elapsed} />
     </StatusRow>
@@ -171,7 +163,7 @@ export const StreamStallIndicator: FC = () => {
       data-slot="aui_stream-stall"
       label={compacting ? COMPACTION_LABEL : 'OpenAmer is thinking'}
     >
-      <GlyphSpinner className="text-midground/80" decorative spinner="braille" />
+      <BrandLoader className="text-midground/80" decorative />
       {compacting && <CompactionHint />}
       <ActivityTimerText seconds={elapsed} />
     </StatusRow>

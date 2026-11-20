@@ -1,12 +1,13 @@
 import { useStore } from '@nanostores/react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { Codicon } from '@/components/ui/codicon'
 import { Input } from '@/components/ui/input'
 import { Progress } from '@/components/ui/progress'
 import { useI18n } from '@/i18n'
-import { Check, ChevronDown, ChevronLeft, KeyRound, Loader2 } from '@/lib/icons'
+import { Check, ChevronDown, ChevronLeft, KeyRound } from '@/lib/icons'
 import { isProviderSetupErrorMessage } from '@/lib/provider-setup-errors'
 import { cn } from '@/lib/utils'
 import { getGlobalModelOptions } from '@/openamer'
@@ -690,7 +691,7 @@ export function ApiKeyForm({
           ) : null}
         </div>
         <Button disabled={!canSave || saving} onClick={() => void submit()}>
-          {saving ? <Loader2 className="animate-spin" /> : <KeyRound />}
+          {saving ? <BrandLoader decorative /> : <KeyRound />}
           {saving ? t.onboarding.connecting : alreadySet ? t.onboarding.update : t.common.connect}
         </Button>
       </div>

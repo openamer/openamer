@@ -3,9 +3,9 @@ import { type ReactNode, useEffect, useMemo, useState } from 'react'
 
 import { useElapsedSeconds } from '@/components/chat/activity-timer'
 import { ActivityTimerText } from '@/components/chat/activity-timer-text'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Codicon } from '@/components/ui/codicon'
 import { FadeText } from '@/components/ui/fade-text'
-import { GlyphSpinner } from '@/components/ui/glyph-spinner'
 import { type Translations, useI18n } from '@/i18n'
 import { compactNumber } from '@/lib/format'
 import { AlertCircle, CheckCircle2 } from '@/lib/icons'
@@ -26,13 +26,7 @@ import { Panel, PanelEmpty, PanelHeader } from '../overlays/panel'
 // same visual vocabulary as the chat tool blocks.
 function statusGlyph(status: SubagentStatus, a: Translations['agents']): ReactNode {
   if (status === 'running' || status === 'queued') {
-    return (
-      <GlyphSpinner
-        ariaLabel={a.running}
-        className="size-3.5 shrink-0 text-[0.95rem] text-muted-foreground/80"
-        spinner="breathe"
-      />
-    )
+    return <BrandLoader aria-label={a.running} className="size-3.5 shrink-0 text-[0.95rem] text-muted-foreground/80" />
   }
 
   if (status === 'failed' || status === 'interrupted') {
@@ -280,10 +274,9 @@ function StreamLine({
       <span className={cn('min-w-0 flex-1 wrap-anywhere', tone, isMono && 'font-mono text-[0.69rem]')}>
         {entry.text}
         {active ? (
-          <GlyphSpinner
-            ariaLabel={t.agents.streaming}
+          <BrandLoader
+            aria-label={t.agents.streaming}
             className="ml-1 inline-block size-2.5 align-middle text-muted-foreground/70"
-            spinner="breathe"
           />
         ) : null}
       </span>

@@ -12,11 +12,12 @@ import {
   providerTitle,
   sortProviders
 } from '@/components/onboarding'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { RowButton } from '@/components/ui/row-button'
 import { SearchField } from '@/components/ui/search-field'
 import { useI18n } from '@/i18n'
-import { Check, ChevronDown, ChevronRight, KeyRound, Loader2, Terminal, Trash2 } from '@/lib/icons'
+import { Check, ChevronDown, ChevronRight, KeyRound, Terminal, Trash2 } from '@/lib/icons'
 import { normalize } from '@/lib/text'
 import { cn } from '@/lib/utils'
 import { disconnectOAuthProvider, listOAuthProviders } from '@/openamer'
@@ -271,7 +272,7 @@ function ConnectedProviderRow({
             type="button"
             variant="ghost"
           >
-            {disconnecting ? <Loader2 className="size-3 animate-spin" /> : <Trash2 className="size-3" />}
+            {disconnecting ? <BrandLoader className="size-3" decorative /> : <Trash2 className="size-3" />}
           </Button>
         )}
         {terminalDisconnect && (

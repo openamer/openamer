@@ -1,9 +1,10 @@
 import { type ChangeEvent, type KeyboardEvent } from 'react'
 
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { translateNow, useI18n } from '@/i18n'
-import { ChevronDown, ExternalLink, Loader2, Save, Trash2 } from '@/lib/icons'
+import { ChevronDown, ExternalLink, Save, Trash2 } from '@/lib/icons'
 import { cn } from '@/lib/utils'
 import type { EnvVarInfo } from '@/types/openamer'
 
@@ -130,7 +131,7 @@ export function KeyField({
           )}
           {dirty && (
             <Button className="h-8" disabled={busy} onClick={() => void onSave(varKey)} size="sm">
-              {busy ? <Loader2 className="animate-spin" /> : <Save />}
+              {busy ? <BrandLoader decorative /> : <Save />}
               {busy ? t.settings.credentials.saving : t.common.save}
             </Button>
           )}

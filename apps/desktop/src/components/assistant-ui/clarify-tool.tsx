@@ -16,13 +16,14 @@ import {
 import { requestComposerFocus, requestComposerInsert } from '@/app/chat/composer/focus'
 import { useSessionView } from '@/app/chat/session-view'
 import { ToolFallback } from '@/components/assistant-ui/tool/fallback'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { Kbd } from '@/components/ui/kbd'
 import { Textarea } from '@/components/ui/textarea'
 import { Tip } from '@/components/ui/tooltip'
 import { useI18n } from '@/i18n'
 import { triggerHaptic } from '@/lib/haptics'
-import { CircleLetterA, Loader2, MessageQuestion } from '@/lib/icons'
+import { CircleLetterA, MessageQuestion } from '@/lib/icons'
 import { cn } from '@/lib/utils'
 import { clearClarifyRequest, normalizeChoices, sessionClarifyRequest, warnDroppedChoices } from '@/store/clarify'
 import { $gateway } from '@/store/gateway'
@@ -110,7 +111,7 @@ function ClarifyLine({
   className,
   icon: Icon,
   ...props
-}: ComponentProps<'div'> & { icon: React.ComponentType<{className?: string; size?: string | number}> }) {
+}: ComponentProps<'div'> & { icon: React.ComponentType<{ className?: string; size?: string | number }> }) {
   return (
     <div className={cn('flex items-start gap-2', className)} {...props}>
       <div className="min-w-0 flex-1">{children}</div>
@@ -522,7 +523,7 @@ function ClarifyToolPending({ args }: ToolCallMessagePartProps) {
         className="grid min-h-12 place-items-center px-2.5 py-3"
         role="status"
       >
-        <Loader2 aria-hidden className="size-4 animate-spin text-(--ui-text-tertiary)" />
+        <BrandLoader className="size-4 text-(--ui-text-tertiary)" decorative />
       </ClarifyShell>
     )
   }
@@ -617,7 +618,7 @@ function ClarifyToolPending({ args }: ToolCallMessagePartProps) {
           </Button>
           <Button disabled={submitting || !pendingAnswer} size="xs" type="submit">
             {submitting ? (
-              <Loader2 className="size-3 animate-spin" />
+              <BrandLoader className="size-3" decorative />
             ) : (
               <>
                 {copy.continueLabel}

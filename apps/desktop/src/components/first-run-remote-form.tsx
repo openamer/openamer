@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { BrandMark } from '@/components/brand-mark'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import type { DesktopConnectionProbeResult } from '@/global'
 import { useI18n } from '@/i18n'
 import { deriveRemoteAuthProviderShape } from '@/lib/desktop-remote-auth'
-import { AlertCircle, Check, Loader2, LogIn } from '@/lib/icons'
+import { AlertCircle, Check, LogIn } from '@/lib/icons'
 
 type AuthMode = 'oauth' | 'token'
 type ProbeStatus = 'idle' | 'probing' | 'done' | 'error'
@@ -250,7 +251,7 @@ export function FirstRunRemoteForm({ onBack }: FirstRunRemoteFormProps) {
 
           {probeStatus === 'probing' ? (
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Loader2 className="size-4 animate-spin" />
+              <BrandLoader className="size-4" decorative />
               {copy.probing}
             </div>
           ) : null}
@@ -278,7 +279,7 @@ export function FirstRunRemoteForm({ onBack }: FirstRunRemoteFormProps) {
                   </div>
                 ) : (
                   <Button disabled={signingIn || applying} onClick={() => void signIn()} size="sm">
-                    {signingIn ? <Loader2 className="size-4 animate-spin" /> : <LogIn className="size-4" />}
+                    {signingIn ? <BrandLoader className="size-4" decorative /> : <LogIn className="size-4" />}
                     {isPasswordProvider ? copy.signIn : copy.signInWith(providerLabel)}
                   </Button>
                 )}
@@ -330,11 +331,11 @@ export function FirstRunRemoteForm({ onBack }: FirstRunRemoteFormProps) {
               size="sm"
               variant="secondary"
             >
-              {testing ? <Loader2 className="size-4 animate-spin" /> : null}
+              {testing ? <BrandLoader className="size-4" decorative /> : null}
               {copy.testConnection}
             </Button>
             <Button disabled={applying || !canApply} onClick={() => void applyRemote()} size="sm">
-              {applying ? <Loader2 className="size-4 animate-spin" /> : null}
+              {applying ? <BrandLoader className="size-4" decorative /> : null}
               {copy.applyRemote}
             </Button>
           </div>

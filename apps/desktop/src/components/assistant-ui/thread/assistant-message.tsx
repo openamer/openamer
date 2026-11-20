@@ -19,15 +19,15 @@ import { ResponseLoadingIndicator, StreamStallIndicator } from '@/components/ass
 import { formatMessageTimestamp } from '@/components/assistant-ui/thread/timestamp'
 import { TooltipIconButton } from '@/components/assistant-ui/tooltip-icon-button'
 import { PreviewAttachment } from '@/components/chat/preview-attachment'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Codicon } from '@/components/ui/codicon'
 import { CopyButton } from '@/components/ui/copy-button'
 import { useI18n } from '@/i18n'
 import { triggerHaptic } from '@/lib/haptics'
-import { AudioLines, GitForkIcon, Loader2Icon, RefreshCwIcon, VolumeXIcon, XIcon } from '@/lib/icons'
+import { AudioLines, GitForkIcon, RefreshCwIcon, VolumeXIcon, XIcon } from '@/lib/icons'
 import { extractPreviewTargets } from '@/lib/preview-targets'
 import { formatAgo } from '@/lib/time'
 import { useEnterAnimation } from '@/lib/use-enter-animation'
-import { cn } from '@/lib/utils'
 import { playSpeechText, stopVoicePlayback } from '@/lib/voice-playback'
 import { notifyError } from '@/store/notifications'
 import { $voicePlayback } from '@/store/voice-playback'
@@ -183,7 +183,7 @@ const ReadAloudButton: FC<{ getText: () => string; messageId: string }> = ({ get
   const isPreparing = readAloudStatus === 'preparing'
   const isSpeaking = readAloudStatus === 'speaking'
   const anyPlaybackActive = voicePlayback.status !== 'idle'
-  const Icon = isPreparing ? Loader2Icon : isSpeaking ? VolumeXIcon : AudioLines
+  const Icon = isSpeaking ? VolumeXIcon : AudioLines
   const tooltip = isPreparing ? copy.preparingAudio : isSpeaking ? copy.stopReading : copy.readAloud
 
   const read = useCallback(async () => {
@@ -209,7 +209,7 @@ const ReadAloudButton: FC<{ getText: () => string; messageId: string }> = ({ get
       }}
       tooltip={tooltip}
     >
-      <Icon className={cn('size-3.5', isPreparing && 'animate-spin')} />
+      {isPreparing ? <BrandLoader className="size-3.5" decorative /> : <Icon className="size-3.5" />}
     </TooltipIconButton>
   )
 }

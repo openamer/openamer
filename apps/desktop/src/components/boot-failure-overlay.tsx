@@ -1,13 +1,13 @@
 import { useStore } from '@nanostores/react'
 import { type ComponentProps, lazy, type ReactNode, Suspense, useEffect, useState } from 'react'
 
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { ErrorIcon } from '@/components/ui/error-state'
-import { Loader } from '@/components/ui/loader'
 import { LogView } from '@/components/ui/log-view'
 import type { DesktopConnectionConfig } from '@/global'
 import { useI18n } from '@/i18n'
-import { ChevronLeft, FileText, Loader2, LogIn, RefreshCw, SlidersHorizontal, Wrench } from '@/lib/icons'
+import { ChevronLeft, FileText, LogIn, RefreshCw, SlidersHorizontal, Wrench } from '@/lib/icons'
 import { $desktopBoot } from '@/store/boot'
 import { notify, notifyError } from '@/store/notifications'
 import { $desktopOnboarding } from '@/store/onboarding'
@@ -297,7 +297,7 @@ export function BootFailureOverlay() {
             {copy.back}
           </button>
           <div className="min-h-0 flex-1 pt-4">
-            <Suspense fallback={<Loader className="mx-auto my-16 size-6 text-(--ui-text-tertiary)" />}>
+            <Suspense fallback={<BrandLoader className="mx-auto my-16 size-6 text-(--ui-text-tertiary)" decorative />}>
               <GatewaySettings embedded />
             </Suspense>
           </div>
@@ -330,7 +330,7 @@ export function BootFailureOverlay() {
             <div className="flex flex-wrap gap-2">
               {actions.map(action => (
                 <Button disabled={Boolean(busy)} key={action.key} onClick={action.onClick} variant={action.variant}>
-                  {action.busy && busy === action.busy ? <Loader2 className="animate-spin" /> : action.icon}
+                  {action.busy && busy === action.busy ? <BrandLoader decorative /> : action.icon}
                   {action.label}
                 </Button>
               ))}

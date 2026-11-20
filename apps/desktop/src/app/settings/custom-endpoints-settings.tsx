@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import { triggerHaptic } from '@/lib/haptics'
-import { Check, Globe, Loader2, Plus, Save, Trash2, Zap } from '@/lib/icons'
+import { Check, Globe, Plus, Save, Trash2, Zap } from '@/lib/icons'
 import { cn } from '@/lib/utils'
 import {
   activateCustomEndpoint,
@@ -267,7 +268,7 @@ export function CustomEndpointsSettings({ onConfigSaved, onMainModelChanged }: C
                       size="sm"
                       variant="outline"
                     >
-                      {activating === endpoint.id ? <Loader2 className="animate-spin" /> : <Zap />}
+                      {activating === endpoint.id ? <BrandLoader decorative /> : <Zap />}
                       Use
                     </Button>
                     {endpoint.source !== 'direct-config' && (
@@ -279,7 +280,7 @@ export function CustomEndpointsSettings({ onConfigSaved, onMainModelChanged }: C
                         title="Delete endpoint"
                         variant="ghost"
                       >
-                        {deleting === endpoint.id ? <Loader2 className="animate-spin" /> : <Trash2 />}
+                        {deleting === endpoint.id ? <BrandLoader decorative /> : <Trash2 />}
                       </Button>
                     )}
                   </div>
@@ -376,11 +377,11 @@ export function CustomEndpointsSettings({ onConfigSaved, onMainModelChanged }: C
                 onClick={() => void handleValidate()}
                 variant="outline"
               >
-                {testing ? <Loader2 className="animate-spin" /> : <Zap />}
+                {testing ? <BrandLoader decorative /> : <Zap />}
                 Test
               </Button>
               <Button disabled={saving || !canSave} onClick={() => void handleSave()}>
-                {saving ? <Loader2 className="animate-spin" /> : <Save />}
+                {saving ? <BrandLoader decorative /> : <Save />}
                 Save
               </Button>
               <Button

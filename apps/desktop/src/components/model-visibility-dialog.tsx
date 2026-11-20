@@ -2,9 +2,9 @@ import { useStore } from '@nanostores/react'
 import { useQuery } from '@tanstack/react-query'
 import { useMemo, useState } from 'react'
 
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import { GlyphSpinner } from '@/components/ui/glyph-spinner'
 import { Switch } from '@/components/ui/switch'
 import { useI18n } from '@/i18n'
 import { modelOptionsQueryKey, requestModelOptions } from '@/lib/model-options'
@@ -86,7 +86,11 @@ export function ModelVisibilityDialog({
         <div className="max-h-[55vh] overflow-y-auto pb-1">
           {providers.length === 0 ? (
             <div className="px-3 py-5 text-center text-xs text-muted-foreground">
-              {modelOptions.isPending ? <GlyphSpinner className="mx-auto text-sm" /> : copy.noAuthenticatedProviders}
+              {modelOptions.isPending ? (
+                <BrandLoader className="mx-auto text-sm" decorative />
+              ) : (
+                copy.noAuthenticatedProviders
+              )}
             </div>
           ) : (
             providers.map(provider => {

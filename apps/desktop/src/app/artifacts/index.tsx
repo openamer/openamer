@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { ZoomableImage } from '@/components/chat/zoomable-image'
 import { PageLoader } from '@/components/page-loader'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { CopyButton } from '@/components/ui/copy-button'
 import {
@@ -19,7 +20,7 @@ import { RowButton } from '@/components/ui/row-button'
 import { Tip } from '@/components/ui/tooltip'
 import { type Translations, useI18n } from '@/i18n'
 import { ExternalLink, ExternalLinkIcon, hostPathLabel, urlSlugTitleLabel, useLinkTitle } from '@/lib/external-link'
-import { FileImage, FileText, FolderOpen, Link2, Loader2, RefreshCw } from '@/lib/icons'
+import { FileImage, FileText, FolderOpen, Link2, RefreshCw } from '@/lib/icons'
 import { downloadGatewayMediaFile, isRemoteGateway } from '@/lib/media'
 import { normalize } from '@/lib/text'
 import { fmtDayTime } from '@/lib/time'
@@ -294,7 +295,7 @@ export function ArtifactsView({ setStatusbarItemGroup: _setStatusbarItemGroup, .
             size="icon-titlebar"
             variant="ghost"
           >
-            {refreshing ? <Loader2 className="animate-spin" /> : <RefreshCw />}
+            {refreshing ? <BrandLoader decorative /> : <RefreshCw />}
           </Button>
         </Tip>
       }

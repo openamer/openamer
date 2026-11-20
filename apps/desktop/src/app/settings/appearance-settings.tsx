@@ -3,12 +3,13 @@ import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 
 import { LanguageSwitcher } from '@/components/language-switcher'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { SegmentedControl } from '@/components/ui/segmented-control'
 import type { DesktopMarketplaceSearchItem } from '@/global'
 import { useI18n } from '@/i18n'
 import { triggerHaptic } from '@/lib/haptics'
-import { Check, Download, Loader2, Palette, Trash2 } from '@/lib/icons'
+import { Check, Download, Palette, Trash2 } from '@/lib/icons'
 import { selectableCardClass } from '@/lib/selectable-card'
 import { normalize } from '@/lib/text'
 import { cn } from '@/lib/utils'
@@ -167,7 +168,7 @@ function MarketplaceThemeResults({
       <>
         {header}
         <p className="flex items-center gap-2 text-[length:var(--conversation-caption-font-size)] text-(--ui-text-tertiary)">
-          <Loader2 className="size-3.5 animate-spin" />
+          <BrandLoader className="size-3.5" decorative />
           {copy.loading}
         </p>
       </>
@@ -226,7 +227,7 @@ function MarketplaceThemeResults({
               </span>
               <span className="shrink-0 text-(--ui-text-tertiary)">
                 {busy ? (
-                  <Loader2 className="size-4 animate-spin" />
+                  <BrandLoader className="size-4" decorative />
                 ) : done ? (
                   <Check className="size-4 text-(--ui-green)" />
                 ) : (

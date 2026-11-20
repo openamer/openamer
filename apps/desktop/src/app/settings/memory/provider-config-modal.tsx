@@ -1,6 +1,7 @@
 import { useStore } from '@nanostores/react'
 import { useEffect, useState } from 'react'
 
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -11,7 +12,7 @@ import {
   DialogHeader,
   DialogTitle
 } from '@/components/ui/dialog'
-import { ExternalLink, Loader2, Save, SlidersHorizontal } from '@/lib/icons'
+import { ExternalLink, Save, SlidersHorizontal } from '@/lib/icons'
 import { saveMemoryProviderConfig } from '@/openamer'
 import { notify, notifyError } from '@/store/notifications'
 import { $activeGatewayProfile } from '@/store/profile'
@@ -149,7 +150,7 @@ export function ProviderConfigModal({
             </Button>
           </DialogClose>
           <Button disabled={saving} onClick={() => void save()} size="sm">
-            {saving ? <Loader2 className="size-3.5 animate-spin" /> : <Save />}
+            {saving ? <BrandLoader className="size-3.5" decorative /> : <Save />}
             Save changes
           </Button>
         </DialogFooter>

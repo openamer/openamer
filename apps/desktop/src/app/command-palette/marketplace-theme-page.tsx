@@ -13,10 +13,11 @@ import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 
 import { HUD_ITEM, HUD_TEXT } from '@/app/floating-hud'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import type { DesktopMarketplaceSearchItem } from '@/global'
 import { useI18n } from '@/i18n'
 import { triggerHaptic } from '@/lib/haptics'
-import { Check, Download, Loader2, Palette } from '@/lib/icons'
+import { Check, Download, Palette } from '@/lib/icons'
 import { cn } from '@/lib/utils'
 import { installVscodeThemeFromMarketplace } from '@/themes/install'
 import { $marketplaceInstalls } from '@/themes/user-themes'
@@ -90,7 +91,7 @@ export function MarketplaceThemePage({ search, onPickTheme }: MarketplaceThemePa
   }
 
   if (query.isLoading) {
-    return <Status icon={<Loader2 className="size-3.5 animate-spin" />} text={copy.loading} />
+    return <Status icon={<BrandLoader className="size-3.5" decorative />} text={copy.loading} />
   }
 
   if (query.isError) {
@@ -135,7 +136,7 @@ export function MarketplaceThemePage({ search, onPickTheme }: MarketplaceThemePa
             <span className="ml-auto mt-0.5 flex shrink-0 items-center gap-1 text-[0.6875rem] text-muted-foreground">
               {busy ? (
                 <>
-                  <Loader2 className="size-3 animate-spin" />
+                  <BrandLoader className="size-3" decorative />
                   {copy.installing}
                 </>
               ) : done ? (

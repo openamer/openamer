@@ -4,6 +4,7 @@ import { useStore } from '@nanostores/react'
 import { type FC, useCallback, useEffect, useMemo, useState } from 'react'
 
 import { useSessionView } from '@/app/chat/session-view'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -16,7 +17,7 @@ import {
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { useI18n } from '@/i18n'
 import { triggerHaptic } from '@/lib/haptics'
-import { AlertCircle, ChevronDown, Loader2 } from '@/lib/icons'
+import { AlertCircle, ChevronDown } from '@/lib/icons'
 import { cn } from '@/lib/utils'
 import { $gateway } from '@/store/gateway'
 import { notifyError } from '@/store/notifications'
@@ -193,7 +194,7 @@ const ApprovalBar: FC<{ request: ApprovalRequest; surface: 'floating' | 'inline'
             size="xs"
             variant="ghost"
           >
-            {submitting === 'once' ? <Loader2 className="size-3 animate-spin" /> : copy.run}
+            {submitting === 'once' ? <BrandLoader className="size-3" decorative /> : copy.run}
             {submitting !== 'once' && <span className="text-[0.625rem] text-primary/60">{isMac ? '⌘⏎' : 'Ctrl⏎'}</span>}
           </Button>
           {hasMoreOptions && <span aria-hidden className="w-px self-stretch bg-primary/20" />}
@@ -241,7 +242,7 @@ const ApprovalBar: FC<{ request: ApprovalRequest; surface: 'floating' | 'inline'
           size="xs"
           variant="ghost"
         >
-          {submitting === 'deny' ? <Loader2 className="size-3 animate-spin" /> : copy.reject}
+          {submitting === 'deny' ? <BrandLoader className="size-3" decorative /> : copy.reject}
           {submitting !== 'deny' && <span className="text-[0.625rem] opacity-55">Esc</span>}
         </Button>
 

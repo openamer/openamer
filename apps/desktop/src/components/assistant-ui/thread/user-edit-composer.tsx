@@ -53,13 +53,13 @@ import {
   USER_ACTION_ICON_SIZE,
   USER_BUBBLE_BASE_CLASS
 } from '@/components/assistant-ui/thread/user-message'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Codicon } from '@/components/ui/codicon'
 import { useI18n } from '@/i18n'
 import { attachmentDisplayText, attachmentId, pathLabel } from '@/lib/chat-runtime'
 import { sanitizeComposerInput } from '@/lib/composer-input-sanitize'
 import { DATA_IMAGE_URL_RE } from '@/lib/embedded-images'
 import { triggerHaptic } from '@/lib/haptics'
-import { Loader2Icon } from '@/lib/icons'
 import { cn } from '@/lib/utils'
 import type { OpenAmerGateway } from '@/openamer'
 import type { ComposerAttachment } from '@/store/composer'
@@ -705,7 +705,7 @@ export const UserEditComposer: FC<UserEditComposerProps> = ({ cwd, gateway, sess
                 className="pointer-events-none absolute bottom-2 left-2 inline-flex items-center gap-1 rounded-full bg-background/80 px-1.5 py-0.5 text-[0.62rem] text-muted-foreground backdrop-blur-[1px]"
                 data-slot="aui_edit-staging"
               >
-                <Loader2Icon className="size-3 animate-spin" />
+                <BrandLoader className="size-3" decorative />
                 {copy.attachingFile}
               </span>
             )}

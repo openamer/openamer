@@ -1,9 +1,10 @@
 import { useStore } from '@nanostores/react'
 
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Codicon } from '@/components/ui/codicon'
 import { Tip } from '@/components/ui/tooltip'
 import { useI18n } from '@/i18n'
-import { AlertCircle, FileText, FolderOpen, ImageIcon, Link, Loader2, Terminal } from '@/lib/icons'
+import { AlertCircle, FileText, FolderOpen, ImageIcon, Link, Terminal } from '@/lib/icons'
 import { normalizeOrLocalPreviewTarget } from '@/lib/local-preview'
 import { cn } from '@/lib/utils'
 import type { ComposerAttachment } from '@/store/composer'
@@ -105,7 +106,7 @@ function AttachmentPill({ attachment, onRemove }: { attachment: ComposerAttachme
             )}
             {isUploading && (
               <span className="absolute inset-0 grid place-items-center bg-background/60 backdrop-blur-[1px]">
-                <Loader2 className="size-3.5 animate-spin text-foreground/75" />
+                <BrandLoader className="size-3.5 text-foreground/75" decorative />
               </span>
             )}
             {hasUploadError && (

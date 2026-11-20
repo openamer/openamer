@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Switch } from '@/components/ui/switch'
 import { useI18n } from '@/i18n'
-import { AlertTriangle, Cpu, Loader2 } from '@/lib/icons'
+import { AlertTriangle, Cpu } from '@/lib/icons'
 import { DEFAULT_REASONING_EFFORT, REASONING_EFFORT_VALUES } from '@/lib/reasoning-effort'
 import { cn } from '@/lib/utils'
 import {
@@ -761,7 +762,7 @@ export function ModelSettings({ onMainModelChanged }: ModelSettingsProps) {
                   onClick={() => void activateApiKeyProvider()}
                   size="sm"
                 >
-                  {activating && <Loader2 className="size-3.5 animate-spin" />}
+                  {activating && <BrandLoader className="size-3.5" decorative />}
                   {activating ? 'Activating...' : 'Activate'}
                 </Button>
               </>
@@ -789,7 +790,7 @@ export function ModelSettings({ onMainModelChanged }: ModelSettingsProps) {
                 onClick={() => void applyMainModel()}
                 size="sm"
               >
-                {applying && <Loader2 className="size-3.5 animate-spin" />}
+                {applying && <BrandLoader className="size-3.5" decorative />}
                 {applying ? m.applying : t.common.apply}
               </Button>
             </>

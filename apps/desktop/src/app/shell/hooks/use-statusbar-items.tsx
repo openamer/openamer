@@ -6,10 +6,10 @@ import { $terminalTakeover, setTerminalTakeover } from '@/app/right-sidebar/stor
 import { useApprovalModeStatusbarItem } from '@/app/shell/approval-mode-menu'
 import { ContextUsagePanel } from '@/app/shell/context-usage-panel'
 import { GatewayMenuPanel } from '@/app/shell/gateway-menu-panel'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Codicon } from '@/components/ui/codicon'
-import { GlyphSpinner } from '@/components/ui/glyph-spinner'
 import { useI18n } from '@/i18n'
-import { Activity, AlertCircle, Clock, Command, FolderOpen, Globe, Hash, Loader2, Terminal } from '@/lib/icons'
+import { Activity, AlertCircle, Clock, Command, FolderOpen, Globe, Hash, Terminal } from '@/lib/icons'
 import type { RuntimeReadinessResult } from '@/lib/runtime-readiness'
 import { contextBarLabel, LiveDuration, usageContextLabel } from '@/lib/statusbar'
 import { cn } from '@/lib/utils'
@@ -233,7 +233,7 @@ export function useStatusbarItems({
       className: !applying && behind > 0 ? 'text-primary hover:text-primary' : undefined,
       detail: appVersion && sha && !applying && !remote ? sha : undefined,
       hidden: !appVersion && !sha,
-      icon: applying ? <Loader2 className="size-3 animate-spin" /> : <Hash className="size-3" />,
+      icon: applying ? <BrandLoader className="size-3" decorative /> : <Hash className="size-3" />,
       id: 'version-client',
       label,
       onSelect: () => openUpdateOverlayFor('client'),
@@ -283,7 +283,7 @@ export function useStatusbarItems({
     return {
       className: !applying && updateAvailable ? 'text-primary hover:text-primary' : undefined,
       hidden: !backendVersion,
-      icon: applying ? <Loader2 className="size-3 animate-spin" /> : <Hash className="size-3" />,
+      icon: applying ? <BrandLoader className="size-3" decorative /> : <Hash className="size-3" />,
       id: 'version-backend',
       label,
       onSelect: () => openUpdateOverlayFor('backend'),
@@ -345,7 +345,7 @@ export function useStatusbarItems({
         className: gatewayRestarting ? undefined : gatewayClassName,
         detail: gatewayRestarting ? copy.gatewayRestarting : gatewayDetail,
         icon: gatewayRestarting ? (
-          <GlyphSpinner ariaLabel={copy.gatewayRestarting} className="size-3" />
+          <BrandLoader aria-label={copy.gatewayRestarting} className="size-3" />
         ) : inferenceReady ? (
           <Activity className="size-3" />
         ) : (
@@ -406,7 +406,7 @@ export function useStatusbarItems({
           subagentsFailed > 0 ? (
             <AlertCircle className="size-3" />
           ) : subagentsRunning > 0 ? (
-            <Loader2 className="size-3 animate-spin" />
+            <BrandLoader className="size-3" decorative />
           ) : (
             <Codicon name="hubot" size="0.75rem" />
           ),
@@ -461,7 +461,7 @@ export function useStatusbarItems({
       {
         detail: <LiveDuration since={turnStartedAt} />,
         hidden: !busy || !turnStartedAt,
-        icon: <Loader2 className="size-3 animate-spin" />,
+        icon: <BrandLoader className="size-3" decorative />,
         id: 'running-timer',
         label: copy.turnRunning,
         title: copy.currentTurnElapsed,

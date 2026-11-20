@@ -45,6 +45,10 @@ interface GlyphSpinnerProps {
 }
 
 /**
+ * Deprecated in the renderer: OpenAmer's own `BrandLoader`
+ * (`components/ui/brand-loader.tsx`) replaced every glyph spinner. Kept (and
+ * still exported from `src/sdk/index.ts`) for third-party plugins.
+ *
  * One-char glyph spinner driven by `unicode-animations` (braille, orbit, scan,
  * etc. — pick any `spinner` name). Mirrors the spinner used by the Ink TUI so
  * the desktop and terminal experiences read the same visually. Renders inside

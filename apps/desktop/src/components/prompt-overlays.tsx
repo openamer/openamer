@@ -4,6 +4,7 @@ import { useStore } from '@nanostores/react'
 import { type FormEvent, useCallback, useEffect, useMemo, useState } from 'react'
 
 import { PendingApprovalFallback } from '@/components/assistant-ui/tool/approval'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -17,7 +18,7 @@ import { Input } from '@/components/ui/input'
 import { useI18n } from '@/i18n'
 import { isMissingPendingPromptRequest } from '@/lib/gateway-rpc'
 import { triggerHaptic } from '@/lib/haptics'
-import { KeyRound, Loader2, Lock } from '@/lib/icons'
+import { KeyRound, Lock } from '@/lib/icons'
 import { $gateway } from '@/store/gateway'
 import { notifyError } from '@/store/notifications'
 import { clearSecretRequest, clearSudoRequest, sessionSecretRequest, sessionSudoRequest } from '@/store/prompts'
@@ -129,7 +130,7 @@ function SudoDialog({ sessionId }: { sessionId: string | null }) {
               {t.common.cancel}
             </Button>
             <Button disabled={submitting} type="submit">
-              {submitting ? <Loader2 className="size-3.5 animate-spin" /> : t.common.send}
+              {submitting ? <BrandLoader className="size-3.5" decorative /> : t.common.send}
             </Button>
           </DialogFooter>
         </form>
@@ -230,7 +231,7 @@ function SecretDialog({ sessionId }: { sessionId: string | null }) {
               {t.common.cancel}
             </Button>
             <Button disabled={submitting || !value} type="submit">
-              {submitting ? <Loader2 className="size-3.5 animate-spin" /> : t.common.send}
+              {submitting ? <BrandLoader className="size-3.5" decorative /> : t.common.send}
             </Button>
           </DialogFooter>
         </form>

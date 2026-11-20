@@ -7,6 +7,7 @@ import { DetailPane } from '@/app/master-detail'
 import { LogTail } from '@/components/chat/log-tail'
 import { PageLoader } from '@/components/page-loader'
 import { Badge } from '@/components/ui/badge'
+import { BrandLoader } from '@/components/ui/brand-loader'
 import { Button } from '@/components/ui/button'
 import { Codicon } from '@/components/ui/codicon'
 import {
@@ -19,7 +20,6 @@ import {
 } from '@/components/ui/dialog'
 import { useI18n } from '@/i18n'
 import { stripAnsi } from '@/lib/ansi'
-import { Loader2 } from '@/lib/icons'
 import { cn } from '@/lib/utils'
 import {
   getSkillHubSources,
@@ -122,12 +122,12 @@ function HubSkillRow({
         </Button>
         {installed ? (
           <Button className="hover:text-destructive" disabled={running} onClick={doUninstall} size="xs" variant="text">
-            {running && <Loader2 className="size-3 animate-spin" />}
+            {running && <BrandLoader className="size-3" decorative />}
             {running ? h.uninstalling : h.uninstall}
           </Button>
         ) : (
           <Button disabled={running} onClick={doInstall} size="xs" variant="textStrong">
-            {running && <Loader2 className="size-3 animate-spin" />}
+            {running && <BrandLoader className="size-3" decorative />}
             {running ? h.installing : h.install}
           </Button>
         )}
@@ -308,7 +308,7 @@ export function SkillsHub({ query }: SkillsHubProps) {
                     <span className={cn(fetching && 'opacity-30')}>{source.label}</span>
                     {fetching && (
                       <span className="absolute inset-0 grid place-items-center">
-                        <Loader2 className="size-2.5 animate-spin" />
+                        <BrandLoader className="size-2.5" decorative />
                       </span>
                     )}
                   </span>
@@ -336,7 +336,7 @@ export function SkillsHub({ query }: SkillsHubProps) {
               size="xs"
               variant="text"
             >
-              {actions[UPDATE_ALL_KEY]?.running && <Loader2 className="size-3 animate-spin" />}
+              {actions[UPDATE_ALL_KEY]?.running && <BrandLoader className="size-3" decorative />}
               {actions[UPDATE_ALL_KEY]?.running ? h.updating : h.updateAll}
             </Button>
           )}
