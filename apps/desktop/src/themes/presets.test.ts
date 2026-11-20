@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { BUILTIN_THEME_LIST, DEFAULT_TYPOGRAPHY, EMOJI_FALLBACK } from './presets'
+import { BUILTIN_THEME_LIST, DEFAULT_SKIN_NAME, DEFAULT_TYPOGRAPHY, EMOJI_FALLBACK } from './presets'
 
 // #40364: none of the UI text/mono fonts carry emoji glyphs, so every font
 // stack must end with a color-emoji fallback or emoji render as tofu on
@@ -32,13 +32,20 @@ describe('theme typography emoji fallback (#40364)', () => {
   })
 })
 
-// The chatgpt skin is a measured port of chatgpt.com's own tokens; pin the
-// surfaces so a later "harmonise the palettes" pass can't quietly drift them.
-describe('chatgpt skin matches the measured chatgpt.com tokens', () => {
-  const theme = BUILTIN_THEME_LIST.find(t => t.name === 'chatgpt')
+// OpenAmer 2026 is the desktop default and a measured port of chatgpt.com's own
+// tokens; pin the surfaces so a later "harmonise the palettes" pass can't
+// quietly drift them.
+describe('OpenAmer 2026 matches the measured design tokens', () => {
+  const theme = BUILTIN_THEME_LIST.find(t => t.name === 'openamer-2026')
 
-  it('is registered', () => {
+  it('is registered under the new name and label', () => {
     expect(theme).toBeDefined()
+    expect(theme?.label).toBe('OpenAmer 2026')
+    expect(BUILTIN_THEME_LIST.some(t => t.name === 'chatgpt')).toBe(false)
+  })
+
+  it('is the default skin', () => {
+    expect(DEFAULT_SKIN_NAME).toBe('openamer-2026')
   })
 
   it('keeps the measured light surfaces', () => {

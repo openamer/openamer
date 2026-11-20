@@ -92,12 +92,23 @@ describe('ThemeProvider ← theme mix + radius', () => {
   afterEach(cleanup)
 
   it('uses the undiluted seed + custom radius for the chatgpt skin', () => {
-    applySkin('chatgpt', 'dark')
+    applySkin('openamer-2026', 'dark')
 
     expect(cssVar('--theme-background-seed')).toBe('#212121')
     expect(cssVar('--theme-mix-chrome')).toBe('100%')
     expect(cssVar('--theme-mix-elevated')).toBe('100%')
     expect(cssVar('--radius-scalar')).toBe('1.15')
+  })
+
+  it('migrates a persisted pre-rename "chatgpt" pick onto the same palette', () => {
+    applySkin('chatgpt', 'dark')
+
+    // 'chatgpt' is retired, so it normalizes to the default — which IS this
+    // palette. A saved pick from the previous build must not fall back to the
+    // legacy blue.
+    expect(document.documentElement.dataset.openamerTheme).toBe('openamer-2026')
+    expect(cssVar('--radius-scalar')).toBe('1.15')
+    expect(cssVar('--theme-background-seed')).toBe('#212121')
   })
 
   it('restores the default radius and mixes for a skin without overrides', () => {

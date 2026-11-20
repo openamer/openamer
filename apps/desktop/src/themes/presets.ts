@@ -278,70 +278,71 @@ export const slateTheme: DesktopTheme = {
 }
 
 /**
- * ChatGPT — a faithful port of chatgpt.com's own design tokens, measured
- * 2026-11-20 from the live stylesheet of build `29c71e2ab8`.
+ * OpenAmer 2026 — the desktop's default look from 2026-11-20 on.
  *
- * The source palette is a neutral grey ramp plus one brand green that the
- * product uses only in its mark; every interactive surface is neutral:
+ * It is a faithful port of chatgpt.com's own design tokens, measured from the
+ * live stylesheet of build `29c71e2ab8`. The source palette is a neutral grey
+ * ramp plus one brand green that the product uses only in its mark; every
+ * interactive surface is neutral:
  *
  *   light  surface #FFFFFF  secondary #F9F9F9  tertiary #F3F3F3  text #0D0D0D
  *   dark   surface #212121  secondary #303030  tertiary #414141  text #DFDFDF
  *
  * Borders are the measured foreground-alpha strokes (8% of #0D0D0D on light,
  * 8% of #FFFFFF on dark), user messages sit on a 5%/8% alpha wash, and the
- * action colour is the text colour itself — ChatGPT's send button is black on
- * light and white on dark, never green. `mix: 100` is load-bearing: the glass
- * skins dilute their seed into a neutral wash, which would drag #212121 down
- * to ~#1D1D1E and lose the exact surface.
+ * action colour is the text colour itself — the send button is black on light
+ * and white on dark, never green. `mix: 100` is load-bearing: the glass skins
+ * dilute their seed into a neutral wash, which would drag #212121 down to
+ * ~#1D1D1E and lose the exact surface.
  *
  * Typography is the measured UI stack (`ui-sans-serif` → `Segoe UI` on
- * Windows) — not the bundled Inter, which chatgpt.com does not use.
+ * Windows) — not the bundled Inter, which the source does not use.
  */
-const CHATGPT_INK = '#0D0D0D'
-const CHATGPT_SURFACE = '#212121'
+const OA2026_INK = '#0D0D0D'
+const OA2026_SURFACE = '#212121'
 
-/** ChatGPT writes borders as `color-mix(in oklab, <fg> N%, transparent)`. */
-const chatgptStroke = (ink: string, pct: number) => `color-mix(in srgb, ${ink} ${pct}%, transparent)`
+/** The source writes borders as `color-mix(in oklab, <fg> N%, transparent)`. */
+const oa2026Stroke = (ink: string, pct: number) => `color-mix(in srgb, ${ink} ${pct}%, transparent)`
 
-const chatgptMix = { chrome: 100, sidebar: 100, card: 100, elevated: 100, bubble: 100 } as const
+const oa2026Mix = { chrome: 100, sidebar: 100, card: 100, elevated: 100, bubble: 100 } as const
 
-export const chatgptTheme: DesktopTheme = {
-  name: 'chatgpt',
-  label: 'ChatGPT',
-  description: 'Neutral greys, near-black actions, pill composer — chatgpt.com',
-  mix: chatgptMix,
-  // chatgpt.com's composer is a pill: ~28px radius on a ~52px field. The glass
-  // default (0.85) renders it at 20px; 1.15 lands `--radius-2xl` at 27.6px.
+export const openamer2026Theme: DesktopTheme = {
+  name: 'openamer-2026',
+  label: 'OpenAmer 2026',
+  description: 'Neutral greys, near-black actions, pill composer — the 2026 standard',
+  mix: oa2026Mix,
+  // The composer is a pill: ~28px radius on a ~52px field. The glass default
+  // (0.85) renders it at 20px; 1.15 lands `--radius-2xl` at 27.6px.
   radiusScalar: 1.15,
   colors: {
     background: '#FFFFFF',
-    foreground: CHATGPT_INK,
+    foreground: OA2026_INK,
     card: '#FFFFFF',
-    cardForeground: CHATGPT_INK,
+    cardForeground: OA2026_INK,
     muted: '#F9F9F9',
     mutedForeground: '#5D5D5D',
     popover: '#FFFFFF',
-    popoverForeground: CHATGPT_INK,
-    primary: CHATGPT_INK,
+    popoverForeground: OA2026_INK,
+    primary: OA2026_INK,
     primaryForeground: '#FFFFFF',
     secondary: '#F9F9F9',
-    secondaryForeground: CHATGPT_INK,
+    secondaryForeground: OA2026_INK,
     accent: '#F3F3F3',
-    accentForeground: CHATGPT_INK,
-    border: chatgptStroke(CHATGPT_INK, 8),
-    input: chatgptStroke(CHATGPT_INK, 10),
-    ring: CHATGPT_INK,
-    midground: CHATGPT_INK,
-    composerRing: CHATGPT_INK,
+    accentForeground: OA2026_INK,
+    border: oa2026Stroke(OA2026_INK, 8),
+    input: oa2026Stroke(OA2026_INK, 10),
+    ring: OA2026_INK,
+    midground: OA2026_INK,
+    composerRing: OA2026_INK,
     destructive: '#E02E2A',
     destructiveForeground: '#FFFFFF',
     sidebarBackground: '#F9F9F9',
-    sidebarBorder: chatgptStroke(CHATGPT_INK, 6),
+    sidebarBorder: oa2026Stroke(OA2026_INK, 6),
     userBubble: '#F2F2F2',
-    userBubbleBorder: chatgptStroke(CHATGPT_INK, 5)
+    userBubbleBorder: oa2026Stroke(OA2026_INK, 5)
   },
   darkColors: {
-    background: CHATGPT_SURFACE,
+    background: OA2026_SURFACE,
     foreground: '#DFDFDF',
     card: '#303030',
     cardForeground: '#ECECEC',
@@ -350,22 +351,22 @@ export const chatgptTheme: DesktopTheme = {
     popover: '#303030',
     popoverForeground: '#ECECEC',
     primary: '#FFFFFF',
-    primaryForeground: CHATGPT_INK,
+    primaryForeground: OA2026_INK,
     secondary: '#303030',
     secondaryForeground: '#ECECEC',
     accent: '#2F2F2F',
     accentForeground: '#FFFFFF',
-    border: chatgptStroke('#FFFFFF', 8),
-    input: chatgptStroke('#FFFFFF', 12),
+    border: oa2026Stroke('#FFFFFF', 8),
+    input: oa2026Stroke('#FFFFFF', 12),
     ring: '#FFFFFF',
     midground: '#FFFFFF',
     composerRing: '#DFDFDF',
     destructive: '#FA423E',
     destructiveForeground: '#FFFFFF',
     sidebarBackground: '#161616',
-    sidebarBorder: chatgptStroke('#FFFFFF', 6),
+    sidebarBorder: oa2026Stroke('#FFFFFF', 6),
     userBubble: '#2F2F2F',
-    userBubbleBorder: chatgptStroke('#FFFFFF', 8)
+    userBubbleBorder: oa2026Stroke('#FFFFFF', 8)
   },
   typography: {
     // Measured `--font-sans-default`: the OS UI face, not a webfont.
@@ -377,7 +378,7 @@ export const chatgptTheme: DesktopTheme = {
 
 export const BUILTIN_THEMES: Record<string, DesktopTheme> = {
   openamer: openamerTheme,
-  chatgpt: chatgptTheme,
+  'openamer-2026': openamer2026Theme,
   midnight: midnightTheme,
   ember: emberTheme,
   mono: monoTheme,
@@ -388,4 +389,4 @@ export const BUILTIN_THEMES: Record<string, DesktopTheme> = {
 export const BUILTIN_THEME_LIST = Object.values(BUILTIN_THEMES)
 
 /** Skin used when nothing is persisted or the persisted name is retired. */
-export const DEFAULT_SKIN_NAME = 'openamer'
+export const DEFAULT_SKIN_NAME = 'openamer-2026'
