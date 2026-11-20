@@ -139,7 +139,9 @@ export function writeUpdateMarker(openamerHome, pid, { now = Date.now } = {}) {
 
 /** Reserve the existing marker before waiting for autonomous workers. */
 export function claimUpdateWorkerDrain(home: string, pid: number): void {
-  if (readLiveUpdateMarker(home)) { throw new Error('Another update is already in progress.') }
+  if (readLiveUpdateMarker(home)) {
+    throw new Error('Another update is already in progress.')
+  }
   fs.writeFileSync(markerPath(home), `${pid}\n${Math.floor(Date.now() / 1000)}\n`, { encoding: 'utf8', flag: 'wx' })
 }
 
@@ -148,8 +150,12 @@ export function releaseUpdateWorkerDrain(home: string, pid: number): void {
   try {
     const file = markerPath(home)
 
-    if (Number(fs.readFileSync(file, 'utf8').split('\n')[0]) === pid) { fs.unlinkSync(file) }
-  } catch { /* Missing is already released; an unreadable marker remains fail-safe. */ }
+    if (Number(fs.readFileSync(file, 'utf8').split('\n')[0]) === pid) {
+      fs.unlinkSync(file)
+    }
+  } catch {
+    /* Missing is already released; an unreadable marker remains fail-safe. */
+  }
 }
 
 /** Wait for both in-process teardown and the detached updater to release startup.

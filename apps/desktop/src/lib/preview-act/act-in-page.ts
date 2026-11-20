@@ -246,8 +246,7 @@ export async function previewActEngine(
   }
 
   /** `innerText` is what the user reads, but it does not exist everywhere. */
-  const textOf = (el: HTMLElement | null | undefined): string =>
-    String(el?.innerText ?? el?.textContent ?? '')
+  const textOf = (el: HTMLElement | null | undefined): string => String(el?.innerText ?? el?.textContent ?? '')
 
   const inventory = (max: number): { elements: PreviewActElement[]; truncated: boolean } => {
     book!.entries.clear()

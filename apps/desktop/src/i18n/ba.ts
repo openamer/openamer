@@ -45,7 +45,7 @@ export const ba = defineLocale({
     update: 'Яңыртыу',
     tryHint: term => `Probajte „${term}“`,
     on: 'Ҡабыҙылған',
-    off: 'Һүндерелгән',
+    off: 'Һүндерелгән'
   },
   fileMenu: {
     revealFinder: 'Finder-ҙа күрһәтеү',
@@ -60,7 +60,7 @@ export const ba = defineLocale({
     renameLabel: 'Яңы исем',
     deleteTitle: name => `Obrisati ${name}?`,
     deleteBody: 'Бу кошмакка көчәреләсек — һеҙ аны икенаннан кайтаруҙға мөмкин.',
-    pathCopied: 'Йол көйләнгән',
+    pathCopied: 'Йол көйләнгән'
   },
   boot: {
     ready: 'OpenAmer Desktop һөҙөмлө',
@@ -70,7 +70,7 @@ export const ba = defineLocale({
       loadingSettings: 'OpenAmer настройкаларын юклау',
       loadingSessions: 'Яҡын сессиялар юклап булыр',
       startingDesktopConnection: 'Стол уланыусы башлап булыр',
-      startingOpenAmerDesktop: 'OpenAmer Desktop башлап булыр…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop башлап булыр…'
     },
     errors: {
       backgroundExited: 'OpenAmer фон процессе тотоусы.',
@@ -79,13 +79,15 @@ export const ba = defineLocale({
       desktopBootFailed: 'Стол башлаусы биклеген',
       gatewayConnectionLost: 'Шлюзға тоташыу өҙөлдө',
       gatewaySignInRequired: 'Шлюзға инеү талап ителә',
-      ipcBridgeUnavailable: 'Эш өҫтәле IPC күпере эшләмәй.',
+      ipcBridgeUnavailable: 'Эш өҫтәле IPC күпере эшләмәй.'
     },
     failure: {
-      title: "OpenAmer эшләй алманы",
-      description: "Фон шлюзы эшләп китмәне. Түбәндәге тергеҙеү аҙымдарының береһен һынап ҡарағыҙ. Бында бер нәмә лә чаттарығыҙҙы йәки көйләүҙәрегеҙҙе юймай.",
+      title: 'OpenAmer эшләй алманы',
+      description:
+        'Фон шлюзы эшләп китмәне. Түбәндәге тергеҙеү аҙымдарының береһен һынап ҡарағыҙ. Бында бер нәмә лә чаттарығыҙҙы йәки көйләүҙәрегеҙҙе юймай.',
       remoteTitle: 'Алыҫ шлюзға инеү талап ителә',
-      remoteDescription: 'Алыҫ шлюз сеансығыҙ тамамланды. Яңынан тоташыу өсөн ҡабат инегеҙ. Бында бер нәмә лә чаттарығыҙҙы йәки көйләүҙәрегеҙҙе юймай.',
+      remoteDescription:
+        'Алыҫ шлюз сеансығыҙ тамамланды. Яңынан тоташыу өсөн ҡабат инегеҙ. Бында бер нәмә лә чаттарығыҙҙы йәки көйләүҙәрегеҙҙе юймай.',
       retry: 'Ҡабатлау',
       repairInstall: 'Урнатыуҙы төҙәтеү',
       useLocalGateway: 'Урындағы шлюзды ҡулланыу',
@@ -93,7 +95,8 @@ export const ba = defineLocale({
       back: 'Артҡа',
       openLogs: 'Яҙмаларҙы асыу',
       repairHint: 'Төҙәтеү урынлаштырыусыны ҡабат эшләтә һәм яңы машинала бер нисә минут ваҡыт алырға мөмкин.',
-      remoteSignInHint: signInLabel => `Odjavljuje se iz sačuvanih udaljenih sesija pretraživača, zatim otvara ${signInLabel}. Koristite lokalni gateway za prebacivanje na ugrađeni backend.`,
+      remoteSignInHint: signInLabel =>
+        `Odjavljuje se iz sačuvanih udaljenih sesija pretraživača, zatim otvara ${signInLabel}. Koristite lokalni gateway za prebacivanje na ugrađeni backend.`,
       signOutAndSignIn: 'Сығыу һәм инеү',
       remoteFailureHint: 'Шлюз URL-ын һәм инеүҙе Шлюз көйләүҙәрендә тикшерегеҙ, йәки урындағы шлюзға күсегеҙ.',
       hideRecentLogs: 'Һуңғы яҙмаларҙы йәшереү',
@@ -105,8 +108,8 @@ export const ba = defineLocale({
       signInFailed: 'Инеү уңышһыҙ',
       signInToRemoteGateway: 'Алыҫ шлюзға инеү',
       signInWithProvider: provider => `Prijavite se putem ${provider}`,
-      identityProvider: 'Һеҙҙең шәхес провайдерығыҙ',
-    },
+      identityProvider: 'Һеҙҙең шәхес провайдерығыҙ'
+    }
   },
   notifications: {
     region: 'Белдереүҙәр',
@@ -119,21 +122,23 @@ export const ba = defineLocale({
     copyDetail: 'Ентекләүҙе күсереү',
     copyDetailFailed: 'Белдереү ентекләүен күсереп булманы',
     backendOutOfDateTitle: 'Backend иҫке',
-    backendOutOfDateMessage: 'Һеҙҙең OpenAmer backend был десктоп өсөн төҙөлгән версиянан иҫке һәм дөрөҫ эшләмәҫкә мөмкин. Уларҙы тура килтереү өсөн яңыртығыҙ.',
+    backendOutOfDateMessage:
+      'Һеҙҙең OpenAmer backend был десктоп өсөн төҙөлгән версиянан иҫке һәм дөрөҫ эшләмәҫкә мөмкин. Уларҙы тура килтереү өсөн яңыртығыҙ.',
     installMethodUnsupportedTitle: 'Хуплауланмаған урынлаштырыу ысулы',
     updateOpenAmer: 'OpenAmer яңыртыу',
     updateReadyTitle: 'Яңыртыу әҙер',
     updateReadyMessage: count => `Dostupna ${count} nova izmjena${count === 1 ? '' : 's'}.`,
-    seeWhatsNew: "Яңылыҡтарҙы ҡарау",
+    seeWhatsNew: 'Яңылыҡтарҙы ҡарау',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT өсөн ELEVENLABS_API_KEY кәрәк.',
       elevenLabsRejectedKey: 'ElevenLabs API асҡысын кире ҡаҡты (401).',
       gatewayAuthFailed: 'Шлюз аутентификацияһы уңышһыҙ — API_SERVER_KEY тикшерегеҙ.',
-      methodNotAllowed: 'Эш өҫтәле бэкенды был һорауҙы кире ҡаҡты (405 Method Not Allowed). OpenAmer Desktop-ты яңынан ҡуҙғатып ҡарағыҙ.',
+      methodNotAllowed:
+        'Эш өҫтәле бэкенды был һорауҙы кире ҡаҡты (405 Method Not Allowed). OpenAmer Desktop-ты яңынан ҡуҙғатып ҡарағыҙ.',
       microphonePermission: 'Микрофон рөхсәте кире ҡағылды.',
       openaiRejectedApiKey: 'OpenAI API асҡысын кире ҡаҡты.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI je odbio API ključ (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS өсөн VOICE_TOOLS_OPENAI_KEY йәки OPENAI_API_KEY кәрәк.',
+      openaiTtsNeedsKey: 'OpenAI TTS өсөн VOICE_TOOLS_OPENAI_KEY йәки OPENAI_API_KEY кәрәк.'
     },
     voice: {
       configureSpeechToText: 'Тауыш режимын ҡулланыу өсөн телдән текстҡа әйләндереүҙе көйләгеҙ.',
@@ -152,7 +157,7 @@ export const ba = defineLocale({
       transcriptionFailed: 'Тауышты текстҡа әйләндереү хатаһы.',
       transcriptionUnavailable: 'Тауышты текстҡа күсереү әлегә мөмкин түгел.',
       tryRecordingAgain: 'Яңынан яҙып ҡарағыҙ.',
-      unavailable: 'Тауыш ҡулланылмай',
+      unavailable: 'Тауыш ҡулланылмай'
     },
     native: {
       approvalTitle: 'Раҫлау кәрәк',
@@ -165,11 +170,12 @@ export const ba = defineLocale({
       turnErrorTitle: 'Әңгәмә уңышһыҙ',
       backgroundDoneTitle: 'Фон бурысы тамамланды',
       backgroundFailedTitle: 'Фон бурысы уңышһыҙ',
-      creditsTitle: 'Кредиттар',
-    },
+      creditsTitle: 'Кредиттар'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Softversko renderiranje aktivno — detektovan udaljeni ekran (${reason}). GPU ubrzanje je onemogućeno kako bi se spriječilo treperenje.`,
+    message: reason =>
+      `Softversko renderiranje aktivno — detektovan udaljeni ekran (${reason}). GPU ubrzanje je onemogućeno kako bi se spriječilo treperenje.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer кредиттары бөттө',
@@ -177,7 +183,7 @@ export const ba = defineLocale({
     fallbackMessage: 'Иҫәп яҙмағыҙҙа кредиттар бөттө. Дауам итеү өсөн кредиттар өҫтәгеҙ.',
     openBilling: 'Түләүҙәрҙе асыу',
     addCredits: 'Кредиттар өҫтәү',
-    dismiss: 'Ябыу',
+    dismiss: 'Ябыу'
   },
   titlebar: {
     hideSidebar: 'Ҡабырға панелде йәшереү',
@@ -194,7 +200,7 @@ export const ba = defineLocale({
     openStarmap: 'Хәтер графын асыу',
     openKeybinds: 'Клавиатура ҡыҫҡа юлдары',
     layoutEditor: 'Макет редакторы',
-    layoutEditorTitle: 'Компоновка редакторы — ⌘ баҫыу компоновканы ташлай',
+    layoutEditorTitle: 'Компоновка редакторы — ⌘ баҫыу компоновканы ташлай'
   },
   keybinds: {
     title: 'Клавиатура ҡыҫҡа юлдары',
@@ -211,7 +217,7 @@ export const ba = defineLocale({
       profiles: 'Профильдар',
       session: 'Сессия',
       navigation: 'Навигация',
-      view: 'Көрүнәш',
+      view: 'Көрүнәш'
     },
     actions: {
       'keybinds.openPanel': 'Клавиатура кыскартамаларын ачу',
@@ -290,8 +296,8 @@ export const ba = defineLocale({
       'composer.slash': 'Слэш командалар палитраһы',
       'composer.help': 'Тиҙ ярҙам',
       'composer.history': 'Поповер / тарихты әйләндереү',
-      'composer.cancel': 'Поповерҙы ябыу · башҡарыуҙы туҡтатыу',
-    },
+      'composer.cancel': 'Поповерҙы ябыу · башҡарыуҙы туҡтатыу'
+    }
   },
   language: {
     label: 'Тел',
@@ -300,7 +306,7 @@ export const ba = defineLocale({
     saveError: 'Телде яңыртыу уңышһыҙ булды',
     switchTo: 'Телде алмаштырыу',
     searchPlaceholder: 'Телдәрҙе эҙләү…',
-    noResults: 'Телдәр табылманы',
+    noResults: 'Телдәр табылманы'
   },
   settings: {
     closeSettings: 'Көйләүҙәрҙе ябыу',
@@ -325,11 +331,12 @@ export const ba = defineLocale({
       about: 'Тураһында',
       billing: 'Түләүҙәр',
       notifications: 'Белдереүҙәр',
-      plugins: 'Плагиндар',
+      plugins: 'Плагиндар'
     },
     plugins: {
       title: 'Эш өҫтәле плагиндары',
-      blurb: 'Был ҡушымтаға тейәлгән UI киңәйтмәләре — йыйылма менән бергә килтерелә йәки desktop-plugins папкаһына һалына (OpenAmer яҙғандарын да индереп). Һүндереү плагинды шунда уҡ тейәүҙән сығара һәм яңынан эшләтеп ебәреүҙәрҙән һуң да һаҡлана.',
+      blurb:
+        'Был ҡушымтаға тейәлгән UI киңәйтмәләре — йыйылма менән бергә килтерелә йәки desktop-plugins папкаһына һалына (OpenAmer яҙғандарын да индереп). Һүндереү плагинды шунда уҡ тейәүҙән сығара һәм яңынан эшләтеп ебәреүҙәрҙән һуң да һаҡлана.',
       count: n => `${n} instalirano`,
       openFolder: 'Плагиндар папкаһын асыу',
       rescan: 'Ҡабат сканерлау',
@@ -341,49 +348,51 @@ export const ba = defineLocale({
       kinds: {
         bundled: 'бергә ҡушылған',
         disk: 'дискта',
-        runtime: 'эшләү ваҡыты',
-      },
+        runtime: 'эшләү ваҡыты'
+      }
     },
     notifications: {
       title: 'Белдереүҙәр',
-      intro: 'Тәбиғи эш өҫтәле белдереүҙәре, ҡушымта эсендәге toast-тарҙан айырым. Улар ҡоролмала ғына — һәр компьютер үҙ көйләүҙәрен һаҡлай.',
+      intro:
+        'Тәбиғи эш өҫтәле белдереүҙәре, ҡушымта эсендәге toast-тарҙан айырым. Улар ҡоролмала ғына — һәр компьютер үҙ көйләүҙәрен һаҡлай.',
       enableAll: 'Белдереүҙәрҙе ҡабыҙыу',
       enableAllDesc: 'Төп переключатель. Түбәндәге бөтә белдереүҙәрҙе өнһөҙ итеү өсөн быны һүндерегеҙ.',
       focusedHint: 'Тамамланыу иҫкәртеүҙәре OpenAmer фонда булғанда ғына эшләй.',
       kinds: {
         approval: {
           label: 'Раҫлау кәрәк',
-          description: 'Бер команда һеҙҙең уны раҫлауығыҙҙы йәки кире ҡағыуығыҙҙы көтә.',
+          description: 'Бер команда һеҙҙең уны раҫлауығыҙҙы йәки кире ҡағыуығыҙҙы көтә.'
         },
         input: {
           label: 'Индереү кәрәк',
-          description: 'OpenAmer һорау бирҙе йәки пароль йәки сер кәрәк.',
+          description: 'OpenAmer һорау бирҙе йәки пароль йәки сер кәрәк.'
         },
         turnDone: {
           label: 'Яуап әҙер',
-          description: 'OpenAmer фонда булғанда бер әйләнеш тамамланды.',
+          description: 'OpenAmer фонда булғанда бер әйләнеш тамамланды.'
         },
         turnError: {
           label: 'Әйләнеш уңышһыҙ',
-          description: 'Әйләнеш хата менән тамамланды.',
+          description: 'Әйләнеш хата менән тамамланды.'
         },
         backgroundDone: {
           label: 'Фон эше тамамланды',
-          description: 'Фонға ебәрелгән терминал командаһы тамамланды.',
+          description: 'Фонға ебәрелгән терминал командаһы тамамланды.'
         },
         credits: {
           label: 'Кредит иҫкәртеүҙәре',
-          description: 'Кредиттәргә ҡуҙҙылыҡ һуңтарылған йәки ҡайтарылған.',
-        },
+          description: 'Кредиттәргә ҡуҙҙылыҡ һуңтарылған йәки ҡайтарылған.'
+        }
       },
       test: 'Үтәрке хәбәрләүе тапшырыу',
       testTitle: 'OpenAmer',
       testBody: 'Хәбәрләүҙәр эшләйләр.',
-      testSent: 'Үтәрке тапшырылды. Әгәр бер нәрсә күрһәнмә, операцион системаның хәбәрләү һөкүмиәттәренә һәм Фокус/Тының күртмәгән режимына ҡараңыз.',
+      testSent:
+        'Үтәрке тапшырылды. Әгәр бер нәрсә күрһәнмә, операцион системаның хәбәрләү һөкүмиәттәренә һәм Фокус/Тының күртмәгән режимына ҡараңыз.',
       testUnsupported: 'Был система төп хәбәрләүҙәргә дәмләми.',
       completionSoundTitle: 'Тамамланған саҡы',
       completionSoundDesc: 'Агент йөргәндә тамамланғанда уйната. Пресет һайлап, уны һәрсәндә ҡараңыз.',
-      completionSoundPreview: 'Ҡарапты',
+      completionSoundPreview: 'Ҡарапты'
     },
     sections: {
       model: 'Модел',
@@ -393,7 +402,7 @@ export const ba = defineLocale({
       safety: 'Хәүсәндәлек',
       memory: 'Хәтер һәм контекст',
       voice: 'Тауыш',
-      advanced: 'Өҙгәндәр',
+      advanced: 'Өҙгәндәр'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop турала',
@@ -401,37 +410,40 @@ export const ba = defineLocale({
       gateway: 'Шлюз тоташуы...',
       keys: 'API асҡыстарын эҙләү...',
       mcp: 'MCP серверҙарын эҙләү...',
-      sessions: 'Архивланған сессияларҙы эҙләү...',
+      sessions: 'Архивланған сессияларҙы эҙләү...'
     },
     modeOptions: {
       light: {
         label: 'Яҡты',
-        description: 'Сағыу эш өҫтө өҫлөктәре',
+        description: 'Сағыу эш өҫтө өҫлөктәре'
       },
       dark: {
         label: 'Ҡараңғы',
-        description: 'Күҙ ҡамаштырмаған эш урыны',
+        description: 'Күҙ ҡамаштырмаған эш урыны'
       },
       system: {
         label: 'Система',
-        description: 'ОС күренешенә эйәреү',
-      },
+        description: 'ОС күренешенә эйәреү'
+      }
     },
     appearance: {
       title: 'Тышҡы күренеш',
-      intro: 'Был көйләүҙәр тик эш өҫтөндәге күрһәтеү өсөн. Режим яҡтылыҡты контролдә тота; тема акцент палитраһын һәм чат өҫлөгө дизайнын көйләй.',
+      intro:
+        'Был көйләүҙәр тик эш өҫтөндәге күрһәтеү өсөн. Режим яҡтылыҡты контролдә тота; тема акцент палитраһын һәм чат өҫлөгө дизайнын көйләй.',
       colorMode: 'Төҫ режимы',
       colorModeDesc: 'Билдәләнгән режимды һайлағыҙ йәки OpenAmer система көйләүегеҙгә эйәрһен.',
       toolViewTitle: 'Ҡорал саҡырыуын күрһәтеү',
       toolViewDesc: 'Product сей ҡорал мәғлүмәттәрен йәшерә; Technical тулы индереү/сығарыуҙы күрһәтә.',
       uiScaleTitle: 'Интерфейс масштабы',
-      uiScaleDesc: (percent: number) => `Skalira tekst i kontrole u cijeloj aplikaciji. Cmd/Ctrl sa +, - i 0 također rade. Trenutno: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Skalira tekst i kontrole u cijeloj aplikaciji. Cmd/Ctrl sa +, - i 0 također rade. Trenutno: ${percent}%.`,
       translucencyTitle: 'Тәҙрәнең ярым үтә күренеүсәнлеге',
       translucencyDesc: 'Бөтөн тәҙрә аша эш өҫтөгөҙҙө күрегеҙ. Тик macOS һәм Windows өсөн.',
       backdropTitle: 'Чат арты фоны',
       backdropDesc: 'Әңгәмә артындағы тоноҡ һын һүрәте.',
       embedsTitle: 'Эсендәге өҫтәмәләр',
-      embedsDesc: 'Бай алдан ҡарауҙар өсөнсө яҡ сайттарынан (YouTube, X, …) йөкләнә. «Һорау» һәр береһенә рөхсәт биргәнгә тиклем ваҡытлыса урын күрһәтә; «Һәр ваҡыт» уларҙы автоматик йөкләй; «Һүнгән» ябай һылтанмаларҙы ҡалдыра.',
+      embedsDesc:
+        'Бай алдан ҡарауҙар өсөнсө яҡ сайттарынан (YouTube, X, …) йөкләнә. «Һорау» һәр береһенә рөхсәт биргәнгә тиклем ваҡытлыса урын күрһәтә; «Һәр ваҡыт» уларҙы автоматик йөкләй; «Һүнгән» ябай һылтанмаларҙы ҡалдыра.',
       embedsAsk: 'Һорау',
       embedsAlways: 'Һәр ваҡыт',
       embedsOff: 'Һүнгән',
@@ -444,7 +456,8 @@ export const ba = defineLocale({
       themeDesc: 'Тик эш өҫтәле палитралары. Һайланған режим өҫтөнә ҡулланыла.',
       themeProfileNote: profile => `Sačuvano za profil ${profile} — svaki profil čuva vlastitu temu.`,
       installTitle: 'VS Code-тан урнаштырырға',
-      installDesc: 'Уның төҫ темаһын эш өҫтәле палитраһына әйләндереү өсөн Marketplace киңәйтеүенең id-һын ҡуйығыҙ (мәҫәлән, dracula-theme.theme-dracula).',
+      installDesc:
+        'Уның төҫ темаһын эш өҫтәле палитраһына әйләндереү өсөн Marketplace киңәйтеүенең id-һын ҡуйығыҙ (мәҫәлән, dracula-theme.theme-dracula).',
       installPlaceholder: 'нәшриятчы.көйләү',
       installButton: 'Урнаштырырға',
       installing: 'Урнаштырыла…',
@@ -454,8 +467,10 @@ export const ba = defineLocale({
       importedBadge: 'Импортланған',
       pet: {
         title: 'Йорт хайуаны',
-        intro: 'Ҡушымта өҫтөндә йөҙөп йөрөгән анимациялы petdex талисманын ҡабул итегеҙ — ул OpenAmer эшләгәнгә реакция яһай: ҡоралдар эшләгәндә йүгерә, уңышта ҡотлай, хаталарҙа көйөнә.',
-        restartHint: 'Питомецтарға тиҙ генә ҡабаттан эшләтеп ебәреү кәрәк — эшләп торған ҡушымта был функция өҫтәлгәнгә тиклем асылған. OpenAmer-ҙан сығып, уны ҡабат асығыҙ, һуңынан бында әйләнеп ҡайтығыҙ.',
+        intro:
+          'Ҡушымта өҫтөндә йөҙөп йөрөгән анимациялы petdex талисманын ҡабул итегеҙ — ул OpenAmer эшләгәнгә реакция яһай: ҡоралдар эшләгәндә йүгерә, уңышта ҡотлай, хаталарҙа көйөнә.',
+        restartHint:
+          'Питомецтарға тиҙ генә ҡабаттан эшләтеп ебәреү кәрәк — эшләп торған ҡушымта был функция өҫтәлгәнгә тиклем асылған. OpenAmer-ҙан сығып, уны ҡабат асығыҙ, һуңынан бында әйләнеп ҡайтығыҙ.',
         on: 'Ҡабыҙ',
         off: 'Һүндер',
         scaleTitle: 'Үлсәм',
@@ -465,7 +480,7 @@ export const ba = defineLocale({
         chooseTitle: 'Питомец һайлағыҙ',
         chooseDesc: 'Һайлағанда ул (кәрәк булһа) ҡуйыла һәм әүҙемләшә.',
         searchPlaceholder: 'Питомецтар эҙләү…',
-        unreachable: "petdex галереяһына тоташа алманыҡ. Бәйләнешегеҙҙе тикшереп, был битте ҡабат асығыҙ.",
+        unreachable: 'petdex галереяһына тоташа алманыҡ. Бәйләнешегеҙҙе тикшереп, был битте ҡабат асығыҙ.',
         noMatch: query => `Nema ljubimaca koji odgovaraju „${query}“.`,
         installedTag: 'ҡуйылған',
         generatedTag: 'Булдырылған',
@@ -474,7 +489,7 @@ export const ba = defineLocale({
         uninstall: name => `Deinstaliraj ${name}`,
         delete: name => `Obriši ${name}`,
         deleteTitle: name => `Obrisati ${name}?`,
-        deleteBody: "Был питомецты бөтөнләй юя — уны ҡабат ҡуйып булмаясаҡ.",
+        deleteBody: 'Был питомецты бөтөнләй юя — уны ҡабат ҡуйып булмаясаҡ.',
         deleteConfirm: 'Юйыу',
         rename: name => `Preimenuj ${name}`,
         renameTitle: 'Питомецтың исемен үҙгәртеү',
@@ -487,8 +502,8 @@ export const ba = defineLocale({
         exportFailed: slug => `Nije bilo moguće izvesti ${slug}`,
         noneAvailable: 'Әле ҡабыҙыр өсөн питомецтар юҡ.',
         turnOnFailed: 'Питомецты ҡабыҙып булманы.',
-        turnOffFailed: 'Питомецты һүндереп булманы.',
-      },
+        turnOffFailed: 'Питомецты һүндереп булманы.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -499,25 +514,26 @@ export const ba = defineLocale({
       updates: 'Яңыртыуҙар',
       checkNow: 'Хәҙер тикшер',
       checking: 'Тикшерелә…',
-      seeWhatsNew: "Яңылыҡтарҙы ҡара",
+      seeWhatsNew: 'Яңылыҡтарҙы ҡара',
       updateNow: 'Хәҙер яңырт',
       releaseNotes: 'Сығарылыш яҙмалары',
-      onLatest: "Һеҙ иң һуңғы версияла.",
+      onLatest: 'Һеҙ иң һуңғы версияла.',
       installing: 'Әле яңыртыу ҡуйыла.',
-      cantUpdate: "Был төҙөлөш үҙен ҡушымта эсенән яңырта алмай.",
-      cantReach: "Яңыртыу серверына тоташа алманыҡ.",
+      cantUpdate: 'Был төҙөлөш үҙен ҡушымта эсенән яңырта алмай.',
+      cantReach: 'Яңыртыу серверына тоташа алманыҡ.',
       tapCheck: 'Яңыртыуҙарҙы эҙләү өсөн «Хәҙер тикшер» төймәһенә баҫығыҙ.',
       updateReady: count => `Novo ažuriranje je spremno (uključuje ${count} izmjena${count === 1 ? '' : 's'}).`,
       lastChecked: age => `Posljednja provjera ${age}`,
       justNowSuffix: '· әле генә',
       automaticUpdates: 'Автоматик яңыртыуҙар',
-      automaticUpdatesDesc: 'OpenAmer яңыртыуҙарҙы артҡы планда автоматик рәүештә тикшерә һәм яңыртыу әҙер булғанда һеҙгә хәбәр итә.',
+      automaticUpdatesDesc:
+        'OpenAmer яңыртыуҙарҙы артҡы планда автоматик рәүештә тикшерә һәм яңыртыу әҙер булғанда һеҙгә хәбәр итә.',
       branchCommit: (branch, commit) => `Grana ${branch} · Commit ${commit}`,
       never: 'һис ҡасан',
       justNow: 'әле генә',
       minAgo: count => `prije ${count} min`,
       hoursAgo: count => `prije ${count} sati`,
-      daysAgo: count => `prije ${count} dana`,
+      daysAgo: count => `prije ${count} dana`
     },
     config: {
       none: 'Юҡ',
@@ -533,7 +549,7 @@ export const ba = defineLocale({
       imported: 'Конфигурация импортланды',
       invalidJson: 'Дөрөҫ булмаған JSON конфигурацияһы',
       keepAwakeTitle: 'Компьютерҙы уяу тотоу',
-      keepAwakeDesc: 'Был машина йоҡламаһын, оҙайлы йәки төнгө эштәр дауам итһен. Дисплей барыбер тоноҡлана ала.',
+      keepAwakeDesc: 'Был машина йоҡламаһын, оҙайлы йәки төнгө эштәр дауам итһен. Дисплей барыбер тоноҡлана ала.'
     },
     credentials: {
       pasteKey: 'Асҡысты ҡуйыу',
@@ -543,7 +559,7 @@ export const ba = defineLocale({
       couldNotSave: 'Ышаныс мәғлүмәтен һаҡлап булманы.',
       remove: 'Алып ташлау',
       getKey: 'Асҡыс алыу',
-      saving: 'Һаҡлау',
+      saving: 'Һаҡлау'
     },
     envActions: {
       actionsFor: label => `Akcije za ${label}`,
@@ -554,7 +570,7 @@ export const ba = defineLocale({
       revealValue: 'Ҡиммәтте күрһәтеү',
       replace: 'Алмаштырыу',
       set: 'Билдәләү',
-      clear: 'Таҙартыу',
+      clear: 'Таҙартыу'
     },
     gateway: {
       loading: 'Шлюз көйләүҙәре йөкләнә...',
@@ -562,23 +578,28 @@ export const ba = defineLocale({
       unavailableDesc: 'Эш өҫтәле IPC күпере шлюз көйләүҙәрен асып бирмәй.',
       title: 'Шлюзға тоташыу',
       envOverride: 'env өҫтөнлөк',
-      intro: 'OpenAmer Desktop ғәҙәттә үҙенең локаль шлюзын эшләтеп ебәрә. Был ҡушымта икенсе машинала йәки ышаныслы прокси артында инде эшләп торған OpenAmer backend-ын контролләһен өсөн, алыҫ шлюз ҡулланығыҙ. Уға үҙенең алыҫ хостын биреү өсөн, түбәндә профиль һайлағыҙ.',
+      intro:
+        'OpenAmer Desktop ғәҙәттә үҙенең локаль шлюзын эшләтеп ебәрә. Был ҡушымта икенсе машинала йәки ышаныслы прокси артында инде эшләп торған OpenAmer backend-ын контролләһен өсөн, алыҫ шлюз ҡулланығыҙ. Уға үҙенең алыҫ хостын биреү өсөн, түбәндә профиль һайлағыҙ.',
       appliesTo: 'Ҡулланыла',
       allProfiles: 'Бөтә профилдәр',
       defaultConnection: 'Үҙ өҫтөнлөгө булмаған һәр профиль өсөн ғәҙәттәге тоташыу.',
-      profileConnection: profile => `Уланыш һеҙ «${profile}» актив профиль булғанда гына ишләте. «Төп шлюз ишләте» һөйләсе танып, аның ишләүсе булдырыу.`,
+      profileConnection: profile =>
+        `Уланыш һеҙ «${profile}» актив профиль булғанда гына ишләте. «Төп шлюз ишләте» һөйләсе танып, аның ишләүсе булдырыу.`,
       envOverrideTitle: 'Был эш өҫтәле сеансы менән мөхит үҙгәреүсәндәре идара итә.',
-      envOverrideDesc: 'Түбәндәге һаҡланған көйләүҙе ҡулланыу өсөн OPENAMER_DESKTOP_REMOTE_URL һәм OPENAMER_DESKTOP_REMOTE_TOKEN-ды юйығыҙ.',
+      envOverrideDesc:
+        'Түбәндәге һаҡланған көйләүҙе ҡулланыу өсөн OPENAMER_DESKTOP_REMOTE_URL һәм OPENAMER_DESKTOP_REMOTE_TOKEN-ды юйығыҙ.',
       modeTitle: 'Тоташыу режимы',
       localTitle: 'Урындағы шлюз',
       localDesc: 'Localhost-та шәхси OpenAmer backend эшләтеү. Был ғәҙәттәге режим һәм офлайн эшләй.',
       inheritTitle: 'Ғәҙәттәге шлюзды ҡулланыу',
-      inheritDesc: "Был профилдең айырым көйләүен юйып, ғәҙәттәге тоташыуҙы ҡулланыу.",
+      inheritDesc: 'Был профилдең айырым көйләүен юйып, ғәҙәттәге тоташыуҙы ҡулланыу.',
       remoteTitle: 'Алыҫ шлюз',
       remoteDesc: 'Был эш өҫтәле ҡабығын алыҫ OpenAmer backend-ға тоташтырыу.',
-      remoteAuthHint: 'Хостингтағы шлюздар OAuth йәки ҡулланыусы исеме менән пароль ҡуллана; үҙегеҙ ҡуйған шлюздар сеанс токенын ҡулланыуы мөмкин.',
+      remoteAuthHint:
+        'Хостингтағы шлюздар OAuth йәки ҡулланыусы исеме менән пароль ҡуллана; үҙегеҙ ҡуйған шлюздар сеанс токенын ҡулланыуы мөмкин.',
       cloudTitle: 'OpenAmer болото',
-      cloudDesc: 'OpenAmer Cloud-ҡа бер тапҡыр инеп, иҫәп яҙмағыҙҙағы агенттарҙан һайлағыҙ — йәбештерергә URL кәрәкмәй.',
+      cloudDesc:
+        'OpenAmer Cloud-ҡа бер тапҡыр инеп, иҫәп яҙмағыҙҙағы агенттарҙан һайлағыҙ — йәбештерергә URL кәрәкмәй.',
       cloudSignInTitle: 'OpenAmer болото',
       cloudSignIn: 'OpenAmer Cloud-ҡа инеү',
       cloudSignedIn: 'OpenAmer Cloud-ҡа ингәнһегеҙ',
@@ -593,7 +614,7 @@ export const ba = defineLocale({
       cloudNoAgents: {
         before: 'Был иҫәптә агенттар табылманы. Берәүен бында булдырығыҙ:',
         linkText: 'OpenAmer порталы',
-        after: ', шунан яңыртығыҙ.',
+        after: ', шунан яңыртығыҙ.'
       },
       cloudRefresh: 'Яңыртыу',
       cloudConnect: 'Тоташыу',
@@ -617,12 +638,15 @@ export const ba = defineLocale({
       signOut: 'Иҫәптән сығыу',
       signInWith: provider => `${provider} биләнен киреү`,
       authTitle: 'Аутентификация',
-      authSignedInPassword: 'Был шлюз ҡулланыусы исеме һәм паролде ҡуллана. Һеҙ иҫәпкә ингәнһегеҙ; сеанс автоматик рәүештә яңыртыла.',
+      authSignedInPassword:
+        'Был шлюз ҡулланыусы исеме һәм паролде ҡуллана. Һеҙ иҫәпкә ингәнһегеҙ; сеанс автоматик рәүештә яңыртыла.',
       authSignedInOauth: 'Был шлюз OAuth ҡуллана. Һеҙ иҫәпкә ингәнһегеҙ; сеанс автоматик рәүештә яңыртыла.',
-      authNeedsPassword: 'Был шлюз ҡулланыусы исеме һәм паролде ҡуллана. Был өҫтәл ҡушымтаһын авторизациялау өсөн иҫәпкә инегеҙ.',
+      authNeedsPassword:
+        'Был шлюз ҡулланыусы исеме һәм паролде ҡуллана. Был өҫтәл ҡушымтаһын авторизациялау өсөн иҫәпкә инегеҙ.',
       authNeedsOauth: provider => `Бу шлюз OAuth ишләте. Бу стол программасын рөхсәт итәүгә ${provider} биләнен киреү.`,
       tokenTitle: 'Сеанс токены',
-      tokenDesc: 'REST һәм WebSocket-ҡа инеү өсөн ҡулланылған идара панеле сеанс токены. Һаҡланған токенды һаҡлап ҡалыу өсөн буш ҡалдырығыҙ.',
+      tokenDesc:
+        'REST һәм WebSocket-ҡа инеү өсөн ҡулланылған идара панеле сеанс токены. Һаҡланған токенды һаҡлап ҡалыу өсөн буш ҡалдырығыҙ.',
       existingToken: value => `Мөҙөлжә токен ${value}`,
       savedToken: 'һаҡланған',
       pasteSessionToken: 'Сеанс токенын ҡуйығыҙ',
@@ -653,7 +677,8 @@ export const ba = defineLocale({
       applyFailed: 'Шлюз көйләүҙәрен ҡулланып булманы',
       saveFailed: 'Шлюз көйләүҙәрен һаҡлап булманы',
       sshTitle: 'SSH аша тоташтырыу',
-      sshDesc: 'OpenAmer алыҫ машинала SSH аша эшләтелә һәм ошо ҡушымтаға туннелләнә — үҙегеҙ бер нимә лә башларға йәки асырға кәрәкмәй. Хостҡа эшләүсе асҡыслы SSH инеү талап ителә.',
+      sshDesc:
+        'OpenAmer алыҫ машинала SSH аша эшләтелә һәм ошо ҡушымтаға туннелләнә — үҙегеҙ бер нимә лә башларға йәки асырға кәрәкмәй. Хостҡа эшләүсе асҡыслы SSH инеү талап ителә.',
       sshTrustHint: 'Беренсе күрһәтелгән хост асҡысы ышаныслы һәм беркетелә; артабанғы үҙгәрештәр кире ҡағыла.',
       sshHostTitle: 'Хост',
       sshHostDesc: 'user@host, йәки ~/.ssh/config файлындағы Host псевдонимы.',
@@ -677,18 +702,22 @@ export const ba = defineLocale({
       sshReachable: (host, platform) => `Етәү: ${host} (${platform}) — OpenAmer табылды`,
       sshIncompleteHost: 'Тоташмаҫтан алда SSH хостын индерегеҙ.',
       sshErrUnreachable: 'Ул хостҡа SSH аша тоташа алманыҡ. Хосты, портты һәм селтәрегеҙҙе тикшерегеҙ.',
-      sshErrAuth: 'SSH аутентификацияһы уңышһыҙ. Асҡысығыҙҙы ssh-agent-ҡа йөкләгеҙ (ssh-add) йәки ~/.ssh/config файлында IdentityFile ҡуйығыҙ — OpenAmer ssh-ты интерактив булмаған рәүештә эшләтә.',
-      sshErrHostKey: 'Һуңғы тоташыуҙан бирле хост асҡысы ҮҘГӘРГӘН. Был көтөлгәнме икәнен тикшерегеҙ, шундан һуң `ssh-keygen -R <host>` эшләтеп, яңынан тоташығыҙ.',
-      sshErrNotInstalled: 'OpenAmer алыҫ хостта ҡуйылмаған. Уны шунда ҡуйығыҙ (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) йәки OpenAmer юлын билдәләгеҙ.',
-      sshErrPlatform: 'Алыҫ платформа ҡулланылмай. OpenAmer Desktop SSH режимы Linux, macOS һәм Windows алыҫ хосттарын яҡлай.',
+      sshErrAuth:
+        'SSH аутентификацияһы уңышһыҙ. Асҡысығыҙҙы ssh-agent-ҡа йөкләгеҙ (ssh-add) йәки ~/.ssh/config файлында IdentityFile ҡуйығыҙ — OpenAmer ssh-ты интерактив булмаған рәүештә эшләтә.',
+      sshErrHostKey:
+        'Һуңғы тоташыуҙан бирле хост асҡысы ҮҘГӘРГӘН. Был көтөлгәнме икәнен тикшерегеҙ, шундан һуң `ssh-keygen -R <host>` эшләтеп, яңынан тоташығыҙ.',
+      sshErrNotInstalled:
+        'OpenAmer алыҫ хостта ҡуйылмаған. Уны шунда ҡуйығыҙ (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) йәки OpenAmer юлын билдәләгеҙ.',
+      sshErrPlatform:
+        'Алыҫ платформа ҡулланылмай. OpenAmer Desktop SSH режимы Linux, macOS һәм Windows алыҫ хосттарын яҡлай.',
       sshErrTimeout: 'SSH тоташтырыу ваҡыты үтте. Хостҡа етеп булмаҫҡа йәки ул йоҡлаған булырға мөмкин.',
       sshErrUpdateRequired: 'Desktop SSH менән тоташтырғансы, алыҫ хостта OpenAmer-ҙы яңыртығыҙ.',
-      sshErrUnknown: 'SSH тоташтырыу уңышһыҙ булды.',
+      sshErrUnknown: 'SSH тоташтырыу уңышһыҙ булды.'
     },
     keys: {
       loading: 'API асҡыстары һәм инеү мәғлүмәттәре йөкләнә...',
       failedLoad: 'API асҡыстары йөкләнмәне',
-      empty: 'Был категорияла әлегә бер нәмә лә көйләнмәгән.',
+      empty: 'Был категорияла әлегә бер нәмә лә көйләнмәгән.'
     },
     mcp: {
       loading: 'MCP серверҙары йөкләнә...',
@@ -740,7 +769,8 @@ export const ba = defineLocale({
       catalogInstallFailed: name => `${name} юклау ишләмәде`,
       catalogEnvPrompt: name => `${name} күрсәткеләр талап итә`,
       catalogEnvRequired: 'Урнаштырыр алдынан кәрәкле ҡиммәттәрҙе тултырығыҙ.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ишләте`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ишләте`,
       statusConnecting: 'Тоташтырыла...',
       statusNeedsAuth: 'Аутентификация кәрәк',
       statusError: 'Хата',
@@ -753,11 +783,12 @@ export const ba = defineLocale({
       unsavedConnect: 'Һаҡланмаған — тоташыу өсөн mcp.json һаҡлағыҙ.',
       enableTool: tool => `${tool}-ны ишләтеү`,
       disableTool: tool => `${tool}-ны тотоу`,
-      noOutput: 'Әлегә сығарылыш юҡ.',
+      noOutput: 'Әлегә сығарылыш юҡ.'
     },
     model: {
       loading: 'Модель конфигурацияһы йөкләнә...',
-      appliesDesc: 'Яңы сеанстарға ҡағыла. Әүҙем чатты шунда уҡ алмаштырыу өсөн яҙыу өлкәһендәге модель һайлағысты ҡулланығыҙ.',
+      appliesDesc:
+        'Яңы сеанстарға ҡағыла. Әүҙем чатты шунда уҡ алмаштырыу өсөн яҙыу өлкәһендәге модель һайлағысты ҡулланығыҙ.',
       provider: 'Провайдер',
       model: 'Модель',
       applying: 'Ҡулланыла...',
@@ -767,53 +798,55 @@ export const ba = defineLocale({
       defaultsFailed: 'Моделдең ғәҙәти ҡиммәттәрен һаҡлау мөмкин булманы',
       auxiliaryTitle: 'Ярҙамсы модельдәр',
       resetAllToMain: 'Барыһын да төп моделгә ҡайтарыу',
-      auxiliaryDesc: 'Ярҙамсы бурыстар ғәҙәттә төп моделдә эшләй. Башҡаса итеү өсөн теләһә ниндәй бурысҡа айырым модель тәғәйенләгеҙ.',
+      auxiliaryDesc:
+        'Ярҙамсы бурыстар ғәҙәттә төп моделдә эшләй. Башҡаса итеү өсөн теләһә ниндәй бурысҡа айырым модель тәғәйенләгеҙ.',
       setToMain: 'Төп моделгә ҡуйырға',
       change: 'Үҙгәртергә',
       autoUseMain: 'авто · төп моделде ҡулланырға',
       providerDefault: '(провайдер ғәҙәтиһе)',
       fallbackAdd: 'Резерв өҫтәргә',
       fallbackEmpty: 'Резерв модельдәр юҡ — ғәҙәти модель хаталанмаһа, шул ҡулланыла.',
-      notInCatalog: "был провайдерҙың модель исемлегендә юҡ — саҡырыуҙар резерв вариантҡа күсергә мөмкин.",
+      notInCatalog: 'был провайдерҙың модель исемлегендә юҡ — саҡырыуҙар резерв вариантҡа күсергә мөмкин.',
       tasks: {
         vision: {
           label: 'Күреү',
-          hint: 'Рәсемде анализлау',
+          hint: 'Рәсемде анализлау'
         },
         web_extract: {
           label: 'Веб-мәғлүмәт алыу',
-          hint: 'Битте ҡыҫҡаса йомғаҡлау',
+          hint: 'Битте ҡыҫҡаса йомғаҡлау'
         },
         compression: {
           label: 'Ҡыҫыу',
-          hint: 'Контексты ҡыҫыу',
+          hint: 'Контексты ҡыҫыу'
         },
         skills_hub: {
           label: 'Күнекмәләр үҙәге',
-          hint: 'Күнекмә эҙләү',
+          hint: 'Күнекмә эҙләү'
         },
         approval: {
           label: 'Раҫлау',
-          hint: 'Аҡыллы авто-раҫлау',
+          hint: 'Аҡыллы авто-раҫлау'
         },
         mcp: {
           label: 'МКП',
-          hint: 'MCP ҡоралдарын маршрутлау',
+          hint: 'MCP ҡоралдарын маршрутлау'
         },
         title_generation: {
           label: 'Исем яһау',
-          hint: 'Сессия исемдәре',
+          hint: 'Сессия исемдәре'
         },
         curator: {
           label: 'Куратор',
-          hint: 'Күнекмә ҡулланыуын тикшереү',
-        },
-      },
+          hint: 'Күнекмә ҡулланыуын тикшереү'
+        }
+      }
     },
     providers: {
       connectAccount: 'Иҫәп яҙмаһын тоташтырыу',
       haveApiKey: 'Уның урынына API асҡысы бармы?',
-      intro: 'Яҙылыу аша инеү — күсерергә API асҡысы юҡ. OpenAmer браузерҙа инеүҙе һеҙҙең өсөн ошо ҡушымтала уҡ башҡара.',
+      intro:
+        'Яҙылыу аша инеү — күсерергә API асҡысы юҡ. OpenAmer браузерҙа инеүҙе һеҙҙең өсөн ошо ҡушымтала уҡ башҡара.',
       connected: 'Тоташтырылған',
       collapse: 'Йыйыу',
       connectAnother: 'Башҡа провайдер тоташтырыу',
@@ -823,7 +856,8 @@ export const ba = defineLocale({
       removeConfirm: provider => `${provider}-ны өчерәсе?`,
       removeExternalGeneric: provider => `${provider} өсө CLI биләнен басҡарыла — аны онда өчерәсе.`,
       removeKeyManaged: provider => `${provider} API кілте биләнен конфигурацияланған. Аны API Килттәрҙән өчерәсе.`,
-      removeTerminalConfirm: (provider, command) => `${provider}-ны ажырату? Бу терминалда "${command}" ишләте, күрсәткеләрҙе тазалауға.`,
+      removeTerminalConfirm: (provider, command) =>
+        `${provider}-ны ажырату? Бу терминалда "${command}" ишләте, күрсәткеләрҙе тазалауға.`,
       removeTerminalRunning: provider => `Терминалда ${provider} ажырату ишләтеп булдыра…`,
       removedTitle: 'Иҫәп яҙмаһы юйылды',
       removedMessage: provider => `${provider} өчүрүлдө.`,
@@ -833,14 +867,16 @@ export const ba = defineLocale({
       noKeysMatch: 'Эҙләүегеҙгә тап килгән провайдерҙар юҡ.',
       localEndpoint: {
         title: 'Локаль / үҙ эндпоинт',
-        description: 'OpenAmer өсөн теләһә ниндәй OpenAI-ға ярашлы эндпоинтты күрһәтегеҙ (Zyphra, vLLM, llama.cpp, Ollama һ.б.).',
+        description:
+          'OpenAmer өсөн теләһә ниндәй OpenAI-ға ярашлы эндпоинтты күрһәтегеҙ (Zyphra, vLLM, llama.cpp, Ollama һ.б.).'
       },
-      loading: 'Провайдерҙар йөкләнә...',
+      loading: 'Провайдерҙар йөкләнә...'
     },
     sessions: {
       loading: 'Архивланған сессиялар йөкләнә…',
       archivedTitle: 'Архивланған сессиялар',
-      archivedIntro: 'Архивланған һөйләшеүҙәр ҡабырға панелендә йәшеренгән, ләкин бөтә хәбәрҙәрен һаҡлай. Архивлау өсөн ҡабырға панелендәге һөйләшеүгә Ctrl/⌘ менән баҫығыҙ.',
+      archivedIntro:
+        'Архивланған һөйләшеүҙәр ҡабырға панелендә йәшеренгән, ләкин бөтә хәбәрҙәрен һаҡлай. Архивлау өсөн ҡабырға панелендәге һөйләшеүгә Ctrl/⌘ менән баҫығыҙ.',
       emptyArchivedTitle: 'Бер нәмә лә архивланмаған',
       emptyArchivedDesc: 'Бында йәшереү өсөн чатты архивлағыҙ.',
       unarchive: 'Архивтан сығарыу',
@@ -849,13 +885,16 @@ export const ba = defineLocale({
       restored: 'Тергеҙелде',
       deleteConfirm: title => `«${title}» дайым өчерәсе? Бу кайтарып булмас.`,
       autoArchiveTitle: 'Иҫкергән чаттарҙы автоархивлау',
-      autoArchiveDesc: "Оҙаҡ ваҡыт файҙаланмаған чаттарҙы автоматик архивлай. Беркетелгән чаттар бер ҡасан да архивланмай, бер нәмә лә юйылмай — архивланған чаттар бында күсә.",
+      autoArchiveDesc:
+        'Оҙаҡ ваҡыт файҙаланмаған чаттарҙы автоматик архивлай. Беркетелгән чаттар бер ҡасан да архивланмай, бер нәмә лә юйылмай — архивланған чаттар бында күсә.',
       autoArchiveDaysLabel: 'Архивларға:',
       autoArchiveDaysUnit: 'эшләмәгән көндән һуң',
       autoArchiveFailed: 'Автоархивты яңыртып булманы',
       defaultDirTitle: 'Проекттың ғәҙәттәге директорияһы',
-      defaultDirDesc: 'Яңы сеанстар был папкала башлана, әгәр икенсеһен һайламаһағыҙ. Өй директорияһығыҙҙы ҡулланыу өсөн уны билдәләнмәгән килеш ҡалдырығыҙ.',
-      defaultDirUpdated: 'Ғәҙәттәге проект директорияһы яңыртылды — үҙгәрештәр көсөнә инеү өсөн яңы һөйләшеү (Ctrl/⌘+N) башлағыҙ',
+      defaultDirDesc:
+        'Яңы сеанстар был папкала башлана, әгәр икенсеһен һайламаһағыҙ. Өй директорияһығыҙҙы ҡулланыу өсөн уны билдәләнмәгән килеш ҡалдырығыҙ.',
+      defaultDirUpdated:
+        'Ғәҙәттәге проект директорияһы яңыртылды — үҙгәрештәр көсөнә инеү өсөн яңы һөйләшеү (Ctrl/⌘+N) башлағыҙ',
       defaultsTo: label => `Төптәге ${label}.`,
       change: 'Үҙгәртергә',
       choose: 'Һайларға',
@@ -865,7 +904,7 @@ export const ba = defineLocale({
       unarchiveFailed: 'Архивтан сығарып булманы',
       deleteFailed: 'Юйып булманы',
       updateDirFailed: 'Ғәҙәттәге директорияны яңыртып булманы',
-      clearDirFailed: 'Ғәҙәттәге директорияны таҙартып булманы',
+      clearDirFailed: 'Ғәҙәттәге директорияны таҙартып булманы'
     },
     toolsets: {
       loadingConfig: 'Конфигурация йөкләнә',
@@ -883,20 +922,23 @@ export const ba = defineLocale({
       selectedMessage: provider => `${provider} һаҙер актив.`,
       failedSelect: provider => `Neuspjela selekcija ${provider}`,
       failedLoad: 'Ҡоралдар конфигурацияһын йөкләп булманы',
-      noProviderOptions: 'Был ҡоралдар йыйылмаһында провайдер көйләүҙәре юҡ — ҡабыҙһағыҙ, ағымдағы көйләүегеҙ менән эшләй.',
+      noProviderOptions:
+        'Был ҡоралдар йыйылмаһында провайдер көйләүҙәре юҡ — ҡабыҙһағыҙ, ағымдағы көйләүегеҙ менән эшләй.',
       noProviders: 'Был ҡоралдар йыйылмаһы өсөн әле провайдерҙар юҡ.',
       ready: 'Әҙер',
       needsSignIn: 'Инеү кәрәк',
       needsSetup: 'Көйләү кәрәк',
       openamerIncluded: 'OpenAmer яҙылымы менән бергә — әүҙемләштереү өсөн OpenAmer Portal-ға инегеҙ.',
       openamerAuthNeededTitle: 'OpenAmer Portal-ға инегеҙ',
-      openamerAuthNeededMessage: provider => `${provider} je sačuvan, ali se neće aktivirati dok se ne prijavite na OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} je sačuvan, ali se neće aktivirati dok se ne prijavite na OpenAmer Portal.`,
       openamerAuthSignIn: 'Инеү',
       openamerAuthDoneTitle: 'OpenAmer Portal тоташтырылды',
       openamerAuthDoneMessage: 'Яҙылымығыҙҙың backend-тары хәҙер әүҙем.',
       openamerAuthFailed: 'OpenAmer Portal-ға инеү тамамланманы',
       noApiKeyRequired: 'API асҡысы талап ителмәй.',
-      postSetupHint: step => `Ovaj backend zahtijeva jednokratnu instalaciju (${step}). Pokreće se na ovom računaru — može potrajati nekoliko minuta.`,
+      postSetupHint: step =>
+        `Ovaj backend zahtijeva jednokratnu instalaciju (${step}). Pokreće se na ovom računaru — može potrajati nekoliko minuta.`,
       postSetupInstalledHint: 'Ҡуйылды. Көйләүҙе тик берәй нәмә боҙолһа ғына ҡабат эшләтегеҙ.',
       postSetupRun: 'Көйләүҙе эшләтеү',
       postSetupRerun: 'Көйләүҙе ҡабат эшләтеү',
@@ -935,11 +977,12 @@ export const ba = defineLocale({
         unavailable: 'Мөмкин түгел',
         inUse: 'Ҡулланыла',
         selectedTitle: 'Бэкенд һайланған',
-        selectedMessage: backend => `Terminalne komande se sada pokreću putem ${backend}. Primjenjuje se na nove sesije.`,
+        selectedMessage: backend =>
+          `Terminalne komande se sada pokreću putem ${backend}. Primjenjuje se na nove sesije.`,
         failedSelect: backend => `Neuspjela selekcija ${backend}`,
-        needsSetupHint: 'Был бэкендты хәҙер һайлай алаһығыҙ — көйләү тамамланғансы командалар үтәлмәйәсәк.',
-      },
-    },
+        needsSetupHint: 'Был бэкендты хәҙер һайлай алаһығыҙ — көйләү тамамланғансы командалар үтәлмәйәсәк.'
+      }
+    }
   },
   skills: {
     tabSkills: 'Күнекмәләр',
@@ -959,7 +1002,8 @@ export const ba = defineLocale({
     noDescription: 'Тасуирлама юҡ.',
     configured: 'Көйләнгән',
     needsKeys: 'Асҡыстар кәрәк',
-    visionModelHint: 'Vision ярҙамсы модель конфигурацияһын ҡуллана — һүрәтте аңлай алған модель шунда һайлана, бында провайдерға айырым түгел.',
+    visionModelHint:
+      'Vision ярҙамсы модель конфигурацияһын ҡуллана — һүрәтте аңлай алған модель шунда һайлана, бында провайдерға айырым түгел.',
     visionModelLink: 'Күреү моделен Көйләүҙәр → Моделдәр бүлегендә һайлағыҙ.',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} setovi alata omogućeni`,
     configureToolset: label => `Konfiguriši ${label}`,
@@ -985,7 +1029,7 @@ export const ba = defineLocale({
     provenance: {
       agent: 'Өйрәнелгән',
       bundled: 'Эсендәге',
-      hub: 'Үҙәк',
+      hub: 'Үҙәк'
     },
     emptyNoneFound: noun => `Nema pronađenih ${noun}`,
     emptyNothingMatches: query => `Ništa se ne poklapa sa „${query}“.`,
@@ -1003,7 +1047,8 @@ export const ba = defineLocale({
       connectingHubs: 'Күнекмә үҙәктәренә тоташыу...',
       connectedHubs: 'Тоташҡан үҙәктәр:',
       featured: 'Тәҡдим ителгән күнекмәләр',
-      landingHint: 'Рәсми индекс, GitHub һәм йәмғиәт сығанаҡтарынан ҡуйыла торған күнекмәләрҙе ҡарау өсөн үҙәктә эҙләгеҙ.',
+      landingHint:
+        'Рәсми индекс, GitHub һәм йәмғиәт сығанаҡтарынан ҡуйыла торған күнекмәләрҙе ҡарау өсөн үҙәктә эҙләгеҙ.',
       noResults: 'Үҙәктә тап килгән күнекмәләр табылманы.',
       resultCount: (count, ms) => `${count} rezultat${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Isteklo vrijeme: ${sources}`,
@@ -1023,7 +1068,7 @@ export const ba = defineLocale({
       trust: {
         builtin: 'төҙөлгән',
         trusted: 'ышаныслы',
-        community: 'йәмәғәт',
+        community: 'йәмәғәт'
       },
       verdictSafe: 'Хәүефһеҙ',
       verdictCaution: 'Иғтибар',
@@ -1041,8 +1086,8 @@ export const ba = defineLocale({
       loadFailed: 'Күнекмәләр үҙәге йөкләнмәне',
       previewFailed: 'Күнекмәне алдан ҡарау башҡарылманы',
       scanFailed: 'Хәүефһеҙлек тикшереүе башҡарылманы',
-      searchFailed: 'Үҙәктә эҙләү башҡарылманы',
-    },
+      searchFailed: 'Үҙәктә эҙләү башҡарылманы'
+    }
   },
   starmap: {
     title: 'Хәтер графы',
@@ -1059,7 +1104,8 @@ export const ba = defineLocale({
     emptyTitle: 'Әлегә бер ни ҙә өйрәнелмәгән',
     emptyDesc: 'OpenAmer эшегеҙ өсөн күнекмәләр һәм хәтерҙәр төҙөгән һайын, улар бында күренә.',
     share: 'Карта менән уртаҡлашыу',
-    shareHint: 'Был картаны уртаҡлашыу өсөн кодты күсерегеҙ, йәки йөкләү өсөн берәүен ҡуйығыҙ. Унда тик урынлашыу ғына, ә хәтерегеҙ йәки күнекмә тексы юҡ.',
+    shareHint:
+      'Был картаны уртаҡлашыу өсөн кодты күсерегеҙ, йәки йөкләү өсөн берәүен ҡуйығыҙ. Унда тик урынлашыу ғына, ә хәтерегеҙ йәки күнекмә тексы юҡ.',
     shareTitle: 'Картаны импортлау / экспортлау',
     sharePlaceholder: 'Карта кодын ҡуйығыҙ…',
     copy: 'Карта кодын күсереү',
@@ -1069,7 +1115,7 @@ export const ba = defineLocale({
     importEmpty: 'Карта кодын йөкләү өсөн ҡуйығыҙ.',
     importSuccess: nodes => `Učitana mapa sa ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'Индерелгән карта',
-    resetToMine: 'Минең картама ҡайтыу',
+    resetToMine: 'Минең картама ҡайтыу'
   },
   agents: {
     close: 'Агенттарҙы ябыу',
@@ -1099,7 +1145,7 @@ export const ba = defineLocale({
     ageDays: days => `${days} к. б.`,
     durationSeconds: seconds => `${seconds} с.`,
     durationMinutes: (minutes, seconds) => `${minutes} м. ${seconds} с.`,
-    tokens: value => `${value} ток`,
+    tokens: value => `${value} ток`
   },
   commandCenter: {
     close: 'Команда үҙәген ябыу',
@@ -1129,7 +1175,7 @@ export const ba = defineLocale({
       generatedTag: 'Яһалған',
       adoptFailed: 'Ул хайуанды ҡабул итә алманыҡ.',
       toggleFailed: 'Хайуанды ҡабыҙып/һүндереп булманы.',
-      noneAvailable: 'Хайуандар юҡ — ҡуйыр өсөн түбәндәгеләрҙән һайлағыҙ.',
+      noneAvailable: 'Хайуандар юҡ — ҡуйыр өсөн түбәндәгеләрҙән һайлағыҙ.'
     },
     generatePet: {
       title: 'Йорт хайуанын булдыр',
@@ -1153,12 +1199,13 @@ export const ba = defineLocale({
       slowProviderHint: 'Был бер нисә минут алырға мөмкин.',
       remix: 'Ремикс',
       remixConfirmTitle: 'Был күренешкә ремикс яһарға?',
-      remixConfirmBody: 'Был ошоно старт нөктәһе итеп ҡулланып яңы ҡараламалар йыйылмаһын булдыра. Бер нисә минут ваҡыт алырға мөмкин.',
+      remixConfirmBody:
+        'Был ошоно старт нөктәһе итеп ҡулланып яңы ҡараламалар йыйылмаһын булдыра. Бер нисә минут ваҡыт алырға мөмкин.',
       genericError: 'Булдырыу уңышһыҙ булды — ҡабатлап ҡарағыҙ йәки тәҡдим һайлағыҙ.',
       referenceImageTooLarge: 'Өлгө рәсем бик ҙур. 16 MB-тан кәмерәк рәсем ҡулланығыҙ.',
       referenceImageInvalid: 'Ул өлгө рәсемде уҡып булманы. PNG, JPG, WebP йәки GIF ҡулланып ҡарағыҙ.',
       adopt: 'Ҡабул итеү',
-      startOver: 'Яңынан башлау',
+      startOver: 'Яңынан башлау'
     },
     installTheme: {
       title: 'Теманы ҡуйыу…',
@@ -1170,7 +1217,7 @@ export const ba = defineLocale({
       install: 'Ҡуйыу',
       installing: 'Ҡуйыла...',
       installed: 'Ҡуйылды',
-      installs: count => `${count} орнату`,
+      installs: count => `${count} орнату`
     },
     settingsFields: 'Көйләүҙәр ҡырҙары',
     mcpServers: 'MCP серверҙары',
@@ -1179,49 +1226,49 @@ export const ba = defineLocale({
       maintenance: 'Хеҙмәтләндереү',
       sessions: 'Сессиялар',
       system: 'Система',
-      usage: 'Ҡулланыу',
+      usage: 'Ҡулланыу'
     },
     sectionDescriptions: {
       maintenance: 'Диагностика, резерв күсермәләре, куратор һәм хәтер мәғлүмәттәре',
       sessions: 'Сессияларҙы эҙләү һәм идара итеү',
       system: 'Статус, логтар һәм система ғәмәлдәре',
-      usage: 'Токен, хаҡ һәм ваҡыт эсендә күнекмә әүҙемлеге',
+      usage: 'Токен, хаҡ һәм ваҡыт эсендә күнекмә әүҙемлеге'
     },
     nav: {
       newChat: {
         title: 'Яңы сессия',
-        detail: 'Яңы сессия башлау',
+        detail: 'Яңы сессия башлау'
       },
       settings: {
         title: 'Көйләүҙәр',
-        detail: 'OpenAmer десктопын көйләү',
+        detail: 'OpenAmer десктопын көйләү'
       },
       skills: {
         title: 'Мөмкинлектәр',
-        detail: 'Күнекмәләр, ҡоралдар һәм MCP серверҙары',
+        detail: 'Күнекмәләр, ҡоралдар һәм MCP серверҙары'
       },
       messaging: {
         title: 'Хәбәр итеү',
-        detail: 'Telegram, Slack, Discord һәм башҡаларҙы көйләү',
+        detail: 'Telegram, Slack, Discord һәм башҡаларҙы көйләү'
       },
       artifacts: {
         title: 'Артефакттар',
-        detail: 'Булдырылған һөҙөмтәләрҙе ҡарау',
-      },
+        detail: 'Булдырылған һөҙөмтәләрҙе ҡарау'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Сессиялар панеле',
-        detail: 'Сессияларҙы эҙләү, беркетеү һәм идара итеү',
+        detail: 'Сессияларҙы эҙләү, беркетеү һәм идара итеү'
       },
       system: {
         title: 'Система панеле',
-        detail: 'Шлюз статусы, логтар, ҡабаттан ҡуҙғытыу/яңыртыу',
+        detail: 'Шлюз статусы, логтар, ҡабаттан ҡуҙғытыу/яңыртыу'
       },
       usage: {
         title: 'Ҡулланыу панеле',
-        detail: 'Токен, хаҡ һәм күнекмә әүҙемлеге',
-      },
+        detail: 'Токен, хаҡ һәм күнекмә әүҙемлеге'
+      }
     },
     providerNavigate: 'Навигация',
     providerSessions: 'Сессиялар',
@@ -1309,8 +1356,8 @@ export const ba = defineLocale({
       actionStarted: name => `${name} башлады — лог куйыу...`,
       actionFailed: name => `${name} башлап булмады`,
       running: 'Иштеүдә...',
-      viewLog: 'Хәрекат логы',
-    },
+      viewLog: 'Хәрекат логы'
+    }
   },
   messaging: {
     search: 'Хабарлашмаларды изләү...',
@@ -1325,7 +1372,7 @@ export const ba = defineLocale({
       not_configured: 'Настройка талап ителгән',
       pending_restart: 'Кайта иске күсәтү талап ителгән',
       retrying: 'Каятадан урыннау',
-      startup_failed: 'Иске күсәтү икешләне',
+      startup_failed: 'Иске күсәтү икешләне'
     },
     unknown: 'Белгесе',
     hintPendingRestart: 'Статус барынан шлюзыны кайта иске күсәтәге, бу өзгәртеүни күңелләтәге.',
@@ -1338,7 +1385,8 @@ export const ba = defineLocale({
     required: 'Миндетле',
     recommended: 'Тавсия итәлек',
     advanced: count => `Күрәш (${count})`,
-    noTokenNeeded: 'Бу платформа бу ердә токен талап итмәй. Югарыдағы күрһәтмә нигезләү һөйләмене колдонуңыз, андан кийин төбәндә ишке түшерегез.',
+    noTokenNeeded:
+      'Бу платформа бу ердә токен талап итмәй. Югарыдағы күрһәтмә нигезләү һөйләмене колдонуңыз, андан кийин төбәндә ишке түшерегез.',
     enabled: 'Ишке түшерелгән',
     disabled: 'Ысыҡ ташлаған',
     unsavedChanges: 'Сакланмаған үҙгәртеүләр',
@@ -1364,127 +1412,126 @@ export const ba = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Бот токены',
         help: '@BotFather арҡылы бот ясаңыз, андан кийин берергә токенны ясып китерегез.',
-        placeholder: 'Telegram бот токенны ясып китерегез',
+        placeholder: 'Telegram бот токенны ясып китерегез'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Рөхсәт итәлек Telegram хулланусы ID-ҙары',
-        help: 'Тавсия итәлек. @userinfobot дан вирғүл арҡылы аерылған сан ID-ҙар. Бусыз кем дегенсе СМС юлап билә.',
+        help: 'Тавсия итәлек. @userinfobot дан вирғүл арҡылы аерылған сан ID-ҙар. Бусыз кем дегенсе СМС юлап билә.'
       },
       TELEGRAM_PROXY: {
         label: 'Прокси URL',
-        help: 'Телеграм блокланған торларда ләҙер хәҙерле.',
+        help: 'Телеграм блокланған торларда ләҙер хәҙерле.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Бот токены',
-        help: 'Discord Developer Portal-да өлөштә ясап, бот қошып, аның токенын юлда.',
+        help: 'Discord Developer Portal-да өлөштә ясап, бот қошып, аның токенын юлда.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Рөхсәт итәлгән Discord хәҙерле ID-ҙары',
-        help: 'Тавсия итәлә. Үтәү билен аертелгән Discord хәҙерле ID-ҙары.',
+        help: 'Тавсия итәлә. Үтәү билен аертелгән Discord хәҙерле ID-ҙары.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Жауап усылы',
-        help: 'Беренсе, һәмме, яки йәҡ.',
+        help: 'Беренсе, һәмме, яки йәҡ.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Барлыҡ Discord хәҙерлесе рөхсәт итәү',
-        help: 'Һәммәтә ясауға ләҙер. Дөңөлтә, кем деген ботка DM юлашырға рөхсәт ите, рөхсәт листынсыз.',
+        help: 'Һәммәтә ясауға ләҙер. Дөңөлтә, кем деген ботка DM юлашырға рөхсәт ите, рөхсәт листынсыз.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Үй канал ID',
-        help: 'Бот проактив хабарлар юлай торған канал (cron нәтиҗәсе, эскәртеүләр).',
+        help: 'Бот проактив хабарлар юлай торған канал (cron нәтиҗәсе, эскәртеүләр).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Үй канал исеме',
-        help: 'Логларда һәм статус нәтиҗәсендә үй каналы исеме.',
+        help: 'Логларда һәм статус нәтиҗәсендә үй каналы исеме.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Барлыҡ iMessage хәҙерлесе рөхсәт итәү',
-        help: 'Дөңөлтә, BlueBubbles рөхсәт листына атырма.',
+        help: 'Дөңөлтә, BlueBubbles рөхсәт листына атырма.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Барлыҡ Mattermost хәҙерлесе рөхсәт итәү',
+        label: 'Барлыҡ Mattermost хәҙерлесе рөхсәт итәү'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Үй канал',
+        label: 'Үй канал'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Барлыҡ QQ хәҙерлесе рөхсәт итәү',
+        label: 'Барлыҡ QQ хәҙерлесе рөхсәт итәү'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ үй канал',
-        help: 'По умолчанию канал или группа для cron доставки.',
+        help: 'По умолчанию канал или группа для cron доставки.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Имя канала QQ по умолчанию.',
+        label: 'Имя канала QQ по умолчанию.'
       },
       SLACK_BOT_TOKEN: {
         label: 'Токен бота Slack.',
         help: 'Используйте токен бота Slack после установки приложения.',
-        placeholder: 'Вставьте токен бота Slack.',
+        placeholder: 'Вставьте токен бота Slack.'
       },
       SLACK_APP_TOKEN: {
         label: 'Токен приложения Slack.',
         help: 'Используйте токен приложения для Socket Mode.',
-        placeholder: 'Вставьте токен приложения Slack.',
+        placeholder: 'Вставьте токен приложения Slack.'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Разрешенные ID пользователей Slack.',
-        help: 'Рекомендуемый. Разделенные запятой ID Slack.',
+        help: 'Рекомендуемый. Разделенные запятой ID Slack.'
       },
       MATTERMOST_URL: {
         label: 'Серверный URL.',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Токен бота.',
+        label: 'Токен бота.'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Разрешенные ID.',
-        help: 'Рекомендуемый. ID Mattermost, разделенные запятой.',
+        help: 'Рекомендуемый. ID Mattermost, разделенные запятой.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL хостинга.',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Токен доступа.',
+        label: 'Токен доступа.'
       },
       MATRIX_USER_ID: {
         label: 'ID пользователя бота.',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Рөхсәт итәлек Matrix хулланучы ID-ҙары',
-        help: 'Тавсия итәлек. @user:server форматында, үтәү билен аертелгән хулланучы ID-ҙары.',
+        help: 'Тавсия итәлек. @user:server форматында, үтәү билен аертелгән хулланучы ID-ҙары.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal көпүрө URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'Ишләп тора signal-cli REST көпүрөсе URL.',
+        help: 'Ишләп тора signal-cli REST көпүрөсе URL.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Телефон нөмөре',
-        help: 'Сезнең signal-cli көпүрөсеге тіркелгән нөмөр.',
+        help: 'Сезнең signal-cli көпүрөсеге тіркелгән нөмөр.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Рөхсәт итәлек Signal хулланучылар',
-        help: 'Тавсия итәлек. Үтәү билен аертелгән Signal идентификаторлары.',
+        help: 'Тавсия итәлек. Үтәү билен аертелгән Signal идентификаторлары.'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp көпүрөсене ишләтеү',
-        help: 'Төмөнкө тумблер арҡылы автоматик белдерелә. Эгер сез һажатыңыңы белмәсәңез, һаҡлай утырыу.',
+        help: 'Төмөнкө тумблер арҡылы автоматик белдерелә. Эгер сез һажатыңыңы белмәсәңез, һаҡлай утырыу.'
       },
       WHATSAPP_MODE: {
-        label: 'Көпүрө режемы',
+        label: 'Көпүрө режемы'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Рөхсәт итәлек WhatsApp хулланучылар',
-        help: 'Тавсия итәлек. Үтәү билен аертелгән телефон нөмөрҙәр яки WhatsApp ID-ҙары.',
-      },
+        help: 'Тавсия итәлек. Үтәү билен аертелгән телефон нөмөрҙәр яки WhatsApp ID-ҙары.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Веб-хукларды изләү...',
@@ -1494,7 +1541,8 @@ export const ba = defineLocale({
     hint: 'Ағзалыҡлар үзгәртеү қабул ишләгенде яңыланый. Абруй итәлек ағзалыҡлар кирәү ивентларды рад итә.',
     empty: 'Хәзерге вакытта веб-хук ағзалыҡлары юҡ.',
     disabledTitle: 'Веб-хук қабул итеп ирәү абруй итәлек',
-    disabledBody: 'Веб-хуклар өсө шлюз платформасы. Бул ергә теләгенде HTTP ивентларға рөхсәт итәсе; чат каналлары һазер теләнгәнде, әгәр обуна Telegram, Discord, Slack яки башка каналға береш итәсе.',
+    disabledBody:
+      'Веб-хуклар өсө шлюз платформасы. Бул ергә теләгенде HTTP ивентларға рөхсәт итәсе; чат каналлары һазер теләнгәнде, әгәр обуна Telegram, Discord, Slack яки башка каналға береш итәсе.',
     enable: 'Веб-хукларды иҫәске асыр',
     enabling: 'Иҫәске асырыу...',
     enabled: (name: string) => `Иске аштырылган: "${name}"`,
@@ -1511,7 +1559,8 @@ export const ba = defineLocale({
     toggleFailed: (name: string) => `"${name}" яңартылмады`,
     newSubscription: 'Яңы обуна',
     restarting: 'Шлюз кайта иҫәске тутырыла...',
-    restartNeeded: 'Веб-хуклар иҫәске асылған, ләкин шлюз һазер кайта иҫәске тутырыу теләсе, кабыл итәүче онлайн булырга тиклем.',
+    restartNeeded:
+      'Веб-хуклар иҫәске асылған, ләкин шлюз һазер кайта иҫәске тутырыу теләсе, кабыл итәүче онлайн булырга тиклем.',
     restartGateway: 'Шлюзны кайта иҫәске тутыр',
     restartingGateway: 'Кайта иҫәске тутырыу...',
     restartFailed: (detail: string) => `Шлюз қайта иске түштермеде${detail}`,
@@ -1547,8 +1596,8 @@ export const ba = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'Электрон почта',
-      github_comment: 'GitHub комментарий',
-    },
+      github_comment: 'GitHub комментарий'
+    }
   },
   profiles: {
     close: 'Профильдәрҙе ябыу',
@@ -1626,7 +1675,7 @@ export const ba = defineLocale({
     failedLoadSoul: 'SOUL.md юклап булмады',
     failedSaveSoul: 'SOUL.md саклап булмады',
     failedCreate: 'Профиль ясап булмады',
-    failedRename: 'Профиль исемене өҫгәртергә булмады',
+    failedRename: 'Профиль исемене өҫгәртергә булмады'
   },
   cron: {
     close: 'Cron-ны ябыу',
@@ -1641,14 +1690,14 @@ export const ba = defineLocale({
       paused: 'приостановлен',
       disabled: 'отключен',
       error: 'ошибка',
-      completed: 'завершен',
+      completed: 'завершен'
     },
     deliveryLabels: {
       local: 'Этот рабочий стол',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Электрон почта',
+      email: 'Электрон почта'
     },
     scheduleLabels: {
       daily: 'Ежедневно',
@@ -1657,7 +1706,7 @@ export const ba = defineLocale({
       monthly: 'Ежемесячно',
       hourly: 'Часно',
       'every-15-minutes': 'каждые 15 минут',
-      custom: 'Пользовательский',
+      custom: 'Пользовательский'
     },
     scheduleHints: {
       daily: 'Каждый день в 9:00 утра',
@@ -1666,7 +1715,7 @@ export const ba = defineLocale({
       monthly: 'Хар айың беренсе күнө сағат 9:00-да',
       hourly: 'Хар сағаттың башына',
       'every-15-minutes': 'Хар 15 минутта',
-      custom: 'Cron синтаксис немесе теле языҡ',
+      custom: 'Cron синтаксис немесе теле языҡ'
     },
     days: {
       '0': 'Якшәмбе',
@@ -1676,7 +1725,7 @@ export const ba = defineLocale({
       '4': 'Күнешәмбе',
       '5': 'Юма',
       '6': 'Шәмбе',
-      '7': 'Якшәмбе',
+      '7': 'Якшәмбе'
     },
     dayFallback: value => `күн ${value}`,
     everyDayAt: time => `Хәр күн ${time}-да`,
@@ -1686,7 +1735,8 @@ export const ba = defineLocale({
     topOfHour: 'Хар сағаттың башына',
     everyHourAt: minute => `Хәр саат :${minute}-да`,
     newCron: 'Яңы cron',
-    emptyDescNew: 'Крон ифадесе буйынса ишләтәсе промптны рәвешләндерегез. OpenAmer аны ишләтеп, һуңғы нәтижәләрне сиз тапкан юлга йөндәтәсе.',
+    emptyDescNew:
+      'Крон ифадесе буйынса ишләтәсе промптны рәвешләндерегез. OpenAmer аны ишләтеп, һуңғы нәтижәләрне сиз тапкан юлга йөндәтәсе.',
     emptyDescSearch: 'Күплөк изләү сөрен тегеүсе.',
     emptyTitleNew: 'Хәзерге вакытта рәвешләнгән ишләр юҡ',
     emptyTitleSearch: 'Уйышлар юҡ',
@@ -1723,7 +1773,8 @@ export const ba = defineLocale({
     editTitle: 'Крон ишен өзгәртеү',
     createTitle: 'Яңы крон ише',
     editDesc: 'График, сурау же итәү максатын яңартыңыз. Өзгәртеүләр кесеки ишләүдә күче барға кирер.',
-    createDesc: 'Сурауны автоматик ишләтәсе график ясаңыз. Крон синтаксисе же "һәр 15 минут" сыяҡ натурал ифаде колдоноңоз.',
+    createDesc:
+      'Сурауны автоматик ишләтәсе график ясаңыз. Крон синтаксисе же "һәр 15 минут" сыяҡ натурал ифаде колдоноңоз.',
     nameLabel: 'Исем',
     namePlaceholder: 'Иртәге хабарлама',
     promptLabel: 'Сурау',
@@ -1745,7 +1796,7 @@ export const ba = defineLocale({
     createAction: 'Cron яһау',
     tabs: {
       jobs: 'Ишләр',
-      blueprints: 'Моделләр',
+      blueprints: 'Моделләр'
     },
     blueprints: {
       tab: 'Моделләр',
@@ -1759,8 +1810,8 @@ export const ba = defineLocale({
       loading: 'Мәшхүрләр юкланый...',
       failedLoad: 'Мәшхүрләр юклалмады',
       emptyTitle: 'Мәшхүрләр йоҡ',
-      emptyDesc: 'Бу бэкендта автоматизация мәшхүрләре йоҡ.',
-    },
+      emptyDesc: 'Бу бэкендта автоматизация мәшхүрләре йоҡ.'
+    }
   },
   artifacts: {
     search: 'Артефактларды изләү...',
@@ -1794,14 +1845,14 @@ export const ba = defineLocale({
     kindLink: 'Ссылка',
     chat: 'Чат',
     copyUrl: 'URL-ны көшәү',
-    copyPath: 'Йолды көшәү',
+    copyPath: 'Йолды көшәү'
   },
   sidebar: {
     nav: {
       'new-session': 'Яңа сессия',
       skills: 'Мөмкинлекләр',
       messaging: 'Хәбәрләшү',
-      artifacts: 'Артефактлар',
+      artifacts: 'Артефактлар'
     },
     searchAria: 'Сессияларды изләү',
     searchPlaceholder: 'Сессияларды изләү…',
@@ -1833,7 +1884,7 @@ export const ba = defineLocale({
       namePlaceholder: 'Мәсәлән, Skunkworks',
       foldersLabel: 'Папкалар',
       ideaLabel: 'Фикыр',
-      ideaPlaceholder: "Бу лойиҙ ни һаҡлау? (IDEA.md-га яҙыла)",
+      ideaPlaceholder: 'Бу лойиҙ ни һаҡлау? (IDEA.md-га яҙыла)',
       ideaGenerate: 'Фикыр ясау',
       ideaGenerating: 'Ясала…',
       ideaShuffle: 'Шаблондарҙы аралаштыру',
@@ -1853,8 +1904,10 @@ export const ba = defineLocale({
       copyPath: 'Йолды көйләү',
       removeFromSidebar: 'Янлыҡ панелдан яшерәү',
       createFailed: 'Лойиҡа ясаламады',
-      staleBackend: 'OpenAmer бэкендын яңартып, лойиҡалар ясауға рөхсәт бериң — синең бэкенд бу десктоп приложение-дан эскә (Настройкалар → Яңартыулар → Бэкенд).',
-      deleteConfirm: 'Бу OpenAmer-дан сакланған лойиҡаны уҙата. Файлдар, git репозиторийлар һәм worktree-лар үзгәрмәс калараҡ.',
+      staleBackend:
+        'OpenAmer бэкендын яңартып, лойиҡалар ясауға рөхсәт бериң — синең бэкенд бу десктоп приложение-дан эскә (Настройкалар → Яңартыулар → Бэкенд).',
+      deleteConfirm:
+        'Бу OpenAmer-дан сакланған лойиҡаны уҙата. Файлдар, git репозиторийлар һәм worktree-лар үзгәрмәс калараҡ.',
       startWork: 'Яңы worktree',
       newWorktreeTitle: 'Яңы worktree',
       newWorktreeDesc: 'Бу worktree үсән булмаһы исемең бериң.',
@@ -1875,13 +1928,15 @@ export const ba = defineLocale({
       noBranches: 'Ағаҙ табылмады',
       removeWorktree: 'Worktree-ны өчүрү',
       removeWorktreeFailed: 'Worktree-ны өчүрә алмады (сакланмаган үҙгәртеүләр бар?)',
-      removeWorktreeConfirm: 'Git-тен өчүрү (worktree директориясын өчүрә, ағаҙ калдыра), яки мәҙән тарафлыҡтан юлдашты юәшерәп, worktree-ны дискка калдырыу',
-      removeWorktreeDirty: 'Бул worktree-да сакланмаган үҙгәртеүләр бар. Мажбурлап өчүрү (шул үҙгәртеүләрне йыҡыу), яки юлдашты юәшерәп, дискка калдырыу',
+      removeWorktreeConfirm:
+        'Git-тен өчүрү (worktree директориясын өчүрә, ағаҙ калдыра), яки мәҙән тарафлыҡтан юлдашты юәшерәп, worktree-ны дискка калдырыу',
+      removeWorktreeDirty:
+        'Бул worktree-да сакланмаган үҙгәртеүләр бар. Мажбурлап өчүрү (шул үҙгәртеүләрне йыҡыу), яки юлдашты юәшерәп, дискка калдырыу',
       forceRemove: 'Мажбурлап өчүрү',
       enter: label => `${label}-ны ачу`,
       reorder: label => `${label}-ны тартипка китерү`,
       toggle: label => `${label} сессияларын алмаштыру`,
-      back: 'Бүтә лойиҙлар',
+      back: 'Бүтә лойиҙлар'
     },
     newSessionIn: label => `${label}-да яңа сессия`,
     showMoreIn: (count, label) => `Prikaži još ${count} u ${label}`,
@@ -1919,15 +1974,15 @@ export const ba = defineLocale({
       ageNow: 'хәзер',
       ageDay: 'к',
       ageHour: 'с',
-      ageMin: 'м',
+      ageMin: 'м'
     },
     dateDivider: {
       today: 'Бүген беренсе',
       yesterday: 'Түне',
       thisWeek: 'Бу һефте беренсе',
       lastWeek: 'Утган һефте',
-      thisMonth: 'Бу ай беренсе',
-    },
+      thisMonth: 'Бу ай беренсе'
+    }
   },
   composer: {
     message: 'Хабар',
@@ -1938,20 +1993,20 @@ export const ba = defineLocale({
     newSessionPlaceholders: [
       'Без ни ясайбыз?',
       'OpenAmer-га тапсырма бериң',
-      "Син ни һайал итәсең?",
+      'Син ни һайал итәсең?',
       'Син һажәт иткән нәрсәңне тасуф ит',
       'Без ни ишләп бетерәй?',
       'Һәр нәрсә сора',
-      'Маҡсат белән башла',
+      'Маҡсат белән башла'
     ],
     followUpPlaceholders: [
       'Давом итәсе сороңны юлла',
       'Төш контекст кош',
       'Сороңны яҡшыла',
-      "Кеүек ни?",
+      'Кеүек ни?',
       'Давом итәрергә телә',
       'Тартып узат',
-      'Өзгәртегесе я давом итәрегесе',
+      'Өзгәртегесе я давом итәрегесе'
     ],
     startVoice: 'Сөйләшү башла',
     queueMessage: 'Куйрук хабар',
@@ -1987,7 +2042,7 @@ export const ba = defineLocale({
       '/resume': 'алдыңғы сессияны дауам итәү',
       '/details': 'транскрипт мәгълюмәт дәрежесе буйынса идарә итәү',
       '/copy': 'сайланған немесе соңғы ярдәмсе хәбәрене көшәрергә',
-      '/quit': 'OpenAmer-дан чығыу',
+      '/quit': 'OpenAmer-дан чығыу'
     },
     hotkeyDescs: {
       'composer.mention': 'файлдар, папкалар, URL, git касылмасы',
@@ -1997,7 +2052,7 @@ export const ba = defineLocale({
       'composer.sendQueued': 'келесе күтәреләгән үренни йөндәрергә',
       'keybinds.openPanel': 'бөтөн клавиатура кысқа юлдары',
       'composer.cancel': 'поповерны ябыу · ишты бейәтәү',
-      'composer.history': 'поповер / тарих арасында айлану',
+      'composer.history': 'поповер / тарих арасында айлану'
     },
     attachUrlTitle: 'URL кабыл итәү',
     attachUrlDesc: 'OpenAmer бетне алып, аны бу үренгә контекст катары кабыл итер.',
@@ -2047,20 +2102,21 @@ export const ba = defineLocale({
     snippets: {
       codeReview: {
         label: 'Просмотр кода',
-        description: 'Аудит текущей изменения на наличие регрессий, пропущенных краевых случаев и отсутствующих тестов.',
-        text: 'Пожалуйста, проверьте на ошибки, регрессии и отсутствующие тесты.',
+        description:
+          'Аудит текущей изменения на наличие регрессий, пропущенных краевых случаев и отсутствующих тестов.',
+        text: 'Пожалуйста, проверьте на ошибки, регрессии и отсутствующие тесты.'
       },
       implementationPlan: {
         label: 'План реализации',
         description: 'Определите подход перед изменением кода, чтобы diff оставался сосредоточенным.',
-        text: 'Сделайте краткий план реализации перед изменением кода.',
+        text: 'Сделайте краткий план реализации перед изменением кода.'
       },
       explainThis: {
         label: 'Объясните это',
         description: 'Покажите, как работает выбранный код, и укажите ключевые файлы.',
-        text: 'Пожалуйста, объясните, как это работает, и укажите ключевые файлы.',
-      },
-    },
+        text: 'Пожалуйста, объясните, как это работает, и укажите ключевые файлы.'
+      }
+    }
   },
   statusStack: {
     agents: 'Агенты',
@@ -2108,13 +2164,14 @@ export const ba = defineLocale({
       openPr: 'PR ачыу',
       ghMissing: 'GitHub CLI (gh) ни орнатып, PRларды ачыуға киреү',
       agentShip: 'OpenAmer-ға PR ачыусы талап итәү',
-      agentShipPrompt: 'Мौजूда өзгәртеүләрне карап, аларны анык conventional-коммит хабырҙы билән коммит итәге, буйыҡты пуш итәге, һәм pull request ачыу.',
+      agentShipPrompt:
+        'Мौजूда өзгәртеүләрне карап, аларны анык conventional-коммит хабырҙы билән коммит итәге, буйыҡты пуш итәге, һәм pull request ачыу.',
       newBranch: 'Яңы буйыҡ',
       branchOffFrom: base => `Яңы булма ${base}-дан`,
       switchTo: branch => `${branch}-га өт`,
       switchFailed: branch => `${branch}-га өтә алмады`,
-      worktrees: 'Иш ағаҙлары',
-    },
+      worktrees: 'Иш ағаҙлары'
+    }
   },
   updates: {
     stages: {
@@ -2129,7 +2186,7 @@ export const ba = defineLocale({
       done: 'Яңарту аяҡланды',
       manual: 'Терминалдан яңарту',
       guiSkew: 'Стол программаһын яңарту',
-      error: 'Яңарту тоҡтатылды',
+      error: 'Яңарту тоҡтатылды'
     },
     checking: 'Яңартулар хәйләнеп булып тура…',
     checkFailedTitle: 'Яңартуларны текшере алмадык',
@@ -2149,14 +2206,17 @@ export const ba = defineLocale({
     maybeLater: 'Мөмкин, кейин',
     moreChanges: count => `+ ${count} яна үзгәртеү${count === 1 ? '' : 's'} күрсәтелгән.`,
     manualTitle: 'Терминалдан яңарту',
-    manualBody: 'Сез OpenAmer-ны буйрук сатырынан орнаттыңыз, шунда яңартулар анда да иштей. Буларны терминалға ясап языңыз:',
+    manualBody:
+      'Сез OpenAmer-ны буйрук сатырынан орнаттыңыз, шунда яңартулар анда да иштей. Буларны терминалға ясап языңыз:',
     manualPickedUp: 'OpenAmer килесе иске күсереүсе яңы версияны ала.',
     guiSkewTitle: 'Десктоп программаһын яңарту',
-    guiSkewBody: 'Backend яңартылды, ама бул десктоп программа пакеты үзгәртелмәде. OpenAmer десктоп программаһын (AppImage / .deb / .rpm) яңартыңыз яки кайта орнатыңыз.',
+    guiSkewBody:
+      'Backend яңартылды, ама бул десктоп программа пакеты үзгәртелмәде. OpenAmer десктоп программаһын (AppImage / .deb / .rpm) яңартыңыз яки кайта орнатыңыз.',
     copy: 'Көшерү',
     copied: 'Көшертелде',
     done: 'Бытырды',
-    applyingBody: 'OpenAmer яңартусы өсө тәрәфле тәрәзәсе иштей, яңарту бытканда OpenAmer-ны автоматик иске күсерер. Зинһар, яңарту иштей булғанда OpenAmer-ны өсө иске күсетергә теләмәсеңиз.',
+    applyingBody:
+      'OpenAmer яңартусы өсө тәрәфле тәрәзәсе иштей, яңарту бытканда OpenAmer-ны автоматик иске күсерер. Зинһар, яңарту иштей булғанда OpenAmer-ны өсө иске күсетергә теләмәсеңиз.',
     applyingBodyBackend: 'Узак backend яңартуны қолданый, кайта иске тотора. OpenAmer аны кайта уландыра.',
     applyingClose: 'Бул тәрәзә яңарту иштегенде ябылыр, соң OpenAmer өсө иске тотора.',
     errorTitle: 'Яңарту аяҡланмады',
@@ -2168,12 +2228,13 @@ export const ba = defineLocale({
       restarting: 'Бэкенд яңартыуны юклаш үчөн кайта ишләп башлай…',
       notAvailable: 'Бу бэкенд үчөн яңартыу юк.',
       failed: 'Бэкенд яңартыусы кәте икән.',
-      noReturn: 'Бэкенд кайта онлайнға килмәде. Яңартыу аяҡланмаган булыр — бэкенд хосты текшерегез.',
+      noReturn: 'Бэкенд кайта онлайнға килмәде. Яңартыу аяҡланмаган булыр — бэкенд хосты текшерегез.'
     },
     appErrors: {
-      updateLocked: 'Яңартыу тохтатылды: башка OpenAmer терезе яки openamer ишләтәсе терминал бул орнатыуны ачык тутып тора. Ябып, кайта урынбаҡсаҡ.',
-      updateFailed: 'Яңартыу аяҡланмады. Ҡорҡыу яҡ — һеҙ ниһәң һеҙ булмады. Сез хазер кайта урынбаҡсалаһыҡ.',
-    },
+      updateLocked:
+        'Яңартыу тохтатылды: башка OpenAmer терезе яки openamer ишләтәсе терминал бул орнатыуны ачык тутып тора. Ябып, кайта урынбаҡсаҡ.',
+      updateFailed: 'Яңартыу аяҡланмады. Ҡорҡыу яҡ — һеҙ ниһәң һеҙ булмады. Сез хазер кайта урынбаҡсалаһыҡ.'
+    }
   },
   install: {
     stageStates: {
@@ -2181,25 +2242,29 @@ export const ba = defineLocale({
       running: 'Орнатыла',
       succeeded: 'Аяҡланды',
       skipped: 'Бурылды',
-      failed: 'Кәте',
+      failed: 'Кәте'
     },
     oneTimeTitle: 'OpenAmer бер тапҡыр орнатыу талап итә',
-    unsupportedDesc: platform => `Автоматик биринче иске күшәтеү ${platform}-да һәзерге йөк. Terminal-ны ач һәм төмөндеги буйруҡны ишләтеге, соң эшләне бул программаны кайта иске күшәтерге. Киләсе иске күшәтеүләр бу этапны ашап юбәрер.`,
+    unsupportedDesc: platform =>
+      `Автоматик биринче иске күшәтеү ${platform}-да һәзерге йөк. Terminal-ны ач һәм төмөндеги буйруҡны ишләтеге, соң эшләне бул программаны кайта иске күшәтерге. Киләсе иске күшәтеүләр бу этапны ашап юбәрер.`,
     installCommand: 'Орнатыу буйруғы',
     copyCommand: 'Көшерү буйруғы',
     viewDocs: 'Орнатыу документацияһын караҡ',
     installTo: 'Орнатыла тормо',
     retryAfterRun: 'Мин ишләттем — кайта урынбаҡса',
     setupChoiceTitle: 'OpenAmer Desktop-ны һөйләштерү',
-    setupChoiceDesc: 'Бу приложение-ны һазерге ишләтеп яткан OpenAmer шлюзына уланыу, яки OpenAmer-ны бу компьютерға мәحلләштерәсе урынлаштырыу.',
+    setupChoiceDesc:
+      'Бу приложение-ны һазерге ишләтеп яткан OpenAmer шлюзына уланыу, яки OpenAmer-ны бу компьютерға мәحلләштерәсе урынлаштырыу.',
     connectExistingTitle: 'Мавжут OpenAmer-га уланыу',
     connectExistingShort: 'Мавжутны уланыу',
-    connectExistingDesc: 'Сессия токены яки браузер арҡалы киреү билен узак backend-ны колдону. Маҡал урынлаштыру башламас.',
+    connectExistingDesc:
+      'Сессия токены яки браузер арҡалы киреү билен узак backend-ны колдону. Маҡал урынлаштыру башламас.',
     installLocalTitle: 'OpenAmer-ны мәحلләштерәсе урынлаштыру',
     installLocalDesc: 'OpenAmer-ны юклау, аның Python мөһите-н ясау, һәм backend-ны бу компьютерда ишләтеү.',
     localStartUnavailable: 'Мәحلләштерәсе урынлаштыру башлай алмады. OpenAmer Desktop-ны кайта ишләтеп, яна урынбак.',
     remoteSetupTitle: 'Мавжут OpenAmer-га уланыу',
-    remoteSetupDesc: 'Шлюз URL-ыңызыны кирәтегез. OpenAmer Desktop токен яки браузер арҡалы киреү керекме яки юкын аныҡлай.',
+    remoteSetupDesc:
+      'Шлюз URL-ыңызыны кирәтегез. OpenAmer Desktop токен яки браузер арҡалы киреү керекме яки юкын аныҡлай.',
     remoteUrlTitle: 'Шлюз URL',
     remoteUrlDesc: 'OpenAmer шлюзының неғиз URL-ын колдону, узак булса https://-ны да кабыл итегез.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2226,8 +2291,10 @@ export const ba = defineLocale({
     failedTitle: 'Урнаштыру мөмкин булмады',
     settingUpTitle: 'OpenAmer Agent-ны һөйләштерү',
     finishingTitle: 'Яктыру',
-    failedDesc: 'Урнаштыру қадамдарының берсе мөмкин булмады. Windows-да, башка OpenAmer CLI яки десктоп нөсәсе иштегән булса, бул юлға аша. Иштеүдәге OpenAmer нөсәселәрҙе тотап, кайта урынбап көрергә. Төмөндәге тафсылылар яки десктоп логыны текшерергә, толык транскрипт үчүн.',
-    activeDesc: 'Бул бер тапҡыр һөйләштерү. OpenAmer урнаштырғысы тәртиплештерҙе юклай һәм синең мәшинеңне һөйләштерә. Киләсе иске коюлар бул қадамны атлай.',
+    failedDesc:
+      'Урнаштыру қадамдарының берсе мөмкин булмады. Windows-да, башка OpenAmer CLI яки десктоп нөсәсе иштегән булса, бул юлға аша. Иштеүдәге OpenAmer нөсәселәрҙе тотап, кайта урынбап көрергә. Төмөндәге тафсылылар яки десктоп логыны текшерергә, толык транскрипт үчүн.',
+    activeDesc:
+      'Бул бер тапҡыр һөйләштерү. OpenAmer урнаштырғысы тәртиплештерҙе юклай һәм синең мәшинеңне һөйләштерә. Киләсе иске коюлар бул қадамны атлай.',
     progress: (completed, total) => `${completed} ${total} қадарҙар тукталған`,
     currentStage: stage => ` -- һазер: ${stage}`,
     fetchingManifest: 'Урнаштырғы манифесты алынып бетере...',
@@ -2241,10 +2308,10 @@ export const ba = defineLocale({
     transcriptSaved: 'Төп транскрипт сакланды:',
     copiedOutput: 'Көчүрделде!',
     copyOutput: 'Ҡыҙылышты көчүрәү',
-    reloadRetry: 'Яңартып, кайта урындырыу',
+    reloadRetry: 'Яңартып, кайта урындырыу'
   },
   onboarding: {
-    headerTitle: "Сезге OpenAmer Agent-ны һөйләйәк",
+    headerTitle: 'Сезге OpenAmer Agent-ны һөйләйәк',
     headerDesc: 'Модель провайдерын уланыу үчөн уланыу. Көп вариант бер кликка урынбаса.',
     preparingInstall: 'OpenAmer урнашты аяҡтап. Был әдетте бер минуттан аз урын алдыра, беренсе ишләтеп башлағанда.',
     starting: 'OpenAmer башлап булып...',
@@ -2252,7 +2319,7 @@ export const ba = defineLocale({
     collapse: 'Ёҡыту',
     otherProviders: 'Башҡа провайдерлар',
     haveApiKey: 'Минде API кілт бар',
-    chooseLater: "Мин провайдерны кейин тапсырамын",
+    chooseLater: 'Мин провайдерны кейин тапсырамын',
     recommended: 'Тавсия итәләнгән',
     connected: 'Уланган',
     featuredPitch: 'Бер абонемент, 300+ иң алдаки модельдар — OpenAmer-ны ишләтеүгә тавсия итәләнгән йол',
@@ -2261,28 +2328,29 @@ export const ba = defineLocale({
     apiKeyOptions: {
       fireworks: {
         short: 'туп модель API',
-        description: 'Fireworks AI хостаған модельдарға туп күрсәт',
+        description: 'Fireworks AI хостаған модельдарға туп күрсәт'
       },
       openrouter: {
         short: 'бер кілт, көп модель',
-        description: 'Бер килт аркасында йөзләк модель. Яңа орнатуларға яхшы стандарт.',
+        description: 'Бер килт аркасында йөзләк модель. Яңа орнатуларға яхшы стандарт.'
       },
       openai: {
         short: 'GPT-классы модельдар',
-        description: 'OpenAI модельдарына туп күрсәт',
+        description: 'OpenAI модельдарына туп күрсәт'
       },
       gemini: {
         short: 'Gemini модельдары',
-        description: 'Google Gemini модельдарына туп күрсәт',
+        description: 'Google Gemini модельдарына туп күрсәт'
       },
       xai: {
         short: 'Grok модельдары',
-        description: 'xAI Grok модельдарына туп күрсәт',
+        description: 'xAI Grok модельдарына туп күрсәт'
       },
       local: {
         short: 'өз хостинда',
-        description: 'OpenAmer-ны yerel яки өз хостиндағы OpenAI-га уйған endpoint-ка (vLLM, llama.cpp, Ollama, б.ш.) бағыттау.',
-      },
+        description:
+          'OpenAmer-ны yerel яки өз хостиндағы OpenAI-га уйған endpoint-ка (vLLM, llama.cpp, Ollama, б.ш.) бағыттау.'
+      }
     },
     backToSignIn: 'Керүгә кайтыу',
     getKey: 'Килт алу',
@@ -2295,7 +2363,7 @@ export const ba = defineLocale({
     flowSubtitles: {
       pkce: 'Браузерыңыҡ ача, киреүгә теләшә, андан соң бул жердә давам итә',
       device_code: 'Браузерыңыҡда текшерү бетене ача — OpenAmer автоматик түрдә уланыра',
-      external: 'Терминалда бер тапҡыр киреү, соң чатка кайтыу',
+      external: 'Терминалда бер тапҡыр киреү, соң чатка кайтыу'
     },
     startingSignIn: provider => `${provider} үчен киреү башлап булды...`,
     verifyingCode: provider => `${provider} биләнесе кодыңызы текшереп булды...`,
@@ -2309,11 +2377,13 @@ export const ba = defineLocale({
     copyAuthCode: 'Рөхсәт кодын көйләп, төмөндә яҙың.',
     pasteAuthCode: 'Рөхсәт кодын яҙың',
     reopenAuthPage: 'Рөхсәт бетене яна ача',
-    autoBrowser: provider => `Без ${provider}-ны синең браузерыңда ачтык. Анда OpenAmer-ны рөхсәт итәгеҙ, си автоматлык тарза уланасыз — көчермәсе керек, ясап күрсәтермәсе керек.`,
+    autoBrowser: provider =>
+      `Без ${provider}-ны синең браузерыңда ачтык. Анда OpenAmer-ны рөхсәт итәгеҙ, си автоматлык тарза уланасыз — көчермәсе керек, ясап күрсәтермәсе керек.`,
     reopenSignInPage: 'Кереү бетене яна ача',
     waitingAuthorize: 'Сез рөхсәт беергә теләсеҙне күтәрер...',
-    externalPending: provider => `${provider} өсө CLI-арҡа кирер. Бул буйруҡны терминалда ишләтегеҙ, соң кире кайтып "Мин кирдем" деген талап итегеҙ:`,
-    signedIn: "Мин кирдем",
+    externalPending: provider =>
+      `${provider} өсө CLI-арҡа кирер. Бул буйруҡны терминалда ишләтегеҙ, соң кире кайтып "Мин кирдем" деген талап итегеҙ:`,
+    signedIn: 'Мин кирдем',
     deviceCodeOpened: provider => `Без ${provider}-ны синең браузерыңда ачтык. Анда бул кодны киртегеҙ:`,
     reopenVerification: 'Текшерү бетене яна ача',
     copy: 'Көйләү',
@@ -2324,7 +2394,7 @@ export const ba = defineLocale({
     price: (input, output) => `${input} кир / ${output} тыш Mtok-га`,
     change: 'Өзгәртеү',
     startChatting: 'Башлау',
-    docs: provider => `${provider} документтар`,
+    docs: provider => `${provider} документтар`
   },
   modelPicker: {
     title: 'Модельны үҙгәртеү',
@@ -2340,13 +2410,13 @@ export const ba = defineLocale({
     free: 'Булыш',
     freeTier: 'Булыш тараҡы',
     priceTitle: 'Миллон токенға киреү / чығыу баһасы',
-    wasPrice: 'булған',
+    wasPrice: 'булған'
   },
   modelVisibility: {
     title: 'Модельлар',
     search: 'Модельларны изләү',
     noAuthenticatedProviders: 'Авторизацияланган провайдерлар юҡ.',
-    addProvider: 'Провайдер қошу…',
+    addProvider: 'Провайдер қошу…'
   },
   shell: {
     windowControls: 'Эшәк баскычлары',
@@ -2357,7 +2427,7 @@ export const ba = defineLocale({
       noModels: 'Модельдар табылмады',
       editModels: 'Модельдарды өҫгәртү…',
       refreshModels: 'Модельдарны яңарту',
-      fast: 'Тыҡ',
+      fast: 'Тыҡ'
     },
     modelOptions: {
       noOptions: 'Бу модель үсәен параметрҙар йоҡ',
@@ -2373,7 +2443,7 @@ export const ba = defineLocale({
       max: 'Макс',
       ultra: 'Ультра',
       updateFailed: 'Модель параметры яңартыусы һәтә',
-      fastFailed: 'Тыҡ режим яңартыусы һәтә',
+      fastFailed: 'Тыҡ режим яңартыусы һәтә'
     },
     gatewayMenu: {
       gateway: 'Шлюз',
@@ -2388,7 +2458,7 @@ export const ba = defineLocale({
       connection: label => `Уланыш: ${label}`,
       recentActivity: 'Соңғы фаъалиәт',
       viewAllLogs: 'Бәр логларға карау →',
-      messagingPlatforms: 'Хәбәрләшү платформалары',
+      messagingPlatforms: 'Хәбәрләшү платформалары'
     },
     approvalMode: {
       title: 'Рәсәйләш рәвеше',
@@ -2398,7 +2468,7 @@ export const ba = defineLocale({
       smart: 'Ақыллы',
       smartDescription: 'Әйелле баҡылау һәм керек булғанда сорау',
       off: 'Идәш',
-      offDescription: 'Рәсәйләшсә иштеү',
+      offDescription: 'Рәсәйләшсә иштеү'
     },
     statusbar: {
       unknown: 'белгесе',
@@ -2454,27 +2524,29 @@ export const ba = defineLocale({
           skills: 'Навыки',
           subagent_definitions: 'Определения субагентов',
           system_prompt: 'Системный промпт',
-          tool_definitions: 'Определения инструментов',
+          tool_definitions: 'Определения инструментов'
         },
         empty: 'Нет данных контекста',
         loading: 'Загрузка разбора…',
         percentFull: percent => `${percent}% Тук`,
         title: 'Контекстное использование',
-        tokenSummary: (used, max) => `${used} / ${max} Токен`,
+        tokenSummary: (used, max) => `${used} / ${max} Токен`
       },
       openContextUsage: 'Открыть разбор контекстного использования',
       session: 'Сессия',
       runtimeSessionElapsed: 'Эш сеансы ваҡыты үтте',
-      yoloOn: 'YOLO ҡабыҙылған — хәүефле командаларҙы автоматик раҫлай. Һүндереү өсөн баҫығыҙ. Shift+click уны бөтә ерҙә лә алмаштыра.',
-      yoloOff: 'YOLO һүндерелгән — хәүефле командаларҙы автоматик раҫлау өсөн баҫығыҙ. Shift+click уны бөтә ерҙә лә алмаштыра.',
+      yoloOn:
+        'YOLO ҡабыҙылған — хәүефле командаларҙы автоматик раҫлай. Һүндереү өсөн баҫығыҙ. Shift+click уны бөтә ерҙә лә алмаштыра.',
+      yoloOff:
+        'YOLO һүндерелгән — хәүефле командаларҙы автоматик раҫлау өсөн баҫығыҙ. Shift+click уны бөтә ерҙә лә алмаштыра.',
       modelNone: 'юҡ',
       noModel: 'модель юҡ',
       switchModel: 'Моделде алмаштырыу',
       openModelPicker: 'Модель һайлаусыны асыу',
       modelPinned: 'һеҙ ҡаҙаҡлаған; яңы чаттар Көйләүҙәрҙәге ғәҙәттәге урынына быны ҡуллана',
       modelTitle: (provider, model) => `Модель · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Уң ҡабырға панеле',
@@ -2510,7 +2582,7 @@ export const ba = defineLocale({
     terminalNew: 'Яңы терминал',
     terminalCloseOthers: 'Башҡаларны ябыу',
     terminalCloseAll: 'Барын ябыу',
-    addToChat: 'Чатка кош',
+    addToChat: 'Чатка кош'
   },
   preview: {
     tab: 'Көрсәтмә',
@@ -2544,7 +2616,8 @@ export const ba = defineLocale({
     unsavedChanges: 'Сакланмаған өзгәртеүләр',
     saveFailed: message => `Nije moguće sačuvati: ${message}`,
     diskChangedTitle: 'Файл дискка өзгәртелде',
-    diskChangedBody: 'Бул файл асып салғаныннан берен өзгәртелде. Аны һуңғы нөсхәңе белән юлда, яки өзгәртеүҙәрҙе йыбып, кайта юклай?',
+    diskChangedBody:
+      'Бул файл асып салғаныннан берен өзгәртелде. Аны һуңғы нөсхәңе белән юлда, яки өзгәртеүҙәрҙе йыбып, кайта юклай?',
     overwrite: 'Юлдау',
     discardReload: 'Йыбып, кайта юклау',
     console: {
@@ -2565,7 +2638,7 @@ export const ba = defineLocale({
       empty: 'Консоль хабарларын һәле юк.',
       promptHeader: 'Алдын ала карау консоле:',
       sentTitle: 'Чатка юбылған',
-      sentMessage: count => `Dodano ${count} zapisa dnevnika ${count === 1 ? 'y' : 'ies'} u composer`,
+      sentMessage: count => `Dodano ${count} zapisa dnevnika ${count === 1 ? 'y' : 'ies'} u composer`
     },
     web: {
       appFailedToBoot: 'Алдын ала карау приложениясе башлап булмады',
@@ -2583,24 +2656,27 @@ export const ba = defineLocale({
       showConsole: 'Алдын ала карау консолен күрсәтергә',
       hideDevTools: 'Алдын ала карау DevTools-ны яшерергә',
       openDevTools: 'Алдын ала карау DevTools-ны асырға',
-      finishedRestarting: message => `OpenAmer je završio ponovno pokretanje servera za pregled ${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer je završio ponovno pokretanje servera za pregled ${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Ponovno pokretanje servera nije uspjelo: ${message}`,
       unknownError: 'белгесе хәта',
       restartedTitle: 'Алдын ала карау сервере кайта башлады',
       reloadingNow: 'Алдын ала карау һәзер кайта юкланып жатыр.',
       restartFailedTitle: 'Алдын ала карау кайта башлау икеш итте',
       restartFailedMessage: 'OpenAmer серверны кайта иске аштыра алмады.',
-      stillWorking: 'OpenAmer һәле иштеп тора, ләкин кайта иске аштыру нәтиәсе һәле килмәгән. Сервер буйруғы алдын ала режемдә иштеү мүмкин.',
+      stillWorking:
+        'OpenAmer һәле иштеп тора, ләкин кайта иске аштыру нәтиәсе һәле килмәгән. Сервер буйруғы алдын ала режемдә иштеү мүмкин.',
       workspaceReloading: 'Иш аңымасы үтәү, алдын ала карау кайта юклап тора',
       fileChanged: url => `Datoteka promijenjena, ponovno učitavanje pregleda: ${url}`,
       filesChanged: (count, url) => `Promjena ${count} datoteka, ponovno učitavanje pregleda: ${url}`,
       watchFailed: message => `Nije moguće pratiti datoteku pregleda: ${message}`,
-      moduleMimeDescription: 'Модуль скрипттары натыйжасыз MIME төрө белемлегендә берәлән. Был әдеттә статик файл сервере проект dev сервере һуңғы Vite/React приложение-ны берәү билдәләй.',
+      moduleMimeDescription:
+        'Модуль скрипттары натыйжасыз MIME төрө белемлегендә берәлән. Был әдеттә статик файл сервере проект dev сервере һуңғы Vite/React приложение-ны берәү билдәләй.',
       loadFailedConsole: (code, message) => `Učitavanje nije uspjelo ${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Алдын ала карау бетесеге етә алмады.',
       openTarget: url => `Otvori ${url}`,
-      fallbackTitle: 'Алдын ала карау',
-    },
+      fallbackTitle: 'Алдын ала карау'
+    }
   },
   zones: {
     showHeader: 'Башлыҡты күрсәт',
@@ -2608,7 +2684,8 @@ export const ba = defineLocale({
     minimize: 'Минимизация итәү',
     restore: 'Тикләү',
     closeRunningTitle: 'Иштеүде булған вкладка-ны ябу?',
-    closeRunningBody: 'Был чат һәле иштеп тора (йәки һөйләңез күтәре). Вкладка-ны ябу оны яшәйт — сессия һөйләгесе саҡлана һәм сайдбардан кайта ачыла ала.',
+    closeRunningBody:
+      'Был чат һәле иштеп тора (йәки һөйләңез күтәре). Вкладка-ны ябу оны яшәйт — сессия һөйләгесе саҡлана һәм сайдбардан кайта ачыла ала.',
     closeRunningConfirm: 'Вкладка-ны ябу',
     closeOthers: 'Башҡаларны ябу',
     closeToRight: 'Уңға ябу',
@@ -2645,14 +2722,15 @@ export const ba = defineLocale({
     layoutNamePlaceholder: fallback => `Naziv izgleda (${fallback})`,
     saveApply: 'Хаҡлап, колдану',
     notExpressible: 'бу йөйләш интерлок итеп тора (пинвил) — һәзерле икенсе бөлеп бетерә алмас',
-    zoneCount: count => `${count} zona`,
+    zoneCount: count => `${count} zona`
   },
   assistant: {
     thread: {
       loadingSession: 'Сессия юклап тора',
       showEarlier: 'Әлдеки хабарларны күрсәт',
       loadingResponse: 'OpenAmer жауапты юклай',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Уйлап ятыр',
@@ -2680,7 +2758,7 @@ export const ba = defineLocale({
       restoreNext: 'Келесечек чекпоинтны тикшереү',
       goForward: 'Илгери бару',
       sendEdited: 'Өзгәртелгән хабарны юбәрергә',
-      attachingFile: 'Байланыштырыу…',
+      attachingFile: 'Байланыштырыу…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer шлюзы уланмаған',
@@ -2693,8 +2771,9 @@ export const ba = defineLocale({
       jumpToApproval: 'Рөхсәт талашлы',
       reject: 'Рәд итәү',
       alwaysTitle: 'Бу буйруҡқа даими рөхсәт итәү бе?',
-      alwaysDescription: pattern => `Ovo dodaje obrazac „${pattern}” na vašu trajnu listu dopuštenih (~/.openamer/config.yaml). OpenAmer više neće tražiti dozvolu za ovakve naredbe — u ovoj niti niti u budućim.`,
-      alwaysAllow: 'Даими рөхсәт итәү',
+      alwaysDescription: pattern =>
+        `Ovo dodaje obrazac „${pattern}” na vašu trajnu listu dopuštenih (~/.openamer/config.yaml). OpenAmer više neće tražiti dozvolu za ovakve naredbe — u ovoj niti niti u budućim.`,
+      alwaysAllow: 'Даими рөхсәт итәү'
     },
     clarify: {
       notReady: 'Төшөндүрме сөрауы һәле тайяр булмаған',
@@ -2708,7 +2787,7 @@ export const ba = defineLocale({
       continueLabel: 'Давам итәсе',
       lateAnswer: (question, choice) => `Re: "${question}" — moj odgovor: ${choice}`,
       lateAnswerTip: 'Бул жауапты күрәсете хәбәр ҡабыл итеп яза',
-      lateAnswerHint: 'Бул куйыу тәртиптә юҡ. Күрәсете хәбәр ҡабыл итеп язау үчен вариант таңлаң.',
+      lateAnswerHint: 'Бул куйыу тәртиптә юҡ. Күрәсете хәбәр ҡабыл итеп язау үчен вариант таңлаң.'
     },
     tool: {
       code: 'Код',
@@ -2744,11 +2823,11 @@ export const ba = defineLocale({
         ran: 'Ишләнгән',
         running: 'Ишләүде',
         ranCode: 'Код ишләнгән',
-        runningCode: 'Скриптлау',
+        runningCode: 'Скриптлау'
       },
       prefixes: {
         browser: 'Браузер',
-        web: 'Веб',
+        web: 'Веб'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2756,121 +2835,121 @@ export const ba = defineLocale({
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Pokretanje ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Pokretanje ${action.toLowerCase()}`,
+        runningTool: action => `Pokretanje ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Басылған бет элементы',
           pending: 'Бет элементына басыу',
-          pendingAction: 'Басыу',
+          pendingAction: 'Басыу'
         },
         browser_fill: {
           done: 'Толтырылган форма майдоны',
           pending: 'Форма майдонын толтыру',
-          pendingAction: 'Толтыру',
+          pendingAction: 'Толтыру'
         },
         browser_navigate: {
           done: 'Асылған бет',
           pending: 'Бетте ашу',
-          pendingAction: 'Ашу',
+          pendingAction: 'Ашу'
         },
         browser_snapshot: {
           done: 'Сәкләнгән бет снимкаһы',
           pending: 'Бет снимкаһын саклау',
-          pendingAction: 'Саклау',
+          pendingAction: 'Саклау'
         },
         browser_take_screenshot: {
           done: 'Сәкләнгән скриншот',
           pending: 'Скриншот саклау',
-          pendingAction: 'Саклау',
+          pendingAction: 'Саклау'
         },
         browser_type: {
           done: 'Бетте терәү',
           pending: 'Бетте терәү',
-          pendingAction: 'Терәү',
+          pendingAction: 'Терәү'
         },
         clarify: {
           done: 'Сороп берелгән',
           pending: 'Сороу һыңғау',
-          pendingAction: 'Сороу',
+          pendingAction: 'Сороу'
         },
         cronjob: {
           done: 'Cron иш',
           pending: 'Cron ишен планлаштыру',
-          pendingAction: 'Планлаштыру',
+          pendingAction: 'Планлаштыру'
         },
         edit_file: {
           done: 'Өзгәртелгән файл',
           pending: 'Файл өҙгәртеү',
-          pendingAction: 'Өҙгәртеү',
+          pendingAction: 'Өҙгәртеү'
         },
         execute_code: {
           done: 'Код ишләттелде',
           pending: 'Скрипт яҙыу',
-          pendingAction: 'Скрипт яҙыу',
+          pendingAction: 'Скрипт яҙыу'
         },
         image_generate: {
           done: 'Ясалған сурет',
           pending: 'Сурет ясау',
-          pendingAction: 'Ясау',
+          pendingAction: 'Ясау'
         },
         list_files: {
           done: 'Тизделгән файлдар',
           pending: 'Файлдарды тиздеү',
-          pendingAction: 'Тиздеү',
+          pendingAction: 'Тиздеү'
         },
         patch: {
           done: 'Патчланған файл',
           pending: 'Файлга патч биреү',
-          pendingAction: 'Патч биреү',
+          pendingAction: 'Патч биреү'
         },
         read_file: {
           done: 'Файл оҡу',
           pending: 'Файл оҡулыу',
-          pendingAction: 'Оҡу',
+          pendingAction: 'Оҡу'
         },
         search_files: {
           done: 'Файлдар табылды',
           pending: 'Файлдар изәге',
-          pendingAction: 'Изау',
+          pendingAction: 'Изау'
         },
         session_search_recall: {
           done: 'Сессия тарихы табылды',
           pending: 'Сессия тарихы изәге',
-          pendingAction: 'Изау',
+          pendingAction: 'Изау'
         },
         terminal: {
           done: 'Буйруҡ ишләте',
           pending: 'Буйруҡ ишләтеп ятна',
-          pendingAction: 'Ишләтеп ятна',
+          pendingAction: 'Ишләтеп ятна'
         },
         todo: {
           done: 'Тапшырмалар яңартылды',
           pending: 'Тапшырмалар яңартыу',
-          pendingAction: 'Яңартыу',
+          pendingAction: 'Яңартыу'
         },
         vision_analyze: {
           done: 'Рәсем талланды',
           pending: 'Рәсем таллану',
-          pendingAction: 'Таллану',
+          pendingAction: 'Таллану'
         },
         web_extract: {
           done: 'Веб-бет оҡу',
           pending: 'Веб-бет оҡулыу',
-          pendingAction: 'Оҡу',
+          pendingAction: 'Оҡу'
         },
         web_search: {
           done: 'Интернетты издеү',
           pending: 'Интернетты издеп булып',
-          pendingAction: 'Издеү',
+          pendingAction: 'Издеү'
         },
         write_file: {
           done: 'ТӨҺРӘТҘЛӘНҘН Файл',
           pending: 'Файлды тӧҙәтәү',
-          pendingAction: 'Тӧҙәтәү',
-        },
-      },
-    },
+          pendingAction: 'Тӧҙәтәү'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer шлюз уланмаған',
@@ -2881,7 +2960,7 @@ export const ba = defineLocale({
     sudoPlaceholder: 'sudo паролы',
     secretTitle: 'Секрет керек',
     secretDesc: 'OpenAmer-ға даусылма керек, давам итәүгә.',
-    secretPlaceholder: 'секрет мәғнәсе',
+    secretPlaceholder: 'секрет мәғнәсе'
   },
   desktop: {
     audioReadFailed: 'Йөкләнгән аудионы оҡйы алмады',
@@ -2898,7 +2977,8 @@ export const ba = defineLocale({
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} бу сессия үсене`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Не удалось переключить YOLO',
-    profileStatus: current => `Профиль: ${current}. /profile <исем> ни йөкләнгә яки «Яңа сессия» тандаусыны колдонып, башка профильда чат башлаң.`,
+    profileStatus: current =>
+      `Профиль: ${current}. /profile <исем> ни йөкләнгә яки «Яңа сессия» тандаусыны колдонып, башка профильда чат башлаң.`,
     unknownProfile: 'Неизвестный профиль',
     noProfileNamed: (target, available) => `"${target}" исемле профиль юҡ. Мөмкин: ${available}`,
     newChatsProfile: name => `Яңа чатлар профиль ${name} ни колдоноһо.`,
@@ -2908,8 +2988,9 @@ export const ba = defineLocale({
     regenerateFailed: 'Перегенерация не удалась',
     editFailed: 'Редактирование не удалось',
     resumeFailed: 'Возобновление не удалось',
-    resumeStrandedTitle: "Не удалось загрузить эту сессию",
-    resumeStrandedBody: 'Соединение с этой сессией не удалось, автоматические повторные попытки были отменены. Проверьте, запущен ли шлюз, затем попробуйте снова.',
+    resumeStrandedTitle: 'Не удалось загрузить эту сессию',
+    resumeStrandedBody:
+      'Соединение с этой сессией не удалось, автоматические повторные попытки были отменены. Проверьте, запущен ли шлюз, затем попробуйте снова.',
     resumeRetry: 'Повторить',
     nothingToBranch: 'Ничего для ветвления',
     branchNeedsChat: 'Запустите или возобновите чат перед ветвлением.',
@@ -2949,31 +3030,31 @@ export const ba = defineLocale({
       success: platform => `${platform}-га беренде. Бул яҡы истәлекте дауам итә алаһыҡ.`,
       systemNote: platform => `↻ ${platform}-га беренде — бул яҡы истәлекте дауам итә алаһыҡ.`,
       failed: error => `Берү һәтәле: ${error}`,
-      timedOut: 'Шлюз күтәү вакыты асып кетте. `openamer gateway` иштеүде ми?',
-    },
+      timedOut: 'Шлюз күтәү вакыты асып кетте. `openamer gateway` иштеүде ми?'
+    }
   },
   errors: {
     genericFailure: 'Бер нәрсә һәтәле',
     boundaryTitle: 'Интерфейста бер нәрсә сыҡылды',
     boundaryDesc: 'Карау күтәлмәгән хәта белән душты. Сезнең чаттарыңыз һәм настройкаларыңыз һеҙәп калды.',
     reloadWindow: 'Эшәккә йөндөш',
-    openLogs: 'Логларҙы ачыу',
+    openLogs: 'Логларҙы ачыу'
   },
   ui: {
     search: {
-      clear: 'Езләүҙе тазалау',
+      clear: 'Езләүҙе тазалау'
     },
     pagination: {
       label: 'Бетләштерү',
       previous: 'Алдыңғы',
       previousAria: 'Алдыңғы беткә өтәү',
       next: 'Кесе',
-      nextAria: 'Кесе биткә өт',
+      nextAria: 'Кесе биткә өт'
     },
     sidebar: {
       title: 'Яндар панел',
       description: 'Мобиль яндар панелы күрсәтелә.',
-      toggle: 'Яндар панелын алмаштыр',
-    },
-  },
+      toggle: 'Яндар панелын алмаштыр'
+    }
+  }
 })

@@ -8,7 +8,8 @@ import { defineLocale } from './define-locale'
 export const sg = defineLocale({
   settings: {
     toolsets: {
-      noProviderOptions: 'A yeke na âoption tî fournisseur pëpe na outil sô — zîa nî tî sâra kua na configuration tî mo sô a yeke andâ.',
+      noProviderOptions:
+        'A yeke na âoption tî fournisseur pëpe na outil sô — zîa nî tî sâra kua na configuration tî mo sô a yeke andâ.',
       noProviders: 'A yeke na fournisseur pëpe tî outil sô fadësô.',
       ready: 'Prêt',
       needsSignIn: 'Konëktêngö a hînga',
@@ -32,7 +33,7 @@ export const sg = defineLocale({
       webUseForSearch: 'Tî gïngö',
       webUseForExtract: 'Tî zîngö nî',
       webUsedForSearch: 'Serveur de recherche',
-      webUsedForExtract: 'Serveur d\'extraction',
+      webUsedForExtract: "Serveur d'extraction",
       loadingModels: 'A yeke kâi catalogue tî âmodèle…',
       modelSectionTitle: 'Modèle',
       modelInUse: 'Utilisé',
@@ -40,17 +41,19 @@ export const sg = defineLocale({
       modelInactiveHint: 'Soro backend sô kôzo tî sanza modèle tî lo.',
       modelSelectedTitle: 'Modèle sô a soro',
       terminalBackend: {
-        sectionTitle: 'Backend d\'exécution',
-        loading: 'Vérification des backends d\'exécution…',
+        sectionTitle: "Backend d'exécution",
+        loading: "Vérification des backends d'exécution…",
         failedLoad: 'Échec du chargement des backends terminaux',
         ready: 'Prêt',
         needsSetup: 'Configuration a hînga',
         unavailable: 'Indisponible',
         inUse: 'Utilisé',
         selectedTitle: 'Backend sélectionné',
-        needsSetupHint: 'Mo lingbi tî soro backend sô fadësô — âcommande ayeke sâra kua pëpe jusqu\'à configuration a hunzi.',
-        selectedMessage: backend => `Âcommande tî terminal a sara kua fadë na ${backend}. A sara kua na âsession ya sï.`,
-        failedSelect: backend => `Soröngö ${backend} a buba`,
+        needsSetupHint:
+          "Mo lingbi tî soro backend sô fadësô — âcommande ayeke sâra kua pëpe jusqu'à configuration a hunzi.",
+        selectedMessage: backend =>
+          `Âcommande tî terminal a sara kua fadë na ${backend}. A sara kua na âsession ya sï.`,
+        failedSelect: backend => `Soröngö ${backend} a buba`
       },
       loadingConfig: 'A yeke müngö configuration',
       savedTitle: 'A bata credential',
@@ -68,7 +71,8 @@ export const sg = defineLocale({
       failedSelect: provider => `Soröngö ${provider} a buba`,
       failedLoad: 'Müngö config tî outil a buba',
       openamerAuthNeededMessage: provider => `A bata ${provider} me a kôzo pepe juska mo sü mabôko na OpenAmer Portal.`,
-      postSetupHint: step => `Backend sô a lingbi installation ôko (${step}). A sara kua na machine sô — a lingbi âminute ndurü.`,
+      postSetupHint: step =>
+        `Backend sô a lingbi installation ôko (${step}). A sara kua na machine sô — a lingbi âminute ndurü.`,
       postSetupCompleteMessage: step => `A lëkë ${step}.`,
       postSetupErrorMessage: step => `Bâ log tî ${step}.`,
       postSetupFailed: step => `Särängö setup tî ${step} a buba`,
@@ -78,12 +82,14 @@ export const sg = defineLocale({
       failedSelectCapability: provider => `Zïängö ${provider} a buba`,
       modelCount: count => `${count} modêle${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} a sara kua na âsession ya sï.`,
-      failedSelectModel: model => `Soröngö ${model} a buba`,
+      failedSelectModel: model => `Soröngö ${model} a buba`
     },
     appearance: {
       pet: {
-        intro: 'Mû masikoti petdex ti yâ vidéo so a luti ndö application, a yeke kîri ti bâa ye OpenAmer a yeke sara — a kpë tango a yeke sara kusala, a sara ngombâ na nzönî, a sara mawa na fôte.',
-        restartHint: 'Nyama a hînga lëndë kîri — application so a yeke kôzo na nguê ti so a zîa ndâ ti ye so pëpe. Kâi na OpenAmer, zîa kîri, kôzo gï na lâti so.',
+        intro:
+          'Mû masikoti petdex ti yâ vidéo so a luti ndö application, a yeke kîri ti bâa ye OpenAmer a yeke sara — a kpë tango a yeke sara kusala, a sara ngombâ na nzönî, a sara mawa na fôte.',
+        restartHint:
+          'Nyama a hînga lëndë kîri — application so a yeke kôzo na nguê ti so a zîa ndâ ti ye so pëpe. Kâi na OpenAmer, zîa kîri, kôzo gï na lâti so.',
         on: 'Aktif',
         off: 'Aktif pëpe',
         scaleTitle: 'Taille',
@@ -116,7 +122,7 @@ export const sg = defineLocale({
         adoptFailed: slug => `A lingbi tî mû ${slug} pepe`,
         uninstallFailed: slug => `A lingbi tî zî ${slug} pepe`,
         renameFailed: slug => `A lingbi tî sanza iri tî ${slug} pepe`,
-        exportFailed: slug => `A lingbi tî zî ${slug} na gbe pepe`,
+        exportFailed: slug => `A lingbi tî zî ${slug} na gbe pepe`
       },
       title: 'Lêgë tî lê',
       intro: 'Âye sô a yeke gï tî desktop. Mode a kânga zängö; têma a kânga palette tî lê na mbängö tî discussion.',
@@ -125,13 +131,15 @@ export const sg = defineLocale({
       toolViewTitle: 'Lê tî âappel tî outil',
       toolViewDesc: 'Product a zî na lê âpayload tî outil; Technical a fa âentrée/sortie kûê.',
       uiScaleTitle: 'Taille tî UI',
-      uiScaleDesc: (percent: number) => `A sanza taille tî âtënë na âcontrôle na yâ tî app kûê. Cmd/Ctrl na +, - na 0 a sara kua ndönî. Fadë: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `A sanza taille tî âtënë na âcontrôle na yâ tî app kûê. Cmd/Ctrl na +, - na 0 a sara kua ndönî. Fadë: ${percent}%.`,
       translucencyTitle: 'Fenêtre sô a bâ na yâ',
       translucencyDesc: 'Bâ desktop tî mo na yâ tî fenêtre kûê. Gï na macOS na Windows.',
       backdropTitle: 'Ndâ tî lê tî discussion',
       backdropDesc: 'Ata sô a yeke na pekô tî discussion, a yeke vuko ndurü.',
       embedsTitle: 'Âembed na yâ tî tënë',
-      embedsDesc: 'Âtara tî nzönî a mû na âsite tî mbênî zo (YouTube, X, …). Ask a fa ndo tî küi juska mo zîa lêgë tî ôko na ôko; Always a mû âla ndëndë; Off a bata âlien tî ndâ.',
+      embedsDesc:
+        'Âtara tî nzönî a mû na âsite tî mbênî zo (YouTube, X, …). Ask a fa ndo tî küi juska mo zîa lêgë tî ôko na ôko; Always a mû âla ndëndë; Off a bata âlien tî ndâ.',
       embedsAsk: 'Hûnda',
       embedsAlways: 'Lâkûê',
       embedsOff: 'A zîa pepe',
@@ -144,14 +152,15 @@ export const sg = defineLocale({
       themeDesc: 'Gï âpalette tî desktop. A zîa mode sô a soro na ndö.',
       themeProfileNote: profile => `A bata nî tî profil ${profile} — profil ôko na ôko a bata têma tî lo.`,
       installTitle: 'Lëkë na VS Code',
-      installDesc: 'Zîa id tî extension tî Marketplace (ndâ: dracula-theme.theme-dracula) tî sanza têma tî kôlô tî nî na palette tî desktop.',
+      installDesc:
+        'Zîa id tî extension tî Marketplace (ndâ: dracula-theme.theme-dracula) tî sanza têma tî kôlô tî nî na palette tî desktop.',
       installPlaceholder: 'zo-tî-sigî-na-mbeti.yê-tî-zêré',
       installButton: 'Lëkë',
       installing: 'A yeke lëkëngö…',
       installError: 'Lëkëngö têma sô a buba.',
       installed: name => `A lëkë “${name}”.`,
       removeTheme: 'Zî têma',
-      importedBadge: 'A mû na yâ',
+      importedBadge: 'A mû na yâ'
     },
     about: {
       heading: 'OpenAmer Ordinateur',
@@ -178,7 +187,7 @@ export const sg = defineLocale({
       branchCommit: (branch, commit) => `Lêgë ${branch} · Sû ${commit}`,
       minAgo: count => `${count} min a hön`,
       hoursAgo: count => `${count} heure a hön`,
-      daysAgo: count => `${count} lâ a hön`,
+      daysAgo: count => `${count} lâ a hön`
     },
     gateway: {
       modeTitle: 'Lêgë tî bûngbi',
@@ -188,7 +197,8 @@ export const sg = defineLocale({
       inheritDesc: 'Zî zïa ndö tî profil sô, na sâra na bûngbi tî kôzo.',
       remoteTitle: 'Lêgë tî yângâ',
       remoteDesc: 'Bûngbi shell tî desktop sô na OpenAmer backend tî yângâ.',
-      remoteAuthHint: 'Âlêgë tî hébergement a sâra na OAuth wala ïrï tî lë na mot de passe; âlêgë tî lo ôko a lîngbi tî sâra na token tî session.',
+      remoteAuthHint:
+        'Âlêgë tî hébergement a sâra na OAuth wala ïrï tî lë na mot de passe; âlêgë tî lo ôko a lîngbi tî sâra na token tî session.',
       cloudDesc: 'Dï na yâ tî OpenAmer Cloud ôko, na soro ôko na âwasála tî konti tî mo — a yeke pëpe na URL tî zïa.',
       cloudSignIn: 'Dï na yâ tî OpenAmer Cloud',
       cloudSignedIn: 'A dï na yâ tî OpenAmer Cloud',
@@ -202,7 +212,7 @@ export const sg = defineLocale({
       cloudNoAgents: {
         before: 'A bâa pëpe âwasála na konti sô. Sâra ôko na yâ tî',
         linkText: 'portal tî OpenAmer',
-        after: ', na pekô ni kiri.',
+        after: ', na pekô ni kiri.'
       },
       cloudRefresh: 'Kiri',
       cloudConnect: 'Bûngbi',
@@ -226,13 +236,16 @@ export const sg = defineLocale({
       unavailableDesc: 'Pont IPC tî desktop a fa âmbängö tî gateway pepe.',
       title: 'Kangbïngö na gateway',
       envOverride: 'env a sanza nî',
-      intro: 'OpenAmer Desktop a kôzo gateway tî ndo tî lo ndëndë. Sära kua na gateway tî yongo tongana mo yê tî zîa app sô tî kânga backend tî OpenAmer sô a yeke kua awe na machine mbênî wala na gbe tî proxy sô a zîa kôlï. Soro profil ôko na gbe tî mû ndo tî yongo tî lo.',
+      intro:
+        'OpenAmer Desktop a kôzo gateway tî ndo tî lo ndëndë. Sära kua na gateway tî yongo tongana mo yê tî zîa app sô tî kânga backend tî OpenAmer sô a yeke kua awe na machine mbênî wala na gbe tî proxy sô a zîa kôlï. Soro profil ôko na gbe tî mû ndo tî yongo tî lo.',
       appliesTo: 'A sara kua tî',
       allProfiles: 'Âprofil kûê',
       defaultConnection: 'Kangbïngö tî ndâ tî âprofil kûê sô a yeke na sanzängö tî lo pepe.',
-      profileConnection: profile => `Kangbïngö sô a sara kua gï tongana “${profile}” a yeke profil tî kua. Soro Sära kua na gateway tî ndâ tî zî sanzängö tî lo.`,
+      profileConnection: profile =>
+        `Kangbïngö sô a sara kua gï tongana “${profile}” a yeke profil tî kua. Soro Sära kua na gateway tî ndâ tî zî sanzängö tî lo.`,
       envOverrideTitle: 'Âvariable tî environnement a yeke kânga session tî desktop sô.',
-      envOverrideDesc: 'Zî OPENAMER_DESKTOP_REMOTE_URL na OPENAMER_DESKTOP_REMOTE_TOKEN tî sara kua na mbängö sô a bata na gbe.',
+      envOverrideDesc:
+        'Zî OPENAMER_DESKTOP_REMOTE_URL na OPENAMER_DESKTOP_REMOTE_TOKEN tî sara kua na mbängö sô a bata na gbe.',
       cloudTitle: 'Kùndù tî OpenAmer',
       cloudSignInTitle: 'Kùndù tî OpenAmer',
       cloudOrgRole: role => `Rôle: ${role}`,
@@ -241,12 +254,16 @@ export const sg = defineLocale({
       signOut: 'Zî mabôko',
       signInWith: provider => `Sü mabôko na ${provider}`,
       authTitle: 'Sü mabôko',
-      authSignedInPassword: 'Gateway sô a sara kua na iri tî zo na mot de passe. Mo sü mabôko awe; session a dîko lê ndëndë.',
+      authSignedInPassword:
+        'Gateway sô a sara kua na iri tî zo na mot de passe. Mo sü mabôko awe; session a dîko lê ndëndë.',
       authSignedInOauth: 'Gateway sô a sara kua na OAuth. Mo sü mabôko awe; session a dîko lê ndëndë.',
-      authNeedsPassword: 'Gateway sô a sara kua na iri tî zo na mot de passe. Sü mabôko tî zîa lêgë na app tî desktop sô.',
-      authNeedsOauth: provider => `Gateway sô a sara kua na OAuth. Sü mabôko na ${provider} tî zîa lêgë na app tî desktop sô.`,
+      authNeedsPassword:
+        'Gateway sô a sara kua na iri tî zo na mot de passe. Sü mabôko tî zîa lêgë na app tî desktop sô.',
+      authNeedsOauth: provider =>
+        `Gateway sô a sara kua na OAuth. Sü mabôko na ${provider} tî zîa lêgë na app tî desktop sô.`,
       tokenTitle: 'Token tî session',
-      tokenDesc: 'Token tî session tî dashboard sô a sara kua na nî tî REST na WebSocket. Zîa nî sô pepe tî bata token sô a bata awe.',
+      tokenDesc:
+        'Token tî session tî dashboard sô a sara kua na nî tî REST na WebSocket. Zîa nî sô pepe tî bata token sô a bata awe.',
       existingToken: value => `Token sô a yeke dä ${value}`,
       savedToken: 'a bata',
       pasteSessionToken: 'Zîa token tî session',
@@ -254,7 +271,8 @@ export const sg = defineLocale({
       saveForRestart: 'Zîa tî dïköngö tî pekô',
       saveAndReconnect: 'Zîa na kangbi ndönî',
       diagnostics: 'Diagnostic',
-      diagnosticsDesc: 'Fa desktop.log na gestionnaire tî âfichier tî mo — a yeke nzönî tongana gateway a lingbi tî kôzo pepe.',
+      diagnosticsDesc:
+        'Fa desktop.log na gestionnaire tî âfichier tî mo — a yeke nzönî tongana gateway a lingbi tî kôzo pepe.',
       openLogs: 'Bata âlog',
       incompleteTitle: 'Gateway tî yongo a sï pepe',
       incompleteSignIn: 'Sü URL tî yongo na sü mabôko kôzo tî sanza na yongo.',
@@ -277,7 +295,8 @@ export const sg = defineLocale({
       applyFailed: 'A lingbi tî sära âmbängö tî gateway pepe',
       saveFailed: 'A lingbi tî zîa âmbängö tî gateway pepe',
       sshTitle: 'Kangbi na SSH',
-      sshDesc: 'A kôzo OpenAmer na yongo na SSH na a mû nî na app sô na yâ tî tunnel — ye ôko tî kôzo wala tî fa pepe. A lingbi lêgë tî SSH na clé sô a yeke kua na host.',
+      sshDesc:
+        'A kôzo OpenAmer na yongo na SSH na a mû nî na app sô na yâ tî tunnel — ye ôko tî kôzo wala tî fa pepe. A lingbi lêgë tî SSH na clé sô a yeke kua na host.',
       sshTrustHint: 'A zîa kôlï na clé tî host sô a fa kôzo; tongana a sanza nî na pekô, a kânga kûê.',
       sshHostTitle: '主机',
       sshHostDesc: 'user@host, wala alias tî Host na ~/.ssh/config.',
@@ -301,13 +320,17 @@ export const sg = defineLocale({
       sshReachable: (host, platform) => `A wara: ${host} (${platform}) — a bâ OpenAmer`,
       sshIncompleteHost: 'Sü host tî SSH kôzo tî kangbi.',
       sshErrUnreachable: 'A lingbi tî wara host sô na SSH pepe. Bâ host, port, na réseau tî mo.',
-      sshErrAuth: 'Sü mabôko tî SSH a buba. Mû clé tî mo na ssh-agent (ssh-add) wala zîa IdentityFile na ~/.ssh/config — OpenAmer a sara ssh pepe na hûnda.',
-      sshErrHostKey: 'Clé tî host a SANZA awe bandä kangbïngö tî mo tî pekô. Bâ andâa a lingbi nî, na pekô sara ssh-keygen -R <host> na kangbi ndönî.',
-      sshErrNotInstalled: 'A lëkë installation tî OpenAmer na host tî yongo pepe. Lëkë nî la (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) wala zîa lêgë tî OpenAmer.',
-      sshErrPlatform: 'Plateforme tî yongo sô a yeke pepe. Mode SSH tî OpenAmer Desktop a sara kua na host tî Linux, macOS, na Windows.',
+      sshErrAuth:
+        'Sü mabôko tî SSH a buba. Mû clé tî mo na ssh-agent (ssh-add) wala zîa IdentityFile na ~/.ssh/config — OpenAmer a sara ssh pepe na hûnda.',
+      sshErrHostKey:
+        'Clé tî host a SANZA awe bandä kangbïngö tî mo tî pekô. Bâ andâa a lingbi nî, na pekô sara ssh-keygen -R <host> na kangbi ndönî.',
+      sshErrNotInstalled:
+        'A lëkë installation tî OpenAmer na host tî yongo pepe. Lëkë nî la (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) wala zîa lêgë tî OpenAmer.',
+      sshErrPlatform:
+        'Plateforme tî yongo sô a yeke pepe. Mode SSH tî OpenAmer Desktop a sara kua na host tî Linux, macOS, na Windows.',
       sshErrTimeout: 'Kangbïngö tî SSH a hön tongo. Host a lingbi tî wara pepe wala a yeke na längö.',
       sshErrUpdateRequired: 'Lëkë OpenAmer na host tî yongo kôzo tî kangbi na SSH tî Desktop.',
-      sshErrUnknown: 'Kangbïngö tî SSH a buba.',
+      sshErrUnknown: 'Kangbïngö tî SSH a buba.'
     },
     mcp: {
       reloadFailed: 'MCP kîri zîa akasa',
@@ -369,10 +392,11 @@ export const sg = defineLocale({
       catalogInstallStarted: name => `A yeke lëkëngö ${name}... a sara kua na âsession ya sï tongana a sara awe.`,
       catalogInstallFailed: name => `Lëkëngö ${name} a buba`,
       catalogEnvPrompt: name => `${name} a lingbi âcredential`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} a zîa`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} a zîa`,
       authenticatedMessage: (server, count) => `${server}: ${count} outil`,
       enableTool: tool => `Zîa ${tool}`,
-      disableTool: tool => `Zîa ${tool} pepe`,
+      disableTool: tool => `Zîa ${tool} pepe`
     },
     model: {
       loading: 'Na zîa lege tî modɛlɛ...',
@@ -386,48 +410,49 @@ export const sg = defineLocale({
       defaultsFailed: 'Zïängö ândâ tî modêle a buba',
       auxiliaryTitle: 'Âmodêle tî mabôko',
       resetAllToMain: 'Dîko kûê na modêle tî ndâ',
-      auxiliaryDesc: 'Âkua tî mabôko a sara kua na modêle tî ndâ ndëndë. Zîa modêle tî lo mveni na kua ôko tî sanza nî.',
+      auxiliaryDesc:
+        'Âkua tî mabôko a sara kua na modêle tî ndâ ndëndë. Zîa modêle tî lo mveni na kua ôko tî sanza nî.',
       setToMain: 'Zîa na tî ndâ',
       change: 'Sanza',
       autoUseMain: 'auto · sara kua na modêle tî ndâ',
       providerDefault: '(ndâ tî wamüngö)',
       fallbackAdd: 'Mû modêle tî pekô',
       fallbackEmpty: 'Modêle tî pekô a yeke pepe — a sara kua na modêle tî ndâ gï tongana a buba pepe.',
-      notInCatalog: "a yeke na liste tî modêle tî wamüngö sô pepe — âappel a lingbi tî gue na mbênî.",
+      notInCatalog: 'a yeke na liste tî modêle tî wamüngö sô pepe — âappel a lingbi tî gue na mbênî.',
       tasks: {
         vision: {
           label: 'Bängö',
-          hint: 'Bängö tî ata',
+          hint: 'Bängö tî ata'
         },
         web_extract: {
           label: 'Zïngö tënë na web',
-          hint: 'Ndurü tî page',
+          hint: 'Ndurü tî page'
         },
         compression: {
           label: 'Kânga na kêtê',
-          hint: 'Kânga contexte',
+          hint: 'Kânga contexte'
         },
         skills_hub: {
           label: 'Hub tî âcompétence',
-          hint: 'Gïngö compétence',
+          hint: 'Gïngö compétence'
         },
         approval: {
           label: 'Zïängö mabôko',
-          hint: 'Zîa mabôko ndëndë na ndâ',
+          hint: 'Zîa mabôko ndëndë na ndâ'
         },
         mcp: {
           label: 'MCP',
-          hint: 'Lêgë tî âoutil MCP',
+          hint: 'Lêgë tî âoutil MCP'
         },
         title_generation: {
           label: 'Särängö titre',
-          hint: 'Âtitre tî âsession',
+          hint: 'Âtitre tî âsession'
         },
         curator: {
           label: 'Wabata',
-          hint: 'Bängö kua tî âcompétence',
-        },
-      },
+          hint: 'Bängö kua tî âcompétence'
+        }
+      }
     },
     closeSettings: 'Kânga âmbängö',
     exportConfig: 'Zî config na gbe',
@@ -451,11 +476,12 @@ export const sg = defineLocale({
       about: 'Na ndö',
       billing: 'Facturation',
       notifications: 'Âtënë tî hînga',
-      plugins: 'Âplugin',
+      plugins: 'Âplugin'
     },
     plugins: {
       title: 'Âplugin tî desktop',
-      blurb: 'Âextension UI sô a mû na yâ tî app sô — a yeke na yâ tî build, wala a zîa na kôdörö desktop-plugins (na yâ tî âsô OpenAmer a sü). Kânga ôko a zî plugin na yâ tî kua fadë, a sara nî na pekô tî dïköngö kûê.',
+      blurb:
+        'Âextension UI sô a mû na yâ tî app sô — a yeke na yâ tî build, wala a zîa na kôdörö desktop-plugins (na yâ tî âsô OpenAmer a sü). Kânga ôko a zî plugin na yâ tî kua fadë, a sara nî na pekô tî dïköngö kûê.',
       count: n => `${n} a yeke na yâ`,
       openFolder: 'Bata kôdörö tî âplugin',
       rescan: 'Dîko bängö',
@@ -467,40 +493,41 @@ export const sg = defineLocale({
       kinds: {
         bundled: 'na yâ tî build',
         disk: 'na ndö tî disque',
-        runtime: 'na yâ tî kua',
-      },
+        runtime: 'na yâ tî kua'
+      }
     },
     notifications: {
       title: 'Âtënë tî hînga',
-      intro: 'Âtënë tî hînga tî desktop, a yeke yâ tî app pepe. A yeke tî appareil sô — ordinateur ôko na ôko a bata âmbängö tî lo.',
+      intro:
+        'Âtënë tî hînga tî desktop, a yeke yâ tî app pepe. A yeke tî appareil sô — ordinateur ôko na ôko a bata âmbängö tî lo.',
       enableAll: 'Zîa âtënë tî hînga',
       enableAllDesc: 'Interrupteur tî kûê. Kânga nî tî kânga âtënë tî hînga kûê na gbe.',
       focusedHint: 'Âkânga tî sïngö a sara kua gï tongana OpenAmer a yeke na gbe.',
       kinds: {
         approval: {
           label: 'A lingbi tî zîa mabôko',
-          description: 'Commande ôko a yeke küi tî mo zîa mabôko wala kânga nî.',
+          description: 'Commande ôko a yeke küi tî mo zîa mabôko wala kânga nî.'
         },
         input: {
           label: 'A lingbi tî mû tënë',
-          description: 'OpenAmer a hûnda hündängö wala a lingbi mot de passe wala secret.',
+          description: 'OpenAmer a hûnda hündängö wala a lingbi mot de passe wala secret.'
         },
         turnDone: {
           label: 'Kîri tënë a lëngbi awe',
-          description: 'Mbâgë tî kua a sara awe tongana OpenAmer a yeke na gbe.',
+          description: 'Mbâgë tî kua a sara awe tongana OpenAmer a yeke na gbe.'
         },
         turnError: {
           label: 'Mbâgë tî kua a buba',
-          description: 'Mbâgë tî kua a sï na kpälë.',
+          description: 'Mbâgë tî kua a sï na kpälë.'
         },
         backgroundDone: {
           label: 'Kua tî gbe a sara awe',
-          description: 'Commande tî terminal na gbe a sara awe.',
+          description: 'Commande tî terminal na gbe a sara awe.'
         },
         credits: {
           label: 'Âkânga tî crédit',
-          description: 'A kânga wala a dîko lêgë tî crédit.',
-        },
+          description: 'A kânga wala a dîko lêgë tî crédit.'
+        }
       },
       test: 'Tokua tënë tî hînga tî tara',
       testTitle: 'OpenAmer',
@@ -509,7 +536,7 @@ export const sg = defineLocale({
       testUnsupported: 'Système sô a yeke na lêgë tî notifikasiôn tî ndo pepe.',
       completionSoundTitle: 'Gbïä tî sïngö',
       completionSoundDesc: 'A gbïä tongana mbâgë tî kua tî agent a sara awe. Soro ôko na tara nî la.',
-      completionSoundPreview: 'Tara',
+      completionSoundPreview: 'Tara'
     },
     sections: {
       model: 'Modêle',
@@ -519,7 +546,7 @@ export const sg = defineLocale({
       safety: 'Sêcurité',
       memory: 'Mémoire & contexte',
       voice: 'Yângâ',
-      advanced: 'Na pekô tî ndâ',
+      advanced: 'Na pekô tî ndâ'
     },
     searchPlaceholder: {
       about: 'Na ndö tî OpenAmer Desktop',
@@ -527,21 +554,21 @@ export const sg = defineLocale({
       gateway: 'Kangbïngö tî gateway...',
       keys: 'Gi âclé API...',
       mcp: 'Gi âsêrvêre MCP...',
-      sessions: 'Gi âsession tî kôzo...',
+      sessions: 'Gi âsession tî kôzo...'
     },
     modeOptions: {
       light: {
         label: 'Lê',
-        description: 'Ndö tî desktop a yeke lê nzönî',
+        description: 'Ndö tî desktop a yeke lê nzönî'
       },
       dark: {
         label: 'Vuko',
-        description: 'Ndo tî kua sô lê a yeke vuko ndurü',
+        description: 'Ndo tî kua sô lê a yeke vuko ndurü'
       },
       system: {
         label: 'Système',
-        description: 'Tara lê tî OS',
-      },
+        description: 'Tara lê tî OS'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -559,7 +586,7 @@ export const sg = defineLocale({
       imported: 'A mû config na yâ',
       invalidJson: 'JSON tî config a lëngbi pepe',
       keepAwakeTitle: 'Kânga langö tî ordinateur',
-      keepAwakeDesc: 'Kânga langö tî machine sô tî zîa âkua tî längö tî kûê tî kôzo. Écran a lingbi tî vuko ndurü.',
+      keepAwakeDesc: 'Kânga langö tî machine sô tî zîa âkua tî längö tî kûê tî kôzo. Écran a lingbi tî vuko ndurü.'
     },
     credentials: {
       pasteKey: 'Zîa clé',
@@ -569,7 +596,7 @@ export const sg = defineLocale({
       couldNotSave: 'Zïängö credential a buba.',
       remove: 'Zî',
       getKey: 'Wara clé',
-      saving: 'A yeke zïängö',
+      saving: 'A yeke zïängö'
     },
     envActions: {
       actionsFor: label => `Âsärängö tî ${label}`,
@@ -580,17 +607,18 @@ export const sg = defineLocale({
       revealValue: 'Fa valeur',
       replace: 'Zîa na ndo ni',
       set: 'Zîa',
-      clear: 'Zî kûê',
+      clear: 'Zî kûê'
     },
     keys: {
       loading: 'A yeke müngö âclé API na âcredential...',
       failedLoad: 'Müngö âclé API a buba',
-      empty: 'A lëkë ye ôko na yâ tî mbâgë sô pepe.',
+      empty: 'A lëkë ye ôko na yâ tî mbâgë sô pepe.'
     },
     providers: {
       connectAccount: 'Kangbi compte ôko',
       haveApiKey: 'Mo yeke na clé API pepe?',
-      intro: 'Sü mabôko na abonnement — clé API ôko tî mû pepe. OpenAmer a sara sü mabôko na browser tî mo, la na yâ tî app.',
+      intro:
+        'Sü mabôko na abonnement — clé API ôko tî mû pepe. OpenAmer a sara sü mabôko na browser tî mo, la na yâ tî app.',
       connected: 'A kangbi',
       collapse: 'Kânga na yâ',
       connectAnother: 'Kangbi wamüngö mbênî',
@@ -600,7 +628,8 @@ export const sg = defineLocale({
       removeConfirm: provider => `Zî ${provider}?`,
       removeExternalGeneric: provider => `${provider} a yeke na CLI tî lo mveni — zî nî la.`,
       removeKeyManaged: provider => `${provider} a lëkë nî na clé API. Zî nî na yâ tî API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Zî kangbïngö tî ${provider}? Sô a sara “${command}” na terminal tî zî credential ni.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Zî kangbïngö tî ${provider}? Sô a sara “${command}” na terminal tî zî credential ni.`,
       removeTerminalRunning: provider => `A yeke särängö zïngö kangbïngö tî ${provider} na terminal…`,
       removedTitle: 'A zî compte ni',
       removedMessage: provider => `A zî ${provider}.`,
@@ -610,14 +639,16 @@ export const sg = defineLocale({
       noKeysMatch: 'Wamüngö ôko a lëngbi na gïngö tî mo pepe.',
       localEndpoint: {
         title: 'Endpoint tî ndo / tî mo',
-        description: 'Zîa OpenAmer na endpoint ôko sô a sara kua na OpenAI (Zyphra, vLLM, llama.cpp, Ollama, na âsô tî pekô).',
+        description:
+          'Zîa OpenAmer na endpoint ôko sô a sara kua na OpenAI (Zyphra, vLLM, llama.cpp, Ollama, na âsô tî pekô).'
       },
-      loading: 'A yeke müngö âwamüngö...',
+      loading: 'A yeke müngö âwamüngö...'
     },
     sessions: {
       loading: 'A yeke müngö âsession tî kôzo…',
       archivedTitle: 'Âsession tî kôzo',
-      archivedIntro: 'Âdiscussion tî kôzo a yeke na lê tî sidebar pepe me a bata âtënë tî âla kûê. Ctrl/⌘-click discussion ôko na sidebar tî bata nî na yâ.',
+      archivedIntro:
+        'Âdiscussion tî kôzo a yeke na lê tî sidebar pepe me a bata âtënë tî âla kûê. Ctrl/⌘-click discussion ôko na sidebar tî bata nî na yâ.',
       emptyArchivedTitle: 'A bata ye ôko na yâ pepe',
       emptyArchivedDesc: 'Bata discussion ôko na yâ tî zî nî na lê la.',
       unarchive: 'Zî nî na yâ',
@@ -626,12 +657,14 @@ export const sg = defineLocale({
       restored: 'A kîri nî',
       deleteConfirm: title => `Zî “${title}” lâkûê? A lingbi tî dîko nî pepe.`,
       autoArchiveTitle: 'Bata âdiscussion sô a sara kua na nî pepe ndëndë',
-      autoArchiveDesc: "Bata âdiscussion sô mo sara kua na nî pepe na tongo ndurü na yâ ndëndë. Âdiscussion sô a kangbi a yeke na yâ pepe, a zî ye ôko pepe — âdiscussion tî kôzo a gue gï la.",
+      autoArchiveDesc:
+        'Bata âdiscussion sô mo sara kua na nî pepe na tongo ndurü na yâ ndëndë. Âdiscussion sô a kangbi a yeke na yâ pepe, a zî ye ôko pepe — âdiscussion tî kôzo a gue gï la.',
       autoArchiveDaysLabel: 'Bata na yâ na pekô tî',
       autoArchiveDaysUnit: 'lâ sô a sara kua pepe',
       autoArchiveFailed: 'A lingbi tî lëkë bängö na yâ ndëndë pepe',
       defaultDirTitle: 'Kôdörö tî ndâ tî projet',
-      defaultDirDesc: 'Âsession ya sï a kôzo na kôdörö sô andâa mo soro mbênî pepe. Zîa nî pepe tî sara kua na kôdörö tî mo.',
+      defaultDirDesc:
+        'Âsession ya sï a kôzo na kôdörö sô andâa mo soro mbênî pepe. Zîa nî pepe tî sara kua na kôdörö tî mo.',
       defaultDirUpdated: 'A lëkë kôdörö tî ndâ tî projet — kôzo discussion ya sï (Ctrl/⌘+N) tî sara nî kua',
       defaultsTo: label => `A yeke ${label} na ndâ.`,
       change: 'Sanza',
@@ -642,132 +675,132 @@ export const sg = defineLocale({
       unarchiveFailed: 'Zïngö na yâ a buba',
       deleteFailed: 'Zïngö a buba',
       updateDirFailed: 'A lingbi tî lëkë kôdörö tî ndâ pepe',
-      clearDirFailed: 'A lingbi tî zî kôdörö tî ndâ pepe',
-    },
+      clearDirFailed: 'A lingbi tî zî kôdörö tî ndâ pepe'
+    }
   },
   messaging: {
     fieldCopy: {
       DISCORD_REPLY_TO_MODE: {
         label: 'Lë tî kïri tënë',
-        help: 'kôzo, kûê, wala gbi',
+        help: 'kôzo, kûê, wala gbi'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Zïa ndä na a-zo Discord kûê',
-        help: 'Développement sèngè. Na ngoi so a yeke taa, zo kûê a lingbi ti DM bot na yâ liste tî zïa ndä pëpe.',
+        help: 'Développement sèngè. Na ngoi so a yeke taa, zo kûê a lingbi ti DM bot na yâ liste tî zïa ndä pëpe.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID tî canal tî lakui',
-        help: 'Canal so bot ayeke tokua a-tënë proactif (sortie cron, a-rappel).',
+        help: 'Canal so bot ayeke tokua a-tënë proactif (sortie cron, a-rappel).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Iri tî canal tî lakui',
-        help: 'Iri tî fängö tî canal tî lakui na yâ a-log na sortie tî état.',
+        help: 'Iri tî fängö tî canal tî lakui na yâ a-log na sortie tî état.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Zïa ndä na a-zo iMessage kûê',
-        help: 'Na ngoi so a yeke taa, lü liste tî zïa ndä tî BlueBubbles.',
+        help: 'Na ngoi so a yeke taa, lü liste tî zïa ndä tî BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Zïa ndä na a-zo Mattermost kûê',
+        label: 'Zïa ndä na a-zo Mattermost kûê'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Canal tî lakui',
+        label: 'Canal tî lakui'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Zïa ndä na a-zo QQ kûê',
+        label: 'Zïa ndä na a-zo QQ kûê'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Canal tî lakui tî QQ',
-        help: 'Canal wala groupe par défaut tî tokua cron.',
+        help: 'Canal wala groupe par défaut tî tokua cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Iri tî canal tî lakui tî QQ',
+        label: 'Iri tî canal tî lakui tî QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token tî bot Slack',
         help: 'Zïa token tî bot so a yeke na OAuth & Permissions na pekô tî zïa application Slack tî mo.',
-        placeholder: 'Zïa token tî bot Slack',
+        placeholder: 'Zïa token tî bot Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token tî application Slack',
         help: 'Zïa token tî niveau application so a hinda tî Socket Mode.',
-        placeholder: 'Zïa token tî application Slack',
+        placeholder: 'Zïa token tî application Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'a-ID tî a-zo Slack so a zïa ndä',
-        help: 'A fa. a-ID tî a-zo Slack so a kaba na virgule.',
+        help: 'A fa. a-ID tî a-zo Slack so a kaba na virgule.'
       },
       MATTERMOST_URL: {
         label: 'URL tî serveur',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token tî bot',
+        label: 'Token tî bot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'a-ID tî a-zo so a zïa ndä',
-        help: 'A fa. a-ID tî a-zo Mattermost so a kaba na virgule.',
+        help: 'A fa. a-ID tî a-zo Mattermost so a kaba na virgule.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL tî serveur tî lakui',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token tî accès',
+        label: 'Token tî accès'
       },
       MATRIX_USER_ID: {
         label: 'ID tî zo tî bot',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'a-ID tî a-zo Matrix so a zïa ndä',
-        help: 'A fa. a-ID tî a-zo so a kaba na virgule na format @user:server.',
+        help: 'A fa. a-ID tî a-zo so a kaba na virgule na format @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL tî pont Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL tî pont REST signal-cli so ayeke kua.',
+        help: 'URL tî pont REST signal-cli so ayeke kua.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Numéro tî téléphone',
-        help: 'Numéro sô a sü na bridge signal-cli tî mo.',
+        help: 'Numéro sô a sü na bridge signal-cli tî mo.'
       },
       TELEGRAM_BOT_TOKEN: {
         label: 'Token tî bot',
         help: 'Sära bot na @BotFather, na pekô zîa token sô a mû na mo.',
-        placeholder: 'Zîa token tî bot Telegram',
+        placeholder: 'Zîa token tî bot Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'ÂID tî zo tî Telegram sô a zîa lêgë',
-        help: 'A yeke nzönî. ÂID tî chiffre sô a kânga na virgule, na @userinfobot. Andâa sô pepe, zo ôko a lingbi tî tokua tënë na bot tî mo.',
+        help: 'A yeke nzönî. ÂID tî chiffre sô a kânga na virgule, na @userinfobot. Andâa sô pepe, zo ôko a lingbi tî tokua tënë na bot tî mo.'
       },
       TELEGRAM_PROXY: {
         label: 'URL tî proxy',
-        help: 'A lingbi gï na âréseau sô a kânga Telegram.',
+        help: 'A lingbi gï na âréseau sô a kânga Telegram.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token tî bot',
-        help: 'Sära application na Discord Developer Portal, mû bot ôko, na pekô zîa token tî lo.',
+        help: 'Sära application na Discord Developer Portal, mû bot ôko, na pekô zîa token tî lo.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'ÂID tî zo tî Discord sô a zîa lêgë',
-        help: 'A yeke nzönî. ÂID tî zo tî Discord sô a kânga na virgule.',
+        help: 'A yeke nzönî. ÂID tî zo tî Discord sô a kânga na virgule.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Âzo tî Signal sô a zîa lêgë',
-        help: 'A yeke nzönî. Âidentifiant tî Signal sô a kânga na virgule.',
+        help: 'A yeke nzönî. Âidentifiant tî Signal sô a kânga na virgule.'
       },
       WHATSAPP_ENABLED: {
         label: 'Zîa bridge tî WhatsApp',
-        help: 'A zîa nî ndëndë na bouton na gbe. Zîa nî sô pepe andâa mo hînga pepe andâa mo lingbi nî.',
+        help: 'A zîa nî ndëndë na bouton na gbe. Zîa nî sô pepe andâa mo hînga pepe andâa mo lingbi nî.'
       },
       WHATSAPP_MODE: {
-        label: 'Mode tî bridge',
+        label: 'Mode tî bridge'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Âzo tî WhatsApp sô a zîa lêgë',
-        help: 'A yeke nzönî. Ânuméro tî téléphone wala âID tî WhatsApp sô a kânga na virgule.',
-      },
+        help: 'A yeke nzönî. Ânuméro tî téléphone wala âID tî WhatsApp sô a kânga na virgule.'
+      }
     },
     search: 'Gi âtënë...',
     loading: 'A yeke müngö âplateforme tî âtënë...',
@@ -781,7 +814,7 @@ export const sg = defineLocale({
       not_configured: 'A lingbi lëkëngö',
       pending_restart: 'A lingbi dïköngö',
       retrying: 'A yeke dïköngö',
-      startup_failed: 'Kôzo a buba',
+      startup_failed: 'Kôzo a buba'
     },
     unknown: 'A hînga nî pepe',
     hintPendingRestart: 'Dîko gateway na barre tî statut tî sära sanzängö sô kua.',
@@ -816,8 +849,7 @@ export const sg = defineLocale({
     failedUpdate: name => `Lëkëngö ${name} a buba`,
     failedSave: name => `Zïängö ${name} a buba`,
     failedClear: key => `Zïngö ${key} kûê a buba`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   composer: {
     queueStuckTitle: 'Tënë ti ndurü a tok pëpe',
@@ -847,18 +879,18 @@ export const sg = defineLocale({
       codeReview: {
         label: 'Bango ndâ ti leke',
         description: 'Bâ leke so ti bâ kiri, a kete ndo so a zia, na a manda so a yeke pëpe.',
-        text: 'Bâ tënë so ti bâ a sioni, a kïri, na a manda so a yeke pëpe.',
+        text: 'Bâ tënë so ti bâ a sioni, a kïri, na a manda so a yeke pëpe.'
       },
       implementationPlan: {
         label: 'Leke ti sara',
         description: 'Fa lege kôzo ti sara leke ti ndâ ti leke na ndâ.',
-        text: 'Sara kete leke ti sara kôzo ti leke ndâ ti leke.',
+        text: 'Sara kete leke ti sara kôzo ti leke ndâ ti leke.'
       },
       explainThis: {
         label: 'Fa tënë so',
         description: 'Fa lege ti ndâ ti leke so a sara ni, na kpete na a kuru ti kota.',
-        text: 'Fa lege ti sara ni na fa mbï a kuru ti kota.',
-      },
+        text: 'Fa lege ti sara ni na fa mbï a kuru ti kota.'
+      }
     },
     message: 'Tënë',
     wakingProfile: profile => `A yeke zî ${profile}…`,
@@ -868,20 +900,20 @@ export const sg = defineLocale({
     newSessionPlaceholders: [
       'E yeke sara ye?',
       'Mû kua ôko na OpenAmer',
-      "Ye a yeke na bê tî mo?",
+      'Ye a yeke na bê tî mo?',
       'Fa sô mo lingbi',
       'E yeke sara ye kôzo?',
       'Hûnda ye kûê',
-      'Kôzo na but',
+      'Kôzo na but'
     ],
     followUpPlaceholders: [
       'Tokua tënë tî pekô',
       'Mû contexte tî pekô',
       'Lëkë hündängö ni',
-      "Ye tî pekô?",
+      'Ye tî pekô?',
       'Dîko nî',
       'Kôzo na ndö ndönî',
-      'Lëkë wala dîko',
+      'Lëkë wala dîko'
     ],
     startVoice: 'Kôzo tënë na yângâ',
     queueMessage: 'Zîa tënë na file',
@@ -917,7 +949,7 @@ export const sg = defineLocale({
       '/resume': 'dîko session sô a hön',
       '/details': 'kânga niveau tî ndâ tî tënë',
       '/copy': 'mû sô a soro wala tënë tî assistant tî pekô',
-      '/quit': 'sï na openamer',
+      '/quit': 'sï na openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'fa âfichier, âkôdörö, âurl, git',
@@ -927,7 +959,7 @@ export const sg = defineLocale({
       'composer.sendQueued': 'tokua kua tî pekô sô a zîa na file',
       'keybinds.openPanel': 'âlêgë kûê tî clavier',
       'composer.cancel': 'kânga popover · kânga särängö',
-      'composer.history': 'dîko popover / histoire',
+      'composer.history': 'dîko popover / histoire'
     },
     attachUrlTitle: 'Kangbi URL',
     attachUrlDesc: 'OpenAmer a mû page ni na zîa nî na yâ tî contexte tî kua sô.',
@@ -950,7 +982,7 @@ export const sg = defineLocale({
     previewLabel: label => `Tara ${label}`,
     couldNotPreview: label => `A lingbi tî tara ${label} pepe`,
     removeAttachment: label => `Zî ${label}`,
-    url: 'URL…',
+    url: 'URL…'
   },
   statusStack: {
     agents: 'A wasara',
@@ -994,17 +1026,18 @@ export const sg = defineLocale({
       openPr: 'Bata PR',
       ghMissing: 'Lëkë GitHub CLI (gh) na sü mabôko tî bata âPR',
       agentShip: 'Hûnda OpenAmer tî bata PR',
-      agentShipPrompt: 'Bâ âsanzängö tî fadë, commit âla na tënë nzönî tî conventional-commit, push branch ni, na bata pull request.',
+      agentShipPrompt:
+        'Bâ âsanzängö tî fadë, commit âla na tënë nzönî tî conventional-commit, push branch ni, na bata pull request.',
       newBranch: 'Branch ya sï',
       branchOffFrom: base => `Branch ya sï na ${base}`,
       switchTo: branch => `Sanza na ${branch}`,
       switchFailed: branch => `A lingbi tî sanza na ${branch} pepe`,
-      worktrees: 'Âworktree',
+      worktrees: 'Âworktree'
     },
     background: count => `${count} na gbe`,
     subagents: count => `${count} subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Âkua ${done}/${total}`,
-    exit: code => `kîri ${code}`,
+    exit: code => `kîri ${code}`
   },
   install: {
     incompleteTokenTest: 'Kü token tî session kôzonî testê gateway sô.',
@@ -1014,8 +1047,10 @@ export const sg = defineLocale({
     failedTitle: 'Instalasyon a lîngbi pëpe',
     settingUpTitle: 'Lëngö OpenAmer Agent',
     finishingTitle: 'Hûn ndâ',
-    failedDesc: 'Ôko tî mbâgë tî instalasyon a lîngbi pëpe. Na Windows, sô a lingbi tî sôla ndé sô OpenAmer CLI wala instance tî desktop a tambula. Kânga OpenAmer instance kûê sô a tambula, na tara lisô. Tara ndâ tî sô na gbâ wala log tî desktop tî bâa transcript kûê.',
-    activeDesc: 'Sô yeke lëngö tî lâ ôko. Installateur tî OpenAmer a yeke télécharger dépendances na lëngö machine tî mo. Na yängö tî pekô, a yeke hôla mbâgë sô.',
+    failedDesc:
+      'Ôko tî mbâgë tî instalasyon a lîngbi pëpe. Na Windows, sô a lingbi tî sôla ndé sô OpenAmer CLI wala instance tî desktop a tambula. Kânga OpenAmer instance kûê sô a tambula, na tara lisô. Tara ndâ tî sô na gbâ wala log tî desktop tî bâa transcript kûê.',
+    activeDesc:
+      'Sô yeke lëngö tî lâ ôko. Installateur tî OpenAmer a yeke télécharger dépendances na lëngö machine tî mo. Na yängö tî pekô, a yeke hôla mbâgë sô.',
     fetchingManifest: 'A yeke wara manifeste tî installateur...',
     error: 'Fünde',
     hideOutput: 'Hôla lêgë tî installateur',
@@ -1032,25 +1067,29 @@ export const sg = defineLocale({
       running: 'A yeke lëkëngö',
       succeeded: 'A sara awe',
       skipped: 'A hön',
-      failed: 'A buba',
+      failed: 'A buba'
     },
     oneTimeTitle: 'OpenAmer a lingbi installation ôko',
-    unsupportedDesc: platform => `Installation ndëndë tî kôzo a yeke na ${platform} pepe. Bata Terminal na sara commande na gbe, na pekô bata app sô ndönî. Âkôzo tî pekô a hön étape sô.`,
+    unsupportedDesc: platform =>
+      `Installation ndëndë tî kôzo a yeke na ${platform} pepe. Bata Terminal na sara commande na gbe, na pekô bata app sô ndönî. Âkôzo tî pekô a hön étape sô.`,
     installCommand: 'Commande tî installation',
     copyCommand: 'Mû kôpi tî commande',
     viewDocs: 'Bâ âmukanda tî installation',
     installTo: 'A yeke lëkë nî na',
     retryAfterRun: 'Mbï sara nî awe -- tara ndönî',
     setupChoiceTitle: 'Lëkë OpenAmer Desktop',
-    setupChoiceDesc: 'Kangbi app sô na gateway tî OpenAmer sô mo a yeke kua na nî awe, wala lëkë OpenAmer na ndo la na ordinateur sô.',
+    setupChoiceDesc:
+      'Kangbi app sô na gateway tî OpenAmer sô mo a yeke kua na nî awe, wala lëkë OpenAmer na ndo la na ordinateur sô.',
     connectExistingTitle: 'Kangbi na OpenAmer sô a yeke dä',
     connectExistingShort: 'Kangbi sô a yeke dä',
-    connectExistingDesc: 'Sära kua na backend tî yongo na token tî session wala sü mabôko na browser. Installation tî ndo a kôzo pepe.',
+    connectExistingDesc:
+      'Sära kua na backend tî yongo na token tî session wala sü mabôko na browser. Installation tî ndo a kôzo pepe.',
     installLocalTitle: 'Lëkë OpenAmer na ndo',
     installLocalDesc: 'Mû OpenAmer na gbe, sära environnement Python tî lo, na sara backend na ordinateur sô.',
     localStartUnavailable: 'Installation tî ndo a lingbi tî kôzo pepe. Dîko OpenAmer Desktop na tara ndönî.',
     remoteSetupTitle: 'Kangbi na OpenAmer sô a yeke dä',
-    remoteSetupDesc: 'Sü URL tî gateway tî mo. OpenAmer Desktop a yeke bâ andâa a lingbi token wala sü mabôko na browser.',
+    remoteSetupDesc:
+      'Sü URL tî gateway tî mo. OpenAmer Desktop a yeke bâ andâa a lingbi token wala sü mabôko na browser.',
     remoteUrlTitle: 'URL tî gateway',
     remoteUrlDesc: 'Sära kua na URL tî ndâ tî gateway tî OpenAmer, na yâ tî https:// tongana a yeke yongo.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -1072,7 +1111,7 @@ export const sg = defineLocale({
     testSucceeded: (baseUrl, version) => `A kangbi na ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} na yâ tî ${total} étape a sara awe`,
     currentStage: stage => ` -- fadë: ${stage}`,
-    lines: count => `${count} ligne${count === 1 ? '' : 's'}`,
+    lines: count => `${count} ligne${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'Ka lëngö mo na OpenAmer Agent',
@@ -1092,28 +1131,29 @@ export const sg = defineLocale({
     apiKeyOptions: {
       fireworks: {
         short: 'API tî modèle tî lêgë',
-        description: 'Lêgë tî wara modèle sô Fireworks AI a bata.',
+        description: 'Lêgë tî wara modèle sô Fireworks AI a bata.'
       },
       openrouter: {
         short: 'kê ôko, modèle mîngi',
-        description: 'A bata ngbangbo modèle na pekô tî kê ôko. Défaut sô a lîngbi na instalasyon finî.',
+        description: 'A bata ngbangbo modèle na pekô tî kê ôko. Défaut sô a lîngbi na instalasyon finî.'
       },
       openai: {
         short: 'Modèle tî klas tî GPT',
-        description: 'Lêgë tî wara modèle tî OpenAI.',
+        description: 'Lêgë tî wara modèle tî OpenAI.'
       },
       gemini: {
         short: 'Âmodêle Gemini',
-        description: 'Lêgë tî kôlï na âmodêle Google Gemini.',
+        description: 'Lêgë tî kôlï na âmodêle Google Gemini.'
       },
       xai: {
         short: 'Âmodêle Grok',
-        description: 'Lêgë tî kôlï na âmodêle xAI Grok.',
+        description: 'Lêgë tî kôlï na âmodêle xAI Grok.'
       },
       local: {
         short: 'na ndo tî mo',
-        description: 'Zîa OpenAmer na endpoint tî ndo wala tî ndo tî mo sô a sara kua na OpenAI (vLLM, llama.cpp, Ollama, na âsô tî pekô).',
-      },
+        description:
+          'Zîa OpenAmer na endpoint tî ndo wala tî ndo tî mo sô a sara kua na OpenAI (vLLM, llama.cpp, Ollama, na âsô tî pekô).'
+      }
     },
     backToSignIn: 'Kîri na sü mabôko',
     getKey: 'Wara clé',
@@ -1126,7 +1166,7 @@ export const sg = defineLocale({
     flowSubtitles: {
       pkce: 'A bata browser tî mo tî sü mabôko, na pekô a kôzo la',
       device_code: 'A bata page tî vérification na browser tî mo — OpenAmer a kangbi ndëndë',
-      external: 'Sü mabôko ôko na terminal tî mo, na pekô kîri na discussion',
+      external: 'Sü mabôko ôko na terminal tî mo, na pekô kîri na discussion'
     },
     startingSignIn: provider => `A yeke kôzo sü mabôko tî ${provider}...`,
     verifyingCode: provider => `A yeke bâ code tî mo na ${provider}...`,
@@ -1140,11 +1180,13 @@ export const sg = defineLocale({
     copyAuthCode: 'Mû code tî lêgë ni na zîa nî na gbe.',
     pasteAuthCode: 'Zîa code tî lêgë',
     reopenAuthPage: 'Bata page tî lêgë ndönî',
-    autoBrowser: provider => `E bata ${provider} na browser tî mo. Zîa lêgë na OpenAmer la na mo a kangbi ndëndë — ye ôko tî mû kôpi wala tî zîa pepe.`,
+    autoBrowser: provider =>
+      `E bata ${provider} na browser tî mo. Zîa lêgë na OpenAmer la na mo a kangbi ndëndë — ye ôko tî mû kôpi wala tî zîa pepe.`,
     reopenSignInPage: 'Bata page tî sü mabôko ndönî',
     waitingAuthorize: 'A yeke küi lêgë tî mo...',
-    externalPending: provider => `${provider} a sü mabôko na CLI tî lo mveni. Sära commande sô na terminal, na pekô kîri na soro “Mbï sü mabôko awe”:`,
-    signedIn: "Mbï sü mabôko awe",
+    externalPending: provider =>
+      `${provider} a sü mabôko na CLI tî lo mveni. Sära commande sô na terminal, na pekô kîri na soro “Mbï sü mabôko awe”:`,
+    signedIn: 'Mbï sü mabôko awe',
     deviceCodeOpened: provider => `E bata ${provider} na browser tî mo. Sü code sô la:`,
     reopenVerification: 'Bata page tî vérification ndönî',
     copy: 'Mû kôpi',
@@ -1155,7 +1197,7 @@ export const sg = defineLocale({
     price: (input, output) => `${input} na yâ / ${output} na gbe tî Mtok`,
     change: 'Sanza',
     startChatting: 'Kôzo',
-    docs: provider => `Âmukanda tî ${provider}`,
+    docs: provider => `Âmukanda tî ${provider}`
   },
   rightSidebar: {
     emptyTitle: 'Sêngê',
@@ -1191,7 +1233,7 @@ export const sg = defineLocale({
     noProjectOpen: 'Projet a bata pepe',
     noDiffs: 'Diff a yeke pepe',
     unreadableTitle: 'A lingbi tî dîko nî pepe',
-    unreadableBody: error => `A lingbi tî dîko kôdörö sô pepe (${error}).`,
+    unreadableBody: error => `A lingbi tî dîko kôdörö sô pepe (${error}).`
   },
   preview: {
     tab: 'Bâa kôzo',
@@ -1219,7 +1261,8 @@ export const sg = defineLocale({
     editing: 'A yeke lëkë',
     unsavedChanges: 'Âlëkëngbingö ayeke sauvegardé pepe',
     diskChangedTitle: 'Fichier alëkë na diski',
-    diskChangedBody: 'Fichier sô alëkë andâ tî hûnda mo lo. Zîa version tî mo na ndo tî lo, wala kânga âlëkëngbingö tî mo na kâi lâgba?',
+    diskChangedBody:
+      'Fichier sô alëkë andâ tî hûnda mo lo. Zîa version tî mo na ndo tî lo, wala kânga âlëkëngbingö tî mo na kâi lâgba?',
     closeTab: label => `Kânga ${label}`,
     diff: 'Bambanî',
     binaryBody: label => `Tara ${label} a lingbi tî fa âtënë sô a lingbi tî dîko pepe.`,
@@ -1246,7 +1289,7 @@ export const sg = defineLocale({
       empty: 'Tënë tî console a yeke dä pepe.',
       promptHeader: 'Console tî tara:',
       sentTitle: 'A tokua na discussion',
-      sentMessage: count => `${count} tënë tî log${count === 1 ? 'y' : 'ies'} a mû na ndo tî sü tënë`,
+      sentMessage: count => `${count} tënë tî log${count === 1 ? 'y' : 'ies'} a mû na ndo tî sü tënë`
     },
     web: {
       appFailedToBoot: 'Kôzo tî app tî tara a buba',
@@ -1271,17 +1314,19 @@ export const sg = defineLocale({
       reloadingNow: 'A yeke mû tara ndönî fadë.',
       restartFailedTitle: 'Dïköngö tara a buba',
       restartFailedMessage: 'OpenAmer a lingbi tî dîko serveur pepe.',
-      stillWorking: 'OpenAmer a yeke kua, me résultat tî dïköngö a sï pepe. Commande tî serveur a lingbi tî yeke na lê.',
+      stillWorking:
+        'OpenAmer a yeke kua, me résultat tî dïköngö a sï pepe. Commande tî serveur a lingbi tî yeke na lê.',
       workspaceReloading: 'Ndo tî kua a sanza, a yeke mû tara ndönî',
       fileChanged: url => `Fichier a sanza, a yeke mû tara ndönî: ${url}`,
       filesChanged: (count, url) => `${count} sanzängö tî fichier, a yeke mû tara ndönî: ${url}`,
       watchFailed: message => `A lingbi tî bâ fichier tî tara pepe: ${message}`,
-      moduleMimeDescription: 'A yeke mû âscript module na MIME type sô a lëngbi pepe. A yeke tene ndëndë andâa serveur tî fichier statique a yeke mû app Vite/React na ndo tî serveur tî projet.',
+      moduleMimeDescription:
+        'A yeke mû âscript module na MIME type sô a lëngbi pepe. A yeke tene ndëndë andâa serveur tî fichier statique a yeke mû app Vite/React na ndo tî serveur tî projet.',
       loadFailedConsole: (code, message) => `Müngö a buba${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'A lingbi tî wara page tî tara pepe.',
       openTarget: url => `Bata ${url}`,
-      fallbackTitle: 'Tara',
-    },
+      fallbackTitle: 'Tara'
+    }
   },
   assistant: {
     clarify: {
@@ -1296,7 +1341,7 @@ export const sg = defineLocale({
       skip: 'Hön',
       skipped: 'A hön',
       continueLabel: 'Dîko',
-      lateAnswer: (question, choice) => `Na ndö tî: “${question}” — kîri tënë tî mbï: ${choice}`,
+      lateAnswer: (question, choice) => `Na ndö tî: “${question}” — kîri tënë tî mbï: ${choice}`
     },
     tool: {
       code: 'Kôdi',
@@ -1330,123 +1375,123 @@ export const sg = defineLocale({
         ran: 'A sâra',
         running: 'A yeke sâra kua',
         ranCode: 'A sâra kôdi',
-        runningCode: 'A yeke sâra script',
+        runningCode: 'A yeke sâra script'
       },
       prefixes: {
         browser: 'Navigatëre',
-        web: 'Netz',
+        web: 'Netz'
       },
       titles: {
         browser_click: {
           done: 'A klîke yê tî kâsê',
           pending: 'A yeke klîke yê tî kâsê',
-          pendingAction: 'A yeke klîke',
+          pendingAction: 'A yeke klîke'
         },
         browser_fill: {
           done: 'A zîa yê na fômê',
           pending: 'A yeke zîa yê na fômê',
-          pendingAction: 'A yeke zïängö',
+          pendingAction: 'A yeke zïängö'
         },
         browser_navigate: {
           done: 'A bata page',
           pending: 'A yeke batängö page',
-          pendingAction: 'A yeke batängö',
+          pendingAction: 'A yeke batängö'
         },
         browser_snapshot: {
           done: 'A mû ata tî page',
           pending: 'A yeke müngö ata tî page',
-          pendingAction: 'A yeke müngö',
+          pendingAction: 'A yeke müngö'
         },
         browser_take_screenshot: {
           done: 'A mû ata tî écran',
           pending: 'A yeke müngö ata tî écran',
-          pendingAction: 'A yeke müngö',
+          pendingAction: 'A yeke müngö'
         },
         browser_type: {
           done: 'A sü na page',
           pending: 'A yeke süngö na page',
-          pendingAction: 'A yeke süngö',
+          pendingAction: 'A yeke süngö'
         },
         clarify: {
           done: 'A hûnda hündängö',
           pending: 'A yeke hûndängö',
-          pendingAction: 'A yeke hûndängö',
+          pendingAction: 'A yeke hûndängö'
         },
         cronjob: {
           done: 'Kua tî cron',
           pending: 'A yeke zïängö kua tî cron na tongo',
-          pendingAction: 'A yeke zïängö na tongo',
+          pendingAction: 'A yeke zïängö na tongo'
         },
         edit_file: {
           done: 'A sanza fichier',
           pending: 'A yeke sanzängö fichier',
-          pendingAction: 'A yeke sanzängö',
+          pendingAction: 'A yeke sanzängö'
         },
         execute_code: {
           done: 'A sara code',
           pending: 'A yeke särängö script',
-          pendingAction: 'A yeke särängö script',
+          pendingAction: 'A yeke särängö script'
         },
         image_generate: {
           done: 'A sara ata',
           pending: 'A yeke särängö ata',
-          pendingAction: 'A yeke särängö',
+          pendingAction: 'A yeke särängö'
         },
         list_files: {
           done: 'A fa âfichier',
           pending: 'A yeke fängö âfichier',
-          pendingAction: 'A yeke fängö',
+          pendingAction: 'A yeke fängö'
         },
         patch: {
           done: 'A lëkë fichier na patch',
           pending: 'A yeke lëkëngö fichier na patch',
-          pendingAction: 'A yeke lëkëngö na patch',
+          pendingAction: 'A yeke lëkëngö na patch'
         },
         read_file: {
           done: 'A dîko fichier',
           pending: 'A yeke dïköngö fichier',
-          pendingAction: 'A yeke dïköngö',
+          pendingAction: 'A yeke dïköngö'
         },
         search_files: {
           done: 'A gi na âfichier',
           pending: 'A yeke gïngö na âfichier',
-          pendingAction: 'A yeke gïngö',
+          pendingAction: 'A yeke gïngö'
         },
         session_search_recall: {
           done: 'A gi na histoire tî âsession',
           pending: 'A yeke gïngö na histoire tî âsession',
-          pendingAction: 'A yeke gïngö',
+          pendingAction: 'A yeke gïngö'
         },
         terminal: {
           done: 'A sara commande',
           pending: 'A yeke särängö commande',
-          pendingAction: 'A yeke kua',
+          pendingAction: 'A yeke kua'
         },
         todo: {
           done: 'A lëkë âtâche',
           pending: 'A yeke lëkëngö âtâche',
-          pendingAction: 'A yeke lëkëngö',
+          pendingAction: 'A yeke lëkëngö'
         },
         vision_analyze: {
           done: 'A bâ ata',
           pending: 'A yeke bängö ata',
-          pendingAction: 'A yeke bängö',
+          pendingAction: 'A yeke bängö'
         },
         web_extract: {
           done: 'A dîko page web',
           pending: 'A yeke dïköngö page web',
-          pendingAction: 'A yeke dïköngö',
+          pendingAction: 'A yeke dïköngö'
         },
         web_search: {
           done: 'A gi na web',
           pending: 'A yeke gïngö na web',
-          pendingAction: 'A yeke gïngö',
+          pendingAction: 'A yeke gïngö'
         },
         write_file: {
           done: 'A sanza fichier',
           pending: 'A yeke sanzängö fichier',
-          pendingAction: 'A yeke sanzängö',
-        },
+          pendingAction: 'A yeke sanzängö'
+        }
       },
       recoveredMany: count => `A wara lêgë ndönî na pekô tî ${count} étape sô a buba`,
       failedMany: count => `${count} étape a buba`,
@@ -1456,14 +1501,15 @@ export const sg = defineLocale({
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `A yeke särängö ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `A yeke särängö ${action.toLowerCase()}`,
-      },
+        runningTool: action => `A yeke särängö ${action.toLowerCase()}`
+      }
     },
     thread: {
       loadingSession: 'A yeke müngö session',
       showEarlier: 'Fa âtënë tî kôzo',
       loadingResponse: 'OpenAmer a yeke müngö kîri tënë',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Bängö ndâ',
@@ -1491,7 +1537,7 @@ export const sg = defineLocale({
       restoreNext: 'Kîri na checkpoint tî pekô',
       goForward: 'Gue na kôzo',
       sendEdited: 'Tokua tënë sô a sanza',
-      attachingFile: 'A yeke kangbïngö…',
+      attachingFile: 'A yeke kangbïngö…'
     },
     approval: {
       gatewayDisconnected: 'Gateway tî OpenAmer a kangbi pepe',
@@ -1504,9 +1550,10 @@ export const sg = defineLocale({
       jumpToApproval: 'A lingbi tî zîa mabôko',
       reject: 'Kânga',
       alwaysTitle: 'Zîa lêgë na commande sô lâkûê?',
-      alwaysDescription: pattern => `Sô a zîa pattern “${pattern}” na liste tî lêgë tî mo tî lâkûê (~/.openamer/config.yaml). OpenAmer a hûnda mo pepe tî âcommande ndâ sô — na session sô wala na âsession tî pekô.`,
-      alwaysAllow: 'Zîa lêgë lâkûê',
-    },
+      alwaysDescription: pattern =>
+        `Sô a zîa pattern “${pattern}” na liste tî lêgë tî mo tî lâkûê (~/.openamer/config.yaml). OpenAmer a hûnda mo pepe tî âcommande ndâ sô — na session sô wala na âsession tî pekô.`,
+      alwaysAllow: 'Zîa lêgë lâkûê'
+    }
   },
   common: {
     apply: 'Sära',
@@ -1547,7 +1594,7 @@ export const sg = defineLocale({
     update: 'Lëkë',
     tryHint: term => `Tara “${term}”`,
     on: 'A zîa',
-    off: 'A zîa pepe',
+    off: 'A zîa pepe'
   },
   fileMenu: {
     revealFinder: 'Fa na Finder',
@@ -1562,7 +1609,7 @@ export const sg = defineLocale({
     renameLabel: 'Iri ya sï',
     deleteTitle: name => `Zî ${name}?`,
     deleteBody: 'A yeke mû nî na Trash — mo lingbi tî kîri nî na yâ.',
-    pathCopied: 'A mû lêgë awe',
+    pathCopied: 'A mû lêgë awe'
   },
   boot: {
     ready: 'OpenAmer Desktop a lëngbi awe',
@@ -1572,7 +1619,7 @@ export const sg = defineLocale({
       loadingSettings: 'A yeke müngö âmbängö tî OpenAmer',
       loadingSessions: 'A yeke müngö âsession tî fadë',
       startingDesktopConnection: 'A yeke kôzo kangbïngö tî desktop',
-      startingOpenAmerDesktop: 'A yeke kôzo OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'A yeke kôzo OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Processus tî gbe tî OpenAmer a gue awe.',
@@ -1581,13 +1628,15 @@ export const sg = defineLocale({
       desktopBootFailed: 'Kôzo tî Desktop a buba',
       gatewayConnectionLost: 'E girisa kangbïngö na gateway',
       gatewaySignInRequired: 'A lingbi tî sü mabôko na gateway',
-      ipcBridgeUnavailable: 'Pont IPC tî desktop a yeke pepe.',
+      ipcBridgeUnavailable: 'Pont IPC tî desktop a yeke pepe.'
     },
     failure: {
-      title: "OpenAmer a lingbi tî kôzo pepe",
-      description: "Gateway tî gbe a gä pepe. Tara mbênî lêgë tî lëkëngö na gbe. Ndo ôko la a zî âdiscussion wala âmbängö tî mo pepe.",
+      title: 'OpenAmer a lingbi tî kôzo pepe',
+      description:
+        'Gateway tî gbe a gä pepe. Tara mbênî lêgë tî lëkëngö na gbe. Ndo ôko la a zî âdiscussion wala âmbängö tî mo pepe.',
       remoteTitle: 'A lingbi tî sü mabôko na gateway tî yongo',
-      remoteDescription: 'Session tî gateway tî yongo tî mo a sï na pekô. Sü mabôko ndönî tî kangbi ndönî. A zî âdiscussion wala âmbängö tî mo pepe.',
+      remoteDescription:
+        'Session tî gateway tî yongo tî mo a sï na pekô. Sü mabôko ndönî tî kangbi ndönî. A zî âdiscussion wala âmbängö tî mo pepe.',
       retry: 'Dîko',
       repairInstall: 'Lëkë installation',
       useLocalGateway: 'Sära kua na gateway tî ndo',
@@ -1595,7 +1644,8 @@ export const sg = defineLocale({
       back: 'Kîri',
       openLogs: 'Bata âlog',
       repairHint: 'Lëkëngö a sara installation ndönî, a lingbi âminute mîngi na ndo ya sï.',
-      remoteSignInHint: signInLabel => `A zî mo na yâ tî browser session tî yongo sô a bata, na pekô a bata ${signInLabel}. Sära kua na gateway tî ndo tî sanza na backend sô a yeke na yâ tî app.`,
+      remoteSignInHint: signInLabel =>
+        `A zî mo na yâ tî browser session tî yongo sô a bata, na pekô a bata ${signInLabel}. Sära kua na gateway tî ndo tî sanza na backend sô a yeke na yâ tî app.`,
       signOutAndSignIn: 'Zî mabôko & sü mabôko',
       remoteFailureHint: 'Bâ URL tî gateway na sü mabôko na yâ tî âmbängö tî gateway, wala sanza na gateway tî ndo.',
       hideRecentLogs: 'Zî na lê âlog tî fadë',
@@ -1607,8 +1657,8 @@ export const sg = defineLocale({
       signInFailed: 'Sü mabôko a buba',
       signInToRemoteGateway: 'Sü mabôko na gateway tî yongo',
       signInWithProvider: provider => `Sü mabôko na ${provider}`,
-      identityProvider: 'wamüngö tî iri tî mo',
-    },
+      identityProvider: 'wamüngö tî iri tî mo'
+    }
   },
   notifications: {
     region: 'Âtënë tî hînga',
@@ -1621,12 +1671,13 @@ export const sg = defineLocale({
     copyDetail: 'Mû ndâ tî tënë',
     copyDetailFailed: 'Müngö ndâ tî tënë a buba',
     backendOutOfDateTitle: 'Backend a yeke kôzo awe',
-    backendOutOfDateMessage: 'Backend tî OpenAmer tî mo a yeke kôzo ndurü na desktop sô, a lingbi tî sara kua nzönî pepe. Lëkë nî tî zîa âla ôko.',
+    backendOutOfDateMessage:
+      'Backend tî OpenAmer tî mo a yeke kôzo ndurü na desktop sô, a lingbi tî sara kua nzönî pepe. Lëkë nî tî zîa âla ôko.',
     installMethodUnsupportedTitle: 'Lêgë tî installation sô a yeke pepe',
     updateOpenAmer: 'Lëkë OpenAmer',
     updateReadyTitle: 'Lëkëngö a sara awe',
     updateReadyMessage: count => `${count} sanzängö ya sï${count === 1 ? '' : 's'} a yeke.`,
-    seeWhatsNew: "Bâ âye ya sï",
+    seeWhatsNew: 'Bâ âye ya sï',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT a lingbi ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs a kânga API key (401).',
@@ -1635,7 +1686,7 @@ export const sg = defineLocale({
       microphonePermission: 'A kânga lêgë tî microphone.',
       openaiRejectedApiKey: 'OpenAI a kânga API key ni.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI a kânga API key (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS a lingbi VOICE_TOOLS_OPENAI_KEY wala OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS a lingbi VOICE_TOOLS_OPENAI_KEY wala OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Lëkë speech-to-text tî sara kua na mode tî yângâ.',
@@ -1654,7 +1705,7 @@ export const sg = defineLocale({
       transcriptionFailed: 'Sanzängö yângâ na mukanda a buba',
       transcriptionUnavailable: 'Sanzängö yângâ na mukanda a yeke dä pepe.',
       tryRecordingAgain: 'Tara enregistrement ndönî.',
-      unavailable: 'Yângâ a yeke pepe',
+      unavailable: 'Yângâ a yeke pepe'
     },
     native: {
       approvalTitle: 'A lingbi tî zîa mabôko',
@@ -1667,11 +1718,12 @@ export const sg = defineLocale({
       turnErrorTitle: 'Mbâgë tî kua a buba',
       backgroundDoneTitle: 'Kua tî gbe a sara awe',
       backgroundFailedTitle: 'Kua tî gbe a buba',
-      creditsTitle: 'Âcrédit',
-    },
+      creditsTitle: 'Âcrédit'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Rendu logiciel a yeke na kua — a bâ écran tî yongo (${reason}). A zîa GPU acceleration pepe tî kânga flickering.`,
+    message: reason =>
+      `Rendu logiciel a yeke na kua — a bâ écran tî yongo (${reason}). A zîa GPU acceleration pepe tî kânga flickering.`
   },
   billingBlock: {
     titleOpenamer: 'Âcrédit tî OpenAmer a kûi awe',
@@ -1679,7 +1731,7 @@ export const sg = defineLocale({
     fallbackMessage: 'Compte tî mo a kûi âcrédit. Mû âcrédit tî kôzo.',
     openBilling: 'Bata facturation',
     addCredits: 'Mû âcrédit',
-    dismiss: 'Kânga',
+    dismiss: 'Kânga'
   },
   titlebar: {
     hideSidebar: 'Zî na lê sidebar',
@@ -1696,7 +1748,7 @@ export const sg = defineLocale({
     openStarmap: 'Bata graph tî mémoire',
     openKeybinds: 'Âlêgë tî clavier',
     layoutEditor: 'Wasü mbängö tî lê',
-    layoutEditorTitle: 'Wasü mbängö tî lê — ⌘-click a dîko mbängö ni',
+    layoutEditorTitle: 'Wasü mbängö tî lê — ⌘-click a dîko mbängö ni'
   },
   keybinds: {
     title: 'Âlêgë tî clavier',
@@ -1713,7 +1765,7 @@ export const sg = defineLocale({
       profiles: 'Âprofil',
       session: '会话',
       navigation: 'Âlêgë',
-      view: 'Lê',
+      view: 'Lê'
     },
     actions: {
       'keybinds.openPanel': 'Bata âlêgë tî clavier',
@@ -1792,8 +1844,8 @@ export const sg = defineLocale({
       'composer.slash': 'Palette tî commande na slash',
       'composer.help': 'Mabôko tî ndurü',
       'composer.history': 'Dîko popover / histoire',
-      'composer.cancel': 'Kânga popover · kânga särängö',
-    },
+      'composer.cancel': 'Kânga popover · kânga särängö'
+    }
   },
   language: {
     label: 'Yângâ tî kodëro',
@@ -1802,7 +1854,7 @@ export const sg = defineLocale({
     saveError: 'Lëkëngö yângâ tî kodëro a buba',
     switchTo: 'Sanza yângâ tî kodëro',
     searchPlaceholder: 'Gi âyângâ tî kodëro…',
-    noResults: 'A wara yângâ tî kodëro pepe',
+    noResults: 'A wara yângâ tî kodëro pepe'
   },
   skills: {
     tabSkills: 'Âcompétence',
@@ -1822,7 +1874,8 @@ export const sg = defineLocale({
     noDescription: 'Ndâ tî tënë a yeke pepe.',
     configured: 'A lëkë nî',
     needsKeys: 'A lingbi âclé',
-    visionModelHint: 'Bängö a sara kua na config tî modêle tî mabôko tî mo — a soro modêle sô a lingbi tî bâ ata la, la pepe tî wamüngö ôko na ôko.',
+    visionModelHint:
+      'Bängö a sara kua na config tî modêle tî mabôko tî mo — a soro modêle sô a lingbi tî bâ ata la, la pepe tî wamüngö ôko na ôko.',
     visionModelLink: 'Soro modêle tî bängö na Mbängö → Models',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} toolset a zîa`,
     configureToolset: label => `Lëkë ${label}`,
@@ -1848,7 +1901,7 @@ export const sg = defineLocale({
     provenance: {
       agent: 'Sô a hînga',
       bundled: 'Sô a yeke na yâ',
-      hub: '中心',
+      hub: '中心'
     },
     emptyNoneFound: noun => `A wara ${noun} pepe`,
     emptyNothingMatches: query => `Ye ôko a lëngbi na “${query}” pepe.`,
@@ -1866,7 +1919,8 @@ export const sg = defineLocale({
       connectingHubs: 'A yeke kangbïngö na âhub tî âcompétence...',
       connectedHubs: 'Âhub sô a kangbi:',
       featured: 'Âcompétence sô a fa',
-      landingHint: 'Gi na yâ tî hub tî bâ âcompétence sô a lingbi tî lëkë na index officiel, GitHub, na ândo tî communauté.',
+      landingHint:
+        'Gi na yâ tî hub tî bâ âcompétence sô a lingbi tî lëkë na index officiel, GitHub, na ândo tî communauté.',
       noResults: 'A wara compétence sô a lëngbi na nî pepe na yâ tî hub.',
       resultCount: (count, ms) => `${count} sô a wara${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Tongo a hön: ${sources}`,
@@ -1886,7 +1940,7 @@ export const sg = defineLocale({
       trust: {
         builtin: 'tî yâ',
         trusted: 'sô a zîa kôlï',
-        community: 'tî communauté',
+        community: 'tî communauté'
       },
       verdictSafe: 'Nzönî',
       verdictCaution: 'Bâ nzönî',
@@ -1904,8 +1958,8 @@ export const sg = defineLocale({
       loadFailed: 'Müngö hub tî âcompétence a buba',
       previewFailed: 'Tara compétence a buba',
       scanFailed: 'Bängö ndâ tî sécurité a buba',
-      searchFailed: 'Gïngö na hub a buba',
-    },
+      searchFailed: 'Gïngö na hub a buba'
+    }
   },
   starmap: {
     title: 'Graph tî mémoire',
@@ -1922,7 +1976,8 @@ export const sg = defineLocale({
     emptyTitle: 'A hînga ye ôko pepe',
     emptyDesc: 'Tongana OpenAmer a sara âcompétence na âmémoire tî kua tî mo, a yeke bâ âla la.',
     share: 'Tokua map',
-    shareHint: 'Mû code ni tî tokua map sô, wala zîa ôko tî mû nî. A yeke gï na mbängö tî lê, a yeke na mémoire wala tënë tî compétence tî mo pepe.',
+    shareHint:
+      'Mû code ni tî tokua map sô, wala zîa ôko tî mû nî. A yeke gï na mbängö tî lê, a yeke na mémoire wala tënë tî compétence tî mo pepe.',
     shareTitle: 'Mû na yâ / zî na gbe map',
     sharePlaceholder: 'Zîa code tî map…',
     copy: 'Mû code tî map',
@@ -1932,7 +1987,7 @@ export const sg = defineLocale({
     importEmpty: 'Zîa code tî map tî mû nî.',
     importSuccess: nodes => `A mû map sô a yeke na ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'map sô a mû na yâ',
-    resetToMine: 'Kîri na map tî mbï',
+    resetToMine: 'Kîri na map tî mbï'
   },
   agents: {
     close: 'Kânga âagent',
@@ -1962,7 +2017,7 @@ export const sg = defineLocale({
     ageDays: days => `${days}d a hön`,
     durationSeconds: seconds => `${seconds}个`,
     durationMinutes: (minutes, seconds) => `${minutes}分 ${seconds}秒`,
-    tokens: value => `${value} 令牌`,
+    tokens: value => `${value} 令牌`
   },
   commandCenter: {
     close: 'Kânga centre tî commande',
@@ -1992,7 +2047,7 @@ export const sg = defineLocale({
       generatedTag: 'A sara nî',
       adoptFailed: 'A lingbi tî mû nyama sô pepe.',
       toggleFailed: 'A lingbi tî sanza nyama ni pepe.',
-      noneAvailable: 'Nyama a yeke pepe — soro ôko na gbe tî lëkë nî.',
+      noneAvailable: 'Nyama a yeke pepe — soro ôko na gbe tî lëkë nî.'
     },
     generatePet: {
       title: 'Sära nyama',
@@ -2021,7 +2076,7 @@ export const sg = defineLocale({
       referenceImageTooLarge: 'Ata tî ndâ a yeke kota ndurü. Sära kua na ôko sô a yeke na gbe tî 16 MB.',
       referenceImageInvalid: 'A lingbi tî dîko ata tî ndâ sô pepe. Tara PNG, JPG, WebP, wala GIF.',
       adopt: 'Mû',
-      startOver: 'Dîko na ndâ',
+      startOver: 'Dîko na ndâ'
     },
     installTheme: {
       title: 'Lëkë têma…',
@@ -2033,7 +2088,7 @@ export const sg = defineLocale({
       install: 'Lëkë',
       installing: 'A yeke lëkëngö...',
       installed: 'A lëkë nî',
-      installs: count => `${count} installation`,
+      installs: count => `${count} installation`
     },
     settingsFields: 'Ândo tî âmbängö',
     mcpServers: 'Âsêrvêre MCP',
@@ -2042,49 +2097,49 @@ export const sg = defineLocale({
       maintenance: 'Lëkëngö',
       sessions: 'Âsession',
       system: 'Système',
-      usage: 'Särängö kua',
+      usage: 'Särängö kua'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostic, âcopie tî bata, wabata, na âdonnée tî mémoire',
       sessions: 'Gi na lëkë âsession',
       system: 'Statut, âlog, na âsärängö tî système',
-      usage: 'Token, coût, na kua tî âcompétence na yâ tî tongo',
+      usage: 'Token, coût, na kua tî âcompétence na yâ tî tongo'
     },
     nav: {
       newChat: {
         title: 'Session ya sï',
-        detail: 'Kôzo session ya sï',
+        detail: 'Kôzo session ya sï'
       },
       settings: {
         title: 'Âmbängö',
-        detail: 'Lëkë OpenAmer desktop',
+        detail: 'Lëkë OpenAmer desktop'
       },
       skills: {
         title: 'Âcapacité',
-        detail: 'Âcompétence, âoutil, na âsêrvêre MCP',
+        detail: 'Âcompétence, âoutil, na âsêrvêre MCP'
       },
       messaging: {
         title: 'Âtënë',
-        detail: 'Lëkë Telegram, Slack, Discord, na âsô tî pekô',
+        detail: 'Lëkë Telegram, Slack, Discord, na âsô tî pekô'
       },
       artifacts: {
         title: 'Âartefact',
-        detail: 'Bâ âye sô a sara',
-      },
+        detail: 'Bâ âye sô a sara'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Panêle tî âsession',
-        detail: 'Gi, kangbi, na lëkë âsession',
+        detail: 'Gi, kangbi, na lëkë âsession'
       },
       system: {
         title: 'Panêle tî système',
-        detail: 'Statut tî gateway, âlog, dïköngö/lëkëngö',
+        detail: 'Statut tî gateway, âlog, dïköngö/lëkëngö'
       },
       usage: {
         title: 'Panêle tî särängö kua',
-        detail: 'Token, coût, na kua tî âcompétence',
-      },
+        detail: 'Token, coût, na kua tî âcompétence'
+      }
     },
     providerNavigate: 'Tambëla',
     providerSessions: 'Âsession',
@@ -2172,8 +2227,8 @@ export const sg = defineLocale({
       actionStarted: name => `${name} a kôzo — a yeke bâ log...`,
       actionFailed: name => `${name} a lingbi tî kôzo pepe`,
       running: 'A yeke kua...',
-      viewLog: 'Log tî âsärängö',
-    },
+      viewLog: 'Log tî âsärängö'
+    }
   },
   webhooks: {
     search: 'Gi âwebhook...',
@@ -2183,7 +2238,8 @@ export const sg = defineLocale({
     hint: 'Âsanzängö tî abonnement a sara kua ndëndë tongana wasïngö a yeke kua. Âabonnement sô a zîa pepe a kânga âtënë sô a gä.',
     empty: 'Abonnement tî webhook a yeke dä pepe.',
     disabledTitle: 'Wasïngö webhook a zîa pepe',
-    disabledBody: 'Âwebhook a yeke plateforme tî gateway tî âla mveni. Zîa âla la tî mû âtënë HTTP sô a gä; âcanal tî discussion a lingbi gï tongana abonnement ôko a tokua na Telegram, Discord, Slack, wala mbênî canal.',
+    disabledBody:
+      'Âwebhook a yeke plateforme tî gateway tî âla mveni. Zîa âla la tî mû âtënë HTTP sô a gä; âcanal tî discussion a lingbi gï tongana abonnement ôko a tokua na Telegram, Discord, Slack, wala mbênî canal.',
     enable: 'Zîa âwebhook',
     enabling: 'A yeke zïängö...',
     enabled: (name: string) => `A zîa: “${name}”`,
@@ -2236,8 +2292,8 @@ export const sg = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'Mbëtï tî internët',
-      github_comment: 'Commentaire GitHub',
-    },
+      github_comment: 'Commentaire GitHub'
+    }
   },
   profiles: {
     close: 'Kânga âprofil',
@@ -2315,7 +2371,7 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
     failedLoadSoul: 'Müngö SOUL.md a buba',
     failedSaveSoul: 'Zïängö SOUL.md a buba',
     failedCreate: 'Särängö profil a buba',
-    failedRename: 'Sanzängö iri tî profil a buba',
+    failedRename: 'Sanzängö iri tî profil a buba'
   },
   cron: {
     close: 'Kânga cron',
@@ -2330,14 +2386,14 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
       paused: 'a kânga',
       disabled: 'a zîa pepe',
       error: 'kpälë',
-      completed: 'a sara awe',
+      completed: 'a sara awe'
     },
     deliveryLabels: {
       local: 'Desktop sô',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Mbëtï tî internët',
+      email: 'Mbëtï tî internët'
     },
     scheduleLabels: {
       daily: 'Tî lâ',
@@ -2346,7 +2402,7 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
       monthly: 'Tî nze',
       hourly: 'Tî heure',
       'every-15-minutes': '15 minute kûê',
-      custom: 'Tî mo',
+      custom: 'Tî mo'
     },
     scheduleHints: {
       daily: 'Lâ kûê na 9:00 AM',
@@ -2355,7 +2411,7 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
       monthly: 'Lâ tî kôzo tî nze kûê na 9:00 AM',
       hourly: 'Na ndâ tî heure kûê',
       'every-15-minutes': '15 minute kûê',
-      custom: 'Syntaxe tî cron wala yângâ tî zo',
+      custom: 'Syntaxe tî cron wala yângâ tî zo'
     },
     days: {
       '0': 'Dimanche',
@@ -2365,7 +2421,7 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
       '4': 'Jeudi',
       '5': 'Vendredi',
       '6': 'Samedi',
-      '7': 'Dimanche',
+      '7': 'Dimanche'
     },
     dayFallback: value => `lâ ${value}`,
     everyDayAt: time => `Lâ kûê na ${time}`,
@@ -2375,7 +2431,8 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
     topOfHour: 'Na ndâ tî heure kûê',
     everyHourAt: minute => `Heure kûê na :${minute}`,
     newCron: 'Cron ya sï',
-    emptyDescNew: 'Zîa hündängö ôko na tongo tî sara kua na expression tî cron. OpenAmer a sara nî na a tokua ârésultat na ndo sô mo soro.',
+    emptyDescNew:
+      'Zîa hündängö ôko na tongo tî sara kua na expression tî cron. OpenAmer a sara nî na a tokua ârésultat na ndo sô mo soro.',
     emptyDescSearch: 'Tara hündängö sô a yeke kota ndurü.',
     emptyTitleNew: 'Kua sô a zîa na tongo a yeke dä pepe',
     emptyTitleSearch: 'A wara ye sô a lëngbi pepe',
@@ -2434,7 +2491,7 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
     createAction: 'Sära cron',
     tabs: {
       jobs: 'Âkua',
-      blueprints: 'Âblueprint',
+      blueprints: 'Âblueprint'
     },
     blueprints: {
       tab: 'Âblueprint',
@@ -2448,8 +2505,8 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
       loading: 'A yeke müngö âblueprint...',
       failedLoad: 'Müngö âblueprint a buba',
       emptyTitle: 'Blueprint a yeke pepe',
-      emptyDesc: 'Blueprint tî automation a yeke na backend sô pepe.',
-    },
+      emptyDesc: 'Blueprint tî automation a yeke na backend sô pepe.'
+    }
   },
   artifacts: {
     search: 'Gi âartefact...',
@@ -2483,14 +2540,14 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
     kindLink: 'lien',
     chat: 'Discussion',
     copyUrl: 'Mû URL',
-    copyPath: 'Mû lêgë',
+    copyPath: 'Mû lêgë'
   },
   sidebar: {
     nav: {
       'new-session': 'Session ya sï',
       skills: 'Âcapacité',
       messaging: 'Âtënë',
-      artifacts: 'Âartefact',
+      artifacts: 'Âartefact'
     },
     searchAria: 'Gi âsession',
     searchPlaceholder: 'Gi âsession…',
@@ -2522,7 +2579,7 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
       namePlaceholder: 'ndâ: Skunkworks',
       foldersLabel: 'Âkôdörö',
       ideaLabel: 'Ndâ tî tënë',
-      ideaPlaceholder: "Projet sô a yeke na ndö tî ye? (a bata nî na IDEA.md)",
+      ideaPlaceholder: 'Projet sô a yeke na ndö tî ye? (a bata nî na IDEA.md)',
       ideaGenerate: 'Sära ndâ tî tënë',
       ideaGenerating: 'A yeke särängö…',
       ideaShuffle: 'Sanza âmodêle',
@@ -2542,7 +2599,8 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
       copyPath: 'Mû lêgë',
       removeFromSidebar: 'Zî na lê na sidebar',
       createFailed: 'A lingbi tî sära projet pepe',
-      staleBackend: 'Lëkë backend tî OpenAmer tî sära âprojet — backend tî mo a yeke kôzo ndurü na app tî desktop sô (Mbängö → Updates → Backend).',
+      staleBackend:
+        'Lëkë backend tî OpenAmer tî sära âprojet — backend tî mo a yeke kôzo ndurü na app tî desktop sô (Mbängö → Updates → Backend).',
       deleteConfirm: 'Sô a zî projet sô a bata na OpenAmer. Âfichier, ârepo git, na âworktree a bata lê tî âla.',
       startWork: 'Worktree ya sï',
       newWorktreeTitle: 'Worktree ya sï',
@@ -2564,13 +2622,15 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
       noBranches: 'A wara branch pepe',
       removeWorktree: 'Zî worktree',
       removeWorktreeFailed: 'A lingbi tî zî worktree pepe (âsanzängö sô a zîa pepe?)',
-      removeWorktreeConfirm: 'Zî nî na git (a zî kôdörö tî worktree; branch a bata lê tî lo), wala zî na lê lane na sidebar na bata worktree na disque.',
-      removeWorktreeDirty: 'Worktree sô a yeke na âsanzängö sô a zîa pepe. Zî nî na ngangü (a zî âsanzängö sô), wala zî na lê lane na bata nî na disque.',
+      removeWorktreeConfirm:
+        'Zî nî na git (a zî kôdörö tî worktree; branch a bata lê tî lo), wala zî na lê lane na sidebar na bata worktree na disque.',
+      removeWorktreeDirty:
+        'Worktree sô a yeke na âsanzängö sô a zîa pepe. Zî nî na ngangü (a zî âsanzängö sô), wala zî na lê lane na bata nî na disque.',
       forceRemove: 'Zî na ngangü',
       enter: label => `Bata ${label}`,
       reorder: label => `Sanza ndo tî ${label}`,
       toggle: label => `Bata/kânga âsession tî ${label}`,
-      back: 'Âprojet kûê',
+      back: 'Âprojet kûê'
     },
     newSessionIn: label => `Session ya sï na yâ tî ${label}`,
     showMoreIn: (count, label) => `Fa ${count} tî pekô na yâ tî ${label}`,
@@ -2608,15 +2668,15 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
       ageNow: 'fadë',
       ageDay: 'T',
       ageHour: 'S',
-      ageMin: 'M',
+      ageMin: 'M'
     },
     dateDivider: {
       today: 'Kôzo na lâkûi',
       yesterday: 'Bîrï',
       thisWeek: 'Kôzo na yenga sô',
       lastWeek: 'Yenga sô a hön',
-      thisMonth: 'Kôzo na nze sô',
-    },
+      thisMonth: 'Kôzo na nze sô'
+    }
   },
   updates: {
     stages: {
@@ -2631,7 +2691,7 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
       done: 'Lëkëngö a sara awe',
       manual: 'Lëkë na terminal tî mo',
       guiSkew: 'Lëkë app tî desktop',
-      error: 'A kânga lëkëngö',
+      error: 'A kânga lëkëngö'
     },
     checking: 'A yeke gïngö âlëkëngö…',
     checkFailedTitle: 'A lingbi tî bâ âlëkëngö pepe',
@@ -2654,11 +2714,13 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
     manualBody: 'Mo lëkë OpenAmer na ligne tî commande, gö a yeke lëkë nî la ndönî. Zîa sô na terminal tî mo:',
     manualPickedUp: 'OpenAmer a mû version ya sï na kôzo tî pekô.',
     guiSkewTitle: 'Lëkë app tî desktop',
-    guiSkewBody: 'A lëkë backend, me a sanza package tî app tî desktop sô pepe. Lëkë wala lëkë ndönî app tî desktop tî OpenAmer (AppImage / .deb / .rpm tî mo) tî lëngbi.',
+    guiSkewBody:
+      'A lëkë backend, me a sanza package tî app tî desktop sô pepe. Lëkë wala lëkë ndönî app tî desktop tî OpenAmer (AppImage / .deb / .rpm tî mo) tî lëngbi.',
     copy: 'Mû kôpi',
     copied: 'A mû kôpi',
     done: 'A sara awe',
-    applyingBody: 'Updater tî OpenAmer a sara kua na fenêtre tî lo mveni na a bata OpenAmer ndëndë tongana a sara awe. Zîa OpenAmer pepe na mabôko tî mo tongana a yeke lëkë nî.',
+    applyingBody:
+      'Updater tî OpenAmer a sara kua na fenêtre tî lo mveni na a bata OpenAmer ndëndë tongana a sara awe. Zîa OpenAmer pepe na mabôko tî mo tongana a yeke lëkë nî.',
     applyingBodyBackend: 'Backend tî yongo a yeke sära lëkëngö na a dîko. OpenAmer a kangbi ndëndë tongana a kîri.',
     applyingClose: 'Fenêtre sô a kânga tongana lëkëngö a yeke kua, na pekô OpenAmer a bata lê tî lo ndëndë.',
     errorTitle: 'Lëkëngö a sara pepe',
@@ -2670,12 +2732,13 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
       restarting: 'Backend a yeke dïköngö tî mû lëkëngö ni…',
       notAvailable: 'Lëkëngö a yeke pepe tî backend sô.',
       failed: 'Lëkëngö tî backend a buba.',
-      noReturn: 'Backend a kîri pepe. Lëkëngö a lingbi tî sara awe pepe — bâ host tî backend.',
+      noReturn: 'Backend a kîri pepe. Lëkëngö a lingbi tî sara awe pepe — bâ host tî backend.'
     },
     appErrors: {
-      updateLocked: 'A kânga lëkëngö: mbênî fenêtre tî OpenAmer wala terminal sô a yeke sara openamer a kânga installation sô. Kânga nî na tara ndönî.',
-      updateFailed: 'Lëkëngö a sara pepe. Bê tî mo a yeke nzönî — a girisa ye ôko pepe. Mo lingbi tî tara ndönî fadë.',
-    },
+      updateLocked:
+        'A kânga lëkëngö: mbênî fenêtre tî OpenAmer wala terminal sô a yeke sara openamer a kânga installation sô. Kânga nî na tara ndönî.',
+      updateFailed: 'Lëkëngö a sara pepe. Bê tî mo a yeke nzönî — a girisa ye ôko pepe. Mo lingbi tî tara ndönî fadë.'
+    }
   },
   modelPicker: {
     title: 'Sanza modêle',
@@ -2691,13 +2754,13 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
     free: 'Gratis',
     freeTier: 'Niveau gratis',
     priceTitle: 'Coût tî na yâ / na gbe tî million token',
-    wasPrice: 'a yeke kôzo',
+    wasPrice: 'a yeke kôzo'
   },
   modelVisibility: {
     title: 'Âmodêle',
     search: 'Gi âmodêle',
     noAuthenticatedProviders: 'Wamüngö sô a sü mabôko a yeke pepe.',
-    addProvider: 'Mû wamüngö…',
+    addProvider: 'Mû wamüngö…'
   },
   shell: {
     windowControls: 'Âcontrôle tî fenêtre',
@@ -2708,7 +2771,7 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
       noModels: 'A wara modêle pepe',
       editModels: 'Sanza âmodêle…',
       refreshModels: 'Dîko âmodêle',
-      fast: 'Ndurü',
+      fast: 'Ndurü'
     },
     modelOptions: {
       noOptions: 'Âoption tî modêle sô a yeke pepe',
@@ -2724,7 +2787,7 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
       max: 'Kûê',
       ultra: 'Kota kûê',
       updateFailed: 'Lëkëngö option tî modêle a buba',
-      fastFailed: 'Lëkëngö mode tî ndurü a buba',
+      fastFailed: 'Lëkëngö mode tî ndurü a buba'
     },
     gatewayMenu: {
       gateway: 'Tor',
@@ -2739,7 +2802,7 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
       connection: label => `Kangbïngö: ${label}`,
       recentActivity: 'Särängö tî fadë',
       viewAllLogs: 'Bâ âlog kûê →',
-      messagingPlatforms: 'Âplateforme tî âtënë',
+      messagingPlatforms: 'Âplateforme tî âtënë'
     },
     approvalMode: {
       title: 'Mode tî zïängö mabôko',
@@ -2749,7 +2812,7 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
       smart: 'Na ndâ',
       smartDescription: 'Bâ âsärängö ndëndë na hûnda tongana a lingbi',
       off: 'A zîa pepe',
-      offDescription: 'Sära kua na hündängö tî zïängö mabôko pepe',
+      offDescription: 'Sära kua na hündängö tî zïängö mabôko pepe'
     },
     statusbar: {
       unknown: 'a hînga nî pepe',
@@ -2805,18 +2868,19 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
           skills: 'Âcompétence',
           subagent_definitions: 'Ândâ tî âsubagent',
           system_prompt: 'Hündängö tî système',
-          tool_definitions: 'Ândâ tî âoutil',
+          tool_definitions: 'Ândâ tî âoutil'
         },
         empty: 'Âdonnée tî contexte a yeke dä pepe',
         loading: 'A yeke müngö ndâ…',
         percentFull: percent => `${percent}% a kûê`,
         title: 'Särängö kua tî contexte',
-        tokenSummary: (used, max) => `${used} / ${max} token`,
+        tokenSummary: (used, max) => `${used} / ${max} token`
       },
       openContextUsage: 'Bata ndâ tî särängö kua tî contexte',
       session: 'Sitzig',
       runtimeSessionElapsed: 'Tongo sô a hön tî session',
-      yoloOn: 'YOLO a zîa — a zîa mabôko ndëndë na âcommande sïönî. Pîka lê tî zîa nî pepe. Shift+click a sanza nî tî kûê.',
+      yoloOn:
+        'YOLO a zîa — a zîa mabôko ndëndë na âcommande sïönî. Pîka lê tî zîa nî pepe. Shift+click a sanza nî tî kûê.',
       yoloOff: 'YOLO a zîa pepe — pîka lê tî zîa mabôko ndëndë na âcommande sïönî. Shift+click a sanza nî tî kûê.',
       modelNone: 'ôko pepe',
       noModel: 'modêle a yeke pepe',
@@ -2824,8 +2888,8 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
       openModelPicker: 'Bata soro tî modêle',
       modelPinned: 'mo a kangbi nî; âdiscussion ya sï a sara kua na sô na ndo tî ndâ tî Mbängö',
       modelTitle: (provider, model) => `Modêle · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   zones: {
     showHeader: 'Fa tête',
@@ -2833,7 +2897,8 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
     minimize: 'Kêtê',
     restore: 'Kîri',
     closeRunningTitle: 'Kânga onglet sô a yeke kua?',
-    closeRunningBody: 'Discussion sô a yeke kua (wala a yeke küi tënë tî mo). Kânga onglet a zî nî na lê — session a bata ndâ tî kua tî lo na a lingbi tî bata nî ndönî na sidebar.',
+    closeRunningBody:
+      'Discussion sô a yeke kua (wala a yeke küi tënë tî mo). Kânga onglet a zî nî na lê — session a bata ndâ tî kua tî lo na a lingbi tî bata nî ndönî na sidebar.',
     closeRunningConfirm: 'Kânga onglet',
     closeOthers: 'Kânga âsô tî pekô',
     closeToRight: 'Kânga sô a yeke na mbâgë tî lâ',
@@ -2859,7 +2924,8 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
     deletePreset: name => `Zî ${name}`,
     zoneEditorTitle: 'Wasü âzone',
     editorHintPre: 'pîka lê tî kânga · ',
-    editorHintPost: ' a sanza ligne · tambëla panêle na yâ tî âzone tî kânga âla ôko · tambëla ândâ tî zone tî sanza taille',
+    editorHintPost:
+      ' a sanza ligne · tambëla panêle na yâ tî âzone tî kânga âla ôko · tambëla ândâ tî zone tî sanza taille',
     templateColumns: 'Âkolône',
     templateRows: 'Âligne',
     templateGrid: 'Grille',
@@ -2870,18 +2936,19 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
     layoutNamePlaceholder: fallback => `Iri tî mbängö (${fallback})`,
     saveApply: 'Zîa & sära',
     notExpressible: 'mbängö sô a kânga lê tî lo (pinwheel) — a lingbi tî fa nî na mbâgë sô a yeke na yâ pepe',
-    zoneCount: count => `${count} zone`,
+    zoneCount: count => `${count} zone`
   },
   prompts: {
     gatewayDisconnected: 'Gateway tî OpenAmer a kangbi pepe',
     sudoSendFailed: 'A lingbi tî tokua mot de passe sudo pepe',
     secretSendFailed: 'A lingbi tî tokua secret pepe',
     sudoTitle: 'Mot de passe tî administrateur',
-    sudoDesc: 'OpenAmer a lingbi mot de passe sudo tî mo tî sära commande tî kota lêgë. A tokua nî gï na agent tî ndo tî mo.',
+    sudoDesc:
+      'OpenAmer a lingbi mot de passe sudo tî mo tî sära commande tî kota lêgë. A tokua nî gï na agent tî ndo tî mo.',
     sudoPlaceholder: 'mot de passe sudo',
     secretTitle: 'A lingbi secret',
     secretDesc: 'OpenAmer a lingbi credential tî kôzo.',
-    secretPlaceholder: 'valeur tî secret',
+    secretPlaceholder: 'valeur tî secret'
   },
   desktop: {
     audioReadFailed: 'A lingbi tî dîko son sô a mû pepe',
@@ -2898,9 +2965,11 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} tî session sô`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'A lingbi tî sanza YOLO pepe',
-    profileStatus: current => `Profil: ${current}. Sära kua na /profile <name> wala na soro “Session ya sï” tî kôzo discussion na mbênî profil.`,
+    profileStatus: current =>
+      `Profil: ${current}. Sära kua na /profile <name> wala na soro “Session ya sï” tî kôzo discussion na mbênî profil.`,
     unknownProfile: 'Profil sô a hînga nî pepe',
-    noProfileNamed: (target, available) => `Profil sô a yeke na iri “${target}” a yeke pepe. Sô a yeke dä: ${available}`,
+    noProfileNamed: (target, available) =>
+      `Profil sô a yeke na iri “${target}” a yeke pepe. Sô a yeke dä: ${available}`,
     newChatsProfile: name => `Âdiscussion ya sï a sara kua na profil ${name}.`,
     setProfileFailed: 'Zïängö profil a buba',
     sttDisabled: 'A zîa speech-to-text pepe na âmbängö.',
@@ -2908,8 +2977,9 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
     regenerateFailed: 'Särängö ndönî a buba',
     editFailed: 'Sanzängö a buba',
     resumeFailed: 'Dïköngö a buba',
-    resumeStrandedTitle: "A lingbi tî mû session sô pepe",
-    resumeStrandedBody: 'Kangbïngö na session sô a buba na âdïköngö ndëndë a zî lêgë. Bâ andâa gateway a yeke kua, na pekô tara ndönî.',
+    resumeStrandedTitle: 'A lingbi tî mû session sô pepe',
+    resumeStrandedBody:
+      'Kangbïngö na session sô a buba na âdïköngö ndëndë a zî lêgë. Bâ andâa gateway a yeke kua, na pekô tara ndönî.',
     resumeRetry: 'Dîko',
     nothingToBranch: 'Ye ôko tî sära branch pepe',
     branchNeedsChat: 'Kôzo wala dîko discussion kôzo tî sära branch.',
@@ -2949,31 +3019,31 @@ Zîa sô pepe tî bata ndâ tî ${mode}.`,
       success: platform => `A mû nî na mo na ${platform}. Dîko la tongana mo yê.`,
       systemNote: platform => `↻ A mû nî na mo na ${platform} — dîko la tongana mo yê.`,
       failed: error => `Müngö kua a buba: ${error}`,
-      timedOut: 'Tongo a hön na küi gateway. Andâa `openamer gateway` a yeke kua?',
-    },
+      timedOut: 'Tongo a hön na küi gateway. Andâa `openamer gateway` a yeke kua?'
+    }
   },
   errors: {
     genericFailure: 'Kpälë a sara',
     boundaryTitle: 'Kpälë a sara na yâ tî interface',
     boundaryDesc: 'Lê ni a wara kpälë sô a yeke küi pepe. Âdiscussion na âmbängö tî mo a yeke nzönî.',
     reloadWindow: 'Mû fenêtre ndönî',
-    openLogs: 'Bata âlog',
+    openLogs: 'Bata âlog'
   },
   ui: {
     search: {
-      clear: 'Zî gïngö kûê',
+      clear: 'Zî gïngö kûê'
     },
     pagination: {
       label: 'Seitig',
       previous: 'Tî kôzo',
       previousAria: 'Gue na page tî kôzo',
       next: 'Tî pekô',
-      nextAria: 'Gue na page tî pekô',
+      nextAria: 'Gue na page tî pekô'
     },
     sidebar: {
       title: 'Seitleiste',
       description: 'A fa sidebar tî mobile.',
-      toggle: 'Bata/kânga sidebar',
-    },
-  },
+      toggle: 'Bata/kânga sidebar'
+    }
+  }
 })

@@ -45,7 +45,7 @@ export const os = defineLocale({
     update: 'Ног кӕнын',
     on: 'Бакӕнгӕ',
     off: 'Астӕнгӕ',
-    tryHint: term => `Try “${term}”`,
+    tryHint: term => `Try “${term}”`
   },
   fileMenu: {
     revealFileManager: 'Мидӕггаг папкӕ бакусын',
@@ -60,7 +60,7 @@ export const os = defineLocale({
     pathCopied: 'Фӕндаг копи ӕрцыд',
     revealFinder: 'Finder-ы равдисын',
     revealExplorer: 'File Explorer-ы равдисын',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop цӕттӕ у',
@@ -69,7 +69,7 @@ export const os = defineLocale({
       loadingSettings: 'OpenAmer-ы параметртӕ ӕвзарын',
       loadingSessions: 'Фӕстаг сеанстӕ ӕвзарын',
       startingDesktopConnection: 'Desktop-ы бастдзинад райдайын',
-      startingOpenAmerDesktop: 'OpenAmer Desktop райдайын…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop райдайын…'
     },
     errors: {
       backgroundExited: 'OpenAmer-ы фоны процесс рацыд.',
@@ -78,13 +78,15 @@ export const os = defineLocale({
       desktopBootFailed: 'Desktop-ы райдайын нӕ рауад',
       gatewayConnectionLost: 'Шлюзимæ бастдзинад фесафт',
       gatewaySignInRequired: 'Шлюзмæ бацын хъæуы',
-      ipcBridgeUnavailable: 'Десктоп IPC-хид нæй.',
+      ipcBridgeUnavailable: 'Десктоп IPC-хид нæй.'
     },
     failure: {
       title: 'OpenAmer нæ райдыдта',
-      description: 'Фоны шлюз нæ срæзыд. Дæлдæр равзар иу расткæныны къахдзæф. Ам ницы фесафы дæ ныхасдзинæдтæ кæнæ уаг.',
+      description:
+        'Фоны шлюз нæ срæзыд. Дæлдæр равзар иу расткæныны къахдзæф. Ам ницы фесафы дæ ныхасдзинæдтæ кæнæ уаг.',
       remoteTitle: 'Дард шлюзмæ бацын хъæуы',
-      remoteDescription: 'Дæ дард шлюзы сесси аскъуыд. Бастдзинад сфидар кæнынмæ ногæй бац. Ам ницы фесафы дæ ныхасдзинæдтæ кæнæ уаг.',
+      remoteDescription:
+        'Дæ дард шлюзы сесси аскъуыд. Бастдзинад сфидар кæнынмæ ногæй бац. Ам ницы фесафы дæ ныхасдзинæдтæ кæнæ уаг.',
       retry: 'Ногæй бакæс',
       repairInstall: 'Исталад сфидар кæн',
       useLocalGateway: 'Локал шлюзæй пайда кæн',
@@ -103,10 +105,11 @@ export const os = defineLocale({
       signInFailed: 'Бахизд нæ фæци',
       signInToRemoteGateway: 'Бахиз дарддæр шлюзмæ',
       identityProvider: 'дæ идентификацийы провайдер',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   notifications: {
     region: 'Хъусынгæнинæгтæ',
@@ -118,7 +121,8 @@ export const os = defineLocale({
     copyDetail: 'Деталь копи кæнын',
     copyDetailFailed: 'Хъусынгæнинагы деталь копи кæнын нæ бантыст',
     backendOutOfDateTitle: 'Бэкенд зæронд у',
-    backendOutOfDateMessage: 'Дæ OpenAmer бэкенд зæронддæр у ацы desktop-версийæ æмæ гæнæн ис æмæ раст нæ куса. Сфидар кæн, цæмæй æмхуызон уой.',
+    backendOutOfDateMessage:
+      'Дæ OpenAmer бэкенд зæронддæр у ацы desktop-версийæ æмæ гæнæн ис æмæ раст нæ куса. Сфидар кæн, цæмæй æмхуызон уой.',
     installMethodUnsupportedTitle: 'Савæрды метод æмбæлгæ нæ у',
     updateOpenAmer: 'OpenAmer сфидар кæн',
     updateReadyTitle: 'Сфидар кæнын æххæст у',
@@ -127,11 +131,12 @@ export const os = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT-æн хъæуы ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs нæ бавæрдта API ключ (401).',
       gatewayAuthFailed: 'Шлюзы аутентификаци нæ рауад — сбæрæг кæн дæ API_SERVER_KEY.',
-      methodNotAllowed: 'Десктопон бэкенд нæ бавæрдта уыцы курдиат (405 Метод нæ хъæуы). Бафæлвæр OpenAmer Desktop ногæй сæвæрын.',
+      methodNotAllowed:
+        'Десктопон бэкенд нæ бавæрдта уыцы курдиат (405 Метод нæ хъæуы). Бафæлвæр OpenAmer Desktop ногæй сæвæрын.',
       microphonePermission: 'Микрофонмæ бар нæ радтой.',
       openaiRejectedApiKey: 'OpenAI нæ бавæрдта API ключ.',
       openaiTtsNeedsKey: 'OpenAI TTS хъæуы VOICE_TOOLS_OPENAI_KEY кæнæ OPENAI_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Дзургæйы текстмæ сæвæр, цæмæй пайда кæна хъæлæсон режимæй.',
@@ -150,7 +155,7 @@ export const os = defineLocale({
       transcriptionFailed: 'Хъæлæсон транскрипци нæ рауад.',
       transcriptionUnavailable: 'Хъæлæсы транскрипци нырма нæй.',
       tryRecordingAgain: 'Ногæй аудиофыст бафæлвар.',
-      unavailable: 'Хъæлæс нæй.',
+      unavailable: 'Хъæлæс нæй.'
     },
     native: {
       approvalTitle: 'Батæрх æмбæлы.',
@@ -163,10 +168,10 @@ export const os = defineLocale({
       turnErrorTitle: 'Раунд нæ рауад.',
       backgroundDoneTitle: 'Фоны хъуыддаг фæци.',
       backgroundFailedTitle: 'Фоны хъуыддаг нæ рауад.',
-      creditsTitle: 'Кредиттæ.',
+      creditsTitle: 'Кредиттæ.'
     },
     more: count => `${count} more ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} available.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer-ы кредиттæ фæуыд.',
@@ -174,7 +179,7 @@ export const os = defineLocale({
     openBilling: 'Биллинг гом кæн.',
     addCredits: 'Кредиттæ бафтау.',
     dismiss: 'Æрбафснай.',
-    titleProvider: provider => `Out of credits — ${provider}`,
+    titleProvider: provider => `Out of credits — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Фарсбаз басæтт.',
@@ -191,7 +196,7 @@ export const os = defineLocale({
     openStarmap: 'Мемори график байгом',
     openKeybinds: 'Клавиатурæйы фæрæзтæ',
     layoutEditor: 'Уаджы редактор',
-    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout',
+    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout'
   },
   keybinds: {
     title: 'Клавиатурæйы фæрæзтæ',
@@ -206,7 +211,7 @@ export const os = defineLocale({
       profiles: 'Профилтæ',
       session: 'Сесси',
       navigation: 'Навигаци',
-      view: 'Уынд',
+      view: 'Уынд'
     },
     actions: {
       'keybinds.openPanel': 'Клавиатурон хæццæтæ бахом кæнын',
@@ -285,10 +290,10 @@ export const os = defineLocale({
       'composer.slash': 'Слэш-командæты палитрæ',
       'composer.help': 'Тагъд æххуыс',
       'composer.history': 'Поповер / историйы цикл',
-      'composer.cancel': 'Поповер æхгæн · æххæстгæнæн ныууадз',
+      'composer.cancel': 'Поповер æхгæн · æххæстгæнæн ныууадз'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   language: {
     label: 'Æвзаг',
@@ -297,7 +302,7 @@ export const os = defineLocale({
     saveError: 'Æвзаджы ивд нæ рауад',
     switchTo: 'Æвзаг аив',
     searchPlaceholder: 'Æвзæгтæ агурын…',
-    noResults: 'Æвзæгтæ нæ ссардæуыд',
+    noResults: 'Æвзæгтæ нæ ссардæуыд'
   },
   settings: {
     closeSettings: 'Параметртæ æхгæн',
@@ -322,11 +327,12 @@ export const os = defineLocale({
       billing: 'Биллинг',
       notifications: 'Хабæрттæ',
       plugins: 'Плагинтæ',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'Десктоп плагинтæ',
-      blurb: 'UI фæрæзтæ ацы программæмæ æвæрд æрцыдысты — рауагъдимæ иумæ, кæнæ desktop-plugins фолдермæ æвæрд (OpenAmer кæй фыссы, уыдон дæр). Æхгæнын плагин кустæй рагæй æвзæры æмæ ногæй кустмæ куы рауайа, уæд дæр баззайы.',
+      blurb:
+        'UI фæрæзтæ ацы программæмæ æвæрд æрцыдысты — рауагъдимæ иумæ, кæнæ desktop-plugins фолдермæ æвæрд (OpenAmer кæй фыссы, уыдон дæр). Æхгæнын плагин кустæй рагæй æвзæры æмæ ногæй кустмæ куы рауайа, уæд дæр баззайы.',
       openFolder: 'Плагинты фолдер байгом кæн',
       rescan: 'Ногæй скан кæн',
       reveal: 'Файлы менеджеры равдис',
@@ -337,41 +343,42 @@ export const os = defineLocale({
       kinds: {
         bundled: 'бастгонд',
         disk: 'дискыл',
-        runtime: 'Куысты рæстæг',
+        runtime: 'Куысты рæстæг'
       },
-      count: n => `${n} installed`,
+      count: n => `${n} installed`
     },
     notifications: {
       title: 'Хабæрттæ',
-      intro: 'Нативон десктопон хабæрттæ, æппæрццæг æпп-арты тосттæй. Уыдон иу компьютеры мидæг сты — алкæцы компьютер дæр йæхи уагæвæрдтæ хæссы.',
+      intro:
+        'Нативон десктопон хабæрттæ, æппæрццæг æпп-арты тосттæй. Уыдон иу компьютеры мидæг сты — алкæцы компьютер дæр йæхи уагæвæрдтæ хæссы.',
       enableAll: 'Хабæрттæ баиу',
       enableAllDesc: 'Сæйраг фадæн. Ацы ахицæн кæн, цæмæй дæлдæр æппæт хабæрттæ æнæхъус уой.',
       focusedHint: 'Æххæстгæныны хабæрттæ æрмæстдæр æрцæуынц, куы OpenAmer фоны у.',
       kinds: {
         approval: {
           label: 'Бар хъæуы',
-          description: 'Командæ æнхъæлмæ кæсы, цæмæй æй барад кæнæ нымад кæн.',
+          description: 'Командæ æнхъæлмæ кæсы, цæмæй æй барад кæнæ нымад кæн.'
         },
         input: {
           label: 'Бацисæн хъæуы',
-          description: 'OpenAmer фарст бафарста кæнæ хъæуы пароль æви тайнæ.',
+          description: 'OpenAmer фарст бафарста кæнæ хъæуы пароль æви тайнæ.'
         },
         turnDone: {
           label: 'Дзуапп цæттæ',
-          description: 'Раунд æххæст æрцыд, куы OpenAmer фоны уыд.',
+          description: 'Раунд æххæст æрцыд, куы OpenAmer фоны уыд.'
         },
         turnError: {
           label: 'Раунд нæ фæрæзт',
-          description: 'Раунд æххæст æрцыд рæдыдимæ.',
+          description: 'Раунд æххæст æрцыд рæдыдимæ.'
         },
         backgroundDone: {
           label: 'Фоны куыст æххæст æрцыд',
-          description: 'Фоны терминалы командæ æххæст æрцыд.',
+          description: 'Фоны терминалы командæ æххæст æрцыд.'
         },
         credits: {
           label: 'Кредиты хабæрттæ',
-          description: 'Кредиттæм бафарст æрлæууыд кæнæ рацаразтæ.',
-        },
+          description: 'Кредиттæм бафарст æрлæууыд кæнæ рацаразтæ.'
+        }
       },
       test: 'Тестон хабардард рарвит',
       testTitle: 'OpenAmer',
@@ -380,7 +387,7 @@ export const os = defineLocale({
       testUnsupported: 'Ацы системæ нæ дæтты хион хабардардтæ.',
       completionSoundTitle: 'Æххæсты зæл',
       completionSoundDesc: 'Агенты куыст æххæст куы вæййы, уæд зæлы. Равзар æрæвæрд æмæ йæ ацы ран фен.',
-      completionSoundPreview: 'Разгляд',
+      completionSoundPreview: 'Разгляд'
     },
     sections: {
       model: 'Модель',
@@ -390,7 +397,7 @@ export const os = defineLocale({
       safety: 'Æдасдзинад',
       memory: 'Зонды & Контекст',
       voice: 'Хъæлæс',
-      advanced: 'Æвзаргæ',
+      advanced: 'Æвзаргæ'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop-ы тыххæй',
@@ -398,11 +405,12 @@ export const os = defineLocale({
       gateway: 'Шлюзы бастдзинад...',
       keys: 'API дӕлгӕтӕ агур...',
       mcp: 'MCP сервертӕ агур...',
-      sessions: 'Архивгонд сесситӕ агур...',
+      sessions: 'Архивгонд сесситӕ агур...'
     },
     appearance: {
       embedsTitle: 'Инлайн æмбæрзтæ',
-      embedsDesc: 'Хъæздыг разæвдисæнтæ æрбацæуынц æртыккаг сайттæй (YouTube, X, …). «Фæрсын» æвдисы бынатбаттæ, ыннæдæр куы бауадзай, уæдмæ; «Æдзух» сæ автоматиконæй æрбахæссы; «Аф» нысан кæны хуымæтæг æрвитæнтæ.',
+      embedsDesc:
+        'Хъæздыг разæвдисæнтæ æрбацæуынц æртыккаг сайттæй (YouTube, X, …). «Фæрсын» æвдисы бынатбаттæ, ыннæдæр куы бауадзай, уæдмæ; «Æдзух» сæ автоматиконæй æрбахæссы; «Аф» нысан кæны хуымæтæг æрвитæнтæ.',
       embedsAsk: 'Фæрсын',
       embedsAlways: 'Æдзух',
       embedsOff: 'Аф',
@@ -413,7 +421,8 @@ export const os = defineLocale({
       themeTitle: 'Темæ',
       themeDesc: 'Æрмæстдæр æвæрæн палитрæтæ. Æвзæрст режим æвæрд æрцæуы сæрмæ.',
       installTitle: 'Сæвæр VS Code-йæ',
-      installDesc: 'Бахаф Marketplace-ы æрбадтыты id (зæгъæм, dracula-theme.theme-dracula), цæмæй йæ хуызонтемæ æвæрæн палитрæмæ раивтай.',
+      installDesc:
+        'Бахаф Marketplace-ы æрбадтыты id (зæгъæм, dracula-theme.theme-dracula), цæмæй йæ хуызонтемæ æвæрæн палитрæмæ раивтай.',
       installButton: 'Сæвæр',
       installing: 'Сæвæры…',
       installError: 'Уыцы темæ сæвæрæн нæ бантыст.',
@@ -421,8 +430,10 @@ export const os = defineLocale({
       importedBadge: 'Æрбахаст',
       pet: {
         title: 'Хæдзарон цæрæгой',
-        intro: 'Æрбафснай анимацион petdex-ы маскот, кæцы app-ы уæлæ лæууы æмæ реагир кæны, OpenAmer цы кæны, уымæ — зилы, куы æххæст кæнынц инструменттæ, бæргæ кæны æнтыстæй, хъынцъым кæны рæдыдтыты.',
-        restartHint: 'Питомецтæн хъæуы тагъд ногæй райдайæн — архайæг app райдыдта раздæр, ацы функцийæ æрбафтыды размæ. Рахиз æмæ OpenAmer ногæй гом кæн, стæй æрбаздæх ам.',
+        intro:
+          'Æрбафснай анимацион petdex-ы маскот, кæцы app-ы уæлæ лæууы æмæ реагир кæны, OpenAmer цы кæны, уымæ — зилы, куы æххæст кæнынц инструменттæ, бæргæ кæны æнтыстæй, хъынцъым кæны рæдыдтыты.',
+        restartHint:
+          'Питомецтæн хъæуы тагъд ногæй райдайæн — архайæг app райдыдта раздæр, ацы функцийæ æрбафтыды размæ. Рахиз æмæ OpenAmer ногæй гом кæн, стæй æрбаздæх ам.',
         on: 'Баст',
         off: 'Æбаст',
         scaleTitle: 'Ас',
@@ -454,10 +465,11 @@ export const os = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
       title: 'Фӕлгонц',
-      intro: 'Атӕ сты дӕсны равдысты фӕлгонцдӕттӕ. Режим контрол кӕны рухсдзинадӕй; тема контрол кӕны акценты палитрӕ ӕмӕ чаты ӕрмӕг стиль.',
+      intro:
+        'Атӕ сты дӕсны равдысты фӕлгонцдӕттӕ. Режим контрол кӕны рухсдзинадӕй; тема контрол кӕны акценты палитрӕ ӕмӕ чаты ӕрмӕг стиль.',
       colorMode: 'Хуызы режим',
       colorModeDesc: 'Равзар фиксион режим кенӕ OpenAmer-ӕн бар ратт, цӕмӕ фӕдзурӕ системӕйы уагмӕ.',
       toolViewTitle: 'Кузӕнмӕ сидыны равдыст',
@@ -467,25 +479,26 @@ export const os = defineLocale({
       translucencyDesc: 'Дӕ дӕснӕ фенӕ ӕгас рудзынгы фӕрцы. Тӕккӕ macOS ӕмӕ Windows.',
       backdropTitle: 'Чаты фон',
       backdropDesc: 'Ныхасы фӕстӕ къаддзаг статуйы ныв.',
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Reset ${count} allowed ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installPlaceholder: 'publisher.extension',
-      installed: name => `Installed “${name}”.`,
+      installed: name => `Installed “${name}”.`
     },
     modeOptions: {
       light: {
         label: 'Рухс',
-        description: 'Дӕсны рухс ӕрмӕгтӕ',
+        description: 'Дӕсны рухс ӕрмӕгтӕ'
       },
       dark: {
         label: 'Тар',
-        description: 'Къаддзаг рухс кусӕн бынат',
+        description: 'Къаддзаг рухс кусӕн бынат'
       },
       system: {
         label: 'Системӕ',
-        description: 'ОС-ы фӕлгонцмӕ фӕдзур',
-      },
+        description: 'ОС-ы фӕлгонцмӕ фӕдзур'
+      }
     },
     about: {
       heading: 'OpenAmer десктоп',
@@ -503,7 +516,8 @@ export const os = defineLocale({
       tapCheck: 'Нывæрдтæ агурæн «Ныр сбæрæг кæн»-ыл зыл.',
       justNowSuffix: '· ныртæккæ',
       automaticUpdates: 'Автоматикон нывæрдтæ',
-      automaticUpdatesDesc: 'OpenAmer бэкграунды автоматикон æгъдауæй сбæрæг кæны нывæрдтæ æмæ дæ зонды кæны, кæд иу æвæрд æрцæуа.',
+      automaticUpdatesDesc:
+        'OpenAmer бэкграунды автоматикон æгъдауæй сбæрæг кæны нывæрдтæ æмæ дæ зонды кæны, кæд иу æвæрд æрцæуа.',
       never: 'никæд',
       justNow: 'ныртæккæ',
       version: value => `Version ${value}`,
@@ -512,7 +526,7 @@ export const os = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min ago`,
       hoursAgo: count => `${count} hours ago`,
-      daysAgo: count => `${count} days ago`,
+      daysAgo: count => `${count} days ago`
     },
     config: {
       none: 'Нӕй',
@@ -528,7 +542,8 @@ export const os = defineLocale({
       imported: 'Конфигураци ӕрбахаст',
       invalidJson: 'JSON конфигураци нӕвӕрӕх',
       keepAwakeTitle: 'Компьютер фынӕй ма уадз',
-      keepAwakeDesc: 'Ацы машинӕ фынӕй ма уадз, цӕмӕй дӕргӕ кӕнӕ ӕхсӕвӕй ӕхсӕвмӕ цӕуӕг куыстытӕ дарддӕр цӕуой. Экран ма фӕлмӕн кӕнӕд.',
+      keepAwakeDesc:
+        'Ацы машинӕ фынӕй ма уадз, цӕмӕй дӕргӕ кӕнӕ ӕхсӕвӕй ӕхсӕвмӕ цӕуӕг куыстытӕ дарддӕр цӕуой. Экран ма фӕлмӕн кӕнӕд.'
     },
     credentials: {
       pasteKey: 'Кӕрдӕг бавӕр',
@@ -538,7 +553,7 @@ export const os = defineLocale({
       remove: 'Схафын',
       getKey: 'Кӕрдӕг райсын',
       saving: 'Æвæрын',
-      pasteLabelKey: label => `Paste ${label} key`,
+      pasteLabelKey: label => `Paste ${label} key`
     },
     envActions: {
       credentialActions: 'Креденциалон архайдтæ',
@@ -549,7 +564,7 @@ export const os = defineLocale({
       replace: 'Ивын',
       set: 'Сæвæрын',
       clear: 'Сыгъдæг кæнын',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     gateway: {
       loading: 'Гейтуэйы уагдæттæ æвæрын...',
@@ -557,12 +572,14 @@ export const os = defineLocale({
       unavailableDesc: 'Десктопон IPC-хыд гейтуэйы уагдæттæ нæ равдисы.',
       title: 'Гейтуэйимæ бастдзинад',
       envOverride: 'Æрбадзауы ивд',
-      intro: 'OpenAmer Desktop йæхи локалон гейтуэй æвæры априори. Пайда кæн æддаг гейтуэйæй, кæд дæ фæнды ацы апп контрол кæна æвæрд OpenAmer-ы бэкенд æндæр машинæйы кæнæ æууæнды проксийы фæстæ. Равзар дæлдæр профиль, цæмæй йын уа йæхи æддаг хост.',
+      intro:
+        'OpenAmer Desktop йæхи локалон гейтуэй æвæры априори. Пайда кæн æддаг гейтуэйæй, кæд дæ фæнды ацы апп контрол кæна æвæрд OpenAmer-ы бэкенд æндæр машинæйы кæнæ æууæнды проксийы фæстæ. Равзар дæлдæр профиль, цæмæй йын уа йæхи æддаг хост.',
       appliesTo: 'Хауы',
       allProfiles: 'Æппæт профилтæ',
       defaultConnection: 'Априори бастдзинад алы профилæн, кæцынæн нæй йæхи ивд.',
       envOverrideTitle: 'Æрбадзауы ивддзаутæ ацы десктопон сесси контрол кæнынц.',
-      envOverrideDesc: 'Аппæрст кæн OPENAMER_DESKTOP_REMOTE_URL æмæ OPENAMER_DESKTOP_REMOTE_TOKEN, цæмæй пайда кæнай дæлдæр æвæрд уагимæ.',
+      envOverrideDesc:
+        'Аппæрст кæн OPENAMER_DESKTOP_REMOTE_URL æмæ OPENAMER_DESKTOP_REMOTE_TOKEN, цæмæй пайда кæнай дæлдæр æвæрд уагимæ.',
       modeTitle: 'Бастдзинады режим',
       localTitle: 'Локалон шлюз',
       localDesc: 'Локалон хостыл приватон OpenAmer бэкенд байгом кæн. Уый стандартон у æмæ офлайн кусы.',
@@ -570,7 +587,8 @@ export const os = defineLocale({
       inheritDesc: 'Ацы профилы ивд раппæрст кæн æмæ стандартон бастдзинад пайда кæн.',
       remoteTitle: 'Дард шлюз',
       remoteDesc: 'Ацы десктопон оболочкæ баст кæн дард OpenAmer бэкендимæ.',
-      remoteAuthHint: 'Хостингон шлюзтæ пайда кæнынц OAuth кæнæ архайæджы ном æмæ пароль; хи-хостонтæ та сессион токен пайда кæнæн ис.',
+      remoteAuthHint:
+        'Хостингон шлюзтæ пайда кæнынц OAuth кæнæ архайæджы ном æмæ пароль; хи-хостонтæ та сессион токен пайда кæнæн ис.',
       cloudDesc: 'Иу хатт OpenAmer Cloud-мæ бахиз æмæ дæ аккаунты агенттæй равзар — URL бафтауæн нæй.',
       cloudSignIn: 'OpenAmer Cloud-мæ бахиз',
       cloudSignedIn: 'Бахизтæ OpenAmer Cloud-мæ',
@@ -584,7 +602,7 @@ export const os = defineLocale({
       cloudNoAgents: {
         before: 'Ацы аккаунты агенттæ не ссардæуыд. Сфæлдис иу',
         linkText: 'OpenAmer портал',
-        after: ', уый фæстæ ног кæн.',
+        after: ', уый фæстæ ног кæн.'
       },
       cloudRefresh: 'Ног кæн',
       cloudConnect: 'Баст кæн',
@@ -600,14 +618,16 @@ export const os = defineLocale({
       remoteUrlTitle: 'Ремот URL',
       remoteUrlDesc: 'Базон URL ремоут дашборды бэкендæн. Пулы префикстæ дæр æххуыс кæнынц, зæгъæм /openamer.',
       probing: 'Ацы шлюз куыд аутентификаци кæны, уый бæрæг кæны…',
-      probeError: 'Ацы шлюзмæ нырмæ æрхæццæ нæ бантыст. Сбæрæг кæн URL — аутентификацийы метод куы раргом уа, уæд æвдисдзысты.',
+      probeError:
+        'Ацы шлюзмæ нырмæ æрхæццæ нæ бантыст. Сбæрæг кæн URL — аутентификацийы метод куы раргом уа, уæд æвдисдзысты.',
       signedIn: 'Бацыд',
       signIn: 'Бацын',
       signOut: 'Рахиз',
       authTitle: 'Аутентификаци',
       authSignedInPassword: 'Ацы шлюз пайда кæны архайæджы ном æмæ паролæй. Ды бацыдтæ; сесси автоматиконæй ног кæны.',
       authSignedInOauth: 'Ацы шлюз пайда кæны OAuth. Ды бацыдтæ; сесси автоматиконæй ног кæны.',
-      authNeedsPassword: 'Ацы шлюз пайда кæны архайæджы ном æмæ паролæй. Бацæу, цæмæй ацы десктопон программæ авторизацигонд æрцæуа.',
+      authNeedsPassword:
+        'Ацы шлюз пайда кæны архайæджы ном æмæ паролæй. Бацæу, цæмæй ацы десктопон программæ авторизацигонд æрцæуа.',
       tokenTitle: 'Сессион токен',
       tokenDesc: 'Дашборды сессион токен, REST æмæ WebSocket-мæ бацынæн. Афтидæй ныууадз, цæмæй æвæрд токен баззайа.',
       savedToken: 'Æвæрд',
@@ -638,11 +658,14 @@ export const os = defineLocale({
       sshOpenAmerPathPlaceholder: 'Автоматиконæй бæрæн',
       sshTestConnection: 'SSH тест',
       sshConnect: 'Баст кæн',
-      sshButtonsHint: 'Æвæрд бавæрд цæуы иннæ хатт программæ байгом кæныны рæстæг. Баст кæн ныр бастдзинад ногæй саразы.',
+      sshButtonsHint:
+        'Æвæрд бавæрд цæуы иннæ хатт программæ байгом кæныны рæстæг. Баст кæн ныр бастдзинад ногæй саразы.',
       sshIncompleteHost: 'Баст кæныны размæ SSH-хост бафысс.',
       sshErrUnreachable: 'Уыцы хостмæ SSH-æй бахæццæ нæ фæрæзтæн. Сбæрæг кæн хост, порт æмæ дæ сеть.',
-      sshErrAuth: 'SSH-ы аутентификаци нæ рауæд. Дæ ключ ssh-agent-мæ бавæр (ssh-add) кæнæ ~/.ssh/config-ы IdentityFile сæвæр — OpenAmer ssh-ы интерактивонæй нæ архайы.',
-      sshErrHostKey: 'Хосты ключ ФÆИВТЫД, ды кæд фæстаг хатт бастдзинад сарæзтай. Бæрæг кæн, æмæ уый æнхъæлддзаг у, стæй ssh-keygen -R <host> æххæст кæн æмæ ногæй баст кæн.',
+      sshErrAuth:
+        'SSH-ы аутентификаци нæ рауæд. Дæ ключ ssh-agent-мæ бавæр (ssh-add) кæнæ ~/.ssh/config-ы IdentityFile сæвæр — OpenAmer ssh-ы интерактивонæй нæ архайы.',
+      sshErrHostKey:
+        'Хосты ключ ФÆИВТЫД, ды кæд фæстаг хатт бастдзинад сарæзтай. Бæрæг кæн, æмæ уый æнхъæлддзаг у, стæй ssh-keygen -R <host> æххæст кæн æмæ ногæй баст кæн.',
       enterUrlFirst: 'Фыццаг æдде URL бафысс.',
       restartingTitle: 'Шлюзы бастдзинад ногæй райдайы',
       savedTitle: 'Шлюзы параметртæ хъахъхъæд æрцыдысты',
@@ -658,17 +681,21 @@ export const os = defineLocale({
       applyFailed: 'Шлюзы параметртæ æвæрын нæ бантыст',
       saveFailed: 'Шлюзы параметртæ хъахъхъæнын нæ бантыст',
       sshTitle: 'SSH-æй бастдзинад саразын',
-      sshDesc: 'OpenAmer æдде SSH-йæ райдайы æмæ ацы программæмæ туннелæй æрбаст æрцæуы — дæхæдæг ницы райдайын кæнæ раргом кæнын хъæуы. Хостмæ дæгъæлтæй куыстаг SSH-бастдзинад хъæуы.',
+      sshDesc:
+        'OpenAmer æдде SSH-йæ райдайы æмæ ацы программæмæ туннелæй æрбаст æрцæуы — дæхæдæг ницы райдайын кæнæ раргом кæнын хъæуы. Хостмæ дæгъæлтæй куыстаг SSH-бастдзинад хъæуы.',
       sshTrustHint: 'Фыццаг равдыст хост-дæгъæл æууæнды æмæ фиксиргонд у; фæстæдæр ивддзинæдтæ æхгæдæй фæцæуынц.',
       sshHostTitle: 'Хост',
       sshHostDesc: 'user@host, кæнæ Host-алиас ~/.ssh/config-æй.',
       sshHostPick: 'Хост равзар…',
-      sshErrNotInstalled: 'OpenAmer дард хостмæ нæ сæвæрд æрцыд. Æй уым сæвæрут (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) кæнæ OpenAmer-ы фæндаг сæвæрут.',
-      sshErrPlatform: 'Дард платформæ æххуыс нæ кæны. OpenAmer Desktop SSH режим æххуыс кæны Linux, macOS æмæ Windows дард хосттæн.',
+      sshErrNotInstalled:
+        'OpenAmer дард хостмæ нæ сæвæрд æрцыд. Æй уым сæвæрут (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) кæнæ OpenAmer-ы фæндаг сæвæрут.',
+      sshErrPlatform:
+        'Дард платформæ æххуыс нæ кæны. OpenAmer Desktop SSH режим æххуыс кæны Linux, macOS æмæ Windows дард хосттæн.',
       sshErrTimeout: 'SSH бастдзинад тайм-аут радта. Хост, æвæццæгæн, æнæбары кæнæ æнкъарæны ис.',
       sshErrUpdateRequired: 'OpenAmer дард хостæй ногдзау кæнут, Desktop SSH-æй бастдзинадæй размæ.',
       sshErrUnknown: 'SSH бастдзинад нæ бантыст.',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudTitle: 'OpenAmer Cloud',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudOrgRole: role => `Role: ${role}`,
@@ -678,7 +705,7 @@ export const os = defineLocale({
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     mcp: {
       reloadFailed: 'MCP ногӕй ӕвзарын нӕ бантыст',
@@ -740,15 +767,16 @@ export const os = defineLocale({
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `${name} requires credentials`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} enabled`,
       authenticatedMessage: (server, count) => `${server}: ${count} tools`,
       enableTool: tool => `Enable ${tool}`,
-      disableTool: tool => `Disable ${tool}`,
+      disableTool: tool => `Disable ${tool}`
     },
     keys: {
       loading: 'API ключытæ æмæ бæрæггæнæнтæ æвæрын...',
       failedLoad: 'API ключытæ æвæрын нæ бантыст',
-      empty: 'Ацы категорийы нысангонд ницы ис.',
+      empty: 'Ацы категорийы нысангонд ницы ис.'
     },
     model: {
       loading: 'Моделы конфигураци æрхæссын...',
@@ -773,42 +801,43 @@ export const os = defineLocale({
       tasks: {
         vision: {
           label: 'Визуал',
-          hint: 'Нывы анализ',
+          hint: 'Нывы анализ'
         },
         web_extract: {
           label: 'Вебæй раргом',
-          hint: 'Фарсы бафхæрд',
+          hint: 'Фарсы бафхæрд'
         },
         compression: {
           label: 'Компресси',
-          hint: 'Контекст компакци',
+          hint: 'Контекст компакци'
         },
         skills_hub: {
           label: 'Хъуыддæгты центр',
-          hint: 'Хъуыддаг агурын',
+          hint: 'Хъуыддаг агурын'
         },
         approval: {
           label: 'Бауагъд',
-          hint: 'Фæрæзджын авто-бауагъд',
+          hint: 'Фæрæзджын авто-бауагъд'
         },
         mcp: {
           hint: 'MCP мигæнæнты рарвыст',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Сæргъы генераци',
-          hint: 'Сесситы сæргътæ',
+          hint: 'Сесситы сæргътæ'
         },
         curator: {
           label: 'Куратор',
-          hint: 'Хъуыддæгты пайдайы æркаст',
-        },
-      },
+          hint: 'Хъуыддæгты пайдайы æркаст'
+        }
+      }
     },
     providers: {
       connectAccount: 'Аккаунт баст кæнын',
       haveApiKey: 'API ключ дæр ис?',
-      intro: 'Абонементæй бахизын — копи кæнынæн API ключ нæй. OpenAmer браузеры бахизыны процесс дæуæн аразы, ацы программæйы.',
+      intro:
+        'Абонементæй бахизын — копи кæнынæн API ключ нæй. OpenAmer браузеры бахизыны процесс дæуæн аразы, ацы программæйы.',
       connected: 'Баст',
       collapse: 'Бафснайын',
       connectAnother: 'Æндæр провайдер баст кæнын',
@@ -821,16 +850,17 @@ export const os = defineLocale({
       noKeysMatch: 'Дæ агуырдмæ провайдертæ нæ ссардæуы.',
       localEndpoint: {
         title: 'Локалон / хæдбар ендпоинт',
-        description: 'OpenAmer сæвæр æникид OpenAI-совместим ендпоинтмæ (Zyphra, vLLM, llama.cpp, Ollama, æмæ æндæртæ).',
+        description: 'OpenAmer сæвæр æникид OpenAI-совместим ендпоинтмæ (Zyphra, vLLM, llama.cpp, Ollama, æмæ æндæртæ).'
       },
       loading: 'Провайдертæ æвзарын...',
       removeConfirm: provider => `Remove ${provider}?`,
       removeExternalGeneric: provider => `${provider} is managed by its own CLI — remove it there.`,
       removeKeyManaged: provider => `${provider} is configured from an API key. Remove it from API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? This runs "${command}" in the terminal to clear the credential.`,
       removeTerminalRunning: provider => `Running ${provider} disconnect in the terminal…`,
       removedMessage: provider => `${provider} was removed.`,
-      failedRemove: provider => `Could not remove ${provider}`,
+      failedRemove: provider => `Could not remove ${provider}`
     },
     sessions: {
       loading: 'Архивгонд сесситæ æвзарын…',
@@ -841,12 +871,14 @@ export const os = defineLocale({
       deletePermanently: 'Æнæгъæлæн фесафын',
       restored: 'Æрæвæрд æрцыд',
       autoArchiveTitle: 'Зæронд ныхæстæ автоархив кæнын',
-      autoArchiveDesc: 'Автоматиконæй архив кæн ныхæстæ, кæцытыл дæргъвæтин рæстæг ницы сарæзтай. Æрцавд ныхæстæ никуы архивгонд æрцæуынц, æмæ ницы фесафы — архивгонд ныхæстæ ам æрбацæуынц.',
+      autoArchiveDesc:
+        'Автоматиконæй архив кæн ныхæстæ, кæцытыл дæргъвæтин рæстæг ницы сарæзтай. Æрцавд ныхæстæ никуы архивгонд æрцæуынц, æмæ ницы фесафы — архивгонд ныхæстæ ам æрбацæуынц.',
       autoArchiveDaysLabel: 'Архив кæнын фæстæ',
       autoArchiveDaysUnit: 'æнæархайды бонтæ',
       autoArchiveFailed: 'Автоматикон архив нӕ феивта',
       defaultDirTitle: 'Проекты стандартон папкӕ',
-      defaultDirDesc: 'Ног сесситӕ райдайынц ацы папкӕйӕ, иннӕ равзарынмӕ. Хомагон директори пайда кӕнынӕн ӕй ӕнӕӕвӕрдӕй ныууадз.',
+      defaultDirDesc:
+        'Ног сесситӕ райдайынц ацы папкӕйӕ, иннӕ равзарынмӕ. Хомагон директори пайда кӕнынӕн ӕй ӕнӕӕвӕрдӕй ныууадз.',
       change: 'Ивын',
       choose: 'Равзарын',
       clear: 'Сыгъдӕ',
@@ -856,14 +888,16 @@ export const os = defineLocale({
       deleteFailed: 'Сӕттын нӕ рауад',
       updateDirFailed: 'Стандартон папкӕ нӕ феивта',
       clearDirFailed: 'Стандартон папкӕ нӕ сыгъдӕ кодта',
-      archivedIntro: 'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
+      archivedIntro:
+        'Archived chats are hidden from the sidebar but keep all their messages. Ctrl/⌘-click a chat in the sidebar to archive it.',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanently delete "${title}"? This cannot be undone.`,
       defaultDirUpdated: 'Default project directory updated — start a new chat (Ctrl/⌘+N) for it to take effect',
-      defaultsTo: label => `Defaults to ${label}.`,
+      defaultsTo: label => `Defaults to ${label}.`
     },
     toolsets: {
-      noProviderOptions: 'Ацы инструментты æмбырдæн провайдеры варианттæ нæй — æй æххуысгæнæг кæн, уæд уый дæ ныры æрæвæрдимимæ кусы.',
+      noProviderOptions:
+        'Ацы инструментты æмбырдæн провайдеры варианттæ нæй — æй æххуысгæнæг кæн, уæд уый дæ ныры æрæвæрдимимæ кусы.',
       noProviders: 'Ацы инструментты æмбырдæн ныр провайдертæ нæй.',
       ready: 'Цæттæ',
       needsSignIn: 'Бахиз хъæуы',
@@ -912,7 +946,7 @@ export const os = defineLocale({
         selectedTitle: 'Бэкенд равзæрст',
         needsSetupHint: 'Ныр ацы бэкенд равзарæн ис — командæтæ нæ бакусдзысты, онг цæмæй сæвæрд æххæст уа.',
         selectedMessage: backend => `Terminal commands now run via ${backend}. Applies to new sessions.`,
-        failedSelect: backend => `Failed to select ${backend}`,
+        failedSelect: backend => `Failed to select ${backend}`
       },
       savedMessage: key => `${key} updated.`,
       removedMessage: key => `${key} removed.`,
@@ -922,8 +956,10 @@ export const os = defineLocale({
       removeConfirm: key => `Remove ${key} from .env?`,
       selectedMessage: provider => `${provider} is now active.`,
       failedSelect: provider => `Failed to select ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
-      postSetupHint: step => `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      postSetupHint: step =>
+        `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
       postSetupCompleteMessage: step => `${step} installed.`,
       postSetupErrorMessage: step => `Check the ${step} log.`,
       postSetupFailed: step => `Failed to run ${step} setup`,
@@ -933,10 +969,10 @@ export const os = defineLocale({
       failedSelectCapability: provider => `Failed to set ${provider}`,
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} applies to new sessions.`,
-      failedSelectModel: model => `Failed to select ${model}`,
+      failedSelectModel: model => `Failed to select ${model}`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     tabSkills: 'Дæсныйæдтæ',
@@ -955,7 +991,8 @@ export const os = defineLocale({
     noDescription: 'Æвдыст нæй.',
     configured: 'Конфигурацигонд',
     needsKeys: 'Æхсæртæ хъæуы',
-    visionModelHint: 'Кæсыны функци пайда кæны дæ æххуыс моделы конфигурациæй — нывты фадæттæ кæмæ ис, уыцы модель æвзарынц уым, нæ алы провайдеры дæр ам.',
+    visionModelHint:
+      'Кæсыны функци пайда кæны дæ æххуыс моделы конфигурациæй — нывты фадæттæ кæмæ ис, уыцы модель æвзарынц уым, нæ алы провайдеры дæр ам.',
     visionModelLink: 'Кæсыны модель равзар Æвæрæнтæ → Моделтæ',
     skillsLoadFailed: 'Дæсныйæдтæ æвзарын нæ бантыст',
     toolsetsRefreshFailed: 'Мигæнæнты æмбырдтæ ног кæнын нæ бантыст',
@@ -973,7 +1010,7 @@ export const os = defineLocale({
     provenance: {
       agent: 'Ахуыргонд',
       bundled: 'Бындурон',
-      hub: 'Хаб',
+      hub: 'Хаб'
     },
     changesApplyNewSessions: 'Ивдтытæ ног сесситæм хæцынц.',
     skillUpdated: 'Дæсныйад ноггонд',
@@ -1006,7 +1043,7 @@ export const os = defineLocale({
       trust: {
         builtin: 'бындурон',
         trusted: 'æууæнкджын',
-        community: 'æхсæнад',
+        community: 'æхсæнад'
       },
       verdictSafe: 'Æдас',
       verdictCaution: 'Хъусдард',
@@ -1026,7 +1063,7 @@ export const os = defineLocale({
       timedOut: sources => `Timed out: ${sources}`,
       findings: count => `${count} finding${count === 1 ? '' : 's'}`,
       installStarted: name => `Installing ${name}...`,
-      uninstallStarted: name => `Uninstalling ${name}...`,
+      uninstallStarted: name => `Uninstalling ${name}...`
     },
     tabMcp: 'MCP',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} toolsets enabled`,
@@ -1039,7 +1076,7 @@ export const os = defineLocale({
     usageCount: count => `used ${count}×`,
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available yet.`,
+    emptyNoneAvailable: noun => `No ${noun} available yet.`
   },
   starmap: {
     title: 'Ӕрмӕджы граф',
@@ -1055,7 +1092,8 @@ export const os = defineLocale({
     emptyTitle: 'Нырма ницы базыдта',
     emptyDesc: 'Куыд OpenAmer дӕ куыстӕн фӕрцитӕ ӕмӕ ӕрмӕгтӕ аразы, афтӕ уыдон фӕзынынц ам.',
     share: 'Картӕ хабарын',
-    shareHint: 'Ацы картӕ хабарынӕн код копи кӕның, кӕнӕ йӕ бафтау ӕвзарынӕн. Уый бахасты ӕрмӕстдӕр фӕлгонц, дӕ ӕрмӕг кӕнӕ фӕрциты текст нӕ.',
+    shareHint:
+      'Ацы картӕ хабарынӕн код копи кӕның, кӕнӕ йӕ бафтау ӕвзарынӕн. Уый бахасты ӕрмӕстдӕр фӕлгонц, дӕ ӕрмӕг кӕнӕ фӕрциты текст нӕ.',
     shareTitle: 'Картӕ импорт / экспорт кӕнын',
     sharePlaceholder: 'Картӕйы код бафтау…',
     copy: 'Картӕйы код копи кӕнын',
@@ -1066,7 +1104,7 @@ export const os = defineLocale({
     importedBadge: 'Импортгонд картæ',
     resetToMine: 'Мæ картæмæ раздæх',
     subtitle: (nodes, clusters) => `${nodes} skills across ${clusters} categories`,
-    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Агентты æхгæнын',
@@ -1096,7 +1134,7 @@ export const os = defineLocale({
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'Командæйы центры æхгæнын',
@@ -1132,7 +1170,7 @@ export const os = defineLocale({
       referenceImageInvalid: 'Уыцы æвдисæн ныв бакæсын нæ бантыст. Фæлвар PNG, JPG, WebP кæнæ GIF.',
       adopt: 'Райсын',
       startOver: 'Ногæй райдайын',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     installTheme: {
       title: 'Темæ сæвæрын…',
@@ -1144,7 +1182,7 @@ export const os = defineLocale({
       install: 'Сæвæрын',
       installing: 'Сæвæрын...',
       installed: 'Сæвæрд',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Æвæрдты фæзтæ',
     mcpServers: 'MCP-сервертæ',
@@ -1153,49 +1191,49 @@ export const os = defineLocale({
       maintenance: 'Хъахъхъæнынад',
       sessions: 'Сесситæ',
       system: 'Системӕ',
-      usage: 'Пайда',
+      usage: 'Пайда'
     },
     sectionDescriptions: {
       maintenance: 'Диагностикӕ, резервон копиктӕ, куратор ӕмӕ меморийы дӕнттӕ',
       sessions: 'Сесситӕ агур ӕмӕ сӕ рауадз',
       system: 'Статус, логтӕ ӕмӕ системон архайдтӕ',
-      usage: 'Токентӕ, хардз ӕмӕ дӕсныйадты архайд рӕстӕджы дӕргъы',
+      usage: 'Токентӕ, хардз ӕмӕ дӕсныйадты архайд рӕстӕджы дӕргъы'
     },
     nav: {
       newChat: {
         title: 'Ног сесси',
-        detail: 'Ног сесси райдай',
+        detail: 'Ног сесси райдай'
       },
       settings: {
         title: 'Уагӕвӕрдтӕ',
-        detail: 'OpenAmer десктопы уагӕвӕрдтӕ',
+        detail: 'OpenAmer десктопы уагӕвӕрдтӕ'
       },
       skills: {
         title: 'Мӕнттӕ',
-        detail: 'Дӕсныйадтӕ, инструменттӕ ӕмӕ MCP сервертӕ',
+        detail: 'Дӕсныйадтӕ, инструменттӕ ӕмӕ MCP сервертӕ'
       },
       messaging: {
         title: 'Хабарӕвӕрд',
-        detail: 'Telegram, Slack, Discord ӕмӕ иннӕтӕ сӕвӕр',
+        detail: 'Telegram, Slack, Discord ӕмӕ иннӕтӕ сӕвӕр'
       },
       artifacts: {
         title: 'Артефакттӕ',
-        detail: 'Генерацигонд рауадзынгтӕ фен',
-      },
+        detail: 'Генерацигонд рауадзынгтӕ фен'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Сесситы панель',
-        detail: 'Сесситӕ агур, сӕ фиксаци кӕн ӕмӕ сӕ рауадз',
+        detail: 'Сесситӕ агур, сӕ фиксаци кӕн ӕмӕ сӕ рауадз'
       },
       system: {
         title: 'Системӕйы панель',
-        detail: 'Шлюзы статус, логтӕ, ногӕй райдайын/нывдар',
+        detail: 'Шлюзы статус, логтӕ, ногӕй райдайын/нывдар'
       },
       usage: {
         title: 'Пайдайыны панель',
-        detail: 'Токен, аргъ ӕмӕ дӕсныды архайд',
-      },
+        detail: 'Токен, аргъ ӕмӕ дӕсныды архайд'
+      }
     },
     providerNavigate: 'Навигаци',
     providerSessions: 'Сесситӕ',
@@ -1240,7 +1278,8 @@ export const os = defineLocale({
       backup: 'Резервон копи саразын',
       backupDesc: 'Конфиг, меморитæ, дæсныйæдтæ æмæ сесситæ zip-кæнут',
       debugShare: 'Дебаг хæлиу кæнын',
-      debugShareDesc: 'Редакцигонд отчёт æмæ логтæ æвæрут, хæлиуæн ссылкæтæ ссарут (6 сахаты фæстæ автоматиконæй аиуæг кæны)',
+      debugShareDesc:
+        'Редакцигонд отчёт æмæ логтæ æвæрут, хæлиуæн ссылкæтæ ссарут (6 сахаты фæстæ автоматиконæй аиуæг кæны)',
       debugShareRunning: 'Дебаг отчёт æвæрын...',
       debugShareLinks: 'Хæлиуæн ссылкæтæ',
       debugShareFailed: 'Дебаг хæлиу нæ рауад',
@@ -1257,7 +1296,7 @@ export const os = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     logSearchPlaceholder: 'Логы рæнхъытæ фильтр кæнут...',
     branches: 'Branches',
@@ -1281,7 +1320,7 @@ export const os = defineLocale({
       generatedTag: 'Generated',
       adoptFailed: 'Could not adopt that pet.',
       toggleFailed: 'Could not toggle the pet.',
-      noneAvailable: 'No pets available — pick one below to install.',
+      noneAvailable: 'No pets available — pick one below to install.'
     },
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · Active sessions ${count}`,
     actionStartedWaiting: 'Action started, waiting for status...',
@@ -1307,7 +1346,7 @@ export const os = defineLocale({
     noSkillActivity: 'No skill activity yet.',
     actions: count => `${count} actions`,
     logFile: 'Log file',
-    logLevel: 'Level',
+    logLevel: 'Level'
   },
   messaging: {
     search: 'Мессенджертæ агурын...',
@@ -1322,7 +1361,7 @@ export const os = defineLocale({
       not_configured: 'Хъæуы æрæвæрд',
       pending_restart: 'Хъæуы ногæй райдайын',
       retrying: 'Ногæй фæлвары',
-      startup_failed: 'Райдайын нæ бантыст',
+      startup_failed: 'Райдайын нæ бантыст'
     },
     unknown: 'Æнæзонгæ',
     hintPendingRestart: 'Ацы ивддзинад æххæст кæнынæн статусбарæй гейты ногæй райдай кæн.',
@@ -1334,130 +1373,131 @@ export const os = defineLocale({
     openSetupGuide: 'Æрæвæрды къухдариуæг байгом кæн',
     required: 'Æнæмæнг',
     recommended: 'Рекомендацигонд',
-    noTokenNeeded: 'Ацы платформæн ам токен нæ хъæуы. Уæлдæр æрæвæрды къухдариуæгæй пайда кæн, стæй дæлдæр æй байгом кæн.',
+    noTokenNeeded:
+      'Ацы платформæн ам токен нæ хъæуы. Уæлдæр æрæвæрды къухдариуæгæй пайда кæн, стæй дæлдæр æй байгом кæн.',
     enabled: 'Архайгæ',
     fieldCopy: {
       SLACK_APP_TOKEN: {
         help: 'Socket Mode-æн хъæуы æпп-æмвæзады токен.',
         placeholder: 'Slack-ы æпп-токен бауадзут',
-        label: 'Slack app token',
+        label: 'Slack app token'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Slack-ы бардзинады архайджыты ID-тæ',
-        help: 'Хорз. Slack-ы архайджыты ID-тæ, хъæппæй хицæнгонд.',
+        help: 'Хорз. Slack-ы архайджыты ID-тæ, хъæппæй хицæнгонд.'
       },
       MATTERMOST_URL: {
         label: 'Серверы URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Боты токен',
+        label: 'Боты токен'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Бардзинады архайджыты ID-тæ',
-        help: 'Хорз. Mattermost-ы архайджыты ID-тæ, хъæппæй хицæнгонд.',
+        help: 'Хорз. Mattermost-ы архайджыты ID-тæ, хъæппæй хицæнгонд.'
       },
       MATRIX_HOMESERVER: {
         label: 'Хæдзарон серверы URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Бардзинады токен',
+        label: 'Бардзинады токен'
       },
       MATRIX_USER_ID: {
         label: 'Боты архайæджы ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Matrix-ы бардзинады архайджыты ID-тæ',
-        help: 'Хорз. Архайджыты ID-тæ, @user:server форматæй, хъæппæй хицæнгонд.',
+        help: 'Хорз. Архайджыты ID-тæ, @user:server форматæй, хъæппæй хицæнгонд.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal-бриджы URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'Архайæг signal-cli REST-бриджы URL.',
+        help: 'Архайæг signal-cli REST-бриджы URL.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Телефоны номер',
-        help: 'Дӕ signal-cli-мостмӕ регистрацигонд номыр.',
+        help: 'Дӕ signal-cli-мостмӕ регистрацигонд номыр.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Барӕгонд Signal-архайджытӕ',
-        help: 'Рекомендацигонд. Signal-идентификатортӕ запятойтӕй.',
+        help: 'Рекомендацигонд. Signal-идентификатортӕ запятойтӕй.'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp-мост бакусын кӕнын',
-        help: 'Дӕллаг переключательӕй автоматиконӕй ӕвӕрд цӕуы. Йӕ ма фехъуыс, уӕдмӕ дӕм хъуыддаг кӕй у, уый нӕ зонай.',
+        help: 'Дӕллаг переключательӕй автоматиконӕй ӕвӕрд цӕуы. Йӕ ма фехъуыс, уӕдмӕ дӕм хъуыддаг кӕй у, уый нӕ зонай.'
       },
       WHATSAPP_MODE: {
-        label: 'Мосты режим',
+        label: 'Мосты режим'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Барӕгонд WhatsApp-архайджытӕ',
-        help: 'Рекомендацигонд. Телефон номертӕ кӕнӕ WhatsApp ID-тӕ запятойтӕй.',
+        help: 'Рекомендацигонд. Телефон номертӕ кӕнӕ WhatsApp ID-тӕ запятойтӕй.'
       },
       TELEGRAM_BOT_TOKEN: {
         label: 'Bot token',
         help: 'Create a bot with @BotFather, then paste the token it gives you.',
-        placeholder: 'Paste Telegram bot token',
+        placeholder: 'Paste Telegram bot token'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Allowed Telegram user IDs',
-        help: 'Recommended. Comma-separated numeric IDs from @userinfobot. Without this, anyone can DM your bot.',
+        help: 'Recommended. Comma-separated numeric IDs from @userinfobot. Without this, anyone can DM your bot.'
       },
       TELEGRAM_PROXY: {
         label: 'Proxy URL',
-        help: 'Only needed on networks where Telegram is blocked.',
+        help: 'Only needed on networks where Telegram is blocked.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Bot token',
-        help: 'Create an application in the Discord Developer Portal, add a bot, then paste its token.',
+        help: 'Create an application in the Discord Developer Portal, add a bot, then paste its token.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Allowed Discord user IDs',
-        help: 'Recommended. Comma-separated Discord user IDs.',
+        help: 'Recommended. Comma-separated Discord user IDs.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Reply style',
-        help: 'first, all, or off.',
+        help: 'first, all, or off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Allow all Discord users',
-        help: 'Development only. When true, anyone can DM the bot without an allowlist.',
+        help: 'Development only. When true, anyone can DM the bot without an allowlist.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Home channel ID',
-        help: 'Channel where the bot sends proactive messages (cron output, reminders).',
+        help: 'Channel where the bot sends proactive messages (cron output, reminders).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Home channel name',
-        help: 'Display name for the home channel in logs and status output.',
+        help: 'Display name for the home channel in logs and status output.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Allow all iMessage users',
-        help: 'When true, skip the BlueBubbles allowlist.',
+        help: 'When true, skip the BlueBubbles allowlist.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Allow all Mattermost users',
+        label: 'Allow all Mattermost users'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Home channel',
+        label: 'Home channel'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Allow all QQ users',
+        label: 'Allow all QQ users'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ home channel',
-        help: 'Default channel or group for cron delivery.',
+        help: 'Default channel or group for cron delivery.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ home channel name',
+        label: 'QQ home channel name'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack bot token',
         help: 'Use the bot token from OAuth & Permissions after installing your Slack app.',
-        placeholder: 'Paste Slack bot token',
-      },
+        placeholder: 'Paste Slack bot token'
+      }
     },
     advanced: count => `Advanced (${count})`,
     disabled: 'Disabled',
@@ -1480,8 +1520,7 @@ export const os = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Агур webhooks...',
@@ -1490,7 +1529,8 @@ export const os = defineLocale({
     hint: 'Подпискӕты ивддзинӕдтӕ hot-reload кӕнынц, ресивер кусын куы райдайа. Ӕстӕг подпискӕтӕ иннӕфарсӕй цӕуӕг цаутӕ нӕ райсынц.',
     empty: 'Webhook-подпискӕтӕ нырма нӕй.',
     disabledTitle: 'Webhook-ресивер ӕстӕг',
-    disabledBody: 'Webhooks сты сӕхи gateway-платформӕ. Сӕ ам бакусын кӕн, цӕмӕй иннӕфарсӕй цӕуӕг HTTP-цаутӕ райсай; чат-каналтӕ хъӕуы ӕрмӕстдӕр, подпискӕ Telegram, Discord, Slack кӕнӕ ӕндӕр каналмӕ кӕй ратты.',
+    disabledBody:
+      'Webhooks сты сӕхи gateway-платформӕ. Сӕ ам бакусын кӕн, цӕмӕй иннӕфарсӕй цӕуӕг HTTP-цаутӕ райсай; чат-каналтӕ хъӕуы ӕрмӕстдӕр, подпискӕ Telegram, Discord, Slack кӕнӕ ӕндӕр каналмӕ кӕй ратты.',
     enable: 'Webhooks бакусын кӕнын',
     enabling: 'Бакусын кӕны...',
     enableRow: 'Бакусын кӕнын',
@@ -1537,7 +1577,7 @@ export const os = defineLocale({
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      github_comment: 'GitHub comment',
+      github_comment: 'GitHub comment'
     },
     subscriptions: (count: number) => `Subscriptions (${count})`,
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -1545,7 +1585,7 @@ export const os = defineLocale({
     deleteFailed: (name: string) => `Failed to delete "${name}"`,
     toggleFailed: (name: string) => `Failed to update "${name}"`,
     restartFailed: (detail: string) => `Gateway restart failed${detail}`,
-    createFailed: (detail: string) => `Failed to create: ${detail}`,
+    createFailed: (detail: string) => `Failed to create: ${detail}`
   },
   profiles: {
     renameMenu: 'Ном ивын…',
@@ -1623,14 +1663,15 @@ Leave blank to keep the ${mode} default.`,
     failedLoadSoul: 'Failed to load SOUL.md',
     failedSaveSoul: 'Failed to save SOUL.md',
     failedCreate: 'Failed to create profile',
-    failedRename: 'Failed to rename profile',
+    failedRename: 'Failed to rename profile'
   },
   cron: {
     failedSave: 'Cron-куыст бавæрын нæ бантыст',
     editTitle: 'Cron-куыст ивын',
     createTitle: 'Ног cron-куыст',
     editDesc: 'График, промпт кæнæ рарвитыны нысан фестын. Ивддзинæдтæ архайдзысты иннæ æххæсты рæстæг.',
-    createDesc: 'Промпт æвæр, цæмæй æххæст æрцæуа автоматиконæй. Пайда кæн cron-синтаксисæй кæнæ æрдзон фразæй, зæгъæм «алы 15 минуты».',
+    createDesc:
+      'Промпт æвæр, цæмæй æххæст æрцæуа автоматиконæй. Пайда кæн cron-синтаксисæй кæнæ æрдзон фразæй, зæгъæм «алы 15 минуты».',
     nameLabel: 'Ном',
     namePlaceholder: 'Райсомы бацагаф',
     promptLabel: 'Промпт',
@@ -1672,7 +1713,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Cron саразын',
     tabs: {
       jobs: 'Куыстытæ',
-      blueprints: 'Блюпринттæ',
+      blueprints: 'Блюпринттæ'
     },
     blueprints: {
       tab: 'Блюпринттæ',
@@ -1686,7 +1727,7 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Блюпринттæ æрбафтауы...',
       failedLoad: 'Блюпринттæ æрбафтауын нæ рауад',
       emptyTitle: 'Блюпринттæ нæй',
-      emptyDesc: 'Ацы бэкенды автоматизацийы блюпринттæ нæй.',
+      emptyDesc: 'Ацы бэкенды автоматизацийы блюпринттæ нæй.'
     },
     close: 'Close cron',
     title: 'Scheduled jobs',
@@ -1700,14 +1741,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'paused',
       disabled: 'disabled',
       error: 'error',
-      completed: 'completed',
+      completed: 'completed'
     },
     deliveryLabels: {
       local: 'This desktop',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Email',
+      email: 'Email'
     },
     scheduleLabels: {
       daily: 'Daily',
@@ -1716,7 +1757,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Monthly',
       hourly: 'Hourly',
       'every-15-minutes': 'Every 15 minutes',
-      custom: 'Custom',
+      custom: 'Custom'
     },
     scheduleHints: {
       daily: 'Every day at 9:00 AM',
@@ -1725,7 +1766,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'The first day of each month at 9:00 AM',
       hourly: 'At the top of every hour',
       'every-15-minutes': 'Every 15 minutes',
-      custom: 'Cron syntax or natural language',
+      custom: 'Cron syntax or natural language'
     },
     days: {
       '0': 'Sunday',
@@ -1735,7 +1776,7 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Thursday',
       '5': 'Friday',
       '6': 'Saturday',
-      '7': 'Sunday',
+      '7': 'Sunday'
     },
     dayFallback: value => `day ${value}`,
     everyDayAt: time => `Every day at ${time}`,
@@ -1745,7 +1786,8 @@ Leave blank to keep the ${mode} default.`,
     topOfHour: 'At the top of every hour',
     everyHourAt: minute => `Every hour at :${minute}`,
     newCron: 'New cron',
-    emptyDescNew: 'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
+    emptyDescNew:
+      'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
     emptyDescSearch: 'Try a broader search query.',
     emptyTitleNew: 'No scheduled jobs yet',
     emptyTitleSearch: 'No matches',
@@ -1757,7 +1799,7 @@ Leave blank to keep the ${mode} default.`,
     hideRuns: 'Hide runs',
     runHistory: 'Run history',
     actionsFor: title => `Actions for ${title}`,
-    actionsTitle: 'Cron job actions',
+    actionsTitle: 'Cron job actions'
   },
   artifacts: {
     refreshing: 'Артефакттæ ног кæнын',
@@ -1791,14 +1833,14 @@ Leave blank to keep the ${mode} default.`,
     copyUrl: 'URL копи',
     copyPath: 'Фӕрдыг копи',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'Ног сесси',
       skills: 'Фӕрӕзтытӕ',
       messaging: 'Хабӕрттӕ',
-      artifacts: 'Артефакттӕ',
+      artifacts: 'Артефакттӕ'
     },
     searchAria: 'Сесситӕ агурын',
     searchPlaceholder: 'Сесситӕ агурын…',
@@ -1829,8 +1871,10 @@ Leave blank to keep the ${mode} default.`,
       namePlaceholder: 'з.æ. Skunkworks',
       foldersLabel: 'Папкæтæ',
       ideaLabel: 'Хъуыды',
-      staleBackend: 'Раив OpenAmer-ы бэкенд проекттæ аразынæн — дæ бэкенд ацы десктоп-программæйæ зæронддæр у (Settings → Updates → Backend).',
-      deleteConfirm: 'Ацы æвæрд проект OpenAmer-æй сыхафы. Файлтæ, git-репозиторитæ æмæ worktree-тæ æнæивгæ баззайдзысты.',
+      staleBackend:
+        'Раив OpenAmer-ы бэкенд проекттæ аразынæн — дæ бэкенд ацы десктоп-программæйæ зæронддæр у (Settings → Updates → Backend).',
+      deleteConfirm:
+        'Ацы æвæрд проект OpenAmer-æй сыхафы. Файлтæ, git-репозиторитæ æмæ worktree-тæ æнæивгæ баззайдзысты.',
       startWork: 'Ног worktree',
       newWorktreeTitle: 'Ног worktree',
       newWorktreeDesc: 'Ацы worktree-æн къабазы ном ратт.',
@@ -1850,8 +1894,10 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'Къабазтæ не ссардтой',
       removeWorktree: 'Worktree сыхаф',
       removeWorktreeFailed: 'Worktree аиуварс кæнын нæ бафæндыд (коммитгонд нæ æрцыд ивындзинæдтæ?)',
-      removeWorktreeConfirm: 'Git-æй аиуварс æй кæн (worktree-ы директори сыхафы; къабаз баззайы), кæнæ лæн фарс панелæй басæтт æмæ worktree дискыл ныууадз.',
-      removeWorktreeDirty: 'Ацы worktree-йы ис коммитгонд нæ æрцыд ивындзинæдтæ. Тæрхъуыдæй æй аиуварс кæн (уыцы ивындзинæдтæ фесафынц), кæнæ лæн басæтт æмæ дискыл æй ныууадз.',
+      removeWorktreeConfirm:
+        'Git-æй аиуварс æй кæн (worktree-ы директори сыхафы; къабаз баззайы), кæнæ лæн фарс панелæй басæтт æмæ worktree дискыл ныууадз.',
+      removeWorktreeDirty:
+        'Ацы worktree-йы ис коммитгонд нæ æрцыд ивындзинæдтæ. Тæрхъуыдæй æй аиуварс кæн (уыцы ивындзинæдтæ фесафынц), кæнæ лæн басæтт æмæ дискыл æй ныууадз.',
       forceRemove: 'Тæрхъуыдæй аиуварс кæн',
       back: 'Æппæт проекттæ',
       ideaPlaceholder: "What's this project about? (saved to IDEA.md)",
@@ -1877,7 +1923,7 @@ Leave blank to keep the ${mode} default.`,
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     loading: 'Æвгъауы…',
     loadMore: 'Фылдæр æвгъау',
@@ -1912,19 +1958,19 @@ Leave blank to keep the ${mode} default.`,
       actionsFor: title => `Actions for ${title}`,
       handoffOrigin: platform => `Handed off from ${platform}`,
       ownedByProfile: profile => `Profile: ${profile}`,
-      untitledChat: id => `Chat ${id}`,
+      untitledChat: id => `Chat ${id}`
     },
     dateDivider: {
       today: 'Абон раздæр',
       yesterday: 'Знон',
       thisWeek: 'Ацы къуыри раздæр',
       lastWeek: 'Ивгъуыд къуыри',
-      thisMonth: 'Ацы мæй раздæр',
+      thisMonth: 'Ацы мæй раздæр'
     },
     noMatch: query => `No sessions match “${query}”.`,
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     message: 'Хабар',
@@ -1956,7 +2002,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.history': 'Поповер / истори зылд',
       'composer.mention': 'reference files, folders, urls, git',
       'composer.slash': 'slash command palette',
-      'composer.help': 'this quick help (delete to dismiss)',
+      'composer.help': 'this quick help (delete to dismiss)'
     },
     attachUrlTitle: 'Басвæр URL',
     attachUrlDesc: 'OpenAmer æрвитдзæн фарс æмæ йæ бафтаудзæн ацы рауагъды контекстæн.',
@@ -2000,18 +2046,18 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'Коды æркаст',
         description: 'Ныры ивддзинады регресситæ, æрæфтыд кæрон уавæртæ æмæ æнæ тесттæ сбæрæг кæн',
-        text: 'Дæ хорзæхæй, ацы æркаст кæн рæдыдтæ, регресситæ æмæ æнæ тестты тыххæй',
+        text: 'Дæ хорзæхæй, ацы æркаст кæн рæдыдтæ, регресситæ æмæ æнæ тестты тыххæй'
       },
       implementationPlan: {
         label: 'Æххæстгæнæн план',
         description: 'Кодмæ къух æвæрынæй раздæр арæзт бафысс, цæмæй diff фокусы баззайа',
-        text: 'Дæ хорзæхæй, код ивынæй раздæр æххæстгæнæн цыбыр план сараз',
+        text: 'Дæ хорзæхæй, код ивынæй раздæр æххæстгæнæн цыбыр план сараз'
       },
       explainThis: {
         label: 'Ацы бамбарын кæн',
         description: 'Равзаргæ код куыд кусы, уый бамбарын кæн æмæ сæйраг файлтæм ссылкæ рат',
-        text: 'Дæ хорзæхæй, ацы куыд кусы, уый бамбарын кæн æмæ сæйраг файлтæм æрвит',
-      },
+        text: 'Дæ хорзæхæй, ацы куыд кусы, уый бамбарын кæн æмæ сæйраг файлтæм æрвит'
+      }
     },
     wakingProfile: profile => `Waking up ${profile}…`,
     newSessionPlaceholders: [
@@ -2021,7 +2067,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -2030,7 +2076,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     transcribingDictation: 'Transcribing dictation',
     voiceDictation: 'Voice dictation',
@@ -2049,7 +2095,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'resume a prior session',
       '/details': 'control transcript detail level',
       '/copy': 'copy selection or last assistant message',
-      '/quit': 'exit openamer',
+      '/quit': 'exit openamer'
     },
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
@@ -2057,7 +2103,7 @@ Leave blank to keep the ${mode} default.`,
     previewLabel: label => `Preview ${label}`,
     couldNotPreview: label => `Could not preview ${label}`,
     removeAttachment: label => `Remove ${label}`,
-    url: 'URL…',
+    url: 'URL…'
   },
   statusStack: {
     coding: {
@@ -2073,8 +2119,10 @@ Leave blank to keep the ${mode} default.`,
       viewAsList: 'Номхыгъды хуызæн фен',
       revert: 'Раздæхын',
       revertAll: 'Æппæт раздæхын',
-      revertConfirm: 'Ацы файлы ивдтытæ ныппырх кæн æмæ йæ коммитгонд уавæрмæ æрбаздæх? Ацы æнæмæнг нæ фæстæмæ ракæнæн ис.',
-      revertAllConfirm: 'Æппæт ивдтытæ ныппырх кæн æмæ файлты коммитгонд уавæрмæ æрбаздæх? Ацы æнæмæнг нæ фæстæмæ ракæнæн ис.',
+      revertConfirm:
+        'Ацы файлы ивдтытæ ныппырх кæн æмæ йæ коммитгонд уавæрмæ æрбаздæх? Ацы æнæмæнг нæ фæстæмæ ракæнæн ис.',
+      revertAllConfirm:
+        'Æппæт ивдтытæ ныппырх кæн æмæ файлты коммитгонд уавæрмæ æрбаздæх? Ацы æнæмæнг нæ фæстæмæ ракæнæн ис.',
       staged: 'Æрæвæрд',
       noChanges: 'Ивдтытæ нæй',
       notRepo: 'Git-репозитори нæу',
@@ -2093,7 +2141,8 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'PR байгом кӕнын',
       ghMissing: 'GitHub CLI (gh) сӕвӕрын ӕмӕ PR-тӕ байгом кӕнынмӕ бахизын',
       agentShip: 'OpenAmer-ӕй PR байгом кӕнын курын',
-      agentShipPrompt: 'Ныртӕккӕйы ивддзинӕдтӕ сбӕрӕг кӕнын, сӕ коммит кӕнын ӕвдыст conventional-commit хабарӕй, къабаз пуш кӕнын ӕмӕ pull request байгом кӕнын.',
+      agentShipPrompt:
+        'Ныртӕккӕйы ивддзинӕдтӕ сбӕрӕг кӕнын, сӕ коммит кӕнын ӕвдыст conventional-commit хабарӕй, къабаз пуш кӕнын ӕмӕ pull request байгом кӕнын.',
       newBranch: 'Ног къабаз',
       worktrees: 'Куысты бӕлӕстӕ',
       changed: count => `${count} changed`,
@@ -2102,7 +2151,7 @@ Leave blank to keep the ${mode} default.`,
       commitPlaceholder: 'Message (⌘↵ to commit)',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     agents: 'Агенттæ',
     running: 'Куысы',
@@ -2111,7 +2160,7 @@ Leave blank to keep the ${mode} default.`,
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     maybeLater: 'Фæстæдæр',
@@ -2119,12 +2168,15 @@ Leave blank to keep the ${mode} default.`,
     manualBody: 'OpenAmer командæйы рæнхъæй ратæвæрдтай, æмæ ногдзинад дæр уым цæуы. Ацы текст терминалмæ бафысс:',
     manualPickedUp: 'OpenAmer ног верси райсдзæн иннæ хатт куы байгом кæнай.',
     guiSkewTitle: 'Десктопон æпп баныгæн',
-    guiSkewBody: 'Бэкенд баныгæд цыд, фæлæ ацы десктопон æппы пакет нæ фæивта. OpenAmer десктопон æпп (AppImage / .deb / .rpm) баныгæн кæнæ ногæй ратæвæр, цæмæй æмбæла.',
+    guiSkewBody:
+      'Бэкенд баныгæд цыд, фæлæ ацы десктопон æппы пакет нæ фæивта. OpenAmer десктопон æпп (AppImage / .deb / .rpm) баныгæн кæнæ ногæй ратæвæр, цæмæй æмбæла.',
     copy: 'Копи',
     copied: 'Копигонд',
     done: 'Æххæст',
-    applyingBody: 'OpenAmer ногдзинады программæ йæхи къулы сæрдар кæндзæн æмæ, куы фæуа, уæд OpenAmer автоматиконæй байгом кæндзæн. Дæ хæрзгæнæг, ногдзинад куы цæуы, уæд OpenAmer дæхæдæг ма байгом кæн.',
-    applyingBodyBackend: 'Дистанцион бэкенд ногдзинад æвæры æмæ ногæй байгом кæндзæн. OpenAmer автоматиконæй баиу кæндзæн, куы фæстæмæ æрбаййа, уæд.',
+    applyingBody:
+      'OpenAmer ногдзинады программæ йæхи къулы сæрдар кæндзæн æмæ, куы фæуа, уæд OpenAmer автоматиконæй байгом кæндзæн. Дæ хæрзгæнæг, ногдзинад куы цæуы, уæд OpenAmer дæхæдæг ма байгом кæн.',
+    applyingBodyBackend:
+      'Дистанцион бэкенд ногдзинад æвæры æмæ ногæй байгом кæндзæн. OpenAmer автоматиконæй баиу кæндзæн, куы фæстæмæ æрбаййа, уæд.',
     applyingClose: 'Ацы къул æхгæд кæндзæн, ногдзинад куы цæуы, уæд; уый фæстæ OpenAmer йæхæдæг байгом кæндзæн.',
     errorTitle: 'Ногдзинад нæ фæцис',
     errorBody: 'Мæт ма кæн — ницы фесæфт. Ныр та бафæлвæр.',
@@ -2135,7 +2187,7 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'Бэкенд ногæй байгом кæны, цæмæй ногдзинад бафтауа…',
       notAvailable: 'Ацы бэкендæн ногдзинад нæй.',
       failed: 'Бэкенды ногдзинад нæ рауад.',
-      noReturn: 'Бэкенд ногæй онлайн не сси. Апдейт кæд нæ фæци — бэкенды хост бакæс.',
+      noReturn: 'Бэкенд ногæй онлайн не сси. Апдейт кæд нæ фæци — бэкенды хост бакæс.'
     },
     stages: {
       restart: 'OpenAmer ногæй æрвитын…',
@@ -2149,7 +2201,7 @@ Leave blank to keep the ${mode} default.`,
       pull: 'Æввахс…',
       pydeps: 'Кӕронмӕ æркӕнын…',
       update: 'OpenAmer ног кӕнын…',
-      rebuild: 'Десктоп программӕ ногӕй аразын…',
+      rebuild: 'Десктоп программӕ ногӕй аразын…'
     },
     checking: 'Ногкæнынад æгурын…',
     checkFailedTitle: 'Ногкæнынад нæ бабæлвырд кодтон',
@@ -2167,10 +2219,11 @@ Leave blank to keep the ${mode} default.`,
     availableBodyNoChangelog: 'Ногдæр верси цæттæ у. Ацы установкæйы типæн рауагъды нотæтæ нæй.',
     updateNow: 'Ныр ног кæн',
     appErrors: {
-      updateLocked: 'Апдейт æрæгъуыд: иннæ OpenAmer-ы дзæуи кæнæ терминал, openamer-имæ архайæг, ацы установкæйы дарæ. Йæ сæхгæн æмæ ногæй фæлвар.',
-      updateFailed: 'Апдейт нæ фæци. Ма тæрс — ницы фесæфт. Ныр ногæй фæлварæн.',
+      updateLocked:
+        'Апдейт æрæгъуыд: иннæ OpenAmer-ы дзæуи кæнæ терминал, openamer-имæ архайæг, ацы установкæйы дарæ. Йæ сæхгæн æмæ ногæй фæлвар.',
+      updateFailed: 'Апдейт нæ фæци. Ма тæрс — ницы фесæфт. Ныр ногæй фæлварæн.'
     },
-    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
+    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`
   },
   install: {
     stageStates: {
@@ -2178,7 +2231,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'Установкæ кæны',
       succeeded: 'Æххæст',
       skipped: 'Ауагъд',
-      failed: 'Нæ фæци',
+      failed: 'Нæ фæци'
     },
     oneTimeTitle: 'OpenAmer-æн хъæуы иу хатты установкæ',
     installCommand: 'Установкæйы командæ',
@@ -2187,13 +2240,16 @@ Leave blank to keep the ${mode} default.`,
     installTo: 'Æвæрд цæудзæн',
     retryAfterRun: 'Æз æй æххæст кодтон -- ногæй фæлвар',
     setupChoiceTitle: 'OpenAmer Desktop сараз',
-    setupChoiceDesc: 'Ацы апп бæтт OpenAmer-ы шлюзæй, кæцы уæддæр архайы, кæнæ OpenAmer ацы компьютермæ локалонæй æвæр.',
+    setupChoiceDesc:
+      'Ацы апп бæтт OpenAmer-ы шлюзæй, кæцы уæддæр архайы, кæнæ OpenAmer ацы компьютермæ локалонæй æвæр.',
     connectExistingTitle: 'Æвæрд OpenAmer-мæ бæтт',
     connectExistingShort: 'Æвæрд бæтт',
-    connectExistingDesc: 'Пайда кæн æддейæ бэкендæй сессийы токенимæ кæнæ браузеры бахизæндимæ. Локалон установкæ нæ райдайдзæн.',
+    connectExistingDesc:
+      'Пайда кæн æддейæ бэкендæй сессийы токенимæ кæнæ браузеры бахизæндимæ. Локалон установкæ нæ райдайдзæн.',
     installLocalTitle: 'OpenAmer локалонæй æвæр',
     installLocalDesc: 'Æрбавгæн OpenAmer, сараз ын Python-ы æргъæвд æмæ æххæст кæн бэкенд ацы компьютерæй.',
-    localStartUnavailable: 'Локалон инсталляци райдайын нæ бафæрæзта. Ногæй райдай OpenAmer Desktop æмæ бафæлвæр ногæй.',
+    localStartUnavailable:
+      'Локалон инсталляци райдайын нæ бафæрæзта. Ногæй райдай OpenAmer Desktop æмæ бафæлвæр ногæй.',
     remoteSetupTitle: 'Бастдзинад кæн æвæрд OpenAmer-имæ',
     remoteSetupDesc: 'Бафысс дæ шлюзы URL. OpenAmer Desktop базыддзæн, хъæуы токен æви браузерæй бацæуын.',
     remoteUrlTitle: 'Шлюзы URL',
@@ -2219,8 +2275,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Æвæрд нæ рауад',
     settingUpTitle: 'OpenAmer Agent саразын',
     finishingTitle: 'Фæуд кæнын',
-    failedDesc: 'Æвæрды къахдзæфтæй иу нæ рауад. Windows-ы ахæмдзинад вæййы, кæд æндæр OpenAmer CLI кæнæ desktop-экземпляр кусы. Æппæт кусæг OpenAmer-экземпляртæ сæвæр, стæй ногæй фæлвар. Детæлтæ дæлдæр кæнæ desktop-логмæ бакас, æппæт транскрипт фенонмæ.',
-    activeDesc: 'Ацы савæрд иу хатт кæнын. OpenAmer installer æвзаргæтæ æртæхы æмæ дæ машинæ конфигураци кæны. Иннæ хатт куы байгом уа, ацы къахдзæф ахиздзæн.',
+    failedDesc:
+      'Æвæрды къахдзæфтæй иу нæ рауад. Windows-ы ахæмдзинад вæййы, кæд æндæр OpenAmer CLI кæнæ desktop-экземпляр кусы. Æппæт кусæг OpenAmer-экземпляртæ сæвæр, стæй ногæй фæлвар. Детæлтæ дæлдæр кæнæ desktop-логмæ бакас, æппæт транскрипт фенонмæ.',
+    activeDesc:
+      'Ацы савæрд иу хатт кæнын. OpenAmer installer æвзаргæтæ æртæхы æмæ дæ машинæ конфигураци кæны. Иннæ хатт куы байгом уа, ацы къахдзæф ахиздзæн.',
     fetchingManifest: 'Installer-ы манифест æртæхын...',
     error: 'Рæдыд',
     hideOutput: 'Installer-ы рауагъд басæтт',
@@ -2232,40 +2290,42 @@ Leave blank to keep the ${mode} default.`,
     copiedOutput: 'Копи æрцыд!',
     copyOutput: 'Рауагъд копи кæн',
     reloadRetry: 'Ногæй æрбавгæн æмæ фæлвар',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
     signInWith: provider => `Sign in with ${provider}`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     apiKeyOptions: {
       gemini: {
         short: 'Gemini-ы моделтæ',
-        description: 'Google Gemini-ы моделтæм æнæмæнг бацæуæн.',
+        description: 'Google Gemini-ы моделтæм æнæмæнг бацæуæн.'
       },
       xai: {
         short: 'Grok-ы моделтæ',
-        description: 'xAI Grok-ы моделтæм æнæмæнг бацæуæн.',
+        description: 'xAI Grok-ы моделтæм æнæмæнг бацæуæн.'
       },
       local: {
         short: 'хи хицæн хост',
-        description: 'OpenAmer-ы æрæвæр локалон кæнæ хи хицæн хостгонд OpenAI-кæнгæ endpoint-мæ (vLLM, llama.cpp, Ollama, æмæ а.д.).',
+        description:
+          'OpenAmer-ы æрæвæр локалон кæнæ хи хицæн хостгонд OpenAI-кæнгæ endpoint-мæ (vLLM, llama.cpp, Ollama, æмæ а.д.).'
       },
       fireworks: {
         short: 'моделты директ API',
-        description: 'Fireworks AI-йы хостгонд моделтӕм директ байзӕрд.',
+        description: 'Fireworks AI-йы хостгонд моделтӕм директ байзӕрд.'
       },
       openrouter: {
         short: 'иу дӕлӕвӕрд, бирӕ моделтӕ',
-        description: 'Иу дӕлӕвӕрды фӕстӕ сӕдӕтӕ моделты хост кӕны. Ног инсталляцитӕн хорз стандарт.',
+        description: 'Иу дӕлӕвӕрды фӕстӕ сӕдӕтӕ моделты хост кӕны. Ног инсталляцитӕн хорз стандарт.'
       },
       openai: {
         short: 'GPT-къласы моделтӕ',
-        description: 'OpenAI-ы моделтӕм директ байзӕрд.',
-      },
+        description: 'OpenAI-ы моделтӕм директ байзӕрд.'
+      }
     },
     backToSignIn: 'Базырдмæ æрбаздæх',
     getKey: 'Ключ райс',
@@ -2278,7 +2338,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'Дæ браузер ачиндзын кæны базырдмæ, уый фæстæ дарддæр кæны ам',
       device_code: 'Дæ браузеры бачиндзын кæны бæрæггæнæн фарс — OpenAmer æрбаст кæны автоматикæй',
-      external: 'Базырд иу хатт дæ терминалы, уый фæстæ æрбаздæх чатмæ',
+      external: 'Базырд иу хатт дæ терминалы, уый фæстæ æрбаздæх чатмæ'
     },
     signInFailed: 'Базырд нæ рауад. Фæлвар æй.',
     pickDifferentProvider: 'Æндæр провайдер равзар',
@@ -2316,12 +2376,14 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     pro: 'Pro',
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'Модель баив',
@@ -2337,7 +2399,7 @@ Leave blank to keep the ${mode} default.`,
     freeTier: 'Æнæфист къæпхæн',
     priceTitle: 'Бацæуæн / Рацæуæн аргъ милуан токенмæ',
     wasPrice: 'уыд',
-    pro: 'Pro',
+    pro: 'Pro'
   },
   shell: {
     modelOptions: {
@@ -2354,7 +2416,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'Максимум',
       ultra: 'Ультра',
       updateFailed: 'Моделы опциты фӕивд нӕ бантыст',
-      fastFailed: 'Тӕрхъуыд режимы фӕивд нӕ бантыст',
+      fastFailed: 'Тӕрхъуыд режимы фӕивд нӕ бантыст'
     },
     gatewayMenu: {
       gateway: 'Гейтвей',
@@ -2369,7 +2431,7 @@ Leave blank to keep the ${mode} default.`,
       recentActivity: 'Фæстаг архайд',
       viewAllLogs: 'Æппæт логтæ фен →',
       messagingPlatforms: 'Хабардзынады платформæтæ',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     windowControls: 'Рувæнды контролтæ',
     paneControls: 'Панелы контролтæ',
@@ -2379,7 +2441,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'Моделтæ не ссарынц',
       editModels: 'Моделтæ ивын…',
       refreshModels: 'Моделтæ ног кæнын',
-      fast: 'Тагъд',
+      fast: 'Тагъд'
     },
     approvalMode: {
       title: 'Бæлвырдгæнæн режим',
@@ -2389,7 +2451,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'Архайдтæ автоматиконæй аргъ кæн æмæ куы хъæуа, уæд бафарс',
       off: 'Æнæархайгæ',
       offDescription: 'Бæлвырдгæнæн фарстытæ æнæ æххæст кæн',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'Æнæбæрæг',
@@ -2409,18 +2471,19 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'Суб-агентты æмбарынгæнæнтæ',
           system_prompt: 'Системæйы промпт',
           tool_definitions: 'Мигæнæнты æмбарынгæнæнтæ',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Контексты датæтæ нæма ис',
         loading: 'Декъуынгæйæ рафыст…',
         title: 'Контексты пайда',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Контексты пайдайы рафыст бакæсын',
       session: 'Сесси',
       runtimeSessionElapsed: 'Сессийы архайды рæстæг рацыд',
-      yoloOn: 'YOLO æвзæрст — тæссаг командæтæ автоматиконæй фидар кæны. Æхгæнынмæ бакæс. Shift+click æй глобалонæй ивы.',
+      yoloOn:
+        'YOLO æвзæрст — тæссаг командæтæ автоматиконæй фидар кæны. Æхгæнынмæ бакæс. Shift+click æй глобалонæй ивы.',
       yoloOff: 'YOLO æхгæд — тæссаг командæтæ автоматиконæй фидар кæнынмæ бакæс. Shift+click æй глобалонæй ивы.',
       modelNone: 'нæй',
       noModel: 'модел нæй',
@@ -2464,14 +2527,14 @@ Leave blank to keep the ${mode} default.`,
       failed: count => `${count} failed`,
       running: count => `${count} running`,
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   modelVisibility: {
     title: 'Моделтæ',
     search: 'Моделтæ агурын',
     noAuthenticatedProviders: 'Аутентификацигонд провайдертæ нæй.',
-    addProvider: 'Провайдер æфтауын…',
+    addProvider: 'Провайдер æфтауын…'
   },
   rightSidebar: {
     aria: 'Рагъулон фарс',
@@ -2507,7 +2570,7 @@ Leave blank to keep the ${mode} default.`,
     addToChat: 'Чатмæ бафтау',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'Разæркаст',
@@ -2535,7 +2598,8 @@ Leave blank to keep the ${mode} default.`,
     editing: 'Ивыны',
     unsavedChanges: 'Æнæбахъæд ивдтытæ',
     diskChangedTitle: 'Файл дискыл ивд æрцыд',
-    diskChangedBody: 'Ацы файл ивд æрцыд, куы йæ рагом кодтай, уæдæй. Йæ дæ версиимæ ныффай, кæнæ дæ ивдтытæ ауадз æмæ йæ ногæй рагом кæн?',
+    diskChangedBody:
+      'Ацы файл ивд æрцыд, куы йæ рагом кодтай, уæдæй. Йæ дæ версиимæ ныффай, кæнæ дæ ивдтытæ ауадз æмæ йæ ногæй рагом кæн?',
     overwrite: 'Бафыссын',
     discardReload: 'Ныппырх кӕнын ӕмӕ ногӕй ӕрбафтын',
     console: {
@@ -2556,7 +2620,7 @@ Leave blank to keep the ${mode} default.`,
       sentTitle: 'Чатмӕ арвыст',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Фенын аппликаци нӕ бафтыд',
@@ -2579,7 +2643,8 @@ Leave blank to keep the ${mode} default.`,
       restartFailedMessage: 'OpenAmer сервер ногæй байдайын нæ бафæрæзта.',
       stillWorking: 'OpenAmer ма кусы, фæлæ ногæй байдайыны хабар нæма æрбацыд. Серверы командæ, гæнæн ис, разæй кусы.',
       workspaceReloading: 'Куысты бынат фæивта, разæвдыст ногæй æвзарын',
-      moduleMimeDescription: 'Модулон скрипттæ æвзарынц æвзæр MIME-типæй. Ацы хъуыддаг фылдæр хатт нысан кæны: статикон файлты сервер æвзары Vite/React æппæрцæуæг, проектæн йæ dev-серверы бæсты.',
+      moduleMimeDescription:
+        'Модулон скрипттæ æвзарынц æвзæр MIME-типæй. Ацы хъуыддаг фылдæр хатт нысан кæны: статикон файлты сервер æвзары Vite/React æппæрцæуæг, проектæн йæ dev-серверы бæсты.',
       unreachableDescription: 'Разæвдысты фарсмæ æрхæццæ нæ рауад.',
       fallbackTitle: 'Разæвдыст',
       lookingRestart: taskId => `OpenAmer is looking for a preview server to restart (${taskId})`,
@@ -2590,14 +2655,14 @@ Leave blank to keep the ${mode} default.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     closeTab: label => `Close ${label}`,
     linkHint: '⌘/Ctrl-click for preview pane',
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   zones: {
     showHeader: 'Сæр равдисын',
@@ -2605,7 +2670,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Фæкъаддæр кæнын',
     restore: 'Раргом кæнын',
     closeRunningTitle: 'Кусæг таб æхгæнын?',
-    closeRunningBody: 'Ацы чат ма кусы (кæнæ дæ бацæуæг æнхъæлмæ кæсы). Таб æхгæнынæй уый басусæг вæййы — сесси йæ прогресс хæссы æмæ йæ фарсбарылæй ногæй гом кæнынæн ис.',
+    closeRunningBody:
+      'Ацы чат ма кусы (кæнæ дæ бацæуæг æнхъæлмæ кæсы). Таб æхгæнынæй уый басусæг вæййы — сесси йæ прогресс хæссы æмæ йæ фарсбарылæй ногæй гом кæнынæн ис.',
     closeRunningConfirm: 'Таб æхгæнын',
     closeOthers: 'Иннæтæ æхгæнын',
     closeToRight: 'Рахизæй æхгæнын',
@@ -2642,7 +2708,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
@@ -2673,11 +2739,12 @@ Leave blank to keep the ${mode} default.`,
       goForward: 'Размæ цæуын',
       sendEdited: 'Ивд хабар арвитын',
       attachingFile: 'Баст цæуы...',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
-      yesterday: time => `Yesterday, ${time}`,
+      yesterday: time => `Yesterday, ${time}`
     },
     approval: {
       gatewayDisconnected: 'OpenAmer шлюз æбаст не у',
@@ -2691,7 +2758,8 @@ Leave blank to keep the ${mode} default.`,
       reject: 'Нæ бар кæн',
       alwaysTitle: 'Ацы командæн æдзух бар раттын?',
       alwaysAllow: 'Æдзух бар ратт',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
       notReady: 'Баясгæнæн бафарст ныридæг нæ цæттæ',
@@ -2705,7 +2773,7 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'Дарддæр',
       lateAnswerTip: 'Ацы дзуапп дарддæр хабарæн черновик скæн',
       lateAnswerHint: 'Ацы промпт нал æнхъæлмæ кæсы. Йæ дарддæр хабарæн черновик скæнынæн равзар вариант.',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     tool: {
       statusRecovered: 'Растгонд',
@@ -2721,123 +2789,123 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Æххæстгонд',
         running: 'Æххæст кæнын',
         ranCode: 'Код æххæстгонд',
-        runningCode: 'Скрипт кæнын',
+        runningCode: 'Скрипт кæнын'
       },
       prefixes: {
         browser: 'Браузер',
-        web: 'Веб',
+        web: 'Веб'
       },
       titles: {
         browser_click: {
           done: 'Фарсы элемент цъыпайд',
           pending: 'Фарсы элемент цъыпайын',
-          pendingAction: 'Цъыпайын',
+          pendingAction: 'Цъыпайын'
         },
         browser_fill: {
           done: 'Формæйы бынат æххæстгонд',
           pending: 'Формæйы бынат æххæст кæнын',
-          pendingAction: 'Бафтауын',
+          pendingAction: 'Бафтауын'
         },
         browser_navigate: {
           done: 'Байгомгонд фарс',
           pending: 'Фарс байгом кæнын',
-          pendingAction: 'Байгом кæнын',
+          pendingAction: 'Байгом кæнын'
         },
         browser_snapshot: {
           done: 'Фарсы снимок æрцахст',
           pending: 'Фарсы снимок æрцахсын',
-          pendingAction: 'Æрцахсын',
+          pendingAction: 'Æрцахсын'
         },
         browser_take_screenshot: {
           done: 'Экраны снимок æрцахст',
           pending: 'Экраны снимок æрцахсын',
-          pendingAction: 'Æрцахсын',
+          pendingAction: 'Æрцахсын'
         },
         browser_type: {
           done: 'Фарсыл ныффыст',
           pending: 'Фарсыл фыссын',
-          pendingAction: 'Фыссын',
+          pendingAction: 'Фыссын'
         },
         clarify: {
           done: 'Фарст бафарст',
           pending: 'Фарст бафарсын',
-          pendingAction: 'Бафарсын',
+          pendingAction: 'Бафарсын'
         },
         cronjob: {
           done: 'Cron-куыст',
           pending: 'Cron-куыст нысан кæнын',
-          pendingAction: 'Нысан кæнын',
+          pendingAction: 'Нысан кæнын'
         },
         edit_file: {
           done: 'Ивд файл',
           pending: 'Файл ивын',
-          pendingAction: 'Ивын',
+          pendingAction: 'Ивын'
         },
         session_search_recall: {
           done: 'Сессийы истори агуырдта',
           pending: 'Сессийы истори агуры',
-          pendingAction: 'Агуры',
+          pendingAction: 'Агуры'
         },
         terminal: {
           done: 'Командæ æххæст кодта',
           pending: 'Командæ æххæст кæны',
-          pendingAction: 'Æххæст кæны',
+          pendingAction: 'Æххæст кæны'
         },
         todo: {
           done: 'Хъуыддæгтæ ногæй фæивта',
           pending: 'Хъуыддæгтæ ногæй ивы',
-          pendingAction: 'Ногæй ивы',
+          pendingAction: 'Ногæй ивы'
         },
         vision_analyze: {
           done: 'Ныв анализ скодта',
           pending: 'Ныв анализ кæны',
-          pendingAction: 'Анализ кæны',
+          pendingAction: 'Анализ кæны'
         },
         web_extract: {
           done: 'Веб-страницæ бакаст',
           pending: 'Веб-страницæ касы',
-          pendingAction: 'Касы',
+          pendingAction: 'Касы'
         },
         web_search: {
           done: 'Веб агуырдта',
           pending: 'Веб агуры',
-          pendingAction: 'Агуры',
+          pendingAction: 'Агуры'
         },
         write_file: {
           done: 'Файл баивта',
           pending: 'Файл ивы',
-          pendingAction: 'Редакци кæнын',
+          pendingAction: 'Редакци кæнын'
         },
         execute_code: {
           done: 'Код æххæстгонд',
           pending: 'Скрипт кæнын',
-          pendingAction: 'Скрипт кæнын',
+          pendingAction: 'Скрипт кæнын'
         },
         image_generate: {
           done: 'Сарæзт ныв',
           pending: 'Ныв саразын',
-          pendingAction: 'Саразын',
+          pendingAction: 'Саразын'
         },
         list_files: {
           done: 'Номхыгъдгонд файлтæ',
           pending: 'Файлтæ номхыгъд кæнын',
-          pendingAction: 'Номхыгъд кæнын',
+          pendingAction: 'Номхыгъд кæнын'
         },
         patch: {
           done: 'Патчгонд файл',
           pending: 'Файл патч кæнын',
-          pendingAction: 'Патч кæнын',
+          pendingAction: 'Патч кæнын'
         },
         read_file: {
           done: 'Файл каст',
           pending: 'Файл кæсын',
-          pendingAction: 'Кæсын',
+          pendingAction: 'Кæсын'
         },
         search_files: {
           done: 'Файлтæ агуырд',
           pending: 'Файлтæ агурын',
-          pendingAction: 'Агурын',
-        },
+          pendingAction: 'Агурын'
+        }
       },
       code: 'Код',
       copyCode: 'Код копи кæн',
@@ -2865,20 +2933,21 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer-ы шлюз баст нæу',
     sudoSendFailed: 'sudo-йы пароль арвысын нæ бантыст',
     secretSendFailed: 'Секрет арвысын нæ бантыст',
     sudoTitle: 'Администраторы пароль',
-    sudoDesc: 'OpenAmer-æн хъæуы дæ sudo-йы пароль привилегирован командæ æххæст кæнынæн. Уый арвыст цæуы æрмæст дæ локальон агентмæ.',
+    sudoDesc:
+      'OpenAmer-æн хъæуы дæ sudo-йы пароль привилегирован командæ æххæст кæнынæн. Уый арвыст цæуы æрмæст дæ локальон агентмæ.',
     sudoPlaceholder: 'sudo-йы пароль',
     secretTitle: 'Секрет хъæуы',
     secretDesc: 'OpenAmer-æн дарддæр цæуынæн хъæуы креденциал.',
-    secretPlaceholder: 'Секреты нысаниуæг',
+    secretPlaceholder: 'Секреты нысаниуæг'
   },
   desktop: {
     audioReadFailed: 'Фыст аудио бакæсын нæ бантыст',
@@ -2899,7 +2968,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'Ивын нæ бантыст',
     resumeFailed: 'Дарддæр кæнын нæ бантыст',
     resumeStrandedTitle: 'Ацы сесси нæ бафтыд',
-    resumeStrandedBody: 'Ацы сессимæ бастдзинад нæ бантыст æмæ автоматикон ногæй бафæлвæрдтæ фæстагмæ æрцыдысты. Шлюз кусы, уый сбæрæг кæн, стæй ногæй бафæлвæр.',
+    resumeStrandedBody:
+      'Ацы сессимæ бастдзинад нæ бантыст æмæ автоматикон ногæй бафæлвæрдтæ фæстагмæ æрцыдысты. Шлюз кусы, уый сбæрæг кæн, стæй ногæй бафæлвæр.',
     resumeRetry: 'Ногæй бафæлвæр',
     nothingToBranch: 'Къабаз кæнынæн ницы ис',
     branchNeedsChat: 'Къабаз кæнынмæ раздæр чат райдай кæн æви дарддæр кæн.',
@@ -2934,7 +3004,8 @@ Leave blank to keep the ${mode} default.`,
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
     branchTitle: n => `Draft: Branch #${n}`,
@@ -2946,34 +3017,35 @@ Leave blank to keep the ${mode} default.`,
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
       failed: error => `Handoff failed: ${error}`,
-      timedOut: 'Timed out waiting for the gateway. Is `openamer gateway` running?',
-    },
+      timedOut: 'Timed out waiting for the gateway. Is `openamer gateway` running?'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
   },
   errors: {
     genericFailure: 'Something went wrong',
     boundaryTitle: 'Something broke in the interface',
     boundaryDesc: 'The view hit an unexpected error. Your chats and settings are safe.',
     reloadWindow: 'Reload window',
-    openLogs: 'Open logs',
+    openLogs: 'Open logs'
   },
   ui: {
     search: {
-      clear: 'Clear search',
+      clear: 'Clear search'
     },
     pagination: {
       label: 'pagination',
       previous: 'Prev',
       previousAria: 'Go to previous page',
       next: 'Next',
-      nextAria: 'Go to next page',
+      nextAria: 'Go to next page'
     },
     sidebar: {
       title: 'Sidebar',
       description: 'Displays the mobile sidebar.',
-      toggle: 'Toggle Sidebar',
-    },
-  },
+      toggle: 'Toggle Sidebar'
+    }
+  }
 })

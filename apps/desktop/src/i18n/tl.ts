@@ -24,7 +24,7 @@ export const tl = defineLocale({
       noSpeechDetected: 'Walang natukoy na pagsasalita',
       playbackFailed: 'Nabigo ang pag-play ng boses',
       recordingFailed: 'Nabigo ang pag-record ng boses',
-      transcriptionFailed: 'Nabigo ang transkripsyon ng boses',
+      transcriptionFailed: 'Nabigo ang transkripsyon ng boses'
     },
     native: {
       approvalTitle: 'Kailangan ng pag-apruba',
@@ -37,7 +37,7 @@ export const tl = defineLocale({
       turnErrorTitle: 'Nabigo ang turn',
       backgroundDoneTitle: 'Tapos na ang gawain sa background',
       backgroundFailedTitle: 'Nabigo ang gawain sa background',
-      creditsTitle: 'Mga kredito',
+      creditsTitle: 'Mga kredito'
     },
     region: 'Mga notification',
     hide: 'Itago',
@@ -49,22 +49,24 @@ export const tl = defineLocale({
     copyDetail: 'Kopyahin ang detalye',
     copyDetailFailed: 'Hindi nakopya ang detalye ng notification',
     backendOutOfDateTitle: 'Luma na ang backend',
-    backendOutOfDateMessage: 'Mas matanda ang backend mo ng OpenAmer kaysa sa desktop build na ito at maaaring hindi ito gumana nang tama. Mag-update para pantayin sila.',
+    backendOutOfDateMessage:
+      'Mas matanda ang backend mo ng OpenAmer kaysa sa desktop build na ito at maaaring hindi ito gumana nang tama. Mag-update para pantayin sila.',
     installMethodUnsupportedTitle: 'Hindi suportadong paraan ng install',
     updateOpenAmer: 'I-update ang OpenAmer',
     updateReadyTitle: 'Handa nang i-update',
     updateReadyMessage: count => `${count} bagong update${count === 1 ? '' : 's'} ang available.`,
-    seeWhatsNew: "Tingnan ang mga bago",
+    seeWhatsNew: 'Tingnan ang mga bago',
     errors: {
       elevenLabsNeedsKey: 'Kailangan ng ElevenLabs STT ang ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'Tinanggihan ng ElevenLabs ang API key (401).',
       gatewayAuthFailed: 'Nabigo ang authentication sa gateway - tingnan ang API_SERVER_KEY mo.',
-      methodNotAllowed: 'Tinanggihan ng desktop backend ang request na iyon (405 Method Not Allowed). Subukang i-restart ang OpenAmer Desktop.',
+      methodNotAllowed:
+        'Tinanggihan ng desktop backend ang request na iyon (405 Method Not Allowed). Subukang i-restart ang OpenAmer Desktop.',
       microphonePermission: 'Tinanggihan ang pahintulot sa mikropono.',
       openaiRejectedApiKey: 'Tinanggihan ng OpenAI ang API key.',
       openaiRejectedApiKeyWithStatus: status => `Tinanggihan ng OpenAI ang API key (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'Kailangan ng OpenAI TTS ang VOICE_TOOLS_OPENAI_KEY o OPENAI_API_KEY.',
-    },
+      openaiTtsNeedsKey: 'Kailangan ng OpenAI TTS ang VOICE_TOOLS_OPENAI_KEY o OPENAI_API_KEY.'
+    }
   },
   billingBlock: {
     titleOpenamer: 'Naubos ang mga kredito ng OpenAmer',
@@ -72,7 +74,7 @@ export const tl = defineLocale({
     openBilling: 'Buksan ang billing',
     addCredits: 'Magdagdag ng mga kredito',
     dismiss: 'I-dismiss',
-    titleProvider: provider => `Wala nang credits - ${provider}`,
+    titleProvider: provider => `Wala nang credits - ${provider}`
   },
   titlebar: {
     hideSidebar: 'Itago ang sidebar',
@@ -89,7 +91,7 @@ export const tl = defineLocale({
     openStarmap: 'Buksan ang graph ng memorya',
     openKeybinds: 'Mga shortcut sa keyboard',
     layoutEditor: 'Editor ng layout',
-    layoutEditorTitle: 'Editor ng layout — nire-reset ng ⌘-click ang layout',
+    layoutEditorTitle: 'Editor ng layout — nire-reset ng ⌘-click ang layout'
   },
   keybinds: {
     title: 'Mga shortcut sa keyboard',
@@ -106,7 +108,7 @@ export const tl = defineLocale({
       profiles: 'Mga profile',
       session: 'Session',
       navigation: 'Nabigasyon',
-      view: 'Tanaw',
+      view: 'Tanaw'
     },
     actions: {
       'keybinds.openPanel': 'Buksan ang mga keyboard shortcut',
@@ -185,12 +187,13 @@ export const tl = defineLocale({
       'composer.slash': 'Command palette na may slash',
       'composer.help': 'Mabilisang tulong',
       'composer.history': 'I-cycle ang popover o history',
-      'composer.cancel': 'Isara ang popover - kanselahin ang run',
-    },
+      'composer.cancel': 'Isara ang popover - kanselahin ang run'
+    }
   },
   settings: {
     toolsets: {
-      noProviderOptions: 'Walang mga opsyon ng provider ang toolset na ito — i-enable ito at gagana sa kasalukuyang setup mo.',
+      noProviderOptions:
+        'Walang mga opsyon ng provider ang toolset na ito — i-enable ito at gagana sa kasalukuyang setup mo.',
       noProviders: 'Walang available na provider para sa toolset na ito ngayon.',
       ready: 'Handa',
       needsSignIn: 'Kailangan mag-sign in',
@@ -229,9 +232,11 @@ export const tl = defineLocale({
         unavailable: 'Hindi available',
         inUse: 'Ginagamit',
         selectedTitle: 'Napili ang backend',
-        needsSetupHint: 'Maaari mo nang piliin ang backend na ito — mabibigo ang mga command hanggang hindi kumpleto ang setup.',
-        selectedMessage: backend => `Tumatakbo na ang mga terminal command sa pamamagitan ng ${backend}. Nalalapat sa mga bagong session.`,
-        failedSelect: backend => `Nabigong piliin ang ${backend}`,
+        needsSetupHint:
+          'Maaari mo nang piliin ang backend na ito — mabibigo ang mga command hanggang hindi kumpleto ang setup.',
+        selectedMessage: backend =>
+          `Tumatakbo na ang mga terminal command sa pamamagitan ng ${backend}. Nalalapat sa mga bagong session.`,
+        failedSelect: backend => `Nabigong piliin ang ${backend}`
       },
       loadingConfig: 'Nilo-load ang configuration',
       savedTitle: 'Na-save ang credential',
@@ -248,8 +253,10 @@ export const tl = defineLocale({
       selectedMessage: provider => `Aktibo na ngayon ang ${provider}.`,
       failedSelect: provider => `Nabigong piliin ang ${provider}`,
       failedLoad: 'Nabigong ma-load ang configuration ng tool',
-      openamerAuthNeededMessage: provider => `Naka-save ang ${provider} pero hindi ito magiging aktibo hanggang mag-sign in ka sa OpenAmer Portal.`,
-      postSetupHint: step => `Kailangan ng backend na ito ng isang beses na install (${step}). Tumatakbo ito sa makinang ito - maaaring tumagal ng ilang minuto.`,
+      openamerAuthNeededMessage: provider =>
+        `Naka-save ang ${provider} pero hindi ito magiging aktibo hanggang mag-sign in ka sa OpenAmer Portal.`,
+      postSetupHint: step =>
+        `Kailangan ng backend na ito ng isang beses na install (${step}). Tumatakbo ito sa makinang ito - maaaring tumagal ng ilang minuto.`,
       postSetupCompleteMessage: step => `Na-install ang ${step}.`,
       postSetupErrorMessage: step => `Tingnan ang log ng ${step}.`,
       postSetupFailed: step => `Nabigong patakbuhin ang setup ng ${step}`,
@@ -260,23 +267,28 @@ export const tl = defineLocale({
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelDefault: 'default',
       modelSelectedMessage: model => `Nalalapat ang ${model} sa mga bagong session.`,
-      failedSelectModel: model => `Nabigong piliin ang ${model}`,
+      failedSelectModel: model => `Nabigong piliin ang ${model}`
     },
     gateway: {
       signOut: 'Mag-sign out',
       authTitle: 'Autentikasyon',
-      authSignedInPassword: 'Gumagamit ang gateway na ito ng username at password. Naka-sign in ka; awtomatikong nagre-refresh ang session.',
-      authSignedInOauth: 'Gumagamit ang gateway na ito ng OAuth. Naka-sign in ka; awtomatikong nagre-refresh ang session.',
-      authNeedsPassword: 'Gumagamit ang gateway na ito ng username at password. Mag-sign in para pahintulutan ang desktop app na ito.',
+      authSignedInPassword:
+        'Gumagamit ang gateway na ito ng username at password. Naka-sign in ka; awtomatikong nagre-refresh ang session.',
+      authSignedInOauth:
+        'Gumagamit ang gateway na ito ng OAuth. Naka-sign in ka; awtomatikong nagre-refresh ang session.',
+      authNeedsPassword:
+        'Gumagamit ang gateway na ito ng username at password. Mag-sign in para pahintulutan ang desktop app na ito.',
       tokenTitle: 'Token ng session',
-      tokenDesc: 'Ang token ng session ng dashboard na ginagamit para sa REST at WebSocket access. Iwang blangko para mapanatili ang naka-save na token.',
+      tokenDesc:
+        'Ang token ng session ng dashboard na ginagamit para sa REST at WebSocket access. Iwang blangko para mapanatili ang naka-save na token.',
       savedToken: 'naka-save',
       pasteSessionToken: 'I-paste ang token ng session',
       testRemote: 'Subukan ang remote',
       saveForRestart: 'I-save para sa susunod na restart',
       saveAndReconnect: 'I-save at muling kumonekta',
       diagnostics: 'Mga diagnostic',
-      diagnosticsDesc: 'Ipakita ang desktop.log sa iyong file manager — kapaki-pakinabang kapag nabigo ang gateway na magsimula.',
+      diagnosticsDesc:
+        'Ipakita ang desktop.log sa iyong file manager — kapaki-pakinabang kapag nabigo ang gateway na magsimula.',
       openLogs: 'Buksan ang mga log',
       incompleteTitle: 'Hindi kumpleto ang remote gateway',
       incompleteSignIn: 'Maglagay ng remote URL at mag-sign in bago lumipat sa remote.',
@@ -286,7 +298,8 @@ export const tl = defineLocale({
       enterUrlFirst: 'Maglagay muna ng remote URL.',
       restartingTitle: 'Nagre-restart ang koneksyon sa gateway',
       savedTitle: 'Nai-save ang mga setting ng gateway',
-      restartingMessage: 'Muling kokonekta ang OpenAmer Desktop gamit ang naka-save na mga setting — mananatiling bukas ang shell.',
+      restartingMessage:
+        'Muling kokonekta ang OpenAmer Desktop gamit ang naka-save na mga setting — mananatiling bukas ang shell.',
       savedMessage: 'Naka-save para sa susunod na restart.',
       reachableTitle: 'Naabot ang remote gateway',
       signedOutTitle: 'Naka-sign out',
@@ -298,8 +311,10 @@ export const tl = defineLocale({
       applyFailed: 'Hindi ma-apply ang mga setting ng gateway',
       saveFailed: 'Hindi ma-save ang mga setting ng gateway',
       sshTitle: 'Kumonekta via SSH',
-      sshDesc: 'Ilulunsad ang OpenAmer sa remote sa pamamagitan ng SSH at ite-tunnel sa app na ito — wala kang kailangang simulan o ilantad. Kailangan ng gumaganang key-based SSH access sa host.',
-      sshTrustHint: 'Ang unang ipinakitang host key ay pinagkakatiwalaan at naka-pin; ang mga susunod na pagbabago ay hindi papayagan.',
+      sshDesc:
+        'Ilulunsad ang OpenAmer sa remote sa pamamagitan ng SSH at ite-tunnel sa app na ito — wala kang kailangang simulan o ilantad. Kailangan ng gumaganang key-based SSH access sa host.',
+      sshTrustHint:
+        'Ang unang ipinakitang host key ay pinagkakatiwalaan at naka-pin; ang mga susunod na pagbabago ay hindi papayagan.',
       sshHostDesc: 'user@host, o isang Host alias mula sa ~/.ssh/config.',
       sshHostPick: 'Pumili ng host…',
       sshHostPickDesc: 'Isang alias ng Host mula sa ~/.ssh/config, o Custom para maglagay ng sarili.',
@@ -315,10 +330,14 @@ export const tl = defineLocale({
       sshButtonsHint: 'Mag-aapply ang Save sa susunod na launch. Kokonekta muli ang Connect ngayon.',
       sshIncompleteHost: 'Maglagay ng SSH host bago kumonekta.',
       sshErrUnreachable: 'Hindi maabot ang host na iyon sa SSH. Suriin ang host, port, at network mo.',
-      sshErrAuth: 'Nabigo ang pagpapatunay ng SSH. I-load ang key mo sa ssh-agent (ssh-add) o magtakda ng IdentityFile sa ~/.ssh/config — hindi interactive na pinapatakbo ng OpenAmer ang ssh.',
-      sshErrHostKey: 'NAGBAGO ang host key mula noong huli kang kumonekta. I-verify na inaasahan ito, pagkatapos patakbuhin ang ssh-keygen -R <host> at kumonekta muli.',
-      sshErrNotInstalled: 'Hindi naka-install ang OpenAmer sa remote host. I-install doon (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) o itakda ang path ng OpenAmer.',
-      sshErrPlatform: 'Hindi suportadong remote platform. Sinusuportahan ng OpenAmer Desktop SSH mode ang Linux, macOS, at Windows na remote host.',
+      sshErrAuth:
+        'Nabigo ang pagpapatunay ng SSH. I-load ang key mo sa ssh-agent (ssh-add) o magtakda ng IdentityFile sa ~/.ssh/config — hindi interactive na pinapatakbo ng OpenAmer ang ssh.',
+      sshErrHostKey:
+        'NAGBAGO ang host key mula noong huli kang kumonekta. I-verify na inaasahan ito, pagkatapos patakbuhin ang ssh-keygen -R <host> at kumonekta muli.',
+      sshErrNotInstalled:
+        'Hindi naka-install ang OpenAmer sa remote host. I-install doon (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) o itakda ang path ng OpenAmer.',
+      sshErrPlatform:
+        'Hindi suportadong remote platform. Sinusuportahan ng OpenAmer Desktop SSH mode ang Linux, macOS, at Windows na remote host.',
       sshErrTimeout: 'Nag-timeout ang koneksyon sa SSH. Maaaring hindi maabot o tulog ang host.',
       sshErrUpdateRequired: 'I-update ang OpenAmer sa remote host bago kumonekta gamit ang Desktop SSH.',
       sshErrUnknown: 'Nabigo ang koneksyon sa SSH.',
@@ -327,23 +346,28 @@ export const tl = defineLocale({
       unavailableDesc: 'Hindi inilalabas ng IPC bridge ng desktop ang mga setting ng gateway.',
       title: 'Koneksyon sa gateway',
       envOverride: 'override ng env',
-      intro: 'Awtomatikong nagsisimula ang OpenAmer Desktop ng sarili nitong lokal na gateway. Gumamit ng remote gateway kapag gusto mong kontrolin ng app na ito ang tumatakbong OpenAmer backend sa ibang makina o sa likod ng pinagkakatiwalaang proxy. Pumili ng profile sa ibaba para bigyan ito ng sariling remote host.',
+      intro:
+        'Awtomatikong nagsisimula ang OpenAmer Desktop ng sarili nitong lokal na gateway. Gumamit ng remote gateway kapag gusto mong kontrolin ng app na ito ang tumatakbong OpenAmer backend sa ibang makina o sa likod ng pinagkakatiwalaang proxy. Pumili ng profile sa ibaba para bigyan ito ng sariling remote host.',
       appliesTo: 'Nalalapat sa',
       allProfiles: 'Lahat ng profile',
       defaultConnection: 'Default na koneksyon para sa bawat profile na walang sariling override.',
-      profileConnection: profile => `Koneksyong ginagamit lang kapag "${profile}" ang aktibong profile. Piliin ang Gamitin ang default na gateway para alisin ang override nito.`,
+      profileConnection: profile =>
+        `Koneksyong ginagamit lang kapag "${profile}" ang aktibong profile. Piliin ang Gamitin ang default na gateway para alisin ang override nito.`,
       envOverrideTitle: 'Kinokontrol ng environment variable ang desktop session na ito.',
-      envOverrideDesc: 'I-unset ang OPENAMER_DESKTOP_REMOTE_URL at OPENAMER_DESKTOP_REMOTE_TOKEN para magamit ang naka-save na setting sa ibaba.',
+      envOverrideDesc:
+        'I-unset ang OPENAMER_DESKTOP_REMOTE_URL at OPENAMER_DESKTOP_REMOTE_TOKEN para magamit ang naka-save na setting sa ibaba.',
       modeTitle: 'Mode ng koneksyon',
       localTitle: 'Lokal na gateway',
       localDesc: 'Magsimula ng pribadong OpenAmer backend sa localhost. Ito ang default at gumagana ito offline.',
       inheritTitle: 'Gamitin ang default na gateway',
-      inheritDesc: "Alisin ang override ng profile na ito at gamitin ang default na koneksyon.",
+      inheritDesc: 'Alisin ang override ng profile na ito at gamitin ang default na koneksyon.',
       remoteTitle: 'Remote na gateway',
       remoteDesc: 'Ikonekta ang desktop shell na ito sa remote na OpenAmer backend.',
-      remoteAuthHint: 'Ang mga hosted gateway ay gumagamit ng OAuth o username at password; ang mga self-hosted ay maaaring gumamit ng session token.',
+      remoteAuthHint:
+        'Ang mga hosted gateway ay gumagamit ng OAuth o username at password; ang mga self-hosted ay maaaring gumamit ng session token.',
       cloudTitle: 'OpenAmer Cloud',
-      cloudDesc: 'Mag-sign in nang isang beses sa OpenAmer Cloud at pumili mula sa mga agent sa account mo - walang URL na i-paste.',
+      cloudDesc:
+        'Mag-sign in nang isang beses sa OpenAmer Cloud at pumili mula sa mga agent sa account mo - walang URL na i-paste.',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudSignIn: 'Mag-sign in sa OpenAmer Cloud',
       cloudSignedIn: 'Naka-sign in sa OpenAmer Cloud',
@@ -358,7 +382,7 @@ export const tl = defineLocale({
       cloudNoAgents: {
         before: 'Walang nahanap na agent sa account na ito. Gumawa ng isa sa ',
         linkText: 'OpenAmer portal',
-        after: ', pagkatapos ay i-refresh.',
+        after: ', pagkatapos ay i-refresh.'
       },
       cloudRefresh: 'I-refresh',
       cloudConnect: 'Kumonekta',
@@ -380,7 +404,8 @@ export const tl = defineLocale({
       signedIn: 'Naka-sign in',
       signIn: 'Mag-sign in',
       signInWith: provider => `Mag-sign in gamit ang ${provider}`,
-      authNeedsOauth: provider => `Gumagamit ng OAuth ang gateway na ito. Mag-sign in gamit ang ${provider} para bigyan ng pahintulot ang desktop app na ito.`,
+      authNeedsOauth: provider =>
+        `Gumagamit ng OAuth ang gateway na ito. Mag-sign in gamit ang ${provider} para bigyan ng pahintulot ang desktop app na ito.`,
       existingToken: value => `Umiiral na token ${value}`,
       connectedTo: (baseUrl, version) => `Nakakonekta sa ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       sshHostTitle: 'Host',
@@ -389,12 +414,12 @@ export const tl = defineLocale({
       sshPortTitle: 'Port',
       sshKeyTitle: 'Identity file',
       sshOpenAmerPathPlaceholder: 'auto-detect',
-      sshReachable: (host, platform) => `Naabot: ${host} (${platform}) - nakita ang OpenAmer`,
+      sshReachable: (host, platform) => `Naabot: ${host} (${platform}) - nakita ang OpenAmer`
     },
     keys: {
       loading: 'Naglo-load ng mga API key at credential...',
       failedLoad: 'Nabigo ang pag-load ng mga API key',
-      empty: 'Wala pang naka-configure sa kategoryang ito.',
+      empty: 'Wala pang naka-configure sa kategoryang ito.'
     },
     mcp: {
       loading: 'Naglo-load ng mga MCP server...',
@@ -446,7 +471,8 @@ export const tl = defineLocale({
       catalogInstallFailed: name => `Nabigong i-install ang ${name}`,
       catalogEnvPrompt: name => `Kailangan ng ${name} ng credentials`,
       catalogEnvRequired: 'Punan ang mga kinakailangang value bago mag-install.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ang naka-enable`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ang naka-enable`,
       statusConnecting: 'Kumokonekta...',
       statusNeedsAuth: 'Kailangan ng authentication',
       statusError: 'Error',
@@ -459,7 +485,7 @@ export const tl = defineLocale({
       unsavedConnect: 'Hindi pa naka-save - i-save ang mcp.json para makakonekta.',
       enableTool: tool => `I-enable ang ${tool}`,
       disableTool: tool => `I-disable ang ${tool}`,
-      noOutput: 'Wala pang output.',
+      noOutput: 'Wala pang output.'
     },
     closeSettings: 'Isara ang mga setting',
     exportConfig: 'I-export ang config',
@@ -483,11 +509,12 @@ export const tl = defineLocale({
       about: 'Tungkol',
       billing: 'Pagsingil',
       notifications: 'Mga notification',
-      plugins: 'Mga plugin',
+      plugins: 'Mga plugin'
     },
     plugins: {
       title: 'Mga plugin ng desktop',
-      blurb: 'Mga UI extension na naka-load sa app na ito - kasama sa build, o inilagay sa desktop-plugins folder (kasama ang mga sinusulat ng OpenAmer). Kapag ini-disable, live na ina-unload ang plugin at nananatili ito kahit mag-restart.',
+      blurb:
+        'Mga UI extension na naka-load sa app na ito - kasama sa build, o inilagay sa desktop-plugins folder (kasama ang mga sinusulat ng OpenAmer). Kapag ini-disable, live na ina-unload ang plugin at nananatili ito kahit mag-restart.',
       count: n => `${n} ang naka-install`,
       openFolder: 'Buksan ang folder ng plugin',
       rescan: 'I-rescan',
@@ -499,49 +526,51 @@ export const tl = defineLocale({
       kinds: {
         bundled: 'kasama sa build',
         disk: 'nasa disk',
-        runtime: 'runtime',
-      },
+        runtime: 'runtime'
+      }
     },
     notifications: {
       title: 'Mga notification',
-      intro: 'Mga native na notification ng desktop, hiwalay sa mga toast sa loob ng app. Lokal sa device ang mga ito - bawat computer ay may sariling setting.',
+      intro:
+        'Mga native na notification ng desktop, hiwalay sa mga toast sa loob ng app. Lokal sa device ang mga ito - bawat computer ay may sariling setting.',
       enableAll: 'I-enable ang mga notification',
       enableAllDesc: 'Pangunahing switch. Patayin ito para patahimikin ang lahat ng notification sa ibaba.',
       focusedHint: 'Ang mga alerto sa pagkumpleto ay lumalabas lang habang nasa background ang OpenAmer.',
       kinds: {
         approval: {
           label: 'Kailangan ng approval',
-          description: 'May command na naghihintay ng approval o pagtanggi mo.',
+          description: 'May command na naghihintay ng approval o pagtanggi mo.'
         },
         input: {
           label: 'Kailangan ng input',
-          description: 'May itinanong ang OpenAmer o kailangan nito ng password o secret.',
+          description: 'May itinanong ang OpenAmer o kailangan nito ng password o secret.'
         },
         turnDone: {
           label: 'Handa na ang sagot',
-          description: 'May turn na natapos habang nasa background ang OpenAmer.',
+          description: 'May turn na natapos habang nasa background ang OpenAmer.'
         },
         turnError: {
           label: 'Nabigo ang turn',
-          description: 'Natapos ang isang turn na may error.',
+          description: 'Natapos ang isang turn na may error.'
         },
         backgroundDone: {
           label: 'Natapos ang background task',
-          description: 'May na-background na terminal command na natapos.',
+          description: 'May na-background na terminal command na natapos.'
         },
         credits: {
           label: 'Mga alerto sa credits',
-          description: 'Naka-pause o naibalik ang access sa credits.',
-        },
+          description: 'Naka-pause o naibalik ang access sa credits.'
+        }
       },
       test: 'Magpadala ng test notification',
       testTitle: 'OpenAmer',
       testBody: 'Gumagana ang mga notification.',
-      testSent: 'Naipadala ang test. Kung walang lumabas, tingnan ang mga pahintulot sa notification ng OS mo at ang Focus/Do Not Disturb.',
+      testSent:
+        'Naipadala ang test. Kung walang lumabas, tingnan ang mga pahintulot sa notification ng OS mo at ang Focus/Do Not Disturb.',
       testUnsupported: 'Hindi sinusuportahan ng system na ito ang native na notification.',
       completionSoundTitle: 'Tunog ng pagkumpleto',
       completionSoundDesc: 'Tumutunog kapag natapos ang isang turn ng agent. Pumili ng preset at i-preview dito.',
-      completionSoundPreview: 'I-preview',
+      completionSoundPreview: 'I-preview'
     },
     sections: {
       model: 'Model',
@@ -551,7 +580,7 @@ export const tl = defineLocale({
       safety: 'Kaligtasan',
       memory: 'Memory at Konteksto',
       voice: 'Boses',
-      advanced: 'Advanced',
+      advanced: 'Advanced'
     },
     searchPlaceholder: {
       about: 'Tungkol sa OpenAmer Desktop',
@@ -559,37 +588,40 @@ export const tl = defineLocale({
       gateway: 'Koneksyon sa gateway...',
       keys: 'Maghanap ng API key...',
       mcp: 'Maghanap ng MCP server...',
-      sessions: 'Maghanap sa mga naka-archive na session...',
+      sessions: 'Maghanap sa mga naka-archive na session...'
     },
     modeOptions: {
       light: {
         label: 'Maliwanag',
-        description: 'Maliwanag na surface ng desktop',
+        description: 'Maliwanag na surface ng desktop'
       },
       dark: {
         label: 'Madilim',
-        description: 'Workspace na mahina ang glare',
+        description: 'Workspace na mahina ang glare'
       },
       system: {
         label: 'System',
-        description: 'Sundin ang hitsura ng OS',
-      },
+        description: 'Sundin ang hitsura ng OS'
+      }
     },
     appearance: {
       title: 'Hitsura',
-      intro: 'Mga kagustuhan sa display na para sa desktop lang. Ang mode ang kumokontrol sa liwanag; ang theme ang kumokontrol sa accent palette at estilo ng chat surface.',
+      intro:
+        'Mga kagustuhan sa display na para sa desktop lang. Ang mode ang kumokontrol sa liwanag; ang theme ang kumokontrol sa accent palette at estilo ng chat surface.',
       colorMode: 'Color mode',
       colorModeDesc: 'Pumili ng fixed na mode o hayaang sundan ng OpenAmer ang setting ng system mo.',
       toolViewTitle: 'Pagpapakita ng tool call',
       toolViewDesc: 'Itinatago ng Product ang raw na tool payload; ipinapakita ng Technical ang buong input/output.',
       uiScaleTitle: 'Scale ng UI',
-      uiScaleDesc: (percent: number) => `Sinusukat ang text at control sa buong app. Gumagana rin ang Cmd/Ctrl kasama ang +, - at 0. Kasalukuyan: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Sinusukat ang text at control sa buong app. Gumagana rin ang Cmd/Ctrl kasama ang +, - at 0. Kasalukuyan: ${percent}%.`,
       translucencyTitle: 'Translucency ng window',
       translucencyDesc: 'Makita ang desktop mo sa buong window. Sa macOS at Windows lang.',
       backdropTitle: 'Backdrop ng chat',
       backdropDesc: 'Ang malabong larawan ng estatuwa sa likod ng usapan.',
       embedsTitle: 'Inline embed',
-      embedsDesc: 'Naglo-load ang rich preview mula sa third-party site (YouTube, X, ...). Ang Ask ay nagpapakita ng placeholder hanggang payagan mo ang bawat isa; awtomatikong nilo-load ng Always; pinapanatiling plain link ng Off.',
+      embedsDesc:
+        'Naglo-load ang rich preview mula sa third-party site (YouTube, X, ...). Ang Ask ay nagpapakita ng placeholder hanggang payagan mo ang bawat isa; awtomatikong nilo-load ng Always; pinapanatiling plain link ng Off.',
       embedsAsk: 'Itanong',
       embedsAlways: 'Palagi',
       embedsOff: 'Naka-off',
@@ -602,7 +634,8 @@ export const tl = defineLocale({
       themeDesc: 'Mga palette ng desktop lang. Inilalapat sa ibabaw ang napiling mode.',
       themeProfileNote: profile => `Naka-save para sa profile na ${profile} - bawat profile ay may sariling theme.`,
       installTitle: 'Mag-install mula sa VS Code',
-      installDesc: 'I-paste ang Marketplace extension id (hal. dracula-theme.theme-dracula) para i-convert ang color theme nito sa palette ng desktop.',
+      installDesc:
+        'I-paste ang Marketplace extension id (hal. dracula-theme.theme-dracula) para i-convert ang color theme nito sa palette ng desktop.',
       installPlaceholder: 'publisher.extension',
       installButton: 'I-install',
       installing: 'Nag-i-install...',
@@ -612,8 +645,10 @@ export const tl = defineLocale({
       importedBadge: 'Na-import',
       pet: {
         title: 'Alaga',
-        intro: 'Mag-adopt ng animated na petdex mascot na lumulutang sa ibabaw ng app at tumutugon sa ginagawa ng OpenAmer - tumatakbo habang nagpapatakbo ng tool, nagsasaya kapag success, nagtatampo kapag may error.',
-        restartHint: 'Kailangan ng mabilisang restart ng pet - nag-start ang tumatakbong app bago idinagdag ang feature na ito. Isara at buksan muli ang OpenAmer, pagkatapos ay bumalik dito.',
+        intro:
+          'Mag-adopt ng animated na petdex mascot na lumulutang sa ibabaw ng app at tumutugon sa ginagawa ng OpenAmer - tumatakbo habang nagpapatakbo ng tool, nagsasaya kapag success, nagtatampo kapag may error.',
+        restartHint:
+          'Kailangan ng mabilisang restart ng pet - nag-start ang tumatakbong app bago idinagdag ang feature na ito. Isara at buksan muli ang OpenAmer, pagkatapos ay bumalik dito.',
         on: 'Naka-on',
         off: 'Naka-off',
         scaleTitle: 'Laki',
@@ -623,7 +658,7 @@ export const tl = defineLocale({
         chooseTitle: 'Pumili ng pet',
         chooseDesc: 'Kapag pumili ka, ini-install ito (kung kailangan) at ginagawang aktibo.',
         searchPlaceholder: 'Maghanap ng pet...',
-        unreachable: "Hindi maabot ang petdex gallery. Tingnan ang koneksyon mo at buksan muli ang pahinang ito.",
+        unreachable: 'Hindi maabot ang petdex gallery. Tingnan ang koneksyon mo at buksan muli ang pahinang ito.',
         noMatch: query => `Walang pet na tugma sa "${query}".`,
         installedTag: 'naka-install',
         generatedTag: 'Ginawa',
@@ -632,7 +667,7 @@ export const tl = defineLocale({
         uninstall: name => `I-uninstall ang ${name}`,
         delete: name => `Burahin ang ${name}`,
         deleteTitle: name => `Burahin ang ${name}?`,
-        deleteBody: "Permanenteng buburahin nito ang pet - hindi na ito ma-i-install muli.",
+        deleteBody: 'Permanenteng buburahin nito ang pet - hindi na ito ma-i-install muli.',
         deleteConfirm: 'Burahin',
         rename: name => `Palitan ang pangalan ng ${name}`,
         renameTitle: 'Palitan ang pangalan ng pet',
@@ -645,8 +680,8 @@ export const tl = defineLocale({
         exportFailed: slug => `Hindi na-export ang ${slug}`,
         noneAvailable: 'Walang available na pet na mai-on ngayon.',
         turnOnFailed: 'Hindi na-on ang pet.',
-        turnOffFailed: 'Hindi na-off ang pet.',
-      },
+        turnOffFailed: 'Hindi na-off ang pet.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -657,25 +692,26 @@ export const tl = defineLocale({
       updates: 'Mga update',
       checkNow: 'Suriin ngayon',
       checking: 'Sinusuri...',
-      seeWhatsNew: "Tingnan ang mga bago",
+      seeWhatsNew: 'Tingnan ang mga bago',
       updateNow: 'I-update ngayon',
       releaseNotes: 'Mga tala ng release',
-      onLatest: "Nasa pinakabagong bersyon ka.",
+      onLatest: 'Nasa pinakabagong bersyon ka.',
       installing: 'Kasalukuyang nag-i-install ang isang update.',
-      cantUpdate: "Hindi kayang i-update ng build na ito ang sarili nito mula sa loob ng app.",
-      cantReach: "Hindi namin maabot ang update server.",
+      cantUpdate: 'Hindi kayang i-update ng build na ito ang sarili nito mula sa loob ng app.',
+      cantReach: 'Hindi namin maabot ang update server.',
       tapCheck: 'I-tap ang "Suriin ngayon" para maghanap ng update.',
       updateReady: count => `Handa na ang bagong update (${count} bagong update${count === 1 ? '' : 's'} ang kasama).`,
       lastChecked: age => `Huling sinuri ${age}`,
       justNowSuffix: ' - ngayon lang',
       automaticUpdates: 'Mga awtomatikong update',
-      automaticUpdatesDesc: 'Awtomatikong naghahanap ng update ang OpenAmer sa background at ipinapaalam sa iyo kapag may handa na.',
+      automaticUpdatesDesc:
+        'Awtomatikong naghahanap ng update ang OpenAmer sa background at ipinapaalam sa iyo kapag may handa na.',
       branchCommit: (branch, commit) => `Branch ${branch} - Commit ${commit}`,
       never: 'hindi kailanman',
       justNow: 'ngayon lang',
       minAgo: count => `${count} min ang nakalipas`,
       hoursAgo: count => `${count} oras ang nakalipas`,
-      daysAgo: count => `${count} araw ang nakalipas`,
+      daysAgo: count => `${count} araw ang nakalipas`
     },
     config: {
       none: 'Wala',
@@ -691,7 +727,8 @@ export const tl = defineLocale({
       imported: 'Na-import ang config',
       invalidJson: 'Hindi valid ang JSON ng config',
       keepAwakeTitle: 'Panatilihing gising ang computer',
-      keepAwakeDesc: 'Pigilan ang pagtulog ng makinang ito para magpatuloy ang mahahabang run o overnight. Maaari pa ring lumabo ang display.',
+      keepAwakeDesc:
+        'Pigilan ang pagtulog ng makinang ito para magpatuloy ang mahahabang run o overnight. Maaari pa ring lumabo ang display.'
     },
     credentials: {
       pasteKey: 'I-paste ang key',
@@ -701,7 +738,7 @@ export const tl = defineLocale({
       couldNotSave: 'Hindi na-save ang credential.',
       remove: 'Alisin',
       getKey: 'Kumuha ng key',
-      saving: 'Sine-save',
+      saving: 'Sine-save'
     },
     envActions: {
       actionsFor: label => `Mga aksyon para sa ${label}`,
@@ -712,11 +749,12 @@ export const tl = defineLocale({
       revealValue: 'Ipakita ang value',
       replace: 'Palitan',
       set: 'Itakda',
-      clear: 'I-clear',
+      clear: 'I-clear'
     },
     model: {
       loading: 'Nilo-load ang configuration ng model...',
-      appliesDesc: 'Nalalapat sa mga bagong session. Gamitin ang model picker sa composer para i-hot-swap ang aktibong chat.',
+      appliesDesc:
+        'Nalalapat sa mga bagong session. Gamitin ang model picker sa composer para i-hot-swap ang aktibong chat.',
       provider: 'Provider',
       model: 'Model',
       applying: 'Inilalapat...',
@@ -726,53 +764,55 @@ export const tl = defineLocale({
       defaultsFailed: 'Nabigong i-save ang mga default ng model',
       auxiliaryTitle: 'Mga auxiliary model',
       resetAllToMain: 'I-reset lahat sa main',
-      auxiliaryDesc: 'Sa main model tumatakbo ang mga helper task bilang default. Magtalaga ng dedicated na model sa kahit anong task para i-override ito.',
+      auxiliaryDesc:
+        'Sa main model tumatakbo ang mga helper task bilang default. Magtalaga ng dedicated na model sa kahit anong task para i-override ito.',
       setToMain: 'Itakda sa main',
       change: 'Palitan',
       autoUseMain: 'auto - gamitin ang main model',
       providerDefault: '(default ng provider)',
       fallbackAdd: 'Magdagdag ng fallback',
       fallbackEmpty: 'Walang fallback model - gagamitin ang default model maliban kung mabigo ito.',
-      notInCatalog: "ay wala sa listahan ng model ng provider na ito - maaaring bumagsak ang mga call sa backup.",
+      notInCatalog: 'ay wala sa listahan ng model ng provider na ito - maaaring bumagsak ang mga call sa backup.',
       tasks: {
         vision: {
           label: 'Vision',
-          hint: 'Pagsusuri ng larawan',
+          hint: 'Pagsusuri ng larawan'
         },
         web_extract: {
           label: 'Web extract',
-          hint: 'Pagbubuod ng pahina',
+          hint: 'Pagbubuod ng pahina'
         },
         compression: {
           label: 'Compression',
-          hint: 'Pag-compact ng konteksto',
+          hint: 'Pag-compact ng konteksto'
         },
         skills_hub: {
           label: 'Hub ng skills',
-          hint: 'Paghahanap ng skill',
+          hint: 'Paghahanap ng skill'
         },
         approval: {
           label: 'Pag-apruba',
-          hint: 'Matalinong auto-approve',
+          hint: 'Matalinong auto-approve'
         },
         mcp: {
           label: 'MCP',
-          hint: 'Routing ng MCP tool',
+          hint: 'Routing ng MCP tool'
         },
         title_generation: {
           label: 'Paggawa ng title',
-          hint: 'Mga title ng session',
+          hint: 'Mga title ng session'
         },
         curator: {
           label: 'Curator',
-          hint: 'Pagsusuri ng paggamit ng skill',
-        },
-      },
+          hint: 'Pagsusuri ng paggamit ng skill'
+        }
+      }
     },
     providers: {
       connectAccount: 'Ikonekta ang account',
       haveApiKey: 'May API key ka na?',
-      intro: 'Mag-sign in gamit ang subscription - walang API key na kokopyahin. Pinapatakbo ng OpenAmer ang browser sign-in para sa iyo, dito mismo sa app.',
+      intro:
+        'Mag-sign in gamit ang subscription - walang API key na kokopyahin. Pinapatakbo ng OpenAmer ang browser sign-in para sa iyo, dito mismo sa app.',
       connected: 'Nakakonekta',
       collapse: 'I-collapse',
       connectAnother: 'Ikonekta ang ibang provider',
@@ -782,7 +822,8 @@ export const tl = defineLocale({
       removeConfirm: provider => `Alisin ang ${provider}?`,
       removeExternalGeneric: provider => `Pinamamahalaan ang ${provider} ng sarili nitong CLI - alisin ito roon.`,
       removeKeyManaged: provider => `Naka-configure ang ${provider} mula sa API key. Alisin ito sa API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Idiskonekta ang ${provider}? Patakbuhin nito ang "${command}" sa terminal para i-clear ang credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Idiskonekta ang ${provider}? Patakbuhin nito ang "${command}" sa terminal para i-clear ang credential.`,
       removeTerminalRunning: provider => `Pinapatakbo ang disconnect ng ${provider} sa terminal...`,
       removedTitle: 'Naalis ang account',
       removedMessage: provider => `Naalis ang ${provider}.`,
@@ -792,14 +833,16 @@ export const tl = defineLocale({
       noKeysMatch: 'Walang provider na tugma sa hinahanap mo.',
       localEndpoint: {
         title: 'Lokal / custom endpoint',
-        description: 'Ituro ang OpenAmer sa kahit anong OpenAI-compatible endpoint (Zyphra, vLLM, llama.cpp, Ollama, atbp).',
+        description:
+          'Ituro ang OpenAmer sa kahit anong OpenAI-compatible endpoint (Zyphra, vLLM, llama.cpp, Ollama, atbp).'
       },
-      loading: 'Nilo-load ang mga provider...',
+      loading: 'Nilo-load ang mga provider...'
     },
     sessions: {
       loading: 'Nilo-load ang mga naka-archive na session...',
       archivedTitle: 'Mga naka-archive na session',
-      archivedIntro: 'Nakatago ang mga naka-archive na chat sa sidebar pero buo ang lahat ng mensahe nito. I-Ctrl/Cmd-click ang chat sa sidebar para i-archive ito.',
+      archivedIntro:
+        'Nakatago ang mga naka-archive na chat sa sidebar pero buo ang lahat ng mensahe nito. I-Ctrl/Cmd-click ang chat sa sidebar para i-archive ito.',
       emptyArchivedTitle: 'Walang naka-archive',
       emptyArchivedDesc: 'I-archive ang isang chat para maitago ito dito.',
       unarchive: 'I-unarchive',
@@ -808,13 +851,16 @@ export const tl = defineLocale({
       restored: 'Naibalik',
       deleteConfirm: title => `Permanenteng burahin ang "${title}"? Hindi na ito maibabalik.`,
       autoArchiveTitle: 'Awtomatikong i-archive ang mga lumang chat',
-      autoArchiveDesc: "Awtomatikong i-archive ang mga chat na hindi mo na nagalaw nang matagal. Hindi kailanman naka-archive ang mga naka-pin na chat, at walang binubura - lumilipat lang dito ang mga naka-archive.",
+      autoArchiveDesc:
+        'Awtomatikong i-archive ang mga chat na hindi mo na nagalaw nang matagal. Hindi kailanman naka-archive ang mga naka-pin na chat, at walang binubura - lumilipat lang dito ang mga naka-archive.',
       autoArchiveDaysLabel: 'I-archive pagkatapos ng',
       autoArchiveDaysUnit: 'araw na walang aktibidad',
       autoArchiveFailed: 'Hindi na-update ang auto-archive',
       defaultDirTitle: 'Default na direktoryo ng proyekto',
-      defaultDirDesc: 'Nagsisimula ang mga bagong session sa folder na ito maliban kung pumili ka ng iba. Iwanang blangko para gamitin ang home directory mo.',
-      defaultDirUpdated: 'Na-update ang default na direktoryo ng proyekto - magsimula ng bagong chat (Ctrl/Cmd+N) para magkabisa ito',
+      defaultDirDesc:
+        'Nagsisimula ang mga bagong session sa folder na ito maliban kung pumili ka ng iba. Iwanang blangko para gamitin ang home directory mo.',
+      defaultDirUpdated:
+        'Na-update ang default na direktoryo ng proyekto - magsimula ng bagong chat (Ctrl/Cmd+N) para magkabisa ito',
       defaultsTo: label => `Default sa ${label}.`,
       change: 'Palitan',
       choose: 'Pumili',
@@ -824,8 +870,8 @@ export const tl = defineLocale({
       unarchiveFailed: 'Nabigo ang pag-unarchive',
       deleteFailed: 'Nabigo ang pagbura',
       updateDirFailed: 'Hindi na-update ang default na direktoryo',
-      clearDirFailed: 'Hindi na-clear ang default na direktoryo',
-    },
+      clearDirFailed: 'Hindi na-clear ang default na direktoryo'
+    }
   },
   skills: {
     tabSkills: 'Mga Kasanayan',
@@ -844,7 +890,8 @@ export const tl = defineLocale({
     noDescription: 'Walang paglalarawan.',
     configured: 'Naka-configure',
     needsKeys: 'Kailangan ng mga key',
-    visionModelHint: 'Ginagamit ng Vision ang configuration ng iyong auxiliary model — doon pinipili ang modelong kayang magproseso ng imahe, hindi per-provider dito.',
+    visionModelHint:
+      'Ginagamit ng Vision ang configuration ng iyong auxiliary model — doon pinipili ang modelong kayang magproseso ng imahe, hindi per-provider dito.',
     visionModelLink: 'Pumili ng vision model sa Mga Setting → Mga Modelo',
     skillsLoadFailed: 'Nabigo ang pag-load ng mga kasanayan',
     toolsetsRefreshFailed: 'Nabigo ang pag-refresh ng mga toolset',
@@ -862,7 +909,7 @@ export const tl = defineLocale({
     provenance: {
       agent: 'Natutunan',
       bundled: 'Nakapaloob',
-      hub: 'Hub',
+      hub: 'Hub'
     },
     changesApplyNewSessions: 'Nalalapat ang mga pagbabago sa mga bagong session.',
     skillUpdated: 'Na-update ang kasanayan',
@@ -889,7 +936,8 @@ export const tl = defineLocale({
       connectingHubs: 'Kumokonekta sa mga skill hub...',
       connectedHubs: 'Nakakonektang hub:',
       featured: 'Mga featured na skill',
-      landingHint: 'Maghanap sa hub para tingnan ang mga mai-install na skill mula sa official index, GitHub, at community source.',
+      landingHint:
+        'Maghanap sa hub para tingnan ang mga mai-install na skill mula sa official index, GitHub, at community source.',
       noResults: 'Walang tugmang skill sa hub.',
       resultCount: (count, ms) => `${count} result${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Nag-time out: ${sources}`,
@@ -909,7 +957,7 @@ export const tl = defineLocale({
       trust: {
         builtin: 'builtin',
         trusted: 'pinagkakatiwalaan',
-        community: 'komunidad',
+        community: 'komunidad'
       },
       verdictSafe: 'Ligtas',
       verdictCaution: 'Mag-ingat',
@@ -927,8 +975,8 @@ export const tl = defineLocale({
       loadFailed: 'Nabigong ma-load ang skill hub',
       previewFailed: 'Nabigo ang preview ng skill',
       scanFailed: 'Nabigo ang security scan',
-      searchFailed: 'Nabigo ang paghahanap sa hub',
-    },
+      searchFailed: 'Nabigo ang paghahanap sa hub'
+    }
   },
   starmap: {
     title: 'Graph ng Memorya',
@@ -941,9 +989,11 @@ export const tl = defineLocale({
     loadFailed: 'Hindi ma-load ang graph ng memorya',
     loading: 'Naglo-load…',
     emptyTitle: 'Wala pang natutunan',
-    emptyDesc: 'Habang bumubuo ang OpenAmer ng mga kasanayan at memorya para sa iyong trabaho, lumalabas ang mga ito dito.',
+    emptyDesc:
+      'Habang bumubuo ang OpenAmer ng mga kasanayan at memorya para sa iyong trabaho, lumalabas ang mga ito dito.',
     share: 'Ibahagi ang mapa',
-    shareHint: 'Kopyahin ang code para ibahagi ang mapang ito, o i-paste ang isa para i-load. Kasama lang ang pagkakaayos, hindi ang memorya o teksto ng kasanayan mo.',
+    shareHint:
+      'Kopyahin ang code para ibahagi ang mapang ito, o i-paste ang isa para i-load. Kasama lang ang pagkakaayos, hindi ang memorya o teksto ng kasanayan mo.',
     shareTitle: 'I-import / i-export ang mapa',
     sharePlaceholder: 'I-paste ang code ng mapa…',
     copy: 'Kopyahin ang code ng mapa',
@@ -955,7 +1005,7 @@ export const tl = defineLocale({
     resetToMine: 'Bumalik sa aking mapa',
     subtitle: (nodes, clusters) => `${nodes} skill sa ${clusters} kategorya`,
     viewGraph: 'Grap',
-    importSuccess: nodes => `Nag-load ng mapa na may ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Nag-load ng mapa na may ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Isara ang mga agent',
@@ -985,7 +1035,7 @@ export const tl = defineLocale({
     ageDays: days => `${days}d ang nakalipas`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'Isara ang sentro ng mga utos',
@@ -1014,7 +1064,7 @@ export const tl = defineLocale({
       generatedTag: 'Na-generate',
       adoptFailed: 'Hindi ma-adopt ang alagang iyon.',
       toggleFailed: 'Hindi ma-toggle ang alaga.',
-      noneAvailable: 'Walang available na alaga — pumili ng isa sa ibaba para i-install.',
+      noneAvailable: 'Walang available na alaga — pumili ng isa sa ibaba para i-install.'
     },
     generatePet: {
       title: 'Gumawa ng alaga',
@@ -1043,7 +1093,7 @@ export const tl = defineLocale({
       referenceImageTooLarge: 'Masyadong malaki ang reference image. Gumamit ng wala pang 16 MB.',
       referenceImageInvalid: 'Hindi mabasa ang reference image na iyon. Subukan ang PNG, JPG, WebP o GIF.',
       adopt: 'I-adopt',
-      startOver: 'Magsimula muli',
+      startOver: 'Magsimula muli'
     },
     startInBranch: branch => `Bagong usapan sa ${branch}`,
     installTheme: {
@@ -1056,7 +1106,7 @@ export const tl = defineLocale({
       install: 'I-install',
       installing: 'Nag-i-install...',
       installed: 'Naka-install',
-      installs: count => `${count} install`,
+      installs: count => `${count} install`
     },
     settingsFields: 'Mga field ng setting',
     mcpServers: 'Mga MCP server',
@@ -1065,49 +1115,49 @@ export const tl = defineLocale({
       maintenance: 'Maintenance',
       sessions: 'Mga session',
       system: 'System',
-      usage: 'Paggamit',
+      usage: 'Paggamit'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostics, backup, curator at data ng memory',
       sessions: 'Maghanap at pamahalaan ang mga session',
       system: 'Status, log at mga aksyon sa system',
-      usage: 'Token, gastos at aktibidad ng skill sa paglipas ng panahon',
+      usage: 'Token, gastos at aktibidad ng skill sa paglipas ng panahon'
     },
     nav: {
       newChat: {
         title: 'Bagong session',
-        detail: 'Magsimula ng bagong session',
+        detail: 'Magsimula ng bagong session'
       },
       settings: {
         title: 'Mga setting',
-        detail: 'I-configure ang OpenAmer desktop',
+        detail: 'I-configure ang OpenAmer desktop'
       },
       skills: {
         title: 'Mga kakayahan',
-        detail: 'Mga skill, tool at MCP server',
+        detail: 'Mga skill, tool at MCP server'
       },
       messaging: {
         title: 'Mga mensahe',
-        detail: 'I-set up ang Telegram, Slack, Discord at iba pa',
+        detail: 'I-set up ang Telegram, Slack, Discord at iba pa'
       },
       artifacts: {
         title: 'Mga artifact',
-        detail: 'Tingnan ang mga nagawang output',
-      },
+        detail: 'Tingnan ang mga nagawang output'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Panel ng mga session',
-        detail: 'Maghanap, i-pin at pamahalaan ang mga session',
+        detail: 'Maghanap, i-pin at pamahalaan ang mga session'
       },
       system: {
         title: 'Panel ng system',
-        detail: 'Status ng gateway, mga log, restart/update',
+        detail: 'Status ng gateway, mga log, restart/update'
       },
       usage: {
         title: 'Panel ng paggamit',
-        detail: 'Token, gastos at aktibidad ng skill',
-      },
+        detail: 'Token, gastos at aktibidad ng skill'
+      }
     },
     providerNavigate: 'Pumunta',
     providerSessions: 'Mga session',
@@ -1162,7 +1212,8 @@ export const tl = defineLocale({
       backup: 'Gumawa ng backup',
       backupDesc: 'I-zip ang config, memory, skill at session',
       debugShare: 'Debug share',
-      debugShareDesc: 'Mag-upload ng naka-redact na report at log, kumuha ng shareable link (awtomatikong nabubura sa loob ng 6h)',
+      debugShareDesc:
+        'Mag-upload ng naka-redact na report at log, kumuha ng shareable link (awtomatikong nabubura sa loob ng 6h)',
       debugShareRunning: 'Nag-a-upload ng debug report...',
       debugShareLinks: 'Mga share link',
       debugShareFailed: 'Nabigo ang debug share',
@@ -1195,8 +1246,8 @@ export const tl = defineLocale({
       actionStarted: name => `Nagsimula ang ${name} - sinusundan ang log...`,
       actionFailed: name => `Nabigong magsimula ang ${name}`,
       running: 'Tumatakbo...',
-      viewLog: 'Log ng aksyon',
-    },
+      viewLog: 'Log ng aksyon'
+    }
   },
   webhooks: {
     fieldDescription: 'Paglalarawan',
@@ -1220,7 +1271,7 @@ export const tl = defineLocale({
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Email',
+      email: 'Email'
     },
     search: 'Maghanap ng webhook...',
     loading: 'Nilo-load ang mga webhook...',
@@ -1229,7 +1280,8 @@ export const tl = defineLocale({
     hint: 'Ang mga pagbabago sa subscription ay hot-reload kapag tumatakbo na ang receiver. Tinatanggihan ng mga naka-disable na subscription ang papasok na event.',
     empty: 'Wala pang subscription sa webhook.',
     disabledTitle: 'Naka-disable ang webhook receiver',
-    disabledBody: 'Ang mga webhook ay sariling platform ng gateway. I-enable ang mga ito dito para tumanggap ng papasok na HTTP event; kailangan lang ng chat channel kapag nagdadala ang subscription sa Telegram, Discord, Slack o ibang channel.',
+    disabledBody:
+      'Ang mga webhook ay sariling platform ng gateway. I-enable ang mga ito dito para tumanggap ng papasok na HTTP event; kailangan lang ng chat channel kapag nagdadala ang subscription sa Telegram, Discord, Slack o ibang channel.',
     enable: 'I-enable ang mga webhook',
     enabling: 'Ini-enable...',
     enabled: (name: string) => `Naka-enable: "${name}"`,
@@ -1246,7 +1298,8 @@ export const tl = defineLocale({
     toggleFailed: (name: string) => `Nabigong i-update ang "${name}"`,
     newSubscription: 'Bagong subscription',
     restarting: 'Nagre-restart ang gateway...',
-    restartNeeded: 'Naka-enable ang mga webhook, pero kailangan pa ring i-restart ang gateway bago maging online ang receiver.',
+    restartNeeded:
+      'Naka-enable ang mga webhook, pero kailangan pa ring i-restart ang gateway bago maging online ang receiver.',
     restartGateway: 'I-restart ang gateway',
     restartingGateway: 'Nagre-restart...',
     restartFailed: (detail: string) => `Nabigo ang pag-restart ng gateway${detail}`,
@@ -1260,7 +1313,7 @@ export const tl = defineLocale({
     done: 'Tapos',
     fieldName: 'Pangalan',
     fieldNamePlaceholder: 'hal. github-push',
-    createFailed: (detail: string) => `Nabigong gumawa: ${detail}`,
+    createFailed: (detail: string) => `Nabigong gumawa: ${detail}`
   },
   profiles: {
     close: 'Isara ang mga profile',
@@ -1338,7 +1391,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     failedLoadSoul: 'Nabigong ma-load ang SOUL.md',
     failedSaveSoul: 'Nabigong i-save ang SOUL.md',
     failedCreate: 'Nabigong gumawa ng profile',
-    failedRename: 'Nabigong palitan ang pangalan ng profile',
+    failedRename: 'Nabigong palitan ang pangalan ng profile'
   },
   statusStack: {
     coding: {
@@ -1354,8 +1407,10 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       viewAsList: 'Tingnan bilang listahan',
       revert: 'Ibalik',
       revertAll: 'Ibalik lahat',
-      revertConfirm: 'Itapon ang mga pagbabago sa file na ito at ibalik ito sa na-commit na state? Hindi na ito maibabalik.',
-      revertAllConfirm: 'Itapon ang lahat ng pagbabago at ibalik ang mga file sa na-commit na state? Hindi na ito maibabalik.',
+      revertConfirm:
+        'Itapon ang mga pagbabago sa file na ito at ibalik ito sa na-commit na state? Hindi na ito maibabalik.',
+      revertAllConfirm:
+        'Itapon ang lahat ng pagbabago at ibalik ang mga file sa na-commit na state? Hindi na ito maibabalik.',
       staged: 'Naka-stage',
       noChanges: 'Walang pagbabago',
       notRepo: 'Hindi isang git repository',
@@ -1372,7 +1427,8 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       openPr: 'Buksan ang PR',
       ghMissing: 'I-install ang GitHub CLI (gh) at mag-sign in para makapagbukas ng mga PR',
       agentShip: 'Hilingin sa OpenAmer na buksan ang PR',
-      agentShipPrompt: 'Suriin ang kasalukuyang mga pagbabago, i-commit ang mga ito gamit ang malinaw na conventional-commit message, i-push ang sangay, at magbukas ng pull request.',
+      agentShipPrompt:
+        'Suriin ang kasalukuyang mga pagbabago, i-commit ang mga ito gamit ang malinaw na conventional-commit message, i-push ang sangay, at magbukas ng pull request.',
       newBranch: 'Bagong sangay',
       worktrees: 'Mga worktree',
       title: 'Working tree',
@@ -1383,7 +1439,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       behind: count => `${count} behind`,
       branchOffFrom: base => `Bagong branch mula sa ${base}`,
       switchTo: branch => `Lumipat sa ${branch}`,
-      switchFailed: branch => `Hindi makalipat sa ${branch}`,
+      switchFailed: branch => `Hindi makalipat sa ${branch}`
     },
     agents: 'Mga agent',
     background: count => `${count} background`,
@@ -1392,7 +1448,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     running: 'Tumatakbo',
     stop: 'Ihinto',
     dismiss: 'I-dismiss',
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -1407,7 +1463,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       done: 'Tapos ang update',
       manual: 'Mag-update mula sa terminal mo',
       guiSkew: 'I-update ang desktop app',
-      error: 'Naka-pause ang update',
+      error: 'Naka-pause ang update'
     },
     checking: 'Naghahanap ng update...',
     checkFailedTitle: 'Hindi nasuri ang mga update',
@@ -1427,16 +1483,21 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     maybeLater: 'Mamaya na',
     moreChanges: count => `+ ${count} pang pagbabago${count === 1 ? '' : 's'} ang kasama.`,
     manualTitle: 'Mag-update mula sa terminal mo',
-    manualBody: 'Nag-install ka ng OpenAmer mula sa command line, kaya doon din tumatakbo ang mga update. I-paste ito sa terminal mo:',
+    manualBody:
+      'Nag-install ka ng OpenAmer mula sa command line, kaya doon din tumatakbo ang mga update. I-paste ito sa terminal mo:',
     manualPickedUp: 'Gagamitin ng OpenAmer ang bagong bersyon sa susunod na paglunsad mo.',
     guiSkewTitle: 'I-update ang desktop app',
-    guiSkewBody: 'Na-update ang backend, pero hindi nagbago ang desktop app package na ito. I-update o i-install muli ang OpenAmer desktop app (ang AppImage / .deb / .rpm mo) para magtugma.',
+    guiSkewBody:
+      'Na-update ang backend, pero hindi nagbago ang desktop app package na ito. I-update o i-install muli ang OpenAmer desktop app (ang AppImage / .deb / .rpm mo) para magtugma.',
     copy: 'Kopyahin',
     copied: 'Nakopya',
     done: 'Tapos',
-    applyingBody: 'Kukunin ng OpenAmer updater ang kontrol sa sarili nitong window at awtomatikong bubuksan muli ang OpenAmer kapag tapos na. Huwag mong buksan muli ang OpenAmer habang nag-a-update.',
-    applyingBodyBackend: 'Inilalapat ng remote backend ang update at magre-restart ito. Awtomatikong makakonekta muli ang OpenAmer kapag bumalik na ito.',
-    applyingClose: 'Magsasara ang window na ito habang tumatakbo ang update, pagkatapos ay awtomatikong bubukas muli ang OpenAmer.',
+    applyingBody:
+      'Kukunin ng OpenAmer updater ang kontrol sa sarili nitong window at awtomatikong bubuksan muli ang OpenAmer kapag tapos na. Huwag mong buksan muli ang OpenAmer habang nag-a-update.',
+    applyingBodyBackend:
+      'Inilalapat ng remote backend ang update at magre-restart ito. Awtomatikong makakonekta muli ang OpenAmer kapag bumalik na ito.',
+    applyingClose:
+      'Magsasara ang window na ito habang tumatakbo ang update, pagkatapos ay awtomatikong bubukas muli ang OpenAmer.',
     errorTitle: 'Hindi natapos ang update',
     errorBody: 'Huwag mag-alala - walang nawala. Maaari mong subukan muli ngayon.',
     notNow: 'Hindi ngayon',
@@ -1446,12 +1507,13 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       restarting: 'Nagre-restart ang backend para i-load ang update...',
       notAvailable: 'Walang update para sa backend na ito.',
       failed: 'Nabigo ang update ng backend.',
-      noReturn: 'Hindi bumalik online ang backend. Maaaring hindi natapos ang update - tingnan ang backend host.',
+      noReturn: 'Hindi bumalik online ang backend. Maaaring hindi natapos ang update - tingnan ang backend host.'
     },
     appErrors: {
-      updateLocked: 'Inabort ang update: may ibang OpenAmer window o terminal na tumatakbo ang openamer at hawak ang install na ito. Isara ito at subukan muli.',
-      updateFailed: 'Hindi natapos ang update. Huwag mag-alala - walang nawala. Maaari mong subukan muli ngayon.',
-    },
+      updateLocked:
+        'Inabort ang update: may ibang OpenAmer window o terminal na tumatakbo ang openamer at hawak ang install na ito. Isara ito at subukan muli.',
+      updateFailed: 'Hindi natapos ang update. Huwag mag-alala - walang nawala. Maaari mong subukan muli ngayon.'
+    }
   },
   composer: {
     thinking: 'Nag-iisip',
@@ -1481,7 +1543,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       '/resume': 'ipagpatuloy ang dating session',
       '/details': 'kontrolin ang antas ng detalye ng transcript',
       '/copy': 'kopyahin ang seleksyon o huling mensahe ng assistant',
-      '/quit': 'lumabas sa OpenAmer',
+      '/quit': 'lumabas sa OpenAmer'
     },
     hotkeyDescs: {
       'composer.mention': 'sumangguni sa mga file, folder, URL, git',
@@ -1491,7 +1553,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       'composer.sendQueued': 'ipadala ang susunod na naka-queue na turn',
       'keybinds.openPanel': 'lahat ng keyboard shortcut',
       'composer.cancel': 'isara ang popover · kanselahin ang pag-run',
-      'composer.history': 'i-cycle ang popover / kasaysayan',
+      'composer.history': 'i-cycle ang popover / kasaysayan'
     },
     attachUrlTitle: 'Mag-attach ng URL',
     attachUrlDesc: 'Kukunin ng OpenAmer ang pahina at isasama ito bilang konteksto para sa turn na ito.',
@@ -1507,20 +1569,20 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     newSessionPlaceholders: [
       'Ano ang gagawin natin?',
       'Bigyan ng gawain ang OpenAmer',
-      "Ano ang nasa isip mo?",
+      'Ano ang nasa isip mo?',
       'Ilarawan ang kailangan mo',
       'Ano ang aasikasuhin natin?',
       'Magtanong ng kahit ano',
-      'Magsimula sa isang layunin',
+      'Magsimula sa isang layunin'
     ],
     followUpPlaceholders: [
       'Magpadala ng follow-up',
       'Magdagdag ng konteksto',
       'Pagsamahin ang request',
-      "Ano ang susunod?",
+      'Ano ang susunod?',
       'Ituloy lang',
       'Itulak pa nang kaunti',
-      'I-adjust o ituloy',
+      'I-adjust o ituloy'
     ],
     queueMessage: 'I-queue ang mensahe',
     steer: 'Gabayan ang kasalukuyang run',
@@ -1542,7 +1604,8 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     queueResume: 'Ituloy',
     queueResumeTip: 'Naka-pause dahil sa Stop - ituloy ang pagpapadala ng mga naka-queue na turn',
     queueStuckTitle: 'Hindi naipadala ang naka-queue na mensahe',
-    queueStuckBody: 'Paulit-ulit na nabigong maipadala ang isang naka-queue na turn. Nasa queue pa rin ito - subukang ipadala muli.',
+    queueStuckBody:
+      'Paulit-ulit na nabigong maipadala ang isang naka-queue na turn. Nasa queue pa rin ito - subukang ipadala muli.',
     previewUnavailable: 'Walang preview',
     previewLabel: label => `I-preview ang ${label}`,
     couldNotPreview: label => `Hindi na-preview ang ${label}`,
@@ -1572,19 +1635,19 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       codeReview: {
         label: 'Code review',
         description: 'Suriin ang kasalukuyang pagbabago para sa regression, nalaktawang edge case at kulang na test.',
-        text: 'Pakisuri ito para sa bug, regression at kulang na test.',
+        text: 'Pakisuri ito para sa bug, regression at kulang na test.'
       },
       implementationPlan: {
         label: 'Plano sa implementasyon',
         description: 'Magbalangkas ng paraan bago galawin ang code para manatiling focus ang diff.',
-        text: 'Pakigawa ng maikling plano sa implementasyon bago baguhin ang code.',
+        text: 'Pakigawa ng maikling plano sa implementasyon bago baguhin ang code.'
       },
       explainThis: {
         label: 'Ipaliwanag ito',
         description: 'Ipaliwanag kung paano gumagana ang piniling code at ituro ang mahahalagang file.',
-        text: 'Pakipaliwanag kung paano ito gumagana at ituro sa akin ang mahahalagang file.',
-      },
-    },
+        text: 'Pakipaliwanag kung paano ito gumagana at ituro sa akin ang mahahalagang file.'
+      }
+    }
   },
   desktop: {
     audioReadFailed: 'Hindi mabasa ang na-record na audio',
@@ -1605,7 +1668,8 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     editFailed: 'Nabigo ang pag-edit',
     resumeFailed: 'Nabigo ang pag-resume',
     resumeStrandedTitle: 'Hindi ma-load ang session na ito',
-    resumeStrandedBody: 'Nabigo ang koneksyon sa session na ito at tumigil ang awtomatikong retry. Tingnan kung tumatakbo ang gateway, pagkatapos ay subukan muli.',
+    resumeStrandedBody:
+      'Nabigo ang koneksyon sa session na ito at tumigil ang awtomatikong retry. Tingnan kung tumatakbo ang gateway, pagkatapos ay subukan muli.',
     resumeRetry: 'Subukan muli',
     nothingToBranch: 'Walang ma-branch',
     branchNeedsChat: 'Magsimula o mag-resume ng chat bago mag-branch.',
@@ -1630,7 +1694,8 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     warningLine: message => `babala: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} para sa session na ito`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Gamitin ang /profile <name> o ang picker na "Bagong session" para magsimula ng chat sa ibang profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Gamitin ang /profile <name> o ang picker na "Bagong session" para magsimula ng chat sa ibang profile.`,
     noProfileNamed: (target, available) => `Walang profile na tinatawag na "${target}". Available: ${available}`,
     newChatsProfile: name => `Gagamitin ng mga bagong chat ang profile ${name}.`,
     branchTitle: n => `Draft: Branch #${n}`,
@@ -1652,8 +1717,8 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       success: platform => `Naipasa sa ${platform}. Maaari kang magpatuloy dito anumang oras.`,
       systemNote: platform => `↻ Naipasa sa ${platform} — maaari kang magpatuloy dito anumang oras.`,
       failed: error => `Nabigo ang pagpapasa: ${error}`,
-      timedOut: 'Nag-timeout habang hinihintay ang gateway. Tumatakbo ba ang `openamer gateway`?',
-    },
+      timedOut: 'Nag-timeout habang hinihintay ang gateway. Tumatakbo ba ang `openamer gateway`?'
+    }
   },
   sidebar: {
     projects: {
@@ -1667,7 +1732,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       namePlaceholder: 'hal. Skunkworks',
       foldersLabel: 'Mga folder',
       ideaLabel: 'Ideya',
-      ideaPlaceholder: "Tungkol saan ang proyektong ito? (naka-save sa IDEA.md)",
+      ideaPlaceholder: 'Tungkol saan ang proyektong ito? (naka-save sa IDEA.md)',
       ideaGenerate: 'Gumawa ng ideya',
       ideaGenerating: 'Gumagawa...',
       ideaShuffle: 'I-shuffle ang mga template',
@@ -1687,8 +1752,10 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       copyPath: 'Kopyahin ang path',
       removeFromSidebar: 'Itago sa sidebar',
       createFailed: 'Hindi nagawa ang proyekto',
-      staleBackend: 'I-update ang OpenAmer backend para makagawa ng proyekto - mas matanda ang backend mo kaysa sa desktop app na ito (Settings - Updates - Backend).',
-      deleteConfirm: 'Inaalis nito ang naka-save na proyekto sa OpenAmer. Hindi nagagalaw ang mga file, git repo at worktree.',
+      staleBackend:
+        'I-update ang OpenAmer backend para makagawa ng proyekto - mas matanda ang backend mo kaysa sa desktop app na ito (Settings - Updates - Backend).',
+      deleteConfirm:
+        'Inaalis nito ang naka-save na proyekto sa OpenAmer. Hindi nagagalaw ang mga file, git repo at worktree.',
       startWork: 'Bagong worktree',
       newWorktreeTitle: 'Bagong worktree',
       newWorktreeDesc: 'Pangalanan ang branch para sa worktree na ito.',
@@ -1709,12 +1776,14 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       noBranches: 'Walang nahanap na branch',
       removeWorktree: 'Alisin ang worktree',
       removeWorktreeFailed: 'Hindi naalis ang worktree (may hindi pa na-commit na pagbabago?)',
-      removeWorktreeConfirm: 'Alisin ito sa git (binubura ang direktoryo ng worktree; nananatili ang branch), o itago lang ang lane sa sidebar at iwanan ang worktree sa disk.',
-      removeWorktreeDirty: 'May hindi pa na-commit na pagbabago ang worktree na ito. Puwersahang alisin ito (itatapon ang mga pagbabagong iyon), o itago lang ang lane at panatilihin ito sa disk.',
+      removeWorktreeConfirm:
+        'Alisin ito sa git (binubura ang direktoryo ng worktree; nananatili ang branch), o itago lang ang lane sa sidebar at iwanan ang worktree sa disk.',
+      removeWorktreeDirty:
+        'May hindi pa na-commit na pagbabago ang worktree na ito. Puwersahang alisin ito (itatapon ang mga pagbabagong iyon), o itago lang ang lane at panatilihin ito sa disk.',
       forceRemove: 'Puwersahang alisin',
       enter: label => `Buksan ang ${label}`,
       reorder: label => `Isaayos muli ang ${label}`,
-      toggle: label => `I-toggle ang mga session ng ${label}`,
+      toggle: label => `I-toggle ang mga session ng ${label}`
     },
     loading: 'Naglo-load…',
     loadMore: 'Mag-load pa',
@@ -1749,20 +1818,20 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       untitledChat: id => `Chat ${id}`,
       ageDay: 'a',
       ageHour: 'o',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Mas maaga ngayong araw',
       yesterday: 'Kahapon',
       thisWeek: 'Mas maaga ngayong linggo',
       lastWeek: 'Nakaraang linggo',
-      thisMonth: 'Mas maaga ngayong buwan',
+      thisMonth: 'Mas maaga ngayong buwan'
     },
     nav: {
       'new-session': 'Bagong session',
       skills: 'Mga kakayahan',
       messaging: 'Mga mensahe',
-      artifacts: 'Mga artifact',
+      artifacts: 'Mga artifact'
     },
     searchAria: 'Maghanap ng session',
     searchPlaceholder: 'Maghanap ng session...',
@@ -1786,7 +1855,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     noSessions: 'Wala pang session',
     newSessionIn: label => `Bagong session sa ${label}`,
     showMoreIn: (count, label) => `Ipakita ang ${count} pa sa ${label}`,
-    loadCount: step => `Mag-load ng ${step} pa`,
+    loadCount: step => `Mag-load ng ${step} pa`
   },
   common: {
     apply: 'Ilapat',
@@ -1827,7 +1896,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     update: 'I-update',
     tryHint: term => `Subukan ang "${term}"`,
     on: 'Naka-on',
-    off: 'Naka-off',
+    off: 'Naka-off'
   },
   fileMenu: {
     revealFinder: 'Ipakita sa Finder',
@@ -1842,7 +1911,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     renameLabel: 'Bagong pangalan',
     deleteTitle: name => `Burahin ang ${name}?`,
     deleteBody: 'Ililipat ito sa Trash - maaari mo itong ibalik mula roon.',
-    pathCopied: 'Nakopya ang path',
+    pathCopied: 'Nakopya ang path'
   },
   boot: {
     ready: 'Handa na ang OpenAmer Desktop',
@@ -1852,7 +1921,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       loadingSettings: 'Nilo-load ang mga setting ng OpenAmer',
       loadingSessions: 'Nilo-load ang mga kamakailang session',
       startingDesktopConnection: 'Sinisimulan ang koneksyon ng desktop',
-      startingOpenAmerDesktop: 'Sinisimulan ang OpenAmer Desktop...',
+      startingOpenAmerDesktop: 'Sinisimulan ang OpenAmer Desktop...'
     },
     errors: {
       backgroundExited: 'Umalis ang background process ng OpenAmer.',
@@ -1861,13 +1930,15 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       desktopBootFailed: 'Nabigo ang pag-boot ng desktop',
       gatewayConnectionLost: 'Nawala ang koneksyon sa gateway',
       gatewaySignInRequired: 'Kailangan ang pag-sign in sa gateway',
-      ipcBridgeUnavailable: 'Hindi available ang IPC bridge ng desktop.',
+      ipcBridgeUnavailable: 'Hindi available ang IPC bridge ng desktop.'
     },
     failure: {
-      title: "Hindi nag-start ang OpenAmer",
-      description: "Hindi bumangon ang background gateway. Subukan ang isa sa mga hakbang sa pag-recover sa ibaba. Walang buburahin dito sa mga chat o setting mo.",
+      title: 'Hindi nag-start ang OpenAmer',
+      description:
+        'Hindi bumangon ang background gateway. Subukan ang isa sa mga hakbang sa pag-recover sa ibaba. Walang buburahin dito sa mga chat o setting mo.',
       remoteTitle: 'Kailangan ang pag-sign in sa remote gateway',
-      remoteDescription: 'Nag-expire na ang session mo sa remote gateway. Mag-sign in muli para makakonekta. Walang buburahin dito sa mga chat o setting mo.',
+      remoteDescription:
+        'Nag-expire na ang session mo sa remote gateway. Mag-sign in muli para makakonekta. Walang buburahin dito sa mga chat o setting mo.',
       retry: 'Subukan muli',
       repairInstall: 'Ayusin ang install',
       useLocalGateway: 'Gamitin ang lokal na gateway',
@@ -1875,9 +1946,11 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       back: 'Bumalik',
       openLogs: 'Buksan ang mga log',
       repairHint: 'Muling pinapatakbo ng repair ang installer at maaaring tumagal ng ilang minuto sa bagong makina.',
-      remoteSignInHint: signInLabel => `Mag-sign out sa naka-save na remote browser session, pagkatapos ay buksan ang ${signInLabel}. Gamitin ang lokal na gateway kung gusto mong lumipat sa bundled backend.`,
+      remoteSignInHint: signInLabel =>
+        `Mag-sign out sa naka-save na remote browser session, pagkatapos ay buksan ang ${signInLabel}. Gamitin ang lokal na gateway kung gusto mong lumipat sa bundled backend.`,
       signOutAndSignIn: 'Mag-sign out at mag-sign in',
-      remoteFailureHint: 'Tingnan ang gateway URL at ang pag-sign in sa ilalim ng mga setting ng gateway, o lumipat sa lokal na gateway.',
+      remoteFailureHint:
+        'Tingnan ang gateway URL at ang pag-sign in sa ilalim ng mga setting ng gateway, o lumipat sa lokal na gateway.',
       hideRecentLogs: 'Itago ang mga kamakailang log',
       showRecentLogs: 'Ipakita ang mga kamakailang log',
       signedInTitle: 'Naka-sign in',
@@ -1887,11 +1960,12 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       signInFailed: 'Nabigo ang pag-sign in',
       signInToRemoteGateway: 'Mag-sign in sa remote gateway',
       signInWithProvider: provider => `Mag-sign in gamit ang ${provider}`,
-      identityProvider: 'ang identity provider mo',
-    },
+      identityProvider: 'ang identity provider mo'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Aktibo ang software rendering - natukoy ang remote display (${reason}). Naka-disable ang GPU acceleration para maiwasan ang pagkutitap.`,
+    message: reason =>
+      `Aktibo ang software rendering - natukoy ang remote display (${reason}). Naka-disable ang GPU acceleration para maiwasan ang pagkutitap.`
   },
   language: {
     label: 'Wika',
@@ -1900,7 +1974,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     saveError: 'Nabigo ang pag-update ng wika',
     switchTo: 'Palitan ang wika',
     searchPlaceholder: 'Maghanap ng wika...',
-    noResults: 'Walang nahanap na wika',
+    noResults: 'Walang nahanap na wika'
   },
   messaging: {
     search: 'Maghanap sa messaging...',
@@ -1915,7 +1989,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       not_configured: 'Kailangan ng setup',
       pending_restart: 'Kailangan ng restart',
       retrying: 'Sinusubukan muli',
-      startup_failed: 'Nabigo ang pag-start',
+      startup_failed: 'Nabigo ang pag-start'
     },
     unknown: 'Hindi alam',
     hintPendingRestart: 'I-restart ang gateway mula sa status bar para magkabisa ang pagbabagong ito.',
@@ -1928,7 +2002,8 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     required: 'Kinakailangan',
     recommended: 'Inirerekomenda',
     advanced: count => `Mas advanced (${count})`,
-    noTokenNeeded: 'Hindi kailangan ng token dito ang platform na ito. Gamitin ang setup guide sa itaas, pagkatapos ay i-enable ito sa ibaba.',
+    noTokenNeeded:
+      'Hindi kailangan ng token dito ang platform na ito. Gamitin ang setup guide sa itaas, pagkatapos ay i-enable ito sa ibaba.',
     enabled: 'Naka-enable',
     disabled: 'Naka-disable',
     unsavedChanges: 'May hindi pa naka-save na pagbabago',
@@ -1954,127 +2029,126 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       TELEGRAM_BOT_TOKEN: {
         label: 'Token ng bot',
         help: 'Gumawa ng bot sa @BotFather, pagkatapos ay i-paste ang token na ibibigay nito.',
-        placeholder: 'I-paste ang Telegram bot token',
+        placeholder: 'I-paste ang Telegram bot token'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Mga pinapayagang Telegram user ID',
-        help: 'Inirerekomenda. Mga numeric ID na pinaghihiwalay ng kuwit mula sa @userinfobot. Kung wala ito, kahit sino ay makaka-DM sa bot mo.',
+        help: 'Inirerekomenda. Mga numeric ID na pinaghihiwalay ng kuwit mula sa @userinfobot. Kung wala ito, kahit sino ay makaka-DM sa bot mo.'
       },
       TELEGRAM_PROXY: {
         label: 'Proxy URL',
-        help: 'Kailangan lang sa mga network na naka-block ang Telegram.',
+        help: 'Kailangan lang sa mga network na naka-block ang Telegram.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token ng bot',
-        help: 'Gumawa ng application sa Discord Developer Portal, magdagdag ng bot, pagkatapos ay i-paste ang token nito.',
+        help: 'Gumawa ng application sa Discord Developer Portal, magdagdag ng bot, pagkatapos ay i-paste ang token nito.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Mga pinapayagang Discord user ID',
-        help: 'Inirerekomenda. Mga Discord user ID na pinaghihiwalay ng kuwit.',
+        help: 'Inirerekomenda. Mga Discord user ID na pinaghihiwalay ng kuwit.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Estilo ng pag-reply',
-        help: 'first, all, o off.',
+        help: 'first, all, o off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Payagan lahat ng Discord user',
-        help: 'Para sa development lang. Kapag true, kahit sino ay makaka-DM sa bot nang walang allowlist.',
+        help: 'Para sa development lang. Kapag true, kahit sino ay makaka-DM sa bot nang walang allowlist.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID ng home channel',
-        help: 'Channel kung saan nagpapadala ang bot ng proactive na mensahe (output ng cron, mga paalala).',
+        help: 'Channel kung saan nagpapadala ang bot ng proactive na mensahe (output ng cron, mga paalala).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Pangalan ng home channel',
-        help: 'Display name ng home channel sa mga log at output ng status.',
+        help: 'Display name ng home channel sa mga log at output ng status.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Payagan lahat ng iMessage user',
-        help: 'Kapag true, nilalaktawan ang allowlist ng BlueBubbles.',
+        help: 'Kapag true, nilalaktawan ang allowlist ng BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Payagan lahat ng Mattermost user',
+        label: 'Payagan lahat ng Mattermost user'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Home channel',
+        label: 'Home channel'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Payagan lahat ng QQ user',
+        label: 'Payagan lahat ng QQ user'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ home channel',
-        help: 'Default na channel o group para sa cron delivery.',
+        help: 'Default na channel o group para sa cron delivery.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Pangalan ng QQ home channel',
+        label: 'Pangalan ng QQ home channel'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack bot token',
         help: 'Gamitin ang bot token mula sa OAuth & Permissions pagkatapos i-install ang Slack app mo.',
-        placeholder: 'I-paste ang Slack bot token',
+        placeholder: 'I-paste ang Slack bot token'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack app token',
         help: 'Gamitin ang app-level token na kailangan para sa Socket Mode.',
-        placeholder: 'I-paste ang Slack app token',
+        placeholder: 'I-paste ang Slack app token'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Mga pinapayagang Slack user ID',
-        help: 'Inirerekomenda. Mga Slack user ID na pinaghihiwalay ng kuwit.',
+        help: 'Inirerekomenda. Mga Slack user ID na pinaghihiwalay ng kuwit.'
       },
       MATTERMOST_URL: {
         label: 'URL ng server',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token ng bot',
+        label: 'Token ng bot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Mga pinapayagang user ID',
-        help: 'Inirerekomenda. Mga Mattermost user ID na pinaghihiwalay ng kuwit.',
+        help: 'Inirerekomenda. Mga Mattermost user ID na pinaghihiwalay ng kuwit.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL ng homeserver',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Access token',
+        label: 'Access token'
       },
       MATRIX_USER_ID: {
         label: 'User ID ng bot',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Mga pinapayagang Matrix user ID',
-        help: 'Inirerekomenda. Mga user ID sa format na @user:server, pinaghihiwalay ng kuwit.',
+        help: 'Inirerekomenda. Mga user ID sa format na @user:server, pinaghihiwalay ng kuwit.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL ng Signal bridge',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL ng tumatakbong signal-cli REST bridge.',
+        help: 'URL ng tumatakbong signal-cli REST bridge.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Numero ng telepono',
-        help: 'Ang numerong nakarehistro sa signal-cli bridge mo.',
+        help: 'Ang numerong nakarehistro sa signal-cli bridge mo.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Mga pinapayagang Signal user',
-        help: 'Inirerekomenda. Mga Signal identifier na pinaghihiwalay ng kuwit.',
+        help: 'Inirerekomenda. Mga Signal identifier na pinaghihiwalay ng kuwit.'
       },
       WHATSAPP_ENABLED: {
         label: 'I-enable ang WhatsApp bridge',
-        help: 'Awtomatikong itinatakda ng toggle sa ibaba. Huwag galawin maliban kung alam mong kailangan mo ito.',
+        help: 'Awtomatikong itinatakda ng toggle sa ibaba. Huwag galawin maliban kung alam mong kailangan mo ito.'
       },
       WHATSAPP_MODE: {
-        label: 'Mode ng bridge',
+        label: 'Mode ng bridge'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Mga pinapayagang WhatsApp user',
-        help: 'Inirerekomenda. Mga numero ng telepono o WhatsApp ID na pinaghihiwalay ng kuwit.',
-      },
+        help: 'Inirerekomenda. Mga numero ng telepono o WhatsApp ID na pinaghihiwalay ng kuwit.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   cron: {
     close: 'Isara ang cron',
@@ -2089,14 +2163,14 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       paused: 'naka-pause',
       disabled: 'naka-disable',
       error: 'error',
-      completed: 'tapos na',
+      completed: 'tapos na'
     },
     deliveryLabels: {
       local: 'Ang desktop na ito',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Email',
+      email: 'Email'
     },
     scheduleLabels: {
       daily: 'Araw-araw',
@@ -2105,7 +2179,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       monthly: 'Buwan-buwan',
       hourly: 'Oras-oras',
       'every-15-minutes': 'Tuwing 15 minuto',
-      custom: 'Custom',
+      custom: 'Custom'
     },
     scheduleHints: {
       daily: 'Araw-araw nang 9:00 AM',
@@ -2114,7 +2188,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       monthly: 'Unang araw ng bawat buwan nang 9:00 AM',
       hourly: 'Sa simula ng bawat oras',
       'every-15-minutes': 'Tuwing 15 minuto',
-      custom: 'Cron syntax o natural na wika',
+      custom: 'Cron syntax o natural na wika'
     },
     days: {
       '0': 'Linggo',
@@ -2124,7 +2198,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       '4': 'Huwebes',
       '5': 'Biyernes',
       '6': 'Sabado',
-      '7': 'Linggo',
+      '7': 'Linggo'
     },
     dayFallback: value => `araw ${value}`,
     everyDayAt: time => `Araw-araw nang ${time}`,
@@ -2134,7 +2208,8 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     topOfHour: 'Sa simula ng bawat oras',
     everyHourAt: minute => `Oras-oras sa :${minute}`,
     newCron: 'Bagong cron',
-    emptyDescNew: 'Mag-iskedyul ng prompt na tatakbo ayon sa cron expression. Patakbuhin ito ng OpenAmer at ipapadala ang resulta sa pinili mong destinasyon.',
+    emptyDescNew:
+      'Mag-iskedyul ng prompt na tatakbo ayon sa cron expression. Patakbuhin ito ng OpenAmer at ipapadala ang resulta sa pinili mong destinasyon.',
     emptyDescSearch: 'Subukan ang mas malawak na paghahanap.',
     emptyTitleNew: 'Wala pang naka-iskedyul na trabaho',
     emptyTitleSearch: 'Walang tugma',
@@ -2171,7 +2246,8 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     editTitle: 'I-edit ang cron job',
     createTitle: 'Bagong cron job',
     editDesc: 'I-update ang iskedyul, prompt o destinasyon ng delivery. Nalalapat ang mga pagbabago sa susunod na run.',
-    createDesc: 'Mag-iskedyul ng prompt na tatakbo nang awtomatiko. Gumamit ng cron syntax o natural na parirala tulad ng "every 15 minutes".',
+    createDesc:
+      'Mag-iskedyul ng prompt na tatakbo nang awtomatiko. Gumamit ng cron syntax o natural na parirala tulad ng "every 15 minutes".',
     nameLabel: 'Pangalan',
     namePlaceholder: 'Morning briefing',
     promptLabel: 'Prompt',
@@ -2193,7 +2269,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     createAction: 'Gumawa ng cron',
     tabs: {
       jobs: 'Mga job',
-      blueprints: 'Mga blueprint',
+      blueprints: 'Mga blueprint'
     },
     blueprints: {
       tab: 'Mga blueprint',
@@ -2207,8 +2283,8 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       loading: 'Nilo-load ang mga blueprint...',
       failedLoad: 'Nabigong ma-load ang mga blueprint',
       emptyTitle: 'Walang available na blueprint',
-      emptyDesc: 'Walang available na automation blueprint sa backend na ito.',
-    },
+      emptyDesc: 'Walang available na automation blueprint sa backend na ito.'
+    }
   },
   artifacts: {
     search: 'Maghanap ng artifact...',
@@ -2242,7 +2318,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     kindLink: 'link',
     chat: 'Chat',
     copyUrl: 'Kopyahin ang URL',
-    copyPath: 'Kopyahin ang path',
+    copyPath: 'Kopyahin ang path'
   },
   install: {
     stageStates: {
@@ -2250,25 +2326,30 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       running: 'Nag-i-install',
       succeeded: 'Tapos',
       skipped: 'Nilaktawan',
-      failed: 'Nabigo',
+      failed: 'Nabigo'
     },
     oneTimeTitle: 'Kailangan ng OpenAmer ng isang beses na install',
-    unsupportedDesc: platform => `Wala pang automated na first-launch install sa ${platform}. Buksan ang Terminal at patakbuhin ang command sa ibaba, pagkatapos ay buksan muli ang app na ito. Lalaktawan na ang hakbang na ito sa mga susunod na paglunsad.`,
+    unsupportedDesc: platform =>
+      `Wala pang automated na first-launch install sa ${platform}. Buksan ang Terminal at patakbuhin ang command sa ibaba, pagkatapos ay buksan muli ang app na ito. Lalaktawan na ang hakbang na ito sa mga susunod na paglunsad.`,
     installCommand: 'Command ng install',
     copyCommand: 'Kopyahin ang command',
     viewDocs: 'Tingnan ang dokumentasyon ng install',
     installTo: 'I-install sa',
     retryAfterRun: 'Napatakbo ko na -- subukan muli',
     setupChoiceTitle: 'I-set up ang OpenAmer Desktop',
-    setupChoiceDesc: 'Ikonekta ang app na ito sa OpenAmer gateway na tumatakbo na, o mag-install ng OpenAmer nang lokal sa computer na ito.',
+    setupChoiceDesc:
+      'Ikonekta ang app na ito sa OpenAmer gateway na tumatakbo na, o mag-install ng OpenAmer nang lokal sa computer na ito.',
     connectExistingTitle: 'Kumonekta sa umiiral na OpenAmer',
     connectExistingShort: 'Kumonekta sa umiiral',
-    connectExistingDesc: 'Gumamit ng remote backend na may session token o browser sign-in. Walang lokal na install na magsisimula.',
+    connectExistingDesc:
+      'Gumamit ng remote backend na may session token o browser sign-in. Walang lokal na install na magsisimula.',
     installLocalTitle: 'Mag-install ng OpenAmer nang lokal',
-    installLocalDesc: 'I-download ang OpenAmer, gumawa ng Python environment nito, at patakbuhin ang backend sa computer na ito.',
+    installLocalDesc:
+      'I-download ang OpenAmer, gumawa ng Python environment nito, at patakbuhin ang backend sa computer na ito.',
     localStartUnavailable: 'Hindi nagsimula ang lokal na install. I-restart ang OpenAmer Desktop at subukan muli.',
     remoteSetupTitle: 'Kumonekta sa umiiral na OpenAmer',
-    remoteSetupDesc: 'Ilagay ang gateway URL mo. Tukoyin ng OpenAmer Desktop kung token o browser sign-in ang kailangan.',
+    remoteSetupDesc:
+      'Ilagay ang gateway URL mo. Tukoyin ng OpenAmer Desktop kung token o browser sign-in ang kailangan.',
     remoteUrlTitle: 'URL ng gateway',
     remoteUrlDesc: 'Gamitin ang base URL ng OpenAmer gateway, kasama ang https:// kapag remote.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2295,8 +2376,10 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     failedTitle: 'Nabigo ang installation',
     settingUpTitle: 'Ini-set up ang OpenAmer Agent',
     finishingTitle: 'Tinatapos',
-    failedDesc: 'Nabigo ang isa sa mga hakbang ng install. Sa Windows, maaaring mangyari ito kapag may tumatakbong OpenAmer CLI o desktop instance. Ihinto ang anumang tumatakbong OpenAmer instance, pagkatapos ay subukan muli. Tingnan ang mga detalye sa ibaba o ang desktop log para sa buong transcript.',
-    activeDesc: 'Isang beses lang ang setup na ito. Nagda-download ang installer ng OpenAmer ng mga dependency at kinokonfigure ang makina mo. Lalaktawan na ang hakbang na ito sa mga susunod na paglunsad.',
+    failedDesc:
+      'Nabigo ang isa sa mga hakbang ng install. Sa Windows, maaaring mangyari ito kapag may tumatakbong OpenAmer CLI o desktop instance. Ihinto ang anumang tumatakbong OpenAmer instance, pagkatapos ay subukan muli. Tingnan ang mga detalye sa ibaba o ang desktop log para sa buong transcript.',
+    activeDesc:
+      'Isang beses lang ang setup na ito. Nagda-download ang installer ng OpenAmer ng mga dependency at kinokonfigure ang makina mo. Lalaktawan na ang hakbang na ito sa mga susunod na paglunsad.',
     progress: (completed, total) => `${completed} sa ${total} hakbang ang tapos`,
     currentStage: stage => ` -- ngayon: ${stage}`,
     fetchingManifest: 'Kinukuha ang installer manifest...',
@@ -2310,18 +2393,19 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     transcriptSaved: 'Naka-save ang buong transcript sa',
     copiedOutput: 'Nakopya!',
     copyOutput: 'Kopyahin ang output',
-    reloadRetry: 'I-reload at subukan muli',
+    reloadRetry: 'I-reload at subukan muli'
   },
   onboarding: {
-    headerTitle: "I-set up ka namin sa OpenAmer Agent",
-    headerDesc: 'Ikonekta ang model provider para makapagsimulang mag-chat. Isang click lang ang karamihan sa mga opsyon.',
+    headerTitle: 'I-set up ka namin sa OpenAmer Agent',
+    headerDesc:
+      'Ikonekta ang model provider para makapagsimulang mag-chat. Isang click lang ang karamihan sa mga opsyon.',
     preparingInstall: 'Tinatapos ng OpenAmer ang install. Karaniwang wala pang isang minuto ito sa unang run.',
     starting: 'Sinisimulan ang OpenAmer...',
     lookingUpProviders: 'Hinahanap ang mga provider...',
     collapse: 'I-collapse',
     otherProviders: 'Ibang provider',
     haveApiKey: 'May API key ako',
-    chooseLater: "Pumili na lang ako ng provider mamaya",
+    chooseLater: 'Pumili na lang ako ng provider mamaya',
     recommended: 'Inirerekomenda',
     connected: 'Nakakonekta',
     featuredPitch: 'Isang subscription, 300+ frontier model - ang inirerekomendang paraan para patakbuhin ang OpenAmer',
@@ -2330,28 +2414,30 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     apiKeyOptions: {
       fireworks: {
         short: 'direktang model API',
-        description: 'Direktang access sa mga model na naka-host ng Fireworks AI.',
+        description: 'Direktang access sa mga model na naka-host ng Fireworks AI.'
       },
       openrouter: {
         short: 'isang key, maraming model',
-        description: 'Naka-host ang daan-daang model sa likod ng isang key. Magandang default para sa mga bagong install.',
+        description:
+          'Naka-host ang daan-daang model sa likod ng isang key. Magandang default para sa mga bagong install.'
       },
       openai: {
         short: 'Mga model na kalibre ng GPT',
-        description: 'Direktang access sa mga model ng OpenAI.',
+        description: 'Direktang access sa mga model ng OpenAI.'
       },
       gemini: {
         short: 'Mga model na Gemini',
-        description: 'Direktang access sa mga model ng Google Gemini.',
+        description: 'Direktang access sa mga model ng Google Gemini.'
       },
       xai: {
         short: 'Mga model na Grok',
-        description: 'Direktang access sa mga model na Grok ng xAI.',
+        description: 'Direktang access sa mga model na Grok ng xAI.'
       },
       local: {
         short: 'self-hosted',
-        description: 'Ituro ang OpenAmer sa lokal o self-hosted na OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, atbp).',
-      },
+        description:
+          'Ituro ang OpenAmer sa lokal o self-hosted na OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, atbp).'
+      }
     },
     backToSignIn: 'Bumalik sa pag-sign in',
     getKey: 'Kumuha ng key',
@@ -2364,7 +2450,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     flowSubtitles: {
       pkce: 'Binubuksan ang browser mo para mag-sign in, pagkatapos ay magpapatuloy dito',
       device_code: 'Binubuksan ang verification page sa browser mo - awtomatikong kumokonekta ang OpenAmer',
-      external: 'Mag-sign in nang isang beses sa terminal mo, pagkatapos ay bumalik para mag-chat',
+      external: 'Mag-sign in nang isang beses sa terminal mo, pagkatapos ay bumalik para mag-chat'
     },
     startingSignIn: provider => `Sinisimulan ang pag-sign in para sa ${provider}...`,
     verifyingCode: provider => `Bineberipika ang code mo sa ${provider}...`,
@@ -2378,11 +2464,13 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     copyAuthCode: 'Kopyahin ang authorization code at i-paste sa ibaba.',
     pasteAuthCode: 'I-paste ang authorization code',
     reopenAuthPage: 'Buksan muli ang authorization page',
-    autoBrowser: provider => `Binuksan namin ang ${provider} sa browser mo. I-authorize ang OpenAmer doon at awtomatiko kang makakonekta - walang kokopyahin o ipa-paste.`,
+    autoBrowser: provider =>
+      `Binuksan namin ang ${provider} sa browser mo. I-authorize ang OpenAmer doon at awtomatiko kang makakonekta - walang kokopyahin o ipa-paste.`,
     reopenSignInPage: 'Buksan muli ang sign-in page',
     waitingAuthorize: 'Naghihintay ng authorization mo...',
-    externalPending: provider => `Nag-sign in ang ${provider} sa pamamagitan ng sarili nitong CLI. Patakbuhin ang command na ito sa terminal, pagkatapos ay bumalik at piliin ang "Naka-sign in na ako":`,
-    signedIn: "Naka-sign in na ako",
+    externalPending: provider =>
+      `Nag-sign in ang ${provider} sa pamamagitan ng sarili nitong CLI. Patakbuhin ang command na ito sa terminal, pagkatapos ay bumalik at piliin ang "Naka-sign in na ako":`,
+    signedIn: 'Naka-sign in na ako',
     deviceCodeOpened: provider => `Binuksan namin ang ${provider} sa browser mo. Ilagay ito doon:`,
     reopenVerification: 'Buksan muli ang verification page',
     copy: 'Kopyahin',
@@ -2393,7 +2481,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     price: (input, output) => `${input} in / ${output} out kada Mtok`,
     change: 'Palitan',
     startChatting: 'Simulan',
-    docs: provider => `Dokumentasyon ng ${provider}`,
+    docs: provider => `Dokumentasyon ng ${provider}`
   },
   modelPicker: {
     title: 'Palitan ang model',
@@ -2409,13 +2497,13 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     free: 'Libre',
     freeTier: 'Libreng tier',
     priceTitle: 'Presyo ng input / output kada milyong token',
-    wasPrice: 'dating',
+    wasPrice: 'dating'
   },
   modelVisibility: {
     title: 'Mga model',
     search: 'Maghanap ng model',
     noAuthenticatedProviders: 'Walang naka-authenticate na provider.',
-    addProvider: 'Magdagdag ng provider...',
+    addProvider: 'Magdagdag ng provider...'
   },
   shell: {
     windowControls: 'Mga kontrol ng window',
@@ -2426,7 +2514,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       noModels: 'Walang nahanap na model',
       editModels: 'I-edit ang mga model...',
       refreshModels: 'I-refresh ang mga model',
-      fast: 'Mabilis',
+      fast: 'Mabilis'
     },
     modelOptions: {
       noOptions: 'Walang opsyon para sa model na ito',
@@ -2442,7 +2530,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       max: 'Max',
       ultra: 'Ultra',
       updateFailed: 'Nabigo ang pag-update ng opsyon ng model',
-      fastFailed: 'Nabigo ang pag-update ng fast mode',
+      fastFailed: 'Nabigo ang pag-update ng fast mode'
     },
     gatewayMenu: {
       gateway: 'Gateway',
@@ -2457,7 +2545,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       connection: label => `Koneksyon: ${label}`,
       recentActivity: 'Kamakailang aktibidad',
       viewAllLogs: 'Tingnan lahat ng log ->',
-      messagingPlatforms: 'Mga messaging platform',
+      messagingPlatforms: 'Mga messaging platform'
     },
     approvalMode: {
       title: 'Mode ng approval',
@@ -2467,7 +2555,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       smart: 'Matalino',
       smartDescription: 'Awtomatikong tinatasa ang mga aksyon at nagtatanong kapag kailangan',
       off: 'Naka-off',
-      offDescription: 'Tumakbo nang walang approval prompt',
+      offDescription: 'Tumakbo nang walang approval prompt'
     },
     statusbar: {
       unknown: 'hindi alam',
@@ -2523,27 +2611,29 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
           skills: 'Mga skill',
           subagent_definitions: 'Mga depinisyon ng subagent',
           system_prompt: 'System prompt',
-          tool_definitions: 'Mga depinisyon ng tool',
+          tool_definitions: 'Mga depinisyon ng tool'
         },
         empty: 'Wala pang data ng konteksto',
         loading: 'Nilo-load ang breakdown...',
         percentFull: percent => `${percent}% puno`,
         title: 'Paggamit ng konteksto',
-        tokenSummary: (used, max) => `${used} / ${max} token`,
+        tokenSummary: (used, max) => `${used} / ${max} token`
       },
       openContextUsage: 'Buksan ang breakdown ng paggamit ng konteksto',
       session: 'Session',
       runtimeSessionElapsed: 'Lumipas na oras ng runtime session',
-      yoloOn: 'Naka-on ang YOLO - awtomatikong ina-approve ang mapanganib na command. I-click para patayin. Ini-toggle ito ng Shift+click para sa lahat.',
-      yoloOff: 'Naka-off ang YOLO - i-click para awtomatikong i-approve ang mapanganib na command. Ini-toggle ito ng Shift+click para sa lahat.',
+      yoloOn:
+        'Naka-on ang YOLO - awtomatikong ina-approve ang mapanganib na command. I-click para patayin. Ini-toggle ito ng Shift+click para sa lahat.',
+      yoloOff:
+        'Naka-off ang YOLO - i-click para awtomatikong i-approve ang mapanganib na command. Ini-toggle ito ng Shift+click para sa lahat.',
       modelNone: 'wala',
       noModel: 'walang model',
       switchModel: 'Palitan ang model',
       openModelPicker: 'Buksan ang model picker',
       modelPinned: 'ikaw ang nag-pin nito; ito ang gagamitin ng mga bagong chat sa halip na ang default sa Settings',
       modelTitle: (provider, model) => `Model - ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} - ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} - ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Kanang sidebar',
@@ -2579,7 +2669,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     terminalNew: 'Bagong terminal',
     terminalCloseOthers: 'Isara ang iba',
     terminalCloseAll: 'Isara lahat',
-    addToChat: 'Idagdag sa chat',
+    addToChat: 'Idagdag sa chat'
   },
   preview: {
     tab: 'Preview',
@@ -2613,7 +2703,8 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     unsavedChanges: 'May hindi pa naka-save na pagbabago',
     saveFailed: message => `Hindi na-save: ${message}`,
     diskChangedTitle: 'Nagbago ang file sa disk',
-    diskChangedBody: 'Nagbago ang file na ito mula nang buksan mo. Palitan ito ng bersyon mo, o itapon ang mga edit mo at i-reload?',
+    diskChangedBody:
+      'Nagbago ang file na ito mula nang buksan mo. Palitan ito ng bersyon mo, o itapon ang mga edit mo at i-reload?',
     overwrite: 'Palitan',
     discardReload: 'Itapon at i-reload',
     console: {
@@ -2634,7 +2725,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       empty: 'Wala pang mensahe sa console.',
       promptHeader: 'Console ng preview:',
       sentTitle: 'Naipadala sa chat',
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} ang naidagdag sa composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} ang naidagdag sa composer`
     },
     web: {
       appFailedToBoot: 'Nabigong mag-boot ang preview app',
@@ -2652,24 +2743,27 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       showConsole: 'Ipakita ang preview console',
       hideDevTools: 'Itago ang preview DevTools',
       openDevTools: 'Buksan ang preview DevTools',
-      finishedRestarting: message => `Tapos na ang pag-restart ng preview server ng OpenAmer${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `Tapos na ang pag-restart ng preview server ng OpenAmer${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Nabigo ang pag-restart ng server: ${message}`,
       unknownError: 'hindi alam na error',
       restartedTitle: 'Na-restart ang preview server',
       reloadingNow: 'Nire-reload na ang preview.',
       restartFailedTitle: 'Nabigo ang pag-restart ng preview',
       restartFailedMessage: 'Hindi na-restart ng OpenAmer ang server.',
-      stillWorking: 'Tumatakbo pa rin ang OpenAmer, pero wala pang resulta ng restart. Maaaring nasa foreground ang server command.',
+      stillWorking:
+        'Tumatakbo pa rin ang OpenAmer, pero wala pang resulta ng restart. Maaaring nasa foreground ang server command.',
       workspaceReloading: 'Nagbago ang workspace, nire-reload ang preview',
       fileChanged: url => `Nagbago ang file, nire-reload ang preview: ${url}`,
       filesChanged: (count, url) => `${count} pagbabago sa file, nire-reload ang preview: ${url}`,
       watchFailed: message => `Hindi na-monitor ang preview file: ${message}`,
-      moduleMimeDescription: 'Ipinapadala ang mga module script na may maling MIME type. Karaniwang ibig sabihin nito ay may static file server na naglilingkod ng Vite/React app sa halip na ang project dev server.',
+      moduleMimeDescription:
+        'Ipinapadala ang mga module script na may maling MIME type. Karaniwang ibig sabihin nito ay may static file server na naglilingkod ng Vite/React app sa halip na ang project dev server.',
       loadFailedConsole: (code, message) => `Nabigo ang pag-load${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Hindi maabot ang preview page.',
       openTarget: url => `Buksan ang ${url}`,
-      fallbackTitle: 'Preview',
-    },
+      fallbackTitle: 'Preview'
+    }
   },
   zones: {
     showHeader: 'Ipakita ang header',
@@ -2677,7 +2771,8 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     minimize: 'I-minimize',
     restore: 'Ibalik',
     closeRunningTitle: 'Isara ang tumatakbong tab?',
-    closeRunningBody: 'Tumatakbo pa ang chat na ito (o naghihintay ng input mo). Itinatago lang ito ng pagsasara ng tab - nananatili ang progreso ng session at mabubuksan muli ito mula sa sidebar.',
+    closeRunningBody:
+      'Tumatakbo pa ang chat na ito (o naghihintay ng input mo). Itinatago lang ito ng pagsasara ng tab - nananatili ang progreso ng session at mabubuksan muli ito mula sa sidebar.',
     closeRunningConfirm: 'Isara ang tab',
     closeOthers: 'Isara ang iba',
     closeToRight: 'Isara ang nasa kanan',
@@ -2703,7 +2798,8 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     deletePreset: name => `Burahin ang ${name}`,
     zoneEditorTitle: 'Editor ng zone',
     editorHintPre: 'i-click para hatiin - ',
-    editorHintPost: ' ang nagpapalit ng linya - i-drag sa mga zone para pagsamahin - i-drag ang magkabahaging gilid para baguhin ang laki',
+    editorHintPost:
+      ' ang nagpapalit ng linya - i-drag sa mga zone para pagsamahin - i-drag ang magkabahaging gilid para baguhin ang laki',
     templateColumns: 'Mga kolum',
     templateRows: 'Mga hilera',
     templateGrid: 'Grid',
@@ -2714,14 +2810,15 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
     layoutNamePlaceholder: fallback => `Pangalan ng layout (${fallback})`,
     saveApply: 'I-save at ilapat',
     notExpressible: 'magkaka-interlock ang ayos na ito (pinwheel) - hindi pa ito maipapahayag bilang nested split',
-    zoneCount: count => `${count} zone`,
+    zoneCount: count => `${count} zone`
   },
   assistant: {
     thread: {
       loadingSession: 'Nilo-load ang session',
       showEarlier: 'Ipakita ang mga naunang mensahe',
       loadingResponse: 'Nilo-load ng OpenAmer ang sagot',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Nag-iisip',
@@ -2749,7 +2846,7 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       restoreNext: 'Ibalik ang susunod na checkpoint',
       goForward: 'Pumunta sa unahan',
       sendEdited: 'Ipadala ang na-edit na mensahe',
-      attachingFile: 'Nag-a-attach...',
+      attachingFile: 'Nag-a-attach...'
     },
     approval: {
       gatewayDisconnected: 'Hindi nakakonekta ang OpenAmer gateway',
@@ -2762,8 +2859,9 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       jumpToApproval: 'Kailangan ng approval',
       reject: 'Tanggihan',
       alwaysTitle: 'Palaging payagan ang command na ito?',
-      alwaysDescription: pattern => `Idadagdag nito ang pattern na "${pattern}" sa permanenteng allowlist mo (~/.openamer/config.yaml). Hindi na magtatanong muli ang OpenAmer para sa ganitong command - sa session na ito o sa susunod.`,
-      alwaysAllow: 'Palaging payagan',
+      alwaysDescription: pattern =>
+        `Idadagdag nito ang pattern na "${pattern}" sa permanenteng allowlist mo (~/.openamer/config.yaml). Hindi na magtatanong muli ang OpenAmer para sa ganitong command - sa session na ito o sa susunod.`,
+      alwaysAllow: 'Palaging payagan'
     },
     clarify: {
       notReady: 'Hindi pa handa ang clarify request',
@@ -2777,7 +2875,8 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       continueLabel: 'Magpatuloy',
       lateAnswer: (question, choice) => `Tungkol sa "${question}" - sagot ko: ${choice}`,
       lateAnswerTip: 'I-draft ang sagot na ito bilang follow-up na mensahe',
-      lateAnswerHint: 'Hindi na naghihintay ang prompt na ito. Pumili ng opsyon para i-draft ito bilang follow-up na mensahe.',
+      lateAnswerHint:
+        'Hindi na naghihintay ang prompt na ito. Pumili ng opsyon para i-draft ito bilang follow-up na mensahe.'
     },
     tool: {
       code: 'Code',
@@ -2813,11 +2912,11 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
         ran: 'Pinatakbo',
         running: 'Tumatakbo',
         ranCode: 'Pinatakbo ang code',
-        runningCode: 'Nag-script',
+        runningCode: 'Nag-script'
       },
       prefixes: {
         browser: 'Browser',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2825,155 +2924,156 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Tumatakbo ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Tumatakbo ${action.toLowerCase()}`,
+        runningTool: action => `Tumatakbo ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Nag-click sa elemento ng pahina',
           pending: 'Nagki-click sa elemento ng pahina',
-          pendingAction: 'Nagki-click',
+          pendingAction: 'Nagki-click'
         },
         browser_fill: {
           done: 'Pinuno ang field ng form',
           pending: 'Pinupunan ang field ng form',
-          pendingAction: 'Pinupunan',
+          pendingAction: 'Pinupunan'
         },
         browser_navigate: {
           done: 'Nabuksan ang pahina',
           pending: 'Binubuksan ang pahina',
-          pendingAction: 'Binubuksan',
+          pendingAction: 'Binubuksan'
         },
         browser_snapshot: {
           done: 'Nakuha ang snapshot ng pahina',
           pending: 'Kinukuha ang snapshot ng pahina',
-          pendingAction: 'Kinukuha',
+          pendingAction: 'Kinukuha'
         },
         browser_take_screenshot: {
           done: 'Nakuha ang screenshot',
           pending: 'Kinukuha ang screenshot',
-          pendingAction: 'Kinukuha',
+          pendingAction: 'Kinukuha'
         },
         browser_type: {
           done: 'Nag-type sa pahina',
           pending: 'Nagta-type sa pahina',
-          pendingAction: 'Nagta-type',
+          pendingAction: 'Nagta-type'
         },
         clarify: {
           done: 'Nagtanong',
           pending: 'Nagtatanong',
-          pendingAction: 'Nagtatanong',
+          pendingAction: 'Nagtatanong'
         },
         cronjob: {
           done: 'Cron job',
           pending: 'Nag-iskedyul ng cron job',
-          pendingAction: 'Nag-iskedyul',
+          pendingAction: 'Nag-iskedyul'
         },
         edit_file: {
           done: 'Na-edit ang file',
           pending: 'Ine-edit ang file',
-          pendingAction: 'Ine-edit',
+          pendingAction: 'Ine-edit'
         },
         execute_code: {
           done: 'Pinatakbo ang code',
           pending: 'Nag-script',
-          pendingAction: 'Nag-script',
+          pendingAction: 'Nag-script'
         },
         image_generate: {
           done: 'Nagenerate ng larawan',
           pending: 'Nagge-generate ng larawan',
-          pendingAction: 'Nagge-generate',
+          pendingAction: 'Nagge-generate'
         },
         list_files: {
           done: 'Naglista ng mga file',
           pending: 'Naglilista ng mga file',
-          pendingAction: 'Naglilista',
+          pendingAction: 'Naglilista'
         },
         patch: {
           done: 'Na-patch ang file',
           pending: 'Pina-patch ang file',
-          pendingAction: 'Pina-patch',
+          pendingAction: 'Pina-patch'
         },
         read_file: {
           done: 'Nabasa ang file',
           pending: 'Binabasa ang file',
-          pendingAction: 'Binabasa',
+          pendingAction: 'Binabasa'
         },
         search_files: {
           done: 'Naghanap sa mga file',
           pending: 'Naghahanap sa mga file',
-          pendingAction: 'Naghahanap',
+          pendingAction: 'Naghahanap'
         },
         session_search_recall: {
           done: 'Naghanap sa history ng session',
           pending: 'Naghahanap sa history ng session',
-          pendingAction: 'Naghahanap',
+          pendingAction: 'Naghahanap'
         },
         terminal: {
           done: 'Pinatakbo ang command',
           pending: 'Pinapatakbo ang command',
-          pendingAction: 'Pinapatakbo',
+          pendingAction: 'Pinapatakbo'
         },
         todo: {
           done: 'Na-update ang mga gawain',
           pending: 'Ina-update ang mga gawain',
-          pendingAction: 'Ina-update',
+          pendingAction: 'Ina-update'
         },
         vision_analyze: {
           done: 'Sinuri ang larawan',
           pending: 'Sinusuri ang larawan',
-          pendingAction: 'Sinusuri',
+          pendingAction: 'Sinusuri'
         },
         web_extract: {
           done: 'Nabasa ang webpage',
           pending: 'Binabasa ang webpage',
-          pendingAction: 'Binabasa',
+          pendingAction: 'Binabasa'
         },
         web_search: {
           done: 'Naghanap sa web',
           pending: 'Naghahanap sa web',
-          pendingAction: 'Naghahanap',
+          pendingAction: 'Naghahanap'
         },
         write_file: {
           done: 'Na-edit ang file',
           pending: 'Ine-edit ang file',
-          pendingAction: 'Ine-edit',
-        },
-      },
-    },
+          pendingAction: 'Ine-edit'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'Hindi konektado ang OpenAmer gateway',
     sudoSendFailed: 'Nabigong ipadala ang sudo password',
     secretSendFailed: 'Nabigong ipadala ang secret',
     sudoTitle: 'Password ng administrator',
-    sudoDesc: 'Kailangan ng OpenAmer ang sudo password mo para magpatakbo ng privileged na command. Ipinapadala lang ito sa local na agent mo.',
+    sudoDesc:
+      'Kailangan ng OpenAmer ang sudo password mo para magpatakbo ng privileged na command. Ipinapadala lang ito sa local na agent mo.',
     sudoPlaceholder: 'sudo password',
     secretTitle: 'Kailangan ng secret',
     secretDesc: 'Kailangan ng OpenAmer ng credential para magpatuloy.',
-    secretPlaceholder: 'halaga ng secret',
+    secretPlaceholder: 'halaga ng secret'
   },
   errors: {
     genericFailure: 'May nangyaring mali',
     boundaryTitle: 'May nasira sa interface',
     boundaryDesc: 'Nakaranas ng hindi inaasahang error ang view. Ligtas ang mga chat at setting mo.',
     reloadWindow: 'I-reload ang window',
-    openLogs: 'Buksan ang mga log',
+    openLogs: 'Buksan ang mga log'
   },
   ui: {
     search: {
-      clear: 'I-clear ang paghahanap',
+      clear: 'I-clear ang paghahanap'
     },
     pagination: {
       label: 'pagination',
       previous: 'Prev',
       previousAria: 'Pumunta sa nakaraang pahina',
       next: 'Susunod',
-      nextAria: 'Pumunta sa susunod na pahina',
+      nextAria: 'Pumunta sa susunod na pahina'
     },
     sidebar: {
       title: 'Sidebar',
       description: 'Ipinapakita ang mobile sidebar.',
-      toggle: 'I-toggle ang Sidebar',
-    },
-  },
+      toggle: 'I-toggle ang Sidebar'
+    }
+  }
 })

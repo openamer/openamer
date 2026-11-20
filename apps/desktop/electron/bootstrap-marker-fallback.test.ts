@@ -14,10 +14,7 @@ import assert from 'node:assert/strict'
 
 import { test } from 'vitest'
 
-import {
-  decideBootstrapMarkerFallback,
-  mayTrustRuntimeWithoutMarker
-} from './bootstrap-marker-fallback'
+import { decideBootstrapMarkerFallback, mayTrustRuntimeWithoutMarker } from './bootstrap-marker-fallback'
 
 test('a valid marker is trusted', () => {
   const decision = decideBootstrapMarkerFallback({

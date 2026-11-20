@@ -6,249 +6,250 @@
 import { defineFieldCopy } from '@/app/settings/field-copy'
 
 export const FIELD_LABELS: Record<string, string> = defineFieldCopy({
-    model: "Výchozí model",
-    modelContextLength: "Kontextové okno",
-    fallbackProviders: "Záložní modely",
-    toolsets: "Povolené sady nástrojů",
-    timezone: "Časové pásmo",
-    display: {
-      personality: "Osobnost",
-      showReasoning: "Bloky uvažování",
+  model: 'Výchozí model',
+  modelContextLength: 'Kontextové okno',
+  fallbackProviders: 'Záložní modely',
+  toolsets: 'Povolené sady nástrojů',
+  timezone: 'Časové pásmo',
+  display: {
+    personality: 'Osobnost',
+    showReasoning: 'Bloky uvažování'
+  },
+  desktop: {
+    repoScanEnabled: 'Automatické zjišťování repozitářů',
+    repoScanRoots: 'Kořeny pro zjišťování repozitářů',
+    repoScanExcludePaths: 'Vyloučené cesty repozitářů'
+  },
+  agent: {
+    maxTurns: 'Max. počet kroků agenta',
+    imageInputMode: 'Přiložené obrázky',
+    apiMaxRetries: 'Opakování API',
+    serviceTier: 'Úroveň služby',
+    toolUseEnforcement: 'Vynucování používání nástrojů'
+  },
+  terminal: {
+    cwd: 'Pracovní adresář',
+    backend: 'Spouštěcí backend',
+    timeout: 'Časový limit příkazu',
+    persistentShell: 'Trvalý shell',
+    envPassthrough: 'Propagace prostředí',
+    dockerImage: 'Obraz Dockeru',
+    singularityImage: 'Obraz Singularity',
+    modalImage: 'Obraz Modal',
+    daytonaImage: 'Obraz Daytona'
+  },
+  fileReadMaxChars: 'Limit čtení souborů',
+  toolOutput: {
+    maxBytes: 'Limit výstupu terminálu',
+    maxLines: 'Limit stránek souboru',
+    maxLineLength: 'Limit délky řádku'
+  },
+  codeExecution: {
+    mode: 'Režim spouštění kódu'
+  },
+  approvals: {
+    mode: 'Režim schvalování',
+    timeout: 'Časový limit schvalování',
+    mcpReloadConfirm: 'Potvrzovat znovunačtení MCP'
+  },
+  commandAllowlist: 'Seznam povolených příkazů',
+  security: {
+    redactSecrets: 'Skrývat tajné údaje',
+    allowPrivateUrls: 'Povolit soukromé URL'
+  },
+  browser: {
+    allowPrivateUrls: 'Soukromé URL v prohlížeči',
+    autoLocalForPrivateUrls: 'Místní prohlížeč pro soukromé URL'
+  },
+  checkpoints: {
+    enabled: 'Kontrolní body souborů',
+    maxSnapshots: 'Limit kontrolních bodů'
+  },
+  voice: {
+    recordKey: 'Hlasová zkratka',
+    maxRecordingSeconds: 'Max. délka nahrávání',
+    autoTts: 'Předčítat odpovědi nahlas'
+  },
+  stt: {
+    enabled: 'Převod řeči na text',
+    echoTranscripts: 'Ozývat přepisy',
+    provider: 'Poskytovatel převodu řeči na text',
+    local: {
+      model: 'Místní transkripční model',
+      language: 'Jazyk transkripce'
     },
-    desktop: {
-      repoScanEnabled: "Automatické zjišťování repozitářů",
-      repoScanRoots: "Kořeny pro zjišťování repozitářů",
-      repoScanExcludePaths: "Vyloučené cesty repozitářů",
+    openai: {
+      model: 'Model STT OpenAI'
     },
-    agent: {
-      maxTurns: "Max. počet kroků agenta",
-      imageInputMode: "Přiložené obrázky",
-      apiMaxRetries: "Opakování API",
-      serviceTier: "Úroveň služby",
-      toolUseEnforcement: "Vynucování používání nástrojů",
+    groq: {
+      model: 'Model STT Groq'
     },
-    terminal: {
-      cwd: "Pracovní adresář",
-      backend: "Spouštěcí backend",
-      timeout: "Časový limit příkazu",
-      persistentShell: "Trvalý shell",
-      envPassthrough: "Propagace prostředí",
-      dockerImage: "Obraz Dockeru",
-      singularityImage: "Obraz Singularity",
-      modalImage: "Obraz Modal",
-      daytonaImage: "Obraz Daytona",
+    mistral: {
+      model: 'Model STT Mistral'
     },
-    fileReadMaxChars: "Limit čtení souborů",
-    toolOutput: {
-      maxBytes: "Limit výstupu terminálu",
-      maxLines: "Limit stránek souboru",
-      maxLineLength: "Limit délky řádku",
+    elevenlabs: {
+      modelId: 'Model STT ElevenLabs',
+      languageCode: 'Jazyk ElevenLabs',
+      tagAudioEvents: 'Označovat zvukové události',
+      diarize: 'Diarizace mluvčích'
+    }
+  },
+  tts: {
+    provider: 'Poskytovatel převodu textu na řeč',
+    edge: {
+      voice: 'Hlas Edge'
     },
-    codeExecution: {
-      mode: "Režim spouštění kódu",
+    openai: {
+      model: 'Model TTS OpenAI',
+      voice: 'Hlas OpenAI'
     },
-    approvals: {
-      mode: "Režim schvalování",
-      timeout: "Časový limit schvalování",
-      mcpReloadConfirm: "Potvrzovat znovunačtení MCP",
+    elevenlabs: {
+      voiceId: 'Hlas ElevenLabs',
+      modelId: 'Model ElevenLabs'
     },
-    commandAllowlist: "Seznam povolených příkazů",
-    security: {
-      redactSecrets: "Skrývat tajné údaje",
-      allowPrivateUrls: "Povolit soukromé URL",
+    xai: {
+      voiceId: 'Hlas xAI (Grok)',
+      language: 'Jazyk xAI',
+      speed: 'Rychlost přehrávání xAI',
+      autoSpeechTags: 'Automatické hlasové značky xAI',
+      optimizeStreamingLatency: 'Optimalizace latence streamování xAI',
+      sampleRate: 'Vzorkovací frekvence xAI',
+      bitRate: 'Bitová rychlost xAI'
     },
-    browser: {
-      allowPrivateUrls: "Soukromé URL v prohlížeči",
-      autoLocalForPrivateUrls: "Místní prohlížeč pro soukromé URL",
+    minimax: {
+      model: 'Model TTS MiniMax',
+      voiceId: 'Hlas MiniMax'
     },
-    checkpoints: {
-      enabled: "Kontrolní body souborů",
-      maxSnapshots: "Limit kontrolních bodů",
+    mistral: {
+      model: 'Model TTS Mistral',
+      voiceId: 'Hlas Mistral'
     },
-    voice: {
-      recordKey: "Hlasová zkratka",
-      maxRecordingSeconds: "Max. délka nahrávání",
-      autoTts: "Předčítat odpovědi nahlas",
+    gemini: {
+      model: 'Model TTS Gemini',
+      voice: 'Hlas Gemini'
     },
-    stt: {
-      enabled: "Převod řeči na text",
-      echoTranscripts: "Ozývat přepisy",
-      provider: "Poskytovatel převodu řeči na text",
-      local: {
-        model: "Místní transkripční model",
-        language: "Jazyk transkripce",
-      },
-      openai: {
-        model: "Model STT OpenAI",
-      },
-      groq: {
-        model: "Model STT Groq",
-      },
-      mistral: {
-        model: "Model STT Mistral",
-      },
-      elevenlabs: {
-        modelId: "Model STT ElevenLabs",
-        languageCode: "Jazyk ElevenLabs",
-        tagAudioEvents: "Označovat zvukové události",
-        diarize: "Diarizace mluvčích",
-      },
+    neutts: {
+      model: 'Model NeuTTS',
+      device: 'Zařízení NeuTTS'
     },
-    tts: {
-      provider: "Poskytovatel převodu textu na řeč",
-      edge: {
-        voice: "Hlas Edge",
-      },
-      openai: {
-        model: "Model TTS OpenAI",
-        voice: "Hlas OpenAI",
-      },
-      elevenlabs: {
-        voiceId: "Hlas ElevenLabs",
-        modelId: "Model ElevenLabs",
-      },
-      xai: {
-        voiceId: "Hlas xAI (Grok)",
-        language: "Jazyk xAI",
-        speed: "Rychlost přehrávání xAI",
-        autoSpeechTags: "Automatické hlasové značky xAI",
-        optimizeStreamingLatency: "Optimalizace latence streamování xAI",
-        sampleRate: "Vzorkovací frekvence xAI",
-        bitRate: "Bitová rychlost xAI",
-      },
-      minimax: {
-        model: "Model TTS MiniMax",
-        voiceId: "Hlas MiniMax",
-      },
-      mistral: {
-        model: "Model TTS Mistral",
-        voiceId: "Hlas Mistral",
-      },
-      gemini: {
-        model: "Model TTS Gemini",
-        voice: "Hlas Gemini",
-      },
-      neutts: {
-        model: "Model NeuTTS",
-        device: "Zařízení NeuTTS",
-      },
-      kittentts: {
-        model: "Model KittenTTS",
-        voice: "Hlas KittenTTS",
-      },
-      piper: {
-        voice: "Hlas Piper",
-      },
-      deepinfra: {
-        model: "Model TTS DeepInfra",
-        voice: "Hlas DeepInfra",
-      },
+    kittentts: {
+      model: 'Model KittenTTS',
+      voice: 'Hlas KittenTTS'
     },
-    memory: {
-      memoryEnabled: "Trvalá paměť",
-      userProfileEnabled: "Uživatelský profil",
-      memoryCharLimit: "Rozpočet paměti",
-      userCharLimit: "Rozpočet profilu",
-      provider: "Poskytovatel paměti",
+    piper: {
+      voice: 'Hlas Piper'
     },
-    context: {
-      engine: "Kontextový engine",
-    },
-    compression: {
-      enabled: "Automatická komprese",
-      threshold: "Práh komprese",
-      targetRatio: "Cíl komprese",
-      protectLastN: "Chráněné nedávné zprávy",
-    },
-    delegation: {
-      model: "Model subagenta",
-      provider: "Poskytovatel subagentů",
-      maxIterations: "Limit tahů subagenta",
-      maxConcurrentChildren: "Paralelní subagenti",
-      childTimeoutSeconds: "Časový limit subagenta",
-      reasoningEffort: "Náročnost uvažování subagenta",
-    },
-    updates: {
-      nonInteractiveLocalChanges: "Aktualizace místních změn v aplikaci",
-    },
+    deepinfra: {
+      model: 'Model TTS DeepInfra',
+      voice: 'Hlas DeepInfra'
+    }
+  },
+  memory: {
+    memoryEnabled: 'Trvalá paměť',
+    userProfileEnabled: 'Uživatelský profil',
+    memoryCharLimit: 'Rozpočet paměti',
+    userCharLimit: 'Rozpočet profilu',
+    provider: 'Poskytovatel paměti'
+  },
+  context: {
+    engine: 'Kontextový engine'
+  },
+  compression: {
+    enabled: 'Automatická komprese',
+    threshold: 'Práh komprese',
+    targetRatio: 'Cíl komprese',
+    protectLastN: 'Chráněné nedávné zprávy'
+  },
+  delegation: {
+    model: 'Model subagenta',
+    provider: 'Poskytovatel subagentů',
+    maxIterations: 'Limit tahů subagenta',
+    maxConcurrentChildren: 'Paralelní subagenti',
+    childTimeoutSeconds: 'Časový limit subagenta',
+    reasoningEffort: 'Náročnost uvažování subagenta'
+  },
+  updates: {
+    nonInteractiveLocalChanges: 'Aktualizace místních změn v aplikaci'
+  }
 })
 
 export const FIELD_DESCRIPTIONS: Record<string, string> = defineFieldCopy({
-    model: "Používá se pro nové chaty, pokud v editoru nevyberete jiný model.",
-    modelContextLength: "Nechte na 0, aby se použilo rozpoznané kontextové okno vybraného modelu.",
-    fallbackProviders: "Záložní položky provider:model k vyzkoušení, pokud výchozí model selže.",
-    display: {
-      personality: "Výchozí styl asistenta pro nové relace.",
-      showReasoning: "Zobrazovat sekce s uvažováním, když je backend poskytne.",
+  model: 'Používá se pro nové chaty, pokud v editoru nevyberete jiný model.',
+  modelContextLength: 'Nechte na 0, aby se použilo rozpoznané kontextové okno vybraného modelu.',
+  fallbackProviders: 'Záložní položky provider:model k vyzkoušení, pokud výchozí model selže.',
+  display: {
+    personality: 'Výchozí styl asistenta pro nové relace.',
+    showReasoning: 'Zobrazovat sekce s uvažováním, když je backend poskytne.'
+  },
+  desktop: {
+    repoScanEnabled: 'Prohledávat místní složky pro Git repozitáře zobrazené v Projektech.',
+    repoScanRoots: 'Složky k prohledání. Ponechte prázdné pro prohledání domovského adresáře.',
+    repoScanExcludePaths: 'Složky a jejich podřízené položky přeskočit při hledání repozitářů.'
+  },
+  timezone: 'Používá se, když OpenAmer potřebuje místní časový kontext. Prázdné použije systémové časové pásmo.',
+  agent: {
+    imageInputMode: 'Určuje, jak se obrázkové přílohy odesílají modelu.',
+    maxTurns: 'Horní mez počtu kol s voláním nástrojů, než OpenAmer běh zastaví.'
+  },
+  terminal: {
+    cwd: 'Výchozí projektová složka pro práci s nástroji a terminálem.',
+    persistentShell: 'Udržovat stav shellu mezi příkazy, pokud to backend podporuje.',
+    envPassthrough: 'Proměnné prostředí předané do spuštění nástroje.',
+    dockerImage: 'Image kontejneru používaný, když je backend spuštění Docker.',
+    singularityImage: 'Image používaný, když je backend spuštění Singularity.',
+    modalImage: 'Image používaný, když je backend spuštění Modal.',
+    daytonaImage: 'Image používaný, když je backend spuštění Daytona.'
+  },
+  codeExecution: {
+    mode: 'Jak přísně je spuštění kódu omezeno na aktuální projekt.'
+  },
+  fileReadMaxChars: 'Maximální počet znaků, které může OpenAmer načíst z jednoho požadavku na soubor.',
+  approvals: {
+    mode: 'Jak OpenAmer zpracovává příkazy vyžadující výslovné schválení.',
+    timeout: 'Jak dlouho výzvy ke schválení čekají před vypršením časového limitu.'
+  },
+  security: {
+    redactSecrets: 'V případě potřeby skrýt zjištěná tajemství před obsahem viditelným modelu.'
+  },
+  checkpoints: {
+    enabled: 'Vytvářet snapshoty pro vrácení změn před úpravami souborů.'
+  },
+  memory: {
+    memoryEnabled: 'Ukládat trvalé paměti, které mohou pomoci budoucím relacím.',
+    userProfileEnabled: 'Udržovat stručný profil uživatelských předvoleb.'
+  },
+  context: {
+    engine: 'Strategie pro správu dlouhých konverzací blízko limitu kontextu.'
+  },
+  compression: {
+    enabled: 'Shrnout starší kontext, když konverzace naroste.'
+  },
+  voice: {
+    autoTts: 'Automaticky hlasově číst odpovědi asistenta.'
+  },
+  tts: {
+    xai: {
+      voiceId: 'ID hlasu xAI (např. eve) nebo vlastní ID hlasu.',
+      language: 'Kód mluveného jazyka (např. en, pt-BR) nebo "auto" pro automatickou detekci.',
+      speed: 'Rychlost přehrávání. 0.7 = pomaleji, 1.0 = normálně, 1.5 = rychleji.',
+      autoSpeechTags: 'Nechat LLM vložit do scénáře výrazové zvukové značky ([laughing], [sighs]) před syntézou.',
+      optimizeStreamingLatency: 'Kompromis mezi latencí a kvalitou. 0 = nejlepší kvalita, 2 = nejnižší latence.',
+      sampleRate: 'Vzorkovací frekvence zvuku v Hz. Vyšší = lepší kvalita, větší soubory.',
+      bitRate: 'Bitrate MP3 v bps. Platí pouze, když je kodek mp3.'
     },
-    desktop: {
-      repoScanEnabled: "Prohledávat místní složky pro Git repozitáře zobrazené v Projektech.",
-      repoScanRoots: "Složky k prohledání. Ponechte prázdné pro prohledání domovského adresáře.",
-      repoScanExcludePaths: "Složky a jejich podřízené položky přeskočit při hledání repozitářů.",
-    },
-    timezone: "Používá se, když OpenAmer potřebuje místní časový kontext. Prázdné použije systémové časové pásmo.",
-    agent: {
-      imageInputMode: "Určuje, jak se obrázkové přílohy odesílají modelu.",
-      maxTurns: "Horní mez počtu kol s voláním nástrojů, než OpenAmer běh zastaví.",
-    },
-    terminal: {
-      cwd: "Výchozí projektová složka pro práci s nástroji a terminálem.",
-      persistentShell: "Udržovat stav shellu mezi příkazy, pokud to backend podporuje.",
-      envPassthrough: "Proměnné prostředí předané do spuštění nástroje.",
-      dockerImage: "Image kontejneru používaný, když je backend spuštění Docker.",
-      singularityImage: "Image používaný, když je backend spuštění Singularity.",
-      modalImage: "Image používaný, když je backend spuštění Modal.",
-      daytonaImage: "Image používaný, když je backend spuštění Daytona.",
-    },
-    codeExecution: {
-      mode: "Jak přísně je spuštění kódu omezeno na aktuální projekt.",
-    },
-    fileReadMaxChars: "Maximální počet znaků, které může OpenAmer načíst z jednoho požadavku na soubor.",
-    approvals: {
-      mode: "Jak OpenAmer zpracovává příkazy vyžadující výslovné schválení.",
-      timeout: "Jak dlouho výzvy ke schválení čekají před vypršením časového limitu.",
-    },
-    security: {
-      redactSecrets: "V případě potřeby skrýt zjištěná tajemství před obsahem viditelným modelu.",
-    },
-    checkpoints: {
-      enabled: "Vytvářet snapshoty pro vrácení změn před úpravami souborů.",
-    },
-    memory: {
-      memoryEnabled: "Ukládat trvalé paměti, které mohou pomoci budoucím relacím.",
-      userProfileEnabled: "Udržovat stručný profil uživatelských předvoleb.",
-    },
-    context: {
-      engine: "Strategie pro správu dlouhých konverzací blízko limitu kontextu.",
-    },
-    compression: {
-      enabled: "Shrnout starší kontext, když konverzace naroste.",
-    },
-    voice: {
-      autoTts: "Automaticky hlasově číst odpovědi asistenta.",
-    },
-    tts: {
-      xai: {
-        voiceId: "ID hlasu xAI (např. eve) nebo vlastní ID hlasu.",
-        language: "Kód mluveného jazyka (např. en, pt-BR) nebo \"auto\" pro automatickou detekci.",
-        speed: "Rychlost přehrávání. 0.7 = pomaleji, 1.0 = normálně, 1.5 = rychleji.",
-        autoSpeechTags: "Nechat LLM vložit do scénáře výrazové zvukové značky ([laughing], [sighs]) před syntézou.",
-        optimizeStreamingLatency: "Kompromis mezi latencí a kvalitou. 0 = nejlepší kvalita, 2 = nejnižší latence.",
-        sampleRate: "Vzorkovací frekvence zvuku v Hz. Vyšší = lepší kvalita, větší soubory.",
-        bitRate: "Bitrate MP3 v bps. Platí pouze, když je kodek mp3.",
-      },
-      neutts: {
-        device: "Zařízení pro místní inferenci NeuTTS.",
-      },
-    },
-    stt: {
-      enabled: "Povolit místní přepis řeči nebo přepis podporovaný poskytovatelem.",
-      echoTranscripts: "Zapsat surový 🎙️ přepis hlasových zpráv zpět do chatu.",
-      elevenlabs: {
-        languageCode: "Volitelný kód jazyka ISO-639-3. Prázdné nechá ElevenLabs automaticky rozpoznat.",
-      },
-    },
-    updates: {
-      nonInteractiveLocalChanges: "Když se OpenAmer aktualizuje z aplikace (bez výzvy v terminálu), zachovat místní úpravy zdrojů (stash) nebo je zahodit (discard). Aktualizace přes terminál se vždy zeptá.",
-    },
+    neutts: {
+      device: 'Zařízení pro místní inferenci NeuTTS.'
+    }
+  },
+  stt: {
+    enabled: 'Povolit místní přepis řeči nebo přepis podporovaný poskytovatelem.',
+    echoTranscripts: 'Zapsat surový 🎙️ přepis hlasových zpráv zpět do chatu.',
+    elevenlabs: {
+      languageCode: 'Volitelný kód jazyka ISO-639-3. Prázdné nechá ElevenLabs automaticky rozpoznat.'
+    }
+  },
+  updates: {
+    nonInteractiveLocalChanges:
+      'Když se OpenAmer aktualizuje z aplikace (bez výzvy v terminálu), zachovat místní úpravy zdrojů (stash) nebo je zahodit (discard). Aktualizace přes terminál se vždy zeptá.'
+  }
 })

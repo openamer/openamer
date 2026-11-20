@@ -84,7 +84,7 @@ export const sn = defineLocale({
       'composer.slash': 'Paleti yecommand yekuslashera',
       'composer.help': 'Rubatsiro rwakakurumidza',
       'composer.history': 'Saikira popover / history',
-      'composer.cancel': 'Vala popover · kanisa run',
+      'composer.cancel': 'Vala popover · kanisa run'
     },
     title: 'Kuchinja keyboard',
     subtitle: open => `Kliki shortcut kuti uichinja · ${open} inobudirira panel iyi.`,
@@ -100,13 +100,14 @@ export const sn = defineLocale({
       profiles: 'Mipiro',
       session: 'Nguva',
       navigation: 'Kushandira',
-      view: 'Tarisai',
-    },
+      view: 'Tarisai'
+    }
   },
   settings: {
     appearance: {
       embedsTitle: 'Zvakaiswa Mukati',
-      embedsDesc: 'Maonero akapfuma anouya kubva kumasaiti evamwe (YouTube, X, …). Bvunza inoratidza nzvimbo yekumirira kusvikira wabvumira imwe neimwe; Nguva dzose inoaisa otomatiki; Kudzima inochengeta zvinongedzo zvisina kuwedzerwa.',
+      embedsDesc:
+        'Maonero akapfuma anouya kubva kumasaiti evamwe (YouTube, X, …). Bvunza inoratidza nzvimbo yekumirira kusvikira wabvumira imwe neimwe; Nguva dzose inoaisa otomatiki; Kudzima inochengeta zvinongedzo zvisina kuwedzerwa.',
       embedsAsk: 'Bvunza',
       embedsAlways: 'Nguva dzose',
       embedsOff: 'Kudzima',
@@ -117,7 +118,8 @@ export const sn = defineLocale({
       themeTitle: 'Mavara',
       themeDesc: 'Mapaleti edesktop chete. Modhi yakasarudzwa inoiswa pamusoro.',
       installTitle: 'Isa kubva kuVS Code',
-      installDesc: 'Namira ID yekuwedzera yeMarketplace (semuenzaniso dracula-theme.theme-dracula) kuti ushandure theme yemavara kuita palette yedesktop.',
+      installDesc:
+        'Namira ID yekuwedzera yeMarketplace (semuenzaniso dracula-theme.theme-dracula) kuti ushandure theme yemavara kuita palette yedesktop.',
       installButton: 'Isa',
       installing: 'Kuriisa…',
       installError: 'Hazvina kukwanisa kuisa theme iyoyo.',
@@ -125,8 +127,10 @@ export const sn = defineLocale({
       importedBadge: 'Yakaunzwa',
       pet: {
         title: 'Chipfuyo',
-        intro: 'Tora mascot ye petdex inofamba-famba inoyangarara pamusoro peapp uye inopindura kune zvinoitwa naOpenAmer — ichimhanya kana zvishandiso zvichiitwa, ichipembera pakubudirira, ichinyunyuta pakukanganisa.',
-        restartHint: 'Zvipfuyo zvinoda kutangisazve nokukasira — app iri kushanda yakatanga chiitiko ichi chisati chawedzerwa. Buda wovhura OpenAmer zvekare, wozodzoka pano.',
+        intro:
+          'Tora mascot ye petdex inofamba-famba inoyangarara pamusoro peapp uye inopindura kune zvinoitwa naOpenAmer — ichimhanya kana zvishandiso zvichiitwa, ichipembera pakubudirira, ichinyunyuta pakukanganisa.',
+        restartHint:
+          'Zvipfuyo zvinoda kutangisazve nokukasira — app iri kushanda yakatanga chiitiko ichi chisati chawedzerwa. Buda wovhura OpenAmer zvekare, wozodzoka pano.',
         on: 'Kubatidza',
         off: 'Kudzima',
         scaleTitle: 'Hukuru',
@@ -158,62 +162,66 @@ export const sn = defineLocale({
         adoptFailed: slug => `Haifanirwe kugadzirisa ${slug}`,
         uninstallFailed: slug => `Haifanirwe kubvisa ${slug}`,
         renameFailed: slug => `Haifanirwe kumuisa zita ${slug}`,
-        exportFailed: slug => `Haifanirwe kubuditsa ${slug}`,
+        exportFailed: slug => `Haifanirwe kubuditsa ${slug}`
       },
       installPlaceholder: 'Mushambisi wekuwedzerwa',
       title: 'Zvinoonekwa',
-      intro: 'Izi ndizvo zvinoenderana ne desktop chete. Mode inochengeta kukwenya; theme inochengeta accent palette uye chat surface styling.',
+      intro:
+        'Izi ndizvo zvinoenderana ne desktop chete. Mode inochengeta kukwenya; theme inochengeta accent palette uye chat surface styling.',
       colorMode: 'Mode yeRangi',
       colorModeDesc: 'Sarudza mode yakasimba kana uvaite OpenAmer itevera setting yako ye system.',
       toolViewTitle: 'Kuratidza Kutaura Tool',
       toolViewDesc: 'Product inochengeta raw tool payloads; Technical inoratidza yose input/output.',
       uiScaleTitle: 'Kwedzera UI',
-      uiScaleDesc: (percent: number) => `Inowedzera text uye controls kumapp yose. Cmd/Ctrl ne +, - uye 0 inoita. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Inowedzera text uye controls kumapp yose. Cmd/Ctrl ne +, - uye 0 inoita. Current: ${percent}%.`,
       translucencyTitle: 'Window Kuponesha',
       translucencyDesc: 'Ona desktop yako kupinda window yose. macOS uye Windows chete.',
       backdropTitle: 'Chat Nzvimbo yeKumira',
       backdropDesc: 'Mutsvairo womutsvairo wokuposa kumapfuura kutaurirana.',
       embedsReset: (count: number) => `Reset ${count} zvinoenderana ${count === 1 ? 'service' : 'services'}`,
-      themeProfileNote: profile => `Rakachengetedzwa ${profile} profile — rimwe ne rimwe profile rinochengeta theme rake.`,
-      installed: name => `Yakagadzirwa “${name}”.`,
+      themeProfileNote: profile =>
+        `Rakachengetedzwa ${profile} profile — rimwe ne rimwe profile rinochengeta theme rake.`,
+      installed: name => `Yakagadzirwa “${name}”.`
     },
     model: {
       tasks: {
         compression: {
           label: 'Kudzvanya',
-          hint: 'Kupfupisa mamiriro',
+          hint: 'Kupfupisa mamiriro'
         },
         skills_hub: {
           label: 'Hub yehunyanzvi',
-          hint: 'Kutsvaga hunyanzvi',
+          hint: 'Kutsvaga hunyanzvi'
         },
         approval: {
           label: 'Mvumo',
-          hint: 'Kubvumira otomatiki kwakangwara',
+          hint: 'Kubvumira otomatiki kwakangwara'
         },
         mcp: {
           hint: 'Kufambisa zvishandiso zveMCP',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Kugadzira musoro',
-          hint: 'Misoro yesesonzi',
+          hint: 'Misoro yesesonzi'
         },
         curator: {
           label: 'Muchengeti',
-          hint: 'Ongorora kushandiswa kwehunyanzvi',
+          hint: 'Ongorora kushandiswa kwehunyanzvi'
         },
         vision: {
           label: 'Kutona',
-          hint: 'Kugadzira mifananidzo',
+          hint: 'Kugadzira mifananidzo'
         },
         web_extract: {
           label: 'Kubudisa paWebhu',
-          hint: 'Tsananguro yepaji',
-        },
+          hint: 'Tsananguro yepaji'
+        }
       },
       loading: 'Kuchinja chigadziso chemodeli...',
-      appliesDesc: 'Inobatika kuna seshoni dzitsva. Shandisa chisanganzwa chemodeli mucomposer kuti uhindure chata chichishandisa.',
+      appliesDesc:
+        'Inobatika kuna seshoni dzitsva. Shandisa chisanganzwa chemodeli mucomposer kuti uhindure chata chichishandisa.',
       provider: 'Munopa',
       model: 'Modeli',
       applying: 'Kuchinja...',
@@ -223,14 +231,15 @@ export const sn = defineLocale({
       defaultsFailed: 'Kushaiwa kuchengeta zvinoreva zvemodeli',
       auxiliaryTitle: 'Modeli dzekubatsira',
       resetAllToMain: 'Dzosa zvose kumutemo',
-      auxiliaryDesc: 'Mabasa ekubatsira anoshanda pamodeli mutemo nezvinoreva. Pa modeli yakavanzirwa kune chibasa chipi nechipi kuti uhindure.',
+      auxiliaryDesc:
+        'Mabasa ekubatsira anoshanda pamodeli mutemo nezvinoreva. Pa modeli yakavanzirwa kune chibasa chipi nechipi kuti uhindure.',
       setToMain: 'Seta kumutemo',
       change: 'Hindura',
       autoUseMain: 'auto · shandisa modeli mutemo',
       providerDefault: '(munopa zvinoreva)',
       fallbackAdd: 'Wedzera chigadziriro',
       fallbackEmpty: 'Hakuna modeli dzechigadziriro — modeli yezvinoreva inoshandiswa isati ishaya.',
-      notInCatalog: "haipo murutondwe rwemodeli rwemunopa uyu — mabvunzo anga achibva kuna chigadziriro.",
+      notInCatalog: 'haipo murutondwe rwemodeli rwemunopa uyu — mabvunzo anga achibva kuna chigadziriro.'
     },
     providers: {
       connectAccount: 'Batanidza akaunti',
@@ -248,36 +257,42 @@ export const sn = defineLocale({
       noKeysMatch: 'Hapana vapi vanowirirana nekutsvaga kwako.',
       localEndpoint: {
         title: 'Endpoint yemuno / yakasarudzwa',
-        description: 'Nongedzera OpenAmer kune endpoint ipi neipi inoenderana neOpenAI (Zyphra, vLLM, llama.cpp, Ollama, nezvimwe).',
+        description:
+          'Nongedzera OpenAmer kune endpoint ipi neipi inoenderana neOpenAI (Zyphra, vLLM, llama.cpp, Ollama, nezvimwe).'
       },
       loading: 'Kurodha vapi...',
       removeConfirm: provider => `Futa ${provider}?`,
       removeExternalGeneric: provider => `${provider} inochengetedzwa neCLI yake — futa apo.`,
       removeKeyManaged: provider => `${provider} inosetenzwa neAPI key. Ibudisa muAPI Keys.`,
-      removeTerminalConfirm: (provider, command) => `Disconnect ${provider}? Izvi inoita "${command}" mumterminal kuti ifute chiremerkedzo.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnect ${provider}? Izvi inoita "${command}" mumterminal kuti ifute chiremerkedzo.`,
       removeTerminalRunning: provider => `Kuitira ${provider} disconnect mumterminal…`,
       removedMessage: provider => `${provider} yafutwa.`,
-      failedRemove: provider => `Haifutwi ${provider}`,
+      failedRemove: provider => `Haifutwi ${provider}`
     },
     sessions: {
       loading: 'Kurodha masession akachengetwa…',
       archivedTitle: 'Masession akachengetwa',
-      archivedIntro: 'Kurukurirano dzakachengetwa dzakavanzwa kubva pasidebar asi dzinochengeta mameseji adzo ese. Ctrl/⌘-click kurukurirano iri pasidebar kuti uichengete.',
+      archivedIntro:
+        'Kurukurirano dzakachengetwa dzakavanzwa kubva pasidebar asi dzinochengeta mameseji adzo ese. Ctrl/⌘-click kurukurirano iri pasidebar kuti uichengete.',
       emptyArchivedTitle: 'Hapana chakachengetwa',
       emptyArchivedDesc: 'Chengetedza kurukurirano kuti uivanza pano.',
       unarchive: 'Bvisa kuchengetwa',
       deletePermanently: 'Dzima zvachose',
       restored: 'Zvadzoserwa',
       autoArchiveTitle: 'Chengetedza otomatiki kurukurirano dzakasakara',
-      autoArchiveDesc: 'Chengetedza otomatiki kurukurirano dzausina kubata kwenguva. Kurukurirano dzakasungirirwa hadzichengetedzwi, uye hapana chinodzimwa — kurukurirano dzakachengetwa dzinongouya pano.',
+      autoArchiveDesc:
+        'Chengetedza otomatiki kurukurirano dzausina kubata kwenguva. Kurukurirano dzakasungirirwa hadzichengetedzwi, uye hapana chinodzimwa — kurukurirano dzakachengetwa dzinongouya pano.',
       autoArchiveDaysLabel: 'Chengetedza mushure me',
       autoArchiveDaysUnit: 'mazuva ekusaita chinhu',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Futa kwazvo "${title}"? Hazvina kugadzirwa.`,
       autoArchiveFailed: 'Haikwanisi kuwedzera auto-archive',
       defaultDirTitle: 'Dhairekitori yeprojekiti yechokwadi',
-      defaultDirDesc: 'Seshoni dzitsva dzitanga mudhairekitori iri usati waisa mumwe. Siya isina kusetenzwa kuti uite dhairekitori yako yekumusha.',
-      defaultDirUpdated: 'Dhairekitori yeprojekiti yechokwadi yakawedzerwa — tanga chata chitsva (Ctrl/⌘+N) kuti chibatsire',
+      defaultDirDesc:
+        'Seshoni dzitsva dzitanga mudhairekitori iri usati waisa mumwe. Siya isina kusetenzwa kuti uite dhairekitori yako yekumusha.',
+      defaultDirUpdated:
+        'Dhairekitori yeprojekiti yechokwadi yakawedzerwa — tanga chata chitsva (Ctrl/⌘+N) kuti chibatsire',
       defaultsTo: label => `Inodefaulta ku ${label}.`,
       change: 'Shandura',
       choose: 'Sarudza',
@@ -287,7 +302,7 @@ export const sn = defineLocale({
       unarchiveFailed: 'Kubuda pakuchengetedzwa kwakwira',
       deleteFailed: 'Kusvisa kwakwira',
       updateDirFailed: 'Haikwane kugadzira derekitori yechokwadi',
-      clearDirFailed: 'Haikwane kufuta derekitori yechokwadi',
+      clearDirFailed: 'Haikwane kufuta derekitori yechokwadi'
     },
     about: {
       versionUnavailable: 'Verisiini hairi kuwanikwa',
@@ -314,7 +329,7 @@ export const sn = defineLocale({
       branchCommit: (branch, commit) => `Gungwa ${branch} · Chengeta ${commit}`,
       minAgo: count => `${count} mizuzu yapfuura`,
       hoursAgo: count => `${count} nguva yapfuura`,
-      daysAgo: count => `${count} zuva yapfuura`,
+      daysAgo: count => `${count} zuva yapfuura`
     },
     config: {
       none: 'Hapana',
@@ -330,7 +345,8 @@ export const sn = defineLocale({
       imported: 'Kumisikidzwa kwatorogwa',
       invalidJson: 'JSON yekumisikidzwa yakaipa',
       keepAwakeTitle: 'Chengeta komputera isina kurara',
-      keepAwakeDesc: 'Mumira kuti muchina uyu urare kuti mabasa ari mamore avo usiku zvichengete kuenderera. Screen inogona kuita raka.',
+      keepAwakeDesc:
+        'Mumira kuti muchina uyu urare kuti mabasa ari mamore avo usiku zvichengete kuenderera. Screen inogona kuita raka.'
     },
     credentials: {
       pasteKey: 'Namira kiyi',
@@ -340,7 +356,7 @@ export const sn = defineLocale({
       remove: 'Bvisa',
       pasteLabelKey: label => `Pindisa ${label} chiregedhi`,
       getKey: 'Tora chiregedhi',
-      saving: 'Kuchengeta',
+      saving: 'Kuchengeta'
     },
     closeSettings: 'Dzima mabvunzo',
     exportConfig: 'Budisa config',
@@ -364,11 +380,12 @@ export const sn = defineLocale({
       about: 'Nezve',
       billing: 'Kukokeredzwa',
       notifications: 'Ndinyorero',
-      plugins: 'Plaginsi',
+      plugins: 'Plaginsi'
     },
     plugins: {
       title: 'Plaginsi dzeDesikiti',
-      blurb: 'Kugadzirisa UI zvakawanzwa muapp iyi — zvakagadzirwa nebuild, kana zvichibviswa mufolderi desktop-plugins (zvinoita nezve OpenAmer). Kukwira kunobvisa plugin zvichiri kushanda uye kunoenderana nekuverenga.',
+      blurb:
+        'Kugadzirisa UI zvakawanzwa muapp iyi — zvakagadzirwa nebuild, kana zvichibviswa mufolderi desktop-plugins (zvinoita nezve OpenAmer). Kukwira kunobvisa plugin zvichiri kushanda uye kunoenderana nekuverenga.',
       count: n => `${n} zvakagadzirwa`,
       openFolder: 'Vhura folderi yepluginsi',
       rescan: 'Onesha',
@@ -380,49 +397,51 @@ export const sn = defineLocale({
       kinds: {
         bundled: 'zvakagadzirwa',
         disk: 'pamusoro pedhiski',
-        runtime: 'nenguva yekushanda',
-      },
+        runtime: 'nenguva yekushanda'
+      }
     },
     notifications: {
       title: 'Ndinyorero',
-      intro: 'Ndinyorero dzeDesikiti dzekuchena, dzisina kugadzirwa neapp. Izvi ndezve chigadzwa — mumwe guta unogona kugadzira zvake.',
+      intro:
+        'Ndinyorero dzeDesikiti dzekuchena, dzisina kugadzirwa neapp. Izvi ndezve chigadzwa — mumwe guta unogona kugadzira zvake.',
       enableAll: 'Simudza ndinyorero',
       enableAllDesc: 'Chinja chikuru. Dzima ichi kuti zviziviso zvese pazasi zvinyarare.',
       focusedHint: 'Zviziviso zvekupedza zvinongouya chete kana OpenAmer iri kumashure.',
       kinds: {
         approval: {
           label: 'Mvumo inodiwa',
-          description: 'Kirairo yakamirira kuti ubvumidze kana kuramba.',
+          description: 'Kirairo yakamirira kuti ubvumidze kana kuramba.'
         },
         input: {
           label: 'Kupinza kunodiwa',
-          description: 'OpenAmer yakabvunza mubvunzo kana kuti inoda pasiwedi kana chakavanzika.',
+          description: 'OpenAmer yakabvunza mubvunzo kana kuti inoda pasiwedi kana chakavanzika.'
         },
         turnDone: {
           label: 'Mhinduro yagadzirira',
-          description: 'Chikamu chapera apo OpenAmer yaiva kumashure.',
+          description: 'Chikamu chapera apo OpenAmer yaiva kumashure.'
         },
         turnError: {
           label: 'Chikamu chakundikana',
-          description: 'Chikamu chakapera nechikanganiso.',
+          description: 'Chikamu chakapera nechikanganiso.'
         },
         backgroundDone: {
           label: 'Basa rekumashure rapera.',
-          description: 'Kirairo yeteminari yekumashure yapera.',
+          description: 'Kirairo yeteminari yekumashure yapera.'
         },
         credits: {
           label: 'Zviziviso zvekiredhiti',
-          description: 'Kuwana kiredhiti kwakamiswa kana kudzoserwa.',
-        },
+          description: 'Kuwana kiredhiti kwakamiswa kana kudzoserwa.'
+        }
       },
       test: 'Tumira chiziviso chekuyedza',
       testTitle: 'OpenAmer',
       testBody: 'Zviziviso zviri kushanda.',
-      testSent: 'Muedzo watumirwa. Kana pasina chinooneka, tarisa mvumo dzezviziviso dzeOS yako uye Kutarisa/Usavhiringidza.',
+      testSent:
+        'Muedzo watumirwa. Kana pasina chinooneka, tarisa mvumo dzezviziviso dzeOS yako uye Kutarisa/Usavhiringidza.',
       testUnsupported: 'Iyi sisitimu haitsigire zviziviso zvechisikigo.',
       completionSoundTitle: 'Ruzha rwekupedza',
       completionSoundDesc: 'Inobva kana chero chemuridzi chipera. Sarudza chiratidzo uye uiratidze pano.',
-      completionSoundPreview: 'Ratidza',
+      completionSoundPreview: 'Ratidza'
     },
     sections: {
       model: 'Modeli',
@@ -432,7 +451,7 @@ export const sn = defineLocale({
       safety: 'Chengeto',
       memory: 'Rukuvhute & Maitiro',
       voice: 'Inzwi',
-      advanced: 'Chipindura',
+      advanced: 'Chipindura'
     },
     searchPlaceholder: {
       about: 'Nezve OpenAmer Desktop',
@@ -440,21 +459,21 @@ export const sn = defineLocale({
       gateway: 'Kubatanidza kwaGateway...',
       keys: 'Tsoka zviro yeAPI...',
       mcp: 'Tsoka seva dzeMCP...',
-      sessions: 'Tsoka ma seshoni akachengetedzwa...',
+      sessions: 'Tsoka ma seshoni akachengetedzwa...'
     },
     modeOptions: {
       light: {
         label: 'Chiedza',
-        description: 'Chiedza chakakwirira',
+        description: 'Chiedza chakakwirira'
       },
       dark: {
         label: 'Chirima',
-        description: 'Nzvimbo yebasa isina kukweretera',
+        description: 'Nzvimbo yebasa isina kukweretera'
       },
       system: {
         label: 'Sistemu',
-        description: 'Tevera zvinoenderana ne OS',
-      },
+        description: 'Tevera zvinoenderana ne OS'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -467,7 +486,7 @@ export const sn = defineLocale({
       revealValue: 'Ratidza mutengo',
       replace: 'Dzosa',
       set: 'Seta',
-      clear: 'Paradza',
+      clear: 'Paradza'
     },
     gateway: {
       loading: 'Kupakwa maitiro egateway...',
@@ -475,21 +494,25 @@ export const sn = defineLocale({
       unavailableDesc: 'Bhuridzi yeIPC yedesktop haichibudisire maitiro egateway.',
       title: 'Kushandira Gateway',
       envOverride: 'Mhando dzeenvironment',
-      intro: 'OpenAmer Desktop inotanga gateway yake yerusha nechokwadi. Shandisa gateway yekure kana uchida kuti app iyi igadzirise backend yeOpenAmer iri kushanda pakomana kumwe kana pakati pe proxy inokurumidza. Sarudza profile pasi kuti igamuchire remote host yayo.',
+      intro:
+        'OpenAmer Desktop inotanga gateway yake yerusha nechokwadi. Shandisa gateway yekure kana uchida kuti app iyi igadzirise backend yeOpenAmer iri kushanda pakomana kumwe kana pakati pe proxy inokurumidza. Sarudza profile pasi kuti igamuchire remote host yayo.',
       appliesTo: 'Inobatika ku',
       allProfiles: 'Profile dzose',
       defaultConnection: 'Kushandira kwakazara nekuprofile dzose dzisingazviite override.',
-      profileConnection: profile => `Kushandira kunoshanda kana “${profile}” ndiye profile inoshanda. Sarudza Shandisa gateway yekuzara kuti uibvise override yacho.`,
+      profileConnection: profile =>
+        `Kushandira kunoshanda kana “${profile}” ndiye profile inoshanda. Sarudza Shandisa gateway yekuzara kuti uibvise override yacho.`,
       envOverrideTitle: 'Mhando dzeenvironment inogadzirira session iyi yedesktop.',
-      envOverrideDesc: 'Regai OPENAMER_DESKTOP_REMOTE_URL uye OPENAMER_DESKTOP_REMOTE_TOKEN kuti mushandiswe setting yakachengetedzwa pazasi.',
+      envOverrideDesc:
+        'Regai OPENAMER_DESKTOP_REMOTE_URL uye OPENAMER_DESKTOP_REMOTE_TOKEN kuti mushandiswe setting yakachengetedzwa pazasi.',
       modeTitle: 'Nzira yeconnection',
       localTitle: 'Gatesi yokal',
       localDesc: 'Tanga OpenAmer backend yekuvamba pa localhost. Ichi ndechokwadi uye inoshanda pasina internet.',
       inheritTitle: 'Shandisa gatesi yekudefault',
-      inheritDesc: "Bvisa override yeprofile iyi uye shandisa connection yekudefault.",
+      inheritDesc: 'Bvisa override yeprofile iyi uye shandisa connection yekudefault.',
       remoteTitle: 'Gatesi yekure',
       remoteDesc: 'Unganidze desktop shell iyi ku remote OpenAmer backend.',
-      remoteAuthHint: 'Gatesi dzine host dzinoshanda OAuth kana username uye password; dzine self-hosted dzinogona kushanda session token.',
+      remoteAuthHint:
+        'Gatesi dzine host dzinoshanda OAuth kana username uye password; dzine self-hosted dzinogona kushanda session token.',
       cloudTitle: 'OpenAmer yemugore',
       cloudDesc: 'Pinda pamwe chete ku OpenAmer Cloud uye sarudza kuagents ako pakonti yako — hakuna URL kupaista.',
       cloudSignInTitle: 'OpenAmer yemugore',
@@ -506,7 +529,7 @@ export const sn = defineLocale({
       cloudNoAgents: {
         before: 'Hakuna magentsi akawanzwa pakonti iri. Batsira mumwe mu',
         linkText: 'poital yeOpenAmer',
-        after: ', zvisina kudaro ongesera.',
+        after: ', zvisina kudaro ongesera.'
       },
       cloudRefresh: 'Ongesera',
       cloudConnect: 'Unganidza',
@@ -535,7 +558,8 @@ export const sn = defineLocale({
       authNeedsPassword: 'Gateway inoshanda ne username uye password. Pinda kugadzira desktop app.',
       authNeedsOauth: provider => `Gateway inoshanda ne OAuth. Pinda ne ${provider} kugadzira desktop app.`,
       tokenTitle: 'Token ye session',
-      tokenDesc: 'Token ye session ye dashboard inoshandiswa pa REST uye WebSocket. Siya blank kuti uchengete token yakachengetwa.',
+      tokenDesc:
+        'Token ye session ye dashboard inoshandiswa pa REST uye WebSocket. Siya blank kuti uchengete token yakachengetwa.',
       existingToken: value => `Token yakavanzika ${value}`,
       savedToken: 'yakachengetwa',
       pasteSessionToken: 'Pasta token ye session',
@@ -566,7 +590,8 @@ export const sn = defineLocale({
       applyFailed: 'Haikwanise kuisa maitiro egateway',
       saveFailed: 'Haikwanise kuchengeta maitiro egateway',
       sshTitle: 'Enda ne SSH',
-      sshDesc: 'OpenAmer inotangira kure ne SSH ikatunnelwa kuapp iyi — hazvina chaanotangira kana kuzvivhenekera. Inoda kugona kushandisa SSH yechivi kuna host.',
+      sshDesc:
+        'OpenAmer inotangira kure ne SSH ikatunnelwa kuapp iyi — hazvina chaanotangira kana kuzvivhenekera. Inoda kugona kushandisa SSH yechivi kuna host.',
       sshTrustHint: 'Chivi chehost chekutanga chinotendeka nechikonzero; mhinduro dzekutanga dzinoshaya, dzichivala.',
       sshHostTitle: 'Mutengi',
       sshHostDesc: 'user@host, kana chizita chine chinhu chaHost chiri ku~/.ssh/config.',
@@ -590,18 +615,22 @@ export const sn = defineLocale({
       sshReachable: (host, platform) => `Kuwana: ${host} (${platform}) — OpenAmer kwawana`,
       sshIncompleteHost: 'Pinda SSH host pamberi pekuunganidza.',
       sshErrUnreachable: 'Haikwani kukuwira host iyo paSSH. Tarisa host, port, uye netiweki yako.',
-      sshErrAuth: 'Kuvimbisa SSH kwakashaiwa. Ngodza yako key mu ssh-agent (ssh-add) kana usete IdentityFile mu ~/.ssh/config — OpenAmer inoshanda ssh pasina kukurudza.',
-      sshErrHostKey: 'Key yehost yakashanduka tangu wakati waunganidza. Vimbisa kuti izvi zvakada, apo enda ssh-keygen -R <host> uye uunganidze futi.',
-      sshErrNotInstalled: 'OpenAmer haigere kuhost yeremoti. Igere ipapo (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) kana usete nzira yeOpenAmer.',
-      sshErrPlatform: 'Platfomu yeremoti haigoni. Mode yeOpenAmer Desktop SSH inobatsira Linux, macOS, uye Windows remote hosts.',
+      sshErrAuth:
+        'Kuvimbisa SSH kwakashaiwa. Ngodza yako key mu ssh-agent (ssh-add) kana usete IdentityFile mu ~/.ssh/config — OpenAmer inoshanda ssh pasina kukurudza.',
+      sshErrHostKey:
+        'Key yehost yakashanduka tangu wakati waunganidza. Vimbisa kuti izvi zvakada, apo enda ssh-keygen -R <host> uye uunganidze futi.',
+      sshErrNotInstalled:
+        'OpenAmer haigere kuhost yeremoti. Igere ipapo (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) kana usete nzira yeOpenAmer.',
+      sshErrPlatform:
+        'Platfomu yeremoti haigoni. Mode yeOpenAmer Desktop SSH inobatsira Linux, macOS, uye Windows remote hosts.',
       sshErrTimeout: 'Unganidzo yeSSH yakapera nguva. Host inogona kuti haikwani kana iri kugara.',
       sshErrUpdateRequired: 'Gadzirisa OpenAmer kuhost yeremoti pamberi pekuunganidza ne Desktop SSH.',
-      sshErrUnknown: 'Unganidzo yeSSH yakashaiwa.',
+      sshErrUnknown: 'Unganidzo yeSSH yakashaiwa.'
     },
     keys: {
       loading: 'Kupakwa API keys uye credentials...',
       failedLoad: 'API keys dzakashaiwa kupakwa',
-      empty: 'Hakuna zvakagadzirwa mukategori iyi nhasi.',
+      empty: 'Hakuna zvakagadzirwa mukategori iyi nhasi.'
     },
     mcp: {
       loading: 'Kupakwa MCP servers...',
@@ -653,7 +682,8 @@ export const sn = defineLocale({
       catalogInstallFailed: name => `Kusaisa ${name} kwakwira`,
       catalogEnvPrompt: name => `${name} inoda zvinyorwa`,
       catalogEnvRequired: 'Dzosa zvinhu zvinodikanwa pamberi pekuisa.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} yakavhurirwa`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} yakavhurirwa`,
       statusConnecting: 'Kushandisa…',
       statusNeedsAuth: 'Inoda kuvhimbiswa',
       statusError: 'Dambudziko',
@@ -666,7 +696,7 @@ export const sn = defineLocale({
       unsavedConnect: 'Hausina kuchengeta — chengeta mcp.json kuti ushandise.',
       enableTool: tool => `Vhura ${tool}`,
       disableTool: tool => `Dzima ${tool}`,
-      noOutput: 'Hakuna chibudiswa fambiro.',
+      noOutput: 'Hakuna chibudiswa fambiro.'
     },
     toolsets: {
       loadingConfig: 'Kugadzira kongirigishi',
@@ -684,20 +714,23 @@ export const sn = defineLocale({
       selectedMessage: provider => `${provider} zvino yakashanda.`,
       failedSelect: provider => `Kusviba kuchinja ${provider}`,
       failedLoad: 'Kuseta chishandiso chakwira kupinda',
-      noProviderOptions: 'Chishandiso ichi hazvina zviitiko zvekuveza — chigadzirise uye chichashanda nechigadzwa chako.',
+      noProviderOptions:
+        'Chishandiso ichi hazvina zviitiko zvekuveza — chigadzirise uye chichashanda nechigadzwa chako.',
       noProviders: 'Hakuna vavezi vanoenderana nechishandiso ichi panguva ino.',
       ready: 'Yagadzirwa',
       needsSignIn: 'Inoda kupinda',
       needsSetup: 'Inoda kugadzirwa',
       openamerIncluded: 'Inenge yakatangwa neOpenAmer subscription — pinda muOpenAmer Portal kugadzirisa.',
       openamerAuthNeededTitle: 'Pinda muOpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} yakachengetedzwa asi haigadzirise kusvikira upinde muOpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} yakachengetedzwa asi haigadzirise kusvikira upinde muOpenAmer Portal.`,
       openamerAuthSignIn: 'Pinda',
       openamerAuthDoneTitle: 'OpenAmer Portal yakavandudza',
       openamerAuthDoneMessage: 'Backend dzako dzesubscription dzino dzinogadzirwa.',
       openamerAuthFailed: 'Kupinda muOpenAmer Portal hakuna kwapedziswa',
       noApiKeyRequired: 'API key haifaniri.',
-      postSetupHint: step => `Backend ino inoda kugadzirwa rimwe nguva (${step}). Inoshanda pamushini uyu — inogona kutorwa mazuva mana.`,
+      postSetupHint: step =>
+        `Backend ino inoda kugadzirwa rimwe nguva (${step}). Inoshanda pamushini uyu — inogona kutorwa mazuva mana.`,
       postSetupInstalledHint: 'Yakagadzirwa. Budisa setup chete kana chinhu chakwira.',
       postSetupRun: 'Endesa setup',
       postSetupRerun: 'Budisa setup',
@@ -738,9 +771,9 @@ export const sn = defineLocale({
         selectedTitle: 'Backend yasaurwa',
         selectedMessage: backend => `Mavhurwa aterminal anoshanda kupinda ${backend}. Inobatika kuna sessions dzitsva.`,
         failedSelect: backend => `Haichake kusarudza ${backend}`,
-        needsSetupHint: 'Uno sarudza backend iyi nhasi — mavhurwa achakwira kusvikira kugadzwa kwapera.',
-      },
-    },
+        needsSetupHint: 'Uno sarudza backend iyi nhasi — mavhurwa achakwira kusvikira kugadzwa kwapera.'
+      }
+    }
   },
   composer: {
     placeholderStarting: 'Kutanga OpenAmer...',
@@ -780,7 +813,7 @@ export const sn = defineLocale({
       '/resume': 'enderera nechikamu chekare',
       '/details': 'daira mwero werondedzero',
       '/copy': 'kopa zvakasarudzwa kana meseji yekupedzisira yemubatsiri',
-      '/quit': 'buda openamer',
+      '/quit': 'buda openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'reva mafaera, maforodha, maURL, git',
@@ -790,7 +823,7 @@ export const sn = defineLocale({
       'composer.sendQueued': 'send next queued turn',
       'keybinds.openPanel': 'all keyboard shortcuts',
       'composer.cancel': 'close popover · cancel run',
-      'composer.history': 'cycle popover / history',
+      'composer.history': 'cycle popover / history'
     },
     message: 'Message',
     wakingProfile: profile => `Waking up ${profile}…`,
@@ -801,7 +834,7 @@ export const sn = defineLocale({
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -810,7 +843,7 @@ export const sn = defineLocale({
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     attachUrlTitle: 'Attach a URL',
     attachUrlDesc: 'OpenAmer will fetch the page and include it as context for this turn.',
@@ -861,19 +894,19 @@ export const sn = defineLocale({
       codeReview: {
         label: 'Code review',
         description: 'Audit the current change for regressions, dropped edge cases, and missing tests.',
-        text: 'Please review this for bugs, regressions, and missing tests.',
+        text: 'Please review this for bugs, regressions, and missing tests.'
       },
       implementationPlan: {
         label: 'Implementation plan',
         description: 'Outline an approach before touching code so the diff stays focused.',
-        text: 'Please make a concise implementation plan before changing code.',
+        text: 'Please make a concise implementation plan before changing code.'
       },
       explainThis: {
         label: 'Explain this',
         description: 'Walk through how the selected code works and link to the key files.',
-        text: 'Please explain how this works and point me to the key files.',
-      },
-    },
+        text: 'Please explain how this works and point me to the key files.'
+      }
+    }
   },
   boot: {
     failure: {
@@ -882,10 +915,12 @@ export const sn = defineLocale({
       signInFailed: 'Kutambira kwakakfaila',
       signInToRemoteGateway: 'Isa ku gateway yakaremba',
       identityProvider: 'mutauri wako we identity',
-      title: "OpenAmer haigone kugadzirwa",
-      description: "Gateway yepakutanga haigone kuuya. Tavisa chimwe chetsinga dzerutauro pasi. Hazvina chinhu ichi chinobvisa mazvitaurirano ako kana mipangidzo.",
+      title: 'OpenAmer haigone kugadzirwa',
+      description:
+        'Gateway yepakutanga haigone kuuya. Tavisa chimwe chetsinga dzerutauro pasi. Hazvina chinhu ichi chinobvisa mazvitaurirano ako kana mipangidzo.',
       remoteTitle: 'Kuingira gateway yeremoti kunoda',
-      remoteDescription: 'Sesheni yako yeremoti gateway yapera. Unga zvokure kuti uhuwanduke futi. Hazvina chinhu ichi chinobvisa mazvitaurirano ako kana mipangidzo.',
+      remoteDescription:
+        'Sesheni yako yeremoti gateway yapera. Unga zvokure kuti uhuwanduke futi. Hazvina chinhu ichi chinobvisa mazvitaurirano ako kana mipangidzo.',
       retry: 'Tavisa futi',
       repairInstall: 'Gadzirisa instola',
       useLocalGateway: 'Shandisa gateway yepakati',
@@ -893,14 +928,15 @@ export const sn = defineLocale({
       back: 'Famba zure',
       openLogs: 'Vhura malogu',
       repairHint: 'Gadzirisa inotora instola futi ingagone kutorwa mazuva mana pamashini itsva.',
-      remoteSignInHint: signInLabel => `Inobuda sesheni yebhrauza yeremoti yakachengetedzwa, ipapo inovhura ${signInLabel}. Shandisa gateway yepakati kuti uguwe backend yakavakwa mukati.`,
+      remoteSignInHint: signInLabel =>
+        `Inobuda sesheni yebhrauza yeremoti yakachengetedzwa, ipapo inovhura ${signInLabel}. Shandisa gateway yepakati kuti uguwe backend yakavakwa mukati.`,
       signOutAndSignIn: 'Buda & Unga',
       remoteFailureHint: 'Tarisa URL yegateway uye kuingira chini paGateway settings, kana uguwe ku gateway yepakati.',
       hideRecentLogs: 'Ficha mabhurogu ekutanga',
       showRecentLogs: 'Ratidza mabhurogu ekutanga',
       signedInTitle: 'Wakauya',
       signedInMessage: 'Kudzokera kugadzirana ne gateway yekure…',
-      signInWithProvider: provider => `Uya ne ${provider}`,
+      signInWithProvider: provider => `Uya ne ${provider}`
     },
     ready: 'OpenAmer Desikitopo yakagadzirwa',
     desktopBootFailedWithMessage: message => `Desikitopo kuvhura kwashaiwa: ${message}`,
@@ -909,7 +945,7 @@ export const sn = defineLocale({
       loadingSettings: 'Kupakisa OpenAmer maitiro',
       loadingSessions: 'Kupakisa sesi dzazvino',
       startingDesktopConnection: 'Kutanga Desikitopo kubatanidza',
-      startingOpenAmerDesktop: 'Kutanga OpenAmer Desikitopo…',
+      startingOpenAmerDesktop: 'Kutanga OpenAmer Desikitopo…'
     },
     errors: {
       backgroundExited: 'OpenAmer mubatanidza wekushandisa wapera.',
@@ -918,8 +954,8 @@ export const sn = defineLocale({
       desktopBootFailed: 'Kugadzirwa kwedesktop kwakwira',
       gatewayConnectionLost: 'Kusiyana nehuwandu hwogateway',
       gatewaySignInRequired: 'Kuingira gateway kunoda',
-      ipcBridgeUnavailable: 'Bhuridzi yeIPC yedesktop haipo.',
-    },
+      ipcBridgeUnavailable: 'Bhuridzi yeIPC yedesktop haipo.'
+    }
   },
   notifications: {
     region: 'Zivizo',
@@ -931,7 +967,8 @@ export const sn = defineLocale({
     copyDetail: 'Kopira detail',
     copyDetailFailed: 'Hatikwanisi kukopira detail ye zivizo',
     backendOutOfDateTitle: 'Backend yakachembera',
-    backendOutOfDateMessage: 'Backend yako ye OpenAmer yakakara zvakare neshandisi yeku desktop uye inogona kusashanda zvakanaka. Gadzirisa kuti zvifanane.',
+    backendOutOfDateMessage:
+      'Backend yako ye OpenAmer yakakara zvakare neshandisi yeku desktop uye inogona kusashanda zvakanaka. Gadzirisa kuti zvifanane.',
     installMethodUnsupportedTitle: 'Nzira yekuisa isati yat_supportwa',
     updateOpenAmer: 'Gadzirisa OpenAmer',
     updateReadyTitle: 'Kugadzirira kwaita',
@@ -940,11 +977,12 @@ export const sn = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT inoda ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs atarambura kiyi ye API (401).',
       gatewayAuthFailed: 'Kutambira kwegateway kwakakfaila — tarisa API_SERVER_KEY yako.',
-      methodNotAllowed: 'Backend ye desktop yatarambura chikumburro chatsi (405 Method Not Allowed). Edza kutangisa zvakare OpenAmer Desktop.',
+      methodNotAllowed:
+        'Backend ye desktop yatarambura chikumburro chatsi (405 Method Not Allowed). Edza kutangisa zvakare OpenAmer Desktop.',
       microphonePermission: 'Mvumo ye maikrofoni yaramba.',
       openaiRejectedApiKey: 'OpenAI atarambura kiyi ye API.',
       openaiTtsNeedsKey: 'OpenAI TTS inoda VOICE_TOOLS_OPENAI_KEY kana OPENAI_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI yakana API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI yakana API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Gadzira kuchenzura mazwi kuti ushandise modhi yezwi.',
@@ -963,7 +1001,7 @@ export const sn = defineLocale({
       transcriptionFailed: 'Kunyora mazwi kwakakfaila',
       transcriptionUnavailable: 'Kunyora nezwi haichoni.',
       tryRecordingAgain: 'Dzidza kurekoda futi.',
-      unavailable: 'Mhosva haichoni',
+      unavailable: 'Mhosva haichoni'
     },
     more: count => `${count} zvinhu zvimwe ${count === 1 ? 'notification' : 'notifications'}`,
     updateReadyMessage: count => `${count} chinonzi chitsva ${count === 1 ? '' : 's'} chinowanikwa.`,
@@ -978,8 +1016,8 @@ export const sn = defineLocale({
       turnErrorTitle: 'Nzvimbo yashaiwa',
       backgroundDoneTitle: 'Basa remberi yapera',
       backgroundFailedTitle: 'Chigaro chakapera chakashaiwa',
-      creditsTitle: 'Makrediti',
-    },
+      creditsTitle: 'Makrediti'
+    }
   },
   skills: {
     visionModelLink: 'Sarudza muzhinji wezvisu mu Zvakagadzirwa → Mizana',
@@ -999,7 +1037,7 @@ export const sn = defineLocale({
     provenance: {
       agent: 'Yakadzokera',
       bundled: 'Yakabvira muhuriro',
-      hub: 'Hubhu',
+      hub: 'Hubhu'
     },
     changesApplyNewSessions: 'Shanduko dzinochengetwa kune chidyivo chitsva.',
     skillUpdated: 'Unotsi wagadzirwa',
@@ -1014,7 +1052,8 @@ export const sn = defineLocale({
       connectingHubs: 'Kubatana ne hubhu dzunotsi...',
       connectedHubs: 'Hubhu dzabatanidwa:',
       featured: 'Unotsi dzakasaridzwa',
-      landingHint: 'Tsvaga mu hubhu kuti uone unotsi dzunotengwa kubva mu index yepamutanga, GitHub, uye nzvimbo dzemunhu.',
+      landingHint:
+        'Tsvaga mu hubhu kuti uone unotsi dzunotengwa kubva mu index yepamutanga, GitHub, uye nzvimbo dzemunhu.',
       noResults: 'Hakuna unotsi inoenderana yakawanikwa mu hubhu.',
       installed: 'Yakaiswa',
       install: 'Isa',
@@ -1034,7 +1073,7 @@ export const sn = defineLocale({
       trust: {
         builtin: 'yakazadzwa',
         trusted: 'anotendeka',
-        community: 'hushamwari',
+        community: 'hushamwari'
       },
       verdictSafe: 'Chengeteka',
       verdictCaution: 'Chenjera',
@@ -1052,7 +1091,7 @@ export const sn = defineLocale({
       loadFailed: 'Habu yeziva yakakwata kugadzirwa',
       previewFailed: 'Kutarisira ziva kwakwata',
       scanFailed: 'Kutsvaka chengetero kwakwata',
-      searchFailed: 'Kutsvaka habu kwakwata',
+      searchFailed: 'Kutsvaka habu kwakwata'
     },
     tabSkills: 'Uju',
     tabToolsets: 'Zvishandiso',
@@ -1071,7 +1110,8 @@ export const sn = defineLocale({
     noDescription: 'Hakuna kuchinangwa.',
     configured: 'Akakonzerozve',
     needsKeys: 'Inoda mifukidzi',
-    visionModelHint: 'Vision inoshanda nesetiro yako ye modeli chinobatsira — modeli inaye uwezo hwezvifananidzo inochagwa apo, asi hazvichagwi kuti munopa iri pano.',
+    visionModelHint:
+      'Vision inoshanda nesetiro yako ye modeli chinobatsira — modeli inaye uwezo hwezvifananidzo inochagwa apo, asi hazvichagwi kuti munopa iri pano.',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} mabasa akavhurwa`,
     configureToolset: label => `Konzeroza ${label}`,
     toggleToolset: label => `Togora ${label} mabasa`,
@@ -1082,7 +1122,7 @@ export const sn = defineLocale({
     usageCount: count => `shandisiswa ${count}×`,
     emptyNoneFound: noun => `Hakuna ${noun} wakawanzwa`,
     emptyNothingMatches: query => `Hakuna chinofanana ne “${query}”.`,
-    emptyNoneAvailable: noun => `Hakuna ${noun} inowanikwa zvino.`,
+    emptyNoneAvailable: noun => `Hakuna ${noun} inowanikwa zvino.`
   },
   sidebar: {
     projects: {
@@ -1106,8 +1146,10 @@ export const sn = defineLocale({
       copyPath: 'Kopya nzira',
       removeFromSidebar: 'Ramba padivi',
       createFailed: 'Hatakwanisi kugadzira chirongwa',
-      staleBackend: 'Gadzirisa backend yeOpenAmer kugadzira maprojekiti — backend yako yakakadza kana desktop app iyi (Settings → Updates → Backend).',
-      deleteConfirm: 'Izvi zvinobvisa chirongwa chakachengetwa muOpenAmer. Mafaera, repositori dze git, nemabazi akashanda hazvikuti.',
+      staleBackend:
+        'Gadzirisa backend yeOpenAmer kugadzira maprojekiti — backend yako yakakadza kana desktop app iyi (Settings → Updates → Backend).',
+      deleteConfirm:
+        'Izvi zvinobvisa chirongwa chakachengetwa muOpenAmer. Mafaera, repositori dze git, nemabazi akashanda hazvikuti.',
       startWork: 'Worktree idzva',
       newWorktreeTitle: 'Worktree idzva',
       newWorktreeDesc: 'Isa zita rebazi re|worktree.',
@@ -1137,19 +1179,21 @@ export const sn = defineLocale({
       noBranches: 'No branches found',
       removeWorktree: 'Remove worktree',
       removeWorktreeFailed: 'Could not remove worktree (uncommitted changes?)',
-      removeWorktreeConfirm: 'Remove it from git (deletes the worktree directory; the branch stays), or just hide the lane from the sidebar and leave the worktree on disk.',
-      removeWorktreeDirty: 'This worktree has uncommitted changes. Force-remove it (discards those changes), or just hide the lane and keep it on disk.',
+      removeWorktreeConfirm:
+        'Remove it from git (deletes the worktree directory; the branch stays), or just hide the lane from the sidebar and leave the worktree on disk.',
+      removeWorktreeDirty:
+        'This worktree has uncommitted changes. Force-remove it (discards those changes), or just hide the lane and keep it on disk.',
       forceRemove: 'Force remove',
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
       toggle: label => `Toggle ${label} sessions`,
-      back: 'All projects',
+      back: 'All projects'
     },
     nav: {
       'new-session': 'New session',
       skills: 'Capabilities',
       messaging: 'Messaging',
-      artifacts: 'Artifacts',
+      artifacts: 'Artifacts'
     },
     searchAria: 'Search sessions',
     searchPlaceholder: 'Search sessions…',
@@ -1207,15 +1251,15 @@ export const sn = defineLocale({
       ageNow: 'now',
       ageDay: 'd',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Earlier today',
       yesterday: 'Yesterday',
       thisWeek: 'Earlier this week',
       lastWeek: 'Last week',
-      thisMonth: 'Earlier this month',
-    },
+      thisMonth: 'Earlier this month'
+    }
   },
   statusStack: {
     coding: {
@@ -1231,7 +1275,8 @@ export const sn = defineLocale({
       openPr: 'Vhura PR',
       ghMissing: 'Isa iGitHub CLI (gh) uye woisana kuti uvhure PR',
       agentShip: 'Kumbomira OpenAmer kuti ivhure PR',
-      agentShipPrompt: 'Tarisa shanduko dzinozvino, dzigumbomira uye mharo w Conventional Commit, dza rambi, uye uvhure pull request.',
+      agentShipPrompt:
+        'Tarisa shanduko dzinozvino, dzigumbomira uye mharo w Conventional Commit, dza rambi, uye uvhure pull request.',
       newBranch: 'Rambi idzva',
       worktrees: 'Mabindu eWorktree',
       title: 'Working tree',
@@ -1260,7 +1305,7 @@ export const sn = defineLocale({
       noDiff: 'No diff to show',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     agents: 'Agents',
     background: count => `${count} Background`,
@@ -1269,7 +1314,7 @@ export const sn = defineLocale({
     running: 'Running',
     stop: 'Stop',
     dismiss: 'Dismiss',
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -1284,7 +1329,7 @@ export const sn = defineLocale({
       done: 'Kuvhura kwapera',
       manual: 'Kuvhura mumaterminal',
       guiSkew: 'Kuvhura desktop app',
-      error: 'Kuvhura kwasuspendiwa',
+      error: 'Kuvhura kwasuspendiwa'
     },
     checking: 'Kutsvaga kuvhura…',
     checkFailedTitle: 'Hatina kukwanisika kutsvaga kuvhura',
@@ -1304,15 +1349,19 @@ export const sn = defineLocale({
     maybeLater: 'Maybe later',
     moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
     manualTitle: 'Update from your terminal',
-    manualBody: 'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
+    manualBody:
+      'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
     manualPickedUp: 'OpenAmer will pick up the new version next time you launch it.',
     guiSkewTitle: 'Update the desktop app',
-    guiSkewBody: 'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
+    guiSkewBody:
+      'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
     copy: 'Copy',
     copied: 'Copied',
     done: 'Done',
-    applyingBody: 'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
-    applyingBodyBackend: 'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
+    applyingBody:
+      'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
+    applyingBodyBackend:
+      'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
     applyingClose: 'This window will close while the update runs, then OpenAmer reopens on its own.',
     errorTitle: 'Update didn’t finish',
     errorBody: 'No worries — nothing was lost. You can try again now.',
@@ -1323,12 +1372,13 @@ export const sn = defineLocale({
       restarting: 'Backend restarting to load the update…',
       notAvailable: 'Update not available for this backend.',
       failed: 'Backend update failed.',
-      noReturn: 'Backend didn’t come back online. The update may not have completed — check the backend host.',
+      noReturn: 'Backend didn’t come back online. The update may not have completed — check the backend host.'
     },
     appErrors: {
-      updateLocked: 'Update aborted: another OpenAmer window or a terminal running openamer is holding this install open. Close it and retry.',
-      updateFailed: 'The update didn’t complete. No worries — nothing was lost. You can try again now.',
-    },
+      updateLocked:
+        'Update aborted: another OpenAmer window or a terminal running openamer is holding this install open. Close it and retry.',
+      updateFailed: 'The update didn’t complete. No worries — nothing was lost. You can try again now.'
+    }
   },
   preview: {
     loading: 'Kurokeka preview',
@@ -1372,7 +1422,7 @@ export const sn = defineLocale({
       sentTitle: 'Yatumwa kuchata',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Preview app yatadza kutanga',
@@ -1397,16 +1447,18 @@ export const sn = defineLocale({
       reloadingNow: 'Reloading the preview now.',
       restartFailedTitle: 'Preview restart failed',
       restartFailedMessage: 'OpenAmer could not restart the server.',
-      stillWorking: 'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
+      stillWorking:
+        'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
       workspaceReloading: 'Workspace changed, reloading preview',
       fileChanged: url => `File changed, reloading preview: ${url}`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
-      moduleMimeDescription: 'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
+      moduleMimeDescription:
+        'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'The preview page could not be reached.',
       openTarget: url => `Open ${url}`,
-      fallbackTitle: 'Preview',
+      fallbackTitle: 'Preview'
     },
     tab: 'Preview',
     closeTab: label => `Close ${label}`,
@@ -1418,7 +1470,7 @@ export const sn = defineLocale({
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   assistant: {
     tool: {
@@ -1437,123 +1489,123 @@ export const sn = defineLocale({
         ran: 'Mhara',
         running: 'Kufamba',
         ranCode: 'Mhara kodhi',
-        runningCode: 'Kunyora',
+        runningCode: 'Kunyora'
       },
       prefixes: {
         browser: 'Bhurawza',
-        web: 'Webhu',
+        web: 'Webhu'
       },
       titles: {
         browser_click: {
           done: 'Dzvanya chinhu chepeji',
           pending: 'Kudzvanya chinhu chepeji',
-          pendingAction: 'Kudzvanya',
+          pendingAction: 'Kudzvanya'
         },
         browser_fill: {
           done: 'Jamba nzvimbo yemform',
           pending: 'Kujamba nzvimbo yemform',
-          pendingAction: 'Kujamba',
+          pendingAction: 'Kujamba'
         },
         browser_navigate: {
           done: 'Vhura peji',
           pending: 'Kuvhura peji',
-          pendingAction: 'Kuvhura',
+          pendingAction: 'Kuvhura'
         },
         browser_snapshot: {
           done: 'Tora mufananidzo wepeji',
           pending: 'Kutora mufananidzo wepeji',
-          pendingAction: 'Kutora',
+          pendingAction: 'Kutora'
         },
         browser_take_screenshot: {
           done: 'Tora chifumhigo',
           pending: 'Kutora chifumhigo',
-          pendingAction: 'Kutora',
+          pendingAction: 'Kutora'
         },
         browser_type: {
           done: 'Nyora peji',
           pending: 'Kunyora peji',
-          pendingAction: 'Kunyora',
+          pendingAction: 'Kunyora'
         },
         clarify: {
           done: 'Ndibvitsa mubvunzo',
           pending: 'Kubvitsa mubvunzo',
-          pendingAction: 'Kubvitsa',
+          pendingAction: 'Kubvitsa'
         },
         cronjob: {
           done: 'Basa reCron',
           pending: 'Kuronga basa reCron',
-          pendingAction: 'Scheduling',
+          pendingAction: 'Scheduling'
         },
         edit_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
+          pendingAction: 'Editing'
         },
         execute_code: {
           done: 'Ran code',
           pending: 'Scripting',
-          pendingAction: 'Scripting',
+          pendingAction: 'Scripting'
         },
         image_generate: {
           done: 'Generated image',
           pending: 'Generating image',
-          pendingAction: 'Generating',
+          pendingAction: 'Generating'
         },
         list_files: {
           done: 'Listed files',
           pending: 'Listing files',
-          pendingAction: 'Listing',
+          pendingAction: 'Listing'
         },
         patch: {
           done: 'Patched file',
           pending: 'Patching file',
-          pendingAction: 'Patching',
+          pendingAction: 'Patching'
         },
         read_file: {
           done: 'Read file',
           pending: 'Reading file',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         search_files: {
           done: 'Searched files',
           pending: 'Searching files',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         session_search_recall: {
           done: 'Searched session history',
           pending: 'Searching session history',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         terminal: {
           done: 'Ran command',
           pending: 'Running command',
-          pendingAction: 'Running',
+          pendingAction: 'Running'
         },
         todo: {
           done: 'Updated todos',
           pending: 'Updating todos',
-          pendingAction: 'Updating',
+          pendingAction: 'Updating'
         },
         vision_analyze: {
           done: 'Analyzed image',
           pending: 'Analyzing image',
-          pendingAction: 'Analyzing',
+          pendingAction: 'Analyzing'
         },
         web_extract: {
           done: 'Read webpage',
           pending: 'Reading webpage',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         web_search: {
           done: 'Searched web',
           pending: 'Searching web',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         write_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
-        },
+          pendingAction: 'Editing'
+        }
       },
       code: 'Code',
       copyCode: 'Copy code',
@@ -1579,14 +1631,15 @@ export const sn = defineLocale({
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
     },
     thread: {
       loadingSession: 'Loading session',
       showEarlier: 'Show earlier messages',
       loadingResponse: 'OpenAmer is loading a response',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Thinking',
@@ -1609,12 +1662,13 @@ export const sn = defineLocale({
       restoreCheckpoint: 'Restore checkpoint',
       restoreFromHere: 'Restore checkpoint — rerun from this prompt',
       restoreTitle: 'Restore to this checkpoint?',
-      restoreBody: 'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
+      restoreBody:
+        'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
       restoreConfirm: 'Restore & rerun',
       restoreNext: 'Restore next checkpoint',
       goForward: 'Go forward',
       sendEdited: 'Send edited message',
-      attachingFile: 'Attaching…',
+      attachingFile: 'Attaching…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -1627,8 +1681,9 @@ export const sn = defineLocale({
       jumpToApproval: 'Approval needed',
       reject: 'Reject',
       alwaysTitle: 'Always allow this command?',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
-      alwaysAllow: 'Always allow',
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysAllow: 'Always allow'
     },
     clarify: {
       notReady: 'Clarify request is not ready yet',
@@ -1642,8 +1697,8 @@ export const sn = defineLocale({
       continueLabel: 'Continue',
       lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
       lateAnswerTip: 'Draft this answer as a follow-up message',
-      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.',
-    },
+      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.'
+    }
   },
   common: {
     apply: 'Bvumidza',
@@ -1684,7 +1739,7 @@ export const sn = defineLocale({
     update: 'Gadzira',
     tryHint: term => `Pindura “${term}”`,
     on: 'Pachena',
-    off: 'Pamusoro',
+    off: 'Pamusoro'
   },
   fileMenu: {
     revealFinder: 'Ratidza mu Finder',
@@ -1699,10 +1754,11 @@ export const sn = defineLocale({
     renameLabel: 'Zita Itsva',
     deleteTitle: name => `Svisa ${name}?`,
     deleteBody: 'Zvichakwedzerwa muChikwata — unogona kuzvibvumidza ipapo.',
-    pathCopied: 'Nzira yakakopiwa',
+    pathCopied: 'Nzira yakakopiwa'
   },
   remoteDisplayBanner: {
-    message: reason => `Kugadzirisa softwea yakachengeteka — disipure yekureba yakawonekwa (${reason}). Kukurumidza kwaGPU kwakavharwa kuzvivira kuchena.`,
+    message: reason =>
+      `Kugadzirisa softwea yakachengeteka — disipure yekureba yakawonekwa (${reason}). Kukurumidza kwaGPU kwakavharwa kuzvivira kuchena.`
   },
   billingBlock: {
     titleOpenamer: 'Makrediti aOpenAmer apera',
@@ -1710,7 +1766,7 @@ export const sn = defineLocale({
     fallbackMessage: 'Akhaunti yako inopera makrediti. Wedzera makrediti kuti uende mberi.',
     openBilling: 'Vhura bhiringu',
     addCredits: 'Wedzera makrediti',
-    dismiss: 'Ramba',
+    dismiss: 'Ramba'
   },
   titlebar: {
     hideSidebar: 'Famba saidiba',
@@ -1727,7 +1783,7 @@ export const sn = defineLocale({
     openStarmap: 'Budirira gurafu yememori',
     openKeybinds: 'Kuchinja keyboard',
     layoutEditor: 'Editor ye layout',
-    layoutEditorTitle: 'Editor ye layout — ⌘-click inobvisa layout',
+    layoutEditorTitle: 'Editor ye layout — ⌘-click inobvisa layout'
   },
   language: {
     label: 'Mutauro',
@@ -1736,7 +1792,7 @@ export const sn = defineLocale({
     saveError: 'Kusasuka kwemutauro kwakwira',
     switchTo: 'Shandura mutauro',
     searchPlaceholder: 'Shanda mutauro…',
-    noResults: 'Hakuna mutauro wakawanzwa',
+    noResults: 'Hakuna mutauro wakawanzwa'
   },
   starmap: {
     title: 'Gurafa yeRukovhiro',
@@ -1753,7 +1809,8 @@ export const sn = defineLocale({
     emptyTitle: 'Hakuna chakadzidzwi',
     emptyDesc: 'Nguva OpenAmer iri kubatsira ujuwo nechikumbiro mubasa rako, zvinobuda pano.',
     share: 'Batanidza mapi',
-    shareHint: 'Kopera kodi kuti ubatanidze mapi iyi, kana upeiste mumwe kuti igadzirwe. Inoenderana nezve mutengo chekwakwa, si chikumbiro chako kana mazwi ojuwo.',
+    shareHint:
+      'Kopera kodi kuti ubatanidze mapi iyi, kana upeiste mumwe kuti igadzirwe. Inoenderana nezve mutengo chekwakwa, si chikumbiro chako kana mazwi ojuwo.',
     shareTitle: 'Isa / budisa mapi',
     sharePlaceholder: 'Peista kodi ye mapi…',
     copy: 'Kopera kodi ye mapi',
@@ -1763,7 +1820,7 @@ export const sn = defineLocale({
     importEmpty: 'Peista kodi ye mapi kuti igadzirwe.',
     importSuccess: nodes => `Gadzirwa mapi ine ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'mapi yakaiswa',
-    resetToMine: 'Fara kumapi yangu',
+    resetToMine: 'Fara kumapi yangu'
   },
   agents: {
     close: 'Vala vashandi',
@@ -1793,7 +1850,7 @@ export const sn = defineLocale({
     ageDays: days => `${days}d yapfuura`,
     durationSeconds: seconds => `${seconds} masekonzi`,
     durationMinutes: (minutes, seconds) => `${minutes} maminitsi ${seconds} masekonzi`,
-    tokens: value => `${value} matokeni`,
+    tokens: value => `${value} matokeni`
   },
   commandCenter: {
     close: 'Dzima senta yechikamu',
@@ -1815,7 +1872,8 @@ export const sn = defineLocale({
       placeholder: 'Tsoka mhuka…',
       loading: 'Kupakisa geleri ye mhuka-dex…',
       error: 'Haikwani kufamba geleri ye mhuka-dex.',
-      staleBackend: 'Gadzira OpenAmer zvachinangwa kushandisa mhuka — system yakapamberi yakanga iripo pamberi pechishandiso ichi.',
+      staleBackend:
+        'Gadzira OpenAmer zvachinangwa kushandisa mhuka — system yakapamberi yakanga iripo pamberi pechishandiso ichi.',
       empty: 'Hakuna mhuka inofanana.',
       turnOff: 'Dzima',
       turnOn: 'Simudza',
@@ -1823,7 +1881,7 @@ export const sn = defineLocale({
       generatedTag: 'Yakabudirwa',
       adoptFailed: 'Haikwani kugadzirira mhuka iyo.',
       toggleFailed: 'Haikwani kushandura mhuka.',
-      noneAvailable: 'Hakuna mhuka inowanikwa — sarudza imwe pasi kuti ugadzire.',
+      noneAvailable: 'Hakuna mhuka inowanikwa — sarudza imwe pasi kuti ugadzire.'
     },
     generatePet: {
       title: 'Budisira mhuka',
@@ -1852,7 +1910,7 @@ export const sn = defineLocale({
       referenceImageTooLarge: 'Mufananidzo wekureva wakakura zvakanyanya. Shandisa wakaderera pa 16 MB.',
       referenceImageInvalid: 'Haikwanisi kuverenga mufananidzo uyu. Edza PNG, JPG, WebP, kana GIF.',
       adopt: 'Tora',
-      startOver: 'Tanga zvakare',
+      startOver: 'Tanga zvakare'
     },
     installTheme: {
       title: 'Isa theme…',
@@ -1864,7 +1922,7 @@ export const sn = defineLocale({
       install: 'Isa',
       installing: 'Kuiswa...',
       installed: 'Yaiswa',
-      installs: count => `${count} kuiswa`,
+      installs: count => `${count} kuiswa`
     },
     settingsFields: 'Nzvimbo dzeSettings',
     mcpServers: 'Maseva eMCP',
@@ -1873,49 +1931,49 @@ export const sn = defineLocale({
       maintenance: 'Kugadzirisa',
       sessions: 'Zvikamu',
       system: 'Sisitimu',
-      usage: 'Kushandiswa',
+      usage: 'Kushandiswa'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostics, backups, curator, uye data remu memory',
       sessions: 'Tsvaga uye ronga sessions',
       system: 'Status, logs, uye zviito zvesystem',
-      usage: 'Token, mutengo, uye kushanda kwe skill pane nguva',
+      usage: 'Token, mutengo, uye kushanda kwe skill pane nguva'
     },
     nav: {
       newChat: {
         title: 'Session itsva',
-        detail: 'Tanga session itsva',
+        detail: 'Tanga session itsva'
       },
       settings: {
         title: 'Zvirongwa',
-        detail: 'Ronga OpenAmer desktop',
+        detail: 'Ronga OpenAmer desktop'
       },
       skills: {
         title: 'Zvinokwanisa kuitwa',
-        detail: 'Skills, tools, uye MCP servers',
+        detail: 'Skills, tools, uye MCP servers'
       },
       messaging: {
         title: 'Kutumirana mameseji',
-        detail: 'Ronga Telegram, Slack, Discord, nezvimwe',
+        detail: 'Ronga Telegram, Slack, Discord, nezvimwe'
       },
       artifacts: {
         title: 'Zvakagadzirwa',
-        detail: 'Tarisa zvabuda',
-      },
+        detail: 'Tarisa zvabuda'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Paneru yezvikamu',
-        detail: 'Tsvaga, pin, uye ronga sessions',
+        detail: 'Tsvaga, pin, uye ronga sessions'
       },
       system: {
         title: 'Paneru yesisitimu',
-        detail: 'Mamiriro egedhi, marekodhi, tangazve/gadziridza',
+        detail: 'Mamiriro egedhi, marekodhi, tangazve/gadziridza'
       },
       usage: {
         title: 'Paneru yemashandisirwo',
-        detail: 'Token, mutengo, uye kushanda kwe skill',
-      },
+        detail: 'Token, mutengo, uye kushanda kwe skill'
+      }
     },
     providerNavigate: 'Famba',
     providerSessions: 'Zvirongwa',
@@ -1970,7 +2028,8 @@ export const sn = defineLocale({
       backup: 'Gadzira kopi yekuchengetedza',
       backupDesc: 'Tsindira marongero, zviyeuchidzo, hunyanzvi nezvikamu mufaira rimwe',
       debugShare: 'Govera ruzivo rwekugadzirisa zvikanganiso',
-      debugShareDesc: 'Isa mushumo wakabviswa mashoko akavanzika nemarekodhi, uwane zvinongedzo zvekugovera (zvinodzimwa zvega mumaawa 6)',
+      debugShareDesc:
+        'Isa mushumo wakabviswa mashoko akavanzika nemarekodhi, uwane zvinongedzo zvekugovera (zvinodzimwa zvega mumaawa 6)',
       debugShareRunning: 'Kuisa mushumo wekugadzirisa zvikanganiso...',
       debugShareLinks: 'Zvinongedzo zvekugovera',
       debugShareFailed: 'Kugovera ruzivo rwekugadzirisa zvikanganiso kwakundikana',
@@ -2003,8 +2062,8 @@ export const sn = defineLocale({
       actionStarted: name => `${name} yatanga — kuverenga zviri kuwedzerwa mugwaro rezviitiko...`,
       actionFailed: name => `${name} yatadza kutanga`,
       running: 'Iri kushanda...',
-      viewLog: 'Nhoroondo yezviito',
-    },
+      viewLog: 'Nhoroondo yezviito'
+    }
   },
   messaging: {
     search: 'Tsvaga mameseji...',
@@ -2019,7 +2078,7 @@ export const sn = defineLocale({
       not_configured: 'Inoda kugadziriswa',
       pending_restart: 'Inoda kutangwazve',
       retrying: 'Iri kuedzazve',
-      startup_failed: 'Kutanga kwakundikana',
+      startup_failed: 'Kutanga kwakundikana'
     },
     unknown: 'Hazvizivikanwi',
     hintPendingRestart: 'Tangazve gedhi kubva pabhawa remamiriro kuti shanduko iyi ishande.',
@@ -2058,127 +2117,126 @@ export const sn = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Chiratidzo chebhoti',
         help: 'Gadzira bhoti uchishandisa @BotFather, wonamira chiratidzo chainokupa.',
-        placeholder: 'Namira tokeni yebhoti reTelegram',
+        placeholder: 'Namira tokeni yebhoti reTelegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'MaID evashandisi veTelegram vanobvumidzwa',
-        help: 'Zvinokurudzirwa. MaID enhamba anobva ku@userinfobot, akapatsanurwa nemakoma. Pasina izvi, chero ani zvake anogona kutumira bhoti rako meseji yakavanzika.',
+        help: 'Zvinokurudzirwa. MaID enhamba anobva ku@userinfobot, akapatsanurwa nemakoma. Pasina izvi, chero ani zvake anogona kutumira bhoti rako meseji yakavanzika.'
       },
       TELEGRAM_PROXY: {
         label: 'URL yemumiririri',
-        help: 'Inongodiwa pamanetiweki akavharirwa Telegram.',
+        help: 'Inongodiwa pamanetiweki akavharirwa Telegram.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Tokeni yebhoti',
-        help: 'Gadzira chirongwa muDiscord Developer Portal, wedzera bhoti, wobva wanamira tokeni yaro.',
+        help: 'Gadzira chirongwa muDiscord Developer Portal, wedzera bhoti, wobva wanamira tokeni yaro.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'MaID evashandisi veDiscord vanobvumidzwa',
-        help: 'Zvinokurudzirwa. MaID evashandisi veDiscord akapatsanurwa nemakoma.',
+        help: 'Zvinokurudzirwa. MaID evashandisi veDiscord akapatsanurwa nemakoma.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Maitiro ekupindura',
-        help: 'yekutanga, dzose, kana kudzima.',
+        help: 'yekutanga, dzose, kana kudzima.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Bvumira vashandisi vese veDiscord',
-        help: 'Zvekuvandudza chete. Kana zvakabatidzwa, chero munhu anogona kutumira bot meseji yakananga pasina runyorwa rwevanobvumidzwa.',
+        help: 'Zvekuvandudza chete. Kana zvakabatidzwa, chero munhu anogona kutumira bot meseji yakananga pasina runyorwa rwevanobvumidzwa.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID yechiteshi chikuru',
-        help: 'Chiteshi chinotumirwa nebot mameseji otomatiki (zvinobuda mucron, zviyeuchidzo).',
+        help: 'Chiteshi chinotumirwa nebot mameseji otomatiki (zvinobuda mucron, zviyeuchidzo).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Zita rechiteshi chikuru',
-        help: 'Zita rinoratidzwa rechiteshi chikuru mumarekodhi nezvinobuda zvemamiriro.',
+        help: 'Zita rinoratidzwa rechiteshi chikuru mumarekodhi nezvinobuda zvemamiriro.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Bvumira vese vashandisi veiMessage',
-        help: 'Kana zvakabatidzwa, svetuka runyorwa rwevanobvumidzwa rweBlueBubbles.',
+        help: 'Kana zvakabatidzwa, svetuka runyorwa rwevanobvumidzwa rweBlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Bvumira vese vashandisi veMattermost',
+        label: 'Bvumira vese vashandisi veMattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Chiteshi chikuru',
+        label: 'Chiteshi chikuru'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Bvumira vese vashandisi veQQ',
+        label: 'Bvumira vese vashandisi veQQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Chiteshi chikuru cheQQ',
-        help: 'Chiteshi kana boka rinoshandiswa necron pakutumira kana pasina rimwe rasarudzwa.',
+        help: 'Chiteshi kana boka rinoshandiswa necron pakutumira kana pasina rimwe rasarudzwa.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Zita rechiteshi chekutanga cheQQ',
+        label: 'Zita rechiteshi chekutanga cheQQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Chiratidzo chebhoti reSlack',
         help: 'Shandisa chiratidzo chebhoti chinobva paOAuth neMvumo mushure mekuisa app yako yeSlack.',
-        placeholder: 'Namira chiratidzo chebhoti reSlack',
+        placeholder: 'Namira chiratidzo chebhoti reSlack'
       },
       SLACK_APP_TOKEN: {
         label: 'Chiratidzo cheapp yeSlack',
         help: 'Shandisa chiratidzo chechikamu cheapp chinodiwa paNzira yeSoketi.',
-        placeholder: 'Namira chiratidzo cheapp yeSlack',
+        placeholder: 'Namira chiratidzo cheapp yeSlack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'MaID evashandisi veSlack vanobvumirwa',
-        help: 'Zvinokurudzirwa. MaID evashandisi veSlack akapatsanurwa nemakoma.',
+        help: 'Zvinokurudzirwa. MaID evashandisi veSlack akapatsanurwa nemakoma.'
       },
       MATTERMOST_URL: {
         label: 'URL yeseva',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Chiratidzo chebhoti',
+        label: 'Chiratidzo chebhoti'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'MaID evashandisi vanobvumidzwa',
-        help: 'Zvinokurudzirwa. MaID evashandisi veMattermost akapatsanurwa nemakoma.',
+        help: 'Zvinokurudzirwa. MaID evashandisi veMattermost akapatsanurwa nemakoma.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL yeseva yekumba',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Tokeni yekupinda',
+        label: 'Tokeni yekupinda'
       },
       MATRIX_USER_ID: {
         label: 'ID yemushandisi webhoti',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'MaID evashandisi veMatrix vanobvumidzwa',
-        help: 'Zvinokurudzirwa. Patsanura maID evashandisi nemakoma, mufomati ye@user:server.',
+        help: 'Zvinokurudzirwa. Patsanura maID evashandisi nemakoma, mufomati ye@user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL yebhiriji reSignal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL yebhiriji reREST resignal-cli riri kushanda.',
+        help: 'URL yebhiriji reREST resignal-cli riri kushanda.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Nhamba yefoni',
-        help: 'Nhamba yakanyoreswa pabhiriji rako resignal-cli.',
+        help: 'Nhamba yakanyoreswa pabhiriji rako resignal-cli.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Vashandisi veSignal vanobvumidzwa',
-        help: 'Zvinokurudzirwa. Patsanura zviziviso zveSignal nemakoma.',
+        help: 'Zvinokurudzirwa. Patsanura zviziviso zveSignal nemakoma.'
       },
       WHATSAPP_ENABLED: {
         label: 'Batidza zambuko reWhatsApp',
-        help: 'Zvinogadzwa zvoga neswichi iri pazasi. Usazvichinja kunze kwekunge uchiziva kuti unozvida.',
+        help: 'Zvinogadzwa zvoga neswichi iri pazasi. Usazvichinja kunze kwekunge uchiziva kuti unozvida.'
       },
       WHATSAPP_MODE: {
-        label: 'Maitiro ezambuko',
+        label: 'Maitiro ezambuko'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Vashandisi veWhatsApp vanobvumidzwa',
-        help: 'Zvinokurudzirwa. Nhamba dzenhare kana zvitupa zveWhatsApp zvakaparadzaniswa nemakoma.',
-      },
+        help: 'Zvinokurudzirwa. Nhamba dzenhare kana zvitupa zveWhatsApp zvakaparadzaniswa nemakoma.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Tsvaga zvikochekero zvewebhu...',
@@ -2188,7 +2246,8 @@ export const sn = defineLocale({
     hint: 'Shanduko dzekunyoresa dzinoshanda pakarepo kana mugamuchiri achinge ava kushanda. Kunyoresa kwakadzimwa kunoramba zviitiko zvinopinda.',
     empty: 'Hapasati pava nekunyoresa kwezvikochekero zvewebhu.',
     disabledTitle: 'Mugamuchiri wezvikochekero zvewebhu akadzimwa',
-    disabledBody: 'Mawebhook ipuratifomu yawo yega yekupinda. Abatidze pano kuti agamuchire zviitiko zveHTTP zvinopinda; nzira dzekutaura dzinongodiwa kana kunyoresa kuchitumira kuTelegram, Discord, Slack, kana imwe nzira.',
+    disabledBody:
+      'Mawebhook ipuratifomu yawo yega yekupinda. Abatidze pano kuti agamuchire zviitiko zveHTTP zvinopinda; nzira dzekutaura dzinongodiwa kana kunyoresa kuchitumira kuTelegram, Discord, Slack, kana imwe nzira.',
     enable: 'Batidza mawebhook',
     enabling: 'Zviri kubatidzwa...',
     enabled: (name: string) => `Yakabatidzwa: "${name}"`,
@@ -2205,7 +2264,8 @@ export const sn = defineLocale({
     toggleFailed: (name: string) => `Zvatadza kugadzirisa "${name}"`,
     newSubscription: 'Kunyoresa kutsva',
     restarting: 'Gedhi riri kutangazve...',
-    restartNeeded: 'Zviziviso zvewebhu zvakabatidzwa, asi gedhi richiri kuda kutangwazve kuti chigamuchiri chitange kushanda.',
+    restartNeeded:
+      'Zviziviso zvewebhu zvakabatidzwa, asi gedhi richiri kuda kutangwazve kuti chigamuchiri chitange kushanda.',
     restartGateway: 'Tangazve gedhi',
     restartingGateway: 'Zviri kutangazve...',
     restartFailed: (detail: string) => `Gedhi ratadza kutangazve${detail}`,
@@ -2241,8 +2301,8 @@ export const sn = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'Imeyili',
-      github_comment: 'Mhinduro yeGitHub',
-    },
+      github_comment: 'Mhinduro yeGitHub'
+    }
   },
   profiles: {
     close: 'Vhara mapurofayiri',
@@ -2293,7 +2353,8 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
     deleteDescMid: ' uye kubvisa dhairekitori rayo re ',
     deleteDescSuffix: '. Izvi hazvigoni kudzoserwa shure.',
     deleting: 'Kudzima...',
-    createDesc: 'Mapurofayiri inzvimbo dzakazvimirira dzeOpenAmer: dzine marongero, hunyanzvi, neSOUL.md zvakaparadzana.',
+    createDesc:
+      'Mapurofayiri inzvimbo dzakazvimirira dzeOpenAmer: dzine marongero, hunyanzvi, neSOUL.md zvakaparadzana.',
     nameLabel: 'Zita',
     cloneFrom: 'Kopa kubva ku',
     cloneFromNone: 'Hapana (isina chinhu)',
@@ -2305,7 +2366,8 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
     creating: 'Kugadzira...',
     createAction: 'Gadzira purogiramu yezvirongwa',
     renameTitle: 'Tumidzazve purogiramu yezvirongwa',
-    renameDescPrefix: 'Kutumidzazve kunovandudza dhairekitori repurogiramu yezvirongwa nemagwaro ekuraira anoiputira ari mu ',
+    renameDescPrefix:
+      'Kutumidzazve kunovandudza dhairekitori repurogiramu yezvirongwa nemagwaro ekuraira anoiputira ari mu ',
     renameDescSuffix: '.',
     newNameLabel: 'Zita idzva',
     renaming: 'Kutumidzazve...',
@@ -2320,7 +2382,7 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
     failedLoadSoul: 'Tatadza kurodha SOUL.md',
     failedSaveSoul: 'Tatadza kuchengetedza SOUL.md',
     failedCreate: 'Tatadza kugadzira purofayiri',
-    failedRename: 'Tatadza kushandura zita repurofayiri',
+    failedRename: 'Tatadza kushandura zita repurofayiri'
   },
   cron: {
     close: 'Vhara mabasa enguva',
@@ -2335,14 +2397,14 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
       paused: 'yambomiswa',
       disabled: 'yakadzimwa',
       error: 'kanganiso',
-      completed: 'yapera',
+      completed: 'yapera'
     },
     deliveryLabels: {
       local: 'Komputa ino',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Imeyili',
+      email: 'Imeyili'
     },
     scheduleLabels: {
       daily: 'Zuva nezuva',
@@ -2351,7 +2413,7 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
       monthly: 'Mwedzi nemwedzi',
       hourly: 'Awa neawa',
       'every-15-minutes': 'Maminitsi 15 ega ega',
-      custom: 'Zvigadzirire',
+      custom: 'Zvigadzirire'
     },
     scheduleHints: {
       daily: 'Zuva nezuva na9:00 mangwanani',
@@ -2360,7 +2422,7 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
       monthly: 'Zuva rekutanga remwedzi wega wega na9:00 mangwanani',
       hourly: 'Pakutanga kweawa imwe neimwe',
       'every-15-minutes': 'Pamaminitsi 15 ega ega',
-      custom: 'Manyorerwo eCron kana mutauro wakajairika',
+      custom: 'Manyorerwo eCron kana mutauro wakajairika'
     },
     days: {
       '0': 'Svondo',
@@ -2370,7 +2432,7 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
       '4': 'China',
       '5': 'Chishanu',
       '6': 'Mugovera',
-      '7': 'Svondo',
+      '7': 'Svondo'
     },
     dayFallback: value => `zuva ${value}`,
     everyDayAt: time => `Mazuva ese na${time}`,
@@ -2380,7 +2442,8 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
     topOfHour: 'Pakutanga kweawa yega yega',
     everyHourAt: minute => `Awa yega yega pa:${minute}`,
     newCron: 'Cron itsva',
-    emptyDescNew: 'Ronga kuti murayiro uitwe uchishandisa chirevo checron. OpenAmer ichauita yotumira zvabuda kwaunosarudza.',
+    emptyDescNew:
+      'Ronga kuti murayiro uitwe uchishandisa chirevo checron. OpenAmer ichauita yotumira zvabuda kwaunosarudza.',
     emptyDescSearch: 'Edza kutsvaga nemashoko akatambanuka.',
     emptyTitleNew: 'Hapasati pava nemabasa akarongwa',
     emptyTitleSearch: 'Hapana zvawanikwa',
@@ -2439,7 +2502,7 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
     createAction: 'Create cron',
     tabs: {
       jobs: 'Jobs',
-      blueprints: 'Blueprints',
+      blueprints: 'Blueprints'
     },
     blueprints: {
       tab: 'Blueprints',
@@ -2453,8 +2516,8 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
       loading: 'Loading blueprints...',
       failedLoad: 'Failed to load blueprints',
       emptyTitle: 'No blueprints available',
-      emptyDesc: 'No automation blueprints are available on this backend.',
-    },
+      emptyDesc: 'No automation blueprints are available on this backend.'
+    }
   },
   artifacts: {
     search: 'Search artifacts...',
@@ -2488,7 +2551,7 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
     kindLink: 'link',
     chat: 'Chat',
     copyUrl: 'Copy URL',
-    copyPath: 'Copy path',
+    copyPath: 'Copy path'
   },
   install: {
     stageStates: {
@@ -2496,17 +2559,19 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
       running: 'Installing',
       succeeded: 'Done',
       skipped: 'Skipped',
-      failed: 'Failed',
+      failed: 'Failed'
     },
     oneTimeTitle: 'OpenAmer needs a one-time install',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     installCommand: 'Install command',
     copyCommand: 'Copy command',
     viewDocs: 'View install docs',
     installTo: 'Will install to',
     retryAfterRun: 'I’ve run it -- retry',
     setupChoiceTitle: 'Set up OpenAmer Desktop',
-    setupChoiceDesc: 'Connect this app to a OpenAmer gateway you already run, or install OpenAmer locally on this computer.',
+    setupChoiceDesc:
+      'Connect this app to a OpenAmer gateway you already run, or install OpenAmer locally on this computer.',
     connectExistingTitle: 'Connect to existing OpenAmer',
     connectExistingShort: 'Connect existing',
     connectExistingDesc: 'Use a remote backend with a session token or browser sign-in. No local install will start.',
@@ -2514,7 +2579,8 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
     installLocalDesc: 'Download OpenAmer, create its Python environment, and run the backend on this computer.',
     localStartUnavailable: 'Local installation could not start. Restart OpenAmer Desktop and try again.',
     remoteSetupTitle: 'Connect to existing OpenAmer',
-    remoteSetupDesc: 'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
+    remoteSetupDesc:
+      'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
     remoteUrlTitle: 'Gateway URL',
     remoteUrlDesc: 'Use the base URL of the OpenAmer gateway, including https:// when remote.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2541,8 +2607,10 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
     failedTitle: 'Installation failed',
     settingUpTitle: 'Setting up OpenAmer Agent',
     finishingTitle: 'Finishing up',
-    failedDesc: 'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
-    activeDesc: 'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
+    failedDesc:
+      'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
+    activeDesc:
+      'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
     fetchingManifest: 'Fetching installer manifest...',
@@ -2556,7 +2624,7 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
     transcriptSaved: 'Full transcript saved to',
     copiedOutput: 'Copied!',
     copyOutput: 'Copy output',
-    reloadRetry: 'Reload and retry',
+    reloadRetry: 'Reload and retry'
   },
   onboarding: {
     headerTitle: "Let's get you setup with OpenAmer Agent",
@@ -2576,28 +2644,29 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
     apiKeyOptions: {
       fireworks: {
         short: 'direct model API',
-        description: 'Direct access to models hosted by Fireworks AI.',
+        description: 'Direct access to models hosted by Fireworks AI.'
       },
       openrouter: {
         short: 'one key, many models',
-        description: 'Hosts hundreds of models behind a single key. Good default for new installs.',
+        description: 'Hosts hundreds of models behind a single key. Good default for new installs.'
       },
       openai: {
         short: 'GPT-class models',
-        description: 'Direct access to OpenAI models.',
+        description: 'Direct access to OpenAI models.'
       },
       gemini: {
         short: 'Gemini models',
-        description: 'Direct access to Google Gemini models.',
+        description: 'Direct access to Google Gemini models.'
       },
       xai: {
         short: 'Grok models',
-        description: 'Direct access to xAI Grok models.',
+        description: 'Direct access to xAI Grok models.'
       },
       local: {
         short: 'self-hosted',
-        description: 'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).',
-      },
+        description:
+          'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).'
+      }
     },
     backToSignIn: 'Back to sign in',
     getKey: 'Get a key',
@@ -2610,7 +2679,7 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
     flowSubtitles: {
       pkce: 'Opens your browser to sign in, then continues here',
       device_code: 'Opens a verification page in your browser — OpenAmer connects automatically',
-      external: 'Sign in once in your terminal, then come back to chat',
+      external: 'Sign in once in your terminal, then come back to chat'
     },
     startingSignIn: provider => `Starting sign-in for ${provider}...`,
     verifyingCode: provider => `Verifying your code with ${provider}...`,
@@ -2624,10 +2693,12 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
     copyAuthCode: 'Copy the authorization code and paste it below.',
     pasteAuthCode: 'Paste authorization code',
     reopenAuthPage: 'Re-open authorization page',
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
     reopenSignInPage: 'Re-open sign-in page',
     waitingAuthorize: 'Waiting for you to authorize...',
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     signedIn: "I've signed in",
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     reopenVerification: 'Re-open verification page',
@@ -2639,7 +2710,7 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
     change: 'Change',
     startChatting: 'Begin',
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'Switch model',
@@ -2655,13 +2726,13 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
     free: 'Free',
     freeTier: 'Free tier',
     priceTitle: 'Input / Output price per million tokens',
-    wasPrice: 'was',
+    wasPrice: 'was'
   },
   modelVisibility: {
     title: 'Models',
     search: 'Search models',
     noAuthenticatedProviders: 'No authenticated providers.',
-    addProvider: 'Add provider…',
+    addProvider: 'Add provider…'
   },
   shell: {
     windowControls: 'Window controls',
@@ -2672,7 +2743,7 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
       noModels: 'No models found',
       editModels: 'Edit Models…',
       refreshModels: 'Refresh Models',
-      fast: 'Fast',
+      fast: 'Fast'
     },
     modelOptions: {
       noOptions: 'No options for this model',
@@ -2688,7 +2759,7 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
       max: 'Max',
       ultra: 'Ultra',
       updateFailed: 'Model option update failed',
-      fastFailed: 'Fast mode update failed',
+      fastFailed: 'Fast mode update failed'
     },
     gatewayMenu: {
       gateway: 'Gateway',
@@ -2703,7 +2774,7 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
       connection: label => `Connection: ${label}`,
       recentActivity: 'Recent activity',
       viewAllLogs: 'View all logs →',
-      messagingPlatforms: 'Messaging platforms',
+      messagingPlatforms: 'Messaging platforms'
     },
     approvalMode: {
       title: 'Approval mode',
@@ -2713,7 +2784,7 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
       smart: 'Smart',
       smartDescription: 'Automatically assess actions and ask when needed',
       off: 'Off',
-      offDescription: 'Run without approval prompts',
+      offDescription: 'Run without approval prompts'
     },
     statusbar: {
       unknown: 'unknown',
@@ -2769,13 +2840,13 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
           skills: 'Skills',
           subagent_definitions: 'Subagent definitions',
           system_prompt: 'System prompt',
-          tool_definitions: 'Tool definitions',
+          tool_definitions: 'Tool definitions'
         },
         empty: 'No context data yet',
         loading: 'Loading breakdown…',
         percentFull: percent => `${percent}% Full`,
         title: 'Context Usage',
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Open context usage breakdown',
       session: 'Session',
@@ -2788,8 +2859,8 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
       openModelPicker: 'Open model picker',
       modelPinned: 'pinned by you; new chats use this instead of the Settings default',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Right sidebar',
@@ -2825,7 +2896,7 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
     terminalNew: 'New terminal',
     terminalCloseOthers: 'Close others',
     terminalCloseAll: 'Close all',
-    addToChat: 'Add to chat',
+    addToChat: 'Add to chat'
   },
   zones: {
     showHeader: 'Show header',
@@ -2833,7 +2904,8 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
     minimize: 'Minimize',
     restore: 'Restore',
     closeRunningTitle: 'Close running tab?',
-    closeRunningBody: 'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
+    closeRunningBody:
+      'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
     closeRunningConfirm: 'Close tab',
     closeOthers: 'Close others',
     closeToRight: 'Close to the right',
@@ -2870,7 +2942,7 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
     saveApply: 'Save & apply',
     notExpressible: 'this arrangement interlocks (pinwheel) — not expressible as nested splits yet',
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2881,7 +2953,7 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
     sudoPlaceholder: 'sudo password',
     secretTitle: 'Secret required',
     secretDesc: 'OpenAmer needs a credential to continue.',
-    secretPlaceholder: 'secret value',
+    secretPlaceholder: 'secret value'
   },
   desktop: {
     audioReadFailed: 'Could not read recorded audio',
@@ -2898,7 +2970,8 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Could not toggle YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     unknownProfile: 'Unknown profile',
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
@@ -2909,7 +2982,8 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
     editFailed: 'Edit failed',
     resumeFailed: 'Resume failed',
     resumeStrandedTitle: "Couldn't load this session",
-    resumeStrandedBody: 'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
+    resumeStrandedBody:
+      'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
     resumeRetry: 'Retry',
     nothingToBranch: 'Nothing to branch',
     branchNeedsChat: 'Start or resume a chat before branching.',
@@ -2949,31 +3023,31 @@ Siya pasina kuti uchengete zvakagara zviripo zve${mode}.`,
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
       failed: error => `Handoff failed: ${error}`,
-      timedOut: 'Timed out waiting for the gateway. Is `openamer gateway` running?',
-    },
+      timedOut: 'Timed out waiting for the gateway. Is `openamer gateway` running?'
+    }
   },
   errors: {
     genericFailure: 'Something went wrong',
     boundaryTitle: 'Something broke in the interface',
     boundaryDesc: 'The view hit an unexpected error. Your chats and settings are safe.',
     reloadWindow: 'Reload window',
-    openLogs: 'Open logs',
+    openLogs: 'Open logs'
   },
   ui: {
     search: {
-      clear: 'Clear search',
+      clear: 'Clear search'
     },
     pagination: {
       label: 'pagination',
       previous: 'Prev',
       previousAria: 'Go to previous page',
       next: 'Next',
-      nextAria: 'Go to next page',
+      nextAria: 'Go to next page'
     },
     sidebar: {
       title: 'Sidebar',
       description: 'Displays the mobile sidebar.',
-      toggle: 'Toggle Sidebar',
-    },
-  },
+      toggle: 'Toggle Sidebar'
+    }
+  }
 })

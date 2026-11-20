@@ -6,249 +6,253 @@
 import { defineFieldCopy } from '@/app/settings/field-copy'
 
 export const FIELD_LABELS: Record<string, string> = defineFieldCopy({
-    model: "Προεπιλεγμένο Μοντέλο",
-    modelContextLength: "Παράθυρο Πλαισίου",
-    fallbackProviders: "Εναλλακτικά Μοντέλα",
-    toolsets: "Ενεργά Σετ Εργαλείων",
-    timezone: "Ζώνη Ώρας",
-    display: {
-      personality: "Προσωπικότητα",
-      showReasoning: "Μπλοκ Συλλογισμού",
+  model: 'Προεπιλεγμένο Μοντέλο',
+  modelContextLength: 'Παράθυρο Πλαισίου',
+  fallbackProviders: 'Εναλλακτικά Μοντέλα',
+  toolsets: 'Ενεργά Σετ Εργαλείων',
+  timezone: 'Ζώνη Ώρας',
+  display: {
+    personality: 'Προσωπικότητα',
+    showReasoning: 'Μπλοκ Συλλογισμού'
+  },
+  desktop: {
+    repoScanEnabled: 'Αυτόματη Ανακάλυψη Αποθετηρίων',
+    repoScanRoots: 'Ρίζες Ανακάλυψης Αποθετηρίων',
+    repoScanExcludePaths: 'Εξαιρεられた Μονοπάτια Αποθετηρίων'
+  },
+  agent: {
+    maxTurns: 'Μέγιστα Βήματα Πράκτορα',
+    imageInputMode: 'Συνημμένα Εικόνες',
+    apiMaxRetries: 'Επαναπροσπάθειες API',
+    serviceTier: 'Επίπεδο Υπηρεσίας',
+    toolUseEnforcement: 'Επιβολή Χρήσης Εργαλείων'
+  },
+  terminal: {
+    cwd: 'Φάκελος Εργασίας',
+    backend: 'Backend Εκτέλεσης',
+    timeout: 'Λήξη Χρόνου Εντολής',
+    persistentShell: 'Μόνιμο Shell',
+    envPassthrough: 'Διέλευση Περιβάλλοντος',
+    dockerImage: 'Εικόνα Docker',
+    singularityImage: 'Εικόνα Singularity',
+    modalImage: 'Εικόνα Modal',
+    daytonaImage: 'Εικόνα Daytona'
+  },
+  fileReadMaxChars: 'Όριο Ανάγνωσης Αρχείου',
+  toolOutput: {
+    maxBytes: 'Όριο Εξόδου Τερματικού',
+    maxLines: 'Όριο Σελίδας Αρχείου',
+    maxLineLength: 'Όριο Μήκους Γραμμής'
+  },
+  codeExecution: {
+    mode: 'Λειτουργία Εκτέλεσης Κώδικα'
+  },
+  approvals: {
+    mode: 'Λειτουργία Έγκρισης',
+    timeout: 'Λήξη Χρόνου Έγκρισης',
+    mcpReloadConfirm: 'Επιβεβαίωση Επανεκκίνησης MCP'
+  },
+  commandAllowlist: 'Λίστα Επιτρεπόμενων Εντολών',
+  security: {
+    redactSecrets: 'Απόκρυψη Μυστικών',
+    allowPrivateUrls: 'Επιτρέψτε Ιδιωτικά URL'
+  },
+  browser: {
+    allowPrivateUrls: 'Ιδιωτικά URL Προγράμματος Περιήγησης',
+    autoLocalForPrivateUrls: 'Τοπικός Περιηγητής για Ιδιωτικά URL'
+  },
+  checkpoints: {
+    enabled: 'Σημεία Αποκατάστασης Αρχείων',
+    maxSnapshots: 'Όριο Σημείων Αποκατάστασης'
+  },
+  voice: {
+    recordKey: 'Συντόμευση Φωνής',
+    maxRecordingSeconds: 'Μέγιστο Μήκος Ηχογράφησης',
+    autoTts: 'Ανάγνωση Απαντήσεων Φωναχτά'
+  },
+  stt: {
+    enabled: 'Ομιλία σε Κείμενο',
+    echoTranscripts: 'Αντήχηση Μεταγραφών',
+    provider: 'Πάροχος Ομιλίας σε Κείμενο',
+    local: {
+      model: 'Τοπικό Μοντέλο Μεταγραφής',
+      language: 'Γλώσσα Μεταγραφής'
     },
-    desktop: {
-      repoScanEnabled: "Αυτόματη Ανακάλυψη Αποθετηρίων",
-      repoScanRoots: "Ρίζες Ανακάλυψης Αποθετηρίων",
-      repoScanExcludePaths: "Εξαιρεられた Μονοπάτια Αποθετηρίων",
+    openai: {
+      model: 'Μοντέλο OpenAI STT'
     },
-    agent: {
-      maxTurns: "Μέγιστα Βήματα Πράκτορα",
-      imageInputMode: "Συνημμένα Εικόνες",
-      apiMaxRetries: "Επαναπροσπάθειες API",
-      serviceTier: "Επίπεδο Υπηρεσίας",
-      toolUseEnforcement: "Επιβολή Χρήσης Εργαλείων",
+    groq: {
+      model: 'Μοντέλο Groq STT'
     },
-    terminal: {
-      cwd: "Φάκελος Εργασίας",
-      backend: "Backend Εκτέλεσης",
-      timeout: "Λήξη Χρόνου Εντολής",
-      persistentShell: "Μόνιμο Shell",
-      envPassthrough: "Διέλευση Περιβάλλοντος",
-      dockerImage: "Εικόνα Docker",
-      singularityImage: "Εικόνα Singularity",
-      modalImage: "Εικόνα Modal",
-      daytonaImage: "Εικόνα Daytona",
+    mistral: {
+      model: 'Μοντέλο Mistral STT'
     },
-    fileReadMaxChars: "Όριο Ανάγνωσης Αρχείου",
-    toolOutput: {
-      maxBytes: "Όριο Εξόδου Τερματικού",
-      maxLines: "Όριο Σελίδας Αρχείου",
-      maxLineLength: "Όριο Μήκους Γραμμής",
+    elevenlabs: {
+      modelId: 'Μοντέλο ElevenLabs STT',
+      languageCode: 'Γλώσσα ElevenLabs',
+      tagAudioEvents: 'Ετικετοποίηση Ηχητικών Γεγονότων',
+      diarize: 'Διαχωρισμός Ομιλητών'
+    }
+  },
+  tts: {
+    provider: 'Πάροχος Κειμένου σε Ομιλία',
+    edge: {
+      voice: 'Φωνή Edge'
     },
-    codeExecution: {
-      mode: "Λειτουργία Εκτέλεσης Κώδικα",
+    openai: {
+      model: 'Μοντέλο OpenAI TTS',
+      voice: 'Φωνή OpenAI'
     },
-    approvals: {
-      mode: "Λειτουργία Έγκρισης",
-      timeout: "Λήξη Χρόνου Έγκρισης",
-      mcpReloadConfirm: "Επιβεβαίωση Επανεκκίνησης MCP",
+    elevenlabs: {
+      voiceId: 'Φωνή ElevenLabs',
+      modelId: 'Μοντέλο ElevenLabs'
     },
-    commandAllowlist: "Λίστα Επιτρεπόμενων Εντολών",
-    security: {
-      redactSecrets: "Απόκρυψη Μυστικών",
-      allowPrivateUrls: "Επιτρέψτε Ιδιωτικά URL",
+    xai: {
+      voiceId: 'Φωνή xAI (Grok)',
+      language: 'Γλώσσα xAI',
+      speed: 'Ταχύτητα Αναπαραγωγής xAI',
+      autoSpeechTags: 'Αυτόματες Ετικέτες Ομιλίας xAI',
+      optimizeStreamingLatency: 'Βελτιστοποίηση Καθυστέρησης Streaming xAI',
+      sampleRate: 'Ρυθμός Δειγματοληψίας xAI',
+      bitRate: 'Ρυθμός Bit xAI'
     },
-    browser: {
-      allowPrivateUrls: "Ιδιωτικά URL Προγράμματος Περιήγησης",
-      autoLocalForPrivateUrls: "Τοπικός Περιηγητής για Ιδιωτικά URL",
+    minimax: {
+      model: 'Μοντέλο MiniMax TTS',
+      voiceId: 'Φωνή MiniMax'
     },
-    checkpoints: {
-      enabled: "Σημεία Αποκατάστασης Αρχείων",
-      maxSnapshots: "Όριο Σημείων Αποκατάστασης",
+    mistral: {
+      model: 'Μοντέλο Mistral TTS',
+      voiceId: 'Φωνή Mistral'
     },
-    voice: {
-      recordKey: "Συντόμευση Φωνής",
-      maxRecordingSeconds: "Μέγιστο Μήκος Ηχογράφησης",
-      autoTts: "Ανάγνωση Απαντήσεων Φωναχτά",
+    gemini: {
+      model: 'Μοντέλο Gemini TTS',
+      voice: 'Φωνή Gemini'
     },
-    stt: {
-      enabled: "Ομιλία σε Κείμενο",
-      echoTranscripts: "Αντήχηση Μεταγραφών",
-      provider: "Πάροχος Ομιλίας σε Κείμενο",
-      local: {
-        model: "Τοπικό Μοντέλο Μεταγραφής",
-        language: "Γλώσσα Μεταγραφής",
-      },
-      openai: {
-        model: "Μοντέλο OpenAI STT",
-      },
-      groq: {
-        model: "Μοντέλο Groq STT",
-      },
-      mistral: {
-        model: "Μοντέλο Mistral STT",
-      },
-      elevenlabs: {
-        modelId: "Μοντέλο ElevenLabs STT",
-        languageCode: "Γλώσσα ElevenLabs",
-        tagAudioEvents: "Ετικετοποίηση Ηχητικών Γεγονότων",
-        diarize: "Διαχωρισμός Ομιλητών",
-      },
+    neutts: {
+      model: 'Μοντέλο NeuTTS',
+      device: 'Συσκευή NeuTTS'
     },
-    tts: {
-      provider: "Πάροχος Κειμένου σε Ομιλία",
-      edge: {
-        voice: "Φωνή Edge",
-      },
-      openai: {
-        model: "Μοντέλο OpenAI TTS",
-        voice: "Φωνή OpenAI",
-      },
-      elevenlabs: {
-        voiceId: "Φωνή ElevenLabs",
-        modelId: "Μοντέλο ElevenLabs",
-      },
-      xai: {
-        voiceId: "Φωνή xAI (Grok)",
-        language: "Γλώσσα xAI",
-        speed: "Ταχύτητα Αναπαραγωγής xAI",
-        autoSpeechTags: "Αυτόματες Ετικέτες Ομιλίας xAI",
-        optimizeStreamingLatency: "Βελτιστοποίηση Καθυστέρησης Streaming xAI",
-        sampleRate: "Ρυθμός Δειγματοληψίας xAI",
-        bitRate: "Ρυθμός Bit xAI",
-      },
-      minimax: {
-        model: "Μοντέλο MiniMax TTS",
-        voiceId: "Φωνή MiniMax",
-      },
-      mistral: {
-        model: "Μοντέλο Mistral TTS",
-        voiceId: "Φωνή Mistral",
-      },
-      gemini: {
-        model: "Μοντέλο Gemini TTS",
-        voice: "Φωνή Gemini",
-      },
-      neutts: {
-        model: "Μοντέλο NeuTTS",
-        device: "Συσκευή NeuTTS",
-      },
-      kittentts: {
-        model: "Μοντέλο KittenTTS",
-        voice: "Φωνή KittenTTS",
-      },
-      piper: {
-        voice: "Φωνή Piper",
-      },
-      deepinfra: {
-        model: "Μοντέλο DeepInfra TTS",
-        voice: "Φωνή DeepInfra",
-      },
+    kittentts: {
+      model: 'Μοντέλο KittenTTS',
+      voice: 'Φωνή KittenTTS'
     },
-    memory: {
-      memoryEnabled: "Μόνιμη Μνήμη",
-      userProfileEnabled: "Προφίλ Χρήστη",
-      memoryCharLimit: "Προϋπολογισμός Μνήμης",
-      userCharLimit: "Προϋπολογισμός Προφίλ",
-      provider: "Πάροχος Μνήμης",
+    piper: {
+      voice: 'Φωνή Piper'
     },
-    context: {
-      engine: "Μηχανή Πλαισίου",
-    },
-    compression: {
-      enabled: "Αυτόματη Συμπίεση",
-      threshold: "Όριο Συμπίεσης",
-      targetRatio: "Στόχος Συμπίεσης",
-      protectLastN: "Προστατευμένα Πρόσφατα Μηνύματα",
-    },
-    delegation: {
-      model: "Μοντέλο Υποπράκτορα",
-      provider: "Πάροχος Υποπράκτορα",
-      maxIterations: "Όριο Σειράς Υποπράκτορα",
-      maxConcurrentChildren: "Παράλληλοι Υποπράκτορες",
-      childTimeoutSeconds: "Λήξη Χρόνου Υποπράκτορα",
-      reasoningEffort: "Προσπάθεια Συλλογισμού Υποπράκτορα",
-    },
-    updates: {
-      nonInteractiveLocalChanges: "Τοπικές Αλλαγές Ενημέρωσης Εφαρμογής",
-    },
+    deepinfra: {
+      model: 'Μοντέλο DeepInfra TTS',
+      voice: 'Φωνή DeepInfra'
+    }
+  },
+  memory: {
+    memoryEnabled: 'Μόνιμη Μνήμη',
+    userProfileEnabled: 'Προφίλ Χρήστη',
+    memoryCharLimit: 'Προϋπολογισμός Μνήμης',
+    userCharLimit: 'Προϋπολογισμός Προφίλ',
+    provider: 'Πάροχος Μνήμης'
+  },
+  context: {
+    engine: 'Μηχανή Πλαισίου'
+  },
+  compression: {
+    enabled: 'Αυτόματη Συμπίεση',
+    threshold: 'Όριο Συμπίεσης',
+    targetRatio: 'Στόχος Συμπίεσης',
+    protectLastN: 'Προστατευμένα Πρόσφατα Μηνύματα'
+  },
+  delegation: {
+    model: 'Μοντέλο Υποπράκτορα',
+    provider: 'Πάροχος Υποπράκτορα',
+    maxIterations: 'Όριο Σειράς Υποπράκτορα',
+    maxConcurrentChildren: 'Παράλληλοι Υποπράκτορες',
+    childTimeoutSeconds: 'Λήξη Χρόνου Υποπράκτορα',
+    reasoningEffort: 'Προσπάθεια Συλλογισμού Υποπράκτορα'
+  },
+  updates: {
+    nonInteractiveLocalChanges: 'Τοπικές Αλλαγές Ενημέρωσης Εφαρμογής'
+  }
 })
 
 export const FIELD_DESCRIPTIONS: Record<string, string> = defineFieldCopy({
-    model: "Χρησιμοποιείται για νέες συνομιλίες, εκτός αν επιλέξετε διαφορετικό μοντέλο στον συνθέτη.",
-    modelContextLength: "Αφήστε στο 0 για να χρησιμοποιηθεί το ανιχνευμένο παράθυρο πλαισίου του επιλεγμένου μοντέλου.",
-    fallbackProviders: "Εγγραφές παρόχου:μοντέλου για εφεδρεία σε περίπτωση αποτυχίας του προεπιλεγμένου μοντέλου.",
-    display: {
-      personality: "Προεπιλεγμένο στυλ βοηθού για νέες συνεδρίες.",
-      showReasoning: "Εμφάνιση τμημάτων συλλογισμού όταν παρέχονται από το backend.",
+  model: 'Χρησιμοποιείται για νέες συνομιλίες, εκτός αν επιλέξετε διαφορετικό μοντέλο στον συνθέτη.',
+  modelContextLength: 'Αφήστε στο 0 για να χρησιμοποιηθεί το ανιχνευμένο παράθυρο πλαισίου του επιλεγμένου μοντέλου.',
+  fallbackProviders: 'Εγγραφές παρόχου:μοντέλου για εφεδρεία σε περίπτωση αποτυχίας του προεπιλεγμένου μοντέλου.',
+  display: {
+    personality: 'Προεπιλεγμένο στυλ βοηθού για νέες συνεδρίες.',
+    showReasoning: 'Εμφάνιση τμημάτων συλλογισμού όταν παρέχονται από το backend.'
+  },
+  desktop: {
+    repoScanEnabled: 'Σάρωση τοπικών φακέλων για αποθετήρια Git προς εμφάνιση στα Έργα.',
+    repoScanRoots: 'Φάκελοι προς σάρωση. Αφήστε κενό για σάρωση του προσωπικού σας καταλόγου.',
+    repoScanExcludePaths: 'Φάκελοι και απόγονοί τους προς παράλειψη κατά την αναζήτηση αποθετηρίων.'
+  },
+  timezone:
+    'Χρησιμοποιείται όταν το OpenAmer χρειάζεται τοπικό πλαίσιο ώρας. Κενό χρησιμοποιεί τη ζώνη ώρας του συστήματος.',
+  agent: {
+    imageInputMode: 'Ελέγχει πώς τα συνημμένα εικόνες αποστέλλονται στο μοντέλο.',
+    maxTurns: 'Ανώτατο όριο για γύρους κλήσης εργαλείων πριν το OpenAmer σταματήσει μια εκτέλεση.'
+  },
+  terminal: {
+    cwd: 'Προεπιλεγμένος φάκελος έργου για εργασίες εργαλείων και τερματικού.',
+    persistentShell: 'Διατήρηση κατάστασης shell μεταξύ εντολών όταν το backend το υποστηρίζει.',
+    envPassthrough: 'Μεταβλητές περιβάλλοντος για μεταβιβάσεις στην εκτέλεση εργαλείων.',
+    dockerImage: 'Εικόνα container που χρησιμοποιείται όταν το backend εκτέλεσης είναι το Docker.',
+    singularityImage: 'Εικόνα που χρησιμοποιείται όταν το backend εκτέλεσης είναι το Singularity.',
+    modalImage: 'Εικόνα που χρησιμοποιείται όταν το backend εκτέλεσης είναι το Modal.',
+    daytonaImage: 'Εικόνα που χρησιμοποιείται όταν το backend εκτέλεσης είναι το Daytona.'
+  },
+  codeExecution: {
+    mode: 'Πόσο αυστηρά η εκτέλεση κώδικα περιορίζεται στο τρέχον έργο.'
+  },
+  fileReadMaxChars: 'Μέγιστοι χαρακτήρες που μπορεί να διαβάσει το OpenAmer από ένα αίτημα αρχείου.',
+  approvals: {
+    mode: 'Πώς το OpenAmer διαχειρίζεται εντολές που απαιτούν ρητή έγκριση.',
+    timeout: 'Διάρκεια αναμονής των προτροπών έγκρισης πριν τη λήξη του χρόνου.'
+  },
+  security: {
+    redactSecrets: 'Απόκρυψη ανιχνευμένων μυστικών από το περιεχόμενο ορατό στο μοντέλο, όπου είναι εφικτό.'
+  },
+  checkpoints: {
+    enabled: 'Δημιουργία στιγμειότυπων επαναφοράς πριν από επεξεργασίες αρχείων.'
+  },
+  memory: {
+    memoryEnabled: 'Αποθήκευση μόνιμων αναμνήσεων που μπορούν να βοηθήσουν μελλοντικές συνεδρίες.',
+    userProfileEnabled: 'Διατήρηση ενός συμπαγούς προφίλ προτιμήσεων χρήστη.'
+  },
+  context: {
+    engine: 'Στρατηγική διαχείρισης μεγάλων συνομιλιών κοντά στο όριο του πλαισίου.'
+  },
+  compression: {
+    enabled: 'Σύνοψη παλαιότερου πλαισίου όταν οι συνομιλίες γίνονται μεγάλες.'
+  },
+  voice: {
+    autoTts: 'Αυτόματη εκφώνηση απαντήσεων βοηθού.'
+  },
+  tts: {
+    xai: {
+      voiceId: 'ID φωνής xAI (π.χ. eve) ή ένα προσαρμοσμένο ID φωνής.',
+      language: 'Κώδικας spoken γλώσσας (π.χ. en, pt-BR) ή "auto" για αυτόματη ανίχνευση.',
+      speed: 'Ταχύτητα αναπαραγωγής. 0.7 = πιο αργά, 1.0 = κανονικά, 1.5 = πιο γρήγορα.',
+      autoSpeechTags:
+        'Επιτρέπει σε ένα LLM να εισάγει εκφραστικές ετικέτες ήχου ([laughing], [sighs]) στο σενάριο πριν τη σύνθεση.',
+      optimizeStreamingLatency:
+        'Συμβιβασμός καθυστέρησης έναντι ποιότητας. 0 = καλύτερη ποιότητα, 2 = χαμηλότερη καθυστέρηση.',
+      sampleRate: 'Ρυθμός δειγματοληψίας ήχου σε Hz. Υψηλότερο = καλύτερη ποιότητα, μεγαλύτερα αρχεία.',
+      bitRate: 'Ρυθμός bit MP3 σε bps. Εφαρμόζεται μόνο όταν ο κώδικας είναι mp3.'
     },
-    desktop: {
-      repoScanEnabled: "Σάρωση τοπικών φακέλων για αποθετήρια Git προς εμφάνιση στα Έργα.",
-      repoScanRoots: "Φάκελοι προς σάρωση. Αφήστε κενό για σάρωση του προσωπικού σας καταλόγου.",
-      repoScanExcludePaths: "Φάκελοι και απόγονοί τους προς παράλειψη κατά την αναζήτηση αποθετηρίων.",
-    },
-    timezone: "Χρησιμοποιείται όταν το OpenAmer χρειάζεται τοπικό πλαίσιο ώρας. Κενό χρησιμοποιεί τη ζώνη ώρας του συστήματος.",
-    agent: {
-      imageInputMode: "Ελέγχει πώς τα συνημμένα εικόνες αποστέλλονται στο μοντέλο.",
-      maxTurns: "Ανώτατο όριο για γύρους κλήσης εργαλείων πριν το OpenAmer σταματήσει μια εκτέλεση.",
-    },
-    terminal: {
-      cwd: "Προεπιλεγμένος φάκελος έργου για εργασίες εργαλείων και τερματικού.",
-      persistentShell: "Διατήρηση κατάστασης shell μεταξύ εντολών όταν το backend το υποστηρίζει.",
-      envPassthrough: "Μεταβλητές περιβάλλοντος για μεταβιβάσεις στην εκτέλεση εργαλείων.",
-      dockerImage: "Εικόνα container που χρησιμοποιείται όταν το backend εκτέλεσης είναι το Docker.",
-      singularityImage: "Εικόνα που χρησιμοποιείται όταν το backend εκτέλεσης είναι το Singularity.",
-      modalImage: "Εικόνα που χρησιμοποιείται όταν το backend εκτέλεσης είναι το Modal.",
-      daytonaImage: "Εικόνα που χρησιμοποιείται όταν το backend εκτέλεσης είναι το Daytona.",
-    },
-    codeExecution: {
-      mode: "Πόσο αυστηρά η εκτέλεση κώδικα περιορίζεται στο τρέχον έργο.",
-    },
-    fileReadMaxChars: "Μέγιστοι χαρακτήρες που μπορεί να διαβάσει το OpenAmer από ένα αίτημα αρχείου.",
-    approvals: {
-      mode: "Πώς το OpenAmer διαχειρίζεται εντολές που απαιτούν ρητή έγκριση.",
-      timeout: "Διάρκεια αναμονής των προτροπών έγκρισης πριν τη λήξη του χρόνου.",
-    },
-    security: {
-      redactSecrets: "Απόκρυψη ανιχνευμένων μυστικών από το περιεχόμενο ορατό στο μοντέλο, όπου είναι εφικτό.",
-    },
-    checkpoints: {
-      enabled: "Δημιουργία στιγμειότυπων επαναφοράς πριν από επεξεργασίες αρχείων.",
-    },
-    memory: {
-      memoryEnabled: "Αποθήκευση μόνιμων αναμνήσεων που μπορούν να βοηθήσουν μελλοντικές συνεδρίες.",
-      userProfileEnabled: "Διατήρηση ενός συμπαγούς προφίλ προτιμήσεων χρήστη.",
-    },
-    context: {
-      engine: "Στρατηγική διαχείρισης μεγάλων συνομιλιών κοντά στο όριο του πλαισίου.",
-    },
-    compression: {
-      enabled: "Σύνοψη παλαιότερου πλαισίου όταν οι συνομιλίες γίνονται μεγάλες.",
-    },
-    voice: {
-      autoTts: "Αυτόματη εκφώνηση απαντήσεων βοηθού.",
-    },
-    tts: {
-      xai: {
-        voiceId: "ID φωνής xAI (π.χ. eve) ή ένα προσαρμοσμένο ID φωνής.",
-        language: "Κώδικας spoken γλώσσας (π.χ. en, pt-BR) ή \"auto\" για αυτόματη ανίχνευση.",
-        speed: "Ταχύτητα αναπαραγωγής. 0.7 = πιο αργά, 1.0 = κανονικά, 1.5 = πιο γρήγορα.",
-        autoSpeechTags: "Επιτρέπει σε ένα LLM να εισάγει εκφραστικές ετικέτες ήχου ([laughing], [sighs]) στο σενάριο πριν τη σύνθεση.",
-        optimizeStreamingLatency: "Συμβιβασμός καθυστέρησης έναντι ποιότητας. 0 = καλύτερη ποιότητα, 2 = χαμηλότερη καθυστέρηση.",
-        sampleRate: "Ρυθμός δειγματοληψίας ήχου σε Hz. Υψηλότερο = καλύτερη ποιότητα, μεγαλύτερα αρχεία.",
-        bitRate: "Ρυθμός bit MP3 σε bps. Εφαρμόζεται μόνο όταν ο κώδικας είναι mp3.",
-      },
-      neutts: {
-        device: "Τοπική συσκευή συμπερασμού για το NeuTTS.",
-      },
-    },
-    stt: {
-      enabled: "Ενεργοποίηση τοπικής ή βασισμένης σε πάροχο μεταγραφής ομιλίας.",
-      echoTranscripts: "Δημοσίευση της ακατέργαστης 🎙️ μεταγραφής φωνητικών μηνυμάτων πίσω στη συνομιλία.",
-      elevenlabs: {
-        languageCode: "Προαιρετικός κώδικας γλώσσας ISO-639-3. Κενό επιτρέπει στο ElevenLabs την αυτόματη ανίχνευση.",
-      },
-    },
-    updates: {
-      nonInteractiveLocalChanges: "Όταν το OpenAmer ενημερώνεται από την εφαρμογή (χωρίς προτροπή τερματικού), διατήρηση τοπικών επεξεργασιών πηγής (stash) ή απόρριψή τους (discard). Οι ενημερώσεις τερματικού πάντα ρωτούν.",
-    },
+    neutts: {
+      device: 'Τοπική συσκευή συμπερασμού για το NeuTTS.'
+    }
+  },
+  stt: {
+    enabled: 'Ενεργοποίηση τοπικής ή βασισμένης σε πάροχο μεταγραφής ομιλίας.',
+    echoTranscripts: 'Δημοσίευση της ακατέργαστης 🎙️ μεταγραφής φωνητικών μηνυμάτων πίσω στη συνομιλία.',
+    elevenlabs: {
+      languageCode: 'Προαιρετικός κώδικας γλώσσας ISO-639-3. Κενό επιτρέπει στο ElevenLabs την αυτόματη ανίχνευση.'
+    }
+  },
+  updates: {
+    nonInteractiveLocalChanges:
+      'Όταν το OpenAmer ενημερώνεται από την εφαρμογή (χωρίς προτροπή τερματικού), διατήρηση τοπικών επεξεργασιών πηγής (stash) ή απόρριψή τους (discard). Οι ενημερώσεις τερματικού πάντα ρωτούν.'
+  }
 })

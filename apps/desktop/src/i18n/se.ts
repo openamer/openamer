@@ -45,7 +45,7 @@ export const se = defineLocale({
     update: 'Ođasmahte',
     on: 'Jođus',
     off: 'Ii jođus',
-    tryHint: term => `Geahččal “${term}”`,
+    tryHint: term => `Geahččal “${term}”`
   },
   fileMenu: {
     revealFinder: 'Čájet Finderis',
@@ -60,7 +60,7 @@ export const se = defineLocale({
     renameLabel: 'Ođđa namma',
     deleteTitle: name => `Sihko ${name}?`,
     deleteBody: 'Dat sirdojuvvo rohkkái — sáhtát dan fas váldit ruovttoluotta.',
-    pathCopied: 'Bálggis kopierejuvvon',
+    pathCopied: 'Bálggis kopierejuvvon'
   },
   settings: {
     mcp: {
@@ -122,11 +122,12 @@ export const se = defineLocale({
       catalogInstallStarted: name => `${name} installerejuvvo... doaimma ođđa sessionaiguin go geargan.`,
       catalogInstallFailed: name => `Ii sáhttán installere ${name}`,
       catalogEnvPrompt: name => `${name} gáibida dieđuid`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} oažžumis`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} oažžumis`,
       statusConnecting: 'Čatná…',
       authenticatedMessage: (server, count) => `${server}: ${count} neavttit`,
       enableTool: tool => `Bija ${tool} johtui`,
-      disableTool: tool => `Bija ${tool} eret johtus`,
+      disableTool: tool => `Bija ${tool} eret johtus`
     },
     model: {
       loading: 'Lohkkojuvvo modeallakonfigurerejupmi...',
@@ -140,48 +141,49 @@ export const se = defineLocale({
       defaultsFailed: 'Ii sáhttán vurket modealladábálašárvuid',
       auxiliaryTitle: 'Lasimodeallat',
       resetAllToMain: 'Máhca buot váldomodeallii',
-      auxiliaryDesc: 'Veahkandoaimmat jođehit váldomodeallas dábálaččat. Bija juohke doibmii iežas modealla vai molssut dan.',
+      auxiliaryDesc:
+        'Veahkandoaimmat jođehit váldomodeallas dábálaččat. Bija juohke doibmii iežas modealla vai molssut dan.',
       setToMain: 'Bija váldomodeallan',
       change: 'Molsso',
       autoUseMain: 'auto · geavat váldomodealla',
       providerDefault: '(fálaldaga dábálaš)',
       fallbackAdd: 'Lasit varamodealla',
       fallbackEmpty: 'Ii varamodeallaid — dábálaš modealla geavahuvvo gitta go dat ii lihkostuva.',
-      notInCatalog: "ii leat dán fálaldaga modeallalisttus — jearaldagat sáhttet molssut varamodeallii.",
+      notInCatalog: 'ii leat dán fálaldaga modeallalisttus — jearaldagat sáhttet molssut varamodeallii.',
       tasks: {
         vision: {
           label: 'Vision',
-          hint: 'Gova dárkkisteapmi',
+          hint: 'Gova dárkkisteapmi'
         },
         web_extract: {
           label: 'Neahttalohkan',
-          hint: 'Siiddu čoahkkáigeassu',
+          hint: 'Siiddu čoahkkáigeassu'
         },
         compression: {
           label: 'Kompression',
-          hint: 'Konteavstta kompressio',
+          hint: 'Konteavstta kompressio'
         },
         skills_hub: {
           label: 'Máhttohub',
-          hint: 'Máhttoza',
+          hint: 'Máhttoza'
         },
         approval: {
           label: 'Doarvan',
-          hint: 'Čeahpes automáhtalaš doarvan',
+          hint: 'Čeahpes automáhtalaš doarvan'
         },
         mcp: {
           label: 'MCP',
-          hint: 'MCP-neavtti stivrejupmi',
+          hint: 'MCP-neavtti stivrejupmi'
         },
         title_generation: {
           label: 'Nammanráhkadus',
-          hint: 'Sessionnammat',
+          hint: 'Sessionnammat'
         },
         curator: {
           label: 'Kurehtor',
-          hint: 'Máhtto-geavahusa dárkkisteapmi',
-        },
-      },
+          hint: 'Máhtto-geavahusa dárkkisteapmi'
+        }
+      }
     },
     gateway: {
       sshHostPickTitle: 'Gielda',
@@ -200,10 +202,14 @@ export const se = defineLocale({
       sshButtonsHint: 'Vurke doaimma boahtte álggahusas. Čatna čatná dál ođđasit.',
       sshIncompleteHost: 'Čále SSH-host ovdal go čatnat.',
       sshErrUnreachable: 'Ii ožžon oktavuođa dan host:in SSH:ain. Dárkkis hosta, porta ja du neahtta.',
-      sshErrAuth: 'SSH-duođaštus ii lihkostuvvan. Bija du čoavdaga ssh-agent:i (ssh-add) dahje bija IdentityFile ~/.ssh/config:ii — OpenAmer jođiha ssh interaktiivvalaččat.',
-      sshErrHostKey: 'Host-čoavdaga lea MOLSSON go maŋimustá čadnet. Dárkkis ahte dát lea sihkkar, ja jođit de ssh-keygen -R <host> ja čatna ođđasit.',
-      sshErrNotInstalled: 'OpenAmer ii leat installerejuvvon gáidnálaš hostii. Installe dan dohko (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) dahje bija OpenAmer bálgá.',
-      sshErrPlatform: 'Gáidnálaš platforma ii dorjojuvvo. OpenAmer Desktop SSH-moda dorjo Linux, macOS ja Windows gáidnálaš hostaid.',
+      sshErrAuth:
+        'SSH-duođaštus ii lihkostuvvan. Bija du čoavdaga ssh-agent:i (ssh-add) dahje bija IdentityFile ~/.ssh/config:ii — OpenAmer jođiha ssh interaktiivvalaččat.',
+      sshErrHostKey:
+        'Host-čoavdaga lea MOLSSON go maŋimustá čadnet. Dárkkis ahte dát lea sihkkar, ja jođit de ssh-keygen -R <host> ja čatna ođđasit.',
+      sshErrNotInstalled:
+        'OpenAmer ii leat installerejuvvon gáidnálaš hostii. Installe dan dohko (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) dahje bija OpenAmer bálgá.',
+      sshErrPlatform:
+        'Gáidnálaš platforma ii dorjojuvvo. OpenAmer Desktop SSH-moda dorjo Linux, macOS ja Windows gáidnálaš hostaid.',
       sshErrTimeout: 'SSH-oktavuohta áiggi nohkai. Host ii baicce leat oažžumis dahje lea oađđimin.',
       sshErrUpdateRequired: 'Ođasmahte OpenAmer gáidnálaš hostas ovdal go čatnat Desktop SSH:ain.',
       sshErrUnknown: 'SSH-oktavuohta ii lihkostuvvan.',
@@ -212,21 +218,25 @@ export const se = defineLocale({
       unavailableDesc: 'Desktoppa IPC-látna ii čájet gateway-heivehusaid.',
       title: 'Gateway-oktavuohta',
       envOverride: 'env-molssun',
-      intro: 'OpenAmer Desktop álggaha iežas báikkálaš gateway dábálaččat. Geavat gáidnálaš gateway go hálidat ahte dát prográmma stivre juo jođus leahkki OpenAmer-backend eará mašiinnas dahje luohtes proxy duogážis. Vállje vulobealde profiilla vai das šaddá iežas gáidnálaš host.',
+      intro:
+        'OpenAmer Desktop álggaha iežas báikkálaš gateway dábálaččat. Geavat gáidnálaš gateway go hálidat ahte dát prográmma stivre juo jođus leahkki OpenAmer-backend eará mašiinnas dahje luohtes proxy duogážis. Vállje vulobealde profiilla vai das šaddá iežas gáidnálaš host.',
       appliesTo: 'Gullá',
       allProfiles: 'Buot profiillat',
       defaultConnection: 'Dábálaš oktavuohta juohke profiilii mas ii leat iežas molssun.',
       envOverrideTitle: 'Environment-variáblat stivrejit dán desktoppa sessiona.',
-      envOverrideDesc: 'Váldde OPENAMER_DESKTOP_REMOTE_URL ja OPENAMER_DESKTOP_REMOTE_TOKEN eret, vai geavahat vurkejuvvon heivehusa vulobealde.',
-      profileConnection: profile => `Oktavuohta geavahuvvo dušše go “${profile}” lea aktiiva profiil. Vállje Geavat dábálaš gateway vai váldát eret dan molssuma.`,
+      envOverrideDesc:
+        'Váldde OPENAMER_DESKTOP_REMOTE_URL ja OPENAMER_DESKTOP_REMOTE_TOKEN eret, vai geavahat vurkejuvvon heivehusa vulobealde.',
+      profileConnection: profile =>
+        `Oktavuohta geavahuvvo dušše go “${profile}” lea aktiiva profiil. Vállje Geavat dábálaš gateway vai váldát eret dan molssuma.`,
       modeTitle: 'Oktavuođamoda',
       localTitle: 'Báikkálaš gateway',
       localDesc: 'Álggat priváhta OpenAmer-backend localhostas. Dát lea dábálaš ja doaimma offline.',
       inheritTitle: 'Geavat dábálaš gateway',
-      inheritDesc: "Váldde dán profiilla molssuma eret ja geavat dábálaš oktavuođa.",
+      inheritDesc: 'Váldde dán profiilla molssuma eret ja geavat dábálaš oktavuođa.',
       remoteTitle: 'Gáidnálaš gateway',
       remoteDesc: 'Čatna dán desktoppa láse gáidnálaš OpenAmer-backend:i.',
-      remoteAuthHint: 'Hostejuvvon gatewayat geavahit OAuth dahje geavahanamme ja beassansáni; iešhostejuvvon gatewayat sáhttet geavahit session-tokena.',
+      remoteAuthHint:
+        'Hostejuvvon gatewayat geavahit OAuth dahje geavahanamme ja beassansáni; iešhostejuvvon gatewayat sáhttet geavahit session-tokena.',
       cloudTitle: 'OpenAmer Cloud',
       cloudDesc: 'Čále sisa oktii OpenAmer Cloud:i ja vállje du kontto agendtain — ii dárbbaš liibmet URL.',
       cloudSignInTitle: 'OpenAmer Cloud',
@@ -243,7 +253,7 @@ export const se = defineLocale({
       cloudNoAgents: {
         before: 'Ii agendtaid gávdnon dán konttos. Ráhkat ovtta ',
         linkText: 'OpenAmer-portálas',
-        after: ', ja de ođasmahte.',
+        after: ', ja de ođasmahte.'
       },
       cloudRefresh: 'Viežžá',
       cloudConnect: 'Čatna',
@@ -267,12 +277,16 @@ export const se = defineLocale({
       signOut: 'Čále olggos',
       signInWith: provider => `Čále sisa ${provider}ain`,
       authTitle: 'Duođaštus',
-      authSignedInPassword: 'Dát gateway geavaha geavahanamme ja beassansáni. Don leat čálán sisa; session ođasmahtto automáhtalaččat.',
+      authSignedInPassword:
+        'Dát gateway geavaha geavahanamme ja beassansáni. Don leat čálán sisa; session ođasmahtto automáhtalaččat.',
       authSignedInOauth: 'Dát gateway geavaha OAuth. Don leat čálán sisa; session ođasmahtto automáhtalaččat.',
-      authNeedsPassword: 'Dát gateway geavaha geavahanamme ja beassansáni. Čále sisa vai lobistat dán desktoppa prográmma.',
-      authNeedsOauth: provider => `Dát gateway geavaha OAuth. Čále sisa ${provider}ain vai lobistat dán desktoppa prográmma.`,
+      authNeedsPassword:
+        'Dát gateway geavaha geavahanamme ja beassansáni. Čále sisa vai lobistat dán desktoppa prográmma.',
+      authNeedsOauth: provider =>
+        `Dát gateway geavaha OAuth. Čále sisa ${provider}ain vai lobistat dán desktoppa prográmma.`,
       tokenTitle: 'Session-token',
-      tokenDesc: 'Dashboard-session-token mii geavahuvvo REST ja WebSocket oktavuođas. Guđe guorus, vai vurkejuvvon token bissu.',
+      tokenDesc:
+        'Dashboard-session-token mii geavahuvvo REST ja WebSocket oktavuođas. Guđe guorus, vai vurkejuvvon token bissu.',
       existingToken: value => `Dalaš token ${value}`,
       savedToken: 'vurkejuvvon',
       pasteSessionToken: 'Liibme session-tokena',
@@ -303,22 +317,24 @@ export const se = defineLocale({
       applyFailed: 'Ii sáhttán bijat gateway-heivehusaid',
       saveFailed: 'Ii sáhttán vurket gateway-heivehusaid',
       sshTitle: 'Čatna SSH:ain',
-      sshDesc: 'OpenAmer álggahuvvo gáidnálaččas SSH:ain ja tunelejuvvo dán prográmmii — ii dárbbaš álggahit dahje čájet mihkkege ieš. Gáibida doaimmalaš čoavdaga-SSH-oktavuođa hostii.',
+      sshDesc:
+        'OpenAmer álggahuvvo gáidnálaččas SSH:ain ja tunelejuvvo dán prográmmii — ii dárbbaš álggahit dahje čájet mihkkege ieš. Gáibida doaimmalaš čoavdaga-SSH-oktavuođa hostii.',
       sshTrustHint: 'Vuosttaš čájehuvvon host-čoavdaga luohttá ja biddjojuvvo; maŋŋelaš molssumat gieldojuvvojit.',
       sshHostTitle: 'Värd',
       sshHostDesc: 'geavaheaddji@host, dahje Host-alias ~/.ssh/config',
       sshHostPick: 'Vállje hosta…',
       sshPortTitle: 'Porta',
       sshOpenAmerPathPlaceholder: 'automáhtalaš gávdnan',
-      sshReachable: (host, platform) => `Oažžumis: ${host} (${platform}) — OpenAmer gávdnon`,
+      sshReachable: (host, platform) => `Oažžumis: ${host} (${platform}) — OpenAmer gávdnon`
     },
     keys: {
       loading: 'Lohkkojuvvo API-čoavdagat ja dieđut...',
       failedLoad: 'API-čoavdagat eai lohkkon',
-      empty: 'Dás kategorijas ii leat vel mihkkege heivehuvvon.',
+      empty: 'Dás kategorijas ii leat vel mihkkege heivehuvvon.'
     },
     toolsets: {
-      noProviderOptions: 'Dán neavttekoarttas ii leat fálaldagaválljemit — bija dan johtui ja dat doaimma du dalaš heivehusaiguin.',
+      noProviderOptions:
+        'Dán neavttekoarttas ii leat fálaldagaválljemit — bija dan johtui ja dat doaimma du dalaš heivehusaiguin.',
       noProviders: 'Ii fálaldagat oažžumis dán neavttekoartta várás dál.',
       ready: 'Gárvvis',
       needsSignIn: 'Dárbbaša sisačáliheami',
@@ -360,7 +376,7 @@ export const se = defineLocale({
         selectedTitle: 'Backend válljejuvvon',
         needsSetupHint: 'Sáhtát válljet dán backend dál — komandat eai doaimma gitta go heiveheapmi lea geargan.',
         selectedMessage: backend => `Terminal-komandat jođihuvvojit dál ${backend} bokte. Doaimma ođđa sessionaiguin.`,
-        failedSelect: backend => `Ii sáhttán válljet ${backend}`,
+        failedSelect: backend => `Ii sáhttán válljet ${backend}`
       },
       loadingConfig: 'Lohkkojuvvo konfigurerejupmi',
       savedTitle: 'Dieđut vurkejuvvon',
@@ -377,8 +393,10 @@ export const se = defineLocale({
       selectedMessage: provider => `${provider} lea dál aktiivva.`,
       failedSelect: provider => `Ii sáhttán válljet ${provider}`,
       failedLoad: 'Neavttikonfigurerejupmi ii lohkkon',
-      openamerAuthNeededMessage: provider => `${provider} lea vurkejuvvon, muhto ii aktiveru gitta go čálát sisa OpenAmer Portal:i.`,
-      postSetupHint: step => `Dát backend gáibida oktii installereami (${step}). Jođiha dán mašiinnas — sáhttá váldit moadde minuhta.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} lea vurkejuvvon, muhto ii aktiveru gitta go čálát sisa OpenAmer Portal:i.`,
+      postSetupHint: step =>
+        `Dát backend gáibida oktii installereami (${step}). Jođiha dán mašiinnas — sáhttá váldit moadde minuhta.`,
       postSetupCompleteMessage: step => `${step} installerejuvvon.`,
       postSetupErrorMessage: step => `Dárkkis ${step}-logga.`,
       postSetupFailed: step => `Ii sáhttán jođihit ${step} heiveheami`,
@@ -388,7 +406,7 @@ export const se = defineLocale({
       failedSelectCapability: provider => `Ii sáhttán bijat ${provider}`,
       modelCount: count => `${count} modealla ${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} doaimma ođđa sessionaiguin.`,
-      failedSelectModel: model => `Ii sáhttán válljet ${model}`,
+      failedSelectModel: model => `Ii sáhttán válljet ${model}`
     },
     config: {
       none: 'Ii oktage',
@@ -404,7 +422,8 @@ export const se = defineLocale({
       imported: 'Konfigurerejupmi importerejuvvon',
       invalidJson: 'Hilggon konfigurerejupmi JSON',
       keepAwakeTitle: 'Bissu dihtor árkosin',
-      keepAwakeDesc: 'Bisse dán mašiinna oađđimin, vai guhkes dahje ihkku jođus leahkki jođut joatket. Čájeheapmi sáhttá ain sevdnot.',
+      keepAwakeDesc:
+        'Bisse dán mašiinna oađđimin, vai guhkes dahje ihkku jođus leahkki jođut joatket. Čájeheapmi sáhttá ain sevdnot.'
     },
     credentials: {
       pasteKey: 'Liibme čoavdaga',
@@ -414,7 +433,7 @@ export const se = defineLocale({
       remove: 'Váldde eret',
       getKey: 'Oažžu čoavdaga',
       saving: 'Vurkejuvvo',
-      pasteLabelKey: label => `Liibme ${label}-čoavdaga`,
+      pasteLabelKey: label => `Liibme ${label}-čoavdaga`
     },
     envActions: {
       credentialActions: 'Dieđuid doaimmat',
@@ -425,7 +444,7 @@ export const se = defineLocale({
       replace: 'Buhtte',
       set: 'Bija',
       clear: 'Čielga',
-      actionsFor: label => `Doaimmat ${label}:ii`,
+      actionsFor: label => `Doaimmat ${label}:ii`
     },
     closeSettings: 'Gidde heivehusaid',
     exportConfig: 'Eksportere heivehusat',
@@ -449,11 +468,12 @@ export const se = defineLocale({
       about: 'Birra',
       billing: 'Maksin',
       notifications: 'Muitalusat',
-      plugins: 'Pluginat',
+      plugins: 'Pluginat'
     },
     plugins: {
       title: 'Desktoppa pluginat',
-      blurb: 'UI-lasihanat mat lohkojuvvojit dán prográmmii — mat leat builhas mielde, dahje mat bidjojuvvojit desktop-plugins mappái (mielde luktá mat OpenAmer čállá). Go plugin dulvejuvvo, dat váldojuvvo eret njuolgga, ja dat bissu maŋŋá go prográmma álggahuvvo ođđasit.',
+      blurb:
+        'UI-lasihanat mat lohkojuvvojit dán prográmmii — mat leat builhas mielde, dahje mat bidjojuvvojit desktop-plugins mappái (mielde luktá mat OpenAmer čállá). Go plugin dulvejuvvo, dat váldojuvvo eret njuolgga, ja dat bissu maŋŋá go prográmma álggahuvvo ođđasit.',
       count: n => `${n} installerejuvvon`,
       openFolder: 'Raba pluginaid mappá',
       rescan: 'Dárkkis ođđasit',
@@ -465,49 +485,51 @@ export const se = defineLocale({
       kinds: {
         bundled: 'mielde builhas',
         disk: 'diskas',
-        runtime: 'körtid',
-      },
+        runtime: 'körtid'
+      }
     },
     notifications: {
       title: 'Muitalusat',
-      intro: 'Natiiva desktoppa muitalusat, mat leat earálágan go prográmma siste čájehuvvon dieđut. Dát leat laitespecifihkalaččat — juohke dihtor vurke iežas heivehusaid.',
+      intro:
+        'Natiiva desktoppa muitalusat, mat leat earálágan go prográmma siste čájehuvvon dieđut. Dát leat laitespecifihkalaččat — juohke dihtor vurke iežas heivehusaid.',
       enableAll: 'Bija muitalusaid johtui',
       enableAllDesc: 'Váldoboallu. Bija dán eret johtus vai buot muitalusat vulobealde jaskkohuvvojit.',
       focusedHint: 'Gearganmearkkasat boahtet dušše go OpenAmer lea duogážis.',
       kinds: {
         approval: {
           label: 'Lohpi dárbbašuvvo',
-          description: 'Komanda vuordá ahte doarvot dahje hilggot dan.',
+          description: 'Komanda vuordá ahte doarvot dahje hilggot dan.'
         },
         input: {
           label: 'Atná du čállima',
-          description: 'OpenAmer jearai jearaldaga dahje dárbbaša beassansáni dahje čiegusdieđu.',
+          description: 'OpenAmer jearai jearaldaga dahje dárbbaša beassansáni dahje čiegusdieđu.'
         },
         turnDone: {
           label: 'Vástádus gárvvis',
-          description: 'Vuorru geargan go OpenAmer lei duogážis.',
+          description: 'Vuorru geargan go OpenAmer lei duogážis.'
         },
         turnError: {
           label: 'Vuorru ii lihkostuvvan',
-          description: 'Vuorru nohkai meattáhusain.',
+          description: 'Vuorru nohkai meattáhusain.'
         },
         backgroundDone: {
           label: 'Duogášdoaibma geargan',
-          description: 'Duogážii bidjon terminal-komanda geargan.',
+          description: 'Duogážii bidjon terminal-komanda geargan.'
         },
         credits: {
           label: 'Kredihtamearkkasat',
-          description: 'Kredihtaoktavuohta lea bisánan dahje máhcahuvvon.',
-        },
+          description: 'Kredihtaoktavuohta lea bisánan dahje máhcahuvvon.'
+        }
       },
       test: 'Sádde geahččalmuitalusa',
       testTitle: 'OpenAmer',
       testBody: 'Muitalusat doaimmahit.',
-      testSent: 'Geahččalmuitalus sáddejuvvon. Jus mihkkege ii ihte, dárkkis du OS muitaluslobiid ja Focus/Do Not Disturb.',
+      testSent:
+        'Geahččalmuitalus sáddejuvvon. Jus mihkkege ii ihte, dárkkis du OS muitaluslobiid ja Focus/Do Not Disturb.',
       testUnsupported: 'Dát systema ii dorjo natiiva muitalusaid.',
       completionSoundTitle: 'Gearganjietna',
       completionSoundDesc: 'Čuojahuvvo go agendavuorru geargan. Vállje preseta ja geahččal dan dás.',
-      completionSoundPreview: 'Ovdačájeheapmi',
+      completionSoundPreview: 'Ovdačájeheapmi'
     },
     sections: {
       model: 'Modealla',
@@ -517,7 +539,7 @@ export const se = defineLocale({
       safety: 'Sihkkarvuohta',
       memory: 'Muitu & konteaksta',
       voice: 'Jietna',
-      advanced: 'Viidásut',
+      advanced: 'Viidásut'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop birra',
@@ -525,37 +547,40 @@ export const se = defineLocale({
       gateway: 'Gateway oktavuohta...',
       keys: 'Oza API-čoavdagiid...',
       mcp: 'Oza MCP-servarid...',
-      sessions: 'Oza arkiiverejuvvon sessionaid...',
+      sessions: 'Oza arkiiverejuvvon sessionaid...'
     },
     modeOptions: {
       light: {
         label: 'Čuovga',
-        description: 'Čuovggas desktoppa čájeheamit',
+        description: 'Čuovggas desktoppa čájeheamit'
       },
       dark: {
         label: 'Seavdnjadas',
-        description: 'Váddjásis čuovgga bargosadji',
+        description: 'Váddjásis čuovgga bargosadji'
       },
       system: {
         label: 'Systema',
-        description: 'Čuovo OS hámi',
-      },
+        description: 'Čuovo OS hámi'
+      }
     },
     appearance: {
       title: 'Hápmi',
-      intro: 'Dát leat dušše desktoppa čájeheanhálggut. Moda stivre čuovgga; tema stivre deattuid paletta ja ságastallančájeheami stiilla.',
+      intro:
+        'Dát leat dušše desktoppa čájeheanhálggut. Moda stivre čuovgga; tema stivre deattuid paletta ja ságastallančájeheami stiilla.',
       colorMode: 'Ivvnemoda',
       colorModeDesc: 'Vállje bissovaš moda dahje atte OpenAmer čuovvu du systema heivehusa.',
       toolViewTitle: 'Neavtegoasáhusaid čájeheapmi',
       toolViewDesc: 'Product čiega neavtti hálbmaid; Technical čájeha olles sisaboađu ja olggosboađu.',
       uiScaleTitle: 'UI-skála',
-      uiScaleDesc: (percent: number) => `Skálere teavstta ja čuohkkemiid olles prográmmas. Cmd/Ctrl +, - ja 0 doaimmahit maiddái. Dalaš: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Skálere teavstta ja čuohkkemiid olles prográmmas. Cmd/Ctrl +, - ja 0 doaimmahit maiddái. Dalaš: ${percent}%.`,
       translucencyTitle: 'Lási čielggasvuohta',
       translucencyDesc: 'Oainnu du desktoppa olles lásis. Dušše macOS ja Windows.',
       backdropTitle: 'Ságastallan duogášgovva',
       backdropDesc: 'Váibasgovva ságastallama duogážis.',
       embedsTitle: 'Inline-embeddit',
-      embedsDesc: 'Ovdačájeheamit lohkojuvvojit njealjádasbeali siiduin (YouTube, X, …). Ask čájeha placeholder gitta go don lobistat juohke ovtta; Always viežžá daid iešalddis; Off vurke liŋkkaid dábálažžan.',
+      embedsDesc:
+        'Ovdačájeheamit lohkojuvvojit njealjádasbeali siiduin (YouTube, X, …). Ask čájeha placeholder gitta go don lobistat juohke ovtta; Always viežžá daid iešalddis; Off vurke liŋkkaid dábálažžan.',
       embedsAsk: 'Jeara',
       embedsAlways: 'Álo',
       embedsOff: 'Ii jođus',
@@ -568,7 +593,8 @@ export const se = defineLocale({
       themeDesc: 'Dušše desktoppa palettat. Válljejuvvon moda biddjojuvvo dan ala.',
       themeProfileNote: profile => `Vurkejuvvon ${profile}-profiilii — juohke profiil vurke iežas tema.`,
       installTitle: 'Installe VS Code:s',
-      installDesc: 'Biha Marketplace-ekstensuvnna id (omd. dracula-theme.theme-dracula) vai molssut dan ivvnetema desktoppa palettan.',
+      installDesc:
+        'Biha Marketplace-ekstensuvnna id (omd. dracula-theme.theme-dracula) vai molssut dan ivvnetema desktoppa palettan.',
       installPlaceholder: 'publisher.extension',
       installButton: 'Installe',
       installing: 'Installerejuvvo…',
@@ -578,8 +604,10 @@ export const se = defineLocale({
       importedBadge: 'Importerejuvvon',
       pet: {
         title: 'Maskoti',
-        intro: 'Váldde animerejuvvon petdex-maskoti mii govččá prográmma alde ja vástida das mii OpenAmer dahká — viehka go neavttit doaimmahit, illuda go lihkostuvvá, suhtai go boahtá meattáhus.',
-        restartHint: 'Maskotiid dárbbaša jođánis ođđasitálggahusa — jođus leahkki prográmma álggahuvvui ovdal go dát doaibma lasihuvvui. Olggos OpenAmer ja raba dan ođđasit, de boađe dás fas.',
+        intro:
+          'Váldde animerejuvvon petdex-maskoti mii govččá prográmma alde ja vástida das mii OpenAmer dahká — viehka go neavttit doaimmahit, illuda go lihkostuvvá, suhtai go boahtá meattáhus.',
+        restartHint:
+          'Maskotiid dárbbaša jođánis ođđasitálggahusa — jođus leahkki prográmma álggahuvvui ovdal go dát doaibma lasihuvvui. Olggos OpenAmer ja raba dan ođđasit, de boađe dás fas.',
         on: 'Jođus',
         off: 'Ii jođus',
         scaleTitle: 'Stuorru',
@@ -589,7 +617,7 @@ export const se = defineLocale({
         chooseTitle: 'Vállje maskoti',
         chooseDesc: 'Go válljet ovtta, dat installerejuvvo (jus dárbbašuvvo) ja biddjojuvvo johtui.',
         searchPlaceholder: 'Oza maskotiid…',
-        unreachable: "Ii sáhttán oažžut oktavuođa petdex-gallerijai. Dárkkis oktavuođa ja raba dán siiddu ođđasit.",
+        unreachable: 'Ii sáhttán oažžut oktavuođa petdex-gallerijai. Dárkkis oktavuođa ja raba dán siiddu ođđasit.',
         noMatch: query => `Ii gávdnan maskoti mas lea "${query}".`,
         installedTag: 'installerejuvvon',
         generatedTag: 'Ráhkaduvvon',
@@ -598,7 +626,7 @@ export const se = defineLocale({
         uninstall: name => `Váldde ${name} eret`,
         delete: name => `Sihko ${name}`,
         deleteTitle: name => `Sihko ${name}?`,
-        deleteBody: "Dát sihko maskoti bissovaččat — dan ii sáhte installerejuvvot ođđasit.",
+        deleteBody: 'Dát sihko maskoti bissovaččat — dan ii sáhte installerejuvvot ođđasit.',
         deleteConfirm: 'Sihko',
         rename: name => `Ođđa namma ${name}`,
         renameTitle: 'Ođđa namma maskotii',
@@ -611,8 +639,8 @@ export const se = defineLocale({
         exportFailed: slug => `Ii sáhttán eksporteret ${slug}`,
         noneAvailable: 'Ii maskotiid oažžumis dál.',
         turnOnFailed: 'Ii sáhttán bijat maskoti johtui.',
-        turnOffFailed: 'Ii sáhttán bijat maskoti eret johtus.',
-      },
+        turnOffFailed: 'Ii sáhttán bijat maskoti eret johtus.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -623,30 +651,32 @@ export const se = defineLocale({
       updates: 'Ođasmahttimat',
       checkNow: 'Dárkkis dál',
       checking: 'Dárkkista…',
-      seeWhatsNew: "Geahča mii lea ođđa",
+      seeWhatsNew: 'Geahča mii lea ođđa',
       updateNow: 'Ođasmahte dál',
       releaseNotes: 'Almmuhanmuittimat',
-      onLatest: "Don leat ođđaseamos veršuvnnas.",
+      onLatest: 'Don leat ođđaseamos veršuvnnas.',
       installing: 'Ođasmahttin installerejuvvo dál.',
-      cantUpdate: "Dát builha ii sáhte ođasmahttit iežas prográmma siste.",
-      cantReach: "Mii eat ožžon oktavuođa ođasmahttinservariin.",
+      cantUpdate: 'Dát builha ii sáhte ođasmahttit iežas prográmma siste.',
+      cantReach: 'Mii eat ožžon oktavuođa ođasmahttinservariin.',
       tapCheck: 'Deaddil “Dárkkis dál” vai ozat ođasmahttimiid.',
       updateReady: count => `Ođđa ođasmahttin lea gárvvis (${count} rievdat ${count === 1 ? '' : 's'} mielde).`,
       lastChecked: age => `Maŋimustá dárkkistuvvon ${age}`,
       justNowSuffix: ' · dál dušše',
       automaticUpdates: 'Automáhtalaš ođasmahttimat',
-      automaticUpdatesDesc: 'OpenAmer dárkkista ođasmahttimiid automáhtalaččat duogážis ja muitala go ovtta lea gárvvis.',
+      automaticUpdatesDesc:
+        'OpenAmer dárkkista ođasmahttimiid automáhtalaččat duogážis ja muitala go ovtta lea gárvvis.',
       branchCommit: (branch, commit) => `Gren ${branch} · Commit ${commit}`,
       never: 'ii goassege',
       justNow: 'dál dušše',
       minAgo: count => `${count} min dás ovdal`,
       hoursAgo: count => `${count} diimmu dás ovdal`,
-      daysAgo: count => `${count} beaivvi dás ovdal`,
+      daysAgo: count => `${count} beaivvi dás ovdal`
     },
     providers: {
       connectAccount: 'Čatna konto',
       haveApiKey: 'Lea dus API-čoavdaga sajes?',
-      intro: 'Čále sisa subscription:ain — ii dárbbaš kopieret API-čoavdaga. OpenAmer jođiha browser-sisačáliheami du ovddas, dás prográmmas.',
+      intro:
+        'Čále sisa subscription:ain — ii dárbbaš kopieret API-čoavdaga. OpenAmer jođiha browser-sisačáliheami du ovddas, dás prográmmas.',
       connected: 'Čadnojuvvon',
       collapse: 'Oanehit',
       connectAnother: 'Čatna eará fálaldaga',
@@ -656,7 +686,8 @@ export const se = defineLocale({
       removeConfirm: provider => `Váldde ${provider} eret?`,
       removeExternalGeneric: provider => `${provider} stivrejuvvo iežas CLI:in — váldde dan eret dohko.`,
       removeKeyManaged: provider => `${provider} heivehuvvon API-čoavdagain. Váldde dan eret API-čoavdagiin.`,
-      removeTerminalConfirm: (provider, command) => `Čatna ${provider} eret? Dát jođiha "${command}" terminalas vai dieđut čielgojuvvojit.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Čatna ${provider} eret? Dát jođiha "${command}" terminalas vai dieđut čielgojuvvojit.`,
       removeTerminalRunning: provider => `${provider} eretčatnan jođus terminalas…`,
       removedTitle: 'Konto váldojuvvon eret',
       removedMessage: provider => `${provider} váldojuvvon eret.`,
@@ -666,14 +697,15 @@ export const se = defineLocale({
       noKeysMatch: 'Ii fálaldagat vástidit du ohcamuššii.',
       localEndpoint: {
         title: 'Báikkálaš / iešgárvosaš endpoint',
-        description: 'Bija OpenAmer guhte beare OpenAI-čadnon endpoint:i (Zyphra, vLLM, llama.cpp, Ollama, jna).',
+        description: 'Bija OpenAmer guhte beare OpenAI-čadnon endpoint:i (Zyphra, vLLM, llama.cpp, Ollama, jna).'
       },
-      loading: 'Lohkkojuvvo fálaldagat...',
+      loading: 'Lohkkojuvvo fálaldagat...'
     },
     sessions: {
       loading: 'Lohkkojuvvo arkiiverejuvvon sessionat…',
       archivedTitle: 'Arkiiverejuvvon sessionat',
-      archivedIntro: 'Arkiiverejuvvon ságastallamat čiegalbáhtahuvvojit sivdebálgás, muhto daid buot ságat bissu. Ctrl/⌘-klikke ságastallama sivdebálgás vai dat arkiiverejuvvo.',
+      archivedIntro:
+        'Arkiiverejuvvon ságastallamat čiegalbáhtahuvvojit sivdebálgás, muhto daid buot ságat bissu. Ctrl/⌘-klikke ságastallama sivdebálgás vai dat arkiiverejuvvo.',
       emptyArchivedTitle: 'Ii mihkkege arkiiverejuvvon',
       emptyArchivedDesc: 'Arkiivere ságastallama vai dat čiegalbáhtahuvvo dás.',
       unarchive: 'Váldde arkiivvas',
@@ -682,13 +714,16 @@ export const se = defineLocale({
       restored: 'Máhcahuvvon',
       deleteConfirm: title => `Sihko "${title}" bissovaččat? Dát ii sáhte máhcahuvvot.`,
       autoArchiveTitle: 'Arkiivere boares ságastallamaid automáhtalaččat',
-      autoArchiveDesc: "Arkiivere automáhtalaččat ságastallamaid maid ii leat guhká doaimmahan. Njuolggaduvvon ságastallamat eai goassege arkiiverejuvvo, ja mihkkege ii sihkkojuvvo — arkiiverejuvvon ságastallamat dušše sirdojuvvojit dás.",
+      autoArchiveDesc:
+        'Arkiivere automáhtalaččat ságastallamaid maid ii leat guhká doaimmahan. Njuolggaduvvon ságastallamat eai goassege arkiiverejuvvo, ja mihkkege ii sihkkojuvvo — arkiiverejuvvon ságastallamat dušše sirdojuvvojit dás.',
       autoArchiveDaysLabel: 'Arkiivere maŋŋá',
       autoArchiveDaysUnit: 'beaivvi doaimmaheami',
       autoArchiveFailed: 'Ii sáhttán ođasmahttit automáhtalaš arkiiverema',
       defaultDirTitle: 'Dábálaš prošeaktamappá',
-      defaultDirDesc: 'Ođđa sessionat álget dán mappás, jus it vállje eará. Guđe bijahkeahttá, vai du ruovttumappá geavahuvvo.',
-      defaultDirUpdated: 'Dábálaš prošeaktamappá ođasmahttojuvvon — álggat ođđa ságastallama (Ctrl/⌘+N) vai dat doaimma',
+      defaultDirDesc:
+        'Ođđa sessionat álget dán mappás, jus it vállje eará. Guđe bijahkeahttá, vai du ruovttumappá geavahuvvo.',
+      defaultDirUpdated:
+        'Dábálaš prošeaktamappá ođasmahttojuvvon — álggat ođđa ságastallama (Ctrl/⌘+N) vai dat doaimma',
       defaultsTo: label => `Dábálaččat ${label}.`,
       change: 'Molsso',
       choose: 'Vállje',
@@ -698,8 +733,8 @@ export const se = defineLocale({
       unarchiveFailed: 'Arkiivvasváldin ii lihkostuvvan',
       deleteFailed: 'Sihkon ii lihkostuvvan',
       updateDirFailed: 'Ii sáhttán ođasmahttit dábálaš mappá',
-      clearDirFailed: 'Ii sáhttán čielgat dábálaš mappá',
-    },
+      clearDirFailed: 'Ii sáhttán čielgat dábálaš mappá'
+    }
   },
   cron: {
     deliveryLabels: {
@@ -707,7 +742,7 @@ export const se = defineLocale({
       local: 'Dát desktop',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     scheduleLabels: {
       daily: 'Beaivválaččat',
@@ -716,7 +751,7 @@ export const se = defineLocale({
       monthly: 'Mánnosaččat',
       hourly: 'Diimmu mielde',
       'every-15-minutes': 'Juohke 15 minuhta',
-      custom: 'Iešgárvosaš',
+      custom: 'Iešgárvosaš'
     },
     scheduleHints: {
       daily: 'Beaivvi mielde diibmu 9:00',
@@ -725,7 +760,7 @@ export const se = defineLocale({
       monthly: 'Juohke mánu vuosttaš beaivi diibmu 9:00',
       hourly: 'Juohke diimmu álggus',
       'every-15-minutes': 'Juohke 15 minuhta',
-      custom: 'Cron-syntáksa dahje luonddulaš giella',
+      custom: 'Cron-syntáksa dahje luonddulaš giella'
     },
     days: {
       '0': 'Sotnabeaivi',
@@ -735,11 +770,12 @@ export const se = defineLocale({
       '4': 'Duorastat',
       '5': 'Bearjadat',
       '6': 'Lávvardat',
-      '7': 'Sotnabeaivi',
+      '7': 'Sotnabeaivi'
     },
     topOfHour: 'Juohke diimmu álggus',
     newCron: 'Ođđa cron',
-    emptyDescNew: 'Bija promptta jođihuvvot cron-cealkká mielde. OpenAmer jođiha dan ja sádde bođusaid dan sadjái maid válljet.',
+    emptyDescNew:
+      'Bija promptta jođihuvvot cron-cealkká mielde. OpenAmer jođiha dan ja sádde bođusaid dan sadjái maid válljet.',
     emptyDescSearch: 'Geahččal viidásut ozamuša.',
     emptyTitleNew: 'Ii vel áiggebijuvvon doaimmaid',
     emptyTitleSearch: 'Ii vástádusaid',
@@ -765,7 +801,7 @@ export const se = defineLocale({
       paused: 'bisánan',
       disabled: 'dulvehis',
       error: 'meattáhus',
-      completed: 'geargan',
+      completed: 'geargan'
     },
     dayFallback: value => `beaivi ${value}`,
     everyDayAt: time => `Beaivvi mielde diibmu ${time}`,
@@ -796,7 +832,8 @@ export const se = defineLocale({
     editTitle: 'Heive cron-doaimma',
     createTitle: 'Ođđa cron-doaimma',
     editDesc: 'Ođasmahte áiggebijuvvima, promptta dahje sáddesadji. Molssumat doaimmahit boahtte jođus.',
-    createDesc: 'Bija promptta jođihuvvot automáhtalaččat. Geavat cron-syntáksa dahje luonddulaš cealkámuša nugo "juohke 15 minuhta".',
+    createDesc:
+      'Bija promptta jođihuvvot automáhtalaččat. Geavat cron-syntáksa dahje luonddulaš cealkámuša nugo "juohke 15 minuhta".',
     nameLabel: 'Namma',
     namePlaceholder: 'Iđitdieđut',
     promptLabel: 'Promptta',
@@ -818,7 +855,7 @@ export const se = defineLocale({
     createAction: 'Ráhkat cron',
     tabs: {
       jobs: 'Doaimmat',
-      blueprints: 'Vuodđoplánat',
+      blueprints: 'Vuodđoplánat'
     },
     blueprints: {
       tab: 'Vuodđoplánat',
@@ -832,8 +869,8 @@ export const se = defineLocale({
       loading: 'Lohkkojuvvo blueprintat...',
       failedLoad: 'Blueprintat eai lohkkon',
       emptyTitle: 'Ii blueprinttaid oažžumis',
-      emptyDesc: 'Ii automatihtabluprinttaid oažžumis dán backendas.',
-    },
+      emptyDesc: 'Ii automatihtabluprinttaid oažžumis dán backendas.'
+    }
   },
   artifacts: {
     kindImage: 'govva',
@@ -867,14 +904,14 @@ export const se = defineLocale({
     colLocationLink: 'URL',
     colLocationFile: 'Bálggis',
     colLocationDefault: 'Sadji',
-    colSession: 'Session',
+    colSession: 'Session'
   },
   sidebar: {
     nav: {
       'new-session': 'Ođđa session',
       skills: 'Máhtut',
       messaging: 'Sáddem',
-      artifacts: 'Artefáktat',
+      artifacts: 'Artefáktat'
     },
     searchAria: 'Oza sessionaid',
     searchPlaceholder: 'Oza sessionaid…',
@@ -907,7 +944,8 @@ export const se = defineLocale({
       ideaLabel: 'Ideá',
       ideaPlaceholder: 'Mii dát prošeakta lea? (vurkejuvvo IDEA.md:ii)',
       ideaGenerate: 'Ráhkat idea',
-      removeWorktreeDirty: 'Dán worktreat lea vurkehkeahttaš molssumiid. Váldde dan eret bákčasis (hilggo daid molssumiid), dahje dušše čiega lánja ja guđe dan diskas.',
+      removeWorktreeDirty:
+        'Dán worktreat lea vurkehkeahttaš molssumiid. Váldde dan eret bákčasis (hilggo daid molssumiid), dahje dušše čiega lánja ja guđe dan diskas.',
       forceRemove: 'Váldde eret bákčasis',
       back: 'Buot prošeavttat',
       ideaGenerating: 'Ráhkaduvvo…',
@@ -928,8 +966,10 @@ export const se = defineLocale({
       copyPath: 'Kopiere bálgá',
       removeFromSidebar: 'Čiega sivdebálgás',
       createFailed: 'Ii sáhttán ráhkadit prošeavtta',
-      staleBackend: 'Ođasmahte OpenAmer-backend vai sáhtát ráhkadit prošeavttaid — du backend lea boarrespii go dát desktoppa prográmma (Heivehusat → Ođasmahttimat → Backend).',
-      deleteConfirm: 'Dát váldá vurkejuvvon prošeavtta eret OpenAmer:is. Fiillat, git-repoat ja worktreat bissut nuinna go leat.',
+      staleBackend:
+        'Ođasmahte OpenAmer-backend vai sáhtát ráhkadit prošeavttaid — du backend lea boarrespii go dát desktoppa prográmma (Heivehusat → Ođasmahttimat → Backend).',
+      deleteConfirm:
+        'Dát váldá vurkejuvvon prošeavtta eret OpenAmer:is. Fiillat, git-repoat ja worktreat bissut nuinna go leat.',
       startWork: 'Ođđa worktree',
       newWorktreeTitle: 'Ođđa worktree',
       newWorktreeDesc: 'Nammat dán worktreat branča.',
@@ -950,10 +990,11 @@ export const se = defineLocale({
       noBranches: 'Ii brančaid gávdnon',
       removeWorktree: 'Váldde worktree eret',
       removeWorktreeFailed: 'Ii sáhttán váldit worktree eret (vurkehkeahttaš molssumat?)',
-      removeWorktreeConfirm: 'Váldde dan eret git:is (sihko worktree-mappá; branch bissu), dahje dušše čiega lánja sivdebálgás ja guđe worktree diskas.',
+      removeWorktreeConfirm:
+        'Váldde dan eret git:is (sihko worktree-mappá; branch bissu), dahje dušše čiega lánja sivdebálgás ja guđe worktree diskas.',
       enter: label => `Raba ${label}`,
       reorder: label => `Sirdde ${label}`,
-      toggle: label => `Molssut ${label} sessionaid`,
+      toggle: label => `Molssut ${label} sessionaid`
     },
     loading: 'Lohkkojuvvo…',
     loadMore: 'Lohke lasse',
@@ -988,19 +1029,19 @@ export const se = defineLocale({
       untitledChat: id => `Ságastallan ${id}`,
       ageDay: 'b',
       ageHour: 'd',
-      ageMin: 'min',
+      ageMin: 'min'
     },
     dateDivider: {
       today: 'Dán beaivvi ovdal',
       yesterday: 'Ikke',
       thisWeek: 'Dán vahku ovdal',
       lastWeek: 'Mannan vahku',
-      thisMonth: 'Dán mánu ovdal',
+      thisMonth: 'Dán mánu ovdal'
     },
     noMatch: query => `Ii sessionat vástidit “${query}”.`,
     newSessionIn: label => `Ođđa session ${label}:s`,
     showMoreIn: (count, label) => `Čájet ${count} lasse ${label}:s`,
-    loadCount: step => `Lohke ${step} lasse`,
+    loadCount: step => `Lohke ${step} lasse`
   },
   composer: {
     message: 'Sádne',
@@ -1011,20 +1052,20 @@ export const se = defineLocale({
     newSessionPlaceholders: [
       'Maid mii ráhkadit?',
       'Addá OpenAmer:ii doaimma',
-      "Mii lea du miellagis?",
+      'Mii lea du miellagis?',
       'Govvát mii dárbbašat',
       'Maid mii váldit ovdan?',
       'Jeara maide beare',
-      'Álggat ulbmilain',
+      'Álggat ulbmilain'
     ],
     followUpPlaceholders: [
       'Sádde lassejearaldaga',
       'Lasit eanet konteavstta',
       'Dárkkis jearaldaga',
-      "Mii boahtá?",
+      'Mii boahtá?',
       'Joatkke',
       'Ovdidit dan',
-      'Heive dahje joatkke',
+      'Heive dahje joatkke'
     ],
     startVoice: 'Álggat jienaságastallama',
     queueMessage: 'Bija sáni vuordimii',
@@ -1060,7 +1101,7 @@ export const se = defineLocale({
       '/resume': 'joatkke ovddit sessiona',
       '/details': 'stivre transkriptta dási',
       '/copy': 'kopiere válljema dahje maŋimustá assistenta sáni',
-      '/quit': 'olggos openamer:is',
+      '/quit': 'olggos openamer:is'
     },
     hotkeyDescs: {
       'composer.mention': 'referere fiillaid, mappáid, url:aid, git',
@@ -1070,7 +1111,7 @@ export const se = defineLocale({
       'composer.sendQueued': 'sádde boahtte vuordimis vuoru',
       'keybinds.openPanel': 'buot boalloskovit',
       'composer.cancel': 'gidde popovera · bisse jođu',
-      'composer.history': 'molssut popovera / historjjá',
+      'composer.history': 'molssut popovera / historjjá'
     },
     attachUrlTitle: 'Čatna URL',
     attachUrlDesc: 'OpenAmer viežžá siiddu ja lasiha dan konteavstan dán vuorrui.',
@@ -1121,23 +1162,24 @@ export const se = defineLocale({
       codeReview: {
         label: 'Koda dárkkisteapmi',
         description: 'Dárkkis dálá molssuma regressioinaid, hilgojuvvon servodagaid ja váilevaš testtaid várás.',
-        text: 'Dárkkis dán buktagiid, regressioinaid ja váilevaš testtaid várás.',
+        text: 'Dárkkis dán buktagiid, regressioinaid ja váilevaš testtaid várás.'
       },
       implementationPlan: {
         label: 'Implementašuvdnaplána',
         description: 'Čilge vuogi ovdal go guoskat kodii, vai diff bissu fokusejuvvon.',
-        text: 'Ráhkat oanehis implementašuvdnaplána ovdal go molssut kodii.',
+        text: 'Ráhkat oanehis implementašuvdnaplána ovdal go molssut kodii.'
       },
       explainThis: {
         label: 'Čilge dán',
         description: 'Čilge mo válljejuvvon koda doaimma ja čuju deháleamos fiillaide.',
-        text: 'Čilge mo dát doaimma ja čuju munnje deháleamos fiillaide.',
-      },
-    },
+        text: 'Čilge mo dát doaimma ja čuju munnje deháleamos fiillaide.'
+      }
+    }
   },
   install: {
     remoteSetupTitle: 'Čatna dálá OpenAmer:ii',
-    remoteSetupDesc: 'Čále du gateway-URL. OpenAmer Desktop dárkkista ahte dárbbaša go tokena dahje browser-sisačáliheami.',
+    remoteSetupDesc:
+      'Čále du gateway-URL. OpenAmer Desktop dárkkista ahte dárbbaša go tokena dahje browser-sisačáliheami.',
     remoteUrlTitle: 'Gateway-URL',
     remoteUrlDesc: 'Geavat OpenAmer-gateway vuolgga-URL, mielde https:// go gáidnálaš.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -1161,8 +1203,10 @@ export const se = defineLocale({
     failedTitle: 'Installeren ii lihkostuvvan',
     settingUpTitle: 'OpenAmer Agent heivehuvvo',
     finishingTitle: 'Loahppojuvvo',
-    failedDesc: 'Okta installenmutti ii lihkostuvvan. Windows:as dát sáhttá dáhpáhuvvat jus eará OpenAmer CLI dahje desktoppa instánsa lea jođus. Bisse buot jođus leahkki OpenAmer-instánssaid, de geahččal ođđasit. Dárkkis dieđuid vulobealde dahje desktoppa loggas olles transkriptta várás.',
-    activeDesc: 'Dát lea oktii heiveheapmi. OpenAmer-installereaddji viežžá depsendensiid ja heive du mašiinna. Boahtte álggahusat njuiket dán muttu.',
+    failedDesc:
+      'Okta installenmutti ii lihkostuvvan. Windows:as dát sáhttá dáhpáhuvvat jus eará OpenAmer CLI dahje desktoppa instánsa lea jođus. Bisse buot jođus leahkki OpenAmer-instánssaid, de geahččal ođđasit. Dárkkis dieđuid vulobealde dahje desktoppa loggas olles transkriptta várás.',
+    activeDesc:
+      'Dát lea oktii heiveheapmi. OpenAmer-installereaddji viežžá depsendensiid ja heive du mašiinna. Boahtte álggahusat njuiket dán muttu.',
     fetchingManifest: 'Viežžojuvvo installeremanifesta...',
     error: 'Meattáhus',
     hideOutput: 'Čiega installerema olggosboađu',
@@ -1179,20 +1223,23 @@ export const se = defineLocale({
       running: 'Installerejuvvo',
       succeeded: 'Deal',
       skipped: 'Njuikojuvvon',
-      failed: 'Ii lihkostuvvan',
+      failed: 'Ii lihkostuvvan'
     },
     oneTimeTitle: 'OpenAmer gáibida oktii installereami',
-    unsupportedDesc: platform => `Automáhtalaš vuosttašálggahusinstalleren ii leat oažžumis ${platform}:as vel. Raba Terminal ja jođit vulobealde komanda, de álggat dán prográmma ođđasit. Boahtte álggahusat njuiket dán muttu.`,
+    unsupportedDesc: platform =>
+      `Automáhtalaš vuosttašálggahusinstalleren ii leat oažžumis ${platform}:as vel. Raba Terminal ja jođit vulobealde komanda, de álggat dán prográmma ođđasit. Boahtte álggahusat njuiket dán muttu.`,
     installCommand: 'Installerenkomanda',
     copyCommand: 'Kopiere komanda',
     viewDocs: 'Geahča installendokumeanttaid',
     installTo: 'Installerejuvvo',
     retryAfterRun: 'Lea jođihan dan -- geahččal ođđasit',
     setupChoiceTitle: 'Heive OpenAmer Desktop',
-    setupChoiceDesc: 'Čatna dán prográmma OpenAmer-gateway:ii maid juo jođihat, dahje installe OpenAmer báikkálaččat dán dihtorii.',
+    setupChoiceDesc:
+      'Čatna dán prográmma OpenAmer-gateway:ii maid juo jođihat, dahje installe OpenAmer báikkálaččat dán dihtorii.',
     connectExistingTitle: 'Čatna dálá OpenAmer:ii',
     connectExistingShort: 'Čatna dálá',
-    connectExistingDesc: 'Geavat gáidnálaš backend session-tokenain dahje browser-sisačálihemiin. Ii báikkálaš installeren álgga.',
+    connectExistingDesc:
+      'Geavat gáidnálaš backend session-tokenain dahje browser-sisačálihemiin. Ii báikkálaš installeren álgga.',
     installLocalTitle: 'Installe OpenAmer báikkálaččat',
     installLocalDesc: 'Viežžá OpenAmer, ráhkat dan Python-birrasa ja jođit backend dán dihtoris.',
     localStartUnavailable: 'Báikkálaš installeren ii álggahuvvon. Álggat OpenAmer Desktop ođđasit ja geahččal ođđasit.',
@@ -1201,7 +1248,7 @@ export const se = defineLocale({
     testSucceeded: (baseUrl, version) => `Čadnojuvvon ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} / ${total} muttu geargan`,
     currentStage: stage => ` -- dál: ${stage}`,
-    lines: count => `${count} linnjá ${count === 1 ? '' : 's'}`,
+    lines: count => `${count} linnjá ${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'Heivet OpenAmer Agent:ain',
@@ -1212,7 +1259,7 @@ export const se = defineLocale({
     collapse: 'Oanehit',
     otherProviders: 'Eará fálaldagat',
     haveApiKey: 'Mus lea API-čoavdaga',
-    chooseLater: "Válljen fálaldaga maŋŋel",
+    chooseLater: 'Válljen fálaldaga maŋŋel',
     recommended: 'Rekomenderejuvvon',
     connected: 'Čadnojuvvon',
     featuredPitch: 'Okta subscription, 300+ frontier-modealla — rekomenderejuvvon vuohki jođihit OpenAmer',
@@ -1221,28 +1268,29 @@ export const se = defineLocale({
     apiKeyOptions: {
       fireworks: {
         short: 'njuolga modealla-API',
-        description: 'Njuolga oktavuohta Fireworks AI hostejuvvon modeallaide.',
+        description: 'Njuolga oktavuohta Fireworks AI hostejuvvon modeallaide.'
       },
       openrouter: {
         short: 'okta čoavdaga, máŋga modealla',
-        description: 'Hostejuvvon čuođit modeallat ovtta čoavdaga duogážis. Buorre dábálašárvu ođđa installerejumiidda.',
+        description: 'Hostejuvvon čuođit modeallat ovtta čoavdaga duogážis. Buorre dábálašárvu ođđa installerejumiidda.'
       },
       openai: {
         short: 'GPT-klássa modeallat',
-        description: 'Njuolga oktavuohta OpenAI-modeallaide.',
+        description: 'Njuolga oktavuohta OpenAI-modeallaide.'
       },
       gemini: {
         short: 'Gemini-modeallat',
-        description: 'Njuolga oktavuohta Google Gemini-modeallaide.',
+        description: 'Njuolga oktavuohta Google Gemini-modeallaide.'
       },
       xai: {
         short: 'Grok-modeallat',
-        description: 'Njuolga oktavuohta xAI Grok-modeallaide.',
+        description: 'Njuolga oktavuohta xAI Grok-modeallaide.'
       },
       local: {
         short: 'iešhostejuvvon',
-        description: 'Bija OpenAmer báikkálaš dahje iešhostejuvvon OpenAI-čadnon endpoint:i (vLLM, llama.cpp, Ollama, jna).',
-      },
+        description:
+          'Bija OpenAmer báikkálaš dahje iešhostejuvvon OpenAI-čadnon endpoint:i (vLLM, llama.cpp, Ollama, jna).'
+      }
     },
     backToSignIn: 'Máhca sisačáliheapmái',
     getKey: 'Oažžu čoavdaga',
@@ -1255,7 +1303,7 @@ export const se = defineLocale({
     flowSubtitles: {
       pkce: 'Rahpo du browsera sisačáliheapmái, de joatká dás',
       device_code: 'Rahpo duođaštussiiddu du browseris — OpenAmer čatná automáhtalaččat',
-      external: 'Čále sisa oktii du terminalas, de boađe dás fas ságastallat',
+      external: 'Čále sisa oktii du terminalas, de boađe dás fas ságastallat'
     },
     startingSignIn: provider => `${provider} sisačáliheapmi álggahuvvo...`,
     verifyingCode: provider => `Du koda dárkkistuvvo ${provider}ain...`,
@@ -1269,11 +1317,13 @@ export const se = defineLocale({
     copyAuthCode: 'Kopiere duođaštuskoda ja liibme dan vulobealde.',
     pasteAuthCode: 'Liibme duođaštuskoda',
     reopenAuthPage: 'Raba duođaštussiiddu ođđasit',
-    autoBrowser: provider => `Mii rahpet ${provider} du browseris. Duođaš OpenAmer dohko ja don čadnojuvvot automáhtalaččat — ii mihkkege kopierejuvvo dahje liibmejuvvo.`,
+    autoBrowser: provider =>
+      `Mii rahpet ${provider} du browseris. Duođaš OpenAmer dohko ja don čadnojuvvot automáhtalaččat — ii mihkkege kopierejuvvo dahje liibmejuvvo.`,
     reopenSignInPage: 'Raba sisačálihansiiddu ođđasit',
     waitingAuthorize: 'Vuordá du duođaštusa...',
-    externalPending: provider => `${provider} čálá sisa iežas CLI bokte. Jođit dán komanda terminalas, de boađe dás fas ja vállje "Mun lean čálán sisa":`,
-    signedIn: "Mun lean čálán sisa",
+    externalPending: provider =>
+      `${provider} čálá sisa iežas CLI bokte. Jođit dán komanda terminalas, de boađe dás fas ja vállje "Mun lean čálán sisa":`,
+    signedIn: 'Mun lean čálán sisa',
     deviceCodeOpened: provider => `Mii rahpet ${provider} du browseris. Čále dán koda dohko:`,
     reopenVerification: 'Raba duođaštussiiddu ođđasit',
     copy: 'Kopiere',
@@ -1284,7 +1334,7 @@ export const se = defineLocale({
     price: (input, output) => `${input} sisa / ${output} olggos juohke Mtok`,
     change: 'Molsso',
     startChatting: 'Álgge',
-    docs: provider => `${provider} dokumeanttat`,
+    docs: provider => `${provider} dokumeanttat`
   },
   boot: {
     ready: 'OpenAmer Desktop lea gárvvis',
@@ -1294,7 +1344,7 @@ export const se = defineLocale({
       loadingSettings: 'Lohkkojuvvo OpenAmer heivehusat',
       loadingSessions: 'Lohkkojuvvo ođđaseamos sessionat',
       startingDesktopConnection: 'Álggahuvvo desktoppa oktavuohta',
-      startingOpenAmerDesktop: 'Álggahuvvo OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Álggahuvvo OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'OpenAmer duogášproseassa nohkai.',
@@ -1303,13 +1353,15 @@ export const se = defineLocale({
       desktopBootFailed: 'Desktoppa álggahus ii lihkostuvvan',
       gatewayConnectionLost: 'Oktavuohta gatewayain láhppui',
       gatewaySignInRequired: 'Gateway sisačáliheapmi gáldo',
-      ipcBridgeUnavailable: 'Desktoppa IPC-látna ii leat oažžumis.',
+      ipcBridgeUnavailable: 'Desktoppa IPC-látna ii leat oažžumis.'
     },
     failure: {
-      title: "OpenAmer ii sáhttán álggahit",
-      description: "Duogáš gateway ii álgán. Geahččal ovtta dás čuovvovaš čuolmmaid. Makkárge dás ii sihko du ságaid dahje heivehusaid.",
+      title: 'OpenAmer ii sáhttán álggahit',
+      description:
+        'Duogáš gateway ii álgán. Geahččal ovtta dás čuovvovaš čuolmmaid. Makkárge dás ii sihko du ságaid dahje heivehusaid.',
       remoteTitle: 'Gáidnálaš gateway sisačáliheapmi gáldo',
-      remoteDescription: 'Du gáidnálaš gateway-session lea nohkán. Čále sisa ođđasit vai oaččut oktavuođa. Makkárge dás ii sihko du ságaid dahje heivehusaid.',
+      remoteDescription:
+        'Du gáidnálaš gateway-session lea nohkán. Čále sisa ođđasit vai oaččut oktavuođa. Makkárge dás ii sihko du ságaid dahje heivehusaid.',
       retry: 'Geahččal fas',
       repairInstall: 'Divo installema',
       useLocalGateway: 'Geavat báikkálaš gateway',
@@ -1317,7 +1369,8 @@ export const se = defineLocale({
       back: 'Máhca',
       openLogs: 'Raba loggat',
       repairHint: 'Dikto jođiha installema ođđasit ja sáhttá váldit moadde minuhta ođđa mašiinna.',
-      remoteSignInHint: signInLabel => `Čálihuvvo olggos vurkejuvvon gáidnálaš browser-sessionis, ja de rahpo ${signInLabel}. Geavat báikkálaš gateway dan sajis, vai molssut duogáš backend:i.`,
+      remoteSignInHint: signInLabel =>
+        `Čálihuvvo olggos vurkejuvvon gáidnálaš browser-sessionis, ja de rahpo ${signInLabel}. Geavat báikkálaš gateway dan sajis, vai molssut duogáš backend:i.`,
       signOutAndSignIn: 'Čále olggos & čále sisa',
       remoteFailureHint: 'Dárkkis gateway URL ja sisačáliheami Gateway heivehusain, dahje molssut báikkálaš gateway:i.',
       hideRecentLogs: 'Čiega ođđaseamos loggaid',
@@ -1329,8 +1382,8 @@ export const se = defineLocale({
       signInFailed: 'Sisačáliheapmi ii lihkostuvvan',
       signInToRemoteGateway: 'Čále sisa gáidnálaš gateway:i',
       signInWithProvider: provider => `Čále sisa ${provider}ain`,
-      identityProvider: 'du identitehtaaddisteaddji',
-    },
+      identityProvider: 'du identitehtaaddisteaddji'
+    }
   },
   notifications: {
     region: 'Muitalusat',
@@ -1343,21 +1396,23 @@ export const se = defineLocale({
     copyDetail: 'Kopiere dieđu',
     copyDetailFailed: 'Ii sáhttán kopieret muitalusa dieđu',
     backendOutOfDateTitle: 'Backend lea boares',
-    backendOutOfDateMessage: 'Du OpenAmer backend lea boarrespii go dát desktoppa builha ja ii baicce doaimma riekta. Ođasmahte vai oktii biddjojuvvojit.',
+    backendOutOfDateMessage:
+      'Du OpenAmer backend lea boarrespii go dát desktoppa builha ja ii baicce doaimma riekta. Ođasmahte vai oktii biddjojuvvojit.',
     installMethodUnsupportedTitle: 'Installeren vuohki ii dorjojuvvo',
     updateOpenAmer: 'Ođasmahte OpenAmer',
     updateReadyTitle: 'Ođasmahttin gárvvis',
     updateReadyMessage: count => `Ođđa rievdamat: ${count} ${count === 1 ? '' : 's'} oažžumis.`,
-    seeWhatsNew: "Geahča mii lea ođđa",
+    seeWhatsNew: 'Geahča mii lea ođđa',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT dárbbaša ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs hilggui API-čoavdaga (401).',
       gatewayAuthFailed: 'Gateway duođaštus ii lihkostuvvan — dárkkis du API_SERVER_KEY.',
-      methodNotAllowed: 'Desktoppa backend hilggui dan jearaldaga (405 Method Not Allowed). Geahččal álggahit OpenAmer Desktop ođđasit.',
+      methodNotAllowed:
+        'Desktoppa backend hilggui dan jearaldaga (405 Method Not Allowed). Geahččal álggahit OpenAmer Desktop ođđasit.',
       microphonePermission: 'Mikrofona lohpi hilgojuvvui.',
       openaiRejectedApiKey: 'OpenAI hilggui API-čoavdaga.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI hilggui API-čoavdaga (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS dárbbaša VOICE_TOOLS_OPENAI_KEY dahje OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS dárbbaša VOICE_TOOLS_OPENAI_KEY dahje OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Heive jienadoaimma (speech-to-text) vai sáhtát geavahit jiena.',
@@ -1376,7 +1431,7 @@ export const se = defineLocale({
       transcriptionFailed: 'Jiena transkriberen ii lihkostuvvan',
       transcriptionUnavailable: 'Jiena transkriberen ii leat vel oažžumis.',
       tryRecordingAgain: 'Geahččal badjelvurket ođđasit.',
-      unavailable: 'Jietna ii leat oažžumis',
+      unavailable: 'Jietna ii leat oažžumis'
     },
     native: {
       approvalTitle: 'Lohpi dárbbašuvvo',
@@ -1389,11 +1444,12 @@ export const se = defineLocale({
       turnErrorTitle: 'Vuorru ii lihkostuvvan',
       backgroundDoneTitle: 'Duogášdoaibma geargan',
       backgroundFailedTitle: 'Duogášdoaibma ii lihkostuvvan',
-      creditsTitle: 'Kredihtat',
-    },
+      creditsTitle: 'Kredihtat'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering lea jođus — gáidnálaš čájeheapmi gávdnon (${reason}). GPU-kiđđádeapmi lea váldojuvvon eret, vai ii šatta čuojádeapmi.`,
+    message: reason =>
+      `Software rendering lea jođus — gáidnálaš čájeheapmi gávdnon (${reason}). GPU-kiđđádeapmi lea váldojuvvon eret, vai ii šatta čuojádeapmi.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer-kredihtat nohkán',
@@ -1401,7 +1457,7 @@ export const se = defineLocale({
     fallbackMessage: 'Du konto kredihtat leat nohkán. Lasit kredihtaid vai sáhtát joatkit.',
     openBilling: 'Raba maksima',
     addCredits: 'Lasit kredihtaid',
-    dismiss: 'Gidde',
+    dismiss: 'Gidde'
   },
   titlebar: {
     hideSidebar: 'Čiega sivdebálgá',
@@ -1418,7 +1474,7 @@ export const se = defineLocale({
     openStarmap: 'Raba muittugrámma',
     openKeybinds: 'Boallo-skovit',
     layoutEditor: 'Hábmedoaimmaheaddji',
-    layoutEditorTitle: 'Hábmedoaimmaheaddji — ⌘-klikken máhca hábme dábálašárvui',
+    layoutEditorTitle: 'Hábmedoaimmaheaddji — ⌘-klikken máhca hábme dábálašárvui'
   },
   keybinds: {
     title: 'Boallo-skovit',
@@ -1435,7 +1491,7 @@ export const se = defineLocale({
       profiles: 'Profiillat',
       session: 'Session',
       navigation: 'Navigašuvdna',
-      view: 'Čájeheapmi',
+      view: 'Čájeheapmi'
     },
     actions: {
       'keybinds.openPanel': 'Raba boallo-skoviid',
@@ -1514,8 +1570,8 @@ export const se = defineLocale({
       'composer.slash': 'Slash-kommandopaletta',
       'composer.help': 'Jođánis veahkki',
       'composer.history': 'Molssut popovera / historjjá',
-      'composer.cancel': 'Gidde popovera · bisse jođu',
-    },
+      'composer.cancel': 'Gidde popovera · bisse jođu'
+    }
   },
   language: {
     label: 'Giella',
@@ -1524,7 +1580,7 @@ export const se = defineLocale({
     saveError: 'Giela ođasmahttin ii lihkostuvvan',
     switchTo: 'Molssut giela',
     searchPlaceholder: 'Oza gielaid…',
-    noResults: 'Ii gielaid gávdnan',
+    noResults: 'Ii gielaid gávdnan'
   },
   skills: {
     tabSkills: 'Máhtut',
@@ -1544,7 +1600,8 @@ export const se = defineLocale({
     noDescription: 'Ii govvádus.',
     configured: 'Heivehuvvon',
     needsKeys: 'Dárbbaša čoavdagiid',
-    visionModelHint: 'Vision geavaha du veahkaneavttemodeallakonfigurerejumi — gova hálddašeaddji modealla válljejuvvo dohko, ii dás fálaldaga mielde.',
+    visionModelHint:
+      'Vision geavaha du veahkaneavttemodeallakonfigurerejumi — gova hálddašeaddji modealla válljejuvvo dohko, ii dás fálaldaga mielde.',
     visionModelLink: 'Vállje vision-modealla Heivehusat → Modeallat',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} neavttekoartta jođus`,
     configureToolset: label => `Heive ${label}`,
@@ -1570,7 +1627,7 @@ export const se = defineLocale({
     provenance: {
       agent: 'Oahppojuvvon',
       bundled: 'Sisabiddjon',
-      hub: 'Hubb',
+      hub: 'Hubb'
     },
     emptyNoneFound: noun => `Ii ${noun} gávdnon`,
     emptyNothingMatches: query => `Ii mihkkege vástida “${query}”.`,
@@ -1588,7 +1645,8 @@ export const se = defineLocale({
       connectingHubs: 'Čatná máhttohubiide...',
       connectedHubs: 'Čadnon hubit:',
       featured: 'Ovdanbuktojuvvon máhtut',
-      landingHint: 'Oza hubis vai geahččal installerejuvvon máhtuid virálalaš index:is, GitHub:is ja servošsiid gálduin.',
+      landingHint:
+        'Oza hubis vai geahččal installerejuvvon máhtuid virálalaš index:is, GitHub:is ja servošsiid gálduin.',
       noResults: 'Ii vástideaddji máhtuid gávdnon hubis.',
       resultCount: (count, ms) => `${count} bođus ${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Áigi nohkai: ${sources}`,
@@ -1608,7 +1666,7 @@ export const se = defineLocale({
       trust: {
         builtin: 'sisabiddjon',
         trusted: 'luohtejuvvon',
-        community: 'servoš',
+        community: 'servoš'
       },
       verdictSafe: 'Sihkkar',
       verdictCaution: 'Várro',
@@ -1626,8 +1684,8 @@ export const se = defineLocale({
       loadFailed: 'Máhttohub ii lohkkon',
       previewFailed: 'Máhttoovdačájeheapmi ii lihkostuvvan',
       scanFailed: 'Sihkkarvuođaskane ii lihkostuvvan',
-      searchFailed: 'Hub-ozamuš ii lihkostuvvan',
-    },
+      searchFailed: 'Hub-ozamuš ii lihkostuvvan'
+    }
   },
   starmap: {
     title: 'Muittugrámma',
@@ -1644,7 +1702,8 @@ export const se = defineLocale({
     emptyTitle: 'Ii vel mihkkege oahppojuvvon',
     emptyDesc: 'Go OpenAmer ráhká máhtuid ja muittuid du barggus, dat ihtet dás.',
     share: 'Juoge grámma',
-    shareHint: 'Kopiere koda vai juogat dán grámma, dahje liibme koda vai lohkat dan. Dat sisdollet dušše hábme, ii du muittu dahje máhttoteavstta.',
+    shareHint:
+      'Kopiere koda vai juogat dán grámma, dahje liibme koda vai lohkat dan. Dat sisdollet dušše hábme, ii du muittu dahje máhttoteavstta.',
     shareTitle: 'Importere / eksportere grámma',
     sharePlaceholder: 'Liibme grámmakoda…',
     copy: 'Kopiere grámmakoda',
@@ -1654,7 +1713,7 @@ export const se = defineLocale({
     importEmpty: 'Liibme grámmakoda vai lohkat dan.',
     importSuccess: nodes => `Grámma lohkojuvvon: ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'importerejuvvon grámma',
-    resetToMine: 'Máhca mu iežas grámmii',
+    resetToMine: 'Máhca mu iežas grámmii'
   },
   agents: {
     close: 'Gidde agenttaid',
@@ -1684,7 +1743,7 @@ export const se = defineLocale({
     ageDays: days => `${days}d dás ovdal`,
     durationSeconds: seconds => `${seconds}sek`,
     durationMinutes: (minutes, seconds) => `${minutes}min ${seconds}sek`,
-    tokens: value => `${value} tokens`,
+    tokens: value => `${value} tokens`
   },
   commandCenter: {
     close: 'Gidde kommandoguovddáža',
@@ -1714,7 +1773,7 @@ export const se = defineLocale({
       generatedTag: 'Ráhkaduvvon',
       adoptFailed: 'Ii sáhttán váldit dan maskoti.',
       toggleFailed: 'Ii sáhttán molssut maskoti.',
-      noneAvailable: 'Ii maskotiid oažžumis — vállje ovtta vulobealde vai installere.',
+      noneAvailable: 'Ii maskotiid oažžumis — vállje ovtta vulobealde vai installere.'
     },
     generatePet: {
       title: 'Ráhkat maskoti',
@@ -1743,7 +1802,7 @@ export const se = defineLocale({
       referenceImageTooLarge: 'Refereansagovva lea boasttu stuoris. Geavat gova mii lea vuollel 16 MB.',
       referenceImageInvalid: 'Ii sáhttán lohkat dan refereansagova. Geahččal PNG, JPG, WebP dahje GIF.',
       adopt: 'Váldde',
-      startOver: 'Álggat ođđasit',
+      startOver: 'Álggat ođđasit'
     },
     installTheme: {
       title: 'Installe tema…',
@@ -1755,7 +1814,7 @@ export const se = defineLocale({
       install: 'Installe',
       installing: 'Installerejuvvo...',
       installed: 'Installerejuvvon',
-      installs: count => `${count} installereami`,
+      installs: count => `${count} installereami`
     },
     settingsFields: 'Heivehusaid giettit',
     mcpServers: 'MCP-servarat',
@@ -1764,49 +1823,49 @@ export const se = defineLocale({
       maintenance: 'Divodeapmi',
       sessions: 'Sessionat',
       system: 'Systema',
-      usage: 'Geavahus',
+      usage: 'Geavahus'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostihkka, vuorjegat, kurehtor ja muittudieđut',
       sessions: 'Oza ja stivre sessionaid',
       system: 'Statusa, loggat ja systemadoaimmat',
-      usage: 'Tokenat, gollu ja máhttodoaimma áiggi mielde',
+      usage: 'Tokenat, gollu ja máhttodoaimma áiggi mielde'
     },
     nav: {
       newChat: {
         title: 'Ođđa session',
-        detail: 'Álggat ođđa sessiona',
+        detail: 'Álggat ođđa sessiona'
       },
       settings: {
         title: 'Heivehusat',
-        detail: 'Heive OpenAmer desktopa',
+        detail: 'Heive OpenAmer desktopa'
       },
       skills: {
         title: 'Máhtut',
-        detail: 'Máhtut, neavttit ja MCP-servarat',
+        detail: 'Máhtut, neavttit ja MCP-servarat'
       },
       messaging: {
         title: 'Sáddem',
-        detail: 'Heive Telegram, Slack, Discord ja eará',
+        detail: 'Heive Telegram, Slack, Discord ja eará'
       },
       artifacts: {
         title: 'Artefáktat',
-        detail: 'Geahča ráhkaduvvon bođusaid',
-      },
+        detail: 'Geahča ráhkaduvvon bođusaid'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Session-panela',
-        detail: 'Oza, njuolga ja stivre sessionaid',
+        detail: 'Oza, njuolga ja stivre sessionaid'
       },
       system: {
         title: 'System-panela',
-        detail: 'Gateway-stađđu, loggat, ođđasitálggahus ja ođasmahttin',
+        detail: 'Gateway-stađđu, loggat, ođđasitálggahus ja ođasmahttin'
       },
       usage: {
         title: 'Geavahuspanela',
-        detail: 'Tokenat, gollu ja máhttodoaimma',
-      },
+        detail: 'Tokenat, gollu ja máhttodoaimma'
+      }
     },
     providerNavigate: 'Navigere',
     providerSessions: 'Sessionat',
@@ -1861,7 +1920,8 @@ export const se = defineLocale({
       backup: 'Ráhkat vuorjega',
       backupDesc: 'Zip konfigurerejumi, muittuid, máhtuid ja sessionaid',
       debugShare: 'Debug-juoge',
-      debugShareDesc: 'Bija redigerejuvvon raportta ja logggaid, oažžu juogamliŋkkaid (sihkkojuvvo automáhtalaččat 6h maŋŋá)',
+      debugShareDesc:
+        'Bija redigerejuvvon raportta ja logggaid, oažžu juogamliŋkkaid (sihkkojuvvo automáhtalaččat 6h maŋŋá)',
       debugShareRunning: 'Debug-raporta biddjojuvvo...',
       debugShareLinks: 'Juogamliŋkkat',
       debugShareFailed: 'Debug-juoge ii lihkostuvvan',
@@ -1894,8 +1954,8 @@ export const se = defineLocale({
       actionStarted: name => `${name} álggahuvvon — logga čuovvujuvvo...`,
       actionFailed: name => `${name} ii álggahuvvon`,
       running: 'Jođus...',
-      viewLog: 'Doaimmalogga',
-    },
+      viewLog: 'Doaimmalogga'
+    }
   },
   messaging: {
     search: 'Oza sáddema...',
@@ -1910,7 +1970,7 @@ export const se = defineLocale({
       not_configured: 'Dárbbaša heiveheami',
       pending_restart: 'Dárbbaša ođđasitálggahusa',
       retrying: 'Geahččala ođđasit',
-      startup_failed: 'Álggahus ii lihkostuvvan',
+      startup_failed: 'Álggahus ii lihkostuvvan'
     },
     unknown: 'Ii dieđus',
     hintPendingRestart: 'Álggat gateway ođđasit statusbálgás vai dát molssun doaimma.',
@@ -1923,7 +1983,8 @@ export const se = defineLocale({
     required: 'Gáibiduvvo',
     recommended: 'Rekomenderejuvvon',
     advanced: count => `Viidásut (${count})`,
-    noTokenNeeded: 'Dát platforma ii dárbbaš tokena dás. Geavat heivehanrávagirjji bajil, de bija dan johtui vulobealde.',
+    noTokenNeeded:
+      'Dát platforma ii dárbbaš tokena dás. Geavat heivehanrávagirjji bajil, de bija dan johtui vulobealde.',
     enabled: 'Jođus',
     disabled: 'Dulvehis',
     unsavedChanges: 'Vurkehkeahttaš molssumat',
@@ -1949,127 +2010,126 @@ export const se = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Bot-token',
         help: 'Ráhkat bota @BotFather:ain, de liibme dan tokena maid dat addá.',
-        placeholder: 'Liibme Telegram-bot-tokena',
+        placeholder: 'Liibme Telegram-bot-tokena'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Lohpejuvvon Telegram-geavaheaddji-ID:t',
-        help: 'Rekomenderejuvvon. Kommaiguin sirrejuvvon nummarlaš ID:t @userinfobot:is. Guđe dán, guhte beare sáhttá sáddejuvvot du bot:i.',
+        help: 'Rekomenderejuvvon. Kommaiguin sirrejuvvon nummarlaš ID:t @userinfobot:is. Guđe dán, guhte beare sáhttá sáddejuvvot du bot:i.'
       },
       TELEGRAM_PROXY: {
         label: 'Proxy-URL',
-        help: 'Dárbbašuvvo dušše neahtain gos Telegram lea gieldojuvvon.',
+        help: 'Dárbbašuvvo dušše neahtain gos Telegram lea gieldojuvvon.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Bot-token',
-        help: 'Ráhkat aplikasuvnna Discord Developer Portal:is, lasit bota, de liibme dan tokena.',
+        help: 'Ráhkat aplikasuvnna Discord Developer Portal:is, lasit bota, de liibme dan tokena.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Lohpejuvvon Discord-geavaheaddji-ID:t',
-        help: 'Rekomenderejuvvon. Kommaiguin sirrejuvvon Discord-geavaheaddji-ID:t.',
+        help: 'Rekomenderejuvvon. Kommaiguin sirrejuvvon Discord-geavaheaddji-ID:t.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Vástádusstiila',
-        help: 'first, all, dahje off.',
+        help: 'first, all, dahje off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Lohpe buot Discord-geavaheaddjiide',
-        help: 'Dušše ovddideami várás. Go true, guhte beare sáhttá DM:s sáddejuvvot bot:i guđe lohpelisttu.',
+        help: 'Dušše ovddideami várás. Go true, guhte beare sáhttá DM:s sáddejuvvot bot:i guđe lohpelisttu.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Ruovttukanála-ID',
-        help: 'Kanála gos bot sádde proaktiiva muitalusaid (cron-olggosboađu, muittuhusaid).',
+        help: 'Kanála gos bot sádde proaktiiva muitalusaid (cron-olggosboađu, muittuhusaid).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Ruovttukanála namma',
-        help: 'Kanála čájehannamma loggain ja statusas.',
+        help: 'Kanála čájehannamma loggain ja statusas.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Lohpe buot iMessage-geavaheaddjiide',
-        help: 'Go true, lohpelistu BlueBubbles:is njuiket.',
+        help: 'Go true, lohpelistu BlueBubbles:is njuiket.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Lohpe buot Mattermost-geavaheaddjiide',
+        label: 'Lohpe buot Mattermost-geavaheaddjiide'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Ruovttukanála',
+        label: 'Ruovttukanála'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Lohpe buot QQ-geavaheaddjiide',
+        label: 'Lohpe buot QQ-geavaheaddjiide'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ ruovttukanála',
-        help: 'Dábálaš kanála dahje joavku cron-sáddemii.',
+        help: 'Dábálaš kanála dahje joavku cron-sáddemii.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ ruovttukanála namma',
+        label: 'QQ ruovttukanála namma'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack bot-token',
         help: 'Geavat bot-tokena OAuth & Permissions:is go leat installeren Slack-aplikasuvnna.',
-        placeholder: 'Liibme Slack bot-tokena',
+        placeholder: 'Liibme Slack bot-tokena'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack app-token',
         help: 'Geavat app-tokena mii gáibiduvvo Socket Mode várás.',
-        placeholder: 'Liibme Slack app-tokena',
+        placeholder: 'Liibme Slack app-tokena'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Lohpejuvvon Slack-geavaheaddji-ID:t',
-        help: 'Rekomenderejuvvon. Kommaiguin sirrejuvvon Slack-geavaheaddji-ID:t.',
+        help: 'Rekomenderejuvvon. Kommaiguin sirrejuvvon Slack-geavaheaddji-ID:t.'
       },
       MATTERMOST_URL: {
         label: 'Server-URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Bot-token',
+        label: 'Bot-token'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Lohpejuvvon geavaheaddji-ID:t',
-        help: 'Rekomenderejuvvon. Kommaiguin sirrejuvvon Mattermost-geavaheaddji-ID:t.',
+        help: 'Rekomenderejuvvon. Kommaiguin sirrejuvvon Mattermost-geavaheaddji-ID:t.'
       },
       MATRIX_HOMESERVER: {
         label: 'Homeserver-URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Access-token',
+        label: 'Access-token'
       },
       MATRIX_USER_ID: {
         label: 'Bot-geavaheaddji-ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Lohpejuvvon Matrix-geavaheaddji-ID:t',
-        help: 'Rekomenderejuvvon. Kommaiguin sirrejuvvon geavaheaddji-ID:t @user:server-hámis.',
+        help: 'Rekomenderejuvvon. Kommaiguin sirrejuvvon geavaheaddji-ID:t @user:server-hámis.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal-bridge-URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'Jođus leahkki signal-cli REST-bridge URL.',
+        help: 'Jođus leahkki signal-cli REST-bridge URL.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Telefonnammar',
-        help: 'Nammar mii lea registrerejuvvon du signal-cli-bridge:ii.',
+        help: 'Nammar mii lea registrerejuvvon du signal-cli-bridge:ii.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Lohpejuvvon Signal-geavaheaddjit',
-        help: 'Rekomenderejuvvon. Kommaiguin sirrejuvvon Signal-identifikahtorat.',
+        help: 'Rekomenderejuvvon. Kommaiguin sirrejuvvon Signal-identifikahtorat.'
       },
       WHATSAPP_ENABLED: {
         label: 'Bija WhatsApp-bridge johtui',
-        help: 'Bidjon automáhtalaččat vulobealde molssuma bokte. Guđe dan ráhkis, jus it dieđe ahte dárbbašat dan.',
+        help: 'Bidjon automáhtalaččat vulobealde molssuma bokte. Guđe dan ráhkis, jus it dieđe ahte dárbbašat dan.'
       },
       WHATSAPP_MODE: {
-        label: 'Bridge-moda',
+        label: 'Bridge-moda'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Lohpejuvvon WhatsApp-geavaheaddjit',
-        help: 'Rekomenderejuvvon. Kommaiguin sirrejuvvon telefonnammarat dahje WhatsApp-ID:t.',
-      },
+        help: 'Rekomenderejuvvon. Kommaiguin sirrejuvvon telefonnammarat dahje WhatsApp-ID:t.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Oza webhookaid...',
@@ -2079,7 +2139,8 @@ export const se = defineLocale({
     hint: 'Subscriptionmolssumat lohkojuvvojit njuolgga go oažžudeaddji lea jođus. Dulvehis subscriptionat hilggojit boahtteválddi dáhpáhusaid.',
     empty: 'Ii vel webhook-subscriptione.',
     disabledTitle: 'Webhook-oažžudeaddji dulvehis',
-    disabledBody: 'Webhookat leat iežas gateway-platforma. Bija daid dás johtui vai oaččut boahtteválddi HTTP-dáhpáhusaid; ságastallankanálat dárbbašuvvojit dušše go subscription sádde Telegram, Discord, Slack dahje eará kanála.',
+    disabledBody:
+      'Webhookat leat iežas gateway-platforma. Bija daid dás johtui vai oaččut boahtteválddi HTTP-dáhpáhusaid; ságastallankanálat dárbbašuvvojit dušše go subscription sádde Telegram, Discord, Slack dahje eará kanála.',
     enable: 'Bija webhookat johtui',
     enabling: 'Biddjojuvvo johtui...',
     enabled: (name: string) => `Jođus: "${name}"`,
@@ -2096,7 +2157,8 @@ export const se = defineLocale({
     toggleFailed: (name: string) => `Ii sáhttán ođasmahttit "${name}"`,
     newSubscription: 'Ođđa subscription',
     restarting: 'Gateway álggahuvvo ođđasit...',
-    restartNeeded: 'Webhookat leat jođus, muhto gateway dárbbaša ain ođđasitálggahusa ovdal go oažžudeaddji boahtá johtui.',
+    restartNeeded:
+      'Webhookat leat jođus, muhto gateway dárbbaša ain ođđasitálggahusa ovdal go oažžudeaddji boahtá johtui.',
     restartGateway: 'Álggat gateway ođđasit',
     restartingGateway: 'Álggahuvvo ođđasit...',
     restartFailed: (detail: string) => `Gateway ođđasitálggahus ii lihkostuvvan${detail}`,
@@ -2132,8 +2194,8 @@ export const se = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'E-post',
-      github_comment: 'GitHub-kommentára',
-    },
+      github_comment: 'GitHub-kommentára'
+    }
   },
   profiles: {
     close: 'Gidde profiillaid',
@@ -2211,7 +2273,7 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
     failedLoadSoul: 'Ii sáhttán lohkat SOUL.md',
     failedSaveSoul: 'Ii sáhttán vurket SOUL.md',
     failedCreate: 'Ii sáhttán ráhkadit profiilla',
-    failedRename: 'Ii sáhttán nammat profiilla ođđasit',
+    failedRename: 'Ii sáhttán nammat profiilla ođđasit'
   },
   statusStack: {
     agents: 'Agendtat',
@@ -2259,13 +2321,14 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
       openPr: 'Raba PR',
       ghMissing: 'Installe GitHub CLI (gh) ja čále sisa vai sáhtát rahpat PR:aid',
       agentShip: 'Jeara OpenAmer:is PR:aid rahpat',
-      agentShipPrompt: 'Dárkkis dálá molssumiid, commit daid čielggas conventional-commit-sániin, push brancha ja raba pull requesta.',
+      agentShipPrompt:
+        'Dárkkis dálá molssumiid, commit daid čielggas conventional-commit-sániin, push brancha ja raba pull requesta.',
       newBranch: 'Ođđa branch',
       branchOffFrom: base => `Ođđa branch ${base}:s`,
       switchTo: branch => `Molssut ${branch}:ii`,
       switchFailed: branch => `Ii sáhttán molssut ${branch}:ii`,
-      worktrees: 'Worktreat',
-    },
+      worktrees: 'Worktreat'
+    }
   },
   updates: {
     stages: {
@@ -2280,7 +2343,7 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
       done: 'Ođasmahttin geargan',
       manual: 'Ođasmahte du terminalas',
       guiSkew: 'Ođasmahte desktoppa prográmma',
-      error: 'Ođasmahttin bisánan',
+      error: 'Ođasmahttin bisánan'
     },
     checking: 'Ođasmahttimiid ozaha…',
     checkFailedTitle: 'Ii sáhttán dárkkistit ođasmahttimiid',
@@ -2295,20 +2358,25 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
     availableBody: 'Ođđa OpenAmer-veršuvdna lea gárvvis installerejuvvot.',
     availableTitleBackend: 'Backend-ođasmahttin oažžumis',
     availableBodyBackend: 'Ođđaseappos veršuvdna čadnon OpenAmer-backendas lea gárvvis installerejuvvot.',
-    availableBodyNoChangelog: 'Ođđaseappos veršuvdna lea gárvvis. Almmuhanmuittimat eai leat oažžumis dán installerenšlája várás.',
+    availableBodyNoChangelog:
+      'Ođđaseappos veršuvdna lea gárvvis. Almmuhanmuittimat eai leat oažžumis dán installerenšlája várás.',
     updateNow: 'Ođasmahte dál',
     maybeLater: 'Maŋŋel',
     moreChanges: count => `+ ${count} lasse rievdat ${count === 1 ? '' : 's'} mielde.`,
     manualTitle: 'Ođasmahte du terminalas',
-    manualBody: 'Don installerejedje OpenAmer kommandolinnjás, nu ahte ođasmahttimat jođihuvvojit dohko maid. Liibme dán du terminalii:',
+    manualBody:
+      'Don installerejedje OpenAmer kommandolinnjás, nu ahte ođasmahttimat jođihuvvojit dohko maid. Liibme dán du terminalii:',
     manualPickedUp: 'OpenAmer váldá ođđa veršuvnna go boahtte hávi álggahat dan.',
     guiSkewTitle: 'Ođasmahte desktoppa prográmma',
-    guiSkewBody: 'Backend ođasmahttojuvvui, muhto dát desktoppa prográmmapakket ii molssojuvvon. Ođasmahte dahje installere OpenAmer desktoppa prográmma ođđasit (du AppImage / .deb / .rpm) vai dat heive.',
+    guiSkewBody:
+      'Backend ođasmahttojuvvui, muhto dát desktoppa prográmmapakket ii molssojuvvon. Ođasmahte dahje installere OpenAmer desktoppa prográmma ođđasit (du AppImage / .deb / .rpm) vai dat heive.',
     copy: 'Kopiere',
     copied: 'Kopierejuvvon',
     done: 'Deal',
-    applyingBody: 'OpenAmer-ođasmahteaddji váldá stivrejumi iežas lásis ja rahpo OpenAmer automáhtalaččat go geargan. Ale raba OpenAmer ieš go dat ođasmahttojuvvo.',
-    applyingBodyBackend: 'Gáidnálaš backend bija ođasmahttima johtui ja álggahuvvo ođđasit. OpenAmer čatná ođđasit automáhtalaččat go dat boahtá ruovttoluotta.',
+    applyingBody:
+      'OpenAmer-ođasmahteaddji váldá stivrejumi iežas lásis ja rahpo OpenAmer automáhtalaččat go geargan. Ale raba OpenAmer ieš go dat ođasmahttojuvvo.',
+    applyingBodyBackend:
+      'Gáidnálaš backend bija ođasmahttima johtui ja álggahuvvo ođđasit. OpenAmer čatná ođđasit automáhtalaččat go dat boahtá ruovttoluotta.',
     applyingClose: 'Dát lási giddejuvvo go ođasmahttin jođiha, de OpenAmer rahpo iešalddis ođđasit.',
     errorTitle: 'Ođasmahttin ii geargan',
     errorBody: 'Ale huđe — mihkkege ii láhppon. Sáhtát geahččalit ođđasit dál.',
@@ -2319,12 +2387,13 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
       restarting: 'Backend álggahuvvo ođđasit vai viežžá ođasmahttima…',
       notAvailable: 'Ođasmahttin ii oažžumis dán backend:i.',
       failed: 'Backend-ođasmahttin ii lihkostuvvan.',
-      noReturn: 'Backend ii boahtán ruovttoluotta. Ođasmahttin ii baicce geargan — dárkkis backend-hosta.',
+      noReturn: 'Backend ii boahtán ruovttoluotta. Ođasmahttin ii baicce geargan — dárkkis backend-hosta.'
     },
     appErrors: {
-      updateLocked: 'Ođasmahttin bisánan: eará OpenAmer-lási dahje openamer jođus leahkki terminal doallá dán installema rabas. Gidde dan ja geahččal ođđasit.',
-      updateFailed: 'Ođasmahttin ii geargan. Ale huđe — mihkkege ii láhppon. Sáhtát geahččalit ođđasit dál.',
-    },
+      updateLocked:
+        'Ođasmahttin bisánan: eará OpenAmer-lási dahje openamer jođus leahkki terminal doallá dán installema rabas. Gidde dan ja geahččal ođđasit.',
+      updateFailed: 'Ođasmahttin ii geargan. Ale huđe — mihkkege ii láhppon. Sáhtát geahččalit ođđasit dál.'
+    }
   },
   modelPicker: {
     title: 'Molssut modealla',
@@ -2340,13 +2409,13 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
     free: 'Nuvttá',
     freeTier: 'Nuvttá dásse',
     priceTitle: 'Sisa- ja olggosgollu miljovnna tokena dahje',
-    wasPrice: 'lei',
+    wasPrice: 'lei'
   },
   modelVisibility: {
     title: 'Modeallat',
     search: 'Oza modeallaid',
     noAuthenticatedProviders: 'Ii duođaštuvvon fálaldagat.',
-    addProvider: 'Lasit fálaldaga…',
+    addProvider: 'Lasit fálaldaga…'
   },
   shell: {
     windowControls: 'Lásistivre',
@@ -2357,7 +2426,7 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
       noModels: 'Ii modeallaid gávdnon',
       editModels: 'Heive modeallaid…',
       refreshModels: 'Viežžá modeallaid',
-      fast: 'Jođánis',
+      fast: 'Jođánis'
     },
     modelOptions: {
       noOptions: 'Ii válljemit dán modeallii',
@@ -2373,7 +2442,7 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
       max: 'Max',
       ultra: 'Ultra',
       updateFailed: 'Modeallaválljema ođasmahttin ii lihkostuvvan',
-      fastFailed: 'Jođánis moda ođasmahttin ii lihkostuvvan',
+      fastFailed: 'Jođánis moda ođasmahttin ii lihkostuvvan'
     },
     gatewayMenu: {
       gateway: 'Gateway',
@@ -2388,7 +2457,7 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
       connection: label => `Oktavuohta: ${label}`,
       recentActivity: 'Ođđaseamos doaibma',
       viewAllLogs: 'Geahča buot loggaid →',
-      messagingPlatforms: 'Sáddemplatformmat',
+      messagingPlatforms: 'Sáddemplatformmat'
     },
     approvalMode: {
       title: 'Doarvanmoda',
@@ -2398,7 +2467,7 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
       smart: 'Čeahpes',
       smartDescription: 'Dárkkista doaimmaid automáhtalaččat ja jeara go dárbbašuvvo',
       off: 'Ii jođus',
-      offDescription: 'Jođit guđe doarvangáibádusaid',
+      offDescription: 'Jođit guđe doarvangáibádusaid'
     },
     statusbar: {
       unknown: 'ii dieđus',
@@ -2454,27 +2523,29 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
           skills: 'Máhtut',
           subagent_definitions: 'Subagendameroštusat',
           system_prompt: 'System-promptta',
-          tool_definitions: 'Neavttimeroštusat',
+          tool_definitions: 'Neavttimeroštusat'
         },
         empty: 'Ii vel konteavstadieđuid',
         loading: 'Lohkkojuvvo juohkásan…',
         percentFull: percent => `${percent}% dievva`,
         title: 'Konteavsttageavahus',
-        tokenSummary: (used, max) => `${used} / ${max} tokena`,
+        tokenSummary: (used, max) => `${used} / ${max} tokena`
       },
       openContextUsage: 'Raba konteavsttageavahusa juohkásan',
       session: 'Session',
       runtimeSessionElapsed: 'Runtime-session áigi',
-      yoloOn: 'YOLO jođus — automáhtalaččat doarvo váralaš komandaid. Klikke vai bijat eret johtus. Shift-klikke molssut dan globálaččat.',
-      yoloOff: 'YOLO ii jođus — klikke vai automáhtalaččat doarvot váralaš komandaid. Shift-klikke molssut dan globálaččat.',
+      yoloOn:
+        'YOLO jođus — automáhtalaččat doarvo váralaš komandaid. Klikke vai bijat eret johtus. Shift-klikke molssut dan globálaččat.',
+      yoloOff:
+        'YOLO ii jođus — klikke vai automáhtalaččat doarvot váralaš komandaid. Shift-klikke molssut dan globálaččat.',
       modelNone: 'ii oktage',
       noModel: 'ii modealla',
       switchModel: 'Molssut modealla',
       openModelPicker: 'Raba modeallaválljema',
       modelPinned: 'don leat njuolggadan dan; ođđa ságastallamat geavahit dán Heivehusaid dábálašárvu sajis',
       modelTitle: (provider, model) => `Modealla · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Olgeš sivdebálgá',
@@ -2510,7 +2581,7 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
     terminalNew: 'Ođđa terminal',
     terminalCloseOthers: 'Gidde earát',
     terminalCloseAll: 'Gidde buot',
-    addToChat: 'Lasit ságastallamii',
+    addToChat: 'Lasit ságastallamii'
   },
   preview: {
     tab: 'Ovdačájeheapmi',
@@ -2544,7 +2615,8 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
     unsavedChanges: 'Vurkehkeahttaš molssumat',
     saveFailed: message => `Ii sáhttán vurket: ${message}`,
     diskChangedTitle: 'Fiila molssojuvvon diskas',
-    diskChangedBody: 'Dát fiila molssojuvvui go rahit dan. Buhtte dan du veršuvnnain, dahje hilggo du heivehusaid ja lohke ođđasit?',
+    diskChangedBody:
+      'Dát fiila molssojuvvui go rahit dan. Buhtte dan du veršuvnnain, dahje hilggo du heivehusaid ja lohke ođđasit?',
     overwrite: 'Buhtte',
     discardReload: 'Hilggo ja lohke ođđasit',
     console: {
@@ -2565,7 +2637,7 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
       empty: 'Ii vel konsooladieđuid.',
       promptHeader: 'Ovdačájehankonsoola:',
       sentTitle: 'Sáddejuvvon ságastallamii',
-      sentMessage: count => `${count} loggaelementa ${count === 1 ? 'y' : 'ies'} lasihuvvon čállimii`,
+      sentMessage: count => `${count} loggaelementa ${count === 1 ? 'y' : 'ies'} lasihuvvon čállimii`
     },
     web: {
       appFailedToBoot: 'Ovdačájehanprográmma ii álgán',
@@ -2583,24 +2655,27 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
       showConsole: 'Čájet ovdačájehankonsoola',
       hideDevTools: 'Čiega ovdačájehan-DevTools',
       openDevTools: 'Raba ovdačájehan-DevTools',
-      finishedRestarting: message => `OpenAmer geargan ovdačájehanservera álggahusas ođđasit${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer geargan ovdačájehanservera álggahusas ođđasit${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Servera ođđasitálggahus ii lihkostuvvan: ${message}`,
       unknownError: 'meattáhus ii dieđus',
       restartedTitle: 'Ovdačájehanserver álggahuvvon ođđasit',
       reloadingNow: 'Ovdačájeheapmi lohkojuvvo dál ođđasit.',
       restartFailedTitle: 'Ovdačájeheami ođđasitálggahus ii lihkostuvvan',
       restartFailedMessage: 'OpenAmer ii sáhttán álggahit servera ođđasit.',
-      stillWorking: 'OpenAmer bargá ain, muhto ođđasitálggahusbođus ii leat vel boahtán. Serverkomanda sáhttá jođihit ovdanbealde.',
+      stillWorking:
+        'OpenAmer bargá ain, muhto ođđasitálggahusbođus ii leat vel boahtán. Serverkomanda sáhttá jođihit ovdanbealde.',
       workspaceReloading: 'Bargosadji molssojuvvui, ovdačájeheapmi lohkojuvvo ođđasit',
       fileChanged: url => `Fiila molssojuvvon, ovdačájeheapmi lohkojuvvo ođđasit: ${url}`,
       filesChanged: (count, url) => `${count} fiilamolssuma, ovdačájeheapmi lohkojuvvo ođđasit: ${url}`,
       watchFailed: message => `Ii sáhttán čuovvut ovdačájehanfiilla: ${message}`,
-      moduleMimeDescription: 'Moduulascriptat biddjojuvvojit olggos boasttu MIME-šlájan. Dát dábálaččat mearkkaša ahte stáhtalaš fiilaservera sádde Vite/React-prográmma, ii prošeavtta dev-servera.',
+      moduleMimeDescription:
+        'Moduulascriptat biddjojuvvojit olggos boasttu MIME-šlájan. Dát dábálaččat mearkkaša ahte stáhtalaš fiilaservera sádde Vite/React-prográmma, ii prošeavtta dev-servera.',
       loadFailedConsole: (code, message) => `Lohkan ii lihkostuvvan${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Ovdačájehansiidui ii ožžon oktavuođa.',
       openTarget: url => `Raba ${url}`,
-      fallbackTitle: 'Ovdačájeheapmi',
-    },
+      fallbackTitle: 'Ovdačájeheapmi'
+    }
   },
   zones: {
     showHeader: 'Čájet bajilčála',
@@ -2608,7 +2683,8 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
     minimize: 'Minimere',
     restore: 'Máhca',
     closeRunningTitle: 'Gidde jođus leahkki lihtu?',
-    closeRunningBody: 'Dát ságastallan bargá ain (dahje vuordá du čállima). Lihto giddejuvvo — session vurke ovdáneamis ja sáhttá rahpat ođđasit sivdebálgás.',
+    closeRunningBody:
+      'Dát ságastallan bargá ain (dahje vuordá du čállima). Lihto giddejuvvo — session vurke ovdáneamis ja sáhttá rahpat ođđasit sivdebálgás.',
     closeRunningConfirm: 'Gidde lihtu',
     closeOthers: 'Gidde earát',
     closeToRight: 'Gidde olgeš bealde',
@@ -2645,14 +2721,15 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
     layoutNamePlaceholder: fallback => `Hábmenamma (${fallback})`,
     saveApply: 'Vurke ja bija',
     notExpressible: 'dát hápmi čadná (pinwheel) — ii sáhte čájehuvvot sisaš juohkásan dássái vel',
-    zoneCount: count => `${count} zona`,
+    zoneCount: count => `${count} zona`
   },
   assistant: {
     thread: {
       loadingSession: 'Lohkkojuvvo session',
       showEarlier: 'Čájet ovddit dieđuid',
       loadingResponse: 'OpenAmer lohká vástádusa',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Jurddaša',
@@ -2680,7 +2757,7 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
       restoreNext: 'Máhca boahtte checkpointa',
       goForward: 'Mana ovddos',
       sendEdited: 'Sádde heivehuvvon sáni',
-      attachingFile: 'Čadnojuvvo…',
+      attachingFile: 'Čadnojuvvo…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer-gateway ii leat čadnon',
@@ -2693,8 +2770,9 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
       jumpToApproval: 'Doarvan gáibiduvvo',
       reject: 'Hilggo',
       alwaysTitle: 'Álo lohpe dán komanda?',
-      alwaysDescription: pattern => `Dát lasiha “${pattern}” -mállerá du bissovaš lohpelistui (~/.openamer/config.yaml). OpenAmer ii jeara šat dánlágan komandaid — ii dán sessionis ii boahttevaččain.`,
-      alwaysAllow: 'Álo lohpe',
+      alwaysDescription: pattern =>
+        `Dát lasiha “${pattern}” -mállerá du bissovaš lohpelistui (~/.openamer/config.yaml). OpenAmer ii jeara šat dánlágan komandaid — ii dán sessionis ii boahttevaččain.`,
+      alwaysAllow: 'Álo lohpe'
     },
     clarify: {
       notReady: 'Čilgenjearaldat ii leat vel gárvvis',
@@ -2708,7 +2786,7 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
       continueLabel: 'Joatkke',
       lateAnswer: (question, choice) => `Vástádus: "${question}" — mu vástádus: ${choice}`,
       lateAnswerTip: 'Ráhkat dán vástádusa lassejearaldatdieđun',
-      lateAnswerHint: 'Dát promptta ii šat vuorda. Vállje válljema vai ráhkat dan lassejearaldatdieđun.',
+      lateAnswerHint: 'Dát promptta ii šat vuorda. Vállje válljema vai ráhkat dan lassejearaldatdieđun.'
     },
     tool: {
       code: 'Koda',
@@ -2744,11 +2822,11 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
         ran: 'Jođihuvvon',
         running: 'Jođus',
         ranCode: 'Koda jođihuvvon',
-        runningCode: 'Skriptejuvvo',
+        runningCode: 'Skriptejuvvo'
       },
       prefixes: {
         browser: 'Browsar',
-        web: 'Webb',
+        web: 'Webb'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2756,132 +2834,133 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `${prefix.toLowerCase()} ${action.toLowerCase()} jođus`,
-        runningTool: action => `${action.toLowerCase()} jođus`,
+        runningTool: action => `${action.toLowerCase()} jođus`
       },
       titles: {
         browser_click: {
           done: 'Klikkejuvvon siiduelementa',
           pending: 'Klikkejuvvo siiduelementa',
-          pendingAction: 'Klikkejuvvo',
+          pendingAction: 'Klikkejuvvo'
         },
         browser_fill: {
           done: 'Deavddejuvvon formuleruoktu',
           pending: 'Deavddejuvvo formuleruoktu',
-          pendingAction: 'Deavddejuvvo',
+          pendingAction: 'Deavddejuvvo'
         },
         browser_navigate: {
           done: 'Rahpojuvvon siidu',
           pending: 'Rahpojuvvo siidu',
-          pendingAction: 'Rahpojuvvo',
+          pendingAction: 'Rahpojuvvo'
         },
         browser_snapshot: {
           done: 'Siiddu snapshot váldojuvvon',
           pending: 'Siiddu snapshot váldojuvvo',
-          pendingAction: 'Váldojuvvo',
+          pendingAction: 'Váldojuvvo'
         },
         browser_take_screenshot: {
           done: 'Šearpma váldojuvvon',
           pending: 'Šearpma váldojuvvo',
-          pendingAction: 'Váldojuvvo',
+          pendingAction: 'Váldojuvvo'
         },
         browser_type: {
           done: 'Čállojuvvon siidui',
           pending: 'Čállojuvvo siidui',
-          pendingAction: 'Čállojuvvo',
+          pendingAction: 'Čállojuvvo'
         },
         clarify: {
           done: 'Jearaldat jearahuvvon',
           pending: 'Jearaldat jearahuvvo',
-          pendingAction: 'Jearahuvvo',
+          pendingAction: 'Jearahuvvo'
         },
         cronjob: {
           done: 'Cron-doaimma',
           pending: 'Cron-bargobiid pláne',
-          pendingAction: 'Pláne',
+          pendingAction: 'Pláne'
         },
         edit_file: {
           done: 'Doaimmahtii fiilla',
           pending: 'Doaimmaha fiilla',
-          pendingAction: 'Doaimmaha',
+          pendingAction: 'Doaimmaha'
         },
         execute_code: {
           done: 'Čađahii koda',
           pending: 'Skripte',
-          pendingAction: 'Skripte',
+          pendingAction: 'Skripte'
         },
         image_generate: {
           done: 'Ráhkadii gova',
           pending: 'Ráhkada gova',
-          pendingAction: 'Ráhkada',
+          pendingAction: 'Ráhkada'
         },
         list_files: {
           done: 'Liisttii fiillaid',
           pending: 'Liisttá fiillaid',
-          pendingAction: 'Liisttá',
+          pendingAction: 'Liisttá'
         },
         patch: {
           done: 'Patchii fiilla',
           pending: 'Patcha fiilla',
-          pendingAction: 'Patcha',
+          pendingAction: 'Patcha'
         },
         read_file: {
           done: 'Lugai fiilla',
           pending: 'Lohká fiilla',
-          pendingAction: 'Lohká',
+          pendingAction: 'Lohká'
         },
         search_files: {
           done: 'Ohcai fiillaid',
           pending: 'Ohcá fiillaid',
-          pendingAction: 'Ohcá',
+          pendingAction: 'Ohcá'
         },
         session_search_recall: {
           done: 'Ohcai sešuvdnahistorjjá',
           pending: 'Ohcá sešuvdnahistorjjá',
-          pendingAction: 'Ohcá',
+          pendingAction: 'Ohcá'
         },
         terminal: {
           done: 'Čađahii komándda',
           pending: 'Čađaha komándda',
-          pendingAction: 'Čađaha',
+          pendingAction: 'Čađaha'
         },
         todo: {
           done: 'Ođasmahtii bargobiid',
           pending: 'Ođasmahttá bargobiid',
-          pendingAction: 'Ođasmahttá',
+          pendingAction: 'Ođasmahttá'
         },
         vision_analyze: {
           done: 'Dulkai gova',
           pending: 'Dulká gova',
-          pendingAction: 'Dulká',
+          pendingAction: 'Dulká'
         },
         web_extract: {
           done: 'Lugai webbosiiddu',
           pending: 'Lohká webbosiiddu',
-          pendingAction: 'Lohká',
+          pendingAction: 'Lohká'
         },
         web_search: {
           done: 'Ohcai webbas',
           pending: 'Ohcá webbas',
-          pendingAction: 'Ohcá',
+          pendingAction: 'Ohcá'
         },
         write_file: {
           done: 'Doaimmahtii fiilla',
           pending: 'Doaimmaha fiilla',
-          pendingAction: 'Doaimmaha',
-        },
-      },
-    },
+          pendingAction: 'Doaimmaha'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer-gateway ii leat čatnasan',
     sudoSendFailed: 'Ii sáhttán sáddet sudo-beassávuđđejeaddji',
     secretSendFailed: 'Ii sáhttán sáddet čihkkona',
     sudoTitle: 'Hálddahusa beassávuđđejeaddji',
-    sudoDesc: 'OpenAmer dárbbaša du sudo-beassávuđđejeaddji vai sáhttá čađahit geavahanvuođaid komándda. Dat sáddejuvvo dušše du bákkolaš agentii.',
+    sudoDesc:
+      'OpenAmer dárbbaša du sudo-beassávuđđejeaddji vai sáhttá čađahit geavahanvuođaid komándda. Dat sáddejuvvo dušše du bákkolaš agentii.',
     sudoPlaceholder: 'sudo-beassávuđđejeaddji',
     secretTitle: 'Čihkkon dárbbašuvvo',
     secretDesc: 'OpenAmer dárbbaša čađaheapmi-dieđuid vai joatká.',
-    secretPlaceholder: 'čihkkonárvu',
+    secretPlaceholder: 'čihkkonárvu'
   },
   desktop: {
     audioReadFailed: 'Ii sáhttán lohkat báddenjietnasis',
@@ -2898,7 +2977,8 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} dán sešuvdnii`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Ii sáhttán molsut YOLO',
-    profileStatus: current => `Profiila: ${current}. Geavat /profile <name> dahje «Ođđa sešuvdna»-válljema vai álggat ságastallama eará profiillas.`,
+    profileStatus: current =>
+      `Profiila: ${current}. Geavat /profile <name> dahje «Ođđa sešuvdna»-válljema vai álggat ságastallama eará profiillas.`,
     unknownProfile: 'Dovdameahtun profiila',
     noProfileNamed: (target, available) => `Ii leat profiila namain «${target}». Oažžumis: ${available}`,
     newChatsProfile: name => `Ođđa ságastallamat geavahit profiila ${name}.`,
@@ -2908,8 +2988,9 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
     regenerateFailed: 'Ođđasatráhkadeapmi ii lihkostuvvan',
     editFailed: 'Doaimmaheapmi ii lihkostuvvan',
     resumeFailed: 'Joatkkeheapmi ii lihkostuvvan',
-    resumeStrandedTitle: "Ii sáhttán lohkat dán sešuvnna",
-    resumeStrandedBody: 'Oktavuohta dán sešuvdnii ii lihkostuvvan ja automáhtalaš geahččaleamit heitet. Dárkkis lea gateway jođus, ja geahččal ođđasit.',
+    resumeStrandedTitle: 'Ii sáhttán lohkat dán sešuvnna',
+    resumeStrandedBody:
+      'Oktavuohta dán sešuvdnii ii lihkostuvvan ja automáhtalaš geahččaleamit heitet. Dárkkis lea gateway jođus, ja geahččal ođđasit.',
     resumeRetry: 'Geahččal ođđasit',
     nothingToBranch: 'Ii leat mii juohkit',
     branchNeedsChat: 'Álggat dahje joatkke ságastallama ovdalgo juohkit.',
@@ -2949,31 +3030,31 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
       success: platform => `Sáddejuvvon ${platform}-ii. Sáhtát joatkit dáppe goas beare.`,
       systemNote: platform => `↻ Sáddejuvvon ${platform}-ii — sáhtát joatkit dáppe goas beare.`,
       failed: error => `Sáddejeapmi ii lihkostuvvan: ${error}`,
-      timedOut: 'Áigi noggai go vuorddii gateway. Leago `openamer gateway` jođus?',
-    },
+      timedOut: 'Áigi noggai go vuorddii gateway. Leago `openamer gateway` jođus?'
+    }
   },
   errors: {
     genericFailure: 'Juoga ii lihkostuvvan',
     boundaryTitle: 'Juoga billai geavahanlakkis',
     boundaryDesc: 'Oaidnu oaččui vuorddameahttun meattáhusa. Du ságastallamat ja heivehemiid leat sihkkaris.',
     reloadWindow: 'Viečča lássa ođđasit',
-    openLogs: 'Rabas loggaid',
+    openLogs: 'Rabas loggaid'
   },
   ui: {
     search: {
-      clear: 'Čielggat oheat',
+      clear: 'Čielggat oheat'
     },
     pagination: {
       label: 'siidduheapmi',
       previous: 'Ovddit',
       previousAria: 'Mana ovddit siidui',
       next: 'Boahtte',
-      nextAria: 'Mana boahtte siidui',
+      nextAria: 'Mana boahtte siidui'
     },
     sidebar: {
       title: 'Siiduborda',
       description: 'Čájeha mobiila siiduborda.',
-      toggle: 'Molsa siiduborda',
-    },
-  },
+      toggle: 'Molsa siiduborda'
+    }
+  }
 })

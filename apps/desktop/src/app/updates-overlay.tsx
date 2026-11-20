@@ -168,12 +168,7 @@ function IdleView({
   const u = t.updates
 
   if (!status && checking) {
-    return (
-      <CenteredStatus
-        icon={<BrandLoader className="size-12" label={u.checking} />}
-        title={u.checking}
-      />
-    )
+    return <CenteredStatus icon={<BrandLoader className="size-12" label={u.checking} />} title={u.checking} />
   }
 
   if (!status) {
@@ -424,7 +419,17 @@ function ApplyingView({ apply, isBackend }: { apply: UpdateApplyState; isBackend
   )
 }
 
-function ErrorView({ errorCode, message, onDismiss, onRetry }: { errorCode: string | null; message: string; onDismiss: () => void; onRetry: () => void }) {
+function ErrorView({
+  errorCode,
+  message,
+  onDismiss,
+  onRetry
+}: {
+  errorCode: string | null
+  message: string
+  onDismiss: () => void
+  onRetry: () => void
+}) {
   const { t } = useI18n()
   const u = t.updates
 

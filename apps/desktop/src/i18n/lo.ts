@@ -45,7 +45,7 @@ export const lo = defineLocale({
     update: 'ອັບເດດ',
     on: 'ເປີດ',
     off: 'ປິດ',
-    tryHint: term => `ລອງ “${term}”`,
+    tryHint: term => `ລອງ “${term}”`
   },
   fileMenu: {
     revealFinder: 'ສະແດງໃນ Finder',
@@ -60,7 +60,7 @@ export const lo = defineLocale({
     renameLabel: 'ຊື່ໃໝ່',
     deleteBody: 'ມັນຈະຖືກຍ້າຍໄປທີ່ຖັງຂີ້ເຫຍື້ອ — ທ່ານສາມາດກູ້ຄືນໄດ້ຈາກບ່ອນນັ້ນ.',
     pathCopied: 'ຄັດລອກເສັ້ນທາງແລ້ວ',
-    deleteTitle: name => `ລຶບ ${name} ບໍ?`,
+    deleteTitle: name => `ລຶບ ${name} ບໍ?`
   },
   boot: {
     ready: 'OpenAmer Desktop ພ້ອມແລ້ວ',
@@ -69,7 +69,7 @@ export const lo = defineLocale({
       loadingSettings: 'ກຳລັງໂຫຼດການຕັ້ງຄ່າ OpenAmer',
       loadingSessions: 'ກຳລັງໂຫຼດເຊສຊັນລ່າສຸດ',
       startingDesktopConnection: 'ກຳລັງເລີ່ມການເຊື່ອມຕໍ່ເດສະທັອບ',
-      startingOpenAmerDesktop: 'ກຳລັງເລີ່ມ OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'ກຳລັງເລີ່ມ OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'ຂະບວນການພື້ນຫຼັງຂອງ OpenAmer ອອກແລ້ວ.',
@@ -78,13 +78,15 @@ export const lo = defineLocale({
       desktopBootFailed: 'ການບູດເດສະທັອບລົ້ມເຫຼວ',
       gatewayConnectionLost: 'ການເຊື່ອມຕໍ່ກັບເກດເວຂາດຫາຍ',
       gatewaySignInRequired: 'ຕ້ອງລົງຊື່ເຂົ້າເກດເວ',
-      ipcBridgeUnavailable: 'ສະພານ IPC ຂອງເດັສທັອບບໍ່ພ້ອມໃຊ້.',
+      ipcBridgeUnavailable: 'ສະພານ IPC ຂອງເດັສທັອບບໍ່ພ້ອມໃຊ້.'
     },
     failure: {
       title: 'OpenAmer ບໍ່ສາມາດເລີ່ມຕົ້ນໄດ້',
-      description: 'ເກດເວພື້ນຫຼັງບໍ່ໄດ້ເລີ່ມຂຶ້ນ. ລອງໜຶ່ງໃນຂັ້ນຕອນການກູ້ຄືນລຸ່ມນີ້. ບໍ່ມີຫຍັງນີ້ລຶບການສົນທະນາ ຫຼື ການຕັ້ງຄ່າຂອງທ່ານ.',
+      description:
+        'ເກດເວພື້ນຫຼັງບໍ່ໄດ້ເລີ່ມຂຶ້ນ. ລອງໜຶ່ງໃນຂັ້ນຕອນການກູ້ຄືນລຸ່ມນີ້. ບໍ່ມີຫຍັງນີ້ລຶບການສົນທະນາ ຫຼື ການຕັ້ງຄ່າຂອງທ່ານ.',
       remoteTitle: 'ຕ້ອງລົງຊື່ເຂົ້າເກດເວທາງໄກ',
-      remoteDescription: 'ເຊສຊັນເກດເວທາງໄກຂອງທ່ານໝົດອາຍຸແລ້ວ. ລົງຊື່ເຂົ້າອີກຄັ້ງເພື່ອເຊື່ອມຕໍ່ຄືນ. ບໍ່ມີຫຍັງນີ້ລຶບການສົນທະນາ ຫຼື ການຕັ້ງຄ່າຂອງທ່ານ.',
+      remoteDescription:
+        'ເຊສຊັນເກດເວທາງໄກຂອງທ່ານໝົດອາຍຸແລ້ວ. ລົງຊື່ເຂົ້າອີກຄັ້ງເພື່ອເຊື່ອມຕໍ່ຄືນ. ບໍ່ມີຫຍັງນີ້ລຶບການສົນທະນາ ຫຼື ການຕັ້ງຄ່າຂອງທ່ານ.',
       retry: 'ລອງໃໝ່',
       repairInstall: 'ສ້ອມແປງການຕິດຕັ້ງ',
       useLocalGateway: 'ໃຊ້ເກດເວທ້ອງຖິ່ນ',
@@ -103,10 +105,11 @@ export const lo = defineLocale({
       signInFailed: 'ການເຂົ້າສູ່ລະບົບລົ້ມເຫຼວ',
       signInToRemoteGateway: 'ເຂົ້າສູ່ລະບົບປະຕູໄລຍະໄກ',
       identityProvider: 'ຜູ້ໃຫ້ບໍລິການຕົວຕົນຂອງທ່ານ',
-      remoteSignInHint: signInLabel => `ອອກຈາກລະບົບເຊດຊັນບຣາວເຊີຣີໂມດທີ່ບັນທຶກໄວ້, ຈາກນັ້ນເປີດ ${signInLabel}. ໃຊ້ gateway ທ້ອງຖິ່ນເພື່ອປ່ຽນໄປໃຊ້ backend ທີ່ມາພ້ອມກັນ.`,
-      signInWithProvider: provider => `ເຂົ້າສູ່ລະບົບດ້ວຍ ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `ອອກຈາກລະບົບເຊດຊັນບຣາວເຊີຣີໂມດທີ່ບັນທຶກໄວ້, ຈາກນັ້ນເປີດ ${signInLabel}. ໃຊ້ gateway ທ້ອງຖິ່ນເພື່ອປ່ຽນໄປໃຊ້ backend ທີ່ມາພ້ອມກັນ.`,
+      signInWithProvider: provider => `ເຂົ້າສູ່ລະບົບດ້ວຍ ${provider}`
     },
-    desktopBootFailedWithMessage: message => `ການບູດ Desktop ຫຼົ້ມເຫຼວ: ${message}`,
+    desktopBootFailedWithMessage: message => `ການບູດ Desktop ຫຼົ້ມເຫຼວ: ${message}`
   },
   notifications: {
     region: 'ການແຈ້ງເຕືອນ',
@@ -118,7 +121,8 @@ export const lo = defineLocale({
     copyDetail: 'ຄັດລອກລາຍລະອຽດ',
     copyDetailFailed: 'ບໍ່ສາມາດຄັດລອກລາຍລະອຽດການແຈ້ງເຕືອນໄດ້',
     backendOutOfDateTitle: 'ລະບົບຫຼັງບ້ານລ້າສະໄໝ',
-    backendOutOfDateMessage: 'ລະບົບຫຼັງບ້ານ OpenAmer ຂອງທ່ານເກົ່າກວ່າໂປຣແກຣມເດສະທັອບນີ້ ແລະ ອາດເຮັດວຽກບໍ່ຖືກຕ້ອງ. ອັບເດດເພື່ອໃຫ້ກົງກັນ.',
+    backendOutOfDateMessage:
+      'ລະບົບຫຼັງບ້ານ OpenAmer ຂອງທ່ານເກົ່າກວ່າໂປຣແກຣມເດສະທັອບນີ້ ແລະ ອາດເຮັດວຽກບໍ່ຖືກຕ້ອງ. ອັບເດດເພື່ອໃຫ້ກົງກັນ.',
     installMethodUnsupportedTitle: 'ວິທີຕິດຕັ້ງທີ່ບໍ່ຮອງຮັບ',
     updateOpenAmer: 'ອັບເດດ OpenAmer',
     updateReadyTitle: 'ພ້ອມອັບເດດ',
@@ -127,11 +131,12 @@ export const lo = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT ຕ້ອງການ ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs ປະຕິເສດຄີ API (401).',
       gatewayAuthFailed: 'ການຢືນຢັນ Gateway ລົ້ມເຫຼວ — ກວດສອບ API_SERVER_KEY ຂອງທ່ານ.',
-      methodNotAllowed: 'ແບັກເອນ desktop ປະຕິເສດຄຳຮ້ອງຂໍນັ້ນ (405 ວິທີການບໍ່ຖືກອະນຸຍາດ). ລອງເລີ່ມ OpenAmer Desktop ໃໝ່.',
+      methodNotAllowed:
+        'ແບັກເອນ desktop ປະຕິເສດຄຳຮ້ອງຂໍນັ້ນ (405 ວິທີການບໍ່ຖືກອະນຸຍາດ). ລອງເລີ່ມ OpenAmer Desktop ໃໝ່.',
       microphonePermission: 'ການອະນຸຍາດໄມໂຄຣໂຟນຖືກປະຕິເສດ.',
       openaiRejectedApiKey: 'OpenAI ປະຕິເສດຄີ API.',
       openaiTtsNeedsKey: 'OpenAI TTS ຕ້ອງການ VOICE_TOOLS_OPENAI_KEY ຫຼື OPENAI_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI ປະຕິເສດ API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI ປະຕິເສດ API key (${status} invalid_api_key).`
     },
     voice: {
       transcriptionUnavailable: 'ການຖອດສຽງຍັງບໍ່ມີໃຫ້ໃຊ້ເທື່ອ',
@@ -150,7 +155,7 @@ export const lo = defineLocale({
       noSpeechDetected: 'ບໍ່ກວດພົບສຽງເວົ້າ',
       playbackFailed: 'ການຫຼິ້ນສຽງລົ້ມເຫຼວ',
       recordingFailed: 'ການບັນທຶກສຽງລົ້ມເຫຼວ',
-      transcriptionFailed: 'ການຖອດຄວາມສຽງລົ້ມເຫຼວ',
+      transcriptionFailed: 'ການຖອດຄວາມສຽງລົ້ມເຫຼວ'
     },
     native: {
       approvalTitle: 'ຕ້ອງການການອະນຸມັດ',
@@ -163,10 +168,10 @@ export const lo = defineLocale({
       turnErrorTitle: 'ຮອບນີ້ລົ້ມເຫຼວ',
       backgroundDoneTitle: 'ວຽກພື້ນຫຼັງສຳເລັດແລ້ວ',
       backgroundFailedTitle: 'ວຽກພື້ນຫຼັງລົ້ມເຫຼວ',
-      creditsTitle: 'ເຄຣດິດ',
+      creditsTitle: 'ເຄຣດິດ'
     },
     more: count => `ອີກ ${count} ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `ມີການປ່ຽນແປງໃໝ່ ${count} ${count === 1 ? '' : 's'}.`,
+    updateReadyMessage: count => `ມີການປ່ຽນແປງໃໝ່ ${count} ${count === 1 ? '' : 's'}.`
   },
   billingBlock: {
     titleOpenamer: 'ເຄຣດິດ OpenAmer ໝົດແລ້ວ',
@@ -174,7 +179,7 @@ export const lo = defineLocale({
     openBilling: 'ເປີດບິນ',
     addCredits: 'ເພີ່ມເຄຣດິດ',
     dismiss: 'ປິດ',
-    titleProvider: provider => `ເຄຣດິດໝົດ — ${provider}`,
+    titleProvider: provider => `ເຄຣດິດໝົດ — ${provider}`
   },
   titlebar: {
     hideSidebar: 'ເຊື່ອງແຖບຂ້າງ',
@@ -191,7 +196,7 @@ export const lo = defineLocale({
     openStarmap: 'ເປີດກຣາຟຄວາມຈຳ',
     openKeybinds: 'ທາງລັດແປ້ນພິມ',
     layoutEditor: 'ຕົວແກ້ໄຂໂຄງຮ່າງ',
-    layoutEditorTitle: 'ຕົວແກ້ໄຂເລົ້າ — ຄລິກ âŒ˜ ເພື່ອຣີເຊັດເລົ້າ',
+    layoutEditorTitle: 'ຕົວແກ້ໄຂເລົ້າ — ຄລິກ âŒ˜ ເພື່ອຣີເຊັດເລົ້າ'
   },
   keybinds: {
     title: 'ທາງລັດແປ້ນພິມ',
@@ -206,7 +211,7 @@ export const lo = defineLocale({
       profiles: 'ໂປຣໄຟລ໌',
       session: 'ເຊສຊັນ',
       navigation: 'ການນຳທາງ',
-      view: 'ເບິ່ງ',
+      view: 'ເບິ່ງ'
     },
     actions: {
       'keybinds.openPanel': 'ເປີດທາງລັດແປ້ນພິມ',
@@ -285,10 +290,10 @@ export const lo = defineLocale({
       'composer.slash': 'ພາເລດຄຳສັ່ງສະແລັດ',
       'composer.help': 'ຊ່ວຍເຫຼືອດ່ວນ',
       'composer.history': 'ສະຫຼັບປ໊ອບໂອເວີ / ປະຫວັດ',
-      'composer.cancel': 'ປິດປ໊ອບໂອເວີ · ຍົກເລີກການຣັນ',
+      'composer.cancel': 'ປິດປ໊ອບໂອເວີ · ຍົກເລີກການຣັນ'
     },
     subtitle: open => `ຄລິກທີ່ທາງລັດເພື່ອຕັ້ງຄ່າໃໝ່ · ${open} ຈະເປີດແຜງນີ້ຄືນໃໝ່.`,
-    conflictWith: label => `ຕັ້ງຄ່າໄວ້ກັບ “${label}” ເຊັ່ນກັນ`,
+    conflictWith: label => `ຕັ້ງຄ່າໄວ້ກັບ “${label}” ເຊັ່ນກັນ`
   },
   language: {
     label: 'ພາສາ',
@@ -297,7 +302,7 @@ export const lo = defineLocale({
     saveError: 'ອັບເດດພາສາລົ້ມເຫຼວ',
     switchTo: 'ປ່ຽນພາສາ',
     searchPlaceholder: 'ຄົ້ນຫາພາສາ…',
-    noResults: 'ບໍ່ພົບພາສາ',
+    noResults: 'ບໍ່ພົບພາສາ'
   },
   settings: {
     closeSettings: 'ປິດການຕັ້ງຄ່າ',
@@ -322,56 +327,58 @@ export const lo = defineLocale({
       billing: 'ການຮຽກເກັບເງິນ',
       notifications: 'ການແຈ້ງເຕືອນ',
       plugins: 'ປລັກອິນ',
-      mcp: 'ເອັມຊີພີ',
+      mcp: 'ເອັມຊີພີ'
     },
     plugins: {
       empty: 'ຍັງບໍ່ມີປລັກອິນເດສະທັອບທີ່ຕິດຕັ້ງເທື່ອ.',
       kinds: {
         bundled: 'ມາພ້ອມ',
         disk: 'ໃນດິສ',
-        runtime: 'ຂະນະລັນ',
+        runtime: 'ຂະນະລັນ'
       },
       title: 'ປລັກອິນເດສະທັອບ',
-      blurb: 'ສ່ວນຂະຫຍາຍ UI ທີ່ໂຫລດເຂົ້າແອັບນີ້ — ມາພ້ອມກັບບິລດ໌ ຫຼື ຖືກວາງໃສ່ໂຟນເດີ desktop-plugins (ລວມທັງອັນທີ່ OpenAmer ຂຽນ). ການປິດໃຊ້ຈະຖອນປລັກອິນທັນທີ ແລະ ຄົງຢູ່ຫຼັງການຣີສະຕາດ.',
+      blurb:
+        'ສ່ວນຂະຫຍາຍ UI ທີ່ໂຫລດເຂົ້າແອັບນີ້ — ມາພ້ອມກັບບິລດ໌ ຫຼື ຖືກວາງໃສ່ໂຟນເດີ desktop-plugins (ລວມທັງອັນທີ່ OpenAmer ຂຽນ). ການປິດໃຊ້ຈະຖອນປລັກອິນທັນທີ ແລະ ຄົງຢູ່ຫຼັງການຣີສະຕາດ.',
       openFolder: 'ເປີດໂຟນເດີປລັກອິນ',
       rescan: 'ສະແກນຄືນໃໝ່',
       reveal: 'ສະແດງໃນຕົວຈັດການໄຟລ໌',
       enable: 'ເປີດໃຊ້',
       disable: 'ປິດໃຊ້',
       failed: 'ລົ້ມເຫຼວ',
-      count: n => `ຕິດຕັ້ງແລ້ວ ${n}`,
+      count: n => `ຕິດຕັ້ງແລ້ວ ${n}`
     },
     notifications: {
       title: 'ການແຈ້ງເຕືອນ',
-      intro: 'ການແຈ້ງເຕືອນເດສະທັອບແບບພື້ນເມືອງ, ແຍກຈາກການແຈ້ງເຕືອນສັ້ນໃນແອັບ. ສິ່ງເຫຼົ່ານີ້ເປັນຂອງອຸປະກອນເອງ — ແຕ່ລະຄອມພິວເຕີຮັກສາການຕັ້ງຄ່າຂອງຕົນເອງ.',
+      intro:
+        'ການແຈ້ງເຕືອນເດສະທັອບແບບພື້ນເມືອງ, ແຍກຈາກການແຈ້ງເຕືອນສັ້ນໃນແອັບ. ສິ່ງເຫຼົ່ານີ້ເປັນຂອງອຸປະກອນເອງ — ແຕ່ລະຄອມພິວເຕີຮັກສາການຕັ້ງຄ່າຂອງຕົນເອງ.',
       enableAll: 'ເປີດການແຈ້ງເຕືອນ',
       enableAllDesc: 'ສະວິດຫຼັກ. ປິດອັນນີ້ເພື່ອປິດສຽງການແຈ້ງເຕືອນທັງໝົດຂ້າງລຸ່ມ.',
       focusedHint: 'ການແຈ້ງເຕືອນເມື່ອສຳເລັດຈະເກີດຂຶ້ນພຽງເມື່ອ OpenAmer ຢູ່ໃນພື້ນຫຼັງເທົ່ານັ້ນ.',
       kinds: {
         approval: {
           label: 'ຕ້ອງການການອະນຸມັດ',
-          description: 'ຄຳສັ່ງໜຶ່ງກຳລັງລໍຖ້າໃຫ້ທ່ານອະນຸມັດ ຫຼື ປະຕິເສດ.',
+          description: 'ຄຳສັ່ງໜຶ່ງກຳລັງລໍຖ້າໃຫ້ທ່ານອະນຸມັດ ຫຼື ປະຕິເສດ.'
         },
         input: {
           label: 'ຕ້ອງການການປ້ອນຂໍ້ມູນ',
-          description: 'OpenAmer ຖາມຄຳຖາມ ຫຼື ຕ້ອງການລະຫັດຜ່ານ ຫຼື ຄວາມລັບ.',
+          description: 'OpenAmer ຖາມຄຳຖາມ ຫຼື ຕ້ອງການລະຫັດຜ່ານ ຫຼື ຄວາມລັບ.'
         },
         turnDone: {
           label: 'ຄຳຕອບພ້ອມແລ້ວ',
-          description: 'ຮອບໜຶ່ງຈົບລົງໃນຂະນະທີ່ OpenAmer ຢູ່ໃນພື້ນຫຼັງ.',
+          description: 'ຮອບໜຶ່ງຈົບລົງໃນຂະນະທີ່ OpenAmer ຢູ່ໃນພື້ນຫຼັງ.'
         },
         turnError: {
           label: 'ຮອບຜິດພາດ',
-          description: 'ຮອບໜຶ່ງສິ້ນສຸດດ້ວຍຂໍ້ຜິດພາດ.',
+          description: 'ຮອບໜຶ່ງສິ້ນສຸດດ້ວຍຂໍ້ຜິດພາດ.'
         },
         backgroundDone: {
           label: 'ວຽກພື້ນຫຼັງສຳເລັດແລ້ວ',
-          description: 'ຄຳສັ່ງ terminal ທີ່ເຮັດວຽກຢູ່ພື້ນຫຼັງສຳເລັດແລ້ວ.',
+          description: 'ຄຳສັ່ງ terminal ທີ່ເຮັດວຽກຢູ່ພື້ນຫຼັງສຳເລັດແລ້ວ.'
         },
         credits: {
           label: 'ການແຈ້ງເຕືອນເຄຣດິດ',
-          description: 'ການເຂົ້າເຖິງເຄຣດິດຖືກຢຸດ ຫຼື ຖືກຟື້ນຟູແລ້ວ.',
-        },
+          description: 'ການເຂົ້າເຖິງເຄຣດິດຖືກຢຸດ ຫຼື ຖືກຟື້ນຟູແລ້ວ.'
+        }
       },
       test: 'ສົ່ງການແຈ້ງເຕືອນທົດສອບ',
       testTitle: 'OpenAmer',
@@ -380,7 +387,7 @@ export const lo = defineLocale({
       testUnsupported: 'ລະບົບນີ້ບໍ່ຮອງຮັບການແຈ້ງເຕືອນແບບພື້ນເມືອງ.',
       completionSoundTitle: 'ສຽງສຳເລັດ',
       completionSoundDesc: 'ຫຼິ້ນເມື່ອຮອບຂອງເອເຈນຈົບ. ເລືອກຄ່າຕັ້ງສຳເລັດຮູບ ແລະ ຟັງຕົວຢ່າງຢູ່ນີ້.',
-      completionSoundPreview: 'ຟັງຕົວຢ່າງ',
+      completionSoundPreview: 'ຟັງຕົວຢ່າງ'
     },
     sections: {
       model: 'ໂມເດລ',
@@ -390,7 +397,7 @@ export const lo = defineLocale({
       safety: 'ຄວາມປອດໄພ',
       memory: 'ຄວາມຈຳ ແລະ ບໍລິບົດ',
       voice: 'ສຽງ',
-      advanced: 'ຂັ້ນສູງ',
+      advanced: 'ຂັ້ນສູງ'
     },
     searchPlaceholder: {
       about: 'ກ່ຽວກັບ OpenAmer Desktop',
@@ -398,25 +405,26 @@ export const lo = defineLocale({
       gateway: 'ການເຊື່ອມຕໍ່ Gateway...',
       keys: 'ຄົ້ນຫາລະຫັດ API...',
       mcp: 'ຄົ້ນຫາເຊີບເວີ MCP...',
-      sessions: 'ຄົ້ນຫາເຊສຊັນທີ່ເກັບໄວ້...',
+      sessions: 'ຄົ້ນຫາເຊສຊັນທີ່ເກັບໄວ້...'
     },
     modeOptions: {
       light: {
         label: 'ແຈ້ງ',
-        description: 'ພື້ນຜິວເດັສທັອບສະຫວ່າງ',
+        description: 'ພື້ນຜິວເດັສທັອບສະຫວ່າງ'
       },
       dark: {
         label: 'ມືດ',
-        description: 'ພື້ນທີ່ເຮັດວຽກທີ່ຫຼຸດແສງຈ້າ',
+        description: 'ພື້ນທີ່ເຮັດວຽກທີ່ຫຼຸດແສງຈ້າ'
       },
       system: {
         label: 'ລະບົບ',
-        description: 'ຕາມຮູບແຕ່ງຂອງ OS',
-      },
+        description: 'ຕາມຮູບແຕ່ງຂອງ OS'
+      }
     },
     appearance: {
       title: 'ຮູບແຕ່ງ',
-      intro: 'ນີ້ແມ່ນການຕັ້ງຄ່າການສະແດງຜົນສະເພາະເດັສທັອບ. ໂໝດຄວບຄຸມຄວາມສະຫວ່າງ; ທີມຄວບຄຸມຈານສີເນັ້ນ ແລະ ຮູບແບບພື້ນຜິວແຊັດ.',
+      intro:
+        'ນີ້ແມ່ນການຕັ້ງຄ່າການສະແດງຜົນສະເພາະເດັສທັອບ. ໂໝດຄວບຄຸມຄວາມສະຫວ່າງ; ທີມຄວບຄຸມຈານສີເນັ້ນ ແລະ ຮູບແບບພື້ນຜິວແຊັດ.',
       colorMode: 'ໂໝດສີ',
       colorModeDesc: 'ເລືອກໂໝດຄົງທີ່ ຫຼື ໃຫ້ OpenAmer ປະຕິບັດຕາມການຕັ້ງຄ່າລະບົບຂອງທ່ານ.',
       toolViewTitle: 'ການສະແດງການເອີ້ນເຄື່ອງມື',
@@ -427,8 +435,10 @@ export const lo = defineLocale({
       backdropTitle: 'ພື້ນຫຼັງແຊັດ',
       backdropDesc: 'ຮູບປະຕິມາກຳລັງຈາງຢູ່ຫຼັງການສົນທະນາ.',
       pet: {
-        intro: 'ຮັບມາສຄອດ petdex ແບບເຄື່ອນໄຫວທີ່ລອຍຢູ່ເໜືອແອັບ ແລະ ຕອບສະໜອງຕໍ່ສິ່ງທີ່ OpenAmer ກຳລັງເຮັດ — ແລ່ນຂະນະທີ່ເຄື່ອງມືດຳເນີນການ, ສະເຫຼີມສະຫຼອງເມື່ອສຳເລັດ, ໜ້າບຶ້ງເມື່ອເກີດຂໍ້ຜິດພາດ.',
-        restartHint: 'ສັດລ້ຽງຕ້ອງການຣີສະຕາດໄວໆ — ແອັບທີ່ກຳລັງແລ່ນໄດ້ເລີ່ມກ່ອນເພີ່ມຟີເຈີນີ້. ອອກ ແລະ ເປີດ OpenAmer ຄືນໃໝ່, ແລ້ວກັບມາທີ່ນີ້.',
+        intro:
+          'ຮັບມາສຄອດ petdex ແບບເຄື່ອນໄຫວທີ່ລອຍຢູ່ເໜືອແອັບ ແລະ ຕອບສະໜອງຕໍ່ສິ່ງທີ່ OpenAmer ກຳລັງເຮັດ — ແລ່ນຂະນະທີ່ເຄື່ອງມືດຳເນີນການ, ສະເຫຼີມສະຫຼອງເມື່ອສຳເລັດ, ໜ້າບຶ້ງເມື່ອເກີດຂໍ້ຜິດພາດ.',
+        restartHint:
+          'ສັດລ້ຽງຕ້ອງການຣີສະຕາດໄວໆ — ແອັບທີ່ກຳລັງແລ່ນໄດ້ເລີ່ມກ່ອນເພີ່ມຟີເຈີນີ້. ອອກ ແລະ ເປີດ OpenAmer ຄືນໃໝ່, ແລ້ວກັບມາທີ່ນີ້.',
         on: 'ເປີດ',
         off: 'ປິດ',
         scaleTitle: 'ຂະໜາດ',
@@ -461,10 +471,11 @@ export const lo = defineLocale({
         adoptFailed: slug => `ບໍ່ສາມາດຮັບລ້ຽງ ${slug} ໄດ້`,
         uninstallFailed: slug => `ບໍ່ສາມາດຖອນການຕິດຕັ້ງ ${slug} ໄດ້`,
         renameFailed: slug => `ບໍ່ສາມາດປ່ຽນຊື່ ${slug} ໄດ້`,
-        exportFailed: slug => `ບໍ່ສາມາດສົ່ງອອກ ${slug} ໄດ້`,
+        exportFailed: slug => `ບໍ່ສາມາດສົ່ງອອກ ${slug} ໄດ້`
       },
       embedsTitle: 'ຝັງໃນແຖວ',
-      embedsDesc: 'ຕົວຢ່າງລ່ວງໜ້າແບບສົມບູນໂຫຼດຈາກເວັບໄຊພາກສ່ວນທີສາມ (YouTube, X, …). \'ຖາມ\' ຈະສະແດງຕົວແທນຈົນກວ່າທ່ານອະນຸຍາດແຕ່ລະອັນ; \'ສະເໝີ\' ໂຫຼດອັດຕະໂນມັດ; \'ປິດ\' ຮັກສາລິ້ງທຳມະດາ.',
+      embedsDesc:
+        "ຕົວຢ່າງລ່ວງໜ້າແບບສົມບູນໂຫຼດຈາກເວັບໄຊພາກສ່ວນທີສາມ (YouTube, X, …). 'ຖາມ' ຈະສະແດງຕົວແທນຈົນກວ່າທ່ານອະນຸຍາດແຕ່ລະອັນ; 'ສະເໝີ' ໂຫຼດອັດຕະໂນມັດ; 'ປິດ' ຮັກສາລິ້ງທຳມະດາ.",
       embedsAsk: 'ຖາມ',
       embedsAlways: 'ສະເໝີ',
       embedsOff: 'ປິດ',
@@ -475,17 +486,19 @@ export const lo = defineLocale({
       themeTitle: 'ຊຸດສີ',
       themeDesc: 'ຊຸດສີສຳລັບເດສະທັອບເທົ່ານັ້ນ. ໂໝດທີ່ເລືອກຈະຖືກນຳໃຊ້ທັບຊຸດ.',
       installTitle: 'ຕິດຕັ້ງຈາກ VS Code',
-      installDesc: 'ວາງ ID ສ່ວນຂະຫຍາຍຂອງ Marketplace (ເຊັ່ນ dracula-theme.theme-dracula) ເພື່ອແປງຊຸດສີຂອງມັນເປັນຊຸດສີເດສະທັອບ.',
+      installDesc:
+        'ວາງ ID ສ່ວນຂະຫຍາຍຂອງ Marketplace (ເຊັ່ນ dracula-theme.theme-dracula) ເພື່ອແປງຊຸດສີຂອງມັນເປັນຊຸດສີເດສະທັອບ.',
       installButton: 'ຕິດຕັ້ງ',
       installing: 'ກຳລັງຕິດຕັ້ງ…',
       installError: 'ບໍ່ສາມາດຕິດຕັ້ງຊຸດສີນັ້ນໄດ້.',
       removeTheme: 'ລຶບຊຸດສີ',
       importedBadge: 'ນຳເຂົ້າແລ້ວ',
       installPlaceholder: 'ຜູ້ເຜີຍແຜ່.ສ່ວນຂະຫຍາຍ',
-      uiScaleDesc: (percent: number) => `ປັບຂະໜາດຕົວອັກສອນ ແລະ ປຸ່ມຄວບຄຸມທົ່ວທັງແອັບ. Cmd/Ctrl ກັບ +, - ແລະ 0 ກໍໃຊ້ໄດ້ເຊັ່ນກັນ. ປັດຈຸບັນ: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `ປັບຂະໜາດຕົວອັກສອນ ແລະ ປຸ່ມຄວບຄຸມທົ່ວທັງແອັບ. Cmd/Ctrl ກັບ +, - ແລະ 0 ກໍໃຊ້ໄດ້ເຊັ່ນກັນ. ປັດຈຸບັນ: ${percent}%.`,
       embedsReset: (count: number) => `ຣີເຊັດ ${count} ອະນຸຍາດ ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `ບັນທຶກໄວ້ສຳລັບໂປຣໄຟລ໌ ${profile} — ແຕ່ລະໂປຣໄຟລ໌ຈະມີຮູບແບບຂອງຕົນເອງ.`,
-      installed: name => `ຕິດຕັ້ງ “${name}” ແລ້ວ.`,
+      installed: name => `ຕິດຕັ້ງ “${name}” ແລ້ວ.`
     },
     about: {
       heading: 'OpenAmer ເດສະທັອບ',
@@ -512,7 +525,7 @@ export const lo = defineLocale({
       branchCommit: (branch, commit) => `ສາຂາ ${branch} · ການຢືນຢັນ ${commit}`,
       minAgo: count => `${count} ນາທີກ່ອນ`,
       hoursAgo: count => `${count} ຊົ່ວໂມງກ່ອນ`,
-      daysAgo: count => `${count} ວັນກ່ອນ`,
+      daysAgo: count => `${count} ວັນກ່ອນ`
     },
     config: {
       none: 'ບໍ່ມີ',
@@ -528,7 +541,8 @@ export const lo = defineLocale({
       imported: 'ນຳເຂົ້າການຕັ້ງຄ່າແລ້ວ',
       invalidJson: 'JSON ການຕັ້ງຄ່າບໍ່ຖືກຕ້ອງ',
       keepAwakeTitle: 'ຮັກສາຄອມພິວເຕີໃຫ້ຕື່ນຢູ່',
-      keepAwakeDesc: 'ຢຸດເຄື່ອງນີ້ບໍ່ໃຫ້ນອນ ເພື່ອໃຫ້ການແລ່ນທີ່ໃຊ້ເວລາດົນ ຫຼື ແລ່ນຂ້າມຄືນສືບຕໍ່ໄປ. ຈໍສະແດງຜົນຍັງສາມາດຫຼຸດຄວາມສະຫວ່າງໄດ້.',
+      keepAwakeDesc:
+        'ຢຸດເຄື່ອງນີ້ບໍ່ໃຫ້ນອນ ເພື່ອໃຫ້ການແລ່ນທີ່ໃຊ້ເວລາດົນ ຫຼື ແລ່ນຂ້າມຄືນສືບຕໍ່ໄປ. ຈໍສະແດງຜົນຍັງສາມາດຫຼຸດຄວາມສະຫວ່າງໄດ້.'
     },
     credentials: {
       pasteKey: 'ວາງກະແຈ',
@@ -538,7 +552,7 @@ export const lo = defineLocale({
       remove: 'ລຶບອອກ',
       getKey: 'ຮັບກະແຈ',
       saving: 'ກຳລັງບັນທຶກ',
-      pasteLabelKey: label => `ວາງ key ${label}`,
+      pasteLabelKey: label => `ວາງ key ${label}`
     },
     envActions: {
       credentialActions: 'ການກະທຳກັບຂໍ້ມູນຢືນຢັນ',
@@ -549,7 +563,7 @@ export const lo = defineLocale({
       replace: 'ແທນທີ່',
       set: 'ຕັ້ງຄ່າ',
       clear: 'ລຶບລ້າງ',
-      actionsFor: label => `ການຈັດການສຳລັບ ${label}`,
+      actionsFor: label => `ການຈັດການສຳລັບ ${label}`
     },
     gateway: {
       loading: 'ກຳລັງໂຫລດການຕັ້ງຄ່າປະຕູເຂົ້າ...',
@@ -557,16 +571,18 @@ export const lo = defineLocale({
       unavailableDesc: 'ຂົວ IPC ເດສະທັອບບໍ່ໄດ້ເປີດເຜີຍການຕັ້ງຄ່າປະຕູເຂົ້າ.',
       title: 'ການເຊື່ອມຕໍ່ປະຕູເຂົ້າ',
       envOverride: 'ການຂຽນທັບ env',
-      intro: 'OpenAmer Desktop ຈະເລີ່ມປະຕູເຂົ້າທ້ອງຖິ່ນຂອງຕົນເອງຕາມຄ່າເລີ່ມຕົ້ນ. ໃຊ້ປະຕູເຂົ້າທາງໄກ ເມື່ອທ່ານຕ້ອງການໃຫ້ແອັບນີ້ຄວບຄຸມແບັກເອັນ OpenAmer ທີ່ກຳລັງເຮັດວຽກຢູ່ແລ້ວ ຢູ່ເຄື່ອງອື່ນ ຫຼື ຢູ່ຫຼັງ proxy ທີ່ໄວ້ວາງໃຈ. ເລືອກໂປຣໄຟລ໌ຂ້າງລຸ່ມ ເພື່ອໃຫ້ມັນມີໂຮສທາງໄກຂອງຕົນເອງ.',
+      intro:
+        'OpenAmer Desktop ຈະເລີ່ມປະຕູເຂົ້າທ້ອງຖິ່ນຂອງຕົນເອງຕາມຄ່າເລີ່ມຕົ້ນ. ໃຊ້ປະຕູເຂົ້າທາງໄກ ເມື່ອທ່ານຕ້ອງການໃຫ້ແອັບນີ້ຄວບຄຸມແບັກເອັນ OpenAmer ທີ່ກຳລັງເຮັດວຽກຢູ່ແລ້ວ ຢູ່ເຄື່ອງອື່ນ ຫຼື ຢູ່ຫຼັງ proxy ທີ່ໄວ້ວາງໃຈ. ເລືອກໂປຣໄຟລ໌ຂ້າງລຸ່ມ ເພື່ອໃຫ້ມັນມີໂຮສທາງໄກຂອງຕົນເອງ.',
       appliesTo: 'ໃຊ້ກັບ',
       allProfiles: 'ໂປຣໄຟລ໌ທັງໝົດ',
       defaultConnection: 'ການເຊື່ອມຕໍ່ເລີ່ມຕົ້ນສຳລັບທຸກໂປຣໄຟລ໌ທີ່ບໍ່ມີການຂຽນທັບຂອງຕົນເອງ.',
       envOverrideTitle: 'ຕົວແປສະພາບແວດລ້ອມກຳລັງຄວບຄຸມເຊສຊັນເດສະທັອບນີ້.',
-      envOverrideDesc: 'ຍົກເລີກການຕັ້ງ OPENAMER_DESKTOP_REMOTE_URL ແລະ OPENAMER_DESKTOP_REMOTE_TOKEN ເພື່ອໃຊ້ການຕັ້ງຄ່າທີ່ບັນທຶກໄວ້ຂ້າງລຸ່ມ.',
+      envOverrideDesc:
+        'ຍົກເລີກການຕັ້ງ OPENAMER_DESKTOP_REMOTE_URL ແລະ OPENAMER_DESKTOP_REMOTE_TOKEN ເພື່ອໃຊ້ການຕັ້ງຄ່າທີ່ບັນທຶກໄວ້ຂ້າງລຸ່ມ.',
       cloudNoAgents: {
         before: 'ບໍ່ພົບຕົວແທນໃນບັນຊີນີ້. ສ້າງໜຶ່ງຕົວໃນ',
         linkText: 'ພອຣ໌ຕານ OpenAmer',
-        after: ', ແລ້ວໂຫຼດຄືນໃໝ່.',
+        after: ', ແລ້ວໂຫຼດຄືນໃໝ່.'
       },
       cloudRefresh: 'ໂຫຼດຄືນໃໝ່',
       cloudConnect: 'ເຊື່ອມຕໍ່',
@@ -591,7 +607,8 @@ export const lo = defineLocale({
       authSignedInOauth: 'ເກດເວນີ້ໃຊ້ OAuth. ທ່ານໄດ້ເຂົ້າສູ່ລະບົບແລ້ວ; ເຊສຊັນຈະຣີເຟຣຊອັດຕະໂນມັດ.',
       authNeedsPassword: 'ເກດເວນີ້ໃຊ້ຊື່ຜູ້ໃຊ້ ແລະ ລະຫັດຜ່ານ. ເຂົ້າສູ່ລະບົບເພື່ອອະນຸຍາດແອັບເດສະທັອບນີ້.',
       tokenTitle: 'ໂທເຄນເຊສຊັນ',
-      tokenDesc: 'ໂທເຄນເຊສຊັນຂອງແດຊບອດທີ່ໃຊ້ສຳລັບການເຂົ້າເຖິງ REST ແລະ WebSocket. ປະໄວ້ຫວ່າງເພື່ອຮັກສາໂທເຄນທີ່ບັນທຶກໄວ້.',
+      tokenDesc:
+        'ໂທເຄນເຊສຊັນຂອງແດຊບອດທີ່ໃຊ້ສຳລັບການເຂົ້າເຖິງ REST ແລະ WebSocket. ປະໄວ້ຫວ່າງເພື່ອຮັກສາໂທເຄນທີ່ບັນທຶກໄວ້.',
       savedToken: 'ບັນທຶກແລ້ວ',
       pasteSessionToken: 'ວາງໂທເຄນເຊສຊັນ',
       testRemote: 'ທົດສອບຣີໂມດ',
@@ -620,7 +637,8 @@ export const lo = defineLocale({
       applyFailed: 'ບໍ່ສາມາດນຳໃຊ້ການຕັ້ງຄ່າເກດເວໄດ້',
       saveFailed: 'ບໍ່ສາມາດບັນທຶກການຕັ້ງຄ່າເກດເວໄດ້',
       sshTitle: 'ເຊື່ອມຕໍ່ຜ່ານ SSH',
-      sshDesc: 'OpenAmer ຖືກເປີດເທິງຣີໂໝດຜ່ານ SSH ແລະ ເຊື່ອມຜ່ານອຸໂມງມາຍັງແອັບນີ້ — ບໍ່ມີຫຍັງຕ້ອງເລີ່ມ ຫຼື ເປີດເຜີຍເອງ. ຕ້ອງມີການເຂົ້າເຖິງ SSH ດ້ວຍກະແຈທີ່ໃຊ້ໄດ້ກັບໂຮສ.',
+      sshDesc:
+        'OpenAmer ຖືກເປີດເທິງຣີໂໝດຜ່ານ SSH ແລະ ເຊື່ອມຜ່ານອຸໂມງມາຍັງແອັບນີ້ — ບໍ່ມີຫຍັງຕ້ອງເລີ່ມ ຫຼື ເປີດເຜີຍເອງ. ຕ້ອງມີການເຂົ້າເຖິງ SSH ດ້ວຍກະແຈທີ່ໃຊ້ໄດ້ກັບໂຮສ.',
       sshTrustHint: 'ກະແຈໂຮສທີ່ສະເໜີຄັ້ງທຳອິດຈະຖືກໄວ້ວາງໃຈແລະປັກໝຸດໄວ້; ການປ່ຽນແປງຕໍ່ມາຈະຖືກປະຕິເສດ.',
       sshHostTitle: 'ໂຮສ',
       sshHostDesc: 'user@host, ຫຼື ນາມແຝງ Host ຈາກ ~/.ssh/config.',
@@ -643,10 +661,14 @@ export const lo = defineLocale({
       sshButtonsHint: 'ການບັນທຶກຈະມີຜົນໃນການເປີດໃຊ້ຄັ້ງຕໍ່ໄປ. ເຊື່ອມຕໍ່ຈະເຊື່ອມຕໍ່ໃໝ່ຕອນນີ້.',
       sshIncompleteHost: 'ປ້ອນໂຮສ SSH ກ່ອນເຊື່ອມຕໍ່.',
       sshErrUnreachable: 'ບໍ່ສາມາດເຂົ້າເຖິງໂຮສນັ້ນຜ່ານ SSH ໄດ້. ກວດເບິ່ງໂຮສ, ພອດ, ແລະເຄືອຂ່າຍຂອງທ່ານ.',
-      sshErrAuth: 'ການຢືນຢັນຕົວຕົນ SSH ລົ້ມເຫຼວ. ໂຫຼດກະແຈຂອງທ່ານເຂົ້າໃນ ssh-agent (ssh-add) ຫຼື ຕັ້ງ IdentityFile ໃນ ~/.ssh/config — OpenAmer ແລ່ນ ssh ແບບບໍ່ໂຕ້ຕອບ.',
-      sshErrHostKey: 'ກະແຈຂອງໂຮສໄດ້ປ່ຽນແປງ (CHANGED) ນັບຕັ້ງແຕ່ທ່ານເຊື່ອມຕໍ່ຄັ້ງລ່າສຸດ. ກວດສອບວ່າສິ່ງນີ້ເປັນໄປຕາມທີ່ຄາດໄວ້, ແລ້ວແລ່ນ ssh-keygen -R <host> ແລະເຊື່ອມຕໍ່ໃໝ່.',
-      sshErrNotInstalled: 'OpenAmer ບໍ່ໄດ້ຕິດຕັ້ງຢູ່ເຄື່ອງໂຮສທາງໄກ. ຕິດຕັ້ງມັນຢູ່ທີ່ນັ້ນ (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ຫຼື ກຳນົດເສັ້ນທາງ OpenAmer.',
-      sshErrPlatform: 'ແພລດຟອມທາງໄກບໍ່ຮອງຮັບ. ໂໝດ SSH ຂອງ OpenAmer Desktop ຮອງຮັບເຄື່ອງໂຮສທາງໄກ Linux, macOS, ແລະ Windows.',
+      sshErrAuth:
+        'ການຢືນຢັນຕົວຕົນ SSH ລົ້ມເຫຼວ. ໂຫຼດກະແຈຂອງທ່ານເຂົ້າໃນ ssh-agent (ssh-add) ຫຼື ຕັ້ງ IdentityFile ໃນ ~/.ssh/config — OpenAmer ແລ່ນ ssh ແບບບໍ່ໂຕ້ຕອບ.',
+      sshErrHostKey:
+        'ກະແຈຂອງໂຮສໄດ້ປ່ຽນແປງ (CHANGED) ນັບຕັ້ງແຕ່ທ່ານເຊື່ອມຕໍ່ຄັ້ງລ່າສຸດ. ກວດສອບວ່າສິ່ງນີ້ເປັນໄປຕາມທີ່ຄາດໄວ້, ແລ້ວແລ່ນ ssh-keygen -R <host> ແລະເຊື່ອມຕໍ່ໃໝ່.',
+      sshErrNotInstalled:
+        'OpenAmer ບໍ່ໄດ້ຕິດຕັ້ງຢູ່ເຄື່ອງໂຮສທາງໄກ. ຕິດຕັ້ງມັນຢູ່ທີ່ນັ້ນ (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ຫຼື ກຳນົດເສັ້ນທາງ OpenAmer.',
+      sshErrPlatform:
+        'ແພລດຟອມທາງໄກບໍ່ຮອງຮັບ. ໂໝດ SSH ຂອງ OpenAmer Desktop ຮອງຮັບເຄື່ອງໂຮສທາງໄກ Linux, macOS, ແລະ Windows.',
       sshErrTimeout: 'ການເຊື່ອມຕໍ່ SSH ໝົດເວລາ. ເຄື່ອງໂຮສອາດເຂົ້າເຖິງບໍ່ໄດ້ ຫຼື ກຳລັງນອນຫຼັບ.',
       sshErrUpdateRequired: 'ອັບເດດ OpenAmer ໃນເຄື່ອງໂຮສທາງໄກກ່ອນເຊື່ອມຕໍ່ດ້ວຍ Desktop SSH.',
       sshErrUnknown: 'ການເຊື່ອມຕໍ່ SSH ລົ້ມເຫຼວ.',
@@ -670,15 +692,17 @@ export const lo = defineLocale({
       cloudLoadingAgents: 'ກຳລັງໂຫຼດຕົວແທນຂອງທ່ານ…',
       cloudTitle: 'OpenAmer ຄລາວ',
       cloudSignInTitle: 'OpenAmer ຄລາວ',
-      profileConnection: profile => `ການເຊື່ອມຕໍ່ຖືກໃຊ້ເມື່ອ “${profile}” ເປັນໂປຣໄຟລ໌ທີ່ເປີດໃຊ້ງານຢູ່. ເລືອກ Use default gateway ເພື່ອລຶບການທັບຊ້ອນ.`,
+      profileConnection: profile =>
+        `ການເຊື່ອມຕໍ່ຖືກໃຊ້ເມື່ອ “${profile}” ເປັນໂປຣໄຟລ໌ທີ່ເປີດໃຊ້ງານຢູ່. ເລືອກ Use default gateway ເພື່ອລຶບການທັບຊ້ອນ.`,
       cloudOrgRole: role => `ບົດບາດ: ${role}`,
       cloudConnectedTo: name => `ເຊື່ອມຕໍ່ກັບ ${name}.`,
       cloudStatusLabel: status => `ສະຖານະ: ${status}`,
       signInWith: provider => `ເຂົ້າສູ່ລະບົບດ້ວຍ ${provider}`,
-      authNeedsOauth: provider => `ເກດເວນີ້ໃຊ້ OAuth. ກະລຸນາເຂົ້າສູ່ລະບົບດ້ວຍ ${provider} ເພື່ອອະນຸຍາດໃຫ້ແອັບເດັສທັອບນີ້.`,
+      authNeedsOauth: provider =>
+        `ເກດເວນີ້ໃຊ້ OAuth. ກະລຸນາເຂົ້າສູ່ລະບົບດ້ວຍ ${provider} ເພື່ອອະນຸຍາດໃຫ້ແອັບເດັສທັອບນີ້.`,
       existingToken: value => `ໂທເຄັນທີ່ມີຢູ່ ${value}`,
       connectedTo: (baseUrl, version) => `ເຊື່ອມຕໍ່ກັບ ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `ຕິດຕໍ່ໄດ້: ${host} (${platform}) — ພົບ OpenAmer`,
+      sshReachable: (host, platform) => `ຕິດຕໍ່ໄດ້: ${host} (${platform}) — ພົບ OpenAmer`
     },
     mcp: {
       reloadFailed: 'ໂຫຼດ MCP ຄືນໃໝ່ບໍ່ສຳເລັດ',
@@ -740,15 +764,16 @@ export const lo = defineLocale({
       catalogInstallStarted: name => `ກຳລັງຕິດຕັ້ງ ${name}... ຈະມີຜົນກັບເຊດຊັນໃໝ່ເມື່ອສຳເລັດ.`,
       catalogInstallFailed: name => `ຕິດຕັ້ງ ${name} ບໍ່ສຳເລັດ`,
       catalogEnvPrompt: name => `${name} ຕ້ອງການຂໍ້ມູນຢືນຢັນຕົວຕົນ`,
-      capabilitySummary: (tools, prompts, resources) => `ເປີດໃຊ້ ${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ແລ້ວ`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `ເປີດໃຊ້ ${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ແລ້ວ`,
       authenticatedMessage: (server, count) => `${server}: ${count} ເຄື່ອງມື`,
       enableTool: tool => `ເປີດໃຊ້ ${tool}`,
-      disableTool: tool => `ປິດໃຊ້ ${tool}`,
+      disableTool: tool => `ປິດໃຊ້ ${tool}`
     },
     keys: {
       loading: 'ກຳລັງໂຫຼດຄີ API ແລະ ຂໍ້ມູນຮັບຮອງ...',
       failedLoad: 'ໂຫຼດຄີ API ລົ້ມເຫຼວ',
-      empty: 'ຍັງບໍ່ມີການຕັ້ງຄ່າໃນໝວດນີ້ເທື່ອ.',
+      empty: 'ຍັງບໍ່ມີການຕັ້ງຄ່າໃນໝວດນີ້ເທື່ອ.'
     },
     model: {
       loading: 'ກຳລັງໂຫລດການຕັ້ງຄ່າຂອງໂມເດລ...',
@@ -773,37 +798,37 @@ export const lo = defineLocale({
       tasks: {
         vision: {
           label: 'ການມອງເຫັນ',
-          hint: 'ການວິເຄາະຮູບພາບ',
+          hint: 'ການວິເຄາະຮູບພາບ'
         },
         web_extract: {
           label: 'ການດຶງຂໍ້ມູນເວັບ',
-          hint: 'ການສະຫຼຸບໜ້າ',
+          hint: 'ການສະຫຼຸບໜ້າ'
         },
         compression: {
           label: 'ການບີບອັດ',
-          hint: 'ການບີບຫຍໍ້ບໍລິບົດ',
+          hint: 'ການບີບຫຍໍ້ບໍລິບົດ'
         },
         skills_hub: {
           label: 'ສູນທັກສະ',
-          hint: 'ຄົ້ນຫາທັກສະ',
+          hint: 'ຄົ້ນຫາທັກສະ'
         },
         approval: {
           label: 'ການອະນຸມັດ',
-          hint: 'ອະນຸມັດອັດຕະໂນມັດແບບສະຫຼາດ',
+          hint: 'ອະນຸມັດອັດຕະໂນມັດແບບສະຫຼາດ'
         },
         mcp: {
           hint: 'ການກຳນົດເສັ້ນທາງເຄື່ອງມື MCP',
-          label: 'ເອັມຊີພີ',
+          label: 'ເອັມຊີພີ'
         },
         title_generation: {
           label: 'ສ້າງຫົວຂໍ້',
-          hint: 'ຫົວຂໍ້ເຊສຊັນ',
+          hint: 'ຫົວຂໍ້ເຊສຊັນ'
         },
         curator: {
           label: 'ຜູ້ດູແລ',
-          hint: 'ການກວດສອບການໃຊ້ທັກສະ',
-        },
-      },
+          hint: 'ການກວດສອບການໃຊ້ທັກສະ'
+        }
+      }
     },
     providers: {
       disconnectInTerminal: 'ຕັດການເຊື່ອມຕໍ່ (ຮັນຄຳສັ່ງລຶບໃນເທີມິນອນ)',
@@ -813,12 +838,14 @@ export const lo = defineLocale({
       noKeysMatch: 'ບໍ່ພົບຜູ້ໃຫ້ບໍລິການທີ່ກົງກັບການຄົ້ນຫາ.',
       localEndpoint: {
         title: 'ປາຍທາງທ້ອງຖິ່ນ / ກຳນົດເອງ',
-        description: 'ຊີ້ OpenAmer ໄປຫາປາຍທາງໃດກໍ່ໄດ້ທີ່ເຂົ້າກັນໄດ້ກັບ OpenAI (Zyphra, vLLM, llama.cpp, Ollama, ແລະອື່ນໆ).',
+        description:
+          'ຊີ້ OpenAmer ໄປຫາປາຍທາງໃດກໍ່ໄດ້ທີ່ເຂົ້າກັນໄດ້ກັບ OpenAI (Zyphra, vLLM, llama.cpp, Ollama, ແລະອື່ນໆ).'
       },
       loading: 'ກຳລັງໂຫຼດຜູ້ໃຫ້ບໍລິການ...',
       connectAccount: 'ເຊື່ອມຕໍ່ບັນຊີ',
       haveApiKey: 'ມີກະແຈ API ແທນບໍ?',
-      intro: 'ເຂົ້າສູ່ລະບົບດ້ວຍການສະໝັກ — ບໍ່ຕ້ອງຄັດລອກກະແຈ API. OpenAmer ດຳເນີນການເຂົ້າສູ່ລະບົບຜ່ານບຣາວເຊີໃຫ້ທ່ານ ຢູ່ບ່ອນນີ້ໃນແອັບ.',
+      intro:
+        'ເຂົ້າສູ່ລະບົບດ້ວຍການສະໝັກ — ບໍ່ຕ້ອງຄັດລອກກະແຈ API. OpenAmer ດຳເນີນການເຂົ້າສູ່ລະບົບຜ່ານບຣາວເຊີໃຫ້ທ່ານ ຢູ່ບ່ອນນີ້ໃນແອັບ.',
       connected: 'ເຊື່ອມຕໍ່ແລ້ວ',
       collapse: 'ຫຍໍ້ເຂົ້າ',
       connectAnother: 'ເຊື່ອມຕໍ່ຜູ້ໃຫ້ບໍລິການອື່ນ',
@@ -827,10 +854,11 @@ export const lo = defineLocale({
       removeConfirm: provider => `ລຶບ ${provider} ຫຼື?`,
       removeExternalGeneric: provider => `${provider} ຖືກຈັດການໂດຍ CLI ຂອງມັນເອງ — ກະລຸນາລຶບອອກຈາກທີ່ນັ້ນ.`,
       removeKeyManaged: provider => `${provider} ຖືກຕັ້ງຄ່າຈາກ API key. ກະລຸນາລຶບອອກຈາກ API Keys.`,
-      removeTerminalConfirm: (provider, command) => `ຕັດການເຊື່ອມຕໍ່ ${provider} ຫຼື? ລະບົບຈະລັນ "${command}" ໃນ terminal ເພື່ອລຶບຂໍ້ມູນຢືນຢັນຕົວຕົນ.`,
+      removeTerminalConfirm: (provider, command) =>
+        `ຕັດການເຊື່ອມຕໍ່ ${provider} ຫຼື? ລະບົບຈະລັນ "${command}" ໃນ terminal ເພື່ອລຶບຂໍ້ມູນຢືນຢັນຕົວຕົນ.`,
       removeTerminalRunning: provider => `ກຳລັງລັນການຕັດການເຊື່ອມຕໍ່ ${provider} ໃນ terminal…`,
       removedMessage: provider => `${provider} ຖືກລຶບອອກແລ້ວ.`,
-      failedRemove: provider => `ບໍ່ສາມາດລຶບ ${provider} ໄດ້`,
+      failedRemove: provider => `ບໍ່ສາມາດລຶບ ${provider} ໄດ້`
     },
     sessions: {
       loading: 'ກຳລັງໂຫຼດເຊສຊັນທີ່ເກັບໄວ້…',
@@ -841,7 +869,8 @@ export const lo = defineLocale({
       deletePermanently: 'ລຶບຖາວອນ',
       restored: 'ກູ້ຄືນແລ້ວ',
       autoArchiveTitle: 'ເກັບແຊັດທີ່ຄ້າງໄວ້ອັດຕະໂນມັດ',
-      autoArchiveDesc: 'ເກັບແຊັດທີ່ເຈົ້າບໍ່ໄດ້ແຕະຕ້ອງມາດົນແລ້ວໂດຍອັດຕະໂນມັດ. ແຊັດທີ່ປັກໝຸດໄວ້ຈະບໍ່ຖືກເກັບ ແລະ ບໍ່ມີຫຍັງຖືກລຶບ — ແຊັດທີ່ເກັບໄວ້ຈະຍ້າຍມາທີ່ນີ້ເທົ່ານັ້ນ.',
+      autoArchiveDesc:
+        'ເກັບແຊັດທີ່ເຈົ້າບໍ່ໄດ້ແຕະຕ້ອງມາດົນແລ້ວໂດຍອັດຕະໂນມັດ. ແຊັດທີ່ປັກໝຸດໄວ້ຈະບໍ່ຖືກເກັບ ແລະ ບໍ່ມີຫຍັງຖືກລຶບ — ແຊັດທີ່ເກັບໄວ້ຈະຍ້າຍມາທີ່ນີ້ເທົ່ານັ້ນ.',
       autoArchiveDaysLabel: 'ເກັບຫຼັງຈາກ',
       autoArchiveDaysUnit: 'ມື້ທີ່ບໍ່ມີການເຄື່ອນໄຫວ',
       autoArchiveFailed: 'ບໍ່ສາມາດອັບເດດການເກັບຖາວອນອັດຕະໂນມັດໄດ້',
@@ -856,11 +885,12 @@ export const lo = defineLocale({
       deleteFailed: 'ລຶບບໍ່ສຳເລັດ',
       updateDirFailed: 'ບໍ່ສາມາດອັບເດດໂຟນເດີເລີ່ມຕົ້ນໄດ້',
       clearDirFailed: 'ບໍ່ສາມາດລຶບລ້າງໂຟນເດີເລີ່ມຕົ້ນໄດ້',
-      archivedIntro: 'ແຊັດທີ່ເກັບຖາວອນຈະຖືກເຊື່ອງຈາກແຖບຂ້າງ ແຕ່ຂໍ້ຄວາມທັງໝົດຍັງຄົງຢູ່. ຄລິກ Ctrl/âŒ˜ ໃສ່ແຊັດໃນແຖບຂ້າງເພື່ອເກັບຖາວອນ.',
+      archivedIntro:
+        'ແຊັດທີ່ເກັບຖາວອນຈະຖືກເຊື່ອງຈາກແຖບຂ້າງ ແຕ່ຂໍ້ຄວາມທັງໝົດຍັງຄົງຢູ່. ຄລິກ Ctrl/âŒ˜ ໃສ່ແຊັດໃນແຖບຂ້າງເພື່ອເກັບຖາວອນ.',
       defaultDirUpdated: 'ອັບເດດໄດເຣັກທອຣີໂຄງການພື້ນຖານແລ້ວ — ເລີ່ມແຊັດໃໝ່ (Ctrl/âŒ˜+N) ເພື່ອໃຫ້ມີຜົນ',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `ລຶບ "${title}" ຖາວອນ ຫຼື? ການກະທຳນີ້ບໍ່ສາມາດຍ້ອນກັບຄືນໄດ້.`,
-      defaultsTo: label => `ຄ່າເລີ່ມຕົ້ນແມ່ນ ${label}.`,
+      defaultsTo: label => `ຄ່າເລີ່ມຕົ້ນແມ່ນ ${label}.`
     },
     toolsets: {
       loadingConfig: 'ກຳລັງໂຫຼດການຕັ້ງຄ່າ',
@@ -912,7 +942,7 @@ export const lo = defineLocale({
         selectedTitle: 'ເລືອກແບັກເອນແລ້ວ',
         needsSetupHint: 'ທ່ານສາມາດເລືອກແບັກເອນນີ້ໄດ້ແລ້ວ — ຄຳສັ່ງຈະລົ້ມເຫຼວຈົນກວ່າການຕັ້ງຄ່າຈະສຳເລັດ.',
         selectedMessage: backend => `ຄຳສັ່ງ Terminal ດຳເນີນການຜ່ານ ${backend}. ມີຜົນກັບເຊດຊັນໃໝ່.`,
-        failedSelect: backend => `ເລືອກ ${backend} ບໍ່ສຳເລັດ`,
+        failedSelect: backend => `ເລືອກ ${backend} ບໍ່ສຳເລັດ`
       },
       savedMessage: key => `ອັບເດດ ${key} ແລ້ວ.`,
       removedMessage: key => `ລຶບ ${key} ແລ້ວ.`,
@@ -922,7 +952,8 @@ export const lo = defineLocale({
       removeConfirm: key => `ລຶບ ${key} ອອກຈາກ .env ຫຼື?`,
       selectedMessage: provider => `${provider} ເປີດໃຊ້ງານແລ້ວ.`,
       failedSelect: provider => `ເລືອກ ${provider} ບໍ່ສຳເລັດ`,
-      openamerAuthNeededMessage: provider => `${provider} ຖືກບັນທຶກແລ້ວ ແຕ່ຈະບໍ່ເປີດໃຊ້ຈົນກວ່າທ່ານຈະເຂົ້າສູ່ລະບົບ OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} ຖືກບັນທຶກແລ້ວ ແຕ່ຈະບໍ່ເປີດໃຊ້ຈົນກວ່າທ່ານຈະເຂົ້າສູ່ລະບົບ OpenAmer Portal.`,
       postSetupHint: step => `Backend ນີ້ຕ້ອງຕິດຕັ້ງຄັ້ງດຽວ (${step}). ເຮັດວຽກໃນເຄື່ອງນີ້ — ອາດໃຊ້ເວລາສອງສາມນາທີ.`,
       postSetupCompleteMessage: step => `ຕິດຕັ້ງ ${step} ແລ້ວ.`,
       postSetupErrorMessage: step => `ກວດສອບບັນທຶກ ${step}.`,
@@ -933,10 +964,10 @@ export const lo = defineLocale({
       failedSelectCapability: provider => `ຕັ້ງຄ່າ ${provider} ບໍ່ສຳເລັດ`,
       modelCount: count => `ໂມເດລ ${count}${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} ມີຜົນກັບເຊດຊັນໃໝ່.`,
-      failedSelectModel: model => `ເລືອກ ${model} ບໍ່ສຳເລັດ`,
+      failedSelectModel: model => `ເລືອກ ${model} ບໍ່ສຳເລັດ`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     skillArchivedTitle: 'ທັກສະຖືກເກັບຄັງ',
@@ -966,7 +997,7 @@ export const lo = defineLocale({
       trust: {
         builtin: 'ມາພ້ອມລະບົບ',
         trusted: 'ໄດ້ຮັບຄວາມໄວ້ວາງໃຈ',
-        community: 'ຊຸມຊົນ',
+        community: 'ຊຸມຊົນ'
       },
       verdictSafe: 'ປອດໄພ',
       verdictCaution: 'ລະວັງ',
@@ -986,7 +1017,7 @@ export const lo = defineLocale({
       timedOut: sources => `ໝົດເວລາ: ${sources}`,
       findings: count => `ການຄົ້ນພົບ ${count}${count === 1 ? '' : 's'}`,
       installStarted: name => `ກຳລັງຕິດຕັ້ງ ${name}...`,
-      uninstallStarted: name => `ກຳລັງຖອນການຕິດຕັ້ງ ${name}...`,
+      uninstallStarted: name => `ກຳລັງຖອນການຕິດຕັ້ງ ${name}...`
     },
     tabSkills: 'ທັກສະ',
     tabToolsets: 'ເຄື່ອງມື',
@@ -1004,7 +1035,8 @@ export const lo = defineLocale({
     noDescription: 'ບໍ່ມີຄຳອະທິບາຍ.',
     configured: 'ຕັ້ງຄ່າແລ້ວ',
     needsKeys: 'ຕ້ອງການກະແຈ',
-    visionModelHint: 'ການເບິ່ງເຫັນໃຊ້ການຕັ້ງຄ່າໂມເດລຊ່ວຍຂອງທ່ານ — ໂມເດລທີ່ຮອງຮັບຮູບພາບຈະຖືກເລືອກຢູ່ທີ່ນັ້ນ, ບໍ່ແມ່ນຕໍ່ຜູ້ໃຫ້ບໍລິການຢູ່ນີ້.',
+    visionModelHint:
+      'ການເບິ່ງເຫັນໃຊ້ການຕັ້ງຄ່າໂມເດລຊ່ວຍຂອງທ່ານ — ໂມເດລທີ່ຮອງຮັບຮູບພາບຈະຖືກເລືອກຢູ່ທີ່ນັ້ນ, ບໍ່ແມ່ນຕໍ່ຜູ້ໃຫ້ບໍລິການຢູ່ນີ້.',
     visionModelLink: 'ເລືອກໂມເດລການເບິ່ງເຫັນໃນ ການຕັ້ງຄ່າ → ໂມເດລ',
     skillsLoadFailed: 'ໂຫຼດທັກສະບໍ່ສຳເລັດ',
     toolsetsRefreshFailed: 'ຣີເຟຣຊຊຸດເຄື່ອງມືບໍ່ສຳເລັດ',
@@ -1022,7 +1054,7 @@ export const lo = defineLocale({
     provenance: {
       agent: 'ຮຽນຮູ້ແລ້ວ',
       bundled: 'ມີໃນຕົວ',
-      hub: 'ສູນລວມ',
+      hub: 'ສູນລວມ'
     },
     changesApplyNewSessions: 'ການປ່ຽນແປງຈະນຳໃຊ້ກັບເຊສຊັນໃໝ່.',
     skillUpdated: 'ອັບເດດທັກສະແລ້ວ',
@@ -1039,7 +1071,7 @@ export const lo = defineLocale({
     usageCount: count => `ໃຊ້ໄປ ${count} ຄັ້ງ`,
     emptyNoneFound: noun => `ບໍ່ພົບ ${noun}`,
     emptyNothingMatches: query => `ບໍ່ມີສິ່ງໃດກົງກັບ “${query}”.`,
-    emptyNoneAvailable: noun => `ຍັງບໍ່ມີ ${noun} ທີ່ສາມາດໃຊ້ໄດ້.`,
+    emptyNoneAvailable: noun => `ຍັງບໍ່ມີ ${noun} ທີ່ສາມາດໃຊ້ໄດ້.`
   },
   starmap: {
     title: 'ກຣາຟຄວາມຈຳ',
@@ -1055,7 +1087,8 @@ export const lo = defineLocale({
     emptyTitle: 'ຍັງບໍ່ມີສິ່ງທີ່ຮຽນຮູ້',
     emptyDesc: 'ເມື່ອ OpenAmer ສ້າງທັກສະ ແລະ ຄວາມຈຳສຳລັບວຽກຂອງທ່ານ ພວກມັນຈະປາກົດຢູ່ນີ້.',
     share: 'ແບ່ງປັນແຜນຜັງ',
-    shareHint: 'ຄັດລອກໂຄດເພື່ອແບ່ງປັນແຜນຜັງນີ້ ຫຼື ວາງໂຄດເພື່ອໂຫຼດ. ມັນລວມສະເພາະການຈັດວາງ ບໍ່ລວມຄວາມຈຳ ຫຼື ຂໍ້ຄວາມທັກສະຂອງທ່ານ.',
+    shareHint:
+      'ຄັດລອກໂຄດເພື່ອແບ່ງປັນແຜນຜັງນີ້ ຫຼື ວາງໂຄດເພື່ອໂຫຼດ. ມັນລວມສະເພາະການຈັດວາງ ບໍ່ລວມຄວາມຈຳ ຫຼື ຂໍ້ຄວາມທັກສະຂອງທ່ານ.',
     shareTitle: 'ນຳເຂົ້າ / ສົ່ງອອກແຜນຜັງ',
     sharePlaceholder: 'ວາງໂຄດແຜນຜັງ…',
     copy: 'ຄັດລອກໂຄດແຜນຜັງ',
@@ -1066,7 +1099,7 @@ export const lo = defineLocale({
     importedBadge: 'ແຜນທີ່ທີ່ນຳເຂົ້າ',
     resetToMine: 'ກັບໄປແຜນທີ່ຂອງຂ້ອຍ',
     subtitle: (nodes, clusters) => `ທັກສະ ${nodes} ໃນ ${clusters} ໝວດໝູ່`,
-    importSuccess: nodes => `ໂຫຼດແຜນທີ່ທີ່ມີ ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `ໂຫຼດແຜນທີ່ທີ່ມີ ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'ປິດຕົວແທນ',
@@ -1096,7 +1129,7 @@ export const lo = defineLocale({
     ageDays: days => `${days} ວັນກ່ອນ`,
     durationSeconds: seconds => `${seconds} ວິນາທີ`,
     durationMinutes: (minutes, seconds) => `${minutes} ນາທີ ${seconds} ວິນາທີ`,
-    tokens: value => `${value} ໂຕເຄັນ`,
+    tokens: value => `${value} ໂຕເຄັນ`
   },
   commandCenter: {
     close: 'ປິດສູນຄຳສັ່ງ',
@@ -1125,7 +1158,7 @@ export const lo = defineLocale({
       generatedTag: 'ສ້າງແລ້ວ',
       adoptFailed: 'ບໍ່ສາມາດຮັບລ້ຽງສັດນັ້ນໄດ້.',
       toggleFailed: 'ບໍ່ສາມາດເປີດ/ປິດສັດລ້ຽງໄດ້.',
-      noneAvailable: 'ບໍ່ມີສັດລ້ຽງ — ເລືອກໜຶ່ງລຸ່ມນີ້ເພື່ອຕິດຕັ້ງ.',
+      noneAvailable: 'ບໍ່ມີສັດລ້ຽງ — ເລືອກໜຶ່ງລຸ່ມນີ້ເພື່ອຕິດຕັ້ງ.'
     },
     generatePet: {
       title: 'ສ້າງສັດລ້ຽງ',
@@ -1154,7 +1187,7 @@ export const lo = defineLocale({
       referenceImageInvalid: 'ບໍ່ສາມາດອ່ານຮູບອ້າງອີງນັ້ນໄດ້. ລອງໃຊ້ PNG, JPG, WebP ຫຼື GIF.',
       adopt: 'ຮັບເອົາ',
       startOver: 'ເລີ່ມໃໝ່',
-      hatchRow: (_state, done, total) => `ກຳລັງຮ່າງເຟຣມ ${done} ຈາກ ${total}…`,
+      hatchRow: (_state, done, total) => `ກຳລັງຮ່າງເຟຣມ ${done} ຈາກ ${total}…`
     },
     installTheme: {
       title: 'ຕິດຕັ້ງຮູບແບບ…',
@@ -1166,7 +1199,7 @@ export const lo = defineLocale({
       install: 'ຕິດຕັ້ງ',
       installing: 'ກຳລັງຕິດຕັ້ງ...',
       installed: 'ຕິດຕັ້ງແລ້ວ',
-      installs: count => `ຕິດຕັ້ງ ${count} ຄັ້ງ`,
+      installs: count => `ຕິດຕັ້ງ ${count} ຄັ້ງ`
     },
     settingsFields: 'ຊ່ອງຂໍ້ມູນການຕັ້ງຄ່າ',
     mcpServers: 'ເຊີບເວີ MCP',
@@ -1175,49 +1208,49 @@ export const lo = defineLocale({
       maintenance: 'ການບຳລຸງຮັກສາ',
       sessions: 'ເຊສຊັນ',
       system: 'ລະບົບ',
-      usage: 'ການນຳໃຊ້',
+      usage: 'ການນຳໃຊ້'
     },
     sectionDescriptions: {
       maintenance: 'ຂໍ້ມູນການວິນິດໄສ, ການສຳຮອງ, ຜູ້ດູແລ ແລະ ຂໍ້ມູນຄວາມຈຳ',
       sessions: 'ຄົ້ນຫາ ແລະ ຈັດການເຊສຊັນ',
       system: 'ສະຖານະ, ບັນທຶກ ແລະ ການດຳເນີນການລະບົບ',
-      usage: 'ໂທເຄັນ, ຄ່າໃຊ້ຈ່າຍ ແລະ ການເຄື່ອນໄຫວທັກສະຕາມເວລາ',
+      usage: 'ໂທເຄັນ, ຄ່າໃຊ້ຈ່າຍ ແລະ ການເຄື່ອນໄຫວທັກສະຕາມເວລາ'
     },
     nav: {
       newChat: {
         title: 'ເຊສຊັນໃໝ່',
-        detail: 'ເລີ່ມເຊສຊັນໃໝ່',
+        detail: 'ເລີ່ມເຊສຊັນໃໝ່'
       },
       settings: {
         title: 'ການຕັ້ງຄ່າ',
-        detail: 'ຕັ້ງຄ່າ OpenAmer ເດສທັອບ',
+        detail: 'ຕັ້ງຄ່າ OpenAmer ເດສທັອບ'
       },
       skills: {
         title: 'ຄວາມສາມາດ',
-        detail: 'ທັກສະ, ເຄື່ອງມື ແລະ ເຊີບເວີ MCP',
+        detail: 'ທັກສະ, ເຄື່ອງມື ແລະ ເຊີບເວີ MCP'
       },
       messaging: {
         title: 'ການສົ່ງຂໍ້ຄວາມ',
-        detail: 'ຕັ້ງຄ່າ Telegram, Slack, Discord ແລະ ອື່ນໆ',
+        detail: 'ຕັ້ງຄ່າ Telegram, Slack, Discord ແລະ ອື່ນໆ'
       },
       artifacts: {
         title: 'ອາຕິແຟັກ',
-        detail: 'ເບິ່ງຜົນລັບທີ່ສ້າງຂຶ້ນ',
-      },
+        detail: 'ເບິ່ງຜົນລັບທີ່ສ້າງຂຶ້ນ'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'ແຜງເຊສຊັນ',
-        detail: 'ຄົ້ນຫາ, ປັກໝຸດ ແລະ ຈັດການເຊສຊັນ',
+        detail: 'ຄົ້ນຫາ, ປັກໝຸດ ແລະ ຈັດການເຊສຊັນ'
       },
       system: {
         title: 'ແຜງລະບົບ',
-        detail: 'ສະຖານະເກດເວ, ບັນທຶກ, ເລີ່ມໃໝ່/ອັບເດດ',
+        detail: 'ສະຖານະເກດເວ, ບັນທຶກ, ເລີ່ມໃໝ່/ອັບເດດ'
       },
       usage: {
         title: 'ແຜງການໃຊ້',
-        detail: 'ໂທເຄັນ, ຄ່າໃຊ້ຈ່າຍ, ແລະ ກິດຈະກຳທັກສະ',
-      },
+        detail: 'ໂທເຄັນ, ຄ່າໃຊ້ຈ່າຍ, ແລະ ກິດຈະກຳທັກສະ'
+      }
     },
     providerNavigate: 'ນຳທາງ',
     providerSessions: 'ເຊສຊັນ',
@@ -1300,14 +1333,14 @@ export const lo = defineLocale({
       resetConfirm: target => `ລຶບ ${target} ຫຼື ບໍ່? ການກະທຳນີ້ບໍ່ສາມາດຍ້ອນກັບຄືນໄດ້.`,
       resetDone: files => `ລຶບ ${files} ແລ້ວ.`,
       actionStarted: name => `${name} ເລີ່ມແລ້ວ — ກຳລັງຕິດຕາມລັອກ...`,
-      actionFailed: name => `${name} ເລີ່ມຕົ້ນບໍ່ສຳເລັດ`,
+      actionFailed: name => `${name} ເລີ່ມຕົ້ນບໍ່ສຳເລັດ`
     },
     startInBranch: branch => `ການສົນທະນາໃໝ່ໃນ ${branch}`,
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · ເຊດຊັນທີ່ກຳລັງໃຊ້ງານ ${count}`,
     days: count => `${count} ວັນ`,
     actualCost: cost => `ຈິງ ${cost}`,
     noUsage: period => `ບໍ່ມີການນຳໃຊ້ໃນ ${period} ວັນຜ່ານມາ.`,
-    actions: count => `${count} ການດຳເນີນການ`,
+    actions: count => `${count} ການດຳເນີນການ`
   },
   messaging: {
     search: 'ຊອກຫາການສົ່ງຂໍ້ຄວາມ...',
@@ -1322,7 +1355,7 @@ export const lo = defineLocale({
       not_configured: 'ຕ້ອງຕັ້ງຄ່າ',
       pending_restart: 'ຕ້ອງຣີສະຕາດ',
       retrying: 'ກຳລັງລອງໃໝ່',
-      startup_failed: 'ເລີ່ມຕົ້ນລົ້ມເຫຼວ',
+      startup_failed: 'ເລີ່ມຕົ້ນລົ້ມເຫຼວ'
     },
     unknown: 'ບໍ່ຮູ້',
     hintPendingRestart: 'ຣີສະຕາດເກດເວຈາກແຖບສະຖານະເພື່ອໃຊ້ການປ່ຽນແປງນີ້.',
@@ -1349,124 +1382,124 @@ export const lo = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'ໂທເຄັນຂອງບອດ',
         help: 'ສ້າງບອດກັບ @BotFather ແລ້ວວາງໂທເຄັນທີ່ມັນໃຫ້.',
-        placeholder: 'ວາງໂທເຄັນບອດ Telegram',
+        placeholder: 'ວາງໂທເຄັນບອດ Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'ID ຜູ້ໃຊ້ Telegram ທີ່ອະນຸຍາດ',
-        help: 'ແນະນຳ. ID ຕົວເລກແຍກດ້ວຍເຄື່ອງໝາຍຈຸດຈາກ @userinfobot. ຖ້າບໍ່ມີອັນນີ້ ໃຜກໍສາມາດ DM ບອດຂອງທ່ານໄດ້.',
+        help: 'ແນະນຳ. ID ຕົວເລກແຍກດ້ວຍເຄື່ອງໝາຍຈຸດຈາກ @userinfobot. ຖ້າບໍ່ມີອັນນີ້ ໃຜກໍສາມາດ DM ບອດຂອງທ່ານໄດ້.'
       },
       TELEGRAM_PROXY: {
         label: 'URL ພຣັອກຊີ',
-        help: 'ຕ້ອງການສະເພາະໃນເຄືອຂ່າຍທີ່ Telegram ຖືກບລັອກ.',
+        help: 'ຕ້ອງການສະເພາະໃນເຄືອຂ່າຍທີ່ Telegram ຖືກບລັອກ.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'ໂທເຄັນຂອງບອດ',
-        help: 'ສ້າງແອັບພລິເຄຊັນໃນ Discord Developer Portal, ເພີ່ມບອດ, ແລ້ວວາງໂທເຄັນຂອງມັນ.',
+        help: 'ສ້າງແອັບພລິເຄຊັນໃນ Discord Developer Portal, ເພີ່ມບອດ, ແລ້ວວາງໂທເຄັນຂອງມັນ.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'ID ຜູ້ໃຊ້ Discord ທີ່ອະນຸຍາດ',
-        help: 'ແນະນຳ. ID ຜູ້ໃຊ້ Discord ແຍກດ້ວຍເຄື່ອງໝາຍຈຸດ.',
+        help: 'ແນະນຳ. ID ຜູ້ໃຊ້ Discord ແຍກດ້ວຍເຄື່ອງໝາຍຈຸດ.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'ຮູບແບບການຕອບ',
-        help: 'ທຳອິດ, ທັງໝົດ ຫຼື ປິດ.',
+        help: 'ທຳອິດ, ທັງໝົດ ຫຼື ປິດ.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'ອະນຸຍາດຜູ້ໃຊ້ Discord ທັງໝົດ',
-        help: 'ສຳລັບການພັດທະນາເທົ່ານັ້ນ. ເມື່ອເປັນຈິງ, ໃຜກໍສາມາດ DM bot ໄດ້ໂດຍບໍ່ຕ້ອງມີລາຍຊື່ອະນຸຍາດ.',
+        help: 'ສຳລັບການພັດທະນາເທົ່ານັ້ນ. ເມື່ອເປັນຈິງ, ໃຜກໍສາມາດ DM bot ໄດ້ໂດຍບໍ່ຕ້ອງມີລາຍຊື່ອະນຸຍາດ.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID ຂອງຊ່ອງຫຼັກ',
-        help: 'ຊ່ອງທີ່ bot ສົ່ງຂໍ້ຄວາມອັດຕະໂນມັດ (ຜົນ cron, ການເຕືອນ).',
+        help: 'ຊ່ອງທີ່ bot ສົ່ງຂໍ້ຄວາມອັດຕະໂນມັດ (ຜົນ cron, ການເຕືອນ).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'ຊື່ຊ່ອງຫຼັກ',
-        help: 'ຊື່ສະແດງຂອງຊ່ອງຫຼັກໃນ log ແລະ ສະຖານະ',
+        help: 'ຊື່ສະແດງຂອງຊ່ອງຫຼັກໃນ log ແລະ ສະຖານະ'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'ອະນຸຍາດຜູ້ໃຊ້ iMessage ທັງໝົດ',
-        help: 'ເມື່ອເປັນຈິງ, ຂ້າມລາຍຊື່ອະນຸຍາດ BlueBubbles.',
+        help: 'ເມື່ອເປັນຈິງ, ຂ້າມລາຍຊື່ອະນຸຍາດ BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'ອະນຸຍາດຜູ້ໃຊ້ Mattermost ທັງໝົດ',
+        label: 'ອະນຸຍາດຜູ້ໃຊ້ Mattermost ທັງໝົດ'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'ຊ່ອງຫຼັກ',
+        label: 'ຊ່ອງຫຼັກ'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'ອະນຸຍາດຜູ້ໃຊ້ QQ ທັງໝົດ',
+        label: 'ອະນຸຍາດຜູ້ໃຊ້ QQ ທັງໝົດ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'ຊ່ອງຫຼັກ QQ',
-        help: 'ຊ່ອງ ຫຼື ກຸ່ມເລີ່ມຕົ້ນສຳລັບການສົ່ງ cron.',
+        help: 'ຊ່ອງ ຫຼື ກຸ່ມເລີ່ມຕົ້ນສຳລັບການສົ່ງ cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'ຊື່ຊ່ອງຫຼັກ QQ',
+        label: 'ຊື່ຊ່ອງຫຼັກ QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'ໂທເຄັນ bot Slack',
         help: 'ໃຊ້ໂທເຄັນ bot ຈາກ OAuth & Permissions ຫຼັງຈາກຕິດຕັ້ງແອັບ Slack ຂອງທ່ານ.',
-        placeholder: 'ວາງໂທເຄັນ bot Slack',
+        placeholder: 'ວາງໂທເຄັນ bot Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'ໂທເຄັນແອັບ Slack',
         help: 'ໃຊ້ໂທເຄັນລະດັບແອັບທີ່ຈຳເປັນສຳລັບ Socket Mode.',
-        placeholder: 'ວາງໂທເຄັນແອັບ Slack',
+        placeholder: 'ວາງໂທເຄັນແອັບ Slack'
       },
       SIGNAL_ACCOUNT: {
         help: 'ໝາຍເລກທີ່ລົງທະບຽນກັບບຣິດ signal-cli ຂອງທ່ານ.',
-        label: 'ເບີໂທລະສັບ',
+        label: 'ເບີໂທລະສັບ'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'ຜູ້ໃຊ້ Signal ທີ່ອະນຸຍາດ',
-        help: 'ແນະນຳ. ຕົວລະບຸ Signal ແຍກດ້ວຍເຄື່ອງໝາຍຈຸດ.',
+        help: 'ແນະນຳ. ຕົວລະບຸ Signal ແຍກດ້ວຍເຄື່ອງໝາຍຈຸດ.'
       },
       WHATSAPP_ENABLED: {
         label: 'ເປີດໃຊ້ບຣິດ WhatsApp',
-        help: 'ຕັ້ງອັດຕະໂນມັດໂດຍສະວິດດ້ານລຸ່ມ. ຢ່າປ່ຽນເວັ້ນເສຍແຕ່ທ່ານຮູ້ວ່າຕ້ອງການ.',
+        help: 'ຕັ້ງອັດຕະໂນມັດໂດຍສະວິດດ້ານລຸ່ມ. ຢ່າປ່ຽນເວັ້ນເສຍແຕ່ທ່ານຮູ້ວ່າຕ້ອງການ.'
       },
       WHATSAPP_MODE: {
-        label: 'ໂໝດບຣິດ',
+        label: 'ໂໝດບຣິດ'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'ຜູ້ໃຊ້ WhatsApp ທີ່ອະນຸຍາດ',
-        help: 'ແນະນຳ. ເບີໂທ ຫຼື WhatsApp ID ແຍກດ້ວຍເຄື່ອງໝາຍຈຸດ.',
+        help: 'ແນະນຳ. ເບີໂທ ຫຼື WhatsApp ID ແຍກດ້ວຍເຄື່ອງໝາຍຈຸດ.'
       },
       SLACK_ALLOWED_USERS: {
         label: 'ໄອດີຜູ້ໃຊ້ Slack ທີ່ອະນຸຍາດ',
-        help: 'ແນະນຳ: ໄອດີຜູ້ໃຊ້ Slack ທີ່ແຍກດ້ວຍເຄື່ອງໝາຍຈຸລາ.',
+        help: 'ແນະນຳ: ໄອດີຜູ້ໃຊ້ Slack ທີ່ແຍກດ້ວຍເຄື່ອງໝາຍຈຸລາ.'
       },
       MATTERMOST_URL: {
         label: 'URL ເຊີບເວີ',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'ໂທເຄັນບອດ',
+        label: 'ໂທເຄັນບອດ'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'ໄອດີຜູ້ໃຊ້ທີ່ອະນຸຍາດ',
-        help: 'ແນະນຳ: ໄອດີຜູ້ໃຊ້ Mattermost ທີ່ແຍກດ້ວຍເຄື່ອງໝາຍຈຸລາ.',
+        help: 'ແນະນຳ: ໄອດີຜູ້ໃຊ້ Mattermost ທີ່ແຍກດ້ວຍເຄື່ອງໝາຍຈຸລາ.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL ເຊີບເວີຫຼັກ',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'ໂທເຄັນການເຂົ້າເຖິງ',
+        label: 'ໂທເຄັນການເຂົ້າເຖິງ'
       },
       MATRIX_USER_ID: {
         label: 'ໄອດີຜູ້ໃຊ້ບອດ',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'ID ຜູ້ໃຊ້ Matrix ທີ່ອະນຸຍາດ',
-        help: 'ແນະນຳ. ID ຜູ້ໃຊ້ແຍກດ້ວຍເຄື່ອງໝາຍຈຸດ ໃນຮູບແບບ @user:server.',
+        help: 'ແນະນຳ. ID ຜູ້ໃຊ້ແຍກດ້ວຍເຄື່ອງໝາຍຈຸດ ໃນຮູບແບບ @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL ບຣິດ Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL ຂອງບຣິດ REST signal-cli ທີ່ກຳລັງແລ່ນຢູ່.',
-      },
+        help: 'URL ຂອງບຣິດ REST signal-cli ທີ່ກຳລັງແລ່ນຢູ່.'
+      }
     },
     advanced: count => `ຂັ້ນສູງ (${count})`,
     clearField: key => `ລ້າງ ${key}`,
@@ -1480,8 +1513,7 @@ export const lo = defineLocale({
     failedUpdate: name => `ອັບເດດ ${name} ບໍ່ສຳເລັດ`,
     failedSave: name => `ບັນທຶກ ${name} ບໍ່ສຳເລັດ`,
     failedClear: key => `ລ້າງ ${key} ບໍ່ສຳເລັດ`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'ຄົ້ນຫາ webhooks...',
@@ -1490,7 +1522,8 @@ export const lo = defineLocale({
     hint: 'ການປ່ຽນແປງການສະໝັກຈະໂຫຼດຄືນອັດຕະໂນມັດເມື່ອຕົວຮັບເຮັດວຽກ. ການສະໝັກທີ່ປິດໃຊ້ຈະປະຕິເສດເຫດການທີ່ເຂົ້າມາ.',
     empty: 'ຍັງບໍ່ມີການສະໝັກ webhook.',
     disabledTitle: 'ຕົວຮັບ webhook ຖືກປິດໃຊ້',
-    disabledBody: 'webhooks ເປັນແພລັດຟອມເກດເວຂອງຕົນເອງ. ເປີດໃຊ້ຢູ່ນີ້ເພື່ອຮັບເຫດການ HTTP ທີ່ເຂົ້າມາ; ຊ່ອງທາງແຊັດຈະຕ້ອງການພຽງແຕ່ເມື່ອການສະໝັກສົ່ງໄປ Telegram, Discord, Slack ຫຼືຊ່ອງທາງອື່ນ.',
+    disabledBody:
+      'webhooks ເປັນແພລັດຟອມເກດເວຂອງຕົນເອງ. ເປີດໃຊ້ຢູ່ນີ້ເພື່ອຮັບເຫດການ HTTP ທີ່ເຂົ້າມາ; ຊ່ອງທາງແຊັດຈະຕ້ອງການພຽງແຕ່ເມື່ອການສະໝັກສົ່ງໄປ Telegram, Discord, Slack ຫຼືຊ່ອງທາງອື່ນ.',
     enable: 'ເປີດໃຊ້ webhooks',
     enabling: 'ກຳລັງເປີດໃຊ້...',
     enableRow: 'ເປີດໃຊ້',
@@ -1522,7 +1555,7 @@ export const lo = defineLocale({
       email: 'ອີເມວ',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     fieldDescription: 'ຄຳອະທິບາຍ',
     fieldDescriptionPlaceholder: 'ເວັບຮຸກນີ້ເຮັດຫຍັງ (ບໍ່ບັງຄັບ)',
@@ -1545,7 +1578,7 @@ export const lo = defineLocale({
     deleteFailed: (name: string) => `ລົບ "${name}" ບໍ່ສຳເລັດ`,
     toggleFailed: (name: string) => `ອັບເດດ "${name}" ບໍ່ສຳເລັດ`,
     restartFailed: (detail: string) => `ການຣີສຕາດ Gateway ຫຼົ້ມເຫຼວ${detail}`,
-    createFailed: (detail: string) => `ສ້າງບໍ່ສຳເລັດ: ${detail}`,
+    createFailed: (detail: string) => `ສ້າງບໍ່ສຳເລັດ: ${detail}`
   },
   profiles: {
     close: 'ປິດໂປຣໄຟລ໌',
@@ -1623,7 +1656,7 @@ export const lo = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `ຄຳສັ່ງລະບົບ / ບຸກຄະລິກສຳລັບໂປຣໄຟລ໌ນີ້.
 ປ່ອຍວ່າງໄວ້ເພື່ອໃຊ້ຄ່າເລີ່ມຕົ້ນຂອງ ${mode}.`,
-    invalidName: hint => `ຊື່ບໍ່ຖືກຕ້ອງ. ${hint}`,
+    invalidName: hint => `ຊື່ບໍ່ຖືກຕ້ອງ. ${hint}`
   },
   cron: {
     close: 'ປິດ cron',
@@ -1637,14 +1670,14 @@ export const lo = defineLocale({
       paused: 'ຢຸດຊົ່ວຄາວ',
       disabled: 'ປິດໃຊ້',
       error: 'ຂໍ້ຜິດພາດ',
-      completed: 'ສຳເລັດແລ້ວ',
+      completed: 'ສຳເລັດແລ້ວ'
     },
     deliveryLabels: {
       local: 'ເດສກທັອບນີ້',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'ອີເມວ',
+      email: 'ອີເມວ'
     },
     scheduleLabels: {
       daily: 'ປະຈຳວັນ',
@@ -1653,7 +1686,7 @@ export const lo = defineLocale({
       monthly: 'ປະຈຳເດືອນ',
       hourly: 'ປະຈຳຊົ່ວໂມງ',
       'every-15-minutes': 'ທຸກໆ 15 ນາທີ',
-      custom: 'ກຳນົດເອງ',
+      custom: 'ກຳນົດເອງ'
     },
     scheduleHints: {
       daily: 'ທຸກວັນເວລາ 9:00 ໂມງເຊົ້າ',
@@ -1662,7 +1695,7 @@ export const lo = defineLocale({
       monthly: 'ວັນທຳອິດຂອງແຕ່ລະເດືອນ ເວລາ 9:00 ໂມງເຊົ້າ',
       hourly: 'ໃນຕອນຕົ້ນຂອງທຸກຊົ່ວໂມງ',
       'every-15-minutes': 'ທຸກໆ 15 ນາທີ',
-      custom: 'ໄວຍາກອນ Cron ຫຼື ພາສາທຳມະຊາດ',
+      custom: 'ໄວຍາກອນ Cron ຫຼື ພາສາທຳມະຊາດ'
     },
     days: {
       '0': 'ວັນອາທິດ',
@@ -1672,7 +1705,7 @@ export const lo = defineLocale({
       '4': 'ວັນພະຫັດ',
       '5': 'ວັນສຸກ',
       '6': 'ວັນເສົາ',
-      '7': 'ວັນອາທິດ',
+      '7': 'ວັນອາທິດ'
     },
     topOfHour: 'ທຸກໆຕົ້ນຊົ່ວໂມງ',
     newCron: 'cron ໃໝ່',
@@ -1734,7 +1767,7 @@ export const lo = defineLocale({
     createAction: 'ສ້າງ cron',
     tabs: {
       jobs: 'ວຽກງານ',
-      blueprints: 'ບລູພຣິນ',
+      blueprints: 'ບລູພຣິນ'
     },
     blueprints: {
       tab: 'ບລູພຣິນ',
@@ -1748,7 +1781,7 @@ export const lo = defineLocale({
       loading: 'ກຳລັງໂຫລດບລູພຣິນ...',
       failedLoad: 'ໂຫລດບລູພຣິນບໍ່ສຳເລັດ',
       emptyTitle: 'ບໍ່ມີບລູພຣິນທີ່ໃຊ້ໄດ້',
-      emptyDesc: 'ບໍ່ມີບລູພຣິນອັດຕະໂນມັດໃຫ້ໃຊ້ໃນ backend ນີ້.',
+      emptyDesc: 'ບໍ່ມີບລູພຣິນອັດຕະໂນມັດໃຫ້ໃຊ້ໃນ backend ນີ້.'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `ວັນທີ ${value}`,
@@ -1757,7 +1790,7 @@ export const lo = defineLocale({
     everyDayOfWeekAt: (day, time) => `ທຸກໆ ${day} ເວລາ ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `ທຸກໆເດືອນ ວັນທີ ${dayOfMonth} ເວລາ ${time}`,
     everyHourAt: minute => `ທຸກໆຊົ່ວໂມງ ເວລາ :${minute}`,
-    actionsFor: title => `ການຈັດການສຳລັບ ${title}`,
+    actionsFor: title => `ການຈັດການສຳລັບ ${title}`
   },
   sidebar: {
     groupAriaUngrouped: 'ຈັດກຸ່ມເຊສຊັນຕາມພື້ນທີ່ເຮັດວຽກ',
@@ -1781,7 +1814,8 @@ export const lo = defineLocale({
       namePlaceholder: 'ເຊັ່ນ: Skunkworks',
       foldersLabel: 'ໂຟນເດີ',
       ideaLabel: 'ແນວຄິດ',
-      staleBackend: 'ອັບເດດແບັກເອັນຂອງ OpenAmer ເພື່ອສ້າງໂຄງການ — ແບັກເອັນຂອງທ່ານເກົ່າກວ່າແອັບເດສະທັອບນີ້ (ການຕັ້ງຄ່າ → ອັບເດດ → ແບັກເອັນ).',
+      staleBackend:
+        'ອັບເດດແບັກເອັນຂອງ OpenAmer ເພື່ອສ້າງໂຄງການ — ແບັກເອັນຂອງທ່ານເກົ່າກວ່າແອັບເດສະທັອບນີ້ (ການຕັ້ງຄ່າ → ອັບເດດ → ແບັກເອັນ).',
       deleteConfirm: 'ສິ່ງນີ້ຈະລຶບໂຄງການທີ່ບັນທຶກໄວ້ອອກຈາກ OpenAmer. ໄຟລ໌, ເຣພອສ git, ແລະ worktree ຈະບໍ່ຖືກປ່ຽນ.',
       startWork: 'worktree ໃໝ່',
       newWorktreeTitle: 'worktree ໃໝ່',
@@ -1802,8 +1836,10 @@ export const lo = defineLocale({
       noBranches: 'ບໍ່ພົບສາຂາ',
       removeWorktree: 'ລຶບ worktree',
       removeWorktreeFailed: 'ບໍ່ສາມາດລຶບເວີກທຣີໄດ້ (ມີການປ່ຽນແປງທີ່ຍັງບໍ່ໄດ້ຄອມມິດ?)',
-      removeWorktreeConfirm: 'ລຶບມັນອອກຈາກ git (ລຶບໂຟນເດີເວີກທຣີ; ສາຂາຈະຍັງຢູ່), ຫຼືພຽງແຕ່ເຊື່ອງເລນຈາກແຖບຂ້າງ ແລະ ເກັບເວີກທຣີໄວ້ໃນດິສກ໌.',
-      removeWorktreeDirty: 'ເວີກທຣີນີ້ມີການປ່ຽນແປງທີ່ຍັງບໍ່ໄດ້ຄອມມິດ. ບັງຄັບລຶບມັນ (ຖິ້ມການປ່ຽນແປງເຫຼົ່ານັ້ນ), ຫຼືພຽງແຕ່ເຊື່ອງເລນ ແລະ ເກັບມັນໄວ້ໃນດິສກ໌.',
+      removeWorktreeConfirm:
+        'ລຶບມັນອອກຈາກ git (ລຶບໂຟນເດີເວີກທຣີ; ສາຂາຈະຍັງຢູ່), ຫຼືພຽງແຕ່ເຊື່ອງເລນຈາກແຖບຂ້າງ ແລະ ເກັບເວີກທຣີໄວ້ໃນດິສກ໌.',
+      removeWorktreeDirty:
+        'ເວີກທຣີນີ້ມີການປ່ຽນແປງທີ່ຍັງບໍ່ໄດ້ຄອມມິດ. ບັງຄັບລຶບມັນ (ຖິ້ມການປ່ຽນແປງເຫຼົ່ານັ້ນ), ຫຼືພຽງແຕ່ເຊື່ອງເລນ ແລະ ເກັບມັນໄວ້ໃນດິສກ໌.',
       forceRemove: 'ບັງຄັບລຶບ',
       back: 'ໂຄງການທັງໝົດ',
       ideaPlaceholder: 'ໂຄງການນີ້ກ່ຽວກັບຫຍັງ? (ບັນທຶກໄວ້ໃນ IDEA.md)',
@@ -1829,7 +1865,7 @@ export const lo = defineLocale({
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `ເປີດ ${label}`,
       reorder: label => `ຈັດລຳດັບ ${label}`,
-      toggle: label => `ປ່ຽນໂໝດເຊດຊັນ ${label}`,
+      toggle: label => `ປ່ຽນໂໝດເຊດຊັນ ${label}`
     },
     loading: 'ກຳລັງໂຫຼດ…',
     loadMore: 'ໂຫຼດເພີ່ມ',
@@ -1864,20 +1900,20 @@ export const lo = defineLocale({
       actionsFor: title => `ການຈັດການສຳລັບ ${title}`,
       handoffOrigin: platform => `ສົ່ງຕໍ່ຈາກ ${platform}`,
       ownedByProfile: profile => `ໂປຣໄຟລ໌: ${profile}`,
-      untitledChat: id => `ແຊັດ ${id}`,
+      untitledChat: id => `ແຊັດ ${id}`
     },
     dateDivider: {
       today: 'ຕົ້ນມື້ນີ້',
       yesterday: 'ມື້ວານນີ້',
       thisWeek: 'ຕົ້ນອາທິດນີ້',
       lastWeek: 'ອາທິດແລ້ວ',
-      thisMonth: 'ຕົ້ນເດືອນນີ້',
+      thisMonth: 'ຕົ້ນເດືອນນີ້'
     },
     nav: {
       'new-session': 'ເຊສຊັນໃໝ່',
       skills: 'ຄວາມສາມາດ',
       messaging: 'ການສົ່ງຂໍ້ຄວາມ',
-      artifacts: 'ໄຟລ໌ຜົນງານ',
+      artifacts: 'ໄຟລ໌ຜົນງານ'
     },
     searchAria: 'ຄົ້ນຫາເຊສຊັນ',
     searchPlaceholder: 'ຄົ້ນຫາເຊສຊັນ…',
@@ -1890,7 +1926,7 @@ export const lo = defineLocale({
     noMatch: query => `ບໍ່ມີເຊດຊັນທີ່ກົງກັບ “${query}”.`,
     newSessionIn: label => `ເຊດຊັນໃໝ່ໃນ ${label}`,
     showMoreIn: (count, label) => `ສະແດງ ${count} ເພີ່ມເຕີມໃນ ${label}`,
-    loadCount: step => `ໂຫຼດ ${step} ເພີ່ມເຕີມ`,
+    loadCount: step => `ໂຫຼດ ${step} ເພີ່ມເຕີມ`
   },
   composer: {
     message: 'ຂໍ້ຄວາມ',
@@ -1931,7 +1967,7 @@ export const lo = defineLocale({
       '/resume': 'ສືບຕໍ່ເຊສຊັນກ່ອນໜ້າ',
       '/details': 'ຄວບຄຸມລະດັບລາຍລະອຽດບົດຖອດສຽງ',
       '/copy': 'ຄັດລອກທີ່ເລືອກ ຫຼື ຂໍ້ຄວາມຜູ້ຊ່ວຍຫຼ້າສຸດ',
-      '/quit': 'ອອກຈາກ openamer',
+      '/quit': 'ອອກຈາກ openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'ອ້າງອີງໄຟລ໌, ໂຟນເດີ, URL, git',
@@ -1941,7 +1977,7 @@ export const lo = defineLocale({
       'composer.sendQueued': 'ສົ່ງຮອບຄິວຕໍ່ໄປ',
       'keybinds.openPanel': 'ທາງລັດຄີບອດທັງໝົດ',
       'composer.cancel': 'ປິດປ໊ອບໂອເວີ · ຍົກເລີກການຮັນ',
-      'composer.history': 'ວົນປ໊ອບໂອເວີ / ປະຫວັດ',
+      'composer.history': 'ວົນປ໊ອບໂອເວີ / ປະຫວັດ'
     },
     attachUrlTitle: 'ແນບ URL',
     attachUrlDesc: 'OpenAmer ຈະດຶງໜ້າເວັບ ແລະ ລວມມັນເປັນບໍລິບົດສຳລັບຮອບນີ້.',
@@ -1985,45 +2021,45 @@ export const lo = defineLocale({
       codeReview: {
         label: 'ກວດທົບລະຫັດ',
         description: 'ກວດສອບການປ່ຽນແປງປັດຈຸບັນສຳລັບບັນຫາຖອຍຫຼັງ, ກໍລະນີຂອບທີ່ຕົກຫຼົ່ນ ແລະ ການທົດສອບທີ່ຂາດຫາຍ',
-        text: 'ກະລຸນາກວດທົບອັນນີ້ສຳລັບຂໍ້ຜິດພາດ, ບັນຫາຖອຍຫຼັງ ແລະ ການທົດສອບທີ່ຂາດຫາຍ',
+        text: 'ກະລຸນາກວດທົບອັນນີ້ສຳລັບຂໍ້ຜິດພາດ, ບັນຫາຖອຍຫຼັງ ແລະ ການທົດສອບທີ່ຂາດຫາຍ'
       },
       implementationPlan: {
         label: 'ແຜນການຈັດຕັ້ງປະຕິບັດ',
         description: 'ຮ່າງແນວທາງກ່ອນແຕະລະຫັດ ເພື່ອໃຫ້ diff ມີຈຸດສຸມ',
-        text: 'ກະລຸນາເຮັດແຜນຈັດຕັ້ງປະຕິບັດທີ່ກະຊັບກ່ອນປ່ຽນລະຫັດ',
+        text: 'ກະລຸນາເຮັດແຜນຈັດຕັ້ງປະຕິບັດທີ່ກະຊັບກ່ອນປ່ຽນລະຫັດ'
       },
       explainThis: {
         label: 'ອະທິບາຍອັນນີ້',
         description: 'ອະທິບາຍວິທີທີ່ລະຫັດທີ່ເລືອກເຮັດວຽກ ແລະ ເຊື່ອມໄປຫາໄຟລ໌ສຳຄັນ',
-        text: 'ກະລຸນາອະທິບາຍວິທີທີ່ມັນເຮັດວຽກ ແລະ ຊີ້ໃຫ້ຂ້ອຍເຫັນໄຟລ໌ສຳຄັນ',
-      },
+        text: 'ກະລຸນາອະທິບາຍວິທີທີ່ມັນເຮັດວຽກ ແລະ ຊີ້ໃຫ້ຂ້ອຍເຫັນໄຟລ໌ສຳຄັນ'
+      }
     },
     url: 'ຢູເລວ…',
     wakingProfile: profile => `ກຳລັງປລຸກ ${profile}…`,
     newSessionPlaceholders: [
       'ພວກເຮົາກຳລັງສ້າງຫຍັງ?',
       'ມອບໝາຍວຽກໃຫ້ OpenAmer',
-      "ທ່ານກຳລັງຄິດຫຍັງຢູ່?",
+      'ທ່ານກຳລັງຄິດຫຍັງຢູ່?',
       'ອະທິບາຍສິ່ງທີ່ທ່ານຕ້ອງການ',
       'ພວກເຮົາຄວນຈັດການຫຍັງ?',
       'ຖາມໄດ້ທຸກຢ່າງ',
-      'ເລີ່ມດ້ວຍເປົ້າໝາຍ',
+      'ເລີ່ມດ້ວຍເປົ້າໝາຍ'
     ],
     followUpPlaceholders: [
       'ສົ່ງຂໍ້ຄວາມຕິດຕາມ',
       'ເພີ່ມຂໍ້ມູນເພີ່ມເຕີມ',
       'ປັບປຸງຄຳຮ້ອງຂໍ',
-      "ຂັ້ນຕອນຕໍ່ໄປແມ່ນຫຍັງ?",
+      'ຂັ້ນຕອນຕໍ່ໄປແມ່ນຫຍັງ?',
       'ດຳເນີນການຕໍ່',
       'ຊຸກດັນໃຫ້ຫຼາຍຂຶ້ນ',
-      'ປັບປ່ຽນ ຫຼື ດຳເນີນການຕໍ່',
+      'ປັບປ່ຽນ ຫຼື ດຳເນີນການຕໍ່'
     ],
     queued: count => `${count} ລໍຖ້າ`,
     queuedPaused: count => `${count} ລໍຖ້າ — ຢຸດຊົ່ວຄາວ`,
     attachments: count => `${count} ໄຟລ໌ຄັດຕິດ${count === 1 ? '' : 's'}`,
     previewLabel: label => `ຕົວຢ່າງ ${label}`,
     couldNotPreview: label => `ບໍ່ສາມາດສະແດງຕົວຢ່າງ ${label}`,
-    removeAttachment: label => `ລຶບ ${label}`,
+    removeAttachment: label => `ລຶບ ${label}`
   },
   statusStack: {
     coding: {
@@ -2056,7 +2092,8 @@ export const lo = defineLocale({
       openPr: 'ເປີດ PR',
       ghMissing: 'ຕິດຕັ້ງ GitHub CLI (gh) ແລະ ເຂົ້າສູ່ລະບົບເພື່ອເປີດ PR',
       agentShip: 'ຂໍໃຫ້ OpenAmer ເປີດ PR',
-      agentShipPrompt: 'ກວດສອບການປ່ຽນແປງປັດຈຸບັນ, ຄອມມິດພວກມັນດ້ວຍຂໍ້ຄວາມ conventional-commit ທີ່ຊັດເຈນ, ພຸຊສາຂາ, ແລະ ເປີດ pull request.',
+      agentShipPrompt:
+        'ກວດສອບການປ່ຽນແປງປັດຈຸບັນ, ຄອມມິດພວກມັນດ້ວຍຂໍ້ຄວາມ conventional-commit ທີ່ຊັດເຈນ, ພຸຊສາຂາ, ແລະ ເປີດ pull request.',
       newBranch: 'ສາຂາໃໝ່',
       worktrees: 'ເທຣີງານ',
       title: 'ພື້ນທີ່ເຮັດວຽກ',
@@ -2068,7 +2105,7 @@ export const lo = defineLocale({
       behind: count => `${count} ຕາມຫຼັງ`,
       branchOffFrom: base => `ສ້າງແບຣນຊ໌ໃໝ່ຈາກ ${base}`,
       switchTo: branch => `ປ່ຽນໄປຫາ ${branch}`,
-      switchFailed: branch => `ບໍ່ສາມາດປ່ຽນໄປຫາ ${branch}`,
+      switchFailed: branch => `ບໍ່ສາມາດປ່ຽນໄປຫາ ${branch}`
     },
     agents: 'ຕົວແທນ',
     running: 'ກຳລັງແລ່ນ',
@@ -2077,7 +2114,7 @@ export const lo = defineLocale({
     background: count => `${count} ພື້ນຫຼັງ`,
     subagents: count => `${count} ຕົວແທນຍ່ອຍ${count === 1 ? '' : 's'}`,
     todos: (done, total) => `ວຽກ ${done}/${total}`,
-    exit: code => `ອອກ ${code}`,
+    exit: code => `ອອກ ${code}`
   },
   updates: {
     stages: {
@@ -2092,7 +2129,7 @@ export const lo = defineLocale({
       done: 'ອັບເດດສຳເລັດ',
       manual: 'ອັບເດດຈາກເທີມິນອນຂອງທ່ານ',
       guiSkew: 'ອັບເດດແອັບເດສກທັອບ',
-      error: 'ອັບເດດຢຸດຊົ່ວຄາວ',
+      error: 'ອັບເດດຢຸດຊົ່ວຄາວ'
     },
     checking: 'ກຳລັງຊອກຫາການອັບເດດ…',
     checkFailedTitle: 'ບໍ່ສາມາດກວດສອບການອັບເດດໄດ້',
@@ -2111,15 +2148,19 @@ export const lo = defineLocale({
     updateNow: 'ອັບເດດຕອນນີ້',
     maybeLater: 'ໄວ້ພາຍຫຼັງ',
     manualTitle: 'ອັບເດດຈາກ terminal ຂອງທ່ານ',
-    manualBody: 'ທ່ານຕິດຕັ້ງ OpenAmer ຈາກ command line ດັ່ງນັ້ນການອັບເດດຈະແລ່ນຢູ່ທີ່ນັ້ນດ້ວຍ. ວາງສິ່ງນີ້ໃສ່ terminal ຂອງທ່ານ:',
+    manualBody:
+      'ທ່ານຕິດຕັ້ງ OpenAmer ຈາກ command line ດັ່ງນັ້ນການອັບເດດຈະແລ່ນຢູ່ທີ່ນັ້ນດ້ວຍ. ວາງສິ່ງນີ້ໃສ່ terminal ຂອງທ່ານ:',
     manualPickedUp: 'OpenAmer ຈະໃຊ້ເວີຊັນໃໝ່ໃນຄັ້ງຕໍ່ໄປທີ່ທ່ານເປີດມັນ.',
     guiSkewTitle: 'ອັບເດດແອັບເດສກທັອບ',
-    guiSkewBody: 'backend ຖືກອັບເດດແລ້ວ ແຕ່ແພັກເກດແອັບເດສກທັອບນີ້ບໍ່ປ່ຽນ. ອັບເດດ ຫຼື ຕິດຕັ້ງ OpenAmer desktop app ຄືນໃໝ່ (AppImage / .deb / .rpm ຂອງທ່ານ) ໃຫ້ກົງກັນ.',
+    guiSkewBody:
+      'backend ຖືກອັບເດດແລ້ວ ແຕ່ແພັກເກດແອັບເດສກທັອບນີ້ບໍ່ປ່ຽນ. ອັບເດດ ຫຼື ຕິດຕັ້ງ OpenAmer desktop app ຄືນໃໝ່ (AppImage / .deb / .rpm ຂອງທ່ານ) ໃຫ້ກົງກັນ.',
     copy: 'ຄັດລອກ',
     copied: 'ຄັດລອກແລ້ວ',
     done: 'ສຳເລັດ',
-    applyingBody: 'ຕົວອັບເດດ OpenAmer ຈະເຮັດວຽກໃນໜ້າຕ່າງຂອງມັນເອງ ແລະ ຈະເປີດ OpenAmer ຄືນອັດຕະໂນມັດເມື່ອສຳເລັດ. ກະລຸນາຢ່າເປີດ OpenAmer ຄືນເອງລະຫວ່າງທີ່ກຳລັງອັບເດດ.',
-    applyingBodyBackend: 'backend ທາງໄກກຳລັງນຳໃຊ້ການອັບເດດ ແລະ ຈະຣີສະຕາດ. OpenAmer ຈະເຊື່ອມຕໍ່ຄືນອັດຕະໂນມັດເມື່ອມັນກັບມາ.',
+    applyingBody:
+      'ຕົວອັບເດດ OpenAmer ຈະເຮັດວຽກໃນໜ້າຕ່າງຂອງມັນເອງ ແລະ ຈະເປີດ OpenAmer ຄືນອັດຕະໂນມັດເມື່ອສຳເລັດ. ກະລຸນາຢ່າເປີດ OpenAmer ຄືນເອງລະຫວ່າງທີ່ກຳລັງອັບເດດ.',
+    applyingBodyBackend:
+      'backend ທາງໄກກຳລັງນຳໃຊ້ການອັບເດດ ແລະ ຈະຣີສະຕາດ. OpenAmer ຈະເຊື່ອມຕໍ່ຄືນອັດຕະໂນມັດເມື່ອມັນກັບມາ.',
     applyingClose: 'ໜ້າຕ່າງນີ້ຈະປິດລະຫວ່າງການອັບເດດ ແລ້ວ OpenAmer ຈະເປີດຄືນເອງ.',
     errorTitle: 'ອັບເດດບໍ່ສຳເລັດ',
     errorBody: 'ບໍ່ຕ້ອງກັງວົນ — ບໍ່ມີຫຍັງສູນຫາຍ. ທ່ານສາມາດລອງອີກຄັ້ງໄດ້ແລ້ວ.',
@@ -2130,13 +2171,14 @@ export const lo = defineLocale({
       restarting: 'backend ກຳລັງຣີສະຕາດເພື່ອໂຫຼດການອັບເດດ…',
       notAvailable: 'ການອັບເດດບໍ່ມີສຳລັບ backend ນີ້.',
       failed: 'ການອັບເດດ backend ລົ້ມເຫຼວ.',
-      noReturn: 'Backend ບໍ່ໄດ້ກັບມາອອນລາຍ. ການອັບເດດອາດບໍ່ສຳເລັດ — ກວດເບິ່ງໂຮສຕ໌ backend.',
+      noReturn: 'Backend ບໍ່ໄດ້ກັບມາອອນລາຍ. ການອັບເດດອາດບໍ່ສຳເລັດ — ກວດເບິ່ງໂຮສຕ໌ backend.'
     },
     appErrors: {
-      updateLocked: 'ຍົກເລີກການອັບເດດ: ມີໜ້າຕ່າງ OpenAmer ອື່ນ ຫຼື terminal ທີ່ກຳລັງລັນ openamer ກຳລັງກັກການຕິດຕັ້ງນີ້. ປິດມັນແລ້ວລອງໃໝ່.',
-      updateFailed: 'ການອັບເດດບໍ່ສຳເລັດ. ບໍ່ຕ້ອງກັງວົນ — ບໍ່ມີຫຍັງເສຍຫາຍ. ທ່ານສາມາດລອງໃໝ່ໄດ້ດຽວນີ້.',
+      updateLocked:
+        'ຍົກເລີກການອັບເດດ: ມີໜ້າຕ່າງ OpenAmer ອື່ນ ຫຼື terminal ທີ່ກຳລັງລັນ openamer ກຳລັງກັກການຕິດຕັ້ງນີ້. ປິດມັນແລ້ວລອງໃໝ່.',
+      updateFailed: 'ການອັບເດດບໍ່ສຳເລັດ. ບໍ່ຕ້ອງກັງວົນ — ບໍ່ມີຫຍັງເສຍຫາຍ. ທ່ານສາມາດລອງໃໝ່ໄດ້ດຽວນີ້.'
     },
-    moreChanges: count => `+ ${count} ການປ່ຽນແປງ${count === 1 ? '' : 's'} ເພີ່ມເຕີມ.`,
+    moreChanges: count => `+ ${count} ການປ່ຽນແປງ${count === 1 ? '' : 's'} ເພີ່ມເຕີມ.`
   },
   onboarding: {
     headerTitle: 'ມາຕັ້ງຄ່າ OpenAmer Agent ກັນ',
@@ -2156,28 +2198,29 @@ export const lo = defineLocale({
     apiKeyOptions: {
       fireworks: {
         short: 'API ໂມເດລໂດຍກົງ',
-        description: 'ເຂົ້າເຖິງໂມເດລທີ່ໂຮສໂດຍ Fireworks AI ໂດຍກົງ.',
+        description: 'ເຂົ້າເຖິງໂມເດລທີ່ໂຮສໂດຍ Fireworks AI ໂດຍກົງ.'
       },
       openrouter: {
         short: 'ລະຫັດດຽວ, ໂມເດລຫຼາຍອັນ',
-        description: 'ໂຮສໂມເດລຫຼາຍຮ້ອຍອັນຜ່ານລະຫັດດຽວ. ເໝາະເປັນຄ່າເລີ່ມຕົ້ນສຳລັບການຕິດຕັ້ງໃໝ່.',
+        description: 'ໂຮສໂມເດລຫຼາຍຮ້ອຍອັນຜ່ານລະຫັດດຽວ. ເໝາະເປັນຄ່າເລີ່ມຕົ້ນສຳລັບການຕິດຕັ້ງໃໝ່.'
       },
       openai: {
         short: 'ໂມເດລລະດັບ GPT',
-        description: 'ເຂົ້າເຖິງໂມເດລຂອງ OpenAI ໂດຍກົງ.',
+        description: 'ເຂົ້າເຖິງໂມເດລຂອງ OpenAI ໂດຍກົງ.'
       },
       gemini: {
         short: 'ໂມເດລ Gemini',
-        description: 'ເຂົ້າເຖິງໂມເດລ Google Gemini ໂດຍກົງ.',
+        description: 'ເຂົ້າເຖິງໂມເດລ Google Gemini ໂດຍກົງ.'
       },
       xai: {
         short: 'ໂມເດລ Grok',
-        description: 'ເຂົ້າເຖິງໂມເດລ xAI Grok ໂດຍກົງ.',
+        description: 'ເຂົ້າເຖິງໂມເດລ xAI Grok ໂດຍກົງ.'
       },
       local: {
         short: 'ໂຮສຕ໌ຕົວເອງ',
-        description: 'ຕັ້ງ OpenAmer ໃຫ້ໃຊ້ endpoint ທ້ອງຖິ່ນ ຫຼື ໂຮສຕ໌ຕົວເອງທີ່ເຂົ້າກັນໄດ້ກັບ OpenAI (vLLM, llama.cpp, Ollama, ແລະອື່ນໆ).',
-      },
+        description:
+          'ຕັ້ງ OpenAmer ໃຫ້ໃຊ້ endpoint ທ້ອງຖິ່ນ ຫຼື ໂຮສຕ໌ຕົວເອງທີ່ເຂົ້າກັນໄດ້ກັບ OpenAI (vLLM, llama.cpp, Ollama, ແລະອື່ນໆ).'
+      }
     },
     backToSignIn: 'ກັບໄປການເຂົ້າສູ່ລະບົບ',
     getKey: 'ຮັບກະແຈ',
@@ -2190,7 +2233,7 @@ export const lo = defineLocale({
     flowSubtitles: {
       pkce: 'ເປີດບຣາວເຊີຂອງທ່ານເພື່ອເຂົ້າສູ່ລະບົບ ແລ້ວສືບຕໍ່ຢູ່ນີ້',
       device_code: 'ເປີດໜ້າກວດສອບໃນບຣາວເຊີຂອງທ່ານ — OpenAmer ເຊື່ອມຕໍ່ອັດຕະໂນມັດ',
-      external: 'ເຂົ້າສູ່ລະບົບຄັ້ງດຽວໃນ terminal ຂອງທ່ານ ແລ້ວກັບມາຫ້ອງແຊັດ',
+      external: 'ເຂົ້າສູ່ລະບົບຄັ້ງດຽວໃນ terminal ຂອງທ່ານ ແລ້ວກັບມາຫ້ອງແຊັດ'
     },
     signInFailed: 'ເຂົ້າສູ່ລະບົບລົ້ມເຫຼວ. ລອງອີກຄັ້ງ.',
     pickDifferentProvider: 'ເລືອກຜູ້ໃຫ້ບໍລິການອື່ນ',
@@ -2215,11 +2258,13 @@ export const lo = defineLocale({
     connectedPicking: provider => `ເຊື່ອມຕໍ່ ${provider} ແລ້ວ. ກຳລັງເລືອກໂມເດນເລີ່ມຕົ້ນ...`,
     signInWith: provider => `ເຂົ້າສູ່ລະບົບດ້ວຍ ${provider}`,
     openedBrowser: provider => `ພວກເຮົາໄດ້ເປີດ ${provider} ໃນບຣາວເຊີຂອງທ່ານ.`,
-    autoBrowser: provider => `ພວກເຮົາໄດ້ເປີດ ${provider} ໃນບຣາວເຊີຂອງທ່ານ. ກະລຸນາອະນຸຍາດ OpenAmer ຢູ່ທີ່ນັ້ນ ແລ້ວທ່ານຈະຖືກເຊື່ອມຕໍ່ໂດຍອັດຕະໂນມັດ — ບໍ່ຈຳເປັນຕ້ອງຄັດລອກ ຫຼື ວາງ.`,
-    externalPending: provider => `${provider} ເຂົ້າສູ່ລະບົບຜ່ານ CLI ຂອງມັນເອງ. ໃຫ້ລັນຄຳສັ່ງນີ້ໃນ terminal, ຈາກນັ້ນກັບມາເລືອກ "ຂ້ອຍເຂົ້າສູ່ລະບົບແລ້ວ":`,
+    autoBrowser: provider =>
+      `ພວກເຮົາໄດ້ເປີດ ${provider} ໃນບຣາວເຊີຂອງທ່ານ. ກະລຸນາອະນຸຍາດ OpenAmer ຢູ່ທີ່ນັ້ນ ແລ້ວທ່ານຈະຖືກເຊື່ອມຕໍ່ໂດຍອັດຕະໂນມັດ — ບໍ່ຈຳເປັນຕ້ອງຄັດລອກ ຫຼື ວາງ.`,
+    externalPending: provider =>
+      `${provider} ເຂົ້າສູ່ລະບົບຜ່ານ CLI ຂອງມັນເອງ. ໃຫ້ລັນຄຳສັ່ງນີ້ໃນ terminal, ຈາກນັ້ນກັບມາເລືອກ "ຂ້ອຍເຂົ້າສູ່ລະບົບແລ້ວ":`,
     deviceCodeOpened: provider => `ພວກເຮົາໄດ້ເປີດ ${provider} ໃນບຣາວເຊີຂອງທ່ານ. ກະລຸນາປ້ອນລະຫັດນີ້ຢູ່ທີ່ນັ້ນ:`,
     price: (input, output) => `${input} ເຂົ້າ / ${output} ອອກ ຕໍ່ Mtok`,
-    docs: provider => `ເອກະສານ ${provider}`,
+    docs: provider => `ເອກະສານ ${provider}`
   },
   shell: {
     modelOptions: {
@@ -2236,7 +2281,7 @@ export const lo = defineLocale({
       max: 'ສູງສຸດ',
       ultra: 'ອຸລຕຣາ',
       updateFailed: 'ອັບເດດຕົວເລືອກຮູບແບບລົ້ມເຫຼວ',
-      fastFailed: 'ອັບເດດໂໝດໄວລົ້ມເຫຼວ',
+      fastFailed: 'ອັບເດດໂໝດໄວລົ້ມເຫຼວ'
     },
     gatewayMenu: {
       gateway: 'ເກດເວ',
@@ -2251,7 +2296,7 @@ export const lo = defineLocale({
       recentActivity: 'ການເຄື່ອນໄຫວລ່າສຸດ',
       viewAllLogs: 'ເບິ່ງບັນທຶກທັງໝົດ →',
       messagingPlatforms: 'ແພລດຟອມສົ່ງຂໍ້ຄວາມ',
-      connection: label => `ການເຊື່ອມຕໍ່: ${label}`,
+      connection: label => `ການເຊື່ອມຕໍ່: ${label}`
     },
     statusbar: {
       openModelPicker: 'ເປີດຕົວເລືອກໂມເດລ',
@@ -2292,13 +2337,13 @@ export const lo = defineLocale({
           subagent_definitions: 'ຄຳນິຍາມຕົວແທນຍ່ອຍ',
           system_prompt: 'ຄຳສັ່ງລະບົບ',
           tool_definitions: 'ຄຳນິຍາມເຄື່ອງມື',
-          mcp: 'ເອັມຊີພີ',
+          mcp: 'ເອັມຊີພີ'
         },
         empty: 'ຍັງບໍ່ມີຂໍ້ມູນບໍລິບົດ',
         loading: 'ກຳລັງໂຫລດລາຍລະອຽດ…',
         title: 'ການໃຊ້ບໍລິບົດ',
         percentFull: percent => `ເຕັມ ${percent}%`,
-        tokenSummary: (used, max) => `${used} / ${max} ໂຕແກນ`,
+        tokenSummary: (used, max) => `${used} / ${max} ໂຕແກນ`
       },
       openContextUsage: 'ເປີດລາຍລະອຽດການໃຊ້ບໍລິບົດ',
       session: 'ເຊສຊັນ',
@@ -2326,7 +2371,7 @@ export const lo = defineLocale({
       failed: count => `${count} ລົ້ມເຫຼວ`,
       running: count => `${count} ກຳລັງເຮັດວຽກ`,
       modelTitle: (provider, model) => `ໂມເດນ · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
     },
     approvalMode: {
       title: 'ໂໝດການອະນຸມັດ',
@@ -2336,7 +2381,7 @@ export const lo = defineLocale({
       smartDescription: 'ປະເມີນການກະທຳອັດຕະໂນມັດ ແລະ ຖາມເມື່ອຈຳເປັນ',
       off: 'ປິດ',
       offDescription: 'ແລ່ນໂດຍບໍ່ມີການຖາມອະນຸມັດ',
-      ariaLabel: mode => `ໂໝດການອະນຸມັດ: ${mode}`,
+      ariaLabel: mode => `ໂໝດການອະນຸມັດ: ${mode}`
     },
     windowControls: 'ການຄວບຄຸມໜ້າຕ່າງ',
     paneControls: 'ການຄວບຄຸມແຜງ',
@@ -2346,8 +2391,8 @@ export const lo = defineLocale({
       noModels: 'ບໍ່ພົບໂມເດລ',
       editModels: 'ແກ້ໄຂໂມເດລ…',
       refreshModels: 'ໂຫຼດໂມເດລຄືນໃໝ່',
-      fast: 'ໄວ',
-    },
+      fast: 'ໄວ'
+    }
   },
   rightSidebar: {
     aria: 'ແຖບຂ້າງຂວາ',
@@ -2383,7 +2428,7 @@ export const lo = defineLocale({
     addToChat: 'ເພີ່ມໃສ່ແຊັດ',
     folderTip: cwd => `${cwd} — ຄລິກເພື່ອປ່ຽນໂຟນເດີ`,
     couldNotPreview: path => `ບໍ່ສາມາດສະແດງຕົວຢ່າງ ${path} ໄດ້`,
-    unreadableBody: error => `ບໍ່ສາມາດອ່ານໂຟນເດີນີ້ໄດ້ (${error}).`,
+    unreadableBody: error => `ບໍ່ສາມາດອ່ານໂຟນເດີນີ້ໄດ້ (${error}).`
   },
   preview: {
     tab: 'ພຣີວິວ',
@@ -2413,7 +2458,7 @@ export const lo = defineLocale({
       sentTitle: 'ສົ່ງໄປຫາສົນທະນາແລ້ວ',
       messages: count => `ຂໍ້ຄວາມຄອນໂຊລ ${count}`,
       selected: count => `ເລືອກ ${count}`,
-      sentMessage: count => `ເພີ່ມບັນທຶກ ${count} ${count === 1 ? 'y' : 'ies'} ໃສ່ composer`,
+      sentMessage: count => `ເພີ່ມບັນທຶກ ${count} ${count === 1 ? 'y' : 'ies'} ໃສ່ composer`
     },
     web: {
       appFailedToBoot: 'ແອັບພຣີວິວເລີ່ມຕົ້ນບໍ່ສຳເລັດ',
@@ -2436,7 +2481,8 @@ export const lo = defineLocale({
       restartFailedMessage: 'OpenAmer ບໍ່ສາມາດຣີສະຕາດເຊີບເວີໄດ້.',
       stillWorking: 'OpenAmer ຍັງກຳລັງເຮັດວຽກ ແຕ່ຍັງບໍ່ມີຜົນການຣີສະຕາດສົ່ງມາ. ຄຳສັ່ງເຊີບເວີອາດກຳລັງແລ່ນຢູ່ພາກໜ້າ.',
       workspaceReloading: 'ພື້ນທີ່ວຽກປ່ຽນແລ້ວ, ກຳລັງໂຫຼດພຣີວິວຄືນໃໝ່',
-      moduleMimeDescription: 'ສະຄຣິບໂມດູນຖືກເສີບດ້ວຍປະເພດ MIME ທີ່ຜິດ. ໂດຍປົກກະຕິໝາຍຄວາມວ່າເຊີບເວີໄຟລ໌ສະຖິດກຳລັງເສີບແອັບ Vite/React ແທນເຊີບເວີພັດທະນາໂຄງການ.',
+      moduleMimeDescription:
+        'ສະຄຣິບໂມດູນຖືກເສີບດ້ວຍປະເພດ MIME ທີ່ຜິດ. ໂດຍປົກກະຕິໝາຍຄວາມວ່າເຊີບເວີໄຟລ໌ສະຖິດກຳລັງເສີບແອັບ Vite/React ແທນເຊີບເວີພັດທະນາໂຄງການ.',
       unreachableDescription: 'ບໍ່ສາມາດເຂົ້າເຖິງໜ້າພຣີວິວໄດ້.',
       fallbackTitle: 'ພຣີວິວ',
       lookingRestart: taskId => `OpenAmer ກຳລັງຊອກຫາ preview server ເພື່ອເລີ່ມໃໝ່ (${taskId})`,
@@ -2447,7 +2493,7 @@ export const lo = defineLocale({
       filesChanged: (count, url) => `ໄຟລ໌ປ່ຽນແປງ ${count} ບ່ອນ, ກຳລັງໂຫຼດ preview ໃໝ່: ${url}`,
       watchFailed: message => `ບໍ່ສາມາດຕິດຕາມໄຟລ໌ preview ໄດ້: ${message}`,
       loadFailedConsole: (code, message) => `ໂຫຼດຫຼົ້ມເຫຼວ ${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `ເປີດ ${url}`,
+      openTarget: url => `ເປີດ ${url}`
     },
     opening: 'ກຳລັງເປີດ...',
     hide: 'ເຊື່ອງ',
@@ -2473,7 +2519,7 @@ export const lo = defineLocale({
     binaryBody: label => `ການສະແດງຕົວຢ່າງ ${label} ອາດຈະສະແດງຂໍ້ຄວາມທີ່ອ່ານບໍ່ອອກ.`,
     largeBody: (label, size) => `${label} ມີຂະໜາດ ${size}. OpenAmer ຈະສະແດງພຽງແຕ່ 512 KB ທຳອິດເທົ່ານັ້ນ.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} ຍັງສາມາດຕິດເປັນບໍລິບົດໄດ້.`,
-    saveFailed: message => `ບໍ່ສາມາດບັນທຶກໄດ້: ${message}`,
+    saveFailed: message => `ບໍ່ສາມາດບັນທຶກໄດ້: ${message}`
   },
   zones: {
     custom: 'ກຳນົດເອງ',
@@ -2494,7 +2540,8 @@ export const lo = defineLocale({
     minimize: 'ຫຍໍ້ລົງ',
     restore: 'ຟື້ນຟູ',
     closeRunningTitle: 'ປິດແທັບທີ່ກຳລັງເຮັດວຽກ?',
-    closeRunningBody: 'ແຊັດນີ້ຍັງກຳລັງເຮັດວຽກ (ຫຼືລໍຖ້າການປ້ອນຂອງທ່ານ). ການປິດແທັບຈະເຊື່ອງມັນ — ເຊສຊັນຍັງຮັກສາຄວາມຄືບໜ້າ ແລະສາມາດເປີດຄືນໄດ້ຈາກແຖບຂ້າງ.',
+    closeRunningBody:
+      'ແຊັດນີ້ຍັງກຳລັງເຮັດວຽກ (ຫຼືລໍຖ້າການປ້ອນຂອງທ່ານ). ການປິດແທັບຈະເຊື່ອງມັນ — ເຊສຊັນຍັງຮັກສາຄວາມຄືບໜ້າ ແລະສາມາດເປີດຄືນໄດ້ຈາກແຖບຂ້າງ.',
     closeRunningConfirm: 'ປິດແທັບ',
     closeOthers: 'ປິດອື່ນໆ',
     closeToRight: 'ປິດທາງຂວາ',
@@ -2518,7 +2565,7 @@ export const lo = defineLocale({
     mergeZones: count => `ລວມໂຊນ ${count}`,
     customZoneName: count => `ໂຊນ ${count} ແບບກຳນົດເອງ`,
     layoutNamePlaceholder: fallback => `ຊື່ Layout (${fallback})`,
-    zoneCount: count => `ໂຊນ ${count}`,
+    zoneCount: count => `ໂຊນ ${count}`
   },
   assistant: {
     thread: {
@@ -2549,11 +2596,12 @@ export const lo = defineLocale({
       goForward: 'ໄປໜ້າ',
       sendEdited: 'ສົ່ງຂໍ້ຄວາມທີ່ແກ້ໄຂ',
       attachingFile: 'ກຳລັງແນບ…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `ມື້ນີ້, ${time}`,
-      yesterday: time => `ມື້ວານນີ້, ${time}`,
+      yesterday: time => `ມື້ວານນີ້, ${time}`
     },
     approval: {
       gatewayDisconnected: 'ເກດເວ OpenAmer ບໍ່ໄດ້ເຊື່ອມຕໍ່',
@@ -2567,7 +2615,8 @@ export const lo = defineLocale({
       reject: 'ປະຕິເສດ',
       alwaysTitle: 'ອະນຸຍາດຄຳສັ່ງນີ້ສະເໝີບໍ?',
       alwaysAllow: 'ອະນຸຍາດສະເໝີ',
-      alwaysDescription: pattern => `ສິ່ງນີ້ຈະເພີ່ມຮູບແບບ “${pattern}” ໃສ່ລາຍຊື່ທີ່ອະນຸຍາດຖາວອນ (~/.openamer/config.yaml). OpenAmer ຈະບໍ່ຖາມອີກສຳລັບຄຳສັ່ງແບບນີ້ — ໃນເຊດຊັນນີ້ ຫຼື ໃນອະນາຄົດ.`,
+      alwaysDescription: pattern =>
+        `ສິ່ງນີ້ຈະເພີ່ມຮູບແບບ “${pattern}” ໃສ່ລາຍຊື່ທີ່ອະນຸຍາດຖາວອນ (~/.openamer/config.yaml). OpenAmer ຈະບໍ່ຖາມອີກສຳລັບຄຳສັ່ງແບບນີ້ — ໃນເຊດຊັນນີ້ ຫຼື ໃນອະນາຄົດ.`
     },
     clarify: {
       notReady: 'ຄຳຮ້ອງຂໍຊີ້ແຈງຍັງບໍ່ພ້ອມ',
@@ -2581,7 +2630,7 @@ export const lo = defineLocale({
       continueLabel: 'ສືບຕໍ່',
       lateAnswerTip: 'ຮ່າງຄຳຕອບນີ້ເປັນຂໍ້ຄວາມຕິດຕາມ',
       lateAnswerHint: 'ຄຳຖາມນີ້ບໍ່ໄດ້ລໍຖ້າອີກແລ້ວ. ເລືອກຕົວເລືອກເພື່ອຮ່າງມັນເປັນຂໍ້ຄວາມຕິດຕາມ.',
-      lateAnswer: (question, choice) => `ຕອບກັບ: "${question}" — ຄຳຕອບຂອງຂ້ອຍ: ${choice}`,
+      lateAnswer: (question, choice) => `ຕອບກັບ: "${question}" — ຄຳຕອບຂອງຂ້ອຍ: ${choice}`
     },
     tool: {
       statusRecovered: 'ກູ້ຄືນແລ້ວ',
@@ -2597,123 +2646,123 @@ export const lo = defineLocale({
         ran: 'ປະຕິບັດແລ້ວ',
         running: 'ກຳລັງປະຕິບັດ',
         ranCode: 'ປະຕິບັດໂຄ້ດແລ້ວ',
-        runningCode: 'ກຳລັງສະຄຣິບ',
+        runningCode: 'ກຳລັງສະຄຣິບ'
       },
       prefixes: {
         browser: 'ບຣາວເຊີ',
-        web: 'ເວັບ',
+        web: 'ເວັບ'
       },
       titles: {
         browser_click: {
           done: 'ຄລິກອົງປະກອບໜ້າເວັບແລ້ວ',
           pending: 'ກຳລັງຄລິກອົງປະກອບໜ້າເວັບ',
-          pendingAction: 'ກຳລັງຄລິກ',
+          pendingAction: 'ກຳລັງຄລິກ'
         },
         browser_fill: {
           done: 'ຕື່ມຊ່ອງແບບຟອມແລ້ວ',
           pending: 'ກຳລັງຕື່ມຊ່ອງແບບຟອມ',
-          pendingAction: 'ກຳລັງຕື່ມ',
+          pendingAction: 'ກຳລັງຕື່ມ'
         },
         browser_navigate: {
           done: 'ເປີດໜ້າແລ້ວ',
           pending: 'ກຳລັງເປີດໜ້າ',
-          pendingAction: 'ກຳລັງເປີດ',
+          pendingAction: 'ກຳລັງເປີດ'
         },
         browser_snapshot: {
           done: 'ບັນທຶກພາບໜ້າແລ້ວ',
           pending: 'ກຳລັງບັນທຶກພາບໜ້າ',
-          pendingAction: 'ກຳລັງຈັບພາບ',
+          pendingAction: 'ກຳລັງຈັບພາບ'
         },
         browser_take_screenshot: {
           done: 'ຈັບພາບໜ້າຈໍແລ້ວ',
           pending: 'ກຳລັງຈັບພາບໜ້າຈໍ',
-          pendingAction: 'ກຳລັງຈັບພາບ',
+          pendingAction: 'ກຳລັງຈັບພາບ'
         },
         browser_type: {
           done: 'ພິມໃນໜ້າແລ້ວ',
           pending: 'ກຳລັງພິມໃນໜ້າ',
-          pendingAction: 'ກຳລັງພິມ',
+          pendingAction: 'ກຳລັງພິມ'
         },
         clarify: {
           done: 'ຖາມຄຳຖາມແລ້ວ',
           pending: 'ກຳລັງຖາມຄຳຖາມ',
-          pendingAction: 'ກຳລັງຖາມ',
+          pendingAction: 'ກຳລັງຖາມ'
         },
         cronjob: {
           done: 'ວຽກ Cron',
           pending: 'ກຳລັງຕັ້ງເວລາວຽກ Cron',
-          pendingAction: 'ກຳລັງຕັ້ງເວລາ',
+          pendingAction: 'ກຳລັງຕັ້ງເວລາ'
         },
         edit_file: {
           done: 'ແກ້ໄຂໄຟລ໌ແລ້ວ',
           pending: 'ກຳລັງແກ້ໄຂໄຟລ໌',
-          pendingAction: 'ກຳລັງແກ້ໄຂ',
+          pendingAction: 'ກຳລັງແກ້ໄຂ'
         },
         execute_code: {
           done: 'ລັນໂຄດແລ້ວ',
           pending: 'ກຳລັງສະຄຣິບ',
-          pendingAction: 'ກຳລັງສະຄຣິບ',
+          pendingAction: 'ກຳລັງສະຄຣິບ'
         },
         image_generate: {
           done: 'ສ້າງຮູບພາບແລ້ວ',
           pending: 'ກຳລັງສ້າງຮູບພາບ',
-          pendingAction: 'ກຳລັງສ້າງ',
+          pendingAction: 'ກຳລັງສ້າງ'
         },
         list_files: {
           done: 'ລາຍການໄຟລ໌ແລ້ວ',
           pending: 'ກຳລັງສະແດງລາຍການໄຟລ໌',
-          pendingAction: 'ກຳລັງສະແດງລາຍການ',
+          pendingAction: 'ກຳລັງສະແດງລາຍການ'
         },
         patch: {
           done: 'ແພັດໄຟລ໌ແລ້ວ',
           pending: 'ກຳລັງແພັດໄຟລ໌',
-          pendingAction: 'ກຳລັງແພັດ',
+          pendingAction: 'ກຳລັງແພັດ'
         },
         read_file: {
           done: 'ອ່ານໄຟລ໌ແລ້ວ',
           pending: 'ກຳລັງອ່ານໄຟລ໌',
-          pendingAction: 'ກຳລັງອ່ານ',
+          pendingAction: 'ກຳລັງອ່ານ'
         },
         search_files: {
           done: 'ຄົ້ນຫາໄຟລ໌ແລ້ວ',
           pending: 'ກຳລັງຄົ້ນຫາໄຟລ໌',
-          pendingAction: 'ກຳລັງຄົ້ນຫາ',
+          pendingAction: 'ກຳລັງຄົ້ນຫາ'
         },
         session_search_recall: {
           done: 'ຄົ້ນຫາປະຫວັດເຊສຊັນແລ້ວ',
           pending: 'ກຳລັງຄົ້ນຫາປະຫວັດເຊສຊັນ',
-          pendingAction: 'ກຳລັງຄົ້ນຫາ',
+          pendingAction: 'ກຳລັງຄົ້ນຫາ'
         },
         terminal: {
           done: 'ລັນຄຳສັ່ງແລ້ວ',
           pending: 'ກຳລັງລັນຄຳສັ່ງ',
-          pendingAction: 'ກຳລັງລັນ',
+          pendingAction: 'ກຳລັງລັນ'
         },
         todo: {
           done: 'ອັບເດດລາຍການວຽກແລ້ວ',
           pending: 'ກຳລັງອັບເດດລາຍການວຽກ',
-          pendingAction: 'ກຳລັງອັບເດດ',
+          pendingAction: 'ກຳລັງອັບເດດ'
         },
         vision_analyze: {
           done: 'ວິເຄາະຮູບພາບແລ້ວ',
           pending: 'ກຳລັງວິເຄາະຮູບພາບ',
-          pendingAction: 'ກຳລັງວິເຄາະ',
+          pendingAction: 'ກຳລັງວິເຄາະ'
         },
         web_extract: {
           done: 'ອ່ານໜ້າເວັບແລ້ວ',
           pending: 'ກຳລັງອ່ານໜ້າເວັບ',
-          pendingAction: 'ກຳລັງອ່ານ',
+          pendingAction: 'ກຳລັງອ່ານ'
         },
         web_search: {
           done: 'ຄົ້ນຫາເວັບແລ້ວ',
           pending: 'ກຳລັງຄົ້ນຫາເວັບ',
-          pendingAction: 'ກຳລັງຄົ້ນຫາ',
+          pendingAction: 'ກຳລັງຄົ້ນຫາ'
         },
         write_file: {
           done: 'ແກ້ໄຂໄຟລ໌ແລ້ວ',
           pending: 'ກຳລັງແກ້ໄຂໄຟລ໌',
-          pendingAction: 'ກຳລັງແກ້ໄຂ',
-        },
+          pendingAction: 'ກຳລັງແກ້ໄຂ'
+        }
       },
       code: 'ໂຄດ',
       copyCode: 'ຄັດລອກໂຄດ',
@@ -2741,9 +2790,9 @@ export const lo = defineLocale({
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `ກຳລັງລັນ ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `ກຳລັງລັນ ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `ກຳລັງລັນ ${action.toLowerCase()}`
+      }
+    }
   },
   artifacts: {
     search: 'ຄົ້ນຫາອາຕິຟັກ...',
@@ -2777,7 +2826,7 @@ export const lo = defineLocale({
     failedLoad: 'ໂຫຼດສິ່ງທີ່ສ້າງຂຶ້ນບໍ່ສຳເລັດ',
     openFailed: 'ເປີດບໍ່ສຳເລັດ',
     rangeOf: (start, end, total) => `${start}-${end} ຈາກ ${total}`,
-    goToPage: (itemLabel, page) => `ໄປທີ່ໜ້າ ${itemLabel} ${page}`,
+    goToPage: (itemLabel, page) => `ໄປທີ່ໜ້າ ${itemLabel} ${page}`
   },
   install: {
     stageStates: {
@@ -2785,7 +2834,7 @@ export const lo = defineLocale({
       running: 'ກຳລັງຕິດຕັ້ງ',
       succeeded: 'ສຳເລັດແລ້ວ',
       skipped: 'ຂ້າມແລ້ວ',
-      failed: 'ລົ້ມເຫຼວ',
+      failed: 'ລົ້ມເຫຼວ'
     },
     oneTimeTitle: 'OpenAmer ຕ້ອງການການຕິດຕັ້ງຄັ້ງດຽວ',
     installCommand: 'ຄຳສັ່ງຕິດຕັ້ງ',
@@ -2797,7 +2846,8 @@ export const lo = defineLocale({
     setupChoiceDesc: 'ເຊື່ອມຕໍ່ແອັບນີ້ກັບ OpenAmer gateway ທີ່ທ່ານລັນຢູ່ແລ້ວ ຫຼື ຕິດຕັ້ງ OpenAmer ໃນເຄື່ອງນີ້.',
     connectExistingTitle: 'ເຊື່ອມຕໍ່ກັບ OpenAmer ທີ່ມີຢູ່ແລ້ວ',
     connectExistingShort: 'ເຊື່ອມຕໍ່ທີ່ມີຢູ່',
-    connectExistingDesc: 'ໃຊ້ backend ຈາກໄລຍະໄກດ້ວຍ session token ຫຼື ເຂົ້າສູ່ລະບົບຜ່ານບຣາວເຊີ. ຈະບໍ່ມີການເລີ່ມຕິດຕັ້ງໃນເຄື່ອງນີ້.',
+    connectExistingDesc:
+      'ໃຊ້ backend ຈາກໄລຍະໄກດ້ວຍ session token ຫຼື ເຂົ້າສູ່ລະບົບຜ່ານບຣາວເຊີ. ຈະບໍ່ມີການເລີ່ມຕິດຕັ້ງໃນເຄື່ອງນີ້.',
     installLocalTitle: 'ຕິດຕັ້ງ OpenAmer ໃນເຄື່ອງນີ້',
     incompleteTokenTest: 'ປ້ອນໂທເຄັນເຊສຊັນກ່ອນທົດສອບປະຕູເຂົ້ານີ້.',
     testConnection: 'ທົດສອບການເຊື່ອມຕໍ່',
@@ -2806,8 +2856,10 @@ export const lo = defineLocale({
     failedTitle: 'ການຕິດຕັ້ງລົ້ມເຫລວ',
     settingUpTitle: 'ກຳລັງຕັ້ງຄ່າເອເຈັນ OpenAmer',
     finishingTitle: 'ກຳລັງຈົບ',
-    failedDesc: 'ໜຶ່ງໃນຂັ້ນຕອນການຕິດຕັ້ງລົ້ມເຫລວ. ໃນ Windows, ອາດເກີດຂຶ້ນໄດ້ຖ້າມີ OpenAmer CLI ຫຼື ອິນສະແຕນດິສະທັອບ OpenAmer ອື່ນກຳລັງແລ່ນຢູ່. ຢຸດທຸກອິນສະແຕນ OpenAmer ທີ່ກຳລັງແລ່ນ, ແລ້ວລອງໃໝ່. ກວດເບິ່ງລາຍລະອຽດຂ້າງລຸ່ມ ຫຼື ລັອກຂອງເດສກທັອບສຳລັບບັນທຶກທັງໝົດ.',
-    activeDesc: 'ນີ້ແມ່ນການຕັ້ງຄ່າຄັ້ງດຽວ. ຕົວຕິດຕັ້ງ OpenAmer ກຳລັງດາວໂຫຼດສ່ວນປະກອບທີ່ຕ້ອງການ ແລະ ຕັ້ງຄ່າເຄື່ອງຂອງທ່ານ. ການເປີດຄັ້ງຕໍ່ໆໄປຈະຂ້າມຂັ້ນຕອນນີ້.',
+    failedDesc:
+      'ໜຶ່ງໃນຂັ້ນຕອນການຕິດຕັ້ງລົ້ມເຫລວ. ໃນ Windows, ອາດເກີດຂຶ້ນໄດ້ຖ້າມີ OpenAmer CLI ຫຼື ອິນສະແຕນດິສະທັອບ OpenAmer ອື່ນກຳລັງແລ່ນຢູ່. ຢຸດທຸກອິນສະແຕນ OpenAmer ທີ່ກຳລັງແລ່ນ, ແລ້ວລອງໃໝ່. ກວດເບິ່ງລາຍລະອຽດຂ້າງລຸ່ມ ຫຼື ລັອກຂອງເດສກທັອບສຳລັບບັນທຶກທັງໝົດ.',
+    activeDesc:
+      'ນີ້ແມ່ນການຕັ້ງຄ່າຄັ້ງດຽວ. ຕົວຕິດຕັ້ງ OpenAmer ກຳລັງດາວໂຫຼດສ່ວນປະກອບທີ່ຕ້ອງການ ແລະ ຕັ້ງຄ່າເຄື່ອງຂອງທ່ານ. ການເປີດຄັ້ງຕໍ່ໆໄປຈະຂ້າມຂັ້ນຕອນນີ້.',
     fetchingManifest: 'ກຳລັງດຶງແມນິເຟສຕົວຕິດຕັ້ງ...',
     error: 'ຂໍ້ຜິດພາດ',
     hideOutput: 'ເຊື່ອງຜົນລັບຕົວຕິດຕັ້ງ',
@@ -2822,7 +2874,8 @@ export const lo = defineLocale({
     installLocalDesc: 'ດາວໂຫລດ OpenAmer, ສ້າງສະພາບແວດລ້ອມ Python ຂອງມັນ, ແລະ ຮັນເບັກເອນໃນຄອມພິວເຕີນີ້.',
     localStartUnavailable: 'ການຕິດຕັ້ງໃນເຄື່ອງທ້ອງຖິ່ນບໍ່ສາມາດເລີ່ມໄດ້. ກະລຸນາຣີສະຕາດ OpenAmer Desktop ແລ້ວລອງອີກຄັ້ງ.',
     remoteSetupTitle: 'ເຊື່ອມຕໍ່ກັບ OpenAmer ທີ່ມີຢູ່ແລ້ວ',
-    remoteSetupDesc: 'ປ້ອນ URL ຂອງ gateway ຂອງທ່ານ. OpenAmer Desktop ຈະກວດຫາວ່າຕ້ອງການໂທເຄັນ ຫຼື ການເຂົ້າສູ່ລະບົບຜ່ານບຣາວເຊີ.',
+    remoteSetupDesc:
+      'ປ້ອນ URL ຂອງ gateway ຂອງທ່ານ. OpenAmer Desktop ຈະກວດຫາວ່າຕ້ອງການໂທເຄັນ ຫຼື ການເຂົ້າສູ່ລະບົບຜ່ານບຣາວເຊີ.',
     remoteUrlTitle: 'URL ປະຕູເຊື່ອມຕໍ່',
     remoteUrlDesc: 'ໃຊ້ URL ພື້ນຖານຂອງ gateway OpenAmer, ລວມທັງ https:// ເມື່ອຢູ່ທາງໄກ.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2839,13 +2892,14 @@ export const lo = defineLocale({
     tokenDesc: 'ວາງໂທເຄັນເຊສຊັນຈາກໄຟລ໌ .env ຂອງເກດເວທາງໄກ.',
     pasteSessionToken: 'ວາງໂທເຄັນເຊສຊັນ',
     incompleteSignInTest: 'ເຂົ້າສູ່ລະບົບກ່ອນທົດສອບເກດເວທີ່ຖືກຈຳກັດດ້ວຍ OAuth ນີ້.',
-    unsupportedDesc: platform => `ການຕິດຕັ້ງອັດຕະໂນມັດໃນການເປີດໃຊ້ຄັ້ງທຳອິດຍັງບໍ່ມີໃນ ${platform}. ກະລຸນາເປີດ Terminal ແລະ ໃຊ້ຄຳສັ່ງລຸ່ມນີ້, ຈາກນັ້ນເປີດແອັບນີ້ໃໝ່. ການເປີດໃຊ້ຄັ້ງຕໍ່ໄປຈະຂ້າມຂັ້ນຕອນນີ້.`,
+    unsupportedDesc: platform =>
+      `ການຕິດຕັ້ງອັດຕະໂນມັດໃນການເປີດໃຊ້ຄັ້ງທຳອິດຍັງບໍ່ມີໃນ ${platform}. ກະລຸນາເປີດ Terminal ແລະ ໃຊ້ຄຳສັ່ງລຸ່ມນີ້, ຈາກນັ້ນເປີດແອັບນີ້ໃໝ່. ການເປີດໃຊ້ຄັ້ງຕໍ່ໄປຈະຂ້າມຂັ້ນຕອນນີ້.`,
     authNeedsOauth: provider => `ເຂົ້າສູ່ລະບົບດ້ວຍ ${provider} ກ່ອນທົດສອບ gateway ນີ້.`,
     signInWith: provider => `ເຂົ້າສູ່ລະບົບດ້ວຍ ${provider}`,
     testSucceeded: (baseUrl, version) => `ເຊື່ອມຕໍ່ກັບ ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `ສຳເລັດ ${completed} ຈາກ ${total} ຂັ້ນຕອນ`,
     currentStage: stage => ` -- ຕອນນີ້: ${stage}`,
-    lines: count => `${count} ແຖວ${count === 1 ? '' : 's'}`,
+    lines: count => `${count} ແຖວ${count === 1 ? '' : 's'}`
   },
   modelPicker: {
     title: 'ສະຫຼັບໂມເດລ',
@@ -2861,18 +2915,19 @@ export const lo = defineLocale({
     freeTier: 'ລະດັບຟຣີ',
     priceTitle: 'ລາຄາຂາເຂົ້າ / ຂາອອກ ຕໍ່ລ້ານໂທເຄັນ',
     wasPrice: 'ເຄີຍເປັນ',
-    pro: 'ໂປ',
+    pro: 'ໂປ'
   },
   modelVisibility: {
     title: 'ໂມເດລ',
     search: 'ຄົ້ນຫາໂມເດລ',
     noAuthenticatedProviders: 'ບໍ່ມີຜູ້ໃຫ້ບໍລິການທີ່ຢືນຢັນແລ້ວ.',
-    addProvider: 'ເພີ່ມຜູ້ໃຫ້ບໍລິການ…',
+    addProvider: 'ເພີ່ມຜູ້ໃຫ້ບໍລິການ…'
   },
   desktop: {
     resumeFailed: 'ສືບຕໍ່ລົ້ມເຫຼວ',
     resumeStrandedTitle: 'ບໍ່ສາມາດໂຫຼດເຊສຊັນນີ້ໄດ້',
-    resumeStrandedBody: 'ການເຊື່ອມຕໍ່ກັບເຊສຊັນນີ້ລົ້ມເຫຼວ ແລະ ການລອງຄືນອັດຕະໂນມັດໄດ້ຢຸດເຊົາ. ກວດເບິ່ງວ່າເກດເວກຳລັງເຮັດວຽກຢູ່ ແລ້ວລອງອີກຄັ້ງ.',
+    resumeStrandedBody:
+      'ການເຊື່ອມຕໍ່ກັບເຊສຊັນນີ້ລົ້ມເຫຼວ ແລະ ການລອງຄືນອັດຕະໂນມັດໄດ້ຢຸດເຊົາ. ກວດເບິ່ງວ່າເກດເວກຳລັງເຮັດວຽກຢູ່ ແລ້ວລອງອີກຄັ້ງ.',
     resumeRetry: 'ລອງຄືນ',
     nothingToBranch: 'ບໍ່ມີຫຍັງໃຫ້ສ້າງສາຂາ',
     branchNeedsChat: 'ເລີ່ມ ຫຼື ສືບຕໍ່ການສົນທະນາກ່ອນສ້າງສາຂາ.',
@@ -2927,53 +2982,56 @@ export const lo = defineLocale({
       timedOut: 'ໝົດເວລາລໍຖ້າ gateway. `openamer gateway` ກຳລັງແລ່ນຢູ່ບໍ?',
       success: platform => `ສົ່ງໃຫ້ ${platform} ແລ້ວ ກັບຄືນມາທີ່ນີ້ໄດ້ທຸກເວລາ`,
       systemNote: platform => `↻ ສົ່ງໃຫ້ ${platform} — ກັບຄືນມາທີ່ນີ້ໄດ້ທຸກເວລາ`,
-      failed: error => `ການສົ່ງໃຫ້ລົ້ມເຫຼວ: ${error}`,
+      failed: error => `ການສົ່ງໃຫ້ລົ້ມເຫຼວ: ${error}`
     },
     yoloTitle: 'ໂຢໂລ',
     skillCommandsAvailable: count => `ມີຄຳສັ່ງທັກສະ ${count} ທີ່ໃຊ້ໄດ້.`,
     warningLine: message => `ຄຳເຕືອນ: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} ສຳລັບເຊດຊັນນີ້`,
-    profileStatus: current => `ໂປຣໄຟລ໌: ${current}. ໃຊ້ /profile <ຊື່> ຫຼື ຕົວເລືອກ "New session" ເພື່ອເລີ່ມແຊັດໃນໂປຣໄຟລ໌ອື່ນ.`,
+    profileStatus: current =>
+      `ໂປຣໄຟລ໌: ${current}. ໃຊ້ /profile <ຊື່> ຫຼື ຕົວເລືອກ "New session" ເພື່ອເລີ່ມແຊັດໃນໂປຣໄຟລ໌ອື່ນ.`,
     noProfileNamed: (target, available) => `ບໍ່ມີໂປຣໄຟລ໌ທີ່ຊື່ "${target}" ມີພ້ອມ: ${available}`,
     newChatsProfile: name => `ການສົນທະນາໃໝ່ຈະໃຊ້ໂປຣໄຟລ໌ ${name}`,
-    branchTitle: n => `ການຕັດລົງ: ສາຂາ #${n}`,
+    branchTitle: n => `ການຕັດລົງ: ສາຂາ #${n}`
   },
   prompts: {
     gatewayDisconnected: 'ເກດເວ OpenAmer ບໍ່ໄດ້ເຊື່ອມຕໍ່',
     sudoSendFailed: 'ບໍ່ສາມາດສົ່ງລະຫັດຜ່ານ sudo ໄດ້',
     secretSendFailed: 'ບໍ່ສາມາດສົ່ງຄວາມລັບໄດ້',
     sudoTitle: 'ລະຫັດຜ່ານຜູ້ບໍລິຫານ',
-    sudoDesc: 'OpenAmer ຕ້ອງການລະຫັດຜ່ານ sudo ຂອງທ່ານເພື່ອຮັນຄຳສັ່ງທີ່ມີສິດພິເສດ. ມັນຖືກສົ່ງພຽງແຕ່ໄປຫາຕົວແທນທ້ອງຖິ່ນຂອງທ່ານ.',
+    sudoDesc:
+      'OpenAmer ຕ້ອງການລະຫັດຜ່ານ sudo ຂອງທ່ານເພື່ອຮັນຄຳສັ່ງທີ່ມີສິດພິເສດ. ມັນຖືກສົ່ງພຽງແຕ່ໄປຫາຕົວແທນທ້ອງຖິ່ນຂອງທ່ານ.',
     sudoPlaceholder: 'ລະຫັດຜ່ານ sudo',
     secretTitle: 'ຕ້ອງການຄວາມລັບ',
     secretDesc: 'OpenAmer ຕ້ອງການຂໍ້ມູນຢືນຢັນຕົວຕົນເພື່ອສືບຕໍ່.',
-    secretPlaceholder: 'ຄ່າຄວາມລັບ',
+    secretPlaceholder: 'ຄ່າຄວາມລັບ'
   },
   errors: {
     genericFailure: 'ມີບາງຢ່າງຜິດພາດ',
     boundaryTitle: 'ມີບາງຢ່າງແຕກຫັກໃນອິນເຕີເຟສ',
     boundaryDesc: 'ໜ້າວິວພົບຂໍ້ຜິດພາດທີ່ບໍ່ຄາດຄິດ. ການສົນທະນາ ແລະ ການຕັ້ງຄ່າຂອງທ່ານຍັງປອດໄພ.',
     reloadWindow: 'ໂຫຼດໜ້າຕ່າງໃໝ່',
-    openLogs: 'ເປີດບັນທຶກ',
+    openLogs: 'ເປີດບັນທຶກ'
   },
   ui: {
     search: {
-      clear: 'ລຶບການຄົ້ນຫາ',
+      clear: 'ລຶບການຄົ້ນຫາ'
     },
     pagination: {
       label: 'ການແບ່ງໜ້າ',
       previous: 'ກ່ອນໜ້າ',
       previousAria: 'ໄປທີ່ໜ້າກ່ອນ',
       next: 'ຕໍ່ໄປ',
-      nextAria: 'ໄປທີ່ໜ້າຕໍ່ໄປ',
+      nextAria: 'ໄປທີ່ໜ້າຕໍ່ໄປ'
     },
     sidebar: {
       title: 'ແຖບຂ້າງ',
       description: 'ສະແດງແຖບຂ້າງມືຖື',
-      toggle: 'ສະຫຼັບແຖບຂ້າງ',
-    },
+      toggle: 'ສະຫຼັບແຖບຂ້າງ'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `ການ rendering ຊອບແວເຮັດວຽກຢູ່ — ກວດພົບການສະແດງຜົນຣີໂມດ (${reason}). ການເລັ່ງ GPU ຖືກປິດເພື່ອປ້ອງກັນການກະພິບ.`,
-  },
+    message: reason =>
+      `ການ rendering ຊອບແວເຮັດວຽກຢູ່ — ກວດພົບການສະແດງຜົນຣີໂມດ (${reason}). ການເລັ່ງ GPU ຖືກປິດເພື່ອປ້ອງກັນການກະພິບ.`
+  }
 })

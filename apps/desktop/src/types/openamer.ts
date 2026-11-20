@@ -1311,7 +1311,6 @@ export interface McpCommunityResponse {
   entries: McpCommunityEntry[]
 }
 
-
 /** `GET /api/memory` — active provider + built-in memory file sizes. */
 export interface MemoryStatusResponse {
   active: string

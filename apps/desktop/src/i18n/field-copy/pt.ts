@@ -6,249 +6,251 @@
 import { defineFieldCopy } from '@/app/settings/field-copy'
 
 export const FIELD_LABELS: Record<string, string> = defineFieldCopy({
-    model: "Modelo Padrão",
-    modelContextLength: "Janela de Contexto",
-    fallbackProviders: "Modelos Alternativos",
-    toolsets: "Conjuntos de Ferramentas Ativados",
-    timezone: "Fuso Horário",
-    display: {
-      personality: "Personalidade",
-      showReasoning: "Blocos de Raciocínio",
+  model: 'Modelo Padrão',
+  modelContextLength: 'Janela de Contexto',
+  fallbackProviders: 'Modelos Alternativos',
+  toolsets: 'Conjuntos de Ferramentas Ativados',
+  timezone: 'Fuso Horário',
+  display: {
+    personality: 'Personalidade',
+    showReasoning: 'Blocos de Raciocínio'
+  },
+  desktop: {
+    repoScanEnabled: 'Descoberta Automática de Repositórios',
+    repoScanRoots: 'Raízes de Descoberta de Repositórios',
+    repoScanExcludePaths: 'Caminhos de Repositórios Excluídos'
+  },
+  agent: {
+    maxTurns: 'Máximo de Passos do Agente',
+    imageInputMode: 'Anexos de Imagem',
+    apiMaxRetries: 'Tentativas da API',
+    serviceTier: 'Nível de Serviço',
+    toolUseEnforcement: 'Aplicação do Uso de Ferramentas'
+  },
+  terminal: {
+    cwd: 'Diretório de Trabalho',
+    backend: 'Backend de Execução',
+    timeout: 'Tempo Limite do Comando',
+    persistentShell: 'Shell Persistente',
+    envPassthrough: 'Repasse de Ambiente',
+    dockerImage: 'Imagem Docker',
+    singularityImage: 'Imagem Singularity',
+    modalImage: 'Imagem Modal',
+    daytonaImage: 'Imagem Daytona'
+  },
+  fileReadMaxChars: 'Limite de Leitura de Arquivo',
+  toolOutput: {
+    maxBytes: 'Limite de Saída do Terminal',
+    maxLines: 'Limite de Páginas do Arquivo',
+    maxLineLength: 'Limite de Comprimento da Linha'
+  },
+  codeExecution: {
+    mode: 'Modo de Execução de Código'
+  },
+  approvals: {
+    mode: 'Modo de Aprovação',
+    timeout: 'Tempo Limite de Aprovação',
+    mcpReloadConfirm: 'Confirmar Recarregamentos do MCP'
+  },
+  commandAllowlist: 'Lista de Comandos Permitidos',
+  security: {
+    redactSecrets: 'Ocultar Segredos',
+    allowPrivateUrls: 'Permitir URLs Privadas'
+  },
+  browser: {
+    allowPrivateUrls: 'URLs Privadas no Navegador',
+    autoLocalForPrivateUrls: 'Navegador Local para URLs Privadas'
+  },
+  checkpoints: {
+    enabled: 'Checkpoints de Arquivo',
+    maxSnapshots: 'Limite de Checkpoints'
+  },
+  voice: {
+    recordKey: 'Atalho de Voz',
+    maxRecordingSeconds: 'Duração Máxima da Gravação',
+    autoTts: 'Ler Respostas em Voz Alta'
+  },
+  stt: {
+    enabled: 'Fala para Texto',
+    echoTranscripts: 'Repetir Transcrições',
+    provider: 'Provedor de Fala para Texto',
+    local: {
+      model: 'Modelo Local de Transcrição',
+      language: 'Idioma da Transcrição'
     },
-    desktop: {
-      repoScanEnabled: "Descoberta Automática de Repositórios",
-      repoScanRoots: "Raízes de Descoberta de Repositórios",
-      repoScanExcludePaths: "Caminhos de Repositórios Excluídos",
+    openai: {
+      model: 'Modelo STT da OpenAI'
     },
-    agent: {
-      maxTurns: "Máximo de Passos do Agente",
-      imageInputMode: "Anexos de Imagem",
-      apiMaxRetries: "Tentativas da API",
-      serviceTier: "Nível de Serviço",
-      toolUseEnforcement: "Aplicação do Uso de Ferramentas",
+    groq: {
+      model: 'Modelo STT da Groq'
     },
-    terminal: {
-      cwd: "Diretório de Trabalho",
-      backend: "Backend de Execução",
-      timeout: "Tempo Limite do Comando",
-      persistentShell: "Shell Persistente",
-      envPassthrough: "Repasse de Ambiente",
-      dockerImage: "Imagem Docker",
-      singularityImage: "Imagem Singularity",
-      modalImage: "Imagem Modal",
-      daytonaImage: "Imagem Daytona",
+    mistral: {
+      model: 'Modelo STT da Mistral'
     },
-    fileReadMaxChars: "Limite de Leitura de Arquivo",
-    toolOutput: {
-      maxBytes: "Limite de Saída do Terminal",
-      maxLines: "Limite de Páginas do Arquivo",
-      maxLineLength: "Limite de Comprimento da Linha",
+    elevenlabs: {
+      modelId: 'Modelo STT da ElevenLabs',
+      languageCode: 'Idioma da ElevenLabs',
+      tagAudioEvents: 'Marcar Eventos de Áudio',
+      diarize: 'Diarização de Falantes'
+    }
+  },
+  tts: {
+    provider: 'Provedor de Texto para Fala',
+    edge: {
+      voice: 'Voz Edge'
     },
-    codeExecution: {
-      mode: "Modo de Execução de Código",
+    openai: {
+      model: 'Modelo TTS da OpenAI',
+      voice: 'Voz da OpenAI'
     },
-    approvals: {
-      mode: "Modo de Aprovação",
-      timeout: "Tempo Limite de Aprovação",
-      mcpReloadConfirm: "Confirmar Recarregamentos do MCP",
+    elevenlabs: {
+      voiceId: 'Voz da ElevenLabs',
+      modelId: 'Modelo da ElevenLabs'
     },
-    commandAllowlist: "Lista de Comandos Permitidos",
-    security: {
-      redactSecrets: "Ocultar Segredos",
-      allowPrivateUrls: "Permitir URLs Privadas",
+    xai: {
+      voiceId: 'Voz xAI (Grok)',
+      language: 'Idioma xAI',
+      speed: 'Velocidade de Reprodução xAI',
+      autoSpeechTags: 'Tags Automáticas de Fala xAI',
+      optimizeStreamingLatency: 'Otimização de Latência de Streaming xAI',
+      sampleRate: 'Taxa de Amostragem xAI',
+      bitRate: 'Taxa de Bits xAI'
     },
-    browser: {
-      allowPrivateUrls: "URLs Privadas no Navegador",
-      autoLocalForPrivateUrls: "Navegador Local para URLs Privadas",
+    minimax: {
+      model: 'Modelo TTS da MiniMax',
+      voiceId: 'Voz da MiniMax'
     },
-    checkpoints: {
-      enabled: "Checkpoints de Arquivo",
-      maxSnapshots: "Limite de Checkpoints",
+    mistral: {
+      model: 'Modelo TTS da Mistral',
+      voiceId: 'Voz da Mistral'
     },
-    voice: {
-      recordKey: "Atalho de Voz",
-      maxRecordingSeconds: "Duração Máxima da Gravação",
-      autoTts: "Ler Respostas em Voz Alta",
+    gemini: {
+      model: 'Modelo TTS do Gemini',
+      voice: 'Voz do Gemini'
     },
-    stt: {
-      enabled: "Fala para Texto",
-      echoTranscripts: "Repetir Transcrições",
-      provider: "Provedor de Fala para Texto",
-      local: {
-        model: "Modelo Local de Transcrição",
-        language: "Idioma da Transcrição",
-      },
-      openai: {
-        model: "Modelo STT da OpenAI",
-      },
-      groq: {
-        model: "Modelo STT da Groq",
-      },
-      mistral: {
-        model: "Modelo STT da Mistral",
-      },
-      elevenlabs: {
-        modelId: "Modelo STT da ElevenLabs",
-        languageCode: "Idioma da ElevenLabs",
-        tagAudioEvents: "Marcar Eventos de Áudio",
-        diarize: "Diarização de Falantes",
-      },
+    neutts: {
+      model: 'Modelo NeuTTS',
+      device: 'Dispositivo NeuTTS'
     },
-    tts: {
-      provider: "Provedor de Texto para Fala",
-      edge: {
-        voice: "Voz Edge",
-      },
-      openai: {
-        model: "Modelo TTS da OpenAI",
-        voice: "Voz da OpenAI",
-      },
-      elevenlabs: {
-        voiceId: "Voz da ElevenLabs",
-        modelId: "Modelo da ElevenLabs",
-      },
-      xai: {
-        voiceId: "Voz xAI (Grok)",
-        language: "Idioma xAI",
-        speed: "Velocidade de Reprodução xAI",
-        autoSpeechTags: "Tags Automáticas de Fala xAI",
-        optimizeStreamingLatency: "Otimização de Latência de Streaming xAI",
-        sampleRate: "Taxa de Amostragem xAI",
-        bitRate: "Taxa de Bits xAI",
-      },
-      minimax: {
-        model: "Modelo TTS da MiniMax",
-        voiceId: "Voz da MiniMax",
-      },
-      mistral: {
-        model: "Modelo TTS da Mistral",
-        voiceId: "Voz da Mistral",
-      },
-      gemini: {
-        model: "Modelo TTS do Gemini",
-        voice: "Voz do Gemini",
-      },
-      neutts: {
-        model: "Modelo NeuTTS",
-        device: "Dispositivo NeuTTS",
-      },
-      kittentts: {
-        model: "Modelo KittenTTS",
-        voice: "Voz KittenTTS",
-      },
-      piper: {
-        voice: "Voz Piper",
-      },
-      deepinfra: {
-        model: "Modelo TTS da DeepInfra",
-        voice: "Voz da DeepInfra",
-      },
+    kittentts: {
+      model: 'Modelo KittenTTS',
+      voice: 'Voz KittenTTS'
     },
-    memory: {
-      memoryEnabled: "Memória Persistente",
-      userProfileEnabled: "Perfil do Usuário",
-      memoryCharLimit: "Orçamento de Memória",
-      userCharLimit: "Orçamento do Perfil",
-      provider: "Provedor de Memória",
+    piper: {
+      voice: 'Voz Piper'
     },
-    context: {
-      engine: "Motor de Contexto",
-    },
-    compression: {
-      enabled: "Compressão Automática",
-      threshold: "Limite de Compressão",
-      targetRatio: "Alvo de Compressão",
-      protectLastN: "Mensagens Recentes Protegidas",
-    },
-    delegation: {
-      model: "Modelo do Subagente",
-      provider: "Provedor do Subagente",
-      maxIterations: "Limite de Turnos do Subagente",
-      maxConcurrentChildren: "Subagentes em Paralelo",
-      childTimeoutSeconds: "Tempo Limite do Subagente",
-      reasoningEffort: "Esforço de Raciocínio do Subagente",
-    },
-    updates: {
-      nonInteractiveLocalChanges: "Alterações Locais de Atualização no Aplicativo",
-    },
+    deepinfra: {
+      model: 'Modelo TTS da DeepInfra',
+      voice: 'Voz da DeepInfra'
+    }
+  },
+  memory: {
+    memoryEnabled: 'Memória Persistente',
+    userProfileEnabled: 'Perfil do Usuário',
+    memoryCharLimit: 'Orçamento de Memória',
+    userCharLimit: 'Orçamento do Perfil',
+    provider: 'Provedor de Memória'
+  },
+  context: {
+    engine: 'Motor de Contexto'
+  },
+  compression: {
+    enabled: 'Compressão Automática',
+    threshold: 'Limite de Compressão',
+    targetRatio: 'Alvo de Compressão',
+    protectLastN: 'Mensagens Recentes Protegidas'
+  },
+  delegation: {
+    model: 'Modelo do Subagente',
+    provider: 'Provedor do Subagente',
+    maxIterations: 'Limite de Turnos do Subagente',
+    maxConcurrentChildren: 'Subagentes em Paralelo',
+    childTimeoutSeconds: 'Tempo Limite do Subagente',
+    reasoningEffort: 'Esforço de Raciocínio do Subagente'
+  },
+  updates: {
+    nonInteractiveLocalChanges: 'Alterações Locais de Atualização no Aplicativo'
+  }
 })
 
 export const FIELD_DESCRIPTIONS: Record<string, string> = defineFieldCopy({
-    model: "Usado para novos chats, a menos que você escolha um modelo diferente no compositor.",
-    modelContextLength: "Deixe em 0 para usar a janela de contexto detectada do modelo selecionado.",
-    fallbackProviders: "Entradas de provedor:modelo de backup para tentar se o modelo padrão falhar.",
-    display: {
-      personality: "Estilo padrão do assistente para novas sessões.",
-      showReasoning: "Mostrar seções de raciocínio quando o backend fornecê-las.",
+  model: 'Usado para novos chats, a menos que você escolha um modelo diferente no compositor.',
+  modelContextLength: 'Deixe em 0 para usar a janela de contexto detectada do modelo selecionado.',
+  fallbackProviders: 'Entradas de provedor:modelo de backup para tentar se o modelo padrão falhar.',
+  display: {
+    personality: 'Estilo padrão do assistente para novas sessões.',
+    showReasoning: 'Mostrar seções de raciocínio quando o backend fornecê-las.'
+  },
+  desktop: {
+    repoScanEnabled: 'Verificar pastas locais em busca de repositórios Git para mostrar em Projetos.',
+    repoScanRoots: 'Pastas para verificar. Deixe vazio para verificar seu diretório inicial.',
+    repoScanExcludePaths: 'Pastas e seus descendentes a ignorar durante a descoberta de repositórios.'
+  },
+  timezone: 'Usado quando o OpenAmer precisa de contexto de hora local. Em branco usa o fuso horário do sistema.',
+  agent: {
+    imageInputMode: 'Controla como anexos de imagem são enviados ao modelo.',
+    maxTurns: 'Limite máximo de turnos de chamada de ferramentas antes de o OpenAmer interromper uma execução.'
+  },
+  terminal: {
+    cwd: 'Pasta de projeto padrão para trabalho com ferramentas e terminal.',
+    persistentShell: 'Manter o estado do shell entre comandos quando o backend oferecer suporte.',
+    envPassthrough: 'Variáveis de ambiente para passar à execução de ferramentas.',
+    dockerImage: 'Imagem de contêiner usada quando o backend de execução é Docker.',
+    singularityImage: 'Imagem usada quando o backend de execução é Singularity.',
+    modalImage: 'Imagem usada quando o backend de execução é Modal.',
+    daytonaImage: 'Imagem usada quando o backend de execução é Daytona.'
+  },
+  codeExecution: {
+    mode: 'Quão estritamente a execução de código é limitada ao projeto atual.'
+  },
+  fileReadMaxChars: 'Máximo de caracteres que o OpenAmer pode ler em uma solicitação de arquivo.',
+  approvals: {
+    mode: 'Como o OpenAmer trata comandos que exigem aprovação explícita.',
+    timeout: 'Quanto tempo os prompts de aprovação esperam antes de expirar.'
+  },
+  security: {
+    redactSecrets: 'Ocultar segredos detectados do conteúdo visível ao modelo quando possível.'
+  },
+  checkpoints: {
+    enabled: 'Criar snapshots de reversão antes de edições de arquivos.'
+  },
+  memory: {
+    memoryEnabled: 'Salvar memórias duradouras que podem ajudar sessões futuras.',
+    userProfileEnabled: 'Manter um perfil compacto das preferências do usuário.'
+  },
+  context: {
+    engine: 'Estratégia para gerenciar conversas longas perto do limite de contexto.'
+  },
+  compression: {
+    enabled: 'Resumir contexto mais antigo quando as conversas ficarem grandes.'
+  },
+  voice: {
+    autoTts: 'Falar automaticamente as respostas do assistente.'
+  },
+  tts: {
+    xai: {
+      voiceId: 'ID de voz da xAI (ex.: eve) ou um ID de voz personalizado.',
+      language: 'Código do idioma falado (ex.: en, pt-BR) ou "auto" para detecção automática.',
+      speed: 'Velocidade de reprodução. 0,7 = mais lenta, 1,0 = normal, 1,5 = mais rápida.',
+      autoSpeechTags:
+        'Permitir que um LLM insira tags de áudio expressivas ([laughing], [sighs]) no roteiro antes da síntese.',
+      optimizeStreamingLatency: 'Equilíbrio entre latência e qualidade. 0 = melhor qualidade, 2 = menor latência.',
+      sampleRate: 'Taxa de amostragem de áudio em Hz. Mais alta = melhor qualidade, arquivos maiores.',
+      bitRate: 'Bitrate MP3 em bps. Aplica-se apenas quando o codec é mp3.'
     },
-    desktop: {
-      repoScanEnabled: "Verificar pastas locais em busca de repositórios Git para mostrar em Projetos.",
-      repoScanRoots: "Pastas para verificar. Deixe vazio para verificar seu diretório inicial.",
-      repoScanExcludePaths: "Pastas e seus descendentes a ignorar durante a descoberta de repositórios.",
-    },
-    timezone: "Usado quando o OpenAmer precisa de contexto de hora local. Em branco usa o fuso horário do sistema.",
-    agent: {
-      imageInputMode: "Controla como anexos de imagem são enviados ao modelo.",
-      maxTurns: "Limite máximo de turnos de chamada de ferramentas antes de o OpenAmer interromper uma execução.",
-    },
-    terminal: {
-      cwd: "Pasta de projeto padrão para trabalho com ferramentas e terminal.",
-      persistentShell: "Manter o estado do shell entre comandos quando o backend oferecer suporte.",
-      envPassthrough: "Variáveis de ambiente para passar à execução de ferramentas.",
-      dockerImage: "Imagem de contêiner usada quando o backend de execução é Docker.",
-      singularityImage: "Imagem usada quando o backend de execução é Singularity.",
-      modalImage: "Imagem usada quando o backend de execução é Modal.",
-      daytonaImage: "Imagem usada quando o backend de execução é Daytona.",
-    },
-    codeExecution: {
-      mode: "Quão estritamente a execução de código é limitada ao projeto atual.",
-    },
-    fileReadMaxChars: "Máximo de caracteres que o OpenAmer pode ler em uma solicitação de arquivo.",
-    approvals: {
-      mode: "Como o OpenAmer trata comandos que exigem aprovação explícita.",
-      timeout: "Quanto tempo os prompts de aprovação esperam antes de expirar.",
-    },
-    security: {
-      redactSecrets: "Ocultar segredos detectados do conteúdo visível ao modelo quando possível.",
-    },
-    checkpoints: {
-      enabled: "Criar snapshots de reversão antes de edições de arquivos.",
-    },
-    memory: {
-      memoryEnabled: "Salvar memórias duradouras que podem ajudar sessões futuras.",
-      userProfileEnabled: "Manter um perfil compacto das preferências do usuário.",
-    },
-    context: {
-      engine: "Estratégia para gerenciar conversas longas perto do limite de contexto.",
-    },
-    compression: {
-      enabled: "Resumir contexto mais antigo quando as conversas ficarem grandes.",
-    },
-    voice: {
-      autoTts: "Falar automaticamente as respostas do assistente.",
-    },
-    tts: {
-      xai: {
-        voiceId: "ID de voz da xAI (ex.: eve) ou um ID de voz personalizado.",
-        language: "Código do idioma falado (ex.: en, pt-BR) ou \"auto\" para detecção automática.",
-        speed: "Velocidade de reprodução. 0,7 = mais lenta, 1,0 = normal, 1,5 = mais rápida.",
-        autoSpeechTags: "Permitir que um LLM insira tags de áudio expressivas ([laughing], [sighs]) no roteiro antes da síntese.",
-        optimizeStreamingLatency: "Equilíbrio entre latência e qualidade. 0 = melhor qualidade, 2 = menor latência.",
-        sampleRate: "Taxa de amostragem de áudio em Hz. Mais alta = melhor qualidade, arquivos maiores.",
-        bitRate: "Bitrate MP3 em bps. Aplica-se apenas quando o codec é mp3.",
-      },
-      neutts: {
-        device: "Dispositivo de inferência local para NeuTTS.",
-      },
-    },
-    stt: {
-      enabled: "Ativar transcrição de fala local ou via provedor.",
-      echoTranscripts: "Publicar a transcrição bruta 🎙️ das mensagens de voz de volta no chat.",
-      elevenlabs: {
-        languageCode: "Código de idioma ISO-639-3 opcional. Em branco deixa o ElevenLabs detectar automaticamente.",
-      },
-    },
-    updates: {
-      nonInteractiveLocalChanges: "Quando o OpenAmer se atualiza pelo app (sem prompt de terminal), manter edições locais do código-fonte (stash) ou descartá-las (discard). Atualizações pelo terminal sempre perguntam.",
-    },
+    neutts: {
+      device: 'Dispositivo de inferência local para NeuTTS.'
+    }
+  },
+  stt: {
+    enabled: 'Ativar transcrição de fala local ou via provedor.',
+    echoTranscripts: 'Publicar a transcrição bruta 🎙️ das mensagens de voz de volta no chat.',
+    elevenlabs: {
+      languageCode: 'Código de idioma ISO-639-3 opcional. Em branco deixa o ElevenLabs detectar automaticamente.'
+    }
+  },
+  updates: {
+    nonInteractiveLocalChanges:
+      'Quando o OpenAmer se atualiza pelo app (sem prompt de terminal), manter edições locais do código-fonte (stash) ou descartá-las (discard). Atualizações pelo terminal sempre perguntam.'
+  }
 })

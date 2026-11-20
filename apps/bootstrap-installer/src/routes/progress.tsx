@@ -68,6 +68,7 @@ export default function ProgressScreen({ bootstrap }: ProgressProps) {
   // translation. Without this the update window read "Downloading the latest
   // version" in the middle of an otherwise German screen.
   const currentStageName = bootstrap.currentStage
+
   const currentTitle =
     currentStageName != null
       ? (s.stages[currentStageName] ?? bootstrap.stages[currentStageName]?.info.title ?? null)

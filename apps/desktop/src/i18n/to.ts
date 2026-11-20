@@ -14,13 +14,15 @@ export const to = defineLocale({
       backgroundExited: 'OpenAmer background process exited.',
       backgroundExitedDuringStartup: 'proses pi OpenAmer li weka lon open sin.',
       backendStopped: 'backend li pini',
-      desktopBootFailed: 'openpi desktop li pakala',
+      desktopBootFailed: 'openpi desktop li pakala'
     },
     failure: {
       title: 'OpenAmer e na lua i fai.',
-      description: 'Na ia hopetini e tama. Pita mo na kato o tautai yopo. Na ia e na fafanga i tama pe talanoa or settings.',
+      description:
+        'Na ia hopetini e tama. Pita mo na kato o tautai yopo. Na ia e na fafanga i tama pe talanoa or settings.',
       remoteTitle: 'Hopetini remote lotu vaitau.',
-      remoteDescription: 'Na remote gateway session na hake. Na sina vaitau again i tautai. Na ia e na fafanga i tama pe talanoa or settings.',
+      remoteDescription:
+        'Na remote gateway session na hake. Na sina vaitau again i tautai. Na ia e na fafanga i tama pe talanoa or settings.',
       retry: 'Manatotika',
       repairInstall: 'Fakana installa',
       useLocalGateway: 'Use faingapoti hopetini',
@@ -34,13 +36,14 @@ export const to = defineLocale({
       showRecentLogs: 'Show fakaloga recent',
       signedInTitle: 'Sina vaitau',
       signedInMessage: 'Na tautai again i remote gateway…',
-      remoteSignInHint: signInLabel => `li weka tan seso uta pi ilo sona weka pi pana sin, la li open e ${signInLabel}. o kepeken tomo tawa ma pi ma ni tawa ante e backend pi pana sin.`,
+      remoteSignInHint: signInLabel =>
+        `li weka tan seso uta pi ilo sona weka pi pana sin, la li open e ${signInLabel}. o kepeken tomo tawa ma pi ma ni tawa ante e backend pi pana sin.`,
       signInIncompleteTitle: 'kama sona li pini ala',
       signInIncompleteMessage: 'lupa kama sona li pini lon open pi pini pi sona e jan.',
       signInFailed: 'kama sona li pakala',
       signInToRemoteGateway: 'kama sona tawa tomo tawa weka',
       signInWithProvider: provider => `kama sona kepeken ${provider}`,
-      identityProvider: 'jan pi sona e sina',
+      identityProvider: 'jan pi sona e sina'
     },
     ready: 'OpenAmer Desktop is ready',
     desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
@@ -49,20 +52,20 @@ export const to = defineLocale({
       loadingSettings: 'Loading OpenAmer settings',
       loadingSessions: 'Loading recent sessions',
       startingDesktopConnection: 'Starting desktop connection',
-      startingOpenAmerDesktop: 'Starting OpenAmer Desktop…',
-    },
+      startingOpenAmerDesktop: 'Starting OpenAmer Desktop…'
+    }
   },
   notifications: {
     voice: {
       transcriptionUnavailable: 'Tuʻu lauti e ʻoi mai vave.',
       tryRecordingAgain: 'Sao tuʻu manuia vē.',
       unavailable: 'Tuʻu lauti e ʻoi mai.',
-      configureSpeechToText: 'Fakatu\'utu\'uni lea-ki-kotoa ke ma\'u \'ano lea.',
-      couldNotStartSession: '\'Ikai ke ulu e nofo\'anga lea',
-      microphoneAccessDenied: '\'Ava maekrofoni na\'e fakakatoa.',
-      microphoneConstraintsUnsupported: 'Fuohinga maekrofoni \'ikai fiefia \'e he me\'a\'eni.',
-      microphoneFailed: 'Maekrofoni na\'e fela',
-      microphoneInUse: 'Maekrofoni kuo \'i he ngaue \'e he app kehe.',
+      configureSpeechToText: "Fakatu'utu'uni lea-ki-kotoa ke ma'u 'ano lea.",
+      couldNotStartSession: "'Ikai ke ulu e nofo'anga lea",
+      microphoneAccessDenied: "'Ava maekrofoni na'e fakakatoa.",
+      microphoneConstraintsUnsupported: "Fuohinga maekrofoni 'ikai fiefia 'e he me'a'eni.",
+      microphoneFailed: "Maekrofoni na'e fela",
+      microphoneInUse: "Maekrofoni kuo 'i he ngaue 'e he app kehe.",
       microphonePermissionDenied: 'ken uta lili li pini.',
       microphoneStartFailed: 'ken ala open lipu uta lili.',
       microphoneUnsupported: 'tenpo ni li kepeken ala e lipu uta lili.',
@@ -70,7 +73,7 @@ export const to = defineLocale({
       noSpeechDetected: 'toki ala li kama sona',
       playbackFailed: 'pana kalama li pakala',
       recordingFailed: 'lipu kalama li pakala',
-      transcriptionFailed: 'sitelen kalama li pakala',
+      transcriptionFailed: 'sitelen kalama li pakala'
     },
     native: {
       approvalTitle: 'Fesoasoani e ʻoi.',
@@ -83,7 +86,7 @@ export const to = defineLocale({
       turnErrorTitle: 'Autu faila',
       backgroundDoneTitle: 'Taski fofō mākatu',
       backgroundFailedTitle: 'Taski fofō faila',
-      creditsTitle: 'Vu',
+      creditsTitle: 'Vu'
     },
     region: 'toki sin',
     hide: 'len',
@@ -95,8 +98,9 @@ export const to = defineLocale({
     copyDetail: 'kama jo e sona pi mute',
     copyDetailFailed: 'ken ala kama jo e sona pi mute pi toki sin',
     backendOutOfDateTitle: 'backend li weka tan tenpo sin',
-    backendOutOfDateMessage: 'Ko e backend \'o OpenAmer \'oku tu\'a ke he desktop build \'eni kae \'ikai ke mau ngaue mitaki. Fakahou ke fakavaha.',
-    installMethodUnsupportedTitle: 'Fakahoko \'ikai fiefia',
+    backendOutOfDateMessage:
+      "Ko e backend 'o OpenAmer 'oku tu'a ke he desktop build 'eni kae 'ikai ke mau ngaue mitaki. Fakahou ke fakavaha.",
+    installMethodUnsupportedTitle: "Fakahoko 'ikai fiefia",
     updateOpenAmer: 'Fakahou OpenAmer',
     updateReadyTitle: 'Fakahou kuo mau',
     updateReadyMessage: count => `${count} kehe fou ${count === 1 ? '' : 's'} kuo mau.`,
@@ -104,13 +108,14 @@ export const to = defineLocale({
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT te lava ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs nae fakakatoa e API key (401).',
-      gatewayAuthFailed: 'Fakamaumau\'a Gateway na\'e fela — sivi \'api \'o API_SERVER_KEY.',
-      methodNotAllowed: 'Desktop backend nae fakakatoa \'ena fefesa (405 Method Not Allowed). \'Ulu ke ulu ki mu\'a OpenAmer Desktop.',
-      microphonePermission: '\'Ofisa maekrofoni na\'e fakakatoa.',
+      gatewayAuthFailed: "Fakamaumau'a Gateway na'e fela — sivi 'api 'o API_SERVER_KEY.",
+      methodNotAllowed:
+        "Desktop backend nae fakakatoa 'ena fefesa (405 Method Not Allowed). 'Ulu ke ulu ki mu'a OpenAmer Desktop.",
+      microphonePermission: "'Ofisa maekrofoni na'e fakakatoa.",
       openaiRejectedApiKey: 'OpenAI nae fakakatoa e API key.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI nae fakakatoa e API key (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS te lava VOICE_TOOLS_OPENAI_KEY pe OPENAI_API_KEY.',
-    },
+      openaiTtsNeedsKey: 'OpenAI TTS te lava VOICE_TOOLS_OPENAI_KEY pe OPENAI_API_KEY.'
+    }
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer e ola vu',
@@ -118,7 +123,7 @@ export const to = defineLocale({
     openBilling: 'Fakapapi OpenAmer',
     addCredits: 'Tao e vu',
     dismiss: 'Mālō',
-    titleProvider: provider => `mani li pini — ${provider}`,
+    titleProvider: provider => `mani li pini — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Pē taulaga',
@@ -132,16 +137,16 @@ export const to = defineLocale({
     muteHaptics: 'Mū haptics',
     unmuteHaptics: 'Tautau haptics',
     openSettings: 'Autu hp settings',
-    openStarmap: 'Autu fono mā\'oni grafi',
-    openKeybinds: 'Nunatofoti ki fa\'atalatala',
+    openStarmap: "Autu fono mā'oni grafi",
+    openKeybinds: "Nunatofoti ki fa'atalatala",
     layoutEditor: 'Tufasoti lelei',
-    layoutEditorTitle: 'Tufasoti lelei — ⌘-click fakamala lelei',
+    layoutEditorTitle: 'Tufasoti lelei — ⌘-click fakamala lelei'
   },
   keybinds: {
-    title: 'Nunatofoti ki fa\'atalatala',
-    search: 'Fakapuli fa\'atalatala…',
+    title: "Nunatofoti ki fa'atalatala",
+    search: "Fakapuli fa'atalatala…",
     rebind: 'Fakataha',
-    reset: 'Fakamala i mata\'uta',
+    reset: "Fakamala i mata'uta",
     resetAll: 'Fakamala all',
     pressKey: 'Fakatonu ki…',
     actions: {
@@ -221,7 +226,7 @@ export const to = defineLocale({
       'view.showFiles': 'Kama jo e ilo lukin lipu',
       'composer.help': 'Pona wawa',
       'composer.history': 'Tawa e popover / tenpo pini',
-      'composer.cancel': 'Pini e popover · pini e tawa',
+      'composer.cancel': 'Pini e popover · pini e tawa'
     },
     subtitle: open => `luka e nasin kipisi tawa ante · ${open} li open sin e lipu ni.`,
     set: 'wile',
@@ -231,8 +236,8 @@ export const to = defineLocale({
       profiles: 'sijelo',
       session: 'tenpo',
       navigation: 'tawa',
-      view: 'lukin',
-    },
+      view: 'lukin'
+    }
   },
   settings: {
     nav: {
@@ -250,11 +255,12 @@ export const to = defineLocale({
       providers: 'Feʻau',
       providerAccounts: 'Kautaha',
       providerApiKeys: 'Kī API',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'Pliki Fale',
-      blurb: 'UI extensions lauaki i apu — na ku kai apu, or tuʻi i folder desktop-plugins (including ones OpenAmer writes). Makauti unloads a plugin live and survives restarts.',
+      blurb:
+        'UI extensions lauaki i apu — na ku kai apu, or tuʻi i folder desktop-plugins (including ones OpenAmer writes). Makauti unloads a plugin live and survives restarts.',
       openFolder: 'Fai folder pliki',
       rescan: 'Fakamata',
       reveal: 'Fakamata file manager',
@@ -266,8 +272,8 @@ export const to = defineLocale({
       kinds: {
         bundled: 'feʻofeʻofani',
         disk: 'ʻi he tisi',
-        runtime: 'taimi laukonga',
-      },
+        runtime: 'taimi laukonga'
+      }
     },
     searchPlaceholder: {
       keys: 'Kikoa API lue...',
@@ -275,21 +281,21 @@ export const to = defineLocale({
       sessions: 'Kikoa kope...',
       about: 'Son e OpenAmer Lipu',
       config: 'Alasa e nasin...',
-      gateway: 'Nasin Kama...',
+      gateway: 'Nasin Kama...'
     },
     modeOptions: {
       light: {
         label: 'Ifis',
-        description: 'Mā fonu',
+        description: 'Mā fonu'
       },
       dark: {
         label: 'Mā',
-        description: 'Vā ifofie',
+        description: 'Vā ifofie'
       },
       system: {
         label: 'Sistema',
-        description: 'Tā ai o te sistema',
-      },
+        description: 'Tā ai o te sistema'
+      }
     },
     appearance: {
       title: 'Uloha',
@@ -304,7 +310,8 @@ export const to = defineLocale({
       backdropTitle: 'Talanoa foni',
       backdropDesc: 'Te siki tahi o te tāngi i luga o te talanoa.',
       embedsTitle: 'Fakamatala tuʻu',
-      embedsDesc: 'Fakalala faka kamu mai saitani siti (YouTube, X, …) . Fangata fakata kupoti upu au rauai taha taha; Iakia kamu iā ia; Fakamau tuku lingi faka.',
+      embedsDesc:
+        'Fakalala faka kamu mai saitani siti (YouTube, X, …) . Fangata fakata kupoti upu au rauai taha taha; Iakia kamu iā ia; Fakamau tuku lingi faka.',
       embedsAsk: 'Fangata',
       embedsAlways: 'Iakia',
       embedsOff: 'Fakamau',
@@ -323,8 +330,10 @@ export const to = defineLocale({
       importedBadge: 'Na kau',
       pet: {
         title: 'Peti',
-        intro: 'O jo e jan lili pi petdex pi sitelen tawa li tawa sewi lipu li pilin e pali pi OpenAmer — tawa tenpo pi pali ilo, pona tenpo pi pini pona, ike tenpo pi pakala.',
-        restartHint: 'soweli li wile open sin — ilo li open pini lon tenpo pi ante ni. pini e OpenAmer o open sin, la kama poka ni.',
+        intro:
+          'O jo e jan lili pi petdex pi sitelen tawa li tawa sewi lipu li pilin e pali pi OpenAmer — tawa tenpo pi pali ilo, pona tenpo pi pini pona, ike tenpo pi pakala.',
+        restartHint:
+          'soweli li wile open sin — ilo li open pini lon tenpo pi ante ni. pini e OpenAmer o open sin, la kama poka ni.',
         on: 'lon',
         off: 'weka',
         scaleTitle: 'suli',
@@ -334,7 +343,7 @@ export const to = defineLocale({
         chooseTitle: 'wan e soweli',
         chooseDesc: 'wan la kama jo e ona (ken wile) e ni: ona li pali.',
         searchPlaceholder: 'alasa e soweli…',
-        unreachable: "ken ala tawa lipu petdex. awen e nasin o open sin e lipu ni.",
+        unreachable: 'ken ala tawa lipu petdex. awen e nasin o open sin e lipu ni.',
         noMatch: query => `soweli ala li sama "${query}".`,
         installedTag: 'kama jo',
         generatedTag: 'kama',
@@ -343,26 +352,27 @@ export const to = defineLocale({
         uninstall: name => `weka e ${name}`,
         delete: name => `weka e ${name}`,
         deleteTitle: name => `weka e ${name}?`,
-        deleteBody: "ni li weka e soweli lon ale — ken ala kama jo sin.",
+        deleteBody: 'ni li weka e soweli lon ale — ken ala kama jo sin.',
         deleteConfirm: 'Hiki',
         rename: name => `Fakahouhingoa ${name}`,
         renameTitle: 'Fakahouhingoa peti',
-        renamePlaceholder: 'Hingoa\'i ho\'o peti',
+        renamePlaceholder: "Hingoa'i ho'o peti",
         renameSave: 'Tau',
         exportPet: name => `Fakalutu ${name}`,
         adoptFailed: slug => `Ikai 'i lava ke 'uha ${slug}`,
         uninstallFailed: slug => `Ikai 'i lava ke fakahoki ${slug}`,
         renameFailed: slug => `Ikai 'i lava ke fakahouhingoa ${slug}`,
         exportFailed: slug => `Ikai 'i lava ke fakalutu ${slug}`,
-        noneAvailable: 'Ikai ha peti \'oku nau fai ke fakamalu\'i \'i he taimi \'eni.',
-        turnOnFailed: 'Ikai \'i lava ke fakamalu\'i ha peti.',
-        turnOffFailed: 'Ikai \'i lava ke fakamomoko ha peti.',
+        noneAvailable: "Ikai ha peti 'oku nau fai ke fakamalu'i 'i he taimi 'eni.",
+        turnOnFailed: "Ikai 'i lava ke fakamalu'i ha peti.",
+        turnOffFailed: "Ikai 'i lava ke fakamomoko ha peti."
       },
-      uiScaleDesc: (percent: number) => `Ni li suli e sitelen lawa ale pi lipu ni. Cmd/Ctrl en +, -, 0 li ken. Tan ni: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Ni li suli e sitelen lawa ale pi lipu ni. Cmd/Ctrl en +, -, 0 li ken. Tan ni: ${percent}%.`,
       embedsReset: (count: number) => `Weke ${count} ken ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Pana tawa ${profile} lipu — lipu ale li awen e nasin ona.`,
       installPlaceholder: 'tokotaha pulusi.fakalahi',
-      installed: name => `Kama jo “${name}”.`,
+      installed: name => `Kama jo “${name}”.`
     },
     config: {
       none: 'Kā e',
@@ -378,7 +388,7 @@ export const to = defineLocale({
       imported: 'Konfigi hake',
       invalidJson: 'Konfigi invalid JSON',
       keepAwakeTitle: 'Paki kompeisa e vave',
-      keepAwakeDesc: 'Paki machine no sleep. Display can dim.',
+      keepAwakeDesc: 'Paki machine no sleep. Display can dim.'
     },
     credentials: {
       pasteKey: 'Paste lue',
@@ -388,7 +398,7 @@ export const to = defineLocale({
       remove: 'Famata',
       getKey: 'Hake lue',
       pasteLabelKey: label => `Pana ${label} ki`,
-      saving: 'Aweni',
+      saving: 'Aweni'
     },
     gateway: {
       incompleteSignInTest: 'Whakatohi atu i se URL mamaʻō pea hoko mai i mua i te aʻahi.',
@@ -408,8 +418,10 @@ export const to = defineLocale({
       applyFailed: 'Faʻa hoko e hoko o nga tikagi a e Gateway',
       saveFailed: 'Faʻa hoko e tefitei o nga tikagi a e Gateway',
       sshTitle: 'Hoko mai faka-SSH',
-      sshDesc: 'ʻO OpenAmer e hoko mai ki te sefi mamaʻō faka-SSH, pea e tunnela ki tēnei app — ʻo hā koe. E tono ai ki se SSH faka-kiʻatonga mafaʻo lelei ki te sefi.',
-      sshTrustHint: 'Ua fakaaʻina ʻo te kiʻatonga o te sefi fakaaʻina muʻa, ʻo hoko pea e pīna; ʻo e hoko mai lō ka tāmateʻa.',
+      sshDesc:
+        'ʻO OpenAmer e hoko mai ki te sefi mamaʻō faka-SSH, pea e tunnela ki tēnei app — ʻo hā koe. E tono ai ki se SSH faka-kiʻatonga mafaʻo lelei ki te sefi.',
+      sshTrustHint:
+        'Ua fakaaʻina ʻo te kiʻatonga o te sefi fakaaʻina muʻa, ʻo hoko pea e pīna; ʻo e hoko mai lō ka tāmateʻa.',
       sshHostTitle: 'Sefi',
       sshHostDesc: 'kai@sefi, kai ʻo se alias Sefi mai ~/.ssh/config.',
       sshHostPick: 'Tili ki se Sefi…',
@@ -435,21 +447,26 @@ export const to = defineLocale({
       unavailableDesc: 'Ko e fakahoko desktop IPC ʻikai fakahaʻa e ngaahi setingi kuo.',
       title: 'Feʻofeʻofani kuo',
       envOverride: 'env fakapapau',
-      intro: 'OpenAmer Desktop te u kamata ai ha kuo nofo ʻi he kāinga pea mo e taimi ʻuluaki. Fakahoko ha kuo mamaʻo pea ʻoku ke fiemaʻu ke fakahaʻa e apilikeki ni ke tokoni ha backend OpenAmer ʻoku nau ngaue ʻi ha masini kehe ke ʻosi pea mo e proxy ʻoku lelei. Kōwhiri ha profile ʻi lalo ke mau ha host mamaʻo mo e ia.',
+      intro:
+        'OpenAmer Desktop te u kamata ai ha kuo nofo ʻi he kāinga pea mo e taimi ʻuluaki. Fakahoko ha kuo mamaʻo pea ʻoku ke fiemaʻu ke fakahaʻa e apilikeki ni ke tokoni ha backend OpenAmer ʻoku nau ngaue ʻi ha masini kehe ke ʻosi pea mo e proxy ʻoku lelei. Kōwhiri ha profile ʻi lalo ke mau ha host mamaʻo mo e ia.',
       appliesTo: 'ʻAʻe ki',
       allProfiles: 'Ngaahi profile katoa',
       defaultConnection: 'Feʻofeʻofani tukuʻifonua mo e ngaahi profile katoa ʻikai ha fakapapau ʻo e ia.',
-      profileConnection: profile => `Feʻofeʻofani ʻoku mauʻia pea ʻoku ʻikai ʻoe “${profile}” ʻoku profile ʻuluaki. Kōwhiri ʻUse default gatewayʻ ke fakamaumau e fakapapau ʻo e ia.`,
+      profileConnection: profile =>
+        `Feʻofeʻofani ʻoku mauʻia pea ʻoku ʻikai ʻoe “${profile}” ʻoku profile ʻuluaki. Kōwhiri ʻUse default gatewayʻ ke fakamaumau e fakapapau ʻo e ia.`,
       envOverrideTitle: 'Ngaahi meʻa fakahoko ʻenivironamenti ʻoku tokoni ʻi he nofo ʻa e desktop ni.',
-      envOverrideDesc: 'Weke OPENAMER_DESKTOP_REMOTE_URL en OPENAMER_DESKTOP_REMOTE_TOKEN kepeken nasin pona pi anpa ni.',
+      envOverrideDesc:
+        'Weke OPENAMER_DESKTOP_REMOTE_URL en OPENAMER_DESKTOP_REMOTE_TOKEN kepeken nasin pona pi anpa ni.',
       modeTitle: 'Nasin kama jo',
       localTitle: 'Tomu ma',
-      localDesc: 'Open e OpenAmer backend pi jan wan lon localhost. Ni li nasin wawa. Ni li pona lon poka ala pi ilo sona.',
+      localDesc:
+        'Open e OpenAmer backend pi jan wan lon localhost. Ni li nasin wawa. Ni li pona lon poka ala pi ilo sona.',
       inheritTitle: 'Kepeken tomu wawa',
-      inheritDesc: "Weke e nasin ante pi lipu ni. Kepeken kama jo wawa.",
+      inheritDesc: 'Weke e nasin ante pi lipu ni. Kepeken kama jo wawa.',
       remoteTitle: 'Tomu weka',
       remoteDesc: 'Kama jo e lipu supa ni tawa OpenAmer backend weka.',
-      remoteAuthHint: 'Tomu pi jan lawa li kepeken OAuth anu nimi jan en nimi leko; tomu pi jan wan li ken kepeken token tenpo.',
+      remoteAuthHint:
+        'Tomu pi jan lawa li kepeken OAuth anu nimi jan en nimi leko; tomu pi jan wan li ken kepeken token tenpo.',
       cloudTitle: 'OpenAmer ʻAo',
       cloudDesc: 'Kama jo wan tawa OpenAmer Cloud en kama jo tan jan lawa pi lipu sina — ala URL tawa sitelen.',
       cloudSignInTitle: 'OpenAmer ʻAo',
@@ -466,7 +483,7 @@ export const to = defineLocale({
       cloudNoAgents: {
         before: 'jan pali ala lon ni. open e ni lon ',
         linkText: 'OpenAmer tomo',
-        after: ', la sin.',
+        after: ', la sin.'
       },
       cloudRefresh: 'sin',
       cloudConnect: 'kama',
@@ -484,75 +501,89 @@ export const to = defineLocale({
       remoteUrlTitle: 'URL ma ante',
       remoteUrlDesc: 'URL pi ma ante pi ilo sona insa. nasin sinpin li ken, kepeken /openamer.',
       probing: 'ʻOku vakaiʻi ʻa e founga fakapapauʻi ʻo e matapā ni…',
-      probeError: 'ʻOku teʻeki lava ʻo fetuʻutaki ki he matapā ni. Vakaiʻi ʻa e URL — ʻe hā ʻa e founga fakapapauʻi ʻi heʻene tali mai.',
+      probeError:
+        'ʻOku teʻeki lava ʻo fetuʻutaki ki he matapā ni. Vakaiʻi ʻa e URL — ʻe hā ʻa e founga fakapapauʻi ʻi heʻene tali mai.',
       signedIn: 'Kuo hū ki loto',
       signIn: 'Hū ki loto',
       signOut: 'Hū ki tuʻa',
       signInWith: provider => `Hū ki loto ʻaki ʻa ${provider}`,
-      authTitle: 'Fakapapau\'i \'o e tokotaha ngāue',
-      authSignedInPassword: '\'Oku ngāue\'aki \'e he matapā ni ha hingoa ngāue mo ha lea fufū. Kuó ke hū; \'oku fakafo\'ou \'otometiki \'a e taimi ngāue.',
-      authSignedInOauth: '\'Oku ngāue\'aki \'e he matapā ni \'a e OAuth. Kuó ke hū; \'oku fakafo\'ou \'otometiki \'a e taimi ngāue.',
-      authNeedsPassword: '\'Oku ngāue\'aki \'e he matapā ni ha hingoa ngāue mo ha lea fufū. Hū ke fakangofua \'a e polokalama komipiuta ni.',
-      authNeedsOauth: provider => `'Oku ngāue'aki 'e he matapā ni 'a e OAuth. Hū 'aki 'a e ${provider} ke fakangofua 'a e polokalama komipiuta ni.`,
-      tokenTitle: 'Faka\'ilonga \'o e taimi ngāue',
-      tokenDesc: 'Ko e faka\'ilonga \'o e taimi ngāue \'i he peesi pule ki he hū \'aki \'a e REST mo e WebSocket. Tuku ta\'efakafonu ke tauhi \'a e faka\'ilonga kuo seiví.',
+      authTitle: "Fakapapau'i 'o e tokotaha ngāue",
+      authSignedInPassword:
+        "'Oku ngāue'aki 'e he matapā ni ha hingoa ngāue mo ha lea fufū. Kuó ke hū; 'oku fakafo'ou 'otometiki 'a e taimi ngāue.",
+      authSignedInOauth:
+        "'Oku ngāue'aki 'e he matapā ni 'a e OAuth. Kuó ke hū; 'oku fakafo'ou 'otometiki 'a e taimi ngāue.",
+      authNeedsPassword:
+        "'Oku ngāue'aki 'e he matapā ni ha hingoa ngāue mo ha lea fufū. Hū ke fakangofua 'a e polokalama komipiuta ni.",
+      authNeedsOauth: provider =>
+        `'Oku ngāue'aki 'e he matapā ni 'a e OAuth. Hū 'aki 'a e ${provider} ke fakangofua 'a e polokalama komipiuta ni.`,
+      tokenTitle: "Faka'ilonga 'o e taimi ngāue",
+      tokenDesc:
+        "Ko e faka'ilonga 'o e taimi ngāue 'i he peesi pule ki he hū 'aki 'a e REST mo e WebSocket. Tuku ta'efakafonu ke tauhi 'a e faka'ilonga kuo seiví.",
       existingToken: value => `Faka'ilonga lolotonga ${value}`,
       savedToken: 'kuo seivi',
-      pasteSessionToken: 'Fakapipiki \'a e faka\'ilonga \'o e taimi ngāue',
-      testRemote: 'Sivi \'a e fehokotaki mama\'o',
+      pasteSessionToken: "Fakapipiki 'a e faka'ilonga 'o e taimi ngāue",
+      testRemote: "Sivi 'a e fehokotaki mama'o",
       saveForRestart: 'Seivi ki he toe kamata hono hokó',
       saveAndReconnect: 'Seivi pea toe fakafehokotaki',
       diagnostics: 'Ngaahi sivi',
-      diagnosticsDesc: 'Fakaʻaliʻali ʻa e desktop.log ʻi hoʻo puleʻi failé — ʻoku ʻaonga ʻi he taimi ʻoku ʻikai lava ai ke kamata ʻa e matapā fakafehokotakí.',
+      diagnosticsDesc:
+        'Fakaʻaliʻali ʻa e desktop.log ʻi hoʻo puleʻi failé — ʻoku ʻaonga ʻi he taimi ʻoku ʻikai lava ai ke kamata ʻa e matapā fakafehokotakí.',
       openLogs: 'Fakaava ʻa e ngaahi lekōtí',
       incompleteTitle: 'ʻOku teʻeki kakato ʻa e matapā fakafehokotaki mamaʻó',
       incompleteSignIn: 'Fakahū ha URL mamaʻo pea hū ki loto kimuʻa pea toki hiki ki he mamaʻó.',
-      incompleteToken: 'Fakahū ha URL mamaʻo mo ha fakaʻilonga fakangofua ʻo e sēsiní kimuʻa pea toki hiki ki he mamaʻó.',
+      incompleteToken:
+        'Fakahū ha URL mamaʻo mo ha fakaʻilonga fakangofua ʻo e sēsiní kimuʻa pea toki hiki ki he mamaʻó.',
       connectedTo: (baseUrl, version) => `Kuo fakafehokotaki ki ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       sshPortTitle: 'Taulanga',
       sshReachable: (host, platform) => `Lava ke aʻu ki ai: ${host} (${platform}) — kuo maʻu ʻa OpenAmer`,
-      sshErrAuth: 'Naʻe ʻikai lava ʻa e fakamoʻoni SSH. Fakahū hoʻo kií ki he ssh-agent (ssh-add) pe fokotuʻu ha IdentityFile ʻi he ~/.ssh/config — ʻoku fakalele ʻe OpenAmer ʻa e ssh ʻo ʻikai fiemaʻu ha tali meiate koe.',
-      sshErrHostKey: 'Kuo LILIU ʻa e kī ʻa e komipiuta talitali talu mei hoʻo fakafehokotaki fakamuimuí. Fakapapauʻi ʻoku totonu ʻa e liliú, pea fakalele ʻa e ssh-keygen -R <host> pea toe fakafehokotaki.',
-      sshErrNotInstalled: 'ʻOku teʻeki fokotuʻu ʻa e OpenAmer ʻi he komipiuta mamaʻo. Fokotuʻu ia ʻi ai (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) pe fokotuʻu ʻa e hala ki he OpenAmer.',
-      sshErrPlatform: 'ʻOku ʻikai poupouʻi ʻa e faʻunga mamaʻo. ʻOku poupouʻi ʻe he founga SSH ʻo e OpenAmer ki he komipiuta tēpile ʻa e ngaahi komipiuta mamaʻo Linux, macOS mo Windows.',
-      sshErrTimeout: 'Kuo ʻosi ʻa e taimi tatali ki he fehokotaki SSH. Mahalo ʻoku ʻikai lava ke aʻu ki he komipiutá pe ʻoku mohe.',
-      sshErrUpdateRequired: 'Fakatonutonu ʻa e OpenAmer ʻi he komipiuta mamaʻo ki he tatau fakamuimuitahá kimuʻa pea fehokotaki ʻaki ʻa e SSH mei he komipiuta tēpile.',
-      sshErrUnknown: 'SSH connection failed.',
+      sshErrAuth:
+        'Naʻe ʻikai lava ʻa e fakamoʻoni SSH. Fakahū hoʻo kií ki he ssh-agent (ssh-add) pe fokotuʻu ha IdentityFile ʻi he ~/.ssh/config — ʻoku fakalele ʻe OpenAmer ʻa e ssh ʻo ʻikai fiemaʻu ha tali meiate koe.',
+      sshErrHostKey:
+        'Kuo LILIU ʻa e kī ʻa e komipiuta talitali talu mei hoʻo fakafehokotaki fakamuimuí. Fakapapauʻi ʻoku totonu ʻa e liliú, pea fakalele ʻa e ssh-keygen -R <host> pea toe fakafehokotaki.',
+      sshErrNotInstalled:
+        'ʻOku teʻeki fokotuʻu ʻa e OpenAmer ʻi he komipiuta mamaʻo. Fokotuʻu ia ʻi ai (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) pe fokotuʻu ʻa e hala ki he OpenAmer.',
+      sshErrPlatform:
+        'ʻOku ʻikai poupouʻi ʻa e faʻunga mamaʻo. ʻOku poupouʻi ʻe he founga SSH ʻo e OpenAmer ki he komipiuta tēpile ʻa e ngaahi komipiuta mamaʻo Linux, macOS mo Windows.',
+      sshErrTimeout:
+        'Kuo ʻosi ʻa e taimi tatali ki he fehokotaki SSH. Mahalo ʻoku ʻikai lava ke aʻu ki he komipiutá pe ʻoku mohe.',
+      sshErrUpdateRequired:
+        'Fakatonutonu ʻa e OpenAmer ʻi he komipiuta mamaʻo ki he tatau fakamuimuitahá kimuʻa pea fehokotaki ʻaki ʻa e SSH mei he komipiuta tēpile.',
+      sshErrUnknown: 'SSH connection failed.'
     },
     model: {
       tasks: {
         web_extract: {
           label: 'Polisituli uēbí',
-          hint: 'Fakatauʻa e peʻa',
+          hint: 'Fakatauʻa e peʻa'
         },
         compression: {
           label: 'Faʻatākaitaki',
-          hint: 'Fakasiʻi e konisitēksi',
+          hint: 'Fakasiʻi e konisitēksi'
         },
         skills_hub: {
           label: 'Hubo naʻa',
-          hint: 'Rapu i naʻa',
+          hint: 'Rapu i naʻa'
         },
         approval: {
           label: 'Fanana',
-          hint: 'Fanana makamaka e aof automate',
+          hint: 'Fanana makamaka e aof automate'
         },
         mcp: {
           hint: 'Tōʻohi e naʻa MCP',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Generē tikula',
-          hint: 'Nā tikula o nā sesoni',
+          hint: 'Nā tikula o nā sesoni'
         },
         curator: {
           label: 'Kisitā',
-          hint: 'Nofikuliaga lopoʻo naʻa',
+          hint: 'Nofikuliaga lopoʻo naʻa'
         },
         vision: {
           label: 'lukin',
-          hint: 'sonpi sitelen',
-        },
+          hint: 'sonpi sitelen'
+        }
       },
       loading: 'Kama jo e nasin pi pali sitelen...',
       appliesDesc: 'Lon sinpin pi kama sin. Kepeken ilo kama jo pi sitelen pi pali sitelen tawa pana sin e toki wawa.',
@@ -572,12 +603,13 @@ export const to = defineLocale({
       providerDefault: '(wile pi pana)',
       fallbackAdd: 'pana sin pi pini',
       fallbackEmpty: 'sitelen pini ala — sitelen wile li kepeken, pakala la ante',
-      notInCatalog: "li lon ala pi kulupu ni pi pana sitelen — toki li ken tawa nasin pini",
+      notInCatalog: 'li lon ala pi kulupu ni pi pana sitelen — toki li ken tawa nasin pini'
     },
     providers: {
       connectAccount: 'Fakaʻaumui e aka',
       haveApiKey: 'E iai koe API key fakihei?',
-      intro: 'Toko mai faka kaufinga — ʻomi API key. OpenAmer e fakatokanga e toko mai ʻo e browser maʻa koe, hē tonu ʻi he app.',
+      intro:
+        'Toko mai faka kaufinga — ʻomi API key. OpenAmer e fakatokanga e toko mai ʻo e browser maʻa koe, hē tonu ʻi he app.',
       connected: 'Fakaʻaumui',
       collapse: 'Fakapoto',
       connectAnother: 'Fakaʻaumui e provider fakahehiku',
@@ -590,35 +622,40 @@ export const to = defineLocale({
       noKeysMatch: 'ʻOku ʻikai tau e nga provider ki ho rapu.',
       localEndpoint: {
         title: 'Endpoint lokaalí / fakafoʻokoi',
-        description: 'Faʻatokanga OpenAmer ki se endpoint e lava tonu ki OpenAI (Zyphra, vLLM, llama.cpp, Ollama, etc.).',
+        description:
+          'Faʻatokanga OpenAmer ki se endpoint e lava tonu ki OpenAI (Zyphra, vLLM, llama.cpp, Ollama, etc.).'
       },
       loading: 'Oku loading nga provider...',
       removeConfirm: provider => `weka e ${provider}?`,
       removeExternalGeneric: provider => `${provider} li lawa pi CLI pi ona — weka e ona tan ni`,
       removeKeyManaged: provider => `${provider} li kama sona tan ki API. weka e ona tan ki API`,
-      removeTerminalConfirm: (provider, command) => `weka ${provider}? ni li kepeken "${command}" lon ilo toki tawa weka e sona`,
+      removeTerminalConfirm: (provider, command) =>
+        `weka ${provider}? ni li kepeken "${command}" lon ilo toki tawa weka e sona`,
       removeTerminalRunning: provider => `kepeken weka pi ${provider} lon ilo toki…`,
       removedMessage: provider => `${provider} li weka`,
-      failedRemove: provider => `ken ala weka e ${provider}`,
+      failedRemove: provider => `ken ala weka e ${provider}`
     },
     sessions: {
       loading: 'Oku loading nga sesoni tākapa…',
       archivedTitle: 'Nga sesoni tākapa',
-      archivedIntro: 'Oku fufu e nga talanoa tākapa ki he sidebar, kae lava kei e nga mēsipi ʻo rātou. Ctrl/⌘-click e talanoa ki he sidebar kiʻi tākapa ʻa ia.',
+      archivedIntro:
+        'Oku fufu e nga talanoa tākapa ki he sidebar, kae lava kei e nga mēsipi ʻo rātou. Ctrl/⌘-click e talanoa ki he sidebar kiʻi tākapa ʻa ia.',
       emptyArchivedTitle: 'ʻOku ʻikai ha meʻa tākapa',
       emptyArchivedDesc: 'Tākapa e talanoa kiʻi fufu ʻa ia hē.',
       unarchive: 'Fakatākapa',
       deletePermanently: 'Taimisi maʻa',
       restored: 'Fakakaho',
       autoArchiveTitle: 'Tākapa makamaka e nga talanoa tūʻatāina',
-      autoArchiveDesc: 'Tākapa makamaka e nga talanoa ʻa e hiki ʻe koe ʻo e feʻaikake. ʻOku ʻikai tākapa maʻa e nga talanoa kī, pea ʻoku ʻikai taimisi ha meʻa — nga talanoa tākapa fakatokanga hē pe.',
+      autoArchiveDesc:
+        'Tākapa makamaka e nga talanoa ʻa e hiki ʻe koe ʻo e feʻaikake. ʻOku ʻikai tākapa maʻa e nga talanoa kī, pea ʻoku ʻikai taimisi ha meʻa — nga talanoa tākapa fakatokanga hē pe.',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `weka wan "${title}"? ni ken ala pini`,
       autoArchiveDaysLabel: 'pini tan',
       autoArchiveDaysUnit: 'suno pi wawa ala',
       autoArchiveFailed: 'ken ala ante e pini wile',
       defaultDirTitle: 'pokasi pali wile',
-      defaultDirDesc: 'kama sin openpi lon pokasi ni, kepeken ante la sina wan e ante. weka e ni tawa kepeken pokasi pi tomo sina',
+      defaultDirDesc:
+        'kama sin openpi lon pokasi ni, kepeken ante la sina wan e ante. weka e ni tawa kepeken pokasi pi tomo sina',
       defaultDirUpdated: 'pokasi pali wile li ante — openpi sin (Ctrl/⌘+N) tawa ni',
       defaultsTo: label => `wile li ${label}`,
       change: 'ante',
@@ -629,7 +666,7 @@ export const to = defineLocale({
       unarchiveFailed: 'weka pini pakala',
       deleteFailed: 'weka pakala',
       updateDirFailed: 'ken ala ante e pokasi wile',
-      clearDirFailed: 'ken ala weka e pokasi wile',
+      clearDirFailed: 'ken ala weka e pokasi wile'
     },
     closeSettings: 'Tāpuni e fakahoko',
     exportConfig: 'Fakalutu config',
@@ -640,44 +677,46 @@ export const to = defineLocale({
     resetFailed: 'Fakahoko ʻikai lelei',
     notifications: {
       title: 'Fakamatalanga',
-      intro: 'Fakamatalanga desktop native, vahe ʻi he toasta ʻi loto app. Ko eni ʻoku ʻi ʻene ʻafa ʻavakonisi — ʻoku mau ʻene fakahoko ʻa e komipiuta ʻia.',
+      intro:
+        'Fakamatalanga desktop native, vahe ʻi he toasta ʻi loto app. Ko eni ʻoku ʻi ʻene ʻafa ʻavakonisi — ʻoku mau ʻene fakahoko ʻa e komipiuta ʻia.',
       enableAll: 'Fakaʻatā ʻa e fakahaʻiloa',
       enableAllDesc: 'Siu māfimāfia kotoa. ʻOfi ʻa e meʻá ni ke fakalongolongo ʻa e fakahaʻiloa kotoa ʻi lalo.',
       focusedHint: 'ʻOku ʻā pē ʻa e fakatokanga ʻosi lolotonga ʻoku ʻi he tuʻa OpenAmer.',
       kinds: {
         approval: {
           label: 'ʻOku fie maʻu ha fakangofua',
-          description: 'ʻOku tatali ha fekau kia koe ke fakangofua pe fakafisi.',
+          description: 'ʻOku tatali ha fekau kia koe ke fakangofua pe fakafisi.'
         },
         input: {
           label: 'ʻOku fie maʻu ha fakahu',
-          description: 'Naʻe ʻeke ʻe OpenAmer ha fehuʻi pe ʻoku fie maʻu ha paʻasi pe meʻa fakapulipuli.',
+          description: 'Naʻe ʻeke ʻe OpenAmer ha fehuʻi pe ʻoku fie maʻu ha paʻasi pe meʻa fakapulipuli.'
         },
         turnDone: {
           label: 'ʻOku mateuteu ʻa e tali',
-          description: 'Kuo ʻosi ha tuʻunga lolotonga ʻa OpenAmer ʻi he tuʻa.',
+          description: 'Kuo ʻosi ha tuʻunga lolotonga ʻa OpenAmer ʻi he tuʻa.'
         },
         turnError: {
           label: 'Naʻe ʻikai lava ha tuʻunga',
-          description: 'Naʻe ʻosi ha tuʻunga ʻi ha fehalaaki.',
+          description: 'Naʻe ʻosi ha tuʻunga ʻi ha fehalaaki.'
         },
         backgroundDone: {
           label: 'Kuo ʻosi ʻa e ngāue ʻi he tuʻa',
-          description: 'Kuo ʻosi ha fekau tēminala ʻi he tuʻa.',
+          description: 'Kuo ʻosi ha fekau tēminala ʻi he tuʻa.'
         },
         credits: {
           label: 'Fakatokanga kuleiti',
-          description: 'ʻOku fakangata pe fakafoki ʻa e ʻekesi ki he kuleiti.',
-        },
+          description: 'ʻOku fakangata pe fakafoki ʻa e ʻekesi ki he kuleiti.'
+        }
       },
       test: 'ʻAve ha fakahaʻiloa sivi',
       testTitle: 'OpenAmer',
       testBody: 'ʻOku ngāue ʻa e fakahaʻiloa.',
-      testSent: 'Kuo ʻave ʻa e sivi. Kapau ʻoku ʻikai ha meʻa ʻe hā, vakai ki he ngaahi fakangofua fakahaʻiloa ʻo ho OS mo e Tokanga/Fakalongolongo.',
+      testSent:
+        'Kuo ʻave ʻa e sivi. Kapau ʻoku ʻikai ha meʻa ʻe hā, vakai ki he ngaahi fakangofua fakahaʻiloa ʻo ho OS mo e Tokanga/Fakalongolongo.',
       testUnsupported: 'ʻOku ʻikai poupou ʻa e sistemi ni ki he fakahaʻiloa fakanatula.',
       completionSoundTitle: 'Kalama Pini',
       completionSoundDesc: 'Kalama li kama lon tenpo pi pini pi wile jan. O kama jo e nasin wile. O lukin e ona ni.',
-      completionSoundPreview: 'Lukin Sinpin',
+      completionSoundPreview: 'Lukin Sinpin'
     },
     sections: {
       model: 'Nasin',
@@ -687,24 +726,24 @@ export const to = defineLocale({
       safety: 'Awasi',
       memory: 'Pilin & Tenpo',
       voice: 'Kalama',
-      advanced: 'Suli',
+      advanced: 'Suli'
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
     about: {
       heading: 'OpenAmer ki he Komipiuta',
       version: value => `Vesa ${value}`,
-      versionUnavailable: 'Vesa \'ikai \'i he \'ofa',
+      versionUnavailable: "Vesa 'ikai 'i he 'ofa",
       updates: 'Fakahou',
-      checkNow: 'Sivi \'i he taimi \'eni',
+      checkNow: "Sivi 'i he taimi 'eni",
       checking: 'Ku sivi…',
       seeWhatsNew: "Vai ko e me'a fou",
       updateNow: 'Kama jo sin lawa',
       releaseNotes: 'Sitelen sin',
-      onLatest: "Sina lon nasin sin.",
+      onLatest: 'Sina lon nasin sin.',
       installing: 'Kama jo sin li kama.',
-      cantUpdate: "Ni li ken ala kama jo sin tan insa.",
-      cantReach: "Mii li ken ala tawa tomo sona sin.",
+      cantUpdate: 'Ni li ken ala kama jo sin tan insa.',
+      cantReach: 'Mii li ken ala tawa tomo sona sin.',
       tapCheck: 'Poki "Lukin lawa" tawa lukin e kama jo sin.',
       updateReady: count => `Kama jo sin li lon (${count} ante${count === 1 ? '' : 's'} lon).`,
       lastChecked: age => `Lukin pini ${age}`,
@@ -716,23 +755,23 @@ export const to = defineLocale({
       justNow: 'tenpo ni la',
       minAgo: count => `${count} lili pini`,
       hoursAgo: count => `${count} tenpo pini`,
-      daysAgo: count => `${count} suno pini`,
+      daysAgo: count => `${count} suno pini`
     },
     envActions: {
       actionsFor: label => `Ngaue'aki mo ${label}`,
-      credentialActions: 'Ngaue\'aki fakamatala',
+      credentialActions: "Ngaue'aki fakamatala",
       manageInKeys: 'Fakahaʻa ki he API Keys',
       docs: 'Tohi',
       hideValue: 'Fakapuluʻi ha meʻa',
       revealValue: 'Fakahaʻa ha meʻa',
       replace: 'Fakapapau',
       set: 'Fakatu',
-      clear: 'Fakamaumau',
+      clear: 'Fakamaumau'
     },
     keys: {
       loading: 'Loading API keys and credentials...',
       failedLoad: 'API keys failed to load',
-      empty: 'Nothing configured in this category yet.',
+      empty: 'Nothing configured in this category yet.'
     },
     mcp: {
       loading: 'Loading MCP servers...',
@@ -784,7 +823,8 @@ export const to = defineLocale({
       catalogInstallFailed: name => `Pakala kama jo e ${name}`,
       catalogEnvPrompt: name => `${name} li wile e sona pi nasin pi pana sona`,
       catalogEnvRequired: 'Pana e ijo wile ale lawa pi kama jo.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} li open`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} li open`,
       statusConnecting: 'Kama jo…',
       statusNeedsAuth: 'Wile sona pi nasin pi pana sona',
       statusError: 'Pakala',
@@ -797,7 +837,7 @@ export const to = defineLocale({
       unsavedConnect: 'Ala awen — awen e mcp.json tawa kama jo.',
       enableTool: tool => `Open e ${tool}`,
       disableTool: tool => `Pini e ${tool}`,
-      noOutput: 'Ala ijo kama tan ni la.',
+      noOutput: 'Ala ijo kama tan ni la.'
     },
     toolsets: {
       loadingConfig: 'kama jo e nasin',
@@ -810,11 +850,11 @@ export const to = defineLocale({
       failedReveal: key => `Na'e 'ikai ke fakaha ${key}`,
       removeConfirm: key => `Hiki ${key} mai he .env?`,
       set: 'Fakatu',
-      notSet: '\'Ikai fakatu',
-      selectedTitle: 'Na\'e fili e feinga',
+      notSet: "'Ikai fakatu",
+      selectedTitle: "Na'e fili e feinga",
       selectedMessage: provider => `ʻOku moʻui ${provider}.`,
       failedSelect: provider => `Na'e 'ikai ke fili ${provider}`,
-      failedLoad: 'Na\'e \'ikai ke uluaki e fakatuʻunga kafa',
+      failedLoad: "Na'e 'ikai ke uluaki e fakatuʻunga kafa",
       noProviderOptions: 'ʻIkai ha fili feinga mo e kafa ni — fakamoʻui pea moʻui ke mau he fakatuʻunga ʻoku ke mau.',
       noProviders: 'ʻIkai ha feinga ʻoku fiemaʻu mo e kafa niʻi.',
       ready: 'Siʻitia',
@@ -822,17 +862,19 @@ export const to = defineLocale({
       needsSetup: 'Teu fakatuʻunga',
       openamerIncluded: 'ʻUnga mo e ʻapi OpenAmer — ʻuhi ki he OpenAmer Portal ke fakamoʻui.',
       openamerAuthNeededTitle: 'ʻUhi ki he OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `Na'e vahevahe ${provider} ʻia ʻikai ke fakamoʻui ke ʻuhi koe ki he OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `Na'e vahevahe ${provider} ʻia ʻikai ke fakamoʻui ke ʻuhi koe ki he OpenAmer Portal.`,
       openamerAuthSignIn: 'ʻUhi',
       openamerAuthDoneTitle: 'U ʻOpenAmer Portal',
       openamerAuthDoneMessage: 'ʻOku moʻui ʻeni ou ʻapi tuʻu hifo.',
       openamerAuthFailed: 'ʻIkai ke maluʻi e ʻuhi ki he OpenAmer Portal',
       noApiKeyRequired: 'ʻIkai ke lava e kilo API.',
-      postSetupHint: step => `Teu fai e vahevahe taha (${step}) e tuʻu hifo ni. Moʻui ʻi he mašini ni — lava ke mau ha miniti.`,
-      postSetupInstalledHint: 'Na\'e vahevahe. Fai pe \'oe fakatuʻunga pea ʻikai lelei ha meʻa.',
+      postSetupHint: step =>
+        `Teu fai e vahevahe taha (${step}) e tuʻu hifo ni. Moʻui ʻi he mašini ni — lava ke mau ha miniti.`,
+      postSetupInstalledHint: "Na'e vahevahe. Fai pe 'oe fakatuʻunga pea ʻikai lelei ha meʻa.",
       postSetupRun: 'Fai fakatuʻunga',
       postSetupRerun: 'Fai pe fakatuʻunga',
-      postSetupInstalled: 'Na\'e vahevahe',
+      postSetupInstalled: "Na'e vahevahe",
       postSetupRunning: 'ʻOku fai e vahevahe…',
       postSetupStarting: 'ʻOku kamata…',
       postSetupCompleteTitle: 'Maluʻi e fakatuʻunga',
@@ -842,12 +884,13 @@ export const to = defineLocale({
       postSetupFailed: step => `Na'e 'ikai ke fai e fakatuʻunga ${step}`,
       webSearchActive: backend => `Sivi: ${backend}`,
       webExtractActive: backend => `Hiki: ${backend}`,
-      webCapabilityUnset: '\'ikai fakatu',
+      webCapabilityUnset: "'ikai fakatu",
       webUseForSearch: 'Faaohi ki he Sivi',
       webUseForExtract: 'Faaohi ki he Hiki',
       webUsedForSearch: 'Tuʻu hifo sivi',
       webUsedForExtract: 'Toʻo ʻa e konga ngāue mui',
-      webCapabilitySelectedMessage: (provider, capability) => `ʻOku tokangaʻi ʻe ${provider} ʻa e ${capability} ʻi he uepi he taimí ni.`,
+      webCapabilitySelectedMessage: (provider, capability) =>
+        `ʻOku tokangaʻi ʻe ${provider} ʻa e ${capability} ʻi he uepi he taimí ni.`,
       failedSelectCapability: provider => `ʻIkai lava ke fokotuʻu ʻa e ${provider}`,
       loadingModels: 'ʻOku uta ʻa e lisi ʻo e ngaahi sīpinga...',
       modelSectionTitle: 'Sīpinga',
@@ -867,11 +910,13 @@ export const to = defineLocale({
         unavailable: 'ʻIkai maʻu',
         inUse: 'ʻOku ngāueʻaki',
         selectedTitle: 'Kuo fili e polokalama ʻi muí',
-        selectedMessage: backend => `ʻOku fakahoko he taimí ni e ngaahi fekau ʻo e tauʻangá ʻo fou ʻi he ${backend}. ʻOku kaunga ki he ngaahi taimi ngāue foʻoú.`,
+        selectedMessage: backend =>
+          `ʻOku fakahoko he taimí ni e ngaahi fekau ʻo e tauʻangá ʻo fou ʻi he ${backend}. ʻOku kaunga ki he ngaahi taimi ngāue foʻoú.`,
         failedSelect: backend => `ʻIkai lava ʻo fili e ${backend}`,
-        needsSetupHint: 'Te ke lava ʻo fili e polokalama ʻi mui ko ʻení he taimí ni — he ʻikai ngāue e ngaahi fekaú kae ʻoua kuo kakato hono fokotuʻutuʻú.',
-      },
-    },
+        needsSetupHint:
+          'Te ke lava ʻo fili e polokalama ʻi mui ko ʻení he taimí ni — he ʻikai ngāue e ngaahi fekaú kae ʻoua kuo kakato hono fokotuʻutuʻú.'
+      }
+    }
   },
   starmap: {
     importMap: 'Importi atu ipe fakamanatu',
@@ -893,12 +938,13 @@ export const to = defineLocale({
     emptyTitle: 'ʻOku teʻeki ako ha meʻa',
     emptyDesc: 'ʻI he langa ʻe OpenAmer ha ngaahi taukei mo e manatu ki hoʻo ngāue, te nau hā heni.',
     share: 'Vahevahe ʻa e mape',
-    shareHint: 'Hiki tatau ʻa e kouti ke vahevahe ʻa e mape ni, pe fakapipiki ha kouti ke uta. ʻOku kau ai pē ʻa e fokotuʻutuʻu, kae ʻikai ko e fakamatala ʻo hoʻo manatu pe taukei.',
+    shareHint:
+      'Hiki tatau ʻa e kouti ke vahevahe ʻa e mape ni, pe fakapipiki ha kouti ke uta. ʻOku kau ai pē ʻa e fokotuʻutuʻu, kae ʻikai ko e fakamatala ʻo hoʻo manatu pe taukei.',
     shareTitle: 'Fakahū / ʻave ki tuʻa ʻa e mape',
     sharePlaceholder: 'Fakapipiki ha kouti mape…',
     copy: 'Hiki tatau ʻa e kouti mape',
     copied: 'Kuo hiki tatau!',
-    importSuccess: nodes => `Kuo uta ha mape ʻoku ʻi ai ʻa e ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Kuo uta ha mape ʻoku ʻi ai ʻa e ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Katati nga ʻagent',
@@ -928,7 +974,7 @@ export const to = defineLocale({
     ageDays: days => `ʻAho ʻe ${days} kuo hili`,
     durationSeconds: seconds => `Sekoni ʻe ${seconds}`,
     durationMinutes: (minutes, seconds) => `Miniti ʻe ${minutes} sekoni ʻe ${seconds}`,
-    tokens: value => `Tōkeni ʻe ${value}`,
+    tokens: value => `Tōkeni ʻe ${value}`
   },
   commandCenter: {
     close: 'Katati e Pokopu Komodo',
@@ -957,55 +1003,55 @@ export const to = defineLocale({
       generatedTag: 'Fakatupu',
       adoptFailed: 'ʻOla ʻe ʻaʻi ki te adopti e māmā na.',
       toggleFailed: 'ʻIkai lava ʻo fakamoʻui pe tāmateʻi ʻa e monumanu tauhi.',
-      noneAvailable: 'ʻOku ʻikai ha monumanu tauhi — fili ha taha ʻi lalo ke fokotuʻu.',
+      noneAvailable: 'ʻOku ʻikai ha monumanu tauhi — fili ha taha ʻi lalo ke fokotuʻu.'
     },
     sections: {
       maintenance: 'Tākanga',
       sessions: 'Ngā sesione',
       system: 'Sisitema',
-      usage: 'Fakamahi',
+      usage: 'Fakamahi'
     },
     sectionDescriptions: {
       maintenance: 'Makohilo, teu faki, kura, mo data memorii',
       sessions: 'Uta ki atu fokanga sesione',
       system: 'Tulaga, nga log, mo nga hokoʻo sisitema',
-      usage: 'Faʻaktiviti tokoni, siul, mo ʻōgana i lokoʻa e taimi',
+      usage: 'Faʻaktiviti tokoni, siul, mo ʻōgana i lokoʻa e taimi'
     },
     nav: {
       newChat: {
         title: 'Sesione foʻou',
-        detail: 'Tohi sesione fou',
+        detail: 'Tohi sesione fou'
       },
       settings: {
         title: 'Ngā tikanga',
-        detail: 'Tibuno OpenAmer desktop',
+        detail: 'Tibuno OpenAmer desktop'
       },
       skills: {
         title: 'Ngā ʻamanatanga',
-        detail: 'Ngā ʻōgana, nga meʻa fakaʻaʻoga, mo ngā serve MCP',
+        detail: 'Ngā ʻōgana, nga meʻa fakaʻaʻoga, mo ngā serve MCP'
       },
       messaging: {
         title: 'Mēsiji',
-        detail: 'Teboka Telegram, Slack, Discord, mo kehe atu',
+        detail: 'Teboka Telegram, Slack, Discord, mo kehe atu'
       },
       artifacts: {
         title: 'Ngā kāinga',
-        detail: 'Fakaʻawara i nga meʻa hoko',
-      },
+        detail: 'Fakaʻawara i nga meʻa hoko'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Pane sesione',
-        detail: 'Uta, pinia, mo fokanga sesione',
+        detail: 'Uta, pinia, mo fokanga sesione'
       },
       system: {
         title: 'Pane sisitema',
-        detail: 'Tulaga gateway, nga log, toe hoko/fakafoʻou',
+        detail: 'Tulaga gateway, nga log, toe hoko/fakafoʻou'
       },
       usage: {
         title: 'Pane fakamahi',
-        detail: 'Faʻaktiviti tokoni, siul, mo ʻōgana',
-      },
+        detail: 'Faʻaktiviti tokoni, siul, mo ʻōgana'
+      }
     },
     providerNavigate: 'Taumuʻa',
     providerSessions: 'Ngā sesione',
@@ -1025,43 +1071,44 @@ export const to = defineLocale({
     actionRunning: 'e rere',
     actionDone: 'Ua oti',
     actionFailed: 'Kininuhou',
-    actionStartedWaiting: 'Kataki \'i, ke talitali ki he status...',
+    actionStartedWaiting: "Kataki 'i, ke talitali ki he status...",
     loadingStatus: 'E loading status...',
     recentLogs: 'Logs talu ai',
-    noLogs: 'Koe \'aki logs.',
+    noLogs: "Koe 'aki logs.",
     statSessions: 'Sesioni',
     statApiCalls: 'Calls API',
     statTokens: 'Tokens ki mua/loto',
     statCost: 'Kos tokalahi',
     loadingUsage: 'E loading usage...',
     retry: 'Folo mai',
-    dailyTokens: 'Tokens \'a \'aho',
+    dailyTokens: "Tokens 'a 'aho",
     input: 'Ki mua',
     output: 'Ki tua',
-    noDailyActivity: 'Koe \'aki activity \'a \'aho.',
+    noDailyActivity: "Koe 'aki activity 'a 'aho.",
     topModels: 'Models sili',
-    noModelUsage: 'Koe \'aki faka\'uses models.',
+    noModelUsage: "Koe 'aki faka'uses models.",
     topSkills: 'Skills sili',
-    noSkillActivity: 'Koe \'aki faka\'uses skills.',
+    noSkillActivity: "Koe 'aki faka'uses skills.",
     logFile: 'Failu log',
     logSearchPlaceholder: 'Filter lines log...',
     maintenance: {
       runOps: 'Fakatau fakahoko',
       doctor: 'Fakahoko doctor',
       doctorDesc: 'Fakatatau ki he install, config mo providers',
-      securityAudit: 'Faka\'ohungia',
+      securityAudit: "Faka'ohungia",
       securityAuditDesc: 'Skani config mo skills ki he settings danger',
       backup: 'Fakatupu backup',
       backupDesc: 'Fakapulu config, memories, skills mo sesioni',
       debugShare: 'Share fakamohi',
-      debugShareDesc: 'Upload atu \'o report mo logs \'o hoki \'i mea tofi, kae \'o fa\'ohofia \'a nga link (e fa\'auto-delete \'i he 6h)',
-      debugShareRunning: 'E upload atu \'o report fakamohi...',
+      debugShareDesc:
+        "Upload atu 'o report mo logs 'o hoki 'i mea tofi, kae 'o fa'ohofia 'a nga link (e fa'auto-delete 'i he 6h)",
+      debugShareRunning: "E upload atu 'o report fakamohi...",
       debugShareLinks: 'Nanga fakahoko',
-      debugShareFailed: 'Kininuhou \'o nanga fakamohi',
+      debugShareFailed: "Kininuhou 'o nanga fakamohi",
       copyLink: 'Tohi atu he link',
       linkCopied: 'E tohi atu he link',
       curator: 'Kuratora skill',
-      curatorDesc: 'Fakatau\'otonga \'i \'otu e faka\'anga skills kuo fakatukinga \'e agent',
+      curatorDesc: "Fakatau'otonga 'i 'otu e faka'anga skills kuo fakatukinga 'e agent",
       curatorPaused: 'Tūmatani',
       curatorActive: 'Hoā',
       curatorDisabled: 'Kiketo',
@@ -1087,7 +1134,7 @@ export const to = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     startInBranch: branch => `Talanoa foʻou ʻi ${branch}`,
     generatePet: {
@@ -1112,12 +1159,14 @@ export const to = defineLocale({
       slowProviderHint: 'ʻE lava ke lau miniti eni',
       remix: 'Toe faʻu',
       remixConfirmTitle: 'Toe faʻu ʻa e fōtunga ko eni?',
-      remixConfirmBody: 'ʻE faʻu ha ngaahi sipinga fakaangaanga foʻou ʻo kamata mei he sipinga ko eni. ʻE lava ke lau miniti.',
+      remixConfirmBody:
+        'ʻE faʻu ha ngaahi sipinga fakaangaanga foʻou ʻo kamata mei he sipinga ko eni. ʻE lava ke lau miniti.',
       genericError: 'Naʻe ʻikai lava ʻo faʻu — toe feinga pe fili ha fokotuʻu.',
       referenceImageTooLarge: 'ʻOku fuʻu lahi ʻa e ʻīmisi fakataʻitaʻí. Ngāueʻaki ha ʻīmisi siʻi hifo he 16 MB.',
-      referenceImageInvalid: 'Naʻe ʻikai lava ʻo lau ʻa e ʻīmisi fakataʻitaʻi ko iá. ʻAhiʻahi ha PNG, JPG, WebP, pe GIF.',
+      referenceImageInvalid:
+        'Naʻe ʻikai lava ʻo lau ʻa e ʻīmisi fakataʻitaʻi ko iá. ʻAhiʻahi ha PNG, JPG, WebP, pe GIF.',
       adopt: 'Ohi',
-      startOver: 'Toe kamata',
+      startOver: 'Toe kamata'
     },
     installTheme: {
       title: 'Fokotuʻu ha fōtunga…',
@@ -1129,7 +1178,7 @@ export const to = defineLocale({
       install: 'Fokotuʻu',
       installing: 'ʻOku fokotuʻu...',
       installed: 'Kuo fokotuʻu',
-      installs: count => `${count} ngaahi fokotuʻu`,
+      installs: count => `${count} ngaahi fokotuʻu`
     },
     settingsFields: 'Ngaahi malaʻe ʻo e fokotuʻutuʻu',
     mcpServers: 'Ngaahi sēva MCP',
@@ -1139,7 +1188,7 @@ export const to = defineLocale({
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
     actions: count => `${count} actions`,
-    logLevel: 'Level',
+    logLevel: 'Level'
   },
   messaging: {
     search: 'Tali ʻo e feohitaki...',
@@ -1154,7 +1203,7 @@ export const to = defineLocale({
       not_configured: 'Mandatō ʻo teute',
       pending_restart: 'Mandatō ʻo toe fakahoko',
       retrying: 'ʻO toe fai',
-      startup_failed: 'ʻIkea hoko ʻo e fakahoko',
+      startup_failed: 'ʻIkea hoko ʻo e fakahoko'
     },
     unknown: 'ʻI ʻo e',
     hintPendingRestart: 'Toe fakahoko ʻo e tautāvara feohitaki mei he tuʻu fokamōhio kia fakatahi ʻe he fetokanga ni.',
@@ -1193,127 +1242,126 @@ export const to = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Bot token',
         help: 'Create a bot with @BotFather, then paste the token it gives you.',
-        placeholder: 'Paste Telegram bot token',
+        placeholder: 'Paste Telegram bot token'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Allowed Telegram user IDs',
-        help: 'Recommended. Comma-separated numeric IDs from @userinfobot. Without this, anyone can DM your bot.',
+        help: 'Recommended. Comma-separated numeric IDs from @userinfobot. Without this, anyone can DM your bot.'
       },
       TELEGRAM_PROXY: {
         label: 'Proxy URL',
-        help: 'Only needed on networks where Telegram is blocked.',
+        help: 'Only needed on networks where Telegram is blocked.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Bot token',
-        help: 'Create an application in the Discord Developer Portal, add a bot, then paste its token.',
+        help: 'Create an application in the Discord Developer Portal, add a bot, then paste its token.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Allowed Discord user IDs',
-        help: 'Recommended. Comma-separated Discord user IDs.',
+        help: 'Recommended. Comma-separated Discord user IDs.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Reply style',
-        help: 'first, all, or off.',
+        help: 'first, all, or off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Allow all Discord users',
-        help: 'Development only. When true, anyone can DM the bot without an allowlist.',
+        help: 'Development only. When true, anyone can DM the bot without an allowlist.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Home channel ID',
-        help: 'Channel where the bot sends proactive messages (cron output, reminders).',
+        help: 'Channel where the bot sends proactive messages (cron output, reminders).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Home channel name',
-        help: 'Display name for the home channel in logs and status output.',
+        help: 'Display name for the home channel in logs and status output.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Allow all iMessage users',
-        help: 'When true, skip the BlueBubbles allowlist.',
+        help: 'When true, skip the BlueBubbles allowlist.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Allow all Mattermost users',
+        label: 'Allow all Mattermost users'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Home channel',
+        label: 'Home channel'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Allow all QQ users',
+        label: 'Allow all QQ users'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ home channel',
-        help: 'Default channel or group for cron delivery.',
+        help: 'Default channel or group for cron delivery.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ home channel name',
+        label: 'QQ home channel name'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack bot token',
         help: 'Use the bot token from OAuth & Permissions after installing your Slack app.',
-        placeholder: 'Paste Slack bot token',
+        placeholder: 'Paste Slack bot token'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack app token',
         help: 'Use the app-level token required for Socket Mode.',
-        placeholder: 'Paste Slack app token',
+        placeholder: 'Paste Slack app token'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Allowed Slack user IDs',
-        help: 'Recommended. Comma-separated Slack user IDs.',
+        help: 'Recommended. Comma-separated Slack user IDs.'
       },
       MATTERMOST_URL: {
         label: 'Server URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Bot token',
+        label: 'Bot token'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Allowed user IDs',
-        help: 'Recommended. Comma-separated Mattermost user IDs.',
+        help: 'Recommended. Comma-separated Mattermost user IDs.'
       },
       MATRIX_HOMESERVER: {
         label: 'Homeserver URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Access token',
+        label: 'Access token'
       },
       MATRIX_USER_ID: {
         label: 'Bot user ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Allowed Matrix user IDs',
-        help: 'Recommended. Comma-separated user IDs in @user:server format.',
+        help: 'Recommended. Comma-separated user IDs in @user:server format.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal bridge URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL of a running signal-cli REST bridge.',
+        help: 'URL of a running signal-cli REST bridge.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Phone number',
-        help: 'The number registered with your signal-cli bridge.',
+        help: 'The number registered with your signal-cli bridge.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Allowed Signal users',
-        help: 'Recommended. Comma-separated Signal identifiers.',
+        help: 'Recommended. Comma-separated Signal identifiers.'
       },
       WHATSAPP_ENABLED: {
         label: 'Enable WhatsApp bridge',
-        help: 'Set automatically by the toggle below. Leave alone unless you know you need it.',
+        help: 'Set automatically by the toggle below. Leave alone unless you know you need it.'
       },
       WHATSAPP_MODE: {
-        label: 'Bridge mode',
+        label: 'Bridge mode'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Allowed WhatsApp users',
-        help: 'Recommended. Comma-separated phone numbers or WhatsApp IDs.',
-      },
+        help: 'Recommended. Comma-separated phone numbers or WhatsApp IDs.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     deliverOptions: {
@@ -1322,7 +1370,7 @@ export const to = defineLocale({
       log: 'Log',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     search: 'Search webhooks...',
     loading: 'Loading webhooks...',
@@ -1331,7 +1379,8 @@ export const to = defineLocale({
     hint: 'Subscription changes hot-reload once the receiver is running. Disabled subscriptions reject incoming events.',
     empty: 'No webhook subscriptions yet.',
     disabledTitle: 'Webhook receiver disabled',
-    disabledBody: 'Webhooks are their own gateway platform. Enable them here to accept incoming HTTP events; chat channels are only needed when a subscription delivers to Telegram, Discord, Slack, or another channel.',
+    disabledBody:
+      'Webhooks are their own gateway platform. Enable them here to accept incoming HTTP events; chat channels are only needed when a subscription delivers to Telegram, Discord, Slack, or another channel.',
     enable: 'Enable webhooks',
     enabling: 'Enabling...',
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -1377,7 +1426,7 @@ export const to = defineLocale({
     creating: 'Creating...',
     created: 'Created',
     createFailed: (detail: string) => `Failed to create: ${detail}`,
-    copy: 'Copy',
+    copy: 'Copy'
   },
   profiles: {
     close: 'Katakoi nga profili',
@@ -1455,7 +1504,7 @@ Leave blank to keep the ${mode} default.`,
     failedLoadSoul: 'Failed to load SOUL.md',
     failedSaveSoul: 'Failed to save SOUL.md',
     failedCreate: 'Failed to create profile',
-    failedRename: 'Failed to rename profile',
+    failedRename: 'Failed to rename profile'
   },
   cron: {
     promptRequired: 'E fai ʻe prompt.',
@@ -1466,7 +1515,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Lohi ʻe cron',
     tabs: {
       jobs: 'Ngā job',
-      blueprints: 'Ngā blueprint',
+      blueprints: 'Ngā blueprint'
     },
     blueprints: {
       tab: 'Ngā blueprint',
@@ -1480,7 +1529,7 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Ke loloi ʻe ngā blueprint...',
       failedLoad: 'Hiki ʻe ngā blueprint',
       emptyTitle: 'Kā ʻe ha blueprint',
-      emptyDesc: 'Kā ʻe ha blueprint automation e fai ana ki muʻa backend.',
+      emptyDesc: 'Kā ʻe ha blueprint automation e fai ana ki muʻa backend.'
     },
     close: 'Close cron',
     title: 'Scheduled jobs',
@@ -1494,14 +1543,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'paused',
       disabled: 'disabled',
       error: 'error',
-      completed: 'completed',
+      completed: 'completed'
     },
     deliveryLabels: {
       local: 'This desktop',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Email',
+      email: 'Email'
     },
     scheduleLabels: {
       daily: 'Daily',
@@ -1510,7 +1559,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Monthly',
       hourly: 'Hourly',
       'every-15-minutes': 'Every 15 minutes',
-      custom: 'Custom',
+      custom: 'Custom'
     },
     scheduleHints: {
       daily: 'Every day at 9:00 AM',
@@ -1519,7 +1568,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'The first day of each month at 9:00 AM',
       hourly: 'At the top of every hour',
       'every-15-minutes': 'Every 15 minutes',
-      custom: 'Cron syntax or natural language',
+      custom: 'Cron syntax or natural language'
     },
     days: {
       '0': 'Sunday',
@@ -1529,7 +1578,7 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Thursday',
       '5': 'Friday',
       '6': 'Saturday',
-      '7': 'Sunday',
+      '7': 'Sunday'
     },
     dayFallback: value => `day ${value}`,
     everyDayAt: time => `Every day at ${time}`,
@@ -1539,7 +1588,8 @@ Leave blank to keep the ${mode} default.`,
     topOfHour: 'At the top of every hour',
     everyHourAt: minute => `Every hour at :${minute}`,
     newCron: 'New cron',
-    emptyDescNew: 'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
+    emptyDescNew:
+      'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
     emptyDescSearch: 'Try a broader search query.',
     emptyTitleNew: 'No scheduled jobs yet',
     emptyTitleSearch: 'No matches',
@@ -1589,7 +1639,7 @@ Leave blank to keep the ${mode} default.`,
     customScheduleLabel: 'Custom schedule',
     customPlaceholder: '0 9 * * * or weekdays at 9am',
     customHint: 'Cron expression, or phrases like "every hour" or "weekdays at 9am".',
-    optional: 'Optional',
+    optional: 'Optional'
   },
   artifacts: {
     search: 'Sērisi ʻe ngā artifact...',
@@ -1623,15 +1673,17 @@ Leave blank to keep the ${mode} default.`,
     kindLink: 'link',
     chat: 'Chat',
     copyUrl: 'Copy URL',
-    copyPath: 'Copy path',
+    copyPath: 'Copy path'
   },
   sidebar: {
     projects: {
-      noBranches: 'E\'ioha kau faka\'ohoa hoko \'i',
-      removeWorktree: 'Tō e tofi faka\'ohoa',
-      removeWorktreeFailed: 'Mahitani \'o tō e tofi faka\'ohoa (ngaahi \'i koomiti?)',
-      removeWorktreeConfirm: 'Tō e mai \'i git (hoko \'o e tāufa\'āfutau \'o e tofi faka\'ohoa; e nofo \'i e faka\'ohoa), pe \'o kapo \'a e lane mai \'i e tālikepo pe ka tū noho e tofi faka\'ohoa \'i disk.',
-      removeWorktreeDirty: 'E \'i commit \'i e tofi faka\'ohoa ni. Force-tō ia (hoko \'o e ngaahi \'i commit), pe \'o kapo \'a e lane fakatokanga\'i ka tū noho ia \'i disk.',
+      noBranches: "E'ioha kau faka'ohoa hoko 'i",
+      removeWorktree: "Tō e tofi faka'ohoa",
+      removeWorktreeFailed: "Mahitani 'o tō e tofi faka'ohoa (ngaahi 'i koomiti?)",
+      removeWorktreeConfirm:
+        "Tō e mai 'i git (hoko 'o e tāufa'āfutau 'o e tofi faka'ohoa; e nofo 'i e faka'ohoa), pe 'o kapo 'a e lane mai 'i e tālikepo pe ka tū noho e tofi faka'ohoa 'i disk.",
+      removeWorktreeDirty:
+        "E 'i commit 'i e tofi faka'ohoa ni. Force-tō ia (hoko 'o e ngaahi 'i commit), pe 'o kapo 'a e lane fakatokanga'i ka tū noho ia 'i disk.",
       forceRemove: 'Force-tō',
       back: 'Kau pōhuliha kotoa',
       sectionLabel: 'Projects',
@@ -1663,7 +1715,8 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'Copy path',
       removeFromSidebar: 'Hide from sidebar',
       createFailed: 'Could not create project',
-      staleBackend: 'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
+      staleBackend:
+        'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
       deleteConfirm: 'This removes the saved project from OpenAmer. Files, git repos, and worktrees stay untouched.',
       startWork: 'New worktree',
       newWorktreeTitle: 'New worktree',
@@ -1684,7 +1737,7 @@ Leave blank to keep the ${mode} default.`,
       branchesLoading: 'Loading branches…',
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
-      toggle: label => `Toggle ${label} sessions`,
+      toggle: label => `Toggle ${label} sessions`
     },
     loading: 'Kei uta…',
     loadMore: 'Etoa atu',
@@ -1693,25 +1746,25 @@ Leave blank to keep the ${mode} default.`,
       unpin: 'Wehe',
       copyId: 'Tuatua e ID',
       export: 'Eksport',
-      branchFrom: 'Faka\'ohoa',
-      rename: 'Faka\'hinga',
+      branchFrom: "Faka'ohoa",
+      rename: "Faka'hinga",
       archive: 'Takitala',
       newWindow: 'Fale hou',
       hideTabBar: 'Laka e laina tab',
-      openInNewTab: 'Open ia \'i tab hou',
-      openInSplit: 'Open ia \'i split',
-      copyIdFailed: 'Mahitani \'o tuatua e ID faka\'session',
-      sessionActions: 'Nga mahi faka\'session',
+      openInNewTab: "Open ia 'i tab hou",
+      openInSplit: "Open ia 'i split",
+      copyIdFailed: "Mahitani 'o tuatua e ID faka'session",
+      sessionActions: "Nga mahi faka'session",
       sessionRunning: 'Kei rere e session',
       needsInput: 'E tono ki e ho input',
       waitingForAnswer: 'Kei tau fakatau e ho talosiga',
-      finishedUnread: 'Utau — \'i ta\'e \'a lau',
+      finishedUnread: "Utau — 'i ta'e 'a lau",
       backgroundRunning: 'Kei rere mahi tau lalo',
       renamed: 'Utau hoki',
-      renameFailed: 'Hingo \'e faka\'hinga',
-      renameTitle: 'Faka\'hinga e session',
-      renameDesc: 'Faka\'oa e faka\'标题 memorable faka\'chat ni. Tū noho \'i \'a e mea \'i \'e hoki e faka\'hinga.',
-      untitledPlaceholder: 'Session ta\'e hinga',
+      renameFailed: "Hingo 'e faka'hinga",
+      renameTitle: "Faka'hinga e session",
+      renameDesc: "Faka'oa e faka'标题 memorable faka'chat ni. Tū noho 'i 'a e mea 'i 'e hoki e faka'hinga.",
+      untitledPlaceholder: "Session ta'e hinga",
       ageNow: 'ko',
       ageDay: 'p',
       actionsFor: title => `Actions for ${title}`,
@@ -1719,20 +1772,20 @@ Leave blank to keep the ${mode} default.`,
       ownedByProfile: profile => `Profile: ${profile}`,
       untitledChat: id => `Chat ${id}`,
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
-      today: 'Kuo \'ai he pongituku',
-      yesterday: 'Ma \'anehe',
-      thisWeek: 'Kuo \'ai he pāsiva ni',
-      lastWeek: 'Pāsiva \'o mua',
-      thisMonth: 'Earlier this month',
+      today: "Kuo 'ai he pongituku",
+      yesterday: "Ma 'anehe",
+      thisWeek: "Kuo 'ai he pāsiva ni",
+      lastWeek: "Pāsiva 'o mua",
+      thisMonth: 'Earlier this month'
     },
     nav: {
       'new-session': 'New session',
       skills: 'Capabilities',
       messaging: 'Messaging',
-      artifacts: 'Artifacts',
+      artifacts: 'Artifacts'
     },
     searchAria: 'Search sessions',
     searchPlaceholder: 'Search sessions…',
@@ -1756,7 +1809,7 @@ Leave blank to keep the ${mode} default.`,
     noSessions: 'No sessions yet',
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
-    loadCount: step => `Load ${step} more`,
+    loadCount: step => `Load ${step} more`
   },
   composer: {
     hotkeyDescs: {
@@ -1767,7 +1820,7 @@ Leave blank to keep the ${mode} default.`,
       'keybinds.openPanel': 'Ngā fakafaʻahina keyboard koto',
       'composer.cancel': 'Katopō popover · fakaʻisua run',
       'composer.history': 'Hiki popover / history',
-      'composer.mention': 'reference files, folders, urls, git',
+      'composer.mention': 'reference files, folders, urls, git'
     },
     attachUrlTitle: 'Fakatānaʻi he URL',
     attachUrlDesc: 'OpenAmer ka retrieve e peesi pea ka hoko ia ki he context o ena huringa.',
@@ -1813,7 +1866,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -1822,7 +1875,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     startVoice: 'Start voice conversation',
     queueMessage: 'Queue message',
@@ -1858,7 +1911,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'resume a prior session',
       '/details': 'control transcript detail level',
       '/copy': 'copy selection or last assistant message',
-      '/quit': 'exit openamer',
+      '/quit': 'exit openamer'
     },
     queued: count => `${count} Queued`,
     queuedPaused: count => `${count} Queued — paused`,
@@ -1877,19 +1930,19 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'Code review',
         description: 'Audit the current change for regressions, dropped edge cases, and missing tests.',
-        text: 'Please review this for bugs, regressions, and missing tests.',
+        text: 'Please review this for bugs, regressions, and missing tests.'
       },
       implementationPlan: {
         label: 'Implementation plan',
         description: 'Outline an approach before touching code so the diff stays focused.',
-        text: 'Please make a concise implementation plan before changing code.',
+        text: 'Please make a concise implementation plan before changing code.'
       },
       explainThis: {
         label: 'Explain this',
         description: 'Walk through how the selected code works and link to the key files.',
-        text: 'Please explain how this works and point me to the key files.',
-      },
-    },
+        text: 'Please explain how this works and point me to the key files.'
+      }
+    }
   },
   shell: {
     statusbar: {
@@ -1924,19 +1977,21 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'Ngā faʻatatu i ngākau fakatokanga',
           system_prompt: 'Fakamotuʻo sistēm',
           tool_definitions: 'Ngā faʻatatu i ngā taputapu',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'ʻOku ʻaʻā pe context',
         loading: 'Ke uta i ngā makafi…',
         title: 'Fakamahi Context',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Tau i ngā makafi o fakamahi context',
       session: 'Vāhā',
       runtimeSessionElapsed: 'Vāhā runtime fakaʻotua',
-      yoloOn: 'YOLO ʻo ʻena — ʻOku fakaauto-enaʻe ʻo makatupu ʻo tuʻutuli. Laka ʻo ia ʻo mate. Shift+click e fetokaki ʻo ia ʻo fakafonu.',
-      yoloOff: 'YOLO ʻo mate — Laka ʻo ia ʻo fakaauto-enaʻe ʻo makatupu ʻo tuʻutuli. Shift+click e fetokaki ʻo ia ʻo fakafonu.',
+      yoloOn:
+        'YOLO ʻo ʻena — ʻOku fakaauto-enaʻe ʻo makatupu ʻo tuʻutuli. Laka ʻo ia ʻo mate. Shift+click e fetokaki ʻo ia ʻo fakafonu.',
+      yoloOff:
+        'YOLO ʻo mate — Laka ʻo ia ʻo fakaauto-enaʻe ʻo makatupu ʻo tuʻutuli. Shift+click e fetokaki ʻo ia ʻo fakafonu.',
       modelNone: 'ʻO hako tā',
       noModel: 'Tafā mōdeli',
       switchModel: 'Fakafoʻou e mōdeli',
@@ -1965,7 +2020,7 @@ Leave blank to keep the ${mode} default.`,
       running: count => `${count} running`,
       cron: 'Cron',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
     },
     windowControls: 'Window controls',
     paneControls: 'Pane controls',
@@ -1975,7 +2030,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'No models found',
       editModels: 'Edit Models…',
       refreshModels: 'Refresh Models',
-      fast: 'Fast',
+      fast: 'Fast'
     },
     modelOptions: {
       noOptions: 'No options for this model',
@@ -1991,7 +2046,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'Max',
       ultra: 'Ultra',
       updateFailed: 'Model option update failed',
-      fastFailed: 'Fast mode update failed',
+      fastFailed: 'Fast mode update failed'
     },
     gatewayMenu: {
       gateway: 'Gateway',
@@ -2006,7 +2061,7 @@ Leave blank to keep the ${mode} default.`,
       connection: label => `Connection: ${label}`,
       recentActivity: 'Recent activity',
       viewAllLogs: 'View all logs →',
-      messagingPlatforms: 'Messaging platforms',
+      messagingPlatforms: 'Messaging platforms'
     },
     approvalMode: {
       title: 'Approval mode',
@@ -2016,8 +2071,8 @@ Leave blank to keep the ${mode} default.`,
       smart: 'Smart',
       smartDescription: 'Automatically assess actions and ask when needed',
       off: 'Off',
-      offDescription: 'Run without approval prompts',
-    },
+      offDescription: 'Run without approval prompts'
+    }
   },
   rightSidebar: {
     aria: 'Sidebara toʻo ʻi',
@@ -2025,21 +2080,21 @@ Leave blank to keep the ${mode} default.`,
     files: 'Sistema fērili',
     terminal: 'Termina',
     noFolderSelected: 'ʻOku ʻikai filifiliga fōlō',
-    changeCwdTitle: 'Faka\'alteranga e direktori ngahau',
+    changeCwdTitle: "Faka'alteranga e direktori ngahau",
     remotePickerTitle: 'Filifili fōlō ʻa ʻo ha backend',
-    remotePickerDescription: 'Faka\'ohia ʻo e fōlō ʻi he backend e fakapiki.',
+    remotePickerDescription: "Faka'ohia ʻo e fōlō ʻi he backend e fakapiki.",
     remotePickerSelect: 'Filifili fōlō',
     openFolder: 'Tatalo fōlō',
     refreshTree: 'Fakafoʻou e fōlō',
     collapseAll: 'Fakangutūnga fōlō koto ʻo',
     previewUnavailable: 'ʻOku ʻava ʻo e hā mai',
     noProjectTitle: 'Tafā polōjeki',
-    noProjectBody: 'Tatalo e polōjeki ʻo e faka\'ohia ʻa e fērili ʻo ia ʻo e hā mai ʻi he mōdifikati.',
+    noProjectBody: "Tatalo e polōjeki ʻo e faka'ohia ʻa e fērili ʻo ia ʻo e hā mai ʻi he mōdifikati.",
     noProjectOpen: 'Tafā polōjeki ʻi tatalo',
     noDiffs: 'Tafā mōdifikati',
     unreadableTitle: 'ʻOku ʻikai faʻa lao',
     emptyTitle: 'Fono',
-    emptyBody: 'ʻOku faka\'ō fōlō.',
+    emptyBody: "ʻOku faka'ō fōlō.",
     treeErrorTitle: 'Hē fōlō',
     treeErrorBody: 'E hē e render fōlō eni.',
     tryAgain: 'Fakapouli ʻo',
@@ -2053,7 +2108,7 @@ Leave blank to keep the ${mode} default.`,
     addToChat: 'Tatae i he talanoa',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'Hā mai',
@@ -2087,7 +2142,8 @@ Leave blank to keep the ${mode} default.`,
     unsavedChanges: 'Unsaved changes',
     saveFailed: message => `Couldn't save: ${message}`,
     diskChangedTitle: 'File changed on disk',
-    diskChangedBody: 'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
+    diskChangedBody:
+      'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
     overwrite: 'Overwrite',
     discardReload: 'Discard & reload',
     console: {
@@ -2108,7 +2164,7 @@ Leave blank to keep the ${mode} default.`,
       empty: 'No console messages yet.',
       promptHeader: 'Preview console:',
       sentTitle: 'Sent to chat',
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Preview app failed to boot',
@@ -2133,17 +2189,19 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'Reloading the preview now.',
       restartFailedTitle: 'Preview restart failed',
       restartFailedMessage: 'OpenAmer could not restart the server.',
-      stillWorking: 'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
+      stillWorking:
+        'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
       workspaceReloading: 'Workspace changed, reloading preview',
       fileChanged: url => `File changed, reloading preview: ${url}`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
-      moduleMimeDescription: 'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
+      moduleMimeDescription:
+        'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'The preview page could not be reached.',
       openTarget: url => `Open ${url}`,
-      fallbackTitle: 'Preview',
-    },
+      fallbackTitle: 'Preview'
+    }
   },
   zones: {
     reset: 'Toe foʻou',
@@ -2154,7 +2212,8 @@ Leave blank to keep the ${mode} default.`,
     nameLayoutPlaceholder: 'Hau ki he fokanga…',
     zoneEditorTitle: 'Fakaʻotonga',
     editorHintPre: 'U kiʻi kiʻi e vāhe ·',
-    editorHintPost: 'foʻi e laini · toki fasi kiʻi ʻo ngā ʻotonga ke fakatuʻotuʻa · toki fasi ki he ngā tapulu ua taʻofea ke fakaʻafo',
+    editorHintPost:
+      'foʻi e laini · toki fasi kiʻi ʻo ngā ʻotonga ke fakatuʻotuʻa · toki fasi ki he ngā tapulu ua taʻofea ke fakaʻafo',
     templateColumns: 'Ngā tihi',
     templateRows: 'Ngā lau',
     templateGrid: 'Gridi',
@@ -2166,7 +2225,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Minimize',
     restore: 'Restore',
     closeRunningTitle: 'Close running tab?',
-    closeRunningBody: 'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
+    closeRunningBody:
+      'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
     closeRunningConfirm: 'Close tab',
     closeOthers: 'Close others',
     closeToRight: 'Close to the right',
@@ -2188,7 +2248,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
@@ -2217,13 +2277,14 @@ Leave blank to keep the ${mode} default.`,
       restoreConfirm: 'Fakatau & toe run',
       restoreNext: 'Fakatau e makana hoko',
       goForward: 'Hae ki mua',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
       yesterday: time => `Yesterday, ${time}`,
       sendEdited: 'Send edited message',
-      attachingFile: 'Attaching…',
+      attachingFile: 'Attaching…'
     },
     tool: {
       statusRunning: 'Totongo',
@@ -2241,123 +2302,123 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Fili',
         running: 'Totongo',
         ranCode: 'Fili kōdhi',
-        runningCode: 'Tohutohu fangatango',
+        runningCode: 'Tohutohu fangatango'
       },
       prefixes: {
         browser: 'Pākipaki ʻInteneti',
-        web: 'ʻInteneti',
+        web: 'ʻInteneti'
       },
       titles: {
         browser_click: {
           done: 'Momi elemēnti peesi',
           pending: 'Momi elemēnti peesi',
-          pendingAction: 'Momi',
+          pendingAction: 'Momi'
         },
         browser_fill: {
           done: 'Fakatoʻo fakan kau',
           pending: 'Fakatoʻo fakan kau',
-          pendingAction: 'Fakatoʻo',
+          pendingAction: 'Fakatoʻo'
         },
         browser_navigate: {
           done: 'Tokatoka peesi',
           pending: 'Takatokanga peesi',
-          pendingAction: 'Takatokanga',
+          pendingAction: 'Takatokanga'
         },
         browser_snapshot: {
           done: 'Puputa ata peesi',
           pending: 'Puputa ata peesi',
-          pendingAction: 'Puputa',
+          pendingAction: 'Puputa'
         },
         browser_take_screenshot: {
           done: 'Puputa ata',
           pending: 'Puputa ata',
-          pendingAction: 'Puputa',
+          pendingAction: 'Puputa'
         },
         browser_type: {
           done: 'Tohi ʻo e peesi',
           pending: 'Tohi ʻo e peesi',
-          pendingAction: 'Tohi',
+          pendingAction: 'Tohi'
         },
         clarify: {
           done: 'ʻOtu ʻo e makoli',
           pending: 'ʻOtu ʻo e makoli',
-          pendingAction: 'ʻOtu',
+          pendingAction: 'ʻOtu'
         },
         cronjob: {
           done: 'Mahi cron',
           pending: 'Mahi cron',
-          pendingAction: 'Scheduling',
+          pendingAction: 'Scheduling'
         },
         write_file: {
           done: 'Fesi kuo fakaikawai',
           pending: 'Ke fakaikawai e fesi',
-          pendingAction: 'Ke fakaikawai',
+          pendingAction: 'Ke fakaikawai'
         },
         edit_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
+          pendingAction: 'Editing'
         },
         execute_code: {
           done: 'Ran code',
           pending: 'Scripting',
-          pendingAction: 'Scripting',
+          pendingAction: 'Scripting'
         },
         image_generate: {
           done: 'Generated image',
           pending: 'Generating image',
-          pendingAction: 'Generating',
+          pendingAction: 'Generating'
         },
         list_files: {
           done: 'Listed files',
           pending: 'Listing files',
-          pendingAction: 'Listing',
+          pendingAction: 'Listing'
         },
         patch: {
           done: 'Patched file',
           pending: 'Patching file',
-          pendingAction: 'Patching',
+          pendingAction: 'Patching'
         },
         read_file: {
           done: 'Read file',
           pending: 'Reading file',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         search_files: {
           done: 'Searched files',
           pending: 'Searching files',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         session_search_recall: {
           done: 'Searched session history',
           pending: 'Searching session history',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         terminal: {
           done: 'Ran command',
           pending: 'Running command',
-          pendingAction: 'Running',
+          pendingAction: 'Running'
         },
         todo: {
           done: 'Updated todos',
           pending: 'Updating todos',
-          pendingAction: 'Updating',
+          pendingAction: 'Updating'
         },
         vision_analyze: {
           done: 'Analyzed image',
           pending: 'Analyzing image',
-          pendingAction: 'Analyzing',
+          pendingAction: 'Analyzing'
         },
         web_extract: {
           done: 'Read webpage',
           pending: 'Reading webpage',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         web_search: {
           done: 'Searched web',
           pending: 'Searching web',
-          pendingAction: 'Searching',
-        },
+          pendingAction: 'Searching'
+        }
       },
       code: 'Code',
       copyCode: 'Copy code',
@@ -2383,8 +2444,8 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2397,8 +2458,9 @@ Leave blank to keep the ${mode} default.`,
       jumpToApproval: 'Approval needed',
       reject: 'Reject',
       alwaysTitle: 'Always allow this command?',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
-      alwaysAllow: 'Always allow',
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysAllow: 'Always allow'
     },
     clarify: {
       notReady: 'Clarify request is not ready yet',
@@ -2412,19 +2474,20 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'Continue',
       lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
       lateAnswerTip: 'Draft this answer as a follow-up message',
-      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.',
-    },
+      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.'
+    }
   },
   prompts: {
     gatewayDisconnected: 'Koe ʻe ʻi he fakaʻhono ʻa e pōfeta OpenAmer',
     sudoSendFailed: 'ʻE hiki ʻe faa ʻa e ʻoten kaupapa sudo',
     secretSendFailed: 'ʻE hiki ʻe faa ʻa e sēkisi',
     sudoTitle: 'ʻOten kaupapa ʻo e puleʻo',
-    sudoDesc: 'E hiahia OpenAmer he ʻoten kaupapa sudo ke fakahoko he komando ʻo e ʻai. ʻO ia ʻa e ʻai fakatou ʻo ia ki he ʻagenti ʻo e kīʻī ʻi he fesikotu.',
+    sudoDesc:
+      'E hiahia OpenAmer he ʻoten kaupapa sudo ke fakahoko he komando ʻo e ʻai. ʻO ia ʻa e ʻai fakatou ʻo ia ki he ʻagenti ʻo e kīʻī ʻi he fesikotu.',
     sudoPlaceholder: 'ʻOten kaupapa sudo',
     secretTitle: 'Kuo fiaina he sēkisi',
     secretDesc: 'E hiahia OpenAmer he tofiʻanga fakamōlō ke toe fakahoko.',
-    secretPlaceholder: 'ʻOten mālōlō sēkisi',
+    secretPlaceholder: 'ʻOten mālōlō sēkisi'
   },
   desktop: {
     audioReadFailed: 'ʻE hiki ʻe faa fanau e ʻo e leo kuo fakamataʻu',
@@ -2445,7 +2508,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'ʻE hiki ʻe faa fakaikawai',
     resumeFailed: 'ʻE hiki ʻe faa toe hoko',
     resumeStrandedTitle: 'ʻE hiki ʻe faa uta e sesibe ni',
-    resumeStrandedBody: 'ʻE hiki ʻe faa fakaʻhono ki he sesibe ni, ʻa ia na hoko ʻa e taʻu faa foki ʻa e ʻOtē. Kihe vakaʻo, fakatokanga ʻa e ʻOtē ke rere, ʻa ia ke toe fakamālō.',
+    resumeStrandedBody:
+      'ʻE hiki ʻe faa fakaʻhono ki he sesibe ni, ʻa ia na hoko ʻa e taʻu faa foki ʻa e ʻOtē. Kihe vakaʻo, fakatokanga ʻa e ʻOtē ke rere, ʻa ia ke toe fakamālō.',
     resumeRetry: 'Foki',
     nothingToBranch: 'Koe ʻo mea e tofi atu ai',
     branchNeedsChat: 'Tohi pe toe hoko e talanoa ʻa hoʻo tofi atu.',
@@ -2458,7 +2522,8 @@ Leave blank to keep the ${mode} default.`,
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
     branchTitle: n => `Draft: Branch #${n}`,
@@ -2492,8 +2557,8 @@ Leave blank to keep the ${mode} default.`,
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
       failed: error => `Handoff failed: ${error}`,
-      timedOut: 'Timed out waiting for the gateway. Is `openamer gateway` running?',
-    },
+      timedOut: 'Timed out waiting for the gateway. Is `openamer gateway` running?'
+    }
   },
   common: {
     apply: 'pali',
@@ -2527,17 +2592,17 @@ Leave blank to keep the ${mode} default.`,
     remove: 'Huti',
     replace: 'Fakapapau',
     retry: 'Fakamuli',
-    run: 'Tu\'u',
-    send: 'Tu\'usi\'a',
+    run: "Tu'u",
+    send: "Tu'usi'a",
     set: 'Fakatu',
     skip: 'Hili',
-    update: 'Fakahou\'aki',
+    update: "Fakahou'aki",
     tryHint: term => `Uluaki “${term}”`,
-    on: 'Tu\'u',
-    off: 'Hoko',
+    on: "Tu'u",
+    off: 'Hoko'
   },
   fileMenu: {
-    revealFinder: 'Fakailoa\'i \'i Finder',
+    revealFinder: "Fakailoa'i 'i Finder",
     revealExplorer: 'Reveal in File Explorer',
     revealFileManager: 'Open Containing Folder',
     revealInSidebar: 'Reveal in filetree',
@@ -2549,10 +2614,11 @@ Leave blank to keep the ${mode} default.`,
     renameLabel: 'New name',
     deleteTitle: name => `删除 ${name}？`,
     deleteBody: 'It will be moved to the Trash — you can restore it from there.',
-    pathCopied: 'Path copied',
+    pathCopied: 'Path copied'
   },
   remoteDisplayBanner: {
-    message: reason => `nasin sitelen ilo li lon — sike sinpin weka li kama sona (${reason}). wawa GPU li pini tan wile ala e pimeja sin.`,
+    message: reason =>
+      `nasin sitelen ilo li lon — sike sinpin weka li kama sona (${reason}). wawa GPU li pini tan wile ala e pimeja sin.`
   },
   language: {
     label: 'Toki',
@@ -2561,7 +2627,7 @@ Leave blank to keep the ${mode} default.`,
     saveError: 'Ante toki li pakala',
     switchTo: 'Ante e toki',
     searchPlaceholder: 'Fakahū ki he lea…',
-    noResults: 'Kai lea ne mau kiʻi',
+    noResults: 'Kai lea ne mau kiʻi'
   },
   skills: {
     tabSkills: 'Ngaahi taukei',
@@ -2581,7 +2647,8 @@ Leave blank to keep the ${mode} default.`,
     noDescription: 'ʻIkai ha fakamatala.',
     configured: 'Kuo fokotuʻutuʻu',
     needsKeys: 'Fiemaʻu ha ngaahi kī',
-    visionModelHint: 'ʻOku ngāueʻaki ʻe he sio fakatātaá ʻa e fokotuʻutuʻu hoʻo mōtolo tokoní — fili ai ʻa e mōtolo ʻoku lava ʻo ngāue ki he ngaahi ʻatá, kae ʻikai ʻi heni maʻá e kautaha taki taha.',
+    visionModelHint:
+      'ʻOku ngāueʻaki ʻe he sio fakatātaá ʻa e fokotuʻutuʻu hoʻo mōtolo tokoní — fili ai ʻa e mōtolo ʻoku lava ʻo ngāue ki he ngaahi ʻatá, kae ʻikai ʻi heni maʻá e kautaha taki taha.',
     visionModelLink: 'Fili ʻa e mōtolo sio fakatātaá ʻi he Ngaahi fokotuʻutuʻu → Ngaahi mōtolo',
     toolsetsEnabled: (enabled, total) => `Kuo fakangofua e kulupu meʻangāue ${enabled}/${total}`,
     configureToolset: label => `Fokotuʻutuʻu e ${label}`,
@@ -2607,7 +2674,7 @@ Leave blank to keep the ${mode} default.`,
     provenance: {
       agent: 'Kuo ako',
       bundled: 'Kuo ʻosi fakakau',
-      hub: 'Senitā',
+      hub: 'Senitā'
     },
     emptyNoneFound: noun => `ʻIkai maʻu ha ${noun}`,
     emptyNothingMatches: query => `ʻIkai ha meʻa ʻe tatau mo e “${query}”.`,
@@ -2625,7 +2692,8 @@ Leave blank to keep the ${mode} default.`,
       connectingHubs: 'ʻOku fehokotaki ki he ngaahi senitā taukei...',
       connectedHubs: 'Ngaahi senitā kuo fehokotaki:',
       featured: 'Ngaahi taukei kuo filifilia',
-      landingHint: 'Fekumi ʻi he senitā ke vakai ki he ngaahi taukei ʻe lava ʻo fokotuʻu mei he lisi fakaʻofisiale, GitHub, mo e ngaahi maʻuʻanga tokoni ʻa e komiunitií.',
+      landingHint:
+        'Fekumi ʻi he senitā ke vakai ki he ngaahi taukei ʻe lava ʻo fokotuʻu mei he lisi fakaʻofisiale, GitHub, mo e ngaahi maʻuʻanga tokoni ʻa e komiunitií.',
       noResults: 'ʻOku ʻikai maʻu ha taukei ʻoku hoa ʻi he senitaá.',
       resultCount: (count, ms) => `${count} ola${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Kuo ʻosi e taimi tatali: ${sources}`,
@@ -2645,7 +2713,7 @@ Leave blank to keep the ${mode} default.`,
       trust: {
         builtin: 'ʻosi fakakau',
         trusted: 'falalaʻanga',
-        community: 'komiuniti',
+        community: 'komiuniti'
       },
       verdictSafe: 'Malu',
       verdictCaution: 'Fakatokanga',
@@ -2663,8 +2731,8 @@ Leave blank to keep the ${mode} default.`,
       loadFailed: 'ʻIkai lava ke fakaʻaliʻali ʻa e senitā taukei',
       previewFailed: 'ʻIkai lava ke tomuʻa sio ki he taukei',
       scanFailed: 'ʻIkai lava ʻa e sivi malu',
-      searchFailed: 'ʻIkai lava ʻa e kumi ʻi he senitā',
-    },
+      searchFailed: 'ʻIkai lava ʻa e kumi ʻi he senitā'
+    }
   },
   statusStack: {
     agents: 'Agents',
@@ -2712,13 +2780,14 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'Open PR',
       ghMissing: 'Install the GitHub CLI (gh) and sign in to open PRs',
       agentShip: 'Ask OpenAmer to open PR',
-      agentShipPrompt: 'Review the current changes, commit them with a clear conventional-commit message, push the branch, and open a pull request.',
+      agentShipPrompt:
+        'Review the current changes, commit them with a clear conventional-commit message, push the branch, and open a pull request.',
       newBranch: 'New branch',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
       switchFailed: branch => `Could not switch to ${branch}`,
-      worktrees: 'Worktrees',
-    },
+      worktrees: 'Worktrees'
+    }
   },
   updates: {
     stages: {
@@ -2733,7 +2802,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'Update complete',
       manual: 'Update from your terminal',
       guiSkew: 'Update the desktop app',
-      error: 'Update paused',
+      error: 'Update paused'
     },
     checking: 'Looking for updates…',
     checkFailedTitle: 'Couldn’t check for updates',
@@ -2753,15 +2822,19 @@ Leave blank to keep the ${mode} default.`,
     maybeLater: 'Maybe later',
     moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
     manualTitle: 'Update from your terminal',
-    manualBody: 'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
+    manualBody:
+      'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
     manualPickedUp: 'OpenAmer will pick up the new version next time you launch it.',
     guiSkewTitle: 'Update the desktop app',
-    guiSkewBody: 'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
+    guiSkewBody:
+      'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
     copy: 'Copy',
     copied: 'Copied',
     done: 'Done',
-    applyingBody: 'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
-    applyingBodyBackend: 'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
+    applyingBody:
+      'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
+    applyingBodyBackend:
+      'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
     applyingClose: 'This window will close while the update runs, then OpenAmer reopens on its own.',
     errorTitle: 'Update didn’t finish',
     errorBody: 'No worries — nothing was lost. You can try again now.',
@@ -2772,12 +2845,13 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'Backend restarting to load the update…',
       notAvailable: 'Update not available for this backend.',
       failed: 'Backend update failed.',
-      noReturn: 'Backend didn’t come back online. The update may not have completed — check the backend host.',
+      noReturn: 'Backend didn’t come back online. The update may not have completed — check the backend host.'
     },
     appErrors: {
-      updateLocked: 'Update aborted: another OpenAmer window or a terminal running openamer is holding this install open. Close it and retry.',
-      updateFailed: 'The update didn’t complete. No worries — nothing was lost. You can try again now.',
-    },
+      updateLocked:
+        'Update aborted: another OpenAmer window or a terminal running openamer is holding this install open. Close it and retry.',
+      updateFailed: 'The update didn’t complete. No worries — nothing was lost. You can try again now.'
+    }
   },
   install: {
     stageStates: {
@@ -2785,17 +2859,19 @@ Leave blank to keep the ${mode} default.`,
       running: 'Installing',
       succeeded: 'Done',
       skipped: 'Skipped',
-      failed: 'Failed',
+      failed: 'Failed'
     },
     oneTimeTitle: 'OpenAmer needs a one-time install',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     installCommand: 'Install command',
     copyCommand: 'Copy command',
     viewDocs: 'View install docs',
     installTo: 'Will install to',
     retryAfterRun: 'I’ve run it -- retry',
     setupChoiceTitle: 'Set up OpenAmer Desktop',
-    setupChoiceDesc: 'Connect this app to a OpenAmer gateway you already run, or install OpenAmer locally on this computer.',
+    setupChoiceDesc:
+      'Connect this app to a OpenAmer gateway you already run, or install OpenAmer locally on this computer.',
     connectExistingTitle: 'Connect to existing OpenAmer',
     connectExistingShort: 'Connect existing',
     connectExistingDesc: 'Use a remote backend with a session token or browser sign-in. No local install will start.',
@@ -2803,7 +2879,8 @@ Leave blank to keep the ${mode} default.`,
     installLocalDesc: 'Download OpenAmer, create its Python environment, and run the backend on this computer.',
     localStartUnavailable: 'Local installation could not start. Restart OpenAmer Desktop and try again.',
     remoteSetupTitle: 'Connect to existing OpenAmer',
-    remoteSetupDesc: 'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
+    remoteSetupDesc:
+      'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
     remoteUrlTitle: 'Gateway URL',
     remoteUrlDesc: 'Use the base URL of the OpenAmer gateway, including https:// when remote.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2830,8 +2907,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Installation failed',
     settingUpTitle: 'Setting up OpenAmer Agent',
     finishingTitle: 'Finishing up',
-    failedDesc: 'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
-    activeDesc: 'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
+    failedDesc:
+      'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
+    activeDesc:
+      'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
     fetchingManifest: 'Fetching installer manifest...',
@@ -2845,7 +2924,7 @@ Leave blank to keep the ${mode} default.`,
     transcriptSaved: 'Full transcript saved to',
     copiedOutput: 'Copied!',
     copyOutput: 'Copy output',
-    reloadRetry: 'Reload and retry',
+    reloadRetry: 'Reload and retry'
   },
   onboarding: {
     headerTitle: "Let's get you setup with OpenAmer Agent",
@@ -2865,28 +2944,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'direct model API',
-        description: 'Direct access to models hosted by Fireworks AI.',
+        description: 'Direct access to models hosted by Fireworks AI.'
       },
       openrouter: {
         short: 'one key, many models',
-        description: 'Hosts hundreds of models behind a single key. Good default for new installs.',
+        description: 'Hosts hundreds of models behind a single key. Good default for new installs.'
       },
       openai: {
         short: 'GPT-class models',
-        description: 'Direct access to OpenAI models.',
+        description: 'Direct access to OpenAI models.'
       },
       gemini: {
         short: 'Gemini models',
-        description: 'Direct access to Google Gemini models.',
+        description: 'Direct access to Google Gemini models.'
       },
       xai: {
         short: 'Grok models',
-        description: 'Direct access to xAI Grok models.',
+        description: 'Direct access to xAI Grok models.'
       },
       local: {
         short: 'self-hosted',
-        description: 'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).',
-      },
+        description:
+          'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).'
+      }
     },
     backToSignIn: 'Back to sign in',
     getKey: 'Get a key',
@@ -2899,7 +2979,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'Opens your browser to sign in, then continues here',
       device_code: 'Opens a verification page in your browser — OpenAmer connects automatically',
-      external: 'Sign in once in your terminal, then come back to chat',
+      external: 'Sign in once in your terminal, then come back to chat'
     },
     startingSignIn: provider => `Starting sign-in for ${provider}...`,
     verifyingCode: provider => `Verifying your code with ${provider}...`,
@@ -2913,10 +2993,12 @@ Leave blank to keep the ${mode} default.`,
     copyAuthCode: 'Copy the authorization code and paste it below.',
     pasteAuthCode: 'Paste authorization code',
     reopenAuthPage: 'Re-open authorization page',
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
     reopenSignInPage: 'Re-open sign-in page',
     waitingAuthorize: 'Waiting for you to authorize...',
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     signedIn: "I've signed in",
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     reopenVerification: 'Re-open verification page',
@@ -2928,7 +3010,7 @@ Leave blank to keep the ${mode} default.`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
     change: 'Change',
     startChatting: 'Begin',
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'Switch model',
@@ -2944,36 +3026,36 @@ Leave blank to keep the ${mode} default.`,
     free: 'Free',
     freeTier: 'Free tier',
     priceTitle: 'Input / Output price per million tokens',
-    wasPrice: 'was',
+    wasPrice: 'was'
   },
   modelVisibility: {
     title: 'Models',
     search: 'Search models',
     noAuthenticatedProviders: 'No authenticated providers.',
-    addProvider: 'Add provider…',
+    addProvider: 'Add provider…'
   },
   errors: {
     genericFailure: 'Something went wrong',
     boundaryTitle: 'Something broke in the interface',
     boundaryDesc: 'The view hit an unexpected error. Your chats and settings are safe.',
     reloadWindow: 'Reload window',
-    openLogs: 'Open logs',
+    openLogs: 'Open logs'
   },
   ui: {
     search: {
-      clear: 'Clear search',
+      clear: 'Clear search'
     },
     pagination: {
       label: 'pagination',
       previous: 'Prev',
       previousAria: 'Go to previous page',
       next: 'Next',
-      nextAria: 'Go to next page',
+      nextAria: 'Go to next page'
     },
     sidebar: {
       title: 'Sidebar',
       description: 'Displays the mobile sidebar.',
-      toggle: 'Toggle Sidebar',
-    },
-  },
+      toggle: 'Toggle Sidebar'
+    }
+  }
 })

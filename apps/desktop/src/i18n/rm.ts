@@ -23,7 +23,7 @@ export const rm = defineLocale({
     continue: 'Cuntinuar',
     copied: 'Copià',
     copy: 'Copiar',
-    copyFailed: 'Copiar n\'è betg reussì',
+    copyFailed: "Copiar n'è betg reussì",
     delete: 'Stizzar',
     docs: 'Documentaziun',
     done: 'Finì',
@@ -45,13 +45,13 @@ export const rm = defineLocale({
     update: 'Actualisar',
     on: 'Activ',
     off: 'Inactiv',
-    tryHint: term => `Provà “${term}”`,
+    tryHint: term => `Provà “${term}”`
   },
   fileMenu: {
     revealFinder: 'Mussar en Finder',
     revealExplorer: 'Mussar en File Explorer',
-    revealFileManager: 'Avrir l\'ordinatur cuntegnent',
-    revealInSidebar: 'Mussar en l\'arbre da datotecas',
+    revealFileManager: "Avrir l'ordinatur cuntegnent",
+    revealInSidebar: "Mussar en l'arbre da datotecas",
     copyPath: 'Copiar il percurs',
     copyRelativePath: 'Copiar il percurs relativ',
     rename: 'Renomnar…',
@@ -60,43 +60,47 @@ export const rm = defineLocale({
     renameLabel: 'Nov num',
     deleteBody: 'El vegn spustà en la reschatta — ti pos il restituir da là.',
     pathCopied: 'Percurs copià',
-    deleteTitle: name => `Eliminar ${name}?`,
+    deleteTitle: name => `Eliminar ${name}?`
   },
   boot: {
     errors: {
       gatewayConnectionLost: 'Connexion al gateway persa',
-      gatewaySignInRequired: 'S\'annunziar al gateway è necessari',
-      ipcBridgeUnavailable: 'La punta IPC dal desktop n\'è betg disponibla.',
+      gatewaySignInRequired: "S'annunziar al gateway è necessari",
+      ipcBridgeUnavailable: "La punta IPC dal desktop n'è betg disponibla.",
       backgroundExited: 'Il process da fund da OpenAmer è terminà.',
-      backgroundExitedDuringStartup: 'Il process da fund da OpenAmer è terminà durant l\'aviada.',
+      backgroundExitedDuringStartup: "Il process da fund da OpenAmer è terminà durant l'aviada.",
       backendStopped: 'Backend fermà',
-      desktopBootFailed: 'L\'aviada dal desktop ha fallì',
+      desktopBootFailed: "L'aviada dal desktop ha fallì"
     },
     failure: {
-      title: 'OpenAmer n\'ha betg pudì s\'avviar',
-      description: 'Il gateway en il fund n\'è betg s\'avvià. Prova in dals pass da recuperaziun sutvart. Nagut qua na stizza tes chats u tes parameters.',
-      remoteTitle: 'S\'annunziar al gateway remot è necessari',
-      remoteDescription: 'Tia sessione dal gateway remot è scadida. S\'annunzia danovamain per reconnectar. Nagut qua na stizza tes chats u tes parameters.',
+      title: "OpenAmer n'ha betg pudì s'avviar",
+      description:
+        "Il gateway en il fund n'è betg s'avvià. Prova in dals pass da recuperaziun sutvart. Nagut qua na stizza tes chats u tes parameters.",
+      remoteTitle: "S'annunziar al gateway remot è necessari",
+      remoteDescription:
+        "Tia sessione dal gateway remot è scadida. S'annunzia danovamain per reconnectar. Nagut qua na stizza tes chats u tes parameters.",
       retry: 'Empruvar danovamain',
-      repairInstall: 'Reparar l\'installaziun',
+      repairInstall: "Reparar l'installaziun",
       useLocalGateway: 'Utilisar il gateway local',
       gatewaySettings: 'Parameters dal gateway',
       back: 'Enavos',
       openLogs: 'Avrir ils logs',
-      repairHint: 'La reparaziun executescha puspè l\'installatur e po durar in pèr minutas sin in computer nov.',
-      signOutAndSignIn: 'Sortir & s\'annunziar',
-      remoteFailureHint: 'Controlla l\'URL dal gateway e l\'annunzia sut Parameters dal gateway, u midar al gateway local.',
+      repairHint: "La reparaziun executescha puspè l'installatur e po durar in pèr minutas sin in computer nov.",
+      signOutAndSignIn: "Sortir & s'annunziar",
+      remoteFailureHint:
+        "Controlla l'URL dal gateway e l'annunzia sut Parameters dal gateway, u midar al gateway local.",
       hideRecentLogs: 'Zuppentar ils logs recents',
       showRecentLogs: 'Mussar ils logs recents',
       signedInTitle: 'Annunzià',
       signedInMessage: 'Reconnectar al gateway remot…',
       signInIncompleteTitle: 'Annunzia betg cumpletta',
-      signInIncompleteMessage: 'La fanestra d\'annunzia è vegnida serrada avant che l\'autentificaziun füss finida.',
+      signInIncompleteMessage: "La fanestra d'annunzia è vegnida serrada avant che l'autentificaziun füss finida.",
       signInFailed: 'Annunzia fallida',
-      signInToRemoteGateway: 'S\'annunziar tar il gateway remot',
-      identityProvider: 'Voss purschider d\'identitad',
-      remoteSignInHint: signInLabel => `S'estaca da la session dal browser remot salvada, po opens ${signInLabel}. Usà il gateway local per cambiar cun il backend integrà.`,
-      signInWithProvider: provider => `S'inscriver cun ${provider}`,
+      signInToRemoteGateway: "S'annunziar tar il gateway remot",
+      identityProvider: "Voss purschider d'identitad",
+      remoteSignInHint: signInLabel =>
+        `S'estaca da la session dal browser remot salvada, po opens ${signInLabel}. Usà il gateway local per cambiar cun il backend integrà.`,
+      signInWithProvider: provider => `S'inscriver cun ${provider}`
     },
     ready: 'OpenAmer Desktop è pront',
     steps: {
@@ -104,9 +108,9 @@ export const rm = defineLocale({
       loadingSettings: 'Chargiar las preferenzas da OpenAmer',
       loadingSessions: 'Chargiar las sesiuns recentas',
       startingDesktopConnection: 'Aviar la connexiun dal desktop',
-      startingOpenAmerDesktop: 'Aviar OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Aviar OpenAmer Desktop…'
     },
-    desktopBootFailedWithMessage: message => `Boot dal desktop echegi: ${message}`,
+    desktopBootFailedWithMessage: message => `Boot dal desktop echegi: ${message}`
   },
   notifications: {
     region: 'Notificaziuns',
@@ -118,8 +122,9 @@ export const rm = defineLocale({
     copyDetail: 'Copiar il detagl',
     copyDetailFailed: 'Betg pussibel da copiar il detagl da la notificaziun',
     backendOutOfDateTitle: 'Backend betg actual',
-    backendOutOfDateMessage: 'Voss backend OpenAmer è pli vegl che questa versiun desktop e pudess betg funcziunar correctamain. Actualisar per als aliniar.',
-    installMethodUnsupportedTitle: 'Metoda d\'installaziun betg sustegnida',
+    backendOutOfDateMessage:
+      'Voss backend OpenAmer è pli vegl che questa versiun desktop e pudess betg funcziunar correctamain. Actualisar per als aliniar.',
+    installMethodUnsupportedTitle: "Metoda d'installaziun betg sustegnida",
     updateOpenAmer: 'Actualisar OpenAmer',
     updateReadyTitle: 'Actualisaziun pronta',
     seeWhatsNew: 'Vesa las novitads',
@@ -127,11 +132,12 @@ export const rm = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT dovra ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'La ElevenLabs ha resg a la API key (401).',
       gatewayAuthFailed: 'La autenticaziun da la gateway ha fallida — controlla il tûc API_SERVER_KEY.',
-      methodNotAllowed: 'Il backend da la desktop ha resg a quella request (405 Method Not Allowed). Prova a reaviar OpenAmer Desktop.',
+      methodNotAllowed:
+        'Il backend da la desktop ha resg a quella request (405 Method Not Allowed). Prova a reaviar OpenAmer Desktop.',
       microphonePermission: 'La permissiun da la microfon è stada negà.',
       openaiRejectedApiKey: 'OpenAI ha resg a la API key.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI ha refutà la clav a API (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS serve da VOICE_TOOLS_OPENAI_KEY u OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS serve da VOICE_TOOLS_OPENAI_KEY u OPENAI_API_KEY.'
     },
     more: count => `${count} ulteriurs ${count === 1 ? 'notification' : 'notifications'}`,
     updateReadyMessage: count => `${count} nova midada${count === 1 ? '' : 's'} disponibla.`,
@@ -145,28 +151,28 @@ export const rm = defineLocale({
       microphonePermissionDenied: 'La permissiun da la microfon è stada negà.',
       microphoneStartFailed: 'Nun se po avia il registrason da la microfon.',
       microphoneUnsupported: 'Quel runtime no sustegna il registrason da la microfon.',
-      noMicrophone: 'Noss microfon n\'era stada chasa.',
-      noSpeechDetected: 'Noss parla n\'era stada detecttada.',
+      noMicrophone: "Noss microfon n'era stada chasa.",
+      noSpeechDetected: "Noss parla n'era stada detecttada.",
       playbackFailed: 'Il riproduzzun da la voice ha fallida.',
       recordingFailed: 'Il registrason da la voice ha fallida.',
       transcriptionFailed: 'La transcription da la voice ha fallida.',
       transcriptionUnavailable: 'La transcripziun vocal è nagin disponibla.',
       tryRecordingAgain: 'Tenta de registrer eifne.',
-      unavailable: 'Vocal nu es disponibla.',
+      unavailable: 'Vocal nu es disponibla.'
     },
     native: {
       approvalTitle: 'Aprova è nì.',
       approveAction: 'Aprova.',
       rejectAction: 'Refusa.',
-      inputTitle: 'Input n\'è nì.',
+      inputTitle: "Input n'è nì.",
       inputBody: 'OpenAmer è in attesa da la tua responsa.',
       turnDoneTitle: 'OpenAmer ha finì.',
       turnDoneBody: 'La responsa è pronta.',
       turnErrorTitle: 'La turn è fallida.',
       backgroundDoneTitle: 'La taschada da far ha finì.',
       backgroundFailedTitle: 'La taschada da far è fallida.',
-      creditsTitle: 'Crèdits.',
-    },
+      creditsTitle: 'Crèdits.'
+    }
   },
   titlebar: {
     showSidebar: 'Mussar la barra laterala',
@@ -183,7 +189,7 @@ export const rm = defineLocale({
     openKeybinds: 'Scursanidas da tastatura',
     layoutEditor: 'Editur da layout',
     layoutEditorTitle: 'Editur da layout — ⌘-clic resetta il layout',
-    hideSidebar: 'Nascondi la sidebar.',
+    hideSidebar: 'Nascondi la sidebar.'
   },
   keybinds: {
     title: 'Scursanidas da tastatura',
@@ -269,7 +275,7 @@ export const rm = defineLocale({
       'composer.queue': 'Met en file mesagge',
       'composer.sendQueued': 'Mande il turn en file prossim',
       'composer.mention': 'Refer files, cartells, URLs',
-      'composer.slash': 'Paletta da comandi /',
+      'composer.slash': 'Paletta da comandi /'
     },
     subtitle: open => `Clicca n'atallà per rebindà · ${open} riapra quest panel.`,
     set: 'settag',
@@ -279,17 +285,17 @@ export const rm = defineLocale({
       profiles: 'Profilas',
       session: 'Sessiun',
       navigation: 'Navigacion',
-      view: 'Vista',
-    },
+      view: 'Vista'
+    }
   },
   language: {
     label: 'Lingua',
-    description: 'Tscherna la lingua per l\'interfatscha dal desktop.',
+    description: "Tscherna la lingua per l'interfatscha dal desktop.",
     saving: 'Salvament da la lingua…',
     saveError: 'Actualisaziun da la lingua fallida',
     switchTo: 'Midar la lingua',
     searchPlaceholder: 'Tschertgar linguas…',
-    noResults: 'Naginas linguas chattadas',
+    noResults: 'Naginas linguas chattadas'
   },
   settings: {
     closeSettings: 'Serrar las configuraziuns',
@@ -314,48 +320,50 @@ export const rm = defineLocale({
       about: 'Sur',
       billing: 'Facturaz',
       notifications: 'Notificazions',
-      plugins: 'Extensiuns',
+      plugins: 'Extensiuns'
     },
     notifications: {
       kinds: {
         credits: {
-          description: 'L\'access al credit è en pausa u restabilì.',
-          label: 'Alarma da credit',
+          description: "L'access al credit è en pausa u restabilì.",
+          label: 'Alarma da credit'
         },
         approval: {
           label: 'Approvaziun necessaria',
-          description: 'In comant dà in che tu d\'approva o resgna.',
+          description: "In comant dà in che tu d'approva o resgna."
         },
         input: {
           label: 'Input necessari',
-          description: 'OpenAmer ha questiona o bis ena passewalda o secret.',
+          description: 'OpenAmer ha questiona o bis ena passewalda o secret.'
         },
         turnDone: {
           label: 'Responsa pronta',
-          description: 'In gir finì in mentre OpenAmer era in background.',
+          description: 'In gir finì in mentre OpenAmer era in background.'
         },
         turnError: {
           label: 'Il gir fallì',
-          description: 'Il gir finì cun in errur.',
+          description: 'Il gir finì cun in errur.'
         },
         backgroundDone: {
           label: 'Tascha da background finì',
-          description: 'In comant da terminal è finì.',
-        },
+          description: 'In comant da terminal è finì.'
+        }
       },
       test: 'Trametter notificaziun da test',
       testTitle: 'OpenAmer',
       testBody: 'Las notificaziuns funcziunan.',
-      testSent: 'Test tramess. Sche nagut cumpara, controlla las permissiuns da notificaziun da tiu sistem operativ e Focus/Betg desturbar.',
+      testSent:
+        'Test tramess. Sche nagut cumpara, controlla las permissiuns da notificaziun da tiu sistem operativ e Focus/Betg desturbar.',
       testUnsupported: 'Quest sistem na sustegna betg notificaziuns natiras.',
       completionSoundTitle: 'Sun da cumplettaziun',
-      completionSoundDesc: 'Vegn sunà cur ch\'in turn d\'agent finescha. Tscherna in preset e previsualisescha el qua.',
+      completionSoundDesc: "Vegn sunà cur ch'in turn d'agent finescha. Tscherna in preset e previsualisescha el qua.",
       completionSoundPreview: 'Previsualisar',
       title: 'Notificazions',
-      intro: 'Notificazions nativa, separabun da notisas in-app. Istu è da dispositiv - ogni computator paga eus settaggs.',
+      intro:
+        'Notificazions nativa, separabun da notisas in-app. Istu è da dispositiv - ogni computator paga eus settaggs.',
       enableAll: 'Abiltgna notificazions',
       enableAllDesc: 'Interruttura principala. Es in inun silenzi per ogni notificazion qua sota.',
-      focusedHint: 'Alarma da cumpliment. Saima in mentre OpenAmer è in background.',
+      focusedHint: 'Alarma da cumpliment. Saima in mentre OpenAmer è in background.'
     },
     sections: {
       appearance: 'Apparizenza',
@@ -365,15 +373,15 @@ export const rm = defineLocale({
       voice: 'Vusch',
       advanced: 'Avanzà',
       model: 'Modèl',
-      chat: 'Chatt',
+      chat: 'Chatt'
     },
     searchPlaceholder: {
       about: 'Davart OpenAmer Desktop',
       config: 'Tschertgar configuraziuns...',
       gateway: 'Connexiun al gateway...',
-      keys: 'Tschera clavs d\'API...',
+      keys: "Tschera clavs d'API...",
       mcp: 'Tschera servurs MCP...',
-      sessions: 'Tschera sessions archivà...',
+      sessions: 'Tschera sessions archivà...'
     },
     config: {
       none: 'Nagin',
@@ -383,23 +391,24 @@ export const rm = defineLocale({
       commaSeparated: 'Valurs separadas cun comma',
       loading: 'Chargiar la configuraziun da OpenAmer...',
       emptyTitle: 'Nagut da configurar',
-      emptyDesc: 'Questa secziun n\'ha naginas configuraziuns adattablas.',
-      failedLoad: 'Chargiar las preferenzas n\'è betg reussì',
-      autosaveFailed: 'Autosalvar n\'è betg reussì',
+      emptyDesc: "Questa secziun n'ha naginas configuraziuns adattablas.",
+      failedLoad: "Chargiar las preferenzas n'è betg reussì",
+      autosaveFailed: "Autosalvar n'è betg reussì",
       imported: 'Configuraziun importada',
       invalidJson: 'JSON da configuraziun nunvalid',
       keepAwakeTitle: 'Teignair il computer svegli',
-      keepAwakeDesc: 'Impedescha che questa maschina dorma, per che execuziuns lungas u da notg cuntinueschian. Il display po anc vegnir sminuì.',
+      keepAwakeDesc:
+        'Impedescha che questa maschina dorma, per che execuziuns lungas u da notg cuntinueschian. Il display po anc vegnir sminuì.'
     },
     credentials: {
       pasteKey: 'Inserir la clav',
       optional: 'Opzional',
-      enterValueFirst: 'Inserescha l\'emprim ina valur.',
+      enterValueFirst: "Inserescha l'emprim ina valur.",
       couldNotSave: 'Impussibel da salvar la credenziala.',
       remove: 'Allontanar',
       getKey: 'Obtegnair ina clav',
       saving: 'Salvament',
-      pasteLabelKey: label => `Incollar la clav ${label}`,
+      pasteLabelKey: label => `Incollar la clav ${label}`
     },
     envActions: {
       credentialActions: 'Acziuns da credenzials',
@@ -410,59 +419,65 @@ export const rm = defineLocale({
       replace: 'Remplazzar',
       set: 'Definir',
       clear: 'Stizzar',
-      actionsFor: label => `Actions per ${label}`,
+      actionsFor: label => `Actions per ${label}`
     },
     gateway: {
       loading: 'Chargiar configuraziuns da gateway...',
       unavailableTitle: 'Configuraziuns da gateway betg disponiblas',
-      unavailableDesc: 'La punt IPC dal desktop n\'expona betg las configuraziuns da gateway.',
+      unavailableDesc: "La punt IPC dal desktop n'expona betg las configuraziuns da gateway.",
       title: 'Connexiun da gateway',
-      envOverride: 'Surscrittura da l\'ambient',
-      intro: 'OpenAmer Desktop starta per standard sia atgna gateway locala. Duvra ina gateway remota sche ti vuls che questa app controllescha in backend OpenAmer gia en execuziun sin in\'autra maschina u davos in proxy da confidenza. Tscherna in profil sut per dar ad el in host remot propri.',
+      envOverride: "Surscrittura da l'ambient",
+      intro:
+        "OpenAmer Desktop starta per standard sia atgna gateway locala. Duvra ina gateway remota sche ti vuls che questa app controllescha in backend OpenAmer gia en execuziun sin in'autra maschina u davos in proxy da confidenza. Tscherna in profil sut per dar ad el in host remot propri.",
       appliesTo: 'Vala per',
       allProfiles: 'Tut ils profils',
-      defaultConnection: 'Connexiun standarda per mintga profil che n\'ha betg ina surscrittura propria.',
-      envOverrideTitle: 'Las variablas d\'ambient controllan questa sesiun dal desktop.',
-      envOverrideDesc: 'Betg definir OPENAMER_DESKTOP_REMOTE_URL e OPENAMER_DESKTOP_REMOTE_TOKEN per duvrar la configuraziun salvada sut.',
+      defaultConnection: "Connexiun standarda per mintga profil che n'ha betg ina surscrittura propria.",
+      envOverrideTitle: "Las variablas d'ambient controllan questa sesiun dal desktop.",
+      envOverrideDesc:
+        'Betg definir OPENAMER_DESKTOP_REMOTE_URL e OPENAMER_DESKTOP_REMOTE_TOKEN per duvrar la configuraziun salvada sut.',
       cloudNoAgents: {
         before: 'Nagins agents chattads sin quest cont. Crea in en il',
         linkText: 'Portal OpenAmer',
-        after: ', lura actualisescha.',
+        after: ', lura actualisescha.'
       },
       cloudRefresh: 'Actualisar',
       cloudConnect: 'Colliar',
       cloudConnecting: 'Colliand…',
       cloudDiscoverFailed: 'Impussibel da chargiar tes agents OpenAmer Cloud',
       cloudConnectFailed: 'Impussibel da colliar cun quel agent',
-      cloudSignInFailed: 'S\'annunziar a OpenAmer Cloud n\'è betg reussì',
+      cloudSignInFailed: "S'annunziar a OpenAmer Cloud n'è betg reussì",
       cloudSignedOutTitle: 'Sortì da OpenAmer Cloud',
       cloudSignedOutMessage: 'La sessione da OpenAmer Cloud è vegnida stizzada.',
       cloudConnectedTitle: 'Collià',
       cloudConnectedPill: 'Collià',
       cloudAgentProvisioning: 'Preparond…',
       remoteUrlTitle: 'URL remot',
-      remoteUrlDesc: 'URL da basa per il backend dal panneau da survista remot. Prefiss da percurs èn sustegnids, per exempel /openamer.',
-      probing: 'Controllond co quest gateway s\'autentifitgescha…',
-      probeError: 'Impussibel da cuntanscher quest gateway anc. Controllescha l\'URL — il mètod d\'autentificaziun cumpararà cura ch\'el respunda.',
-      signedIn: 'S\'annunzià',
-      signIn: 'S\'annunziar',
-      enterUrlFirst: 'Endatescha l\'emprim in URL remot.',
+      remoteUrlDesc:
+        'URL da basa per il backend dal panneau da survista remot. Prefiss da percurs èn sustegnids, per exempel /openamer.',
+      probing: "Controllond co quest gateway s'autentifitgescha…",
+      probeError:
+        "Impussibel da cuntanscher quest gateway anc. Controllescha l'URL — il mètod d'autentificaziun cumpararà cura ch'el respunda.",
+      signedIn: "S'annunzià",
+      signIn: "S'annunziar",
+      enterUrlFirst: "Endatescha l'emprim in URL remot.",
       restartingTitle: 'La connexiun cun la gateway vegn reavviada',
       savedTitle: 'Configuraziuns da la gateway salvadas',
-      restartingMessage: 'OpenAmer Desktop vegn a sa colliar danovamain cun las configuraziuns salvadas — la shell resta averta.',
+      restartingMessage:
+        'OpenAmer Desktop vegn a sa colliar danovamain cun las configuraziuns salvadas — la shell resta averta.',
       savedMessage: 'Salvà per il proxim restart.',
       reachableTitle: 'Gateway remota accessibla',
       signedOutTitle: 'Sortì',
       signedOutMessage: 'Sessione da la gateway remota stizzada.',
-      failedLoad: 'Chargiar las configuraziuns da la gateway n\'è betg reussì.',
-      signInFailed: 'S\'annunziar n\'è betg reussì.',
-      signOutFailed: 'Sortir n\'è betg reussì.',
-      testFailed: 'Test da la gateway remota n\'è betg reussì.',
+      failedLoad: "Chargiar las configuraziuns da la gateway n'è betg reussì.",
+      signInFailed: "S'annunziar n'è betg reussì.",
+      signOutFailed: "Sortir n'è betg reussì.",
+      testFailed: "Test da la gateway remota n'è betg reussì.",
       applyFailed: 'Impussibel da applitgar las configuraziuns da la gateway.',
       saveFailed: 'Impussibel da salvar las configuraziuns da la gateway.',
       sshTitle: 'Colliar via SSH',
-      sshDesc: 'OpenAmer vegn avvià sin il remot sur SSH e tunelà a questa app — nagut da avviar u da expuner sez. Basegna access SSH cun clav funcziunant al host.',
-      sshTrustHint: 'L\'emprima clav da host preschentada è fidada e fixada; midadas pli tard vegnan refusadas.',
+      sshDesc:
+        'OpenAmer vegn avvià sin il remot sur SSH e tunelà a questa app — nagut da avviar u da expuner sez. Basegna access SSH cun clav funcziunant al host.',
+      sshTrustHint: "L'emprima clav da host preschentada è fidada e fixada; midadas pli tard vegnan refusadas.",
       sshHostDesc: 'user@host, u in alias da Host ord ~/.ssh/config.',
       sshHostPick: 'Tscherna in host…',
       sshHostPickDesc: 'In alias da host da ~/.ssh/config, u Persunal per inserir in.',
@@ -471,7 +486,7 @@ export const rm = defineLocale({
       sshUserDesc: 'Vid = ~/.ssh/config u voss utilisader actual.',
       sshUserPlaceholder: 'da ~/.ssh/config',
       sshPortDesc: 'Vid = 22 u il port da ~/.ssh/config.',
-      sshKeyTitle: 'Datoteca d\'identitad',
+      sshKeyTitle: "Datoteca d'identitad",
       sshKeyDesc: 'Percurs da la clav privata. Vid = ssh-agent u ~/.ssh/config.',
       sshOpenAmerPathTitle: 'Percurs da OpenAmer (opziunal)',
       sshOpenAmerPathDesc: 'Percurs cumplet al binari openamer remot. Vid = auto-detectar.',
@@ -481,17 +496,21 @@ export const rm = defineLocale({
       sshButtonsHint: 'Salvar vala per la proxima aviada. Connectar reconnectescha ussa.',
       sshIncompleteHost: 'Inserir in host SSH avant connectar.',
       sshErrUnreachable: 'Impussibel da cuntanscher quel host via SSH. Controllar il host, il port e vossa rait.',
-      sshErrAuth: 'Autentificaziun SSH fallida. Chargar vossa clav en il ssh-agent (ssh-add) u definir in IdentityFile en ~/.ssh/config — OpenAmer executescha ssh betg interactivamain.',
-      sshErrHostKey: 'La clav dal host è MIDADA dapi vossa ultima connexiun. Verifitgar che quai saja spetgà, lura executar ssh-keygen -R <host> e reconnectar.',
-      profileConnection: profile => `Connessiun usàt solma quand “${profile}” è il profil activ. Scelga 'Usar gateway default' per remover l'override.`,
+      sshErrAuth:
+        'Autentificaziun SSH fallida. Chargar vossa clav en il ssh-agent (ssh-add) u definir in IdentityFile en ~/.ssh/config — OpenAmer executescha ssh betg interactivamain.',
+      sshErrHostKey:
+        'La clav dal host è MIDADA dapi vossa ultima connexiun. Verifitgar che quai saja spetgà, lura executar ssh-keygen -R <host> e reconnectar.',
+      profileConnection: profile =>
+        `Connessiun usàt solma quand “${profile}” è il profil activ. Scelga 'Usar gateway default' per remover l'override.`,
       modeTitle: 'Modalità da connessun',
       localTitle: 'Local portal',
       localDesc: 'Initzializza in back-end privà su localhost. Stu è il default e funczi in offline.',
       inheritTitle: 'Daba il pont default',
-      inheritDesc: "Elimina il suprima daûr deû proifili e daba la connection default.",
+      inheritDesc: 'Elimina il suprima daûr deû proifili e daba la connection default.',
       remoteTitle: 'Pont remota',
       remoteDesc: 'Collega shell daûra a in back-end OpenAmer remota.',
-      remoteAuthHint: 'I ponts ospitads üsa OAuth u in username e in password; quai self-hosted puder ausa in token da session.',
+      remoteAuthHint:
+        'I ponts ospitads üsa OAuth u in username e in password; quai self-hosted puder ausa in token da session.',
       cloudTitle: 'OpenAmer en il nivel',
       cloudDesc: 'Entra in once a OpenAmer Cloud e sarbain tranter dals agents e tua account — nus URL da incolla.',
       cloudSignInTitle: 'OpenAmer en il nivel',
@@ -502,7 +521,7 @@ export const rm = defineLocale({
       cloudAgentsTitle: 'I vostri agents',
       cloudOrgPickerTitle: 'Sarbain in organisaziun',
       cloudOrgSelect: 'Selescha',
-      cloudOrgChange: 'Tschangia l\'org',
+      cloudOrgChange: "Tschangia l'org",
       cloudOrgRole: role => `Rol: ${role}`,
       cloudLoadingAgents: 'Cariga dals agents tua…',
       cloudConnectedTo: name => `Conness a ${name}.`,
@@ -510,12 +529,15 @@ export const rm = defineLocale({
       signOut: 'Esci',
       signInWith: provider => `S'inscriver cun ${provider}`,
       authTitle: 'Autfur',
-      authSignedInPassword: 'Questa gate utilis in numrer e in paf. È tschier in sessiun; la sessiun s\'aggiorna automaticamain.',
-      authSignedInOauth: 'Questa gate utilis OAuth. È tschier in sessiun; la sessiun s\'aggiorna automaticamain.',
-      authNeedsPassword: 'Questa gate utilis in numrer e in paf. Tschiera s\'inc a autorisar questa app da desktop.',
-      authNeedsOauth: provider => `Quest gateway usa OAuth. S'inscriver cun ${provider} per autorisar quest app desktop.`,
+      authSignedInPassword:
+        "Questa gate utilis in numrer e in paf. È tschier in sessiun; la sessiun s'aggiorna automaticamain.",
+      authSignedInOauth: "Questa gate utilis OAuth. È tschier in sessiun; la sessiun s'aggiorna automaticamain.",
+      authNeedsPassword: "Questa gate utilis in numrer e in paf. Tschiera s'inc a autorisar questa app da desktop.",
+      authNeedsOauth: provider =>
+        `Quest gateway usa OAuth. S'inscriver cun ${provider} per autorisar quest app desktop.`,
       tokenTitle: 'Token da sessiun',
-      tokenDesc: 'Il token da sessiun dal panel utilis parcher REST e WebSocket. Lassa vaga por mantener il token salv.',
+      tokenDesc:
+        'Il token da sessiun dal panel utilis parcher REST e WebSocket. Lassa vaga por mantener il token salv.',
       existingToken: value => `Token existent ${value}`,
       savedToken: 'Salvà',
       pasteSessionToken: 'Mpezza il token da sessiun',
@@ -535,11 +557,13 @@ export const rm = defineLocale({
       sshHostPickTitle: 'Auv',
       sshPortTitle: 'Pòrt',
       sshReachable: (host, platform) => `Raggiungibel: ${host} (${platform}) — OpenAmer trovat`,
-      sshErrNotInstalled: 'OpenAmer n è stada installa s a la uaurda auv. Installa il lì (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) oppure pònta a la paghe da OpenAmer.',
-      sshErrPlatform: 'Platforma da uaurda n è sustegida. La modalità SSH da OpenAmer Desktop sustegida Linux, macOS e Windows.',
+      sshErrNotInstalled:
+        'OpenAmer n è stada installa s a la uaurda auv. Installa il lì (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) oppure pònta a la paghe da OpenAmer.',
+      sshErrPlatform:
+        'Platforma da uaurda n è sustegida. La modalità SSH da OpenAmer Desktop sustegida Linux, macOS e Windows.',
       sshErrTimeout: 'La connessiun SSH è espirada. Il auv po è intrerupta o dormida.',
       sshErrUpdateRequired: 'Actualiza OpenAmer s la uaurda auv prima da connectar cun Desktop SSH.',
-      sshErrUnknown: 'La connessiun SSH è fallida.',
+      sshErrUnknown: 'La connessiun SSH è fallida.'
     },
     model: {
       applying: 'Applitgond...',
@@ -549,52 +573,54 @@ export const rm = defineLocale({
       defaultsFailed: 'Betg reussì da salvar las predefiniziuns dal model',
       auxiliaryTitle: 'Models auxiliars',
       resetAllToMain: 'Resettar tuts al model principal',
-      auxiliaryDesc: 'Las incumbensas da gidant vegnan executadas sin il model principal per predefiniziun. Assignescha in model dedicà a mintga incumbensa per surscriver.',
+      auxiliaryDesc:
+        'Las incumbensas da gidant vegnan executadas sin il model principal per predefiniziun. Assignescha in model dedicà a mintga incumbensa per surscriver.',
       setToMain: 'Definir sco principal',
       change: 'Mudar',
       autoUseMain: 'auto · utilisar il model principal',
       providerDefault: '(predefiniziun dal purschider)',
       fallbackAdd: 'Agiuntar alternativa',
       fallbackEmpty: 'Nagin models alternativs — il model predefinì vegn duvrà fin che el falla.',
-      notInCatalog: 'n\'è betg en la glista da models da quest purschider — las clomadas pon recurrer ad in backup.',
+      notInCatalog: "n'è betg en la glista da models da quest purschider — las clomadas pon recurrer ad in backup.",
       tasks: {
         vision: {
           label: 'Visiun',
-          hint: 'Analisa da maletgs',
+          hint: 'Analisa da maletgs'
         },
         web_extract: {
           label: 'Extract da web',
-          hint: 'Resumaziun da pagina',
+          hint: 'Resumaziun da pagina'
         },
         compression: {
           label: 'Compressiun',
-          hint: 'Compactaziun dal context',
+          hint: 'Compactaziun dal context'
         },
         skills_hub: {
           label: 'Hub da las abilitads',
-          hint: 'Tschertga d\'abilitads',
+          hint: "Tschertga d'abilitads"
         },
         approval: {
           label: 'Approvaziun',
-          hint: 'Autoapprovaziun intelligenta',
+          hint: 'Autoapprovaziun intelligenta'
         },
         mcp: {
           hint: 'Rutaziun dals utensils MCP',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Generaziun da titels',
-          hint: 'Titels da sesiuns',
+          hint: 'Titels da sesiuns'
         },
         curator: {
           label: 'Curatur',
-          hint: 'Revisiun da l\'utilisaziun d\'abilitads',
-        },
+          hint: "Revisiun da l'utilisaziun d'abilitads"
+        }
       },
       loading: 'Zargar da configuraziun da model...',
-      appliesDesc: 'Si applica a novais sessuras. Utilitza il pick da models en il composer por hot-swapon il chat activ.',
+      appliesDesc:
+        'Si applica a novais sessuras. Utilitza il pick da models en il composer por hot-swapon il chat activ.',
       provider: 'Furnidor',
-      model: 'Modell',
+      model: 'Modell'
     },
     providers: {
       disconnectInTerminal: 'Desconnectar (executescha il cumond da stizzar en il terminal)',
@@ -604,12 +630,14 @@ export const rm = defineLocale({
       noKeysMatch: 'Nagins furniturs correspundan a tia tschertga.',
       localEndpoint: {
         title: 'Endpoint local / persunalisà',
-        description: 'Fai che OpenAmer puncta sin in endpoint cumpatibel cun OpenAI (Zyphra, vLLM, llama.cpp, Ollama, etc).',
+        description:
+          'Fai che OpenAmer puncta sin in endpoint cumpatibel cun OpenAI (Zyphra, vLLM, llama.cpp, Ollama, etc).'
       },
       loading: 'Chargiar furniturs...',
       connectAccount: 'Conectar in cont',
       haveApiKey: 'Has ina clav API invece?',
-      intro: 'S\'annunziar cun in abonament — nagina clav API da copiar. OpenAmer exequescha l\'annunzia dal navigatur per tai, directamain qua en l\'app.',
+      intro:
+        "S'annunziar cun in abonament — nagina clav API da copiar. OpenAmer exequescha l'annunzia dal navigatur per tai, directamain qua en l'app.",
       connected: 'Conectà',
       collapse: 'Reducir',
       connectAnother: 'Conectar in auter purschider',
@@ -618,40 +646,45 @@ export const rm = defineLocale({
       removeConfirm: provider => `Remover ${provider}?`,
       removeExternalGeneric: provider => `${provider} vegn administrà cun sia atgna CLI — allontanescha el là.`,
       removeKeyManaged: provider => `${provider} è configurà cun ina clav API. Allontanescha el sut Clavs API.`,
-      removeTerminalConfirm: (provider, command) => `Sconness ${provider}? Quest executa "${command}" in il terminal per limpiar la credenzial.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Sconness ${provider}? Quest executa "${command}" in il terminal per limpiar la credenzial.`,
       removeTerminalRunning: provider => `Executaziun da ${provider} disconnect in il terminal…`,
       removedMessage: provider => `${provider} è vegnì allontanà.`,
-      failedRemove: provider => `N'ha pas pudì remover ${provider}`,
+      failedRemove: provider => `N'ha pas pudì remover ${provider}`
     },
     sessions: {
       loading: 'Chargiar sesiuns archivadas…',
       archivedTitle: 'Sesiuns archivadas',
-      archivedIntro: 'Ils chats archivads èn zuppads en la barra laterala, ma tegnan tut lur messagis. Ctrl/⌘-clicca sin in chat en la barra laterala per l\'archivar.',
+      archivedIntro:
+        "Ils chats archivads èn zuppads en la barra laterala, ma tegnan tut lur messagis. Ctrl/⌘-clicca sin in chat en la barra laterala per l'archivar.",
       emptyArchivedTitle: 'Nagut archivà',
       emptyArchivedDesc: 'Archiva in chat per il zuppar qua.',
       unarchive: 'Dearchivar',
       deletePermanently: 'Stizzar definitivamain',
       restored: 'Restaurà',
       autoArchiveTitle: 'Autoarchivar chats inactivs',
-      autoArchiveDesc: 'Archivar automaticamain chats che ti n\'has betg tutgà da tschert temp. Chats fixads vegnan mai archivads, e nagut vegn stizzà — chats archivads vegnan simplamain spustads qua.',
+      autoArchiveDesc:
+        "Archivar automaticamain chats che ti n'has betg tutgà da tschert temp. Chats fixads vegnan mai archivads, e nagut vegn stizzà — chats archivads vegnan simplamain spustads qua.",
       autoArchiveDaysLabel: 'Archivar suenter',
-      autoArchiveDaysUnit: 'dis d\'inactivitad',
-      autoArchiveFailed: 'Betg pussaivel dad actualisar l\'autoarchiv',
+      autoArchiveDaysUnit: "dis d'inactivitad",
+      autoArchiveFailed: "Betg pussaivel dad actualisar l'autoarchiv",
       defaultDirTitle: 'Ordinatur da project standard',
-      defaultDirDesc: 'Novas sesiuns cumenzan en quest ordinatur, nun che ti tschernias in auter. Lascha el betg definì per utilisar tes ordinatur da chasa.',
-      defaultDirUpdated: 'Ordinatur da project standard actualisà — cumenza in nov chat (Ctrl/⌘+N) per che quai entria en vigur',
+      defaultDirDesc:
+        'Novas sesiuns cumenzan en quest ordinatur, nun che ti tschernias in auter. Lascha el betg definì per utilisar tes ordinatur da chasa.',
+      defaultDirUpdated:
+        'Ordinatur da project standard actualisà — cumenza in nov chat (Ctrl/⌘+N) per che quai entria en vigur',
       change: 'Mida',
       choose: 'Tscherna',
       clear: 'Stizza',
       notSet: 'Betg definì',
       failedLoad: 'Betg pussaivel da chargiar sesiuns archivadas',
-      unarchiveFailed: 'Dearchivar n\'è betg reussì',
-      deleteFailed: 'Stizzar n\'è betg reussì',
-      updateDirFailed: 'Betg pussaivel dad actualisar l\'ordinatur standard',
-      clearDirFailed: 'Betg pussaivel da stizzar l\'ordinatur standard',
+      unarchiveFailed: "Dearchivar n'è betg reussì",
+      deleteFailed: "Stizzar n'è betg reussì",
+      updateDirFailed: "Betg pussaivel dad actualisar l'ordinatur standard",
+      clearDirFailed: "Betg pussaivel da stizzar l'ordinatur standard",
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Eliminar permanentament "${title}"? Quest n'è pas reversibel.`,
-      defaultsTo: label => `Default a ${label}.`,
+      defaultsTo: label => `Default a ${label}.`
     },
     toolsets: {
       loadingConfig: 'Chargiar la configuraziun',
@@ -660,20 +693,21 @@ export const rm = defineLocale({
       set: 'Definì',
       notSet: 'Betg definì',
       selectedTitle: 'Furnitur tschernì',
-      failedLoad: 'Chargiar la configuraziun dals utensils n\'è betg reussì',
-      noProviderOptions: 'Quest set da utensils n\'ha naginas opziuns da provider — activescha el e funcziunescha cun tia configuraziun actuala.',
+      failedLoad: "Chargiar la configuraziun dals utensils n'è betg reussì",
+      noProviderOptions:
+        "Quest set da utensils n'ha naginas opziuns da provider — activescha el e funcziunescha cun tia configuraziun actuala.",
       noProviders: 'Nagins providers èn disponibels per quest set da utensils ussa.',
       ready: 'Pront',
-      needsSignIn: 'Basegna s\'annunziar',
+      needsSignIn: "Basegna s'annunziar",
       needsSetup: 'Basegna configuraziun',
-      openamerIncluded: 'Inclus cun in abunament OpenAmer — s\'annunziar en il OpenAmer Portal per activar.',
-      openamerAuthNeededTitle: 'S\'annunziar en il OpenAmer Portal',
-      openamerAuthSignIn: 'S\'annunziar',
+      openamerIncluded: "Inclus cun in abunament OpenAmer — s'annunziar en il OpenAmer Portal per activar.",
+      openamerAuthNeededTitle: "S'annunziar en il OpenAmer Portal",
+      openamerAuthSignIn: "S'annunziar",
       openamerAuthDoneTitle: 'OpenAmer Portal connectà',
-      openamerAuthDoneMessage: 'Tes backends d\'abunament èn ussa activs.',
-      openamerAuthFailed: 'L\'annunzia en il OpenAmer Portal n\'è betg cumpletta',
+      openamerAuthDoneMessage: "Tes backends d'abunament èn ussa activs.",
+      openamerAuthFailed: "L'annunzia en il OpenAmer Portal n'è betg cumpletta",
       noApiKeyRequired: 'Nagina clav API necessaria.',
-      postSetupInstalledHint: 'Installà. Puspè exequir la configuraziun mo sch\'insatgi è rutt.',
+      postSetupInstalledHint: "Installà. Puspè exequir la configuraziun mo sch'insatgi è rutt.",
       postSetupRun: 'Exequir la configuraziun',
       postSetupRerun: 'Puspè exequir la configuraziun',
       postSetupInstalled: 'Installà',
@@ -685,24 +719,26 @@ export const rm = defineLocale({
       webUseForSearch: 'Duvrar per tschertgar',
       webUseForExtract: 'Duvrar per extractar',
       webUsedForSearch: 'Backend da tschertga',
-      webUsedForExtract: 'Backend d\'extractar',
+      webUsedForExtract: "Backend d'extractar",
       loadingModels: 'Chargiar il catalog da models...',
       modelInUse: 'En diever',
       modelDefault: 'predefinì',
       modelInactiveHint: 'Tscherner quest backend emprem per midar ses model.',
       modelSelectedTitle: 'Model tschernì',
       terminalBackend: {
-        sectionTitle: 'Backend d\'execuziun',
-        loading: 'Controllar ils backends d\'execuziun…',
+        sectionTitle: "Backend d'execuziun",
+        loading: "Controllar ils backends d'execuziun…",
         failedLoad: 'Impussibel da chargiar ils backends da terminal',
         ready: 'Pront',
         needsSetup: 'Dovra configuraziun',
         unavailable: 'Betg disponibel',
         inUse: 'En diever',
         selectedTitle: 'Backend tschernì',
-        needsSetupHint: 'Ti pos tscherner quest backend ussa — ils cumonds vegnan a fallir fin che la configuraziun è cumpletta.',
-        selectedMessage: backend => `Cumands da terminal vegnan ussa executiads via ${backend}. Valet per novas sessiuns.`,
-        failedSelect: backend => `La selecziun da ${backend} ei fallida`,
+        needsSetupHint:
+          'Ti pos tscherner quest backend ussa — ils cumonds vegnan a fallir fin che la configuraziun è cumpletta.',
+        selectedMessage: backend =>
+          `Cumands da terminal vegnan ussa executiads via ${backend}. Valet per novas sessiuns.`,
+        failedSelect: backend => `La selecziun da ${backend} ei fallida`
       },
       savedMessage: key => `${key} actualisà.`,
       removedMessage: key => `${key} allontanà.`,
@@ -712,8 +748,10 @@ export const rm = defineLocale({
       removeConfirm: key => `Remover ${key} da .env?`,
       selectedMessage: provider => `${provider} è ussa activ.`,
       failedSelect: provider => `Echegi per selectar ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} è memorisà, ma vegn activà pir suenter che ti t'annunzias al portal dad OpenAmer.`,
-      postSetupHint: step => `Quest backend ha bisogn d'una installaziun unica (${step}). Executa sin questa machina — po durar dits minutes.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} è memorisà, ma vegn activà pir suenter che ti t'annunzias al portal dad OpenAmer.`,
+      postSetupHint: step =>
+        `Quest backend ha bisogn d'una installaziun unica (${step}). Executa sin questa machina — po durar dits minutes.`,
       postSetupCompleteMessage: step => `${step} installà.`,
       postSetupErrorMessage: step => `Checkà il log ${step}.`,
       postSetupFailed: step => `L'installaziun da ${step} ei fallida`,
@@ -724,11 +762,12 @@ export const rm = defineLocale({
       modelSectionTitle: 'Modell',
       modelCount: count => `${count} model${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} vala per novas sessiuns.`,
-      failedSelectModel: model => `La selecziun da ${model} ei fallida`,
+      failedSelectModel: model => `La selecziun da ${model} ei fallida`
     },
     plugins: {
       title: 'Plugins da desktop',
-      blurb: 'UI extensions loadas in illa app — bundelgadas cun il build, u tapas in il dossier desktop-plugins (includents que OpenAmer scrive). Disabilitar el plugin el cariga in direct e survive a rencos.',
+      blurb:
+        'UI extensions loadas in illa app — bundelgadas cun il build, u tapas in il dossier desktop-plugins (includents que OpenAmer scrive). Disabilitar el plugin el cariga in direct e survive a rencos.',
       count: n => `${n} installadas`,
       openFolder: 'Aper il dossier dals plugins',
       rescan: 'Refescha',
@@ -740,38 +779,41 @@ export const rm = defineLocale({
       kinds: {
         bundled: 'bundl',
         disk: 'sur il disc',
-        runtime: 'Temp d\'execuziun',
-      },
+        runtime: "Temp d'execuziun"
+      }
     },
     modeOptions: {
       light: {
         label: 'Licht',
-        description: 'Superfizas brillanta da la desktop',
+        description: 'Superfizas brillanta da la desktop'
       },
       dark: {
         label: 'Tusch',
-        description: 'Labori con bassa lumënsa',
+        description: 'Labori con bassa lumënsa'
       },
       system: {
         label: 'Sistema',
-        description: 'Segli la apparitura dal sistema',
-      },
+        description: 'Segli la apparitura dal sistema'
+      }
     },
     appearance: {
       title: 'Apparitura',
-      intro: 'Istu è preferenzas dad a visualisarzi sulla sola desktop. Il modus controlla e brillanzza; il tema controlla il accento e il stil da la chat.',
+      intro:
+        'Istu è preferenzas dad a visualisarzi sulla sola desktop. Il modus controlla e brillanzza; il tema controlla il accento e il stil da la chat.',
       colorMode: 'Modus da colore',
       colorModeDesc: 'Scevla in modus fixo o glischa OpenAmer a tei settaggi dal sistema.',
       toolViewTitle: 'Visualisar da la clam da la tool',
       toolViewDesc: 'Il prodotto mä i datas grez da la tool; il tecnich mä il input e output integral.',
       uiScaleTitle: 'Scal da UI',
-      uiScaleDesc: (percent: number) => `Scalà il text e i controls per tut l'app. Cmd/Ctrl cun +, - e 0 funcziuna era. Actual: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scalà il text e i controls per tut l'app. Cmd/Ctrl cun +, - e 0 funcziuna era. Actual: ${percent}%.`,
       translucencyTitle: 'Transparenza da la fenestra',
       translucencyDesc: 'Vear il tèr via il tut il fenestra. Sin da macOS e Windows.',
       backdropTitle: 'Sfondo da la chat',
       backdropDesc: 'Il imagine da la statua debil disturn da la conversaziun.',
       embedsTitle: 'Embutgns in linea',
-      embedsDesc: 'Previews rias puntan da dals sites (YouTube, X, …). Tschier mpe in placeholder fin che permetteis tschegg; Sempre puspunta automaticam; Scun tenchi links einfurns.',
+      embedsDesc:
+        'Previews rias puntan da dals sites (YouTube, X, …). Tschier mpe in placeholder fin che permetteis tschegg; Sempre puspunta automaticam; Scun tenchi links einfurns.',
       embedsAsk: 'Aschi',
       embedsAlways: 'Sempe',
       embedsOff: 'Scun',
@@ -784,7 +826,8 @@ export const rm = defineLocale({
       themeDesc: 'Paletas de desktop sin cuntun. Il modus seleccionà è applicà sin in haut.',
       themeProfileNote: profile => `Salvà per il profil ${profile} — tut profil ten il propi tema.`,
       installTitle: 'Installa da VS Code',
-      installDesc: 'Incolla in id d’extension da Marketplace (e.g. dracula-theme.theme-dracula) per convertì il tema da colurs in ina paleta da desktop.',
+      installDesc:
+        'Incolla in id d’extension da Marketplace (e.g. dracula-theme.theme-dracula) per convertì il tema da colurs in ina paleta da desktop.',
       installPlaceholder: 'editur.extensiun',
       installButton: 'Installa',
       installing: 'Installa in cors…',
@@ -794,18 +837,20 @@ export const rm = defineLocale({
       importedBadge: 'Importà',
       pet: {
         title: 'Mascott',
-        intro: 'Adotta ina mascott petdex animada che flotta dals apps e reagì a ciò che OpenAmer fa — corrend in mentre i vagi exequì, festeggia sin a success, e trist in sin a errors.',
-        restartHint: 'I pets hanno bisogn da restart - l\'applicaziun in eseguir ha principià prima che quest\' funtzione èse adda. Esc e torna a piggar `OpenAmer`, e po torna qua.',
+        intro:
+          'Adotta ina mascott petdex animada che flotta dals apps e reagì a ciò che OpenAmer fa — corrend in mentre i vagi exequì, festeggia sin a success, e trist in sin a errors.',
+        restartHint:
+          "I pets hanno bisogn da restart - l'applicaziun in eseguir ha principià prima che quest' funtzione èse adda. Esc e torna a piggar `OpenAmer`, e po torna qua.",
         on: 'In',
         off: 'Es',
         scaleTitle: 'Gronda',
-        scaleDesc: 'Adegua il mascotte flottant. Valida in tutt\'is posti in modo immediat.',
+        scaleDesc: "Adegua il mascotte flottant. Valida in tutt'is posti in modo immediat.",
         roamTitle: 'Vagà',
         roamDesc: 'Lassa il pet vagà qua fin al finestra durant el è in sperl.',
         chooseTitle: 'Scevla in pet',
         chooseDesc: 'Scevla in pet; la installa (se serve) e la fa activ.',
         searchPlaceholder: 'Tschercha pets...',
-        unreachable: "Ness è pot i petdex gallery. Controlla e connection e torna piggar questa pagina.",
+        unreachable: 'Ness è pot i petdex gallery. Controlla e connection e torna piggar questa pagina.',
         noMatch: query => `Nus pets corresponds a "${query}".`,
         installedTag: 'installa',
         generatedTag: 'Genera',
@@ -814,7 +859,7 @@ export const rm = defineLocale({
         uninstall: name => `Desinstallar ${name}`,
         delete: name => `Eliminar ${name}`,
         deleteTitle: name => `Eliminar ${name}?`,
-        deleteBody: "Questa deleta definitivament il pet - el po no po piggar.",
+        deleteBody: 'Questa deleta definitivament il pet - el po no po piggar.',
         deleteConfirm: 'Deleta',
         rename: name => `Rinominar ${name}`,
         renameTitle: 'Renomina il pet',
@@ -827,8 +872,8 @@ export const rm = defineLocale({
         exportFailed: slug => `N'ha pas pudì exportar ${slug}`,
         noneAvailable: 'Nus pets disponibils a activar in quest moment.',
         turnOnFailed: 'Ness è po pot activ il pet.',
-        turnOffFailed: 'Nus non poteu saul il pet.',
-      },
+        turnOffFailed: 'Nus non poteu saul il pet.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -839,30 +884,31 @@ export const rm = defineLocale({
       updates: 'Actualisazions',
       checkNow: 'Controlla ora',
       checking: 'Controlla…',
-      seeWhatsNew: "Vede il che è nov",
+      seeWhatsNew: 'Vede il che è nov',
       updateNow: 'Actualisa ora',
       releaseNotes: 'Notas da la releva',
-      onLatest: "Ti estnìs a la versiun pi noa.",
+      onLatest: 'Ti estnìs a la versiun pi noa.',
       installing: 'In actualisazun est installa actualmain.',
       cantUpdate: "Questa build na po potea actualisa selsa d'in intern.",
-      cantReach: "Noss non è potev par raggiun il server actualisazun.",
+      cantReach: 'Noss non è potev par raggiun il server actualisazun.',
       tapCheck: 'Tocca "Controlla ora" per cuntrolla actualisazuns.',
       updateReady: count => `Ina nova actualisaziun è pronta (${count} midada${count === 1 ? '' : 's'} inclusa).`,
       lastChecked: age => `Ultim check ${age}`,
       justNowSuffix: '· adess',
       automaticUpdates: 'Actualisazons automatics',
-      automaticUpdatesDesc: 'OpenAmer controlla actualisazuns automatic main in automatic background e il accepta chust in via poteu esser pret.',
+      automaticUpdatesDesc:
+        'OpenAmer controlla actualisazuns automatic main in automatic background e il accepta chust in via poteu esser pret.',
       branchCommit: (branch, commit) => `Rom ${branch} · Registraziun ${commit}`,
       never: 'mai',
       justNow: 'adess',
       minAgo: count => `avant ${count} minutas`,
       hoursAgo: count => `avant ${count} uras`,
-      daysAgo: count => `avant ${count} dis`,
+      daysAgo: count => `avant ${count} dis`
     },
     keys: {
       loading: 'Caricament da chiavi API e credentials...',
       failedLoad: 'I chiavi API han èscam pò caricà.',
-      empty: 'Ancora nag è configurà in questa categoria.',
+      empty: 'Ancora nag è configurà in questa categoria.'
     },
     mcp: {
       loading: 'Caricament da servers MCP...',
@@ -914,7 +960,8 @@ export const rm = defineLocale({
       catalogInstallFailed: name => `Echegi per installar ${name}`,
       catalogEnvPrompt: name => `${name} dovra datas d'access`,
       catalogEnvRequired: 'Pauscha i valori obligatorics avant installà.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} activà`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} activà`,
       statusConnecting: 'Zargar in connessiun…',
       statusNeedsAuth: 'Nunz d autentificaziun',
       statusError: 'Errur',
@@ -927,8 +974,8 @@ export const rm = defineLocale({
       unsavedConnect: 'Non salvau — salva mcp.json e connectar.',
       enableTool: tool => `Activar ${tool}`,
       disableTool: tool => `Desactivar ${tool}`,
-      noOutput: 'Anc in output.',
-    },
+      noOutput: 'Anc in output.'
+    }
   },
   skills: {
     tabSkills: 'Abilitads',
@@ -942,19 +989,20 @@ export const rm = defineLocale({
     loading: 'Chargiar capacitads...',
     noSkillsTitle: 'Naginas abilitads chattadas',
     noSkillsDesc: 'Prova ina tschertga pli vasta u ina autra categoria.',
-    noToolsetsTitle: 'Nagins sets d\'utensils chattads',
+    noToolsetsTitle: "Nagins sets d'utensils chattads",
     noToolsetsDesc: 'Prova ina tschertga pli vasta.',
     noDescription: 'Nagina descripziun.',
     configured: 'Configurà',
     needsKeys: 'Basegna clavs',
-    visionModelHint: 'La visiun utilisescha tia configuraziun dal model auxiliar — il model che po tractar maletgs vegn tschernì là, betg qua per furnitur.',
+    visionModelHint:
+      'La visiun utilisescha tia configuraziun dal model auxiliar — il model che po tractar maletgs vegn tschernì là, betg qua per furnitur.',
     visionModelLink: 'Tscherna il model da visiun en Parameters → Models',
     skillsLoadFailed: 'Impussibel da chargiar las abilitads',
-    toolsetsRefreshFailed: 'Actualisaziun dals sets d\'instruments betg reussida',
+    toolsetsRefreshFailed: "Actualisaziun dals sets d'instruments betg reussida",
     skillEnabled: 'Abilitad activada',
     skillDisabled: 'Abilitad deactivada',
-    toolsetEnabled: 'Set d\'instruments activà',
-    toolsetDisabled: 'Set d\'instruments deactivà',
+    toolsetEnabled: "Set d'instruments activà",
+    toolsetDisabled: "Set d'instruments deactivà",
     sortMostUsed: 'Il pli duvrà',
     sortMostUsedDesc: '↓ Il pli duvrà',
     sortLeastUsedAsc: '↑ Il main duvrà',
@@ -965,7 +1013,7 @@ export const rm = defineLocale({
     provenance: {
       agent: 'Emprendì',
       bundled: 'Integrà',
-      hub: 'Center',
+      hub: 'Center'
     },
     changesApplyNewSessions: 'Las midadas valan per novas sesiuns.',
     skillUpdated: 'Abilitad actualisada',
@@ -980,7 +1028,8 @@ export const rm = defineLocale({
       connectingHubs: 'Conectar cun ils hubs da abilitads...',
       connectedHubs: 'Hubs connectads:',
       featured: 'Abilitads destacadas',
-      landingHint: 'Tschertgar en il hub per navigar abilitads installablas da l\'index uffizial, GitHub e funtanas da la communitad.',
+      landingHint:
+        "Tschertgar en il hub per navigar abilitads installablas da l'index uffizial, GitHub e funtanas da la communitad.",
       noResults: 'Naginas abilitads correspundentas chattadas en il hub.',
       installed: 'Installadas',
       install: 'Installar',
@@ -994,11 +1043,11 @@ export const rm = defineLocale({
       scanning: 'Scannar...',
       close: 'Serrar',
       files: 'Datotecas',
-      noReadme: 'Questa abilitad n\'ha nagina previsualisaziun da SKILL.md.',
+      noReadme: "Questa abilitad n'ha nagina previsualisaziun da SKILL.md.",
       trust: {
         builtin: 'integrat',
         trusted: 'fidaivel',
-        community: 'cumunitad',
+        community: 'cumunitad'
       },
       verdictSafe: 'Segir',
       verdictCaution: 'Attenziun',
@@ -1008,17 +1057,17 @@ export const rm = defineLocale({
       policyBlock: 'Installaziun bloccada da la directiva',
       noFindings: 'Nagins resultats da segirezza.',
       updateStarted: 'Actualisaziun da las abilitads installadas...',
-      actionFailed: 'Acziun da l\'abilitad fallida',
-      actionLog: 'Protocol d\'aczuns',
+      actionFailed: "Acziun da l'abilitad fallida",
+      actionLog: "Protocol d'aczuns",
       loadFailed: 'Chargiar il hub da las abilitads fallì',
-      previewFailed: 'Previsualisaziun da l\'abilitad fallida',
+      previewFailed: "Previsualisaziun da l'abilitad fallida",
       scanFailed: 'Scansaziun da segirezza fallida',
       searchFailed: 'Tschertga en il hub fallida',
       resultCount: (count, ms) => `${count} resultat${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Tempus es esgotà: ${sources}`,
       findings: count => `${count} constataziun${count === 1 ? '' : 's'}`,
       installStarted: name => `S'installa ${name}...`,
-      uninstallStarted: name => `S'elimina ${name}...`,
+      uninstallStarted: name => `S'elimina ${name}...`
     },
     tabMcp: 'MCP',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} sets d'utensils activads`,
@@ -1031,7 +1080,7 @@ export const rm = defineLocale({
     usageCount: count => `utilisà ${count}×`,
     emptyNoneFound: noun => `Nisun ${noun} trovat`,
     emptyNothingMatches: query => `Nient corresponds a “${query}”.`,
-    emptyNoneAvailable: noun => `Nisun ${noun} disponibel per l'instanti.`,
+    emptyNoneAvailable: noun => `Nisun ${noun} disponibel per l'instanti.`
   },
   starmap: {
     title: 'Grafica da memoria',
@@ -1047,7 +1096,8 @@ export const rm = defineLocale({
     emptyTitle: 'Anc betg emprendì',
     emptyDesc: 'Uschespert che OpenAmer construescha abilitads e memorias per tia lavur, ellas cumparan qua.',
     share: 'Cundivider la carta',
-    shareHint: 'Copiar il code per cundivider questa carta, u encurir in per chargiar. El cuntegna mo la disposiziun, betg tes text da memoria u da abilitads.',
+    shareHint:
+      'Copiar il code per cundivider questa carta, u encurir in per chargiar. El cuntegna mo la disposiziun, betg tes text da memoria u da abilitads.',
     shareTitle: 'Importar / exportar la carta',
     sharePlaceholder: 'Encurir in code da carta…',
     copy: 'Copiar il code da carta',
@@ -1058,11 +1108,11 @@ export const rm = defineLocale({
     importedBadge: 'carta importada',
     resetToMine: 'Enavos a mia carta',
     subtitle: (nodes, clusters) => `${nodes} abilitads en ${clusters} categorias`,
-    importSuccess: nodes => `Chargià ina charta cun ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Chargià ina charta cun ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Serrar ils agents',
-    title: 'Generar l\'arbre',
+    title: "Generar l'arbre",
     subtitle: 'Activitat da subagents en direct per il turn actual.',
     emptyTitle: 'Nagins subagents en direct',
     emptyDesc: 'Cura che in turn delega lavur, ils agents uffants transmetten lur progress qua.',
@@ -1088,7 +1138,7 @@ export const rm = defineLocale({
     ageDays: days => `avant ${days} dis`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}min ${seconds}s`,
-    tokens: value => `${value} tokens`,
+    tokens: value => `${value} tokens`
   },
   commandCenter: {
     close: 'Serrar il center da commondas',
@@ -1116,8 +1166,8 @@ export const rm = defineLocale({
       installed: 'Installà',
       generatedTag: 'Generà',
       adoptFailed: 'Impussibel adottar quel animal.',
-      toggleFailed: 'Impussibel midar il stadi da l\'animal.',
-      noneAvailable: 'Nagins animals disponibels — tscherna in sut per installar.',
+      toggleFailed: "Impussibel midar il stadi da l'animal.",
+      noneAvailable: 'Nagins animals disponibels — tscherna in sut per installar.'
     },
     generatePet: {
       title: 'Generar in animal domestic',
@@ -1140,13 +1190,14 @@ export const rm = defineLocale({
       slowProviderHint: 'Quai po durar pliras minutas.',
       remix: 'Remixar',
       remixConfirmTitle: 'Remixar quest aspect?',
-      remixConfirmBody: 'Quai generescha ina nova seria da sbozs cun quest qua sco punct da partenza. Quai po durar plirs minuts.',
+      remixConfirmBody:
+        'Quai generescha ina nova seria da sbozs cun quest qua sco punct da partenza. Quai po durar plirs minuts.',
       genericError: 'Generaziun fallida — emprova puspè u tscherna ina proposta.',
       referenceImageTooLarge: 'Il maletg da referenza è memia grond. Utilisescha in sut 16 MB.',
       referenceImageInvalid: 'Impussibel da leger quel maletg da referenza. Emprova cun PNG, JPG, WebP u GIF.',
       adopt: 'Adoptar',
       startOver: 'Cumenzar da nov',
-      hatchRow: (_state, done, total) => `S'esbozza l'impresiun ${done} da ${total}…`,
+      hatchRow: (_state, done, total) => `S'esbozza l'impresiun ${done} da ${total}…`
     },
     installTheme: {
       title: 'Installar il tema…',
@@ -1158,7 +1209,7 @@ export const rm = defineLocale({
       install: 'Installar',
       installing: 'Installar...',
       installed: 'Installà',
-      installs: count => `${count} installaziuns`,
+      installs: count => `${count} installaziuns`
     },
     settingsFields: 'Camps da configuraziun',
     mcpServers: 'Servers MCP',
@@ -1167,49 +1218,49 @@ export const rm = defineLocale({
       maintenance: 'Mantegniment',
       sessions: 'Sessiuns',
       system: 'Sistem',
-      usage: 'Utilisaziun',
+      usage: 'Utilisaziun'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostica, copias da segirezza, curatur e datas da memoria',
       sessions: 'Tschertar ed administrar sesiuns',
       system: 'Status, registrazions ed acziuns dal sistem',
-      usage: 'Token, custs ed activitad d\'abilitads sur il temp',
+      usage: "Token, custs ed activitad d'abilitads sur il temp"
     },
     nav: {
       newChat: {
         title: 'Nova sesiun',
-        detail: 'Cumenzar ina nova sesiun',
+        detail: 'Cumenzar ina nova sesiun'
       },
       settings: {
         title: 'Configuraziuns',
-        detail: 'Configurar OpenAmer desktop',
+        detail: 'Configurar OpenAmer desktop'
       },
       skills: {
         title: 'Capacitads',
-        detail: 'Abilitads, utensils e servers MCP',
+        detail: 'Abilitads, utensils e servers MCP'
       },
       messaging: {
         title: 'Messadiaria',
-        detail: 'Configurar Telegram, Slack, Discord ed auter',
+        detail: 'Configurar Telegram, Slack, Discord ed auter'
       },
       artifacts: {
         title: 'Artefacts',
-        detail: 'Navigar ils resultats generads',
-      },
+        detail: 'Navigar ils resultats generads'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Panel da sesiuns',
-        detail: 'Tschertar, fixar ed administrar sesiuns',
+        detail: 'Tschertar, fixar ed administrar sesiuns'
       },
       system: {
         title: 'Panel dal sistem',
-        detail: 'Status dal gateway, registrazions, reaviar/actualisar',
+        detail: 'Status dal gateway, registrazions, reaviar/actualisar'
       },
       usage: {
-        title: 'Panèl d\'utilisaziun',
-        detail: 'Activitat da tokens, custs e abilitads',
-      },
+        title: "Panèl d'utilisaziun",
+        detail: 'Activitat da tokens, custs e abilitads'
+      }
     },
     providerNavigate: 'Navigar',
     providerSessions: 'Sessiuns',
@@ -1237,7 +1288,7 @@ export const rm = defineLocale({
     statApiCalls: 'Cloms API',
     statTokens: 'Tokens entrada/sortida',
     statCost: 'Cust stimà',
-    loadingUsage: 'Chargia l\'utilisaziun...',
+    loadingUsage: "Chargia l'utilisaziun...",
     retry: 'Emprova puspè',
     dailyTokens: 'Tokens dal di',
     input: 'entrada',
@@ -1253,7 +1304,7 @@ export const rm = defineLocale({
     maintenance: {
       runOps: 'Diagnostica',
       doctor: 'Executar doctor',
-      doctorDesc: 'Controllar sanadad d\'installaziun, configuraziun e purschiders',
+      doctorDesc: "Controllar sanadad d'installaziun, configuraziun e purschiders",
       securityAudit: 'Audit da segirezza',
       securityAuditDesc: 'Scrutar configuraziun ed abilitads per regladas riscusas',
       backup: 'Crear backup',
@@ -1265,7 +1316,7 @@ export const rm = defineLocale({
       debugShareFailed: 'Partir debug fallì',
       copyLink: 'Copiar il link',
       linkCopied: 'Link copià',
-      curator: 'Curator d\'abilitads',
+      curator: "Curator d'abilitads",
       curatorDesc: 'Revisiun en il fund che archiva abilitads veglias creadas da agents',
       curatorPaused: 'Pausà',
       curatorActive: 'Activ',
@@ -1277,29 +1328,29 @@ export const rm = defineLocale({
       memoryData: 'Datas da memoria',
       memoryDataDesc: 'Datotecas da memoria integradas injectadas en mintga sesiun',
       builtinMemory: 'integrada',
-      memoryFile: 'Memoria da l\'agent (MEMORY.md)',
-      userFile: 'Profil d\'utilisader (USER.md)',
+      memoryFile: "Memoria da l'agent (MEMORY.md)",
+      userFile: "Profil d'utilisader (USER.md)",
       empty: 'vid',
       resetMemory: 'Reinizialisar memoria',
       resetUser: 'Reinizialisar il profil',
       resetAll: 'Reinizialisar tuts dus',
       resetFailed: 'Reinizialisaziun da la memoria fallida',
       running: 'En execuziun...',
-      viewLog: 'Protocol d\'actions',
+      viewLog: "Protocol d'actions",
       curatorLastRun: when => `Ultima execuziun ${when}`,
       memoryProvider: name => `Provider activ: ${name}`,
       bytes: size => size,
       resetConfirm: target => `Eliminar ${target}? Quai po na be a reversar.`,
       resetDone: files => `Ha eliminà ${files}.`,
       actionStarted: name => `${name} è vegnì avià — suandar il protocol...`,
-      actionFailed: name => `${name} n'ha betg pudì vegnir avià`,
+      actionFailed: name => `${name} n'ha betg pudì vegnir avià`
     },
     startInBranch: branch => `Nova conversaziun en ${branch}`,
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · Sessiuns activas ${count}`,
     days: count => `${count} dis`,
     actualCost: cost => `effectiv ${cost}`,
     noUsage: period => `Nisuna utilisaziun durant ils ultims ${period} dies.`,
-    actions: count => `${count} acziuns`,
+    actions: count => `${count} acziuns`
   },
   messaging: {
     search: 'Tschertar messadis...',
@@ -1314,7 +1365,7 @@ export const rm = defineLocale({
       not_configured: 'Basegna configuraziun',
       pending_restart: 'Restart necessari',
       retrying: 'Puspè ina prova',
-      startup_failed: 'Start fallì',
+      startup_failed: 'Start fallì'
     },
     unknown: 'Nun enconuschent',
     hintPendingRestart: 'Restartar il gateway da la trav da status per applitgar questa midada.',
@@ -1326,7 +1377,8 @@ export const rm = defineLocale({
     openSetupGuide: 'Avrir la guida da configuraziun',
     required: 'Necessari',
     recommended: 'Recumandà',
-    noTokenNeeded: 'Questa plattafurma na basegna betg in token qua. Utilisar la guida da configuraziun survart, alura activar ella sutvart.',
+    noTokenNeeded:
+      'Questa plattafurma na basegna betg in token qua. Utilisar la guida da configuraziun survart, alura activar ella sutvart.',
     enabled: 'Activà',
     disabled: 'Deactivà',
     unsavedChanges: 'Midaments betg salvads',
@@ -1341,124 +1393,124 @@ export const rm = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Token dal bot',
         help: 'Crea in bot cun @BotFather, lura encolla il token che el ta dat.',
-        placeholder: 'Encollar il token dal bot Telegram',
+        placeholder: 'Encollar il token dal bot Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
-        label: 'IDs d\'utilisader Telegram admess',
-        help: 'Recumandà. IDs numerics separads cun commas da @userinfobot. Senza quai, mintgin po scriver a tes bot en DM.',
+        label: "IDs d'utilisader Telegram admess",
+        help: 'Recumandà. IDs numerics separads cun commas da @userinfobot. Senza quai, mintgin po scriver a tes bot en DM.'
       },
       TELEGRAM_PROXY: {
         label: 'URL dal proxy',
-        help: 'Dovrà mo en raits nua che Telegram è bloccà.',
+        help: 'Dovrà mo en raits nua che Telegram è bloccà.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token dal bot',
-        help: 'Crea ina applicaziun en il Discord Developer Portal, agiunta in bot, lura encolla ses token.',
+        help: 'Crea ina applicaziun en il Discord Developer Portal, agiunta in bot, lura encolla ses token.'
       },
       DISCORD_ALLOWED_USERS: {
-        label: 'IDs d\'utilisader Discord admess',
-        help: 'Recumandà. IDs d\'utilisader Discord separads cun commas.',
+        label: "IDs d'utilisader Discord admess",
+        help: "Recumandà. IDs d'utilisader Discord separads cun commas."
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Stil da resposta',
-        help: 'l\'emprim, tut u deactivà.',
+        help: "l'emprim, tut u deactivà."
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Permetter a tuts ils utilisaders da Discord',
-        help: 'Mo svilup. Sche ver, mintgin po trametter in messadi direct al bot senza ina glista d\'admissiun.',
+        help: "Mo svilup. Sche ver, mintgin po trametter in messadi direct al bot senza ina glista d'admissiun."
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID dal chanal principal',
-        help: 'Chanal nua che il bot trametta messadis proactics (output da cron, regurdanzas).',
+        help: 'Chanal nua che il bot trametta messadis proactics (output da cron, regurdanzas).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Num dal chanal principal',
-        help: 'Num visualisà per il chanal principal en ils logs e l\'output da status.',
+        help: "Num visualisà per il chanal principal en ils logs e l'output da status."
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Permetter a tuts ils utilisaders da iMessage',
-        help: 'Sche ver, sursiglir la glista d\'admissiun da BlueBubbles.',
+        help: "Sche ver, sursiglir la glista d'admissiun da BlueBubbles."
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Permetter a tuts ils utilisaders da Mattermost',
+        label: 'Permetter a tuts ils utilisaders da Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Chanal principal',
+        label: 'Chanal principal'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Permetter a tuts ils utilisaders da QQ',
+        label: 'Permetter a tuts ils utilisaders da QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Chanal principal da QQ',
-        help: 'Chanal u grupp predefinì per la consegna da cron.',
+        help: 'Chanal u grupp predefinì per la consegna da cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Num dal chanal principal da QQ',
+        label: 'Num dal chanal principal da QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token dal bot da Slack',
         help: 'Duvra il token dal bot da OAuth & Permissions suenter avair installà tia app da Slack.',
-        placeholder: 'Encolla il token dal bot da Slack',
+        placeholder: 'Encolla il token dal bot da Slack'
       },
       SLACK_APP_TOKEN: {
-        label: 'Token da l\'app da Slack',
-        help: 'Duvrar il token a nivel d\'app necessari per il Socket Mode.',
-        placeholder: 'Encolar il token da l\'app Slack',
+        label: "Token da l'app da Slack",
+        help: "Duvrar il token a nivel d'app necessari per il Socket Mode.",
+        placeholder: "Encolar il token da l'app Slack"
       },
       SLACK_ALLOWED_USERS: {
-        label: 'IDs d\'utilisaders Slack permess',
-        help: 'Recumandà. IDs d\'utilisaders Slack separads cun commas.',
+        label: "IDs d'utilisaders Slack permess",
+        help: "Recumandà. IDs d'utilisaders Slack separads cun commas."
       },
       MATTERMOST_URL: {
         label: 'URL dal server',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token dal bot',
+        label: 'Token dal bot'
       },
       MATTERMOST_ALLOWED_USERS: {
-        label: 'IDs d\'utilisaders permess',
-        help: 'Recumandà. IDs d\'utilisaders Mattermost separads cun commas.',
+        label: "IDs d'utilisaders permess",
+        help: "Recumandà. IDs d'utilisaders Mattermost separads cun commas."
       },
       MATRIX_HOMESERVER: {
         label: 'URL dal server principal',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token d\'access',
+        label: "Token d'access"
       },
       MATRIX_USER_ID: {
-        label: 'ID da l\'utilisader dal bot',
-        placeholder: '@openamer:example.org',
+        label: "ID da l'utilisader dal bot",
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
-        label: 'IDs d\'utilisaders Matrix permess',
-        help: 'Recumandà. IDs d\'utilisaders separads cun commas en il format @user:server.',
+        label: "IDs d'utilisaders Matrix permess",
+        help: "Recumandà. IDs d'utilisaders separads cun commas en il format @user:server."
       },
       SIGNAL_HTTP_URL: {
         label: 'URL da la punt Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL d\'ina punt REST signal-cli che funcziuna.',
+        help: "URL d'ina punt REST signal-cli che funcziuna."
       },
       SIGNAL_ACCOUNT: {
         label: 'Numer da telefon',
-        help: 'Il nummer registrà cun tia punt signal-cli.',
+        help: 'Il nummer registrà cun tia punt signal-cli.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Utilisaders Signal permess',
-        help: 'Recumandà. Identificaturs Signal separads cun virgulas.',
+        help: 'Recumandà. Identificaturs Signal separads cun virgulas.'
       },
       WHATSAPP_ENABLED: {
         label: 'Activar la punt WhatsApp',
-        help: 'Fixà automaticamain dal commutader sut. Betg midar senza che ti sas che ti al dovras.',
+        help: 'Fixà automaticamain dal commutader sut. Betg midar senza che ti sas che ti al dovras.'
       },
       WHATSAPP_MODE: {
-        label: 'Modus da punt',
+        label: 'Modus da punt'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Utilisaders WhatsApp permess',
-        help: 'Recumandà. Numers da telefon u IDs WhatsApp separads cun virgulas.',
-      },
+        help: 'Recumandà. Numers da telefon u IDs WhatsApp separads cun virgulas.'
+      }
     },
     advanced: count => `Avanzà (${count})`,
     clearField: key => `Vidar ${key}`,
@@ -1472,17 +1524,17 @@ export const rm = defineLocale({
     failedUpdate: name => `L'actualisaziun da ${name} ei fallida`,
     failedSave: name => `La salvaziun da ${name} ei fallida`,
     failedClear: key => `L'eliminaziun da ${key} ei fallida`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Tschertgar webhooks...',
     loading: 'Chargiar webhooks...',
     loadFailed: 'Chargiar webhooks fallì',
-    hint: 'Midaments d\'abunament vegnan chargiads danovamain immediatamain uschespert che il recepter curra. Abunaments deactivads refusan eveniments entrants.',
+    hint: "Midaments d'abunament vegnan chargiads danovamain immediatamain uschespert che il recepter curra. Abunaments deactivads refusan eveniments entrants.",
     empty: 'Anc nagins abunaments da webhooks.',
     disabledTitle: 'Recepter da webhook deactivà',
-    disabledBody: 'Webhooks èn ina atgna plattafurma da gateway. Activar els qua per acceptar eveniments HTTP entrants; chanals da chat èn necessaris mo sche in abunament consegna a Telegram, Discord, Slack u in auter chanal.',
+    disabledBody:
+      'Webhooks èn ina atgna plattafurma da gateway. Activar els qua per acceptar eveniments HTTP entrants; chanals da chat èn necessaris mo sche in abunament consegna a Telegram, Discord, Slack u in auter chanal.',
     enable: 'Activar webhooks',
     enabling: 'Activar...',
     enableRow: 'Activar',
@@ -1495,7 +1547,8 @@ export const rm = defineLocale({
     deleteDescSuffix: '. Quai na po betg vegnir annullà.',
     newSubscription: 'Nova subscripziun',
     restarting: 'Gateway vegn restartà...',
-    restartNeeded: 'Webhooks èn activads, ma il gateway sto anc vegnir restartà avant che il receptur po vegnir online.',
+    restartNeeded:
+      'Webhooks èn activads, ma il gateway sto anc vegnir restartà avant che il receptur po vegnir online.',
     restartGateway: 'Restartar il gateway',
     restartingGateway: 'Restartar...',
     enabledRestarting: 'Webhooks activads; gateway vegn restartà...',
@@ -1513,11 +1566,11 @@ export const rm = defineLocale({
     fieldEvents: 'Eveniments',
     fieldEventsPlaceholder: 'separads cun comma, laschar vid per tuts',
     fieldSkills: 'Abilitads',
-    fieldSkillsPlaceholder: 'nums d\'abilitads separads cun comma (opziunal)',
+    fieldSkillsPlaceholder: "nums d'abilitads separads cun comma (opziunal)",
     fieldDeliver: 'Consegnar a',
     fieldDeliverOnly: 'Consegnar be il payload',
     fieldPrompt: 'Pregunt',
-    fieldPromptPlaceholder: 'Instrucziuns per l\'agent cura quest webhook s\'activescha (opziunal)',
+    fieldPromptPlaceholder: "Instrucziuns per l'agent cura quest webhook s'activescha (opziunal)",
     nameRequired: 'Num necessari',
     create: 'Crear',
     creating: 'Creant...',
@@ -1529,7 +1582,7 @@ export const rm = defineLocale({
       github_comment: 'Commentari da GitHub',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     subscriptions: (count: number) => `Abunaments (${count})`,
     enabled: (name: string) => `Activà: "${name}"`,
@@ -1537,7 +1590,7 @@ export const rm = defineLocale({
     deleteFailed: (name: string) => `L'eliminaziun da "${name}" ei fallida`,
     toggleFailed: (name: string) => `L'actualisaziun da "${name}" ei fallida`,
     restartFailed: (detail: string) => `Il restart dal gateway ei fallid${detail}`,
-    createFailed: (detail: string) => `La creaziun ei fallida: ${detail}`,
+    createFailed: (detail: string) => `La creaziun ei fallida: ${detail}`
   },
   profiles: {
     close: 'Serrar profils',
@@ -1576,7 +1629,7 @@ export const rm = defineLocale({
     deleteTitle: 'Stizzar il profil?',
     deleteDescPrefix: 'Quai stizzarà',
     deleteDescMid: 'e remover ses',
-    deleteDescSuffix: 'ordinatur. Quai n\'è betg reversibel.',
+    deleteDescSuffix: "ordinatur. Quai n'è betg reversibel.",
     deleting: 'Stizzond...',
     createDesc: 'Ils profils èn ambients OpenAmer independents: configuraziun, abilitads e SOUL.md separads.',
     nameLabel: 'Num',
@@ -1589,7 +1642,7 @@ export const rm = defineLocale({
     creating: 'Creond...',
     createAction: 'Crear profil',
     renameTitle: 'Renumnar profil',
-    renameDescPrefix: 'Renumnar actualisescha l\'ordinatur dal profil e eventuals scripts wrapper en',
+    renameDescPrefix: "Renumnar actualisescha l'ordinatur dal profil e eventuals scripts wrapper en",
     renameDescSuffix: '.',
     newNameLabel: 'Num nov',
     renaming: 'Renumnond...',
@@ -1600,7 +1653,7 @@ export const rm = defineLocale({
     soulSaved: 'SOUL.md salvà',
     failedLoad: 'Betg reussì da chargiar ils profils',
     failedDelete: 'Betg reussì da stizzar il profil',
-    failedCopy: 'Betg reussì da copiar il cumond d\'installaziun',
+    failedCopy: "Betg reussì da copiar il cumond d'installaziun",
     failedLoadSoul: 'Betg reussì da chargiar SOUL.md',
     failedSaveSoul: 'Betg reussì da salvar SOUL.md',
     failedCreate: 'Betg reussì da crear il profil',
@@ -1615,7 +1668,7 @@ export const rm = defineLocale({
     modelLabel: 'Modell',
     soulPlaceholder: mode => `Il prompt dal sistem / persona per quest profil.
 Lassa vid l'espazi per gardar il default da ${mode}.`,
-    invalidName: hint => `Num invalid. ${hint}`,
+    invalidName: hint => `Num invalid. ${hint}`
   },
   cron: {
     close: 'Serrar cron',
@@ -1629,14 +1682,14 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       paused: 'pausada',
       disabled: 'deactivada',
       error: 'errur',
-      completed: 'cumplettada',
+      completed: 'cumplettada'
     },
     deliveryLabels: {
       local: 'Quest desktop',
       email: 'E-mail',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     scheduleLabels: {
       daily: 'Mintga di',
@@ -1645,16 +1698,16 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       monthly: 'Mintga mais',
       hourly: 'Mintga ura',
       'every-15-minutes': 'Mintga 15 minutas',
-      custom: 'Persunalisà',
+      custom: 'Persunalisà'
     },
     scheduleHints: {
       daily: 'Mintga di a las 9:00 da la damaun',
       weekdays: 'Da glindesdi fin venderdi a las 9:00 da la damaun',
       weekly: 'Mintga glindesdi a las 9:00 da la damaun',
       monthly: 'Il prim di da mintga mais a las 9:00 da la damaun',
-      hourly: 'A l\'inizi da mintga ura',
+      hourly: "A l'inizi da mintga ura",
       'every-15-minutes': 'Mintga 15 minutas',
-      custom: 'Sintassa Cron u linguatg natiral',
+      custom: 'Sintassa Cron u linguatg natiral'
     },
     days: {
       '0': 'Dumengia',
@@ -1664,11 +1717,12 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       '4': 'Gievgia',
       '5': 'Venderdi',
       '6': 'Sonda',
-      '7': 'Dumengia',
+      '7': 'Dumengia'
     },
-    topOfHour: 'A l\'entschatta da mintga ura',
+    topOfHour: "A l'entschatta da mintga ura",
     newCron: 'Nov cron',
-    emptyDescNew: 'Planisar in prompt per l\'executar tenor in\'expressiun cron. OpenAmer al executa e consegna ils resultats a la destinaziun che ti tschernas.',
+    emptyDescNew:
+      "Planisar in prompt per l'executar tenor in'expressiun cron. OpenAmer al executa e consegna ils resultats a la destinaziun che ti tschernas.",
     emptyDescSearch: 'Prova ina tschertga pli vasta.',
     emptyTitleNew: 'Anc naginas incumbensas planisadas',
     emptyTitleSearch: 'Nagins resultats',
@@ -1679,16 +1733,16 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     showRuns: 'Mussar execuziuns',
     hideRuns: 'Zuppar execuziuns',
     runHistory: 'Istorgia da las execuziuns',
-    actionsTitle: 'Acziuns da l\'incumbensa cron',
+    actionsTitle: "Acziuns da l'incumbensa cron",
     resume: 'Reactivar cron',
     pause: 'Pausar cron',
     resumeTitle: 'Reactivar',
     pauseTitle: 'Pausar',
     triggerNow: 'Executar ussa',
     edit: 'Modifitgar cron',
-    deleteTitle: 'Stizzar l\'incumbensa cron?',
+    deleteTitle: "Stizzar l'incumbensa cron?",
     deleteDescPrefix: 'Quai vegn a stizzar',
-    deleteDescSuffix: 'permanentamain. Ella vegn a cessar immediatamain da s\'executar.',
+    deleteDescSuffix: "permanentamain. Ella vegn a cessar immediatamain da s'executar.",
     deleting: 'Stizzar...',
     resumed: 'Cron reactivà',
     paused: 'Cron en pausa',
@@ -1697,20 +1751,21 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     created: 'Cron creà',
     updated: 'Cron actualisà',
     failedLoad: 'Betg reussì a chargiar las incumbensas cron',
-    failedUpdate: 'Betg reussì a modifitgar l\'incumbensa cron',
-    failedTrigger: 'Betg reussì a executar l\'incumbensa cron',
-    failedDelete: 'Betg reussì a stizzar l\'incumbensa cron',
-    failedSave: 'Betg reussì a salvar l\'incumbensa cron',
-    editTitle: 'Modifitgar l\'incumbensa cron',
+    failedUpdate: "Betg reussì a modifitgar l'incumbensa cron",
+    failedTrigger: "Betg reussì a executar l'incumbensa cron",
+    failedDelete: "Betg reussì a stizzar l'incumbensa cron",
+    failedSave: "Betg reussì a salvar l'incumbensa cron",
+    editTitle: "Modifitgar l'incumbensa cron",
     createTitle: 'Nova incumbensa cron',
     editDesc: 'Actualisar il plan, il prompt u la destinaziun da consegna. Las midadas valan per la proxima execuziun.',
-    createDesc: 'Planisar in prompt per l\'execuziun automatica. Duvrar la sintaxa cron u ina frasa naturala sco «omni 15 minutas».',
+    createDesc:
+      "Planisar in prompt per l'execuziun automatica. Duvrar la sintaxa cron u ina frasa naturala sco «omni 15 minutas».",
     nameLabel: 'Num',
     namePlaceholder: 'Briefing matutin',
     promptPlaceholder: 'Resumar mes fils da Slack betg legids e trametter a mai per e-mail ils 5 megliers...',
     frequencyLabel: 'Frequenza',
     deliverLabel: 'Consegnar a',
-    deliverNeedsHomeChannel: 'definir l\'emprim in canal da basa',
+    deliverNeedsHomeChannel: "definir l'emprim in canal da basa",
     modelDefault: 'Predefinì (model global)',
     customScheduleLabel: 'Plan persunal',
     customPlaceholder: '0 9 * * * u ils dis da lavur a las 9',
@@ -1719,12 +1774,12 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     promptRequired: 'Il prompt è necessari.',
     promptScheduleRequired: 'Il prompt e il plan èn necessaris.',
     scheduleRequired: 'La planisaziun è necessaria.',
-    scriptOnlyEditHint: 'Incumbensa mo cun script (senza prompt AI). ID d\'incumbensa:',
+    scriptOnlyEditHint: "Incumbensa mo cun script (senza prompt AI). ID d'incumbensa:",
     saveChanges: 'Salvar ils midaments',
     createAction: 'Crear cron',
     tabs: {
       jobs: 'Incumbensas',
-      blueprints: 'Schizzas',
+      blueprints: 'Schizzas'
     },
     blueprints: {
       tab: 'Schizzas',
@@ -1738,7 +1793,7 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       loading: 'Chargiar schizzas...',
       failedLoad: 'Betg reussì da chargiar schizzas',
       emptyTitle: 'Naginas schizzas disponiblas',
-      emptyDesc: 'Naginas schizzas d\'automatisaziun èn disponiblas sin quest backend.',
+      emptyDesc: "Naginas schizzas d'automatisaziun èn disponiblas sin quest backend."
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `di ${value}`,
@@ -1749,7 +1804,7 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     everyHourAt: minute => `Tgi ora a :${minute}`,
     actionsFor: title => `Acziuns per ${title}`,
     promptLabel: 'Instruccio',
-    modelLabel: 'Modell',
+    modelLabel: 'Modell'
   },
   artifacts: {
     search: 'Tschertgar artifacts...',
@@ -1783,14 +1838,14 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     copyUrl: 'Copiar URL',
     copyPath: 'Copiar percurs',
     rangeOf: (start, end, total) => `${start}-${end} da ${total}`,
-    goToPage: (itemLabel, page) => `Ir a ${itemLabel} pajina ${page}`,
+    goToPage: (itemLabel, page) => `Ir a ${itemLabel} pajina ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'Nova sessiun',
       skills: 'Capacitads',
       messaging: 'Messadis',
-      artifacts: 'Artefacts',
+      artifacts: 'Artefacts'
     },
     searchAria: 'Tschertar sessiuns',
     searchPlaceholder: 'Tschertar sessiuns…',
@@ -1817,7 +1872,7 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       menuAddFolder: 'Agiuntar ordinatur',
       menuSetActive: 'Activar',
       menuDelete: 'Stizzar',
-      reveal: 'Mussar en l\'ordinatur',
+      reveal: "Mussar en l'ordinatur",
       copyPath: 'Copiar il percurs',
       removeFromSidebar: 'Zuppar da la trav laterala',
       createFailed: 'Impussibel da crear il project',
@@ -1829,9 +1884,11 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       addFolderTitle: 'Agiuntar ordinatur',
       namePlaceholder: 'p.ex. Skunkworks',
       foldersLabel: 'Ordinaturs',
-      ideaLabel: 'L\'idea',
-      staleBackend: 'Actualisar il backend da OpenAmer per crear projects — tes backend è pli vegl che questa app da desktop (Parameters → Actualisaziuns → Backend).',
-      deleteConfirm: 'Quest allontanescha il project memorisà da OpenAmer. Las datotecas, ils repos git e ils worktrees restan betg midads.',
+      ideaLabel: "L'idea",
+      staleBackend:
+        'Actualisar il backend da OpenAmer per crear projects — tes backend è pli vegl che questa app da desktop (Parameters → Actualisaziuns → Backend).',
+      deleteConfirm:
+        'Quest allontanescha il project memorisà da OpenAmer. Las datotecas, ils repos git e ils worktrees restan betg midads.',
       startWork: 'Nov worktree',
       newWorktreeTitle: 'Nov worktree',
       newWorktreeDesc: 'Numna la branch per quest worktree.',
@@ -1851,14 +1908,16 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       noBranches: 'Naginas branches chattadas',
       removeWorktree: 'Allontanar il worktree',
       removeWorktreeFailed: 'Impussibel da allontanar il worktree (midadas betg salvadas?)',
-      removeWorktreeConfirm: 'Allontanar dal git (stizza la directura dal worktree; il rom resta), u simplamain zuppar la via da la sidebar e laschar il worktree sin il disc.',
-      removeWorktreeDirty: 'Quest worktree ha midadas betg salvadas. Allontanar cun forza (stizza quellas midadas), u simplamain zuppar la via e laschar il worktree sin il disc.',
+      removeWorktreeConfirm:
+        'Allontanar dal git (stizza la directura dal worktree; il rom resta), u simplamain zuppar la via da la sidebar e laschar il worktree sin il disc.',
+      removeWorktreeDirty:
+        'Quest worktree ha midadas betg salvadas. Allontanar cun forza (stizza quellas midadas), u simplamain zuppar la via e laschar il worktree sin il disc.',
       forceRemove: 'Allontanar cun forza',
       back: 'Tuts ils progets',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Aprir ${label}`,
       reorder: label => `Riorganisar ${label}`,
-      toggle: label => `Activer/desactiver sessiuns ${label}`,
+      toggle: label => `Activer/desactiver sessiuns ${label}`
     },
     groupAriaUngrouped: 'Gruppar las sesiuns per spazi da lavur',
     showProjects: 'Mussar ils projects',
@@ -1885,7 +1944,7 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       hideTabBar: 'Zuppar la barra da tabs',
       openInNewTab: 'Avrir en in nov tab',
       openInSplit: 'Avrir en vista spartida',
-      copyIdFailed: 'Impussibel da copiar l\'ID da la sesiun',
+      copyIdFailed: "Impussibel da copiar l'ID da la sesiun",
       sessionActions: 'Acziuns da la sesiun',
       sessionRunning: 'Sesiun activa',
       needsInput: 'Basegna tia endataziun',
@@ -1904,19 +1963,19 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       untitledChat: id => `Conversaziun ${id}`,
       ageDay: 'd',
       ageHour: 'u',
-      ageMin: 'min',
+      ageMin: 'min'
     },
     dateDivider: {
       today: 'Oz pli baud',
       yesterday: 'Ier',
       thisWeek: 'Questa emna pli baud',
-      lastWeek: 'L\'emna passada',
-      thisMonth: 'Quest mais pli baud',
+      lastWeek: "L'emna passada",
+      thisMonth: 'Quest mais pli baud'
     },
     noMatch: query => `Nisuna sessiun corresponds a “${query}”.`,
     newSessionIn: label => `Nova sessiun en ${label}`,
     showMoreIn: (count, label) => `Mussar anc ${count} en ${label}`,
-    loadCount: step => `Chargiar anc ${step}`,
+    loadCount: step => `Chargiar anc ${step}`
   },
   composer: {
     message: 'Messadi',
@@ -1925,7 +1984,7 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     placeholderFollowUp: 'Trametter in suandament',
     startVoice: 'Cumenzar conversaziun vocala',
     queueMessage: 'Messadi en la cua',
-    steer: 'Diriger l\'execuziun actuala',
+    steer: "Diriger l'execuziun actuala",
     stop: 'Fermar',
     send: 'Trametter',
     speaking: 'Discurrind',
@@ -1956,8 +2015,8 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       '/clear': 'cumenzar ina nova sessun',
       '/resume': 'cuntinuar ina sessun precedenta',
       '/details': 'reglar il nivel da detagl da la transcripziun',
-      '/copy': 'copiar la selecziun u l\'ultim messadi da l\'assistent',
-      '/quit': 'sortir da OpenAmer',
+      '/copy': "copiar la selecziun u l'ultim messadi da l'assistent",
+      '/quit': 'sortir da OpenAmer'
     },
     hotkeyDescs: {
       'composer.mention': 'referenziar datotecas, ordinaturs, URLs, git',
@@ -1966,13 +2025,13 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       'composer.sendNewline': 'Trametter · Shift+Enter per ina nova lingia',
       'composer.sendQueued': 'Trametter il proxim turn en cua',
       'keybinds.openPanel': 'Tut las scursanidas da tastatura',
-      'composer.cancel': 'Serrar il popover · annullar l\'execuziun',
-      'composer.history': 'Alternar il popover / l\'istorgia',
+      'composer.cancel': "Serrar il popover · annullar l'execuziun",
+      'composer.history': "Alternar il popover / l'istorgia"
     },
     attachUrlTitle: 'Agiuntar in URL',
-    attachUrlDesc: 'OpenAmer vegn a cargar la pagina e l\'includer sco context per quest turn.',
+    attachUrlDesc: "OpenAmer vegn a cargar la pagina e l'includer sco context per quest turn.",
     urlPlaceholder: 'https://example.com/post',
-    urlHintPre: 'Includer l\'URL cumplet, p.ex.',
+    urlHintPre: "Includer l'URL cumplet, p.ex.",
     attach: 'Agiuntar',
     attachmentOnly: 'Turn mo cun agiunta',
     emptyTurn: 'Turn vid',
@@ -1985,7 +2044,8 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     queueResume: 'Cuntinuar',
     queueResumeTip: 'Pausà da Stop — cuntinuar a trametter ils turns en cua',
     queueStuckTitle: 'Messadi en cua betg tramess',
-    queueStuckBody: 'In pass en cua n\'è betg reussì da vegnir tramess pliras giadas. El è anc en la cua — prova da al trametter danovamain.',
+    queueStuckBody:
+      "In pass en cua n'è betg reussì da vegnir tramess pliras giadas. El è anc en la cua — prova da al trametter danovamain.",
     previewUnavailable: 'Previsualisaziun betg disponibla',
     dictating: 'Dictar',
     preparingAudio: 'Preparar audio',
@@ -2011,37 +2071,37 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       codeReview: {
         label: 'Revisiun dal code',
         description: 'Controlla la modificaziun actuala per regressiuns, cas limits omis e tests che mancan.',
-        text: 'Controlla per plaschair quest quant a bugs, regressiuns e tests che mancan.',
+        text: 'Controlla per plaschair quest quant a bugs, regressiuns e tests che mancan.'
       },
       implementationPlan: {
-        label: 'Plan d\'implementaziun',
-        description: 'Schizza in\'approcc avant da tocar il code, per che il diff resti focalisà.',
-        text: 'Fa per plaschair in plan d\'implementaziun concis avant da midar il code.',
+        label: "Plan d'implementaziun",
+        description: "Schizza in'approcc avant da tocar il code, per che il diff resti focalisà.",
+        text: "Fa per plaschair in plan d'implementaziun concis avant da midar il code."
       },
       explainThis: {
         label: 'Explitga quest',
         description: 'Passa tras co il code tschernì funcziunescha e collia als files cla.',
-        text: 'Explitga per plaschair co quai funcziunescha e mussa mai ils files cla.',
-      },
+        text: 'Explitga per plaschair co quai funcziunescha e mussa mai ils files cla.'
+      }
     },
     wakingProfile: profile => `Svegliar ${profile}…`,
     newSessionPlaceholders: [
       'Tge construin nus?',
       'Dà ad OpenAmer ina incumbensa',
-      "Tge has ti en il chau?",
+      'Tge has ti en il chau?',
       'Descriva tge che ti dovras',
       'Tge duain nus prender per mauns?',
       'Dumonda tge che ti vuls',
-      'Cumenza cun ina finamira',
+      'Cumenza cun ina finamira'
     ],
     followUpPlaceholders: [
       'Trametta ina dumonda supplementara',
       'Agiunta dapli context',
       'Precisescha la dumonda',
-      "Tge vegn ussa?",
+      'Tge vegn ussa?',
       'Cuntinuescha',
       'Va anc in pass vinavant',
-      'Adattar u cuntinuar',
+      'Adattar u cuntinuar'
     ],
     queued: count => `${count} En spetga`,
     queuedPaused: count => `${count} En spetga — en pausa`,
@@ -2049,7 +2109,7 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     previewLabel: label => `Previsualisar ${label}`,
     couldNotPreview: label => `Impussibel da previsualisar ${label}`,
     removeAttachment: label => `Allontanar ${label}`,
-    url: 'URL…',
+    url: 'URL…'
   },
   statusStack: {
     running: 'En execuziun',
@@ -2071,8 +2131,10 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       viewAsList: 'Visualisar sco glista',
       revert: 'Revertir',
       revertAll: 'Revertir tut',
-      revertConfirm: 'Annullar las midadas da questa datoteca e restabilir la al stadi cummissiunà? Quai na po betg vegnir annullà.',
-      revertAllConfirm: 'Annullar tut las midadas e restabilir las datotecas al stadi cummissiunà? Quai na po betg vegnir annullà.',
+      revertConfirm:
+        'Annullar las midadas da questa datoteca e restabilir la al stadi cummissiunà? Quai na po betg vegnir annullà.',
+      revertAllConfirm:
+        'Annullar tut las midadas e restabilir las datotecas al stadi cummissiunà? Quai na po betg vegnir annullà.',
       staged: 'Preparà',
       noChanges: 'Naginas midadas',
       notRepo: 'Betg in repositori git',
@@ -2087,9 +2149,10 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       stopGenerating: 'Interrumper la generaziun',
       createPr: 'Crear PR',
       openPr: 'Avrir PR',
-      ghMissing: 'Installar la GitHub CLI (gh) e s\'annunziar per avrir PRs',
-      agentShip: 'Dumandar a OpenAmer d\'avrir in PR',
-      agentShipPrompt: 'Controllar las midadas actualas, las conferir cun in messadi da conferir convenziunal cler, pushar la ram e avrir in pull request.',
+      ghMissing: "Installar la GitHub CLI (gh) e s'annunziar per avrir PRs",
+      agentShip: "Dumandar a OpenAmer d'avrir in PR",
+      agentShipPrompt:
+        'Controllar las midadas actualas, las conferir cun in messadi da conferir convenziunal cler, pushar la ram e avrir in pull request.',
       newBranch: 'Nova ram',
       worktrees: 'Arburs da lavur',
       changed: count => `${count} modifitgà`,
@@ -2097,13 +2160,13 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       behind: count => `${count} enavos`,
       branchOffFrom: base => `Nov rom a partir da ${base}`,
       switchTo: branch => `Midar a ${branch}`,
-      switchFailed: branch => `Impussibel da midar a ${branch}`,
+      switchFailed: branch => `Impussibel da midar a ${branch}`
     },
     agents: 'Agients',
     background: count => `${count} Davosfuns`,
     subagents: count => `${count} Sutagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Incumbensas ${done}/${total}`,
-    exit: code => `sortida ${code}`,
+    exit: code => `sortida ${code}`
   },
   updates: {
     stages: {
@@ -2113,18 +2176,18 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       pull: 'Quasi là…',
       pydeps: 'Terminar…',
       update: 'Actualisar OpenAmer…',
-      rebuild: 'Reconstruir l\'app da desktop…',
+      rebuild: "Reconstruir l'app da desktop…",
       restart: 'OpenAmer vegn restartà…',
       done: 'Actualisaziun cumpletta',
       manual: 'Actualisar da tes terminal',
-      guiSkew: 'Actualisar l\'app da desktop',
-      error: 'Actualisaziun en pausa',
+      guiSkew: "Actualisar l'app da desktop",
+      error: 'Actualisaziun en pausa'
     },
-    checking: 'En tschertga d\'actualisaziuns…',
+    checking: "En tschertga d'actualisaziuns…",
     checkFailedTitle: 'Impussibel da controllar actualisaziuns',
     tryAgain: 'Empruvar puspè',
     notAvailableTitle: 'Actualisaziun betg disponibla',
-    unsupportedMessage: 'Questa versiun da OpenAmer na po betg s\'actualisar da l\'intern da l\'app.',
+    unsupportedMessage: "Questa versiun da OpenAmer na po betg s'actualisar da l'intern da l'app.",
     connectionRetry: 'Controlla tia connexiun e prova puspè.',
     latestBody: 'Ti utiliseschas la versiun la pli nova.',
     latestBodyBackend: 'Il servizi dad davos utilisescha la versiun la pli nova.',
@@ -2133,77 +2196,89 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     availableBody: 'Ina nova versiun da OpenAmer è pronta per installar.',
     availableTitleBackend: 'Actualisaziun dal servizi dad davos disponibla',
     availableBodyBackend: 'Ina versiun pli nova dal servizi dad davos OpenAmer connectà è pronta per installar.',
-    availableBodyNoChangelog: 'Ina versiun pli nova è pronta. Las notas da publicaziun n\'èn betg disponiblas per quest tip d\'installaziun.',
+    availableBodyNoChangelog:
+      "Ina versiun pli nova è pronta. Las notas da publicaziun n'èn betg disponiblas per quest tip d'installaziun.",
     updateNow: 'Actualisar ussa',
     maybeLater: 'Forsa pli tard',
     manualTitle: 'Actualisar dal terminal',
-    manualBody: 'Ti has installà OpenAmer dalla lingia da cumand, uschia er las actualisaziuns vegnan executadas là. Incollescha quai en tes terminal:',
-    manualPickedUp: 'OpenAmer vegn a surprender la nova versiun la proxima giada che ti l\'arvas.',
-    guiSkewTitle: 'Actualisar l\'app da desktop',
-    guiSkewBody: 'Il backend è vegnì actualisà, ma quest pachet da l\'app da desktop n\'è betg vegnì midà. Actualisescha u reinstallescha l\'app da desktop OpenAmer (tes AppImage / .deb / .rpm) per che quai correspunda.',
+    manualBody:
+      'Ti has installà OpenAmer dalla lingia da cumand, uschia er las actualisaziuns vegnan executadas là. Incollescha quai en tes terminal:',
+    manualPickedUp: "OpenAmer vegn a surprender la nova versiun la proxima giada che ti l'arvas.",
+    guiSkewTitle: "Actualisar l'app da desktop",
+    guiSkewBody:
+      "Il backend è vegnì actualisà, ma quest pachet da l'app da desktop n'è betg vegnì midà. Actualisescha u reinstallescha l'app da desktop OpenAmer (tes AppImage / .deb / .rpm) per che quai correspunda.",
     copy: 'Copiar',
     copied: 'Copià',
     done: 'Finì',
-    applyingBody: 'L\'actualisader da OpenAmer surpiglia in sia atgna fanestra e reavra OpenAmer automaticamain cura ch\'el è finì. Per plaschair, n\'averas betg OpenAmer da tez durant che l\'actualisaziun è en cursin.',
-    applyingBodyBackend: 'Il backend remot applitgescha l\'actualisaziun e vegnirà a restartar. OpenAmer sa reconnectescha automaticamain cura ch\'el è puspè disponibel.',
-    applyingClose: 'Questa fanestra vegn serrada durant che l\'actualisaziun curra, alura OpenAmer reavra da sasez.',
-    errorTitle: 'L\'actualisaziun n\'è betg finida',
-    errorBody: 'Nagina tema — nagut n\'è vegnì perdì. Ti pos puspè empruvar ussa.',
+    applyingBody:
+      "L'actualisader da OpenAmer surpiglia in sia atgna fanestra e reavra OpenAmer automaticamain cura ch'el è finì. Per plaschair, n'averas betg OpenAmer da tez durant che l'actualisaziun è en cursin.",
+    applyingBodyBackend:
+      "Il backend remot applitgescha l'actualisaziun e vegnirà a restartar. OpenAmer sa reconnectescha automaticamain cura ch'el è puspè disponibel.",
+    applyingClose: "Questa fanestra vegn serrada durant che l'actualisaziun curra, alura OpenAmer reavra da sasez.",
+    errorTitle: "L'actualisaziun n'è betg finida",
+    errorBody: "Nagina tema — nagut n'è vegnì perdì. Ti pos puspè empruvar ussa.",
     notNow: 'Betg ussa',
     applyStatus: {
       preparing: 'Actualisaziun dal backend…',
       pulling: 'Il backend vegn actualisà…',
-      restarting: 'Il backend restartescha per chargiar l\'actualisaziun…',
+      restarting: "Il backend restartescha per chargiar l'actualisaziun…",
       notAvailable: 'Actualisaziun betg disponibla per quest backend.',
-      failed: 'L\'actualisaziun dal backend è fallida.',
-      noReturn: 'Il backend n\'è betg puspè vegnì en linea. L\'actualisaziun è eventualmain betg cumplettada — controllescha l\'host dal backend.',
+      failed: "L'actualisaziun dal backend è fallida.",
+      noReturn:
+        "Il backend n'è betg puspè vegnì en linea. L'actualisaziun è eventualmain betg cumplettada — controllescha l'host dal backend."
     },
     appErrors: {
-      updateLocked: 'Actualisaziun interrutta: in\'autra fanestra d\'OpenAmer u in terminal che executescha openamer blocca questa installaziun. Serra e reprova.',
-      updateFailed: 'L\'actualisaziun n\'è betg cumplettada. Nagin problem — nagut n\'è vegnì a perder. Ti pos ussa reprovar.',
+      updateLocked:
+        "Actualisaziun interrutta: in'autra fanestra d'OpenAmer u in terminal che executescha openamer blocca questa installaziun. Serra e reprova.",
+      updateFailed:
+        "L'actualisaziun n'è betg cumplettada. Nagin problem — nagut n'è vegnì a perder. Ti pos ussa reprovar."
     },
-    moreChanges: count => `+ ${count} ulteriura modificaziun${count === 1 ? '' : 's'} inclusa.`,
+    moreChanges: count => `+ ${count} ulteriura modificaziun${count === 1 ? '' : 's'} inclusa.`
   },
   install: {
     stageStates: {
       pending: 'Pendent',
-      running: 'S\'installa',
+      running: "S'installa",
       succeeded: 'Finì',
       skipped: 'Sursiglà',
-      failed: 'Falli',
+      failed: 'Falli'
     },
-    oneTimeTitle: 'OpenAmer dovra in\'installaziun d\'ina giada',
-    installCommand: 'Cumond d\'installaziun',
+    oneTimeTitle: "OpenAmer dovra in'installaziun d'ina giada",
+    installCommand: "Cumond d'installaziun",
     copyCommand: 'Copiar il cumond',
-    viewDocs: 'Veir docs d\'installaziun',
+    viewDocs: "Veir docs d'installaziun",
     installTo: 'Vegn installà en',
-    retryAfterRun: 'Jau l\'hai executà -- reprova',
+    retryAfterRun: "Jau l'hai executà -- reprova",
     setupChoiceTitle: 'Configurar OpenAmer Desktop',
-    setupChoiceDesc: 'Connectar questa app ad in gateway OpenAmer che ti exequeschas gia, u installar OpenAmer localmain sin quest computer.',
+    setupChoiceDesc:
+      'Connectar questa app ad in gateway OpenAmer che ti exequeschas gia, u installar OpenAmer localmain sin quest computer.',
     connectExistingTitle: 'Connectar ad OpenAmer existent',
     connectExistingShort: 'Connectar existent',
-    connectExistingDesc: 'Duvrar in backend remot cun in token da sessun u cun l\'annunzia en il navigatur. Nagin\'installaziun locala vegn cumenzada.',
+    connectExistingDesc:
+      "Duvrar in backend remot cun in token da sessun u cun l'annunzia en il navigatur. Nagin'installaziun locala vegn cumenzada.",
     installLocalTitle: 'Installar OpenAmer localmain',
     installLocalDesc: 'Telechargiar OpenAmer, crear ses ambient Python ed aviar il backend sin quest computer.',
-    localStartUnavailable: 'L\'installaziun locala n\'ha betg pudì aviar. Restartar OpenAmer Desktop e pruvar danovamain.',
+    localStartUnavailable:
+      "L'installaziun locala n'ha betg pudì aviar. Restartar OpenAmer Desktop e pruvar danovamain.",
     remoteSetupTitle: 'Conectar ad OpenAmer existent',
-    remoteSetupDesc: 'Endatar l\'URL da voss gateway. OpenAmer Desktop vegn a recognoscher sche in token u ina annunzia en il navigatur è necessari.',
+    remoteSetupDesc:
+      "Endatar l'URL da voss gateway. OpenAmer Desktop vegn a recognoscher sche in token u ina annunzia en il navigatur è necessari.",
     remoteUrlTitle: 'URL dal gateway',
-    remoteUrlDesc: 'Duvrar l\'URL da basa dal gateway OpenAmer, inclus https:// sche remot.',
+    remoteUrlDesc: "Duvrar l'URL da basa dal gateway OpenAmer, inclus https:// sche remot.",
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
-    probing: 'Detectar l\'autenticaziun dal gateway...',
+    probing: "Detectar l'autenticaziun dal gateway...",
     probeError: 'Impussibel da cuntanscher quel gateway OpenAmer.',
-    identityProvider: 'voss provider d\'identitad',
+    identityProvider: "voss provider d'identitad",
     authTitle: 'Autenticaziun',
     authSignedIn: 'Annunzia en il navigatur cumplettada.',
     connected: 'Conectà',
-    signIn: 'S\'annunziar',
-    enterUrlFirst: 'Endatar d\'emprim in URL dal gateway.',
-    signInIncomplete: 'La fanestra d\'annunzia è serrada avant che l\'autenticaziun füss cumplettada.',
+    signIn: "S'annunziar",
+    enterUrlFirst: "Endatar d'emprim in URL dal gateway.",
+    signInIncomplete: "La fanestra d'annunzia è serrada avant che l'autenticaziun füss cumplettada.",
     tokenTitle: 'Token da sesiun',
     tokenDesc: 'Encollar il token da sesiun dal file .env dal gateway remot.',
     pasteSessionToken: 'Encollar il token da sesiun',
-    incompleteSignInTest: 'S\'annunziar avant da testar quest gateway protegì da OAuth.',
+    incompleteSignInTest: "S'annunziar avant da testar quest gateway protegì da OAuth.",
     incompleteTokenTest: 'Endatar in token da sesida avant da testar questa passarella.',
     testConnection: 'Testar la connexiun',
     applyRemote: 'Applitgar e reconnectar',
@@ -2211,31 +2286,35 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     failedTitle: 'Installaziun fallida',
     settingUpTitle: 'Preparar OpenAmer Agent',
     finishingTitle: 'Finir',
-    failedDesc: 'In dals pass d\'installaziun è fallì. Sin Windows, quai po capitar sche in\'autra instanza da OpenAmer CLI u desktop è en execuziun. Aturar tutas las instanzas OpenAmer en execuziun, e lura reempruvar. Controllar ils detagls sutvart u il log dal desktop per il protocol cumplet.',
-    activeDesc: 'Quai è ina configuraziun da ina giada. L\'installatur da OpenAmer telechargia dependenzas e configura vossa maschina. Ils aviements successivs sautan quest pass.',
-    fetchingManifest: 'Telechargiar il manifest da l\'installatur...',
+    failedDesc:
+      "In dals pass d'installaziun è fallì. Sin Windows, quai po capitar sche in'autra instanza da OpenAmer CLI u desktop è en execuziun. Aturar tutas las instanzas OpenAmer en execuziun, e lura reempruvar. Controllar ils detagls sutvart u il log dal desktop per il protocol cumplet.",
+    activeDesc:
+      "Quai è ina configuraziun da ina giada. L'installatur da OpenAmer telechargia dependenzas e configura vossa maschina. Ils aviements successivs sautan quest pass.",
+    fetchingManifest: "Telechargiar il manifest da l'installatur...",
     error: 'Errur',
-    hideOutput: 'Zuppar l\'output da l\'installatur',
-    showOutput: 'Mussar l\'output da l\'installatur',
+    hideOutput: "Zuppar l'output da l'installatur",
+    showOutput: "Mussar l'output da l'installatur",
     noOutput: 'Anc nagin output.',
     cancelling: 'Annullar...',
-    cancelInstall: 'Annullar l\'installaziun',
+    cancelInstall: "Annullar l'installaziun",
     transcriptSaved: 'Protocol cumplet memorisà en',
     copiedOutput: 'Copià!',
-    copyOutput: 'Copiar l\'output',
+    copyOutput: "Copiar l'output",
     reloadRetry: 'Recargar e reempruvar',
-    unsupportedDesc: platform => `L'installaziun automatica a l'emprim aviar n'è anc betg disponibla sin ${platform}. Avri il terminal ed exequì il cumond sutvart, lura reavié questa app. Ils proxims aviaments vegnan a sursiglir quest pass.`,
+    unsupportedDesc: platform =>
+      `L'installaziun automatica a l'emprim aviar n'è anc betg disponibla sin ${platform}. Avri il terminal ed exequì il cumond sutvart, lura reavié questa app. Ils proxims aviaments vegnan a sursiglir quest pass.`,
     authNeedsOauth: provider => `S'annunziar cun ${provider} avant che testar questa porta d'access.`,
     signInWith: provider => `S'annunziar cun ${provider}`,
     testSucceeded: (baseUrl, version) => `Collià cun ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} da ${total} pass cumplettads`,
     currentStage: stage => ` -- ussa: ${stage}`,
-    lines: count => `${count} lingia${count === 1 ? '' : 's'}`,
+    lines: count => `${count} lingia${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'Lain nus configurar OpenAmer Agent per tai',
-    headerDesc: 'Connescha in purschider da models per cumenzar a discurrer. La pli part da las opziuns dovra mo in clic.',
-    preparingInstall: 'OpenAmer cumpletta l\'installaziun. Quai dovra normalmain mainz d\'ina minuta al prim start.',
+    headerDesc:
+      'Connescha in purschider da models per cumenzar a discurrer. La pli part da las opziuns dovra mo in clic.',
+    preparingInstall: "OpenAmer cumpletta l'installaziun. Quai dovra normalmain mainz d'ina minuta al prim start.",
     starting: 'OpenAmer vegn startà…',
     lookingUpProviders: 'Tschert purschiders...',
     collapse: 'Reducir',
@@ -2250,30 +2329,31 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     apiKeyOptions: {
       fireworks: {
         short: 'API da models direct',
-        description: 'Access direct a models ostads da Fireworks AI.',
+        description: 'Access direct a models ostads da Fireworks AI.'
       },
       openrouter: {
         short: 'ina clav, blers models',
-        description: 'Osta tschientaners da models davos ina suletta clav. Bun default per novas installaziuns.',
+        description: 'Osta tschientaners da models davos ina suletta clav. Bun default per novas installaziuns.'
       },
       openai: {
         short: 'Models da class GPT',
-        description: 'Access direct a models da OpenAI.',
+        description: 'Access direct a models da OpenAI.'
       },
       gemini: {
         short: 'Models Gemini',
-        description: 'Access direct als models da Google Gemini.',
+        description: 'Access direct als models da Google Gemini.'
       },
       xai: {
         short: 'Models Grok',
-        description: 'Access direct als models da xAI Grok.',
+        description: 'Access direct als models da xAI Grok.'
       },
       local: {
         short: 'auto-ospità',
-        description: 'Orienta OpenAmer vers in endpoint local u auto-ospità cumpatibel cun OpenAI (vLLM, llama.cpp, Ollama, etc).',
-      },
+        description:
+          'Orienta OpenAmer vers in endpoint local u auto-ospità cumpatibel cun OpenAI (vLLM, llama.cpp, Ollama, etc).'
+      }
     },
-    backToSignIn: 'Enavos a l\'annunzia',
+    backToSignIn: "Enavos a l'annunzia",
     getKey: 'Obtener ina clavi',
     replaceCurrent: 'Substituir la valur actuala',
     pasteApiKey: 'Inserir la clavi API',
@@ -2282,19 +2362,19 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     connecting: 'As connecta',
     update: 'Actualisar',
     flowSubtitles: {
-      pkce: 'Avra tes navigatur per s\'annunziar, alura cuntinuescha qua',
+      pkce: "Avra tes navigatur per s'annunziar, alura cuntinuescha qua",
       device_code: 'Avra ina pagina da verificaziun en tes navigatur — OpenAmer as connecta automaticamain',
-      external: 'Annunzia ta ina giada en tes terminal, alura turna al chat',
+      external: 'Annunzia ta ina giada en tes terminal, alura turna al chat'
     },
-    signInFailed: 'L\'annunzia n\'è betg reussida. Prova puspè.',
+    signInFailed: "L'annunzia n'è betg reussida. Prova puspè.",
     pickDifferentProvider: 'Tscherna in auter purschider',
     authorizeThere: 'Autorisescha OpenAmer là.',
-    copyAuthCode: 'Copiar il code d\'autorisaziun e l\'encolar sutvart.',
-    pasteAuthCode: 'Encolar il code d\'autorisaziun',
-    reopenAuthPage: 'Reavrir la pagina d\'autorisaziun',
-    reopenSignInPage: 'Reavrir la pagina d\'annunzia',
+    copyAuthCode: "Copiar il code d'autorisaziun e l'encolar sutvart.",
+    pasteAuthCode: "Encolar il code d'autorisaziun",
+    reopenAuthPage: "Reavrir la pagina d'autorisaziun",
+    reopenSignInPage: "Reavrir la pagina d'annunzia",
     waitingAuthorize: 'Spetg che Vus autorisais...',
-    signedIn: 'Jau sun s\'annunzià',
+    signedIn: "Jau sun s'annunzià",
     reopenVerification: 'Reavrir la pagina da verificaziun',
     copy: 'Copiar',
     defaultModel: 'Model standard',
@@ -2308,12 +2388,14 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     connectedPicking: provider => `${provider} collià. In model da standard vegn tschernì...`,
     signInWith: provider => `S'annunziar cun ${provider}`,
     openedBrowser: provider => `Nus avain avert ${provider} en tes navigatur.`,
-    autoBrowser: provider => `Nus avain avert ${provider} en tes navigatur. Autorisescha OpenAmer là e ti vegns collià automaticamain — nagut da copiar u encollar.`,
-    externalPending: provider => `${provider} s'annunzia sur ses agen CLI. Exequescha quest cumond en in terminal, lura returna e tscherna "Jau sun m'annunzià":`,
+    autoBrowser: provider =>
+      `Nus avain avert ${provider} en tes navigatur. Autorisescha OpenAmer là e ti vegns collià automaticamain — nagut da copiar u encollar.`,
+    externalPending: provider =>
+      `${provider} s'annunzia sur ses agen CLI. Exequescha quest cumond en in terminal, lura returna e tscherna "Jau sun m'annunzià":`,
     deviceCodeOpened: provider => `Nus avain avert ${provider} en tes navigatur. Endatescha là quest code:`,
     pro: 'Professiunal',
     price: (input, output) => `${input} entrada / ${output} sortida per Mtok`,
-    docs: provider => `Documentaziun da ${provider}`,
+    docs: provider => `Documentaziun da ${provider}`
   },
   modelPicker: {
     title: 'Midar model',
@@ -2327,26 +2409,26 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     proNeedsSubscription: 'Ils models Pro dovran in abunament OpenAmer pajà.',
     free: 'Gratuit',
     freeTier: 'Stgalim gratuit',
-    priceTitle: 'Pretsch d\'endata / da sortida per milliun tokens',
+    priceTitle: "Pretsch d'endata / da sortida per milliun tokens",
     wasPrice: 'era',
-    pro: 'Professiunal',
+    pro: 'Professiunal'
   },
   modelVisibility: {
     search: 'Tschertgar models',
     noAuthenticatedProviders: 'Nagins purschiders autentifitgads.',
     addProvider: 'Agiuntar purschider…',
-    title: 'Modells',
+    title: 'Modells'
   },
   shell: {
     windowControls: 'Controllas da fanestra',
     paneControls: 'Controllas da panell',
-    appControls: 'Controllas da l\'app',
+    appControls: "Controllas da l'app",
     modelMenu: {
       search: 'Tschertgar models',
       noModels: 'Nagins models chattads',
       editModels: 'Modifitgar models…',
       refreshModels: 'Actualisar models',
-      fast: 'Svelt',
+      fast: 'Svelt'
     },
     modelOptions: {
       noOptions: 'Naginas opziuns per quest model',
@@ -2358,11 +2440,11 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       medium: 'Medi',
       high: 'Aut',
       xhigh: 'Extra aut',
-      updateFailed: 'Actualisaziun da l\'opziun dal model fallida',
+      updateFailed: "Actualisaziun da l'opziun dal model fallida",
       fastFailed: 'Actualisaziun dal mod spert fallida',
       minimal: 'Minim',
       max: 'Massim',
-      ultra: 'Ultim',
+      ultra: 'Ultim'
     },
     gatewayMenu: {
       gateway: 'Passarella',
@@ -2371,23 +2453,23 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       offline: 'Betg collià',
       inferenceReady: 'Inferenza pronta',
       inferenceNotReady: 'Inferenza betg pronta',
-      checkingInference: 'Controllar l\'inferenza',
+      checkingInference: "Controllar l'inferenza",
       disconnected: 'Betg connectà',
       openSystem: 'Avrir il panel dal sistem',
       recentActivity: 'Activitads recentas',
       viewAllLogs: 'Mussar tut ils logs →',
       messagingPlatforms: 'Plattafurmas da messadis',
-      connection: label => `Colliaziun: ${label}`,
+      connection: label => `Colliaziun: ${label}`
     },
     approvalMode: {
-      title: 'Modus d\'approvaziun',
+      title: "Modus d'approvaziun",
       manual: 'A maun',
       manualDescription: 'Dumandar avant acziuns che dovran approvaziun',
       smart: 'Intelligent',
       smartDescription: 'Evaluar automaticamain acziuns e dumandar cura che dovra',
       off: 'Deactivà',
-      offDescription: 'Executar senza invitats d\'approvaziun',
-      ariaLabel: mode => `Modus d'approvaziun: ${mode}`,
+      offDescription: "Executar senza invitats d'approvaziun",
+      ariaLabel: mode => `Modus d'approvaziun: ${mode}`
     },
     statusbar: {
       unknown: 'nunenconuschent',
@@ -2402,10 +2484,10 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       gatewayReady: 'pront',
       gatewayNeedsSetup: 'basegna configuraziun',
       gatewayChecking: 'controlla',
-      gatewayConnecting: 's\'connecta',
+      gatewayConnecting: "s'connecta",
       gatewayOffline: 'fora da la rait',
       gatewayRestarting: 'restarta…',
-      gatewayTitle: 'Status da la purtgata d\'inferenza OpenAmer',
+      gatewayTitle: "Status da la purtgata d'inferenza OpenAmer",
       closeAgents: 'Serrar ils agents',
       openAgents: 'Avrir ils agents',
       openCron: 'Avrir las incaricas cron',
@@ -2423,16 +2505,16 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
           skills: 'Abilitads',
           subagent_definitions: 'Definiziuns da subagents',
           system_prompt: 'Prompt dal sistem',
-          tool_definitions: 'Definiziuns d\'instruments',
-          mcp: 'MCP',
+          tool_definitions: "Definiziuns d'instruments",
+          mcp: 'MCP'
         },
         empty: 'Anc naginas datas dal context',
         loading: 'Chargiar la repartiziun…',
         title: 'Utilisaziun dal context',
         percentFull: percent => `${percent}% occupà`,
-        tokenSummary: (used, max) => `${used} / ${max} unitads da text`,
+        tokenSummary: (used, max) => `${used} / ${max} unitads da text`
       },
-      openContextUsage: 'Avrir la repartiziun da l\'utilisaziun dal context',
+      openContextUsage: "Avrir la repartiziun da l'utilisaziun dal context",
       session: 'Sessiun',
       runtimeSessionElapsed: 'Temps passà da la sessiun runtime',
       modelNone: 'nagut',
@@ -2459,23 +2541,24 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       running: count => `${count} en execuziun`,
       cron: 'Planisader',
       webhooks: 'Retwebhooks',
-      yoloOn: 'YOLO on — automatic aprovarin dals comandi periglos. Clicca per deactivar. Shift+click commuta il global.',
+      yoloOn:
+        'YOLO on — automatic aprovarin dals comandi periglos. Clicca per deactivar. Shift+click commuta il global.',
       yoloOff: 'YOLO des — clicca a automaticaprobà i comandi pericols. Shift+click muta il globala.',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Barra laterala dretga',
     panelsAria: 'Panels da la barra laterala dretga',
     files: 'Sistem da datotecas',
     noFolderSelected: 'Nagina ordinatura tschernida',
-    changeCwdTitle: 'Midar l\'ordinatura da lavur',
+    changeCwdTitle: "Midar l'ordinatura da lavur",
     remotePickerTitle: 'Tscherner ordinatura remota',
     remotePickerDescription: 'Navigar tras ordinaturas sin il backend connectà.',
     remotePickerSelect: 'Tscherner ordinatura',
     openFolder: 'Avrir ordinatura',
-    refreshTree: 'Actualisar l\'arbul',
+    refreshTree: "Actualisar l'arbul",
     collapseAll: 'Serrar tut las ordinaturas',
     previewUnavailable: 'Previsualisaziun betg disponibla',
     noProjectTitle: 'Nagin project',
@@ -2485,10 +2568,10 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     unreadableTitle: 'Betg legibel',
     emptyTitle: 'Vid',
     emptyBody: 'Quest ordinatur è vid.',
-    treeErrorTitle: 'Errur da l\'arbur',
-    treeErrorBody: 'L\'arbur da datotecas ha gì in errur cun renderisar quest ordinatur.',
+    treeErrorTitle: "Errur da l'arbur",
+    treeErrorBody: "L'arbur da datotecas ha gì in errur cun renderisar quest ordinatur.",
     tryAgain: 'Prova puspè',
-    loadingTree: 'Chargiar l\'arbur da datotecas',
+    loadingTree: "Chargiar l'arbur da datotecas",
     loadingFiles: 'Chargiar datotecas',
     terminalHide: 'Zuppar il terminal',
     terminalNew: 'Nov terminal',
@@ -2499,7 +2582,7 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     folderTip: cwd => `${cwd} — clicca per midar ordinatur`,
     couldNotPreview: path => `N'ha pas pudì previewar ${path}`,
     unreadableBody: error => `N'ha pas pudì ligier questa cartella (${error}).`,
-    terminalsAria: 'Termas',
+    terminalsAria: 'Termas'
   },
   preview: {
     tab: 'Prevista',
@@ -2511,9 +2594,9 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     unavailable: 'Prevista betg disponibla',
     opening: 'Avrind...',
     hide: 'Zuppar',
-    openPreview: 'Avrir l\'anteprim',
+    openPreview: "Avrir l'anteprim",
     openInBrowser: 'Avrir en il navigatur',
-    linkHint: '⌘/Ctrl-click per la panela d\'anteprim',
+    linkHint: "⌘/Ctrl-click per la panela d'anteprim",
     sourceLineTitle: 'Clic per tscherner · shift-click per extender · trair en il compositor',
     source: 'FUNTAUNA',
     renderedPreview: 'ANTEPRIM',
@@ -2527,13 +2610,14 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     editing: 'Modifitgond',
     unsavedChanges: 'Midaments betg salvads',
     diskChangedTitle: 'Datoteca midada sin il disc',
-    diskChangedBody: 'Questa datoteca è midada dapi che ti l\'has avrida. Surscriver quella cun tia versiun, u scartar tes modificaziuns e cargiar danovamain?',
+    diskChangedBody:
+      "Questa datoteca è midada dapi che ti l'has avrida. Surscriver quella cun tia versiun, u scartar tes modificaziuns e cargiar danovamain?",
     overwrite: 'Surscriver',
     discardReload: 'Sbittar & rechargiar',
     console: {
       deselect: 'Deselecziunar endataziun',
       select: 'Selecziunar endataziun',
-      copyFailed: 'Impussibel da copiar l\'output da la consola',
+      copyFailed: "Impussibel da copiar l'output da la consola",
       copyEntry: 'Copiar questa endataziun',
       sendEntry: 'Trametter questa endataziun al chat',
       resize: 'Midar grondezza da la consola da prevista',
@@ -2548,10 +2632,11 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       sentTitle: 'Tramess al chat',
       messages: count => `${count} messadis da la consola`,
       selected: count => `${count} tschernì`,
-      sentMessage: count => `${count} endataziun${count === 1 ? 'y' : 'ies'} dal protocol agiuntadas al champ da redacziun`,
+      sentMessage: count =>
+        `${count} endataziun${count === 1 ? 'y' : 'ies'} dal protocol agiuntadas al champ da redacziun`
     },
     web: {
-      appFailedToBoot: 'L\'app da prevista n\'ha betg pudì aviar',
+      appFailedToBoot: "L'app da prevista n'ha betg pudì aviar",
       serverNotFound: 'Server betg chattà',
       failedToLoad: 'Impussibel da chargiar la prevista',
       tryAgain: 'Pruva puspè',
@@ -2568,28 +2653,31 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       restartedTitle: 'Server da prevista reavvià',
       reloadingNow: 'La prevista vegn chargiada da nov ussa.',
       restartFailedTitle: 'Reavviament da la prevista fallì',
-      restartFailedMessage: 'OpenAmer n\'ha betg pudì reavviar il server.',
-      stillWorking: 'OpenAmer lavura anc, ma nagin resultat da reavviament n\'è anc arrivà. Il cumond dal server pudess esser en il plan avant.',
+      restartFailedMessage: "OpenAmer n'ha betg pudì reavviar il server.",
+      stillWorking:
+        "OpenAmer lavura anc, ma nagin resultat da reavviament n'è anc arrivà. Il cumond dal server pudess esser en il plan avant.",
       workspaceReloading: 'Il spazi da lavur è midà, la prevista vegn chargiada da nov',
-      moduleMimeDescription: 'Scripts da modul vegnan servids cun il tip MIME sbaglià. Quai signifitga normalmain che in server da datotecas staticas serva ina app Vite/React enstagl dal server da svilup dal project.',
-      unreachableDescription: 'La pagina da prevista n\'è betg cuntanschibla.',
+      moduleMimeDescription:
+        'Scripts da modul vegnan servids cun il tip MIME sbaglià. Quai signifitga normalmain che in server da datotecas staticas serva ina app Vite/React enstagl dal server da svilup dal project.',
+      unreachableDescription: "La pagina da prevista n'è betg cuntanschibla.",
       fallbackTitle: 'Prevista',
       lookingRestart: taskId => `OpenAmer tscherca un server da preview per restartar (${taskId})`,
       startRestartFailed: message => `N'ha pas pudì startar il restart dal server: ${message}`,
-      finishedRestarting: message => `OpenAmer ha finishì il restart dal server da preview${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer ha finishì il restart dal server da preview${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Il restart dal server ha fallì: ${message}`,
       fileChanged: url => `File changì, reloada preview: ${url}`,
       filesChanged: (count, url) => `${count} midadas da datotecas, rechargiar la previsualisaziun: ${url}`,
       watchFailed: message => `N'ha pas pudì watchar il file da preview: ${message}`,
       loadFailedConsole: (code, message) => `Load ha fallì${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Aper ${url}`,
+      openTarget: url => `Aper ${url}`
     },
     closeTab: label => `Clud ${label}`,
     diff: 'Diff',
     binaryBody: label => `Previewar ${label} pudì mostrar text ne l'è pas ligier.`,
     largeBody: (label, size) => `${label} è ${size}. OpenAmer mussa mo ils emprims 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} po tuttina vegnir agiuntà sco context.`,
-    saveFailed: message => `N'ha pas pudì salvar: ${message}`,
+    saveFailed: message => `N'ha pas pudì salvar: ${message}`
   },
   zones: {
     showHeader: 'Mussar il chapitel',
@@ -2597,7 +2685,8 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     minimize: 'Minimisar',
     restore: 'Restaurar',
     closeRunningTitle: 'Serrar la tab activa?',
-    closeRunningBody: 'Questa chat lavura anc (u spetta sin tia endataziun). Serrar la tab la zuppa — la seschan mantegna ses progress e po vegnir averta danovamain da la traversa laterala.',
+    closeRunningBody:
+      'Questa chat lavura anc (u spetta sin tia endataziun). Serrar la tab la zuppa — la seschan mantegna ses progress e po vegnir averta danovamain da la traversa laterala.',
     closeRunningConfirm: 'Serrar la tab',
     closeOthers: 'Serrar las autras',
     closeToRight: 'Serrar las a dretga',
@@ -2609,7 +2698,8 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     dirRight: 'dretga',
     pluginDisabledBody: 'Reactivar el en Parameters → Plugins per far vegnir il panell enavos.',
     editTitle: 'Disposiziuns',
-    editHint: 'Tscherna ina disposiziun, u trai panells tranter las zonas. Clicca cun il buttun dretg sin ina zona per sparter.',
+    editHint:
+      'Tscherna ina disposiziun, u trai panells tranter las zonas. Clicca cun il buttun dretg sin ina zona per sparter.',
     reset: 'Redefinir',
     templates: 'Models',
     custom: 'Persunalisà',
@@ -2624,7 +2714,7 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     templateGrid: 'Rait',
     templatePriority: 'Prioritad',
     saveApply: 'Salvar & applitgar',
-    notExpressible: 'questa disposiziun s\'engrena (roda da vent) — betg anc exprimibel sco divisiuns imbricadas',
+    notExpressible: "questa disposiziun s'engrena (roda da vent) — betg anc exprimibel sco divisiuns imbricadas",
     split: dir => `Dividir ${dir}`,
     move: dir => `Spostar ${dir}`,
     pluginDisabled: pluginId => `Plugin "${pluginId}" disactivà`,
@@ -2634,7 +2724,7 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     mergeZones: count => `Fuschar ${count} zunas`,
     customZoneName: count => `Zuna ${count} persunalisada`,
     layoutNamePlaceholder: fallback => `Num dal layout (${fallback})`,
-    zoneCount: count => `${count} zonas`,
+    zoneCount: count => `${count} zonas`
   },
   assistant: {
     thread: {
@@ -2646,9 +2736,9 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       refresh: 'Actualisar',
       moreActions: 'Dapli acziuns',
       branchNewChat: 'Ramifitgar en in nov chat',
-      dismissError: 'Serrar l\'error',
-      readAloudFailed: 'Legir dad aut n\'è betg reussì',
-      preparingAudio: 'Preparar l\'audio...',
+      dismissError: "Serrar l'error",
+      readAloudFailed: "Legir dad aut n'è betg reussì",
+      preparingAudio: "Preparar l'audio...",
       stopReading: 'Stoppar la lectura',
       readAloud: 'Legir dad aut',
       editMessage: 'Modifitgar il messadi',
@@ -2659,35 +2749,38 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       restoreCheckpoint: 'Restaurar il checkpoint',
       restoreFromHere: 'Restaurar il checkpoint — exequir danovamain da quest prompt',
       restoreTitle: 'Restaurar a quest checkpoint?',
-      restoreBody: 'Tut il ch\'è suenter quest prompt vegn allontanà da la conversaziun, e il prompt vegn exequì danovamain da qua.',
+      restoreBody:
+        "Tut il ch'è suenter quest prompt vegn allontanà da la conversaziun, e il prompt vegn exequì danovamain da qua.",
       restoreConfirm: 'Restaurar & exequir danovamain',
       restoreNext: 'Restaurar il proxim checkpoint',
       goForward: 'Ir inavant',
       sendEdited: 'Trametter il messadi modifitgà',
       attachingFile: 'Agiuntar…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Oz, ${time}`,
-      yesterday: time => `Ier, ${time}`,
+      yesterday: time => `Ier, ${time}`
     },
     approval: {
-      gatewayDisconnected: 'La porta d\'access da OpenAmer n\'è betg connectada',
-      sendFailed: 'Impussibel da trametter la resposta d\'approvaziun',
+      gatewayDisconnected: "La porta d'access da OpenAmer n'è betg connectada",
+      sendFailed: "Impussibel da trametter la resposta d'approvaziun",
       run: 'Exequir',
       command: 'Cumond',
-      moreOptions: 'Dapli opziuns d\'approvaziun',
+      moreOptions: "Dapli opziuns d'approvaziun",
       allowSession: 'Permetter questa sesiun',
       alwaysAllowMenu: 'Permetter adina…',
       jumpToApproval: 'Approvaziun necessaria',
       reject: 'Refusar',
       alwaysTitle: 'Permetter adina quest cumond?',
       alwaysAllow: 'Permetter adina',
-      alwaysDescription: pattern => `Quess adds il pattern “${pattern}” a tia allowlist permanent (~/.openamer/config.yaml). OpenAmer na'dmanda plü per commands sco quess — en questa session u en quellas future.`,
+      alwaysDescription: pattern =>
+        `Quess adds il pattern “${pattern}” a tia allowlist permanent (~/.openamer/config.yaml). OpenAmer na'dmanda plü per commands sco quess — en questa session u en quellas future.`
     },
     clarify: {
-      notReady: 'La dumonda da clarificaziun n\'è anc betg pronta',
-      gatewayDisconnected: 'La porta d\'access da OpenAmer n\'è betg connectada',
+      notReady: "La dumonda da clarificaziun n'è anc betg pronta",
+      gatewayDisconnected: "La porta d'access da OpenAmer n'è betg connectada",
       sendFailed: 'Impussibel da trametter la resposta da clarificaziun',
       loadingQuestion: 'Chargiar la dumonda…',
       other: 'Auter (scriva tia resposta)',
@@ -2696,8 +2789,8 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       skipped: 'Sursiglì',
       continueLabel: 'Cuntinuar',
       lateAnswerTip: 'Redigia questa resposta sco messadi suandant',
-      lateAnswerHint: 'Quest prompt n\'è betg pli en spetga. Tscherna in\'opziun per il rediger sco messadi suandant.',
-      lateAnswer: (question, choice) => `Re: "${question}" — mia risposta: ${choice}`,
+      lateAnswerHint: "Quest prompt n'è betg pli en spetga. Tscherna in'opziun per il rediger sco messadi suandant.",
+      lateAnswer: (question, choice) => `Re: "${question}" — mia risposta: ${choice}`
     },
     tool: {
       copyCode: 'Copiar il code',
@@ -2705,14 +2798,14 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       copyOutput: 'Copiar la sortida',
       copyCommand: 'Copiar il cumond',
       copyContent: 'Copiar il cuntegn',
-      copyUrl: 'Copiar l\'URL',
+      copyUrl: "Copiar l'URL",
       copyResults: 'Copiar ils resultats',
       copyQuery: 'Copiar la dumonda',
       copyFile: 'Copiar la datoteca',
       copyPath: 'Copiar il percurs',
-      outputAlt: 'Sortida da l\'instrument',
+      outputAlt: "Sortida da l'instrument",
       rawResponse: 'Resposta cruda',
-      copyActivity: 'Copiar l\'activitad',
+      copyActivity: "Copiar l'activitad",
       recoveredOne: 'Recuperà suenter 1 pass fallì',
       failedOne: '1 pass fallì',
       statusRunning: 'En execuziun',
@@ -2724,129 +2817,129 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
         reading: 'Legind',
         opened: 'Avert',
         opening: 'Avrind',
-        failedToOpen: 'Betg reussì d\'avrir',
+        failedToOpen: "Betg reussì d'avrir",
         searched: 'Tschertgà',
         searching: 'Tschertgond',
         ran: 'Executà',
         running: 'Executond',
         ranCode: 'Executà code',
-        runningCode: 'Programmaziun da scripts',
+        runningCode: 'Programmaziun da scripts'
       },
       prefixes: {
         browser: 'Navigatur',
-        web: 'Rait',
+        web: 'Rait'
       },
       titles: {
         browser_click: {
           done: 'Element da pagina cliccà',
           pending: 'Cliccar element da pagina',
-          pendingAction: 'Cliccar',
+          pendingAction: 'Cliccar'
         },
         browser_fill: {
           done: 'Champ da formular empì',
           pending: 'Emplenir champ da formular',
-          pendingAction: 'Emplenir',
+          pendingAction: 'Emplenir'
         },
         browser_navigate: {
           done: 'Pagina averta',
           pending: 'Avrir la pagina',
-          pendingAction: 'Avrir',
+          pendingAction: 'Avrir'
         },
         browser_snapshot: {
           done: 'Screenshot da la pagina registrà',
           pending: 'Registrar il screenshot da la pagina',
-          pendingAction: 'Registrar',
+          pendingAction: 'Registrar'
         },
         browser_take_screenshot: {
           done: 'Screenshot registrà',
           pending: 'Registrar il screenshot',
-          pendingAction: 'Registrar',
+          pendingAction: 'Registrar'
         },
         browser_type: {
           done: 'Tipà sin la pagina',
           pending: 'Tipar sin la pagina',
-          pendingAction: 'Tipar',
+          pendingAction: 'Tipar'
         },
         clarify: {
           done: 'Fatg ina dumonda',
           pending: 'Far ina dumonda',
-          pendingAction: 'Dumandar',
+          pendingAction: 'Dumandar'
         },
         cronjob: {
           done: 'Incumbensa cron',
           pending: 'Planisar ina incumbensa cron',
-          pendingAction: 'Planisar',
+          pendingAction: 'Planisar'
         },
         edit_file: {
           done: 'Datoteca modifitgada',
           pending: 'Modifitgar datoteca',
-          pendingAction: 'Modifitgar',
+          pendingAction: 'Modifitgar'
         },
         execute_code: {
           done: 'Code executà',
           pending: 'Programmaziun da scripts',
-          pendingAction: 'Programmaziun da scripts',
+          pendingAction: 'Programmaziun da scripts'
         },
         image_generate: {
           done: 'Maletg generà',
           pending: 'Generar maletg',
-          pendingAction: 'Generar',
+          pendingAction: 'Generar'
         },
         list_files: {
           done: 'Datotecas enumeradas',
           pending: 'Enumerar datotecas',
-          pendingAction: 'Enumerar',
+          pendingAction: 'Enumerar'
         },
         patch: {
           done: 'Datoteca patchada',
           pending: 'Patchar datoteca',
-          pendingAction: 'Patchar',
+          pendingAction: 'Patchar'
         },
         read_file: {
           done: 'Datoteca legida',
           pending: 'Legir datoteca',
-          pendingAction: 'Legir',
+          pendingAction: 'Legir'
         },
         search_files: {
           done: 'Datotecas tschertadas',
           pending: 'Tschertgar datotecas',
-          pendingAction: 'Tschertgar',
+          pendingAction: 'Tschertgar'
         },
         session_search_recall: {
-          done: 'Tschertgà l\'istorgia da sesiun',
-          pending: 'Tschertgar l\'istorgia da sesiun',
-          pendingAction: 'Tschertgar',
+          done: "Tschertgà l'istorgia da sesiun",
+          pending: "Tschertgar l'istorgia da sesiun",
+          pendingAction: 'Tschertgar'
         },
         terminal: {
           done: 'Executà cumond',
           pending: 'Executar cumond',
-          pendingAction: 'Executar',
+          pendingAction: 'Executar'
         },
         todo: {
           done: 'Actualisà incumbensas',
           pending: 'Actualisar incumbensas',
-          pendingAction: 'Actualisar',
+          pendingAction: 'Actualisar'
         },
         vision_analyze: {
           done: 'Analisà maletg',
           pending: 'Analisar maletg',
-          pendingAction: 'Analisar',
+          pendingAction: 'Analisar'
         },
         web_extract: {
           done: 'Legì pagina web',
           pending: 'Legir pagina web',
-          pendingAction: 'Legir',
+          pendingAction: 'Legir'
         },
         web_search: {
           done: 'Tschertgà web',
           pending: 'Tschertgar web',
-          pendingAction: 'Tschertgar',
+          pendingAction: 'Tschertgar'
         },
         write_file: {
           done: 'Modifitgà datoteca',
           pending: 'Modifitgar datoteca',
-          pendingAction: 'Modifitgar',
-        },
+          pendingAction: 'Modifitgar'
+        }
       },
       code: 'Còd',
       recoveredMany: count => `Recuperà dopo ${count} steps fallids`,
@@ -2857,23 +2950,24 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `En execuziun ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `En execuziun ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `En execuziun ${action.toLowerCase()}`
+      }
+    }
   },
   prompts: {
-    gatewayDisconnected: 'La porta dad OpenAmer n\'è betg connectada',
+    gatewayDisconnected: "La porta dad OpenAmer n'è betg connectada",
     sudoSendFailed: 'Betg pussibel trametter il pled-clav sudo',
     secretSendFailed: 'Betg pussibel trametter il secret',
-    sudoTitle: 'Pled-clav d\'administrator',
-    sudoDesc: 'OpenAmer dovra voss pled-clav sudo per executar in cumond privilegià. El vegn tramess mo a voss agent local.',
+    sudoTitle: "Pled-clav d'administrator",
+    sudoDesc:
+      'OpenAmer dovra voss pled-clav sudo per executar in cumond privilegià. El vegn tramess mo a voss agent local.',
     sudoPlaceholder: 'pled-clav sudo',
     secretTitle: 'Secret necessari',
     secretDesc: 'OpenAmer dovra ina credenziala per cuntinuar.',
-    secretPlaceholder: 'valur dal secret',
+    secretPlaceholder: 'valur dal secret'
   },
   desktop: {
-    audioReadFailed: 'Betg pussibel legier l\'audio registrà',
+    audioReadFailed: "Betg pussibel legier l'audio registrà",
     sessionUnavailable: 'Sessiun betg disponibla',
     createSessionFailed: 'Betg pussibel crear ina nova sessiun',
     promptFailed: 'Prompt fallì',
@@ -2891,82 +2985,85 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     editFailed: 'Betg reussì da modificar',
     resumeFailed: 'Betg reussì da cuntinuar',
     resumeStrandedTitle: 'Impussibel da charger questa sesiun',
-    resumeStrandedBody: 'La connexiun a questa sesiun è fallida e las repeticions automaticas han desistì. Controllai che il gateway funcziuneschia e provai danovamain.',
+    resumeStrandedBody:
+      'La connexiun a questa sesiun è fallida e las repeticions automaticas han desistì. Controllai che il gateway funcziuneschia e provai danovamain.',
     resumeRetry: 'Empruvar danovamain',
     nothingToBranch: 'Nagut da ramificar',
     branchNeedsChat: 'Cumenzar u cuntinuar in chat avant da ramificar.',
     sessionBusy: 'Sesiun occupada',
     branchStopCurrent: 'Fermar il turn actual avant da ramificar questa chat.',
-    branchNoText: 'Quest messadi n\'ha nagut text da ramificar.',
+    branchNoText: "Quest messadi n'ha nagut text da ramificar.",
     branchFailed: 'Betg reussì da ramificar',
     deleteFailed: 'Betg reussì da stizzar',
     archived: 'Archivà',
     archiveFailed: 'Betg reussì da archivar',
-    cwdChangeFailed: 'Midada da l\'ordinatur da lavur n\'è betg reussida',
+    cwdChangeFailed: "Midada da l'ordinatur da lavur n'è betg reussida",
     cwdStagedTitle: 'Ordinatur da lavur preparà',
     cwdStagedMessage: 'Reaviar il backend dal desktop per applitgar las midadas da cwd a questa sessione activa.',
-    modelSwitchFailed: 'Midada dal model n\'è betg reussida',
+    modelSwitchFailed: "Midada dal model n'è betg reussida",
     sessionExported: 'Sessione exportada',
-    sessionExportFailed: 'Impussibel d\'exportar la sessione',
+    sessionExportFailed: "Impussibel d'exportar la sessione",
     imageSaved: 'Maletg salvà',
     downloadStarted: 'Telechargiada cumenzada',
     restartToUseSaveImage: 'Reaviar OpenAmer Desktop per utilisar Salvar maletg.',
     restartToSaveImages: 'Reaviar OpenAmer Desktop per salvar maletgs',
-    imageDownloadFailed: 'Telechargiada dal maletg n\'è betg reussida',
+    imageDownloadFailed: "Telechargiada dal maletg n'è betg reussida",
     openImage: 'Avrir maletg',
     downloadImage: 'Telechargiar maletg',
     savingImage: 'Salvar maletg',
-    imagePreviewFailed: 'Prevista dal maletg n\'è betg reussida',
+    imagePreviewFailed: "Prevista dal maletg n'è betg reussida",
     imageAttach: 'Agraffar maletg',
-    imageWriteFailed: 'Scriver il maletg sin il disc n\'è betg reussì.',
-    imageAttachFailed: 'Agraffar il maletg n\'è betg reussì',
+    imageWriteFailed: "Scriver il maletg sin il disc n'è betg reussì.",
+    imageAttachFailed: "Agraffar il maletg n'è betg reussì",
     attachImages: 'Agraffar maletgs',
     clipboard: 'Memoria intermedia',
     noClipboardImage: 'Nagin maletg chattà en la clipboard.',
-    clipboardPasteFailed: 'L\'empustar da la clipboard è fallì.',
+    clipboardPasteFailed: "L'empustar da la clipboard è fallì.",
     dropFiles: 'Deponer datotecas',
     handoff: {
       pickPlatform: 'Tscherner ina destinaziun',
-      timedOut: 'Il temp d\'attesa per il gateway è scadì. È `openamer gateway` en execuziun?',
+      timedOut: "Il temp d'attesa per il gateway è scadì. È `openamer gateway` en execuziun?",
       success: platform => `Passà a ${platform}. Resume qua a qualchera ora.`,
       systemNote: platform => `↻ Passà a ${platform} — resume qua a qualchera ora.`,
-      failed: error => `Handoff ha fallì: ${error}`,
+      failed: error => `Handoff ha fallì: ${error}`
     },
     skillCommandsAvailable: count => `${count} cumonds d'abilitad disponibels.`,
     warningLine: message => `avertiment: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'activ' : 'disactiv'} per questa session`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profil: ${current}. Usa /profile <num> u il picker "New session" per startar un chat en un auter profil.`,
+    profileStatus: current =>
+      `Profil: ${current}. Usa /profile <num> u il picker "New session" per startar un chat en un auter profil.`,
     noProfileNamed: (target, available) => `Nu profil nummì "${target}". Disponibils: ${available}`,
     newChatsProfile: name => `Novas chats usaran il profil ${name}.`,
-    branchTitle: n => `Brun: Branch #${n}`,
+    branchTitle: n => `Brun: Branch #${n}`
   },
   errors: {
-    genericFailure: 'Insatge n\'è betg reussì',
-    boundaryTitle: 'Insatge è rutt en l\'interfatscha',
+    genericFailure: "Insatge n'è betg reussì",
+    boundaryTitle: "Insatge è rutt en l'interfatscha",
     boundaryDesc: 'La vista ha chattà ina errur nunspetgada. Tes chats e tes parametris èn segirs.',
     reloadWindow: 'Rechargiar la fanestra',
-    openLogs: 'Avrir ils logs',
+    openLogs: 'Avrir ils logs'
   },
   ui: {
     search: {
-      clear: 'Stizzar la tschertga',
+      clear: 'Stizzar la tschertga'
     },
     pagination: {
       label: 'paginaziun',
       previous: 'Prec',
       previousAria: 'Ir a la pagina precedenta',
       next: 'Proxim',
-      nextAria: 'Ir a la pagina proxima',
+      nextAria: 'Ir a la pagina proxima'
     },
     sidebar: {
       title: 'Barra laterala',
       description: 'Mussa la barra laterala mobila.',
-      toggle: 'Alternar la barra laterala',
-    },
+      toggle: 'Alternar la barra laterala'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Rendering software activ — display remot detectà (${reason}). L'acceleraziun GPU è desactivà per evità il flickering.`,
+    message: reason =>
+      `Rendering software activ — display remot detectà (${reason}). L'acceleraziun GPU è desactivà per evità il flickering.`
   },
   billingBlock: {
     titleOpenamer: 'Es in fin da Crèdits OpenAmer.',
@@ -2974,6 +3071,6 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
     fallbackMessage: 'Il tue conto è es in fin da crèdits. Adna crèdits per continuer.',
     openBilling: 'Apera billing.',
     addCredits: 'Adda crèdits.',
-    dismiss: 'Scarta.',
-  },
+    dismiss: 'Scarta.'
+  }
 })

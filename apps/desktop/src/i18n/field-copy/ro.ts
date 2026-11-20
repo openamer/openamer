@@ -6,249 +6,252 @@
 import { defineFieldCopy } from '@/app/settings/field-copy'
 
 export const FIELD_LABELS: Record<string, string> = defineFieldCopy({
-    model: "Model implicit",
-    modelContextLength: "Fereastră de context",
-    fallbackProviders: "Modele de rezervă",
-    toolsets: "Seturi de instrumente activate",
-    timezone: "Fus orar",
-    display: {
-      personality: "Personalitate",
-      showReasoning: "Blocuri de raționament",
+  model: 'Model implicit',
+  modelContextLength: 'Fereastră de context',
+  fallbackProviders: 'Modele de rezervă',
+  toolsets: 'Seturi de instrumente activate',
+  timezone: 'Fus orar',
+  display: {
+    personality: 'Personalitate',
+    showReasoning: 'Blocuri de raționament'
+  },
+  desktop: {
+    repoScanEnabled: 'Descoperire automată a depozitelor',
+    repoScanRoots: 'Rădăcini pentru descoperirea depozitelor',
+    repoScanExcludePaths: 'Căi excluse din depozite'
+  },
+  agent: {
+    maxTurns: 'Număr maxim de pași ai agentului',
+    imageInputMode: 'Atașamente de imagine',
+    apiMaxRetries: 'Reîncercări API',
+    serviceTier: 'Nivel de serviciu',
+    toolUseEnforcement: 'Impunerea utilizării instrumentelor'
+  },
+  terminal: {
+    cwd: 'Director de lucru',
+    backend: 'Backend de execuție',
+    timeout: 'Timeout pentru comenzi',
+    persistentShell: 'Shell persistent',
+    envPassthrough: 'Transmiterea mediului',
+    dockerImage: 'Imagine Docker',
+    singularityImage: 'Imagine Singularity',
+    modalImage: 'Imagine Modal',
+    daytonaImage: 'Imagine Daytona'
+  },
+  fileReadMaxChars: 'Limită de citire a fișierelor',
+  toolOutput: {
+    maxBytes: 'Limită de ieșire în terminal',
+    maxLines: 'Limită de pagini per fișier',
+    maxLineLength: 'Limită de lungime a liniei'
+  },
+  codeExecution: {
+    mode: 'Mod de execuție a codului'
+  },
+  approvals: {
+    mode: 'Mod de aprobare',
+    timeout: 'Timeout pentru aprobare',
+    mcpReloadConfirm: 'Confirmă reîncărcările MCP'
+  },
+  commandAllowlist: 'Listă de comenzi permise',
+  security: {
+    redactSecrets: 'Ocultarea secretelor',
+    allowPrivateUrls: 'Permite URL-uri private'
+  },
+  browser: {
+    allowPrivateUrls: 'URL-uri private în browser',
+    autoLocalForPrivateUrls: 'Browser local pentru URL-uri private'
+  },
+  checkpoints: {
+    enabled: 'Puncte de control pentru fișiere',
+    maxSnapshots: 'Limită de puncte de control'
+  },
+  voice: {
+    recordKey: 'Comandă vocală',
+    maxRecordingSeconds: 'Durată maximă a înregistrării',
+    autoTts: 'Citește răspunsurile cu voce tare'
+  },
+  stt: {
+    enabled: 'Voce la text',
+    echoTranscripts: 'Redă transcrierile',
+    provider: 'Furnizor de voce la text',
+    local: {
+      model: 'Model local de transcriere',
+      language: 'Limbajul transcrierii'
     },
-    desktop: {
-      repoScanEnabled: "Descoperire automată a depozitelor",
-      repoScanRoots: "Rădăcini pentru descoperirea depozitelor",
-      repoScanExcludePaths: "Căi excluse din depozite",
+    openai: {
+      model: 'Model OpenAI STT'
     },
-    agent: {
-      maxTurns: "Număr maxim de pași ai agentului",
-      imageInputMode: "Atașamente de imagine",
-      apiMaxRetries: "Reîncercări API",
-      serviceTier: "Nivel de serviciu",
-      toolUseEnforcement: "Impunerea utilizării instrumentelor",
+    groq: {
+      model: 'Model Groq STT'
     },
-    terminal: {
-      cwd: "Director de lucru",
-      backend: "Backend de execuție",
-      timeout: "Timeout pentru comenzi",
-      persistentShell: "Shell persistent",
-      envPassthrough: "Transmiterea mediului",
-      dockerImage: "Imagine Docker",
-      singularityImage: "Imagine Singularity",
-      modalImage: "Imagine Modal",
-      daytonaImage: "Imagine Daytona",
+    mistral: {
+      model: 'Model Mistral STT'
     },
-    fileReadMaxChars: "Limită de citire a fișierelor",
-    toolOutput: {
-      maxBytes: "Limită de ieșire în terminal",
-      maxLines: "Limită de pagini per fișier",
-      maxLineLength: "Limită de lungime a liniei",
+    elevenlabs: {
+      modelId: 'Model ElevenLabs STT',
+      languageCode: 'Limbaj ElevenLabs',
+      tagAudioEvents: 'Etichetează evenimentele audio',
+      diarize: 'Diarizarea vorbitorilor'
+    }
+  },
+  tts: {
+    provider: 'Furnizor de text la voce',
+    edge: {
+      voice: 'Voce Edge'
     },
-    codeExecution: {
-      mode: "Mod de execuție a codului",
+    openai: {
+      model: 'Model OpenAI TTS',
+      voice: 'Voce OpenAI'
     },
-    approvals: {
-      mode: "Mod de aprobare",
-      timeout: "Timeout pentru aprobare",
-      mcpReloadConfirm: "Confirmă reîncărcările MCP",
+    elevenlabs: {
+      voiceId: 'Voce ElevenLabs',
+      modelId: 'Model ElevenLabs'
     },
-    commandAllowlist: "Listă de comenzi permise",
-    security: {
-      redactSecrets: "Ocultarea secretelor",
-      allowPrivateUrls: "Permite URL-uri private",
+    xai: {
+      voiceId: 'Voce xAI (Grok)',
+      language: 'Limbaj xAI',
+      speed: 'Viteză de redare xAI',
+      autoSpeechTags: 'Etichete vocale automate xAI',
+      optimizeStreamingLatency: 'Optimizarea latenței fluxului xAI',
+      sampleRate: 'Rată de eșantionare xAI',
+      bitRate: 'Rată de biți xAI'
     },
-    browser: {
-      allowPrivateUrls: "URL-uri private în browser",
-      autoLocalForPrivateUrls: "Browser local pentru URL-uri private",
+    minimax: {
+      model: 'Model MiniMax TTS',
+      voiceId: 'Voce MiniMax'
     },
-    checkpoints: {
-      enabled: "Puncte de control pentru fișiere",
-      maxSnapshots: "Limită de puncte de control",
+    mistral: {
+      model: 'Model Mistral TTS',
+      voiceId: 'Voce Mistral'
     },
-    voice: {
-      recordKey: "Comandă vocală",
-      maxRecordingSeconds: "Durată maximă a înregistrării",
-      autoTts: "Citește răspunsurile cu voce tare",
+    gemini: {
+      model: 'Model Gemini TTS',
+      voice: 'Voce Gemini'
     },
-    stt: {
-      enabled: "Voce la text",
-      echoTranscripts: "Redă transcrierile",
-      provider: "Furnizor de voce la text",
-      local: {
-        model: "Model local de transcriere",
-        language: "Limbajul transcrierii",
-      },
-      openai: {
-        model: "Model OpenAI STT",
-      },
-      groq: {
-        model: "Model Groq STT",
-      },
-      mistral: {
-        model: "Model Mistral STT",
-      },
-      elevenlabs: {
-        modelId: "Model ElevenLabs STT",
-        languageCode: "Limbaj ElevenLabs",
-        tagAudioEvents: "Etichetează evenimentele audio",
-        diarize: "Diarizarea vorbitorilor",
-      },
+    neutts: {
+      model: 'Model NeuTTS',
+      device: 'Dispozitiv NeuTTS'
     },
-    tts: {
-      provider: "Furnizor de text la voce",
-      edge: {
-        voice: "Voce Edge",
-      },
-      openai: {
-        model: "Model OpenAI TTS",
-        voice: "Voce OpenAI",
-      },
-      elevenlabs: {
-        voiceId: "Voce ElevenLabs",
-        modelId: "Model ElevenLabs",
-      },
-      xai: {
-        voiceId: "Voce xAI (Grok)",
-        language: "Limbaj xAI",
-        speed: "Viteză de redare xAI",
-        autoSpeechTags: "Etichete vocale automate xAI",
-        optimizeStreamingLatency: "Optimizarea latenței fluxului xAI",
-        sampleRate: "Rată de eșantionare xAI",
-        bitRate: "Rată de biți xAI",
-      },
-      minimax: {
-        model: "Model MiniMax TTS",
-        voiceId: "Voce MiniMax",
-      },
-      mistral: {
-        model: "Model Mistral TTS",
-        voiceId: "Voce Mistral",
-      },
-      gemini: {
-        model: "Model Gemini TTS",
-        voice: "Voce Gemini",
-      },
-      neutts: {
-        model: "Model NeuTTS",
-        device: "Dispozitiv NeuTTS",
-      },
-      kittentts: {
-        model: "Model KittenTTS",
-        voice: "Voce KittenTTS",
-      },
-      piper: {
-        voice: "Voce Piper",
-      },
-      deepinfra: {
-        model: "Model DeepInfra TTS",
-        voice: "Voce DeepInfra",
-      },
+    kittentts: {
+      model: 'Model KittenTTS',
+      voice: 'Voce KittenTTS'
     },
-    memory: {
-      memoryEnabled: "Memorie persistentă",
-      userProfileEnabled: "Profil de utilizator",
-      memoryCharLimit: "Buget de memorie",
-      userCharLimit: "Buget de profil",
-      provider: "Furnizor de memorie",
+    piper: {
+      voice: 'Voce Piper'
     },
-    context: {
-      engine: "Motor de context",
-    },
-    compression: {
-      enabled: "Comprimare automată",
-      threshold: "Prag de comprimare",
-      targetRatio: "Țintă de comprimare",
-      protectLastN: "Mesaje recente protejate",
-    },
-    delegation: {
-      model: "Model subagent",
-      provider: "Furnizor de subagent",
-      maxIterations: "Limită de rânduri pentru subagent",
-      maxConcurrentChildren: "Subagenți paraleli",
-      childTimeoutSeconds: "Timeout subagent",
-      reasoningEffort: "Efort de raționament al subagentului",
-    },
-    updates: {
-      nonInteractiveLocalChanges: "Modificări locale la actualizarea în aplicație",
-    },
+    deepinfra: {
+      model: 'Model DeepInfra TTS',
+      voice: 'Voce DeepInfra'
+    }
+  },
+  memory: {
+    memoryEnabled: 'Memorie persistentă',
+    userProfileEnabled: 'Profil de utilizator',
+    memoryCharLimit: 'Buget de memorie',
+    userCharLimit: 'Buget de profil',
+    provider: 'Furnizor de memorie'
+  },
+  context: {
+    engine: 'Motor de context'
+  },
+  compression: {
+    enabled: 'Comprimare automată',
+    threshold: 'Prag de comprimare',
+    targetRatio: 'Țintă de comprimare',
+    protectLastN: 'Mesaje recente protejate'
+  },
+  delegation: {
+    model: 'Model subagent',
+    provider: 'Furnizor de subagent',
+    maxIterations: 'Limită de rânduri pentru subagent',
+    maxConcurrentChildren: 'Subagenți paraleli',
+    childTimeoutSeconds: 'Timeout subagent',
+    reasoningEffort: 'Efort de raționament al subagentului'
+  },
+  updates: {
+    nonInteractiveLocalChanges: 'Modificări locale la actualizarea în aplicație'
+  }
 })
 
 export const FIELD_DESCRIPTIONS: Record<string, string> = defineFieldCopy({
-    model: "Folosit pentru conversații noi, dacă nu alegi alt model în editor.",
-    modelContextLength: "Lasă la 0 pentru a folosi fereastra de context detectată a modelului selectat.",
-    fallbackProviders: "Intrări provider:model de rezervă, în cazul în care modelul implicit eșuează.",
-    display: {
-      personality: "Stil implicit al asistentului pentru sesiuni noi.",
-      showReasoning: "Afișează secțiunile de raționament când backendul le furnizează.",
+  model: 'Folosit pentru conversații noi, dacă nu alegi alt model în editor.',
+  modelContextLength: 'Lasă la 0 pentru a folosi fereastra de context detectată a modelului selectat.',
+  fallbackProviders: 'Intrări provider:model de rezervă, în cazul în care modelul implicit eșuează.',
+  display: {
+    personality: 'Stil implicit al asistentului pentru sesiuni noi.',
+    showReasoning: 'Afișează secțiunile de raționament când backendul le furnizează.'
+  },
+  desktop: {
+    repoScanEnabled: 'Scanează folderele locale pentru depozite Git care să apară în Proiecte.',
+    repoScanRoots: 'Foldere de scanat. Lasă gol pentru a scana directorul tău principal.',
+    repoScanExcludePaths: 'Foldere și subfolderele lor de exclus în timpul descoperirii depozitelor.'
+  },
+  timezone: 'Folosit când OpenAmer are nevoie de contextul orei locale. Gol folosește fusul orar al sistemului.',
+  agent: {
+    imageInputMode: 'Controlează modul în care atașamentele de imagine sunt trimise modelului.',
+    maxTurns: 'Limită superioară pentru turele cu apeluri de unelte înainte ca OpenAmer să oprească o rulare.'
+  },
+  terminal: {
+    cwd: 'Folder implicit de proiect pentru lucrul cu unelte și terminal.',
+    persistentShell: 'Păstrează starea shell-ului între comenzi, dacă backendul o permite.',
+    envPassthrough: 'Variabile de mediu de transmis la executarea uneltelor.',
+    dockerImage: 'Imagine de container folosită când backendul de execuție este Docker.',
+    singularityImage: 'Imagine folosită când backendul de execuție este Singularity.',
+    modalImage: 'Imagine folosită când backendul de execuție este Modal.',
+    daytonaImage: 'Imagine folosită când backendul de execuție este Daytona.'
+  },
+  codeExecution: {
+    mode: 'Cât de strict este delimitată execuția codului la proiectul curent.'
+  },
+  fileReadMaxChars: 'Numărul maxim de caractere pe care OpenAmer le poate citi dintr-o cerere de fișier.',
+  approvals: {
+    mode: 'Cum gestionează OpenAmer comenzile care necesită aprobare explicită.',
+    timeout: 'Cât așteaptă solicitările de aprobare înainte de expirare.'
+  },
+  security: {
+    redactSecrets: 'Ascunde secretele detectate din conținutul vizibil modelului, când este posibil.'
+  },
+  checkpoints: {
+    enabled: 'Creează instantanee de revenire înainte de editarea fișierelor.'
+  },
+  memory: {
+    memoryEnabled: 'Salvează memorii durabile care pot ajuta sesiunile viitoare.',
+    userProfileEnabled: 'Menține un profil compact al preferințelor utilizatorului.'
+  },
+  context: {
+    engine: 'Strategie pentru gestionarea conversațiilor lungi apropiate de limita de context.'
+  },
+  compression: {
+    enabled: 'Rezuma contextul mai vechi când conversațiile devin lungi.'
+  },
+  voice: {
+    autoTts: 'Rostește automat răspunsurile asistentului.'
+  },
+  tts: {
+    xai: {
+      voiceId: 'ID voce xAI (de ex. eve) sau un ID de voce personalizat.',
+      language: 'Codul limbii vorbite (de ex. en, pt-BR) sau "auto" pentru detectare automată.',
+      speed: 'Viteză de redare. 0.7 = mai lent, 1.0 = normal, 1.5 = mai rapid.',
+      autoSpeechTags:
+        'Permite unui LLM să insereze etichete audio expresive ([râzând], [oftează]) în script înainte de sinteză.',
+      optimizeStreamingLatency:
+        'Compromis între latență și calitate. 0 = cea mai bună calitate, 2 = cea mai mică latență.',
+      sampleRate: 'Rată de eșantionare audio în Hz. Mai mare = calitate mai bună, fișiere mai mari.',
+      bitRate: 'Bitrate MP3 în bps. Se aplică doar când codecul este mp3.'
     },
-    desktop: {
-      repoScanEnabled: "Scanează folderele locale pentru depozite Git care să apară în Proiecte.",
-      repoScanRoots: "Foldere de scanat. Lasă gol pentru a scana directorul tău principal.",
-      repoScanExcludePaths: "Foldere și subfolderele lor de exclus în timpul descoperirii depozitelor.",
-    },
-    timezone: "Folosit când OpenAmer are nevoie de contextul orei locale. Gol folosește fusul orar al sistemului.",
-    agent: {
-      imageInputMode: "Controlează modul în care atașamentele de imagine sunt trimise modelului.",
-      maxTurns: "Limită superioară pentru turele cu apeluri de unelte înainte ca OpenAmer să oprească o rulare.",
-    },
-    terminal: {
-      cwd: "Folder implicit de proiect pentru lucrul cu unelte și terminal.",
-      persistentShell: "Păstrează starea shell-ului între comenzi, dacă backendul o permite.",
-      envPassthrough: "Variabile de mediu de transmis la executarea uneltelor.",
-      dockerImage: "Imagine de container folosită când backendul de execuție este Docker.",
-      singularityImage: "Imagine folosită când backendul de execuție este Singularity.",
-      modalImage: "Imagine folosită când backendul de execuție este Modal.",
-      daytonaImage: "Imagine folosită când backendul de execuție este Daytona.",
-    },
-    codeExecution: {
-      mode: "Cât de strict este delimitată execuția codului la proiectul curent.",
-    },
-    fileReadMaxChars: "Numărul maxim de caractere pe care OpenAmer le poate citi dintr-o cerere de fișier.",
-    approvals: {
-      mode: "Cum gestionează OpenAmer comenzile care necesită aprobare explicită.",
-      timeout: "Cât așteaptă solicitările de aprobare înainte de expirare.",
-    },
-    security: {
-      redactSecrets: "Ascunde secretele detectate din conținutul vizibil modelului, când este posibil.",
-    },
-    checkpoints: {
-      enabled: "Creează instantanee de revenire înainte de editarea fișierelor.",
-    },
-    memory: {
-      memoryEnabled: "Salvează memorii durabile care pot ajuta sesiunile viitoare.",
-      userProfileEnabled: "Menține un profil compact al preferințelor utilizatorului.",
-    },
-    context: {
-      engine: "Strategie pentru gestionarea conversațiilor lungi apropiate de limita de context.",
-    },
-    compression: {
-      enabled: "Rezuma contextul mai vechi când conversațiile devin lungi.",
-    },
-    voice: {
-      autoTts: "Rostește automat răspunsurile asistentului.",
-    },
-    tts: {
-      xai: {
-        voiceId: "ID voce xAI (de ex. eve) sau un ID de voce personalizat.",
-        language: "Codul limbii vorbite (de ex. en, pt-BR) sau \"auto\" pentru detectare automată.",
-        speed: "Viteză de redare. 0.7 = mai lent, 1.0 = normal, 1.5 = mai rapid.",
-        autoSpeechTags: "Permite unui LLM să insereze etichete audio expresive ([râzând], [oftează]) în script înainte de sinteză.",
-        optimizeStreamingLatency: "Compromis între latență și calitate. 0 = cea mai bună calitate, 2 = cea mai mică latență.",
-        sampleRate: "Rată de eșantionare audio în Hz. Mai mare = calitate mai bună, fișiere mai mari.",
-        bitRate: "Bitrate MP3 în bps. Se aplică doar când codecul este mp3.",
-      },
-      neutts: {
-        device: "Dispozitiv local de inferență pentru NeuTTS.",
-      },
-    },
-    stt: {
-      enabled: "Activează transcrierea vocală locală sau susținută de furnizor.",
-      echoTranscripts: "Postează transcrierea brută 🎙️ a mesajelor vocale înapoi în conversație.",
-      elevenlabs: {
-        languageCode: "Cod de limbă opțional ISO-639-3. Gol lasă ElevenLabs să detecteze automat.",
-      },
-    },
-    updates: {
-      nonInteractiveLocalChanges: "Când OpenAmer se actualizează din aplicație (fără prompt în terminal), păstrează modificările locale la sursă (stash) sau aruncă-le (discard). Actualizările din terminal cer întotdeauna confirmare.",
-    },
+    neutts: {
+      device: 'Dispozitiv local de inferență pentru NeuTTS.'
+    }
+  },
+  stt: {
+    enabled: 'Activează transcrierea vocală locală sau susținută de furnizor.',
+    echoTranscripts: 'Postează transcrierea brută 🎙️ a mesajelor vocale înapoi în conversație.',
+    elevenlabs: {
+      languageCode: 'Cod de limbă opțional ISO-639-3. Gol lasă ElevenLabs să detecteze automat.'
+    }
+  },
+  updates: {
+    nonInteractiveLocalChanges:
+      'Când OpenAmer se actualizează din aplicație (fără prompt în terminal), păstrează modificările locale la sursă (stash) sau aruncă-le (discard). Actualizările din terminal cer întotdeauna confirmare.'
+  }
 })
