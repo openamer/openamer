@@ -47,6 +47,28 @@ export interface DesktopThemeColors {
   userBubbleBorder?: string
 }
 
+/**
+ * Per-theme control over how much of its own seed colour survives in the
+ * derived chrome surfaces (`--theme-mix-*` in styles.css). Each value is the
+ * seed's share in percent; the remainder falls back to the neutral ramp.
+ *
+ * The built-in glass skins want a heavily diluted seed (a tinted wash), but a
+ * faithful port of an external product needs its exact measured surfaces —
+ * `100` means "use the seed unchanged".
+ */
+export interface DesktopThemeMix {
+  /** Main chrome / editor surface. */
+  chrome?: number
+  /** Sidebar surface. */
+  sidebar?: number
+  /** Card surface. */
+  card?: number
+  /** Elevated/popover surface. */
+  elevated?: number
+  /** User message bubble. */
+  bubble?: number
+}
+
 export interface DesktopThemeTypography {
   fontSans: string
   fontMono: string
@@ -93,6 +115,14 @@ export interface DesktopTheme {
   colors: DesktopThemeColors
   /** Hand-tuned dark palette. Skins like `openamer` ship one. */
   darkColors?: DesktopThemeColors
+  /** Optional overrides for the derived-surface mix ratios. */
+  mix?: DesktopThemeMix
+  /**
+   * Global corner-radius multiplier (styles.css `--radius-scalar`, default
+   * 0.85). Raise it for a rounder, softer geometry — a pill composer needs
+   * `--radius-2xl` at roughly half the composer's height.
+   */
+  radiusScalar?: number
   typography?: Partial<DesktopThemeTypography>
   /** Light-variant terminal ANSI palette (also the fallback for dark). */
   terminal?: DesktopTerminalPalette

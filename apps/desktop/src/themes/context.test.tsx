@@ -68,3 +68,42 @@ describe('ThemeProvider ← backend skin sync', () => {
     expect(cssVar('--theme-foreground')).toBe('#ff9f0a')
   })
 })
+
+// A theme may own its geometry and its surface mix. chatgpt.com's composer is a
+// pill (27.6px) and its dark surface is exactly #212121 — the glass skins'
+// default dilution would drag that to ~#1D1D1E, so the mix must be honoured.
+describe('ThemeProvider ← theme mix + radius', () => {
+  const applySkin = (skin: string, mode: 'dark' | 'light') => {
+    window.localStorage.setItem('openamer-desktop-theme-v2', skin)
+    window.localStorage.setItem('openamer-desktop-mode-v1', mode)
+    render(
+      <ThemeProvider>
+        <div />
+      </ThemeProvider>
+    )
+  }
+
+  beforeEach(() => {
+    window.localStorage.clear()
+    __resetBackendSkinSync()
+    document.documentElement.removeAttribute('style')
+  })
+
+  afterEach(cleanup)
+
+  it('uses the undiluted seed + custom radius for the chatgpt skin', () => {
+    applySkin('chatgpt', 'dark')
+
+    expect(cssVar('--theme-background-seed')).toBe('#212121')
+    expect(cssVar('--theme-mix-chrome')).toBe('100%')
+    expect(cssVar('--theme-mix-elevated')).toBe('100%')
+    expect(cssVar('--radius-scalar')).toBe('1.15')
+  })
+
+  it('restores the default radius and mixes for a skin without overrides', () => {
+    applySkin('openamer', 'dark')
+
+    expect(cssVar('--theme-mix-chrome')).toBe('74%')
+    expect(cssVar('--radius-scalar')).toBe('0.85')
+  })
+})

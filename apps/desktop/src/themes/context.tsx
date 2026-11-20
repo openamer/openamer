@@ -20,7 +20,7 @@ import { $activeGatewayProfile, normalizeProfileKey } from '@/store/profile'
 import { $backendThemes, $pendingSkinApply } from './backend-sync'
 import { hexToRgb, mix, readableOn } from './color'
 import { BUILTIN_THEME_LIST, DEFAULT_SKIN_NAME, DEFAULT_TYPOGRAPHY, openamerTheme } from './presets'
-import type { DesktopTheme, DesktopThemeColors } from './types'
+import type { DesktopTheme, DesktopThemeColors, DesktopThemeMix } from './types'
 import { $userThemes, listAllThemes, resolveTheme } from './user-themes'
 
 // Legacy global skin (pre per-profile themes). Still the inheritance fallback
@@ -165,13 +165,32 @@ const NEUTRAL_CHROME = { light: '#f3f3f3', dark: '#0d0d0e' } as const
 const chromeBackground = (background: string, isDark: boolean) =>
   mix(background, NEUTRAL_CHROME[isDark ? 'dark' : 'light'], isDark ? 0.26 : 0.08)
 
-const mixesFor = (isDark: boolean): Record<string, string> => ({
-  '--theme-mix-chrome': isDark ? '74%' : '92%',
-  '--theme-mix-sidebar': '100%',
-  '--theme-mix-card': isDark ? '38%' : '22%',
-  '--theme-mix-elevated': isDark ? '46%' : '28%',
-  '--theme-mix-bubble': isDark ? '46%' : '0%'
-})
+// Fallback share of each surface's own seed colour (the rest is the neutral
+// ramp). A theme may override any of these via `mix` — a port of an external
+// product's palette needs its measured surfaces untouched (100).
+const DEFAULT_MIX = {
+  chrome: { light: 92, dark: 74 },
+  sidebar: { light: 100, dark: 100 },
+  card: { light: 22, dark: 38 },
+  elevated: { light: 28, dark: 46 },
+  bubble: { light: 0, dark: 46 }
+} as const
+
+// styles.css `:root { --radius-scalar: 0.85 }` — keep in sync.
+const DEFAULT_RADIUS_SCALAR = 0.85
+
+const mixesFor = (isDark: boolean, mix?: DesktopThemeMix): Record<string, string> => {
+  const mode = isDark ? 'dark' : 'light'
+  const pct = (key: keyof typeof DEFAULT_MIX) => `${mix?.[key] ?? DEFAULT_MIX[key][mode]}%`
+
+  return {
+    '--theme-mix-chrome': pct('chrome'),
+    '--theme-mix-sidebar': pct('sidebar'),
+    '--theme-mix-card': pct('card'),
+    '--theme-mix-elevated': pct('elevated'),
+    '--theme-mix-bubble': pct('bubble')
+  }
+}
 
 function applyTheme(theme: DesktopTheme, mode: 'light' | 'dark') {
   if (typeof document === 'undefined') {
@@ -223,10 +242,13 @@ function applyTheme(theme: DesktopTheme, mode: 'light' | 'dark') {
     '--dt-user-bubble-border': c.userBubbleBorder ?? c.border,
     '--dt-font-sans': typo.fontSans,
     '--dt-font-mono': typo.fontMono,
-    '--noise-opacity-mul': isDark ? 'calc(0.04 / 0.21)' : 'calc(0.34 / 0.21)'
+    '--noise-opacity-mul': isDark ? 'calc(0.04 / 0.21)' : 'calc(0.34 / 0.21)',
+    // Always written (even the default) so switching away from a round theme
+    // restores the global geometry.
+    '--radius-scalar': String(theme.radiusScalar ?? DEFAULT_RADIUS_SCALAR)
   }
 
-  for (const [k, v] of Object.entries({ ...seeds, ...mixesFor(isDark), ...palette })) {
+  for (const [k, v] of Object.entries({ ...seeds, ...mixesFor(isDark, theme.mix), ...palette })) {
     root.style.setProperty(k, v)
   }
 

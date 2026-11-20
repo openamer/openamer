@@ -277,8 +277,107 @@ export const slateTheme: DesktopTheme = {
   }
 }
 
+/**
+ * ChatGPT — a faithful port of chatgpt.com's own design tokens, measured
+ * 2026-11-20 from the live stylesheet of build `29c71e2ab8`.
+ *
+ * The source palette is a neutral grey ramp plus one brand green that the
+ * product uses only in its mark; every interactive surface is neutral:
+ *
+ *   light  surface #FFFFFF  secondary #F9F9F9  tertiary #F3F3F3  text #0D0D0D
+ *   dark   surface #212121  secondary #303030  tertiary #414141  text #DFDFDF
+ *
+ * Borders are the measured foreground-alpha strokes (8% of #0D0D0D on light,
+ * 8% of #FFFFFF on dark), user messages sit on a 5%/8% alpha wash, and the
+ * action colour is the text colour itself — ChatGPT's send button is black on
+ * light and white on dark, never green. `mix: 100` is load-bearing: the glass
+ * skins dilute their seed into a neutral wash, which would drag #212121 down
+ * to ~#1D1D1E and lose the exact surface.
+ *
+ * Typography is the measured UI stack (`ui-sans-serif` → `Segoe UI` on
+ * Windows) — not the bundled Inter, which chatgpt.com does not use.
+ */
+const CHATGPT_INK = '#0D0D0D'
+const CHATGPT_SURFACE = '#212121'
+
+/** ChatGPT writes borders as `color-mix(in oklab, <fg> N%, transparent)`. */
+const chatgptStroke = (ink: string, pct: number) => `color-mix(in srgb, ${ink} ${pct}%, transparent)`
+
+const chatgptMix = { chrome: 100, sidebar: 100, card: 100, elevated: 100, bubble: 100 } as const
+
+export const chatgptTheme: DesktopTheme = {
+  name: 'chatgpt',
+  label: 'ChatGPT',
+  description: 'Neutral greys, near-black actions, pill composer — chatgpt.com',
+  mix: chatgptMix,
+  // chatgpt.com's composer is a pill: ~28px radius on a ~52px field. The glass
+  // default (0.85) renders it at 20px; 1.15 lands `--radius-2xl` at 27.6px.
+  radiusScalar: 1.15,
+  colors: {
+    background: '#FFFFFF',
+    foreground: CHATGPT_INK,
+    card: '#FFFFFF',
+    cardForeground: CHATGPT_INK,
+    muted: '#F9F9F9',
+    mutedForeground: '#5D5D5D',
+    popover: '#FFFFFF',
+    popoverForeground: CHATGPT_INK,
+    primary: CHATGPT_INK,
+    primaryForeground: '#FFFFFF',
+    secondary: '#F9F9F9',
+    secondaryForeground: CHATGPT_INK,
+    accent: '#F3F3F3',
+    accentForeground: CHATGPT_INK,
+    border: chatgptStroke(CHATGPT_INK, 8),
+    input: chatgptStroke(CHATGPT_INK, 10),
+    ring: CHATGPT_INK,
+    midground: CHATGPT_INK,
+    composerRing: CHATGPT_INK,
+    destructive: '#E02E2A',
+    destructiveForeground: '#FFFFFF',
+    sidebarBackground: '#F9F9F9',
+    sidebarBorder: chatgptStroke(CHATGPT_INK, 6),
+    userBubble: '#F2F2F2',
+    userBubbleBorder: chatgptStroke(CHATGPT_INK, 5)
+  },
+  darkColors: {
+    background: CHATGPT_SURFACE,
+    foreground: '#DFDFDF',
+    card: '#303030',
+    cardForeground: '#ECECEC',
+    muted: '#303030',
+    mutedForeground: '#B4B4B4',
+    popover: '#303030',
+    popoverForeground: '#ECECEC',
+    primary: '#FFFFFF',
+    primaryForeground: CHATGPT_INK,
+    secondary: '#303030',
+    secondaryForeground: '#ECECEC',
+    accent: '#2F2F2F',
+    accentForeground: '#FFFFFF',
+    border: chatgptStroke('#FFFFFF', 8),
+    input: chatgptStroke('#FFFFFF', 12),
+    ring: '#FFFFFF',
+    midground: '#FFFFFF',
+    composerRing: '#DFDFDF',
+    destructive: '#FA423E',
+    destructiveForeground: '#FFFFFF',
+    sidebarBackground: '#161616',
+    sidebarBorder: chatgptStroke('#FFFFFF', 6),
+    userBubble: '#2F2F2F',
+    userBubbleBorder: chatgptStroke('#FFFFFF', 8)
+  },
+  typography: {
+    // Measured `--font-sans-default`: the OS UI face, not a webfont.
+    fontSans: `ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif, ${EMOJI_FALLBACK}`,
+    // Measured `--font-mono-default`.
+    fontMono: `ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace, ${EMOJI_FALLBACK}`
+  }
+}
+
 export const BUILTIN_THEMES: Record<string, DesktopTheme> = {
   openamer: openamerTheme,
+  chatgpt: chatgptTheme,
   midnight: midnightTheme,
   ember: emberTheme,
   mono: monoTheme,

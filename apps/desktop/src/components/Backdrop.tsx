@@ -4,6 +4,9 @@ import { type CSSProperties, useEffect, useState } from 'react'
 
 import { $backdrop } from '@/store/backdrop'
 
+// One backdrop in the tree; the flag only distinguishes mount from a real drag.
+let radiusSliderArmed = false
+
 const BLEND_MODES = [
   'normal',
   'multiply',
@@ -60,11 +63,23 @@ export function Backdrop() {
 
   const shape = useControls(
     'UI / Shape',
-    { radiusScalar: { value: 0.2, min: 0, max: 2, step: 0.1, label: 'radius scalar' } },
+    // 0.85 is the styles.css `:root` default and what every theme inherits.
+    // This used to default to 0.2, which overwrote the theme on every mount and
+    // flattened the whole app (a 57px composer rendered at a 4.8px radius).
+    { radiusScalar: { value: 0.85, min: 0, max: 2, step: 0.1, label: 'radius scalar' } },
     { collapsed: true }
   )
 
   useEffect(() => {
+    // The theme owns `--radius-scalar` (themes/context.tsx). This slider is a
+    // debug override, so the mount run only arms it — writing on mount is what
+    // flattened the whole app to 0.2 before.
+    if (!radiusSliderArmed) {
+      radiusSliderArmed = true
+
+      return
+    }
+
     document.documentElement.style.setProperty('--radius-scalar', String(shape.radiusScalar))
   }, [shape.radiusScalar])
 
