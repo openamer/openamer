@@ -40,7 +40,7 @@ if _env_home and _env_home.startswith("/"):
 elif _env_home:
     HOME = Path(_env_home)
 else:
-    HOME = _default_home
+    HOME = Path(_default_home)
 
 BACKUP_SOURCES = [
     ("skills",            HOME / "skills"),
@@ -68,7 +68,32 @@ _WINDOWS_RESERVED = {"nul", "con", "prn", "aux", "com1", "com2", "com3", "com4",
                      "com5", "com6", "com7", "com8", "com9", "lpt1", "lpt2", "lpt3",
                      "lpt4", "lpt5", "lpt6", "lpt7", "lpt8", "lpt9"}
 
+# NEVER archive these: a backup archives STATE, not re-derivable bulk.
+# `scripts/training/` holds the model weights of this install - 41 GB measured
+# 2026-11-20, of which 8.4 GB sat in files whose LAST suffix is not a weight
+# suffix: `model.onnx_data` (7.1 GB) and `mini-openamer-2b-q4.gguf.prev-1793395879`
+# (1.3 GB). A plain `f.suffix in _EXCLUDE_EXTS` check therefore missed them, and
+# the daily job produced a 5.3 GB `scripts.zip` - 59 GB of backups on a disk at
+# 95%. The predicate below matches ANY suffix (`.gguf.prev-1699`, `.onnx_data`,
+# `x.tar.gz`) plus any excluded path component.
+_EXCLUDE_EXTS = {".gguf", ".safetensors", ".bin", ".pt", ".pth", ".onnx",
+                 ".onnx_data", ".h5", ".ckpt", ".msgpack", ".arrow", ".parquet"}
+_EXCLUDE_PARTS = {"__pycache__", "node_modules", ".venv", "venv", "lora_out",
+                  "merged", ".git", ".mypy_cache", ".pytest_cache", ".ruff_cache"}
+_EXCLUDE_SUFFIXES = (".tmp.zip", ".tmp")
+
 # ── Hilfsfunktionen ─────────────────────────────────────────────────────────
+
+def _keep(f: Path) -> bool:
+    """True if this file belongs in a backup (state/code, not re-derivable bulk)."""
+    if not f.is_file() or f.name.lower() in _WINDOWS_RESERVED:
+        return False
+    if set(f.suffixes) & _EXCLUDE_EXTS:      # ANY suffix, not just the last one
+        return False
+    if f.name.endswith(_EXCLUDE_SUFFIXES):
+        return False
+    return not (_EXCLUDE_PARTS & set(f.parts))
+
 
 def _get_target(external: str | None) -> Path:
     """Gib das Zielverzeichnis zurück (default oder external)."""
@@ -133,7 +158,7 @@ def _zip_directory(src: Path, dst_zip: Path, encrypt: bool, key: bytes | None):
     try:
         with zipfile.ZipFile(tmp_zip, "w", zipfile.ZIP_DEFLATED) as zf:
             for f in src.rglob("*"):
-                if f.is_file() and f.name.lower() not in _WINDOWS_RESERVED:
+                if _keep(f):
                     arcname = str(f.relative_to(src))
                     zf.write(f, arcname)
         if encrypt and key:
