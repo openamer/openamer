@@ -46,6 +46,21 @@ NODE = "node"
 NOT_A_LOCALE = {"catalog", "types", "index", "languages", "context", "runtime",
                 "plugin-i18n", "define-locale", "en"}
 
+# Brand names that must reach every catalog verbatim. A translation model that
+# sees `discord: 'Discord'` will happily "translate" it, and the shipped UI then
+# reads `Onenigheid` (Afrikaans for "disagreement"), `Slap` for Slack and
+# `Cikan` for Telegram - measured 2026-11-20 in the 22:28 converge pass: 72
+# corrupted brand values in 17 catalogs. The prompt already says "keep product
+# names unchanged"; the model ignores it often enough that a deterministic pass
+# is required. Keyed lowercase for lookup, valued with the canonical spelling.
+BRANDS: dict[str, str] = {name.lower(): name for name in (
+    "Discord", "Slack", "Telegram", "WhatsApp", "Signal", "GitHub", "GitLab",
+    "Google", "OpenAI", "Anthropic", "OpenRouter", "Ollama", "Notion", "Stripe",
+    "PayPal", "Figma", "Docker", "Kubernetes", "PostgreSQL", "Zoom", "YouTube",
+    "Twitter", "Firefox", "Chrome", "Safari", "Edge", "Windows", "macOS",
+    "Linux", "Android", "iOS",
+)}
+
 
 def node(args: list[str]) -> subprocess.CompletedProcess:
     return subprocess.run([NODE, *args], capture_output=True, text=True, cwd=str(REPO),
@@ -242,6 +257,60 @@ def strip_foreign_in_catalog(locale: str, en: dict[str, str]) -> int:
     finally:
         tmp.unlink(missing_ok=True)
     return len(bad)
+
+
+def brand_fixes(cur: dict[str, str], en: dict[str, str]) -> dict[str, str]:
+    """Paths whose value must be the brand name, mapped to its canonical spelling.
+
+    The rule is anchored on the ENGLISH source, not on the key name: a value is
+    restored only when `en[path]` is itself a brand. That keeps common words out
+    of the rule (`signal` as a real signal is never touched), and it still covers
+    brand names that are not the whole value at the path (`label: 'Discord'`).
+
+    Pure function on purpose - the caller decides whether to write.
+    """
+    fixes: dict[str, str] = {}
+    for path, text in cur.items():
+        source = (en.get(path) or "").strip()
+        canonical = BRANDS.get(source.lower())
+        if not canonical or text.strip() == canonical:
+            continue
+        fixes[path] = canonical
+    return fixes
+
+
+def _write_catalog(locale: str, mapping: dict[str, str]) -> bool:
+    """Write a full path->text mapping into <locale>.ts via the repo's writer."""
+    tmp = TMP / f"_write_{locale}_{os.getpid()}.json"
+    try:
+        tmp.write_text(json.dumps(mapping, ensure_ascii=False), encoding="utf-8")
+        r = node([str(WRITE), str(I18N / f"{locale}.ts"), str(tmp)])
+        if r.returncode != 0:
+            print(f"  write failed {locale}: {r.stderr.strip()[-160:]}", file=sys.stderr)
+            return False
+    finally:
+        tmp.unlink(missing_ok=True)
+    return True
+
+
+def strip_brand_names_in_catalog(locale: str, en: dict[str, str]) -> int:
+    """Restore translated brand names in the catalog to their English spelling.
+
+    Same reasoning as `strip_foreign_in_catalog`: the damage lands in the catalog
+    (strict_fill writes there directly), so the repair has to happen there too.
+    Measured 2026-11-20: one converge pass left `discord: 'Onenigheid'` and
+    `slack: 'Slap'` in `af.ts` and 70 more across 16 other catalogs - the model
+    treated brand names as vocabulary.
+    """
+    cur = extract(locale)
+    if not cur:
+        return 0
+    fixes = brand_fixes(cur, en)
+    if not fixes:
+        return 0
+    fixed = dict(cur)
+    fixed.update(fixes)
+    return len(fixes) if _write_catalog(locale, fixed) else 0
 
 
 def deliver(locale: str, en: dict[str, str], current: dict | None = None) -> tuple[bool, str]:
