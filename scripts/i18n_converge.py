@@ -34,7 +34,8 @@ REPO = pathlib.Path(__file__).resolve().parent.parent
 SCRIPTS = REPO / "scripts"
 sys.path.insert(0, str(SCRIPTS))
 
-from i18n_deliver_locales import extract, measure, strip_foreign_in_catalog  # noqa: E402
+from i18n_deliver_locales import (extract, measure, strip_brand_names_in_catalog,
+                                  strip_foreign_in_catalog)  # noqa: E402
 
 PY = sys.executable
 TARGET = 0.999
@@ -265,6 +266,12 @@ def main() -> int:
                         target.write_bytes(snapshot)
                     delivered = False
                     reason = f"{reason} script-rejected: {why}".strip()
+            # Brand names are not vocabulary. The model translates them anyway
+            # (measured 2026-11-20: 72 values in 17 catalogs, `Discord` ->
+            # `Onenigheid`), so every pass ends with a deterministic repair.
+            brands = strip_brand_names_in_catalog(locale, en)
+            if brands:
+                reason = f"{reason} restored {brands} brand name(s)".strip()
             after_row = measure(locale, en)
             after = after_row["share"] if after_row else before
             ledger({"locale": locale, "before": before, "after": after,
