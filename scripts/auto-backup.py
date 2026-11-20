@@ -40,7 +40,7 @@ if _env_home and _env_home.startswith("/"):
 elif _env_home:
     HOME = Path(_env_home)
 else:
-    HOME = _default_home
+    HOME = Path(_default_home)
 
 BACKUP_SOURCES = [
     ("skills",            HOME / "skills"),
