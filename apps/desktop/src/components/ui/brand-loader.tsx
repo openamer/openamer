@@ -41,7 +41,7 @@ export function BrandLoader({ className, decorative = false, label = 'Loading', 
       {...props}
       aria-hidden={decorative || undefined}
       aria-label={decorative ? undefined : (props['aria-label'] ?? label)}
-      className={cn('oa-loader inline-grid shrink-0 place-items-center', className)}
+      className={cn('oa-loader inline-grid size-[1.15em] shrink-0 place-items-center', className)}
       data-slot="brand-loader"
       role={decorative ? undefined : 'status'}
     >
