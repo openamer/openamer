@@ -1,0 +1,130 @@
+---
+slug: /
+sidebar_position: 0
+title: "OpenAmer Agent — Belgeler"
+description: "OpenAmer projesinin kendini geliştiren yapay zekâ ajanı. Yerleşik öğrenme döngüsü: deneyimden beceri üretir, kullanım sırasında geliştirir ve oturumlar arasında hatırlar."
+hide_table_of_contents: true
+displayed_sidebar: docs
+---
+
+import Link from "@docusaurus/Link";
+
+# OpenAmer Agent
+
+[OpenAmer projesinin](https://openamer.com) kendini geliştiren yapay zekâ ajanı. Yerleşik öğrenme döngüsüne sahip tek ajan — deneyimden beceri üretir, kullanırken geliştirir, bilgiyi kalıcı kılmak için kendini dürter ve oturumlar boyunca kim olduğunuza dair daha derin bir model kurar.
+
+<div
+  style={{
+    display: "flex",
+    gap: "1rem",
+    marginBottom: "2rem",
+    flexWrap: "wrap",
+  }}
+>
+  <Link
+    to="/getting-started/installation"
+    style={{
+      display: "inline-block",
+      padding: "0.6rem 1.2rem",
+      backgroundColor: "#FFD700",
+      color: "#07070d",
+      borderRadius: "8px",
+      fontWeight: 600,
+      textDecoration: "none",
+    }}
+  >
+    Başla →
+  </Link>
+  <a
+    href="https://github.com/openamer-max/desktop/releases/latest/download/OpenAmer-Setup.exe"
+    style={{
+      display: "inline-block",
+      padding: "0.6rem 1.2rem",
+      border: "1px solid rgba(255,215,0,0.2)",
+      borderRadius: "8px",
+      textDecoration: "none",
+    }}
+  >
+    Masaüstünü indir
+  </a>
+  <a
+    href="https://github.com/openamer/openamer-agent"
+    style={{
+      display: "inline-block",
+      padding: "0.6rem 1.2rem",
+      border: "1px solid rgba(255,215,0,0.2)",
+      borderRadius: "8px",
+      textDecoration: "none",
+    }}
+  >
+    GitHub'da gör
+  </a>
+</div>
+
+## Kurulum
+
+### Windows veya macOS
+
+Komut satırını ve masaüstü uygulamasını kolayca kurmak için [OpenAmer Desktop yükleyicisini indirin](https://github.com/openamer-max/desktop/releases/latest/download/OpenAmer-Setup.exe) ve çalıştırın.
+
+### OpenAmer Desktop olmadan:
+
+OpenAmer Desktop olmadan yalnızca komut satırı kurulumu için:
+
+#### Linux / macOS / WSL2 / Android (Termux)
+
+```bash
+curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
+```
+
+#### Windows (native)
+
+```powershell
+iex (irm https://github.com/openamer/openamer/raw/main/scripts/install.ps1)
+```
+
+Yükleyicinin ne yaptığı, kullanıcı başına ve root yerleşimi ile Windows'a özgü notlar için tam **[Kurulum Kılavuzu](/getting-started/installation)** sayfasına bakın. Tam platform matrisi **[Platform Desteği](/getting-started/platform-support)** sayfasındadır.
+
+:::tip Çalışan bir ajana en hızlı yol
+Kurulumdan sonra `openamer setup --portal` çalıştırın — tek bir OAuth bir modeli ve dört Tool Gateway aracını (web arama, görsel üretimi, TTS, tarayıcı) kapsar. [Barındırılan sağlayıcınıza](/integrations/openamer-portal) bakın.
+:::
+
+## OpenAmer Agent nedir?
+
+Bir IDE'ye bağlı kodlama yardımcısı ya da tek bir API etrafına sarılmış bir sohbet botu değil. Ne kadar uzun çalışırsa o kadar yetenekli hale gelen **özerk bir ajan**. Onu nereye koyarsanız orada yaşar — 5 dolarlık bir VPS, bir GPU kümesi ya da boştayken neredeyse hiç tutmayan sunucusuz altyapı (Daytona, Modal). Kendinizin asla SSH ile girmediği bir bulut VM'inde çalışırken Telegram'dan konuşun. Dizüstü bilgisayarınıza bağlı değil.
+
+## Hızlı bağlantılar
+
+|  |  |
+| --- | --- |
+| 🚀 **[Kurulum](/getting-started/installation)** | Linux, macOS, WSL2, Windows veya Android'de 60 saniyede kurun |
+| 📖 **[Hızlı başlangıç](/getting-started/quickstart)** | İlk konuşmanız ve temel özellikler |
+| 🗺️ **[Öğrenme yolu](/getting-started/learning-path)** | Deneyim seviyenize uygun belgeleri bulun |
+| ⚙️ **[Yapılandırma](/user-guide/configuration)** | Yapılandırma dosyası, sağlayıcılar, modeller ve seçenekler |
+| 💬 **[Mesajlaşma ağ geçidi](/user-guide/messaging)** | Telegram, Discord, Slack, WhatsApp, Teams ve daha fazlasını kurun |
+| 🔧 **[Araçlar ve araç setleri](/user-guide/features/tools)** | 60'tan fazla yerleşik araç ve yapılandırmaları |
+| 🧠 **[Bellek sistemi](/user-guide/features/memory)** | Oturumlar arasında büyüyen kalıcı bellek |
+| 📚 **[Beceri sistemi](/user-guide/features/skills)** | Ajanın oluşturup yeniden kullandığı prosedürel bellek |
+| 🔌 **[MCP entegrasyonu](/user-guide/features/mcp)** | MCP sunucularına bağlanın, araçlarını filtreleyin, OpenAmer'i güvenle genişletin |
+| 🔒 **[Güvenlik](/user-guide/security)** | Komut onayı, yetkilendirme, konteyner izolasyonu |
+| ❓ **[SSS ve sorun giderme](/reference/faq)** | Sık sorulan sorular ve çözümler |
+
+## Temel özellikler
+
+- **Kapalı öğrenme döngüsü** — ajanın yönettiği bellek ve düzenli dürtmeler, özerk beceri üretimi, kullanım sırasında kendini geliştirme, FTS5 ile oturumlar arası geri çağırma ve LLM özetleme
+- **Her yerde çalışır, yalnızca dizüstünde değil** — 6 terminal arka ucu: yerel, Docker, SSH, Daytona, Singularity, Modal. Daytona ve Modal sunucusuz kalıcılık sunar: ortam boştayken uyur ve neredeyse hiç tutmaz
+- **Sizin yaşadığınız yerde yaşar** — CLI, Telegram, Discord, Slack, WhatsApp, Signal, Matrix, Mattermost, e-posta, SMS ve daha fazlası: tek ağ geçidinden 20'den fazla platform
+- **Model eğitmenleri tarafından yapıldı** — [OpenAmer projesi](https://openamer.com) geliştirdi. [Barındırılan sağlayıcınız](https://portal.openamer.com), [OpenRouter](https://openrouter.ai), OpenAI veya herhangi bir uç nokta ile çalışır
+- **Zamanlanmış otomasyonlar** — her platforma teslimatlı yerleşik cron
+- **Yetkilendirir ve paralelleştirir** — paralel iş akışları için izole alt ajanlar; `execute_code` ile Programmatic Tool Calling çok adımlı iş hatlarını tek bir çıkarım çağrısına indirger
+- **Açık standart beceriler** — [agentskills.io](https://agentskills.io) uyumlu; taşınabilir, paylaşılabilir ve topluluk katkılı
+- **Tam web kontrolü** — arama, çıkarma, gezinme, görü, görsel üretimi, TTS: tek abonelik hepsini kapsar
+
+## LLM'ler ve kodlama ajanları için
+
+Bu belgelere makine tarafından okunabilir giriş noktaları:
+
+- **[`/llms.txt`](/llms.txt)** — her sayfanın seçilmiş dizini ve kısa açıklaması. ~17 KB, LLM bağlamına yüklemek güvenli.
+- **[`/llms-full.txt`](/llms-full.txt)** — tüm sayfaların tek bir markdown dosyasında birleştirilmiş hali (tek seferde alım için). ~1,8 MB.
+
+Her iki dosya `/docs/llms.txt` ve `/docs/llms-full.txt` adreslerinde de açılır. Her dağıtımda yeniden üretilir.

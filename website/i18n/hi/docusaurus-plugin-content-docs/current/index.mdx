@@ -1,0 +1,130 @@
+---
+slug: /
+sidebar_position: 0
+title: "OpenAmer Agent — दस्तावेज़"
+description: "OpenAmer प्रोजेक्ट द्वारा बनाया गया स्वयं-सुधार करने वाला AI एजेंट। अनुभव से स्किल बनाता है, उपयोग के दौरान सुधारता है और सत्रों के पार याद रखता है।"
+hide_table_of_contents: true
+displayed_sidebar: docs
+---
+
+import Link from "@docusaurus/Link";
+
+# OpenAmer Agent
+
+[OpenAmer प्रोजेक्ट](https://openamer.com) द्वारा बनाया गया स्वयं-सुधार करने वाला AI एजेंट। एकमात्र एजेंट जिसमें अंतर्निहित लर्निंग लूप है — यह अनुभव से स्किल बनाता है, उपयोग के दौरान उन्हें सुधारता है, ज्ञान बचाने के लिए खुद को प्रेरित करता है और सत्रों के पार आपके बारे में गहरा मॉडल बनाता है।
+
+<div
+  style={{
+    display: "flex",
+    gap: "1rem",
+    marginBottom: "2rem",
+    flexWrap: "wrap",
+  }}
+>
+  <Link
+    to="/getting-started/installation"
+    style={{
+      display: "inline-block",
+      padding: "0.6rem 1.2rem",
+      backgroundColor: "#FFD700",
+      color: "#07070d",
+      borderRadius: "8px",
+      fontWeight: 600,
+      textDecoration: "none",
+    }}
+  >
+    शुरू करें →
+  </Link>
+  <a
+    href="https://github.com/openamer-max/desktop/releases/latest/download/OpenAmer-Setup.exe"
+    style={{
+      display: "inline-block",
+      padding: "0.6rem 1.2rem",
+      border: "1px solid rgba(255,215,0,0.2)",
+      borderRadius: "8px",
+      textDecoration: "none",
+    }}
+  >
+    डेस्कटॉप डाउनलोड करें
+  </a>
+  <a
+    href="https://github.com/openamer/openamer-agent"
+    style={{
+      display: "inline-block",
+      padding: "0.6rem 1.2rem",
+      border: "1px solid rgba(255,215,0,0.2)",
+      borderRadius: "8px",
+      textDecoration: "none",
+    }}
+  >
+    GitHub पर देखें
+  </a>
+</div>
+
+## इंस्टॉलेशन
+
+### Windows या macOS
+
+कमांड-लाइन और डेस्कटॉप ऐप आसानी से इंस्टॉल करने के लिए [OpenAmer Desktop इंस्टॉलर डाउनलोड करें](https://github.com/openamer-max/desktop/releases/latest/download/OpenAmer-Setup.exe) और चलाएँ।
+
+### OpenAmer Desktop के बिना:
+
+OpenAmer Desktop के बिना केवल कमांड-लाइन इंस्टॉलेशन के लिए:
+
+#### Linux / macOS / WSL2 / Android (Termux)
+
+```bash
+curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
+```
+
+#### Windows (native)
+
+```powershell
+iex (irm https://github.com/openamer/openamer/raw/main/scripts/install.ps1)
+```
+
+इंस्टॉलर क्या करता है, प्रति-उपयोगकर्ता बनाम root लेआउट और Windows-विशिष्ट नोट्स के लिए पूरी **[इंस्टॉलेशन गाइड](/getting-started/installation)** देखें। पूरा प्लेटफ़ॉर्म मैट्रिक्स **[प्लेटफ़ॉर्म सपोर्ट](/getting-started/platform-support)** में है।
+
+:::tip चालू एजेंट तक सबसे तेज़ रास्ता
+इंस्टॉल के बाद `openamer setup --portal` चलाएँ — एक OAuth एक मॉडल और Tool Gateway के चारों टूल (वेब सर्च, इमेज जनरेशन, TTS, ब्राउज़र) कवर करता है। [अपना होस्टेड प्रोवाइडर](/integrations/openamer-portal) देखें।
+:::
+
+## OpenAmer Agent क्या है?
+
+यह किसी IDE से बंधा कोडिंग कोपायलट नहीं है और न ही एक API पर लिपटा चैटबॉट। यह एक **स्वायत्त एजेंट** है जो जितना अधिक चलता है उतना सक्षम होता जाता है। यह वहीं रहता है जहाँ आप उसे रखें — 5 डॉलर का VPS, GPU क्लस्टर, या सर्वरलेस इंफ्रास्ट्रक्चर (Daytona, Modal) जो निष्क्रिय रहने पर लगभग कुछ नहीं लेता। Telegram से उससे बात करें जबकि वह किसी क्लाउड VM पर काम कर रहा हो जहाँ आप कभी खुद SSH नहीं करते। यह आपके लैपटॉप से बंधा नहीं है।
+
+## त्वरित लिंक
+
+|  |  |
+| --- | --- |
+| 🚀 **[इंस्टॉलेशन](/getting-started/installation)** | Linux, macOS, WSL2, Windows या Android पर 60 सेकंड में इंस्टॉल |
+| 📖 **[क्विकस्टार्ट ट्यूटोरियल](/getting-started/quickstart)** | आपकी पहली बातचीत और मुख्य सुविधाएँ |
+| 🗺️ **[लर्निंग पाथ](/getting-started/learning-path)** | अपने अनुभव स्तर के लिए सही दस्तावेज़ खोजें |
+| ⚙️ **[कॉन्फ़िगरेशन](/user-guide/configuration)** | कॉन्फ़िग फ़ाइल, प्रोवाइडर, मॉडल और विकल्प |
+| 💬 **[मैसेजिंग गेटवे](/user-guide/messaging)** | Telegram, Discord, Slack, WhatsApp, Teams और अधिक सेट करें |
+| 🔧 **[टूल्स और टूलसेट](/user-guide/features/tools)** | 60+ अंतर्निहित टूल्स और उनका कॉन्फ़िगरेशन |
+| 🧠 **[मेमोरी सिस्टम](/user-guide/features/memory)** | सत्रों के पार बढ़ने वाली स्थायी स्मृति |
+| 📚 **[स्किल सिस्टम](/user-guide/features/skills)** | प्रक्रियात्मक स्मृति जो एजेंट बनाता और दोबारा उपयोग करता है |
+| 🔌 **[MCP इंटीग्रेशन](/user-guide/features/mcp)** | MCP सर्वर जोड़ें, टूल फ़िल्टर करें, OpenAmer को सुरक्षित रूप से बढ़ाएँ |
+| 🔒 **[सुरक्षा](/user-guide/security)** | कमांड स्वीकृति, प्राधिकरण, कंटेनर अलगाव |
+| ❓ **[FAQ और समस्या निवारण](/reference/faq)** | सामान्य प्रश्न और समाधान |
+
+## मुख्य विशेषताएँ
+
+- **बंद लर्निंग लूप** — एजेंट द्वारा प्रबंधित मेमोरी और समय-समय पर संकेत, स्वायत्त स्किल निर्माण, उपयोग के दौरान आत्म-सुधार, FTS5 सत्र-पार पुनर्प्राप्ति और LLM सारांश
+- **कहीं भी चलता है, सिर्फ़ लैपटॉप पर नहीं** — 6 टर्मिनल बैकएंड: लोकल, Docker, SSH, Daytona, Singularity, Modal। Daytona और Modal सर्वरलेस स्थायित्व देते हैं: वातावरण निष्क्रिय होने पर हाइबरनेट हो जाता है और लगभग कुछ नहीं लेता
+- **वहीं रहता है जहाँ आप हैं** — CLI, Telegram, Discord, Slack, WhatsApp, Signal, Matrix, Mattermost, ईमेल, SMS और अधिक: एक गेटवे से 20+ प्लेटफ़ॉर्म
+- **मॉडल प्रशिक्षकों द्वारा निर्मित** — [OpenAmer प्रोजेक्ट](https://openamer.com) द्वारा विकसित। [आपके होस्टेड प्रोवाइडर](https://portal.openamer.com), [OpenRouter](https://openrouter.ai), OpenAI या किसी भी एंडपॉइंट के साथ काम करता है
+- **निर्धारित ऑटोमेशन** — किसी भी प्लेटफ़ॉर्म पर डिलीवरी के साथ अंतर्निहित cron
+- **प्रत्यायोजन और समानांतरता** — समानांतर कार्यधाराओं के लिए पृथक सबएजेंट; `execute_code` के ज़रिए Programmatic Tool Calling बहु-चरणीय पाइपलाइन को एक इन्फ़रेंस कॉल में बदल देता है
+- **ओपन स्टैंडर्ड स्किल** — [agentskills.io](https://agentskills.io) के साथ संगत; पोर्टेबल, साझा करने योग्य और समुदाय-योगदान
+- **पूर्ण वेब नियंत्रण** — खोज, निष्कर्षण, ब्राउज़िंग, विज़न, इमेज जनरेशन, TTS: एक सदस्यता सब कुछ समेटती है
+
+## LLM और कोडिंग एजेंट के लिए
+
+इस दस्तावेज़ के मशीन-पठनीय प्रवेश बिंदु:
+
+- **[`/llms.txt`](/llms.txt)** — हर पेज की चयनित सूची और संक्षिप्त विवरण। ~17 KB, LLM कॉन्टेक्स्ट में लोड करना सुरक्षित।
+- **[`/llms-full.txt`](/llms-full.txt)** — सभी पेज एक ही markdown फ़ाइल में जोड़े गए (एक बार में पढ़ने के लिए)। ~1.8 MB।
+
+दोनों फ़ाइलें `/docs/llms.txt` और `/docs/llms-full.txt` पर भी उपलब्ध हैं। हर डिप्लॉय पर नई बनती हैं।

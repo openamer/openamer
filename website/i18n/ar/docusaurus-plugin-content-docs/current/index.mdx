@@ -1,0 +1,130 @@
+---
+slug: /
+sidebar_position: 0
+title: "OpenAmer Agent — التوثيق"
+description: "وكيل ذكاء اصطناعي يحسّن نفسه، من مشروع OpenAmer. حلقة تعلّم مدمجة: ينشئ مهارات من الخبرة، ويحسّنها أثناء الاستخدام، ويتذكر بين الجلسات."
+hide_table_of_contents: true
+displayed_sidebar: docs
+---
+
+import Link from "@docusaurus/Link";
+
+# OpenAmer Agent
+
+وكيل ذكاء اصطناعي يحسّن نفسه، من [مشروع OpenAmer](https://openamer.com). الوكيل الوحيد بحلقة تعلّم مدمجة — ينشئ مهارات من الخبرة، ويحسّنها أثناء الاستخدام، ويدفع نفسه إلى حفظ المعرفة، ويبني نموذجًا أعمق عن من أنت عبر الجلسات.
+
+<div
+  style={{
+    display: "flex",
+    gap: "1rem",
+    marginBottom: "2rem",
+    flexWrap: "wrap",
+  }}
+>
+  <Link
+    to="/getting-started/installation"
+    style={{
+      display: "inline-block",
+      padding: "0.6rem 1.2rem",
+      backgroundColor: "#FFD700",
+      color: "#07070d",
+      borderRadius: "8px",
+      fontWeight: 600,
+      textDecoration: "none",
+    }}
+  >
+    ابدأ الآن →
+  </Link>
+  <a
+    href="https://github.com/openamer-max/desktop/releases/latest/download/OpenAmer-Setup.exe"
+    style={{
+      display: "inline-block",
+      padding: "0.6rem 1.2rem",
+      border: "1px solid rgba(255,215,0,0.2)",
+      borderRadius: "8px",
+      textDecoration: "none",
+    }}
+  >
+    تنزيل نسخة سطح المكتب
+  </a>
+  <a
+    href="https://github.com/openamer/openamer-agent"
+    style={{
+      display: "inline-block",
+      padding: "0.6rem 1.2rem",
+      border: "1px solid rgba(255,215,0,0.2)",
+      borderRadius: "8px",
+      textDecoration: "none",
+    }}
+  >
+    اعرض على GitHub
+  </a>
+</div>
+
+## التثبيت
+
+### Windows أو macOS
+
+لتثبيت سطر الأوامر وتطبيق سطح المكتب بسهولة، [نزّل مثبّت OpenAmer Desktop](https://github.com/openamer-max/desktop/releases/latest/download/OpenAmer-Setup.exe) وشغّله.
+
+### بدون OpenAmer Desktop:
+
+لتثبيت سطر الأوامر فقط بدون OpenAmer Desktop:
+
+#### Linux / macOS / WSL2 / Android (Termux)
+
+```bash
+curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
+```
+
+#### Windows (native)
+
+```powershell
+iex (irm https://github.com/openamer/openamer/raw/main/scripts/install.ps1)
+```
+
+راجع **[دليل التثبيت](/getting-started/installation)** الكامل لمعرفة ما يفعله المثبّت، وتخطيط لكل مستخدم مقابل root، وملاحظات Windows. مصفوفة المنصات الكاملة في **[دعم المنصات](/getting-started/platform-support)**.
+
+:::tip أسرع طريق إلى وكيل يعمل
+بعد التثبيت شغّل `openamer setup --portal` — مصادقة OAuth واحدة تغطي نموذجًا وأدوات Tool Gateway الأربع (البحث على الويب، توليد الصور، TTS، المتصفح). انظر [مزوّدك المستضاف](/integrations/openamer-portal).
+:::
+
+## ما هو OpenAmer Agent؟
+
+ليس مساعد برمجة مربوطًا ببيئة تطوير، ولا روبوت محادثة حول واجهة واحدة. إنه **وكيل مستقل** يزداد قدرة كلما طال تشغيله. يعيش حيث تضعه — خادم VPS بخمسة دولارات، أو عنقود GPU، أو بنية بلا خوادم (Daytona، Modal) تكاد لا تكلّف شيئًا عند الخمول. تحدّث معه من Telegram بينما يعمل على جهاز سحابي لا تدخله بنفسك أبدًا. غير مربوط بحاسوبك المحمول.
+
+## روابط سريعة
+
+|  |  |
+| --- | --- |
+| 🚀 **[التثبيت](/getting-started/installation)** | ثبّت في 60 ثانية على Linux أو macOS أو WSL2 أو Windows أو Android |
+| 📖 **[درس البدء السريع](/getting-started/quickstart)** | محادثتك الأولى وأهم الميزات |
+| 🗺️ **[مسار التعلّم](/getting-started/learning-path)** | اعثر على التوثيق المناسب لمستوى خبرتك |
+| ⚙️ **[الإعدادات](/user-guide/configuration)** | ملف الإعدادات والمزوّدون والنماذج والخيارات |
+| 💬 **[بوابة المراسلة](/user-guide/messaging)** | أعدّ Telegram وDiscord وSlack وWhatsApp وTeams وغيرها |
+| 🔧 **[الأدوات والمجموعات](/user-guide/features/tools)** | أكثر من 60 أداة مدمجة وكيفية إعدادها |
+| 🧠 **[نظام الذاكرة](/user-guide/features/memory)** | ذاكرة دائمة تنمو عبر الجلسات |
+| 📚 **[نظام المهارات](/user-guide/features/skills)** | ذاكرة إجرائية ينشئها الوكيل ويعيد استخدامها |
+| 🔌 **[تكامل MCP](/user-guide/features/mcp)** | اربط خوادم MCP، وفلتر أدواتها، ووسّع OpenAmer بأمان |
+| 🔒 **[الأمان](/user-guide/security)** | الموافقة على الأوامر، والتفويض، وعزل الحاويات |
+| ❓ **[الأسئلة الشائعة وحل المشكلات](/reference/faq)** | أسئلة متكررة وحلول |
+
+## أهم الميزات
+
+- **حلقة تعلّم مغلقة** — ذاكرة يديرها الوكيل مع تنبيهات دورية، وإنشاء مهارات مستقل، وتحسين ذاتي أثناء الاستخدام، واسترجاع بين الجلسات عبر FTS5 مع تلخيص بواسطة LLM
+- **يعمل في أي مكان، لا على حاسوبك فقط** — 6 خلفيات طرفية: محلي، Docker، SSH، Daytona، Singularity، Modal. تقدّم Daytona وModal استمرارية بلا خوادم: ت hibernation البيئة عند الخمول وتكاد لا تكلّف شيئًا
+- **يعيش حيث تعيش** — CLI وTelegram وDiscord وSlack وWhatsApp وSignal وMatrix وMattermost والبريد وSMS وغيرها: أكثر من 20 منصة من بوابة واحدة
+- **بناه مدرّبو نماذج** — طوّرته [مشروع OpenAmer](https://openamer.com). يعمل مع [مزوّدك المستضاف](https://portal.openamer.com) و[OpenRouter](https://openrouter.ai) وOpenAI أو أي نقطة نهاية
+- **أتمتة مجدولة** — cron مدمج مع تسليم إلى أي منصة
+- **يفوّض ويوازي** — وكلاء فرعيون معزولون لمسارات عمل متوازية؛ Programmatic Tool Calling عبر `execute_code` يختصر خطوط الأنابيب متعددة الخطوات في نداء استدلال واحد
+- **مهارات بمعيار مفتوح** — متوافقة مع [agentskills.io](https://agentskills.io)؛ قابلة للنقل والمشاركة ومساهمات المجتمع
+- **تحكم كامل بالويب** — البحث والاستخراج والتصفح والرؤية وتوليد الصور وTTS: اشتراك واحد يجمعها
+
+## لنماذج LLM ووكلاء البرمجة
+
+نقاط دخول قابلة للقراءة آليًا إلى هذا التوثيق:
+
+- **[`/llms.txt`](/llms.txt)** — فهرس منسّق لكل صفحة مع وصف قصير. ~17 كيلوبايت، آمن للتحميل في سياق LLM.
+- **[`/llms-full.txt`](/llms-full.txt)** — كل الصفحات مدمجة في ملف markdown واحد للاستيعاب دفعة واحدة. ~1.8 ميغابايت.
+
+الملفان متاحان أيضًا على `/docs/llms.txt` و`/docs/llms-full.txt`. يُنشآن من جديد عند كل نشر.

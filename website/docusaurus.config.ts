@@ -24,14 +24,79 @@ const config: Config = {
 
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'zh-Hans'],
+    locales: [
+      'en',
+      'zh-Hans',
+      'de',
+      'es',
+      'fr',
+      'pt-BR',
+      'ru',
+      'ja',
+      'ko',
+      'hi',
+      'ar',
+      'it',
+      'tr',
+      'id',
+    ],
     localeConfigs: {
       en: {
         label: 'English',
+        htmlLang: 'en',
       },
       'zh-Hans': {
         label: '简体中文',
         htmlLang: 'zh-Hans',
+      },
+      de: {
+        label: 'Deutsch',
+        htmlLang: 'de',
+      },
+      es: {
+        label: 'Español',
+        htmlLang: 'es',
+      },
+      fr: {
+        label: 'Français',
+        htmlLang: 'fr',
+      },
+      'pt-BR': {
+        label: 'Português (Brasil)',
+        htmlLang: 'pt-BR',
+      },
+      ru: {
+        label: 'Русский',
+        htmlLang: 'ru',
+      },
+      ja: {
+        label: '日本語',
+        htmlLang: 'ja',
+      },
+      ko: {
+        label: '한국어',
+        htmlLang: 'ko',
+      },
+      hi: {
+        label: 'हिन्दी',
+        htmlLang: 'hi',
+      },
+      ar: {
+        label: 'العربية',
+        htmlLang: 'ar',
+        direction: 'rtl',
+      },
+      it: {
+        label: 'Italiano',
+        htmlLang: 'it',
+      },
+      tr: {
+        label: 'Türkçe',
+        htmlLang: 'tr',
+      },
+      id: {
+        label: 'Bahasa Indonesia',
+        htmlLang: 'id',
       },
     },
   },
