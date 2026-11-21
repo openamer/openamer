@@ -334,9 +334,15 @@ function mergeMissing(enObj, tree, translations, prefix, localeWords) {
     const init = prop.initializer
     const existing = tree[name]
     if (existing === undefined) {
-      // the whole subtree is missing — take it from the reference
+      // The whole subtree is missing — take its SHAPE from the reference, but
+      // resolve every leaf through `translations`. Pass the parent `prefix`,
+      // NOT `path`: buildTree() prepends the property name itself, so handing
+      // it `path` looks up `intro.intro.personas…`, misses every translation
+      // and silently writes the English source for a section that is fully
+      // translated in the cache. (Measured 2026-11-21 on a 170-string section:
+      // the writer reported success and delivered 100 % English.)
       const child = {}
-      buildTree({ properties: [prop] }, translations, path, child, localeWords)
+      buildTree({ properties: [prop] }, translations, prefix, child, localeWords)
       tree[name] = child[name]
       continue
     }
