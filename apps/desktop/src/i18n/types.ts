@@ -47,6 +47,13 @@ interface AuxTaskCopy {
   hint: string
 }
 
+export interface IntroCopyBlock {
+  headlines: readonly string[]
+  bodies: readonly string[]
+}
+
+export type IntroPersona = 'none' | 'catgirl' | 'concise' | 'creative' | 'helpful' | 'hype' | 'kawaii' | 'noir' | 'philosopher' | 'pirate' | 'shakespeare' | 'surfer' | 'teacher' | 'technical' | 'uwu'
+
 export interface Translations {
   common: {
     apply: string
@@ -2415,6 +2422,12 @@ export interface Translations {
     boundaryDesc: string
     reloadWindow: string
     openLogs: string
+  }
+
+  intro: {
+    personas: Record<IntroPersona, IntroCopyBlock>
+    fallback: IntroCopyBlock
+    personaMode: IntroCopyBlock
   }
 
   ui: {
