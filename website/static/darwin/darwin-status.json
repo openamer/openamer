@@ -1,12 +1,8 @@
 {
-  "updated": "2026-10-13T03:15:47+00:00",
-  "population": 1138,
-  "avg_score": 38.6,
+  "updated": "2026-11-21T00:24:33+00:00",
+  "population": 760,
+  "avg_score": 39.6,
   "fittest": [
-    {
-      "name": "bug-bounty-ops",
-      "score": 80
-    },
     {
       "name": "cdp-social-posting",
       "score": 77
@@ -28,10 +24,6 @@
       "score": 73
     },
     {
-      "name": "web-app-pentest",
-      "score": 73
-    },
-    {
       "name": "python-debugpy",
       "score": 73
     },
@@ -40,131 +32,157 @@
       "score": 73
     },
     {
-      "name": "openamer-update-recovery",
+      "name": "windows-subprocess-robustness",
+      "score": 72
+    },
+    {
+      "name": "claude-design",
+      "score": 71
+    },
+    {
+      "name": "system-performance-monitoring",
       "score": 71
     }
   ],
   "autopatch": {
-    "timestamp": "2026-10-12T18:27:16",
+    "timestamp": "2026-11-21T00:00:06",
     "kept": [
       {
-        "skill": "auto-structural-connection-between-tool",
-        "before": 21,
-        "after": 31,
-        "delta": 10,
-        "fixes": []
+        "skill": "dsh-doc-writing",
+        "before": 0,
+        "after": 45,
+        "delta": 45,
+        "fixes": [
+          "\u2705 Frontmatter hinzugef\u00fcgt f\u00fcr 'dsh-doc-writing'"
+        ]
       },
       {
-        "skill": "auto-internet-learning-metas-new",
-        "before": 21,
-        "after": 31,
-        "delta": 10,
-        "fixes": []
-      },
-      {
-        "skill": "auto-internet-learning-openai-hacked",
-        "before": 21,
-        "after": 31,
-        "delta": 10,
-        "fixes": []
-      },
-      {
-        "skill": "auto-latest-research-insight-cultural",
-        "before": 21,
-        "after": 31,
-        "delta": 10,
-        "fixes": []
-      },
-      {
-        "skill": "dsh-archive-agent-notes",
-        "before": 26,
-        "after": 36,
-        "delta": 10,
-        "fixes": []
-      },
-      {
-        "skill": "dsh-doc-standards",
-        "before": 26,
-        "after": 36,
-        "delta": 10,
-        "fixes": []
+        "skill": "dsh-error-handling",
+        "before": 0,
+        "after": 51,
+        "delta": 51,
+        "fixes": [
+          "\u2705 Frontmatter hinzugef\u00fcgt f\u00fcr 'dsh-error-handling'"
+        ]
       },
       {
         "skill": "dsh-find-simplifications",
-        "before": 26,
-        "after": 31,
-        "delta": 5,
-        "fixes": []
+        "before": 0,
+        "after": 42,
+        "delta": 42,
+        "fixes": [
+          "\u2705 Frontmatter hinzugef\u00fcgt f\u00fcr 'dsh-find-simplifications'"
+        ]
+      },
+      {
+        "skill": "dsh-merging-stacked-prs",
+        "before": 0,
+        "after": 50,
+        "delta": 50,
+        "fixes": [
+          "\u2705 Frontmatter hinzugef\u00fcgt f\u00fcr 'dsh-merging-stacked-prs'"
+        ]
+      },
+      {
+        "skill": "dsh-official-plugin-artwork",
+        "before": 0,
+        "after": 42,
+        "delta": 42,
+        "fixes": [
+          "\u2705 Frontmatter hinzugef\u00fcgt f\u00fcr 'dsh-official-plugin-artwork'"
+        ]
+      },
+      {
+        "skill": "dsh-pr-description",
+        "before": 0,
+        "after": 50,
+        "delta": 50,
+        "fixes": [
+          "\u2705 Frontmatter hinzugef\u00fcgt f\u00fcr 'dsh-pr-description'"
+        ]
+      },
+      {
+        "skill": "dsh-pre-push-checks",
+        "before": 0,
+        "after": 50,
+        "delta": 50,
+        "fixes": [
+          "\u2705 Frontmatter hinzugef\u00fcgt f\u00fcr 'dsh-pre-push-checks'"
+        ]
       },
       {
         "skill": "dsh-prose-standard",
-        "before": 26,
-        "after": 36,
-        "delta": 10,
-        "fixes": []
-      },
-      {
-        "skill": "dsh-trim-cot-leakage",
-        "before": 26,
-        "after": 36,
-        "delta": 10,
-        "fixes": []
-      },
-      {
-        "skill": "auto-security-learning-mcp-server",
-        "before": 28,
-        "after": 31,
-        "delta": 3,
+        "before": 0,
+        "after": 42,
+        "delta": 42,
         "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt"
+          "\u2705 Frontmatter hinzugef\u00fcgt f\u00fcr 'dsh-prose-standard'"
+        ]
+      },
+      {
+        "skill": "dsh-responsive-ui",
+        "before": 0,
+        "after": 42,
+        "delta": 42,
+        "fixes": [
+          "\u2705 Frontmatter hinzugef\u00fcgt f\u00fcr 'dsh-responsive-ui'"
+        ]
+      },
+      {
+        "skill": "dsh-session-projection",
+        "before": 0,
+        "after": 45,
+        "delta": 45,
+        "fixes": [
+          "\u2705 Frontmatter hinzugef\u00fcgt f\u00fcr 'dsh-session-projection'"
         ]
       }
     ]
   },
   "trends": [
     {
-      "source": "News",
-      "title": "Agentic AI Is Here. Is Your Security Infrastructure Ready For It? - The National Law Review",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOWUJ5ZU5PSS11bUtObGxqRVVwUVB1NXA5bW5mUUlTN2hwSDduY3dHNWp3aWMxbW9jODNLSlhvVS1UdWFobWVlWHdoTXBITlJ4bXNIVXlpUjlMVmZ3T25tcndjMUFtLWFCWjk4MWUtU2xIQnNpZzBheXdac2p1LVU2dm5fcWFqQzlvSWNVajdYWdIBlAFBVV95cUxQUUxZNFM1WFoydy0wbHJVLVdUQ1Fid1QzQnREMmtsS2w0R3BBRWpkQnN4RS02UHF5eU8wYlRJd0JTVHB0YmVlcU1iY1BhdDEyM2VUenBkMW1FZENtRkQ2REJfcFNLdjVYZFQ0ZnNwUG1SRGUtclc2YjY0OC1obUNmdzVnWFdhaEFUQ3B3ak9zdzJmNGo3?oc=5"
+      "source": "arXiv",
+      "title": "AI Agents: Evolution, Architecture, and Real-World Applications",
+      "url": "http://arxiv.org/abs/2510.27051v1"
+    },
+    {
+      "source": "arXiv",
+      "title": "AegisUI: Behavioral Anomaly Detection for Structured User Interface Protocols in AI Agent Systems",
+      "url": "http://arxiv.org/abs/2608.05201v1"
+    },
+    {
+      "source": "arXiv",
+      "title": "PROV-AGENT: Unified Provenance for Tracking AI Agent Interactions in Agentic Workflows",
+      "url": "http://arxiv.org/abs/2604.04820v1"
+    },
+    {
+      "source": "arXiv",
+      "title": "CACA Agent: Capability Collaboration based AI Agent",
+      "url": "http://arxiv.org/abs/2508.19800v1"
     },
     {
       "source": "News",
-      "title": "HCLTech and Anthropic Partner to Expand Enterprise Adoption of Agentic AI - HPCwire",
-      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOTk5DekNJcHg0TGNYNzh3TmhPSHdIelVrVDNBS0RDaXZfdlowTXhnUHZfTnlDbFNLbldHSjBMaGRMV2tvaFdwcld1N2Q1UnFRWTRGd0lTUDRLOExLdFNtVHpxSFMtQjRfc0dUTm5WUndWS2xUYk45Q2V3TDVxU0dGTlFRY0o1YWhpZWY2aVRJS19KalZLNzlBYWwwQVlNdHgxb0Vvbl95WTR3cUVlbU1tWV8zOHA2SjQ?oc=5"
+      "title": "Apple is hiring engineers to build its own AI agent - The Verge",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE11WFRUMzlQZGxwaVNlYzlJdndFR3pDNURIeEM4Q1RpNUdkUzhBaFpOVHgxOHg4Y1BmazJhdUhLRjdMOERCUUlwT3loSDhPb0gyM1FCdkJQRC1tTl83MGRWRHFpTDh2UTVyUHpsYUc4ZFh5VzUzaTlQSmhpZUQ2UQ?oc=5"
     },
     {
       "source": "News",
-      "title": "How retailers can stay 'findable' as search goes agentic - Chain Store Age",
-      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOSDlSUkc1T3ZRYXVlWERadWpQU01fckREVm1XUnBrNzh0T2lrS1k4bnJpU3BPSV9CbUpTOXRQdDlfeHlxTEJVYjB6OUFmTlA2VElMalV3akRQZHM3N2VHcGRIc2FYQzFrRDJQa0ZYbGJxdEhOQnRDUFlDX0NHbTN0NVhpcw?oc=5"
+      "title": "What I Learned From Kaggle + Google\u2019s Free Agentic AI Course - KDnuggets",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOdzdqcGJmRGlSMENrb21fSU1QVmZUek9CWkVUclZTRGJSZ1h1ZkRBOFVad016OXBwQ09qMjUwUWkwVE9kc0pNbTZER3dLaHktaVVPQzJyZmJ0ZXM1ejd4V2E3YWlCaTk2UE1kSmc0OWduRWptZVhfbExYMEdTOWpXR1MzMi03b3g5bkFn?oc=5"
     },
     {
       "source": "News",
-      "title": "Agentic AI in government starts with a permissions question - GovInsider",
-      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPZ2ZVci1fQ09PZEpBU1pZTEk5ZTVnOXU3a3dmMXFLUHpsNkVVdmVFeUp4YUVmT2tvODNOZFNueHFjR29EaUIybU1HTHE5amp6QUg2ajBpcWtGU2hCcFNZY3JGN1Nyall0bWNaZWJmTS1nTlpFU0FMNURmcTJnR2dzbHN6MGt1OGRyeUpCV2ZqMDdzNDdaNTNTT0pfZVVqQV9Q?oc=5"
-    },
-    {
-      "source": "News",
-      "title": "AMD\u2019s Helion Rack Packs 32,768 Cores for AI Agents [2026] - https://tech-insider.org/",
-      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFB1V2xBVkpvdkswQUI5eUtQUFc5clIzb2J2N1BKYWk0RHFDLTFVYjZlMGZCMXBlQWo2dEh1aWVYVm83dWlOOUljQnREMldzdkVnMW50X2tuRHpxMFZ5eHRYMmFUTDV0eUMxY2s4V1RjNEVMa3VFdkZIYg?oc=5"
+      "title": "Apple job listing gives away proactive agentic AI project (Update: Pulled) - Macworld",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQdXpocHlUYklDNU40UGJfNEhkQy1rTG5fRWdKMkExbzdIazhlYy1FQzYyUkJHVzNUSTlPV0dWV2Q2Tmpnd3k2bU9hWVpZV2tfVi1mYkxKc0FwTFZhMTF4dS1IaXZWcUtVS0xFYWJwUHVJXzNTZmtqVHdwbjk2SDJ1LTU4bDMybklubHF0UmhOVHFKZXAtVTREblhaVDFfc1RzQ2xGUHFR?oc=5"
     },
     {
       "source": "News",
       "title": "Google brings agentic AI to Gemini, starting with businesses - TechCrunch",
       "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNVmlZXzdMc1F5aTdGUFlIaUVtZmlZSWNyejQ4ejY3R1h2QUI0UU56QVpXUXB6a25ja3I5OHlDSm5TamVTbk5XZHJwdjFoSHpKa3VheURjQWgtQUtEalJCek90M0JjSjcycWJVSXUyc2wwS2ViMXE1OVN5bFJFUmhiY253OU5DNHMxbmJRZW5IWmtGWHVRdXZ1NDFR?oc=5"
-    },
-    {
-      "source": "News",
-      "title": "Context: Building a Trustworthy Data Foundation for Agentic AI - Unite.AI",
-      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9wZm9qNnQ1TVVhX1FuRlN3R0hBLV84MHUtUm9pLWNlRmF6R0NlYkN0LXZKQWxsYTBXZDZvSXdlWDhXQ2x3NThNRVVRSEZFRjVPWVhtUDFXSEtlZGZqSFp5TllKU2R0UQ?oc=5"
-    },
-    {
-      "source": "News",
-      "title": "Agentic AI in Procurement: High Potential, Higher Organizational Hurdles - Cloud Wars",
-      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNMzl2SlB4bk5wSDZmTTFkT1NPUUpMb3MyRktwbVB6Mm5GN2FLb0JMZ1NJaGU4cUF5eDZpbWdmS0x0d3BmMTdQc2dMVWxONEp1b0dwcXNjNGJDSTBWc1JOX1lQNEgtaEJCREpocF9zZGl2bEZNZlRDQldLSzVmMGg1V1ZzdklieHpkU1NVdEI0cjlUVWhJbkMyeFhnZGs?oc=5"
     }
   ],
-  "population_engine": 1131,
-  "species": 84,
+  "population_engine": 737,
+  "species": 2,
   "trials": 0,
-  "harvested": 222
+  "harvested": 3
 }

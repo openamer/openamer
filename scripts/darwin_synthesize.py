@@ -120,22 +120,38 @@ MAX_PER_RUN = 2
 
 # topic buckets: (candidate_name, regex over trend titles, what the skill should cover)
 TOPICS = [
-    ("agent-security-governance",
-     re.compile(r"security|guardrails|governance|identity|zero-trust", re.I),
-     "AI agent security and governance: permission scoping, audit trails, "
-     "behavioral guardrails, zero-trust tool access for autonomous agents."),
-    ("agentic-commerce-payments",
-     re.compile(r"payment|commerce|checkout|transaction|Visa|Mastercard", re.I),
-     "Agentic commerce: machine-native payments, checkout automation safety, "
-     "transaction limits and human-approval gates for agent-driven purchases."),
-    ("agent-orchestration-economics",
-     re.compile(r"orchestration|economics|pricing|cost", re.I),
-     "Agent orchestration and cost control: model routing for cost efficiency, "
-     "token budgeting, multi-agent workload placement decisions."),
-    ("enterprise-agent-deployment",
-     re.compile(r"enterprise|private ai cloud|platform|deployment", re.I),
-     "Enterprise agent deployment: on-prem patterns, compliance checklists, "
-     "identity integration and observability for production agent fleets."),
+    ("agent-architecture-evolution",
+     re.compile(r"agent.*architect|evolution|real.world|application", re.I),
+     "AI agent architecture and evolution: modular design patterns, "
+     "planning vs reactive loops, memory integration, tool-use topologies."),
+    ("agent-behavioral-security",
+     re.compile(r"behavioral|anomaly|detection|guardrail|safety|threat", re.I),
+     "Behavioral anomaly detection for AI agents: runtime monitoring, "
+     "deviation alerts, policy enforcement, structured UI protocol analysis."),
+    ("agent-provenance-tracking",
+     re.compile(r"provenance|tracking|interaction|workflow|audit", re.I),
+     "Unified provenance for agent interactions: causal tracing, "
+     "decision replay, compliance evidence, multi-agent workflow logs."),
+    ("agent-capability-collaboration",
+     re.compile(r"capability|collaborat|cooperat|multi.agent|swarm", re.I),
+     "Capability-based agent collaboration: skill discovery, "
+     "dynamic team formation, task auction, knowledge sharing protocols."),
+    ("agent-context-engineering",
+     re.compile(r"context|engineering|memory|retrieval|rag", re.I),
+     "Context engineering for agents: long-term memory, retrieval strategies, "
+     "token budgeting, hierarchical context, compression trade-offs."),
+    ("enterprise-agent-adoption",
+     re.compile(r"enterprise|enterprise.*agent|private.*ai|cloud.*platform", re.I),
+     "Enterprise agent adoption patterns: on-prem deployment, compliance, "
+     "identity integration, observability, cost governance."),
+    ("agent-infrastructure-kubernetes",
+     re.compile(r"kubernetes|k8s|infrastructure|scaling|cluster", re.I),
+     "Agentic infrastructure on Kubernetes: operator patterns, "
+     "autoscaling, GPU scheduling, multi-tenancy for agent workloads."),
+    ("agent-security-secrets",
+     re.compile(r"secret|credential|exposed|leak|vault|key.management", re.I),
+     "Secret management for agentic systems: detection, rotation, "
+     "zero-trust access, audit trails for credential usage."),
 ]
 
 
