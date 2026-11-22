@@ -1,0 +1,130 @@
+---
+slug: /
+sidebar_position: 0
+title: "OpenAmer Agent — 문서"
+description: "OpenAmer 프로젝트가 만든 자기 개선형 AI 에이전트. 경험에서 스킬을 만들고, 사용 중에 개선하며, 세션을 넘어 기억하는 학습 루프를 내장했습니다."
+hide_table_of_contents: true
+displayed_sidebar: docs
+---
+
+import Link from "@docusaurus/Link";
+
+# OpenAmer Agent
+
+[OpenAmer 프로젝트](https://openamer.com)가 만든 자기 개선형 AI 에이전트입니다. 학습 루프를 내장한 유일한 에이전트로, 경험에서 스킬을 만들고 사용 중에 개선하며 스스로 지식을 남기도록 밀어붙이고, 세션을 넘어 당신이 누구인지에 대한 모델을 점점 깊게 쌓습니다.
+
+<div
+  style={{
+    display: "flex",
+    gap: "1rem",
+    marginBottom: "2rem",
+    flexWrap: "wrap",
+  }}
+>
+  <Link
+    to="/getting-started/installation"
+    style={{
+      display: "inline-block",
+      padding: "0.6rem 1.2rem",
+      backgroundColor: "#FFD700",
+      color: "#07070d",
+      borderRadius: "8px",
+      fontWeight: 600,
+      textDecoration: "none",
+    }}
+  >
+    시작하기 →
+  </Link>
+  <a
+    href="https://github.com/openamer-max/desktop/releases/latest/download/OpenAmer-Setup.exe"
+    style={{
+      display: "inline-block",
+      padding: "0.6rem 1.2rem",
+      border: "1px solid rgba(255,215,0,0.2)",
+      borderRadius: "8px",
+      textDecoration: "none",
+    }}
+  >
+    데스크톱 다운로드
+  </a>
+  <a
+    href="https://github.com/openamer/openamer-agent"
+    style={{
+      display: "inline-block",
+      padding: "0.6rem 1.2rem",
+      border: "1px solid rgba(255,215,0,0.2)",
+      borderRadius: "8px",
+      textDecoration: "none",
+    }}
+  >
+    GitHub에서 보기
+  </a>
+</div>
+
+## 설치
+
+### Windows 또는 macOS
+
+명령줄과 데스크톱 앱을 간단히 설치하려면 [OpenAmer Desktop 설치 프로그램을 다운로드](https://github.com/openamer-max/desktop/releases/latest/download/OpenAmer-Setup.exe)해 실행하세요.
+
+### OpenAmer Desktop 없이:
+
+OpenAmer Desktop 없이 명령줄만 설치하려면:
+
+#### Linux / macOS / WSL2 / Android (Termux)
+
+```bash
+curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
+```
+
+#### Windows (native)
+
+```powershell
+iex (irm https://github.com/openamer/openamer/raw/main/scripts/install.ps1)
+```
+
+설치 프로그램이 하는 일, 사용자별 vs root 배치, Windows 관련 주의사항은 **[설치 가이드](/getting-started/installation)**에 있습니다. 전체 플랫폼 지원표는 **[플랫폼 지원](/getting-started/platform-support)**을 참고하세요.
+
+:::tip 작동하는 에이전트까지 가장 빠른 길
+설치 후 `openamer setup --portal`을 실행하세요. OAuth 한 번으로 모델과 Tool Gateway의 네 가지 도구(웹 검색, 이미지 생성, TTS, 브라우저)가 모두 해결됩니다. [호스팅 제공자](/integrations/openamer-portal)를 참고하세요.
+:::
+
+## OpenAmer Agent란?
+
+IDE에 묶인 코딩 부조종사도, 단일 API를 감싼 챗봇도 아닙니다. 오래 실행할수록 더 유능해지는 **자율 에이전트**입니다. 5달러 VPS, GPU 클러스터, 유휴 시 거의 무료인 서버리스 인프라(Daytona, Modal) 등 두는 곳 어디서든 삽니다. 당신이 직접 SSH하지 않는 클라우드 VM에서 작업하는 동안 Telegram으로 대화할 수 있습니다. 노트북에 묶이지 않습니다.
+
+## 빠른 링크
+
+|  |  |
+| --- | --- |
+| 🚀 **[설치](/getting-started/installation)** | Linux, macOS, WSL2, Windows, Android에 60초 설치 |
+| 📖 **[빠른 시작](/getting-started/quickstart)** | 첫 대화와 핵심 기능 |
+| 🗺️ **[학습 경로](/getting-started/learning-path)** | 경험 수준에 맞는 문서 찾기 |
+| ⚙️ **[설정](/user-guide/configuration)** | 설정 파일, 제공자, 모델, 옵션 |
+| 💬 **[메시징 게이트웨이](/user-guide/messaging)** | Telegram, Discord, Slack, WhatsApp, Teams 등 설정 |
+| 🔧 **[도구와 툴셋](/user-guide/features/tools)** | 60개 이상의 내장 도구와 설정 방법 |
+| 🧠 **[메모리 시스템](/user-guide/features/memory)** | 세션을 넘어 자라는 영구 메모리 |
+| 📚 **[스킬 시스템](/user-guide/features/skills)** | 에이전트가 만들고 재사용하는 절차적 기억 |
+| 🔌 **[MCP 통합](/user-guide/features/mcp)** | MCP 서버 연결, 도구 필터링, OpenAmer 안전하게 확장 |
+| 🔒 **[보안](/user-guide/security)** | 명령 승인, 권한 부여, 컨테이너 격리 |
+| ❓ **[FAQ 및 문제 해결](/reference/faq)** | 자주 묻는 질문과 해결책 |
+
+## 핵심 기능
+
+- **닫힌 학습 루프** — 에이전트가 관리하는 메모리와 주기적 알림, 자율적 스킬 생성, 사용 중 자기 개선, FTS5 세션 간 검색과 LLM 요약
+- **노트북이 아닌 어디서나 실행** — 6개 터미널 백엔드: 로컬, Docker, SSH, Daytona, Singularity, Modal. Daytona와 Modal은 서버리스 지속성을 제공해 유휴 시 잠들고 거의 무료입니다
+- **당신이 있는 곳에서 삽니다** — CLI, Telegram, Discord, Slack, WhatsApp, Signal, Matrix, Mattermost, 이메일, SMS 등 하나의 게이트웨이에서 20개 이상 플랫폼
+- **모델 훈련자가 만듦** — [OpenAmer 프로젝트](https://openamer.com) 제작. [호스팅 제공자](https://portal.openamer.com), [OpenRouter](https://openrouter.ai), OpenAI 또는 모든 엔드포인트와 동작
+- **예약 자동화** — 어떤 플랫폼으로든 전달되는 내장 cron
+- **위임과 병렬화** — 병렬 작업용 격리 서브에이전트. `execute_code`의 Programmatic Tool Calling으로 다단계 파이프라인을 단일 추론 호출로 압축
+- **오픈 표준 스킬** — [agentskills.io](https://agentskills.io) 호환. 이식 가능하고 공유 가능하며 커뮤니티가 기여
+- **완전한 웹 제어** — 검색, 추출, 브라우징, 비전, 이미지 생성, TTS를 하나의 구독으로
+
+## LLM과 코딩 에이전트용
+
+이 문서의 기계 판독 가능한 진입점:
+
+- **[`/llms.txt`](/llms.txt)** — 모든 페이지의 선별된 색인과 짧은 설명. 약 17 KB로 LLM 컨텍스트에 안전하게 로드할 수 있습니다.
+- **[`/llms-full.txt`](/llms-full.txt)** — 모든 페이지를 하나의 markdown 파일로 연결한 것(한 번에 수집용). 약 1.8 MB.
+
+두 파일 모두 `/docs/llms.txt`와 `/docs/llms-full.txt`에서도 제공됩니다. 배포할 때마다 새로 생성됩니다.

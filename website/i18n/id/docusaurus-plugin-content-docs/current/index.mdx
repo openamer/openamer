@@ -1,0 +1,130 @@
+---
+slug: /
+sidebar_position: 0
+title: "OpenAmer Agent — Dokumentasi"
+description: "Agen AI yang memperbaiki dirinya sendiri, dibuat oleh proyek OpenAmer. Lingkaran pembelajaran bawaan: membuat skill dari pengalaman, memperbaikinya saat dipakai, dan mengingat antar sesi."
+hide_table_of_contents: true
+displayed_sidebar: docs
+---
+
+import Link from "@docusaurus/Link";
+
+# OpenAmer Agent
+
+Agen AI yang memperbaiki dirinya sendiri buatan [proyek OpenAmer](https://openamer.com). Satu-satunya agen dengan lingkaran pembelajaran bawaan — ia membuat skill dari pengalaman, memperbaikinya saat digunakan, mendorong dirinya menyimpan pengetahuan, dan membangun model yang makin mendalam tentang siapa Anda antar sesi.
+
+<div
+  style={{
+    display: "flex",
+    gap: "1rem",
+    marginBottom: "2rem",
+    flexWrap: "wrap",
+  }}
+>
+  <Link
+    to="/getting-started/installation"
+    style={{
+      display: "inline-block",
+      padding: "0.6rem 1.2rem",
+      backgroundColor: "#FFD700",
+      color: "#07070d",
+      borderRadius: "8px",
+      fontWeight: 600,
+      textDecoration: "none",
+    }}
+  >
+    Mulai →
+  </Link>
+  <a
+    href="https://github.com/openamer-max/desktop/releases/latest/download/OpenAmer-Setup.exe"
+    style={{
+      display: "inline-block",
+      padding: "0.6rem 1.2rem",
+      border: "1px solid rgba(255,215,0,0.2)",
+      borderRadius: "8px",
+      textDecoration: "none",
+    }}
+  >
+    Unduh desktop
+  </a>
+  <a
+    href="https://github.com/openamer/openamer-agent"
+    style={{
+      display: "inline-block",
+      padding: "0.6rem 1.2rem",
+      border: "1px solid rgba(255,215,0,0.2)",
+      borderRadius: "8px",
+      textDecoration: "none",
+    }}
+  >
+    Lihat di GitHub
+  </a>
+</div>
+
+## Instalasi
+
+### Windows atau macOS
+
+Untuk memasang command-line dan aplikasi desktop dengan mudah, [unduh installer OpenAmer Desktop](https://github.com/openamer-max/desktop/releases/latest/download/OpenAmer-Setup.exe) dan jalankan.
+
+### Tanpa OpenAmer Desktop:
+
+Untuk instalasi command-line saja tanpa OpenAmer Desktop:
+
+#### Linux / macOS / WSL2 / Android (Termux)
+
+```bash
+curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
+```
+
+#### Windows (native)
+
+```powershell
+iex (irm https://github.com/openamer/openamer/raw/main/scripts/install.ps1)
+```
+
+Lihat **[Panduan Instalasi](/getting-started/installation)** lengkap untuk tahu apa yang dilakukan installer, tata letak per pengguna vs root, dan catatan khusus Windows. Matriks platform lengkap ada di **[Dukungan Platform](/getting-started/platform-support)**.
+
+:::tip Jalur tercepat menuju agen yang berjalan
+Setelah instalasi jalankan `openamer setup --portal` — satu OAuth mencakup satu model plus keempat alat Tool Gateway (pencarian web, pembuatan gambar, TTS, browser). Lihat [penyedia terkelola Anda](/integrations/openamer-portal).
+:::
+
+## Apa itu OpenAmer Agent?
+
+Bukan kopilot koding yang terikat IDE, bukan chatbot yang membungkus satu API. Ini **agen otonom** yang makin mampu semakin lama berjalan. Ia hidup di mana pun Anda menempatkannya — VPS 5 dolar, kluster GPU, atau infrastruktur serverless (Daytona, Modal) yang hampir tanpa biaya saat menganggur. Bicaralah lewat Telegram saat ia bekerja di VM cloud yang tidak pernah Anda masuki sendiri. Ia tidak terikat laptop Anda.
+
+## Tautan cepat
+
+|  |  |
+| --- | --- |
+| 🚀 **[Instalasi](/getting-started/installation)** | Pasang dalam 60 detik di Linux, macOS, WSL2, Windows, atau Android |
+| 📖 **[Tutorial mulai cepat](/getting-started/quickstart)** | Percakapan pertama dan fitur utama |
+| 🗺️ **[Jalur belajar](/getting-started/learning-path)** | Temukan dokumentasi sesuai tingkat pengalaman Anda |
+| ⚙️ **[Konfigurasi](/user-guide/configuration)** | Berkas konfigurasi, penyedia, model, dan opsi |
+| 💬 **[Gateway perpesanan](/user-guide/messaging)** | Siapkan Telegram, Discord, Slack, WhatsApp, Teams dan lainnya |
+| 🔧 **[Alat dan toolset](/user-guide/features/tools)** | Lebih dari 60 alat bawaan dan cara mengaturnya |
+| 🧠 **[Sistem memori](/user-guide/features/memory)** | Memori persisten yang tumbuh antar sesi |
+| 📚 **[Sistem skill](/user-guide/features/skills)** | Memori prosedural yang dibuat dan dipakai ulang agen |
+| 🔌 **[Integrasi MCP](/user-guide/features/mcp)** | Hubungkan server MCP, saring alatnya, perluas OpenAmer dengan aman |
+| 🔒 **[Keamanan](/user-guide/security)** | Persetujuan perintah, otorisasi, isolasi kontainer |
+| ❓ **[FAQ dan pemecahan masalah](/reference/faq)** | Pertanyaan umum dan solusi |
+
+## Fitur utama
+
+- **Lingkaran pembelajaran tertutup** — memori yang dikurasi agen dengan dorongan berkala, pembuatan skill otonom, perbaikan diri saat dipakai, pengingatan antar sesi dengan FTS5 dan ringkasan LLM
+- **Berjalan di mana saja, bukan hanya laptop Anda** — 6 backend terminal: lokal, Docker, SSH, Daytona, Singularity, Modal. Daytona dan Modal memberi persistensi serverless: lingkungan Anda hibernasi saat menganggur dan hampir tanpa biaya
+- **Hidup di tempat Anda hidup** — CLI, Telegram, Discord, Slack, WhatsApp, Signal, Matrix, Mattermost, email, SMS dan lainnya: lebih dari 20 platform dari satu gateway
+- **Dibuat oleh pelatih model** — dikembangkan oleh [proyek OpenAmer](https://openamer.com). Bekerja dengan [penyedia terkelola Anda](https://portal.openamer.com), [OpenRouter](https://openrouter.ai), OpenAI, atau endpoint apa pun
+- **Otomasi terjadwal** — cron bawaan dengan pengiriman ke platform apa pun
+- **Mendelegasikan dan memparalelkan** — subagen terisolasi untuk alur kerja paralel; Programmatic Tool Calling lewat `execute_code` memadatkan pipeline banyak langkah jadi satu panggilan inferensi
+- **Skill standar terbuka** — kompatibel dengan [agentskills.io](https://agentskills.io); portabel, bisa dibagikan, dan kontribusi komunitas
+- **Kendali web penuh** — pencarian, ekstraksi, penjelajahan, visi, pembuatan gambar, TTS: satu langganan mencakup semuanya
+
+## Untuk LLM dan agen koding
+
+Titik masuk yang bisa dibaca mesin ke dokumentasi ini:
+
+- **[`/llms.txt`](/llms.txt)** — indeks terkurasi setiap halaman dengan deskripsi singkat. ~17 KB, aman dimuat ke konteks LLM.
+- **[`/llms-full.txt`](/llms-full.txt)** — semua halaman digabung jadi satu berkas markdown untuk sekali serap. ~1,8 MB.
+
+Kedua berkas juga tersedia di `/docs/llms.txt` dan `/docs/llms-full.txt`. Dibuat ulang setiap deploy.
