@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-21T00:24:10.301213+00:00",
+  "updated": "2026-11-21T00:29:30.138687+00:00",
   "skills": {
     "auto-competitor-intelligence-ai-coding": {
       "fitness": 11.43,
@@ -2458,11 +2458,11 @@
       "mutations_lost": 0
     },
     "single-file-game-extension": {
-      "fitness": 15.57,
+      "fitness": 19.57,
       "usage": 0,
       "health": 1,
       "age_days": 13,
-      "mutations_won": 0,
+      "mutations_won": 2,
       "mutations_lost": 0
     },
     "single-file-voxel-game": {
@@ -2546,6 +2546,22 @@
       "mutations_lost": 0
     },
     "agent-behavioral-security": {
+      "fitness": 13.0,
+      "usage": 0,
+      "health": 1,
+      "age_days": 0,
+      "mutations_won": 0,
+      "mutations_lost": 0
+    },
+    "agent-capability-collaboration": {
+      "fitness": 13.0,
+      "usage": 0,
+      "health": 1,
+      "age_days": 0,
+      "mutations_won": 0,
+      "mutations_lost": 0
+    },
+    "agent-context-engineering": {
       "fitness": 13.0,
       "usage": 0,
       "health": 1,
@@ -2687,6 +2703,22 @@
       "health": 1,
       "age_days": 59,
       "mutations_won": 0,
+      "mutations_lost": 0
+    },
+    "darwin-harvested-desktop-leben-3d-spielen-html": {
+      "fitness": 12.0,
+      "usage": 0,
+      "health": 1,
+      "age_days": 0,
+      "mutations_won": 0,
+      "mutations_lost": 1
+    },
+    "darwin-harvested-emilija": {
+      "fitness": 15.0,
+      "usage": 0,
+      "health": 1,
+      "age_days": 0,
+      "mutations_won": 1,
       "mutations_lost": 0
     },
     "darwin-harvested-guardrails-py-l31-n-function": {
@@ -5258,11 +5290,11 @@
       "mutations_lost": 0
     },
     "packaged-app-live-verification": {
-      "fitness": 15.57,
+      "fitness": 17.57,
       "usage": 0,
       "health": 1,
       "age_days": 13,
-      "mutations_won": 0,
+      "mutations_won": 1,
       "mutations_lost": 0
     },
     "packaged-webapp-runtime-diagnostics": {

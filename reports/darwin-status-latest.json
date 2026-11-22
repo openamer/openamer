@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-21T00:24:33+00:00",
-  "population": 760,
+  "updated": "2026-11-21T00:30:05+00:00",
+  "population": 764,
   "avg_score": 39.6,
   "fittest": [
     {
@@ -181,8 +181,8 @@
       "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNVmlZXzdMc1F5aTdGUFlIaUVtZmlZSWNyejQ4ejY3R1h2QUI0UU56QVpXUXB6a25ja3I5OHlDSm5TamVTbk5XZHJwdjFoSHpKa3VheURjQWgtQUtEalJCek90M0JjSjcycWJVSXUyc2wwS2ViMXE1OVN5bFJFUmhiY253OU5DNHMxbmJRZW5IWmtGWHVRdXZ1NDFR?oc=5"
     }
   ],
-  "population_engine": 737,
-  "species": 2,
+  "population_engine": 741,
+  "species": 3,
   "trials": 0,
   "harvested": 3
 }
