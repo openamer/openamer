@@ -3116,10 +3116,10 @@ export const en: Translations = {
     },
     personaMode: {
       headlines: [
-        '\${label} mode is on. What should we work on?',
-        'What does \${label} OpenAmer need to see?',
-        '\${label} mode is ready.',
-        'What should \${label} OpenAmer tackle?',
+        '${label} mode is on. What should we work on?',
+        'What does ${label} OpenAmer need to see?',
+        '${label} mode is ready.',
+        'What should ${label} OpenAmer tackle?',
         'Where should we begin?',
       ],
       bodies: [
@@ -3127,7 +3127,7 @@ export const en: Translations = {
         'Bring the context or the stuck part. I\'ll adapt to your configured personality.',
         'Send the problem, file, or idea. I\'ll follow the personality you\'ve configured.',
         'Drop the task here. I\'ll keep the work grounded in the repo.',
-        'Give me the context and I\'ll answer in \${label} mode.',
+        'Give me the context and I\'ll answer in ${label} mode.',
       ]
     }
   },
