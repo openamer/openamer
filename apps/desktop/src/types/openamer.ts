@@ -1357,3 +1357,31 @@ export interface ModelAssignmentResponse {
   stale_aux?: StaleAuxAssignment[]
   tasks?: string[]
 }
+
+// ── Agent plugins (capabilities → Plugins tab) ──────────────────────────────
+// Mirrors GET /api/dashboard/plugins/hub. `runtime_status` is the loader's own
+// verdict for this plugin (enabled / disabled / inactive), so the UI never has
+// to infer state from a separate "disabled list".
+export type AgentPluginRuntimeStatus = 'disabled' | 'enabled' | 'inactive'
+
+export interface AgentPluginRow {
+  name: string
+  version: string
+  description: string
+  source: string
+  runtime_status: AgentPluginRuntimeStatus
+  has_dashboard_manifest: boolean
+  dashboard_manifest: unknown
+  path: string
+  can_remove: boolean
+  can_update_git: boolean
+  auth_required: boolean
+  auth_command: string
+  user_hidden: boolean
+}
+
+export interface PluginsHub {
+  plugins: AgentPluginRow[]
+  orphan_dashboard_plugins: unknown[]
+  providers: Record<string, unknown>
+}

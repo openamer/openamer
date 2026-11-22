@@ -308,6 +308,7 @@ export interface Translations {
       blurb: string
       count: (n: number) => string
       openFolder: string
+      manage: string
       rescan: string
       reveal: string
       enable: string
@@ -829,11 +830,28 @@ export interface Translations {
   skills: {
     tabSkills: string
     tabToolsets: string
+    tabPlugins: string
     tabMcp: string
     tabHub: string
     all: string
     searchSkills: string
     searchToolsets: string
+    searchPlugins: string
+    pluginsCount: (n: number) => string
+    pluginsEmptyTitle: string
+    pluginsEmptyDesc: string
+    pluginsNoMatch: string
+    pluginsLoadFailed: string
+    pluginsInstall: string
+    pluginsInstallOk: (name: string) => string
+    pluginsInstallFailed: string
+    pluginsInstallPlaceholder: string
+    pluginsRescan: string
+    pluginsRescanFailed: string
+    pluginsStatusDisabled: string
+    pluginsStatusEnabled: string
+    pluginsStatusInactive: string
+    pluginsToggleFailed: string
     refresh: string
     refreshing: string
     loading: string

@@ -1,4 +1,5 @@
 import { useStore } from '@nanostores/react'
+import { useNavigate } from 'react-router-dom'
 
 import { Button } from '@/components/ui/button'
 import { Codicon } from '@/components/ui/codicon'
@@ -11,6 +12,8 @@ import { triggerHaptic } from '@/lib/haptics'
 import { Package } from '@/lib/icons'
 import { getStatus } from '@/openamer'
 import { notifyError } from '@/store/notifications'
+
+import { SKILLS_ROUTE } from '../routes'
 
 import { EmptyState, ListRow, Pill, SectionHeading, SettingsContent } from './primitives'
 
@@ -82,6 +85,7 @@ export function PluginsSettings() {
   const { t } = useI18n()
   const p = t.settings.plugins
   const records = useStore($pluginRecords)
+  const navigate = useNavigate()
 
   const rows = Object.values(records).sort(
     (a, b) => KIND_ORDER[a.kind] - KIND_ORDER[b.kind] || a.name.localeCompare(b.name)
@@ -107,6 +111,17 @@ export function PluginsSettings() {
         >
           <Codicon name="refresh" size="0.8rem" />
           {p.rescan}
+        </Button>
+        <Button
+          onClick={() => {
+            triggerHaptic('selection')
+            navigate(`${SKILLS_ROUTE}?tab=plugins`)
+          }}
+          size="sm"
+          variant="outline"
+        >
+          <Codicon name="extensions" size="0.8rem" />
+          {p.manage}
         </Button>
       </div>
 
