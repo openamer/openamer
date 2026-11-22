@@ -31,6 +31,10 @@ from pathlib import Path
 REPO = Path(os.environ.get("OPENAMER_REPO", str(Path.home() / "openamer-repo")))
 I18N_REL = Path("apps") / "desktop" / "src" / "i18n"
 BRANCH = "i18n/rolling"
+# Title of the single rolling PR, and the search that finds it again. Both live
+# here so the create call and the lookup can never drift apart.
+ROLLING_TITLE = "feat(i18n): publish translated catalogs (rolling)"
+ROLLING_SEARCH = "in:title rolling"
 WORKTREE = Path(os.environ.get("OPENAMER_I18N_WT", r"C:\Users\damir\oa_i18n_wt"))
 GH = shutil.which("gh") or "gh"
 
@@ -106,15 +110,29 @@ def gate(locales: list[str]) -> tuple[bool, str]:
     return judge(rows)
 
 
-def open_pr() -> str:
-    r = subprocess.run([GH, "pr", "list", "--head", BRANCH, "--state", "open",
-                        "--json", "number,url"], cwd=str(REPO), capture_output=True,
+def open_pr() -> tuple[str, str]:
+    """Return ``(url, headRefName)`` of the open rolling PR, or ``("", "")``.
+
+    Matches on the PR TITLE, not on the branch name. The branch name is
+    generated with a timestamp whenever no open PR was found, so a head-based
+    lookup can never find the PR it created on the previous run: the first
+    miss (e.g. after #437 merged) turned every subsequent pass into a new
+    branch and a new PR. Measured 2026-11-21: 17 open rolling PRs, each holding
+    a different slice of the same work, none of them accumulating.
+    """
+    r = subprocess.run([GH, "pr", "list", "--state", "open",
+                        "--search", ROLLING_SEARCH, "--limit", "10",
+                        "--json", "number,url,headRefName"],
+                       cwd=str(REPO), capture_output=True,
                        text=True, encoding="utf-8", errors="replace", timeout=120)
     try:
         rows = json.loads(r.stdout or "[]")
     except json.JSONDecodeError:
-        return ""
-    return rows[0]["url"] if rows else ""
+        return "", ""
+    if not rows:
+        return "", ""
+    row = rows[0]
+    return row.get("url", ""), row.get("headRefName", "")
 
 
 def publish(locales: list[str], dry: bool) -> int:
@@ -142,8 +160,12 @@ def publish(locales: list[str], dry: bool) -> int:
         # base the next PR on an older main for no reason. Measured 2026-11-18:
         # PR #437 merged, the branch stayed behind, and the next batch needed a
         # fresh branch instead of a commit on the merged one.
-        url = open_pr()
-        branch = BRANCH if url else f"{BRANCH}-{datetime.now(timezone.utc):%Y%m%d-%H%M}"
+        url, open_head = open_pr()
+        # Reuse the existing PR's branch. It is normally ``i18n/rolling``, but a
+        # run that once missed the PR created a timestamped branch; continuing
+        # THAT branch is what turns the next 17 passes into commits instead of
+        # 17 separate PRs.
+        branch = open_head if url else f"{BRANCH}-{datetime.now(timezone.utc):%Y%m%d-%H%M}"
         existing = git("ls-remote", "--heads", "origin", branch).stdout.split()
         if existing and url:
             git("-C", str(WORKTREE), "fetch", "-q", "origin", branch, timeout=180)
@@ -185,7 +207,7 @@ def publish(locales: list[str], dry: bool) -> int:
         if not url:
             created = subprocess.run(
                 [GH, "pr", "create", "--base", "main", "--head", branch,
-                 "--title", "feat(i18n): publish translated catalogs (rolling)",
+                 "--title", ROLLING_TITLE,
                  "--body", "Rolling PR written by `scripts/i18n_publish.py`.\n\n"
                            "Each commit is one converge batch that already passed\n"
                            "`scripts/i18n_verify_locales.py` (placeholder variables,\n"
