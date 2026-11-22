@@ -47,6 +47,50 @@ CONFIG_FILE = SELF_HOSTED_DIR / "config.json"
 STATE_FILE = SELF_HOSTED_DIR / "state.json"
 SCRIPTS_DIR = HOME / "scripts"
 OPENAMER_CONFIG = OPENAMER_HOME / "config.yaml"
+ENV_FILE = OPENAMER_HOME / ".env"
+
+# Provider id -> (inference base url, env var holding the key). Mirrors
+# openamer_cli/auth.py for the providers this install can run on, so the check
+# can probe the provider the agent is actually configured to use.
+PROVIDER_ENDPOINTS = {
+    "ollama-cloud": ("https://ollama.com/v1", "OLLAMA_API_KEY"),
+    "openrouter": ("https://openrouter.ai/api/v1", "OPENROUTER_API_KEY"),
+    "openai": ("https://api.openai.com/v1", "OPENAI_API_KEY"),
+    "token-harbor": ("https://tokenhub.tencentmaas.com/v1", "TOKENHARBOR_API_KEY"),
+}
+
+
+def load_dotenv_secrets(path: Path = ENV_FILE) -> int:
+    """Load KEY=VALUE secrets from ``$OPENAMER_HOME/.env`` into ``os.environ``.
+
+    Cron runs with a bare environment. The API keys live in ``.env``, so a
+    check that only reads ``os.environ`` reports "kein API-Key gefunden" while
+    the agent itself is answering requests through that very key (measured
+    2026-11-21: OPENROUTER_API_KEY / OLLAMA_API_KEY present in .env, absent
+    from the cron process). Values already present in the environment win, so
+    an explicit export in the calling process is never overridden.
+    """
+    loaded = 0
+    try:
+        raw = path.read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return 0
+    for line in raw.splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        key = key.strip()
+        if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", key):
+            continue
+        value = value.strip().strip('"').strip("'")
+        if value and key not in os.environ:
+            os.environ[key] = value
+            loaded += 1
+    return loaded
+
+
+load_dotenv_secrets()
 
 # ── Defaults ────────────────────────────────────────────────────────────────
 # IPv4 explizit, NICHT "localhost": auf diesem Host loest "localhost" zuerst auf
@@ -255,6 +299,94 @@ def check_primary_health(config: dict) -> dict:
         result["error"] = str(e)
         result["latency_ms"] = round((time.monotonic() - t0) * 1000)
     return result
+
+
+def check_configured_provider(config: dict | None = None) -> dict:
+    """Probe the provider the agent is actually configured to run on.
+
+    The rest of this script models a local-Ollama + OpenRouter world. The
+    agent's real chain is whatever ``model.provider`` says in config.yaml, and
+    on this install that is ``ollama-cloud``. A health check that never looks
+    there reports "kein LLM verfügbar" (exit 2, every 5 minutes) while the
+    assistant answers every request fine — the alarm measures a landscape that
+    no longer exists. Probe the configured provider instead.
+    """
+    result: dict[str, Any] = {
+        "available": False,
+        "provider": None,
+        "endpoint": None,
+        "latency_ms": None,
+        "error": None,
+    }
+    agent_cfg = _read_agent_config()
+    provider_id = str(agent_cfg.get("provider") or "").strip()
+    result["provider"] = provider_id or None
+    if not provider_id:
+        result["error"] = "kein model.provider in config.yaml"
+        return result
+
+    base_url = str(agent_cfg.get("base_url") or "").strip()
+    key_env = None
+    if provider_id in PROVIDER_ENDPOINTS:
+        default_url, key_env = PROVIDER_ENDPOINTS[provider_id]
+        base_url = base_url or default_url
+    if not base_url:
+        result["error"] = f"unbekannter Provider ohne base_url: {provider_id}"
+        return result
+    result["endpoint"] = base_url
+
+    api_key = os.environ.get(key_env, "") if key_env else ""
+    if key_env and not api_key:
+        result["error"] = f"kein API-Key ({key_env})"
+        return result
+
+    url = f"{base_url.rstrip('/')}/models"
+    t0 = time.monotonic()
+    try:
+        req = urllib.request.Request(url, method="GET")
+        req.add_header("Accept", "application/json")
+        if api_key:
+            req.add_header("Authorization", f"Bearer {api_key}")
+        with urllib.request.urlopen(req, timeout=PRIMARY_TIMEOUT) as resp:
+            _ = resp.read()
+        result["available"] = True
+        result["latency_ms"] = round((time.monotonic() - t0) * 1000)
+    except urllib.error.HTTPError as e:
+        result["error"] = f"HTTP {e.code}: {e.reason}"
+        result["latency_ms"] = round((time.monotonic() - t0) * 1000)
+    except (urllib.error.URLError, ConnectionError, TimeoutError, OSError) as e:
+        result["error"] = str(e)
+        result["latency_ms"] = round((time.monotonic() - t0) * 1000)
+    return result
+
+
+def _read_agent_config() -> dict:
+    """Read ``$OPENAMER_HOME/config.yaml``; best effort, no hard PyYAML need."""
+    try:
+        import yaml  # type: ignore
+
+        with OPENAMER_CONFIG.open(encoding="utf-8") as fh:
+            data = yaml.safe_load(fh) or {}
+        if isinstance(data, dict):
+            model_block = data.get("model")
+            if isinstance(model_block, dict):
+                return model_block
+            return data
+    except Exception:
+        pass
+    # Regex fallback for the top-level ``model:`` block only.
+    out: dict[str, Any] = {}
+    try:
+        text = OPENAMER_CONFIG.read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return out
+    block = re.search(r"^model:\s*$(.*?)(?=^\S|\Z)", text, re.M | re.S)
+    if block:
+        for key in ("provider", "default", "base_url"):
+            m = re.search(rf"^\s+{key}:\s*(.+)$", block.group(1), re.M)
+            if m:
+                out[key] = m.group(1).strip().strip('"').strip("'")
+    return out
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -655,6 +787,7 @@ def cmd_check() -> int:
     llamacpp = check_llamacpp()
     primary = check_primary_health(config)
     local = check_local_health(config)
+    configured = check_configured_provider()
     state = load_state()
 
     print("╔══════════════════════════════════════════════╗")
@@ -692,6 +825,17 @@ def cmd_check() -> int:
     if primary.get("error"):
         print(f"    Fehler:       {primary['error']}")
 
+    # Configured provider — the one the agent actually runs on
+    print(f"\n⚙️  Configured:   {'✅ Verfügbar' if configured['available'] else '❌ Nicht verfügbar'}")
+    if configured.get("provider"):
+        print(f"    Provider:     {configured['provider']}")
+    if configured.get("endpoint"):
+        print(f"    Endpoint:     {configured['endpoint']}")
+    if configured.get("latency_ms"):
+        print(f"    Latenz:       {configured['latency_ms']} ms")
+    if configured.get("error"):
+        print(f"    Fehler:       {configured['error']}")
+
     # Local Health
     _local_label = "✅ Verfügbar" if local["available"] else "❌ Nicht verfügbar"
     if local.get("degraded"):
@@ -716,7 +860,7 @@ def cmd_check() -> int:
 
     print()
 
-    if primary["available"]:
+    if primary["available"] or configured["available"]:
         return 0
     elif local["available"]:
         return 1
