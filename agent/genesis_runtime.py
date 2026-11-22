@@ -51,6 +51,11 @@ _SKIP_DIRS = frozenset({
     ".venv", "venv", ".mypy_cache", ".ruff_cache", "dist", "build",
     "models", "memory", "sessions", "cache", "backups", "state-snapshots",
     "chrome-profile", "chrome-agent-profile", "chrome-profile-2", "tmp",
+    # Local git worktrees: dozens of full checkouts inside the repo. Measured
+    # 2026-11-21: 154,969 of the repo's 188,635 .py files live here, which made
+    # measure() take 22s instead of well under a second (test_measure_stays_cheap
+    # caught it). Never part of "how many source files exist".
+    ".worktrees",
 })
 
 SATISFIED = "satisfied"
