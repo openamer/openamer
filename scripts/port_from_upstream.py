@@ -41,6 +41,20 @@ SKIP_DIRS = frozenset(
         "reports",
         "wt-gate179",
         "oa-v28",
+        # Local VCS/CI/build state. `.worktrees` alone can hold dozens of full
+        # checkouts (measured: 154 969 of 188 635 .py files in this repo), so
+        # scanning it turned the audit from seconds into a >10-minute walk and
+        # the nightly watchdog killed the run before it produced a verdict.
+        ".git",
+        ".worktrees",
+        "__pycache__",
+        ".pytest_cache",
+        ".mypy_cache",
+        ".ruff_cache",
+        ".tox",
+        "dist",
+        "build",
+        "logs",
     }
 )
 
