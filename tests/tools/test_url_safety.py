@@ -17,6 +17,7 @@ from tools.url_safety import (
     _MAX_SSRF_CONNECT_IPS,
     _resolved_http_connect_ips,
     _is_blocked_ip,
+    _NAT64_NETWORK,
     _global_allow_private_urls,
     _reset_allow_private_cache,
 )
@@ -141,6 +142,45 @@ class TestIsSafeUrl:
             monkeypatch.delenv(var, raising=False)
         with patch("socket.getaddrinfo", side_effect=socket.gaierror("Name resolution failed")):
             assert is_safe_url("https://nonexistent.example.com") is False
+
+
+class TestNat64Addresses:
+    """NAT64 (RFC 6052) addresses carry a public IPv4 host in their last 32 bits.
+
+    A DNS64/NAT64 network answers ``files.slack.com`` with
+    ``64:ff9b::d21:bb0e`` (= 13.33.187.14). ``ipaddress`` reports that prefix as
+    ``is_reserved``, so judging the v6 address itself refused a public
+    destination and broke every Slack attachment download on such a network
+    (observed 2026-11-18). The embedded IPv4 is the address actually connected
+    to, so that is what gets judged — and private targets inside the prefix
+    stay blocked.
+    """
+
+    def test_nat64_wrapped_public_ipv4_allowed(self):
+        with patch("socket.getaddrinfo", return_value=[
+            (10, 1, 6, "", ("64:ff9b::d21:bb0e", 0, 0, 0)),
+        ]):
+            assert is_safe_url("https://files.slack.com/files-pri/T0TWO-F42/x.png") is True
+
+    @pytest.mark.parametrize(
+        "embedded",
+        ["127.0.0.1", "10.0.0.5", "192.168.1.1", "169.254.169.254", "100.64.0.1"],
+    )
+    def test_nat64_wrapped_private_ipv4_still_blocked(self, embedded):
+        nat64 = ipaddress.IPv6Address(
+            int(_NAT64_NETWORK.network_address) | int(ipaddress.IPv4Address(embedded))
+        )
+        with patch("socket.getaddrinfo", return_value=[
+            (10, 1, 6, "", (str(nat64), 0, 0, 0)),
+        ]):
+            assert is_safe_url("https://files.example.com/x.png") is False
+
+    def test_nat64_local_use_prefix_stays_blocked(self):
+        """64:ff9b:1::/48 is the local-use NAT64 prefix — not decoded, still blocked."""
+        assert _is_blocked_ip(ipaddress.ip_address("64:ff9b:1::a00:1")) is True
+
+    def test_nat64_decoding_does_not_unblock_reserved_ipv6(self):
+        assert _is_blocked_ip(ipaddress.ip_address("2001:db8::1")) is True
 
 
 class TestProxyEnvironmentDnsDelegation:
