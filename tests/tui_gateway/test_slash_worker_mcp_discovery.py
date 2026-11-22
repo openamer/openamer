@@ -42,13 +42,20 @@ def test_profile_local_mcp_tool_is_visible_in_slash_worker(tmp_path):
     (profile_home / "config.yaml").write_text(
         yaml.safe_dump(
             {
+                # The worker caps its wait for MCP discovery at
+                # ``mcp_discovery_timeout`` (default 1.5s) so a dead server
+                # cannot block startup. A real fastmcp server needs longer than
+                # that on a loaded machine (measured: ~16s to the first /tools
+                # reply here), so pin a generous cap: this test asserts that the
+                # profile-local tool becomes VISIBLE, not that startup is quick.
+                "mcp_discovery_timeout": 30,
                 "mcp_servers": {
                     "profileprobe": {
                         "enabled": True,
                         "command": sys.executable,
                         "args": [str(server)],
                     }
-                }
+                },
             }
         ),
         encoding="utf-8",
@@ -90,9 +97,15 @@ def test_profile_local_mcp_tool_is_visible_in_slash_worker(tmp_path):
         proc.stdin.write(json.dumps({"id": 1, "command": "/tools"}) + "\n")
         proc.stdin.flush()
         try:
-            line = output.get(timeout=10)
+            # Budget covers interpreter start + plugin discovery + MCP
+            # handshake. Measured 2026-11-21 on this host: 16.3s for the
+            # first reply with a single stdio server, i.e. the old 10s
+            # window failed for a worker that worked. The assertion is about
+            # tool visibility, so give the process room and fail only when
+            # it is genuinely silent.
+            line = output.get(timeout=60)
         except queue.Empty:
-            pytest.fail("slash worker produced no /tools response within 10 seconds")
+            pytest.fail("slash worker produced no /tools response within 60 seconds")
         response = json.loads(line)
         assert response["ok"] is True
         assert "mcp__profileprobe__openamer_61922_profile_probe" in response["output"]
