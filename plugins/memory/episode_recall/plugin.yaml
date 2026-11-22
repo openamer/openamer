@@ -1,0 +1,8 @@
+name: episode_recall
+version: 1.0.0
+description: "EpisodeRecall — local episodic recall from memory/longterm_episodes.jsonl before each turn."
+pip_dependencies: []
+requires_env: []
+hooks:
+  - on_turn_start
+  - on_memory_write
