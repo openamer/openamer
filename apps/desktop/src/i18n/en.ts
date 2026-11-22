@@ -966,6 +966,11 @@ export const en: Translations = {
     pluginsRescanFailed: 'Rescan failed',
     pluginsStatusDisabled: 'disabled',
     pluginsStatusEnabled: 'enabled',
+    pluginsSearchFailed: 'GitHub search failed',
+    pluginsDiscoverAction: query => `Search GitHub for "${query}"`,
+    pluginsDiscoverResults: (n, query) => `${n} repositories tagged openamer-plugin for "${query}"`,
+    pluginsDiscoverEmpty: query =>
+      `Nothing on GitHub for "${query}" — the search only finds repositories carrying the openamer-plugin topic, and unauthenticated GitHub search is rate limited. Install an exact owner/repo above instead.`,
     pluginsStatusInactive: 'inactive',
     pluginsToggleFailed: 'Could not change the plugin state',
     refresh: 'Refresh skills',

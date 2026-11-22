@@ -1385,3 +1385,19 @@ export interface PluginsHub {
   orphan_dashboard_plugins: unknown[]
   providers: Record<string, unknown>
 }
+
+// Discovery hits from GET /api/dashboard/agent-plugins/search — GitHub repos
+// carrying the ecosystem topic `openamer-plugin`. `full_name` is exactly what
+// the install endpoint accepts as its identifier.
+export interface AgentPluginSearchHit {
+  full_name: string
+  description: string | null
+  stargazers_count: number
+  html_url: string | null
+}
+
+export interface AgentPluginSearchResponse {
+  query: string
+  results: AgentPluginSearchHit[]
+  cached: boolean
+}

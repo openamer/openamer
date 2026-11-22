@@ -6,11 +6,13 @@ import { Button } from '@/components/ui/button'
 import { Codicon } from '@/components/ui/codicon'
 import { Input } from '@/components/ui/input'
 import { useI18n } from '@/i18n'
+import { compactNumber } from '@/lib/format'
 import { queryClient } from '@/lib/query-client'
 import {
   getPluginsHub,
   installAgentPlugin,
   rescanPlugins,
+  searchAgentPlugins,
   setAgentPluginEnabled
 } from '@/openamer'
 import { notify, notifyError } from '@/store/notifications'
@@ -106,6 +108,13 @@ export function PluginsTab({ query }: { query: string }) {
     }
   })
 
+  // Discovery only runs when asked: the backend hits GitHub's search API, which
+  // is rate limited, and an empty answer is ambiguous ("no match" vs "limited").
+  const discover = useMutation({
+    mutationFn: (query: string) => searchAgentPlugins(query),
+    onError: err => notifyError(err, t.skills.pluginsSearchFailed)
+  })
+
   if (hub.isPending) {
     return <PageLoader label={t.skills.loading} />
   }
@@ -147,6 +156,52 @@ export function PluginsTab({ query }: { query: string }) {
           {t.skills.pluginsRescan}
         </Button>
       </div>
+
+      {needle ? (
+        <div className="shrink-0 border-b border-(--ui-stroke-tertiary) px-3 py-2">
+          {discover.data ? (
+            discover.data.results.length > 0 ? (
+              <div className="flex flex-col gap-1.5">
+                <span className="text-xs opacity-70">
+                  {t.skills.pluginsDiscoverResults(discover.data.results.length, discover.data.query)}
+                </span>
+                {discover.data.results.map(hit => (
+                  <div className="flex items-center justify-between gap-2" key={hit.full_name}>
+                    <span className="flex min-w-0 flex-col">
+                      <span className="flex items-center gap-1.5 truncate text-sm">
+                        {hit.full_name}
+                        <PanelPill>{`★ ${compactNumber(hit.stargazers_count)}`}</PanelPill>
+                      </span>
+                      <span className="truncate text-xs opacity-70">{hit.description ?? ''}</span>
+                    </span>
+                    <Button
+                      disabled={install.isPending}
+                      onClick={() => install.mutate(hit.full_name)}
+                      size="sm"
+                      variant="outline"
+                    >
+                      <Codicon name="cloud-download" size="0.85rem" />
+                      {t.skills.pluginsInstall}
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <span className="text-xs opacity-70">{t.skills.pluginsDiscoverEmpty(discover.data.query)}</span>
+            )
+          ) : (
+            <Button
+              disabled={discover.isPending}
+              onClick={() => discover.mutate(needle)}
+              size="sm"
+              variant="outline"
+            >
+              <Codicon name={discover.isPending ? 'loading~spin' : 'search'} size="0.85rem" />
+              {t.skills.pluginsDiscoverAction(needle)}
+            </Button>
+          )}
+        </div>
+      ) : null}
 
       {filtered.length === 0 ? (
         <PanelEmpty

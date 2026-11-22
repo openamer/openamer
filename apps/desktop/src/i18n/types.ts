@@ -851,6 +851,10 @@ export interface Translations {
     pluginsStatusDisabled: string
     pluginsStatusEnabled: string
     pluginsStatusInactive: string
+    pluginsSearchFailed: string
+    pluginsDiscoverAction: (query: string) => string
+    pluginsDiscoverResults: (n: number, query: string) => string
+    pluginsDiscoverEmpty: (query: string) => string
     pluginsToggleFailed: string
     refresh: string
     refreshing: string
