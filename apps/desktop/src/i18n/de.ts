@@ -965,6 +965,11 @@ export const de = defineLocale({
     pluginsRescanFailed: 'Neu einlesen fehlgeschlagen',
     pluginsStatusDisabled: 'deaktiviert',
     pluginsStatusEnabled: 'aktiv',
+    pluginsSearchFailed: 'GitHub-Suche fehlgeschlagen',
+    pluginsDiscoverAction: query => `GitHub nach „${query}" durchsuchen`,
+    pluginsDiscoverResults: (n, query) => `${n} Repositories mit dem Thema openamer-plugin für „${query}"`,
+    pluginsDiscoverEmpty: query =>
+      `Nichts auf GitHub für „${query}" — die Suche findet nur Repositories mit dem Thema openamer-plugin, und die unauthentifizierte GitHub-Suche ist ratenbegrenzt. Installiere stattdessen oben ein exaktes owner/repo.`,
     pluginsStatusInactive: 'inaktiv',
     pluginsToggleFailed: 'Plugin-Status konnte nicht geändert werden',
     refresh: 'Fähigkeiten aktualisieren',

@@ -19418,6 +19418,44 @@ async def rescan_dashboard_plugins():
     return {"ok": True, "count": len(plugins)}
 
 
+# Discovery is a network call to GitHub's search API, which is rate limited
+# (10 req/min unauthenticated). A tiny TTL cache keeps someone typing in the
+# search box from burning that budget and from making the list flicker.
+_PLUGIN_SEARCH_TTL_SECONDS = 60.0
+_plugin_search_cache: Dict[tuple, tuple] = {}
+
+
+@app.get("/api/dashboard/agent-plugins/search")
+async def get_agent_plugin_search(request: Request, q: str = "", limit: int = 12):
+    """Find installable agent plugins on GitHub (`topic:openamer-plugin` first).
+
+    An empty list is deliberately ambiguous: it can mean "no match" or "GitHub
+    rate limited us". This route never raises for that reason, so the caller can
+    say both instead of inventing a verdict.
+    """
+    _require_token(request)
+    import time as _time
+
+    from openamer_cli.plugins_cmd import _github_plugin_search
+
+    query = (q or "").strip()[:120]
+    size = max(1, min(int(limit or 12), 30))
+    key = (query.lower(), size)
+
+    cached = _plugin_search_cache.get(key)
+    if cached and _time.time() - cached[0] < _PLUGIN_SEARCH_TTL_SECONDS:
+        return {"query": query, "results": cached[1], "cached": True}
+
+    try:
+        results = _github_plugin_search(query, size)
+    except Exception as exc:  # noqa: BLE001
+        _log.warning("agent-plugins/search failed: %s", exc)
+        results = []
+
+    _plugin_search_cache[key] = (_time.time(), results)
+    return {"query": query, "results": results, "cached": False}
+
+
 class _AgentPluginInstallBody(BaseModel):
     identifier: str
     force: bool = False

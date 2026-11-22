@@ -3,6 +3,7 @@ import { JsonRpcGatewayClient } from '@openamer/shared'
 import type {
   ActionResponse,
   ActionStatusResponse,
+  AgentPluginSearchResponse,
   AnalyticsResponse,
   AudioSpeakResponse,
   AudioTranscriptionResponse,
@@ -959,6 +960,16 @@ export function getPluginsHub(): Promise<PluginsHub> {
   return window.openamerDesktop.api<PluginsHub>({
     ...profileScoped(),
     path: '/api/dashboard/plugins/hub',
+    timeoutMs: STARTUP_REQUEST_TIMEOUT_MS
+  })
+}
+
+export function searchAgentPlugins(query: string, limit = 12): Promise<AgentPluginSearchResponse> {
+  const params = new URLSearchParams({ q: query, limit: String(limit) })
+
+  return window.openamerDesktop.api<AgentPluginSearchResponse>({
+    ...profileScoped(),
+    path: `/api/dashboard/agent-plugins/search?${params.toString()}`,
     timeoutMs: STARTUP_REQUEST_TIMEOUT_MS
   })
 }
