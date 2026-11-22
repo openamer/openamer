@@ -41,9 +41,12 @@ jobs:
           # legacy AUTHOR_MAP in scripts/release.py.
           MISSING=""
           while IFS= read -r email; do
-            # Skip teknium and bot emails
+            # Skip teknium and bot emails. `actions@github.com` is GitHub
+            # Actions' own commit identity, which is what scripts/daily-release.py
+            # authors its version-bump commit with — leaving it out meant the
+            # automated release repair could never pass its own gate (PR #484).
             case "$email" in
-              *teknium*|*noreply@github.com*|*dependabot*|*github-actions*|*anthropic.com*|*cursor.com*)
+              *teknium*|*noreply@github.com*|*dependabot*|*github-actions*|*anthropic.com*|*cursor.com*|actions@github.com|*openamer-bot*)
                 continue ;;
             esac
 
