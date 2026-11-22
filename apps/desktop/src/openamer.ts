@@ -43,6 +43,7 @@ import type {
   OpenAmerConfig,
   OpenAmerConfigRecord,
   PaginatedSessions,
+  PluginsHub,
   ProfileCreatePayload,
   ProfileSetupCommand,
   ProfileSoul,
@@ -936,6 +937,58 @@ export function toggleSkill(name: string, enabled: boolean): Promise<{ ok: boole
     path: '/api/skills/toggle',
     method: 'PUT',
     body: { name, enabled }
+  })
+}
+
+// ── Agent plugins ───────────────────────────────────────────────────────────
+// The backend owns plugin state (`runtime_status` comes from the same discovery
+// the CLI and the loader use), so the UI only reads the hub and posts one
+// enable/disable per row. Nested plugin names ("browser/use") live under a
+// path-style route: encode each segment so the slash survives as a separator.
+function pluginPath(name: string, action: 'disable' | 'enable' | 'update'): string {
+  const safe = name
+    .split('/')
+    .filter(Boolean)
+    .map(segment => encodeURIComponent(segment))
+    .join('/')
+
+  return `/api/dashboard/agent-plugins/${safe}/${action}`
+}
+
+export function getPluginsHub(): Promise<PluginsHub> {
+  return window.openamerDesktop.api<PluginsHub>({
+    ...profileScoped(),
+    path: '/api/dashboard/plugins/hub',
+    timeoutMs: STARTUP_REQUEST_TIMEOUT_MS
+  })
+}
+
+export function rescanPlugins(): Promise<{ ok: boolean }> {
+  return window.openamerDesktop.api<{ ok: boolean }>({
+    ...profileScoped(),
+    path: '/api/dashboard/plugins/rescan',
+    timeoutMs: STARTUP_REQUEST_TIMEOUT_MS
+  })
+}
+
+export function setAgentPluginEnabled(name: string, enabled: boolean): Promise<{ ok: boolean }> {
+  return window.openamerDesktop.api<{ ok: boolean }>({
+    ...profileScoped(),
+    path: pluginPath(name, enabled ? 'enable' : 'disable'),
+    method: 'POST'
+  })
+}
+
+export function installAgentPlugin(
+  identifier: string,
+  opts: { enable?: boolean; force?: boolean } = {}
+): Promise<{ ok: boolean; name?: string }> {
+  return window.openamerDesktop.api<{ ok: boolean; name?: string }>({
+    ...profileScoped(),
+    path: '/api/dashboard/agent-plugins/install',
+    method: 'POST',
+    body: { identifier, force: opts.force ?? false, enable: opts.enable ?? true },
+    timeoutMs: STARTUP_REQUEST_TIMEOUT_MS
   })
 }
 
