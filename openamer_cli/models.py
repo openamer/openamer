@@ -144,10 +144,16 @@ _XAI_TOP_MODEL = "grok-build-0.1"
 
 
 def _xai_promote_top(ids: list[str]) -> list[str]:
-    """Pin the headline xAI model to the top of the curated list."""
-    if _XAI_TOP_MODEL in ids:
-        return [_XAI_TOP_MODEL] + [m for m in ids if m != _XAI_TOP_MODEL]
-    return ids
+    """Pin the curated headline xAI model to the top of the list.
+
+    The headline model is curated, not discovered: models.dev does not list
+    every model xAI serves (see ``_XAI_CURATED_EXTRAS``) and drops entries
+    without notice. Promoting unconditionally means losing the model from the
+    disk cache cannot silently demote the picker to whichever id happens to
+    sort first alphabetically — retiring the model is an explicit edit of
+    ``_XAI_TOP_MODEL``, not an accident of an upstream catalog refresh.
+    """
+    return [_XAI_TOP_MODEL] + [m for m in ids if m != _XAI_TOP_MODEL]
 
 
 def _xai_merge_curated_extras(ids: list[str]) -> list[str]:
