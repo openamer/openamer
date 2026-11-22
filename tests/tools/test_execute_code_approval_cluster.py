@@ -117,7 +117,28 @@ def gw_session(monkeypatch):
     monkeypatch.setattr(A, "_get_approval_mode", lambda: "manual")
     monkeypatch.setattr(A, "_YOLO_MODE_FROZEN", False)
 
+    # A host install may carry a persistent "execute_code" allowlist entry
+    # (an "approve always" choice from real use). check_execute_code_guard
+    # consults that allowlist before every path this file asserts on, so the
+    # whole decision matrix silently degrades to "approved: True" — blocking
+    # assertions then fail while pass-through assertions keep passing, which
+    # makes the isolation claim below false. Strip it for the test and put it
+    # back afterwards.
+    with A._lock:
+        _perm_had_exec = "execute_code" in A._permanent_approved
+        A._permanent_approved.discard("execute_code")
+        _sess_had_exec = {
+            key: ("execute_code" in granted)
+            for key, granted in A._session_approved.items()
+        }
+        for granted in A._session_approved.values():
+            granted.discard("execute_code")
+
     session_key = "cluster-test-session"
+    # Process-level yolo is frozen above; clear any session-scoped yolo left
+    # over for this key so the prompt paths are actually reachable. Tests that
+    # exercise yolo enable it themselves.
+    A.disable_session_yolo(session_key)
     token = A.set_current_session_key(session_key)
     with A._lock:
         A._gateway_queues.pop(session_key, None)
@@ -127,6 +148,11 @@ def gw_session(monkeypatch):
     finally:
         A.reset_current_session_key(token)
         with A._lock:
+            if _perm_had_exec:
+                A._permanent_approved.add("execute_code")
+            for key, had in _sess_had_exec.items():
+                if had:
+                    A._session_approved.setdefault(key, set()).add("execute_code")
             A._gateway_queues.pop(session_key, None)
             A._gateway_notify_cbs.pop(session_key, None)
 
