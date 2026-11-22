@@ -1,14 +1,14 @@
-[autopatch] validating population (2026-11-21T00:00:06) ...
-[autopatch] population: 1320 skills, avg 39.1
-[autopatch] 10 weak skills: dsh-doc-writing(0), dsh-error-handling(0), dsh-find-simplifications(0), dsh-merging-stacked-prs(0), dsh-official-plugin-artwork(0), dsh-pr-description(0), dsh-pre-push-checks(0), dsh-prose-standard(0), dsh-responsive-ui(0), dsh-session-projection(0)
+[autopatch] validating population (2026-11-22T02:59:20) ...
+[autopatch] population: 1323 skills, avg 38.8
+[autopatch] 10 weak skills: agent-experience(0), cordis-styling-nitpicking(0), dsh-archive-agent-notes(0), dsh-ci-test-reliability(0), dsh-client-ui-ux(0), dsh-code-review(0), dsh-create-upgrade-guide(0), dsh-cua-macos-signing(0), dsh-doc(0), dsh-doc-writing(0)
+[autopatch] ✅ agent-experience: 0 → 42
+[autopatch] ✅ cordis-styling-nitpicking: 0 → 45
+[autopatch] ✅ dsh-archive-agent-notes: 0 → 42
+[autopatch] ✅ dsh-ci-test-reliability: 0 → 45
+[autopatch] ✅ dsh-client-ui-ux: 0 → 47
+[autopatch] ✅ dsh-code-review: 0 → 45
+[autopatch] ✅ dsh-create-upgrade-guide: 0 → 50
+[autopatch] ✅ dsh-cua-macos-signing: 0 → 50
+[autopatch] ✅ dsh-doc: 0 → 44
 [autopatch] ✅ dsh-doc-writing: 0 → 45
-[autopatch] ✅ dsh-error-handling: 0 → 51
-[autopatch] ✅ dsh-find-simplifications: 0 → 42
-[autopatch] ✅ dsh-merging-stacked-prs: 0 → 50
-[autopatch] ✅ dsh-official-plugin-artwork: 0 → 42
-[autopatch] ✅ dsh-pr-description: 0 → 50
-[autopatch] ✅ dsh-pre-push-checks: 0 → 50
-[autopatch] ✅ dsh-prose-standard: 0 → 42
-[autopatch] ✅ dsh-responsive-ui: 0 → 42
-[autopatch] ✅ dsh-session-projection: 0 → 45
 [autopatch] report → C:\Users\damir\openamer-repo\reports\darwin-autopatch.md

@@ -1,7 +1,7 @@
 {
-  "updated": "2026-11-20T23:00:10.104833+00:00",
+  "updated": "2026-11-22T01:59:24.401065+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 1320,
+  "total": 1323,
   "skills": {
     "auto-competitor-intelligence-claudepowered-ai": {
       "refs": 0,
@@ -2169,6 +2169,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-demo-cli-no-such-file-or-directory-n": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-disk-cleanup-tracked-json": {
       "refs": 0,
       "ok": 0,
@@ -2698,6 +2704,12 @@
       "missing": []
     },
     "darwin-harvested-sessions-json": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-t-c71f59a6-nfatal-cannot-change-to": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -7598,6 +7610,12 @@
       "missing": []
     },
     "massive-upgrade-deployment": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "memory-provider-development": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
