@@ -1,7 +1,7 @@
 {
-  "updated": "2026-11-22T01:59:24.401065+00:00",
+  "updated": "2026-11-23T02:15:08.729257+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 1323,
+  "total": 1326,
   "skills": {
     "auto-competitor-intelligence-claudepowered-ai": {
       "refs": 0,
@@ -1462,6 +1462,12 @@
       "missing": []
     },
     "a2a-brain-meshlearn-verify": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "agent-browser": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -3432,8 +3438,8 @@
       "missing": []
     },
     "green-merge-gate": {
-      "refs": 3,
-      "ok": 3,
+      "refs": 4,
+      "ok": 4,
       "score": 1.0,
       "missing": []
     },
@@ -6730,9 +6736,21 @@
       "score": 1.0,
       "missing": []
     },
+    "instructor": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "internet-learning-cycle": {
       "refs": 5,
       "ok": 5,
+      "score": 1.0,
+      "missing": []
+    },
+    "internet-learner-improve": {
+      "refs": 0,
+      "ok": 0,
       "score": 1.0,
       "missing": []
     },
@@ -7642,8 +7660,8 @@
       "missing": []
     },
     "openamer-browser-use": {
-      "refs": 5,
-      "ok": 5,
+      "refs": 3,
+      "ok": 3,
       "score": 1.0,
       "missing": []
     },
@@ -7728,8 +7746,8 @@
       "missing": []
     },
     "protected-main-shipping": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -7868,12 +7886,10 @@
       "missing": []
     },
     "ui-string-catalog-translation": {
-      "refs": 12,
-      "ok": 11,
-      "score": 0.917,
-      "missing": [
-        "scripts/i18n_hand_batch.py"
-      ]
+      "refs": 9,
+      "ok": 9,
+      "score": 1.0,
+      "missing": []
     },
     "unquoted-path-in-shell-command": {
       "refs": 0,
