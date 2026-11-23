@@ -1060,7 +1060,7 @@ export const fr = defineLocale({
     pluginsStatusEnabled: 'activé',
     pluginsSearchFailed: 'Échec de la recherche GitHub',
     pluginsDiscoverAction: query => `Rechercher "${query}" sur GitHub`,
-    pluginsDiscoverResults: (n, query) => `${n} dépôts étiquetés openamer-plugin pour « ${query} »`,
+    pluginsDiscoverResults: (n, query) => `${n} dépôts étiquetés openamer-plugin pour «\u00A0${query}\u00A0»`,
     pluginsDiscoverEmpty: query => `Rien sur GitHub pour "${query}" — la recherche ne trouve que les dépôts portant le thème openamer-plugin, et la recherche GitHub non authentifiée est limitée en débit. Installez plutôt un owner/repo exact ci-dessus.`,
     pluginsStatusInactive: 'inactif',
     pluginsToggleFailed: 'Impossible de modifier l\'état du plugin',
@@ -2673,16 +2673,9 @@ Laissez vide pour conserver la valeur par défaut ${mode}.`,
       loadingSession: 'Chargement de la session',
       showEarlier: 'Afficher les messages précédents',
       loadingResponse: 'OpenAmer charge une réponse',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Réflexion',
       today: time => `Aujourd’hui, ${time}`,
