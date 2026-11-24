@@ -2673,7 +2673,8 @@ ${mode} qimbô doorit dacrisuh, maro cab.`,
       goForward: 'Jaba deemi',
       sendEdited: 'Erga ka gabaabame erga',
       attachingFile: 'Kabachaa jira…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Asaaku, ${time}`,

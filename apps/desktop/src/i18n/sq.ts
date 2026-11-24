@@ -2651,20 +2651,9 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       loadingSession: 'Po ngarkohet sesioni',
       showEarlier: 'Shfaq mesazhet e mëparshme',
       loadingResponse: 'OpenAmer po ngarkon një përgjigje',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Po mendohet',
       today: time => `Sot, ${time}`,

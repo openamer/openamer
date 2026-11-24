@@ -2217,7 +2217,8 @@ Leave blank to keep the ${mode} default.`,
       restoreConfirm: 'Fakatau & toe run',
       restoreNext: 'Fakatau e makana hoko',
       goForward: 'Hae ki mua',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,

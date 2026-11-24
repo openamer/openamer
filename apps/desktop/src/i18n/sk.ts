@@ -2651,20 +2651,9 @@ Nechajte prázdne, aby sa zachovalo predvolené ${mode}.`,
       loadingSession: 'Načítava sa relácia',
       showEarlier: 'Zobraziť staršie správy',
       loadingResponse: 'OpenAmer načítava odpoveď',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Premýšľa',
       today: time => `Dnes, ${time}`,

@@ -2673,7 +2673,8 @@ Tuu avanoa e faaaogā ai le tulaga masani o ${mode}.`,
       goForward: 'Sila i mua',
       sendEdited: 'Afoi le fe\'au kua suia',
       attachingFile: 'Fausiaina…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => ` PSI, ${time}`,

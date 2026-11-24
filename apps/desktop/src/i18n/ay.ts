@@ -2673,7 +2673,8 @@ Deja en blanco para mantener el predeterminado de ${mode}.`,
       goForward: 'Kunata sarnaña',
       sendEdited: 'Qillqata uñt\'ayi',
       attachingFile: 'Ch\'amptañani…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Kunan, ${time}`,

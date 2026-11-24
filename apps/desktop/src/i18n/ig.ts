@@ -2651,7 +2651,8 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       copy: 'Detuo',
       refresh: 'Megharịa',
       moreActions: 'Omume ndị ọzọ',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Taa, ${time}`,

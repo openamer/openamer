@@ -2673,7 +2673,8 @@ ${mode} standartını saxlamaq üçün boş qoy.`,
       goForward: 'İrəli get',
       sendEdited: 'Redaktə edilmiş mesajı göndər',
       attachingFile: 'Qoşulur...',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Bugün, ${time}`,

@@ -65,3 +65,26 @@ def test_a_parse_error_blocks_the_batch(mod):
 def test_an_unjudgeable_locale_blocks_the_batch(mod):
     ok, why = mod.judge([{"locale": "catalog.test", "fatal": "extract failed"}])
     assert not ok and "catalog.test" in why
+
+
+def test_an_incomplete_locale_is_held_back_not_the_whole_batch(mod):
+    """One 226-key gap used to refuse every finished catalogue with it."""
+    clean, rejected = mod.split_verdict([
+        _row("de"),
+        _row("ur", missing_sections=["intro.fallback.bodies.0"] * 226),
+    ])
+    assert clean == ["de"]
+    assert len(rejected) == 1 and rejected[0].startswith("ur:") and "226 missing" in rejected[0]
+
+
+def test_split_verdict_passes_everything_when_all_rows_are_clean(mod):
+    clean, rejected = mod.split_verdict([_row("de"), _row("fr")])
+    assert clean == ["de", "fr"] and rejected == []
+
+
+def test_split_verdict_rejects_an_unjudgeable_locale(mod):
+    clean, rejected = mod.split_verdict([
+        {"locale": "catalog.test", "fatal": "extract failed"},
+        _row("ja"),
+    ])
+    assert clean == ["ja"] and rejected and "catalog.test" in rejected[0]

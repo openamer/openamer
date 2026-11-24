@@ -2346,7 +2346,8 @@ ${mode} डिफॉल्ट रखने के लिए खाली छो�
       loadingSession: 'سیشن لوڈ ہو رہا ہے',
       showEarlier: 'پہلے پیغامات دکھائیں',
       loadingResponse: 'OpenAmer جواب لوڈ کریک',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'سوچن',

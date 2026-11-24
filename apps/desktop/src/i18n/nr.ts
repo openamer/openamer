@@ -2552,7 +2552,8 @@ Leave blank to keep the ${mode} default.`,
       goForward: 'Iya phambili',
       sendEdited: 'Thumela umlayezo ohleliwe',
       attachingFile: 'Kunamathisela…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,

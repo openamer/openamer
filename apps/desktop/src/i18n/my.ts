@@ -2380,7 +2380,8 @@ Leave blank to keep the ${mode} default.`,
       goForward: 'ရှေ့သို့သွား',
       sendEdited: 'တည်းဖြတ်ထားသော မက်ဆေ့ဂျ် ပို့',
       attachingFile: 'ပူးတှက်နေသည်…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,

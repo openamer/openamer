@@ -2318,7 +2318,8 @@ Lat feltet stå tomt for å behalda standarden for ${mode}.`,
       loadingSession: 'Loading session',
       showEarlier: 'Show earlier messages',
       loadingResponse: 'OpenAmer is loading a response',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Thinking',

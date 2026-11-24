@@ -2665,7 +2665,8 @@ Lassa vid l'espazi per gardar il default da ${mode}.`,
       goForward: 'Ir inavant',
       sendEdited: 'Trametter il messadi modifitgà',
       attachingFile: 'Agiuntar…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Oz, ${time}`,

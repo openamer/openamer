@@ -2667,7 +2667,8 @@ Waiho kia pātea hei pupuri i te taunoa o ${mode}.`,
       copy: 'Tārua',
       refresh: 'Whakahou',
       moreActions: 'Ētahi atu mahi',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `I tēnei rā, ${time}`,

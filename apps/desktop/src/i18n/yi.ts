@@ -2652,7 +2652,8 @@ export const yi = defineLocale({
       loadingSession: 'לאָדן די סעסיע',
       showEarlier: 'ווײַזן פֿריִערדיקע מעלדונגען',
       loadingResponse: 'OpenAmer לאָדט אַן ענטפֿער',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'טראַכט',

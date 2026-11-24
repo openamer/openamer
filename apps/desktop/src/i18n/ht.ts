@@ -1587,7 +1587,8 @@ export const ht = defineLocale({
       copy: 'Kopye',
       refresh: 'Rafrechi',
       moreActions: 'Plis aksyon',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Jodi a, ${time}`,

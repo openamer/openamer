@@ -2650,22 +2650,9 @@ export const cs = defineLocale({
       loadingSession: 'Načítání relace',
       showEarlier: 'Zobrazit starší zprávy',
       loadingResponse: 'OpenAmer načítá odpověď',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Uvažuje',
       today: time => `Dnes, ${time}`,

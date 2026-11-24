@@ -2688,7 +2688,8 @@ ${mode}-p nalinginnaasumik inissitaa atorumallugu imaqartinnagu qimallugu.`,
       loadingSession: 'Atuineq aallerneqarpoq',
       showEarlier: 'Nalunaarutit siusinnerusukkut takukkit',
       loadingResponse: 'OpenAmer akissummik aallerpoq',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Eqqarsarneq',

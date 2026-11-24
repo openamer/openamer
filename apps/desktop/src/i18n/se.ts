@@ -2652,7 +2652,8 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
       loadingSession: 'Lohkkojuvvo session',
       showEarlier: 'Čájet ovddit dieđuid',
       loadingResponse: 'OpenAmer lohká vástádusa',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Jurddaša',

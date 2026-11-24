@@ -2673,7 +2673,8 @@ Los dit leeg om die ${mode}-standaard te behou.`,
       sendEdited: 'Stuur gewysigde boodskap',
       attachingFile: 'Heg aan...',
       stop: 'Staak',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Vandag, ${time}`,

@@ -2643,7 +2643,8 @@ Biutaka ga me tiko na ${mode} default.`,
       goForward: 'Kaa ki mua',
       sendEdited: 'Curu e kai e vakayau',
       attachingFile: 'E vakatubekeni…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Nikua, ${time}`,

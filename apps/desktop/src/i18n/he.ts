@@ -1709,7 +1709,8 @@ export const he = defineLocale({
       loadingSession: 'טוען הפעלה',
       showEarlier: 'הצג הודעות קודמות',
       loadingResponse: 'OpenAmer טוען תשובה',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'חושב',

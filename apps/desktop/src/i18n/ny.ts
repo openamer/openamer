@@ -2673,7 +2673,8 @@ Leeka okuba kwagalala okuleka ${mode} nga bwe kiri.`,
       goForward: 'Pitani patu',
       sendEdited: 'Tumani uthenga owakonzedwa',
       attachingFile: 'Kuakwatanira...',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Lero, ${time}`,

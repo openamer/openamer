@@ -2673,7 +2673,8 @@ Gya hɔ kwa na ${mode} default no nka hɔ.`,
       goForward: 'Kɔ nkan',
       sendEdited: 'Soma asɛm a wasesa',
       attachingFile: 'Ɛreka...',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Nnɛ, ${time}`,

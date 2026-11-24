@@ -2742,7 +2742,8 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       goForward: 'Koré fíí',
       sendEdited: 'Koré sín fíí mésí fíí fíí',
       attachingFile: 'OpenAmer gateway wéé fíí yéé yéé',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Täna, ${time}`,

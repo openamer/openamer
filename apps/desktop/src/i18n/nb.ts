@@ -480,7 +480,8 @@ export const nb = defineLocale({
       showEarlier: 'Vis tidligere meldinger',
       loadingResponse: 'OpenAmer laster et svar',
       thinking: 'Tenker',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `I dag, ${time}`,

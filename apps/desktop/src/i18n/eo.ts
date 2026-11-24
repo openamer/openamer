@@ -2651,20 +2651,9 @@ Lasu malplena por konservi la ${mode} defaŭltan.`,
       loadingSession: 'Ŝargado de seanco',
       showEarlier: 'Montri pli fruajn mesaĝojn',
       loadingResponse: 'OpenAmer ŝargas respondon',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Penso',
       today: time => `Hodiaŭ, ${time}`,

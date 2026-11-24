@@ -2651,22 +2651,9 @@ Jäta tühjaks, et säilitada ${mode} vaikeväärtus.`,
       loadingSession: 'Seansi laadimine',
       showEarlier: 'Kuva varasemad sõnumid',
       loadingResponse: 'OpenAmer laadib vastust',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Mõtleb',
       today: time => `Täna, ${time}`,

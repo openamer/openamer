@@ -1586,7 +1586,8 @@ export const ka = defineLocale({
       loadingSession: 'იტვირთება სესია',
       showEarlier: 'ადრინდელი შეტყობინებების ჩვენება',
       loadingResponse: 'OpenAmer პასუხს ტვირთავს',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'ვფიქრობ',

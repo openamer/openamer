@@ -2673,7 +2673,8 @@ Lascia vuoto per mantenere il predefinito di ${mode}.`,
       goForward: 'Цере тIезе',
       sendEdited: 'Хисизабураб хабар битIизе',
       attachingFile: 'ТIадал тIамуле…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Жакъа, ${time}`,

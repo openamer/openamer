@@ -1930,7 +1930,8 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       goForward: 'முன்னேறவும்',
       sendEdited: 'திருத்தப்பட்ட செய்தியை அனுப்பு',
       attachingFile: 'இணைக்கிறது…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `இன்று, ${time}`,

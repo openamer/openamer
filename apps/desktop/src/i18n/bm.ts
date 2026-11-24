@@ -2673,7 +2673,8 @@ I k'a kura n'i b'a fɛ k'a sigi ${mode} default na.`,
       goForward: 'Kɔnɔ ta',
       sendEdited: 'Kuma lasiran don',
       attachingFile: 'Kɛlɛkɛlɛ…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Bi, ${time}`,

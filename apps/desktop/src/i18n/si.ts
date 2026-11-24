@@ -2616,7 +2616,8 @@ ${mode} පෙරනිමිය තබා ගැනීමට හිස්ව �
       goForward: 'ඉදිරියට යන්න',
       sendEdited: 'සංස්කරණය කළ පණිවිඩය යවන්න',
       attachingFile: 'අමුණමින්…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `අද, ${time}`,

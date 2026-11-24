@@ -2651,20 +2651,9 @@ Pozostaw puste, aby zachować domyślne ${mode}.`,
       loadingSession: 'Ładowanie sesji',
       showEarlier: 'Pokaż wcześniejsze wiadomości',
       loadingResponse: 'OpenAmer ładuje odpowiedź',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Myślenie',
       today: time => `Dzisiaj, ${time}`,

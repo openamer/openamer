@@ -2650,20 +2650,9 @@ export const bs = defineLocale({
       loadingSession: 'Učitavanje sesije',
       showEarlier: 'Prikaži ranije poruke',
       loadingResponse: 'OpenAmer učitava odgovor',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Razmišlja',
       today: time => `Danas, ${time}`,

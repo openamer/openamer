@@ -2651,20 +2651,9 @@ La stå tom for å beholde ${mode}-standarden.`,
       loadingSession: 'Laster inn økt',
       showEarlier: 'Vis tidligere meldinger',
       loadingResponse: 'OpenAmer laster inn et svar',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Tenker',
       today: time => `I dag, ${time}`,

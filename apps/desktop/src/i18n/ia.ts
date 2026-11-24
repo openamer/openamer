@@ -2652,7 +2652,8 @@ Lassa vacu pro conservar le default de ${mode}.`,
       loadingSession: 'Cargamento de session',
       showEarlier: 'Monstrar messages anterior',
       loadingResponse: 'OpenAmer carga un responsa',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Pensante',

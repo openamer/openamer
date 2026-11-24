@@ -85,7 +85,9 @@ NON_LATIN_SCRIPT = {
     "ru": r"[\u0400-\u04FF]",
     "uk": r"[\u0400-\u04FF]",
     "bg": r"[\u0400-\u04FF]",
-    "sr": r"[\u0400-\u04FF]",
+    # "sr" is deliberately absent: Serbian is digraphic and the shipped catalog
+    # is latinica ("Kopiraj putanju", "Idi na … stranicu"). Asserting Cyrillic
+    # flagged 500+ correct strings as mistranslations (measured 2026-11-23).
     "mk": r"[\u0400-\u04FF]",
     "el": r"[\u0370-\u03FF]",
     "hi": r"[\u0900-\u097F]",
@@ -102,8 +104,9 @@ def wrong_script(locale: str, tgt_text: dict, en_text: dict) -> list[str]:
     """Values that were 'translated' into a different writing system entirely.
 
     Only counts values that actually differ from English: an untranslated
-    fallback string is legitimately Latin and must not be flagged. Four or more
-    letters is the threshold — codes, URLs and numbers carry no script.
+    fallback string is legitimately Latin and must not be flagged. Two or more
+    Latin words is the threshold — a lone word is a product name or loanword,
+    and codes, URLs and numbers carry no script.
     """
     pattern = NON_LATIN_SCRIPT.get(locale)
     if not pattern:
@@ -113,9 +116,19 @@ def wrong_script(locale: str, tgt_text: dict, en_text: dict) -> list[str]:
     for path, text in tgt_text.items():
         if not isinstance(text, str) or text == en_text.get(path):
             continue
-        if len([c for c in text if c.isalpha()]) < 4:
+        # Only prose carries a script. `${...}` holds identifier names, which are
+        # Latin by nature, so measuring them flagged correct catalogues
+        # (measured 2026-11-23: ru `${action} «${value}»` and zh
+        # `订阅（${count}）` were refused as mistranslations).
+        prose = re.sub(r"\$\{[^}]*\}", "", text)
+        if len([c for c in prose if c.isalpha()]) < 4:
             continue
-        if not rx.search(text):
+        # A lone Latin word is a product name, acronym or loanword ("Webhook",
+        # "Terminal", "Model") — every language writes those the same way.
+        # Wrong-script prose is a phrase left in Latin, i.e. two or more words.
+        if len(re.findall(r"[A-Za-z]{2,}", prose)) < 2:
+            continue
+        if not rx.search(prose):
             bad.append(path)
     return bad
 
@@ -128,6 +141,11 @@ def verify(locale: str, en: dict) -> dict:
 
     en_text = {l["path"]: l["text"] for l in en["leaves"]}
     tgt_text = {l["path"]: l["text"] for l in leaves}
+    # Only real leaves carry prose; an object/array node reconstructs an
+    # expression and must be compared as structure, never as a script sample.
+    prose_text = {
+        l["path"]: l["text"] for l in leaves if l.get("kind") not in ("object", "array")
+    }
 
     missing = sorted(en_paths - paths)
     extra = sorted(paths - en_paths)
@@ -172,7 +190,7 @@ def verify(locale: str, en: dict) -> dict:
         "untranslated": untranslated,
         "total_strings": len(translatable),
         "parse_errors": parse_errors(locale),
-        "wrong_script": wrong_script(locale, tgt_text, en_text),
+        "wrong_script": wrong_script(locale, prose_text, en_text),
     }
 
 

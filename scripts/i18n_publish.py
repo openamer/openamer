@@ -59,36 +59,67 @@ def dirty_locales() -> list[str]:
     return sorted(set(out))
 
 
+def problems_of(row: dict) -> list[str]:
+    """Every reason this single locale may not ship, as short phrases."""
+    if "fatal" in row:
+        return [str(row["fatal"])[:80]]
+    problems = []
+    if row.get("parse_errors"):
+        problems.append("parse")
+    if row.get("broken_placeholders"):
+        problems.append(f"{len(row['broken_placeholders'])} broken placeholders")
+    if row.get("brand"):
+        problems.append("brand")
+    if row.get("missing_sections"):
+        problems.append(f"{len(row['missing_sections'])} missing")
+    if row.get("extra"):
+        problems.append(f"{len(row['extra'])} extra")
+    if row.get("wrong_script"):
+        problems.append(f"{len(row['wrong_script'])} in the wrong "
+                        "writing system (mistranslation)")
+    return problems
+
+
 def judge(rows: list[dict]) -> tuple[bool, str]:
     """Decide from the verifier's JSON whether a batch may be published.
 
     Pure on purpose: the decision is the part that must be testable without a
     live git remote, node, or 186 locale files.
     """
-    bad = []
-    for row in rows:
-        if "fatal" in row:
-            bad.append(f"{row.get('locale')}: {str(row['fatal'])[:80]}")
-            continue
-        problems = []
-        if row.get("parse_errors"):
-            problems.append("parse")
-        if row.get("broken_placeholders"):
-            problems.append(f"{len(row['broken_placeholders'])} broken placeholders")
-        if row.get("brand"):
-            problems.append("brand")
-        if row.get("missing_sections"):
-            problems.append(f"{len(row['missing_sections'])} missing")
-        if row.get("extra"):
-            problems.append(f"{len(row['extra'])} extra")
-        if row.get("wrong_script"):
-            problems.append(f"{len(row['wrong_script'])} in the wrong "
-                            "writing system (mistranslation)")
-        if problems:
-            bad.append(f"{row['locale']}: {', '.join(problems)}")
+    bad = [f"{row.get('locale')}: {', '.join(p)}" for row in rows if (p := problems_of(row))]
     if bad:
         return False, "; ".join(bad[:6])
     return True, f"{len(rows)} locale(s) clean"
+
+
+def split_verdict(rows: list[dict]) -> tuple[list[str], list[str]]:
+    """Sort the verifier's rows into shippable locales and rejected ones.
+
+    One incomplete catalogue must not hold back the 180 that are done. Measured
+    2026-11-23: a single locale missing 226 new keys refused every rolling batch,
+    so finished translations sat on disk while users kept reading English.
+    """
+    clean, rejected = [], []
+    for row in rows:
+        problems = problems_of(row)
+        if problems:
+            rejected.append(f"{row['locale']}: {', '.join(problems)}")
+        else:
+            clean.append(row["locale"])
+    return clean, rejected
+
+
+def verify_rows(locales: list[str]) -> tuple[list[dict] | None, str]:
+    """Run the verifier once and hand back its per-locale rows."""
+    r = subprocess.run([sys.executable, str(REPO / "scripts" / "i18n_verify_locales.py"),
+                        *locales, "--json"], cwd=str(REPO), capture_output=True,
+                       text=True, encoding="utf-8", errors="replace", timeout=1800)
+    if r.returncode != 0 and not r.stdout.strip():
+        return None, f"verifier failed: {(r.stderr or '')[-200:]}"
+    try:
+        return json.loads(r.stdout), ""
+    except json.JSONDecodeError:
+        return None, "verifier produced no JSON"
 
 
 def gate(locales: list[str]) -> tuple[bool, str]:
@@ -98,15 +129,9 @@ def gate(locales: list[str]) -> tuple[bool, str]:
     translated words). Publishing without it is how wrong-script translations
     reached main before.
     """
-    r = subprocess.run([sys.executable, str(REPO / "scripts" / "i18n_verify_locales.py"),
-                        *locales, "--json"], cwd=str(REPO), capture_output=True,
-                       text=True, encoding="utf-8", errors="replace", timeout=1800)
-    if r.returncode != 0 and not r.stdout.strip():
-        return False, f"verifier failed: {(r.stderr or '')[-200:]}"
-    try:
-        rows = json.loads(r.stdout)
-    except json.JSONDecodeError:
-        return False, "verifier produced no JSON"
+    rows, err = verify_rows(locales)
+    if rows is None:
+        return False, err
     return judge(rows)
 
 
@@ -136,10 +161,18 @@ def open_pr() -> tuple[str, str]:
 
 
 def publish(locales: list[str], dry: bool) -> int:
-    ok, why = gate(locales)
-    log(f"gate: {'pass' if ok else 'REFUSED'} — {why}")
-    if not ok:
+    rows, err = verify_rows(locales)
+    if rows is None:
+        log(f"gate: REFUSED — {err}")
         return 3
+    clean, rejected = split_verdict(rows)
+    if rejected:
+        log(f"gate: holding back {len(rejected)} locale(s) — {'; '.join(rejected[:6])}")
+    if not clean:
+        log("gate: REFUSED — no locale passed verification")
+        return 3
+    locales = clean
+    log(f"gate: pass — {len(locales)} locale(s) clean")
     if dry:
         log(f"dry run — would publish {len(locales)} locale(s): {', '.join(locales)}")
         return 0

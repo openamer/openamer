@@ -693,7 +693,8 @@ export const su = defineLocale({
       thinking: 'Pemikiran',
       copy: 'Kopi',
       moreActions: 'Aksi lain',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,

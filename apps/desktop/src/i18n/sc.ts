@@ -1752,7 +1752,8 @@ export const sc = defineLocale({
       goForward: 'Bae in antis',
       sendEdited: 'Imbia su messàgiu modificadu',
       attachingFile: 'Allighende...',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,

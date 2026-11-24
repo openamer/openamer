@@ -2652,7 +2652,8 @@ Lass vacui por conservar li ${mode} standard.`,
       loadingSession: 'Chargente session',
       showEarlier: 'Mostrar prior messages',
       loadingResponse: 'OpenAmer chargente response',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Pensante',

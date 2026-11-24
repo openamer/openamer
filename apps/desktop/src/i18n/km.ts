@@ -2800,7 +2800,8 @@ export const km = defineLocale({
       branchNewChat: 'Branch in new chat',
       dismissError: 'Dismiss error',
       readAloudFailed: 'Read aloud failed',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,

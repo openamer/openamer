@@ -2673,7 +2673,8 @@ export const am = defineLocale({
       goForward: 'ወደፊት ሂድ',
       sendEdited: 'የተስተካከለውን መልእክት ላክ',
       attachingFile: 'በማያያዝ ላይ...',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `ዛሬ፣ ${time}`,

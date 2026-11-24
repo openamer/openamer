@@ -2652,7 +2652,8 @@ Leyîz vude po wåde l' adroet ${mode}.`,
       loadingSession: 'Tcherdjaedje del session',
       showEarlier: 'Mostrer les messaedjes di dvant',
       loadingResponse: 'OpenAmer tchedje ene response',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'I tuze',

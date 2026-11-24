@@ -2075,7 +2075,8 @@ Leave blank to keep the ${mode} default.`,
       stopReading: 'Stop mit veurleze',
       readAloud: 'Veurleze',
       editMessage: 'Bericht bewirke',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,

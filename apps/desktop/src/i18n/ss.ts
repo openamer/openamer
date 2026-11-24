@@ -2652,7 +2652,8 @@ Leave blank to keep the ${mode} default.`,
       loadingSession: 'Kulayisha iseshini',
       showEarlier: 'Khombisa imilayeto yangaphambilili',
       loadingResponse: 'OpenAmer ilayisha impendulo',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Kucabanga',

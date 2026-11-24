@@ -2651,22 +2651,9 @@ Laat dit leeg om de ${mode}-standaard te behouden.`,
       loadingSession: 'Sessie laden',
       showEarlier: 'Eerdere berichten tonen',
       loadingResponse: 'OpenAmer laadt een reactie',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Denken',
       today: time => `Vandaag, ${time}`,

@@ -2652,7 +2652,8 @@ Deixa-ho buit per mantenir el predeterminat de ${mode}.`,
       loadingSession: 'S\'està carregant la sessió',
       showEarlier: 'Mostra els missatges anteriors',
       loadingResponse: 'OpenAmer està carregant una resposta',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Pensant',

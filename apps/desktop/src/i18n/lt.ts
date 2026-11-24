@@ -2651,18 +2651,9 @@ Palikite tuščią, kad išliktų ${mode} numatytasis.`,
       loadingSession: 'Įkeliama sesija',
       showEarlier: 'Rodyti ankstesnius pranešimus',
       loadingResponse: 'OpenAmer įkelia atsakymą',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Galvoja',
       today: time => `Šiandien, ${time}`,

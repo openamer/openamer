@@ -2624,7 +2624,8 @@ ${mode} ਡਿਫੌਲਟ ਰੱਖਣ ਲਈ ਖਾਲੀ ਛੱਡੋ।`,
       loadingSession: 'ਸੈਸ਼ਨ ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ',
       showEarlier: 'ਪੁਰਾਣੇ ਸੁਨੇਹੇ ਦਿਖਾਓ',
       loadingResponse: 'OpenAmer ਜਵਾਬ ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'ਸੋਚ ਰਿਹਾ ਹੈ',
