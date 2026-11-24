@@ -3237,7 +3237,7 @@ ${mode} གི་སྔོན་སྒྲིག་བཞག་ནི་ལུ་
           'ལཱ་འདི་བཤད་གནང་ ག་ཅི་ར་ཆུང་ཀུ་ཨིན་རུང་~ ང་གིས་ clean commits དང་ gentwe refactors ཚུ་བཟོ་གེ nyuu~',
           'ཁྱོད་ཀྱི་ ewwor message འདི་ག་ཏེར་ལུ་བཞག་གནང་! ང་གིས་དཀའ་ཚེགས་འདི་རྙེད་ནོ བཟོ་བཅོས་འབདད་ ပြီးတော့ happy test suite ཅིག་བཟོ་གེ owo',
           'ང་ལུ་ repo path ཡང་ན་ buggo ཅིག་གནང་ ང་གིས་དེ་ལྟ་གེ uwu. bad code ལུ་ག grow འབདད་ ཁྱོད་ལུ་སེམས་ཅན་འབདགེ~',
-          'i can wun tests, edit fiwes, and open pwease-wook PRs. just say da wowd, fwend uwu',
+          'ང་གིས་ བརྟག་དཔྱད་ འབད་ནི། ཕྱལ་ བཅོས་ནི། དེ་ལས་ PR ཁ་ཕྱེ་ནི་ ཚུ་ འབད་ཚུགས། ཆ་རོགས་ བཤད་གནང་ uwu',
         ],
       },
     },
