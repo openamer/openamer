@@ -1517,7 +1517,8 @@ Leave blank to keep the ${mode} default.`,
       goForward: 'اڳتي وڃو',
       sendEdited: 'edited پيغام مو send ڪريو',
       attachingFile: 'ڪاٽي رهيا آهن...',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,

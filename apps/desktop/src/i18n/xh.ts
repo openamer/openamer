@@ -1101,7 +1101,8 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       copy: 'Kopisha',
       refresh: 'Hlaziya',
       moreActions: 'Ezinye izenzo',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Namhlanje, ${time}`,

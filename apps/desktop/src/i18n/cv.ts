@@ -657,7 +657,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       copy: 'Копирле',
       refresh: 'Ăнтрат',
       moreActions: 'Ĕçлевсем тата валлисем',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Паян, ${time}`,

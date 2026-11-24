@@ -342,6 +342,7 @@ export const fr = defineLocale({
         disk: 'Sur le disque',
         runtime: 'Exécution',
       },
+      manage: 'Gérer les plugins d\'agent',
     },
     notifications: {
       title: 'Notifications',
@@ -972,7 +973,7 @@ export const fr = defineLocale({
     appliesToNewSessions: name => `${name} s’applique aux nouvelles sessions.`,
     failedToUpdate: name => `Échec de la mise à jour de ${name}`,
     sortMostUsed: 'Plus utilisés',
-    sortAlpha: 'A–Z',
+    sortAlpha: 'A à Z',
     sortMostUsedDesc: '↓ Plus utilisés',
     sortLeastUsedAsc: '↑ Moins utilisés',
     enableAll: 'Tout activer',
@@ -1042,6 +1043,27 @@ export const fr = defineLocale({
       scanFailed: 'Échec de l\'analyse de sécurité',
       searchFailed: 'Échec de la recherche dans le hub',
     },
+    tabPlugins: 'Extensions',
+    searchPlugins: 'Rechercher des plugins...',
+    pluginsCount: n => `${n} extensions`,
+    pluginsEmptyTitle: 'Aucun plugin trouvé',
+    pluginsEmptyDesc: 'Installez-en un depuis un dépôt Git ci-dessus — les plugins d\'agent restent inactifs tant qu\'ils ne sont pas activés.',
+    pluginsNoMatch: 'Aucun plugin ne correspond à cette recherche',
+    pluginsLoadFailed: 'Impossible de charger les plugins',
+    pluginsInstall: 'Installer',
+    pluginsInstallOk: name => `Plugin "${name}" installé`,
+    pluginsInstallFailed: 'Échec de l\'installation',
+    pluginsInstallPlaceholder: 'owner/repo ou https://github.com/owner/repo',
+    pluginsRescan: 'Réanalyser',
+    pluginsRescanFailed: 'Échec de la réanalyse',
+    pluginsStatusDisabled: 'désactivé',
+    pluginsStatusEnabled: 'activé',
+    pluginsSearchFailed: 'Échec de la recherche GitHub',
+    pluginsDiscoverAction: query => `Rechercher "${query}" sur GitHub`,
+    pluginsDiscoverResults: (n, query) => `${n} dépôts étiquetés openamer-plugin pour «\u00A0${query}\u00A0»`,
+    pluginsDiscoverEmpty: query => `Rien sur GitHub pour "${query}" — la recherche ne trouve que les dépôts portant le thème openamer-plugin, et la recherche GitHub non authentifiée est limitée en débit. Installez plutôt un owner/repo exact ci-dessus.`,
+    pluginsStatusInactive: 'inactif',
+    pluginsToggleFailed: 'Impossible de modifier l\'état du plugin',
   },
   starmap: {
     title: 'Graphe de mémoire',
@@ -1918,7 +1940,7 @@ Laissez vide pour conserver la valeur par défaut ${mode}.`,
       ageNow: 'maintenant',
       ageDay: 'j',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'min',
     },
     dateDivider: {
       today: 'Plus tôt aujourd\'hui',
@@ -2651,16 +2673,9 @@ Laissez vide pour conserver la valeur par défaut ${mode}.`,
       loadingSession: 'Chargement de la session',
       showEarlier: 'Afficher les messages précédents',
       loadingResponse: 'OpenAmer charge une réponse',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Réflexion',
       today: time => `Aujourd’hui, ${time}`,

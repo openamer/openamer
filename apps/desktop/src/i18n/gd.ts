@@ -2651,7 +2651,8 @@ Fàg falamh airson a chumail a' bhun-roghainn ${mode}`,
       goForward: 'Rach air adhart',
       sendEdited: 'Cuir teachdaireachd dheasaichte',
       attachingFile: 'A\' ceangal…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `An-diugh, ${time}`,

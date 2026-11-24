@@ -2673,7 +2673,8 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       goForward: 'Joan aurrera',
       sendEdited: 'Editatutako mezua bidali',
       attachingFile: 'Atxikitzen…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Gaur, ${time}`,

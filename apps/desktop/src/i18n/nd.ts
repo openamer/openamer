@@ -2652,7 +2652,8 @@ Yeka kungenalutho ukuze ugcine okumisiwe kwe-${mode}.`,
       loadingSession: 'Kulayishwa iseshini',
       showEarlier: 'Khombisa imilayezo yangaphambili',
       loadingResponse: 'I-OpenAmer ilayisha impendulo',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Kuyacabanga',

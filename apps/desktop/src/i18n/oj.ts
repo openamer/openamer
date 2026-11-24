@@ -2652,7 +2652,8 @@ Booni' gaawiin gegoo ji-ganawendamang ${mode} default.`,
       loadingSession: 'Bidoode wiindamaagewin',
       showEarlier: 'Waabandan ikidowinan gaa-boonaagoshkang',
       loadingResponse: 'Bidoode OpenAmer ikidowin',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Naanaagadawendam',

@@ -2651,7 +2651,8 @@ Lezit goullo evit mirout dre ziouer ${mode}.`,
       goForward: 'Mont war-raok',
       sendEdited: 'Kas ar gemennadenn aozet',
       attachingFile: 'O stagañ...',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Hiziv, ${time}`,

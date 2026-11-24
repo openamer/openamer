@@ -2717,7 +2717,8 @@ ${mode} standartyny saklamak üçin boş goýuň.`,
       copy: 'Kopyala',
       refresh: 'Täzele',
       moreActions: 'Has köp amallar',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Şu gün, ${time}`,

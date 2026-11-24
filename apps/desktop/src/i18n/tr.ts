@@ -2651,20 +2651,9 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       loadingSession: 'Oturum yükleniyor',
       showEarlier: 'Önceki mesajları göster',
       loadingResponse: 'OpenAmer bir yanıt yüklüyor',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Düşünüyor',
       today: time => `Bugün, ${time}`,

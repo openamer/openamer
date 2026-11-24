@@ -2651,18 +2651,9 @@ export const vi = defineLocale({
       loadingSession: 'Đang tải phiên',
       showEarlier: 'Hiện tin nhắn cũ hơn',
       loadingResponse: 'OpenAmer đang tải phản hồi',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Đang suy nghĩ',
       today: time => `Hôm nay, ${time}`,

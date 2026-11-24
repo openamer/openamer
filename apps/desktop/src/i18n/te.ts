@@ -2575,7 +2575,8 @@ ${mode} డిఫాల్ట్‌ను ఉంచడానికి ఖాళ�
       loadingSession: 'సెషన్ లోడించబడుతోంది',
       showEarlier: 'ముందుగా ఉన్న సందేశాలను చూపండి',
       loadingResponse: 'OpenAmer ఒక సమాధానాన్ని లోడ్ చేస్తోంది',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'ఆలోచిస్తోంది',

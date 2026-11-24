@@ -2652,7 +2652,8 @@ Leave blank to keep the ${mode} default.`,
       loadingSession: 'Inalenga session',
       showEarlier: 'Angalia vi pesa zilizopita',
       loadingResponse: 'OpenAmer linaonyesha utawala',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Inalenga',

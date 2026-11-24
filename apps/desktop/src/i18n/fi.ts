@@ -2651,22 +2651,9 @@ Jätä tyhjäksi, jos haluat säilyttää ${mode} oletusarvon.`,
       loadingSession: 'Ladataan istuntoa',
       showEarlier: 'Näytä aiemmat viestit',
       loadingResponse: 'OpenAmer lataa vastausta',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Mietitään',
       today: time => `Tänään, ${time}`,

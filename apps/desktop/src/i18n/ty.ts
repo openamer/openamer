@@ -2673,7 +2673,8 @@ Vaiiho 'ore nō te fa'a'ohipa i te fa'ata'ara'a mātauhia a ${mode}.`,
       goForward: 'A ne\'e i mua',
       sendEdited: 'A tono i te parau i fa\'atano\'ohia',
       attachingFile: 'Te fa\'apiri nei...',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `I teie mahana, ${time}`,

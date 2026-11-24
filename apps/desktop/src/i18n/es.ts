@@ -2651,22 +2651,9 @@ Déjalo en blanco para mantener el valor predeterminado de ${mode}.`,
       loadingSession: 'Cargando sesión',
       showEarlier: 'Mostrar mensajes anteriores',
       loadingResponse: 'OpenAmer está cargando una respuesta',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Pensando',
       today: time => `Hoy, ${time}`,

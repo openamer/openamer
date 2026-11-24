@@ -2721,7 +2721,8 @@ Iwanang blangko para panatilihin ang default na ${mode}.`,
       loadingSession: 'Nilo-load ang session',
       showEarlier: 'Ipakita ang mga naunang mensahe',
       loadingResponse: 'Nilo-load ng OpenAmer ang sagot',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Nag-iisip',

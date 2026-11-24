@@ -2307,7 +2307,8 @@ Skildu autt til að halda sjálfgefnu stillingunni ${mode}.`,
       loadingSession: 'Hleð lotu',
       showEarlier: 'Sýna fyrri skilaboð',
       loadingResponse: 'OpenAmer er að hlaða svari',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Hugsar',

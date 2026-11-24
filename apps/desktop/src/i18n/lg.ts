@@ -2652,7 +2652,8 @@ Leka nga njeru okusiga ya butongole ${mode}.`,
       loadingSession: 'Kutikka omukutu',
       showEarlier: 'Laga obubaka obwasooka',
       loadingResponse: 'OpenAmer atikka okuddamu',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Alowooza',

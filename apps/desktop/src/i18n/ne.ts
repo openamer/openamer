@@ -2673,7 +2673,8 @@ export const ne = defineLocale({
       goForward: 'अगाडि जानुहोस्',
       sendEdited: 'सम्पादित सन्देश पठाउनुहोस्',
       attachingFile: 'संलग्न गर्दै…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `आज, ${time}`,

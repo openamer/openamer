@@ -2523,7 +2523,8 @@ Deixa o campo baleiro para manter o valor predeterminado de ${mode}.`,
       goForward: 'Avanzar',
       sendEdited: 'Enviar a mensaxe editada',
       attachingFile: 'Adxuntando…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Hoxe, ${time}`,

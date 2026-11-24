@@ -2475,7 +2475,8 @@ Barin fanko don adana ${mode} tsoho.`,
       loadingSession: 'Ana ɗora zaman',
       showEarlier: 'Nuna saƙonnin da suka gabata',
       loadingResponse: 'OpenAmer yana ɗora amsa',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Ana tunani',

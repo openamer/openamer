@@ -2673,7 +2673,8 @@ Deixe em branco para manter o padrão do ${mode}.`,
       goForward: 'Procedere',
       sendEdited: 'Nuntium editum mittere',
       attachingFile: 'Adiungitur...',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Hodie, ${time}`,

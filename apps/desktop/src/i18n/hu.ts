@@ -2651,16 +2651,9 @@ Hagyja üresen a ${mode} alapértelmezés megtartásához.`,
       loadingSession: 'Munkamenet betöltése',
       showEarlier: 'Korábbi üzenetek megjelenítése',
       loadingResponse: 'OpenAmer választ tölt be',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Gondolkodik',
       today: time => `Ma, ${time}`,

@@ -2651,20 +2651,9 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
       loadingSession: 'Seisiún á lódáil',
       showEarlier: 'Taispeáin teachtaireachtaí níos luaithe',
       loadingResponse: 'Tá OpenAmer ag lódáil freagra',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Ag smaoineamh',
       today: time => `Inniu, ${time}`,

@@ -2171,7 +2171,7 @@ Leave blank to keep the ${mode} default.`,
     remoteSetupTitle: 'موجودہ OpenAmer سے منسلک ہوں',
     remoteSetupDesc: 'اپنا gateway URL درج کریں۔ OpenAmer Desktop خود بخود معلوم کرے گا کہ اسے token یا براؤزر سائن اِن کی ضرورت ہے یا نہیں۔',
     remoteUrlDesc: 'OpenAmer gateway کا base URL استعمال کریں، بشمول https:// جب یہ ریموٹ ہو۔',
-    remoteUrlPlaceholder: '`https://gateway.example.com/openamer`',
+    remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
     probing: 'Gateway authentication کا پتہ لگایا جا رہا ہے...',
     probeError: 'اس OpenAmer gateway تک رسائی نہیں ہو سکی۔',
     identityProvider: 'آپ کا identity provider',
@@ -2627,7 +2627,8 @@ Leave blank to keep the ${mode} default.`,
       goForward: 'آگے بڑھیں',
       sendEdited: 'ترمیم شدہ پیغام بھیجیں',
       attachingFile: 'منسلک کیا جا رہا ہے…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,

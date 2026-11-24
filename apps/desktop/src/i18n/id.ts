@@ -2651,20 +2651,9 @@ Biarkan kosong untuk mempertahankan default ${mode}.`,
       loadingSession: 'Memuat sesi',
       showEarlier: 'Tampilkan pesan sebelumnya',
       loadingResponse: 'OpenAmer sedang memuat respons',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Berpikir',
       today: time => `Hari ini, ${time}`,

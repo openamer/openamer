@@ -2380,7 +2380,8 @@ Leave blank to keep the ${mode} default.`,
       goForward: '𐬞𐬀𐬭𐬁 𐬞𐬀𐬭𐬁',
       sendEdited: '𐬥𐬀𐬎𐬀 𐬫𐬁𐬗 𐬞𐬀𐬭𐬁',
       attachingFile: '𐬀𐬞𐬀...',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,

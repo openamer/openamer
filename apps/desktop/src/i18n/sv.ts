@@ -2651,20 +2651,9 @@ Lämna tomt för att behålla ${mode} som standard.`,
       loadingSession: 'Läser in session',
       showEarlier: 'Visa tidigare meddelanden',
       loadingResponse: 'OpenAmer läser in ett svar',
-      resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Tänker',
       today: time => `I dag, ${time}`,

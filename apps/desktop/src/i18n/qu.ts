@@ -2228,7 +2228,8 @@ Wayqllayta qiyarichay ${mode} default qhipaq.`,
       loadingSession: 'Sesión chaskichkan',
       showEarlier: 'Ñawpaq willakuykunata rikuchiy',
       loadingResponse: 'OpenAmer kutichiyta chaskichkan',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Yuyaychkan',

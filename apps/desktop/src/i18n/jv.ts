@@ -1974,7 +1974,8 @@ Kosongake kanggo njaga standar ${mode}.`,
       loadingSession: 'Ngemot sesi',
       showEarlier: 'Tampilake pesen sadurunge',
       loadingResponse: 'OpenAmer lagi ngemot wangsulan',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Mikirake',

@@ -2673,7 +2673,8 @@ export const iu = defineLocale({
       goForward: 'ᓯᑎᑦᑎᓂᖅ',
       sendEdited: 'ᐋᖅᑭᒃᑕᐅᓯᒪᔪᒥᒃ ᑐᓴᐅᑎᒐᕐᒥᒃ ᑐᓴᐅᑎᑦᑎᓂᖅ',
       attachingFile: 'ᐃᓚᒋᔭᐅᑎᑦᑎᓂᖅ…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `ᐅᓪᓗᒥ, ${time}`,

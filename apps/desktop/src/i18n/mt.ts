@@ -2486,7 +2486,8 @@ export const mt = defineLocale({
       goForward: 'Mur \'il quddiem',
       sendEdited: 'Ibgħat il-messaġġ editjat',
       attachingFile: 'Qed jitwaħħal…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Illum, ${time}`,
