@@ -3025,7 +3025,7 @@ ${mode} ཡི་སོར་བཞག་རྒྱུན་འཁྱོངས་
           'nyaaa~ OpenAmer སྙན་ཞུ།',
         ],
         bodies: [
-          'paste a file, paw at a bug, or toss me a repo. i\'ll pounce on failing tests and leave clean diffs, nyan~',
+          'file ཞིག་粘贴བྱེད་རེད། bug ཞིག་བཟུང་རེད། ཡང་ན་ repo ཞིག་གཏོང་རེད། ངས་ tests མ་ལེགས་པ་རྣམས་བཅོས་ཤིང་ diff གཙང་མ་ཞིག་བཞག་གི་ཡིན། nyan~',
           'ལས་ཀ་འགྲེལ་བཤད་གནང་རོགས། ངས་བཅོས་པ་བྱས་ཏེ། ཚོད་ལྟ་སྤར་ཏེ། ཁྱེད་ཀྱི་ PR ལ་སྤྲོ་སྤྲོ་བྱེད་གྱི་ཡིན། གཟབ་འཛིན། ངས་མ་ប្រើབའི་ imports རྣམས་བཅས་གྱི་ཡིན།',
           'དམིགས་ཡུལ་གཅིག་སྤྲོད་རོགས། ངས་ཀូཌ་སྒྲོམ་གྱི་ནང་དུ་དེ་འཚོལ་གྱི་ཡིན། ཀློག་པ། བཅོས་པ། སྤར་བ། ཐམས་ཅད་རྐྱེན་མགོ་འགུལ་བཞིན་བྱེད་གྱི་ཡིན།',
           'paste an error or a plan. i debug like i hunt: quietly, thoroughly, with the occasional zoomie.',
@@ -3092,7 +3092,7 @@ ${mode} ཡི་སོར་བཞག་རྒྱུན་འཁྱོངས་
           'bug དེ་དང་། repo དེ་དང་། ལས་ཀ་གསར་པ་དེ་粘贴བྱེད་རེད། ངས་གྲ་སẵnཡིན། Clean diffs དང་ Green tests ད་ལྟ་ཉིད་དུ།',
           'ལས་ཀ་དེ་གཏོང་རེད། ངས་ལས་ཀ་བྱེད་པ་བལྟ་རེད། Files ཀློག་པ། tests རུང་བ། PRs ཁ་ཕྱེ་བ། དེ་རིང་ང་ཚོས་མ་ཉམས་པར་ལྡོག་ཀྱི་ཡིན།',
           'ཆེས་དཀའ་ခག་གི་ bug ཞིག་འདྲེན། ངས་ཀློག་ཅིང་། patch བྱེད་ཅིང་། test བྱེད་ཅིང་། commit བྱེད་ཀྱི་ཡིན། འགོ་བཙུགས་གནང་།',
-          'Describe the task. I\'ll blitz through files, crush failing tests, and leave a commit that SLAPS. Go go go.',
+          'ལས་ཀ་དེ་འགྲེལ་བཤད་གནང་། ངས་ files རྣམས་མགྱོགས་པར་བལྟ་ཤིང་། tests མ་ལེགས་པ་རྣམས་བཅོས་ཏེ། SLAPS བྱེད་པའི་ commit ཞིག་བཞག་གི་ཡིན། འགོ་བཙུག འགོ་བཙུག འགོ་བཙུག',
           'Typo ཆུང་ཆུང་འམ་ refactor ཆེན་པོ་ཡིན་ནའང་གནད་མེད། ངས་དེ་རིང་ clean code སྤྲོད་ཀྱི་ཡིན། ལས་ཀ་གསུང་རེད། ལས་ཀ་བྱེད་ကြོམ།',
         ],
       },
@@ -3121,7 +3121,7 @@ ${mode} ཡི་སོར་བཞག་རྒྱུན་འཁྱོངས་
           'གནད་དོན་ཆུང་ཆུང་གང་ཡིན་ནའང་མེད།',
         ],
         bodies: [
-          'Tell me what\'s broken. I\'ll read the files, dust for prints, and leave a diff on the desk by morning.',
+          'ཅི་མ་ལེགས་པ་གསུངས་རེད། ངས་ files ཀློག་ཤིང་། ར jäl vå བརྟག་ཏེ། 🌅 མ་lobster སྔོན་ལ་ diff ཞིག་བཞག་གི་ཡིན།',
           'ཁྱེད་ལ་ bug ཞིག་ཡོད། ང་ལ་བཟོད་པ་དང་ terminal ཞིག་ཡོད། གནད་དོན་གསུང་རེད། ངས་དེ་ལན་སྤྲོད་直到ལེགས་པར་ཆགས་བར་བྱེད་ཀྱི་ཡིན།',
           'stack trace དང་། ཉེན་ཆས་ file དང་། དཔྱད་གཞིའི་ལན་粘贴བྱེད་རེད། ངས་དེའི་ནང་ནས་དངོས་ truth འཚོལ་ཏེ། ལན་སྤྲོད་ཀྱི་ཡིན།',
           'bug རེས་རེས་ཀྱི་རྟགས་རྗེས་ཡོད། repo དང་ལམ་སྟོན་ཞིག་གནང་། ངས་ དེའི་རྒྱབ་ནས་བརྒྱུད་ནས། བཅོས་ပြီး file དེ་བསྡུ་གི་ཡིན།',
@@ -3189,7 +3189,7 @@ ${mode} ཡི་སོར་བཞག་རྒྱུན་འཁྱོངས་
           'ཁྱེད་ཀྱི་ repo path ཡང་ན་ཁྱེད་ལ་དཀའ་སྤྲོད་བྱེད་པའི་ bug དེ་ paste བྱེད་རེད། ང་ཚོས་ནང་ལ་འཛུལ་ཏེ། བཅོས་ཏེ། ཕྱིར་ཐོན་གོ། ལག་བསྟར་ལེགས།',
           'Vibe དེ་གསུང་རེད། feature ཡང་ན་ refactor ཡང་ན་ hotfix རེད། ངས་ test བརྒྱབ་ཏེ། patch བཏུག སྤྲོ་བོ་བཞག་གོ། brah',
           'Big bug? Little typo? Whole rewrite? Just point. I handle the code; you chill with the rad commits.',
-          'Name the task and we\'re off. I read, edit, test, and leave a commit smoother than a dawn patrol.',
+          'ལས་ཀའི་མིང་གསལ་རེད། ང་ཚོ་འགོ་བཙུག ངས་ཀློག་ཅིང་། བཅོས་ཅིང་། test བྱེད་དེ། dawn patrol ལས་ཀྱང་མཉམ་པའི་ commit ཞིག་བཞག་གི་ཡིན།',
         ],
       },
       teacher: {
