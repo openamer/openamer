@@ -1,7 +1,7 @@
 {
-  "updated": "2026-11-23T02:15:08.729257+00:00",
+  "updated": "2026-11-24T02:25:56.766114+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 1326,
+  "total": 1331,
   "skills": {
     "auto-competitor-intelligence-claudepowered-ai": {
       "refs": 0,
@@ -2409,6 +2409,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-npu-server-bg-log": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-numpy-in-tests-test-vector-memory-py": {
       "refs": 0,
       "ok": 0,
@@ -2614,6 +2620,12 @@
       "missing": []
     },
     "darwin-harvested-scripts-build-skills-index-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-scripts-cron-i18n-converge-py": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -5581,11 +5593,10 @@
     },
     "nv-reason-cxr": {
       "refs": 2,
-      "ok": 0,
-      "score": 0.0,
+      "ok": 1,
+      "score": 0.5,
       "missing": [
-        "skills/nv-reason-cxr/scripts/run_nv_reason_cxr.py",
-        "eval_engine/run.py"
+        "skills/nv-reason-cxr/scripts/run_nv_reason_cxr.py"
       ]
     },
     "nv-segment-ct": {
@@ -7855,6 +7866,12 @@
       "score": 1.0,
       "missing": []
     },
+    "test-drift-repair": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "testing-strategy": {
       "refs": 1,
       "ok": 1,
@@ -7886,8 +7903,8 @@
       "missing": []
     },
     "ui-string-catalog-translation": {
-      "refs": 9,
-      "ok": 9,
+      "refs": 10,
+      "ok": 10,
       "score": 1.0,
       "missing": []
     },
@@ -7993,9 +8010,9 @@
       "missing": []
     },
     "cron-job-management": {
-      "refs": 2,
-      "ok": 1,
-      "score": 0.5,
+      "refs": 3,
+      "ok": 2,
+      "score": 0.667,
       "missing": [
         "launcher.py"
       ]
@@ -8018,6 +8035,12 @@
     "dashboard": {
       "refs": 3,
       "ok": 3,
+      "score": 1.0,
+      "missing": []
+    },
+    "durable-work-lifecycle": {
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -8063,9 +8086,15 @@
       "score": 1.0,
       "missing": []
     },
-    "measurement-integrity": {
+    "measured-capability-harness": {
       "refs": 0,
       "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "measurement-integrity": {
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -8094,8 +8123,8 @@
       "missing": []
     },
     "npu-directml-stack": {
-      "refs": 2,
-      "ok": 2,
+      "refs": 3,
+      "ok": 3,
       "score": 1.0,
       "missing": []
     },

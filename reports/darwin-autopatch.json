@@ -1,14 +1,23 @@
 {
-  "timestamp": "2026-11-23T03:15:00",
+  "timestamp": "2026-11-24T03:25:39",
   "mode": "apply",
-  "population": 1326,
+  "population": 1331,
   "avg_score": 38.8,
   "kept": [
     {
+      "skill": "agent-experience",
+      "before": 0,
+      "after": 42,
+      "delta": 42,
+      "fixes": [
+        "✅ Frontmatter hinzugefügt für 'agent-experience'"
+      ]
+    },
+    {
       "skill": "cordis-styling-nitpicking",
       "before": 0,
-      "after": 48,
-      "delta": 48,
+      "after": 45,
+      "delta": 45,
       "fixes": [
         "✅ Frontmatter hinzugefügt für 'cordis-styling-nitpicking'"
       ]
@@ -83,15 +92,6 @@
       "delta": 45,
       "fixes": [
         "✅ Frontmatter hinzugefügt für 'dsh-doc-writing'"
-      ]
-    },
-    {
-      "skill": "dsh-error-handling",
-      "before": 0,
-      "after": 51,
-      "delta": 51,
-      "fixes": [
-        "✅ Frontmatter hinzugefügt für 'dsh-error-handling'"
       ]
     }
   ],
