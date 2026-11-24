@@ -2,6 +2,64 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
+const ALL_LOCALES = [
+  'en',
+  'zh-Hans',
+  'de',
+  'es',
+  'fr',
+  'pt-BR',
+  'ru',
+  'ja',
+  'ko',
+  'hi',
+  'ar',
+  'it',
+  'tr',
+  'id',
+];
+
+/**
+ * Which locales a build covers.
+ *
+ * Measured 2026-11-24: the full 14-locale build does not fit the 20-minute
+ * budget of the `docs-site-checks` PR gate (the job ran 21:28:37 -> 21:48:53 and
+ * was cancelled inside "Build Docusaurus"). On `main` that gate is red, so
+ * "All required checks pass" fails for every PR and nothing can merge through
+ * the normal path. The all-locale build belongs to the deploy: deploy-site runs
+ * it on main with a 180-minute budget.
+ *
+ * So a pull_request build covers the source locale only. That still compiles
+ * every generated skill page, which is the class of error this gate exists to
+ * catch (an MDX fault in the English source); translated overlays are copies of
+ * those pages and stay covered by the deploy build and by
+ * `scripts/i18n_verify_locales.py`.
+ *
+ * Override with DOCUSAURUS_LOCALES=all (or a comma list) for a deliberate full
+ * build outside CI.
+ */
+function buildLocales(): string[] {
+  const override = (process.env.DOCUSAURUS_LOCALES || '').trim();
+  if (override === 'all') return ALL_LOCALES;
+  if (override) {
+    const wanted = override
+      .split(',')
+      .map((value) => value.trim())
+      .filter(Boolean);
+    const unknown = wanted.filter((value) => !ALL_LOCALES.includes(value));
+    if (unknown.length) {
+      throw new Error(
+        `DOCUSAURUS_LOCALES names unknown locale(s): ${unknown.join(', ')}. ` +
+          `Known: ${ALL_LOCALES.join(', ')}`,
+      );
+    }
+    return wanted.length ? wanted : ['en'];
+  }
+  // GitHub sets GITHUB_EVENT_NAME in every Actions job.
+  if (process.env.GITHUB_EVENT_NAME === 'pull_request') return ['en'];
+  return ALL_LOCALES;
+}
+
 const config: Config = {
   title: 'OpenAmer Agent',
   tagline: 'The self-improving AI agent',
@@ -24,22 +82,7 @@ const config: Config = {
 
   i18n: {
     defaultLocale: 'en',
-    locales: [
-      'en',
-      'zh-Hans',
-      'de',
-      'es',
-      'fr',
-      'pt-BR',
-      'ru',
-      'ja',
-      'ko',
-      'hi',
-      'ar',
-      'it',
-      'tr',
-      'id',
-    ],
+    locales: buildLocales(),
     localeConfigs: {
       en: {
         label: 'English',

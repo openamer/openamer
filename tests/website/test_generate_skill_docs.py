@@ -114,3 +114,60 @@ def test_bundled_catalog_explains_missing_local_skills(gen_module):
     result = gen_module.build_catalog_md_bundled([])
     assert "respects local deletions and user edits" in result
     assert "openamer skills reset <name> --restore" in result
+
+
+def test_table_pipe_inside_code_span_is_escaped(gen_module):
+    """A `|` inside an inline code span in a GFM table row must be escaped.
+
+    Regression: `skills/monetarisierung/bounty-contribution/SKILL.md` documents
+    an escrow token as `ESCROW-PREAUTH-<blake2s(a + '|' + b)>` in a table cell.
+    GFM ends the cell at the inner pipe even inside a code span, so the closing
+    backtick landed in the next cell, the span stayed open, and MDX parsed the
+    `<blake2s(` as a JSX tag: "Unexpected character `(` in name". The docs build
+    died on it, so the required-checks gate stayed red on an unrelated change.
+    """
+    body = "| **Escrow Token** | `ESCROW-PREAUTH-<blake2s(a + '|' + b)>` | post it |\n"
+
+    result = gen_module.mdx_escape_body(body)
+
+    assert "`ESCROW-PREAUTH-<blake2s(a + '\\|' + b)>`" in result
+    # Exactly one pipe was escaped (the one inside the span).
+    assert result.count("\\|") == 1
+
+
+def test_table_pipe_escape_is_limited_to_table_rows(gen_module):
+    """Prose and fenced code keep their pipes; an escaped pipe is not doubled."""
+    body = (
+        "Prose with a pipe | that is not a table.\n\n"
+        "```\n| a | b |\n```\n\n"
+        "| col | `already \\| escaped` |\n"
+        "|-----|----------------------|\n"
+        "| x   | `no pipe here`       |\n"
+    )
+
+    result = gen_module.mdx_escape_body(body)
+
+    assert "Prose with a pipe | that is not a table." in result
+    assert "| a | b |" in result
+    assert "already \\| escaped" in result
+    assert "already \\\\| escaped" not in result
+
+
+def test_rel_path_uses_posix_separators(gen_module, tmp_path):
+    """`rel_path` must not depend on the OS that generated the docs.
+
+    Regression: `str(rel)` is OS-native, so a Windows run of this generator
+    wrote `skills/creative\\claude-design` into 291 committed docs pages. The
+    Linux CI regenerates the same pages with `/`, so every regeneration
+    flip-flopped 291 files and buried real review diffs. The separator has to
+    be a property of the content, not of the machine.
+    """
+    source_dir = tmp_path / "skills"
+    skill_path = source_dir / "creative" / "claude-design" / "SKILL.md"
+    skill_path.parent.mkdir(parents=True)
+    skill_path.write_text("---\nname: claude-design\n---\n", encoding="utf-8")
+
+    meta = gen_module.derive_skill_meta(skill_path, source_dir, "bundled")
+
+    assert meta["rel_path"] == "creative/claude-design"
+    assert "\\" not in meta["rel_path"]

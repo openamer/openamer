@@ -1,0 +1,524 @@
+# OpenAmer Free LLM Provider Configuration
+# Auto-generated from verified sources (2026-11-08)
+# Sources: free-llm.com, free-model.com, OpenRouter Blog, Hugging Face, freellmpool, ayautomate
+#
+# Usage: Point OpenAmer at any provider below via base_url + api_key + model.
+# All providers listed offer a free tier (permanent free, trial credit, or keyless).
+
+providers:
+
+  # ============================================================
+  # PERMANENT FREE TIER (no expiry, rate-limited)
+  # ============================================================
+
+  - id: openrouter
+    name: "OpenRouter"
+    base_url: "https://openrouter.ai/api/v1"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: false
+    openai_compatible: true
+    category: "permanent_free_tier"
+    rate_limits: "20 RPM, 50 RPD (free tier), up to 1000/day with $10 top-up"
+    modalities: ["text", "image", "audio", "code"]
+    free_models:
+      - "Gemma 3 12B Instruct"
+      - "Gemma 3 27B Instruct"
+      - "Gemma 3 4B Instruct"
+      - "Gemma 3 1B Instruct"
+      - "Hermes 3 Llama 3.1 405B"
+      - "Llama 3.2 3B Instruct"
+      - "Llama 3.3 70B Instruct"
+      - "arcee-ai/trinity-large-preview:free"
+      - "cognitivecomputations/dolphin-mistral-24b-venice-edition:free"
+      - "google/gemma-3n-e2b-it:free"
+      - "google/gemma-3n-e4b-it:free"
+      - "google/gemma-4-26b-a4b-it:free"
+      - "google/gemma-4-31b-it:free"
+      - "liquid/lfm-2.5-1.2b-instruct:free"
+      - "liquid/lfm-2.5-1.2b-thinking:free"
+      - "meta-llama/llama-guard-4-12b:free"
+      - "minimax/minimax-m2.5:free"
+      - "nvidia/nemotron-3-nano-30b-a3b:free"
+      - "nvidia/nemotron-3-super-120b-a12b:free"
+      - "nvidia/nemotron-nano-12b-v2-vl:free"
+      - "nvidia/nemotron-nano-9b-v2:free"
+      - "openai/gpt-oss-120b:free"
+      - "openai/gpt-oss-20b:free"
+      - "qwen/qwen3-coder:free"
+      - "qwen/qwen3-next-80b-a3b-instruct:free"
+      - "z-ai/glm-4.5-air:free"
+    notes: "Routes to 70+ providers. Single API key for 20+ free models. No credit card."
+
+  - id: nvidia_nim
+    name: "NVIDIA NIM"
+    base_url: "https://integrate.api.nvidia.com/v1"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: false
+    openai_compatible: true
+    category: "permanent_free_tier"
+    rate_limits: "40 RPM, no daily cap"
+    modalities: ["text", "image"]
+    free_models:
+      - "deepseek-ai/deepseek-v4-flash"
+      - "Nemotron"
+      - "Llama variants (various)"
+    notes: "Phone number verification may be required. Models tend to be context window limited."
+
+  - id: groq
+    name: "Groq"
+    base_url: "https://api.groq.com/openai/v1"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: false
+    openai_compatible: true
+    category: "permanent_free_tier"
+    rate_limits: "30 RPM, 1,000 RPD (varies by model)"
+    modalities: ["text", "code", "audio"]
+    free_models:
+      - "kimi-k2-instruct"
+      - "Llama 3.3 70B"
+      - "Llama 4 Scout Instruct"
+      - "openai/gpt-oss-120b"
+      - "openai/gpt-oss-20b"
+      - "qwen/qwen3-32b"
+      - "Llama 3.1 8B"
+      - "Llama 3.2 1B/3B/11B/90B"
+      - "Mixtral 8x7B"
+      - "Whisper Large v3"
+      - "Whisper Large v3 Turbo"
+      - "groq/compound"
+      - "groq/compound-mini"
+    notes: "LPU hardware, blazing fast (~320 tok/s on Llama 3.3 70B). No training on customer data."
+
+  - id: github_models
+    name: "GitHub Models"
+    base_url: "https://models.inference.ai.azure.com"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: false
+    openai_compatible: true
+    category: "permanent_free_tier"
+    rate_limits: "10-15 RPM, 150-1,000 RPD (depends on Copilot tier)"
+    modalities: ["text", "image"]
+    free_models:
+      - "gpt-4.1"
+      - "GPT-4o"
+      - "Claude 3.5 Sonnet"
+      - "Llama variants"
+      - "Phi variants"
+    notes: "Tied to GitHub account. Browser-based playground included."
+
+  - id: cloudflare_workers_ai
+    name: "Cloudflare Workers AI"
+    base_url: "https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run/"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: false
+    openai_compatible: false
+    category: "permanent_free_tier"
+    rate_limits: "~10,000 neurons/day (daily allowance)"
+    modalities: ["text", "image"]
+    free_models:
+      - "@cf/meta/llama-4-scout-17b-16e-instruct"
+      - "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b"
+      - "various (10 total)"
+    notes: "Edge-deployed inference. Smaller context windows than most alternatives."
+
+  - id: mistral_ai
+    name: "Mistral AI (La Plateforme)"
+    base_url: "https://api.mistral.ai/v1"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: false
+    openai_compatible: true
+    category: "permanent_free_tier"
+    rate_limits: "1 req/sec, 500K tokens/min, 1B tokens/month (Experiment tier, opt into data training)"
+    modalities: ["text", "code", "image"]
+    free_models:
+      - "Mistral Small 4"
+      - "Mistral Large"
+      - "Mistral Nemo"
+      - "Codestral"
+      - "Mistral 7B"
+    notes: "Free tier requires phone verification and opting into data training."
+
+  - id: ovhcloud_ai_endpoints
+    name: "OVHcloud AI Endpoints"
+    base_url: "https://endpoints.ovh.com"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: false
+    openai_compatible: true
+    category: "permanent_free_tier"
+    rate_limits: "12 RPM (varies by model)"
+    modalities: ["text", "code", "image"]
+    free_models:
+      - "Qwen3-Coder-30B-A3B-Instruct"
+      - "CodeLlama 13B Instruct"
+      - "Codestral Mamba 7B"
+      - "Llama 2 13B Chat"
+      - "Llama 3 70B Instruct"
+      - "Llama 3 8B Instruct"
+      - "Llama 3.1 70B Instruct"
+      - "Mathstral 7B"
+      - "Mistral 7B"
+      - "Mistral Nemo"
+      - "Mixtral variants"
+    notes: "Free beta tier."
+
+  - id: siliconflow
+    name: "SiliconFlow"
+    base_url: "https://api.siliconflow.cn/v1"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: false
+    openai_compatible: true
+    category: "permanent_free_tier"
+    rate_limits: "Fixed free-model limits; identity verification required"
+    modalities: ["text"]
+    free_models:
+      - "deepseek-ai/DeepSeek-OCR"
+      - "various (5 more)"
+    notes: "Identity verification required."
+
+  - id: cohere
+    name: "Cohere"
+    base_url: "https://api.cohere.ai/v1"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: false
+    openai_compatible: false
+    category: "permanent_free_tier"
+    rate_limits: "20 RPM, 1,000 requests/month (trial keys, rate-limited)"
+    modalities: ["text"]
+    free_models:
+      - "Command A (111B)"
+      - "Command R+"
+      - "Cohere Embed v3 English"
+      - "Cohere Embed v3 Multilingual"
+    notes: "Non-commercial use only on free tier."
+
+  - id: cerebras
+    name: "Cerebras"
+    base_url: "https://api.cerebras.ai/v1"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: false
+    openai_compatible: true
+    category: "permanent_free_tier"
+    rate_limits: "30 RPM, ~1M tokens/day (Llama 3.1 8B/70B), gpt-oss-120b: 30 RPM / 14,400 RPD"
+    modalities: ["text"]
+    free_models:
+      - "gpt-oss-120b"
+      - "Llama 3.1 8B"
+      - "Llama 3.1 70B"
+      - "Llama 3.3 70B"
+      - "others"
+    notes: "Wafer-scale engine, extremely high throughput."
+
+  - id: huggingface_inference
+    name: "Hugging Face (Inference API / Router)"
+    base_url: "https://router.huggingface.co/v1"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: false
+    openai_compatible: false
+    category: "permanent_free_tier"
+    rate_limits: "$0.10/month in credits, 1,000 requests/day (with account)"
+    modalities: ["text", "image", "embeddings"]
+    free_models:
+      - "Qwen2.5-7B-Instruct"
+      - "various (4 more)"
+      - "100K+ OSS models via self-host"
+    notes: "Serverless inference limited to models smaller than 10GB. Some popular models supported even if larger."
+
+  - id: llm7_io
+    name: "LLM7.io"
+    base_url: "https://api.llm7.io/v1"
+    auth_type: "bearer"
+    api_key_required: false
+    credit_card_required: false
+    openai_compatible: true
+    category: "permanent_free_tier"
+    rate_limits: "~60/hour without token"
+    modalities: ["text", "code"]
+    free_models:
+      - "deepseek-r1-0528"
+      - "various (4 more)"
+    notes: "Optional token, keyless access."
+
+  - id: ollama_cloud
+    name: "Ollama Cloud"
+    base_url: "https://api.ollama.com"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: false
+    openai_compatible: true
+    category: "permanent_free_tier"
+    rate_limits: "Qualitative free limits"
+    modalities: ["text"]
+    free_models:
+      - "llama3.1:cloud"
+      - "various (4 more)"
+    notes: "Cloud-hosted Ollama models."
+
+  - id: z_ai
+    name: "Z.AI (Zhipu AI)"
+    base_url: "https://api.z.ai/api/v1"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: false
+    openai_compatible: true
+    category: "permanent_free_tier"
+    rate_limits: "~1,000 req/day"
+    modalities: ["text"]
+    free_models:
+      - "GLM-4.7-Flash"
+      - "GLM 4.6"
+      - "various (1 more)"
+    notes: "Chinese provider, generous free tier."
+
+  - id: modelscope
+    name: "ModelScope (Alibaba)"
+    base_url: "https://api-inference.modelscope.cn/v1"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: false
+    openai_compatible: true
+    category: "permanent_free_tier"
+    rate_limits: "2,000 calls/day total, dynamic per-model caps"
+    modalities: ["text"]
+    free_models:
+      - "Qwen/Qwen3.5-35B-A3B"
+      - "various (2 more)"
+    notes: "Alibaba Cloud Model Studio international."
+
+  - id: google_ai_studio
+    name: "Google AI Studio (Gemini)"
+    base_url: "https://generativelanguage.googleapis.com/v1"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: false
+    openai_compatible: false
+    category: "permanent_free_tier"
+    rate_limits: "Varies by model: 5-15 RPM, 20-1,500 RPD, up to 1M context"
+    modalities: ["text", "image", "video", "audio", "code"]
+    free_models:
+      - "Gemini 2.5 Flash"
+      - "Gemini 3 Flash"
+      - "Gemini 3.1 Flash-Lite"
+      - "Gemini 3.1 Flash TTS"
+      - "Gemma 3 1B/4B/12B/27B Instruct"
+      - "Gemini Robotics-ER"
+    notes: "Data used for training outside EU/UK/EEA. Partially OpenAI-compatible."
+
+  - id: google_gemini
+    name: "Google Gemini (API)"
+    base_url: "https://generativelanguage.googleapis.com/v1"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: false
+    openai_compatible: false
+    category: "permanent_free_tier"
+    rate_limits: "Varies by model"
+    modalities: ["text"]
+    free_models:
+      - "Gemini 2.5 Flash"
+      - "various (1 more)"
+    notes: "Separate from AI Studio."
+
+  - id: chutes_ai
+    name: "Chutes.ai"
+    base_url: "https://api.chutes.ai/v1"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: false
+    openai_compatible: true
+    category: "permanent_free_tier"
+    rate_limits: "Community tier"
+    modalities: ["text"]
+    free_models:
+      - "DeepSeek-R1"
+      - "various (1 more)"
+    notes: "Community tier free access."
+
+  - id: glhf_chat
+    name: "Glhf.chat"
+    base_url: "https://glhf.chat/api/v1"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: false
+    openai_compatible: true
+    category: "permanent_free_tier"
+    rate_limits: "Variable"
+    modalities: ["text"]
+    free_models:
+      - "Llama 3.1 70B"
+      - "various (1 more)"
+    notes: "Simple free chat API."
+
+  - id: grok_xai
+    name: "Grok (xAI)"
+    base_url: "https://api.x.ai/v1"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: true
+    openai_compatible: true
+    category: "permanent_free_tier"
+    rate_limits: "Variable"
+    modalities: ["text"]
+    free_models:
+      - "Grok-2"
+      - "various (1 more)"
+    notes: "Credit card required."
+
+  - id: pollinations
+    name: "Pollinations"
+    base_url: "https://text.pollinations.ai"
+    auth_type: "none"
+    api_key_required: false
+    credit_card_required: false
+    openai_compatible: true
+    category: "keyless_no_signup"
+    rate_limits: "Anonymous; rate-limited per IP"
+    modalities: ["text", "image"]
+    free_models:
+      - "various (4)"
+    notes: "Keyless, completely anonymous."
+
+  - id: vercel_ai_gateway
+    name: "Vercel AI Gateway"
+    base_url: "https://ai-gateway.vercel.sh"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: false
+    openai_compatible: true
+    category: "permanent_free_tier"
+    rate_limits: "One zero-price automatic route; priced pins excluded"
+    modalities: ["text"]
+    free_models:
+      - "various (8)"
+    notes: "Routes to various providers."
+
+  - id: opencode_zen
+    name: "OpenCode Zen"
+    base_url: "https://zen.opencode.ai"
+    auth_type: "none"
+    api_key_required: false
+    credit_card_required: false
+    openai_compatible: true
+    category: "keyless_no_signup"
+    rate_limits: "Catalog routes disabled by default pending opt-in"
+    modalities: ["text", "code"]
+    free_models:
+      - "Big Pickle Stealth"
+      - "MiniMax M2.5 Free"
+      - "Arcee Large Preview Free"
+    notes: "Keyless, opt-in required."
+
+  - id: aion_labs
+    name: "Aion Labs"
+    base_url: "https://api.aionlabs.ai/v1"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: false
+    openai_compatible: true
+    category: "permanent_free_tier"
+    rate_limits: "20K tokens/day; no card"
+    modalities: ["text"]
+    free_models:
+      - "various (4)"
+    notes: "No credit card required."
+
+  - id: requesty
+    name: "Requesty"
+    base_url: "https://api.requesty.ai/v1"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: false
+    openai_compatible: true
+    category: "permanent_free_tier"
+    rate_limits: "200 requests/day per account on zero-priced models; no card"
+    modalities: ["text"]
+    free_models:
+      - "various (5)"
+    notes: "No credit card required."
+
+  # ============================================================
+  # TRIAL CREDIT (temporary free, card required after exhaustion)
+  # ============================================================
+
+  - id: trial_credit_providers
+    name: "Providers with Trial Credits (temporary free)"
+    base_url: "varies"
+    auth_type: "bearer"
+    api_key_required: true
+    credit_card_required: true
+    openai_compatible: true
+    category: "trial_credit"
+    rate_limits: "$1-$30 trial credits, expire after weeks"
+    modalities: ["text", "code", "image"]
+    free_models:
+      - "Fireworks ($1 credit)"
+      - "Baseten ($30 credit)"
+      - "Nebius ($1 credit)"
+      - "SambaNova ($5 credit)"
+      - "Novita"
+      - "AI21"
+      - "Upstage"
+      - "NLP Cloud"
+      - "Modal"
+      - "Inference.net"
+      - "Hyperbolic"
+      - "Scaleway Generative APIs"
+    notes: "Temporary trial credits, not permanent free. Card required after exhaustion."
+
+# ============================================================
+# SELF-HOSTED OPEN-WEIGHT MODELS (Hugging Face)
+# ============================================================
+
+self_hosted:
+  source: "Hugging Face Hub"
+  total_models: 2960000
+  total_datasets: 1000000
+  total_spaces: 1440000
+  note: "Download open-weight models and run locally on your own hardware (Ollama, vLLM, LM Studio). Free after setup - you pay only electricity/hardware."
+  top_families:
+    - "Qwen (151K+ derivatives)"
+    - "Llama"
+    - "Gemma"
+    - "Mistral"
+    - "Phi"
+    - "DeepSeek"
+    - "Flux"
+    - "Stable Diffusion"
+  example_free_local_models:
+    - "Qwen3-32B"
+    - "Llama 3.3 70B"
+    - "DeepSeek-R1"
+    - "Gemma 3 27B"
+    - "Phi-4"
+    - "Mistral Small 3"
+  recommended_local_setup:
+    backend: "Ollama / vLLM / LM Studio"
+    hardware: "Ryzen AI NPU (Ryzen AI 1.9.0, onnxruntime-genai) + Radeon 860M (DirectML)"
+    port: 11434
+    base_url: "http://localhost:11434/v1"
+
+# ============================================================
+# RECOMMENDATIONS FOR OPENAMER
+# ============================================================
+
+recommendations:
+  primary_api: "openrouter"
+  speed: "groq"
+  long_context: "google_ai_studio"
+  keyless_no_signup:
+    - "pollinations"
+    - "kilo_code"
+    - "llm7_io"
+    - "opencode_zen"
+  unlimited_private: "self_hosted"
+  best_hybrid: "OpenRouter (API) + Local Ollama on NPU (self-host)"

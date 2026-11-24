@@ -1,0 +1,398 @@
+{
+  "meta": {
+    "title": "OpenAmer Master Free LLM Provider & Model Database",
+    "description": "Complete catalog of every free LLM API provider and free model on the internet, aggregated from multiple verified sources.",
+    "generated_at": "2026-11-08",
+    "sources": [
+      "https://github.com/nejib1/Free-LLM (free-llm.com, synced daily, 86+ providers, 450+ models)",
+      "https://github.com/raullenchai/free-llm-api-resources (jtig37/free-llm-api-resources fork)",
+      "https://github.com/lloydchang/cheahjs-free-llm-api-resources",
+      "https://www.free-model.com/providers/ (20 providers, 147 free models)",
+      "https://www.freellm.net/providers/ (31+ providers, 531 free models)",
+      "https://openrouter.ai/blog/tutorials/free-llm-apis-compared/ (13 platforms, Jun/Sep 2026)",
+      "https://0xzr.github.io/freellmpool/free-llm-api-providers-list.html",
+      "https://www.ayautomate.com/free-models (273 community-ranked models)",
+      "https://opengpuradar.com/free-llm/providers (14 verified providers)",
+      "https://ner-kun.github.io/Table_LLM_providers/free/ (free providers table)",
+      "https://github.com/foisalislambd/all-llm-provider-list",
+      "https://github.com/freellms/free-llm-api-keys",
+      "https://huggingface.co (2.96M open models for self-hosting)"
+    ],
+    "total_free_api_providers_verified_detailed": 54,
+    "total_free_api_providers_referenced": 9,
+    "total_free_api_models_referenced": 519,
+    "total_free_api_models_from_freellm_net": 519,
+    "total_self_hosted_open_weight_models": 2960000,
+    "note": "Keyless providers + OpenRouter + Ollama Cloud. Includes BlockRun, mlvoca, OVHcloud (corrected to keyless), Puter.js. All other key-requiring providers removed.",
+    "total_free_api_providers_detailed": 9
+  },
+  "categories": {
+    "permanent_free_tier": "Permanent free access, no expiry, rate-limited",
+    "trial_credit": "Temporary credits ($1-$30), expire after weeks or require card",
+    "keyless_no_signup": "No API key, no signup, rate-limited per IP",
+    "self_hosted": "Download open-weight model, run on own hardware (free after setup)"
+  },
+  "providers": [
+    {
+      "id": "openrouter",
+      "name": "OpenRouter",
+      "website": "https://openrouter.ai",
+      "category": "permanent_free_tier",
+      "credit_card_required": false,
+      "signup_required": true,
+      "api_key_required": true,
+      "openai_compatible": true,
+      "base_url": "https://openrouter.ai/api/v1",
+      "free_models_count": 36,
+      "online_models_count": 52,
+      "modalities": [
+        "text",
+        "image",
+        "audio",
+        "video",
+        "code",
+        "embedding",
+        "rerank",
+        "speech",
+        "decisions",
+        "pdf"
+      ],
+      "rate_limits": "20 RPM, 50 RPD (free tier), up to 1000/day with $10 top-up",
+      "top_models": [
+        "Owl Alpha",
+        "gpt-oss-120b",
+        "qwen3-coder",
+        "llama-3.3-70b"
+      ],
+      "notes": "Routes to 70+ providers. Single API key for 20+ free models. No credit card.",
+      "free_models": [
+        "Gemma 3 12B Instruct",
+        "Gemma 3 27B Instruct",
+        "Gemma 3 4B Instruct",
+        "Gemma 3 1B Instruct",
+        "Hermes 3 Llama 3.1 405B",
+        "Llama 3.2 3B Instruct",
+        "Llama 3.3 70B Instruct",
+        "arcee-ai/trinity-large-preview:free",
+        "cognitivecomputations/dolphin-mistral-24b-venice-edition:free",
+        "google/gemma-3n-e2b-it:free",
+        "google/gemma-3n-e4b-it:free",
+        "google/gemma-4-26b-a4b-it:free",
+        "google/gemma-4-31b-it:free",
+        "liquid/lfm-2.5-1.2b-instruct:free",
+        "liquid/lfm-2.5-1.2b-thinking:free",
+        "meta-llama/llama-guard-4-12b:free",
+        "minimax/minimax-m2.5:free",
+        "nvidia/nemotron-3-nano-30b-a3b:free",
+        "nvidia/nemotron-3-super-120b-a12b:free",
+        "nvidia/nemotron-nano-12b-v2-vl:free",
+        "nvidia/nemotron-nano-9b-v2:free",
+        "openai/gpt-oss-120b:free",
+        "openai/gpt-oss-20b:free",
+        "qwen/qwen3-coder:free",
+        "qwen/qwen3-next-80b-a3b-instruct:free",
+        "z-ai/glm-4.5-air:free"
+      ]
+    },
+    {
+      "id": "opencode_zen",
+      "name": "OpenCode Zen",
+      "website": "https://opencode.ai",
+      "category": "keyless_no_signup",
+      "credit_card_required": false,
+      "signup_required": false,
+      "api_key_required": false,
+      "openai_compatible": true,
+      "base_url": "https://zen.opencode.ai",
+      "free_models_count": 0,
+      "online_models_count": 0,
+      "modalities": [
+        "reasoning",
+        "vision",
+        "audio"
+      ],
+      "rate_limits": "Catalog routes disabled by default pending opt-in",
+      "top_models": [
+        "Big Pickle Stealth",
+        "MiniMax M2.5 Free",
+        "Arcee Large Preview Free"
+      ],
+      "notes": "Keyless, opt-in required. | CORRECTED: freellmpool lists 0 enabled routes - catalog disabled pending opt-in",
+      "free_models": [
+        "Big Pickle Stealth",
+        "MiniMax M2.5 Free",
+        "Arcee Large Preview Free",
+        "various (31 more)"
+      ]
+    },
+    {
+      "id": "pollinations",
+      "name": "Pollinations",
+      "website": "https://pollinations.ai",
+      "category": "keyless_no_signup",
+      "credit_card_required": false,
+      "signup_required": false,
+      "api_key_required": false,
+      "openai_compatible": true,
+      "base_url": "https://text.pollinations.ai",
+      "free_models_count": 4,
+      "online_models_count": 4,
+      "modalities": [
+        "text",
+        "image"
+      ],
+      "rate_limits": "Anonymous; rate-limited per IP",
+      "top_models": [
+        "various"
+      ],
+      "notes": "Keyless, completely anonymous.",
+      "free_models": [
+        "various (4)"
+      ]
+    },
+    {
+      "id": "llm7_io",
+      "name": "LLM7.io",
+      "website": "https://llm7.io",
+      "category": "permanent_free_tier",
+      "credit_card_required": false,
+      "signup_required": true,
+      "api_key_required": false,
+      "openai_compatible": true,
+      "base_url": "https://api.llm7.io/v1",
+      "free_models_count": 24,
+      "online_models_count": 11,
+      "modalities": [
+        "text",
+        "reasoning",
+        "code",
+        "image",
+        "pdf",
+        "audio",
+        "video",
+        "vision"
+      ],
+      "rate_limits": "~60/hour without token",
+      "top_models": [
+        "deepseek-r1-0528"
+      ],
+      "notes": "Optional token, keyless access.",
+      "free_models": [
+        "deepseek-r1-0528",
+        "various (23 more)"
+      ]
+    },
+    {
+      "id": "ollama_cloud",
+      "name": "Ollama Cloud",
+      "website": "https://ollama.com",
+      "category": "permanent_free_tier",
+      "credit_card_required": false,
+      "signup_required": true,
+      "api_key_required": true,
+      "openai_compatible": true,
+      "base_url": "https://api.ollama.com",
+      "free_models_count": 17,
+      "online_models_count": 8,
+      "modalities": [
+        "text",
+        "reasoning",
+        "image",
+        "video",
+        "code",
+        "vision"
+      ],
+      "rate_limits": "Qualitative free limits",
+      "top_models": [
+        "llama3.1:cloud"
+      ],
+      "notes": "Cloud-hosted Ollama models.",
+      "free_models": [
+        "llama3.1:cloud",
+        "various (16 more)"
+      ]
+    },
+    {
+      "id": "kilo_code",
+      "name": "Kilo Code (Kilo Gateway)",
+      "website": "https://kilocode.ai",
+      "category": "keyless_no_signup",
+      "credit_card_required": false,
+      "signup_required": false,
+      "api_key_required": false,
+      "openai_compatible": true,
+      "base_url": "https://gateway.kilocode.ai/v1",
+      "free_models_count": 29,
+      "online_models_count": 16,
+      "modalities": [
+        "text",
+        "reasoning",
+        "image",
+        "video",
+        "audio",
+        "code"
+      ],
+      "rate_limits": "Anonymous, ~200 req/hour per IP",
+      "top_models": [
+        "nvidia/nemotron-3-super-120b-a12b:free"
+      ],
+      "notes": "Keyless, no signup required.",
+      "free_models": [
+        "nvidia/nemotron-3-super-120b-a12b:free",
+        "various (28 more)"
+      ]
+    },
+    {
+      "id": "blockrun",
+      "name": "BlockRun",
+      "website": "https://blockrun.ai",
+      "category": "keyless_no_signup",
+      "credit_card_required": false,
+      "signup_required": false,
+      "api_key_required": false,
+      "openai_compatible": true,
+      "base_url": "https://blockrun.ai/api/v1",
+      "free_models_count": 7,
+      "online_models_count": 7,
+      "modalities": [
+        "text",
+        "reasoning",
+        "vision"
+      ],
+      "rate_limits": "Rate-limited, retry on 429, shared NVIDIA infrastructure",
+      "top_models": [
+        "nvidia/gpt-oss-120b",
+        "nvidia/deepseek-v4-flash",
+        "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
+        "nvidia/step-3.7-flash",
+        "nvidia/mistral-nemotron",
+        "nvidia/nemotron-nano-9b-v2",
+        "nvidia/nemotron-nano-12b-v2-vl"
+      ],
+      "notes": "Keyless, no signup. OpenAI-compatible. Free models hosted on NVIDIA infrastructure. Context: 131K-1M tokens.",
+      "free_models": [
+        "nvidia/gpt-oss-120b",
+        "nvidia/deepseek-v4-flash",
+        "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
+        "nvidia/step-3.7-flash",
+        "nvidia/mistral-nemotron",
+        "nvidia/nemotron-nano-9b-v2",
+        "nvidia/nemotron-nano-12b-v2-vl"
+      ]
+    },
+    {
+      "id": "mlvoca",
+      "name": "mlvoca",
+      "website": "https://mlvoca.com",
+      "category": "keyless_no_signup",
+      "credit_card_required": false,
+      "signup_required": false,
+      "api_key_required": false,
+      "openai_compatible": false,
+      "base_url": "https://mlvoca.com/api/generate",
+      "free_models_count": 2,
+      "online_models_count": 2,
+      "modalities": [
+        "text",
+        "reasoning"
+      ],
+      "rate_limits": "5/minute, 5 min max response time, non-commercial use",
+      "top_models": [
+        "tinyllama",
+        "deepseek-r1:1.5b"
+      ],
+      "notes": "Keyless, Ollama-compatible /api/generate endpoint. Small open models. 5 requests/minute per IP.",
+      "free_models": [
+        "tinyllama",
+        "deepseek-r1:1.5b"
+      ]
+    },
+    {
+      "id": "puter_js",
+      "name": "Puter.js",
+      "website": "https://js.puter.com",
+      "category": "keyless_no_signup",
+      "credit_card_required": false,
+      "signup_required": false,
+      "api_key_required": false,
+      "openai_compatible": false,
+      "base_url": "https://js.puter.com/v2/",
+      "free_models_count": 400,
+      "online_models_count": 400,
+      "modalities": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "speech",
+        "ocr",
+        "speech-to-text",
+        "speech-to-speech"
+      ],
+      "rate_limits": "User-Pays model (users cover own costs), developer pays nothing",
+      "top_models": [
+        "openai/gpt-5.4-nano",
+        "anthropic/claude-sonnet-5-5",
+        "google/gemini-3.1-pro-preview",
+        "x-ai/grok-4.7"
+      ],
+      "notes": "Keyless JavaScript SDK (Puter.js). 400+ models. User-Pays model - users cover their own AI costs. No backend needed.",
+      "free_models": [
+        "openai/gpt-5.4-nano",
+        "anthropic/claude-sonnet-5-5",
+        "google/gemini-3.1-pro-preview",
+        "x-ai/grok-4.7",
+        "400+ models total"
+      ]
+    }
+  ],
+  "self_hosted_open_models": {
+    "source": "Hugging Face Hub",
+    "total_models": 2960000,
+    "total_datasets": 1000000,
+    "total_spaces": 1440000,
+    "note": "Open-weight models you download and run locally on your own hardware (Ollama, vLLM, LM Studio, etc.). Free after setup - you pay only electricity/hardware.",
+    "top_families": [
+      "Qwen (151K+ derivatives)",
+      "Llama",
+      "Gemma",
+      "Mistral",
+      "Phi",
+      "DeepSeek",
+      "Flux",
+      "Stable Diffusion"
+    ],
+    "example_free_local_models": [
+      "Qwen3-32B",
+      "Llama 3.3 70B",
+      "DeepSeek-R1",
+      "Gemma 3 27B",
+      "Phi-4",
+      "Mistral Small 3"
+    ]
+  },
+  "summary_for_openamer": {
+    "total_free_api_providers_detailed": 9,
+    "total_free_api_providers_referenced": 9,
+    "total_free_api_models_referenced": 450,
+    "total_free_api_models_from_freellm_net": 531,
+    "total_self_hosted_open_weight_models": 2960000,
+    "best_for_immediate_free_use": [
+      "OpenRouter",
+      "Google AI Studio",
+      "Groq",
+      "NVIDIA NIM",
+      "Mistral",
+      "Cloudflare Workers AI"
+    ],
+    "best_for_no_signup_keyless": [
+      "Pollinations",
+      "Kilo Code",
+      "LLM7.io",
+      "OpenCode Zen"
+    ],
+    "best_for_unlimited_private": [
+      "Self-host on Hugging Face (2.96M models) via Ollama/vLLM on local NPU/GPU"
+    ]
+  }
+}
