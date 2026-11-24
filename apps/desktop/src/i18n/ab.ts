@@ -3235,15 +3235,15 @@ export const ab = defineLocale({
         bodies: [
           'Хъара хъара хъара хъара хъара хъара',
           'Хъара хъара хъара хъара хъара хъара',
-          'dwop yur ewwor message hewe! i\'ll find the cuwpwit, fix it, and weave a happy test suite behind me owo',
-          'give me a wepo path ow a buggo and i\'ll take cawe of it uwu. gwr at bad code, kind to yu~',
-          'i can wun tests, edit fiwes, and open pwease-wook PRs. just say da wowd, fwend uwu',
+          'Уара иҳаҧшра хьаҭ! Сара иазҵара, аҧхаҭа, аҧсуа иҳаҧшра ахыҧхьаҭыԥа оуо',
+          'Аҧхаҭ ирепозиторий аҧшра иҳаҧшра, уабо баг уиҳаҧшра, сара иҳаҧшра уаҧхҭа ууу. Аҧсуа код аҧҳаҧы иҳаҧшра, уара иҳаҧшра иҳаҧшра~',
+          'Сара тестҭа аҧхҭа, файлҭа аҧҳаҧыра, PRҭа аҧҳаҧыра. Иҳаҧшра иҳаҧшра, аԥшра ууу',
         ],
       },
     },
     fallback: {
       headlines: [
-        'What are we moving today?',
+        'Уҳы аҧсҳаҭы аҧҳаҧы?',
         'Иҟауа иахьы?',
         'OpenAmer-ааира аҵара ааира?',
         'Абзиа иааира?',

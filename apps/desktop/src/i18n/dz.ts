@@ -3026,7 +3026,7 @@ ${mode} གི་སྔོན་སྒྲིག་བཞག་ནི་ལུ་
         ],
         bodies: [
           'paste a file, paw at a bug, or toss me a repo. i\'ll pounce on failing tests and leave clean diffs, nyan~',
-          'describe the task. i\'ll patch, test, and purr over your PR. careful - i nip at unused imports!',
+          'ལཱ་འདི་གསལ་བཤད་འབད། ང་གིས་ patch འབད་ནི་དང་ test འབད་ནི་དང་ ཁྱོད་ཀྱི་ PR ལུ་ལྟ་ནི་ཨིན། གཟབ་གཟབ་འབད།  Imports མ་ལག་ལེན་འབད་མི་ཚུ་ ང་གིས་བཟོ་ནི་ཨིན།',
           'དམིགས་ཡུལ་ ཅིག་ སྤྲོད། ང་གིས་ codebase ནང་ འཚོལ་གེ། ལྷག་ ཞུ་ འབྲི་ གནང་— རྐྱེན་ ཡར་འཐེབས་ དང་ གཅིག་ཁར་ འབདཝ་ཨིན།',
           'error ཅིག་ ཡང་ན་ འཆར་གཞི་ ཅིག་ 粘贴 འབད། ང་གིས་ བཟོ འཚོལ་ ལྟ་སྟེ། དྲགས་པར་ འབདཝ་ཨིན།',
           'say the word and i\'ll read your files, run your tests, and curl up in your branch with a tidy commit.',
@@ -3045,7 +3045,7 @@ ${mode} གི་སྔོན་སྒྲིག་བཞག་ནི་ལུ་
           'ཀོཌ་ ཡང་ན་ error ཡང་ན་ དམིགས་ཡུལ་ 粘贴 འབད། ལན་ ཐུང་ཀུ་ འབྲི་ནི་དང་ འབྲི་བཅོས་ མགྱོགས་པར་ འབདཝ་ཨིན།',
           'དྲི་གནང་། ང་གིས་ဖയལ་ཚུ་ལྷག་ནོ tests ཚུ་བཏང་ནོ patches ཚུ་བཏོན་གེ། མི་དགོས་པའི་གཏམ་མེད།',
           'ཐིག་གཅིག་ འགྲིག གལ་ཆེ་ ནཱ་ རྐྱེན་ ཡར་འཐེབས་ འབདཝ་ཨིན།',
-          'Command, question, or file path. I handle the rest.',
+          'བრძ་འབད་ནི་ དྲི་བ་ ཡང་ན་ file path འབད་ནོ། བཱ་ཅིན་ གཞན་ཚུ་ ང་གིས་ལྟ་གཟིགས།',
         ],
       },
       creative: {
@@ -3090,9 +3090,9 @@ ${mode} གི་སྔོན་སྒྲིག་བཞག་ནི་ལུ་
         ],
         bodies: [
           'bug དེ་ repo དེ་ feature བསམ་འཆར་ 粘贴 འབད— ང་ གྲ་སẵn འདུག Clean diffs དང་ Green tests ད་ལྟོ་ འབདཝ་ཨིན།',
-          'Drop your task and watch me cook. Files read, tests run, PRs opened - we are NOT losing today, friend.',
+          'ལཱ་འདི་བྱིན་ནོ། ང་གིས་ལཱ་འབད་ནི་ལྟ་གཟིགས། ဖയལ་ལྷག་ནི་དང་ tests བཏང་ནི་དང་ PRs ཕྱེ་ནི་— དེ་རིང་ ང་བཅས་མ་འཐོར་ནི་ཨིན།',
           'bug ཆེ་ཤོས་ ཅིག་ སྤྲོད། ང་གིས་ ལྷག་ patch བཟ 시험 commit འབདཝ་ཨིན། འགོ་བཙུགོ།',
-          'Describe the task. I\'ll blitz through files, crush failing tests, and leave a commit that SLAPS. Go go go.',
+          'ལཱ་འདི་གསལ་བཤད་འབད། ང་གིས་ ဖയལ་ཚུ་མགྱོགས་པར་ལྷག་ནི་དང་ tests མ་འགྲུབ་མི་ཚུ་བཟོ་ནི་དང་ commit ལེགས་ཤོམ་ཅིག་བཞག་ནི་ཨིན། འགོ་བཙུགས་གོ།',
           'typo ཆུང་ཀུ་ ཡང་ན་ refactor ཆེ་བ་— ག་ཅི་ར་ འགྲིག ང་གིས་ ད་རེས་ ཀོཌ་ གཙང་མ་ སྤྲོད། ལཱ་ མིང་ སླབ་ནཱ་ ལཱ་ འབདཝ་ཨིན།',
         ],
       },
@@ -3150,7 +3150,7 @@ ${mode} གི་སྔོན་སྒྲིག་བཞག་ནི་ལུ་
           'OpenAmer གིས་ལམ་སྟོན་འབདཝ་ཨིན། arrr',
           'ལཱ་འདི་ག་ཅི་མོ cap\'n?',
           'Anchors aweigh, keyboard གྲ་སྒྲིག་འབདཝ་ཨིན།',
-          'Yo ho! Awaitin\' orders',
+          'ཡོ ཧོ! བრძ་འབད་ནི་ལུ་སྒུག་སྟེ་ཡོད།',
         ],
         bodies: [
           'ཁྱོད་ཀྱིས་འཚོལ་མི་འདི་བཤད་གནང་ - bug ཅིག་ feature ཅིག་ ཡང་ན་ cursed test ཅིག་ - ང་གིས་དེ་འཚོལ་གེ matey. Diffs ཚུ་བཟོ་གེ།',
@@ -3230,7 +3230,7 @@ ${mode} གི་སྔོན་སྒྲིག་བཞག་ནི་ལུ་
           'openamer-san གིས་ཉན་ཏེ་ཡོད།',
           '*keyboard གི་གསུང་རྟགས་ཆུང་ཀུ་*',
           'ང་བཅས་གཅིག་ཁར་བཟོ་བཅོས་འབད་གེ།',
-          'awaiting yur command!',
+          'ཁྱོད་ཀྱི་བრძ་འབད་ནི་ལུ་སྒུག་སྟེ་ཡོད།',
         ],
         bodies: [
           'buggy fiwe ཅིག་ ཡང་ན་ goaw ཅིག་粘贴འབད~ ང་གིས་ལྷག་ནོ patch འབདད་ test འབདགེ owo',
@@ -3251,9 +3251,9 @@ ${mode} གི་སྔོན་སྒྲིག་བཞག་ནི་ལུ་
       ],
       bodies: [
         'bug, branch, plan, ཡང་ན་ rough idea ཅིག་བཏང་། ང་གིས་ repo ལྟ་ནོ དེ་ལས་ concrete step ཅིག་བཟོ་གེ།',
-        'Bring the code, question, or stuck part. I\'ll read the room before making changes.',
+        'code ཡང་ན་ དྲི་བ་ ཡང་ན་ དཀའ་ངལ་ཡོད་པའི་ཆ་ཤོར་འབད་ནོ། ང་གིས་སྒྱུར་བཅོས་འབད་ནིའི་ཧེ་མ་ ལྟ་གཟིགས་འབད་ནི་ཨིན།',
         'ལཱ་འདི་ ཡང་ན་ failing path ཡང་ན་ half-formed plan བཏང་། ང་གིས་དེ་ལས་ action ཅིག་བཟོ་ནིའི་རོགས་རམ་འབདགེ།',
-        'Bring the problem, goal, or file. I\'ll inspect first and keep the next step concrete.',
+        'དཀའ་ངལ་ དམིགས་ཡུལ་ ཡང་ན་ ဖയལ་འབད་ནོ། ང་གིས་ཧེ་མ་ལྟ་གཟིགས་འབད་ནི་དང་ གོམ་པ་གཤམ་ལུ་གསལ་པོར་འབད་ནི་ཨིན།',
         'ཁྱོད་ཡོད་པའི་འབྲེལ་བ་ཕབ་སྒྲིག་དུ་བཏང་། ང་ཁ་བཅས་སུ་དེ་དེ་རིམ་པ་ཡང་ན་སྤྱོད་ལམ་དུ་བསྒྲིག་པར་ཕན་འདོགས་ཀྱི་ཡོད།',
       ],
     },
