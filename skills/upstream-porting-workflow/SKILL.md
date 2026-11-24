@@ -52,7 +52,7 @@ Three closing steps that this skill treats as part of the job, not extras:
  say which direction it is instead of assuming "every bug here is a bug for
  everyone".
 
- **Never build the PR branch from local HEAD.** Measured: `git branch -f <name>
+ **Never build the PR branch from local HEAD.** Measured: `git branch -f \<name>
  HEAD` put **76 commits over `origin/main`** on the remote in one command — the
  entire divergent lineage, not the one fix. Build it on the upstream tip and
  carry only your own work:
@@ -100,7 +100,7 @@ Three closing steps that this skill treats as part of the job, not extras:
  **A patch you hand-apply onto the `origin/main` worktree needs its ANCHORS re-verified — the local lineage is NOT the base.** Measured 2026-10-13 (a learner gate fix, local `main` 90 ahead / 86 behind `origin/main`): an insertion anchor that held in the running copies (`…_is_site_nav_chain(text):` / `return True` immediately before `return False`) was **not last** in `origin/main`, where other checks follow it — same anchor text, different neighbours, so a blind apply either aborts on the assert or splices into the wrong place. Grep every anchor against the WORKTREE copy before applying, and prefer an anchor at the TOP of the insertion region (the *first* check of a long dispatch function exists in every version). Also read the true size of the commit with `git show --stat HEAD`: the bare `git commit` echo printed a whole-file rewrite (`19428+ / 19316-`) from the CRLF/LF boundary while the real change was `112+ / 0-`.
 
 **Check the count before the push and the ref after it.** `git rev-list
- --count origin/main..<branch>` must equal the number of commits you intended
+ --count origin/main..\<branch>` must equal the number of commits you intended
  (1, or the PR's stack). Then `git ls-remote --heads origin <branch>` and compare
  the SHA. Correct a wrong push with `--force-with-lease` (never a bare `--force`,
  and only on your own branch); when upstream has moved, rebase the branch on the
@@ -1399,7 +1399,7 @@ was accurate.
   is the only honest answer to "how far along are we"; a dozen cluster runs are not
   a substitute.
 - **Never let a cluster number stand in for the total.** State both: "that cluster
-  is 0; the suite as a whole is unmeasured since <time> and was N then".
+  is 0; the suite as a whole is unmeasured since \<time> and was N then".
 - **Give the denominator.** "21 files green" means nothing without "of 2,566 test
   files". A count with no base reads as a boast and invites the exact doubt this
   section exists to prevent.
@@ -1542,8 +1542,8 @@ leaks past an explicit override). Exit 1 when drift is found, so it gates a comm
 ```
 
 **Runnable:** `scripts/port_closure.py` — transitive dependency closure for a set
-of upstream modules (`port_closure.py <upstream-root> <local-root> <up-pkg>
-<local-pkg> <mod>...`). Sizes a PARTIAL port before any file is copied: reports
+of upstream modules (`port_closure.py \<upstream-root> \<local-root> \<up-pkg>
+\<local-pkg> \<mod>...`). Sizes a PARTIAL port before any file is copied: reports
 `TO PORT (N modules, M lines)` vs `already present`, and flags modules absent on
 both sides as "not a port gap". Use it whenever a ported module's own imports
 might not have come along.

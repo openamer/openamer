@@ -511,9 +511,9 @@ Practical notes:
 - Rate limit is real: errors: [[RATELIMIT...]] after a handful of comments → 9.5-min spacing
   between them, not a retry-loop.
 - **Thread-walk reads can return the literal {} (measured 12.10.2026, 6/6 attempts).** Walking
-  /r/<sub>/comments/<pid>.json?limit=500 from a tab on https://old.reddit.com/ returned {} six
+  /r/\<sub>/comments/\<pid>.json?limit=500 from a tab on https://old.reddit.com/ returned {} six
   times in a row while the *same* expression returned the full object once the tab was navigated to
-  https://old.reddit.com/r/<sub>/comments/<pid>/ . Recovery: Page.navigate to the thread's own URL
+  https://old.reddit.com/r/\<sub>/comments/\<pid>/ . Recovery: Page.navigate to the thread's own URL
   and re-run the walk. Do not conclude the comment is absent from a {} read. Full transcript:
   references/reddit-thread-walk-2026-10-12.md.
 - Keep comments **on-topic and link-free** (a bare `github.com/...` link from a low-karma account

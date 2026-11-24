@@ -17,7 +17,7 @@
 - **Citable number without official submission**: run a 50-task random subset (seed fixed)
   through the official harness (cloud or local), publish logs + results.json via
   `swebench submit hf <run_id> -b <user>/<repo>` → README line: "X% resolved on N-task
-  subset of SWE-bench Verified, official harness, logs: <URL>".
+  subset of SWE-bench Verified, official harness, logs: \<URL>".
 
 ## Working runner (committed in openamer repo `runner/eval.py`, 142 lines)
 

@@ -87,7 +87,7 @@ the box where the agent lives is only safe if you prove the collateral is zero.
 ## Prevention, not just cleanup
 
 - The test-side cause is the **live guard** not catching `python -m openamer_cli.main
-  gateway …` (it anchors on binary names and script paths, not on `-m <module>`).
+  gateway …` (it anchors on binary names and script paths, not on `-m \<module>`).
   Until that matcher covers the module form, every full-suite run leaks a handful of
   real gateways.
 - A service that is started by tests should also carry its own reaper: exit when the

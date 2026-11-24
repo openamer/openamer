@@ -68,8 +68,8 @@ startup. A mention that a control does not raise the deadline is not a
 recommendation to change it. Do not invent a setting the remediation does not
 name. Raising only the client deadline does not change
 this server budget. For static JavaScript,
-`analysis_timeout_ms` (CLI `rea analyze-javascript-application <path>
---analysis-timeout-ms <milliseconds>`) controls each source's
+`analysis_timeout_ms` (CLI `rea analyze-javascript-application \<path>
+--analysis-timeout-ms \<milliseconds>`) controls each source's
 startup, analysis and transfer deadline in **milliseconds**. Increase that
 budget or reduce semantic work / select exact inventoried `source_paths` when
 the task permits. Omit `source_paths` for all sources; `[]` is invalid.

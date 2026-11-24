@@ -61,7 +61,7 @@ rule + the case that established it. Full prose lives in `bounty-factory/lessons
   `acf_form()`. So: scrape the nonce from public HTML
   (`curl -s https://SITE/pubform/ | grep -o 'data-nonce="[a-f0-9]*"'`) and replay it —
   `POST /wp-admin/admin-ajax.php --data 'action=acf/fields/post_object/query&
-  field_key=<k>&nonce=<scraped>&paged=1'` → HTTP 200 JSON listing
+  field_key=\<k>&nonce=\<scraped>&paged=1'` → HTTP 200 JSON listing
   `"PRIVATE-POST (private)"`, `"SECRET-DRAFT (draft)"`; the `s=` param turns it into a
   targeted keyword search over non-public content. Rule: grep every `wp_ajax_nopriv_`
   handler and ask (a) does its query filter by capability AND `post_status`, (b) is
@@ -257,7 +257,7 @@ rule + the case that established it. Full prose lives in `bounty-factory/lessons
  account-import page rendered the selected local filename with `innerHTML`
  (`app/javascript/controllers/upload_preview_controller.js`) instead of
  `textContent`, so a crafted `.zip` NAME is parsed as live HTML *inside the real
- authenticated form*: naming the file `<button formaction=/40002/users/<victim-id>
+ authenticated form*: naming the file `\<button formaction=/40002/users/\<victim-id>
  /email_addresses formmethod=post name=email_address value=attacker@example.com>
  Take over.zip` makes ONE click submit the victim's authenticated POST with the
  form's real `authenticity_token` → email change to the attacker's mailbox →
@@ -268,9 +268,9 @@ rule + the case that established it. Full prose lives in `bounty-factory/lessons
  "sanitised" the upload path — the download/upload path is hardened, the PREVIEW
  path usually is not; audit every `innerHTML`/`outerHTML`/`insertAdjacentHTML`/
  `document.write`/`dangerouslySetInnerHTML`/jQuery `.html()` that receives one;
- (b) escalate with a FORM CONTROL, not script — `<button formaction= formmethod=
- post name= value=>`, `<input type=image formaction=>`, a nested `<form>`, `<a
- ping=>`: no `<script>` needed (CSP/sanitizer-proof, the browser's own submit does
+ (b) escalate with a FORM CONTROL, not script — `\<button formaction= formmethod=
+ post name= value=>`, `\<input type=image formaction=>`, a nested `\<form>`, `\<a
+ ping=>`: no `\<script>` needed (CSP/sanitizer-proof, the browser's own submit does
  the work), the enclosing authenticated form supplies the CSRF token for free, and
  the victim cookie rides along — **same-origin DOM XSS voids CSRF-token
  protection**; grade DOM sinks on authenticated pages as request forgery, never as
@@ -324,7 +324,7 @@ rule + the case that established it. Full prose lives in `bounty-factory/lessons
   tokens), RFC clause cited BY NUMBER, one-line pass log printed.
 
 - **A pointer taken INTO a growable container is invalidated by a REALLOCATION
-  during a nested call; "not fixed by <prior fix>" is a FIX-SCOPE AUDIT order.**
+  during a nested call; "not fixed by \<prior fix>" is a FIX-SCOPE AUDIT order.**
   MariaDB #3915935 (High CVSS 8.8, Resolved, 2 votes, disclosed 2026-10-07):
   `sp_cursor::open()` (`sql/sp_rcontext.cc:845`) passes `&result` /
   `&server_side_cursor` — members of `this`, an `sp_cursor` inside the

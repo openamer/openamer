@@ -70,7 +70,7 @@ openamer asi status|think|learn|remember|trigger|heartbeat
 ## A2A Global Mesh
 Server :8085 mit echtem ASI Reasoning.  
 Hybrid-Mode: Direkt (Port 8085, Echtzeit) + Relay (GitHub, Fallback).  
-Peer-Registrierung: directory/a2a/peers/<host>.json
+Peer-Registrierung: directory/a2a/peers/\<host>.json
 
 ## Commits (14) auf Branch fix/scoreboard-stale-openamer-home
 PR #67 offen — merge auf main nötig für Sichtbarkeit.

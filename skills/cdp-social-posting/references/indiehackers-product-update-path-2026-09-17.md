@@ -39,8 +39,8 @@ land — do NOT report success.
 
 ## Why `/new-post` stays blocked
 
-`/new-post` returns a **static** 26 kB shell: `<main><div class="post-page post-page--post
-post-page--editing"><div class="post-page__error-message"><p>You can't create posts yet.</p>`.
+`/new-post` returns a **static** 26 kB shell: `\<main>\<div class="post-page post-page--post
+post-page--editing">\<div class="post-page__error-message">\<p>You can't create posts yet.\</p>`.
 The string appears **only** in the SSR HTML, not after client hydration — so a
 `document.querySelector('main')` read on a hydrated tab shows the gate correctly while a raw
 `fetch('/new-post')` substring match can give a false positive/negative. Read the DOM, not the

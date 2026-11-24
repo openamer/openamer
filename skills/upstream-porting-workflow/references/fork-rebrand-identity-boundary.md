@@ -120,8 +120,8 @@ comma-separated subset of 18 family ids; measured counts via `oare mcp doctor`:
 | session,application,electron,javascript-runtime,artifact,managed | **79** (registered) |
 | session,application,electron,javascript-runtime | 49 |
 
-`openamer mcp add <name> --env REA_MCP_TOOL_FAMILIES=… --command <abs node> --args
-<repo>/scripts/rea.mjs mcp` prompts for tool approval; pipe `y` on stdin when
+`openamer mcp add \<name> --env REA_MCP_TOOL_FAMILIES=… --command \<abs node> --args
+\<repo>/scripts/rea.mjs mcp` prompts for tool approval; pipe `y` on stdin when
 headless. Verify with `openamer mcp test <name>` → `✓ Connected / ✓ Tools
 discovered: 79`.
 

@@ -108,7 +108,7 @@ non-empty `signature` + `source_pubkey`.
 
 **Correct usage (verified):**
 
-    openamer a2a meshlearn learn "<title>" "<body>" --topic <t>   # stages ~/.openamer/a2a/insights/
+    openamer a2a meshlearn learn "\<title>" "\<body>" --topic \<t>   # stages ~/.openamer/a2a/insights/
     openamer a2a mesh learn     # publish local + import peers; IDEMPOTENT by title slug
     openamer a2a mesh stats     # published / imported / memory entries / skills / topics
     openamer a2a mesh import    # list peer lessons
@@ -170,7 +170,7 @@ records, not raw grep hits (a bare grep also matches trajectories):
   `from: nodeworker`, `runner: runnervmmprz5`, worker pubkey `6c67c254cd79`,
   matched by Actions run `38200061761` `repository_dispatch` /
   `completed/success`; earlier round-trip re-verified 2026-10-11): it prints `queued ping to remote worker (sender
-  <fp>)` + `dispatched a2a-worker workflow`, then the worker's `=== A2A result
+  \<fp>)` + `dispatched a2a-worker workflow`, then the worker's `=== A2A result
   (signed+verified, from remote worker) ===` block with `ok: True`, `from:
   nodeworker`, a `runner:` name and the worker pubkey. Cross-check the GitHub
   Actions run: `gh run list --workflow=a2a-worker.yml --limit 1` must show a

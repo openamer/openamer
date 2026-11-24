@@ -70,7 +70,7 @@ leave a reply / cookie policy / privacy policy`, plus a praise-voice regex
 you|thanks`). Test both directions: the testimonial is rejected AND a real
 technical sentence sharing the page still extracts.
 
-**Verification:** 58/58 repo tests (`<repo>/.venv/Scripts/python.exe -m pytest
+**Verification:** 58/58 repo tests (`\<repo>/.venv/Scripts/python.exe -m pytest
 scripts/training/ -q`), live buffer re-measured 300 → 197 rows with 0 junk
 markers, `internet_learner.py --once` re-run green afterwards.
 
@@ -363,7 +363,7 @@ once-task; GPU PyTorch must match a cu1xx index (`pip install --index-url
 https://download.pytorch.org/whl/cu121`), and on a uv-managed Python you need
 `--break-system-packages`; the frontier server binds `0.0.0.0` but Windows
 Firewall still blocks the LAN IP — add `netsh advfirewall firewall add rule
-... localport=<port>` before testing from the laptop's IP.
+... localport=\<port>` before testing from the laptop's IP.
 
 When orchestrating a multi-tier reasoning chain (local 2B → free 550B cloud →
 GPU) as ONE pipeline (`cognitive_core.py` `reason()`: world-retrieval → plan →

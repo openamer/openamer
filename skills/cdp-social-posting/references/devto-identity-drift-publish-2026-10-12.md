@@ -72,7 +72,7 @@ Two facts worth reusing for future posts:
 - The verify wording is `"measured N but identity.md does not state it"` — it compares against the
   **currently measured** value, so a *changed* value is reported as "does not state it". Quote the
   message verbatim rather than paraphrasing it into a claim it does not make.
-- Feature-claim check that costs one call: `gh api repos/<o>/<r>/git/trees/main?recursive=1 --jq
+- Feature-claim check that costs one call: `gh api repos/\<o>/\<r>/git/trees/main?recursive=1 --jq
   '.tree[].path' | grep -i identit` → `openamer_cli/identity.py` +
   `openamer_cli/subcommands/identity.py` are in the **public** tree. Do this before writing
   "open source" next to a CLI feature; the README does not mention `identity verify`.

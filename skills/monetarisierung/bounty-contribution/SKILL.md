@@ -143,7 +143,7 @@ covers the contribution itself: vet → clone → author → verify → PR.
   Also `scripts/gen_ranking_snapshot.py` must be regenerated whenever the
   corpus grows (the test literally prints the command in its failure).
 - **Verify "reachable" with the repo's own search:** `search_knowledge.py
-  "<question words>" --lessons` — the new lesson should rank #1; that is the
+  "\<question words>" --lessons` — the new lesson should rank #1; that is the
   AC's first (local) reachability check. The hosted-index confirmation is the
   maintainer's post-merge step — say so, don't fake it.
 - **Environment trap on this box (cost real time):** `PYTHONPATH` is globally
@@ -158,7 +158,7 @@ covers the contribution itself: vet → clone → author → verify → PR.
   "1 failed, 3293 passed" where the 1 failure is unrelated and pre-existing on
   `main` (e.g. a workflow citing a docs file that never existed) means your PR
   is clean. Cross-check the failure against an untouched file / `git show
-  origin/main:<path>` before blaming your change.
+  origin/main:\<path>` before blaming your change.
 - **Component/UI fixes**: match the repo's test dir conventions — many TS-script
   jest repos pin `testMatch` to `tests/**`, so component tests go there, not in
   a co-located `__tests__`. If JSX breaks the suite, the babel test config likely
@@ -210,7 +210,7 @@ covers the contribution itself: vet → clone → author → verify → PR.
   authoring.** Live pull: 5 rewards, 2 already dead (`rodrigompy/bugb#1` issue
   CLOSED; `buape/kiai-bounties` repo deleted). And **claimer/tryer counters hide
   agent-farming**: `rencfs#3` ($42 Rust doc bounty) showed 0 claimers but had
-  **40+ open AI-agent PRs**. Rules: (1) `gh issue view <n> --repo <o>/<r> --json
+  **40+ open AI-agent PRs**. Rules: (1) `gh issue view \<n> --repo \<o>/\<r> --json
   state` must be OPEN; (2) `gh repo view` must resolve; (3) on doc/research
   bounties count PRs (`gh pr list --state all`), not Opire counters. Full
   recipe + the runnable probe: `references/opire-live-bounty-pull.md`,
