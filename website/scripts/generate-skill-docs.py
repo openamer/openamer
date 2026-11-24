@@ -238,8 +238,48 @@ def mdx_escape_body(body: str) -> str:
         if kind == "code":
             processed.append(_wrap_ascii_art_code_blocks(content))
         else:
-            processed.append(escape_text(content))
+            processed.append(escape_table_pipes(escape_text(content)))
     return "\n".join(processed)
+
+
+def escape_table_pipes(text: str) -> str:
+    """Escape `|` inside inline code spans that sit in GFM table rows.
+
+    A pipe inside a code span still delimits a table cell in GFM, so the
+    closing backtick lands in the next cell, the backtick run stays open and
+    MDX then parses the span's `<tag(` as JSX -- e.g.
+
+        | Escrow | `ESCROW-<blake2s(a + '|' + b)>` |
+
+    fails the docs build with "Unexpected character `(` in name". GFM decodes
+    `\\|` back to `|` inside a cell, including inside inline spans, so escaping
+    the pipes is the correct, lossless fix.
+    """
+    out_lines: list[str] = []
+    for line in text.split("\n"):
+        if not line.lstrip().startswith("|"):
+            out_lines.append(line)
+            continue
+        out: list[str] = []
+        i = 0
+        while i < len(line):
+            if line[i] != "`":
+                out.append(line[i])
+                i += 1
+                continue
+            j = i
+            while j < len(line) and line[j] == "`":
+                j += 1
+            run = line[i:j]
+            end = line.find(run, j)
+            if end == -1:
+                out.append(line[i:])
+                break
+            inner = re.sub(r"(?<!\\)\|", r"\\|", line[j:end])
+            out.append(run + inner + run)
+            i = end + len(run)
+        out_lines.append("".join(out))
+    return "\n".join(out_lines)
 
 
 def rewrite_relative_links(body: str, meta: dict[str, Any]) -> str:

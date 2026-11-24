@@ -211,6 +211,111 @@ def fuse_rankings(rankings: list[list[tuple[float, str]]], k: int, rrf_k: int = 
 
 
 
+def _idf(document_frequency: int, total: int) -> float:
+    import math
+
+    return math.log((total + 1.0) / (document_frequency + 1.0)) + 1.0
+
+
+def _question_features(question: str, df: collections.Counter, total: int) -> tuple[list[str], list[str], float]:
+    """Content terms (in order), numbers, and the total IDF mass of the question."""
+    sequence = TOKEN.findall(question.lower())
+    ceiling = max(40, int(total * 0.05))
+    content = [term for term in sequence if len(term) >= 4 and df.get(term, 0) <= ceiling]
+    numbers = [n for n in re.findall(r"\d{2,}", question)]
+    mass = sum(_idf(df.get(term, 0), total) for term in set(content)) or 1.0
+    return content, numbers, mass
+
+
+def rerank_scores(
+    question: str,
+    candidates: list[str],
+    index: dict[str, list[str]],
+    df: collections.Counter,
+    total: int,
+    semantic_scores: dict[str, float],
+) -> list[tuple[float, str]]:
+    """Score already-retrieved candidates on evidence readable in the text.
+
+    Pure function: no store access, no embeddings call, no I/O. Split out of
+    `rank_rerank` so the weights and the ordering they produce can be tested
+    without a live embedding model.
+
+    * cosine   -- semantic proximity (raw), weight 1.5
+    * coverage -- IDF-weighted share of the question's content terms present,
+                  weight 1.3
+    * numbers  -- share of the question's multi-digit numbers present,
+                  weight 0.5 (many labels ask "wie viele", "welche drei")
+    * rare     -- question terms with df <= 2 present, weight 0.2 each, cap 4
+
+    Scale: measured on the local nomic index, the top-50 of a question spans
+    0.03-0.11 cosine, so the semantic term moves by at most 1.5 * 0.11 = 0.17
+    while coverage moves by up to 1.3. That is deliberate: this reranker exists
+    to let readable evidence overturn a *near-tie* in embedding space, not to
+    overrule a clear semantic preference. A candidate that is far ahead of the
+    pool on similarity still wins.
+
+    (Normalising the cosine to [0,1] per pool was tried and rejected: it turns
+    an arbitrary 0.002 difference at the top of the pool into a full-scale 1.5
+    signal, which makes the semantic term maximally influential exactly when it
+    carries the least information.)
+    """
+    content, numbers, mass = _question_features(question, df, total)
+    unique_content = set(content)
+
+    scored: list[tuple[float, str]] = []
+    for digest in candidates:
+        texts = index.get(digest)
+        if not texts:
+            continue
+        text = texts[0]
+        lowered = text.lower()
+        candidate_terms = tokens(text)
+
+        coverage = sum(
+            _idf(df.get(term, 0), total) for term in unique_content if term in candidate_terms
+        ) / mass
+        rare = sum(1 for term in unique_content if df.get(term, 0) <= 2 and term in candidate_terms)
+        numeric = (sum(1 for n in numbers if n in lowered) / len(numbers)) if numbers else 0.0
+        cosine = semantic_scores.get(digest, 0.0)
+
+        score = 1.5 * cosine + 1.3 * coverage + 0.5 * numeric + 0.2 * min(rare, 4)
+        scored.append((score, digest))
+
+    scored.sort(key=lambda pair: (-pair[0], pair[1]))
+    return scored
+
+
+def rank_rerank(
+    question: str,
+    k: int,
+    index: dict[str, list[str]],
+    df: collections.Counter,
+    total: int,
+    nomic_hashes: list[str],
+    nomic_vectors,
+    pool: int = 50,
+) -> list[tuple[float, str]]:
+    """Retrieve a wide pool, then rerank it with question-to-document evidence.
+
+    P1.2c: fusion alone (RRF over cosine + IDF) decides the top-5 from two
+    *uncalibrated* scores, so a candidate that is obviously the answer -- because
+    it carries the rare term and the number the question asks for -- can lose to
+    a candidate that is merely nearby in embedding space. Weights are fixed a
+    priori, never fitted on the label set; `memory_ceiling.py` measures how much
+    headroom a pool of this width leaves before any reranker can help.
+
+    Returns the full reranked pool; the caller truncates to k.
+    """
+    semantic = rank_nomic(question, k, nomic_hashes, nomic_vectors, pool=max(pool * 4, 200))
+    semantic_scores = {digest: score for score, digest in semantic}
+    lexical = rank_lexical(question, pool=pool)
+    candidates: list[str] = list(
+        dict.fromkeys([digest for _s, digest in semantic[:pool]] + [digest for _s, digest in lexical])
+    )
+    return rerank_scores(question, candidates, index, df, total, semantic_scores)
+
+
 def run(k: int, limit: int | None, as_json: bool, backend: str = "current") -> int:
     import longterm_memory as mem
 
@@ -228,7 +333,7 @@ def run(k: int, limit: int | None, as_json: bool, backend: str = "current") -> i
         missing = [label["id"] for label in labels if label["expect_hash"] not in indexed]
         if missing:
             print(f"WARNING: {len(missing)} labels have no chunk yet ({', '.join(missing[:5])}...)", file=sys.stderr)
-    if backend in ("nomic", "hybrid"):
+    if backend in ("nomic", "hybrid", "rerank"):
         nomic_hashes, nomic_vectors = load_nomic_index()
         missing = [label["id"] for label in labels if label["expect_hash"] not in set(nomic_hashes)]
         if missing:
@@ -270,6 +375,13 @@ def run(k: int, limit: int | None, as_json: bool, backend: str = "current") -> i
             returned = fuse_rankings(
                 [rank_nomic(question, k, nomic_hashes, nomic_vectors), rank_lexical(question)], k
             )
+        elif backend == "rerank":
+            returned = [
+                digest
+                for _score, digest in rank_rerank(
+                    question, k, index, df, len(index), nomic_hashes, nomic_vectors
+                )
+            ][:k]
         else:
             raise ValueError(f"unknown backend {backend}")
         elapsed = time.perf_counter() - started
@@ -407,8 +519,13 @@ def main() -> int:
     parser.add_argument(
         "--backend",
         default="current",
-        choices=["current", "nomic", "hybrid", "chunks"],
-        help="current = production query(); nomic = local model vectors only; chunks = best-chunk per episode; hybrid = nomic fused with the IDF lexical ranking",
+        choices=["current", "nomic", "hybrid", "chunks", "rerank"],
+        help=(
+            "current = production query(); nomic = local model vectors only; "
+            "chunks = best-chunk per episode; hybrid = nomic fused with the IDF "
+            "lexical ranking; rerank = top-50 of both, reranked on cosine + "
+            "term coverage + numbers + rare terms"
+        ),
     )
     args = parser.parse_args()
     return run(args.k, args.limit, args.json, args.backend)

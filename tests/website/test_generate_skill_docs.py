@@ -116,6 +116,43 @@ def test_bundled_catalog_explains_missing_local_skills(gen_module):
     assert "openamer skills reset <name> --restore" in result
 
 
+def test_table_pipe_inside_code_span_is_escaped(gen_module):
+    """A `|` inside an inline code span in a GFM table row must be escaped.
+
+    Regression: `skills/monetarisierung/bounty-contribution/SKILL.md` documents
+    an escrow token as `ESCROW-PREAUTH-<blake2s(a + '|' + b)>` in a table cell.
+    GFM ends the cell at the inner pipe even inside a code span, so the closing
+    backtick landed in the next cell, the span stayed open, and MDX parsed the
+    `<blake2s(` as a JSX tag: "Unexpected character `(` in name". The docs build
+    died on it, so the required-checks gate stayed red on an unrelated change.
+    """
+    body = "| **Escrow Token** | `ESCROW-PREAUTH-<blake2s(a + '|' + b)>` | post it |\n"
+
+    result = gen_module.mdx_escape_body(body)
+
+    assert "`ESCROW-PREAUTH-<blake2s(a + '\\|' + b)>`" in result
+    # Exactly one pipe was escaped (the one inside the span).
+    assert result.count("\\|") == 1
+
+
+def test_table_pipe_escape_is_limited_to_table_rows(gen_module):
+    """Prose and fenced code keep their pipes; an escaped pipe is not doubled."""
+    body = (
+        "Prose with a pipe | that is not a table.\n\n"
+        "```\n| a | b |\n```\n\n"
+        "| col | `already \\| escaped` |\n"
+        "|-----|----------------------|\n"
+        "| x   | `no pipe here`       |\n"
+    )
+
+    result = gen_module.mdx_escape_body(body)
+
+    assert "Prose with a pipe | that is not a table." in result
+    assert "| a | b |" in result
+    assert "already \\| escaped" in result
+    assert "already \\\\| escaped" not in result
+
+
 def test_rel_path_uses_posix_separators(gen_module, tmp_path):
     """`rel_path` must not depend on the OS that generated the docs.
 
