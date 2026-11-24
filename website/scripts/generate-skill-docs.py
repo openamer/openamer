@@ -204,10 +204,29 @@ def mdx_escape_body(body: str) -> str:
                             "h6",
                         }
                         if tag in safe_tags:
-                            out.append(m.group(0))
-                            i += len(m.group(0))
-                            continue
-                    # Escape the `<`
+                            # A bare whitelisted tag with NO closing part in
+                            # the same paragraph is not HTML — it's prose that
+                            # MDX would compile as JSX and then reject the whole
+                            # page ("Expected a closing tag for `<sub>`").
+                            # Measured on three skill pages in docs-site-checks.
+                            # Pass it through only when it's a void element
+                            # (<br>, <img>, ...), self-closing (<x/>), a closing
+                            # tag, or genuinely paired with a matching close later.
+                            void_tags = {"br", "hr", "img", "input", "meta", "link"}
+                            is_self_closing = (
+                                m.group(0).rstrip().endswith("/>")
+                                or m.group(0).rstrip().endswith("/")
+                            )
+                            is_closing = bool(m.group(1))
+                            if not is_closing:
+                                has_close = f"</{tag}>" in text[i + len(m.group(0)):]
+                            else:
+                                has_close = False
+                            if is_closing or is_self_closing or tag in void_tags or has_close:
+                                out.append(m.group(0))
+                                i += len(m.group(0))
+                                continue
+                        # Escape the `<`
                     out.append("&lt;")
                 else:
                     out.append(ch)
@@ -300,7 +319,12 @@ def derive_skill_meta(skill_path: Path, source_dir: Path, source_kind: str) -> d
         "category": category,
         "sub": sub,
         "slug": slug,
-        "rel_path": str(rel),
+        # posix form, not str(): a Windows run of this generator wrote
+        # `skills/creative\claude-design` into 291 committed docs pages, which
+        # then flip-flopped against the Linux CI output on every regeneration.
+        # The docs repo is byte-compared by humans and churned by CI, so the
+        # separator must not depend on the machine that generated it.
+        "rel_path": rel.as_posix(),
     }
 
 

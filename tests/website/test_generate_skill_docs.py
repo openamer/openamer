@@ -114,3 +114,23 @@ def test_bundled_catalog_explains_missing_local_skills(gen_module):
     result = gen_module.build_catalog_md_bundled([])
     assert "respects local deletions and user edits" in result
     assert "openamer skills reset <name> --restore" in result
+
+
+def test_rel_path_uses_posix_separators(gen_module, tmp_path):
+    """`rel_path` must not depend on the OS that generated the docs.
+
+    Regression: `str(rel)` is OS-native, so a Windows run of this generator
+    wrote `skills/creative\\claude-design` into 291 committed docs pages. The
+    Linux CI regenerates the same pages with `/`, so every regeneration
+    flip-flopped 291 files and buried real review diffs. The separator has to
+    be a property of the content, not of the machine.
+    """
+    source_dir = tmp_path / "skills"
+    skill_path = source_dir / "creative" / "claude-design" / "SKILL.md"
+    skill_path.parent.mkdir(parents=True)
+    skill_path.write_text("---\nname: claude-design\n---\n", encoding="utf-8")
+
+    meta = gen_module.derive_skill_meta(skill_path, source_dir, "bundled")
+
+    assert meta["rel_path"] == "creative/claude-design"
+    assert "\\" not in meta["rel_path"]
