@@ -295,6 +295,7 @@ def rank_rerank(
     nomic_hashes: list[str],
     nomic_vectors,
     pool: int = 50,
+    chunk_index: tuple[list[str], object] | None = None,
 ) -> list[tuple[float, str]]:
     """Retrieve a wide pool, then rerank it with question-to-document evidence.
 
@@ -305,18 +306,49 @@ def rank_rerank(
     priori, never fitted on the label set; `memory_ceiling.py` measures how much
     headroom a pool of this width leaves before any reranker can help.
 
+    When ``chunk_index`` is supplied, the semantic score of a candidate is
+    ``max(episode_cosine, best_chunk_cosine)``: an episode-level mean vector is a
+    blend of everything the episode says, so a record that *contains* the fact
+    can sit below one that is merely *about* the topic. The max answers "does
+    this record contain it", in the same units, so no new weight is introduced.
+
     Returns the full reranked pool; the caller truncates to k.
     """
+    import numpy as np
+
     semantic = rank_nomic(question, k, nomic_hashes, nomic_vectors, pool=max(pool * 4, 200))
     semantic_scores = {digest: score for score, digest in semantic}
     lexical = rank_lexical(question, pool=pool)
     candidates: list[str] = list(
         dict.fromkeys([digest for _s, digest in semantic[:pool]] + [digest for _s, digest in lexical])
     )
+
+    if chunk_index is not None:
+        chunk_hashes, chunk_vectors = chunk_index
+        query_vector = embed_query(question)
+        scores = chunk_vectors @ query_vector
+        best: dict[str, float] = {}
+        for position in np.argsort(-scores):
+            digest = chunk_hashes[position]
+            if digest in candidates or digest in semantic_scores:
+                value = float(scores[position])
+                if value > best.get(digest, -1.0):
+                    best[digest] = value
+        for digest, value in best.items():
+            if value > semantic_scores.get(digest, -1.0):
+                semantic_scores[digest] = value
+
     return rerank_scores(question, candidates, index, df, total, semantic_scores)
 
 
-def run(k: int, limit: int | None, as_json: bool, backend: str = "current") -> int:
+def run(
+    k: int,
+    limit: int | None,
+    as_json: bool,
+    backend: str = "current",
+    pool: int = 200,
+    rerank_chunks: bool = False,
+) -> int:
     import longterm_memory as mem
 
     index = load_store_index()
@@ -338,6 +370,10 @@ def run(k: int, limit: int | None, as_json: bool, backend: str = "current") -> i
         missing = [label["id"] for label in labels if label["expect_hash"] not in set(nomic_hashes)]
         if missing:
             print(f"WARNING: {len(missing)} labels have no nomic vector yet ({', '.join(missing[:5])}...)", file=sys.stderr)
+
+    chunk_index = None
+    if backend == "rerank" and rerank_chunks:
+        chunk_index = load_chunk_index()
 
     broken = []
     for label in labels:
@@ -379,7 +415,15 @@ def run(k: int, limit: int | None, as_json: bool, backend: str = "current") -> i
             returned = [
                 digest
                 for _score, digest in rank_rerank(
-                    question, k, index, df, len(index), nomic_hashes, nomic_vectors
+                    question,
+                    k,
+                    index,
+                    df,
+                    len(index),
+                    nomic_hashes,
+                    nomic_vectors,
+                    pool=pool,
+                    chunk_index=chunk_index,
                 )
             ][:k]
         else:
@@ -523,12 +567,32 @@ def main() -> int:
         help=(
             "current = production query(); nomic = local model vectors only; "
             "chunks = best-chunk per episode; hybrid = nomic fused with the IDF "
-            "lexical ranking; rerank = top-50 of both, reranked on cosine + "
+            "lexical ranking; rerank = top-pool of both, reranked on cosine + "
             "term coverage + numbers + rare terms"
         ),
     )
+    parser.add_argument(
+        "--pool",
+        type=int,
+        default=200,
+        help=(
+            "rerank candidate-pool width per retriever (default 200, which "
+            "memory_ceiling.py measures as the widest pool that still pays: "
+            "ceiling recall@5 0.68 against 0.34 at pool 10)"
+        ),
+    )
+    parser.add_argument(
+        "--rerank-chunks",
+        action="store_true",
+        help=(
+            "rerank backend only: score a candidate by max(episode cosine, "
+            "best-chunk cosine) instead of the episode mean vector alone. "
+            "Measured 2026-11-24 and NOT adopted: recall@5 0.32 / MRR 0.218 "
+            "against 0.34 / 0.245 without it, so the flag defaults off"
+        ),
+    )
     args = parser.parse_args()
-    return run(args.k, args.limit, args.json, args.backend)
+    return run(args.k, args.limit, args.json, args.backend, args.pool, args.rerank_chunks)
 
 
 if __name__ == "__main__":
