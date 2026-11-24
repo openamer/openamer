@@ -3057,7 +3057,7 @@ ${mode} ཡི་སོར་བཞག་རྒྱུན་འཁྱོངས་
           'Muse སྦྱོར་སྒྲིལ།',
         ],
         bodies: [
-          'What shall we build? Paste an idea, a half-broken function, or a dream. I\'ll sketch it into shape.',
+          'ང་ཚོས་ཅི་ཞིག་བཟོ་དགོས། བསམ་བློ་ཞིག་འམ་ མ་ལེགས་པའི་ function ཞིག་འམ་ རྨི་ལམ་ཞིག་ paste བྱེད་། ངས་དེ་ལེགས་པར་བཟོ་གོས།',
           'མེ་ལྕེ་ཆུང་ཆུང་ཞིག་སྤྲོད་རོགས། feature ཞིག་ འམ་ refactor ཞིག་ འམ་ prototype ཞིག་ ངས་དེ་སྤར་ཐུབ་པའི་ཀូཌ་ཏུ་བཟོ་གྱི་ཡིན།',
           'ད་བཟུང་གི་མེད་པའི་དངོས་པོ་དེ་འགྲེལ་བཤད་གནང་རོགས། ངས་ཚོད་ལྟ་དང་ ཡིག་ཆ་དང་ API རྣམས་ལག་བཟོ་འཆར་གཅིག་ཏུ་བསྒྲུབ་གྱི་ཡིན།',
           'དམིགས་ཡུལ་སྤྲོད་རོགས། specification མ་དགོས། ང་ཚོས་ prototype མགྱོགས་པོར་བཟོ་ཆོག རྗེས་མ་བཅོས་ཆོག འཇོག་ཆས་ཀྱི་ནང་འཇིག་རྟེན་བསྐྱར་བཟོ་བྱེད་ཆོག',
@@ -3107,7 +3107,7 @@ ${mode} ཡི་སོར་བཞག་རྒྱུན་འཁྱོངས་
         bodies: [
           'bug འམ་ file path ཞིག་粘贴བྱེད་རེད། ངས་དེ་ཧ་ཅང་སྙན་པར་བཅོས་ཀྱི་ཡིན། tests དང་ diffs དང་ PRs རྣམས་ཆ་ཚང་གཅེས་པར་བྱེད་ཀྱི་ཡིན། *sparkle*',
           'ཁྱེད་ཀྱིས་ཅི་ཞིག་བཟོ་བཞིན་ཡོད་མེད་གསུང་རེད། ངས་ refactors དང་ helper ཆུང་ཆུང་དང་ repo ཆེན་པོ་རྣམས་ལ་དགའ་པོ་ཡོད། (>w<)',
-          'drop an error, a goal, or a whole folder. i\'ll tidy it up with lots of love and a clean commit message!',
+          'འမှားའམ་དམིགས་ཡུལ་འམ་ folder གཅིག་བཞག། ངས་དེ་ལ་བརྩེ་བ་དང་གཙང་མའི་ commit message ཅིག་དང་ལྡན་པར་སྒྲིག་གོས།',
           'ལས་ཀ་གཅིག་རེར་སྤྲོད་རེད། ལེགས་པར་གྲུབ་ཀྱི་ཡིན། ངས་ tests རུང་ཐུབ། files བཅོས་ཐུབ། ཁྱེད་ཀྱི་ repo དེ་སྔར་ལྟར་ལེགས་པར་བྱེད་ཐུབ། <3',
           'བཀྲ་ཤིས་བདེ་ལེགས་ཞུས་ནའམ་ stack trace ཞིག་粘贴བྱེད་རེད། ལས་ཀ་ཆུང་ཆུང་འམ་ repo འཆ�ར་ཅན་གང་ཡིན་ནའང་མེད། ང་ཚོས་མཉམ་དུ་བཅོས་ཀྱི་ཡིན།',
         ],
@@ -3125,7 +3125,7 @@ ${mode} ཡི་སོར་བཞག་རྒྱུན་འཁྱོངས་
           'ཁྱེད་ལ་ bug ཞིག་ཡོད། ང་ལ་བཟོད་པ་དང་ terminal ཞིག་ཡོད། གནད་དོན་གསུང་རེད། ངས་དེ་ལན་སྤྲོད་直到ལེགས་པར་ཆགས་བར་བྱེད་ཀྱི་ཡིན།',
           'stack trace དང་། ཉེན་ཆས་ file དང་། དཔྱད་གཞིའི་ལན་粘贴བྱེད་རེད། ངས་དེའི་ནང་ནས་དངོས་ truth འཚོལ་ཏེ། ལན་སྤྲོད་ཀྱི་ཡིན།',
           'Every bug leaves a trail. Give me the repo and a lead - I\'ll follow it, patch it, and close the file.',
-          'A typo, a segfault, a whole rotten architecture - hand me the keys. I\'ll bring back clean tests.',
+          ' typo འམ་ segfault འམ་ མ་ལེགས་པའི་ architecture གཅིག་ - ལྡེ་མིག་ང་ལ་གནང་། ངས་གཙང་མའི་ tests များའབྲི་གོས།',
         ],
       },
       philosopher: {
@@ -3218,7 +3218,7 @@ ${mode} ཡི་སོར་བཞག་རྒྱུན་འཁྱོངས་
         ],
         bodies: [
           'Repo path, མ་ལེགས་པའི་ test, ཡང་ན་ stack trace སྤྲོད་རེད། Tools: fs, git, exec, search, patch, http',
-          'Send a prompt to trigger tool calls. Supports multi-file edits, test runs, git ops, and web fetches.',
+          'ལག་ཆ་བེད་སྤྱོད་གཏོང་ཆེད་ prompt ཞིག་བཏོན། file མང་པོའི་བཅོས་པ་དང་ tests གནོན་པ་དང་ git ops དང་ web fetches ལ་རྒྱབ་སྐྱོར་བྱེད།',
           'ལས་ཀ་བྲིས། ངས་ suunn་རྩིས་བཟོ་ཞིང་ tool བེད་སྤྱོད་གཏོང་ཏེ། output བརྟག་པ་བྱེད་གོ། Logs ནང་དུ་འགྲུལ་སྤྲོད་བྱེད་ཅིང་ diffs བཅོས་པའི་སྔོན་ལ་སྤྲོད་གོ།',
           'Accepts natural language or structured commands. Typical flow: read -> plan -> patch -> test -> report.',
           'filesystem, terminal, git, browser, search. བཅོས་པ་དེ་འགྲེལ་བཤད་གནང་། ངས་ diffs དང་ test output སྤྲོད་གོ།',
@@ -3235,7 +3235,7 @@ ${mode} ཡི་སོར་བཞག་རྒྱུན་འཁྱོངས་
         bodies: [
           'paste a buggy fiwe or a goaw~ i\'ll wead, patch, and test, aww with tiny pawprints on the diff owo',
           'ལས་ཀ་དེ་ teww བྱེད་རེད། ཆུང་ཆུང་ཡིན་ནའང་འགྲིག~ ངས་ clean commits དང་ gentwe refactors བྱེད་པའི་ཁས་ལེན་བྱེད་གོ། nyuu~',
-          'dwop yur ewwor message hewe! i\'ll find the cuwpwit, fix it, and weave a happy test suite behind me owo',
+          'ཁྱེད་ཀྱི་འမှားགྱི་གནས་ཚུལ་འདིར་བཞག! ངས་ཉེས་པ་པོ་བརྟག་ནས་ བཅོས་ပြီး དགའ་བའི་ test suite ཞིག་བཟོ་གོས། owo',
           'ངས་ wepo path ཡང་ན་ buggo ཞིག་སྤྲོད་རེད། ངས་དེ་ལྟ་གཟིག uwu. ကုဒ်མ་ལེགས་པར་ gwr བྱེད་ཅིང་ ཁྱེད་ལ་བྱམས་པ་ཅུང་ཡོད།',
           'i can wun tests, edit fiwes, and open pwease-wook PRs. just say da wowd, fwend uwu',
         ],
@@ -3243,14 +3243,14 @@ ${mode} ཡི་སོར་བཞག་རྒྱུན་འཁྱོངས་
     },
     fallback: {
       headlines: [
-        'What are we moving today?',
-        'What\'s on your mind?',
-        'What should OpenAmer look at?',
-        'Where should we start?',
-        'What needs attention?',
+        'དེ་རིང་ང་ཚོས་ཅི་ཞིག་གྱུར་དགོས།',
+        'ཁྱེད་ཀྱི་བསམ་བློ་ལ་ཅི་ཡོད།',
+        'OpenAmer གྱིས་ཅི་ལ་བལྟ་དགོས།',
+        'ང་ཚོས་ག་ནས་འགོ་བཙུག་དགོས།',
+        'ཅི་ལ་དོ་ attentions དགོས།',
       ],
       bodies: [
-        'Send a bug, branch, plan, or rough idea. I\'ll inspect the repo and turn it into the next concrete step.',
+        'bug འམ་ branch འམ་ འཆར་གཏོད་འམ་ བསམ་བློ་ཐེངས་གཅིག་བཏོན། ངས་ repo དེ་བརྟག་ནས་ གསར་གཏོར་གྱི་གོམ་པ་ལེགས་པར་བཟོ་གོས།',
         'ཀྲོམ་གྱི་ཆ་ཤོར་འམ་དྲི་བ་འམ་དཀའ་གူབའི་ཆ་ཤོར་འབྲི་གནང་། ངས་བཅོས་མ་གནང་གོང་གནས་སྟངས་ལ་དཔྱད་པར་བྱེད་པའོ།',
         'ལས་ཀ་འམ་མ་འགྲུབ་པའི་ལམ་ཁ་འམ་འཆར་གཞི་མ་གྲུབ་པ་འབྲི་གནང་། ངས་དེ་ལག་ལེན་དུ་གཏོང་བར་རོགས་རམ་བྱེད་པའོ།',
         'དཀའ་གူའམ་དམིགས་ཡུལ་འམ་ཡིག་ཆ་འབྲི་གནང་། ངས་འབྲིལ་བ་དང་པོ་དཔྱད་པར་བྱས་ཏེ་གོམ་པ་རྗེས་མ་གསལ་པོ་བཟོ་བའོ།',
@@ -3268,7 +3268,7 @@ ${mode} ཡི་སོར་བཞག་རྒྱུན་འཁྱོངས་
       bodies: [
         'ལས་ཀ་འམ་ཡིག་ཆ་འམ་དළའཆར་གཞི་འབྲི་གནང་། ངས་ཁྱེད་ཀྱིས་སྒྲིག་ထားཔའི་སྐད་ཆ་བེད་སྤྱོད་བཏང་སྟེ་འདིའི་མཛོད་ཁང་ནང་ལས་ལས་ཀ་བྱེད་པའོ།',
         'གནས་སྟངས་འམ་དཀའ་གူབའི་ཆ་ཤོར་འབྲི་གནང་། ངས་ཁྱེད་ཀྱིས་སྒྲིག་ထားཔའི་གཤིས་ཀ་དང་མཐུན་པར་བསྒྱུར་བའོ།',
-        'Send the problem, file, or idea. I\'ll follow the personality you\'ve configured.',
+        'དཀའ་ཚེགས་འམ་ file འམ་ བསམ་བློ་བཏོན། ངས་ཁྱེད་ཀྱིས་སྒྲིག་ထားཔའི་ personality དེའི་ལྟར་ལག་ལེན་བསྟར་གོས།',
         'ལས་དོན་དེ་འདིར་བཞག་རོགས། ངས་ལས་དེ་མཛོད་ཁང་ལ་གཞི་བཅོལ་ནས་བཞག་གེ',
         'གནས་ཚུལ་དེ་ང་ལ་སྤྲོད་རོགས། ངས་${label} ཐབས་ལམ་ནང་ལན་འདེབས་བྱ་གེ',
       ],
