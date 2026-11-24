@@ -3083,7 +3083,7 @@ export const ti = defineLocale({
       hype: {
         headlines: [
           'ብቕوة ንጀምር! ንምልኣኽ ድሉው!',
-          'OPENAMER ONLINE. LFG.',
+          'OPENAMER ኦንላይን። LFG.',
           'ሓድሽ ክፍለ-ስርሐት፣ ዘይተዛመለ ዓወት',
           'ብምሉእነት ዝተዳለወ',
           'ድሉው። ብጣዕሚ ድሉው።',
@@ -3226,25 +3226,25 @@ export const ti = defineLocale({
       },
       uwu: {
         headlines: [
-          'uwu ready to hewp!',
-          'openamer-san is wistening',
-          '*tiny keyboard sounds*',
-          'wet\'s fix things togedda!',
+          'uwu ንምርዳእ ድሉው!',
+          'openamer-san ይስምዕ ኣሎ',
+          '*ናይ ንእሽተ ኪቦርድ ድምጽ*',
+          'ኩሉ ብሓባር ንዓርሞ!',
           'awaiting yur command!',
         ],
         bodies: [
-          'paste a buggy fiwe or a goaw~ i\'ll wead, patch, and test, aww with tiny pawprints on the diff owo',
-          'teww me the task, no matter how smoww~ i pwomise cwean commits and gentwe refactors, nyuu~',
-          'dwop yur ewwor message hewe! i\'ll find the cuwpwit, fix it, and weave a happy test suite behind me owo',
-          'give me a wepo path ow a buggo and i\'ll take cawe of it uwu. gwr at bad code, kind to yu~',
-          'i can wun tests, edit fiwes, and open pwease-wook PRs. just say da wowd, fwend uwu',
+          'ብጉድት ዝመልአ ፋይል ወይ ጐል (goal) ኣብዚ ኣስርብ~ ኣንብቦ, ኣርምሞ፣ እሞክቶን እየ፣ ኩሉ ብናንጻ ናይ ንእሽተ ስንቃር owo',
+          'ተልእኮኡ ንገረኒ፣ ብንእሽተነቱ እኳ~ ጽሩይ ኮሚትስንት (commits) ዝነበሩን ዝርጋብ ሪፋክተርስ (refactors) ንምግባር ቃል እኣትው እየ፣ ኙዩ~',
+          'መልእኽቲ ጌት (error) ኣብዚ ኣስርብ! እቲ ጥፋት ዝገበረ ክረኽቦ፣ ክዓርሞ፣ትን ሓጎስ ዝገበረ ቴስት ስዊት (test suite) ክሓደግ owo',
+          'ናይ ሪፖ (repo) መስመር ወይ ብጉድት ንገረኒ ኣነ ክሕልወሉ እየ uwu. ንመጥፎ ኮድ ጸላኢ፣ ንዓኻ ግን ርህባዊ~',
+          'ቴስትስ (tests) ክሰርሕ፣ ፋይላት ክዓርም፣ን ፕሪ-ሪ퀘ስትስ (PRs) ክከፍት እኽእል እየ። ቃል ጥራይ ንገረኒ፣ ዓርከይ uwu',
         ],
       },
     },
     fallback: {
       headlines: [
-        'What are we moving today?',
-        'What\'s on your mind?',
+        'ሎሚ እንታይ ኢና ንንቀሳቀስ?',
+        'እንታይ ኣብ ሓንጎልካ ኣሎ?',
         'OpenAmer እንታይ ክርኢልካ ይግባእ?',
         'ከመይ ጀምርና?',
         'እንታይ ትኩረት ይደሊ?',
