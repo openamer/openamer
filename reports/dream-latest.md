@@ -1,8 +1,15 @@
-# Dream Report 2026-09-02
+# Dream Report 2026-10-13
 
-- Replayed 729 messages, 383 error fragments
+- Replayed 168 messages, 3 error fragments
+- Motifs flagged: none
 
 ## Insights
-- Clear night, no error motifs.
+- None recorded.
 
 ## Intentions for today
+- None recorded.
+
+<!--
+Generated from dreams.json (latest entry carrying a real date) on the author's
+laptop. Do not hand-edit the numbers: regenerate from dreams.json.
+-->
