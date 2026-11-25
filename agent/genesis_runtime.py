@@ -524,11 +524,47 @@ def _probe_space_nodes() -> Probe:
 
 
 def _probe_directive_amendment() -> Probe:
-    module = _first_importable(["agent.directive_amendment", "agent.legislation"])
-    values = {"amendment_engine": module}
-    if module:
-        return Probe(SATISFIED, f"amendment engine {module}", values)
-    return Probe(BLOCKED, "directives are read-only data at runtime", values)
+    """DIR-16: the system can evaluate, amend, version, verify and roll back.
+
+    Not "a module named amendment exists" — that would be a filename posing as
+    a capability. This reads the live version store and the hash chain, so the
+    probe goes BLOCKED again the moment the chain breaks or a version loses a
+    directive.
+    """
+    try:
+        from agent import directive_constitution as const
+        from agent import directive_legislation as leg
+    except Exception as exc:  # noqa: BLE001 - cannot judge is UNKNOWN
+        return Probe(UNKNOWN, f"legislation unavailable: {type(exc).__name__}", {})
+
+    try:
+        current = const.load_current()
+        chain = const.verify_chain()
+        version = const.current_version()
+    except Exception as exc:  # noqa: BLE001
+        return Probe(UNKNOWN, f"constitution unreadable: {type(exc).__name__}", {})
+
+    values = {
+        "version": version,
+        "directives": len(current),
+        "chain_problems": len(chain),
+        "cycle_wired": callable(getattr(leg, "run_cycle", None)),
+        "invariants": len(const.INVARIANTS),
+    }
+    if len(current) != 24:
+        return Probe(BLOCKED, f"constitution has {len(current)} entries, not 24", values)
+    if chain:
+        return Probe(BLOCKED, f"hash chain broken: {chain[0][:90]}", values)
+    if not values["cycle_wired"]:
+        return Probe(BLOCKED, "no run_cycle in the legislation module", values)
+    if version == 0:
+        return Probe(PARTIAL, "no version committed yet (genesis not seeded)", values)
+    return Probe(
+        SATISFIED,
+        f"v{version:04d}, {len(current)} directives, chain intact, "
+        f"{values['invariants']} invariants, cycle wired",
+        values,
+    )
 
 
 def _probe_swarm() -> Probe:
