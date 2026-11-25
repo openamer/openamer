@@ -11,15 +11,6 @@ on:
       - 'optional-skills/**'
       - '.github/workflows/deploy-site.yml'
   workflow_dispatch:
-  # A finished index build feeds the deploy directly. Dispatching the deploy
-  # from inside the crawl (the old trigger-deploy job) needed an API call from
-  # a workflow whose own crawl had just spent the installation's hourly quota;
-  # measured 2026-11-25: "HTTP 403: API rate limit exceeded for installation"
-  # in trigger-deploy, every scheduled run. An event needs no quota.
-  workflow_run:
-    workflows: ["Build Skills Index"]
-    types: [completed]
-    branches: [main]
     inputs:
       skills_index_run_id:
         description: 'Optional Build Skills Index run ID whose skills-index artifact should be deployed'
@@ -30,7 +21,15 @@ on:
         required: false
         default: false
         type: boolean
-
+  # A finished index build feeds the deploy directly. Dispatching the deploy from
+  # inside the crawl (the old trigger-deploy job) needed an API call from a
+  # workflow whose own crawl had just spent the installation's hourly quota;
+  # measured 2026-11-25: "HTTP 403: API rate limit exceeded for installation" in
+  # trigger-deploy, every scheduled run. An event needs no quota.
+  workflow_run:
+    workflows: ["Build Skills Index"]
+    types: [completed]
+    branches: [main]
 permissions:
   contents: read
   actions: read
