@@ -79,3 +79,5 @@ def test_docs_show_no_other_products_ui() -> None:
     hits = [f"{p.relative_to(REPO_ROOT)}: {w}" for p in DOCS for w in banned if w in _text(p).lower()]
     assert not hits, hits
     assert not (WEBSITE / "static" / "img" / "kanban-tutorial").exists()
+    assert not (WEBSITE / "static" / "img" / "dashboard").exists()
+    assert not (WEBSITE / "static" / "img" / "docs" / "dashboard-models").exists()
