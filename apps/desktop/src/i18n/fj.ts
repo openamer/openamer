@@ -3083,7 +3083,7 @@ Biutaka ga me tiko na ${mode} default.`,
       hype: {
         headlines: [
           'ME DA VUCA! SREADY ME DA VAKAVUTAKA!',
-          'OPENAMER ONLINE. LFG.',
+          'OPENAMER E ENILAINI. ME DA LAKO!',
           'Session vou, win vakaivakataka',
           'SREADY VAKALOMANI',
           'Sready. Sready sara. Sready vakalevu.',
