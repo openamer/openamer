@@ -23687,6 +23687,18 @@ def _start_gateway_housekeeping(stop_event: threading.Event, adapters=None, loop
             except Exception as _genesis_err:  # noqa: BLE001 - never fatal
                 logger.debug("Genesis tick error: %s", _genesis_err)
 
+        # DIR-16 recursive legislation: evaluate the 24 directives, propose
+        # mutations, gate them, and write a new hash-chained version when the
+        # gate accepts. It owns its own cadence (6 h) and skips cheaply
+        # otherwise, so this hook costs one stat() per tick. Never fatal.
+        if tick_count == 2 or tick_count % GENESIS_EVERY == 0:
+            try:
+                from agent.directive_legislation import legislation_tick_if_due
+
+                legislation_tick_if_due()
+            except Exception as _legislation_err:  # noqa: BLE001 - never fatal
+                logger.debug("Legislation tick error: %s", _legislation_err)
+
         if tick_count % CHANNEL_DIR_EVERY == 0 and adapters:
             try:
                 from gateway.channel_directory import build_channel_directory

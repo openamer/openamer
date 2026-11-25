@@ -44,11 +44,79 @@ def build_directive_parser(subparsers, *, cmd_directive=None) -> None:
         action="store_true",
         help="Only list directives with no implementation at all.",
     )
+    parser.add_argument(
+        "--history",
+        action="store_true",
+        help="Print the version chain of the constitution (DIR-16) and verify its hashes.",
+    )
+    parser.add_argument(
+        "--cycle",
+        action="store_true",
+        help="Run one DIR-16 evaluation cycle now (propose, gate, apply, verify).",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="With --cycle: propose but write nothing.",
+    )
     parser.set_defaults(func=cmd_directive)
+
+
+def _print_history() -> int:
+    from agent import directive_constitution as const
+
+    const.ensure_genesis()
+    records = const.history()
+    if not records:
+        print("No constitution versions yet.")
+        return 0
+    for row in records:
+        tail = f"  <- {row['proposal_id']}" if row.get("proposal_id") else ""
+        print(
+            f"v{row['version']:04d}  {row['action']:<8} {row['hash']}  "
+            f"parent={row['parent_hash']:<12} {row['created_at']}{tail}"
+        )
+        print(f"        {row['reason']}")
+    problems = const.verify_chain()
+    if problems:
+        print("\nCHAIN BROKEN:")
+        for problem in problems:
+            print(f"  - {problem}")
+        return 1
+    print(f"\nChain intact: {len(records)} version(s), every hash and parent link verified.")
+    return 0
+
+
+def _run_cycle(dry_run: bool) -> int:
+    from agent.directive_legislation import run_cycle
+
+    report = run_cycle(auto_apply=not dry_run)
+    print(
+        f"DIR-16 cycle: {len(report.issues)} issue(s), {len(report.proposals)} proposal(s), "
+        f"{len(report.applied)} applied, {len(report.rejected)} rejected, "
+        f"v{report.version_before:04d} -> v{report.version_after:04d}"
+    )
+    for issue in report.issues:
+        print(f"  [{issue.kind}] {issue.directive_id}: {issue.detail}")
+    for item in report.applied:
+        print(f"  applied {item['proposal_id']} -> v{item['version']:04d} ({item['hash']})")
+    for item in report.rejected:
+        print(f"  rejected {item['proposal_id']}: {'; '.join(item['problems'])}")
+    if report.chain_problems:
+        print("  CHAIN PROBLEMS:")
+        for problem in report.chain_problems:
+            print(f"    - {problem}")
+        return 1
+    return 0
 
 
 def directive_command(args) -> int:
     """Run the constitution audit and print it."""
+    if getattr(args, "history", False):
+        return _print_history()
+    if getattr(args, "cycle", False):
+        return _run_cycle(getattr(args, "dry_run", False))
+
     from agent.directive_engine import audit, _print_table
 
     result = audit()

@@ -114,6 +114,109 @@ def _emission_schedule() -> bool:
     return (_tok.EMISSION_YEARS, _tok.HALVING_CYCLES, _tok.HALVING_YEARS) == (32, 8, 4)
 
 
+#: Runtime proof per directive: the code that *acts differently* because the
+#: directive exists. A passing arithmetic check is not one. ``ENFORCED`` is
+#: granted only where this map has an entry that returns True right now —
+#: "keine ENFORCED-Meldung ohne nachgewiesene Laufzeitwirkung".
+RUNTIME_EFFECTS: Dict[str, Callable[[], Optional[bool]]] = {}
+
+
+def _effect_legislation() -> Optional[bool]:
+    """DIR-16: the amendment gate really refuses an invalid constitution.
+
+    This is behaviour, not arithmetic: the function builds a deliberately
+    broken candidate (one directive missing) and requires that the same code
+    path which guards ``apply_change`` rejects it. If the gate ever stops
+    refusing, this returns False and DIR-16 loses ENFORCED on the next audit —
+    which is the point of a runtime effect.
+    """
+    try:
+        from agent import directive_constitution as _const
+
+        current = _const.load_current()
+        if len(current) != 24:
+            return False
+        broken = [d for d in current if d.id != "DIR-01"]
+        if not _const.check_invariants(broken):
+            return False
+        return _const.check_invariants(current) == []
+    except Exception:  # noqa: BLE001 - cannot judge is None, never a fake pass
+        return None
+
+
+RUNTIME_EFFECTS["DIR-16"] = _effect_legislation
+
+#: A probe verdict is a measurement; a declared status is a claim. The audit
+#: prefers the measurement and says so in the row.
+_PROBE_TO_STATUS = {
+    "satisfied": PARTIAL,
+    "partial": PARTIAL,
+    "blocked": GATED,
+    "unknown": RESEARCH,
+}
+
+
+def runtime_state_path() -> Path:
+    """Where ``agent.genesis_runtime.tick`` persists its measurements.
+
+    Resolved through the same home discovery as the version store, so the audit
+    reads the ledger the runtime actually wrote instead of looking in a second
+    place and concluding "never measured".
+    """
+    from agent.directive_constitution import home_root
+
+    return home_root() / "memory" / "genesis" / "state.json"
+
+
+def read_runtime_state(path: Optional[Path] = None) -> Optional[dict]:
+    """The persisted probe ledger, or None when the runtime never ran."""
+    target = path or runtime_state_path()
+    try:
+        with open(target, encoding="utf-8") as fh:
+            payload = json.load(fh)
+        return payload if isinstance(payload, dict) else None
+    except Exception:  # noqa: BLE001 - absent state is a fact, not an error
+        return None
+
+
+def _runtime_row(state: Optional[dict], directive_id: str) -> Optional[dict]:
+    if not state:
+        return None
+    rows = state.get("directives")
+    if isinstance(rows, dict):
+        row = rows.get(directive_id)
+        return row if isinstance(row, dict) else None
+    if isinstance(rows, list):
+        for row in rows:
+            if isinstance(row, dict) and row.get("id") == directive_id:
+                return row
+    return None
+
+
+def derive_status(
+    declared: str,
+    checked: Optional[bool],
+    measured_verdict: Optional[str],
+    effect: Optional[bool],
+) -> str:
+    """One status from three inputs: declared, measured, proven-at-runtime.
+
+    Order matters. A blocked probe wins (nothing is there), then a proven
+    runtime effect (the directive actually changes behaviour), and only then
+    the declared level — which can never be ENFORCED on its own.
+    """
+    base = declared
+    if measured_verdict:
+        base = _PROBE_TO_STATUS.get(measured_verdict, base)
+    if measured_verdict == "blocked":
+        return GATED
+    if effect is True and checked is not False:
+        return ENFORCED
+    if base == ENFORCED:
+        return PARTIAL
+    return base
+
+
 def _kernel_tree_present() -> Optional[bool]:
     """DIR-04: a Rust kernel + bootloader tree exists (not just a mention).
 
@@ -238,11 +341,14 @@ IMPLEMENTATIONS: Dict[str, Implementation] = {
         "without a launch capability; what this returns is a manifest.",
     ),
     "DIR-16": Implementation(
-        "DIR-16", PARTIAL,
-        ["agent/directive_legislation.py"],
-        "Each directive is evaluated against this audit and blocked ones get a "
-        "REPAIR/IMPLEMENT/RETIRE proposal with a rationale. Applying a proposal "
-        "is a separate visible act; nothing rewrites the constitution itself.",
+        "DIR-16", ENFORCED,
+        ["agent/directive_legislation.py", "agent/directive_constitution.py"],
+        "detect -> propose -> gate -> apply -> verify -> rollback, wired into the "
+        "gateway tick. Each amendment is a new hash-chained version; a candidate "
+        "that loses a directive, changes a protected number or hollows a rule out "
+        "is refused before anything touches disk. Protected directives (DIR-03, "
+        "DIR-16, DIR-20, DIR-22) cannot be retired.",
+        check=_effect_legislation,
     ),
     "DIR-17": Implementation(
         "DIR-17", PARTIAL,
@@ -322,16 +428,27 @@ def _evidence_state(path: str) -> str:
     return "unverified" if path.startswith(HOME_PREFIX) else "missing"
 
 
-def audit() -> dict:
+def audit(runtime_state: Optional[dict] = None, use_runtime: bool = True) -> dict:
     """Coverage per directive, plus any claim whose evidence does not resolve.
 
     ``violations`` is the load-bearing part: an ``ENFORCED``/``PARTIAL`` claim
     pointing at a path that no longer exists is exactly the kind of drift that
     turns a status page into decoration.
+
+    The status is *derived*, not declared: the persisted probe ledger
+    (``agent.genesis_runtime``) supplies the measurement and
+    ``RUNTIME_EFFECTS`` supplies the proof that the directive changes behaviour
+    at runtime. A declared ``ENFORCED`` without a runtime effect is downgraded
+    to ``PARTIAL`` — the claim and the measurement are printed as one row, so
+    the two ledgers can no longer contradict each other in public.
     """
     constitution_ids = [d.id for d in GENESIS_DIRECTIVES]
     missing = [i for i in constitution_ids if i not in IMPLEMENTATIONS]
     extra = [i for i in IMPLEMENTATIONS if i not in constitution_ids]
+
+    measured_ledger = runtime_state if runtime_state is not None else (
+        read_runtime_state() if use_runtime else None
+    )
 
     violations = []
     unverified_total: List[str] = []
@@ -357,13 +474,41 @@ def audit() -> dict:
                 violations.append(f"{did}: check raised {type(exc).__name__}: {exc}")
             if checked is False:
                 violations.append(f"{did}: its check fails")
+
+        effect: Optional[bool] = None
+        if did in RUNTIME_EFFECTS:
+            try:
+                raw_effect = RUNTIME_EFFECTS[did]()
+                effect = None if raw_effect is None else bool(raw_effect)
+            except Exception as exc:  # noqa: BLE001
+                effect = False
+                violations.append(
+                    f"{did}: runtime effect raised {type(exc).__name__}: {exc}"
+                )
+
+        measured_row = _runtime_row(measured_ledger, did)
+        measured_verdict = (measured_row or {}).get("verdict")
+        status = derive_status(impl.status, checked, measured_verdict, effect)
+
+        note = impl.note
+        if status != impl.status:
+            reasons = []
+            if measured_verdict and _PROBE_TO_STATUS.get(measured_verdict, impl.status) != impl.status:
+                reasons.append(f"measured {measured_verdict}")
+            if impl.status == ENFORCED and effect is not True:
+                reasons.append("no runtime effect proven")
+            note = f"{note} [{impl.status} -> {status}" + (f": {', '.join(reasons)}" if reasons else "") + "]"
+
         rows.append(
             {
                 "id": did,
-                "status": impl.status,
+                "status": status,
+                "declared_status": impl.status,
                 "evidence": impl.evidence,
                 "checked": checked,
-                "note": impl.note,
+                "runtime_verdict": measured_verdict,
+                "runtime_effect": effect,
+                "note": note,
             }
         )
 
