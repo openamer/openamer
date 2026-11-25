@@ -67,3 +67,15 @@ def test_the_release_workflow_publishes_the_stable_alias() -> None:
         "release-daily.yml must upload the installer a second time under the stable "
         "name, otherwise every docs download link 404s after the next release"
     )
+
+
+def test_docs_show_no_other_products_ui() -> None:
+    """Screenshots and copy of a different agent's UI must not ship here.
+
+    Measured 2026-11-25: website/static/img/kanban-tutorial/ held 10 screenshots
+    of another product's board (sidebar "HERMES AGENT", footer "HERMESTEAL").
+    """
+    banned = ("hermes", "nous research")
+    hits = [f"{p.relative_to(REPO_ROOT)}: {w}" for p in DOCS for w in banned if w in _text(p).lower()]
+    assert not hits, hits
+    assert not (WEBSITE / "static" / "img" / "kanban-tutorial").exists()
