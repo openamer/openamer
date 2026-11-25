@@ -45,12 +45,12 @@
 <div class="tagline">Every AI agent works while you work. Only one of them also <b>works while you sleep</b> — replaying its day, dreaming about its errors, and fine-tuning its own brain on your laptop. No GPU. No cloud. No API bill.</div>
 
 <div class="grid">
-  <div class="card"><div class="num" id="m-nights">11</div><div class="lbl">Dream nights completed</div></div>
-  <div class="card"><div class="num" id="m-brain">2,862</div><div class="lbl">Learning records captured</div></div>
-  <div class="card"><div class="num" id="m-episodes">3,012</div><div class="lbl">Episodes in long-term memory</div></div>
-  <div class="card"><div class="num" id="m-darwin">1,037</div><div class="lbl">Evolution events (live)</div></div>
-  <div class="card"><div class="num" id="m-species">54</div><div class="lbl">Skill species in ecosystem</div></div>
-  <div class="card"><div class="num">2.10 &rarr; 1.65</div><div class="lbl">Training loss, CPU-only LoRA</div></div>
+  <div class="card"><div class="num" id="m-nights">54</div><div class="lbl">Dream nights recorded</div></div>
+  <div class="card"><div class="num" id="m-brain">300</div><div class="lbl">Examples in the training buffer</div></div>
+  <div class="card"><div class="num" id="m-episodes">8,356</div><div class="lbl">Episodes in long-term memory</div></div>
+  <div class="card"><div class="num" id="m-darwin">40,488</div><div class="lbl">Evolution events (live)</div></div>
+  <div class="card"><div class="num" id="m-species">338</div><div class="lbl">Skill species in ecosystem</div></div>
+  <div class="card"><div class="num">3,331</div><div class="lbl">Knowledge &rarr; action cycles</div></div>
 </div>
 
 <h2>⚔️ Head-to-Head: Why We Win</h2>
@@ -59,17 +59,17 @@
   <tr><td>Runs fully offline</td><td class="ok">YES</td><td class="no">no</td><td class="partial">partial</td><td class="no">no</td><td class="ok">YES</td></tr>
   <tr><td>Sleep / dream consolidation cycle</td><td class="ok">YES — nightly REM replay</td><td class="no">no</td><td class="no">no</td><td class="no">no</td><td class="no">no</td></tr>
   <tr><td>Self-fine-tuning from own usage</td><td class="ok">YES — nightly LoRA on CPU</td><td class="no">no</td><td class="no">no</td><td class="no">no</td><td class="no">no (inference only)</td></tr>
-  <tr><td>Episodic long-term memory w/ embeddings</td><td class="ok">YES — 3,012 episodes</td><td class="partial">session only</td><td class="partial">opt-in</td><td class="partial">session</td><td class="no">no</td></tr>
-  <tr><td>Skill evolution w/ arena + predation</td><td class="ok">YES — 1,037 events</td><td class="no">no</td><td class="no">no</td><td class="no">no</td><td class="no">no</td></tr>
+  <tr><td>Episodic long-term memory w/ embeddings</td><td class="ok">YES — 8,356 episodes</td><td class="partial">session only</td><td class="partial">opt-in</td><td class="partial">session</td><td class="no">no</td></tr>
+  <tr><td>Skill evolution w/ arena + predation</td><td class="ok">YES — 40,488 events</td><td class="no">no</td><td class="no">no</td><td class="no">no</td><td class="no">no</td></tr>
   <tr><td>Zero token cost after setup</td><td class="ok">YES</td><td class="no">pay per token</td><td class="no">pay per token</td><td class="no">$500/mo</td><td class="ok">YES</td></tr>
-  <tr><td>Recurring 24/7 cron fleet</td><td class="ok">YES — 70+ jobs</td><td class="no">no</td><td class="no">no</td><td class="no">no</td><td class="no">no</td></tr>
+  <tr><td>Recurring 24/7 cron fleet</td><td class="ok">YES — 49 enabled</td><td class="no">no</td><td class="no">no</td><td class="no">no</td><td class="no">no</td></tr>
   <tr><td>Nightmare detection (recurring-error auto-fix)</td><td class="ok">YES</td><td class="no">no</td><td class="no">no</td><td class="no">no</td><td class="no">no</td></tr>
 </table>
 
 <h2>🌙 Last Night's Actual Dream Report</h2>
-<div class="dream" id="dream-report"># Dream Report 2026-09-02
+<div class="dream" id="dream-report"># Dream Report 2026-10-13
 
-- Replayed 729 messages, 383 error fragments
+- Replayed 168 messages, 3 error fragments
 
 ## Insights
 - Clear night, no error motifs.
@@ -77,7 +77,8 @@
 ## Intentions for today</div>
 <p style="color:var(--dim)">Every night at 03:30 the agent replays all conversations of the day through its "REM phase",
 clusters errors into motifs, and flags anything recurring on 3+ days as a <b>nightmare</b> —
-a standing intention to fix the root cause, not the symptom. New dreams appear here automatically.</p>
+a standing intention to fix the root cause, not the symptom. The last recorded night is 2026-10-13 &mdash; the schedule exists, the run is what creates an entry.</p>
+<p style="color:var(--dim);font-size:.9em">Every figure above is counted from files on this machine (<code>memory/longterm_episodes.jsonl</code>, <code>memory/self_model/current_state.json</code>, <code>darwin/population.json</code>, <code>dreams.json</code>, <code>cron/jobs.json</code>), not estimated.</p>
 
 <h2>🧠 The Self-Training Loop (all on a 22 GB laptop, CPU only)</h2>
 <p>
@@ -95,14 +96,14 @@ a standing intention to fix the root cause, not the symptom. New dreams appear h
   <a class="btn" href="https://github.com/openamer/openamer">⭐ Star on GitHub</a>
   <a class="btn ghost" href="./darwin-live/">🧬 Watch the Evolution Live</a>
   <a class="btn ghost" href="https://github.com/openamer/openamer/blob/main/openamer-producthunt-launch.md">🚀 Launch Package</a>
-  <p style="color:var(--dim)">MIT license · Windows/macOS/Linux · Any model (local or API) · <span id="m-stars">3</span> stars and counting</p>
+  <p style="color:var(--dim)">Apache-2.0 · Windows/macOS/Linux · Any model (local or API) · <span id="m-stars">10</span> stars on GitHub</p>
 </div>
 
 <div>
   <span class="badge">🧠 Self-training</span>
   <span class="badge">🌙 Sleep cycle</span>
   <span class="badge">🧬 Skill evolution</span>
-  <span class="badge">💾 3k episodes memory</span>
+  <span class="badge">💾 8k episodes in memory</span>
   <span class="badge">🖥️ Background computer-use</span>
   <span class="badge">🐝 A2A swarm</span>
   <span class="badge">🎤 Voice + wake words</span>
@@ -114,7 +115,7 @@ a standing intention to fix the root cause, not the symptom. New dreams appear h
 <div class="foot">
   All numbers on this page are real outputs from a live system running on one laptop (Windows, 22 GB RAM, no GPU).
   Dream reports: <code>reports/dream-*.md</code> · Evolution: <code>darwin/lineage.json</code> · Memory: <code>memory/longterm_episodes.jsonl</code>.
-  Updated 2026-09-02. The competitor table reflects publicly documented features as of this date — corrections welcome via issues.
+  Numbers measured 2026-11-26 on the author&rsquo;s laptop (AMD Ryzen AI 7 350, CPU only); they are one machine&rsquo;s state, not a benchmark of yours. The competitor table reflects publicly documented features as of this date — corrections welcome via issues.
 </div>
 
 </div>
