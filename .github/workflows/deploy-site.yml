@@ -179,9 +179,13 @@ jobs:
           # 38 MB JS/CSS chunks, 15 MB search index, 15 MB img), so the full 14
           # locales land near 1.8 GB and the artifact has to be ~1 GB zipped —
           # which is why step 14 fails with "Fetching artifact metadata failed".
-          # Ship English first so the docs are actually reachable, then add
-          # locales here as the budget allows instead of failing every deploy.
-          DOCUSAURUS_LOCALES: en
+          # Measured 2026-11-25: every locale dir under website/i18n is a 8-12 KB
+          # stub (config only) except zh-Hans, which is 5.1 MB of real
+          # translation. Building all 14 therefore duplicates the English site
+          # 13 times with zero translated content - that is the 1.8 GB.
+          # Build the locales that actually have content; add each new one here
+          # as its i18n/<locale> tree grows, and the budget stays honest.
+          DOCUSAURUS_LOCALES: en,zh-Hans
         run: npm run build
         working-directory: website
 
