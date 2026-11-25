@@ -63,3 +63,18 @@ def test_index_workflow_no_longer_dispatches_the_deploy() -> None:
         "trigger-deploy dispatched deploy-site from inside the crawl and died on "
         "HTTP 403 (installation rate limit); workflow_run replaced it"
     )
+
+
+def test_the_pages_artifact_is_waited_for_before_deploying():
+    """deploy-pages sees an empty artifact list for a moment after upload.
+
+    Measured 2026-11-25 (run 45702845227): upload reported "Final size is
+    139257634 bytes" and the very next step logged "Found 0 artifact(s)" and
+    failed. The wait step makes that race visible instead of fatal.
+    """
+    workflow = yaml.safe_load(WORKFLOW.read_text(encoding="utf-8"))
+    steps = workflow["jobs"]["deploy-docs"]["steps"]
+    names = [step.get("name", step.get("uses", "")) for step in steps]
+    wait = "Wait for the Pages artifact to be visible"
+    assert wait in names, names
+    assert names.index(wait) < names.index("Deploy to GitHub Pages")
