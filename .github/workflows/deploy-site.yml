@@ -11,6 +11,15 @@ on:
       - 'optional-skills/**'
       - '.github/workflows/deploy-site.yml'
   workflow_dispatch:
+  # A finished index build feeds the deploy directly. Dispatching the deploy
+  # from inside the crawl (the old trigger-deploy job) needed an API call from
+  # a workflow whose own crawl had just spent the installation's hourly quota;
+  # measured 2026-11-25: "HTTP 403: API rate limit exceeded for installation"
+  # in trigger-deploy, every scheduled run. An event needs no quota.
+  workflow_run:
+    workflows: ["Build Skills Index"]
+    types: [completed]
+    branches: [main]
     inputs:
       skills_index_run_id:
         description: 'Optional Build Skills Index run ID whose skills-index artifact should be deployed'
@@ -47,7 +56,9 @@ jobs:
         run: curl -fsS --retry 3 --retry-delay 10 -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
 
   deploy-docs:
-    if: github.repository == 'openamer/openamer'
+    if: >-
+      github.repository == 'openamer/openamer' &&
+      (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     # The "Prepare skills index" step can fall back to a fresh crawl when no
     # healthy artifact or live index is available. That crawl measured 3900s
@@ -88,7 +99,7 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
-          SKILLS_INDEX_RUN_ID: ${{ github.event.inputs.skills_index_run_id || '' }}
+          SKILLS_INDEX_RUN_ID: ${{ github.event.inputs.skills_index_run_id || github.event.workflow_run.id || '' }}
           REBUILD_SKILLS_INDEX: ${{ github.event.inputs.rebuild_skills_index || 'false' }}
         run: |
           # The unified external catalog is expensive to crawl and can burn
