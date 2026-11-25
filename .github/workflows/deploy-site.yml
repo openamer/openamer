@@ -6,6 +6,11 @@ on:
   push:
     branches: [main]
     paths:
+      # The marketing pages in docs/ are published as the site root. Without
+      # this path a landing-page change merged to main is never deployed:
+      # measured 2026-11-26, openamer.com served a 17 KB page two days after
+      # docs/index.html had already been rebuilt.
+      - 'docs/**'
       - 'website/**'
       - 'skills/**'
       - 'optional-skills/**'
