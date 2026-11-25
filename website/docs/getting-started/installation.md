@@ -15,7 +15,7 @@ platform-gated features are supported), see **[Platform Support](./platform-supp
 
 ## Quick Install
 ### With the OpenAmer Desktop installer on macOS or Windows (recommended)
-To easily install the command-line and desktop applications, [download the OpenAmer Setup for Windows](https://github.com/openamer-max/desktop/releases/latest/download/OpenAmer-Setup.exe) and run it.
+To easily install the command-line and desktop applications, [download the OpenAmer Setup for Windows](https://github.com/openamer/openamer/releases/latest/download/OpenAmer-Setup.exe) and run it.
 
 ### Without OpenAmer Desktop:
 For a command-line only install without OpenAmer Desktop, run:
