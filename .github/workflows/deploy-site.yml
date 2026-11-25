@@ -178,6 +178,14 @@ jobs:
 
       - name: Stage deployment
         run: |
+          # Two trees, one site. The marketing pages live in the repository's
+          # `docs/` directory (that is what carries the CNAME), and the built
+          # Docusaurus output is served under /docs/ because its baseUrl is
+          # /docs/. Staging only the second tree produced an artifact with no
+          # root page, so publishing it would have turned openamer.com/ into a
+          # 404 while fixing openamer.com/docs/.
+          mkdir -p _site
+          cp -r docs/* _site/
           mkdir -p _site/docs
           cp -r website/build/* _site/docs/
           # llms.txt / llms-full.txt are also published at the site root
@@ -190,6 +198,10 @@ jobs:
           if [ -f website/build/llms-full.txt ]; then
             cp website/build/llms-full.txt _site/llms-full.txt
           fi
+          # A staged site without a root page is the failure this step exists to
+          # prevent, so fail here rather than on the CDN.
+          test -f _site/index.html
+          test -f _site/docs/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa  # v3
