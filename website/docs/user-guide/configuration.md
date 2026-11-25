@@ -1022,18 +1022,6 @@ auxiliary:
 
 Matching auxiliary calls are sent with `stream=True` and the chunks (including tool-call deltas) are aggregated client-side — no behavior change for any other endpoint.
 
-### Video Tutorial
-
-<div style={{position: 'relative', width: '100%', aspectRatio: '16 / 9', marginBottom: '1.5rem'}}>
-  <iframe
-    src="https://www.youtube.com/embed/NoF-YajElIM"
-    title="OpenAmer Agent — Auxiliary Models Tutorial"
-    style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0}}
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowFullScreen
-  />
-</div>
-
 ### The universal config pattern
 
 Every model slot in OpenAmer — auxiliary tasks, compression, fallback — uses the same three knobs:

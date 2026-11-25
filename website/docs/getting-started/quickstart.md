@@ -8,20 +8,11 @@ description: "Your first conversation with OpenAmer Agent — from install to ch
 
 This guide gets you from zero to a working OpenAmer setup that survives real use. Install, choose a provider, verify a working chat, and know exactly what to do when something breaks.
 
-## Prefer to watch?
+## Watch it run
 
-**Onchain AI Garage** put together a Masterclass walkthrough of installation, setup, and basic commands — a good companion to this page if you'd rather follow along on video. For more, see the full [OpenAmer Agent Tutorials & Use Cases](https://www.youtube.com/playlist?list=PLmpUb_PWAkDxewld5ZYyKifuHxgIbiq2d) playlist.
+Thirty seconds of the real thing: a fresh install printing its own version and its own identity. The frames are rendered from the actual output of `openamer --version` and `openamer identity` by `scripts/docs/make_quickstart_video.py`, so the clip cannot drift from the binary it documents — re-run that script after a release to refresh it.
 
-<div style={{position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', maxWidth: '100%', marginBottom: '1.5rem'}}>
-  <iframe
-    style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}
-    src="https://www.youtube-nocookie.com/embed/R3YOGfTBcQg"
-    title="OpenAmer Agent Masterclass: Installation, Setup, Basic Commands"
-    frameBorder="0"
-    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowFullScreen
-  ></iframe>
-</div>
+<video controls playsInline preload="metadata" poster="/docs/img/docs/quickstart/openamer-quickstart-poster.png" src="/docs/img/docs/quickstart/openamer-quickstart.mp4" title="OpenAmer quickstart: install, provider, chat" style={{maxWidth: '100%', borderRadius: '12px'}}></video>
 
 ## Who this is for
 
