@@ -3210,7 +3210,7 @@ Gya hɔ kwa na ${mode} default no nka hɔ.`,
       },
       technical: {
         headlines: [
-          'Shell mounted. Awaiting input.',
+          'Shell no afa so. Ɛretwɛ nneɛma a wobɛde aba.',
           'Agent loop no gyina',
           'Krado sɛ wɔbɛsoma',
           'Stdin abue',

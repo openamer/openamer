@@ -3228,9 +3228,9 @@ Vaiiho 'ore nō te fa'a'ohipa i te fa'ata'ara'a mātauhia a ${mode}.`,
         headlines: [
           'uwu ready au e hewp!',
           'openamer-san ua wistening',
-          '*tiny keyboard sounds*',
-          'wet\'s fix things togedda!',
-          'awaiting yur command!',
+          '*te mau haruru o te pupu\'u iti*',
+          'E fa\'amaita\'i tāua i te mau mea!',
+          'te tia\'i nei i tō fa\'a\'ōrero!',
         ],
         bodies: [
           'paste mai tahi buggy fiwe a tahi goaw~ āpure au e wead, patch, a test, aww i tahi tiny pawprints i te diff owo',
