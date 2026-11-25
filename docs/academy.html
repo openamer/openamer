@@ -1,99 +1,209 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OpenAmer — YouTube & Academy</title>
-  <meta name="description" content="Learn OpenAmer: Tutorials, courses, and a full AI Agent Academy. Free and open-source.">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;background:#0f0f0f;color:#eee;line-height:1.6}
-    .container{max-width:800px;margin:0 auto;padding:40px 20px}
-    header{text-align:center;padding:60px 0 40px}
-    .logo{font-size:64px;color:#ff0000;margin-bottom:10px}
-    h1{font-size:36px;margin-bottom:8px}
-    .tagline{font-size:18px;color:#888;margin-bottom:30px}
-    .btn{display:inline-block;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:600;margin:4px}
-    .btn-red{background:#ff0000;color:#fff}
-    .btn-red:hover{background:#cc0000}
-    .btn-blue{background:#0088ff;color:#fff}
-    .btn-blue:hover{background:#0073e6}
-    .section{background:#1a1a1a;border-radius:12px;padding:30px;margin:30px 0;border:1px solid #333}
-    .section h2{color:#ff0000;margin-bottom:16px;font-size:22px}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .card{background:#252525;padding:20px;border-radius:8px;border:1px solid #444}
-    .card h3{color:#fff;margin-bottom:6px}
-    .card p{color:#999;font-size:13px}
-    .card .meta{color:#666;font-size:11px;margin-top:8px}
-    .badge{display:inline-block;background:#ff0000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;margin-right:4px}
-    .footer{text-align:center;padding:40px;color:#555;font-size:13px}
-  </style>
-  <!-- PayPal SDK -->
-  <script src="https://www.paypal.com/sdk/js?client-id=BAApuQJllkY1E5zO5E-pMbGFzr3EiBEiXjPy8e_sR0yz8a3PNTVjSjnt3BCngGLXQsjeHI1IoPqZmpBpa4&components=hosted-buttons&disable-funding=venmo&currency=EUR">
-  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenAmer Academy — learn to build with the agent</title>
+<meta name="description" content="Free OpenAmer tutorials and course tracks: installation, desktop automation, A2A swarm engineering and plugin development. Plus the full skill catalog.">
+<link rel="canonical" href="https://openamer.com/academy.html">
+<meta name="theme-color" content="#050b14" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OpenAmer">
+<meta property="og:title" content="OpenAmer Academy — learn to build with the agent">
+<meta property="og:description" content="Free tutorials and four course tracks, from first install to plugin development.">
+<meta property="og:url" content="https://openamer.com/academy.html">
+<meta property="og:image" content="https://openamer.com/assets/og-openamer.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@openamer_agent">
+<link rel="icon" href="assets/openamer-logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js" defer></script>
 </head>
 <body>
-<div class="container">
-  <header>
-    <div class="logo">▶️</div>
-    <h1>OpenAmer — YouTube & Academy</h1>
-    <p class="tagline">Learn, build, and master AI agents. Free tutorials and courses.</p>
-    <a href="https://www.youtube.com/@openamer_agent" class="btn btn-red">Subscribe on YouTube</a>
-    <a href="docs/reference/skills-catalog" class="btn btn-blue">Browse the skill catalog</a>
-  </header>
+<a class="skip" href="#main">Skip to content</a>
 
-  <div class="section">
-    <h2>📺 Latest Tutorials</h2>
-    <div class="grid">
-      <div class="card"><h3>OpenAmer in 5 Minutes</h3><p>Quick start guide: install, configure, first agent task.</p><span class="badge">NEW</span><div class="meta">Coming soon</div></div>
-      <div class="card"><h3>Background Computer-Use</h3><p>How OpenAmer drives your real desktop without stealing focus.</p><div class="meta">Coming soon</div></div>
-      <div class="card"><h3>A2A Swarm Deep Dive</h3><p>Master/worker architecture, debate mode, parallel agents.</p><div class="meta">Coming soon</div></div>
-      <div class="card"><h3>Plugin Development</h3><p>Build your own OpenAmer plugin in 10 minutes.</p><div class="meta">Coming soon</div></div>
+<header class="nav" id="nav">
+  <div class="shell">
+    <a class="brand" href="/">
+      <svg viewBox="0 0 512 512" aria-hidden="true">
+        <rect width="512" height="512" rx="108" fill="#0a1424"/>
+        <circle cx="256" cy="256" r="190" fill="none" stroke="#22d3ee" stroke-width="44"/>
+        <path fill="#22d3ee" fill-rule="evenodd" d="M158 350 235 142H277L354 350H308L293 307H219L204 350ZM232 269H280L256 199Z"/>
+      </svg>
+      <span>OpenAmer</span>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="docs/">Docs</a>
+      <a href="/#capabilities">Capabilities</a>
+      <a href="academy.html" aria-current="page">Academy</a>
+      <a href="consulting.html">Consulting</a>
+      <a href="skills-store.html">Store</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Switch colour theme" title="Switch colour theme">
+        <svg id="icoSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" hidden><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
+        <svg id="icoMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <a class="btn btn-primary" href="docs/getting-started/quickstart">Start with the docs</a>
     </div>
   </div>
+</header>
 
-  <div class="section">
-    <h2>🎓 OpenAmer Academy</h2>
-    <div class="grid">
-      <div class="card"><h3>101 — Getting Started</h3><p>Installation, configuration, first automation task. No experience needed.</p><span class="badge">FREE</span></div>
-      <div class="card"><h3>201 — Desktop Automation</h3><p>Background computer-use, browser control, file operations, voice commands.</p><span class="badge">FREE</span></div>
-      <div class="card"><h3>301 — A2A Swarm Engineering</h3><p>Design parallel agent workflows, master/worker, debate, delegation.</p><span class="badge">FREE</span></div>
-      <div class="card"><h3>401 — Plugin & API Mastery</h3><p>Build plugins, extend OpenAmer, create marketplace skills.</p><span class="badge">FREE</span></div>
+<main id="main">
+  <section class="hero-page">
+    <div class="shell">
+      <span class="eyebrow">Academy</span>
+      <h1>Learn the agent by running it.</h1>
+      <p class="lede">
+        Written tutorials and course tracks. Everything starts from a real install on your own
+        machine — the documentation is the textbook, and every chapter ends with something that
+        runs.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px">
+        <a class="btn btn-primary btn-lg" href="docs/getting-started/quickstart">OpenAmer in 10 minutes</a>
+        <a class="btn btn-ghost btn-lg" href="https://www.youtube.com/@openamer_agent" target="_blank" rel="noopener">Subscribe on YouTube</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="shell">
+      <div class="sec-head">
+        <span class="eyebrow">Tutorials</span>
+        <h2>Start here</h2>
+        <p>The first walkthrough is the quickstart that ships with the code, so it cannot drift from the build.</p>
+      </div>
+      <div class="grid-2" style="margin-top:32px">
+        <a class="card" href="docs/getting-started/quickstart">
+          <div class="tag">Available now</div>
+          <h3>OpenAmer in 10 minutes</h3>
+          <p>Install, pick a provider, hand the agent its first real task. No prerequisites beyond a terminal.</p>
+          <div class="meta">docs/getting-started/quickstart</div>
+        </a>
+        <a class="card" href="docs/user-guide/desktop">
+          <div class="tag">Available now</div>
+          <h3>Drive a real desktop</h3>
+          <p>How background computer-use controls your own machine without taking the cursor or the focus.</p>
+          <div class="meta">docs/user-guide/desktop</div>
+        </a>
+        <a class="card" href="docs/user-guide/cli">
+          <div class="tag">Reference</div>
+          <h3>The CLI, command by command</h3>
+          <p>Setup, model choice, tool backends, doctor, sessions — every subcommand and what it measures.</p>
+          <div class="meta">docs/user-guide/cli</div>
+        </a>
+        <a class="card" href="docs/developer-guide">
+          <div class="tag">Reference</div>
+          <h3>Write a tool or a plugin</h3>
+          <p>The extension points: toolsets, hooks, plugins, MCP servers and the agent loop they plug into.</p>
+          <div class="meta">docs/developer-guide</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="background:var(--bg-soft);border-block:1px solid var(--line)">
+    <div class="shell">
+      <div class="sec-head">
+        <span class="eyebrow">Course tracks</span>
+        <h2>Four tracks, free</h2>
+        <p>Short, task-oriented, no certificate theatre. Each track is a reading path through the documentation.</p>
+      </div>
+      <div class="grid-4" style="margin-top:32px">
+        <div class="card">
+          <div class="tag">101</div>
+          <h3>Getting started</h3>
+          <p>Installation, configuration, first automation task. No experience needed.</p>
+          <div class="meta">Free · self-paced</div>
+        </div>
+        <div class="card">
+          <div class="tag">201</div>
+          <h3>Desktop automation</h3>
+          <p>Background computer-use, browser control, file operations, voice commands.</p>
+          <div class="meta">Free · self-paced</div>
+        </div>
+        <div class="card">
+          <div class="tag">301</div>
+          <h3>A2A swarm engineering</h3>
+          <p>Parallel agent workflows: master/worker, debate, delegation and the shared board.</p>
+          <div class="meta">Free · self-paced</div>
+        </div>
+        <div class="card">
+          <div class="tag">401</div>
+          <h3>Plugins and API</h3>
+          <p>Build plugins, extend the agent, ship skills that other people can install.</p>
+          <div class="meta">Free · self-paced</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="shell grid-2" style="gap:clamp(28px,4vw,56px);align-items:center">
+      <div>
+        <span class="eyebrow">Knowledge base</span>
+        <h2>The whole skill catalogue, generated from the code</h2>
+        <p class="lede" style="margin-top:16px">
+          423 bundled skills across 90 categories, plus the optional packs. The catalogue is
+          generated from the skill definitions in the repository, so it cannot drift from what
+          the agent actually ships.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:24px">
+          <a class="btn btn-primary" href="docs/reference/skills-catalog">Browse the catalogue</a>
+          <a class="btn btn-ghost" href="https://github.com/openamer/openamer" target="_blank" rel="noopener">Read the source</a>
+        </div>
+      </div>
+      <div class="note">
+        <b>For agents too.</b> The same corpus is published as plain text: <a href="llms.txt">llms.txt</a>
+        for the summary and <a href="docs/llms-full.txt">llms-full.txt</a> for the whole thing, plus a
+        machine-readable index at <a href="docs/api/skills-index.json">docs/api/skills-index.json</a>.
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="shell">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/">
+          <svg viewBox="0 0 512 512" aria-hidden="true">
+            <rect width="512" height="512" rx="108" fill="#0a1424"/>
+            <circle cx="256" cy="256" r="190" fill="none" stroke="#22d3ee" stroke-width="44"/>
+            <path fill="#22d3ee" fill-rule="evenodd" d="M158 350 235 142H277L354 350H308L293 307H219L204 350ZM232 269H280L256 199Z"/>
+          </svg>
+          <span>OpenAmer</span>
+        </a>
+        <p>An open-source agent that runs on your machine, drives your desktop and writes down what it learns.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Product</h5>
+        <a href="/">Overview</a>
+        <a href="/#capabilities">Capabilities</a>
+        <a href="/#install">Install</a>
+        <a href="https://github.com/openamer/openamer/releases">Releases</a>
+      </div>
+      <div class="foot-col">
+        <h5>Docs</h5>
+        <a href="docs/">Documentation</a>
+        <a href="docs/getting-started/quickstart">Quickstart</a>
+        <a href="docs/reference/skills-catalog">Skill catalog</a>
+        <a href="llms.txt">llms.txt</a>
+      </div>
+      <div class="foot-col">
+        <h5>Community</h5>
+        <a href="https://github.com/openamer/openamer">GitHub</a>
+        <a href="https://discord.gg/gckmapHrr">Discord</a>
+        <a href="https://x.com/openamer_agent">X</a>
+        <a href="https://dev.to/openamer">Writing</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 OpenAmer · Apache-2.0 licensed</span>
+      <span>Free tutorials, free software, no signup</span>
     </div>
   </div>
-
-  <div class="section">
-    <h2>📚 Knowledge Base</h2>
-    <p>Browse the complete <a href="docs/reference/skills-catalog" style="color:#0088ff">skill catalog</a> with 423 bundled skills across 90 categories. Generated from the skill definitions in the repository, so it cannot drift from the code.</p>
-    <p style="margin-top:12px;color:#888">Also available: <a href="https://github.com/openamer/openamer" style="color:#0088ff">GitHub</a> · <a href="https://discord.gg/gckmapHrr" style="color:#0088ff">Discord</a> · <a href="https://x.com/openamer_agent" style="color:#0088ff">X/Twitter</a> · <a href="https://www.producthunt.com/posts/openamer" style="color:#0088ff">Product Hunt</a> · <a href="consulting.html" style="color:#0088ff">Consulting</a> · <a href="skills-store.html" style="color:#0088ff">Store</a> · <a href="https://dev.to/openamer" style="color:#0088ff">Writing / dev.to</a></p>
-  </div>
-
-  <footer class="footer">
-    OpenAmer — Open-source · MIT License · Built for the community
-  </footer>
-
-  <!-- Support Section -->
-  <div style="text-align:center;padding:30px;background:#1a1a1a;border-radius:12px;margin:30px 0;border:1px solid #333">
-    <h3 style="color:#0088ff;margin-bottom:12px">💜 Support OpenAmer</h3>
-    <p style="font-size:14px;color:#888;margin-bottom:16px">
-      100% open-source and free forever. Your support keeps it growing.
-    </p>
-    <div id="paypal-container-3HMBFYC9CQTMS"></div>
-    <script>
-      function renderPayPalButton() {
-        if (typeof paypal !== 'undefined' && paypal.HostedButtons) {
-          paypal.HostedButtons({
-            hostedButtonId: "3HMBFYC9CQTMS",
-          }).render("#paypal-container-3HMBFYC9CQTMS");
-        }
-      }
-      if (document.readyState === 'complete') {
-        renderPayPalButton();
-      } else {
-        window.addEventListener('load', renderPayPalButton);
-      }
-    </script>
-  </div>
-</div>
+</footer>
 </body>
 </html>
