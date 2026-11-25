@@ -22,15 +22,11 @@ OpenAmer 使用两类模型槽位：
 1. **Model Settings** — 顶部面板，用于为各槽位分配模型。
 2. **使用分析** — 按排名显示所选时间段内运行过会话的所有模型，包含 token 数量、费用和能力标签。
 
-![Models 页面概览](/img/docs/dashboard-models/overview.png)
-
 顶部卡片为 **Model Settings** 面板。主行始终显示 agent 将为新会话启动的模型。点击 **Change** 打开选择器。
 
 ## 设置主模型
 
 点击主模型行上的 **Change**：
-
-![模型选择器对话框](/img/docs/dashboard-models/picker-dialog.png)
 
 选择器分为两列：
 
@@ -44,8 +40,6 @@ OpenAmer 使用两类模型槽位：
 ## 设置辅助模型
 
 点击 **Show auxiliary** 展开 11 个任务槽位：
-
-![辅助面板展开状态](/img/docs/dashboard-models/auxiliary-expanded.png)
 
 每个辅助任务默认为 `auto`，即 OpenAmer 对该任务也使用主模型。当某个边缘任务需要更便宜或更快的模型时，可单独覆盖该槽位。
 
@@ -72,8 +66,6 @@ OpenAmer 使用两类模型槽位：
 ## "Use as" 快捷方式
 
 页面上每张模型卡片都有 **Use as** 下拉菜单。这是快捷路径 — 从分析数据中选择一个模型，点击 **Use as**，一键将其分配到主槽位或任意辅助任务：
-
-![Use as 下拉菜单](/img/docs/dashboard-models/use-as-dropdown.png)
 
 下拉菜单包含：
 
@@ -234,4 +226,4 @@ curl -X POST -H "Content-Type: application/json" -H "X-OpenAmer-Session-Token: $
   http://localhost:PORT/api/model/set
 ```
 
-session token 在启动时注入仪表板 HTML，每次服务器重启后轮换。如需对运行中的仪表板编写脚本，可从浏览器开发者工具中获取（`window.__OPENAMER_SESSION_TOKEN__`）。
+session token 在启动时注入仪表板 HTML，每次服务器重启后轮换。如需对运行中的仪表板编写脚本，可从浏览器开发者工具中获取（`window.__OPENAMER_SESSION_TOKEN__`）。

@@ -18,8 +18,6 @@ dashboard 是**你**观察系统最便捷的地方。dispatcher 生成的 agent 
 
 ## 看板概览
 
-![Kanban board overview](/img/kanban-tutorial/01-board-overview.png)
-
 从左到右共六列：
 
 - **Triage（分类）** — 原始想法。默认情况下，dispatcher 会对此处的任务自动运行**分解器**（orchestrator 驱动的扇出）：它读取你的 profile 名册和描述，生成一张子任务图，将任务路由给最合适的专家，同时保持原始任务作为父任务存活，以便在所有子任务完成后 orchestrator 重新唤醒来判断完成情况。点击 kanban 页面顶部的 **Orchestration: Auto/Manual** 切换按钮来切换模式。在 Manual 模式下（或没有 orchestrator profile 的配置中），点击卡片上的 **⚗ Decompose**，或运行 `openamer kanban decompose <id>` / `/kanban decompose <id>`。对于不需要扇出的单个任务，**✨ Specify** 会进行一次性规格重写（目标、方法、验收标准）并将任务提升到 `todo`。在 `config.yaml` 的 `auxiliary.kanban_decomposer` 和 `auxiliary.triage_specifier` 下配置相关模型。参见主 Kanban 指南中的[自动与手动编排](./kanban#auto-vs-manual-orchestration)。
@@ -34,8 +32,6 @@ dashboard 是**你**观察系统最便捷的地方。dispatcher 生成的 agent 
 ### 平铺视图
 
 如果 profile 泳道显示过于嘈杂，关闭"Lanes by profile"，In Progress 列会折叠为按认领时间排序的单一平铺列表：
-
-![Board with lanes by profile off](/img/kanban-tutorial/02-board-flat.png)
 
 ## 场景一 — 独立开发者交付功能
 
@@ -90,8 +86,6 @@ kanban_complete(
 
 在看板上点击已完成的 schema 任务，抽屉会显示所有信息：
 
-![Solo dev — completed schema task drawer](/img/kanban-tutorial/03-drawer-schema-task.png)
-
 底部的 Run History 部分是关键新增内容。一次尝试：结果 `completed`，worker `@backend-dev`，耗时、时间戳，以及完整的交接 summary。metadata 块（`changed_files`、`decisions`）也存储在 run 上，并会呈现给读取该父任务的任何下游 worker。
 
 你可以随时在终端检查相同的数据——以下命令是**你**查看看板，而非 worker 执行：
@@ -134,8 +128,6 @@ openamer gateway start
 
 现在将看板筛选到 `content-ops`（或直接搜索"Transcribe"），你会看到：
 
-![Fleet view filtered to transcribe tasks](/img/kanban-tutorial/07-fleet-transcribes.png)
-
 两个转录任务已完成，一个正在运行，两个就绪等待下一次 dispatcher tick。In Progress 列按 profile 分组（"Lanes by profile"默认开启），让你无需扫描混合列表即可看到每个 worker 的当前任务。dispatcher 会在当前任务完成后立即将下一个就绪任务提升为运行中。三个守护进程并行处理三个负责人池，整个内容队列无需进一步人工干预即可清空。
 
 **场景一中关于结构化交接的所有内容在这里同样适用。** 完成一次通话的翻译 worker 会发出 `kanban_complete(summary="translated 4 pages, style matched existing marketing voice", metadata={"duration_seconds": 720, "tokens_used": 2100})`——对分析以及依赖此任务的任何下游任务都很有价值。
@@ -145,8 +137,6 @@ openamer gateway start
 这正是 Kanban 相比普通 TODO 列表的价值所在。PM 编写规格说明，工程师实现，审查者拒绝第一次尝试，工程师修改后再次尝试，审查者批准。
 
 dashboard 视图，按 `auth-project` 筛选：
-
-![Pipeline view for a multi-role feature](/img/kanban-tutorial/08-pipeline-auth.png)
 
 三个阶段的链条一目了然：`Spec: password reset flow`（DONE，pm）、`Implement password reset flow`（DONE，backend-dev）、`Review password reset PR`（READY，reviewer）。每个任务底部都有绿色的父任务，以及作为依赖项的子任务。
 
@@ -212,16 +202,12 @@ kanban_complete(
 
 点击实现任务，抽屉显示**两次尝试**：
 
-![Implementation task with two runs — blocked then completed](/img/kanban-tutorial/04b-drawer-retry-history-scrolled.png)
-
 - **Run 1** — `@backend-dev` 标记为 `blocked`。审查反馈紧跟在结果下方："password strength check missing, reset link isn't single-use (can be replayed within 30min)"。
 - **Run 2** — `@backend-dev` 标记为 `completed`。全新的 summary，全新的 metadata。
 
 每个 run 在 `task_runs` 中都是独立的一行，有自己的 outcome、summary 和 metadata。重试历史不是叠加在"最新状态"任务之上的概念性附加物——它是主要的数据表示形式。当重试的 worker 打开任务时，`build_worker_context` 会向其展示之前的尝试，因此第二次 worker 能看到第一次被阻塞的原因，并针对性地解决那些具体问题，而不是从头重来。
 
 审查者接下来认领任务。当他们打开 `Review password reset PR` 时，会看到：
-
-![Reviewer's drawer view of the pipeline](/img/kanban-tutorial/09-drawer-pipeline-review.png)
 
 父任务链接指向已完成的实现任务。当审查者的 worker 在 `Review password reset PR` 上生成并调用 `kanban_show()` 时，返回的 `worker_context` 包含父任务最近一次已完成 run 的 summary 和 metadata——因此审查者在查看 diff 之前就已读到"added zxcvbn strength check, reset tokens are now single-use"，并掌握了变更文件列表。
 
@@ -242,8 +228,6 @@ openamer kanban create "Deploy to staging (missing creds)" \
 dispatcher 尝试生成 worker。生成失败（`RuntimeError: AWS_ACCESS_KEY_ID not set`）。dispatcher 释放认领，递增失败计数器，并在下一次 tick 重试。由于本示例设置了 `--max-retries 3`，在三次连续失败后熔断器触发：任务进入 `blocked` 状态，outcome 为 `gave_up`。如果省略该标志，OpenAmer 使用 `kanban.failure_limit`（默认值：2）。在人工解除阻塞之前不再重试。
 
 点击被阻塞的任务：
-
-![Circuit breaker — 2 spawn_failed + 1 gave_up](/img/kanban-tutorial/11-drawer-gave-up.png)
 
 三个 run，`error` 字段均为相同错误。前两个为 `spawn_failed`（可重试），第三个为 `gave_up`（终止）。上方的事件日志显示完整序列：`created → claimed → spawn_failed → claimed → spawn_failed → claimed → gave_up`。
 
@@ -276,8 +260,6 @@ openamer kanban runs t_ef5d
 
 抽屉显示完整的两次尝试历史：
 
-![Crash and recovery — 1 crashed + 1 completed](/img/kanban-tutorial/06-drawer-crash-recovery.png)
-
 Run 1 — `crashed`，错误为 `OOM kill at row 2.3M (process 99999 gone)`。Run 2 — `completed`，metadata 中包含 `"strategy": "chunked with LIMIT + WHERE id > last_id"`。重试的 worker 在其上下文中看到了 run 1 的崩溃信息，并选择了更安全的策略；metadata 让未来的观察者（或事后分析撰写者）能清楚地看到发生了什么变化。
 
 ## 结构化交接 — `summary` 和 `metadata` 的重要性
@@ -296,8 +278,6 @@ Run 1 — `crashed`，错误为 `OOM kill at row 2.3M (process 99999 gone)`。Ru
 ## 检查当前正在运行的任务
 
 作为补充——以下是一个仍在执行中的任务的抽屉视图（场景一中的 API 实现，已被 `backend-dev` 认领但尚未完成）：
-
-![Claimed, in-flight task](/img/kanban-tutorial/10-drawer-in-flight.png)
 
 状态为 `Running`。活跃的 run 出现在 Run History 部分，outcome 为 `active`，没有 `ended_at`。如果该 worker 死亡或超时，dispatcher 会以相应的 outcome 关闭此 run，并在下一次认领时开启新的 run——尝试记录永远不会消失。
 
