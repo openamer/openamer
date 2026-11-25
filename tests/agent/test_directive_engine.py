@@ -75,8 +75,14 @@ def test_counts_cover_every_row() -> None:
 
 
 def test_enforced_claims_have_a_passing_check() -> None:
-    """Only ENFORCED is a claim about behaviour, so it must be measured."""
-    enforced = [r for r in audit()["rows"] if r["status"] == ENFORCED]
+    """Only ENFORCED is a claim about behaviour, so it must be measured.
+
+    ``use_runtime=False`` on purpose: the audit otherwise reads the ledger the
+    gateway last wrote, and a test must not go red because a background process
+    is one tick behind the code. The runtime derivation itself is covered by
+    ``tests/agent/test_directive_constitution.py``.
+    """
+    enforced = [r for r in audit(use_runtime=False)["rows"] if r["status"] == ENFORCED]
     assert enforced, "at least one directive must be measurable"
     assert all(r["checked"] is True for r in enforced), enforced
 
