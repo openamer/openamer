@@ -173,6 +173,15 @@ jobs:
           working-directory: website
 
       - name: Build Docusaurus
+        env:
+          # GitHub Pages caps a published site at 1 GB. Measured 2026-11-25 on a
+          # local build: one locale is 130 MB (52 MB user-guide incl. screenshots,
+          # 38 MB JS/CSS chunks, 15 MB search index, 15 MB img), so the full 14
+          # locales land near 1.8 GB and the artifact has to be ~1 GB zipped —
+          # which is why step 14 fails with "Fetching artifact metadata failed".
+          # Ship English first so the docs are actually reachable, then add
+          # locales here as the budget allows instead of failing every deploy.
+          DOCUSAURUS_LOCALES: en
         run: npm run build
         working-directory: website
 
