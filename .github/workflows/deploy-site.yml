@@ -6,6 +6,9 @@ on:
   push:
     branches: [main]
     paths:
+      # The marketing pages in docs/ are the site root. Without this path the
+      # landing page could change without ever being published.
+      - 'docs/**'
       - 'website/**'
       - 'skills/**'
       - 'optional-skills/**'

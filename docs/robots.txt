@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Agents are welcome: the docs are published as machine-readable text too.
+# https://openamer.com/llms.txt
+# https://openamer.com/docs/llms-full.txt
+
+Sitemap: https://openamer.com/sitemap.xml
