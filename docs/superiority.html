@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="assets/openamer-logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/openamer-logo.png">
 <title>OpenAmer — The Agent That Sleeps, Dreams, and Trains Itself</title>
 <style>
   :root { --bg:#0d1117; --panel:#161b22; --border:#30363d; --text:#c9d1d9;
@@ -36,6 +38,8 @@
   .btn.ghost { background:transparent; color:var(--green); border:1px solid var(--green); }
   .foot { color:var(--dim); font-size:0.85em; margin-top:40px; border-top:1px solid var(--border); padding-top:16px; }
   code { background:var(--panel); padding:2px 6px; border-radius:4px; font-size:0.9em; }
+  .table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .table-wrap table { min-width: 620px; }
 </style>
 </head>
 <body>
@@ -54,6 +58,7 @@
 </div>
 
 <h2>⚔️ Head-to-Head: Why We Win</h2>
+<div class="table-wrap">
 <table>
   <tr><th>Capability</th><th>OpenAmer</th><th>Claude Code / Codex</th><th>LangChain / AutoGPT</th><th>Devin</th><th>Ollama</th></tr>
   <tr><td>Runs fully offline</td><td class="ok">YES</td><td class="no">no</td><td class="partial">partial</td><td class="no">no</td><td class="ok">YES</td></tr>
@@ -65,6 +70,7 @@
   <tr><td>Recurring 24/7 cron fleet</td><td class="ok">YES — 70+ jobs</td><td class="no">no</td><td class="no">no</td><td class="no">no</td><td class="no">no</td></tr>
   <tr><td>Nightmare detection (recurring-error auto-fix)</td><td class="ok">YES</td><td class="no">no</td><td class="no">no</td><td class="no">no</td><td class="no">no</td></tr>
 </table>
+</div>
 
 <h2>🌙 Last Night's Actual Dream Report</h2>
 <div class="dream" id="dream-report"># Dream Report 2026-09-02
