@@ -97,7 +97,13 @@ jobs:
 
       - name: Prepare skills index (unified multi-source catalog)
         env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          # `gh run download` below needs Actions:read on THIS repository. The
+          # App token does not carry it here, so the artifact download 403'd and
+          # the step fell through to a fresh crawl that then hit the
+          # installation rate limit (measured 2026-11-25). The workflow token
+          # has actions:read from the permissions block above; the crawl keeps
+          # the App token for its higher quota.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
           SKILLS_INDEX_RUN_ID: ${{ github.event.inputs.skills_index_run_id || github.event.workflow_run.id || '' }}
           REBUILD_SKILLS_INDEX: ${{ github.event.inputs.rebuild_skills_index || 'false' }}
