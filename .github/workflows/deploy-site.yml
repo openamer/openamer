@@ -185,9 +185,9 @@ jobs:
           # root page, so publishing it would have turned openamer.com/ into a
           # 404 while fixing openamer.com/docs/.
           mkdir -p _site
-          cp -r docs/* _site/
+          cp -R docs/. _site/
           mkdir -p _site/docs
-          cp -r website/build/* _site/docs/
+          cp -R website/build/. _site/docs/
           # llms.txt / llms-full.txt are also published at the site root
           # (https://github.com/openamer/openamer/llms.txt) because some
           # agents and IDE plugins probe the classic root-level path rather
