@@ -3228,7 +3228,7 @@ Ostavi prazno za zadano ${mode}.`,
           'uwu spreman za pomoć!',
           'openamer-san čeka',
           '*male zvukovi tipkovnice*',
-          'wet\'s fix things togedda!',
+          'Popravimo stvari zajedno!',
           'čekam tvoju naredbu!',
         ],
         bodies: [

@@ -3204,7 +3204,7 @@ Fág bán é chun réamhshocrú ${mode} a choinneáil.`,
           'Cuir isteach cód le hathbhreithniú, bug le debugáil, nó coincept le dílithe. Treoidfidh mé thú céim ar chéim.',
           'Roinn an fhadhb. Brisefidh mé é ina chuidithe, míníodh gach ceann, agus fágfaidh mé thú in ann an chéad chéim eile a réiteach go huadone.',
           'Léifidh muid an cód le chéile, aimsighfidh muid an cúis bhunúsach, agus tógfaidh muid samhail mheabhrach is féidir leat a úsáid an chéad uair eile.',
-          'Name the topic or paste the snippet. Expect explanations, diagrams in prose, and practice prompts.',
+          'Ainmnigh an t-ábhar nó greamaigh an blúire. Bí ag súil le mínithe, le léaráidí i bprós, agus le leideanna cleachtaidh.',
         ],
       },
       technical: {
