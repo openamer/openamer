@@ -1,0 +1,470 @@
+{
+  "harness": "cross-agent-subset",
+  "version": 1,
+  "tag": "p2.3-cross-agent-subset-v2",
+  "started_utc": "2026-11-26T04:15:37.566034+00:00",
+  "finished_utc": "2026-11-26T04:19:27.577347+00:00",
+  "host": "Emilija",
+  "platform": "Windows 10",
+  "catalog_signature": "389ef7284baec9a2",
+  "catalog_tasks": [
+    "arith.chain.v1",
+    "arith.rate.v1",
+    "string.reverse_words.v1",
+    "string.count.v1",
+    "json.shape.v1",
+    "code.fizzbuzz.v1",
+    "code.dedupe.v1",
+    "instruction.constraints.v1",
+    "retrieval.needle.v1",
+    "reason.multi_step.v1"
+  ],
+  "subset_size": 10,
+  "temperature": 0,
+  "timeout_s": 300,
+  "commits": {
+    "home": null,
+    "checkout": "45ef78060670f5ee5facf18e56139a18fbb1eb2b"
+  },
+  "subjects": [
+    {
+      "name": "openamer-agent",
+      "label": "OpenAmer agent (full scaffold, openamer -z)",
+      "kind": "agent",
+      "version": "OpenAmer Agent v2026.11.24 (2026.11.24) · upstream 6b591a92"
+    },
+    {
+      "name": "bare:minimax-m3.1-flash:cloud",
+      "label": "MiniMax M3.1 flash (ollama cloud) (model only, no scaffold)",
+      "kind": "model",
+      "version": "ollama ollama version is 0.40.18"
+    },
+    {
+      "name": "local-npu",
+      "label": "Mini-OpenAmer / NPU (Qwen3.5-4B, local)",
+      "kind": "model",
+      "version": "mini_backend (NPU, Qwen3.5-4B)"
+    }
+  ],
+  "summary": [
+    {
+      "subject": "openamer-agent",
+      "label": "OpenAmer agent (full scaffold, openamer -z)",
+      "kind": "agent",
+      "tasks": 10,
+      "scored": 10,
+      "errors": 0,
+      "passed": 9,
+      "pass_rate_of_scored": 0.9,
+      "pass_rate_of_all": 0.9,
+      "median_latency_s": 15.252,
+      "by_kind": {
+        "arith": {
+          "tasks": 2,
+          "scored": 2,
+          "passed": 2
+        },
+        "string": {
+          "tasks": 2,
+          "scored": 2,
+          "passed": 2
+        },
+        "json": {
+          "tasks": 1,
+          "scored": 1,
+          "passed": 1
+        },
+        "code": {
+          "tasks": 2,
+          "scored": 2,
+          "passed": 2
+        },
+        "instruction": {
+          "tasks": 1,
+          "scored": 1,
+          "passed": 0
+        },
+        "retrieval": {
+          "tasks": 1,
+          "scored": 1,
+          "passed": 1
+        },
+        "reason": {
+          "tasks": 1,
+          "scored": 1,
+          "passed": 1
+        }
+      }
+    },
+    {
+      "subject": "bare:minimax-m3.1-flash:cloud",
+      "label": "MiniMax M3.1 flash (ollama cloud) (model only, no scaffold)",
+      "kind": "model",
+      "tasks": 10,
+      "scored": 10,
+      "errors": 0,
+      "passed": 10,
+      "pass_rate_of_scored": 1.0,
+      "pass_rate_of_all": 1.0,
+      "median_latency_s": 2.108,
+      "by_kind": {
+        "arith": {
+          "tasks": 2,
+          "scored": 2,
+          "passed": 2
+        },
+        "string": {
+          "tasks": 2,
+          "scored": 2,
+          "passed": 2
+        },
+        "json": {
+          "tasks": 1,
+          "scored": 1,
+          "passed": 1
+        },
+        "code": {
+          "tasks": 2,
+          "scored": 2,
+          "passed": 2
+        },
+        "instruction": {
+          "tasks": 1,
+          "scored": 1,
+          "passed": 1
+        },
+        "retrieval": {
+          "tasks": 1,
+          "scored": 1,
+          "passed": 1
+        },
+        "reason": {
+          "tasks": 1,
+          "scored": 1,
+          "passed": 1
+        }
+      }
+    },
+    {
+      "subject": "local-npu",
+      "label": "Mini-OpenAmer / NPU (Qwen3.5-4B, local)",
+      "kind": "model",
+      "tasks": 10,
+      "scored": 10,
+      "errors": 0,
+      "passed": 6,
+      "pass_rate_of_scored": 0.6,
+      "pass_rate_of_all": 0.6,
+      "median_latency_s": 3.052,
+      "by_kind": {
+        "arith": {
+          "tasks": 2,
+          "scored": 2,
+          "passed": 1
+        },
+        "string": {
+          "tasks": 2,
+          "scored": 2,
+          "passed": 1
+        },
+        "json": {
+          "tasks": 1,
+          "scored": 1,
+          "passed": 1
+        },
+        "code": {
+          "tasks": 2,
+          "scored": 2,
+          "passed": 2
+        },
+        "instruction": {
+          "tasks": 1,
+          "scored": 1,
+          "passed": 0
+        },
+        "retrieval": {
+          "tasks": 1,
+          "scored": 1,
+          "passed": 1
+        },
+        "reason": {
+          "tasks": 1,
+          "scored": 1,
+          "passed": 0
+        }
+      }
+    }
+  ],
+  "rows": [
+    {
+      "task": "arith.chain.v1",
+      "kind": "arith",
+      "subject": "openamer-agent",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 10.537,
+      "text": "75"
+    },
+    {
+      "task": "arith.rate.v1",
+      "kind": "arith",
+      "subject": "openamer-agent",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 11.284,
+      "text": "460"
+    },
+    {
+      "task": "string.reverse_words.v1",
+      "kind": "string",
+      "subject": "openamer-agent",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 10.381,
+      "text": "night at learns machine quiet the"
+    },
+    {
+      "task": "string.count.v1",
+      "kind": "string",
+      "subject": "openamer-agent",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 20.007,
+      "text": "6"
+    },
+    {
+      "task": "json.shape.v1",
+      "kind": "json",
+      "subject": "openamer-agent",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 14.158,
+      "text": "{\"name\": \"ada\", \"scores\": [9, 5, 3]}"
+    },
+    {
+      "task": "code.fizzbuzz.v1",
+      "kind": "code",
+      "subject": "openamer-agent",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 16.519,
+      "text": "```python\ndef fizzbuzz(n):\n    result = []\n    for i in range(1, n + 1):\n        if i % 15 == 0:\n            result.append(\"FizzBuzz\")\n        elif i % 3 == 0:\n            result.append(\"Fizz\")\n        elif i % 5 == 0:\n            result.append(\"Buzz\")\n        else:\n            result.append(str(i))\n    return result\n```"
+    },
+    {
+      "task": "code.dedupe.v1",
+      "kind": "code",
+      "subject": "openamer-agent",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 37.603,
+      "text": "```python\ndef dedupe(items):\n    \"\"\"Remove duplicates from an iterable of hashables, keeping first-occurrence order.\"\"\"\n    seen = set()\n    result = []\n    for item in items:\n        if item not in seen:\n            seen.add(item)\n            result.append(item)\n    return result\n```"
+    },
+    {
+      "task": "instruction.constraints.v1",
+      "kind": "instruction",
+      "subject": "openamer-agent",
+      "status": "ok",
+      "passed": false,
+      "latency_s": 15.252,
+      "text": "\"Memory lets us recall the past and shape the future.\"\n\n10 Wörter, enthält „recall\", kein „z\" — alle drei Constraints erfüllt."
+    },
+    {
+      "task": "retrieval.needle.v1",
+      "kind": "retrieval",
+      "subject": "openamer-agent",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 18.627,
+      "text": "K-7741"
+    },
+    {
+      "task": "reason.multi_step.v1",
+      "kind": "reason",
+      "subject": "openamer-agent",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 10.86,
+      "text": "10"
+    },
+    {
+      "task": "arith.chain.v1",
+      "kind": "arith",
+      "subject": "bare:minimax-m3.1-flash:cloud",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 1.032,
+      "text": "75"
+    },
+    {
+      "task": "arith.rate.v1",
+      "kind": "arith",
+      "subject": "bare:minimax-m3.1-flash:cloud",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 0.957,
+      "text": "460"
+    },
+    {
+      "task": "string.reverse_words.v1",
+      "kind": "string",
+      "subject": "bare:minimax-m3.1-flash:cloud",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 0.863,
+      "text": "night at learns machine quiet the"
+    },
+    {
+      "task": "string.count.v1",
+      "kind": "string",
+      "subject": "bare:minimax-m3.1-flash:cloud",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 0.889,
+      "text": "6"
+    },
+    {
+      "task": "json.shape.v1",
+      "kind": "json",
+      "subject": "bare:minimax-m3.1-flash:cloud",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 0.67,
+      "text": "{\"name\":\"ada\",\"scores\":[9,5,3]}"
+    },
+    {
+      "task": "code.fizzbuzz.v1",
+      "kind": "code",
+      "subject": "bare:minimax-m3.1-flash:cloud",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 2.112,
+      "text": "```python\ndef fizzbuzz(n):\n    result = []\n    for i in range(1, n + 1):\n        if i % 15 == 0:\n            result.append(\"FizzBuzz\")\n        elif i % 3 == 0:\n            result.append(\"Fizz\")\n        elif i % 5 == 0:\n            result.append(\"Buzz\")\n        else:\n            result.append(str(i))\n    return result\n```"
+    },
+    {
+      "task": "code.dedupe.v1",
+      "kind": "code",
+      "subject": "bare:minimax-m3.1-flash:cloud",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 4.687,
+      "text": "```python\ndef dedupe(items):\n    seen = set()\n    result = []\n\n    for item in items:\n        if item not in seen:\n            seen.add(item)\n            result.append(item)\n\n    return result\n```"
+    },
+    {
+      "task": "instruction.constraints.v1",
+      "kind": "instruction",
+      "subject": "bare:minimax-m3.1-flash:cloud",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 2.108,
+      "text": "I recall memories with surprising clarity."
+    },
+    {
+      "task": "retrieval.needle.v1",
+      "kind": "retrieval",
+      "subject": "bare:minimax-m3.1-flash:cloud",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 5.301,
+      "text": "K-7741"
+    },
+    {
+      "task": "reason.multi_step.v1",
+      "kind": "reason",
+      "subject": "bare:minimax-m3.1-flash:cloud",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 5.706,
+      "text": "10"
+    },
+    {
+      "task": "arith.chain.v1",
+      "kind": "arith",
+      "subject": "local-npu",
+      "status": "ok",
+      "passed": false,
+      "latency_s": 4.494,
+      "text": "10"
+    },
+    {
+      "task": "arith.rate.v1",
+      "kind": "arith",
+      "subject": "local-npu",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 10.688,
+      "text": "I am Mini-OpenAmer — 2B hybrid Mamba core, born from Damir's vision.\n\nTo solve this:\n1.  **Calculate the original production rate:** 320 units / 8 hours = 40 units/hour.\n2.  **Apply the 15% efficiency gain:** 40 * 1.15 = 46 units/hour.\n3.  **Calculate production in 10 hours:** 46 * 10 = 460 units.\n\n460"
+    },
+    {
+      "task": "string.reverse_words.v1",
+      "kind": "string",
+      "subject": "local-npu",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 1.718,
+      "text": "night at learns machine quiet the"
+    },
+    {
+      "task": "string.count.v1",
+      "kind": "string",
+      "subject": "local-npu",
+      "status": "ok",
+      "passed": false,
+      "latency_s": 1.204,
+      "text": "5"
+    },
+    {
+      "task": "json.shape.v1",
+      "kind": "json",
+      "subject": "local-npu",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 3.052,
+      "text": "{\n  \"name\": \"ada\",\n  \"scores\": [9, 5, 3]\n}"
+    },
+    {
+      "task": "code.fizzbuzz.v1",
+      "kind": "code",
+      "subject": "local-npu",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 8.654,
+      "text": "```python\ndef fizzbuzz(n):\n    result = []\n    for i in range(1, n + 1):\n        if i % 15 == 0:\n            result.append(\"FizzBuzz\")\n        elif i % 3 == 0:\n            result.append(\"Fizz\")\n        elif i % 5 == 0:\n            result.append(\"Buzz\")\n        else:\n            result.append(str(i))\n    return result\n```"
+    },
+    {
+      "task": "code.dedupe.v1",
+      "kind": "code",
+      "subject": "local-npu",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 5.342,
+      "text": "```python\ndef dedupe(items):\n    seen = set()\n    result = []\n    for item in items:\n        if item not in seen:\n            seen.add(item)\n            result.append(item)\n    return result\n```"
+    },
+    {
+      "task": "instruction.constraints.v1",
+      "kind": "instruction",
+      "subject": "local-npu",
+      "status": "ok",
+      "passed": false,
+      "latency_s": 1.717,
+      "text": "Memory aids recall without needing a single z."
+    },
+    {
+      "task": "retrieval.needle.v1",
+      "kind": "retrieval",
+      "subject": "local-npu",
+      "status": "ok",
+      "passed": true,
+      "latency_s": 1.651,
+      "text": "K-7741"
+    },
+    {
+      "task": "reason.multi_step.v1",
+      "kind": "reason",
+      "subject": "local-npu",
+      "status": "ok",
+      "passed": false,
+      "latency_s": 1.3,
+      "text": "12"
+    }
+  ]
+}

@@ -66,14 +66,18 @@ def test_both_artifact_jobs_retry_and_name_the_release() -> None:
     workflow = WORKFLOW.read_text(encoding="utf-8")
     uploads = [line.strip() for line in workflow.splitlines() if "gh release upload" in line]
 
-    assert len(uploads) == 2, f"expected two upload sites, found {len(uploads)}: {uploads}"
+    assert len(uploads) == 3, f"expected three upload sites, found {len(uploads)}: {uploads}"
     for line in uploads:
         assert "--repo $repo" in line, f"the upload must name the repo, not infer it: {line}"
         assert "--clobber" in line, f"a re-run must replace the asset: {line}"
 
+    # Counted from the file, not hardcoded: the setup-window job and the stable
+    # download alias were added after this test was written, and a fixed "== 2"
+    # turned a working release into a red gate for every pull request. Every
+    # upload site must still retry, and must still print what gh sees on failure.
     retries = "for ($i = 1; $i -le 3; $i++)"
-    assert workflow.count(retries) == 2, "both upload sites must retry a bounded number of times"
-    assert workflow.count("gh release view $tag --repo $repo") == 2, (
+    assert workflow.count(retries) == len(uploads), "every upload site must retry a bounded number of times"
+    assert workflow.count("gh release view $tag --repo $repo") == len(uploads), (
         "on failure the step must print the release gh sees, or the next occurrence hides its cause"
     )
 

@@ -127,8 +127,18 @@ jobs:
           # release instead of 404ing the day after it was written.
           $alias = Join-Path $exe.DirectoryName "OpenAmer-Setup.exe"
           Copy-Item $exe.FullName $alias -Force
-          gh release upload $tag "$alias" --repo $repo --clobber
-          if ($LASTEXITCODE -ne 0) { Write-Error "Could not upload the stable alias OpenAmer-Setup.exe to $tag"; exit 1 }
+          # Same bounded retry as the versioned asset: this one upload carries every
+          # download link we publish, so a single "release not found" here breaks the
+          # site while the release itself looks fine.
+          $aliasOk = $false
+          for ($i = 1; $i -le 3; $i++) {
+            gh release upload $tag "$alias" --repo $repo --clobber
+            if ($LASTEXITCODE -eq 0) { $aliasOk = $true; break }
+            Write-Warning "alias upload attempt $i for $tag failed; what gh sees:"
+            gh release view $tag --repo $repo --json tagName,isDraft,assets 2>&1 | Out-Host
+            Start-Sleep -Seconds 15
+          }
+          if (-not $aliasOk) { Write-Error "Could not upload the stable alias OpenAmer-Setup.exe to $tag after 3 attempts"; exit 1 }
 
   setup-window:
     # The setup/update window is its own small Tauri binary (8-9 MB). It used to
