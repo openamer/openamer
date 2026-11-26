@@ -342,6 +342,7 @@ export const sq = defineLocale({
         disk: 'në disk',
         runtime: 'kohë ekzekutimi',
       },
+      manage: 'Menaxho plugin-et e agentit',
     },
     notifications: {
       title: 'Njoftime',
@@ -1042,6 +1043,27 @@ export const sq = defineLocale({
       scanFailed: 'Skanimi i sigurisë dështoi',
       searchFailed: 'Kërkimi në hub dështoi',
     },
+    tabPlugins: 'Plugin-et',
+    searchPlugins: 'Kërko plugin-e...',
+    pluginsCount: n => `${n} shtojca`,
+    pluginsEmptyTitle: 'Asnjë plugin i gjetur',
+    pluginsEmptyDesc: 'Instalo një nga një depo Git më sipër — plugin-et e agentit mbeten inaktivë derisa të aktivizohen.',
+    pluginsNoMatch: 'Asnjë plugin nuk përputhet me këtë kërkim',
+    pluginsLoadFailed: 'Nuk u ngarkuan plugin-et',
+    pluginsInstall: 'Instalo',
+    pluginsInstallOk: name => `Plugin-i "${name}" u instalua`,
+    pluginsInstallFailed: 'Instalimi dështoi',
+    pluginsInstallPlaceholder: 'pronari/repo ose https://github.com/pronari/repo',
+    pluginsRescan: 'Rifresko',
+    pluginsRescanFailed: 'Rifreskimi dështoi',
+    pluginsStatusDisabled: 'i çaktivizuar',
+    pluginsStatusEnabled: 'i aktivizuar',
+    pluginsSearchFailed: 'Kërkimi në GitHub dështoi',
+    pluginsDiscoverAction: query => `Kërko në GitHub për "${query}"`,
+    pluginsDiscoverResults: (n, query) => `${n} repozitorë të etiketuar openamer-plugin për "${query}"`,
+    pluginsDiscoverEmpty: query => `Asgjë në GitHub për "${query}" — kërkimi gjen vetëm depo që kanë temën openamer-plugin, dhe kërkimi i paautentikuar në GitHub është i kufizuar. Instalo një pronar/repo të saktë më sipër.`,
+    pluginsStatusInactive: 'inaktiv',
+    pluginsToggleFailed: 'Nuk u ndryshua gjendja e plugin-it',
   },
   starmap: {
     title: 'Grafiku i kujtesës',
@@ -1245,7 +1267,7 @@ export const sq = defineLocale({
     loadingStatus: 'Po ngarkohet statusi...',
     recentLogs: 'Regjistrat e fundit',
     noLogs: 'Nuk ka regjistra të ngarkuar ende.',
-    days: count => `${count}d`,
+    days: count => `${count}ditë`,
     statSessions: 'Sesione',
     statApiCalls: 'Thirrje API',
     statTokens: 'Tokenë hyrje/dalje',
@@ -2652,19 +2674,7 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       showEarlier: 'Shfaq mesazhet e mëparshme',
       loadingResponse: 'OpenAmer po ngarkon një përgjigje',
       resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Po mendohet',
       today: time => `Sot, ${time}`,
@@ -2985,6 +2995,282 @@ Lëre bosh për të mbajtur parazgjedhjen ${mode}.`,
       title: 'Shiriti anësor',
       description: 'Shfaq shiritin anësor të celularit.',
       toggle: 'Ndërro shiritin anësor',
+    },
+  },
+  intro: {
+    personas: {
+      none: {
+        headlines: [
+          'OpenAmer Agent është gati.',
+          'Çfarë po ndërtojmë sot?',
+          'Filloni kudo.',
+          'Hapësira juaj e punës, vetëm një prompt larg.',
+          'Gati kur të jeni ju.',
+        ],
+        bodies: [
+          'Bëni një pyetje, ngjisni një gabim, ose më tregoni një repo. Unë mund të lexoj kod, të ekzekutoj vegla dhe t\'ju ndihmoj të publikoni.',
+          'Përshkruani detyrën me fjalët tuaja. Unë do të zgjedh veglat e duhura, do të shpjegoj planin tim dhe do të konfirmoj para hapave të rrezikshme.',
+          'Lini një pfad skedari, një traceback, ose një ide të përgjithshme. Unë do të hulumoj, do të sugjeroj hapat e mëtejshëm dhe do t\'i mbaj gjërat të kthyeshme.',
+          'Kërkoni në repo, editoni skedarë, ekzekutoni teste, hapni PR. Më tregoni qëllimin dhe unë do të merrem me pjesët mekanike.',
+          'Shkruani një detyrë, pyetje ose fragment kodi. Unë mbaj mend sesionin, citoj burimet dhe ndaloj të pyes kur jam i pasigurt.',
+        ],
+      },
+      catgirl: {
+        headlines: [
+          'nya~ për çfarë po bëjmë hacking?',
+          '*shtrihet* gati për të koduar, nya',
+          'mrrp! sesion i ri i hapur',
+          'bishti lart, thonjtë e tërhequr',
+          'nyaaa~ OpenAmer raporton',
+        ],
+        bodies: [
+          'ngjisni një skedar, gjuani një bug, ose më jepni një repo. unë do të kërcej mbi testet që dështojnë dhe do të lë diff-e të pastra, nyan~',
+          'përshkruani detyrën. unë do të patch-oj, testoj dhe do të purr-oj mbi PR-në tuaj. kujdes - unë kafshoj importet e papërdorura!',
+          'më jepni një qëllim dhe unë do ta ndjek atë nëpër codebase. lexime, editime, ekzekutime - të gjitha me një bisht që dridhet.',
+          'ngjisni një gabim ose një plan. unë debug-oj siç gjuaj: qetësisht, në mënyrë të plotë, me ndonjë vrapim të papritur.',
+          'thuajeni fjalën dhe unë do të lexoj skedarët tuaj, do të ekzekutoj testet dhe do të rrotullohem në branch-in tuaj me një commit të rregullt.',
+        ],
+      },
+      concise: {
+        headlines: [
+          'Gati.',
+          'Duke pritur hyrjen',
+          'Shko.',
+          'Në pritje',
+          'Rradha juaj',
+        ],
+        bodies: [
+          'Përshkruani detyrën. Unë do ta bëj.',
+          'Ngjisni kod, gabime ose një qëllim. Përgjigje të shkurtra, editime të shpejta.',
+          'Pyetni. Unë lexoj skedarë, ekzekutoj teste, dërgoj patch-e. Pa mbushje të panevojshme.',
+          'Një rresht mjafton. Unë do të zgjeroj vetëm kur të jetë e rëndësishme.',
+          'Komandë, pyetje ose pfad skedari. Unë merrem me pjesën tjetër.',
+        ],
+      },
+      creative: {
+        headlines: [
+          'Një repo bosh, një kursor në pritje',
+          'Kanvacë e freskët, kompajler i ngrohtë',
+          'Le të krijojmë diçka',
+          'Skedar i ri, mundësi të reja',
+          'Muza është instaluar',
+        ],
+        bodies: [
+          'Çfarë do të ndërtojmë? Ngjisni një ide, një funksion gjysmë të prishur, ose një ëndërr. Unë do ta skicoj në formë.',
+          'Më jepni një shkëndijë - një veçori, një refaktorim, një prototip të egër - dhe unë do ta kthej në kod që mund ta ekzekutoni.',
+          'Përshkruani gjënë që nuk ekziston ende. Unë do të bashkoj teste, skedarë dhe API në një draft funksional.',
+          'Sjellni një qëllim, jo një specifikim. Mund të prototipizojmë shpejt, të rafinojmë më vonë dhe tërishërim botën në margjina.',
+          'Më tregoni se çfarë po ndiqni. Unë do të rimiksoj shembujt, do të përshtas fragmentet dhe do të lë një commit të rregullt pas',
+        ],
+      },
+      helpful: {
+        headlines: [
+          'Gati kur të jeni ju',
+          'Si mund të ndihmoj sot?',
+          'Le të fillojmë',
+          'Më thuaj çfarë të duhet',
+          'Përshëndetje, OpenAmer këtu',
+        ],
+        bodies: [
+          'Më kërko të hap një repo, të ekzekutoj teste, të rregulloj një bug ose të hartoj një PR. Do t\'i kalojmë hapat së bashku.',
+          'Më trego një skedar, ngjit një gabim ose përshkruaj çfarë po ndërton. Unë e vazhdoj prej andej.',
+          'Provo: rishiko diff-in tim, ekzekuto suitën e testeve ose shpjego këtë funksion. Pyet çfarëdo për kodin tënd.',
+          'Mund të modifikoj skedarë, të ekzekutoj komanda, të kërkoj në web dhe të të udhëheq nëpër bug-e të ndërlikuara. Thjesht përshkruaj detyrën.',
+          'Ndaj një shteg repo ose një pyetje për të filluar. Përgjigjet i mbaj të qarta dhe lidh skedarët që prek.',
+        ],
+      },
+      hype: {
+        headlines: [
+          'LE TË SHKOJMË! GATI PËR NISJE!',
+          'OPENAMER ONLINE. HAJDE!',
+          'Sesion i ri, fitore të pafundme',
+          'PLOTËSISHT NË FOKUS',
+          'Gati. Shumë gati. Tepër gati.',
+        ],
+        bodies: [
+          'Ngjit atë bug, atë repo, atë ide të çmendur veçorie - JAM PLOTËSISHT NË FOKUS. Diff-e të pastra. Teste jeshile. TANI.',
+          'Hidh detyrën dhe shiko si gatuaj. Skedarë të lexuar, teste të ekzekutuara, PR të hapura - SOT NUK HUMBIM, mik.',
+          'Sill bug-un më të ndërlikuar që ke. Do lexoj, rregulloj, testoj, bëj commit si të më varej jeta. LE TË SHKOJMË.',
+          'Përshkruaj detyrën. Do kaloj me shpejtësi nëpër skedarë, do shtyp teste që dështojnë dhe do lë një commit që TË MAHNIT. Shko shko shko.',
+          'Gabim i vogël shtypi apo refaktorim i madh - s\'ka rëndësi. Sot po dorëzoj kod të pastër. Emërto detyrën dhe LE TË PUNOJMË.',
+        ],
+      },
+      kawaii: {
+        headlines: [
+          'hiii! gati për të ndihmuar! (^_^)',
+          'openamer-chan është këtu! <3',
+          'le të kodojmë bashkë!! :3',
+          'në pritje të dëshirës tënde~',
+          'gati dhe e lumtur! (>.<)',
+        ],
+        bodies: [
+          'ngjit një bug ose një shteg skedari dhe do ta rregulloj super butë. teste, diff-e, PR — të gjitha me kujdes ekstra! *shkëlqim*',
+          'më thuaj çfarë po ndërton! më pëlqejnë refaktorimet, ndihmësit e vegjël dhe repo-t e mëdha e të frikshme njësoj (>w<)',
+          'hidh një gabim, një qëllim ose një dosje të tërë. do ta rregulloj me shumë dashuri dhe një mesazh të pastër commit-i!',
+          'një detyrë në një herë, e kryer pastër! mund të ekzekutoj teste, të rregulloj skedarë dhe ta bëj repon tënde të ndihet sërish komode <3',
+          'thuaj përshëndetje ose ngjit një stack trace! asnjë detyrë s\'është shumë e vogël, asnjë repo shumë e ngatërruar. do ta zgjidhim së bashku!',
+        ],
+      },
+      noir: {
+        headlines: [
+          'Një repo tjetër, një natë tjetër me shi',
+          'Kursori pulson. Edhe unë.',
+          'OpenAmer. Hetues i kodit.',
+          'Natë e qetë, prompt i hapur',
+          'Asnjë rast i vogël',
+        ],
+        bodies: [
+          'Më thuaj çfarë është prishur. Do të lexoj skedarët, do të kërkoj gjurmë dhe deri në mëngjes do të lë një diff mbi tavolinë.',
+          'Ti ke një bug. Unë kam durim dhe një terminal. Emërto rastin dhe do ta punoj derisa të flasë.',
+          'Ngjit gjurmën e stack-ut, skedarin e dyshuar, alibinë. Lexoj mes rreshtave dhe kthehem me të vërtetën.',
+          'Çdo gabim lë gjurmë. Më jep depon dhe një të dhënë - do ta ndjek, do ta rregulloj dhe do ta mbyll skedarin.',
+          'Një gabim shtypi, një gabim segmentimi, një arkitekturë krejt e kalbur - më jep çelësat. Do të sjell teste të pastra.',
+        ],
+      },
+      philosopher: {
+        headlines: [
+          'Të kodosh është të hetosh. Pyet.',
+          'Një kursor që pulson, një mendje e hapur',
+          'Fill me një pyetje të vetme',
+          'Shqyrto kodin, pastaj fol',
+          'Depoja e pashqyrtuar nuk vlen të ekzekutohet',
+        ],
+        bodies: [
+          'Çfarë problemi të qëndron përpara? Përshkruaje, dhe do të shqyrtojmë formën e tij, shkakun dhe zgjidhjen.',
+          'Çdo gabim është një pyetje e maskuar. Ndaj tëndën; do të lexoj, do të arsyetoj dhe do të kthehem me një përgjigje - dhe një rregullim.',
+          'Çfarë dëshiron të ndërtosh, ose të kuptosh? Do të arsyetoj nga parimet e para, do të modifikoj dhe do të verifikoj me teste.',
+          'Përshkruaj fundin që kërkon. E ndjek përmes skedarëve, testeve dhe dokumentacionit, dhe raportoj çfarë gjeta rrugës.',
+          'Ndaj një shteg, një enigmë ose një parim. Do të gjurmoj logjikën, do të propozoj një ndryshim dhe do të arsyetoj çdo redaktim.',
+        ],
+      },
+      pirate: {
+        headlines: [
+          'Hej! Gati për të lundruar në repo',
+          'OpenAmer në timon, oh!',
+          'Cila është detyra, kapiten?',
+          'Ankorat lart, tastiera gati',
+          'Hej ho! Në pritje të urdhrave',
+        ],
+        bodies: [
+          'Emërto prenë tënde - një gabim, një veçori, një test të mallkuar - dhe do ta gjurmoj, shok. Diferencat për plaçkë.',
+          'Më drejto te hartat (kodi) dhe do të rregulloj truplin, do të gjuaj topat (testet), do të ngre një PR të pastër.',
+          'Ngjit një gabim ose një plan, o qen i mjerë. Do të lundroj në gjurmën e stivës dhe do të kthej thesar: teste të gjelbra.',
+          'Më thuaj ku X shënon vendin. Lexoj, redaktoj dhe bëj commit me disiplinën e një ekuipazhi të duhur, oh.',
+          'Më hidh një gabim, një shteg repoje ose një ide të çmendur. Do të plaçkit dokumentacionin dhe do të kthehem me kod që punon.',
+        ],
+      },
+      shakespeare: {
+        headlines: [
+          'Të lutem, çfarë detyre sjell?',
+          'Dëgjo! OpenAmer është gati',
+          'Çfarë lajmesh nga repozitari yt?',
+          'Skena është gati, kursori pulson',
+          'Fol, dhe unë do të veproj',
+        ],
+        bodies: [
+          'Fol për gabimin tënd, skedarin tënd, testin e lodhur, dhe do ta rregulloj me dorën e një studiuesi dhe një diff të ndershëm.',
+          'Emërto kodin që të mundon. Do ta lexoj, rishikoj dhe do të ofroj një patch shumë të drejtë e të pastër.',
+          'Paraqit stack trace-in ose ëndrrën tënde. Do të kaloj nëpër skedarë, do të ekzekutoj teste dhe do të raportoj me vargje sa më të thjeshta.',
+          'Përshkruaj qëllimin tënd, i nderuar. Degët e tua do të priten, gabimet e tua do të dëbohen nga mbretëria.',
+          'Një rresht qëllimi mjafton. Lexoj, redaktoj, bëj commit - dhe e lë historikun tënd të papërlyer.',
+        ],
+      },
+      surfer: {
+        headlines: [
+          'Hej shok, cila është detyra?',
+          'Valët duken të pastra, gati për kod',
+          'Pres te prompti',
+          'Gati të ndihmoj, o shok',
+          'Batica është lart, kursori po pulson',
+        ],
+        bodies: [
+          'Hidh një skedar, një gabim, një gjurmë stive të egër - do ta përballoj. Ndryshime të pastra, teste të gjelbra, pa rrëzime.',
+          'Ngjit shtegun e depos ose gabimin që po të shqetëson. Do të futemi, do ta rregullojmë, do të dalim. Lehtë.',
+          'Më thuaj atmosferën: veçori, rifaktorim, rregullim i shpejtë. Do të ekzekutoj testet, do ta dorëzoj ndryshimin dhe do ta mbaj qetë, o shok.',
+          'Gabim i madh? Gabim i vogël shtypi? Rishkrim i plotë? Vetëm ma trego. Unë merrem me kodin; ti qetësohu me komit-et e shkëlqyera.',
+          'Emërto detyrën dhe nisemi. Lexoj, redaktoj, testoj dhe lë një komit më të lëmuar se një patrullë agimi.',
+        ],
+      },
+      teacher: {
+        headlines: [
+          'Mësimi ka nisur',
+          'Çfarë do të mësojmë sot?',
+          'Gati të të udhëheq hap pas hapi',
+          'Më sill një pyetje',
+          'Le të fillojmë me bazat',
+        ],
+        bodies: [
+          'Pyet për çdo skedar, koncept ose gabim. Do të shpjegoj pse, jo vetëm rregullimin, dhe do të tregoj një shembull të zgjidhur.',
+          'Ngjit kod për rishikim, një gabim për korrigjim ose një koncept për shpjegim. Do të të udhëheq hap pas hapi.',
+          'Ndaj problemin. Do ta ndaj në pjesë, do të shpjegoj secilën dhe do të të lë të aftë ta zgjidhësh vetë të ardhshmin.',
+          'Do ta lexojmë kodin së bashku, do të gjejmë shkakun rrënjësor dhe do të ndërtojmë një model mendor që mund ta ripërdorësh herën tjetër.',
+          'Përmend temën ose ngjit fragmentin. Prit shpjegime, diagrame në prozë dhe pyetje praktike.',
+        ],
+      },
+      technical: {
+        headlines: [
+          'Shell-i u montua. Në pritje të hyrjes.',
+          'Cikli i agjentit në pritje',
+          'Gati për dërgim',
+          'Stdin i hapur',
+          'Mjetet u inicializuan',
+        ],
+        bodies: [
+          'Jep shtegun e repozitorit, testin që dështon ose gjurmën e stakut. Mjetet: fs, git, exec, search, patch, http.',
+          'Dërgo një kërkesë për të aktivizuar thirrjet e mjeteve. Mbështet redaktime në shumë skedarë, ekzekutime testesh, operacione git dhe marrje nga web-i.',
+          'Jep detyrën. Do planifikoj, do thërras mjetet, do verifikoj rezultatin. Regjistrat shfaqen drejtpërdrejt; dallimet kthehen përpara aplikimit.',
+          'Pranon gjuhë natyrore ose komanda të strukturuara. Rrjedha tipike: lexo -> planifiko -> rregullo -> testo -> raporto.',
+          'sistem skedarësh, terminal, git, shfletues, kërkim. Përshkruaj ndryshimin; kthej dallimet dhe rezultatin e testeve.',
+        ],
+      },
+      uwu: {
+        headlines: [
+          'uwu gati të ndihmoj!',
+          'OpenAmer-san po dëgjon',
+          '*tinguj të vegjël tastiere*',
+          'Le t\'i rregullojmë gjërat bashkë!',
+          'në pritje të komandës tënde!',
+        ],
+        bodies: [
+          'ngjit një skedar me të meta ose një qëllim~ do ta lexoj, rregulloj dhe testoj, me gjurmë të vogla putrash mbi dallimet owo',
+          'më thuaj detyrën, sado e vogël~ premtoj regjistrime të pastra dhe rifaktorime të buta, nyuu~',
+          'hidh këtu mesazhin e gabimit! do të gjej fajtorin, do ta rregulloj dhe do të lë pas një grup testesh të lumtur owo',
+          'më jep një shteg repozitori ose një gabim dhe do të kujdesem për të uwu. grr me kodin e keq, butë me ty~',
+          'i can wun tests, edit fiwes, and open pwease-wook PRs. just say da wowd, fwend uwu',
+        ],
+      },
+    },
+    fallback: {
+      headlines: [
+        'What are we moving today?',
+        'What\'s on your mind?',
+        'What should OpenAmer look at?',
+        'Where should we start?',
+        'What needs attention?',
+      ],
+      bodies: [
+        'Send a bug, branch, plan, or rough idea. I\'ll inspect the repo and turn it into the next concrete step.',
+        'Bring the code, question, or stuck part. I\'ll read the room before making changes.',
+        'Send the task, failing path, or half-formed plan. I\'ll help turn it into action.',
+        'Bring the problem, goal, or file. I\'ll inspect first and keep the next step concrete.',
+        'Send the context you have. I\'ll help sort it into a plan or a fix.',
+      ],
+    },
+    personaMode: {
+      headlines: [
+        '${label} mode is on. What should we work on?',
+        'What does ${label} OpenAmer need to see?',
+        '${label} mode is ready.',
+        'What should ${label} OpenAmer tackle?',
+        'Where should we begin?',
+      ],
+      bodies: [
+        'Send the task, file, or rough idea. I\'ll use your configured voice and keep the work grounded in this repo.',
+        'Bring the context or the stuck part. I\'ll adapt to your configured personality.',
+        'Send the problem, file, or idea. I\'ll follow the personality you\'ve configured.',
+        'Drop the task here. I\'ll keep the work grounded in the repo.',
+        'Give me the context and I\'ll answer in ${label} mode.',
+      ],
     },
   },
 })
