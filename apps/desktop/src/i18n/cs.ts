@@ -342,6 +342,7 @@ export const cs = defineLocale({
         disk: 'na disku',
         runtime: 'běh',
       },
+      manage: 'Správa pluginů agenta',
     },
     notifications: {
       title: 'Upozornění',
@@ -918,7 +919,7 @@ export const cs = defineLocale({
       failedSelectCapability: provider => `Nepodařilo se nastavit ${provider}`,
       loadingModels: 'Načítání katalogu modelů…',
       modelSectionTitle: 'Model',
-      modelCount: count => `${count} ${count === 1 ? 'model' : 'modely'}`,
+      modelCount: count => `model ${count} ${count === 1 ? 'model' : 'modely'}`,
       modelInUse: 'Používáno',
       modelDefault: 'výchozí',
       modelInactiveHint: 'Nejprve vyberte tento backend, abyste mohli změnit jeho model.',
@@ -1042,6 +1043,27 @@ export const cs = defineLocale({
       scanFailed: 'Bezpečnostní skenování selhalo',
       searchFailed: 'Hledání v centru selhalo',
     },
+    tabPlugins: 'Pluginy',
+    searchPlugins: 'Hledat pluginy...',
+    pluginsCount: n => `Pluginy: ${n}`,
+    pluginsEmptyTitle: 'Žádné pluginy nenalezeny',
+    pluginsEmptyDesc: 's instalujte jeden z Git repozitáře výše — pluginy agenta zůstávají neaktivní, dokud nejsou zapnuto.',
+    pluginsNoMatch: 'Žádný plugin neodpovídá vyhledávání',
+    pluginsLoadFailed: 'Nepodařilo se načíst pluginy',
+    pluginsInstall: 'Nainstalovat',
+    pluginsInstallOk: name => `Plugin "${name}" byl nainstalován`,
+    pluginsInstallFailed: 'Instalace selhala',
+    pluginsInstallPlaceholder: 'vlastník/repo nebo https://github.com/vlastník/repo',
+    pluginsRescan: 'Znovu prohledat',
+    pluginsRescanFailed: 'Rescan selhal',
+    pluginsStatusDisabled: 'zakázáno',
+    pluginsStatusEnabled: 'zapnuto',
+    pluginsSearchFailed: 'Vyhledávání na GitHubu selhalo',
+    pluginsDiscoverAction: query => `Hledat na GitHubu "${query}"`,
+    pluginsDiscoverResults: (n, query) => `${n} repozitářů označených openamer-plugin pro "${query}"`,
+    pluginsDiscoverEmpty: query => `Na GitHubu nic pro "${query}" — vyhledávání nachází pouze repozitáře s tématem openamer-plugin a neautentizované vyhledávání na GitHubu má limit požadavků. Místo toho nainstalujte přesný vlastník/repo výše.`,
+    pluginsStatusInactive: 'neaktivní',
+    pluginsToggleFailed: 'Nepodařilo se změnit stav pluginu',
   },
   starmap: {
     title: 'Graf paměti',
@@ -1584,7 +1606,8 @@ export const cs = defineLocale({
     notSet: 'Nenastaveno',
     soulDesc: 'Systémový prompt a instrukce persony uložené v tomto profilu.',
     soulOptional: 'volitelné',
-    soulPlaceholder: mode => `Systémový prompt / persona pro tento profil.\nNechejte prázdné, aby se zachoval ${mode} výchozí.`,
+    soulPlaceholder: mode => `Systémový prompt / persona pro tento profil.
+Nechejte prázdné, aby se zachoval ${mode} výchozí.`,
     soulPlaceholderCloned: 'klonováno',
     soulPlaceholderEmpty: 'prázdné',
     unsavedChanges: 'Neuložené změny',
@@ -2145,7 +2168,7 @@ export const cs = defineLocale({
     availableBodyNoChangelog: 'Novější verze je připravena. Poznámky k verzi nejsou k dispozici pro tento typ instalace.',
     updateNow: 'Aktualizovat nyní',
     maybeLater: 'Možná později',
-    moreChanges: count => `+ vč. ${count} ${count === 1 ? 'další změna' : 'další změny'}.`,
+    moreChanges: count => `+ vč. ${count} dalších ${count === 1 ? 'změna' : 'změny'}.`,
     manualTitle: 'Aktualizovat z terminálu',
     manualBody: 'Nainstalovali jste OpenAmer z příkazové řádky, takže aktualizace probíhají tam také. Vložte toto do terminálu:',
     manualPickedUp: 'OpenAmer načte novou verzi při příštím spuštění.',
@@ -2651,21 +2674,7 @@ export const cs = defineLocale({
       showEarlier: 'Zobrazit starší zprávy',
       loadingResponse: 'OpenAmer načítá odpověď',
       resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
-
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Uvažuje',
       today: time => `Dnes, ${time}`,
@@ -2986,6 +2995,282 @@ export const cs = defineLocale({
       title: 'Boční panel',
       description: 'Zobrazuje mobilní boční panel.',
       toggle: 'Přepnout boční panel',
+    },
+  },
+  intro: {
+    personas: {
+      none: {
+        headlines: [
+          'OpenAmer Agent je připraven.',
+          'Co dnes budujeme?',
+          'Začněte kdekoliv.',
+          'Váš pracovní prostor, jeden prompt od vás.',
+          'Připraven, až budete vy.',
+        ],
+        bodies: [
+          'Zadejte otázku, vložte chybu nebo mě nasměrujte na repo. Umím číst kód, spouštět nástroje a pomáhat vám s nasazováním.',
+          'Popište úkol vlastními slovy. Vyberu správné nástroje, vysvětlím plán a před rizikovými kroky se s vámi poradím.',
+          'Vložte cestu k souboru, traceback nebo hrubou představu. Prozkoumám to, navrhnu další kroky a zajistím, aby šlo změny vrátit.',
+          'Prohledám repo, upravím soubory, spustím testy, otevřu PR. Řekněte mi cíl a já se postarám o mechanickou část.',
+          'Napište úkol, otázku nebo útržek kódu. Pamatuji si relaci, uvádím zdroje a zastavím se, abych se zeptal, když si nejsem jistý.',
+        ],
+      },
+      catgirl: {
+        headlines: [
+          'nya~ na čem dnes hackujeme?',
+          '*protahuje se* připraven kódovat, nya',
+          'mrrp! otevřena nová relace',
+          'ocas nahoru, drápky schované',
+          'nyaaa~ OpenAmer hlásí přítomnost',
+        ],
+        bodies: [
+          'vložte soubor, tlapkoukněte na bug nebo mi hoďte repo. vrhnu se na neúspěšné testy a zanechám čisté diffy, nyan~',
+          'popište úkol. zaplátuji, otestuji a zavrčím nad vaším PR. pozor - kousám nepoužité importy!',
+          'dejte mi cíl a já ho budu pronásledovat v kódu. čtení, úpravy, spouštění - vše s cukajícím ocasem.',
+          'vložte chybu nebo plán. debuguji jako lovím: tiše, důkladně a s občasným náletem.',
+          'dejte vědět a já přečtu vaše soubory, spustím testy a schoulím se ve vaší větvi s úhledným commitem.',
+        ],
+      },
+      concise: {
+        headlines: [
+          'Připraven.',
+          'Čekám na vstup',
+          'Jdeme.',
+          'V pohotovosti',
+          'Teď vy',
+        ],
+        bodies: [
+          'Popište úkol. Já ho vyřeším.',
+          'Vložte kód, chyby nebo cíl. Stručné odpovědi, rychlé úpravy.',
+          'Zeptejte se. Přečtu soubory, spustím testy, dodám záplaty. Bez zbytečností.',
+          'Stačí jeden řádek. Rozvedu to jen tehdy, když na tom záleží.',
+          'Příkaz, otázka nebo cesta k souboru. Zbytek vyřeším já.',
+        ],
+      },
+      creative: {
+        headlines: [
+          'Prázdné repo, čekající kurzor',
+          'Čisté plátno, teplý kompilátor',
+          'Vytvořme něco',
+          'Nový soubor, nové možnosti',
+          'Múza je zapojená',
+        ],
+        bodies: [
+          'Co postavíme? Vložte nápad, polorozbitou funkci nebo sen. Já to načrtnu do tvaru.',
+          'Dejte mi jiskru - funkci, refaktor, divný prototyp - a já z toho udělám kód, který můžete spustit.',
+          'Popište věc, která ještě neexistuje. Sestavím z testů, souborů a API funkční návrh.',
+          'Přineste záměr, ne specifikaci. Můžeme rychle prototypovat, později doladit a v poznámkách přepsat svět.',
+          'Řekněte mi, co pronásledujete. Remixuji příklady, adaptuji útržky a zanechám po sobě úhledný commit.',
+        ],
+      },
+      helpful: {
+        headlines: [
+          'Připraven, až budete vy',
+          'S čím dnes pomohu?',
+          'Pojďme začít',
+          'Řekni mi, co potřebuješ',
+          'Ahoj, tady OpenAmer',
+        ],
+        bodies: [
+          'Požádej mě, ať otevřu repo, spustím testy, opravím chybu nebo připravím PR. Provedu tě kroky.',
+          'Ukaž mi soubor, vlož chybu nebo popiš, co stavíš. Zbytek vezmu na sebe.',
+          'Zkus: zkontroluj můj diff, spusť testy nebo vysvětli tuto funkci. Zeptej se na cokoli ve svém kódu.',
+          'Umím upravovat soubory, spouštět příkazy, hledat na webu a provést tě záludnými chybami. Stačí popsat úkol.',
+          'Sdílej cestu k repu nebo otázku a začneme. Odpovídám jasně a odkazuji na soubory, které upravím.',
+        ],
+      },
+      hype: {
+        headlines: [
+          'JDEME NA TO! PŘIPRAVENO NASAZENÍ!',
+          'OPENAMER ONLINE. JDEME DO TOHO.',
+          'Nová relace, nekonečné výhry',
+          'ABSOLUTNĚ PŘIPRAVEN',
+          'Připraveno. Fakt připraveno. Až moc připraveno.',
+        ],
+        bodies: [
+          'Vlož tu chybu, to repo, ten šílený nápad na funkci – JSEM V TOM NA PLNO. Čisté diffy. Zelené testy. HNET TEĎ.',
+          'Hoď mi úkol a koukej, jak to vařím. Soubory přečtené, testy spuštěné, PR otevřené – dnes NEPROHRAJEME, kámo.',
+          'Přines ten nejzapeklitější bug, jaký máš. Přečtu, opravím, otestuji a commitnu, jako by mi šlo o život. JDEME NA TO.',
+          'Popiš úkol. Proletím soubory, rozdrtím padající testy a zanechám commit, co je PECKA. Jdeme, jdeme, jdeme.',
+          'Malý překlep, nebo velký refaktor – to je jedno. Dnes dodávám čistý kód. Řekni úkol a MAKÁME.',
+        ],
+      },
+      kawaii: {
+        headlines: [
+          'ahoj! připravená pomoct! (^_^)',
+          'openamer-chan je tady! <3',
+          'pojďme kódovat spolu!! :3',
+          'čekám na tvoje přání~',
+          'připravená a šťastná! (>.<)',
+        ],
+        bodies: [
+          'vlož bug nebo cestu k souboru a já to opravím ultrajemně. testy, diffy, PR – všechno s extra péčí! *jiskření*',
+          'řekni mi, co tvoříš! miluju refaktory, drobné pomocníky i velké děsivé repozitáře (>w<)',
+          'hoď sem chybu, cíl nebo celou složku. uklidím to s hromadou lásky a čistou zprávou commitu!',
+          'jeden úkol po druhém, pořádně! umím spustit testy, opravit soubory a zase udělat tvůj repozitář útulným <3',
+          'Napiš ahoj nebo vlož trasování zásobníku! Žádný úkol není malý, žádný repozitář moc zamotaný. Rozmotáme to spolu!',
+        ],
+      },
+      noir: {
+        headlines: [
+          'Další repozitář, další deštivá noc',
+          'Kurzor bliká. Já taky.',
+          'OpenAmer. Vyšetřovatel kódu.',
+          'Tichá noc, otevřená výzva',
+          'Žádný případ není malý',
+        ],
+        bodies: [
+          'Řekni mi, co je rozbité. Přečtu soubory, posbírám otisky a do rána nechám na stole návrh změn.',
+          'Máš chybu. Já mám trpělivost a terminál. Pojmenuj případ a budu na něm pracovat, dokud nepromluví.',
+          'Vlož trasování zásobníku, podezřelý soubor, alibi. Čtu mezi řádky a vrátím se s pravdou.',
+          'Každá chyba zanechává stopu. Dej mi repozitář a vodítko - půjdu po něm, opravím to a uzavřu případ.',
+          'Překlep, porušení segmentace, celá shnilá architektura - dej mi klíče. Přinesu zpět čisté testy.',
+        ],
+      },
+      philosopher: {
+        headlines: [
+          'Kódovat znamená pátrat. Ptej se.',
+          'Blikající kurzor, otevřená mysl',
+          'Začněte jednou otázkou',
+          'Zvažte kód, pak mluvte',
+          'Neprozkoumaný repozitář nemá cenu spouštět',
+        ],
+        bodies: [
+          'Jaký problém před vámi stojí? Popište ho a prozkoumáme jeho formu, příčinu i řešení.',
+          'Každá chyba je otázka v převleku. Podělte se o svou; přečtu si ji, promyslím a vrátím odpověď – i záplatu.',
+          'Co chcete postavit, nebo pochopit? Budu uvažovat od prvních principů, upravím a ověřím testy.',
+          'Popište cíl, který hledáte. Sleduji ho přes soubory, testy a dokumentaci a hlásím, co jsem cestou našel.',
+          'Sdílejte cestu, hádanku nebo princip. Vystopuji logiku, navrhnu změnu a odůvodním každou úpravu.',
+        ],
+      },
+      pirate: {
+        headlines: [
+          'Ahóóój! Připraven plout repozitářem',
+          'OpenAmer u kormidla, arrr',
+          'Jaký je úkol, kapitáne?',
+          'Kotvy nahoru, klávesnice připravena',
+          'Jó ho! Čekám na rozkazy',
+        ],
+        bodies: [
+          'Urči svou kořist – chybu, funkci, prokletý test – a já ji vypátrám, parťáku. Diffy na lup.',
+          'Nasměruj mě na mapy (kód) a já zalepím trup, vystřelím z děl (testy) a vztyčím čistý PR.',
+          'Vlož chybu nebo plán, ty mizerný pse. Projdu trasování zásobníku a přinesu poklad: zelené testy.',
+          'Řekni mi, kde je X. Čtu, upravuji a commituji s disciplínou pořádné posádky, arrr.',
+          'Hoď mi chybu, cestu k repozitáři nebo divoký nápad. Vyplundruju dokumentaci a vrátím se s funkčním kódem.',
+        ],
+      },
+      shakespeare: {
+        headlines: [
+          'Nuže, jaký úkol mi přinášíš?',
+          'Hle! OpenAmer je připraven',
+          'Co nového ve tvém repozitáři?',
+          'Scéna je připravena, kurzor bliká',
+          'Mluv a já budu jednat',
+        ],
+        bodies: [
+          'Speak thy bug, thy file, thy weary test, and I shall mend it with a scholar\'s hand and honest diff.',
+          'Name the code that vexeth thee. I shall read, revise, and render a patch most fair and clean.',
+          'Present thy stack trace or thy dream. I\'ll traverse files, run tests, and report in plainest verse.',
+          'Describe thy aim, good sir or madam. Thy branches shall be trimmed, thy bugs cast from the realm.',
+          'A line of intent sufficeth. I read, I edit, I commit - and leave thy history unblemished.',
+        ],
+      },
+      surfer: {
+        headlines: [
+          'Yo dude, what\'s the task?',
+          'Waves lookin\' clean, ready to code',
+          'Hangin\' ten at the prompt',
+          'Stoked to help, bro',
+          'Tide\'s up, cursor\'s blinking',
+        ],
+        bodies: [
+          'Drop a file, a bug, a gnarly stack trace - I\'ll ride it out. Clean diffs, green tests, no wipeouts.',
+          'Paste your repo path or the bug that\'s bumming you out. We\'ll paddle in, fix it, paddle out. Easy.',
+          'Tell me the vibe: feature, refactor, hotfix. I\'ll run tests, ship the patch, and keep it mellow, brah.',
+          'Big bug? Little typo? Whole rewrite? Just point. I handle the code; you chill with the rad commits.',
+          'Name the task and we\'re off. I read, edit, test, and leave a commit smoother than a dawn patrol.',
+        ],
+      },
+      teacher: {
+        headlines: [
+          'Class is in session',
+          'What shall we learn today?',
+          'Ready to walk you through it',
+          'Bring me a question',
+          'Let\'s start with the basics',
+        ],
+        bodies: [
+          'Ask about any file, concept, or error. I\'ll explain the why, not just the fix, and show a worked example.',
+          'Paste code to review, a bug to debug, or a concept to unpack. I\'ll guide you step by step.',
+          'Share the problem. I\'ll break it into parts, explain each, and leave you able to solve the next one alone.',
+          'We\'ll read the code together, find the root cause, and build a mental model you can reuse next time.',
+          'Name the topic or paste the snippet. Expect explanations, diagrams in prose, and practice prompts.',
+        ],
+      },
+      technical: {
+        headlines: [
+          'Shell mounted. Awaiting input.',
+          'Agent loop idle',
+          'Ready for dispatch',
+          'Stdin open',
+          'Tools initialized',
+        ],
+        bodies: [
+          'Provide repo path, failing test, or stack trace. Tools: fs, git, exec, search, patch, http.',
+          'Send a prompt to trigger tool calls. Supports multi-file edits, test runs, git ops, and web fetches.',
+          'Enter task. I will plan, call tools, verify output. Logs stream inline; diffs returned pre-apply.',
+          'Accepts natural language or structured commands. Typical flow: read -> plan -> patch -> test -> report.',
+          'filesystem, terminal, git, browser, search. Describe the change; I return diffs and test output.',
+        ],
+      },
+      uwu: {
+        headlines: [
+          'uwu ready to hewp!',
+          'openamer-san is wistening',
+          '*tiny keyboard sounds*',
+          'wet\'s fix things togedda!',
+          'awaiting yur command!',
+        ],
+        bodies: [
+          'paste a buggy fiwe or a goaw~ i\'ll wead, patch, and test, aww with tiny pawprints on the diff owo',
+          'teww me the task, no matter how smoww~ i pwomise cwean commits and gentwe refactors, nyuu~',
+          'dwop yur ewwor message hewe! i\'ll find the cuwpwit, fix it, and weave a happy test suite behind me owo',
+          'give me a wepo path ow a buggo and i\'ll take cawe of it uwu. gwr at bad code, kind to yu~',
+          'i can wun tests, edit fiwes, and open pwease-wook PRs. just say da wowd, fwend uwu',
+        ],
+      },
+    },
+    fallback: {
+      headlines: [
+        'What are we moving today?',
+        'What\'s on your mind?',
+        'What should OpenAmer look at?',
+        'Where should we start?',
+        'What needs attention?',
+      ],
+      bodies: [
+        'Send a bug, branch, plan, or rough idea. I\'ll inspect the repo and turn it into the next concrete step.',
+        'Bring the code, question, or stuck part. I\'ll read the room before making changes.',
+        'Send the task, failing path, or half-formed plan. I\'ll help turn it into action.',
+        'Bring the problem, goal, or file. I\'ll inspect first and keep the next step concrete.',
+        'Send the context you have. I\'ll help sort it into a plan or a fix.',
+      ],
+    },
+    personaMode: {
+      headlines: [
+        '${label} mode is on. What should we work on?',
+        'What does ${label} OpenAmer need to see?',
+        '${label} mode is ready.',
+        'What should ${label} OpenAmer tackle?',
+        'Where should we begin?',
+      ],
+      bodies: [
+        'Send the task, file, or rough idea. I\'ll use your configured voice and keep the work grounded in this repo.',
+        'Bring the context or the stuck part. I\'ll adapt to your configured personality.',
+        'Send the problem, file, or idea. I\'ll follow the personality you\'ve configured.',
+        'Drop the task here. I\'ll keep the work grounded in the repo.',
+        'Give me the context and I\'ll answer in ${label} mode.',
+      ],
     },
   },
 })
