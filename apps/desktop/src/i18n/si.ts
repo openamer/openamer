@@ -1058,7 +1058,7 @@ export const si = defineLocale({
     pluginsStatusEnabled: 'සක්‍රියයි',
     pluginsSearchFailed: 'GitHub සෙවුම අසාර්ථක විය',
     pluginsDiscoverAction: query => `GitHub හි "${query}" සඳහා සොයන්න`,
-    pluginsDiscoverResults: (n, query) => `"${query}" සඳහා openamer-plugin ටැගය සහිත ගබඩා ${n}`,
+    pluginsDiscoverResults: (n, query) => `${n} ගබඩා "${query}" සඳහා openamer-plugin ලෙස ටැග් කර ඇත`,
     pluginsDiscoverEmpty: query => `GitHub හි "${query}" සඳහා කිසිවක් නැත — මෙම සෙවුම openamer-plugin මාතෘකාව සහිත ගබඩා පමණක් සොයා ගන්නා අතර, අනවසර GitHub සෙවුම් සඳහා සීමාවන් පවතී. ඒ වෙනුවට නිවැරදි owner/repo එකක් ඉහතින් ස්ථාපනය කරන්න.`,
     pluginsStatusInactive: 'අක්‍රියයි',
     pluginsToggleFailed: 'ප්ලගීන තත්ත්වය වෙනස් කිරීමට නොහැකි විය',
@@ -2962,7 +2962,7 @@ ${mode} පෙරනිමිය තබා ගැනීමට හිස්ව �
     importEmpty: 'පූරණය කිරීමට සිතියම් කේතයක් අලවන්න.',
     importedBadge: 'ආයාත කළ සිතියම',
     resetToMine: 'මගේ සිතියම වෙත ආපසු',
-    subtitle: (nodes, clusters) => `${clusters} කාණ්ඩ හරහා ${nodes} කුසලතා`,
+    subtitle: (nodes, clusters) => `${nodes} කුසලතා ${clusters} කාණ්ඩ හරහා`,
     importSuccess: nodes => `${nodes} ${nodes === 1 ? 'node' : 'nodes'} සහිත සිතියමක් පූරණය කරන ලදී.`,
   },
   agents: {
@@ -3083,7 +3083,7 @@ ${mode} පෙරනිමිය තබා ගැනීමට හිස්ව �
       hype: {
         headlines: [
           'යමු! ship කිරීමට සූදානම්!',
-          'OPENAMER ONLINE. LFG.',
+          'OPENAMER මාර්ගගතයි. යමු!',
           'නව session එකක්, නිමක් නැති ජයග්‍රහණ',
           'සම්පූර්ණයෙන්ම අවධානය යොමු කර ඇත',
           'සූදානම්. ඉතා සූදානම්. ඕනෑවටත් වඩා සූදානම්.',
@@ -3260,9 +3260,9 @@ ${mode} පෙරනිමිය තබා ගැනීමට හිස්ව �
     personaMode: {
       headlines: [
         '${label} මෝඩය ක්‍රියාත්මකයි. අපි කුමක් මත කළ යුතුද?',
-        'What does ${label} OpenAmer need to see?',
+        '${label} OpenAmer ට බැලිය යුත්තේ කුමක්ද?',
         '${label} මෝඩය සූදානම්ය.',
-        'What should ${label} OpenAmer tackle?',
+        '${label} OpenAmer විසින් විසඳිය යුත්තේ කුමක්ද?',
         'අපි කොහෙන් ආරම්භ කරන්නද?',
       ],
       bodies: [
