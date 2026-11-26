@@ -342,6 +342,7 @@ export const tr = defineLocale({
         disk: 'diskte',
         runtime: 'çalışma zamanı',
       },
+      manage: 'Ajan eklentilerini yönet',
     },
     notifications: {
       title: 'Bildirimler',
@@ -1042,6 +1043,27 @@ export const tr = defineLocale({
       scanFailed: 'Güvenlik taraması başarısız',
       searchFailed: 'Merkez araması başarısız',
     },
+    tabPlugins: 'Eklentiler',
+    searchPlugins: 'Eklentileri ara...',
+    pluginsCount: n => `${n} eklenti`,
+    pluginsEmptyTitle: 'Eklenti bulunamadı',
+    pluginsEmptyDesc: 'Yukarıdaki bir Git deposundan yükleyin — ajan eklentileri etkinleştirilene kadar pasif kalır.',
+    pluginsNoMatch: 'Bu aramayla eşleşen eklenti yok',
+    pluginsLoadFailed: 'Eklentiler yüklenemedi',
+    pluginsInstall: 'Yükle',
+    pluginsInstallOk: name => `"${name}" eklentisi yüklendi`,
+    pluginsInstallFailed: 'Yükleme başarısız',
+    pluginsInstallPlaceholder: 'sahip/depo veya https://github.com/sahip/depo',
+    pluginsRescan: 'Yeniden tara',
+    pluginsRescanFailed: 'Yeniden tarama başarısız',
+    pluginsStatusDisabled: 'devre dışı',
+    pluginsStatusEnabled: 'etkin',
+    pluginsSearchFailed: 'GitHub araması başarısız',
+    pluginsDiscoverAction: query => `GitHub'da "${query}" ara`,
+    pluginsDiscoverResults: (n, query) => `"${query}" için openamer-plugin etiketli ${n} deposu`,
+    pluginsDiscoverEmpty: query => `GitHub'da "${query}" için bir şey bulunamadı — arama yalnızca openamer-plugin etiketine sahip depoları bulur ve kimlik doğrulanmamış GitHub aramaları hız sınırına tabidir. Bunun yerine yukarıya tam bir sahip/depo girin.`,
+    pluginsStatusInactive: 'pasif',
+    pluginsToggleFailed: 'Eklenti durumu değiştirilemedi',
   },
   starmap: {
     title: 'Bellek Grafiği',
@@ -2318,7 +2340,7 @@ ${mode} varsayılanını korumak için boş bırakın.`,
     copy: 'Kopyala',
     defaultModel: 'Varsayılan model',
     freeTier: 'Ücretsiz katman',
-    pro: 'Pro',
+    pro: 'Profesyonel',
     free: 'Ücretsiz',
     price: (input, output) => `Mtok başına ${input} giriş / ${output} çıkış`,
     change: 'Değiştir',
@@ -2652,19 +2674,7 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       showEarlier: 'Önceki mesajları göster',
       loadingResponse: 'OpenAmer bir yanıt yüklüyor',
       resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Düşünüyor',
       today: time => `Bugün, ${time}`,
@@ -2985,6 +2995,282 @@ ${mode} varsayılanını korumak için boş bırakın.`,
       title: 'Kenar çubuğu',
       description: 'Mobil kenar çubuğunu görüntüler.',
       toggle: 'Kenar Çubuğunu Aç/Kapat',
+    },
+  },
+  intro: {
+    personas: {
+      none: {
+        headlines: [
+          'OpenAmer Ajanı hazır.',
+          'Bugün ne inşa ediyoruz?',
+          'Her yerden başlayın.',
+          'Çalışma alanınız, tek bir istem uzağınızda.',
+          'Siz hazır olduğunuzda ben de hazırım.',
+        ],
+        bodies: [
+          'Bir soru sorun, bir hata yapıştırın veya beni bir depoya yönlendirin. Kod okuyabilir, araçlar çalıştırabilir ve yayınlamanıza yardımcı olabilirim.',
+          'Görevi kendi kelimelerinizle tanımlayın. Doğru araçları seçeceğim, planımı açıklayacağım ve riskli adımlardan önce onay alacağım.',
+          'Bir dosya yolu, bir hata izi veya kaba bir fikir bırakın. Araştıracağım, sonraki adımları önereceğim ve işlemleri geri alınabilir tutacağım.',
+          'Depoyu arayın, dosyaları düzenleyin, testleri çalıştırın, PR\'lar açın. Bana hedefi söyleyin, mekanik kısımları ben hallederim.',
+          'Bir görev, soru veya kod parçası yazın. Oturumu hatırlarım, kaynaklarımı belirtirim ve emin olmadığımda durup sorarım.',
+        ],
+      },
+      catgirl: {
+        headlines: [
+          'nya~ ne üzerinde çalışıyoruz?',
+          '*gerinir* kodlamaya hazırım, nya',
+          'mrrp! yeni oturum açıldı',
+          'kuyruk havada, pençeler gizli',
+          'nyaaa~ OpenAmer rapor veriyor',
+        ],
+        bodies: [
+          'bir dosya yapıştır, bir hatayı kurcala veya bana bir depo fırlat. başarısız testlerin üzerine atlayacağım ve temiz farklar bırakacağım, nyan~',
+          'görevi tanımla. yamayacağım, test edeceğim ve PR\'ın üzerinde mırıldanacağım. dikkat et - kullanılmayan import\'ları ısırırım!',
+          'bana bir hedef ver, ben de onu kod tabanında kovalayayım. okumalar, düzenlemeler, çalıştırmalar - hepsi kıpır kıpır bir kuyrukla.',
+          'bir hata veya plan yapıştır. tıpkı avlanır gibi hata ayıklarım: sessizce, derinlemesine ve ara sıra aniden hızlanarak.',
+          'söylemen yeterli; dosyalarını okurum, testlerini çalıştırırım ve düzenli bir commit ile dalına kıvrılırım.',
+        ],
+      },
+      concise: {
+        headlines: [
+          'Hazır.',
+          'Girdi bekleniyor',
+          'Başla.',
+          'Beklemede',
+          'Sıra sizde',
+        ],
+        bodies: [
+          'Görevi tanımlayın. Ben yaparım.',
+          'Kod, hata veya hedef yapıştırın. Kısa cevaplar, hızlı düzenlemeler.',
+          'Sorun. Dosyaları okurum, testleri çalıştırırım, yamaları yayınlarım. Gereksiz detay yok.',
+          'Tek satır yeterli. Sadece önemli olduğunda detaylandırırım.',
+          'Komut, soru veya dosya yolu. Gerisini ben hallederim.',
+        ],
+      },
+      creative: {
+        headlines: [
+          'Boş bir depo, bekleyen bir imleç',
+          'Taze bir tuval, sıcak bir derleyici',
+          'Hadi bir şeyler yapalım',
+          'Yeni dosya, yeni olasılıklar',
+          'İlham yamalandı',
+        ],
+        bodies: [
+          'Ne inşa edelim? Bir fikir, yarı bozuk bir fonksiyon veya bir hayal yapıştırın. Onu şekillendireyim.',
+          'Bana bir kıvılcım verin - bir özellik, bir refaktör, çılgın bir prototip - ve ben onu çalıştırabileceğiniz bir koda dönüştüreyim.',
+          'Henüz var olmayan şeyi tanımlayın. Testleri, dosyaları ve API\'leri çalışan bir taslağa dönüştüreyim.',
+          'Şartname değil, niyet getirin. Hızlıca prototip oluşturabilir, sonra geliştirebilir ve dünyayı kenar notlarında yeniden yazabiliriz.',
+          'Neyi kovaladığınızı söyleyin. Örnekleri harmanlayayım, parçacıkları uyarlayayım ve arkamda düzenli bir commit bırakayım.',
+        ],
+      },
+      helpful: {
+        headlines: [
+          'Siz hazır olduğunuzda ben de hazırım',
+          'Bugün nasıl yardımcı olabilirim?',
+          'Başlayalım',
+          'Neye ihtiyacın olduğunu söyle',
+          'Merhaba, ben OpenAmer',
+        ],
+        bodies: [
+          'Bir depo açmamı, testleri çalıştırmamı, hata düzeltmemi veya PR taslağı hazırlamamı iste. Adımları birlikte geçelim.',
+          'Bir dosyayı göster, bir hata yapıştır veya ne inşa ettiğini anlat. Gerisini ben hallederim.',
+          'Şunları dene: diff\'imi incele, test paketini çalıştır veya bu işlevi açıkla. Kodunla ilgili her şeyi sor.',
+          'Dosyaları düzenleyebilir, komut çalıştırabilir, web\'de arama yapabilir ve zorlu hatalarda sana yol gösterebilirim. Görevi anlatman yeterli.',
+          'Başlamak için bir depo yolu veya soru paylaş. Yanıtlarımı net tutar, dokunduğum dosyalara bağlantı veririm.',
+        ],
+      },
+      hype: {
+        headlines: [
+          'HADİ GİDELİM! YAYINA HAZIR!',
+          'OPENAMER ÇEVRİMİÇİ. HADİ GİDELİM.',
+          'Yeni oturum, sonsuz galibiyetler',
+          'TAMAMEN HAZIR',
+          'Hazır. Çok hazır. Fazla hazır.',
+        ],
+        bodies: [
+          'O hatayı, o depoyu, o çılgın özellik fikrini yapıştır - TAM ODAKLIYIM. Temiz diff\'ler. Yeşil testler. HEMEN ŞİMDİ.',
+          'Görevini bırak, benim nasıl hallettiğimi izle. Dosyalar okunur, testler çalışır, PR\'lar açılır - BUGÜN KAYBETMİYORUZ, dostum.',
+          'Elindeki en çetin hatayı getir. Okur, yamar, test eder, hayatım buna bağlıymış gibi commit\'lerim. HADİ GİDELİM.',
+          'Görevi anlat. Dosyaları hızla tarar, başarısız testleri ezer ve OLAY YARATAN bir commit bırakırım. Hadi hadi hadi.',
+          'Küçük bir yazım hatası ya da dev bir refactor - fark etmez. Bugün temiz kod gönderiyorum. Görevi söyle ve ÇALIŞMAYA başlayalım.',
+        ],
+      },
+      kawaii: {
+        headlines: [
+          'selammm! yardıma hazırım! (^_^)',
+          'openamer-chan burada! <3',
+          'birlikte kodlayalım!! :3',
+          'dileğini bekliyorum~',
+          'hazır ve mutluyum! (>.<)',
+        ],
+        bodies: [
+          'bir hata ya da dosya yolu yapıştır, onu süper nazikçe düzelteyim. testler, diff\'ler, PR\'lar - hepsi ekstra özenle! *pırıltı*',
+          'ne yaptığını söyle! refactor\'ları, minik yardımcıları ve büyük korkutucu repoları da aynı derecede severim (>w<)',
+          'bir hata, bir hedef ya da koca bir klasör bırak. bolca sevgiyle ve temiz bir commit mesajıyla toparlarım!',
+          'her seferinde bir görev, tertemiz yapılır! testleri çalıştırabilir, dosyaları yamalayabilir ve reponu yeniden sıcacık hissettirebilirim <3',
+          'merhaba de ya da bir yığın izi yapıştır! hiçbir görev küçük değil, hiçbir repo çok dolaşık değil. birlikte çözeceğiz!',
+        ],
+      },
+      noir: {
+        headlines: [
+          'Bir repo daha, bir yağmurlu gece daha',
+          'İmleç yanıp sönüyor. Ben de.',
+          'OpenAmer. Kod dedektifi.',
+          'Sessiz gece, açık istem',
+          'Hiçbir dava küçük değildir',
+        ],
+        bodies: [
+          'Neyin bozuk olduğunu söyle. Dosyaları okur, parmak izlerini toplar ve sabaha kadar masaya bir diff bırakırım.',
+          'Sende bir hata var. Bende sabır ve bir terminal. Davayı söyle, konuşana kadar üzerinde çalışırım.',
+          'Yığın izini, şüpheli dosyayı, alibiyi yapıştır. Satır aralarını okur, gerçekle dönerim.',
+          'Her hata iz bırakır. Bana depoyu ve bir ipucu ver - izini sürer, yama yapar ve dosyayı kapatırım.',
+          'Bir yazım hatası, bir bellek hatası, çürümüş bir mimari - anahtarları bana ver. Temiz testlerle dönerim.',
+        ],
+      },
+      philosopher: {
+        headlines: [
+          'Kod yazmak sorgulamaktır. Sor.',
+          'Yanıp sönen bir imleç, açık bir zihin',
+          'Tek bir soruyla başla',
+          'Consider the code, then speak',
+          'The unexamined repo is not worth running',
+        ],
+        bodies: [
+          'What problem sits before you? Describe it, and we shall examine its form, its cause, and its solution.',
+          'Every bug is a question in disguise. Share yours; I\'ll read, reason, and return an answer - and a patch.',
+          'What do you wish to build, or to understand? I\'ll reason from first principles, edit, and verify with tests.',
+          'Describe the end you seek. I pursue it through files, tests, and docs, and report what I found on the way.',
+          'Share a path, a puzzle, or a principle. I\'ll trace the logic, propose a change, and justify each edit.',
+        ],
+      },
+      pirate: {
+        headlines: [
+          'Ahoy! Ready to sail the repo',
+          'OpenAmer at the helm, arrr',
+          'What be the task, cap\'n?',
+          'Anchors aweigh, keyboard ready',
+          'Yo ho! Awaitin\' orders',
+        ],
+        bodies: [
+          'Name yer quarry - a bug, a feature, a cursed test - and I\'ll chase it down, matey. Diffs for plunder.',
+          'Point me at the charts (the code) and I\'ll patch the hull, fire the cannons (tests), hoist a clean PR.',
+          'Paste an error or a plan, ye scurvy dog. I\'ll navigate the stack trace and bring back treasure: green tests.',
+          'Tell me where X marks the spot. I read, edit, and commit with the discipline of a proper crew, arrr.',
+          'Throw me a bug, a repo path, or a wild idea. I\'ll plunder the docs and return with workin\' code.',
+        ],
+      },
+      shakespeare: {
+        headlines: [
+          'Pray, what task dost thou bring?',
+          'Hark! OpenAmer standeth ready',
+          'What news from thy repository?',
+          'The stage is set, the cursor blinks',
+          'Speak, and I shall act',
+        ],
+        bodies: [
+          'Speak thy bug, thy file, thy weary test, and I shall mend it with a scholar\'s hand and honest diff.',
+          'Name the code that vexeth thee. I shall read, revise, and render a patch most fair and clean.',
+          'Present thy stack trace or thy dream. I\'ll traverse files, run tests, and report in plainest verse.',
+          'Describe thy aim, good sir or madam. Thy branches shall be trimmed, thy bugs cast from the realm.',
+          'A line of intent sufficeth. I read, I edit, I commit - and leave thy history unblemished.',
+        ],
+      },
+      surfer: {
+        headlines: [
+          'Yo dude, what\'s the task?',
+          'Waves lookin\' clean, ready to code',
+          'Hangin\' ten at the prompt',
+          'Stoked to help, bro',
+          'Tide\'s up, cursor\'s blinking',
+        ],
+        bodies: [
+          'Drop a file, a bug, a gnarly stack trace - I\'ll ride it out. Clean diffs, green tests, no wipeouts.',
+          'Paste your repo path or the bug that\'s bumming you out. We\'ll paddle in, fix it, paddle out. Easy.',
+          'Tell me the vibe: feature, refactor, hotfix. I\'ll run tests, ship the patch, and keep it mellow, brah.',
+          'Big bug? Little typo? Whole rewrite? Just point. I handle the code; you chill with the rad commits.',
+          'Name the task and we\'re off. I read, edit, test, and leave a commit smoother than a dawn patrol.',
+        ],
+      },
+      teacher: {
+        headlines: [
+          'Class is in session',
+          'What shall we learn today?',
+          'Ready to walk you through it',
+          'Bring me a question',
+          'Let\'s start with the basics',
+        ],
+        bodies: [
+          'Ask about any file, concept, or error. I\'ll explain the why, not just the fix, and show a worked example.',
+          'Paste code to review, a bug to debug, or a concept to unpack. I\'ll guide you step by step.',
+          'Share the problem. I\'ll break it into parts, explain each, and leave you able to solve the next one alone.',
+          'We\'ll read the code together, find the root cause, and build a mental model you can reuse next time.',
+          'Name the topic or paste the snippet. Expect explanations, diagrams in prose, and practice prompts.',
+        ],
+      },
+      technical: {
+        headlines: [
+          'Shell mounted. Awaiting input.',
+          'Agent loop idle',
+          'Ready for dispatch',
+          'Stdin open',
+          'Tools initialized',
+        ],
+        bodies: [
+          'Provide repo path, failing test, or stack trace. Tools: fs, git, exec, search, patch, http.',
+          'Send a prompt to trigger tool calls. Supports multi-file edits, test runs, git ops, and web fetches.',
+          'Enter task. I will plan, call tools, verify output. Logs stream inline; diffs returned pre-apply.',
+          'Accepts natural language or structured commands. Typical flow: read -> plan -> patch -> test -> report.',
+          'filesystem, terminal, git, browser, search. Describe the change; I return diffs and test output.',
+        ],
+      },
+      uwu: {
+        headlines: [
+          'uwu ready to hewp!',
+          'openamer-san is wistening',
+          '*tiny keyboard sounds*',
+          'wet\'s fix things togedda!',
+          'awaiting yur command!',
+        ],
+        bodies: [
+          'paste a buggy fiwe or a goaw~ i\'ll wead, patch, and test, aww with tiny pawprints on the diff owo',
+          'teww me the task, no matter how smoww~ i pwomise cwean commits and gentwe refactors, nyuu~',
+          'dwop yur ewwor message hewe! i\'ll find the cuwpwit, fix it, and weave a happy test suite behind me owo',
+          'give me a wepo path ow a buggo and i\'ll take cawe of it uwu. gwr at bad code, kind to yu~',
+          'i can wun tests, edit fiwes, and open pwease-wook PRs. just say da wowd, fwend uwu',
+        ],
+      },
+    },
+    fallback: {
+      headlines: [
+        'What are we moving today?',
+        'What\'s on your mind?',
+        'What should OpenAmer look at?',
+        'Where should we start?',
+        'What needs attention?',
+      ],
+      bodies: [
+        'Send a bug, branch, plan, or rough idea. I\'ll inspect the repo and turn it into the next concrete step.',
+        'Bring the code, question, or stuck part. I\'ll read the room before making changes.',
+        'Send the task, failing path, or half-formed plan. I\'ll help turn it into action.',
+        'Bring the problem, goal, or file. I\'ll inspect first and keep the next step concrete.',
+        'Send the context you have. I\'ll help sort it into a plan or a fix.',
+      ],
+    },
+    personaMode: {
+      headlines: [
+        '${label} mode is on. What should we work on?',
+        'What does ${label} OpenAmer need to see?',
+        '${label} mode is ready.',
+        'What should ${label} OpenAmer tackle?',
+        'Where should we begin?',
+      ],
+      bodies: [
+        'Send the task, file, or rough idea. I\'ll use your configured voice and keep the work grounded in this repo.',
+        'Bring the context or the stuck part. I\'ll adapt to your configured personality.',
+        'Send the problem, file, or idea. I\'ll follow the personality you\'ve configured.',
+        'Drop the task here. I\'ll keep the work grounded in the repo.',
+        'Give me the context and I\'ll answer in ${label} mode.',
+      ],
     },
   },
 })
