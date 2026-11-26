@@ -3083,7 +3083,7 @@ ${mode} qimbô doorit dacrisuh, maro cab.`,
       hype: {
         headlines: [
           'HABAATUN! SHIP QABAATUN!',
-          'OPENAMER ONLINE. LFG.',
+          'OPENAMER ONLAYN. BUTTA DIYAABA.',
           'Seshin gash, W gash.',
           'Gash gash.',
           'Qabaatun. Qabaatun. Qabaatun.',
