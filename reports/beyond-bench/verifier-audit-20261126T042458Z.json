@@ -1,0 +1,233 @@
+{
+  "audit": "verifier-ambiguity",
+  "version": 1,
+  "ran_utc": "2026-11-26T04:24:58.797234+00:00",
+  "subjects": [
+    "ollama:minimax-m3.1-flash:cloud",
+    "ollama:qwen2.5-coder:1.5b"
+  ],
+  "tasks": 10,
+  "flagged": [],
+  "rows": [
+    {
+      "task": "arith.chain.v1",
+      "kind": "arith",
+      "state": "ok:partial",
+      "consensus": false,
+      "answers": [
+        {
+          "subject": "ollama:minimax-m3.1-flash:cloud",
+          "text": "75",
+          "error": null
+        },
+        {
+          "subject": "ollama:qwen2.5-coder:1.5b",
+          "text": "10",
+          "error": null
+        }
+      ],
+      "verdicts": [
+        true,
+        false
+      ]
+    },
+    {
+      "task": "arith.rate.v1",
+      "kind": "arith",
+      "state": "ok:partial",
+      "consensus": false,
+      "answers": [
+        {
+          "subject": "ollama:minimax-m3.1-flash:cloud",
+          "text": "460",
+          "error": null
+        },
+        {
+          "subject": "ollama:qwen2.5-coder:1.5b",
+          "text": "To determine how many units the worker produces in 10 hours after a 15% efficiency gain, we need to follow these steps:\n\n1. Calculate the worker's original hourly production rate.\n2. Determine the new hourly production rate after the efficiency gain.\n3. Calculate the number of units produced in 10 hours at the new hourly production rate.\n\n**Step 1: Calculate the worker's original hourly production",
+          "error": null
+        }
+      ],
+      "verdicts": [
+        true,
+        false
+      ]
+    },
+    {
+      "task": "string.reverse_words.v1",
+      "kind": "string",
+      "state": "ok:partial",
+      "consensus": false,
+      "answers": [
+        {
+          "subject": "ollama:minimax-m3.1-flash:cloud",
+          "text": "night at learns machine quiet the",
+          "error": null
+        },
+        {
+          "subject": "ollama:qwen2.5-coder:1.5b",
+          "text": "'at night learns quiet machine the'",
+          "error": null
+        }
+      ],
+      "verdicts": [
+        true,
+        false
+      ]
+    },
+    {
+      "task": "string.count.v1",
+      "kind": "string",
+      "state": "ok:partial",
+      "consensus": false,
+      "answers": [
+        {
+          "subject": "ollama:minimax-m3.1-flash:cloud",
+          "text": "6",
+          "error": null
+        },
+        {
+          "subject": "ollama:qwen2.5-coder:1.5b",
+          "text": "3",
+          "error": null
+        }
+      ],
+      "verdicts": [
+        true,
+        false
+      ]
+    },
+    {
+      "task": "json.shape.v1",
+      "kind": "json",
+      "state": "ok:partial",
+      "consensus": false,
+      "answers": [
+        {
+          "subject": "ollama:minimax-m3.1-flash:cloud",
+          "text": "{\"name\":\"ada\",\"scores\":[9,5,3]}",
+          "error": null
+        },
+        {
+          "subject": "ollama:qwen2.5-coder:1.5b",
+          "text": "```json\n{\n  \"name\": \"ada\",\n  \"scores\": [9, 5, 3]\n}\n```",
+          "error": null
+        }
+      ],
+      "verdicts": [
+        true,
+        true
+      ]
+    },
+    {
+      "task": "code.fizzbuzz.v1",
+      "kind": "code",
+      "state": "ok:partial",
+      "consensus": false,
+      "answers": [
+        {
+          "subject": "ollama:minimax-m3.1-flash:cloud",
+          "text": "```python\ndef fizzbuzz(n):\n    result = []\n    for i in range(1, n + 1):\n        if i % 15 == 0:\n            result.append(\"FizzBuzz\")\n        elif i % 3 == 0:\n            result.append(\"Fizz\")\n        elif i % 5 == 0:\n            result.append(\"Buzz\")\n        else:\n            result.append(str(i))\n    return result\n```",
+          "error": null
+        },
+        {
+          "subject": "ollama:qwen2.5-coder:1.5b",
+          "text": "```python\ndef fizzbuzz(n):\n    return ['Fizz' if i % 3 == 0 else 'Buzz' if i % 5 == 0 else str(i) for i in range(1, n+1)]\n```",
+          "error": null
+        }
+      ],
+      "verdicts": [
+        true,
+        false
+      ]
+    },
+    {
+      "task": "code.dedupe.v1",
+      "kind": "code",
+      "state": "ok:consensus_accepted",
+      "consensus": true,
+      "answers": [
+        {
+          "subject": "ollama:minimax-m3.1-flash:cloud",
+          "text": "```python\ndef dedupe(items):\n    seen = set()\n    result = []\n\n    for item in items:\n        if item not in seen:\n            seen.add(item)\n            result.append(item)\n\n    return result\n```",
+          "error": null
+        },
+        {
+          "subject": "ollama:qwen2.5-coder:1.5b",
+          "text": "```python\ndef dedupe(items):\n    seen = set()\n    result = []\n    for item in items:\n        if item not in seen:\n            seen.add(item)\n            result.append(item)\n    return result\n```",
+          "error": null
+        }
+      ],
+      "verdicts": [
+        true,
+        true
+      ]
+    },
+    {
+      "task": "instruction.constraints.v1",
+      "kind": "instruction",
+      "state": "ok:partial",
+      "consensus": false,
+      "answers": [
+        {
+          "subject": "ollama:minimax-m3.1-flash:cloud",
+          "text": "Recall helps us remember past experiences.",
+          "error": null
+        },
+        {
+          "subject": "ollama:qwen2.5-coder:1.5b",
+          "text": "Recall is a crucial aspect of memory, essential for retaining information and facilitating learning.",
+          "error": null
+        }
+      ],
+      "verdicts": [
+        true,
+        false
+      ]
+    },
+    {
+      "task": "retrieval.needle.v1",
+      "kind": "retrieval",
+      "state": "ok:consensus_accepted",
+      "consensus": true,
+      "answers": [
+        {
+          "subject": "ollama:minimax-m3.1-flash:cloud",
+          "text": "K-7741",
+          "error": null
+        },
+        {
+          "subject": "ollama:qwen2.5-coder:1.5b",
+          "text": "K-7741",
+          "error": null
+        }
+      ],
+      "verdicts": [
+        true,
+        true
+      ]
+    },
+    {
+      "task": "reason.multi_step.v1",
+      "kind": "reason",
+      "state": "ok:partial",
+      "consensus": false,
+      "answers": [
+        {
+          "subject": "ollama:minimax-m3.1-flash:cloud",
+          "text": "10",
+          "error": null
+        },
+        {
+          "subject": "ollama:qwen2.5-coder:1.5b",
+          "text": "To solve this problem, we need to find the least common multiple (LCM) of the numbers 12, 18, and 30. The LCM is the smallest number that is a multiple of all three numbers. Once we have the LCM, we can determine how many marbles need to be moved from the fuller boxes to the emptier boxes to achieve this.\n\nHere are the steps:\n\n1. Find the LCM of 12, 18, and 30.\n2. Calculate the number of marbles t",
+          "error": null
+        }
+      ],
+      "verdicts": [
+        true,
+        false
+      ]
+    }
+  ]
+}
