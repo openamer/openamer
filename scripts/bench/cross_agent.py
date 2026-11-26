@@ -186,7 +186,8 @@ def subject_bare(model: str, label: str) -> dict:
 
 def _ollama_version() -> str:
     try:
-        r = subprocess.run(["ollama", "--version"], capture_output=True, text=True, timeout=30)
+        r = subprocess.run(["ollama", "--version"], capture_output=True, text=True,
+                           encoding="utf-8", errors="replace", timeout=30)
         return _clean(r.stdout).splitlines()[0][:60]
     except Exception:  # noqa: BLE001
         return "unknown"
@@ -260,6 +261,7 @@ def _repo_commit() -> dict:
             r = subprocess.run(
                 ["git", "-C", str(path), "rev-parse", "HEAD"],
                 capture_output=True, text=True, timeout=60,
+                encoding="utf-8", errors="replace",
             )
             out[label] = _clean(r.stdout) or None
         except Exception:  # noqa: BLE001
