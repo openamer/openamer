@@ -342,6 +342,7 @@ export const hr = defineLocale({
         disk: 'na disku',
         runtime: 'vrijeme izvršavanja',
       },
+      manage: 'Upravljanje dodacima agenta',
     },
     notifications: {
       title: 'Obavijesti',
@@ -918,7 +919,7 @@ export const hr = defineLocale({
       failedSelectCapability: provider => `Postavljanje ${provider} nije uspjelo`,
       loadingModels: 'Učitavanje kataloga modela...',
       modelSectionTitle: 'Model',
-      modelCount: count => `model ${count}${count === 1 ? 'model' : 'modeli'}`,
+      modelCount: count => `${count} ${count === 1 ? 'model' : 'modeli'}`,
       modelInUse: 'U upotrebi',
       modelDefault: 'zadano',
       modelInactiveHint: 'Prvo odaberite ovaj backend kako biste promijenili njegov model.',
@@ -1042,6 +1043,27 @@ export const hr = defineLocale({
       scanFailed: 'Sigurnosno skeniranje nije uspjelo',
       searchFailed: 'Pretraživanje središta nije uspjelo',
     },
+    tabPlugins: 'Dodaci',
+    searchPlugins: 'Pretraži dodatke...',
+    pluginsCount: n => `${n} dodataka`,
+    pluginsEmptyTitle: 'Nema pronađenih dodataka',
+    pluginsEmptyDesc: 'Instalirajte jedan iz Git repozitorija iznad — dodaci agenta ostaju neaktivni dok se ne omoguće.',
+    pluginsNoMatch: 'Nijedan dodatak ne odgovara pretraživanju',
+    pluginsLoadFailed: 'Nije moguće učitati dodatke',
+    pluginsInstall: 'Instaliraj',
+    pluginsInstallOk: name => `Dodatak "${name}" instaliran`,
+    pluginsInstallFailed: 'Instalacija nije uspjela',
+    pluginsInstallPlaceholder: 'vlasnik/repo ili https://github.com/vlasnik/repo',
+    pluginsRescan: 'Ponovno skeniraj',
+    pluginsRescanFailed: 'Ponovno skeniranje nije uspjelo',
+    pluginsStatusDisabled: 'onemogućeno',
+    pluginsStatusEnabled: 'omogućeno',
+    pluginsSearchFailed: 'Pretraživanje GitHub-a nije uspjelo',
+    pluginsDiscoverAction: query => `Pretraži GitHub za "${query}"`,
+    pluginsDiscoverResults: (n, query) => `${n} repozitorija označenih s openamer-plugin za "${query}"`,
+    pluginsDiscoverEmpty: query => `Ništa na GitHub-u za "${query}" — pretraživanje pronalazi samo repozitorije s oznakom openamer-plugin, a neautentificirano pretraživanje GitHub-a ima ograničenje brzine. Umjesto toga, iznad instalirajte točan vlasnik/repo.`,
+    pluginsStatusInactive: 'neaktivno',
+    pluginsToggleFailed: 'Nije moguće promijeniti stanje dodatka',
   },
   starmap: {
     title: 'Grafikon memorije',
@@ -2415,7 +2437,7 @@ Ostavi prazno za zadano ${mode}.`,
       connectionSshTooltip: host => `Povezano putem SSH-a na ${host} · kliknite za upravljanje`,
       connectionRemoteTooltip: host => `Povezano s udaljenim pozadinskim sustavom ${host} · kliknite za upravljanje`,
       backendLabel: version => `pozadinski sustav v${version}`,
-      commit: sha => `commit ${sha}`,
+      commit: sha => `zapis ${sha}`,
       branch: branch => `grana ${branch}`,
       closeCommandCenter: 'Zatvori zapovjedni centar',
       openCommandCenter: 'Otvori zapovjedni centar',
@@ -2652,19 +2674,7 @@ Ostavi prazno za zadano ${mode}.`,
       showEarlier: 'Prikaži starije poruke',
       loadingResponse: 'OpenAmer učitava odgovor',
       resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Razmišljam',
       today: time => `Danas, ${time}`,
@@ -2985,6 +2995,282 @@ Ostavi prazno za zadano ${mode}.`,
       title: 'Bočna traka',
       description: 'Prikazuje mobilnu bočnu traku.',
       toggle: 'Prebaci bočnu traku',
+    },
+  },
+  intro: {
+    personas: {
+      none: {
+        headlines: [
+          'OpenAmer Agent je spreman.',
+          'Što danas gradimo?',
+          'Započnite bilo gdje.',
+          'Vaš radni prostor, jedan prompt daleko.',
+          'Spreman kad i vi.',
+        ],
+        bodies: [
+          'Postavite pitanje, zalijepite pogrešku ili me uputite na repo. Mogu čitati kod, pokretati alate i pomoći vam u objavi.',
+          'Opišite zadatak svojim riječima. Odabrati ću prave alate, objasniti svoj plan i provjeriti s vama prije rizičnih koraka.',
+          'Ubacite putanju datoteke, traceback ili grubu ideju. Istražiti ću, predložiti sljedeće korake i osigurati da sve bude povratno.',
+          'Pretražite repo, uređujte datoteke, pokrećite testove, otvarajte PR-ove. Recite mi cilj i ja ću se pobrinuti za mehaničke dijelove.',
+          'Upišite zadatak, pitanje ili isječak. Pamtim sesiju, navodim izvore i zastavljam se kako bih pitao kada nisam siguran.',
+        ],
+      },
+      catgirl: {
+        headlines: [
+          'nya~ što hakiramo?',
+          '*proteže se* spreman za kodiranje, nya',
+          'mrrp! otvorena nova sesija',
+          'rep gore, kandže skrivene',
+          'nyaaa~ OpenAmer javlja se',
+        ],
+        bodies: [
+          'zalijepi datoteku, zapčaraj bug ili mi baci repo. skočit ću na neuspjele testove i ostaviti čiste diff-ove, nyan~',
+          'opiši zadatak. zakrpit ću, testirati i predeti nad tvojim PR-om. oprezno - grizem nekorištene importe!',
+          'daj mi cilj i jurit ću ga kroz bazu koda. čitanje, uređivanje, pokretanje - sve uz trzaj repa.',
+          'zalijepi pogrešku ili plan. debugiram kao što lovim: tiho, temeljito, s povremenim zoomie napadima.',
+          'reci riječ i pročitat ću tvoje datoteke, pokrenuti testove i sklupčati se u tvojoj grani s urednim commitom.',
+        ],
+      },
+      concise: {
+        headlines: [
+          'Spreman.',
+          'Čekam unos',
+          'Kreni.',
+          'Na pripravnosti',
+          'Vaš potez',
+        ],
+        bodies: [
+          'Opišite zadatak. Ja ću ga izvršiti.',
+          'Zalijepite kod, pogreške ili cilj. Kratki odgovori, brze izmjene.',
+          'Pitajte. Čitat ću datoteke, pokretati testove, slati zakrpe. Bez suvišnih riječi.',
+          'Jedna linija je dovoljna. Proširit ću samo kada je to važno.',
+          'Zapovijed, pitanje ili putanja datoteke. Ja ću srediti ostalo.',
+        ],
+      },
+      creative: {
+        headlines: [
+          'Prazan repo, kursor koji čeka',
+          'Svijepo platno, topli kompajler',
+          'Stvorimo nešto',
+          'Nova datoteka, nove mogućnosti',
+          'Muza je spojena',
+        ],
+        bodies: [
+          'Što ćemo izgraditi? Zalijepite ideju, polupokvarenu funkciju ili san. Ja ću to skicirati u oblik.',
+          'Dajte mi iskru - značajku, refaktor, divlji prototip - i pretvorit ću to u kod koji možete pokrenuti.',
+          'Opišite stvar koja još ne postoji. Povući ću testove, datoteke i API-je u funkcionalni nacrt.',
+          'Donesite namjeru, ne specifikaciju. Možemo brzo izraditi prototip, kasnije ga usavršiti i prepisati svijet u marginama.',
+          'Recite mi što jurite. Remiksirat ću primjere, prilagoditi isječke i ostaviti uredan commit.',
+        ],
+      },
+      helpful: {
+        headlines: [
+          'Spreman kad i vi',
+          'Kako vam mogu pomoći danas?',
+          'Krenimo',
+          'Recite mi što vam treba',
+          'Zdravo, ovdje OpenAmer',
+        ],
+        bodies: [
+          'Zatražite od mene da otvorim repo, pokrenem testove, popravim bug ili sastavim PR. Proći ću kroz korake s vama.',
+          'Uputite me na datoteku, zalijepite pogrešku ili opišite što gradite. Ja ću preuzeti dalje.',
+          'Isprobajte: pregledaj moj diff, pokreni skup testova ili objasni ovu funkciju. Pitajte bilo što o svom kodu.',
+          'Mogu uređivati datoteke, pokretati naredbe, pretraživati web i voditi vas kroz teške bugove. Samo opišite zadatak.',
+          'Podijelite putanju repa ili pitanje za početak. Odgovori su jasni i povezuju se natrag na datoteke koje mijenjam.',
+        ],
+      },
+      hype: {
+        headlines: [
+          'KREĆEMOOO! SPREMAN ZA SHIPANJE!',
+          'OpenAmer je online. IDEMO.',
+          'Nova sesija, beskonačni W-ovi',
+          'APSOLUTNO FOKUSIRAN',
+          'Spreman. Tako spreman. Previše spreman.',
+        ],
+        bodies: [
+          'Zalijepite taj bug, taj repo, tu luda ideju za značajku - FOKUSIRAN SAM. Čisti diffovi. Zeleni testovi. ODMAH.',
+          'Ubacite svoj zadatak i gledajte me raditi. Datoteke pročitane, testovi pokrenuti, PR-ovi otvoreni - danas NE gubimo, prijatelju.',
+          ' donesite mi najgori bug koji imate. Čitat ću, krpiti, testirati i commitati kao da mi život ovisi o tome. KREĆEMO.',
+          'Opišite zadatak. Proletjet ću kroz datoteke, srušiti testove koji padaju i ostaviti commit koji RASPALI. Idemo, idemo, idemo.',
+          'Mali tipfel ili ogromni refactor - nije bitno. Danas šipam čist kod. Nazovite zadatak i idemo na POSAO.',
+        ],
+      },
+      kawaii: {
+        headlines: [
+          'hiii! spremna pomoći! (^_^)',
+          'openamer-chan je ovdje! <3',
+          'kodirajmo zajedno!! :3',
+          'iščekujem tvoju želju~',
+          'spremna i sretna! (>.<)',
+        ],
+        bodies: [
+          'zalijepi bug ili putanju datoteke i popravit ću to super nježno. testovi, diffovi, PR-ovi - sve s posebnom pažnjom! *sparkle*',
+          'reci mi što praviš! volim refactore, male pomoćnike i velike strašne repove jednako (>w<)',
+          'ubaci pogrešku, cilj ili cijeli folder. posredit ću to s puno ljubavi i čistom porukom commita!',
+          'jedan zadatak po jedan, uredno odrađen! mogu pokrenuti testove, zakrpiti datoteke i učiniti da se tvoj repo ponovno osjeća ugodno <3',
+          'recite zdravo ili zalijepite stack trace! nijedan zadatak nije premali, nijedan repo previše zapleten. raspetljat ćemo ga zajedno!',
+        ],
+      },
+      noir: {
+        headlines: [
+          'Još jedan repo, još jedna kišna noć',
+          'Kursor treperi. I ja također.',
+          'OpenAmer. Istražitelj koda.',
+          'Tiha noć, otvoreni prompt',
+          'Nema predruštva premalog',
+        ],
+        bodies: [
+          'Recite mi što je pokvareno. Pročitat ću datoteke, potražiti otiske i ostaviti diff na stolu do jutra.',
+          'Imate bug. Ja imam strpljenja i terminal. Nazovite slučaj i radit ću na njemu dok ne progovori.',
+          'Zalijepite stack trace, sumnjivu datoteku, alibi. Čitam između redaka i vraćam se s istinom.',
+          'Svaki bug ostavlja trag. Dajte mi repo i trag - pratit ću ga, zakrpiti i zatvoriti slučaj.',
+          'Tipfel, segfault, cijela trula arhitektura - predajte mi ključeve. Vratit ću čiste testove.',
+        ],
+      },
+      philosopher: {
+        headlines: [
+          'Kodirati znači ispitivati. Pitajte.',
+          'Kursor koji treperi, otvoren um',
+          'Počnite s jednim pitanjem',
+          'Razmotrite kod, zatim progovorite',
+          'Neispitan repo nije vrijedan pokretanja',
+        ],
+        bodies: [
+          'Koji problem stoji pred vama? Opišite ga, i ispitat ćemo njegov oblik, uzrok i rješenje.',
+          'Svaki bug je prikriveno pitanje. Podijelite svoje; ja ću pročitati, analizirati i vratiti odgovor - i zakrpu.',
+          'Što želite izgraditi ili razumjeti? Razmišljat ću iz osnovnih principa, uređivati i provjeriti testovima.',
+          'Opišite cilj koji tražite. Proći ću kroz datoteke, testove i dokumentaciju i izvjestiti što sam pronašao usput.',
+          'Podijelite putanju, zagonetku ili princip. Pratit ću logiku, predložiti promjenu i opravdati svako uređivanje.',
+        ],
+      },
+      pirate: {
+        headlines: [
+          'Ahoy! Spreman za plovidbu repom',
+          'OpenAmer za kormilom, arrr',
+          'Koji je zadatak, kapetane?',
+          'Sidra gore, tipkovnica spremna',
+          'Yo ho! Iščekujem zapovijedi',
+        ],
+        bodies: [
+          'Nazovite svoj plijen - bug, značajku, prokleti test - i proganjat ću ga, druže. Diffovi kao plijen.',
+          'Uputite me na karte (kod) i zakrpiti ću trup, ispaliti topove (testove), podići čist PR.',
+          'Zalijepite pogrešku ili plan, vi škrpavi pse. Navigirat ću kroz stack trace i donijeti blago: zelene testove.',
+          'Recite mi gdje je X označio mjesto. Čitam, uređujem i commitam s disciplinom prave posade, arrr.',
+          'Bacite mi bug, putanju repa ili luda ideju. Pljačkati ću dokumentaciju i vratiti se s funkcionalnim kodom.',
+        ],
+      },
+      shakespeare: {
+        headlines: [
+          'Molim vas, koji zadatak donosite?',
+          'Čuj! OpenAmer je spreman',
+          'Što ima novo u tvom repozitoriju?',
+          'Pozornica je spremna, kursor treperi',
+          'Govori, i ja ću djelovati',
+        ],
+        bodies: [
+          'Reci mi svoju grešku, svoju datoteku, svoj umorni test, i ispravit ću to učenjačkom rukom i poštenim prikazom razlika.',
+          'Imenuj kod koji te muči. Pročitat ću ga, preraditi i dati najljepšu i najčišću zakrpu.',
+          'Pokaži mi svoj ispis stoga ili svoj san. Proći ću kroz datoteke, pokrenuti testove i izvijestiti najjasnijim stihom.',
+          'Opiši svoj cilj, dobri gospodine ili gospođo. Tvoje grane bit će orezane, tvoje greške izbačene iz carstva.',
+          'Dovoljna je jedna linija namjere. Čitam, uređujem, spremam promjenu - i ostavljam tvoju povijest neokaljanom.',
+        ],
+      },
+      surfer: {
+        headlines: [
+          'Hej, čovječe, koji je zadatak?',
+          'Valovi izgledaju čisti, spremni za kodiranje',
+          'Čekam na promptu',
+          'Jedva čekam pomoći, brate',
+          'Plima raste, pokazivač treperi',
+        ],
+        bodies: [
+          'Baci datoteku, bug ili gadan stack trace - izvući ću to. Čisti diffovi, zeleni testovi, bez potopa.',
+          'Zalijepi putanju repozitorija ili bug koji te muči. Uplovit ćemo, popraviti i isploviti. Lako.',
+          'Reci mi vrstu: feature, refactor, hotfix. Pokrenut ću testove, poslati zakrpu i ostati opušten, brale.',
+          'Veliki bug? Mali tipfeler? Cijelo prepisivanje? Samo pokaži. Ja rješavam kod; ti uživaj u dobrim commitovima.',
+          'Navedi zadatak i krećemo. Čitam, uređujem, testiram i ostavljam commit glađi od jutarnje patrole.',
+        ],
+      },
+      teacher: {
+        headlines: [
+          'Nastava počinje',
+          'Što ćemo danas naučiti?',
+          'Spreman te provesti kroz to',
+          'Donesi mi pitanje',
+          'Počnimo od osnova',
+        ],
+        bodies: [
+          'Pitaj o bilo kojoj datoteci, konceptu ili pogrešci. Objasnit ću zašto, ne samo popravak, i pokazati riješeni primjer.',
+          'Zalijepite kod za pregled, pogrešku za otklanjanje ili koncept koji želite razjasniti. Vodit ću vas korak po korak.',
+          'Podijelite problem. Razložit ću ga na dijelove, objasniti svaki i tako vam omogućiti da sljedeći riješite sami.',
+          'Zajedno ćemo pročitati kod, pronaći uzrok problema i izgraditi mentalni model koji možete ponovno upotrijebiti.',
+          'Navedite temu ili zalijepite isječak. Očekujte objašnjenja, dijagrame opisane riječima i zadatke za vježbu.',
+        ],
+      },
+      technical: {
+        headlines: [
+          'Ljuska je montirana. Čeka se unos.',
+          'Petlja agenta je u stanju mirovanja',
+          'Spremno za slanje',
+          'Stdin otvoren',
+          'Alati su inicijalizirani',
+        ],
+        bodies: [
+          'Navedite putanju repozitorija, test koji pada ili stog poziva. Alati: fs, git, exec, search, patch, http.',
+          'Pošaljite uputu za pokretanje poziva alata. Podržava izmjene više datoteka, pokretanje testova, git operacije i dohvaćanje web sadržaja.',
+          'Unesite zadatak. Napravit ću plan, pozvati alate i provjeriti rezultat. Zapisi se prikazuju u stvarnom vremenu; razlike se vraćaju prije primjene.',
+          'Prihvaća prirodni jezik ili strukturirane naredbe. Tipičan tok: čitaj -> planiraj -> popravak -> testiraj -> izvješće.',
+          'datotečni sustav, terminal, git, preglednik, pretraživanje. Opisati promjenu; ja vraćam razlike i izlaz testova.',
+        ],
+      },
+      uwu: {
+        headlines: [
+          'uwu spreman za pomoć!',
+          'openamer-san čeka',
+          '*male zvukovi tipkovnice*',
+          'wet\'s fix things togedda!',
+          'čekam tvoju naredbu!',
+        ],
+        bodies: [
+          'zalijepi pogrešan fajl ili cilj~ ja ću čitati, popraviti i testirati, sve s malim tragovima na razlici owo',
+          'pričaj mi zadatak, bez obzira koliko je mali~ obećavam čiste commitove i lijepe refaktoracije, nyuu~',
+          'odloži svoju poruku o grešci ovdje! ću pronaći uzrok, popraviti ga i izgraditi sretnu testnu skupinu iza sebe owo',
+          'daj mi put do weba ili bug, a ja ću se pobrinuti uwu. gledaj loš kod, ljubazan prema tebi~',
+          'mogu pokrenuti testove, uređivati fajlove i otvarati PR-ove. samo reci naredbu, prijatelju uwu',
+        ],
+      },
+    },
+    fallback: {
+      headlines: [
+        'Što danas pokrećemo?',
+        'Što ti je na umu?',
+        'Što OpenAmer treba pogledati?',
+        'Gdje da počnemo?',
+        'Što zahtijeva pažnju?',
+      ],
+      bodies: [
+        'Pošalji grešku, granu, plan ili grubu ideju. Pregledat ću repozitorij i pretvoriti to u sljedeći konkretan korak.',
+        'Donesi kod, pitanje ili zapeli dio. Procijenit ću situaciju prije promjena.',
+        'Pošalji zadatak, putanju koja ne prolazi ili nedovršen plan. Pomoći ću da to postane akcija.',
+        'Donesi problem, cilj ili datoteku. Prvo ću pregledati i sljedeći korak ostaviti konkretnim.',
+        'Pošalji kontekst koji imaš. Pomoći ću ga složiti u plan ili popravak.',
+      ],
+    },
+    personaMode: {
+      headlines: [
+        '${label} način rada je uključen. Na čemu da radimo?',
+        'Što ${label} OpenAmer treba vidjeti?',
+        '${label} način rada je spreman.',
+        'Čime bi se ${label} OpenAmer trebao pozabaviti?',
+        'Gdje da počnemo?',
+      ],
+      bodies: [
+        'Pošaljite zadatak, datoteku ili okvirnu ideju. Koristit ću vaš konfigurirani glas i zadržati rad unutar ovog repozitorija.',
+        'Donesite kontekst ili dio na kojem ste zapeli. Prilagodit ću se vašoj konfiguriranoj osobnosti.',
+        'Pošaljite problem, datoteku ili ideju. Slijedit ću osobnost koju ste konfigurirali.',
+        'Ostavite zadatak ovdje. Zadržat ću rad unutar repozitorija.',
+        'Dajte mi kontekst i odgovorit ću u ${label} načinu rada.',
+      ],
     },
   },
 })
