@@ -21,6 +21,21 @@ and verification tooling.
 · [Report a bug](https://github.com/openamer/openamer/issues)
 · [Contributing](CONTRIBUTING.md) · [Vision](VISION.md)
 
+## 186 languages — measured, not advertised
+
+The desktop picker, the CLI, the TUI and the gateway read one locale set:
+**186 locales** — all 184 ISO 639-1 codes plus `zh-hant` and `torbeski`, ten of
+them right-to-left. Each one has a real catalog in this repository, so the
+agent can answer a user in the language that user thinks in.
+
+The full list, with the translated share of every catalog, is generated from
+those files at
+**[openamer.com/docs/reference/languages](https://openamer.com/docs/reference/languages)**
+(machine-readable: [`api/languages.json`](https://openamer.com/docs/api/languages.json)).
+`python scripts/build_language_index.py --check` fails when the page drifts from
+the data, and 174 of the 186 CLI catalogs are at least 90% translated — the rest
+show up as gaps instead of being counted as done.
+
 ## Install and start
 
 Review installer scripts before running them. They download software and install

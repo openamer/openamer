@@ -816,6 +816,7 @@ const sidebars: SidebarsConfig = {
           ],
         },
         'reference/faq',
+        'reference/languages',
       ],
     },
   ],
