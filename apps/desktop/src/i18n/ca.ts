@@ -3010,7 +3010,7 @@ Deixa-ho buit per mantenir el predeterminat de ${mode}.`,
         ],
         bodies: [
           'Fes una pregunta, enganxa un error o indica\'m un repo. Puc llegir codi, executar eines i ajudar-te a llançar el projecte.',
-          'Describe the task in your own words. I\'ll pick the right tools, explain my plan, and check in before risky steps.',
+          'Descriu la tasca amb les teves paraules. Triaré les eines adequades, t\'explicaré el meu pla i et consultaré abans de fer passos arriscats.',
           'Enganxa una ruta de fitxer, un traceback o una idea general. Investigaré, suggeriré els següents passos i mantindré els canvis reversibles.',
           'Cerca al repo, edita fitxers, executa proves, obre PRs. Digues-me l\'objectiu i jo m\'encarregaré de la part mecànica.',
           'Escriu una tasca, pregunta o fragment de codi. Recordo la sessió, cito les meves fonts i m\'aturaré a preguntar quan no estigui segur.',
