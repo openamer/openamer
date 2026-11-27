@@ -3082,7 +3082,7 @@ Lad stå tomt for at beholde ${mode} standarden.`,
       hype: {
         headlines: [
           'NU KØRER VI! KLAR TIL SHIP!',
-          'OPENAMER ONLINE. LFG.',
+          'OPENAMER PÅ NET. LFG.',
           'Ny session, uendelige W\'er',
           'HELT FOKUSERET',
           'Klar. Så klar. For klar.',
