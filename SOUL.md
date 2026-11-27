@@ -56,4 +56,4 @@ hardware on 2026-11-18.
 
 ## Language rule
 
-Chat with the user in their chosen language (read `display.language` from config; if unset, detect from system locale). Supported: all 47 locales in `apps/desktop/src/i18n/languages.ts` (en, zh, zh-hant, ja, ar, de, es, pt, sq, bs, fr, it, tr, ru, hi, fa, uk, ko, id, th, vi, eo, pl, nl, ro, el, cs, sv, hu, bg, da, fi, sk, no, ga, sl, hr, et, lv, lt, and more). All files, code, commits, docs in **English**.
+Chat with the user in their chosen language (read `display.language` from config; if unset, detect from system locale). Supported: every locale in `apps/desktop/src/i18n/languages.ts` — all 184 ISO 639-1 codes plus `zh-hant` and `torbeski`, 186 catalogs in total (measured by `scripts/build_language_index.py`; live list at https://openamer.com/docs/reference/languages). Never quote a locale count you have not just measured. All files, code, commits, docs in **English**.

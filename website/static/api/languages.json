@@ -1,0 +1,3194 @@
+{
+  "summary": {
+    "locales_total": 186,
+    "iso_639_1_two_letter": 184,
+    "non_iso_locales": [
+      "torbeski",
+      "zh-hant"
+    ],
+    "rtl_locales": [
+      "ar",
+      "dv",
+      "fa",
+      "he",
+      "ku",
+      "ps",
+      "sd",
+      "ug",
+      "ur",
+      "yi"
+    ],
+    "desktop_registered": 186,
+    "desktop_catalogs": 186,
+    "cli_catalogs": 186,
+    "cli_keys": 330,
+    "cli_at_least_90pct": 174,
+    "cli_at_least_50pct": 185,
+    "desktop_at_least_50pct": 184,
+    "fully_english_locales": []
+  },
+  "languages": [
+    {
+      "code": "ab",
+      "english_name": "Abkhazian",
+      "native_name": "Аҧсуа",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9364
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2579,
+        "translated_share": 0.9698
+      }
+    },
+    {
+      "code": "aa",
+      "english_name": "Afar",
+      "native_name": "Afaraf",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9515
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2393,
+        "translated_share": 0.9666
+      }
+    },
+    {
+      "code": "af",
+      "english_name": "Afrikaans",
+      "native_name": "Afrikaans",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9455
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2402,
+        "translated_share": 0.9442
+      }
+    },
+    {
+      "code": "ak",
+      "english_name": "Akan",
+      "native_name": "Akan",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9273
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2395,
+        "translated_share": 0.9641
+      }
+    },
+    {
+      "code": "sq",
+      "english_name": "Albanian",
+      "native_name": "Shqip",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9273
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2377,
+        "translated_share": 0.9672
+      }
+    },
+    {
+      "code": "am",
+      "english_name": "Amharic",
+      "native_name": "አማርኛ",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9394
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2394,
+        "translated_share": 0.9674
+      }
+    },
+    {
+      "code": "ar",
+      "english_name": "Arabic",
+      "native_name": "العربية",
+      "rtl": true,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9576
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2563,
+        "translated_share": 0.9867
+      }
+    },
+    {
+      "code": "an",
+      "english_name": "Aragonese",
+      "native_name": "Aragonés",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9061
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2410,
+        "translated_share": 0.9556
+      }
+    },
+    {
+      "code": "hy",
+      "english_name": "Armenian",
+      "native_name": "Հայերեն",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2565,
+        "translated_share": 0.9696
+      }
+    },
+    {
+      "code": "as",
+      "english_name": "Assamese",
+      "native_name": "অসমীয়া",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2589,
+        "translated_share": 0.9718
+      }
+    },
+    {
+      "code": "av",
+      "english_name": "Avaric",
+      "native_name": "Авар",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9364
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2409,
+        "translated_share": 0.9095
+      }
+    },
+    {
+      "code": "ae",
+      "english_name": "Avestan",
+      "native_name": "Avesta",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9394
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2397,
+        "translated_share": 0.7101
+      }
+    },
+    {
+      "code": "ay",
+      "english_name": "Aymara",
+      "native_name": "Aymar aru",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9333
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2430,
+        "translated_share": 0.9584
+      }
+    },
+    {
+      "code": "az",
+      "english_name": "Azerbaijani",
+      "native_name": "Azərbaycan",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9273
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2393,
+        "translated_share": 0.9641
+      }
+    },
+    {
+      "code": "bm",
+      "english_name": "Bambara",
+      "native_name": "Bamanankan",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9515
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2404,
+        "translated_share": 0.7983
+      }
+    },
+    {
+      "code": "ba",
+      "english_name": "Bashkir",
+      "native_name": "Башҡортса",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2563,
+        "translated_share": 0.9703
+      }
+    },
+    {
+      "code": "eu",
+      "english_name": "Basque",
+      "native_name": "Euskara",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9303
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2393,
+        "translated_share": 0.9662
+      }
+    },
+    {
+      "code": "be",
+      "english_name": "Belarusian",
+      "native_name": "Беларуская",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9364
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2564,
+        "translated_share": 0.8963
+      }
+    },
+    {
+      "code": "bn",
+      "english_name": "Bengali",
+      "native_name": "বাংলা",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9364
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2581,
+        "translated_share": 0.9706
+      }
+    },
+    {
+      "code": "bh",
+      "english_name": "Bihari",
+      "native_name": "भोजपुरी",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2394,
+        "translated_share": 0.9678
+      }
+    },
+    {
+      "code": "bi",
+      "english_name": "Bislama",
+      "native_name": "Bislama",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9061
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2392,
+        "translated_share": 0.6718
+      }
+    },
+    {
+      "code": "bs",
+      "english_name": "Bosnian",
+      "native_name": "Bosanski",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9333
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.9802
+      }
+    },
+    {
+      "code": "br",
+      "english_name": "Breton",
+      "native_name": "Brezhoneg",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9364
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2422,
+        "translated_share": 0.9641
+      }
+    },
+    {
+      "code": "bg",
+      "english_name": "Bulgarian",
+      "native_name": "Български",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2563,
+        "translated_share": 0.986
+      }
+    },
+    {
+      "code": "my",
+      "english_name": "Burmese",
+      "native_name": "မြန်မာ",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2393,
+        "translated_share": 0.8679
+      }
+    },
+    {
+      "code": "ca",
+      "english_name": "Catalan",
+      "native_name": "Català",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.8909
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2434,
+        "translated_share": 0.9425
+      }
+    },
+    {
+      "code": "ch",
+      "english_name": "Chamorro",
+      "native_name": "Chamoru",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9273
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2458,
+        "translated_share": 0.928
+      }
+    },
+    {
+      "code": "ce",
+      "english_name": "Chechen",
+      "native_name": "Нохчийн",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2380,
+        "translated_share": 0.8832
+      }
+    },
+    {
+      "code": "ny",
+      "english_name": "Chichewa",
+      "native_name": "Chichewa",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2415,
+        "translated_share": 0.8973
+      }
+    },
+    {
+      "code": "cu",
+      "english_name": "Church Slavic",
+      "native_name": "Словѣньскъ",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2394,
+        "translated_share": 0.6216
+      }
+    },
+    {
+      "code": "cv",
+      "english_name": "Chuvash",
+      "native_name": "Чӑвашла",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2393,
+        "translated_share": 0.9595
+      }
+    },
+    {
+      "code": "kw",
+      "english_name": "Cornish",
+      "native_name": "Cornish",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9212
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2395,
+        "translated_share": 0.7666
+      }
+    },
+    {
+      "code": "co",
+      "english_name": "Corsican",
+      "native_name": "Corsu",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2405,
+        "translated_share": 0.9484
+      }
+    },
+    {
+      "code": "cr",
+      "english_name": "Cree",
+      "native_name": "Cree",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.903
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2393,
+        "translated_share": 0.9666
+      }
+    },
+    {
+      "code": "hr",
+      "english_name": "Croatian",
+      "native_name": "Hrvatski",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9333
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.9794
+      }
+    },
+    {
+      "code": "cs",
+      "english_name": "Czech",
+      "native_name": "Čeština",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9303
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.9785
+      }
+    },
+    {
+      "code": "da",
+      "english_name": "Danish",
+      "native_name": "Dansk",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9212
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.9752
+      }
+    },
+    {
+      "code": "dv",
+      "english_name": "Divehi",
+      "native_name": "ދިވެހި",
+      "rtl": true,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2380,
+        "translated_share": 0.6471
+      }
+    },
+    {
+      "code": "nl",
+      "english_name": "Dutch",
+      "native_name": "Nederlands",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9121
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.9752
+      }
+    },
+    {
+      "code": "dz",
+      "english_name": "Dzongkha",
+      "native_name": "རྫོང་ཁ",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2563,
+        "translated_share": 0.97
+      }
+    },
+    {
+      "code": "en",
+      "english_name": "English",
+      "native_name": "English",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.0
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2575,
+        "translated_share": 0.0
+      }
+    },
+    {
+      "code": "eo",
+      "english_name": "Esperanto",
+      "native_name": "Esperanto",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.984
+      }
+    },
+    {
+      "code": "et",
+      "english_name": "Estonian",
+      "native_name": "Eesti",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9394
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.9815
+      }
+    },
+    {
+      "code": "ee",
+      "english_name": "Ewe",
+      "native_name": "Eʋegbe",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9455
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2394,
+        "translated_share": 0.9657
+      }
+    },
+    {
+      "code": "fo",
+      "english_name": "Faroese",
+      "native_name": "Føroyskt",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2395,
+        "translated_share": 0.7674
+      }
+    },
+    {
+      "code": "fj",
+      "english_name": "Fijian",
+      "native_name": "Na Vosa Vakaviti",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9485
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2393,
+        "translated_share": 0.9666
+      }
+    },
+    {
+      "code": "fi",
+      "english_name": "Finnish",
+      "native_name": "Suomi",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.984
+      }
+    },
+    {
+      "code": "fr",
+      "english_name": "French",
+      "native_name": "Français",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9576
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2575,
+        "translated_share": 0.9212
+      }
+    },
+    {
+      "code": "ff",
+      "english_name": "Fulah",
+      "native_name": "Fulfulde",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9364
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2390,
+        "translated_share": 0.9661
+      }
+    },
+    {
+      "code": "gl",
+      "english_name": "Galician",
+      "native_name": "Galego",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9333
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2394,
+        "translated_share": 0.9649
+      }
+    },
+    {
+      "code": "lg",
+      "english_name": "Ganda",
+      "native_name": "Luganda",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.7394
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2399,
+        "translated_share": 0.9262
+      }
+    },
+    {
+      "code": "ka",
+      "english_name": "Georgian",
+      "native_name": "ქართული",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2379,
+        "translated_share": 0.9643
+      }
+    },
+    {
+      "code": "de",
+      "english_name": "German",
+      "native_name": "Deutsch",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9485
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2581,
+        "translated_share": 0.9686
+      }
+    },
+    {
+      "code": "el",
+      "english_name": "Greek",
+      "native_name": "Ελληνικά",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2563,
+        "translated_share": 0.9871
+      }
+    },
+    {
+      "code": "gn",
+      "english_name": "Guarani",
+      "native_name": "Avañe\\'ẽ",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2392,
+        "translated_share": 0.8039
+      }
+    },
+    {
+      "code": "gu",
+      "english_name": "Gujarati",
+      "native_name": "ગુજરાતી",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2394,
+        "translated_share": 0.7189
+      }
+    },
+    {
+      "code": "ht",
+      "english_name": "Haitian Creole",
+      "native_name": "Kreyòl ayisyen",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9333
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2388,
+        "translated_share": 0.9657
+      }
+    },
+    {
+      "code": "ha",
+      "english_name": "Hausa",
+      "native_name": "Hausa",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9333
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2393,
+        "translated_share": 0.9344
+      }
+    },
+    {
+      "code": "he",
+      "english_name": "Hebrew",
+      "native_name": "עברית",
+      "rtl": true,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2391,
+        "translated_share": 0.9573
+      }
+    },
+    {
+      "code": "hz",
+      "english_name": "Herero",
+      "native_name": "Otjiherero",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9333
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2384,
+        "translated_share": 0.7504
+      }
+    },
+    {
+      "code": "hi",
+      "english_name": "Hindi",
+      "native_name": "हिन्दी",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9485
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2563,
+        "translated_share": 0.9871
+      }
+    },
+    {
+      "code": "ho",
+      "english_name": "Hiri Motu",
+      "native_name": "Hiri Motu",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9061
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2391,
+        "translated_share": 0.6274
+      }
+    },
+    {
+      "code": "hu",
+      "english_name": "Hungarian",
+      "native_name": "Magyar",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.9832
+      }
+    },
+    {
+      "code": "is",
+      "english_name": "Icelandic",
+      "native_name": "Íslenska",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2384,
+        "translated_share": 0.9618
+      }
+    },
+    {
+      "code": "io",
+      "english_name": "Ido",
+      "native_name": "Ido",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9485
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2386,
+        "translated_share": 0.5574
+      }
+    },
+    {
+      "code": "ig",
+      "english_name": "Igbo",
+      "native_name": "Igbo",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9485
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2408,
+        "translated_share": 0.9298
+      }
+    },
+    {
+      "code": "id",
+      "english_name": "Indonesian",
+      "native_name": "Bahasa Indonesia",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9182
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.9743
+      }
+    },
+    {
+      "code": "ia",
+      "english_name": "Interlingua",
+      "native_name": "Interlingua",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9333
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2386,
+        "translated_share": 0.8663
+      }
+    },
+    {
+      "code": "ie",
+      "english_name": "Interlingue",
+      "native_name": "Interlingue",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9182
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.7273
+      }
+    },
+    {
+      "code": "iu",
+      "english_name": "Inuktitut",
+      "native_name": "ᐃᓄᒃᑎᑐᑦ",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.903
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2393,
+        "translated_share": 0.9666
+      }
+    },
+    {
+      "code": "ik",
+      "english_name": "Inupiaq",
+      "native_name": "Inupiaq",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9182
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2384,
+        "translated_share": 0.8381
+      }
+    },
+    {
+      "code": "ga",
+      "english_name": "Irish",
+      "native_name": "Gaeilge",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2378,
+        "translated_share": 0.976
+      }
+    },
+    {
+      "code": "it",
+      "english_name": "Italian",
+      "native_name": "Italiano",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9242
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2389,
+        "translated_share": 0.8681
+      }
+    },
+    {
+      "code": "ja",
+      "english_name": "Japanese",
+      "native_name": "日本語",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9576
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2563,
+        "translated_share": 0.9863
+      }
+    },
+    {
+      "code": "jv",
+      "english_name": "Javanese",
+      "native_name": "Basa Jawa",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9212
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2384,
+        "translated_share": 0.9547
+      }
+    },
+    {
+      "code": "kl",
+      "english_name": "Kalaallisut",
+      "native_name": "Kalaallisut",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2392,
+        "translated_share": 0.9657
+      }
+    },
+    {
+      "code": "kn",
+      "english_name": "Kannada",
+      "native_name": "ಕನ್ನಡ",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9485
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2564,
+        "translated_share": 0.97
+      }
+    },
+    {
+      "code": "kr",
+      "english_name": "Kanuri",
+      "native_name": "Kanuri",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9152
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2390,
+        "translated_share": 0.7874
+      }
+    },
+    {
+      "code": "ks",
+      "english_name": "Kashmiri",
+      "native_name": "کٲشُر",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2383,
+        "translated_share": 0.9668
+      }
+    },
+    {
+      "code": "kk",
+      "english_name": "Kazakh",
+      "native_name": "Қазақша",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2386,
+        "translated_share": 0.9665
+      }
+    },
+    {
+      "code": "km",
+      "english_name": "Khmer",
+      "native_name": "ខ្មែរ",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9091
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2395,
+        "translated_share": 0.8785
+      }
+    },
+    {
+      "code": "ki",
+      "english_name": "Kikuyu",
+      "native_name": "Gĩkũyũ",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9333
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2380,
+        "translated_share": 0.6689
+      }
+    },
+    {
+      "code": "rw",
+      "english_name": "Kinyarwanda",
+      "native_name": "Ikinyarwanda",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2417,
+        "translated_share": 0.9574
+      }
+    },
+    {
+      "code": "rn",
+      "english_name": "Kirundi",
+      "native_name": "Ikirundi",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9394
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2395,
+        "translated_share": 0.8881
+      }
+    },
+    {
+      "code": "kv",
+      "english_name": "Komi",
+      "native_name": "Komi",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9152
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2391,
+        "translated_share": 0.9665
+      }
+    },
+    {
+      "code": "kg",
+      "english_name": "Kongo",
+      "native_name": "Kikongo",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9455
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2388,
+        "translated_share": 0.6713
+      }
+    },
+    {
+      "code": "ko",
+      "english_name": "Korean",
+      "native_name": "한국어",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2563,
+        "translated_share": 0.9856
+      }
+    },
+    {
+      "code": "kj",
+      "english_name": "Kuanyama",
+      "native_name": "Kuanyama",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9333
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2392,
+        "translated_share": 0.9666
+      }
+    },
+    {
+      "code": "ku",
+      "english_name": "Kurdish",
+      "native_name": "Kurdî",
+      "rtl": true,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2386,
+        "translated_share": 0.4044
+      }
+    },
+    {
+      "code": "ky",
+      "english_name": "Kyrgyz",
+      "native_name": "Кыргызча",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2395,
+        "translated_share": 0.9666
+      }
+    },
+    {
+      "code": "lo",
+      "english_name": "Lao",
+      "native_name": "ລາວ",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2580,
+        "translated_share": 0.9709
+      }
+    },
+    {
+      "code": "la",
+      "english_name": "Latin",
+      "native_name": "Latina",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2393,
+        "translated_share": 0.9649
+      }
+    },
+    {
+      "code": "lv",
+      "english_name": "Latvian",
+      "native_name": "Latviešu",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9364
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.9827
+      }
+    },
+    {
+      "code": "li",
+      "english_name": "Limburgish",
+      "native_name": "Limburgish",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9152
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2406,
+        "translated_share": 0.8022
+      }
+    },
+    {
+      "code": "ln",
+      "english_name": "Lingala",
+      "native_name": "Lingála",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.8879
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2394,
+        "translated_share": 0.8145
+      }
+    },
+    {
+      "code": "lt",
+      "english_name": "Lithuanian",
+      "native_name": "Lietuvių",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.9823
+      }
+    },
+    {
+      "code": "lu",
+      "english_name": "Luba-Katanga",
+      "native_name": "Tshiluba",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.797
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2383,
+        "translated_share": 0.8221
+      }
+    },
+    {
+      "code": "lb",
+      "english_name": "Luxembourgish",
+      "native_name": "Lëtzebuergesch",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9273
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2384,
+        "translated_share": 0.8184
+      }
+    },
+    {
+      "code": "mk",
+      "english_name": "Macedonian",
+      "native_name": "Македонски",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.7394
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2389,
+        "translated_share": 0.9653
+      }
+    },
+    {
+      "code": "mg",
+      "english_name": "Malagasy",
+      "native_name": "Malagasy",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9394
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2424,
+        "translated_share": 0.7554
+      }
+    },
+    {
+      "code": "ms",
+      "english_name": "Malay",
+      "native_name": "Bahasa Melayu",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9182
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.9596
+      }
+    },
+    {
+      "code": "ml",
+      "english_name": "Malayalam",
+      "native_name": "മലയാളം",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.7485
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2383,
+        "translated_share": 0.9534
+      }
+    },
+    {
+      "code": "mt",
+      "english_name": "Maltese",
+      "native_name": "Malti",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9515
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2423,
+        "translated_share": 0.9521
+      }
+    },
+    {
+      "code": "gv",
+      "english_name": "Manx",
+      "native_name": "Manx",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9273
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2398,
+        "translated_share": 0.7319
+      }
+    },
+    {
+      "code": "mi",
+      "english_name": "Maori",
+      "native_name": "Te Reo Māori",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.8606
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2392,
+        "translated_share": 0.9666
+      }
+    },
+    {
+      "code": "mr",
+      "english_name": "Marathi",
+      "native_name": "मराठी",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2387,
+        "translated_share": 0.7587
+      }
+    },
+    {
+      "code": "mh",
+      "english_name": "Marshallese",
+      "native_name": "Kajin M̧ajeļ",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.7909
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2392,
+        "translated_share": 0.8361
+      }
+    },
+    {
+      "code": "mn",
+      "english_name": "Mongolian",
+      "native_name": "Монгол",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2393,
+        "translated_share": 0.5892
+      }
+    },
+    {
+      "code": "na",
+      "english_name": "Nauru",
+      "native_name": "Dorerin Naoero",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.8515
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2392,
+        "translated_share": 0.7676
+      }
+    },
+    {
+      "code": "nv",
+      "english_name": "Navajo",
+      "native_name": "Diné bizaad",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.6424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2420,
+        "translated_share": 0.9438
+      }
+    },
+    {
+      "code": "ng",
+      "english_name": "Ndonga",
+      "native_name": "Ndonga",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9364
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2393,
+        "translated_share": 0.9666
+      }
+    },
+    {
+      "code": "ne",
+      "english_name": "Nepali",
+      "native_name": "नेपाली",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2393,
+        "translated_share": 0.967
+      }
+    },
+    {
+      "code": "nd",
+      "english_name": "North Ndebele",
+      "native_name": "isiNdebele",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.703
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2377,
+        "translated_share": 0.9634
+      }
+    },
+    {
+      "code": "se",
+      "english_name": "Northern Sami",
+      "native_name": "Davvisámegiella",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2378,
+        "translated_share": 0.9584
+      }
+    },
+    {
+      "code": "no",
+      "english_name": "Norwegian",
+      "native_name": "Norsk",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9485
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.976
+      }
+    },
+    {
+      "code": "nb",
+      "english_name": "Norwegian Bokmal",
+      "native_name": "Norwegian Bokmal",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9364
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2379,
+        "translated_share": 0.9542
+      }
+    },
+    {
+      "code": "nn",
+      "english_name": "Norwegian Nynorsk",
+      "native_name": "Norwegian Nynorsk",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9333
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2386,
+        "translated_share": 0.692
+      }
+    },
+    {
+      "code": "oc",
+      "english_name": "Occitan",
+      "native_name": "Occitan",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9364
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2402,
+        "translated_share": 0.7007
+      }
+    },
+    {
+      "code": "oj",
+      "english_name": "Ojibwa",
+      "native_name": "Anishinaabemowin",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9061
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2450,
+        "translated_share": 0.9469
+      }
+    },
+    {
+      "code": "or",
+      "english_name": "Oriya",
+      "native_name": "ଓଡ଼ିଆ",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2387,
+        "translated_share": 0.7826
+      }
+    },
+    {
+      "code": "om",
+      "english_name": "Oromo",
+      "native_name": "Afaan Oromoo",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9364
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2410,
+        "translated_share": 0.7581
+      }
+    },
+    {
+      "code": "os",
+      "english_name": "Ossetian",
+      "native_name": "Ирон",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2395,
+        "translated_share": 0.7925
+      }
+    },
+    {
+      "code": "pi",
+      "english_name": "Pali",
+      "native_name": "पालि",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9394
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2393,
+        "translated_share": 0.6377
+      }
+    },
+    {
+      "code": "ps",
+      "english_name": "Pashto",
+      "native_name": "پښتو",
+      "rtl": true,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2573,
+        "translated_share": 0.9697
+      }
+    },
+    {
+      "code": "fa",
+      "english_name": "Persian",
+      "native_name": "فارسی",
+      "rtl": true,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2563,
+        "translated_share": 0.9856
+      }
+    },
+    {
+      "code": "pl",
+      "english_name": "Polish",
+      "native_name": "Polski",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9333
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.9773
+      }
+    },
+    {
+      "code": "pt",
+      "english_name": "Portuguese",
+      "native_name": "Português",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9455
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.9802
+      }
+    },
+    {
+      "code": "pa",
+      "english_name": "Punjabi",
+      "native_name": "ਪੰਜਾਬੀ",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9091
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2405,
+        "translated_share": 0.8844
+      }
+    },
+    {
+      "code": "qu",
+      "english_name": "Quechua",
+      "native_name": "Runa Simi",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9485
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2427,
+        "translated_share": 0.9596
+      }
+    },
+    {
+      "code": "ro",
+      "english_name": "Romanian",
+      "native_name": "Română",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9242
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.9764
+      }
+    },
+    {
+      "code": "rm",
+      "english_name": "Romansh",
+      "native_name": "Rumantsch",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9182
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2421,
+        "translated_share": 0.9475
+      }
+    },
+    {
+      "code": "ru",
+      "english_name": "Russian",
+      "native_name": "Русский",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2563,
+        "translated_share": 0.9856
+      }
+    },
+    {
+      "code": "sm",
+      "english_name": "Samoan",
+      "native_name": "Gagana Samoa",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2472,
+        "translated_share": 0.9624
+      }
+    },
+    {
+      "code": "sg",
+      "english_name": "Sango",
+      "native_name": "Sängö",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9455
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2572,
+        "translated_share": 0.9685
+      }
+    },
+    {
+      "code": "sa",
+      "english_name": "Sanskrit",
+      "native_name": "संस्कृतम्",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2581,
+        "translated_share": 0.9698
+      }
+    },
+    {
+      "code": "sc",
+      "english_name": "Sardinian",
+      "native_name": "Sardu",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2399,
+        "translated_share": 0.684
+      }
+    },
+    {
+      "code": "gd",
+      "english_name": "Scottish Gaelic",
+      "native_name": "Gàidhlig",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9182
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2406,
+        "translated_share": 0.9651
+      }
+    },
+    {
+      "code": "sr",
+      "english_name": "Serbian",
+      "native_name": "Српски",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9455
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2384,
+        "translated_share": 0.9572
+      }
+    },
+    {
+      "code": "sn",
+      "english_name": "Shona",
+      "native_name": "chiShona",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9152
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2389,
+        "translated_share": 0.7685
+      }
+    },
+    {
+      "code": "ii",
+      "english_name": "Sichuan Yi",
+      "native_name": "Sichuan Yi",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9364
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2580,
+        "translated_share": 0.9496
+      }
+    },
+    {
+      "code": "zh",
+      "english_name": "Simplified Chinese",
+      "native_name": "简体中文",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9636
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2704,
+        "translated_share": 0.9878
+      }
+    },
+    {
+      "code": "sd",
+      "english_name": "Sindhi",
+      "native_name": "سنڌي",
+      "rtl": true,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9091
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2381,
+        "translated_share": 0.7732
+      }
+    },
+    {
+      "code": "si",
+      "english_name": "Sinhala",
+      "native_name": "සිංහල",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9485
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2393,
+        "translated_share": 0.9666
+      }
+    },
+    {
+      "code": "sk",
+      "english_name": "Slovak",
+      "native_name": "Slovenčina",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9333
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.9802
+      }
+    },
+    {
+      "code": "sl",
+      "english_name": "Slovenian",
+      "native_name": "Slovenščina",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9455
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.9798
+      }
+    },
+    {
+      "code": "so",
+      "english_name": "Somali",
+      "native_name": "Soomaali",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9212
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2394,
+        "translated_share": 0.8058
+      }
+    },
+    {
+      "code": "nr",
+      "english_name": "South Ndebele",
+      "native_name": "isiNdebele",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2393,
+        "translated_share": 0.7104
+      }
+    },
+    {
+      "code": "st",
+      "english_name": "Southern Sotho",
+      "native_name": "Sesotho",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2395,
+        "translated_share": 0.7027
+      }
+    },
+    {
+      "code": "es",
+      "english_name": "Spanish",
+      "native_name": "Español",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9394
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.9777
+      }
+    },
+    {
+      "code": "su",
+      "english_name": "Sundanese",
+      "native_name": "Basa Sunda",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9273
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2394,
+        "translated_share": 0.7698
+      }
+    },
+    {
+      "code": "sw",
+      "english_name": "Swahili",
+      "native_name": "Kiswahili",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9394
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2380,
+        "translated_share": 0.6765
+      }
+    },
+    {
+      "code": "ss",
+      "english_name": "Swati",
+      "native_name": "siSwati",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9364
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2379,
+        "translated_share": 0.6393
+      }
+    },
+    {
+      "code": "sv",
+      "english_name": "Swedish",
+      "native_name": "Svenska",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.9773
+      }
+    },
+    {
+      "code": "tl",
+      "english_name": "Tagalog",
+      "native_name": "Tagalog",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9121
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2377,
+        "translated_share": 0.9306
+      }
+    },
+    {
+      "code": "ty",
+      "english_name": "Tahitian",
+      "native_name": "Reo Tahiti",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9606
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2507,
+        "translated_share": 0.9669
+      }
+    },
+    {
+      "code": "tg",
+      "english_name": "Tajik",
+      "native_name": "Тоҷикӣ",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2388,
+        "translated_share": 0.7609
+      }
+    },
+    {
+      "code": "ta",
+      "english_name": "Tamil",
+      "native_name": "தமிழ்",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9394
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2389,
+        "translated_share": 0.9674
+      }
+    },
+    {
+      "code": "tt",
+      "english_name": "Tatar",
+      "native_name": "Татарча",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2393,
+        "translated_share": 0.9666
+      }
+    },
+    {
+      "code": "te",
+      "english_name": "Telugu",
+      "native_name": "తెలుగు",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2391,
+        "translated_share": 0.967
+      }
+    },
+    {
+      "code": "th",
+      "english_name": "Thai",
+      "native_name": "ไทย",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2563,
+        "translated_share": 0.9863
+      }
+    },
+    {
+      "code": "bo",
+      "english_name": "Tibetan",
+      "native_name": "བོད་སྐད",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9364
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2580,
+        "translated_share": 0.9632
+      }
+    },
+    {
+      "code": "ti",
+      "english_name": "Tigrinya",
+      "native_name": "ትግርኛ",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2581,
+        "translated_share": 0.9702
+      }
+    },
+    {
+      "code": "to",
+      "english_name": "Tonga",
+      "native_name": "Lea faka-Tonga",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2401,
+        "translated_share": 0.6805
+      }
+    },
+    {
+      "code": "torbeski",
+      "english_name": "Torbeški",
+      "native_name": "Torbeški",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9485
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2385,
+        "translated_share": 0.7317
+      }
+    },
+    {
+      "code": "zh-hant",
+      "english_name": "Traditional Chinese",
+      "native_name": "繁體中文",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9606
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2563,
+        "translated_share": 0.9867
+      }
+    },
+    {
+      "code": "ts",
+      "english_name": "Tsonga",
+      "native_name": "Xitsonga",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9333
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2399,
+        "translated_share": 0.9366
+      }
+    },
+    {
+      "code": "tn",
+      "english_name": "Tswana",
+      "native_name": "Setswana",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9182
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2384,
+        "translated_share": 0.6049
+      }
+    },
+    {
+      "code": "tr",
+      "english_name": "Turkish",
+      "native_name": "Türkçe",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9333
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2382,
+        "translated_share": 0.9681
+      }
+    },
+    {
+      "code": "tk",
+      "english_name": "Turkmen",
+      "native_name": "Türkmençe",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2394,
+        "translated_share": 0.7669
+      }
+    },
+    {
+      "code": "tw",
+      "english_name": "Twi",
+      "native_name": "Twi",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9606
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2395,
+        "translated_share": 0.8221
+      }
+    },
+    {
+      "code": "uk",
+      "english_name": "Ukrainian",
+      "native_name": "Українська",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2564,
+        "translated_share": 0.9856
+      }
+    },
+    {
+      "code": "ur",
+      "english_name": "Urdu",
+      "native_name": "اردو",
+      "rtl": true,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9424
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2393,
+        "translated_share": 0.7188
+      }
+    },
+    {
+      "code": "ug",
+      "english_name": "Uyghur",
+      "native_name": "ئۇيغۇرچە",
+      "rtl": true,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9606
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2580,
+        "translated_share": 0.9194
+      }
+    },
+    {
+      "code": "uz",
+      "english_name": "Uzbek",
+      "native_name": "Oʻzbekcha",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9515
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2398,
+        "translated_share": 0.7327
+      }
+    },
+    {
+      "code": "ve",
+      "english_name": "Venda",
+      "native_name": "Tshivenḓa",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9606
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2384,
+        "translated_share": 0.7479
+      }
+    },
+    {
+      "code": "vi",
+      "english_name": "Vietnamese",
+      "native_name": "Tiếng Việt",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.9832
+      }
+    },
+    {
+      "code": "vo",
+      "english_name": "Volapuk",
+      "native_name": "Volapük",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9606
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2564,
+        "translated_share": 0.968
+      }
+    },
+    {
+      "code": "wa",
+      "english_name": "Walloon",
+      "native_name": "Walon",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9606
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2464,
+        "translated_share": 0.9631
+      }
+    },
+    {
+      "code": "cy",
+      "english_name": "Welsh",
+      "native_name": "Cymraeg",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9273
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2397,
+        "translated_share": 0.8106
+      }
+    },
+    {
+      "code": "fy",
+      "english_name": "Western Frisian",
+      "native_name": "Frysk",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9303
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2393,
+        "translated_share": 0.7677
+      }
+    },
+    {
+      "code": "wo",
+      "english_name": "Wolof",
+      "native_name": "Wolof",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9576
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2393,
+        "translated_share": 0.7351
+      }
+    },
+    {
+      "code": "xh",
+      "english_name": "Xhosa",
+      "native_name": "isiXhosa",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9485
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2377,
+        "translated_share": 0.9655
+      }
+    },
+    {
+      "code": "yi",
+      "english_name": "Yiddish",
+      "native_name": "ייִדיש",
+      "rtl": true,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9606
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2376,
+        "translated_share": 0.9655
+      }
+    },
+    {
+      "code": "yo",
+      "english_name": "Yoruba",
+      "native_name": "Yorùbá",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9606
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2391,
+        "translated_share": 0.7934
+      }
+    },
+    {
+      "code": "za",
+      "english_name": "Zhuang",
+      "native_name": "Vahcuengh",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9606
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2391,
+        "translated_share": 0.8507
+      }
+    },
+    {
+      "code": "zu",
+      "english_name": "Zulu",
+      "native_name": "isiZulu",
+      "rtl": false,
+      "cli": {
+        "catalog": true,
+        "keys": 330,
+        "translated_share": 0.9545
+      },
+      "desktop": {
+        "catalog": true,
+        "registered": true,
+        "strings": 2393,
+        "translated_share": 0.9662
+      }
+    }
+  ]
+}
