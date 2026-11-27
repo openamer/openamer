@@ -176,6 +176,51 @@ def _env_or_default_worker_count() -> int:
         return _default_worker_count()
 
 
+def _lower_own_priority() -> str:
+    """Drop this process (and every child it spawns) to a low CPU class.
+
+    Measured 2026-11-27 on the 8-core / 24 GB laptop: a full run held the CPU
+    at 96-100% for ~65 minutes, and everything else on the box -- the desktop,
+    the gateway, the learning daemon -- was starved for that whole window. The
+    suite is batch work; it should lose every scheduling contest against
+    interactive processes and still consume every CPU cycle nobody else wants.
+
+    Priority class is inherited by children on both platforms, so lowering it
+    once here covers the per-file pytest subprocesses and anything they spawn.
+    That is also why this is done on *our own* process instead of via
+    ``preexec_fn``: this runner is multi-threaded (ThreadPoolExecutor), and
+    ``preexec_fn`` is documented as unsafe in the presence of threads.
+
+    Opt out with ``OPENAMER_TEST_LOW_PRIORITY=0`` (a dedicated CI runner has
+    nothing to protect). Returns a short human-readable description for the
+    run header, and never raises -- a scheduling nicety must not fail a run.
+    """
+    if os.environ.get("OPENAMER_TEST_LOW_PRIORITY", "1").strip() == "0":
+        return "normal (OPENAMER_TEST_LOW_PRIORITY=0)"
+    try:
+        if os.name == "nt":
+            import ctypes
+            from ctypes import wintypes
+
+            BELOW_NORMAL_PRIORITY_CLASS = 0x00004000
+            kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
+            # Without these signatures ctypes truncates the pseudo-handle (-1)
+            # to a 32-bit int and SetPriorityClass fails with error 0 -- the
+            # documented shape of "it silently did nothing".
+            kernel32.GetCurrentProcess.restype = wintypes.HANDLE
+            kernel32.SetPriorityClass.argtypes = [wintypes.HANDLE, wintypes.DWORD]
+            kernel32.SetPriorityClass.restype = wintypes.BOOL
+            if kernel32.SetPriorityClass(kernel32.GetCurrentProcess(), BELOW_NORMAL_PRIORITY_CLASS):
+                return "below-normal (win32)"
+            return f"normal (SetPriorityClass failed, err={ctypes.get_last_error()})"
+
+        os.nice(10)  # POSIX: inherited by children, relative to current nice
+        return f"nice+10 (now {os.nice(0)})"
+    except Exception as exc:  # pragma: no cover - platform dependent
+        return f"normal (could not lower priority: {exc})"
+
+
+
 def _split_path_list(raw: str) -> list[str]:
     """Split a colon-separated path list without breaking Windows drive letters.
 
@@ -937,6 +982,10 @@ def main() -> int:
     # line belongs to a file that *finished*.
     _install_kill_dump()
 
+    # Batch work must not starve the desktop it runs on: drop to below-normal
+    # before the first child is spawned, so the whole tree inherits it.
+    _priority_note = _lower_own_priority()
+
     parser = argparse.ArgumentParser(
         description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -1215,13 +1264,13 @@ def main() -> int:
         roots_str = [str(r.relative_to(repo_root)) if r.is_relative_to(repo_root) else str(r) for r in roots]
         print(
             f"Discovered {len(files)} test files (~{approx_total_tests} tests) under "
-            f"{roots_str}; running with -j {args.jobs}",
+            f"{roots_str}; running with -j {args.jobs} (priority: {_priority_note})",
             flush=True,
         )
     else:
         print(
             f"Running {len(files)} test files (~{approx_total_tests} tests) "
-            f"with -j {args.jobs}",
+            f"with -j {args.jobs} (priority: {_priority_note})",
             flush=True,
         )
 
