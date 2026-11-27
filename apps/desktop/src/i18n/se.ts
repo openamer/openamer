@@ -3083,7 +3083,7 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
       hype: {
         headlines: [
           'LET\'S GOOOO! VALMIS SHIP-AT!',
-          'OPENAMER ONLINE. LFG.',
+          'OPENAMER NEĐĐAS. OZAN JOAVKKU.',
           'Uusi session, infinite W\'s',
           'BÁRREIDU VALMISTI',
           'Valmis. Dovval valmis. Lián valmis.',
@@ -3180,8 +3180,8 @@ Guđe guorus, vai ${mode} dábálašárvu geavahuvvo.`,
         headlines: [
           'Yo dude, man lea rátnu?',
           'Waves lookin\' clean, valán koodit',
-          'Hangin\' ten at the prompt',
-          'Stoked to help, bro',
+          'Heŋgen logi gohččumis',
+          'Hui movttis veahkehit, viellja',
           'Tide\'s up, kursora ríhká',
         ],
         bodies: [
