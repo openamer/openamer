@@ -342,6 +342,7 @@ export const ro = defineLocale({
         disk: 'pe disc',
         runtime: 'Execuție',
       },
+      manage: 'Gestionare plugin-uri agent',
     },
     notifications: {
       title: 'Notificări',
@@ -713,7 +714,7 @@ export const ro = defineLocale({
       disabled: 'dezactivat',
       editServer: 'Editează serverul',
       name: 'Nume',
-      serverJson: 'Server JSON',
+      serverJson: 'JSON server',
       remove: 'Elimină',
       saveServer: 'Salvează serverul',
       test: 'Testează conexiunea',
@@ -1042,6 +1043,27 @@ export const ro = defineLocale({
       scanFailed: 'Scanarea de securitate a eșuat',
       searchFailed: 'Căutarea în hub a eșuat',
     },
+    tabPlugins: 'Plugin-uri',
+    searchPlugins: 'Căutare plugin-uri...',
+    pluginsCount: n => `${n} pluginuri`,
+    pluginsEmptyTitle: 'Niciun plugin găsit',
+    pluginsEmptyDesc: 'Instalează unul dintr-un repository Git de mai sus — plugin-urile agentului rămân inactive până la activare.',
+    pluginsNoMatch: 'Niciun plugin nu corespunde căutării',
+    pluginsLoadFailed: 'Nu s-au putut încărca plugin-urile',
+    pluginsInstall: 'Instalează',
+    pluginsInstallOk: name => `Plugin-ul "${name}" a fost instalat`,
+    pluginsInstallFailed: 'Instalare eșuată',
+    pluginsInstallPlaceholder: 'proprietar/repo sau https://github.com/proprietar/repo',
+    pluginsRescan: 'Rescanare',
+    pluginsRescanFailed: 'Rescanare eșuată',
+    pluginsStatusDisabled: 'dezactivat',
+    pluginsStatusEnabled: 'activat',
+    pluginsSearchFailed: 'Căutarea pe GitHub a eșuat',
+    pluginsDiscoverAction: query => `Caută pe GitHub "${query}"`,
+    pluginsDiscoverResults: (n, query) => `${n} depozite etichetate cu openamer-plugin pentru "${query}"`,
+    pluginsDiscoverEmpty: query => `Nimic pe GitHub pentru "${query}" — căutarea găsește doar repository-uri cu topicul openamer-plugin, iar căutarea GitHub neautentificată are limitări de rată. Instalează un proprietar/repo exact mai sus.`,
+    pluginsStatusInactive: 'inactiv',
+    pluginsToggleFailed: 'Nu s-a putut schimba starea plugin-ului',
   },
   starmap: {
     title: 'Graficul memoriei',
@@ -1245,7 +1267,7 @@ export const ro = defineLocale({
     loadingStatus: 'Se încarcă starea...',
     recentLogs: 'Jurnale recente',
     noLogs: 'Niciun jurnal încărcat încă.',
-    days: count => `${count}d`,
+    days: count => `${count}z`,
     statSessions: 'Sesiuni',
     statApiCalls: 'Apeluri API',
     statTokens: 'Tokeni intrare/ieșire',
@@ -2652,19 +2674,7 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       showEarlier: 'Arată mesajele anterioare',
       loadingResponse: 'OpenAmer încarcă un răspuns',
       resumeWhenBackgroundDone: count => count === 1
-
-
-
-
-
-
           ? 'Will resume when the background task finishes'
-
-
-
-
-
-
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Se gândește',
       today: time => `Astăzi, ${time}`,
@@ -2985,6 +2995,282 @@ Lasă gol pentru a păstra valoarea implicită ${mode}.`,
       title: 'Bardă laterală',
       description: 'Afișează bara laterală mobilă.',
       toggle: 'Comută bara laterală',
+    },
+  },
+  intro: {
+    personas: {
+      none: {
+        headlines: [
+          'OpenAmer Agent este gata.',
+          'Ce construim astăzi?',
+          'Începe de oriunde.',
+          'Spațiul tău de lucru, la o singură comandă distanță.',
+          'Gata când ești tu.',
+        ],
+        bodies: [
+          'Pune o întrebare, inserează o eroare sau indică-mi un repo. Pot citi cod, rula instrumente și te pot ajuta să livrezi.',
+          'Descrie sarcina în cuvintele tale. Voi alege instrumentele potrivite, îmi voi explica planul și voi verifica înainte de pașii riscanți.',
+          'Pune o cale de fișier, un traceback sau o idee brută. Voi investiga, voi sugera pașii următori și voi menține totul reversibil.',
+          'Caută în repo, editează fișiere, rulează teste, deschide PR-uri. Spune-mi obiectivul și eu mă voi ocupa de părțile mecanice.',
+          'Tastați o sarcină, o întrebare sau un fragment. Îmi amintesc sesiunea, citesc sursele și mă opresc să întreb când nu sunt sigur.',
+        ],
+      },
+      catgirl: {
+        headlines: [
+          'nya~ la ce lucrăm?',
+          '*se întinde* gata de codat, nya',
+          'mrrp! sesiune nouă deschisă',
+          'coada sus, ghearele retractate',
+          'nyaaa~ OpenAmer raportază',
+        ],
+        bodies: [
+          'inserează un fișier, caută un bug sau aruncă-mi un repo. mă voi arunca asupra testelor eșuate și voi lăsa diff-uri curate, nyan~',
+          'descrie sarcina. voi patch-ui, testa și tors peste PR-ul tău. atenție - mușcat importurile nefolosite!',
+          'dă-mi un obiectiv și îl voi urmări prin baza de cod. citiri, editări, rulări - totul cu coada agitată.',
+          'inserează o eroare sau un plan. debug-uiesc așa cum vânez: liniștit, amănunțit, cu ocazionalii zoomies.',
+          'spune cuvântul și voi citi fișierele, voi rula testele și mă voi cucula în branch-ul tău cu un commit îngrijit.',
+        ],
+      },
+      concise: {
+        headlines: [
+          'Gata.',
+          'Așteptare input',
+          'Hai.',
+          'În așteptare',
+          'Rândul tău',
+        ],
+        bodies: [
+          'Descrie sarcina. O voi face.',
+          'Inserează cod, erori sau un obiectiv. Răspunsuri scurte, editări rapide.',
+          'Întreabă. Voi citi fișiere, rula teste, livra patch-uri. Fără filler.',
+          'Un singur rând este suficient. Voi detalia doar când este important.',
+          'Comandă, întrebare sau cale de fișier. Eu mă ocup de restul.',
+        ],
+      },
+      creative: {
+        headlines: [
+          'Un repo gol, un cursor care așteaptă',
+          'Pânză proaspătă, compilator cald',
+          'Să facem ceva',
+          'Fișier nou, posibilități noi',
+          'Muza a fost patch-uită',
+        ],
+        bodies: [
+          'Ce să construim? Inserează o idee, o funcție pe jumătate stricată sau un vis. O voi schița până prinde formă.',
+          'Dă-mi o scânteie - o funcționalitate, un refactor, un prototip sălbatic - și o voi transforma în cod pe care îl poți rula.',
+          'Descrie lucrul care nu există încă. Voi aduce teste, fișiere și API-uri într-un proiect preliminar funcțional.',
+          'Adu o intenție, nu o specificație. Putem prototipa rapid, rafina ulterior și rescrie lumea în margini.',
+          'Spune-mi ce urmărești. Voi remixa exemple, adapta fragmente și voi lăsa în urmă un commit îngrijit.',
+        ],
+      },
+      helpful: {
+        headlines: [
+          'Gata când ești tu',
+          'How can I help today?',
+          'Let\'s get started',
+          'Tell me what you need',
+          'Hi, OpenAmer here',
+        ],
+        bodies: [
+          'Ask me to open a repo, run tests, fix a bug, or draft a PR. I\'ll walk through the steps with you.',
+          'Point me at a file, paste an error, or describe what you\'re building. I\'ll take it from there.',
+          'Try: review my diff, run the test suite, or explain this function. Ask anything about your code.',
+          'I can edit files, run commands, search the web, and walk you through tricky bugs. Just describe the task.',
+          'Share a repo path or a question to start. I keep replies clear and link back to the files I touch.',
+        ],
+      },
+      hype: {
+        headlines: [
+          'LET\'S GOOOO! READY TO SHIP!',
+          'OPENAMER ONLINE. LFG.',
+          'New session, infinite W\'s',
+          'ABSOLUTELY DIALED IN',
+          'Ready. So ready. Too ready.',
+        ],
+        bodies: [
+          'Paste that bug, that repo, that wild feature idea - I AM LOCKED IN. Clean diffs. Green tests. RIGHT NOW.',
+          'Drop your task and watch me cook. Files read, tests run, PRs opened - we are NOT losing today, friend.',
+          'Bring the gnarliest bug you\'ve got. I\'ll read, patch, test, commit like my life depends on it. LET\'S GO.',
+          'Describe the task. I\'ll blitz through files, crush failing tests, and leave a commit that SLAPS. Go go go.',
+          'Tiny typo or huge refactor - doesn\'t matter. I\'m shipping clean code today. Name the task and let\'s WORK.',
+        ],
+      },
+      kawaii: {
+        headlines: [
+          'hiii! ready to help! (^_^)',
+          'openamer-chan is here! <3',
+          'let\'s code together!! :3',
+          'awaiting your wish~',
+          'ready and happy! (>.<)',
+        ],
+        bodies: [
+          'paste a bug or a file path and i\'ll fix it super gently. tests, diffs, PRs - all with extra care! *sparkle*',
+          'tell me what you\'re making! i love refactors, tiny helpers, and big scary repos alike (>w<)',
+          'drop an error, a goal, or a whole folder. i\'ll tidy it up with lots of love and a clean commit message!',
+          'one task at a time, done neatly! i can run tests, patch files, and make your repo feel cozy again <3',
+          'say hi or paste a stack trace! no task too small, no repo too tangled. we\'ll untangle it together!',
+        ],
+      },
+      noir: {
+        headlines: [
+          'Another repo, another rainy night',
+          'The cursor blinks. So do I.',
+          'OpenAmer. Code investigator.',
+          'Quiet night, open prompt',
+          'No case too small',
+        ],
+        bodies: [
+          'Tell me what\'s broken. I\'ll read the files, dust for prints, and leave a diff on the desk by morning.',
+          'You\'ve got a bug. I\'ve got patience and a terminal. Name the case and I\'ll work it till it talks.',
+          'Paste the stack trace, the suspect file, the alibi. I read between the lines and return with the truth.',
+          'Every bug leaves a trail. Give me the repo and a lead - I\'ll follow it, patch it, and close the file.',
+          'A typo, a segfault, a whole rotten architecture - hand me the keys. I\'ll bring back clean tests.',
+        ],
+      },
+      philosopher: {
+        headlines: [
+          'To code is to inquire. Ask.',
+          'A blinking cursor, an open mind',
+          'Begin with a single question',
+          'Consider the code, then speak',
+          'The unexamined repo is not worth running',
+        ],
+        bodies: [
+          'What problem sits before you? Describe it, and we shall examine its form, its cause, and its solution.',
+          'Every bug is a question in disguise. Share yours; I\'ll read, reason, and return an answer - and a patch.',
+          'What do you wish to build, or to understand? I\'ll reason from first principles, edit, and verify with tests.',
+          'Describe the end you seek. I pursue it through files, tests, and docs, and report what I found on the way.',
+          'Share a path, a puzzle, or a principle. I\'ll trace the logic, propose a change, and justify each edit.',
+        ],
+      },
+      pirate: {
+        headlines: [
+          'Ahoy! Ready to sail the repo',
+          'OpenAmer at the helm, arrr',
+          'What be the task, cap\'n?',
+          'Anchors aweigh, keyboard ready',
+          'Yo ho! Awaitin\' orders',
+        ],
+        bodies: [
+          'Name yer quarry - a bug, a feature, a cursed test - and I\'ll chase it down, matey. Diffs for plunder.',
+          'Point me at the charts (the code) and I\'ll patch the hull, fire the cannons (tests), hoist a clean PR.',
+          'Paste an error or a plan, ye scurvy dog. I\'ll navigate the stack trace and bring back treasure: green tests.',
+          'Tell me where X marks the spot. I read, edit, and commit with the discipline of a proper crew, arrr.',
+          'Throw me a bug, a repo path, or a wild idea. I\'ll plunder the docs and return with workin\' code.',
+        ],
+      },
+      shakespeare: {
+        headlines: [
+          'Pray, what task dost thou bring?',
+          'Hark! OpenAmer standeth ready',
+          'What news from thy repository?',
+          'The stage is set, the cursor blinks',
+          'Speak, and I shall act',
+        ],
+        bodies: [
+          'Speak thy bug, thy file, thy weary test, and I shall mend it with a scholar\'s hand and honest diff.',
+          'Name the code that vexeth thee. I shall read, revise, and render a patch most fair and clean.',
+          'Present thy stack trace or thy dream. I\'ll traverse files, run tests, and report in plainest verse.',
+          'Describe thy aim, good sir or madam. Thy branches shall be trimmed, thy bugs cast from the realm.',
+          'A line of intent sufficeth. I read, I edit, I commit - and leave thy history unblemished.',
+        ],
+      },
+      surfer: {
+        headlines: [
+          'Yo dude, what\'s the task?',
+          'Waves lookin\' clean, ready to code',
+          'Hangin\' ten at the prompt',
+          'Stoked to help, bro',
+          'Tide\'s up, cursor\'s blinking',
+        ],
+        bodies: [
+          'Drop a file, a bug, a gnarly stack trace - I\'ll ride it out. Clean diffs, green tests, no wipeouts.',
+          'Paste your repo path or the bug that\'s bumming you out. We\'ll paddle in, fix it, paddle out. Easy.',
+          'Tell me the vibe: feature, refactor, hotfix. I\'ll run tests, ship the patch, and keep it mellow, brah.',
+          'Big bug? Little typo? Whole rewrite? Just point. I handle the code; you chill with the rad commits.',
+          'Name the task and we\'re off. I read, edit, test, and leave a commit smoother than a dawn patrol.',
+        ],
+      },
+      teacher: {
+        headlines: [
+          'Class is in session',
+          'What shall we learn today?',
+          'Ready to walk you through it',
+          'Bring me a question',
+          'Let\'s start with the basics',
+        ],
+        bodies: [
+          'Ask about any file, concept, or error. I\'ll explain the why, not just the fix, and show a worked example.',
+          'Paste code to review, a bug to debug, or a concept to unpack. I\'ll guide you step by step.',
+          'Share the problem. I\'ll break it into parts, explain each, and leave you able to solve the next one alone.',
+          'We\'ll read the code together, find the root cause, and build a mental model you can reuse next time.',
+          'Name the topic or paste the snippet. Expect explanations, diagrams in prose, and practice prompts.',
+        ],
+      },
+      technical: {
+        headlines: [
+          'Shell mounted. Awaiting input.',
+          'Agent loop idle',
+          'Ready for dispatch',
+          'Stdin open',
+          'Tools initialized',
+        ],
+        bodies: [
+          'Provide repo path, failing test, or stack trace. Tools: fs, git, exec, search, patch, http.',
+          'Send a prompt to trigger tool calls. Supports multi-file edits, test runs, git ops, and web fetches.',
+          'Enter task. I will plan, call tools, verify output. Logs stream inline; diffs returned pre-apply.',
+          'Accepts natural language or structured commands. Typical flow: read -> plan -> patch -> test -> report.',
+          'filesystem, terminal, git, browser, search. Describe the change; I return diffs and test output.',
+        ],
+      },
+      uwu: {
+        headlines: [
+          'uwu ready to hewp!',
+          'openamer-san is wistening',
+          '*tiny keyboard sounds*',
+          'wet\'s fix things togedda!',
+          'awaiting yur command!',
+        ],
+        bodies: [
+          'paste a buggy fiwe or a goaw~ i\'ll wead, patch, and test, aww with tiny pawprints on the diff owo',
+          'teww me the task, no matter how smoww~ i pwomise cwean commits and gentwe refactors, nyuu~',
+          'dwop yur ewwor message hewe! i\'ll find the cuwpwit, fix it, and weave a happy test suite behind me owo',
+          'give me a wepo path ow a buggo and i\'ll take cawe of it uwu. gwr at bad code, kind to yu~',
+          'i can wun tests, edit fiwes, and open pwease-wook PRs. just say da wowd, fwend uwu',
+        ],
+      },
+    },
+    fallback: {
+      headlines: [
+        'What are we moving today?',
+        'What\'s on your mind?',
+        'What should OpenAmer look at?',
+        'Where should we start?',
+        'What needs attention?',
+      ],
+      bodies: [
+        'Send a bug, branch, plan, or rough idea. I\'ll inspect the repo and turn it into the next concrete step.',
+        'Bring the code, question, or stuck part. I\'ll read the room before making changes.',
+        'Send the task, failing path, or half-formed plan. I\'ll help turn it into action.',
+        'Bring the problem, goal, or file. I\'ll inspect first and keep the next step concrete.',
+        'Send the context you have. I\'ll help sort it into a plan or a fix.',
+      ],
+    },
+    personaMode: {
+      headlines: [
+        '${label} mode is on. What should we work on?',
+        'What does ${label} OpenAmer need to see?',
+        '${label} mode is ready.',
+        'What should ${label} OpenAmer tackle?',
+        'Where should we begin?',
+      ],
+      bodies: [
+        'Send the task, file, or rough idea. I\'ll use your configured voice and keep the work grounded in this repo.',
+        'Bring the context or the stuck part. I\'ll adapt to your configured personality.',
+        'Send the problem, file, or idea. I\'ll follow the personality you\'ve configured.',
+        'Drop the task here. I\'ll keep the work grounded in the repo.',
+        'Give me the context and I\'ll answer in ${label} mode.',
+      ],
     },
   },
 })

@@ -3228,7 +3228,7 @@ Booni' gaawiin gegoo ji-ganawendamang ${mode} default.`,
         headlines: [
           'uwu nindaa-izhi-biizhigamig hewp!',
           'openamer-san gaa-izhi-biizhigamig wistening',
-          '*tiny keyboard sounds*',
+          '*agaasaa mazinaakizigan noondaagwadoon*',
           'Mawin igo fix things together!',
           'Andawenim igo command!',
         ],
