@@ -6,6 +6,11 @@ on:
   push:
     branches: [main]
     paths:
+      # The marketing pages in docs/ are published as the site root. Without
+      # this path a landing-page change merged to main is never deployed:
+      # measured 2026-11-26, openamer.com served a 17 KB page two days after
+      # docs/index.html had already been rebuilt.
+      - 'docs/**'
       - 'website/**'
       - 'skills/**'
       - 'optional-skills/**'
@@ -47,7 +52,9 @@ jobs:
     # main commit needs to ship live before the next release tag — e.g.
     # a skills-index PR that doesn't touch website/** paths and so
     # doesn't auto-deploy via the deploy-docs path.
-    if: github.event_name == 'release' || github.event_name == 'workflow_dispatch'
+    # Only when a hook exists: an empty secret made curl fail, so every manual
+    # dispatch marked the whole workflow red although the Pages deploy succeeded.
+    if: (github.event_name == 'release' || github.event_name == 'workflow_dispatch') && secrets.VERCEL_DEPLOY_HOOK != ''
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
