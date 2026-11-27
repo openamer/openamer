@@ -326,9 +326,54 @@ def _install_kill_handlers(state_path: Path, log_path: Path, target: str,
             pass
 
 
+def _lower_own_priority() -> str:
+    """Drop this process (and every child) to a low CPU priority class.
+
+    Inherited by children on both platforms, so one call here covers bash, the
+    canonical runner and every per-file pytest subprocess beneath them. Done on
+    our own process rather than per child: the watchdog spawns from a single
+    thread but the runner it starts is multi-threaded, and ``preexec_fn`` is
+    unsafe with threads -- inheritance needs no such trick.
+
+    Never raises: a scheduling nicety must not turn a green suite into an alert.
+    """
+    if os.environ.get("OPENAMER_TEST_LOW_PRIORITY", "1").strip() == "0":
+        return "normal (OPENAMER_TEST_LOW_PRIORITY=0)"
+    try:
+        if os.name == "nt":
+            import ctypes
+            from ctypes import wintypes
+
+            BELOW_NORMAL_PRIORITY_CLASS = 0x00004000
+            kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
+            # Without explicit signatures ctypes truncates the pseudo-handle
+            # (-1) to 32 bits and SetPriorityClass fails with err=0 -- the
+            # documented shape of "it silently did nothing".
+            kernel32.GetCurrentProcess.restype = wintypes.HANDLE
+            kernel32.SetPriorityClass.argtypes = [wintypes.HANDLE, wintypes.DWORD]
+            kernel32.SetPriorityClass.restype = wintypes.BOOL
+            if kernel32.SetPriorityClass(kernel32.GetCurrentProcess(), BELOW_NORMAL_PRIORITY_CLASS):
+                return "below-normal (win32)"
+            return f"normal (SetPriorityClass failed, err={ctypes.get_last_error()})"
+        os.nice(10)
+        return f"nice+10 (now {os.nice(0)})"
+    except Exception as exc:  # pragma: no cover - platform dependent
+        return f"normal (could not lower priority: {exc})"
+
+
 def main() -> int:
     state_path = _env_override("STATE", STATE)
     log_path = _env_override("LOG", LOG)
+
+    # The nightly run must not make the machine unusable. Measured 2026-11-27:
+    # the 04:00 run held the CPU at 96-100% for ~65 minutes, so the desktop and
+    # the learning daemon were starved and the growth loop stayed paused the
+    # whole time. Lowering our own priority class makes the whole tree (bash ->
+    # runner -> pytest) lose every contest against interactive work while still
+    # using every free cycle. ``OPENAMER_TEST_LOW_PRIORITY=0`` opts out.
+    # Logged, never printed: this watchdog's contract is that empty stdout means
+    # "all green", so an informational line on stdout would look like an alert.
+    _log(log_path, f"SCHEDULING CLASS -> {_lower_own_priority()}")
 
     if not RUNNER.exists() or not PYTHON.exists():
         print("TEST-WATCHDOG: runner or venv python missing")
