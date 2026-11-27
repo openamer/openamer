@@ -96,16 +96,25 @@ def _probe(module_path: Path, env_extra: dict[str, str] | None = None) -> dict:
 
 def _assert_lowered(sample: dict) -> None:
     """The OS must report a genuinely lower class after the call."""
-    assert sample["before"] != sample["after"], (
-        f"priority class unchanged ({sample['before']}) — the note "
-        f"{sample['note']!r} is a claim, not an effect"
-    )
     if os.name == "nt":
+        assert sample["before"] != sample["after"], (
+            f"priority class unchanged ({sample['before']}) — the note "
+            f"{sample['note']!r} is a claim, not an effect"
+        )
         assert sample["after"] == 0x00004000, f"expected BELOW_NORMAL, got {hex(sample['after'])}"
         assert "below-normal" in sample["note"]
     else:
-        assert sample["after"] == sample["before"] + 10, (
-            f"expected nice +10, got {sample['before']} -> {sample['after']}"
+        # POSIX nice is bounded to [-20, 19]: on a CI runner the parent runner
+        # has already nicened itself, so the probe starts at e.g. 10 and
+        # nice(10) lands on the 19 floor — measured 2026-11-27 as "10 -> 19".
+        # Assert the clamped value, and skip only when there is no headroom left
+        # to observe a change at all.
+        if sample["before"] >= 19:
+            import pytest
+
+            pytest.skip(f"nice already at the floor ({sample['before']}); change unobservable")
+        assert sample["after"] == min(sample["before"] + 10, 19), (
+            f"expected nice +10 (clamped at 19), got {sample['before']} -> {sample['after']}"
         )
         assert "nice+10" in sample["note"]
 
